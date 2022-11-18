@@ -17,14 +17,15 @@ package body BewegungsberechnungEinheitenLogik is
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitentauschExtern : in Boolean)
    is
-      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
       BewegungspunkteAbzug := BewegungspunkteBerechnenLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => NeueKoordinatenExtern,
                                                                                 EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
+      -- Hier noch eine Erschöpfung einbauen? äöü
       if
-        BewegungspunkteAbzug = EinheitenKonstanten.EinheitUnbewegbar
+        BewegungspunkteAbzug = EinheitenKonstanten.LeerBewegungspunkte
       then
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,

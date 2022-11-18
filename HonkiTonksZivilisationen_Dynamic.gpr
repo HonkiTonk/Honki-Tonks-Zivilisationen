@@ -23,7 +23,7 @@ project HonkiTonksZivilisationen is
    end Builder;
 
    package Binder is
-      for Default_Switches ("ada") use ("-d_C");
+      for Default_Switches ("ada") use ("-d_C", "-W8");
    end Binder;
 
    package Pretty_Printer is

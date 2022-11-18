@@ -7,7 +7,6 @@ with LeseEinheitenGebaut;
 with LeseWeltkarte;
 
 with KartenkoordinatenberechnungssystemLogik;
-with Vergleiche;
 
 with KIDatentypen;
 
@@ -21,12 +20,14 @@ package body KIEinheitFestlegenSiedelnLogik is
    function StadtBauen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       NeueStadtKoordinaten := StadtfeldSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       case
-        Vergleiche.KoordinateLeervergleich (KoordinateExtern => NeueStadtKoordinaten)
+        NeueStadtKoordinaten = KartenRecordKonstanten.LeerKoordinate
       is
          when True =>
             return False;

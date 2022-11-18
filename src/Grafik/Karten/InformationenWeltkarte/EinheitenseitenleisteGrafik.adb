@@ -100,10 +100,9 @@ package body EinheitenseitenleisteGrafik is
         or
           SpielVariablen.Debug.VolleInformation
       then
-         FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & " "
-           & UmwandlungenAdaNachEigenes.BewegungspunkteDarstellungNormal (KommazahlExtern => LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)) & TextKonstanten.Trennzeichen
-           & UmwandlungenAdaNachEigenes.BewegungspunkteDarstellungNormal (KommazahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                                                                                             IDExtern    => IDEinheit));
+         FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image
+           & TextKonstanten.Trennzeichen & ZahlAlsStringBewegungspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummer.Rasse,
+                                                                                                                                       IDExtern    => IDEinheit));
          FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugErfahrungspunkte) & LeseEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image
            & TextKonstanten.Trennzeichen & ZahlAlsStringErfahrungspunkte (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummer.Rasse,
                                                                                                                                     IDExtern    => IDEinheit));
@@ -363,7 +362,7 @@ package body EinheitenseitenleisteGrafik is
       TextwerteExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
    is
-      use type EinheitenDatentypen.Bewegungsplan;
+      use type EinheitenDatentypen.BewegungsplanVorhanden;
    begin
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
@@ -373,8 +372,8 @@ package body EinheitenseitenleisteGrafik is
       Koordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                         str  => "N:" & EinheitRasseNummerExtern.Nummer'Wide_Wide_Image & " Z:" & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & ","
-                                         & Koordinaten.XAchse'Wide_Wide_Image & " A:" & LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
+                                         str  => "Nr:" & EinheitRasseNummerExtern.Nummer'Wide_Wide_Image & " Z:" & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & ","
+                                         & Koordinaten.XAchse'Wide_Wide_Image & " Au:" & LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                     position => Textposition);
             
@@ -385,7 +384,7 @@ package body EinheitenseitenleisteGrafik is
                                                                           TextbreiteExtern => Textbreite);
       
       PlanSchleife:
-      for PlanSchleifenwert in EinheitenDatentypen.Bewegungsplan'Range loop
+      for PlanSchleifenwert in EinheitenDatentypen.BewegungsplanVorhanden'Range loop
          
          case
            PlanSchleifenwert mod 2

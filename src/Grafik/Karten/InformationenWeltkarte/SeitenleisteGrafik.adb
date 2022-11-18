@@ -3,6 +3,7 @@ with EinheitenKonstanten;
 with GrafikRecordKonstanten;
 with Views;
 with SpielVariablen;
+with KartenRecordKonstanten;
 
 with LeseWeltkarte;
 
@@ -12,32 +13,32 @@ with StadtseitenleisteGrafik;
 with EinheitenseitenleisteGrafik;
 with WichtigesSeitenleisteGrafik;
 with AllgemeinesSeitenleisteGrafik;
-with Vergleiche;
 
 package body SeitenleisteGrafik is
 
    procedure SeitenleisteGrafik
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       
       -- Ist der Cursor jemals Leer? Wenn nein, dann eventuell einbauen? äöü
-      case
-        Vergleiche.KoordinateLeervergleich (KoordinateExtern => AktuelleKoordinaten)
-      is
-         when True =>
-            return;
+      if
+        AktuelleKoordinaten = KartenRecordKonstanten.LeerKoordinate
+      then
+         return;
             
-         when False =>
-            WichtigesSeitenleisteGrafik.WichtigesInformationen (RasseExtern       => RasseExtern,
-                                                                KoordinatenExtern => AktuelleKoordinaten,
-                                                                ViewbereichExtern => 1);
-      end case;
+      else
+         WichtigesSeitenleisteGrafik.WichtigesInformationen (RasseExtern       => RasseExtern,
+                                                             KoordinatenExtern => AktuelleKoordinaten,
+                                                             ViewbereichExtern => 1);
+      end if;
       
       case
         LeseWeltkarte.Sichtbar (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
-                             RasseExtern       => RasseExtern)
+                                RasseExtern       => RasseExtern)
       is
          when True =>
             AllgemeinesSeitenleisteGrafik.AllgemeineInformationen (RasseExtern => RasseExtern);

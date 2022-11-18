@@ -5,7 +5,7 @@ with KartengrundDatentypen;
 with LeseWeltkarte;
 with LeseStadtGebaut;
 
-with KartenberechnungenGrafik;
+with SichtweitenGrafik;
 with EinstellungenGrafik;
 with EingeleseneTexturenGrafik;
 with KartenspritesZeichnenGrafik;
@@ -34,7 +34,7 @@ package body StadtkarteGrafik is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.Stadtfeld'Range loop
             
-            Grafikposition := (XMultiplikator * KartenberechnungenGrafik.StadtfelderAbmessung.x, YMultiplikator * KartenberechnungenGrafik.StadtfelderAbmessung.y);
+            Grafikposition := (XMultiplikator * SichtweitenGrafik.StadtfelderAbmessung.x, YMultiplikator * SichtweitenGrafik.StadtfelderAbmessung.y);
             
             GrafischeDarstellung (GrundExtern    => Gesamtgrund,
                                   PositionExtern => Grafikposition);

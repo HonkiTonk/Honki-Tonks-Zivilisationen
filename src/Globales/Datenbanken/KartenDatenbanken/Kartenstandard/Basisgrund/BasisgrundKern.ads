@@ -82,7 +82,9 @@ package BasisgrundKern is
                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                    )
+                                                                    ),
+                                                                        
+                                                                  Bewegung => (others => 6)
                                                                  ),
       
                                                                KartengrundDatentypen.Planetenkern_Enum =>
@@ -156,7 +158,9 @@ package BasisgrundKern is
                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                    )
+                                                                    ),
+                                                                        
+                                                                  Bewegung => (others => 8)
                                                                  ),
                                                                  
                                                                KartengrundDatentypen.Ringwoodit_Enum =>
@@ -230,7 +234,9 @@ package BasisgrundKern is
                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                    )
+                                                                    ),
+                                                                        
+                                                                  Bewegung => (others => 3)
                                                                  ),
       
                                                                KartengrundDatentypen.Majorit_Enum =>
@@ -304,7 +310,9 @@ package BasisgrundKern is
                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                    )
+                                                                    ),
+                                                                        
+                                                                  Bewegung => (others => 3)
                                                                  ),
                                                                  
                                                                KartengrundDatentypen.Perowskit_Enum =>
@@ -378,7 +386,9 @@ package BasisgrundKern is
                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                    )
+                                                                    ),
+                                                                        
+                                                                  Bewegung => (others => 3)
                                                                  ),
       
                                                                KartengrundDatentypen.Magnesiowüstit_Enum =>
@@ -452,7 +462,9 @@ package BasisgrundKern is
                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                    )
+                                                                    ),
+                                                                        
+                                                                  Bewegung => (others => 3)
                                                                  )
                                                               );
 

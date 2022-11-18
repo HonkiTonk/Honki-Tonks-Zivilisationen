@@ -18,14 +18,41 @@ package KIBewegungsplanVereinfachenLogik is
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               );
    
+   procedure BewegungsplanVerschieben
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+              );
+   
 private
    
-   KartenWertVereinfachung : KartenRecords.AchsenKartenfeldNaturalRecord;
+   NächsterSchritt : constant EinheitenDatentypen.BewegungsplanVorhanden := 1;
+   ÜbernächsterSchritt : constant EinheitenDatentypen.BewegungsplanVorhanden := 2;
+   Planschritt : EinheitenDatentypen.BewegungsplanVorhanden;
+      
+   KartenwertVereinfachung : KartenRecords.AchsenKartenfeldNaturalRecord;
+   AktuellerPlankoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure PlanvereinfachungPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ErsterZugExtern : in EinheitenDatentypen.Bewegungsplan;
-      ÜberNächsterZugExtern : in EinheitenDatentypen.Bewegungsplan)
+      PlanschrittExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+               and
+                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+              );
+   
+   
+   
+   function Verschieben
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      PlanschrittExtern : in EinheitenDatentypen.BewegungsplanVorhanden;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

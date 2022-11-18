@@ -13,7 +13,7 @@ package body NaechsteEinheitLogik is
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       use type EinheitenDatentypen.EinheitenIDMitNullWert;
-      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
       EinheitSchleifenbegrenzung := 0;

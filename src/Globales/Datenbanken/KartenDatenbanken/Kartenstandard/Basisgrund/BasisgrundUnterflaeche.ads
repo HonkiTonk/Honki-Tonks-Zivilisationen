@@ -82,7 +82,9 @@ package BasisgrundUnterflaeche is
                                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                    )
+                                                                                    ),
+                                                                        
+                                                                                  Bewegung => (others => 8)
                                                                                  ),
                                       
                                                                                KartengrundDatentypen.Erde_Enum =>
@@ -156,7 +158,9 @@ package BasisgrundUnterflaeche is
                                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                    )
+                                                                                    ),
+                                                                        
+                                                                                  Bewegung => (others => 3)
                                                                                  ),
       
                                                                                KartengrundDatentypen.Erdgestein_Enum =>
@@ -230,7 +234,9 @@ package BasisgrundUnterflaeche is
                                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                    )
+                                                                                    ),
+                                                                        
+                                                                                  Bewegung => (others => 5)
                                                                                  ),
                                       
                                                                                KartengrundDatentypen.Gestein_Enum =>
@@ -304,7 +310,9 @@ package BasisgrundUnterflaeche is
                                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                    )
+                                                                                    ),
+                                                                        
+                                                                                  Bewegung => (others => 6)
                                                                                  ),
       
                                                                                KartengrundDatentypen.Sand_Enum =>
@@ -378,7 +386,9 @@ package BasisgrundUnterflaeche is
                                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                    )
+                                                                                    ),
+                                                                        
+                                                                                  Bewegung => (others => 3)
                                                                                  ),
       
                                                                                KartengrundDatentypen.Meeresgrund_Enum =>
@@ -452,7 +462,9 @@ package BasisgrundUnterflaeche is
                                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                    )
+                                                                                    ),
+                                                                        
+                                                                                  Bewegung => (others => 3)
                                                                                  ),
                                       
                                                                                KartengrundDatentypen.Küstengrund_Enum =>
@@ -526,7 +538,9 @@ package BasisgrundUnterflaeche is
                                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                    )
+                                                                                    ),
+                                                                        
+                                                                                  Bewegung => (others => 3)
                                                                                  )
                                                                               );
 

@@ -21,9 +21,10 @@ package KartenDatentypen is
    
    -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    type Ebene is new UmgebungsbereichDrei range -3 .. 2;
-   subtype EbeneVorhanden is Ebene range -2 .. 2;
-   subtype EbenePlanet is EbeneVorhanden range -2 .. 0;
-   subtype EbeneLuft is EbeneVorhanden range 1 .. 2;
+   subtype EbeneVorhanden is Ebene range -2 .. Ebene'Last;
+   subtype EbenePlanet is EbeneVorhanden range EbeneVorhanden'First .. 0;
+   subtype EbeneOberfläche is EbeneVorhanden range 0 .. EbeneVorhanden'Last;
+   subtype EbeneLuft is EbeneOberfläche range 1 .. EbeneVorhanden'Last;
    subtype EbenenbereichEins is EbeneVorhanden range EbeneVorhanden (UmgebungsbereichEins'First) .. EbeneVorhanden (UmgebungsbereichEins'Last);
 
 end KartenDatentypen;

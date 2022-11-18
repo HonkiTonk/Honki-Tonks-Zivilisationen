@@ -52,7 +52,7 @@ package body EinheitenbewegungLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.Bewegungspunkte;
       use type EinheitenDatentypen.EinheitenIDMitNullWert;
    begin
       
@@ -233,7 +233,7 @@ package body EinheitenbewegungLogik is
       StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
       if

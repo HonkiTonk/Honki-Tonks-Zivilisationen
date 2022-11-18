@@ -7,7 +7,7 @@ with GrafikDatentypen;
 with SchreibeWichtiges;
 with LeseWichtiges;
 
-with WachstumLogik;
+with StadtwachstumLogik;
 with ForschungsfortschrittLogik;
 with StadtproduktionLogik;
 with SiegbedingungenLogik;
@@ -52,7 +52,7 @@ package body RundenendeLogik is
       VerbesserungFertiggestelltLogik.VerbesserungFertiggestellt;
       LadezeitenLogik.RundenendeSchreiben;
       
-      WachstumLogik.StadtWachstum;
+      StadtwachstumLogik.StadtWachstum;
       LadezeitenLogik.RundenendeSchreiben;
       
       StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer);

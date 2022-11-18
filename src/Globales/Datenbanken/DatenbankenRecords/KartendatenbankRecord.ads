@@ -3,6 +3,7 @@ with KampfDatentypen;
 with ProduktionDatentypen;
 with DatenbankRecords;
 with BewertungDatentypen;
+with EinheitenDatentypen;
 
 package KartendatenbankRecord is
    pragma Pure;
@@ -10,12 +11,25 @@ package KartendatenbankRecord is
    type BewertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
    type WirtschaftArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, ProduktionDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.Einzelproduktion;
    type KampfArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KampfDatentypen.Kampf_Enum'Range) of KampfDatentypen.KampfwerteKarte;
+   type BewegungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of EinheitenDatentypen.Bewegungspunkte;
       
    type KartenlistenRecord is record
             
       Bewertung : BewertungArray;
       Wirtschaft : WirtschaftArray;
       Kampf : KampfArray;
+      
+   end record;
+   
+   
+   
+   type KartenzusatzgrundlisteRecord is record
+      
+      Bewertung : BewertungArray;
+      Wirtschaft : WirtschaftArray;
+      Kampf : KampfArray;
+      
+      Bewegung : BewegungArray;
       
    end record;
    
@@ -28,6 +42,7 @@ package KartendatenbankRecord is
       Kampf : KampfArray;
       
       Passierbarkeit : DatenbankRecords.PassierbarkeitArray;
+      Bewegung : BewegungArray;
       
    end record;
 

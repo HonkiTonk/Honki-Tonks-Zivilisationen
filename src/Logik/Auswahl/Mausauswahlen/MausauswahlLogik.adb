@@ -12,7 +12,7 @@ with EinheitenKonstanten;
 with NachLogiktask;
 with Vergleiche;
 with EinstellungenGrafik;
-with KartenberechnungenGrafik;
+with SichtweitenGrafik;
 
 -- Thematisch aufteilen? äöü
 package body MausauswahlLogik is
@@ -219,7 +219,7 @@ package body MausauswahlLogik is
          
    
    function Steuerung
-      return Integer
+     return Integer
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
@@ -345,7 +345,7 @@ package body MausauswahlLogik is
       
       case
         Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    TextboxExtern      => KartenberechnungenGrafik.FensterKarte)
+                                    TextboxExtern      => SichtweitenGrafik.FensterKarte)
       is
          when True =>
             return BefehleDatentypen.Auswählen_Enum;

@@ -1,18 +1,16 @@
 with Weltkarte;
 
-with KartenberechnungenGrafik;
 with CursorbewegungLogik;
 with NachGrafiktask;
--- with EinstellungenGrafik;
+with EinstellungenGrafik;
 
--- Das und KartenberechnungenGrafik mal anders aufteilen. äöü
 package body SichtweitenGrafik is
    
    procedure SichtweiteBewegungsfeldFestlegen
    is begin
          
-      KartenberechnungenGrafik.KartenfelderAbmessungBerechnen;
-      KartenberechnungenGrafik.StadtfelderAbmessungBerechnen;
+      KartenfelderAbmessungBerechnen;
+      StadtfelderAbmessungBerechnen;
       
    end SichtweiteBewegungsfeldFestlegen;
    
@@ -56,7 +54,7 @@ package body SichtweitenGrafik is
       CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => WelcheZoomanpassung,
                                                    RasseExtern    => NachGrafiktask.AktuelleRasse);
       
-      KartenberechnungenGrafik.KartenfelderAbmessungBerechnen;
+      KartenfelderAbmessungBerechnen;
       
    end ZoomstufeÄndern;
    
@@ -105,5 +103,31 @@ package body SichtweitenGrafik is
       end if;
       
    end UntenRechts;
+   
+   
+   
+   procedure KartenfelderAbmessungBerechnen
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
+      
+      FensterKarte := (0.00, 0.00, EinstellungenGrafik.AktuelleFensterAuflösung.x, EinstellungenGrafik.AktuelleFensterAuflösung.y);
+      
+      KartenfelderAbmessung.x := FensterKarte.width / Float (2 * SichtweiteLesen + 1);
+      KartenfelderAbmessung.y := FensterKarte.height / Float (2 * SichtweiteLesen + 1);
+      
+   end KartenfelderAbmessungBerechnen;
+   
+   
+   
+   procedure StadtfelderAbmessungBerechnen
+   is begin
+      
+      StadtKarte := (0.00, 0.00, EinstellungenGrafik.AktuelleFensterAuflösung.x, EinstellungenGrafik.AktuelleFensterAuflösung.y);
+      
+      StadtfelderAbmessung.x := StadtKarte.width / Float (KartenDatentypen.Stadtfeld'Last);
+      StadtfelderAbmessung.y := StadtKarte.height / Float (KartenDatentypen.Stadtfeld'Last);
+      
+   end StadtfelderAbmessungBerechnen;
 
 end SichtweitenGrafik;

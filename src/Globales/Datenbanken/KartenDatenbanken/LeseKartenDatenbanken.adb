@@ -47,6 +47,38 @@ package body LeseKartenDatenbanken is
    
    
    
+   function BewegungBasisgrund
+     (GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return EinheitenDatentypen.VorhandeneBewegungspunkte
+   is begin
+      
+      return KartenDatenbank.Basisgrundliste (GrundExtern).Bewegung (RasseExtern);
+      
+   end BewegungBasisgrund;
+   
+   
+   
+   function BewegungZusatzgrund
+     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return EinheitenDatentypen.VorhandeneBewegungspunkte
+   is begin
+      
+      case
+        GrundExtern
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            return 0;
+              
+         when others =>
+            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Bewegung (RasseExtern);
+      end case;
+      
+   end BewegungZusatzgrund;
+     
+      
+   
    function BewertungFluss
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

@@ -73,7 +73,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Bewegungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BewegungspunkteExtern : in EinheitenDatentypen.BewegungFloat;
+      BewegungspunkteExtern : in EinheitenDatentypen.Bewegungspunkte;
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (
@@ -219,7 +219,7 @@ package SchreibeEinheitenGebaut is
    procedure KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PlanplatzExtern : in EinheitenDatentypen.Bewegungsplan)
+      PlanplatzExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

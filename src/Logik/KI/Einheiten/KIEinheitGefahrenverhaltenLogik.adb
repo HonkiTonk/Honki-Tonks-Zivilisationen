@@ -1,9 +1,9 @@
 with AufgabenDatentypen;
 with EinheitenKonstanten;
+with KartenRecordKonstanten;
+with KartenRecords;
 
 with LeseEinheitenGebaut;
-
-with Vergleiche;
 
 with KIDatentypen;
 with KIKonstanten;
@@ -18,6 +18,7 @@ package body KIEinheitGefahrenverhaltenLogik is
       FeindlicheEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
       -- Platzhalter
@@ -54,7 +55,7 @@ package body KIEinheitGefahrenverhaltenLogik is
          end case;
          
          if
-           Vergleiche.KoordinateLeervergleich (KoordinateExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = False
+           LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
          then
             KIBewegungDurchfuehrenLogik.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             

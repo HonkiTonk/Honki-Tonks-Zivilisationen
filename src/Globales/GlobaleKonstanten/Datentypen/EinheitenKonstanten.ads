@@ -12,7 +12,6 @@ with KIDatentypen;
 
 package EinheitenKonstanten is
    pragma Preelaborate;
-   use type EinheitenDatentypen.BewegungFloat;
    
    LeerRasse : constant RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
    LeerNummer : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
@@ -30,7 +29,9 @@ package EinheitenKonstanten is
    LeerTransportiert : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerWirdTransportiert : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerMeldung : constant EinheitenDatentypen.Einheit_Meldung_Enum := EinheitenDatentypen.Leer_Einheit_Meldung_Enum;
-   EinheitUnbewegbar : constant EinheitenDatentypen.BewegungFloat := -1.00;
+   
+   StandardBewegungspunkt : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 3;
+   MinimalerBewegungspunkt : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 1;
    
    
    
@@ -41,7 +42,7 @@ package EinheitenKonstanten is
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerPassierbarkeit : constant Boolean := False;
    LeerMaximaleLebenspunkte : constant EinheitenDatentypen.VorhandeneLebenspunkte := EinheitenDatentypen.VorhandeneLebenspunkte'First;
-   LeerMaximaleBewegungspunkte : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 1.00;
+   LeerMaximaleBewegungspunkte : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 3;
    LeerWirdVerbessertZu : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
    LeerBeförderungsgrenze : constant KampfDatentypen.ErfahrungspunkteVorhanden := KampfDatentypen.ErfahrungspunkteVorhanden'First;
    LeerMaximalerRang : constant KampfDatentypen.Rang := KampfDatentypen.RangVorhanden'First;

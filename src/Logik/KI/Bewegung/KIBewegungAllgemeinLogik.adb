@@ -1,6 +1,7 @@
 with DiplomatieDatentypen;
 with EinheitenDatentypen;
 with EinheitenKonstanten;
+with AufgabenDatentypen;
 
 with KIKonstanten;
 
@@ -19,6 +20,8 @@ package body KIBewegungAllgemeinLogik is
       return KIDatentypen.Bewegung_Enum
    is
       use type RassenDatentypen.Rassen_Enum;
+      use type KIDatentypen.Einheit_Aufgabe_Enum;
+      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    begin
       
       BlockierendeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern,
@@ -35,7 +38,24 @@ package body KIBewegungAllgemeinLogik is
       elsif
         BlockierendeEinheit.Rasse = EinheitRasseNummerExtern.Rasse
       then
-         return KIKonstanten.Tauschbewegung;
+         Aufgabe := LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+         if
+           LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = AufgabenDatentypen.Leer_Aufgabe_Enum
+           and
+             (Aufgabe = KIDatentypen.Leer_Aufgabe_Enum
+              or
+                Aufgabe = KIDatentypen.Platz_Machen_Enum
+              or
+                Aufgabe = KIDatentypen.Einheit_Auflösen_Enum
+              or
+                Aufgabe = KIDatentypen.Erkunden_Enum)
+         then
+            return KIKonstanten.Tauschbewegung;
+            
+         else
+            return KIKonstanten.KeineBewegung;
+         end if;
          
       elsif
         BlockierendeStadt = EinheitRasseNummerExtern.Rasse

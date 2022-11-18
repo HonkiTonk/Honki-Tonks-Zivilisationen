@@ -196,7 +196,7 @@ package body BefehlspruefungenLogik is
    procedure EinheitSteuern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is
-      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.Bewegungspunkte;
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    begin
       

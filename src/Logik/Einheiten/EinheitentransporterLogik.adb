@@ -148,7 +148,7 @@ package body EinheitentransporterLogik is
       LadungExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
       EinheitVorhanden := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,

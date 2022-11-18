@@ -7,7 +7,7 @@ with LeseWeltkarte;
 
 with KartenkoordinatenberechnungssystemLogik;
 with ViewsEinstellenGrafik;
-with KartenberechnungenGrafik;
+with SichtweitenGrafik;
 with ObjekteZeichnenGrafik;
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
@@ -20,7 +20,7 @@ package body StadtumgebungGrafik is
       use type KartenDatentypen.Ebene;
    begin
       
-      Viewfläche := (7.00 * KartenberechnungenGrafik.StadtfelderAbmessung.x, 7.00 * KartenberechnungenGrafik.StadtfelderAbmessung.y);
+      Viewfläche := (7.00 * SichtweitenGrafik.StadtfelderAbmessung.x, 7.00 * SichtweitenGrafik.StadtfelderAbmessung.y);
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (2),
                                             GrößeExtern          => Viewfläche,
@@ -42,7 +42,7 @@ package body StadtumgebungGrafik is
             if
               KartenWert.EAchse = KartenKonstanten.LeerEAchse
             then
-               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => KartenberechnungenGrafik.StadtfelderAbmessung,
+               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => SichtweitenGrafik.StadtfelderAbmessung,
                                                        PositionExtern  => Viewfläche,
                                                        FarbeExtern     => Sf.Graphics.Color.sfBlack);
                
@@ -71,11 +71,11 @@ package body StadtumgebungGrafik is
                                     BewirtschaftetExtern   => FeldBewirtschaftet);
             end if;
             
-            Viewfläche.x := Viewfläche.x + KartenberechnungenGrafik.StadtfelderAbmessung.x;
+            Viewfläche.x := Viewfläche.x + SichtweitenGrafik.StadtfelderAbmessung.x;
             
          end loop XAchseSchleife;
          
-         Viewfläche := (0.00, Viewfläche.y + KartenberechnungenGrafik.StadtfelderAbmessung.y);
+         Viewfläche := (0.00, Viewfläche.y + SichtweitenGrafik.StadtfelderAbmessung.y);
          
       end loop YAchseSchleife;
       
@@ -111,7 +111,7 @@ package body StadtumgebungGrafik is
             -- Muss vermutlich Ebenenabhängig sein. äöü
             ObjekteZeichnenGrafik.RahmenZeichnen (PositionExtern    => (PositionExtern.x + 3.00, PositionExtern.y + 3.00),
                                                   FarbeExtern       => Farbe,
-                                                  GrößeExtern       => (KartenberechnungenGrafik.StadtfelderAbmessung.x - 6.00, KartenberechnungenGrafik.StadtfelderAbmessung.y - 6.00),
+                                                  GrößeExtern       => (SichtweitenGrafik.StadtfelderAbmessung.x - 6.00, SichtweitenGrafik.StadtfelderAbmessung.y - 6.00),
                                                   RahmendickeExtern => 3.00);
             
          when False =>

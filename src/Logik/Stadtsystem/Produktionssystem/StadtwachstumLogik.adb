@@ -1,13 +1,10 @@
 with EinheitenDatentypen;
 with StadtDatentypen;
-with WichtigesKonstanten;
-with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenverbesserungDatentypen;
 with SystemDatentypen;
 
 with SchreibeStadtGebaut;
-with SchreibeWichtiges;
 with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
 with LeseGebaeudeDatenbank;
@@ -19,7 +16,7 @@ with StadtEntfernenLogik;
 with SichtbarkeitsberechnungssystemLogik;
 with MeldungenSetzenLogik;
 
-package body WachstumLogik is
+package body StadtwachstumLogik is
    
    procedure StadtWachstum
    is begin
@@ -239,90 +236,5 @@ package body WachstumLogik is
       end if;
       
    end WachstumProduktion;
-   
-   
-   
-   procedure WachstumWichtiges
-     (RasseExtern : in RassenDatentypen.Rassen_Enum)
-   is begin
-      
-      case
-        RasseExtern
-      is
-         when EinheitenKonstanten.LeerRasse =>
-            RassenSchleife:
-            for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
-               
-               case
-                 SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
-               is
-                  when RassenDatentypen.Leer_Spieler_Enum =>
-                     null;
-                     
-                  when others =>
-                     WachstumsratenBerechnen (RasseExtern => RasseSchleifenwert);
-               end case;
-               
-            end loop RassenSchleife;
-            
-         when others =>
-            WachstumsratenBerechnen (RasseExtern => RasseExtern);
-      end case;
-      
-   end WachstumWichtiges;
-   
-   
-   
-   procedure WachstumsratenBerechnen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is
-      use type RassenDatentypen.Rassen_Enum;
-   begin
-      
-      case
-        RasseExtern
-      is
-         when RassenDatentypen.Ekropa_Enum =>
-            null;
-            
-         when others =>
-            SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,
-                                                    GeldZugewinnExtern  => WichtigesKonstanten.LeerGeldZugewinnProRunde,
-                                                    RechnenSetzenExtern => False);
-      end case;
-      
-      SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => RasseExtern,
-                                               ForschungsrateZugewinnExtern => WichtigesKonstanten.LeerGesamteForschungsrate,
-                                               RechnenSetzenExtern          => False);
-      
-      StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
-         
-         case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
-         is
-            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-               null;
-               
-            when others =>
-               if
-                 RasseExtern = RassenDatentypen.Ekropa_Enum
-               then
-                  null;
-                  
-               else
-                  SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,
-                                                          GeldZugewinnExtern  => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
-                                                          RechnenSetzenExtern => True);
-               end if;
-               
-               SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => RasseExtern,
-                                                        ForschungsrateZugewinnExtern => LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
-                                                        RechnenSetzenExtern          => True);
-         end case;
-         
-      end loop StadtSchleife;
-      
-   end WachstumsratenBerechnen;
 
-end WachstumLogik;
+end StadtwachstumLogik;

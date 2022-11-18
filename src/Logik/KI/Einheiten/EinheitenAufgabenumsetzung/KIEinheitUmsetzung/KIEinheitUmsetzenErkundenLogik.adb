@@ -1,25 +1,26 @@
+with KartenRecordKonstanten;
+
 with LeseEinheitenGebaut;
 with LeseWeltkarte;
-
-with Vergleiche;
 
 package body KIEinheitUmsetzenErkundenLogik is
 
    function Erkunden
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       ZielKoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
-        Vergleiche.KoordinateLeervergleich (KoordinateExtern => ZielKoordinaten) = True
+        ZielKoordinaten = KartenRecordKonstanten.LeerKoordinate
       then
          return False;
          
       elsif
-        True = Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                KoordinatenZweiExtern => ZielKoordinaten)
+        LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = ZielKoordinaten
       then
          return False;
          

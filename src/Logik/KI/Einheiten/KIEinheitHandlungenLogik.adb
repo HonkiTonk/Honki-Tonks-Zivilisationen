@@ -6,9 +6,7 @@ with KartenRecordKonstanten;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
-with Vergleiche;
 with EinheitenbewegungLogik;
-
 with Fehler;
 
 with KIDatentypen;
@@ -30,29 +28,20 @@ package body KIEinheitHandlungenLogik is
       use type KIDatentypen.Einheit_Aufgabe_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
-      
-      if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
-      then
-         if
-           LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Stadt_Bewachen_Enum
-           and
-             LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
-         then
-            Nullwert := KIEinheitUmsetzenModernisierenLogik.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         else
-            null;
-         end if;
-         
-         return True;
-         
-      elsif
+      if
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Stadt_Bewachen_Enum
         and
           LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
+        and
+          LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = AufgabenDatentypen.Verschanzen_Enum
       then
          Nullwert := KIEinheitUmsetzenModernisierenLogik.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         return True;
+            
+      elsif
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
+      then
          return True;
             
       else
@@ -119,10 +108,12 @@ package body KIEinheitHandlungenLogik is
    function Bewegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       case
-        Vergleiche.KoordinateLeervergleich (KoordinateExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
       is
          when False =>
             KIBewegungDurchfuehrenLogik.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -142,6 +133,7 @@ package body KIEinheitHandlungenLogik is
    is
       use type KIDatentypen.Einheit_Aufgabe_Enum;
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
       if
@@ -149,7 +141,7 @@ package body KIEinheitHandlungenLogik is
         and
           LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
         and
-          Vergleiche.KoordinateLeervergleich (KoordinateExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
+          LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
       then
          KIEinheitAufgabenumsetzungLogik.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          return HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

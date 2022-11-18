@@ -49,7 +49,7 @@ package EinheitenRecords is
    
    
    
-   type KIBewegungPlanArray is array (EinheitenDatentypen.Bewegungsplan'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
+   type KIBewegungPlanArray is array (EinheitenDatentypen.BewegungsplanVorhanden'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
    type TransporterArray is array (EinheitenDatentypen.TransportplätzeVorhanden'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    type EinheitMeldungenArray is array (EinheitenDatentypen.Einheit_Meldung_Art_Enum'Range) of EinheitenDatentypen.Einheit_Meldung_Enum;
 

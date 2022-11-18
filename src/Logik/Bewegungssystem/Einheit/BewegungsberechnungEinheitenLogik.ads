@@ -31,7 +31,7 @@ private
    
    IstLadung : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
-   BewegungspunkteAbzug : EinheitenDatentypen.BewegungFloat;
+   BewegungspunkteAbzug : EinheitenDatentypen.Bewegungspunkte;
    
    procedure NachBewegung
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

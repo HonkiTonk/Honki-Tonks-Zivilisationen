@@ -22,9 +22,9 @@ with KartenspritesZeichnenGrafik;
 with TextberechnungenBreiteGrafik;
 with RasseneinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
-with KartenberechnungenGrafik;
 with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
+with SichtweitenGrafik;
 
 package body WeltkarteZeichnenGrafik is
    
@@ -343,7 +343,7 @@ package body WeltkarteZeichnenGrafik is
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => PositionExtern,
                                                 FarbeExtern    => RasseneinstellungenGrafik.Rassenfarben (RasseExtern),
-                                                GrößeExtern    => KartenberechnungenGrafik.KartenfelderAbmessung);
+                                                GrößeExtern    => SichtweitenGrafik.KartenfelderAbmessung);
       
       UmgebungSchleife:
       for UmgebungSchleifenwert in UmgebungArray'Range loop
@@ -386,20 +386,20 @@ package body WeltkarteZeichnenGrafik is
         WelcheRichtungExtern
       is
          when KartenartDatentypen.Norden_Enum =>
-            Rahmengröße := (KartenberechnungenGrafik.KartenfelderAbmessung.x, DickeRahmen);
+            Rahmengröße := (SichtweitenGrafik.KartenfelderAbmessung.x, DickeRahmen);
             Rahmenposition := PositionExtern;
          
          when KartenartDatentypen.Westen_Enum =>
-            Rahmengröße := (DickeRahmen, KartenberechnungenGrafik.KartenfelderAbmessung.y);
+            Rahmengröße := (DickeRahmen, SichtweitenGrafik.KartenfelderAbmessung.y);
             Rahmenposition := PositionExtern;
          
          when KartenartDatentypen.Osten_Enum =>
-            Rahmengröße := (DickeRahmen, KartenberechnungenGrafik.KartenfelderAbmessung.y);
-            Rahmenposition := (PositionExtern.x + KartenberechnungenGrafik.KartenfelderAbmessung.x - DickeRahmen, PositionExtern.y);
+            Rahmengröße := (DickeRahmen, SichtweitenGrafik.KartenfelderAbmessung.y);
+            Rahmenposition := (PositionExtern.x + SichtweitenGrafik.KartenfelderAbmessung.x - DickeRahmen, PositionExtern.y);
          
          when KartenartDatentypen.Süden_Enum =>
-            Rahmengröße := (KartenberechnungenGrafik.KartenfelderAbmessung.x, DickeRahmen);
-            Rahmenposition := (PositionExtern.x, PositionExtern.y + KartenberechnungenGrafik.KartenfelderAbmessung.y - DickeRahmen);
+            Rahmengröße := (SichtweitenGrafik.KartenfelderAbmessung.x, DickeRahmen);
+            Rahmenposition := (PositionExtern.x, PositionExtern.y + SichtweitenGrafik.KartenfelderAbmessung.y - DickeRahmen);
       end case;
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => Rahmenposition,
@@ -435,7 +435,7 @@ package body WeltkarteZeichnenGrafik is
       Sf.Graphics.Text.setScale (text  => TextaccessVariablen.KarteAccess,
                                  scale => (0.70, 0.70));
       
-      Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * KartenberechnungenGrafik.KartenfelderAbmessung.x;
+      Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * SichtweitenGrafik.KartenfelderAbmessung.x;
       Textposition.y := PositionExtern.y - TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
       -- Später noch einen Rahmen um den Namen bauen? äöü

@@ -1,7 +1,7 @@
 with Sf;
 with Sf.Graphics.Sprite;
 
-with KartenberechnungenGrafik;
+with SichtweitenGrafik;
 
 package body TexturenSetzenSkalierenGrafik is
    
@@ -16,7 +16,7 @@ package body TexturenSetzenSkalierenGrafik is
                                      resetRect => Sf.sfTrue);
       
       Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
-      KartenfelderAbmessung := KartenberechnungenGrafik.KartenfelderAbmessung;
+      KartenfelderAbmessung := SichtweitenGrafik.KartenfelderAbmessung;
       
       SkalierungKartenfeld.x := KartenfelderAbmessung.x / Rechteck.width;
       SkalierungKartenfeld.y := KartenfelderAbmessung.y / Rechteck.height;
@@ -38,7 +38,7 @@ package body TexturenSetzenSkalierenGrafik is
                                      resetRect => Sf.sfTrue);
       
       Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
-      StadtfelderAbmessung := KartenberechnungenGrafik.StadtfelderAbmessung;
+      StadtfelderAbmessung := SichtweitenGrafik.StadtfelderAbmessung;
       
       SkalierungKartenfeld.x := StadtfelderAbmessung.x / Rechteck.width;
       SkalierungKartenfeld.y := StadtfelderAbmessung.y / Rechteck.height;
@@ -60,7 +60,7 @@ package body TexturenSetzenSkalierenGrafik is
                                      resetRect => Sf.sfTrue);
       
       Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
-      StadtAbmessung := (KartenberechnungenGrafik.StadtKarte.width, KartenberechnungenGrafik.StadtKarte.height);
+      StadtAbmessung := (SichtweitenGrafik.StadtKarte.width, SichtweitenGrafik.StadtKarte.height);
       
       SkalierungKartenfeld.x := StadtAbmessung.x / Rechteck.width;
       SkalierungKartenfeld.y := StadtAbmessung.y / Rechteck.height;

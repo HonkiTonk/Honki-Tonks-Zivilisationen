@@ -6,18 +6,20 @@ with BewertungDatentypen;
 
 package WegeStandard is
    pragma Pure;
+   use type EinheitenDatentypen.Bewegungspunkte;
 
    type WegelisteArray is array (KartenverbesserungDatentypen.Karten_Straße_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    Wegeliste : constant WegelisteArray := (
                                            others =>
                                              (
-                                              Passierbarkeit     => (EinheitenDatentypen.Boden_Enum    => True,
+                                              Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                      EinheitenDatentypen.Luft_Enum     => True,
                                                                      EinheitenDatentypen.Weltraum_Enum => True,
                                                                      others                            => False),
-                                              Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                              Wirtschaft         => (others => (others => 1)),
-                                              Kampf              => (others => (others => 1))
+                                              Bewertung      => (others => BewertungDatentypen.Bewertung_Eins_Enum),
+                                              Wirtschaft     => (others => (others => 1)),
+                                              Kampf          => (others => (others => 1)),
+                                              Bewegung       => (others => -1)
                                              )
                                           );
                                            
@@ -27,15 +29,16 @@ package WegeStandard is
    Schienenliste : constant SchienenlisteArray := (
                                                    others =>
                                                      (
-                                                      Passierbarkeit     => (
+                                                      Passierbarkeit => (
                                                                              EinheitenDatentypen.Boden_Enum    => True,
                                                                              EinheitenDatentypen.Luft_Enum     => True,
                                                                              EinheitenDatentypen.Weltraum_Enum => True,
                                                                              others                            => False
                                                                             ),
-                                                      Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                                      Wirtschaft         => (others => (others => 1)),
-                                                      Kampf              => (others => (others => 1))
+                                                      Bewertung      => (others => BewertungDatentypen.Bewertung_Eins_Enum),
+                                                      Wirtschaft     => (others => (others => 1)),
+                                                      Kampf          => (others => (others => 1)),
+                                                      Bewegung       => (others => -2)
                                                      )
                                                   );
    
@@ -45,13 +48,14 @@ package WegeStandard is
    Tunnelliste : constant TunnellisteArray := (
                                                others =>
                                                  (
-                                                  Passierbarkeit     => (
+                                                  Passierbarkeit => (
                                                                          EinheitenDatentypen.Unterirdisch_Enum => True,
                                                                          others                                => False
                                                                         ),
-                                                  Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                                  Wirtschaft         => (others => (others => 1)),
-                                                  Kampf              => (others => (others => 1))
+                                                  Bewertung      => (others => BewertungDatentypen.Bewertung_Eins_Enum),
+                                                  Wirtschaft     => (others => (others => 1)),
+                                                  Kampf          => (others => (others => 1)),
+                                                  Bewegung       => (others => -1)
                                                  )
                                               );
 

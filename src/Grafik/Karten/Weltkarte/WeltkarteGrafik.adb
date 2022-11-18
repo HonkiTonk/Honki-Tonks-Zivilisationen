@@ -7,7 +7,6 @@ with GrafikKonstanten;
 with LeseWeltkarte;
 
 with KartenkoordinatenberechnungssystemLogik;
-with KartenberechnungenGrafik;
 with EinstellungenGrafik;
 with ViewsEinstellenGrafik;
 with WeltkarteZeichnenGrafik;
@@ -54,11 +53,11 @@ package body WeltkarteGrafik is
                null;
             end if;
             
-            Feldposition.x := Feldposition.x + KartenberechnungenGrafik.KartenfelderAbmessung.x;
+            Feldposition.x := Feldposition.x + SichtweitenGrafik.KartenfelderAbmessung.x;
                           
          end loop XAchseSchleife;
          
-         Feldposition := (0.00, Feldposition.y + KartenberechnungenGrafik.KartenfelderAbmessung.y);
+         Feldposition := (0.00, Feldposition.y + SichtweitenGrafik.KartenfelderAbmessung.y);
          
       end loop YAchseSchleife;
             

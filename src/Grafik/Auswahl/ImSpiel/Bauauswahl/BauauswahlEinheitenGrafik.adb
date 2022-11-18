@@ -18,7 +18,6 @@ with TextberechnungenHoeheGrafik;
 with ViewsEinstellenGrafik;
 with TextfarbeGrafik;
 with EinstellungenGrafik;
-with UmwandlungenAdaNachEigenes;
 with ZeilenumbruchberechnungGrafik;
 with EinheitenbeschreibungenGrafik;
 
@@ -57,9 +56,8 @@ package body BauauswahlEinheitenGrafik is
                                                                                                                                                   WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)'Wide_Wide_Image;
       Einheitentexte (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => RasseExtern,
                                                                                                                                        IDExtern    => AuswahlExtern)'Wide_Wide_Image;
-      Einheitentexte (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & " "
-        & UmwandlungenAdaNachEigenes.BewegungspunkteDarstellungNormal (KommazahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => RasseExtern,
-                                                                                                                                          IDExtern    => AuswahlExtern));
+      Einheitentexte (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => RasseExtern,
+                                                                                                                                             IDExtern    => AuswahlExtern)'Wide_Wide_Image;
       Einheitentexte (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAngriff) & LeseEinheitenDatenbank.Angriff (RasseExtern => RasseExtern,
                                                                                                                      IDExtern    => AuswahlExtern)'Wide_Wide_Image;
       Einheitentexte (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerteidigung) & LeseEinheitenDatenbank.Verteidigung (RasseExtern => RasseExtern,

@@ -255,7 +255,7 @@ package body LeseEinheitenGebaut is
    
    function KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      PlanschrittExtern : in EinheitenDatentypen.Bewegungsplan)
+      PlanschrittExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       

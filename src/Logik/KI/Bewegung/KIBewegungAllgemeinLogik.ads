@@ -29,6 +29,8 @@ private
 
    BlockierendeStadt : RassenDatentypen.Rassen_Enum;
    
+   Aufgabe : KIDatentypen.Einheit_Aufgabe_Enum;
+   
    BlockierendeEinheit : EinheitenRecords.RasseEinheitnummerRecord;
    
    

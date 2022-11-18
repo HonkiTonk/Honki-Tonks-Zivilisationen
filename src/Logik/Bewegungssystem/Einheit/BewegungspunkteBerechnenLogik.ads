@@ -14,7 +14,7 @@ package BewegungspunkteBerechnenLogik is
    function AbzugDurchBewegung
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return EinheitenDatentypen.BewegungFloat
+      return EinheitenDatentypen.Bewegungspunkte
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -28,38 +28,20 @@ package BewegungspunkteBerechnenLogik is
    
 private
    
-   EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
-      
-   KleinerAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 1.00;
-   MittlererAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 2.00;
-   GroßerAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 3.00;
-   KeinAbzug : constant EinheitenDatentypen.VorhandeneBewegungspunkte := 0.00;
-   Bewegungsbonus : EinheitenDatentypen.VorhandeneBewegungspunkte;
-   
    Gesamtgrund : KartenRecords.KartengrundRecord;
    
-   -- Sollte man das in was Globales verschieben? äöü
-   type Bewegungsbonus_Enum is (
-                                Leer_Enum,
-                                Fluss_Enum,
-                                Straße_Enum, Tunnel_Enum, Schiene_Enum
-                               );
+   EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
    
-   type BewegungsmodifikatorArray is array (Bewegungsbonus_Enum'Range) of EinheitenDatentypen.VorhandeneBewegungspunkte;
-   Bewegungsmodifikator : constant BewegungsmodifikatorArray := (
-                                                                 Leer_Enum         => 0.00,
-                                                                 Fluss_Enum        => 0.50,
-                                                                 Straße_Enum       => 0.50,
-                                                                 Tunnel_Enum       => 0.50,
-                                                                 Schiene_Enum      => 1.00
-                                                                );
+   AktuelleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
+   
+   NotwendigeBewegungspunkte : EinheitenDatentypen.Bewegungspunkte;
    
    
 
-   function StraßeUndFlussPrüfen
+   function NotwendigeBewegungspunkteErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Bewegungsbonus_Enum
+      return EinheitenDatentypen.Bewegungspunkte
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

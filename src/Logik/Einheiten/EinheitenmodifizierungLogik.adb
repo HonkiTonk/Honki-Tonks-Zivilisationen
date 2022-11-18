@@ -57,7 +57,7 @@ package body EinheitenmodifizierungLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.Bewegungspunkte;
       use type EinheitenDatentypen.Lebenspunkte;
    begin
       

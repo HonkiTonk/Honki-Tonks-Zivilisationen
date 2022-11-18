@@ -16,7 +16,6 @@ with SichtweitenGrafik;
 with NachGrafiktask;
 with EinstellungenGrafik;
 with NachLogiktask;
-with KartenberechnungenGrafik;
 with Vergleiche;
 with GeheZuGrafik;
 
@@ -130,7 +129,9 @@ package body CursorplatzierungAltGrafik is
    function Einheitenbereich
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       AlteCursorkoordinaten := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt;
@@ -150,8 +151,7 @@ package body CursorplatzierungAltGrafik is
                null;
                
             elsif
-              True = Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => Einheitenkoordinaten,
-                                                      KoordinatenZweiExtern => Kartenwert)
+              Einheitenkoordinaten = Kartenwert
             then
                return True;
                
@@ -255,7 +255,7 @@ package body CursorplatzierungAltGrafik is
          return 0;
       
       elsif
-        MauspositionExtern.y in 0.00 .. KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00
+        MauspositionExtern.y in 0.00 .. SichtweitenGrafik.KartenfelderAbmessung.y / 2.00
       then
          if
            YAchseAltExtern - AktuelleSichtweite <= Weltkarte.KarteArray'First (2)
@@ -276,7 +276,7 @@ package body CursorplatzierungAltGrafik is
          end if;
          
       elsif
-        MauspositionExtern.y in Achsenviewfläche.y - KartenberechnungenGrafik.KartenfelderAbmessung.y / 2.00 .. Achsenviewfläche.y
+        MauspositionExtern.y in Achsenviewfläche.y - SichtweitenGrafik.KartenfelderAbmessung.y / 2.00 .. Achsenviewfläche.y
       then
          if
            YAchseAltExtern + AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
@@ -316,7 +316,7 @@ package body CursorplatzierungAltGrafik is
       AktuelleSichtweite := SichtweitenGrafik.SichtweiteLesen;
       
       if
-        MausachseExtern in 0.00 .. KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00
+        MausachseExtern in 0.00 .. SichtweitenGrafik.KartenfelderAbmessung.x / 2.00
       then
          if
            XAchseAltExtern - AktuelleSichtweite <= Weltkarte.KarteArray'First (3)
@@ -337,7 +337,7 @@ package body CursorplatzierungAltGrafik is
          end if;
          
       elsif
-        MausachseExtern in XAchsenbereich - KartenberechnungenGrafik.KartenfelderAbmessung.x / 2.00 .. XAchsenbereich
+        MausachseExtern in XAchsenbereich - SichtweitenGrafik.KartenfelderAbmessung.x / 2.00 .. XAchsenbereich
       then
          if
            XAchseAltExtern + AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse

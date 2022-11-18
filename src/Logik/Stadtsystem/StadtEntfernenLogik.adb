@@ -16,8 +16,8 @@ with LeseStadtGebaut;
 
 with KartenkoordinatenberechnungssystemLogik;
 with RasseEntfernenLogik;
-with WachstumLogik;
 with JaNeinLogik;
+with GlobalesWachstumLogik;
 
 package body StadtEntfernenLogik is
    
@@ -54,7 +54,7 @@ package body StadtEntfernenLogik is
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                       VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      WachstumLogik.WachstumWichtiges (RasseExtern => StadtRasseNummerExtern.Rasse);
+      GlobalesWachstumLogik.WachstumWichtiges (RasseExtern => StadtRasseNummerExtern.Rasse);
       SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                        PlusMinusExtern => False);
       RasseEntfernenLogik.RasseExistenzPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);

@@ -3,8 +3,6 @@ with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 
-with Vergleiche;
-
 with KIDatentypen;
 
 with KIGefahrErmittelnLogik;
@@ -16,6 +14,7 @@ package body KIEinheitFestlegenFliehenLogik is
       return Boolean
    is
       use type EinheitenRecords.RasseEinheitnummerRecord;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
       if
@@ -28,7 +27,7 @@ package body KIEinheitFestlegenFliehenLogik is
       end if;
       
       case
-        Vergleiche.KoordinateLeervergleich (KoordinateExtern => ZielKoordinate)
+        ZielKoordinate = KartenRecordKonstanten.LeerKoordinate
       is
          when False =>
             -- Hier muss noch ein Ziel hinzugefügt werden. äöü

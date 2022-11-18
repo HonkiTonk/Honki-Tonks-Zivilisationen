@@ -8,7 +8,7 @@ with LeseStadtGebaut;
 
 with KartenkoordinatenberechnungssystemLogik;
 with KartenfelderwerteLogik;
-with WachstumLogik;
+with GlobalesWachstumLogik;
 
 package body StadtproduktionLogik is
    
@@ -24,7 +24,7 @@ package body StadtproduktionLogik is
             
          when others =>
             StadtProduktionBerechnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
-            WachstumLogik.WachstumWichtiges (RasseExtern => StadtRasseNummerExtern.Rasse);
+            GlobalesWachstumLogik.WachstumWichtiges (RasseExtern => StadtRasseNummerExtern.Rasse);
       end case;
       
    end Stadtproduktion;
@@ -59,7 +59,7 @@ package body StadtproduktionLogik is
                
                end loop StadtSchleife;
                
-               WachstumLogik.WachstumWichtiges (RasseExtern => RasseSchleifenwert);
+               GlobalesWachstumLogik.WachstumWichtiges (RasseExtern => RasseSchleifenwert);
          end case;
                
       end loop RassenSchleife;
@@ -82,6 +82,7 @@ package body StadtproduktionLogik is
       WeitereProduktionrateÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       -- Geldgewinnung muss immer nach der Produktionsrate ausgeführt werden, da bei keinem Bauprojekt sonst die Ressourcenumwandlung nach Geld nicht korrekt ist.
+      -- Aktuell werden Ressourcen nicht in Geld umgewandelt, so lassen oder später wieder ändern? äöü
       case
         StadtRasseNummerExtern.Rasse
       is

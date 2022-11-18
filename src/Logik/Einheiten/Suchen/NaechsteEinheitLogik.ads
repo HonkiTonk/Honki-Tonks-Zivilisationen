@@ -33,7 +33,7 @@ private
    EinheitSchleifenbegrenzung : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    MeldungSchleifenbegrenzung : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
-   Bewegungspunkte : EinheitenDatentypen.BewegungFloat;
+   Bewegungspunkte : EinheitenDatentypen.Bewegungspunkte;
    
    type AktuelleEinheitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    AktuelleEinheit : AktuelleEinheitArray := (others => 0);

@@ -79,7 +79,7 @@ private
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      AktuellePlanpositionExtern : in EinheitenDatentypen.Bewegungsplan)
+      AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
      with
        Pre => (
@@ -143,7 +143,7 @@ private
    function PlanschrittFestlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       DurchlaufExtern : in Positive;
-      AktuellePlanpositionExtern : in EinheitenDatentypen.Bewegungsplan)
+      AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
      with
        Pre => (

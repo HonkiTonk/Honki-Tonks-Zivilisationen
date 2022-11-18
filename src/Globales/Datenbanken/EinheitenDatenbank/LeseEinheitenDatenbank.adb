@@ -113,13 +113,13 @@ package body LeseEinheitenDatenbank is
       IDExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.VorhandeneBewegungspunkte
    is
-      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
       if
-        EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximaleBewegungspunkte < 1.00
+        EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximaleBewegungspunkte < 1
       then
-         return 1.00;
+         return 1;
          
       else
          return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximaleBewegungspunkte;

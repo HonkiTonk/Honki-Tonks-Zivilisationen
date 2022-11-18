@@ -112,10 +112,10 @@ package body SchreibeEinheitenGebaut is
    
    procedure Bewegungspunkte
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BewegungspunkteExtern : in EinheitenDatentypen.BewegungFloat;
+      BewegungspunkteExtern : in EinheitenDatentypen.Bewegungspunkte;
       RechnenSetzenExtern : in Boolean)
    is
-      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
       case
@@ -355,7 +355,7 @@ package body SchreibeEinheitenGebaut is
    procedure KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PlanplatzExtern : in EinheitenDatentypen.Bewegungsplan)
+      PlanplatzExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
    is begin
       
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan (PlanplatzExtern) := KoordinatenExtern;

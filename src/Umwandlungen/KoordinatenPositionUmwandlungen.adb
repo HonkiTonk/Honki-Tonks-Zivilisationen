@@ -3,7 +3,6 @@ with KartenRecordKonstanten;
 
 with SichtweitenGrafik;
 with KartenkoordinatenberechnungssystemLogik;
-with KartenberechnungenGrafik;
 with Vergleiche;
 
 package body KoordinatenPositionUmwandlungen is
@@ -12,7 +11,9 @@ package body KoordinatenPositionUmwandlungen is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Sf.System.Vector2.sfVector2f
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
       CursorKoordinatenAlt := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt;
@@ -33,8 +34,7 @@ package body KoordinatenPositionUmwandlungen is
                null;
                
             elsif
-              True = Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => KartenWert,
-                                                      KoordinatenZweiExtern => KoordinatenExtern)
+              KartenWert = KoordinatenExtern
             then
                return Feldposition;
                
@@ -42,11 +42,11 @@ package body KoordinatenPositionUmwandlungen is
                null;
             end if;
             
-            Feldposition.x := Feldposition.x + KartenberechnungenGrafik.KartenfelderAbmessung.x;
+            Feldposition.x := Feldposition.x + SichtweitenGrafik.KartenfelderAbmessung.x;
                           
          end loop XAchseSchleife;
          
-         Feldposition := (0.00, Feldposition.y + KartenberechnungenGrafik.KartenfelderAbmessung.y);
+         Feldposition := (0.00, Feldposition.y + SichtweitenGrafik.KartenfelderAbmessung.y);
          
       end loop YAchseSchleife;
       
@@ -84,7 +84,7 @@ package body KoordinatenPositionUmwandlungen is
             elsif
               True = Vergleiche.Auswahlposition (MauspositionExtern => PositionExtern,
                                                  TextboxExtern      => (Feldposition.x, Feldposition.y,
-                                                                        Feldposition.x + KartenberechnungenGrafik.KartenfelderAbmessung.x, Feldposition.y + KartenberechnungenGrafik.KartenfelderAbmessung.y))
+                                                                        Feldposition.x + SichtweitenGrafik.KartenfelderAbmessung.x, Feldposition.y + SichtweitenGrafik.KartenfelderAbmessung.y))
             then
                return KartenWert;
                
@@ -92,11 +92,11 @@ package body KoordinatenPositionUmwandlungen is
                null;
             end if;
             
-            Feldposition.x := Feldposition.x + KartenberechnungenGrafik.KartenfelderAbmessung.x;
+            Feldposition.x := Feldposition.x + SichtweitenGrafik.KartenfelderAbmessung.x;
                           
          end loop XAchseSchleife;
          
-         Feldposition := (0.00, Feldposition.y + KartenberechnungenGrafik.KartenfelderAbmessung.y);
+         Feldposition := (0.00, Feldposition.y + SichtweitenGrafik.KartenfelderAbmessung.y);
          
       end loop YAchseSchleife;
       

@@ -7,7 +7,7 @@ package KartenDatenbank is
    type BasisgrundlisteArray is array (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    Basisgrundliste : BasisgrundlisteArray;
       
-   type ZusatzgrundlisteArray is array (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
+   type ZusatzgrundlisteArray is array (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenzusatzgrundlisteRecord;
    Zusatzgrundliste : ZusatzgrundlisteArray;
    
    type KartenflusslisteArray is array (KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;

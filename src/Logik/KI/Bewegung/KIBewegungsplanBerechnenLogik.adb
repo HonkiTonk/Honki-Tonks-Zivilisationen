@@ -51,7 +51,7 @@ package body KIBewegungsplanBerechnenLogik is
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      AktuellePlanpositionExtern : in EinheitenDatentypen.Bewegungsplan)
+      AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
    is begin
       
@@ -141,10 +141,10 @@ package body KIBewegungsplanBerechnenLogik is
    function PlanschrittFestlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       DurchlaufExtern : in Positive;
-      AktuellePlanpositionExtern : in EinheitenDatentypen.Bewegungsplan)
+      AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
    is
-      use type EinheitenDatentypen.Bewegungsplan;
+      use type EinheitenDatentypen.BewegungsplanVorhanden;
    begin
       
       case

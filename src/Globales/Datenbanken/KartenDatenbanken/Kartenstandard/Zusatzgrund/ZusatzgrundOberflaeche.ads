@@ -8,7 +8,7 @@ package ZusatzgrundOberflaeche is
    
    -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type ZusatzgrundlisteOberflächeArray is array (KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
+   type ZusatzgrundlisteOberflächeArray is array (KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenzusatzgrundlisteRecord;
    ZusatzgrundlisteOberfläche : constant ZusatzgrundlisteOberflächeArray := (
                                                                                KartengrundDatentypen.Wald_Enum =>
                                                                                  (
@@ -78,7 +78,9 @@ package ZusatzgrundOberflaeche is
                                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                    )
+                                                                                    ),
+                                                                                  
+                                                                                  Bewegung => (others => 3)
                                                                                  ),
 
                                                                                KartengrundDatentypen.Dschungel_Enum =>
@@ -149,7 +151,9 @@ package ZusatzgrundOberflaeche is
                                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                    )
+                                                                                    ),
+                                                                                  
+                                                                                  Bewegung => (others => 5)
                                                                                  ),
 
                                                                                KartengrundDatentypen.Sumpf_Enum =>
@@ -220,7 +224,9 @@ package ZusatzgrundOberflaeche is
                                                                                      RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                      RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                      RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                    )
+                                                                                    ),
+                                                                                  
+                                                                                  Bewegung => (others => 3)
                                                                                  )
                                                                               );
 

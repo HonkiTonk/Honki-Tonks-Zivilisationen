@@ -13,7 +13,7 @@ package body EinheitenSpielmeldungenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
       if

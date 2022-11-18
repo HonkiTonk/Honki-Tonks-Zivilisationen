@@ -84,7 +84,9 @@ package BasisgrundOberflaeche is
                                                                                    RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                    RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                    RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                  )
+                                                                                  ),
+                                                                        
+                                                                                Bewegung => (others => 8)
                                                                                ),
      
                                                                              KartengrundDatentypen.Wasser_Enum =>
@@ -160,7 +162,9 @@ package BasisgrundOberflaeche is
                                                                                    RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                    RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                    RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                  )
+                                                                                  ),
+                                                                        
+                                                                                Bewegung => (others => 3)
                                                                                ),
                                       
                                                                              KartengrundDatentypen.Flachland_Enum =>
@@ -236,7 +240,9 @@ package BasisgrundOberflaeche is
                                                                                    RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                    RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                    RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                  )
+                                                                                  ),
+                                                                        
+                                                                                Bewegung => (others => 3)
                                                                                ),
                                       
                                                                              KartengrundDatentypen.Tundra_Enum =>
@@ -312,7 +318,9 @@ package BasisgrundOberflaeche is
                                                                                    RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                    RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                    RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                  )
+                                                                                  ),
+                                                                        
+                                                                                Bewegung => (others => 5)
                                                                                ),
                                       
                                                                              KartengrundDatentypen.Wüste_Enum =>
@@ -388,7 +396,9 @@ package BasisgrundOberflaeche is
                                                                                    RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                    RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                    RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                  )
+                                                                                  ),
+                                                                        
+                                                                                Bewegung => (others => 5)
                                                                                ),
                                       
                                                                                -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
@@ -465,7 +475,9 @@ package BasisgrundOberflaeche is
                                                                                    RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                    RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                    RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                  )
+                                                                                  ),
+                                                                        
+                                                                                Bewegung => (others => 4)
                                                                                ),
                                       
                                                                              KartengrundDatentypen.Gebirge_Enum =>
@@ -541,7 +553,9 @@ package BasisgrundOberflaeche is
                                                                                    RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                    RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                    RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                  )
+                                                                                  ),
+                                                                        
+                                                                                Bewegung => (others => 6)
                                                                                ),
                                                                                                                                                            
                                                                              KartengrundDatentypen.Küstengewässer_Enum =>
@@ -618,7 +632,9 @@ package BasisgrundOberflaeche is
                                                                                    RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                    RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                    RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                  )
+                                                                                  ),
+                                                                        
+                                                                                Bewegung => (others => 3)
                                                                                )
                                                                             );
 

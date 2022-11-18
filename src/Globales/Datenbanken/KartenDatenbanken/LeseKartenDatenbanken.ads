@@ -33,6 +33,24 @@ package LeseKartenDatenbanken is
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
               );
    
+   function BewegungBasisgrund
+     (GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return EinheitenDatentypen.VorhandeneBewegungspunkte
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+     
+   function BewegungZusatzgrund
+     (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return EinheitenDatentypen.VorhandeneBewegungspunkte
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
    function BewertungFluss
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

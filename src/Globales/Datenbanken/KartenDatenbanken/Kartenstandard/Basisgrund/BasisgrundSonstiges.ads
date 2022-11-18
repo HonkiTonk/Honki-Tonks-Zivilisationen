@@ -62,7 +62,9 @@ package BasisgrundSonstiges is
                                                                                RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                              )
+                                                                              ),
+
+                                                                            Bewegung => (others => 10)
                                                                            )
                                                                         );
 

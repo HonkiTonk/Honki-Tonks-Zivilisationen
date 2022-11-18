@@ -9,7 +9,6 @@ with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
 
-with Vergleiche;
 with KartenkoordinatenberechnungssystemLogik;
 with AufgabenLogik;
 
@@ -23,12 +22,14 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    function StadtumgebungVerbessern
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
       ZielVerbesserungKoordinaten := StädteDurchgehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
       case
-        Vergleiche.KoordinateLeervergleich (KoordinateExtern => ZielVerbesserungKoordinaten)
+        ZielVerbesserungKoordinaten = KartenRecordKonstanten.LeerKoordinate
       is
          when True =>
             return False;

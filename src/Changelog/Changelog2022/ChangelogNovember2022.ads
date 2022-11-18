@@ -84,17 +84,31 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (18.11.2022):
+   -- Version 0.04.3815 => 0.04. (18.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.3640 => 0.04. (17.11.2022):
+   -- Version 0.04.3640 => 0.04.3815 (17.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Anpassungen an den gpr Dateien vorgenommen.
+   -- Dateien zum Kompilieren einer Windowsversion zu GitHub hinzugefügt.
+   -- Alle Dateien sollten jetzt wirklich soweit möglich Pure, Preelaborate oder Elaborate_Body enthalten.
+   -- Teile des Codes überarbeitet damit nirgendwo mehr im Kreis gelinkt wird.
+   -- Einheitenbewegungssystem überarbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Die notwendigen Bewegungspunkte und Bonusbewegungspunkte für ein Feld/Weg werden jetzt in den Kartengrund- und Wegedatenbanken gespeichert.
+   -- Die notwendigen Bewegungspunkte um ein Feld zu betreten können jetzt rassenspezifisch eingestellt werden.
+   -- Zusätzliche Sicherheitsprüfungen eingebaut.
+   -- Fehler korrigiert der dazu führte dass die KI versuchte mit sehr vielen Einheiten eine Stadt zu bewachen.
+   -- Fehler korrigiert der es der KI erlaubte Einheiten zu bewegen die keine Bewegungspunkte mehr hatten.
+   -- KI überarbeitet
+   -- Bewegungsplanberechnung der KI überarbeitet.
+   -- Die KI ist jetzt besser darin unnötige Einheitenzüge zum Ziel zu vermeiden.
+   -- Die KI ist jetzt in der Lage nebeneinander liegende Einheitentausch die Plätze tauschen zu lassen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 

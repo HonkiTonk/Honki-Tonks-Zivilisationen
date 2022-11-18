@@ -81,8 +81,8 @@ package EinheitenDatentypen is
    
    
 
-   type BewegungFloat is digits 2 range -100.00 .. 100.00;
-   subtype VorhandeneBewegungspunkte is BewegungFloat range 0.00 .. BewegungFloat'Last;
+   type Bewegungspunkte is range -100 .. 100;
+   subtype VorhandeneBewegungspunkte is Bewegungspunkte range 0 .. Bewegungspunkte'Last;
    
    
    
@@ -91,7 +91,12 @@ package EinheitenDatentypen is
    
    
    
-   type Bewegungsplan is range 1 .. 20;
+   type Erschöpfung is range 0 .. 10;
+   
+   
+   
+   type Bewegungsplan is range 0 .. 20;
+   subtype BewegungsplanVorhanden is Bewegungsplan range 1 .. 20;
    
    
       

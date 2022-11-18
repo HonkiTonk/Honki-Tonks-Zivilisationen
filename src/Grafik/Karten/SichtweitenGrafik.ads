@@ -1,13 +1,27 @@
+with Sf.System.Vector2;
+with Sf.Graphics.Rect;
+
 with RassenDatentypen;
 with KartenDatentypen;
 with SpielVariablen;
 
 private with TastenbelegungDatentypen;
 
+-- Das Ganze später besser aufteilen? äöü
+-- Um ein im Kreis linken zu verhindern erst einmal die KartenberechnungenGrafik hier mit rein geschoben. äöü
 package SichtweitenGrafik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
    
+   -- Das hier über eine Funktion abrufen? äöü
+   KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
+   StadtfelderAbmessung : Sf.System.Vector2.sfVector2f;
+   
+   FensterKarte : Sf.Graphics.Rect.sfFloatRect;
+   StadtKarte : Sf.Graphics.Rect.sfFloatRect;
+   
+   procedure KartenfelderAbmessungBerechnen;
+   procedure StadtfelderAbmessungBerechnen;
    procedure SichtweiteBewegungsfeldFestlegen;
    
    procedure ZoomstufeÄndern

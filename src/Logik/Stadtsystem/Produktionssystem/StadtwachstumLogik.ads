@@ -4,19 +4,12 @@ with SpielVariablen;
 private with ProduktionDatentypen;
 private with StadtRecords;
 
-package WachstumLogik is
-   -- pragma Elaborate_Body; äöü
+package StadtwachstumLogik is
+   pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
    
    procedure StadtWachstum;
-   
-   procedure WachstumWichtiges
-     (RasseExtern : in RassenDatentypen.Rassen_Enum)
-     with
-       Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
+      
 private
    
    WachstumSchrumpfung : Boolean;
@@ -88,13 +81,6 @@ private
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
-   procedure WachstumsratenBerechnen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
    procedure EinwohnerÄnderung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       WachstumSchrumpfungExtern : in Boolean)
@@ -125,4 +111,4 @@ private
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
 
-end WachstumLogik;
+end StadtwachstumLogik;

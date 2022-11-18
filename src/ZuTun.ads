@@ -27,5 +27,5 @@
 -- Kartengenerator
 -- Siegbedingungen und Übergaben
 -- Brauchbare Editoren
--- Minimap einbauen?
+-- Minimap einbauen
 --

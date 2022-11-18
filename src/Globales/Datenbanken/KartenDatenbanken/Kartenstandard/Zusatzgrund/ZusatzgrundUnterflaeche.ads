@@ -8,7 +8,7 @@ package ZusatzgrundUnterflaeche is
    
    -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type ZusatzgrundlisteUnterflächeArray is array (KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
+   type ZusatzgrundlisteUnterflächeArray is array (KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum'Range) of KartendatenbankRecord.KartenzusatzgrundlisteRecord;
    ZusatzgrundlisteUnterfläche : constant ZusatzgrundlisteUnterflächeArray := (
                                                                                  KartengrundDatentypen.Korallen_Enum =>
                                                                                    (
@@ -78,7 +78,9 @@ package ZusatzgrundUnterflaeche is
                                                                                        RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                        RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                        RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                      )
+                                                                                      ),
+                                                                                  
+                                                                                    Bewegung => (others => 3)
                                                                                    ),
 
                                                                                  KartengrundDatentypen.Unterwald_Enum =>
@@ -149,7 +151,9 @@ package ZusatzgrundUnterflaeche is
                                                                                        RassenDatentypen.Ekropa_Enum           => (1, 1),
                                                                                        RassenDatentypen.Tesorahn_Enum         => (1, 1),
                                                                                        RassenDatentypen.Talbidahr_Enum        => (1, 1)
-                                                                                      )
+                                                                                      ),
+                                                                                  
+                                                                                    Bewegung => (others => 3)
                                                                                    )
                                                                                 );
 

@@ -76,7 +76,7 @@ package body KampfsystemStadtLogik is
       return Boolean
    is
       use type ProduktionDatentypen.Einwohner;
-      use type EinheitenDatentypen.BewegungFloat;
+      use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
       case
@@ -124,7 +124,7 @@ package body KampfsystemStadtLogik is
          end if;
          
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
-                                                  BewegungspunkteExtern    => -1.50,
+                                                  BewegungspunkteExtern    => -2,
                                                   RechnenSetzenExtern      => True);
          return False;
       end if;
