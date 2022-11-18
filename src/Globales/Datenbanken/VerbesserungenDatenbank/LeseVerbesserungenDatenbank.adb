@@ -1,8 +1,8 @@
 with VerbesserungenDatenbank;
+with ProduktionKonstanten;
+with EinheitenKonstanten;
+with KampfKonstanten;
 
--- Mal alle Prüfungen ob der Grund/Verbesserung/Ressource/use. mal in die Lesebereiche verschieben? äöü
--- Sollte die Anzahl der nötigen Prüfungen verringern. äöü
--- Dabei auch alle leeren Rückgabewerte in Konstante umwandeln. äöü
 package body LeseVerbesserungenDatenbank is
       
    function PassierbarkeitWeg
@@ -35,7 +35,7 @@ package body LeseVerbesserungenDatenbank is
         WegExtern
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return 0;
+            return EinheitenKonstanten.LeerBewegungspunkte;
             
          when others =>
             return VerbesserungenDatenbank.Wegeliste (WegExtern).Bewegung (RasseExtern);
@@ -56,7 +56,7 @@ package body LeseVerbesserungenDatenbank is
         VerbesserungExtern
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
@@ -77,7 +77,7 @@ package body LeseVerbesserungenDatenbank is
         WegExtern
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return VerbesserungenDatenbank.Wegeliste (WegExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
@@ -98,7 +98,7 @@ package body LeseVerbesserungenDatenbank is
         VerbesserungExtern
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return 0;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Kampf (RasseExtern, WelcherWertExtern);
@@ -119,7 +119,7 @@ package body LeseVerbesserungenDatenbank is
         WegExtern
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return 0;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return VerbesserungenDatenbank.Wegeliste (WegExtern).Kampf (RasseExtern, WelcherWertExtern);

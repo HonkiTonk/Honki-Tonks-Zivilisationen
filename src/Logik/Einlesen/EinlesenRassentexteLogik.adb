@@ -7,7 +7,7 @@ with VerzeichnisKonstanten;
 
 with OptionenVariablen;
 with EinlesenAllgemeinesLogik;
-with Warnung;
+with Fehlermeldungssystem;
 
 package body EinlesenRassentexteLogik is
 
@@ -27,7 +27,7 @@ package body EinlesenRassentexteLogik is
                   & VerzeichnisKonstanten.NullDatei);
 
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesen: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.RassentexteEinlesen: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
                                   & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei));
             return;
       end case;
@@ -40,7 +40,7 @@ package body EinlesenRassentexteLogik is
                                                            AktuelleZeileExtern => RassenDatentypen.Rassen_Verwendet_Enum'Pos (WelcheDateienSchleifenwert))
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesen: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.RassentexteEinlesen: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
                                      & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei));
                
             when False =>
@@ -58,7 +58,7 @@ package body EinlesenRassentexteLogik is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Hauptdatei (RasseSchleifenwert))))
          is
             when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesenZwei: Es fehlt: " & To_Wide_Wide_String (Source => Hauptdatei (RasseSchleifenwert)));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.RassentexteEinlesenZwei: Es fehlt: " & To_Wide_Wide_String (Source => Hauptdatei (RasseSchleifenwert)));
                
             when True =>
                Open (File => DateiUnternull,
@@ -73,7 +73,7 @@ package body EinlesenRassentexteLogik is
                                                                     AktuelleZeileExtern => UnterdateiSchleifenwert)
                   is
                      when True =>
-                        Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.RassentexteEinlesenZwei: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Hauptdatei (RasseSchleifenwert)));
+                        Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.RassentexteEinlesenZwei: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Hauptdatei (RasseSchleifenwert)));
                
                      when False =>
                         Rassendateien (UnterdateiSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiUnternull));
@@ -119,7 +119,7 @@ package body EinlesenRassentexteLogik is
                   Name => Encode (Item => DateinameExtern));
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.NameBeschreibung: Es fehlt: " & DateinameExtern);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.NameBeschreibung: Es fehlt: " & DateinameExtern);
             return;
       end case;
       
@@ -131,7 +131,7 @@ package body EinlesenRassentexteLogik is
                                                            AktuelleZeileExtern => Positive (NameBeschreibungSchleifenwert))
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.NameBeschreibung: Fehlende Zeilen: " & DateinameExtern);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.NameBeschreibung: Fehlende Zeilen: " & DateinameExtern);
                exit NameBeschreibungSchleife;
                
             when False =>
@@ -160,7 +160,7 @@ package body EinlesenRassentexteLogik is
                   Name => Encode (Item => DateinameExtern));
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Städtenamen: Es fehlt: " & DateinameExtern);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.Städtenamen: Es fehlt: " & DateinameExtern);
             return;
       end case;
       
@@ -172,7 +172,7 @@ package body EinlesenRassentexteLogik is
                                                            AktuelleZeileExtern => Positive (StädtenamenSchleifenwert))
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Städtenamen: Fehlende Zeilen: " & DateinameExtern);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.Städtenamen: Fehlende Zeilen: " & DateinameExtern);
                exit StädtenamenSchleife;
                
             when False =>
@@ -203,7 +203,7 @@ package body EinlesenRassentexteLogik is
                   Name => Encode (Item => DateinameExtern));
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Forschungen: Es fehlt: " & DateinameExtern);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.Forschungen: Es fehlt: " & DateinameExtern);
             return;
       end case;
       
@@ -217,7 +217,7 @@ package body EinlesenRassentexteLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Forschungen: Fehlende Zeilen: " & DateinameExtern);
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.Forschungen: Fehlende Zeilen: " & DateinameExtern);
                   exit ForschungenSchleife;
                
                when False =>
@@ -251,7 +251,7 @@ package body EinlesenRassentexteLogik is
                   Name => Encode (Item => DateinameExtern));
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Einheiten: Es fehlt: " & DateinameExtern);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.Einheiten: Es fehlt: " & DateinameExtern);
             return;
       end case;
       
@@ -265,7 +265,7 @@ package body EinlesenRassentexteLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Einheiten: Fehlende Zeilen: " & DateinameExtern);
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.Einheiten: Fehlende Zeilen: " & DateinameExtern);
                   exit EinheitenSchleife;
                
                when False =>
@@ -299,7 +299,7 @@ package body EinlesenRassentexteLogik is
                   Name => Encode (Item => DateinameExtern));
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Gebäude: Es fehlt: " & DateinameExtern);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.Gebäude: Es fehlt: " & DateinameExtern);
             return;
       end case;
       
@@ -313,7 +313,7 @@ package body EinlesenRassentexteLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenRassentexte.Gebäude: Fehlende Zeilen: " & DateinameExtern);
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenRassentexte.Gebäude: Fehlende Zeilen: " & DateinameExtern);
                   exit GebäudeSchleife;
                
                when False =>

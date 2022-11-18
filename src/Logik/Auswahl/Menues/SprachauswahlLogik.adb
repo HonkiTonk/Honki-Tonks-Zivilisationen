@@ -5,7 +5,7 @@ with SystemKonstanten;
 with TastenbelegungDatentypen;
 
 with TasteneingabeLogik;
-with Fehler;
+with Fehlermeldungssystem;
 with NachGrafiktask;
 with MausauswahlLogik;
 
@@ -64,7 +64,7 @@ package body SprachauswahlLogik is
            and
              GlobaleTexte.SprachenEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
-            Fehler.LogikFehler (FehlermeldungExtern => "AuswahlSprache.SprachenListeFestlegen: Keine Sprachen vorhanden.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "AuswahlSprache.SprachenListeFestlegen: Keine Sprachen vorhanden.");
             
          elsif
            EndeSchleifenwert > GlobaleTexte.SprachenEinlesen'Last

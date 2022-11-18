@@ -8,7 +8,7 @@ with KartengeneratorLogik;
 with SpieleinstellungenKartenLogik;
 with SpieleinstellungenRasseLogik;
 with SpieleinstellungenSonstigesLogik;
-with Warnung;
+with Fehlermeldungssystem;
 with LadezeitenLogik;
 with AuswahlaufteilungLogik;
 with NachGrafiktask;
@@ -130,7 +130,7 @@ package body SpieleinstellungenLogik is
             null;
             
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen: Rassenplatzierung unmöglich.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen: Rassenplatzierung unmöglich.");
             return RueckgabeDatentypen.Spielmenü_Enum;
       end case;
             

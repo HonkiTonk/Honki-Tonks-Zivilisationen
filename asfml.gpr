@@ -1,4 +1,3 @@
-
 library project ASFML is
 
    type T_OS is ("Windows_NT", "Linux");

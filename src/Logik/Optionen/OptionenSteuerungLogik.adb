@@ -3,7 +3,7 @@ with MenueDatentypen;
 with AuswahlaufteilungLogik;
 with SchreibenTastaturLogik;
 with TastenbelegungVariablen;
-with Fehler;
+with Fehlermeldungssystem;
 
 package body OptionenSteuerungLogik is
 
@@ -30,7 +30,7 @@ package body OptionenSteuerungLogik is
                return AuswahlWert;
                      
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "OptionenSteuerung.SteuerungBelegen: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenSteuerung.SteuerungBelegen: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop BelegungSchleife;

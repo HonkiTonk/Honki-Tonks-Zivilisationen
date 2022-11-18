@@ -6,7 +6,7 @@ with Sf.Audio.Music;
 with VerzeichnisKonstanten;
 
 with EingeleseneMusik;
-with Warnung;
+with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 
 package body EinlesenMusikLogik is
@@ -27,7 +27,7 @@ package body EinlesenMusikLogik is
         Exists (Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenMusik.EinlesenMusik: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei));
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusik.EinlesenMusik: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei));
             return;
             
          when True =>
@@ -46,7 +46,8 @@ package body EinlesenMusikLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenMusik.EinlesenMusik: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusik.EinlesenMusik: Fehlende Zeilen: "
+                                           & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei));
                exit VerzeichnisseSchleife;
                
             when False =>
@@ -82,7 +83,7 @@ package body EinlesenMusikLogik is
         Exists (Name => Encode (Item => DateipfadExtern))
       is
          when False =>
-            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenMusik.EinlesenLieder: Es fehlt: " & DateipfadExtern);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusik.EinlesenLieder: Es fehlt: " & DateipfadExtern);
             return;
                
          when True =>
@@ -99,7 +100,7 @@ package body EinlesenMusikLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenMusik.EinlesenLieder: Fehlende Zeilen: " & DateipfadExtern);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusik.EinlesenLieder: Fehlende Zeilen: " & DateipfadExtern);
                exit MusikSchleife;
                
             when False =>
@@ -110,7 +111,7 @@ package body EinlesenMusikLogik is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Lied)))
          is
             when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenMusik.EinlesenLieder: Es fehlt: " & To_Wide_Wide_String (Source => Lied));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusik.EinlesenLieder: Es fehlt: " & To_Wide_Wide_String (Source => Lied));
             
             when True =>
                EingeleseneMusik.Musik (RasseExtern, MusikSchleifenwert) := Sf.Audio.Music.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Lied)));

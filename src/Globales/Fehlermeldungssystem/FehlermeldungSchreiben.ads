@@ -2,7 +2,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 private with Ada.Text_IO;
 
-package MeldungSchreiben is
+package FehlermeldungSchreiben is
    pragma Elaborate_Body;
 
    procedure MeldungSchreiben
@@ -25,4 +25,4 @@ private
    
    DateiMeldung : File_Type;
 
-end MeldungSchreiben;
+end FehlermeldungSchreiben;

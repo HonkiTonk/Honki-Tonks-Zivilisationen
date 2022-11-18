@@ -15,7 +15,7 @@ with TexteingabeLogik;
 with StadtproduktionLogik;
 with SichtbarkeitsberechnungssystemLogik;
 with EinheitenErzeugenEntfernenLogik;
-with Fehler;
+with Fehlermeldungssystem;
 with WegeplatzierungssystemLogik;
 with EinheitenSpielmeldungenLogik;
 with MeldungFestlegenLogik;
@@ -66,7 +66,7 @@ package body StadtBauenLogik is
             end if;
             
          when RassenDatentypen.Leer_Spieler_Enum =>
-            Fehler.LogikFehler (FehlermeldungExtern => "StadtBauen.StadtBauen: Nicht vorhandene Rasse baut Stadt.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtBauen.StadtBauen: Nicht vorhandene Rasse baut Stadt.");
       end case;
             
       -- Immer daran denken dass die Stadt bei StadtEintragen auf Leer gesetzt wird und deswegen der Name danach eingetragen werden muss.
@@ -112,7 +112,7 @@ package body StadtBauenLogik is
       end if;
                   
       if
-        LeseWeltkarte.BelegterGrundLeer (KoordinatenExtern => Einheitenkoordinaten) = True
+        LeseWeltkarte.UnbelegterGrund (KoordinatenExtern => Einheitenkoordinaten) = True
       then
          return True;
          

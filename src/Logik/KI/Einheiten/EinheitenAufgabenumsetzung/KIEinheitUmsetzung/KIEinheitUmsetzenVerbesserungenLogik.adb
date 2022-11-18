@@ -2,7 +2,7 @@ with LeseWeltkarte;
 with LeseEinheitenGebaut;
 
 with AufgabenLogik;
-with Fehler;
+with Fehlermeldungssystem;
 
 package body KIEinheitUmsetzenVerbesserungenLogik is
 
@@ -105,7 +105,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
             end if;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "KIEinheitUmsetzenVerbesserungen.WelcheVerbesserungAnlegen: Falsche Verbesserung: " & WelcheVerbesserung'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitUmsetzenVerbesserungen.WelcheVerbesserungAnlegen: Falsche Verbesserung: " & WelcheVerbesserung'Wide_Wide_Image);
             return False;
       end case;
       

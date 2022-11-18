@@ -11,7 +11,7 @@ with EinlesenRassentexteLogik;
 with SprachauswahlLogik;
 with ZahleneingabeLogik;
 with AuswahlaufteilungLogik;
-with Fehler;
+with Fehlermeldungssystem;
 with NachGrafiktask;
 
 package body OptionenSonstigesLogik is
@@ -42,7 +42,7 @@ package body OptionenSonstigesLogik is
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.Sonstiges: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenSonstiges.Sonstiges: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop SonstigesSchleife;
@@ -122,7 +122,7 @@ package body OptionenSonstigesLogik is
             end if;
             
          when False =>
-            Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.SpracheWechseln: Sprachen nicht gefunden.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenSonstiges.SpracheWechseln: Sprachen nicht gefunden.");
       end case;
       
    end SpracheWechseln;

@@ -3,12 +3,9 @@ with StadtKonstanten;
 with KartenKonstanten;
 with EinheitenKonstanten;
 
-with Fehler;
+with Fehlermeldungssystem;
+with FehlermeldungssystemZusatzinformationen;
 
--- Mal den AchsenKartenfeldNaturalRecord auf AchsenKartenfeldPositiveRecord umschreiben oder hier überall eine Umwandlung einbauen? äöü
--- Gilt auch für alle anderen KoordinatenExtern. äöü
--- Bei all diesen Lese/Schreibe aufrufe mal Teile der Contracts als normale Prüfung einbauen. äöü
--- Aufgrund des Doppelzugriffs von Logik- und Grafiktask ist das wohl nötig. äöü
 package body LeseWeltkarte is
    
    function Basisgrund
@@ -20,7 +17,6 @@ package body LeseWeltkarte is
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            -- Kann hier Leer zurückgegeben werden, war bisher Vernichtet? Wahrscheinlich muss ich da noch ein paar Dinge anpassen. äöü
             return KartengrundDatentypen.Leer_Basisgrund_Enum;
             
          when others =>
@@ -40,7 +36,6 @@ package body LeseWeltkarte is
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            -- Kann hier Leer zurückgegeben werden, war bisher Vernichtet? Wahrscheinlich muss ich da noch ein paar Dinge anpassen. äöü
             return KartengrundDatentypen.Leer_Zusatzgrund_Enum;
             
          when others =>
@@ -60,7 +55,6 @@ package body LeseWeltkarte is
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            -- Kann hier Leer zurückgegeben werden, war bisher Vernichtet? Wahrscheinlich muss ich da noch ein paar Dinge anpassen. äöü
             return (KartengrundDatentypen.Leer_Basisgrund_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum);
             
          when others =>
@@ -96,7 +90,15 @@ package body LeseWeltkarte is
       return KartengrundDatentypen.Kartenfluss_Enum
    is begin
       
-      return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return KartengrundDatentypen.Leer_Fluss_Enum;
+            
+         when others =>
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss;
+      end case;
       
    end Fluss;
    
@@ -106,8 +108,16 @@ package body LeseWeltkarte is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenverbesserungDatentypen.Karten_Weg_Enum
    is begin
-      
-      return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Weg;
+            
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return KartenverbesserungDatentypen.Leer_Weg_Enum;
+            
+         when others =>
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Weg;
+      end case;
       
    end Weg;
    
@@ -137,7 +147,15 @@ package body LeseWeltkarte is
       return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
-      return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return KartengrundDatentypen.Leer_Ressource_Enum;
+            
+         when others =>
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource;
+      end case;
       
    end Ressource;
    
@@ -152,6 +170,17 @@ package body LeseWeltkarte is
       use type RassenDatentypen.Rassen_Enum;
    begin
       
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.BelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern)
+                                        & "Rasse: " & RasseExtern'Wide_Wide_Image);
+            
+         when others =>
+            null;
+      end case;
+            
       if
         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse = RasseExtern
         and
@@ -167,14 +196,23 @@ package body LeseWeltkarte is
    
       
    
-   -- Mal besser benennen! äöü
-   function BelegterGrundLeer
+   function UnbelegterGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
       use type RassenDatentypen.Rassen_Enum;
    begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.UnbelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            null;
+      end case;
       
       if
         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse = StadtKonstanten.LeerRasse
@@ -188,14 +226,16 @@ package body LeseWeltkarte is
         or
           Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Nummer = StadtKonstanten.LeerNummer
       then
-         Fehler.LogikFehler (FehlermeldungExtern => "LeseWeltkarte.BelegterGrundLeer: Rasse oder Nummer falsch.");
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.UnbelegterGrund - Werte ungültig. Rasse: "
+                             & Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse'Wide_Wide_Image & " Nummer: "
+                             & Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Nummer'Wide_Wide_Image);
          return True;
          
       else
          return False;
       end if;
       
-   end BelegterGrundLeer;
+   end UnbelegterGrund;
    
    
    
@@ -203,6 +243,16 @@ package body LeseWeltkarte is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtRecords.RasseStadtnummerRecord
    is begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.StadtbelegungGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            null;
+      end case;
       
       return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund;
       
@@ -218,6 +268,16 @@ package body LeseWeltkarte is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
       use type RassenDatentypen.Rassen_Enum;
    begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.BestimmteStadtBelegtGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            null;
+      end case;
      
       if
         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse = StadtRasseNummerExtern.Rasse
@@ -238,6 +298,16 @@ package body LeseWeltkarte is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return RassenDatentypen.Rassen_Enum
    is begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.RasseBelegtGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            null;
+      end case;
       
       return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.Rasse;
       

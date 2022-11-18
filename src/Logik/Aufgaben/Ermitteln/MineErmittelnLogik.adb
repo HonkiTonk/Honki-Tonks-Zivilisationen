@@ -5,7 +5,7 @@ with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 
 with RodenErmittelnLogik;
-with Fehler;
+with Fehlermeldungssystem;
 with ArbeitszeitMineLogik;
 with Grenzpruefungen;
 
@@ -63,7 +63,7 @@ package body MineErmittelnLogik is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "MineErmitteln.MineErmitteln: Falsche Aufgabe:" & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "MineErmitteln.MineErmitteln: Falsche Aufgabe:" & Arbeitswerte.Aufgabe'Wide_Wide_Image);
       end case;
       
       case

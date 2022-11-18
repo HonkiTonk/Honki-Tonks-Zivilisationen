@@ -176,7 +176,7 @@ package body EinheitentransporterLogik is
       end case;
       
       if
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => LadungExtern) < BewegungspunkteBerechnenLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => KoordinatenExtern,
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => LadungExtern) < BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern    => KoordinatenExtern,
                                                                                                                                            EinheitRasseNummerExtern => LadungExtern)
       then
          return False;

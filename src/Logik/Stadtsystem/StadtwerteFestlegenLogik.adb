@@ -99,7 +99,7 @@ package body StadtwerteFestlegenLogik is
                null;
                      
             elsif
-              LeseWeltkarte.BelegterGrundLeer (KoordinatenExtern => KartenWert) = True
+              LeseWeltkarte.UnbelegterGrund (KoordinatenExtern => KartenWert) = True
             then
                SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => KartenWert,
                                                 BelegterGrundExtern => (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer));

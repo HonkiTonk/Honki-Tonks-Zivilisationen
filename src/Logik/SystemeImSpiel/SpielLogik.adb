@@ -9,7 +9,7 @@ with SpeichernLogik;
 with LadenLogik;
 with RasseEntfernenLogik;
 with RundenendeLogik;
-with Fehler;
+with Fehlermeldungssystem;
 with NachGrafiktask;
 with BefehlsauswahlLogik;
 with JaNeinLogik;
@@ -47,7 +47,7 @@ package body SpielLogik is
                   null;
                
                when others =>
-                  Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.Spiel: Falsche Rückgabe: " & RückgabeRassen'Wide_Wide_Image);
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.Spiel: Falsche Rückgabe: " & RückgabeRassen'Wide_Wide_Image);
             end case;
             
          end loop RassenSchleife;
@@ -146,7 +146,7 @@ package body SpielLogik is
                KISpieler (RasseExtern => RasseExtern);
                
             when RassenDatentypen.Leer_Spieler_Enum =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.RasseDurchgehen: Keine Rasse.");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.RasseDurchgehen: Keine Rasse.");
          end case;
 
       else
@@ -297,11 +297,11 @@ package body SpielLogik is
                   null;
                   
                else
-                  Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.MenschAmZug: Falsche Rückgabe: " & RückgabeSpielmenü'Wide_Wide_Image);
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.MenschAmZug: Falsche Rückgabe: " & RückgabeSpielmenü'Wide_Wide_Image);
                end if;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.MenschAmZug: Falscher Befehl: " & AktuellerBefehlSpieler'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.MenschAmZug: Falscher Befehl: " & AktuellerBefehlSpieler'Wide_Wide_Image);
          end case;
                      
       end loop SpielerSchleife;
@@ -358,7 +358,7 @@ package body SpielLogik is
                return AuswahlSpielmenü;
                   
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielLogik.Spielmenü: Falsche Rückgabe: " & AuswahlSpielmenü'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.Spielmenü: Falsche Rückgabe: " & AuswahlSpielmenü'Wide_Wide_Image);
          end case;
       
       end loop SpielmenüSchleife;

@@ -12,7 +12,8 @@ package KampfDatentypen is
 
 
 
-   type Reichweite is range 1 .. 3;
+   type Reichweite is range 0 .. 3;
+   subtype ReichweiteVorhanden is Reichweite range 1 .. Reichweite'Last;
 
 
 

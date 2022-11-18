@@ -20,7 +20,7 @@ package DebugobjekteLogik is
                                                                              VerbesserungZu          => 0,
                                                                              Beförderungsgrenze      => 1,
                                                                              MaximalerRang           => KampfDatentypen.RangVorhanden'Last,
-                                                                             Reichweite              => KampfDatentypen.Reichweite'Last,
+                                                                             Reichweite              => KampfDatentypen.ReichweiteVorhanden'Last,
                                                                              Angriff                 => KampfDatentypen.KampfwerteEinheiten'Last,
                                                                              Verteidigung            => KampfDatentypen.KampfwerteEinheiten'Last,
                                                                              KannTransportieren      => EinheitenDatentypen.Gigantisch_Transport_Enum,

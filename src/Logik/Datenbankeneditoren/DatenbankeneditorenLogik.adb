@@ -9,7 +9,7 @@ with StandardForschungenDatenbank;
 with StandardEinheitenDatenbank;
 
 with AuswahlaufteilungLogik;
-with Fehler;
+with Fehlermeldungssystem;
 -- with EinheitenDatenbankeditorLogik;
 -- with ForschungenDatenbankeditorLogik;
 -- with GebaeudeDatenbankeditorLogik;
@@ -61,7 +61,7 @@ package body DatenbankeneditorenLogik is
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "DatenbankeneditorenLogik.DatenbankenEditoren: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "DatenbankeneditorenLogik.DatenbankenEditoren: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop EditorenSchleife;

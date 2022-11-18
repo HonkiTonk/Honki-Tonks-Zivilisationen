@@ -77,17 +77,22 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (19.11.2022):
+   -- Version 0.04.3895 => 0.04. (19.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.3815 => 0.04. (18.11.2022):
+   -- Version 0.04.3815 => 0.04.3895 (18.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Anpassungen an den gpr Dateien vorgenommen.
+   -- Zusätzliche Sicherheitsprüfungen eingebaut.
+   -- Diverse Zahlen in Konstante umgewandelt.
+   -- Fehler- und Warnsystem erweitert.
+   -- Fehler- und Warnsystem zusammengeführt.
+   -- Fehler korrigiert der beim Tauschen von Einheiten durch die KI zu einem Absturz führte.
+   -- Contarcts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
@@ -107,7 +112,7 @@ package ChangelogNovember2022 is
    -- KI überarbeitet
    -- Bewegungsplanberechnung der KI überarbeitet.
    -- Die KI ist jetzt besser darin unnötige Einheitenzüge zum Ziel zu vermeiden.
-   -- Die KI ist jetzt in der Lage nebeneinander liegende Einheitentausch die Plätze tauschen zu lassen.
+   -- Die KI ist jetzt in der Lage nebeneinander liegende Einheiten die Plätze tauschen zu lassen.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    

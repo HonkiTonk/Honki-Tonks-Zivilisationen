@@ -5,7 +5,7 @@ with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 
 with RodenErmittelnLogik;
-with Fehler;
+with Fehlermeldungssystem;
 with ArbeitszeitFarmLogik;
 with Grenzpruefungen;
 
@@ -72,7 +72,7 @@ package body FarmErmittelnLogik is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "EinheitFarmLogik.FarmErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinheitFarmLogik.FarmErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
       end case;
       
       case

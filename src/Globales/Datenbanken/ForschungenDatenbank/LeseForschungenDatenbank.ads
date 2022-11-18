@@ -12,7 +12,7 @@ package LeseForschungenDatenbank is
 
    function Kosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in ForschungenDatentypen.ForschungID)
+      IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
       return ProduktionDatentypen.Lagermenge
      with
        Pre => (
@@ -21,7 +21,7 @@ package LeseForschungenDatenbank is
 
    function AnforderungForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in ForschungenDatentypen.ForschungID;
+      IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
       WelcheAnforderungExtern : in ForschungenDatentypen.Forschung_Anforderung_Enum)
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with

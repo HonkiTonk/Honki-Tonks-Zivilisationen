@@ -70,7 +70,7 @@ package body KIKartenfeldbewertungModifizierenLogik is
                null;
                
             elsif
-              LeseWeltkarte.BelegterGrundLeer (KoordinatenExtern => KartenWert) = False
+              LeseWeltkarte.UnbelegterGrund (KoordinatenExtern => KartenWert) = False
             then
                return False;
             

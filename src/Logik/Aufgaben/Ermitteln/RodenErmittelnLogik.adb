@@ -3,7 +3,7 @@ with EinheitenKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
   
-with Fehler;
+with Fehlermeldungssystem;
 with ArbeitszeitRodenLogik;
 with Grenzpruefungen;
 
@@ -53,7 +53,7 @@ package body RodenErmittelnLogik is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "RodenErmitteln.RodenErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "RodenErmitteln.RodenErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
       end case;
       
       case

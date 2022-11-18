@@ -5,7 +5,7 @@ with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 with LeseForschungenDatenbank;
 
-with Fehler;
+with Fehlermeldungssystem;
 with Grenzpruefungen;
 with ForschungstestsLogik;
 with ArbeitszeitWegLogik;
@@ -68,7 +68,7 @@ package body WegErmittelnLogik is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "WegErmitteln.WegErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "WegErmitteln.WegErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
       end case;
       
       case

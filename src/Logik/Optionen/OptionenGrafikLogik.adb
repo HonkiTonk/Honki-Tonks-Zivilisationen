@@ -9,7 +9,7 @@ with AuswahlaufteilungLogik;
 with ZahleneingabeLogik;
 with EinstellungenGrafik;
 with SchreibenEinstellungenLogik;
-with Fehler;
+with Fehlermeldungssystem;
 
 package body OptionenGrafikLogik is
 
@@ -44,7 +44,7 @@ package body OptionenGrafikLogik is
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.OptionenGrafik: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenGrafik.OptionenGrafik: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop GrafikSchleife;
@@ -145,7 +145,7 @@ package body OptionenGrafikLogik is
             EinstellungenGrafik.FensterEinstellungen.FensterVollbild := 7;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.VollbildFenster: Unbekannter Fenstermodus gewählt: " & EinstellungenGrafik.FensterEinstellungen.FensterVollbild'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenGrafik.VollbildFenster: Unbekannter Fenstermodus gewählt: " & EinstellungenGrafik.FensterEinstellungen.FensterVollbild'Wide_Wide_Image);
       end case;
       
       NachGrafiktask.FensterVerändert := GrafikDatentypen.Modus_Verändert_Enum;

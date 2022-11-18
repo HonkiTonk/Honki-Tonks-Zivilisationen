@@ -3,7 +3,7 @@ with MenueDatentypen;
 
 with ZufallsgeneratorenSpieleinstellungenLogik;
 with AuswahlaufteilungLogik;
-with Fehler;
+with Fehlermeldungssystem;
 with UmwandlungenVerschiedeneDatentypen;
 
 package body SpieleinstellungenSonstigesLogik is
@@ -29,7 +29,7 @@ package body SpieleinstellungenSonstigesLogik is
                return;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen: Falsche Auswahl: " & SchwierigkeitAuswahl'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen: Falsche Auswahl: " & SchwierigkeitAuswahl'Wide_Wide_Image);
          end case;
          
       end loop SchwierigkeitsgradSchleife;

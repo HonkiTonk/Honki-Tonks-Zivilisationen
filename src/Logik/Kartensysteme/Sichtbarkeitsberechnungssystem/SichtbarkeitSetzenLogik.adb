@@ -6,7 +6,7 @@ with SchreibeWeltkarte;
 
 with EinheitSuchenLogik;
 with KennenlernenLogik;
-with Fehler;
+with Fehlermeldungssystem;
 
 package body SichtbarkeitSetzenLogik is
 
@@ -60,7 +60,7 @@ package body SichtbarkeitSetzenLogik is
             EAchseEnde := KartenKonstanten.PlaneteninneresKonstante;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "SichtbarkeitSetzenLogik.EbenenBerechnungen: Ungültige Ebene: " & KoordinatenExtern.EAchse'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SichtbarkeitSetzenLogik.EbenenBerechnungen: Ungültige Ebene: " & KoordinatenExtern.EAchse'Wide_Wide_Image);
       end case;
       
       EAchse:

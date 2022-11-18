@@ -6,7 +6,7 @@ with Weltkarte;
 with SchreibeWeltkarte;
 
 with AuswahlaufteilungLogik;
-with Fehler;
+with Fehlermeldungssystem;
 
 package body DebugmenueLogik is
 
@@ -39,7 +39,7 @@ package body DebugmenueLogik is
                return;
                   
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "DebugmenueLogik.Debugmenü: Falsche Rückgabe: " & RückgabeDebugmenü'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "DebugmenueLogik.Debugmenü: Falsche Rückgabe: " & RückgabeDebugmenü'Wide_Wide_Image);
          end case;
       
       end loop DebugmenüSchleife;

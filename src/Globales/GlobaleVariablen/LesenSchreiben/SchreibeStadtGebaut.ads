@@ -274,5 +274,7 @@ private
    
    AktuelleEinwohner : ProduktionDatentypen.Einwohner;
    AktuelleArbeiter : ProduktionDatentypen.Einwohner;
+   
+   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end SchreibeStadtGebaut;

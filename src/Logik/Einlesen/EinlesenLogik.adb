@@ -8,7 +8,7 @@ with EinlesenDatenbankenLogik;
 with SchreibenEinstellungenLogik;
 with SprachauswahlLogik;
 with EinlesenTexturenLogik;
-with Fehler;
+with Fehlermeldungssystem;
 with EinlesenMusikLogik;
 with EinlesenSoundsLogik;
 with EinlesenRassentexteLogik;
@@ -58,7 +58,7 @@ package body EinlesenLogik is
                SchreibenEinstellungenLogik.Nutzereinstellungen;
                   
             when False =>
-               Fehler.LogikFehler (FehlermeldungExtern => "Einlesen.EinlesenMitAnzeige: Sprachen nicht gefunden.");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "Einlesen.EinlesenMitAnzeige: Sprachen nicht gefunden.");
          end case;
                
       else

@@ -1,6 +1,6 @@
 with Ada.Directories; use Ada.Directories;
 
-package body MeldungSchreiben is
+package body FehlermeldungSchreiben is
 
    procedure MeldungSchreiben
      (MeldungExtern : in Wide_Wide_String)
@@ -54,4 +54,4 @@ package body MeldungSchreiben is
       
    end MeldungSchreibenASCII;
 
-end MeldungSchreiben;
+end FehlermeldungSchreiben;

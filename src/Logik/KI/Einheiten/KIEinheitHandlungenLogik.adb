@@ -7,7 +7,7 @@ with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
 with EinheitenbewegungLogik;
-with Fehler;
+with Fehlermeldungssystem;
 
 with KIDatentypen;
 
@@ -96,7 +96,7 @@ package body KIEinheitHandlungenLogik is
             KIPZBAufgabenLogik.PZBAufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                            
          when EinheitenDatentypen.Leer_Einheitart_Enum =>
-            Fehler.LogikFehler (FehlermeldungExtern => "KIEinheitHandlungenLogik.Aufgabenplanung - KI nutzt leere Einheitenart: " & EinheitRasseNummerExtern.Rasse'Wide_Wide_Image & " " & EinheitID'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitHandlungenLogik.Aufgabenplanung - KI nutzt leere Einheitenart: " & EinheitRasseNummerExtern.Rasse'Wide_Wide_Image & " " & EinheitID'Wide_Wide_Image);
       end case;
          
       return HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

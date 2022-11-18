@@ -46,7 +46,7 @@ package EinheitenKonstanten is
    LeerWirdVerbessertZu : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
    LeerBeförderungsgrenze : constant KampfDatentypen.ErfahrungspunkteVorhanden := KampfDatentypen.ErfahrungspunkteVorhanden'First;
    LeerMaximalerRang : constant KampfDatentypen.Rang := KampfDatentypen.RangVorhanden'First;
-   LeerReichweite : constant KampfDatentypen.Reichweite := KampfDatentypen.Reichweite'First;
+   LeerReichweite : constant KampfDatentypen.ReichweiteVorhanden := KampfDatentypen.ReichweiteVorhanden'First;
    LeerAngriff : constant KampfDatentypen.KampfwerteEinheiten := KampfDatentypen.KampfwerteEinheiten'First;
    LeerVerteidigung : constant KampfDatentypen.KampfwerteEinheiten := KampfDatentypen.KampfwerteEinheiten'First;
    LeerKannTransportieren : constant EinheitenDatentypen.Transport_Enum := EinheitenDatentypen.Kein_Transport_Enum;
@@ -56,6 +56,7 @@ package EinheitenKonstanten is
    
    
    -- Das hier später auslagern nach ProduktionKonstanten oder sowas? äöü
+   -- Generall mal alles ein bisschen besser aufteilen damit ich nicht mehr alles doppelt und dreifach habe? äöü
    LeerArbeit : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
    LeerArbeitszeit : constant ProduktionDatentypen.Arbeitszeit := 0;
    UnmöglicheArbeit : constant ProduktionDatentypen.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'First;

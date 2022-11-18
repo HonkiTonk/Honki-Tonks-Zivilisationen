@@ -134,11 +134,23 @@ package body KIBewegungDurchfuehrenLogik is
    procedure EinheitTauschen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is begin
-      
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
+            
       Tauscheinheit := (EinheitRasseNummerExtern.Rasse, EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                                                              KoordinatenExtern => NeueKoordinatenExtern,
                                                                                                              LogikGrafikExtern => True));
+      
+      if
+        Tauscheinheit.Nummer = EinheitRasseNummerExtern.Nummer
+      then
+         SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         return;
+         
+      else
+         null;
+      end if;
       
       case
         EinheitenbewegungLogik.Einheitentausch (BewegendeEinheitExtern => EinheitRasseNummerExtern,
@@ -159,7 +171,7 @@ package body KIBewegungDurchfuehrenLogik is
    procedure BewegtSich
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
-            
+      
       BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              NeueKoordinatenExtern    => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                              PlanschrittExtern        => 1),

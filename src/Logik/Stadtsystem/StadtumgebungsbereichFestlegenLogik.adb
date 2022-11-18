@@ -5,7 +5,7 @@ with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 with LeseForschungenDatenbank;
 
-with Fehler;
+with Fehlermeldungssystem;
 with ForschungstestsLogik;
 
 package body StadtumgebungsbereichFestlegenLogik is
@@ -19,7 +19,7 @@ package body StadtumgebungsbereichFestlegenLogik is
       is
          when StadtKonstanten.LeerRasse =>
             -- Dieser Fall sollte niemals eintreten, muss aber mitgenommen werden wegen dem Record.
-            Fehler.LogikFehler (FehlermeldungExtern => "StadtUmgebungsbereichFestlegen.StadtUmgebungsbereichFestlegen: Keine Rasse ausgewählt.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtUmgebungsbereichFestlegen.StadtUmgebungsbereichFestlegen: Keine Rasse ausgewählt.");
             
          when others =>
             StadtumgebungErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);

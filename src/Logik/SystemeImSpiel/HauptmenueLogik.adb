@@ -7,7 +7,7 @@ with SpieleinstellungenLogik;
 with SpielLogik;
 with LadenLogik;
 with AuswahlaufteilungLogik;
-with Fehler;
+with Fehlermeldungssystem;
 with NachSoundtask;
 with NachGrafiktask;
 with DatenbankeneditorenLogik;
@@ -96,7 +96,7 @@ package body HauptmenueLogik is
                null;
                
             when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "Hauptmenue.Hauptmenü: Ungültige Menüauswahl: " & RückgabeAuswahl'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "Hauptmenue.Hauptmenü: Ungültige Menüauswahl: " & RückgabeAuswahl'Wide_Wide_Image);
          end case;
          
       end loop HauptmenüSchleife;

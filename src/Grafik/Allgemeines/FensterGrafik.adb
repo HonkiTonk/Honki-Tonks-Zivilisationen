@@ -10,7 +10,7 @@ with SonstigesKonstanten;
 
 with EinstellungenGrafik;
 with NachGrafiktask;
-with Fehler;
+with Fehlermeldungssystem;
 with TexteinstellungenGrafik;
 
 package body FensterGrafik is
@@ -25,7 +25,7 @@ package body FensterGrafik is
       if
         EinstellungenGrafik.FensterAccess = null
       then
-         Fehler.GrafikFehler (FehlermeldungExtern => "FensterGrafik.FensterErzeugen: FensterAccess = null.");
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "FensterGrafik.FensterErzeugen: FensterAccess = null.");
 
       else
          MauszeigerFestlegen;
@@ -60,7 +60,7 @@ package body FensterGrafik is
                                                                                          style => EinstellungenGrafik.FensterEinstellungen.FensterVollbild);
             
          when others =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "FensterGrafik.FensterErzeugenErweitert: Unbekannter Fenstermodus: " & EinstellungenGrafik.FensterEinstellungen.FensterVollbild'Wide_Wide_Image);
+            Fehlermeldungssystem.Grafik (FehlermeldungExtern => "FensterGrafik.FensterErzeugenErweitert: Unbekannter Fenstermodus: " & EinstellungenGrafik.FensterEinstellungen.FensterVollbild'Wide_Wide_Image);
       end case;
             
    end FensterErzeugenErweitert;

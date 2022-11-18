@@ -8,5 +8,4 @@ package EinheitenDatenbank is
    type EinheitenlisteArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitenDatentypen.EinheitenID'Range) of EinheitendatenbankRecord.EinheitenlisteRecord;
    Einheitenliste : EinheitenlisteArray;
    
-
 end EinheitenDatenbank;

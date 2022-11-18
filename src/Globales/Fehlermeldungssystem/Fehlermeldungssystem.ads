@@ -1,28 +1,28 @@
-package Fehler is
+package Fehlermeldungssystem is
    pragma Elaborate_Body;
    
-   procedure LogikFehler
+   procedure Logik
      (FehlermeldungExtern : in Wide_Wide_String)
      with
        Pre => (
                  FehlermeldungExtern'Length > 0
               );
             
-   procedure GrafikFehler
+   procedure Grafik
      (FehlermeldungExtern : in Wide_Wide_String)
      with
        Pre => (
                  FehlermeldungExtern'Length > 0
               );
    
-   procedure MusikFehler
+   procedure Musik
      (FehlermeldungExtern : in Wide_Wide_String)
      with
        Pre => (
                  FehlermeldungExtern'Length > 0
               );
    
-   procedure SoundFehler
+   procedure Sound
      (FehlermeldungExtern : in Wide_Wide_String)
      with
        Pre => (
@@ -30,10 +30,12 @@ package Fehler is
               );
    
 private
+   
+   FehlerWarnung : Boolean := True;
 
    LogikStopp : exception;
    GrafikStopp : exception;
    MusikStopp : exception;
    SoundStopp : exception;
 
-end Fehler;
+end Fehlermeldungssystem;

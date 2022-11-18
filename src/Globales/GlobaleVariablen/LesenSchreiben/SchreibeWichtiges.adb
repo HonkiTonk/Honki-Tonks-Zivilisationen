@@ -2,10 +2,11 @@ with EinheitenDatentypen;
 with StadtDatentypen;
 with WichtigesKonstanten;
 with ForschungKonstanten;
+with ProduktionKonstanten;
 
 with LeseForschungenDatenbank;
 
-with Fehler;
+with Fehlermeldungssystem;
 
 package body SchreibeWichtiges is
 
@@ -21,12 +22,12 @@ package body SchreibeWichtiges is
       is
          when True =>
             if
-              SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern > SpielVariablen.Grenzen (RasseExtern).Geldgrenze
+              SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern >= SpielVariablen.Grenzen (RasseExtern).Geldgrenze
             then
                SpielVariablen.Wichtiges (RasseExtern).Geldmenge := SpielVariablen.Grenzen (RasseExtern).Geldgrenze;
             
             elsif
-              SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern < ZahlenDatentypen.EigenerInteger'First
+              SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern <= ZahlenDatentypen.EigenerInteger'First
             then
                SpielVariablen.Wichtiges (RasseExtern).Geldmenge := ZahlenDatentypen.EigenerInteger'First;
             
@@ -55,12 +56,12 @@ package body SchreibeWichtiges is
       is
          when True =>
             if
-              SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern > SpielVariablen.Grenzen (RasseExtern).Geldgewinngrenze
+              SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern >= SpielVariablen.Grenzen (RasseExtern).Geldgewinngrenze
             then
                SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := SpielVariablen.Grenzen (RasseExtern).Geldgewinngrenze;
                
             elsif
-              SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern < ProduktionDatentypen.Produktion'First
+              SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern <= ProduktionDatentypen.Produktion'First
             then
                SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := ProduktionDatentypen.Produktion'First;
                
@@ -172,7 +173,7 @@ package body SchreibeWichtiges is
       if
         SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt = ForschungenDatentypen.ForschungIDMitNullWert'First
         or
-          SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate = 0
+          SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate = ProduktionKonstanten.LeerProduktion
       then
          SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := ProduktionDatentypen.Lagermenge'Last;
          
@@ -188,8 +189,7 @@ package body SchreibeWichtiges is
          SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit
            := (LeseForschungenDatenbank.Kosten (RasseExtern => RasseExtern,
                                                 IDExtern    => SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt)
-               - SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge)
-             / SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
+               - SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge) / SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
       end if;
       
    end VerbleibendeForschungszeit;
@@ -218,7 +218,7 @@ package body SchreibeWichtiges is
       case
         SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt
       is
-         when 0 =>
+         when ForschungKonstanten.LeerForschung =>
             null;
             
          when others =>
@@ -243,7 +243,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte > SpielVariablen.Grenzen (RasseExtern).Städtegrenze
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte > Städtegrenze");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte > Städtegrenze");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte := SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte + 1;
@@ -253,7 +253,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte = StadtDatentypen.MaximaleStädteMitNullWert'First
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte < 0");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte < 0");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte := SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte - 1;
@@ -279,7 +279,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
               > SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter > Einheitengrenze");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter > Einheitengrenze");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter := SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + 1;
@@ -289,7 +289,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter < 0");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter < 0");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter := SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter - 1;
@@ -315,7 +315,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
               > SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer > Einheitengrenze");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer > Einheitengrenze");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer := SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + 1;
@@ -325,7 +325,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer < 0");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer < 0");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer := SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer - 1;
@@ -351,7 +351,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
               > SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
             then
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges > Einheitengrenze");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges > Einheitengrenze");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges := SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges + 1;
@@ -361,8 +361,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
             then
-               -- Irgendwas wird hier noch falsch abgezogen oder nicht korrekt hinzugefügt. äöü
-               Fehler.LogikFehler (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges < 0");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges < 0");
                
             else
                SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges := SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges - 1;

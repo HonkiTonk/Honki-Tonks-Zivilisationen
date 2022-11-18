@@ -6,7 +6,7 @@ with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 
 with RodenErmittelnLogik;
-with Fehler;
+with Fehlermeldungssystem;
 with JaNeinLogik;
 with ArbeitszeitWaldLogik;
 with Grenzpruefungen;
@@ -84,7 +84,7 @@ package body WaldErmittelnLogik is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "WaldErmitteln.WaldErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "WaldErmitteln.WaldErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
       end case;
       
       case

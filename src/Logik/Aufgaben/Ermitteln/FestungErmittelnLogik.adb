@@ -3,7 +3,7 @@ with EinheitenKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 
-with Fehler;
+with Fehlermeldungssystem;
 with ArbeitszeitFestungLogik;
 with Grenzpruefungen;
 
@@ -57,7 +57,7 @@ package body FestungErmittelnLogik is
             null;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "FestungErmitteln.FestungErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "FestungErmitteln.FestungErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
       end case;
       
       case

@@ -20,7 +20,7 @@ package LeseEinheitenDatenbank is
    
    function PreisGeld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return ProduktionDatentypen.Produktion
      with
        Pre => (
@@ -29,7 +29,7 @@ package LeseEinheitenDatenbank is
    
    function Produktionskosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return ProduktionDatentypen.Produktion
      with
        Pre => (
@@ -38,7 +38,7 @@ package LeseEinheitenDatenbank is
    
    function PermanenteKosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
       return ProduktionDatentypen.Stadtproduktion
      with
@@ -48,7 +48,7 @@ package LeseEinheitenDatenbank is
    
    function Anforderungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with
        Pre => (
@@ -57,7 +57,7 @@ package LeseEinheitenDatenbank is
 
    function Passierbarkeit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
      with
@@ -67,7 +67,7 @@ package LeseEinheitenDatenbank is
       
    function MaximaleLebenspunkte
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.VorhandeneLebenspunkte
      with
        Pre => (
@@ -76,7 +76,7 @@ package LeseEinheitenDatenbank is
    
    function MaximaleBewegungspunkte
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.VorhandeneBewegungspunkte
      with
        Pre => (
@@ -85,7 +85,7 @@ package LeseEinheitenDatenbank is
    
    function VerbesserungZu
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.EinheitenIDMitNullWert
      with
        Pre => (
@@ -112,7 +112,7 @@ package LeseEinheitenDatenbank is
    
    function Reichweite
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KampfDatentypen.Reichweite
      with
        Pre => (
@@ -139,7 +139,7 @@ package LeseEinheitenDatenbank is
 
    function KannTransportieren
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.Transport_Enum
      with
        Pre => (
@@ -148,7 +148,7 @@ package LeseEinheitenDatenbank is
    
    function KannTransportiertWerden
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.Transport_Enum
      with
        Pre => (
@@ -157,7 +157,7 @@ package LeseEinheitenDatenbank is
    
    function Transportkapazität
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.Transportplätze
      with
        Pre => (

@@ -8,7 +8,7 @@ with SchreibeWeltkarte;
 with KartengeneratorVariablenLogik;
 with KartengeneratorErdweltLogik;
 with KartengeneratorWasserweltLogik;
-with Fehler;
+with Fehlermeldungssystem;
 with LadezeitenLogik;
 
 package body KartengeneratorUnterflaecheLogik is
@@ -39,7 +39,7 @@ package body KartengeneratorUnterflaecheLogik is
                   KartengeneratorErdweltLogik.KartengeneratorErdwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when others =>
-                  Fehler.LogikFehler (FehlermeldungExtern => "KartengeneratorUnterflaecheLogik.GenerierungLandschaft: Weder Wasser noch Erde.");
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "KartengeneratorUnterflaecheLogik.GenerierungLandschaft: Weder Wasser noch Erde.");
             end case;
                               
          end loop XAchseSchleife;

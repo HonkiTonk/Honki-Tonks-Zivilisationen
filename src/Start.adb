@@ -8,7 +8,7 @@ with Musik;
 with Sound;
 
 with NachGrafiktask;
-with MeldungSchreiben;
+with FehlermeldungSchreiben;
 with StartEndeSound;
 with StartEndeMusik;
 
@@ -47,8 +47,8 @@ is
       when StandardAdaFehler : others =>
          Put_Line (Item => "Logiktask wurde abgebrochen.");
          Put_Line (Item => Exception_Information (StandardAdaFehler));
-         MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Logiktask wurde abgebrochen.");
-         MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
+         FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Logiktask wurde abgebrochen.");
+         FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end LogikTask;
@@ -68,8 +68,8 @@ is
       when StandardAdaFehler : others =>
          Put_Line (Item => "Grafiktask wurde abgebrochen.");
          Put_Line (Item => Exception_Information (StandardAdaFehler));
-         MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Grafiktask wurde abgebrochen.");
-         MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
+         FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Grafiktask wurde abgebrochen.");
+         FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end GrafikTask;
@@ -89,8 +89,8 @@ is
       when StandardAdaFehler : others =>
          Put_Line (Item => "Musiktask wurde abgebrochen.");
          Put_Line (Item => Exception_Information (StandardAdaFehler));
-         MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Musiktask wurde abgebrochen.");
-         MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
+         FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Musiktask wurde abgebrochen.");
+         FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end MusikTask;
@@ -110,8 +110,8 @@ is
       when StandardAdaFehler : others =>
          Put_Line (Item => "Soundtask wurde abgebrochen.");
          Put_Line (Item => Exception_Information (StandardAdaFehler));
-         MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Soundtask wurde abgebrochen.");
-         MeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
+         FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Soundtask wurde abgebrochen.");
+         FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end SoundTask;
@@ -154,7 +154,7 @@ begin
             Abort_Task (T => TaskID (Task_Grafik_Enum));
             Abort_Task (T => TaskID (Task_Musik_Enum));
             Abort_Task (T => TaskID (Task_Sound_Enum));
-            MeldungSchreiben.MeldungSchreiben (MeldungExtern => "Unerwartet beendet.");
+            FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Unerwartet beendet.");
             exit SpielLäuftSchleife;
 
          when False =>

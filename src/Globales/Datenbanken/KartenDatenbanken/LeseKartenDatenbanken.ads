@@ -11,12 +11,12 @@ package LeseKartenDatenbanken is
    use type RassenDatentypen.Spieler_Enum;
 
    function PassierbarkeitBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean;
    
    function BewertungBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
      with
@@ -34,7 +34,7 @@ package LeseKartenDatenbanken is
               );
    
    function BewegungBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitenDatentypen.VorhandeneBewegungspunkte
      with
@@ -52,7 +52,7 @@ package LeseKartenDatenbanken is
               );
    
    function BewertungFluss
-     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
+     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
      with
@@ -61,7 +61,7 @@ package LeseKartenDatenbanken is
               );
    
    function BewertungRessource
-     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
+     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
      with
@@ -70,7 +70,7 @@ package LeseKartenDatenbanken is
               );
    
    function WirtschaftBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
@@ -90,7 +90,7 @@ package LeseKartenDatenbanken is
               );
    
    function WirtschaftFluss
-     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
+     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
@@ -100,7 +100,7 @@ package LeseKartenDatenbanken is
               );
    
    function WirtschaftRessourcen
-     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
+     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
@@ -110,7 +110,7 @@ package LeseKartenDatenbanken is
               );
    
    function KampfBasisgrund
-     (GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+     (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
@@ -130,7 +130,7 @@ package LeseKartenDatenbanken is
               );
    
    function KampfFluss
-     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
+     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
@@ -140,7 +140,7 @@ package LeseKartenDatenbanken is
               );
    
    function KampfRessource
-     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum;
+     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein

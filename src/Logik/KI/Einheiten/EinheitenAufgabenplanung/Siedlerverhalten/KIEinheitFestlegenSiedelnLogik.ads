@@ -4,7 +4,6 @@ with EinheitenRecords;
 
 private with KartenRecords;
 private with Weltkarte;
-private with BewertungDatentypen;
 private with KartenDatentypen;
 
 package KIEinheitFestlegenSiedelnLogik is
@@ -25,8 +24,6 @@ private
    use type KartenDatentypen.Kartenfeld;
 
    FeldGutUndFrei : Boolean;
-
-   Feldbewertung : BewertungDatentypen.Bewertung_Enum;
 
    UmgebungPrüfen : KartenDatentypen.KartenfeldNatural;
    BereitsGeprüft : KartenDatentypen.KartenfeldNatural;

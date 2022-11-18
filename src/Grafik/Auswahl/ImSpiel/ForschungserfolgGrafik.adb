@@ -7,7 +7,7 @@ with GrafikDatentypen;
 
 with LeseWichtiges;
 
-with Warnung;
+with Fehlermeldungssystem;
 with ViewsEinstellenGrafik;
 with TextberechnungenHoeheGrafik;
 with EinstellungenGrafik;
@@ -48,7 +48,7 @@ package body ForschungserfolgGrafik is
                                      ViewbreiteExtern  => Viewfläche.x);
             
          when others =>
-            Warnung.GrafikWarnung (WarnmeldungExtern => "ForschungserfolgGrafik.Forschungserfolg: Auswahlbereich: " & AuswahlExtern'Wide_Wide_Image);
+            Fehlermeldungssystem.Grafik (FehlermeldungExtern => "ForschungserfolgGrafik.Forschungserfolg: Auswahlbereich: " & AuswahlExtern'Wide_Wide_Image);
       end case;
       
       Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;

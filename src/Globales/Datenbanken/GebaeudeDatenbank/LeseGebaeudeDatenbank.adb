@@ -1,14 +1,26 @@
 with GebaeudeDatenbank;
+with StadtKonstanten;
+with ProduktionKonstanten;
+with ForschungKonstanten;
+with KampfKonstanten;
 
 package body LeseGebaeudeDatenbank is
 
    function PreisGeld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
       return ProduktionDatentypen.Produktion
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).PreisGeld;
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return ProduktionKonstanten.LeerProduktion;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).PreisGeld;
+      end case;
       
    end PreisGeld;
 
@@ -16,11 +28,19 @@ package body LeseGebaeudeDatenbank is
    
    function Produktionskosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
       return ProduktionDatentypen.Produktion
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).Produktionskosten;
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return ProduktionKonstanten.LeerProduktion;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).Produktionskosten;
+      end case;
       
    end Produktionskosten;
 
@@ -28,12 +48,20 @@ package body LeseGebaeudeDatenbank is
    
    function PermanenteKosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
       WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
       return ProduktionDatentypen.Stadtproduktion
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern);
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return ProduktionKonstanten.LeerProduktion;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern);
+      end case;
       
    end PermanenteKosten;
 
@@ -41,11 +69,19 @@ package body LeseGebaeudeDatenbank is
       
    function Anforderungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
       return ForschungenDatentypen.ForschungIDNichtMöglich
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).Anforderungen;
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return ForschungKonstanten.ForschungUnmöglich;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).Anforderungen;
+      end case;
       
    end Anforderungen;
    
@@ -53,12 +89,20 @@ package body LeseGebaeudeDatenbank is
    
    function WirtschaftBonus
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
       WirtschaftBonusExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Feldproduktion
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BonusWirtschaft (WirtschaftBonusExtern);
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return ProduktionKonstanten.LeerProduktion;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BonusWirtschaft (WirtschaftBonusExtern);
+      end case;
       
    end WirtschaftBonus;
    
@@ -66,12 +110,20 @@ package body LeseGebaeudeDatenbank is
    
    function KampfBonus
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
       KampfBonusExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteEinheiten
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BonusKampf (KampfBonusExtern);
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return KampfKonstanten.LeerKampfwert;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BonusKampf (KampfBonusExtern);
+      end case;
       
    end KampfBonus;
 
@@ -79,11 +131,19 @@ package body LeseGebaeudeDatenbank is
       
    function BasisgrundBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
       return KartengrundDatentypen.Basisgrund_Enum
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BasisgrundBenötigt;
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return KartengrundDatentypen.Leer_Basisgrund_Enum;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BasisgrundBenötigt;
+      end case;
       
    end BasisgrundBenötigt;
 
@@ -91,11 +151,19 @@ package body LeseGebaeudeDatenbank is
 
    function FlussBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
       return Boolean
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).FlussBenötigt;
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return False;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).FlussBenötigt;
+      end case;
       
    end FlussBenötigt;
 
@@ -103,11 +171,19 @@ package body LeseGebaeudeDatenbank is
       
    function RessourceBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
       return KartengrundDatentypen.Kartenressourcen_Enum
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).RessourceBenötigt;
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return KartengrundDatentypen.Leer_Ressource_Enum;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).RessourceBenötigt;
+      end case;
       
    end RessourceBenötigt;
    
@@ -115,11 +191,19 @@ package body LeseGebaeudeDatenbank is
    
    function VerbesserungBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
       return KartenverbesserungDatentypen.Karten_Verbesserung_Enum
    is begin
-     
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).VerbesserungBenötigt;
+      
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).VerbesserungBenötigt;
+      end case;
      
    end VerbesserungBenötigt;
      
@@ -127,11 +211,19 @@ package body LeseGebaeudeDatenbank is
      
    function GebäudeBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
       return StadtDatentypen.GebäudeIDMitNullwert
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).GebäudeBenötigt;
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return StadtKonstanten.LeerGebäudeID;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).GebäudeBenötigt;
+      end case;
       
    end GebäudeBenötigt;
    
@@ -139,12 +231,20 @@ package body LeseGebaeudeDatenbank is
    
    function FalscheEbene
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID;
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return Boolean
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).EbeneBenötigt (EbeneExtern);
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return False;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).EbeneBenötigt (EbeneExtern);
+      end case;
       
    end FalscheEbene;
 
@@ -152,11 +252,19 @@ package body LeseGebaeudeDatenbank is
    
    function GebäudeSpezielleEigenschaft
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
       return StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
    is begin
       
-      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).SpezielleEigenschaft;
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return StadtDatentypen.Leer_Gebäude_Spezielle_Egienschaft_Enum;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).SpezielleEigenschaft;
+      end case;
       
    end GebäudeSpezielleEigenschaft;
 

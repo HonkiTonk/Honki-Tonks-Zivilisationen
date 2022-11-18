@@ -9,7 +9,7 @@ with LeseStadtGebaut;
 with LeseWichtiges;
 
 with EinheitenmodifizierungLogik;
-with Fehler;
+with Fehlermeldungssystem;
 
 with KIKriegErmittelnLogik;
 with KIStadtLaufendeBauprojekteLogik;
@@ -148,7 +148,8 @@ package body KIEinheitenBauenLogik is
         AnzahlPassierbarkeiten
       is
          when 0 =>
-            Fehler.LogikFehler (FehlermeldungExtern => "KIEinheitenBauenLogik.EinheitBewerten - Einheit: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " " & IDExtern'Wide_Wide_Image & " hat keine Passierbarkeit.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitenBauenLogik.EinheitBewerten - Einheit: "
+                                        & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & " " & IDExtern'Wide_Wide_Image & " hat keine Passierbarkeit.");
             
          when 1 =>
             null;
@@ -197,7 +198,7 @@ package body KIEinheitenBauenLogik is
             return KIDatentypen.BauenBewertung'First;
             
          when EinheitenDatentypen.Leer_Einheitart_Enum =>
-            Fehler.LogikFehler (FehlermeldungExtern => "KIEinheitenBauen.SpezielleEinheitBewerten: Leere Einheitart.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitenBauen.SpezielleEinheitBewerten: Leere Einheitart.");
       end case;
       
       return KIKonstanten.LeerBewertung;

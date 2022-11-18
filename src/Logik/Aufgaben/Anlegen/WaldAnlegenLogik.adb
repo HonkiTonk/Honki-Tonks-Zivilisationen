@@ -3,7 +3,7 @@ with KartenverbesserungDatentypen;
 with SchreibeWeltkarte;
 with LeseWeltkarte;
 
-with Fehler;
+with Fehlermeldungssystem;
 
 package body WaldAnlegenLogik is
 
@@ -23,7 +23,7 @@ package body WaldAnlegenLogik is
             NeuerGrund := KartengrundDatentypen.Unterwald_Enum;
             
          when others =>
-            Fehler.LogikFehler (FehlermeldungExtern => "WaldAnlegen.WaldAnlegen: Falsche Ebene.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "WaldAnlegen.WaldAnlegen: Falsche Ebene.");
       end case;
       
       SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,

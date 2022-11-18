@@ -2,7 +2,7 @@ with Sf.Graphics.RenderWindow;
 
 with EinstellungenGrafik;
 with TexturenSetzenSkalierenGrafik;
-with Warnung;
+with Fehlermeldungssystem;
 
 package body KartenspritesZeichnenGrafik is
    
@@ -17,7 +17,7 @@ package body KartenspritesZeichnenGrafik is
       if
         TexturAccessExtern = null
       then
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.KartenfeldZeichnen: TexturAccessExtern = null.");
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.KartenfeldZeichnen: TexturAccessExtern = null.");
          
       else
          DurchsichtigesSpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
@@ -41,7 +41,7 @@ package body KartenspritesZeichnenGrafik is
       if
         TexturAccessExtern = null
       then
-         Warnung.GrafikWarnung (WarnmeldungExtern => "KartenspritesZeichnenGrafik.StadtfeldZeichnen: TexturAccessExtern = null.");
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtfeldZeichnen: TexturAccessExtern = null.");
          
       else
          DurchsichtigesSpriteZeichnen (SpriteAccesExtern      => SpriteAccess,

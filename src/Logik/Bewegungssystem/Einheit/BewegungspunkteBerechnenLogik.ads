@@ -11,7 +11,7 @@ package BewegungspunkteBerechnenLogik is
    use type RassenDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
    
-   function AbzugDurchBewegung
+   function Bewegungspunkte
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenDatentypen.Bewegungspunkte

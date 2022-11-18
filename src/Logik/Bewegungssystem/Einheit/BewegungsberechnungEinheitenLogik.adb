@@ -20,8 +20,8 @@ package body BewegungsberechnungEinheitenLogik is
       use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
-      BewegungspunkteAbzug := BewegungspunkteBerechnenLogik.AbzugDurchBewegung (NeueKoordinatenExtern    => NeueKoordinatenExtern,
-                                                                                EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      BewegungspunkteAbzug := BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern    => NeueKoordinatenExtern,
+                                                                             EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       -- Hier noch eine Erschöpfung einbauen? äöü
       if

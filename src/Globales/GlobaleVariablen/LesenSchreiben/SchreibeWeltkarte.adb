@@ -4,6 +4,9 @@ with KartenKonstanten;
 
 with LeseWeltkarte;
 
+with Fehlermeldungssystem;
+with FehlermeldungssystemZusatzinformationen;
+
 package body SchreibeWeltkarte is
    
    procedure Basisgrund
@@ -11,7 +14,15 @@ package body SchreibeWeltkarte is
       GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
    is begin
       
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Basisgrund := GrundExtern;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Basisgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Basisgrund := GrundExtern;
+      end case;
       
    end Basisgrund;
    
@@ -22,7 +33,15 @@ package body SchreibeWeltkarte is
       GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum)
    is begin
       
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Zusatzgrund := GrundExtern;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Zusatzgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Zusatzgrund := GrundExtern;
+      end case;
       
    end Zusatzgrund;
    
@@ -33,7 +52,15 @@ package body SchreibeWeltkarte is
       GrundExtern : in KartenRecords.KartengrundRecord)
    is begin
       
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund := GrundExtern;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Gesamtgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund := GrundExtern;
+      end case;
       
    end Gesamtgrund;
    
@@ -45,7 +72,15 @@ package body SchreibeWeltkarte is
       SichtbarExtern : in Boolean)
    is begin
       
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern) := SichtbarExtern;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Sichtbar: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern) := SichtbarExtern;
+      end case;
         
    end Sichtbar;
    
@@ -56,7 +91,15 @@ package body SchreibeWeltkarte is
       FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum)
    is begin
       
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := FlussExtern;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Fluss: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := FlussExtern;
+      end case;
       
    end Fluss;
    
@@ -67,7 +110,15 @@ package body SchreibeWeltkarte is
       WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum)
    is begin
       
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Weg := WegExtern;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Weg: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Weg := WegExtern;
+      end case;
       
    end Weg;
    
@@ -78,12 +129,11 @@ package body SchreibeWeltkarte is
       VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
    is begin
       
-      -- Wird benötigt da beim Bauen einer Stadt sicherheitshalber alles auf Null gesetzt wird und dabei auch die Kartenverbesserung hier.
       case
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            null;
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Verbesserung: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Verbesserung := VerbesserungExtern;
@@ -98,7 +148,15 @@ package body SchreibeWeltkarte is
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
    is begin
       
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := RessourceExtern;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Ressource: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := RessourceExtern;
+      end case;
       
    end Ressource;
    
@@ -109,7 +167,15 @@ package body SchreibeWeltkarte is
       BelegterGrundExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund := BelegterGrundExtern;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.BelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund := BelegterGrundExtern;
+      end case;
       
    end BelegterGrund;
    

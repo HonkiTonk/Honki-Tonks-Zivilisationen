@@ -2,7 +2,7 @@ with EinheitenKonstanten;
 
 with LeseEinheitenDatenbank;
 
-with Warnung;
+with Fehlermeldungssystem;
 
 package body LeseEinheitenGebaut is
 
@@ -80,7 +80,7 @@ package body LeseEinheitenGebaut is
       then
          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := ErlaubteLebenspunkte;
          -- Warnmeldungen hier überall mal erweitern. äöü
-         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Lebenspunkte: Vorhandene Lebenspunkte > Erlaubte Lebenspunkte.");
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseEinheitenGebaut.Lebenspunkte: Vorhandene Lebenspunkte > Erlaubte Lebenspunkte.");
          
       else
          null;
@@ -117,7 +117,7 @@ package body LeseEinheitenGebaut is
         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte > Beförderungsgrenze
       then
          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte := Beförderungsgrenze;
-         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Erfahrungspunkte: Mehr Erfahrungspunkte als erlaubt.");
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseEinheitenGebaut.Erfahrungspunkte: Mehr Erfahrungspunkte als erlaubt.");
 
       else
          null;
@@ -143,7 +143,7 @@ package body LeseEinheitenGebaut is
         SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang > MaximalerRang
       then
          SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang := MaximalerRang;
-         Warnung.LogikWarnung (WarnmeldungExtern => "LeseEinheitenGebaut.Rang: Höherer Rang als erlaubt.");
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseEinheitenGebaut.Rang: Höherer Rang als erlaubt.");
       else
          null;
       end if;

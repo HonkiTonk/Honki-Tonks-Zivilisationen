@@ -8,7 +8,7 @@ with LeseVerbesserungenDatenbank;
 
 package body BewegungspunkteBerechnenLogik is
 
-   function AbzugDurchBewegung
+   function Bewegungspunkte
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenDatentypen.Bewegungspunkte
@@ -41,7 +41,7 @@ package body BewegungspunkteBerechnenLogik is
          return NotwendigeBewegungspunkte;
       end if;
       
-   end AbzugDurchBewegung;
+   end Bewegungspunkte;
 
    
 

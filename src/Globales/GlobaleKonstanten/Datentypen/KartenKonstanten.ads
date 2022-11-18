@@ -29,8 +29,6 @@ package KartenKonstanten is
    
    -- Die Bewertung mal in irgendwas mit KIKonstanten packen? äöü
    LeerBewertung : constant BewertungDatentypen.Bewertung_Enum := BewertungDatentypen.Bewertung_Enum'First;
-   LeerWirtschaft : constant ProduktionDatentypen.Einzelproduktion := ProduktionDatentypen.Einzelproduktion'First;
-   LeerKampf : constant KampfDatentypen.KampfwerteKarte := KampfDatentypen.KampfwerteEinheiten'First;
    
    LeerSichtbar : constant Boolean := False;
          

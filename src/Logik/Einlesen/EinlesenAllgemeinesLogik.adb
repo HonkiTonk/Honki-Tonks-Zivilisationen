@@ -1,4 +1,4 @@
-with Warnung;
+with Fehlermeldungssystem;
 
 package body EinlesenAllgemeinesLogik is
 
@@ -23,7 +23,7 @@ package body EinlesenAllgemeinesLogik is
       -- Geht das auch ohne exception? äöü
    exception
       when End_Error =>
-         Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenAllgemein.VorzeitigesZeilenende: Zu wenig Zeilen.");
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenAllgemein.VorzeitigesZeilenende: Zu wenig Zeilen.");
          return True;
       
    end VorzeitigesZeilenende;

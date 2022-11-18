@@ -6,6 +6,9 @@ with LeseEinheitenDatenbank;
 with SchreibeWeltkarte;
 with LeseStadtGebaut;
 
+with Fehlermeldungssystem;
+with FehlermeldungssystemZusatzinformationen;
+
 package body SchreibeStadtGebaut is
 
    procedure ID
@@ -24,7 +27,15 @@ package body SchreibeStadtGebaut is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell := KoordinatenExtern;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeStadtGebaut.Koordinaten: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell := KoordinatenExtern;
+      end case;
       
    end Koordinaten;
    
@@ -385,14 +396,14 @@ package body SchreibeStadtGebaut is
       then
          SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauzeit
            := (LeseGebaeudeDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                      IDExtern    => StadtDatentypen.GebäudeID (SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Gebäude))
+                                                        IDExtern    => StadtDatentypen.GebäudeID (SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Gebäude))
                - SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen)
              / SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Produktionrate;
                   
       else
          SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauzeit
            := (LeseEinheitenDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                       IDExtern    => EinheitenDatentypen.EinheitenID (SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Einheit))
+                                                         IDExtern    => EinheitenDatentypen.EinheitenID (SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Einheit))
                - SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen)
              / SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Produktionrate;
       end if;
@@ -569,9 +580,19 @@ package body SchreibeStadtGebaut is
    procedure Nullsetzung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
+      
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+      case
+        Stadtkoordinaten.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            null;
             
-      SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                   VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+         when others =>
+            SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => Stadtkoordinaten,
+                                            VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+      end case;
       
       SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer) := StadtRecordKonstanten.LeerStadt;
       

@@ -1,16 +1,24 @@
 with ForschungenDatenbank;
+with ForschungKonstanten;
+with ProduktionKonstanten;
 
--- Zum Schreiben der Datenbanken wird später noch eine Schreibevariante benötigt. äöü
--- Gilt auch für die andere Datenbanken. äöü
 package body LeseForschungenDatenbank is
 
    function Kosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in ForschungenDatentypen.ForschungID)
+      IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
       return ProduktionDatentypen.Lagermenge
    is begin
 
-      return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).Kosten;
+      case
+        IDExtern
+      is
+         when ForschungKonstanten.LeerForschung =>
+            return ProduktionKonstanten.LeerProduktion;
+
+         when others =>
+            return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).Kosten;
+      end case;
 
    end Kosten;
 
@@ -18,12 +26,20 @@ package body LeseForschungenDatenbank is
 
    function AnforderungForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in ForschungenDatentypen.ForschungID;
+      IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
       WelcheAnforderungExtern : in ForschungenDatentypen.Forschung_Anforderung_Enum)
       return ForschungenDatentypen.ForschungIDNichtMöglich
    is begin
 
-      return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).Anforderung (WelcheAnforderungExtern);
+      case
+        IDExtern
+      is
+         when ForschungKonstanten.LeerForschung =>
+            return ForschungKonstanten.ForschungUnmöglich;
+
+         when others =>
+            return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).Anforderung (WelcheAnforderungExtern);
+      end case;
 
    end AnforderungForschung;
 
