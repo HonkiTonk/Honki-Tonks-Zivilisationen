@@ -40,28 +40,28 @@ package body PZBEingesetztLogik is
       is
          when -1 =>
             if
-              Weltkarte.Karteneinstellungen.Kartengröße.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+              LeseWeltkarteneinstellungen.YAchse <= LeseWeltkarteneinstellungen.XAchse
             then
-               SpielVariablen.Allgemeines.Zusammenbruchszeit := Natural (abs (Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Kartengrößen (Einheitenart)) / 10);
+               SpielVariablen.Allgemeines.Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10);
                   
             else
-               SpielVariablen.Allgemeines.Zusammenbruchszeit := Natural (abs (Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Kartengrößen (Einheitenart)) / 10 );
+               SpielVariablen.Allgemeines.Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10 );
             end if;
                
          when others =>
             if
-              Weltkarte.Karteneinstellungen.Kartengröße.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+              LeseWeltkarteneinstellungen.YAchse <= LeseWeltkarteneinstellungen.XAchse
               and
-                SpielVariablen.Allgemeines.Zusammenbruchszeit > Natural (abs (Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Kartengrößen (Einheitenart)) / 10) / PZBGezündet
+                SpielVariablen.Allgemeines.Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10) / PZBGezündet
             then
-               SpielVariablen.Allgemeines.Zusammenbruchszeit := Natural (abs (Weltkarte.Karteneinstellungen.Kartengröße.YAchse - Kartengrößen (Einheitenart)) / 10) / PZBGezündet;
+               SpielVariablen.Allgemeines.Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10) / PZBGezündet;
                
             elsif
-              Weltkarte.Karteneinstellungen.Kartengröße.YAchse > Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+              LeseWeltkarteneinstellungen.YAchse > LeseWeltkarteneinstellungen.XAchse
               and
-                SpielVariablen.Allgemeines.Zusammenbruchszeit > Natural (abs (Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Kartengrößen (Einheitenart)) / 10) / PZBGezündet
+                SpielVariablen.Allgemeines.Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10) / PZBGezündet
             then
-               SpielVariablen.Allgemeines.Zusammenbruchszeit := Natural (abs (Weltkarte.Karteneinstellungen.Kartengröße.XAchse - Kartengrößen (Einheitenart)) / 10) / PZBGezündet;
+               SpielVariablen.Allgemeines.Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10) / PZBGezündet;
                   
             else
                null;

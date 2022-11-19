@@ -11,8 +11,10 @@ with GrafikDatentypen;
 with WeltkarteRecords;
 with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
-
 with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
+
 with LadezeitenLogik;
 with NachGrafiktask;
 
@@ -129,9 +131,9 @@ package body SpeichernLogik is
       EAchseSchleife:
       for EAchseSchleifenwert in Weltkarte.KarteArray'Range (1) loop
          YAchseSchleife:
-         for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse loop
+         for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
             XAchseSchleife:
-            for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
+            for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
 
                WeltkarteRecords.WeltkarteRecord'Write (Stream (File => DateiSpeichernExtern),
                                                        Weltkarte.Karte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));

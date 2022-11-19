@@ -19,11 +19,11 @@ package body ZufallsgeneratorenStartkoordinatenLogik is
          
       Startkoordinate.YAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
                                                            First => KartenDatentypen.KartenfeldPositiv'First,
-                                                           Last  => Weltkarte.Karteneinstellungen.Kartengröße.YAchse);
+                                                           Last  => LeseWeltkarteneinstellungen.YAchse);
       
       Startkoordinate.XAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
                                                            First => KartenDatentypen.KartenfeldPositiv'First,
-                                                           Last  => Weltkarte.Karteneinstellungen.Kartengröße.XAchse);
+                                                           Last  => LeseWeltkarteneinstellungen.XAchse);
          
       return Startkoordinate;
       

@@ -1,63 +1,31 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with StadtDatentypen;
 with RassenDatentypen;
-with ProduktionDatentypen;
 with EinheitenDatentypen;
+with StadtDatentypen;
 with KartenDatentypen;
 with SpielVariablen;
 with KartenRecords;
 with KartenverbesserungDatentypen;
+with ProduktionDatentypen;
 with StadtRecords;
 with KartenKonstanten;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 with KIDatentypen;
 
-package LeseStadtGebaut is
+package SchreibeStadtGebaut is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
    use type KartenDatentypen.Ebene;
    use type StadtDatentypen.GebäudeIDMitNullwert;
    use type EinheitenDatentypen.EinheitenIDMitNullWert;
-   
-   function ID
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   function Koordinaten
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              ),
-   
-       Post => (
-                  Koordinaten'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-                and
-                  Koordinaten'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-                and
-                  (if Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse then Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse and Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
-                and
-                  (if Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse then Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
-                and
-                  (if Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse then Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse)
-               );
-   
-   function EinwohnerArbeiter
+
+   procedure ID
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      EinwohnerArbeiterExtern : in Boolean)
-      return ProduktionDatentypen.Einwohner
+      IDExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum)
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -65,9 +33,30 @@ package LeseStadtGebaut is
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
-   function Arbeitslose
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Einwohner
+   procedure Koordinaten
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+               and
+                 (if KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
+               and
+                 (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
+              );
+   
+   procedure EinwohnerArbeiter
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EinwohnerArbeiterExtern : in Boolean;
+      WachsenSchrumpfenExtern : in Boolean)
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -75,60 +64,66 @@ package LeseStadtGebaut is
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
       
-   function Nahrungsmittel
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   function Nahrungsproduktion
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   function Ressourcen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.StadtLagermenge
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   function Produktionrate
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   function Geldgewinnung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Stadtproduktion
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   function PermanenteKostenPosten
+   procedure Nahrungsmittel
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return ProduktionDatentypen.Stadtproduktion
+      NahrungsmittelExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Nahrungsproduktion
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      NahrungsproduktionExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Ressourcen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      RessourcenExtern : in ProduktionDatentypen.Produktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Produktionrate
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      ProduktionrateExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Geldgewinnung
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      GeldgewinnungExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure PermanenteKostenPosten
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum;
+      KostenExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -136,66 +131,10 @@ package LeseStadtGebaut is
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
       
-   function Forschungsrate
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.StadtLagermenge
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   function Bauprojekt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return StadtRecords.BauprojektRecord
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              ),
-           
-       Post => (
-                (if Bauprojekt'Result.Gebäude /= 0 then Bauprojekt'Result.Einheit = 0)
-                and
-                  (if Bauprojekt'Result.Einheit /= 0 then Bauprojekt'Result.Gebäude = 0)
-               );
-   
-   function Bauzeit
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Produktion
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-
-   function Korruption
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.StadtLagermenge
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   function Zufriedenheit
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return ProduktionDatentypen.Feldproduktion
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   function GebäudeVorhanden
+   procedure Forschungsrate
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
-      return Boolean
+      ForschungsrateExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -203,15 +142,77 @@ package LeseStadtGebaut is
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
-   function Name
+   procedure Bauprojekt
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      BauprojektExtern : in StadtRecords.BauprojektRecord)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 (if BauprojektExtern.Gebäude /= 0 then BauprojektExtern.Einheit = 0)
+               and
+                 (if BauprojektExtern.Einheit /= 0 then BauprojektExtern.Gebäude = 0)
+              );
+   
+   procedure Bauzeit
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return Unbounded_Wide_Wide_String;
-
-   function UmgebungBewirtschaftung
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Korruption
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      KorruptionExtern : in ProduktionDatentypen.Stadtproduktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Zufriedenheit
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      ZufriedenheitExtern : in ProduktionDatentypen.Feldproduktion;
+      ÄndernSetzenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure GebäudeVorhanden
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID;
+      HinzufügenEntfernenExtern : in Boolean)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure Name
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      NameExtern : in Unbounded_Wide_Wide_String)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       YKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
-      XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei)
-      return Boolean
+      XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
+      BelegenEntfernenExtern : in Boolean)
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -219,24 +220,10 @@ package LeseStadtGebaut is
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
-   function UmgebungGröße
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return KartenDatentypen.UmgebungsbereichDrei
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-               and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
-              ),
-         
-       Post => (
-                  UmgebungGröße'Result >= 0
-               );
-      
-   function Meldungen
+   procedure UmgebungGröße
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      WelcheMeldungExtern : in StadtDatentypen.Stadt_Meldung_Art_Enum)
-      return StadtDatentypen.Stadt_Meldung_Enum
+      UmgebungGrößeExtern : in KartenDatentypen.UmgebungsbereichDrei;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -244,9 +231,20 @@ package LeseStadtGebaut is
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
       
-   function KIBeschäftigung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return KIDatentypen.Stadt_Aufgabe_Enum
+   procedure Meldungen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      WelcheMeldungExtern : in StadtDatentypen.Stadt_Meldung_Art_Enum;
+      MeldungExtern : in StadtDatentypen.Stadt_Meldung_Enum)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+      
+   procedure KIBeschäftigung
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      BeschäftigungExtern : in KIDatentypen.Stadt_Aufgabe_Enum)
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -254,14 +252,30 @@ package LeseStadtGebaut is
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
    
-   function GanzerEintrag
+   procedure Nullsetzung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return StadtRecords.StadtGebautRecord
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
                and
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
+      
+   procedure GanzerEintrag
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      EintragExtern : in StadtRecords.StadtGebautRecord)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+               and
+                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+private
+   
+   AktuelleEinwohner : ProduktionDatentypen.Einwohner;
+   AktuelleArbeiter : ProduktionDatentypen.Einwohner;
+   
+   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-end LeseStadtGebaut;
+end SchreibeStadtGebaut;

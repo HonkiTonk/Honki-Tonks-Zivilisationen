@@ -3,8 +3,9 @@ with EinheitenRecords;
 with SpielVariablen;
 
 private with KartenRecords;
-private with Weltkarte;
 private with KartenDatentypen;
+
+private with LeseWeltkarteneinstellungen;
 
 package KIEinheitFestlegenFliehenLogik is
    pragma Elaborate_Body;
@@ -36,9 +37,9 @@ private
               ),
 
        Post => (
-                  Ziel'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  Ziel'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  Ziel'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  Ziel'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
 
 end KIEinheitFestlegenFliehenLogik;

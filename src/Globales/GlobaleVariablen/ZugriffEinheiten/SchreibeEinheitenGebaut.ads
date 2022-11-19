@@ -9,7 +9,8 @@ with AufgabenDatentypen;
 with KampfDatentypen;
 with KartenKonstanten;
 with ProduktionDatentypen;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 with KIDatentypen;
 
@@ -39,9 +40,9 @@ package SchreibeEinheitenGebaut is
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
                and
@@ -153,9 +154,9 @@ package SchreibeEinheitenGebaut is
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
                and
@@ -185,9 +186,9 @@ package SchreibeEinheitenGebaut is
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
                and
@@ -226,9 +227,9 @@ package SchreibeEinheitenGebaut is
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
                and
@@ -298,9 +299,9 @@ package SchreibeEinheitenGebaut is
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  (if KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse then KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse and KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse)
                and

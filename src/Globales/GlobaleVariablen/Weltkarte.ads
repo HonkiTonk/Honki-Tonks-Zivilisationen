@@ -5,7 +5,6 @@ with WeltkarteRecords;
 
 package Weltkarte is
 
-   -- Für das auch mal eine Lese/Schreibefunktion einbauen. äöü
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord := KartenRecordKonstanten.Standardkartenparameter;
 
    -- Später die Anzahl der Ebenen auch vom Nutzer einstellbar machen? äöü

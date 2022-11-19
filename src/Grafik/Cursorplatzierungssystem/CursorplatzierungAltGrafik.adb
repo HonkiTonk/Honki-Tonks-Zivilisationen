@@ -8,6 +8,7 @@ with KartenKonstanten;
 with ZeitKonstanten;
 with Views;
 with EinheitenKonstanten;
+with Weltkarte;
 
 with LeseEinheitenGebaut;
 
@@ -279,14 +280,14 @@ package body CursorplatzierungAltGrafik is
         MauspositionExtern.y in Achsenviewfläche.y - SichtweitenGrafik.KartenfelderAbmessung.y / 2.00 .. Achsenviewfläche.y
       then
          if
-           YAchseAltExtern + AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+           YAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.YAchse
            and
              Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
          then
             return 0;
             
          elsif
-           YAchseAltExtern + AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse + 1
+           YAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.YAchse + 1
            and
              Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
          then
@@ -340,14 +341,14 @@ package body CursorplatzierungAltGrafik is
         MausachseExtern in XAchsenbereich - SichtweitenGrafik.KartenfelderAbmessung.x / 2.00 .. XAchsenbereich
       then
          if
-           XAchseAltExtern + AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+           XAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.XAchse
            and
              Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
          then
             return 0;
             
          elsif
-           XAchseAltExtern + AktuelleSichtweite >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse + 1
+           XAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.XAchse + 1
            and
              Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
          then

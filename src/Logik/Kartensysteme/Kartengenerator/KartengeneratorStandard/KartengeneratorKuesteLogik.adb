@@ -1,6 +1,7 @@
 with KartengrundDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
+with Weltkarte;
 
 with SchreibeWeltkarte;
 with LeseWeltkarte;
@@ -13,12 +14,12 @@ package body KartengeneratorKuesteLogik is
    procedure GenerierungKüstenSeeGewässer
    is begin
       
-      Kartenzeitwert := (Weltkarte.Karteneinstellungen.Kartengröße.YAchse + (100 - 1)) / 100;
+      Kartenzeitwert := (LeseWeltkarteneinstellungen.YAchse + (100 - 1)) / 100;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse loop
+      for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
+         for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
                               
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert))

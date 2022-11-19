@@ -70,17 +70,18 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (20.11.2022):
+   -- Version 0.04.3935 => 0.04. (20.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.3895 => 0.04. (19.11.2022):
+   -- Version 0.04.3895 => 0.04.3935 (19.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Schreibe- und Lesesystem für die Weltkarte auf die Karteneinstellungen erweitert.
+   -- Interne Struktur überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

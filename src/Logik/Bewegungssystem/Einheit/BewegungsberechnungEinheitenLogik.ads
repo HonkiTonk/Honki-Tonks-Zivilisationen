@@ -3,9 +3,10 @@ with RassenDatentypen;
 with EinheitenRecords;
 with KartenRecords;
 with SpielVariablen;
-with Weltkarte;
 
 private with EinheitenDatentypen;
+
+with LeseWeltkarteneinstellungen;
 
 package BewegungsberechnungEinheitenLogik is
    pragma Elaborate_Body;
@@ -20,9 +21,9 @@ package BewegungsberechnungEinheitenLogik is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 NeueKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 NeueKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
@@ -40,9 +41,9 @@ private
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 NeueKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 NeueKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );

@@ -1,9 +1,10 @@
 with KartenDatentypen;
 with KartenRecords;
-with Weltkarte;
 
 private with KartengrundDatentypen;
 private with SystemDatentypen;
+
+with LeseWeltkarteneinstellungen;
 
 package KartengeneratorWasserweltLogik is
    pragma Elaborate_Body;
@@ -13,9 +14,9 @@ package KartengeneratorWasserweltLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
 private
@@ -36,18 +37,18 @@ private
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
      
    procedure ZusatzgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    
@@ -58,9 +59,9 @@ private
       return KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
          
    function ZusatzExtraberechnungen
@@ -69,9 +70,9 @@ private
       return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    function ZusatzberechnungMeeresgrund
@@ -80,9 +81,9 @@ private
       return KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    function ZusatzberechnungKorallen
@@ -91,9 +92,9 @@ private
       return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    function ZusatzberechnungUnterwald
@@ -102,9 +103,9 @@ private
       return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end KartengeneratorWasserweltLogik;

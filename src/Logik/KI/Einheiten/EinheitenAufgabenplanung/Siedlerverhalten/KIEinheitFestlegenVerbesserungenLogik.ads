@@ -6,8 +6,9 @@ private with KartenRecords;
 private with StadtRecords;
 private with EinheitenDatentypen;
 private with KartengrundDatentypen;
-private with Weltkarte;
 private with KartenDatentypen;
+
+private with LeseWeltkarteneinstellungen;
 
 package KIEinheitFestlegenVerbesserungenLogik is
    pragma Elaborate_Body;
@@ -56,9 +57,9 @@ private
               ),
 
        Post => (
-                  StädteDurchgehen'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  StädteDurchgehen'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  StädteDurchgehen'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  StädteDurchgehen'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
 
    function DirekteUmgebung
@@ -72,9 +73,9 @@ private
               ),
 
        Post => (
-                  DirekteUmgebung'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  DirekteUmgebung'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  DirekteUmgebung'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  DirekteUmgebung'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
 
    function StadtumgebungErmitteln
@@ -89,9 +90,9 @@ private
               ),
 
        Post => (
-                  StadtumgebungErmitteln'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  StadtumgebungErmitteln'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  StadtumgebungErmitteln'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  StadtumgebungErmitteln'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
 
    function AllgemeineVerbesserungenPrüfungen
@@ -100,9 +101,9 @@ private
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
@@ -115,9 +116,9 @@ private
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
@@ -133,9 +134,9 @@ private
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and

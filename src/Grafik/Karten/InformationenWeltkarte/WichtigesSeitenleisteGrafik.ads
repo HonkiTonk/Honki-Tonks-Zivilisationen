@@ -6,12 +6,13 @@ with RassenDatentypen;
 with KartenDatentypen; 
 with SpielVariablen;
 with KartenRecords;
-with Weltkarte;
 
 private with TextaccessVariablen;
 private with ProduktionDatentypen;
 private with GrafikRecordKonstanten;
 private with ForschungenDatentypen;
+
+with LeseWeltkarteneinstellungen;
 
 private with UmwandlungenAdaNachEigenes;
 
@@ -28,9 +29,9 @@ package WichtigesSeitenleisteGrafik is
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
 private

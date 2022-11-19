@@ -1,9 +1,10 @@
 with KartenDatentypen;
 with KartenRecords;
-with Weltkarte;
 
 private with KartengrundDatentypen;
 private with SystemDatentypen;
+
+with LeseWeltkarteneinstellungen;
 
 package KartengeneratorUnterlandressourcenLogik is
    pragma Elaborate_Body;
@@ -13,9 +14,9 @@ package KartengeneratorUnterlandressourcenLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 private
@@ -43,9 +44,9 @@ private
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    function ZusatzberechnungKohle
@@ -54,9 +55,9 @@ private
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    function ZusatzberechnungEisen
@@ -65,9 +66,9 @@ private
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    function ZusatzberechnungÖl
@@ -76,9 +77,9 @@ private
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    function ZusatzberechnungHochwertigerBoden
@@ -87,9 +88,9 @@ private
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    function ZusatzberechnungGold
@@ -98,9 +99,9 @@ private
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end KartengeneratorUnterlandressourcenLogik;

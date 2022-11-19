@@ -1,4 +1,4 @@
-with Weltkarte;
+with LeseWeltkarteneinstellungen;
 
 with KartengeneratorVariablenLogik;
 
@@ -41,18 +41,18 @@ package body ZufallsgeneratorenKartenLogik is
             MaximalerWert := KartengeneratorVariablenLogik.Landgrößen.MaximaleYAchse;
             
             if
-              MinimalerWert > Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+              MinimalerWert > LeseWeltkarteneinstellungen.YAchse
             then
-               MinimalerWert := Weltkarte.Karteneinstellungen.Kartengröße.YAchse;
+               MinimalerWert := LeseWeltkarteneinstellungen.YAchse;
                
             else
                null;
             end if;
             
             if
-              MaximalerWert > Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+              MaximalerWert > LeseWeltkarteneinstellungen.YAchse
             then
-               MaximalerWert := Weltkarte.Karteneinstellungen.Kartengröße.YAchse;
+               MaximalerWert := LeseWeltkarteneinstellungen.YAchse;
                
             else
                null;
@@ -63,18 +63,18 @@ package body ZufallsgeneratorenKartenLogik is
             MaximalerWert := KartengeneratorVariablenLogik.Landgrößen.MaximaleXAchse;
             
             if
-              MinimalerWert > Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+              MinimalerWert > LeseWeltkarteneinstellungen.XAchse
             then
-               MinimalerWert := Weltkarte.Karteneinstellungen.Kartengröße.XAchse;
+               MinimalerWert := LeseWeltkarteneinstellungen.XAchse;
                
             else
                null;
             end if;
             
             if
-              MaximalerWert > Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+              MaximalerWert > LeseWeltkarteneinstellungen.XAchse
             then
-               MaximalerWert := Weltkarte.Karteneinstellungen.Kartengröße.XAchse;
+               MaximalerWert := LeseWeltkarteneinstellungen.XAchse;
                
             else
                null;

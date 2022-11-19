@@ -6,7 +6,8 @@ with SpielVariablen;
 with KartenRecords;
 with EinheitenRecords;
 with StadtRecords;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 package SchreibeWeltkarte is
    pragma Elaborate_Body;
@@ -18,9 +19,9 @@ package SchreibeWeltkarte is
       GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    procedure Zusatzgrund
@@ -28,9 +29,9 @@ package SchreibeWeltkarte is
       GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    procedure Gesamtgrund
@@ -38,9 +39,9 @@ package SchreibeWeltkarte is
       GrundExtern : in KartenRecords.KartengrundRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    procedure Sichtbar
@@ -51,9 +52,9 @@ package SchreibeWeltkarte is
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    procedure Fluss
@@ -61,29 +62,9 @@ package SchreibeWeltkarte is
       FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-              );
-
-   procedure Weg
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
-              );
-
-   procedure Verbesserung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
-               and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    procedure Ressource
@@ -91,9 +72,29 @@ package SchreibeWeltkarte is
       RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+
+   procedure Weg
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+
+   procedure Verbesserung
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    procedure BelegterGrund
@@ -101,9 +102,9 @@ package SchreibeWeltkarte is
       BelegterGrundExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    procedure EinheitSchreiben
@@ -112,9 +113,9 @@ package SchreibeWeltkarte is
       EinheitentauschExtern : in Boolean)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    procedure EinheitEntfernen
@@ -122,9 +123,9 @@ package SchreibeWeltkarte is
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
 end SchreibeWeltkarte;

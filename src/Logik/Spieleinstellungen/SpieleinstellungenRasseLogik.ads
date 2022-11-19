@@ -3,7 +3,8 @@ private with RassenDatentypen;
 private with RueckgabeDatentypen;
 private with KartenRecords;
 private with ZahlenDatentypen;
-private with Weltkarte;
+
+private with LeseWeltkarteneinstellungen;
 
 package SpieleinstellungenRasseLogik is
    pragma Elaborate_Body;
@@ -46,13 +47,13 @@ private
       StartkoordinateZweiExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
-                 StartkoordinateEinsExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 StartkoordinateEinsExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 StartkoordinateEinsExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 StartkoordinateEinsExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 StartkoordinateZweiExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 StartkoordinateZweiExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 StartkoordinateZweiExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 StartkoordinateZweiExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    
@@ -69,15 +70,15 @@ private
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               ),
    
        Post => (
-                  ZusatzfeldBestimmen'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  ZusatzfeldBestimmen'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  ZusatzfeldBestimmen'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  ZusatzfeldBestimmen'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
 
 end SpieleinstellungenRasseLogik;

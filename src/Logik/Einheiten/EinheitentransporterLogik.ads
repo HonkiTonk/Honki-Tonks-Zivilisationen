@@ -3,9 +3,10 @@ with SpielVariablen;
 with EinheitenRecords;
 
 private with EinheitenDatentypen;
-private with Weltkarte;
 private with KartenRecords;
 private with KartenDatentypen;
+
+private with LeseWeltkarteneinstellungen;
 
 package EinheitentransporterLogik is
    pragma Elaborate_Body;
@@ -59,9 +60,9 @@ private
                and
                  SpielVariablen.Rassenbelegung (LadungExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 TranspoterKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 TranspoterKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 TranspoterKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 TranspoterKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    
@@ -76,9 +77,9 @@ private
                and
                  SpielVariablen.Rassenbelegung (LadungExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end EinheitentransporterLogik;

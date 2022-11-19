@@ -1,4 +1,4 @@
-with Weltkarte;
+with LeseWeltkarteneinstellungen;
 
 with CursorbewegungLogik;
 with NachGrafiktask;
@@ -92,9 +92,9 @@ package body SichtweitenGrafik is
    begin
       
       if
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse >= Weltkarte.Karteneinstellungen.Kartengröße.YAchse - SichtweiteLesen
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse >= LeseWeltkarteneinstellungen.YAchse - SichtweiteLesen
         and
-          SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse >= Weltkarte.Karteneinstellungen.Kartengröße.XAchse - SichtweiteLesen
+          SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse >= LeseWeltkarteneinstellungen.XAchse - SichtweiteLesen
       then
          return False;
                

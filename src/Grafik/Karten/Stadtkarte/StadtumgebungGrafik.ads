@@ -11,6 +11,8 @@ private with KartenRecords;
 private with GrafikRecordKonstanten;
 private with Weltkarte;
 
+private with LeseWeltkarteneinstellungen;
+
 package StadtumgebungGrafik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
@@ -57,9 +59,9 @@ private
                and
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
                and
-                 KarteKoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KarteKoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse
                and
-                 KarteKoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KarteKoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse
               );
 
    procedure AnzeigeLandschaft
@@ -67,9 +69,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse
               );
 
    procedure KartenfeldZeichnen
@@ -77,9 +79,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse
               );
 
    procedure FlussZeichnen
@@ -87,9 +89,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse
               );
 
    procedure RessourceZeichnen
@@ -97,9 +99,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse
               );
 
    procedure WegZeichnen
@@ -107,9 +109,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse
               );
 
    procedure VerbesserungZeichnen
@@ -117,9 +119,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse
               );
 
 end StadtumgebungGrafik;

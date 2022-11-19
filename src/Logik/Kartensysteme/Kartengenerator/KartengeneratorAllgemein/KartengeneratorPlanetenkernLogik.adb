@@ -1,5 +1,6 @@
 with LadezeitenDatentypen;
 with KartenKonstanten;
+with Weltkarte;
 
 with SchreibeWeltkarte;
 
@@ -11,17 +12,17 @@ package body KartengeneratorPlanetenkernLogik is
    procedure Planetenkern
    is begin
       
-      Kartenzeitwert := (Weltkarte.Karteneinstellungen.Kartengröße.YAchse + (25 - 1)) / 25;
+      Kartenzeitwert := (LeseWeltkarteneinstellungen.YAchse + (25 - 1)) / 25;
       
-      YKernanfang := Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2 - Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 10;
-      XKernanfang := Weltkarte.Karteneinstellungen.Kartengröße.XAchse / 2 - Weltkarte.Karteneinstellungen.Kartengröße.XAchse / 10;
-      YKernende := Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 2 + Weltkarte.Karteneinstellungen.Kartengröße.YAchse / 10;
-      XKernende := Weltkarte.Karteneinstellungen.Kartengröße.XAchse / 2 + Weltkarte.Karteneinstellungen.Kartengröße.XAchse / 10;
+      YKernanfang := LeseWeltkarteneinstellungen.YAchse / 2 - LeseWeltkarteneinstellungen.YAchse / 10;
+      XKernanfang := LeseWeltkarteneinstellungen.XAchse / 2 - LeseWeltkarteneinstellungen.XAchse / 10;
+      YKernende := LeseWeltkarteneinstellungen.YAchse / 2 + LeseWeltkarteneinstellungen.YAchse / 10;
+      XKernende := LeseWeltkarteneinstellungen.XAchse / 2 + LeseWeltkarteneinstellungen.XAchse / 10;
                
       YAchseSchleife:
-      for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse loop
+      for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
+         for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
             
             if
               YAchseSchleifenwert in YKernanfang .. YKernende

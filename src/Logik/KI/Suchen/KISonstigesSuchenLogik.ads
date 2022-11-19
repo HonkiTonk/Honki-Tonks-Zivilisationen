@@ -3,7 +3,8 @@ with KartenDatentypen;
 with EinheitenRecords;
 with KartenRecords;
 with SpielVariablen;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 package KISonstigesSuchenLogik is
    pragma Elaborate_Body;
@@ -20,9 +21,9 @@ package KISonstigesSuchenLogik is
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 AktuelleKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 AktuelleKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 AktuelleKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
 private
@@ -44,9 +45,9 @@ private
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 AktuelleKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 AktuelleKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 AktuelleKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end KISonstigesSuchenLogik;

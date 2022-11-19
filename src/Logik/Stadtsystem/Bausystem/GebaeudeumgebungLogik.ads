@@ -6,8 +6,9 @@ with StadtRecords;
 private with KartenRecords;
 private with KartengrundDatentypen;
 private with KartenverbesserungDatentypen;
-private with Weltkarte;
 private with KartenDatentypen;
+
+private with LeseWeltkarteneinstellungen;
 
 package GebaeudeumgebungLogik is
    pragma Elaborate_Body;
@@ -87,9 +88,9 @@ private
                and
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end GebaeudeumgebungLogik;

@@ -1,7 +1,8 @@
 with KartenDatentypen;
-with Weltkarte;
 
 private with KartenkoordinatenWerteLogik;
+
+with LeseWeltkarteneinstellungen;
 
 package KartenkoordinateYAchseBerechnenLogik is
    pragma Elaborate_Body;
@@ -15,11 +16,11 @@ package KartenkoordinateYAchseBerechnenLogik is
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
-                 YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
               ),
            
        Post => (
-                  KartenkoordinateYAchseBerechnen'Result <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  KartenkoordinateYAchseBerechnen'Result <= LeseWeltkarteneinstellungen.YAchse
                );
    
    function YAchseVerschieben
@@ -27,11 +28,11 @@ package KartenkoordinateYAchseBerechnenLogik is
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (
-                 YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
               ),
            
        Post => (
-                  YAchseVerschieben'Result <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  YAchseVerschieben'Result <= LeseWeltkarteneinstellungen.YAchse
                );
    
 private
@@ -48,11 +49,11 @@ private
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
-                 YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
               ),
            
        Post => (
-                  ÜbergangNorden'Result <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  ÜbergangNorden'Result <= LeseWeltkarteneinstellungen.YAchse
                );
    
    function ÜbergangNordenNormal
@@ -63,11 +64,11 @@ private
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (
-                 YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
               ),
            
        Post => (
-                  ÜbergangNordenNormal'Result <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  ÜbergangNordenNormal'Result <= LeseWeltkarteneinstellungen.YAchse
                );
    
    function ÜbergangNordenRückwärts
@@ -76,11 +77,11 @@ private
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
-                 YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
               ),
            
        Post => (
-                  ÜbergangNordenRückwärts'Result <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  ÜbergangNordenRückwärts'Result <= LeseWeltkarteneinstellungen.YAchse
                );
    
    function ÜbergangSüden
@@ -91,11 +92,11 @@ private
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
-                 YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
               ),
            
        Post => (
-                  ÜbergangSüden'Result <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  ÜbergangSüden'Result <= LeseWeltkarteneinstellungen.YAchse
                );
    
    function ÜbergangSüdenNormal
@@ -106,11 +107,11 @@ private
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (
-                 YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
               ),
            
        Post => (
-                  ÜbergangSüdenNormal'Result <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  ÜbergangSüdenNormal'Result <= LeseWeltkarteneinstellungen.YAchse
                );
    
    function ÜbergangSüdenRückwärts
@@ -119,11 +120,11 @@ private
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
-                 YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
               ),
            
        Post => (
-                  ÜbergangSüdenRückwärts'Result <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  ÜbergangSüdenRückwärts'Result <= LeseWeltkarteneinstellungen.YAchse
                );
 
 end KartenkoordinateYAchseBerechnenLogik;

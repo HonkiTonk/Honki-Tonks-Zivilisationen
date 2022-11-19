@@ -2,6 +2,7 @@ with KartengrundDatentypen;
 with KartenartDatentypen;
 with KartenKonstanten;
 with LadezeitenDatentypen;
+with Weltkarte;
 
 with SchreibeWeltkarte;
 with LeseWeltkarte;

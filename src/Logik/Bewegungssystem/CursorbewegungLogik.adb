@@ -1,7 +1,9 @@
 with TextnummernKonstanten;
 with KartenKonstanten;
-
 with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
+
 with ZahleneingabeLogik;
 with NachGrafiktask;
 with KartenkoordinatenberechnungssystemLogik;
@@ -77,7 +79,7 @@ package body CursorbewegungLogik is
          when True =>
             NeueKoordinate.EAchse := KartenDatentypen.EbeneVorhanden (KoordinatenPunkt.EingegebeneZahl);
             KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (Weltkarte.Karte'First (2)),
-                                                                  ZahlenMaximumExtern => Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse),
+                                                                  ZahlenMaximumExtern => Positive (LeseWeltkarteneinstellungen.YAchse),
                                                                   WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheYPosition);
       end case;
       
@@ -90,7 +92,7 @@ package body CursorbewegungLogik is
          when True =>
             NeueKoordinate.YAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
             KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (Weltkarte.Karte'First (3)),
-                                                                  ZahlenMaximumExtern => Positive (Weltkarte.Karteneinstellungen.Kartengröße.XAchse),
+                                                                  ZahlenMaximumExtern => Positive (LeseWeltkarteneinstellungen.XAchse),
                                                                   WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheXPosition);
       end case;
 

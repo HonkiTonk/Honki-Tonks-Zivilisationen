@@ -1,6 +1,7 @@
 with EinheitenDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
+with Weltkarte;
 
 with LeseWeltkarte;
 
@@ -105,6 +106,25 @@ package body SchreibeWeltkarte is
    
    
    
+   procedure Ressource
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
+   is begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Ressource: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := RessourceExtern;
+      end case;
+      
+   end Ressource;
+   
+   
+   
    procedure Weg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum)
@@ -140,25 +160,6 @@ package body SchreibeWeltkarte is
       end case;
       
    end Verbesserung;
-   
-   
-   
-   procedure Ressource
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
-   is begin
-      
-      case
-        KoordinatenExtern.EAchse
-      is
-         when KartenKonstanten.LeerEAchse =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Ressource: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
-            
-         when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := RessourceExtern;
-      end case;
-      
-   end Ressource;
    
    
    

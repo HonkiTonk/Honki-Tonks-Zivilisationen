@@ -1,9 +1,10 @@
 with KartenDatentypen;
 with KartenRecords;
-with Weltkarte;
 
 private with KartengrundDatentypen;
 private with SystemDatentypen;
+
+with LeseWeltkarteneinstellungen;
 
 package KartengeneratorErdweltLogik is
    pragma Elaborate_Body;
@@ -13,9 +14,9 @@ package KartengeneratorErdweltLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
 private
@@ -38,18 +39,18 @@ private
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    procedure ZusatzgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    
@@ -60,9 +61,9 @@ private
       return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    function ZusatzberechnungErde
@@ -71,9 +72,9 @@ private
       return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    function ZusatzberechnungErdgestein
@@ -82,9 +83,9 @@ private
       return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    function ZusatzberechnungSand
@@ -93,9 +94,9 @@ private
       return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    function ZusatzberechnungGestein
@@ -104,9 +105,9 @@ private
       return KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end KartengeneratorErdweltLogik;

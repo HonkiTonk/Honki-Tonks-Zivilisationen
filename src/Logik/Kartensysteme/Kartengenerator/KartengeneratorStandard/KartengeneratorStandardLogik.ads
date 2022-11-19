@@ -1,7 +1,8 @@
 private with KartenDatentypen;
 private with KartenRecords;
-private with Weltkarte;
 private with SystemDatentypen;
+
+private with LeseWeltkarteneinstellungen;
 
 package KartengeneratorStandardLogik is
    pragma Elaborate_Body;
@@ -43,9 +44,9 @@ private
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre => (
-                 YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
                and
-                 XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               );
    
    procedure LandmasseAbstandGenerieren
@@ -53,9 +54,9 @@ private
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre => (
-                 YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
                and
-                 XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               );
 
    procedure GrundSchreiben
@@ -64,9 +65,9 @@ private
       MasseAbstandExtern : in Boolean)
      with
        Pre => (
-                 YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
                and
-                 XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               );
    
    
@@ -78,7 +79,7 @@ private
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (
-                 YAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
               );
      
    function StartXAchse
@@ -88,7 +89,7 @@ private
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (
-                 XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end KartengeneratorStandardLogik;

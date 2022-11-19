@@ -1,9 +1,10 @@
 with KartenDatentypen;
 with KartenRecords;
-with Weltkarte;
 
 private with KartengrundDatentypen;
 private with SystemDatentypen;
+
+with LeseWeltkarteneinstellungen;
 
 package KartengeneratorUnterwasserressourcenLogik is
    pragma Elaborate_Body;
@@ -13,9 +14,9 @@ package KartengeneratorUnterwasserressourcenLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 private
@@ -41,9 +42,9 @@ private
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    function ZusatzberechnungFisch
@@ -52,9 +53,9 @@ private
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    function ZusatzberechnungWal
@@ -63,9 +64,9 @@ private
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    function ZusatzberechnungHochwertigesHolz
@@ -74,9 +75,9 @@ private
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end KartengeneratorUnterwasserressourcenLogik;

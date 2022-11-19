@@ -1,13 +1,14 @@
 with DiplomatieDatentypen;
+with Weltkarte;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
 with LeseWeltkarte;
+with LeseWeltkarteneinstellungen;
 
 with SichtbarkeitSetzenLogik;
 with KennenlernenLogik;
 with DiplomatischerZustandLogik;
-with Weltkarte;
 
 package body HandelnLogik is
 
@@ -270,9 +271,9 @@ package body HandelnLogik is
       EAchseEinsSchleife:
       for EAchseEinsSchleifenwert in Weltkarte.KarteArray'Range (1) loop
          YAchseEinsSchleife:
-         for YAchseEinsSchleifenwert in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse loop
+         for YAchseEinsSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
             XAchseEinsSchleife:
-            for XAchseEinsSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
+            for XAchseEinsSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
 
                if
                  False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
@@ -304,9 +305,9 @@ package body HandelnLogik is
       EAchseZweiSchleife:
       for EAchseZweiSchleifenwert in Weltkarte.KarteArray'Range (1) loop
          YAchseZweiSchleife:
-         for YAchseZweiSchleifenwert in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse loop
+         for YAchseZweiSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
             XAchseZweiSchleife:
-            for XAchseZweiSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
+            for XAchseZweiSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
 
                if
                  False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),

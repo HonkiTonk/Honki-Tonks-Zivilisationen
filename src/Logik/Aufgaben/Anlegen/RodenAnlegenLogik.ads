@@ -1,6 +1,7 @@
 with KartenDatentypen;
 with KartenRecords;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 package RodenAnlegenLogik is
    pragma Elaborate_Body;
@@ -10,9 +11,9 @@ package RodenAnlegenLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
 end RodenAnlegenLogik;

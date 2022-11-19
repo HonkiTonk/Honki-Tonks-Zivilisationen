@@ -9,7 +9,8 @@ with AufgabenDatentypen;
 with KampfDatentypen;
 with KartenKonstanten;
 with ProduktionDatentypen;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 with KIDatentypen;
 
@@ -40,9 +41,9 @@ package LeseEinheitenGebaut is
               ),
          
        Post => (
-                  Koordinaten'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  Koordinaten'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  Koordinaten'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  Koordinaten'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                 and
                   (if Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse then Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse and Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
                 and
@@ -153,9 +154,9 @@ package LeseEinheitenGebaut is
               ),
          
        Post => (
-                  KIZielKoordinaten'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  KIZielKoordinaten'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  KIZielKoordinaten'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  KIZielKoordinaten'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                 and
                   (if KIZielKoordinaten'Result.YAchse = KartenKonstanten.LeerYAchse then KIZielKoordinaten'Result.XAchse = KartenKonstanten.LeerXAchse and KIZielKoordinaten'Result.EAchse = KartenKonstanten.LeerEAchse)
                 and
@@ -185,9 +186,9 @@ package LeseEinheitenGebaut is
               ),
          
        Post => (
-                  KIZielKoordinatenNachfolger'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  KIZielKoordinatenNachfolger'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  KIZielKoordinatenNachfolger'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  KIZielKoordinatenNachfolger'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                 and
                   (if KIZielKoordinatenNachfolger'Result.YAchse = KartenKonstanten.LeerYAchse
                          then KIZielKoordinatenNachfolger'Result.XAchse = KartenKonstanten.LeerXAchse and KIZielKoordinatenNachfolger'Result.EAchse = KartenKonstanten.LeerEAchse)
@@ -231,9 +232,9 @@ package LeseEinheitenGebaut is
               ),
          
        Post => (
-                  KIBewegungPlan'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  KIBewegungPlan'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  KIBewegungPlan'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  KIBewegungPlan'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                 and
                   (if KIBewegungPlan'Result.YAchse = KartenKonstanten.LeerYAchse then KIBewegungPlan'Result.XAchse = KartenKonstanten.LeerXAchse and KIBewegungPlan'Result.EAchse = KartenKonstanten.LeerEAchse)
                 and

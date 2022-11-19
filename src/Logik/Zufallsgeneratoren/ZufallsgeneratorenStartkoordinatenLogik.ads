@@ -4,7 +4,8 @@ with KartenDatentypen;
 with RassenDatentypen;
 with SpielVariablen;
 with KartenRecords;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 package ZufallsgeneratorenStartkoordinatenLogik is
    pragma Elaborate_Body;
@@ -23,9 +24,9 @@ package ZufallsgeneratorenStartkoordinatenLogik is
        Post => (
                   Startkoordinaten'Result.EAchse in -1 .. 0
                 and
-                  Startkoordinaten'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  Startkoordinaten'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  Startkoordinaten'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  Startkoordinaten'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
 
 private

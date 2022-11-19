@@ -6,8 +6,9 @@ with SpielVariablen;
 with EinheitenRecords;
 
 private with KartenRecords;
-private with Weltkarte;
 private with KartenDatentypen;
+
+private with LeseWeltkarteneinstellungen;
 
 package WeltkarteGrafik is
    pragma Elaborate_Body;
@@ -39,9 +40,9 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  PositionExtern.x >= 0.00
                and

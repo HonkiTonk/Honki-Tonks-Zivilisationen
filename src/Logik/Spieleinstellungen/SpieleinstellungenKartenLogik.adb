@@ -4,7 +4,8 @@ with KartenRecordKonstanten;
 with TextnummernKonstanten;
 with KartenKonstanten;
 with KartengeneratorRecordKonstanten;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 with ZahleneingabeLogik;
 with ZufallsgeneratorenSpieleinstellungenLogik;
@@ -148,7 +149,7 @@ package body SpieleinstellungenKartenLogik is
         BenutzerdefinierteGröße.ErfolgreichAbbruch
       is
          when False =>
-            return (Weltkarte.Karteneinstellungen.Kartengröße.YAchse, Weltkarte.Karteneinstellungen.Kartengröße.XAchse);
+            return (LeseWeltkarteneinstellungen.YAchse, LeseWeltkarteneinstellungen.XAchse);
             
          when True =>
             null;
@@ -164,7 +165,7 @@ package body SpieleinstellungenKartenLogik is
         BenutzerdefinierteGröße.ErfolgreichAbbruch
       is
          when False =>
-            return (Weltkarte.Karteneinstellungen.Kartengröße.YAchse, Weltkarte.Karteneinstellungen.Kartengröße.XAchse);
+            return (LeseWeltkarteneinstellungen.YAchse, LeseWeltkarteneinstellungen.XAchse);
             
          when True =>
             XAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);

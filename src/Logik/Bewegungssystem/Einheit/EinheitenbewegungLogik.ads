@@ -3,9 +3,10 @@ with KartenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
 with SpielVariablen;
-with Weltkarte;
 
 private with StadtRecords;
+
+with LeseWeltkarteneinstellungen;
 
 package EinheitenbewegungLogik is
    pragma Elaborate_Body;
@@ -23,9 +24,9 @@ package EinheitenbewegungLogik is
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    function PositionÄndern

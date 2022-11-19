@@ -2,9 +2,10 @@ with RassenDatentypen;
 with KartenDatentypen;
 with KartenRecords;
 with SpielVariablen;
-with Weltkarte;
 
 private with StadtDatentypen;
+
+with LeseWeltkarteneinstellungen;
 
 package KIStadtSuchenLogik is
    pragma Elaborate_Body;
@@ -19,15 +20,15 @@ package KIStadtSuchenLogik is
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 AnfangKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 AnfangKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 AnfangKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 AnfangKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               ),
 
        Post => (
-                  NähesteFeindlicheStadtSuchen'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  NähesteFeindlicheStadtSuchen'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  NähesteFeindlicheStadtSuchen'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  NähesteFeindlicheStadtSuchen'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
 
    function UnbewachteStadtSuchen
@@ -39,9 +40,9 @@ package KIStadtSuchenLogik is
               ),
 
        Post => (
-                  UnbewachteStadtSuchen'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  UnbewachteStadtSuchen'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  UnbewachteStadtSuchen'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  UnbewachteStadtSuchen'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
 
 private
@@ -65,9 +66,9 @@ private
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 AnfangKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 AnfangKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 AnfangKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 AnfangKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               ),
 
        Post => (

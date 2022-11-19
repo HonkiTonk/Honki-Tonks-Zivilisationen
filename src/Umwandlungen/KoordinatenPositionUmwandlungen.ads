@@ -4,7 +4,8 @@ with RassenDatentypen;
 with KartenDatentypen;
 with SpielVariablen;
 with KartenRecords;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 package KoordinatenPositionUmwandlungen is
    pragma Elaborate_Body;
@@ -19,9 +20,9 @@ package KoordinatenPositionUmwandlungen is
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               ),
          
        Post => (
@@ -44,9 +45,9 @@ package KoordinatenPositionUmwandlungen is
               ),
          
        Post => (
-                  KartenpositionZuKoordinaten'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  KartenpositionZuKoordinaten'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  KartenpositionZuKoordinaten'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  KartenpositionZuKoordinaten'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
    
 private

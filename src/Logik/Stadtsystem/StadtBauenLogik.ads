@@ -10,6 +10,8 @@ private with AufgabenDatentypen;
 private with Weltkarte;
 private with KartenverbesserungDatentypen;
 
+private with LeseWeltkarteneinstellungen;
+
 package StadtBauenLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
@@ -49,18 +51,18 @@ private
                and
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse
               );
 
    procedure WegAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse
               );
 
 

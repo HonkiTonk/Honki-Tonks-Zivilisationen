@@ -3,9 +3,9 @@ with EinheitenRecords;
 with SpielVariablen;
 
 private with StadtRecords;
-private with Weltkarte;
 private with KartenRecords;
 private with KartenDatentypen;
+private with LeseWeltkarteneinstellungen;
 
 package KIBewegungDurchfuehrenLogik is
    pragma Elaborate_Body;
@@ -69,9 +69,9 @@ private
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
                and
-                 NeueKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 NeueKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end KIBewegungDurchfuehrenLogik;

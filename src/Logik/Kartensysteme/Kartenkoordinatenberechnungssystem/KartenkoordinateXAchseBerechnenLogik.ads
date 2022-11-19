@@ -1,7 +1,8 @@
 with KartenDatentypen;
-with Weltkarte;
 
 private with KartenkoordinatenWerteLogik;
+
+with LeseWeltkarteneinstellungen;
 
 package KartenkoordinateXAchseBerechnenLogik is
    pragma Elaborate_Body;
@@ -15,11 +16,11 @@ package KartenkoordinateXAchseBerechnenLogik is
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
-                 XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               ),
            
        Post => (
-                  KartenkoordinateXAchseBerechnen'Result <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  KartenkoordinateXAchseBerechnen'Result <= LeseWeltkarteneinstellungen.XAchse
                );
    
    function XAchseVerschieben
@@ -27,11 +28,11 @@ package KartenkoordinateXAchseBerechnenLogik is
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (
-                 XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               ),
            
        Post => (
-                  XAchseVerschieben'Result <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  XAchseVerschieben'Result <= LeseWeltkarteneinstellungen.XAchse
                );
    
 private
@@ -48,11 +49,11 @@ private
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
-                 XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               ),
            
        Post => (
-                  ÜbergangWesten'Result <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  ÜbergangWesten'Result <= LeseWeltkarteneinstellungen.XAchse
                );
    
    function ÜbergangWestenNormal
@@ -63,11 +64,11 @@ private
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (
-                 XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               ),
            
        Post => (
-                  ÜbergangWestenNormal'Result <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  ÜbergangWestenNormal'Result <= LeseWeltkarteneinstellungen.XAchse
                );
    
    function ÜbergangWestenRückwärts
@@ -76,11 +77,11 @@ private
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
-                 XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               ),
            
        Post => (
-                  ÜbergangWestenRückwärts'Result <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  ÜbergangWestenRückwärts'Result <= LeseWeltkarteneinstellungen.XAchse
                );
    
    function ÜbergangOsten
@@ -91,11 +92,11 @@ private
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
-                 XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               ),
            
        Post => (
-                  ÜbergangOsten'Result <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  ÜbergangOsten'Result <= LeseWeltkarteneinstellungen.XAchse
                );
    
    function ÜbergangOstenNormal
@@ -106,11 +107,11 @@ private
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (
-                 XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               ),
            
        Post => (
-                  ÜbergangOstenNormal'Result <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  ÜbergangOstenNormal'Result <= LeseWeltkarteneinstellungen.XAchse
                );
    
    function ÜbergangOstenRückwärts
@@ -119,11 +120,11 @@ private
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
-                 XAchseExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               ),
            
        Post => (
-                  ÜbergangOstenRückwärts'Result <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  ÜbergangOstenRückwärts'Result <= LeseWeltkarteneinstellungen.XAchse
                );
 
 end KartenkoordinateXAchseBerechnenLogik;

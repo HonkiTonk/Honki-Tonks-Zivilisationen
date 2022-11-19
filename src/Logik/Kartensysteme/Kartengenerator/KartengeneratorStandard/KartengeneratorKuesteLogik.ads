@@ -1,6 +1,7 @@
 private with KartenDatentypen;
 private with KartenRecords;
-private with Weltkarte;
+
+private with LeseWeltkarteneinstellungen;
 
 package KartengeneratorKuesteLogik is
    pragma Elaborate_Body;
@@ -18,9 +19,9 @@ private
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end KartengeneratorKuesteLogik;

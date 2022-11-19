@@ -3,8 +3,9 @@ with SpielVariablen;
 with EinheitenRecords;
 
 private with KartenRecords;
-private with Weltkarte;
 private with KartenDatentypen;
+
+private with LeseWeltkarteneinstellungen;
 
 package KIEinheitFestlegenSiedelnLogik is
    pragma Elaborate_Body;
@@ -50,9 +51,9 @@ private
               ),
 
        Post => (
-                  StadtfeldSuchen'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  StadtfeldSuchen'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  StadtfeldSuchen'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  StadtfeldSuchen'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
 
    function NeuesStadtfeld
@@ -68,9 +69,9 @@ private
               ),
 
        Post => (
-                  NeuesStadtfeld'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  NeuesStadtfeld'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  NeuesStadtfeld'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  NeuesStadtfeld'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
 
    function KartenfeldUmgebungPrüfen
@@ -79,9 +80,9 @@ private
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and

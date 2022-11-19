@@ -1,6 +1,7 @@
 with KartenDatentypen;
 with KartenRecords;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 private with KartengrundDatentypen;
 
@@ -12,9 +13,9 @@ package WaldAnlegenLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 private

@@ -3,7 +3,8 @@ with KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 with KIDatentypen;
 
@@ -30,9 +31,9 @@ package KIAufgabenVerteiltLogik is
       return Boolean
      with
        Pre => (
-                 ZielKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 ZielKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 ZielKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 ZielKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
               );
@@ -43,9 +44,9 @@ package KIAufgabenVerteiltLogik is
       return Boolean
      with
        Pre => (
-                 ZielKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 ZielKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 ZielKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 ZielKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
               );

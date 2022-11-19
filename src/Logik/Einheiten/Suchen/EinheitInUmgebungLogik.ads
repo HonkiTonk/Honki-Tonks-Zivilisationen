@@ -3,7 +3,8 @@ private with KartenDatentypen;
 private with EinheitenRecords;
 private with KartenRecords;
 private with SpielVariablen;
-private with Weltkarte;
+
+private with LeseWeltkarteneinstellungen;
 
 package EinheitInUmgebungLogik is
    pragma Elaborate_Body;
@@ -42,9 +43,9 @@ private
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );

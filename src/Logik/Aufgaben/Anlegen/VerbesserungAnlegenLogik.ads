@@ -1,9 +1,10 @@
 with KartenDatentypen;
 with KartenRecords;
 with AufgabenDatentypen;
-with Weltkarte;
 
 private with KartenverbesserungDatentypen;
+
+with LeseWeltkarteneinstellungen;
 
 package VerbesserungAnlegenLogik is
    pragma Elaborate_Body;
@@ -14,9 +15,9 @@ package VerbesserungAnlegenLogik is
       VerbesserungExtern : in AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum)
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 private

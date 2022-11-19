@@ -4,6 +4,7 @@ with MenueDatentypen;
 with Weltkarte;
 
 with SchreibeWeltkarte;
+with LeseWeltkarteneinstellungen;
 
 with AuswahlaufteilungLogik;
 with Fehlermeldungssystem;
@@ -89,9 +90,9 @@ package body DebugmenueLogik is
       EbeneSchleife:
       for EAchseSchleifenwert in Weltkarte.KarteArray'Range (1) loop
          YAchseSchleife:
-         for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse loop
+         for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
             XAchseSchleife:
-            for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
+            for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
             
                SchreibeWeltkarte.Sichtbar (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                            RasseExtern       => RasseExtern,

@@ -2,8 +2,9 @@ with RassenDatentypen;
 with SpielVariablen;
 
 private with KartenRecords;
-private with Weltkarte;
 private with KartenDatentypen;
+
+private with LeseWeltkarteneinstellungen;
 
 package GeheZuGrafik is
    pragma Elaborate_Body;
@@ -31,15 +32,15 @@ private
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               ),
          
        Post => (
-                  Koordinatenberechnung'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  Koordinatenberechnung'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  Koordinatenberechnung'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  Koordinatenberechnung'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
 
 end GeheZuGrafik;

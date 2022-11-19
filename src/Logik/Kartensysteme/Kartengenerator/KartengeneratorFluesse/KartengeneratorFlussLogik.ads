@@ -1,7 +1,8 @@
 private with KartenDatentypen;
 private with KartenRecords;
-private with Weltkarte;
 private with SystemDatentypen;
+
+private with LeseWeltkarteneinstellungen;
 
 package KartengeneratorFlussLogik is
    pragma Elaborate_Body;
@@ -43,9 +44,9 @@ private
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end KartengeneratorFlussLogik;

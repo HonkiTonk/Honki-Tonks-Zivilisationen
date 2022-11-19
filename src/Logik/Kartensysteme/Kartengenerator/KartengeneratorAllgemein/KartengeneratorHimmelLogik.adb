@@ -4,6 +4,7 @@ with KartenKonstanten;
 with Weltkarte;
 
 with SchreibeWeltkarte;
+with LeseWeltkarteneinstellungen;
 
 with LadezeitenLogik;
 
@@ -14,12 +15,12 @@ package body KartengeneratorHimmelLogik is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      Kartenzeitwert := (Weltkarte.Karteneinstellungen.Kartengröße.YAchse + (25 - 1)) / 25;
+      Kartenzeitwert := (LeseWeltkarteneinstellungen.YAchse + (25 - 1)) / 25;
                
       YAchseSchleife:
-      for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse loop
+      for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
+         for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
                
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.HimmelKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
                                           GrundExtern       => KartengrundDatentypen.Wolken_Enum);

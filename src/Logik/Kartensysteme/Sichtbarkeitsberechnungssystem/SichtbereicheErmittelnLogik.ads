@@ -7,6 +7,8 @@ with Weltkarte;
 
 private with EinheitenDatentypen;
 
+with LeseWeltkarteneinstellungen;
+
 package SichtbereicheErmittelnLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
@@ -29,9 +31,9 @@ package SichtbereicheErmittelnLogik is
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse
               );
 
 private

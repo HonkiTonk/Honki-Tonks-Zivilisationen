@@ -1,6 +1,8 @@
 with KartenartDatentypen;
 with Weltkarte;
 
+with LeseWeltkarteneinstellungen;
+
 with KIKonstanten;
 
 with KIZufallsbewertungLogik;
@@ -106,7 +108,7 @@ package body KIYAchsenbewertung is
         and
           AktuellerPunktExtern < ZielpunktExtern
       then
-         ZwischenspeicherNeu := Positive (NeuerPunktExtern) - Positive (ZielpunktExtern) + Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse);
+         ZwischenspeicherNeu := Positive (NeuerPunktExtern) - Positive (ZielpunktExtern) + Positive (LeseWeltkarteneinstellungen.YAchse);
          ZwischenspeicherAktuell := Positive (ZielpunktExtern) - Positive (AktuellerPunktExtern);
                   
       else
@@ -140,7 +142,7 @@ package body KIYAchsenbewertung is
         and
           AktuellerPunktExtern < NeuerPunktExtern
       then
-         ZwischenspeicherNeu := Positive (ZielpunktExtern) - Positive (NeuerPunktExtern) + Positive (Weltkarte.Karteneinstellungen.Kartengröße.YAchse);
+         ZwischenspeicherNeu := Positive (ZielpunktExtern) - Positive (NeuerPunktExtern) + Positive (LeseWeltkarteneinstellungen.YAchse);
          ZwischenspeicherAktuell := Positive (AktuellerPunktExtern) - Positive (ZielpunktExtern);
          
       else

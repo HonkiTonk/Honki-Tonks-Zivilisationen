@@ -3,7 +3,8 @@ with RassenDatentypen;
 with KartenRecords;
 with EinheitenDatentypen;
 with SpielVariablen;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 package StadtumgebungErreichbarLogik is
    pragma Elaborate_Body;
@@ -18,17 +19,17 @@ package StadtumgebungErreichbarLogik is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 AktuelleKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 AktuelleKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 AktuelleKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               ),
            
        Post => (
-                  UmgebungErreichbar'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  UmgebungErreichbar'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  UmgebungErreichbar'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  UmgebungErreichbar'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
    
 private
@@ -48,9 +49,9 @@ private
       return Boolean
      with
        Pre => (
-                 AktuelleKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 AktuelleKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 AktuelleKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );

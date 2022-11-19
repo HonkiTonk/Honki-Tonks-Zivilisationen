@@ -9,8 +9,10 @@ with GrafikDatentypen;
 with VerzeichnisKonstanten;
 with WeltkarteRecords;
 with TextKonstanten;
-
 with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
+
 with LadezeitenLogik;
 with JaNeinLogik;
 with NachGrafiktask;
@@ -102,9 +104,9 @@ package body LadenLogik is
       EAchseSchleife:
       for EAchseSchleifenwert in Weltkarte.KarteArray'Range (1) loop
          YAchseSchleife:
-         for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse loop
+         for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
             XAchseSchleife:
-            for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse loop
+            for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
 
                WeltkarteRecords.WeltkarteRecord'Read (Stream (File => DateiLadenExtern),
                                                       Weltkarte.Karte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));

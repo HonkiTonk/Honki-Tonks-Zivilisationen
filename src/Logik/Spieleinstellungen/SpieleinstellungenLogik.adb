@@ -1,7 +1,8 @@
 with RassenDatentypen;
 with MenueDatentypen;
 with GrafikDatentypen;
-with Weltkarte;
+
+with SchreibeWeltkarteneinstellungen;
 
 with SpielLogik;
 with KartengeneratorLogik;
@@ -117,8 +118,8 @@ package body SpieleinstellungenLogik is
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Generierungszeit_Enum;
       
       -- Wird benötigt, da sonst die wichtigen Kartenwerte nicht gespeichert/geladen werden können. Sicherheitshalber immer vor Aufruf des Kartengenerators setzen.
-      Weltkarte.Karteneinstellungen.Kartengröße := KartengeneratorVariablenLogik.Kartenparameter.Kartengröße;
-      Weltkarte.Karteneinstellungen.Kartenform := KartengeneratorVariablenLogik.Kartenparameter.Kartenform;
+      SchreibeWeltkarteneinstellungen.Fläche (AchsenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße);
+      SchreibeWeltkarteneinstellungen.Kartenform (KartenformExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenform);
       KartengeneratorLogik.Kartengenerator;
       
       SpieleinstellungenRasseLogik.StartwerteErmitteln;

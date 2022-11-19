@@ -5,10 +5,11 @@ with KartenRecords;
 with EinheitenRecords;
 with EinheitenDatentypen;
 with StadtRecords;
-with Weltkarte;
 
 private with StadtDatentypen;
 private with KartenverbesserungDatentypen;
+
+with LeseWeltkarteneinstellungen;
 
 package PassierbarkeitspruefungLogik is
    pragma Elaborate_Body;
@@ -23,9 +24,9 @@ package PassierbarkeitspruefungLogik is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
                and
-                 NeueKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 NeueKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
@@ -38,9 +39,9 @@ package PassierbarkeitspruefungLogik is
       return Boolean
      with
        Pre => (
-                 NeueKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 NeueKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
@@ -82,9 +83,9 @@ private
       return Boolean
      with
        Pre => (
-                 NeueKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 NeueKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
@@ -97,9 +98,9 @@ private
       return Boolean
      with
        Pre => (
-                 NeueKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 NeueKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );

@@ -8,8 +8,9 @@ with EinheitenRecords;
 with EinheitenDatentypen;
 
 private with KartenRecords;
-private with Weltkarte;
 private with KartenDatentypen;
+
+private with LeseWeltkarteneinstellungen;
 
 package CursorplatzierungAltGrafik is
    pragma Elaborate_Body;
@@ -84,7 +85,7 @@ private
       return KartenDatentypen.UmgebungsbereichEins
      with
        Pre => (
-                 YAchseAltExtern <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 YAchseAltExtern <= LeseWeltkarteneinstellungen.YAchse
               );
    
    function AlteXAchseFestlegen
@@ -93,7 +94,7 @@ private
       return KartenDatentypen.UmgebungsbereichEins
      with
        Pre => (
-                 XAchseAltExtern <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 XAchseAltExtern <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end CursorplatzierungAltGrafik;

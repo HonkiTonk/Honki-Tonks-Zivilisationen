@@ -1,7 +1,8 @@
 with KartenDatentypen;
 with KartenKonstanten;
 with KartenRecords;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 package KartenkoordinatenberechnungssystemLogik is
    pragma Elaborate_Body;
@@ -15,9 +16,9 @@ package KartenkoordinatenberechnungssystemLogik is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               ),
            
        Post => (
@@ -45,9 +46,9 @@ package KartenkoordinatenberechnungssystemLogik is
                         Kartenkoordinatenberechnungssystem'Result.XAchse = KartenKonstanten.LeerXAchse)
                   )
                 and
-                  Kartenkoordinatenberechnungssystem'Result.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                  Kartenkoordinatenberechnungssystem'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  Kartenkoordinatenberechnungssystem'Result.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                  Kartenkoordinatenberechnungssystem'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
    
 private

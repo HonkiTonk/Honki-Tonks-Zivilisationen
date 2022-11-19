@@ -6,6 +6,8 @@ private with KartenRecords;
 private with EinheitenDatentypen;
 private with Weltkarte;
 
+private with LeseWeltkarteneinstellungen;
+
 package StadtEinheitenBauenLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
@@ -41,9 +43,9 @@ private
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
                and
-                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );

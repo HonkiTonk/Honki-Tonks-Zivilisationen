@@ -4,7 +4,8 @@ with EinheitenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
 with SpielVariablen;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 package EinheitSuchenLogik is
    pragma Elaborate_Body;
@@ -19,9 +20,9 @@ package EinheitSuchenLogik is
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               ),
@@ -36,9 +37,9 @@ package EinheitSuchenLogik is
       return EinheitenRecords.RasseEinheitnummerRecord
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
    function KoordinatenEinheitOhneSpezielleRasseSuchen
@@ -48,9 +49,9 @@ package EinheitSuchenLogik is
       return EinheitenRecords.RasseEinheitnummerRecord
      with
        Pre => (
-                 KoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );

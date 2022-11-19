@@ -2,6 +2,7 @@ with StadtDatentypen;
 with StadtKonstanten;
 with KartenKonstanten;
 with EinheitenKonstanten;
+with Weltkarte;
 
 with Fehlermeldungssystem;
 with FehlermeldungssystemZusatzinformationen;

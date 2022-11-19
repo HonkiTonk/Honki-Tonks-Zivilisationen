@@ -3,7 +3,8 @@ with KartenDatentypen;
 with EinheitenRecords;
 with SpielVariablen;
 with KartenRecords;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 private with EinheitenDatentypen;
 
@@ -21,9 +22,9 @@ package TransporterLadungsverschiebungLogik is
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 NeueKoordinatenExtern.YAchse <= Weltkarte.Karteneinstellungen.Kartengröße.YAchse
+                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 NeueKoordinatenExtern.XAchse <= Weltkarte.Karteneinstellungen.Kartengröße.XAchse
+                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
 private
