@@ -7,6 +7,7 @@ with EinheitenRecords;
 private with EinheitenDatentypen;
 
 with LeseWeltkarteneinstellungen;
+with LeseGrenzen;
 
 package KIEinheitAllgemeinePruefungenLogik is
    pragma Elaborate_Body;
@@ -23,7 +24,7 @@ package KIEinheitAllgemeinePruefungenLogik is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               );
@@ -38,7 +39,7 @@ package KIEinheitAllgemeinePruefungenLogik is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               );

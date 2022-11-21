@@ -7,6 +7,8 @@ private with StadtDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
+private with LeseGrenzen;
+
 package KIStadtSuchenLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
@@ -72,7 +74,7 @@ private
               ),
 
        Post => (
-                  StadtSuchen'Result <= SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+                  StadtSuchen'Result <= LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
                );
 
 end KIStadtSuchenLogik;

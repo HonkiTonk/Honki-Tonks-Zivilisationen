@@ -79,5 +79,35 @@ package body LeseWeltkarteneinstellungen is
       return Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten;
       
    end XAchseOsten;
+   
+   
+   
+   function KartenformYAchse
+     return KartenRecords.KartenformYAchseRecord
+   is begin
+      
+      return (YAchseNorden, YAchseSüden);
+      
+   end KartenformYAchse;
+   
+   
+   
+   function KartenformXAchse
+     return KartenRecords.KartenformXAchseRecord
+   is begin
+      
+      return (XAchseWesten, XAchseOsten);
+      
+   end KartenformXAchse;
+   
+   
+   
+   function GesamteEinstellungen
+     return KartenRecords.PermanenteKartenparameterRecord
+   is begin
+      
+      return Weltkarte.Karteneinstellungen;
+      
+   end GesamteEinstellungen;
 
 end LeseWeltkarteneinstellungen;

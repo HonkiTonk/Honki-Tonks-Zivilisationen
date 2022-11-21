@@ -9,6 +9,7 @@ with LeseWeltkarte;
 with KartenkoordinatenberechnungssystemLogik;
 
 with KIDatentypen;
+with KIKonstanten;
 
 with KIKartenfeldbewertungModifizierenLogik;
 with KIAufgabenVerteiltLogik;
@@ -44,6 +45,7 @@ package body KIEinheitFestlegenSiedelnLogik is
    
     
    
+   -- Erst um die Einheit und dann um alle Städte herum prüfen, wie bei Verbesserungen? äöü
    function StadtfeldSuchen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
@@ -53,7 +55,7 @@ package body KIEinheitFestlegenSiedelnLogik is
       BereitsGeprüft := UmgebungPrüfen - 1;
             
       KartenfeldSuchenSchleife:
-      loop
+      while UmgebungPrüfen <= KIKonstanten.Felderreichweite (SpielVariablen.Allgemeines.Schwierigkeitsgrad) loop
          
          MöglichesFeld := NeuesStadtfeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                            UmgebungExtern           => UmgebungPrüfen,
@@ -63,23 +65,12 @@ package body KIEinheitFestlegenSiedelnLogik is
            MöglichesFeld.XAchse
          is
             when KartenKonstanten.LeerXAchse =>
-               null;
+               UmgebungPrüfen := UmgebungPrüfen + 1;
+               BereitsGeprüft := UmgebungPrüfen - 1;
                
             when others =>
                return MöglichesFeld;
          end case;
-         
-         -- Eventuell um die Einheit und dann um alle Städte herum prüfen? äöü
-         if
-           UmgebungPrüfen > 15
-         then
-            -- Dann hier um andere Städte/Einheiten herumloopen? äöü
-            exit KartenfeldSuchenSchleife;
-            
-         else
-            UmgebungPrüfen := UmgebungPrüfen + 1;
-            BereitsGeprüft := UmgebungPrüfen - 1;
-         end if;
          
       end loop KartenfeldSuchenSchleife;
       

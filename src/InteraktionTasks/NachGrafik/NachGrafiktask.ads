@@ -62,6 +62,8 @@ package NachGrafiktask is
    
    Eingabe : GrafikDatentypen.Welche_Eingabe_Enum := GrafikDatentypen.Keine_Eingabe_Enum;
    
+   EinheitBewegt : Boolean := False;
+   
    -- AktuelleAuswahl.AuswahlZwei wird auch bei JaNein verwendet, damit es sonst zu falschen Farbanzeigen kommen kann, wenn AuswahlEins bereits von einem Menü belegt wird, beispielsweise Speichern.
    AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord := (SystemKonstanten.LeerAuswahl, SystemKonstanten.LeerAuswahl);
    SpeichernLaden : Boolean;

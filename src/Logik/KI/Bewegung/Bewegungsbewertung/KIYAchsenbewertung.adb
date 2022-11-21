@@ -1,5 +1,4 @@
 with KartenartDatentypen;
-with Weltkarte;
 
 with LeseWeltkarteneinstellungen;
 
@@ -48,7 +47,7 @@ package body KIYAchsenbewertung is
       end if;
       
       case
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden
+        LeseWeltkarteneinstellungen.YAchseNorden
       is
          when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
             Bewertung (True) := KIKonstanten.LeerBewertung;
@@ -68,7 +67,7 @@ package body KIYAchsenbewertung is
       end case;
       
       case
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden
+        LeseWeltkarteneinstellungen.YAchseSüden
       is
          when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
             Bewertung (False) := KIKonstanten.LeerBewertung;

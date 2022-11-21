@@ -332,5 +332,16 @@ package body LeseWeltkarte is
       end case;
       
    end EinheitenbelegungGrund;
+   
+   
+   
+   function GanzerEintrag
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+      return WeltkarteRecords.WeltkarteRecord
+   is begin
+      
+      return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse);
+      
+   end GanzerEintrag;
 
 end LeseWeltkarte;

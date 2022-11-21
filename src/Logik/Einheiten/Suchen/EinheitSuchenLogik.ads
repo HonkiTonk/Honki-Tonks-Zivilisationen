@@ -6,6 +6,7 @@ with EinheitenRecords;
 with SpielVariablen;
 
 with LeseWeltkarteneinstellungen;
+with LeseGrenzen;
 
 package EinheitSuchenLogik is
    pragma Elaborate_Body;
@@ -28,7 +29,7 @@ package EinheitSuchenLogik is
               ),
                       
        Post => (
-                  KoordinatenEinheitMitRasseSuchen'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+                  KoordinatenEinheitMitRasseSuchen'Result <= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
                );
 
    function KoordinatenEinheitOhneRasseSuchen

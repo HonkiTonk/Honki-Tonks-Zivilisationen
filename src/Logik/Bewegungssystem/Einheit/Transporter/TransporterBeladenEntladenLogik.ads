@@ -5,6 +5,8 @@ with EinheitenRecords;
 
 private with KartenRecords;
 
+with LeseGrenzen;
+
 package TransporterBeladenEntladenLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
@@ -15,7 +17,7 @@ package TransporterBeladenEntladenLogik is
       return Boolean
      with
        Pre => (
-                 TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
+                 TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (TransporterExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
@@ -25,7 +27,7 @@ package TransporterBeladenEntladenLogik is
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
      with
        Pre => (
-                 TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
+                 TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (TransporterExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );

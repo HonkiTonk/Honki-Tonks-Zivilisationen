@@ -1,7 +1,6 @@
 with KartenartDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
-with Weltkarte;
 
 with NachGrafiktask;
 with SichtweitenGrafik;
@@ -41,6 +40,8 @@ package body GeheZuGrafik is
       
       KartenwertKoordinatenberechnung.EAchse := KoordinatenExtern.EAchse;
       AktuelleSichtweite := SichtweitenGrafik.SichtweiteLesen;
+      YAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformYAchse;
+      XAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformXAchse;
         
       if
         2 * AktuelleSichtweite >= LeseWeltkarteneinstellungen.YAchse
@@ -48,14 +49,14 @@ package body GeheZuGrafik is
          KartenwertKoordinatenberechnung.YAchse := LeseWeltkarteneinstellungen.YAchse / 2;
          
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+        YAchseÜbergänge.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
         and
-          Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+          YAchseÜbergänge.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.YAchse <= Weltkarte.KarteArray'First (2) + AktuelleSichtweite
+           KoordinatenExtern.YAchse <= KartenKonstanten.AnfangYAchse + AktuelleSichtweite
          then
-            KartenwertKoordinatenberechnung.YAchse := Weltkarte.KarteArray'First (2) + AktuelleSichtweite;
+            KartenwertKoordinatenberechnung.YAchse := KartenKonstanten.AnfangYAchse + AktuelleSichtweite;
             
          elsif
            KoordinatenExtern.YAchse >= LeseWeltkarteneinstellungen.YAchse - AktuelleSichtweite
@@ -67,19 +68,19 @@ package body GeheZuGrafik is
          end if;
          
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+        YAchseÜbergänge.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.YAchse <= Weltkarte.KarteArray'First (2) + AktuelleSichtweite
+           KoordinatenExtern.YAchse <= KartenKonstanten.AnfangYAchse + AktuelleSichtweite
          then
-            KartenwertKoordinatenberechnung.YAchse := Weltkarte.KarteArray'First (2) + AktuelleSichtweite;
+            KartenwertKoordinatenberechnung.YAchse := KartenKonstanten.AnfangYAchse + AktuelleSichtweite;
          
          else
             KartenwertKoordinatenberechnung.YAchse := KoordinatenExtern.YAchse;
          end if;
          
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+        YAchseÜbergänge.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
            KoordinatenExtern.YAchse >= LeseWeltkarteneinstellungen.YAchse - AktuelleSichtweite
@@ -100,14 +101,14 @@ package body GeheZuGrafik is
          KartenwertKoordinatenberechnung.XAchse := LeseWeltkarteneinstellungen.XAchse / 2;
          
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+        XAchseÜbergänge.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
         and
-          Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+          XAchseÜbergänge.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.XAchse <= Weltkarte.KarteArray'First (3) + AktuelleSichtweite
+           KoordinatenExtern.XAchse <= KartenKonstanten.AnfangXAchse + AktuelleSichtweite
          then
-            KartenwertKoordinatenberechnung.XAchse := Weltkarte.KarteArray'First (3) + AktuelleSichtweite;
+            KartenwertKoordinatenberechnung.XAchse := KartenKonstanten.AnfangXAchse + AktuelleSichtweite;
          
          elsif
            KoordinatenExtern.XAchse >= LeseWeltkarteneinstellungen.XAchse - AktuelleSichtweite
@@ -119,19 +120,19 @@ package body GeheZuGrafik is
          end if;
       
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+        XAchseÜbergänge.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
-           KoordinatenExtern.XAchse <= Weltkarte.KarteArray'First (3) + AktuelleSichtweite
+           KoordinatenExtern.XAchse <= KartenKonstanten.AnfangXAchse + AktuelleSichtweite
          then
-            KartenwertKoordinatenberechnung.XAchse := Weltkarte.KarteArray'First (3) + AktuelleSichtweite;
+            KartenwertKoordinatenberechnung.XAchse := KartenKonstanten.AnfangXAchse + AktuelleSichtweite;
          
          else
             KartenwertKoordinatenberechnung.XAchse := KoordinatenExtern.XAchse;
          end if;
       
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+        XAchseÜbergänge.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
            KoordinatenExtern.XAchse >= LeseWeltkarteneinstellungen.XAchse - AktuelleSichtweite

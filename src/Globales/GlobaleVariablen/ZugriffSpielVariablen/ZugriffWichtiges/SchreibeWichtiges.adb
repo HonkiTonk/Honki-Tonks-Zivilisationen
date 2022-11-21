@@ -3,8 +3,10 @@ with StadtDatentypen;
 with WichtigesKonstanten;
 with ForschungKonstanten;
 with ProduktionKonstanten;
+with WichtigesRecordKonstanten;
 
 with LeseForschungenDatenbank;
+with LeseGrenzen;
 
 with Fehlermeldungssystem;
 
@@ -22,9 +24,9 @@ package body SchreibeWichtiges is
       is
          when True =>
             if
-              SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern >= SpielVariablen.Grenzen (RasseExtern).Geldgrenze
+              SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern >= LeseGrenzen.Geldgrenze (RasseExtern => RasseExtern)
             then
-               SpielVariablen.Wichtiges (RasseExtern).Geldmenge := SpielVariablen.Grenzen (RasseExtern).Geldgrenze;
+               SpielVariablen.Wichtiges (RasseExtern).Geldmenge := LeseGrenzen.Geldgrenze (RasseExtern => RasseExtern);
             
             elsif
               SpielVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern <= ZahlenDatentypen.EigenerInteger'First
@@ -56,9 +58,9 @@ package body SchreibeWichtiges is
       is
          when True =>
             if
-              SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern >= SpielVariablen.Grenzen (RasseExtern).Geldgewinngrenze
+              SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern >= LeseGrenzen.Geldgewinngrenze (RasseExtern => RasseExtern)
             then
-               SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := SpielVariablen.Grenzen (RasseExtern).Geldgewinngrenze;
+               SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := LeseGrenzen.Geldgewinngrenze (RasseExtern => RasseExtern);
                
             elsif
               SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern <= ProduktionDatentypen.Produktion'First
@@ -90,9 +92,9 @@ package body SchreibeWichtiges is
       is
          when True =>
             if
-              SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern >= SpielVariablen.Grenzen (RasseExtern).ForschungGewinngrenze
+              SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern >= LeseGrenzen.Forschungsgewinngrenze (RasseExtern => RasseExtern)
             then
-               SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := SpielVariablen.Grenzen (RasseExtern).ForschungGewinngrenze;
+               SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := LeseGrenzen.Forschungsgewinngrenze (RasseExtern => RasseExtern);
                
             elsif
               SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern <= WichtigesKonstanten.LeerGesamteForschungsrate
@@ -133,9 +135,9 @@ package body SchreibeWichtiges is
       is
          when True =>
             if
-              SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge + ForschungZugewinnExtern >= SpielVariablen.Grenzen (RasseExtern).Forschungsgrenze
+              SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge + ForschungZugewinnExtern >= LeseGrenzen.Forschungsgrenze (RasseExtern => RasseExtern)
             then
-               SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge := SpielVariablen.Grenzen (RasseExtern).Forschungsgrenze;
+               SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge := LeseGrenzen.Forschungsgrenze (RasseExtern => RasseExtern);
                
             elsif
               SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge + ForschungZugewinnExtern <= WichtigesKonstanten.LeerForschungsmenge
@@ -241,7 +243,7 @@ package body SchreibeWichtiges is
       is
          when True =>
             if
-              SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte > SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+              SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte > LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
             then
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte > Städtegrenze");
                
@@ -277,7 +279,7 @@ package body SchreibeWichtiges is
          when True =>
             if
               SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
-              > SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+              > LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
             then
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter > Einheitengrenze");
                
@@ -313,7 +315,7 @@ package body SchreibeWichtiges is
          when True =>
             if
               SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
-              > SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+              > LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
             then
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer > Einheitengrenze");
                
@@ -349,7 +351,7 @@ package body SchreibeWichtiges is
          when True =>
             if
               SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
-              > SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+              > LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
             then
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges > Einheitengrenze");
                
@@ -369,5 +371,35 @@ package body SchreibeWichtiges is
       end case;
       
    end AnzahlSonstiges;
+   
+   
+   
+   procedure Standardeinstellungen
+   is begin
       
+      SpielVariablen.Wichtiges := (others => WichtigesRecordKonstanten.LeerWichtigesZeug);
+      
+   end Standardeinstellungen;
+   
+   
+   
+   procedure LeerEintrag
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      SpielVariablen.Wichtiges (RasseExtern) := WichtigesRecordKonstanten.LeerWichtigesZeug;
+      
+   end LeerEintrag;
+   
+   
+   
+   procedure GanzerEintrag
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      EintragExtern : in SpielRecords.WichtigesRecord)
+   is begin
+      
+      SpielVariablen.Wichtiges (RasseExtern) := EintragExtern;
+      
+   end GanzerEintrag;
+   
 end SchreibeWichtiges;

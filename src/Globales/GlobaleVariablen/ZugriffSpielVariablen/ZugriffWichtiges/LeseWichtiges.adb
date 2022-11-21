@@ -130,5 +130,16 @@ package body LeseWichtiges is
       return SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges;
       
    end AnzahlSonstiges;
+   
+   
+   
+   function GanzerEintrag
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return SpielRecords.WichtigesRecord
+   is begin
+      
+      return SpielVariablen.Wichtiges (RasseExtern);
+      
+   end GanzerEintrag;
 
 end LeseWichtiges;

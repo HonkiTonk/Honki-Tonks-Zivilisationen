@@ -11,9 +11,13 @@ with GrafikDatentypen;
 with WeltkarteRecords;
 with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
-with Weltkarte;
+with KartenKonstanten;
 
+with LeseWeltkarte;
 with LeseWeltkarteneinstellungen;
+with LeseWichtiges;
+with LeseGrenzen;
+with LeseAllgemeines;
 
 with LadezeitenLogik;
 with NachGrafiktask;
@@ -126,17 +130,17 @@ package body SpeichernLogik is
    is begin
       
       KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                           Weltkarte.Karteneinstellungen);
+                                                           LeseWeltkarteneinstellungen.GesamteEinstellungen);
       
       EAchseSchleife:
-      for EAchseSchleifenwert in Weltkarte.KarteArray'Range (1) loop
+      for EAchseSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
          YAchseSchleife:
-         for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
+         for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
             XAchseSchleife:
-            for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
+            for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
 
                WeltkarteRecords.WeltkarteRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                       Weltkarte.Karte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                       LeseWeltkarte.GanzerEintrag (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert)));
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -179,10 +183,10 @@ package body SpeichernLogik is
    is begin
       
       SpielRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernExtern),
-                                        SpielVariablen.Grenzen (RasseExtern));
+                                        LeseGrenzen.GanzerEintrag (RasseExtern => RasseExtern));
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
+      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
                   
          EinheitenRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernExtern),
                                                        SpielVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert));
@@ -190,7 +194,7 @@ package body SpeichernLogik is
       end loop EinheitenSchleife;
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
                   
          StadtRecords.StadtGebautRecord'Write (Stream (File => DateiSpeichernExtern),
                                                SpielVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert));
@@ -198,7 +202,7 @@ package body SpeichernLogik is
       end loop StadtSchleife;
       
       SpielRecords.WichtigesRecord'Write (Stream (File => DateiSpeichernExtern),
-                                          SpielVariablen.Wichtiges (RasseExtern));
+                                          LeseWichtiges.GanzerEintrag (RasseExtern => RasseExtern));
       
       DiplomatieSchleife:
       for DiplomatieSchleifenwert in SpielVariablen.DiplomatieArray'Range (2) loop
@@ -228,9 +232,9 @@ package body SpeichernLogik is
    is begin
       
       if
-        To_Wide_Wide_String (Source => SpielVariablen.Allgemeines.IronmanName) /= TextKonstanten.LeerString
+        To_Wide_Wide_String (Source => LeseAllgemeines.Ironman) /= TextKonstanten.LeerString
       then
-         Autospeichernname := SpielVariablen.Allgemeines.IronmanName;
+         Autospeichernname := LeseAllgemeines.Ironman;
                
       else
          Autospeichernname := To_Unbounded_Wide_Wide_String (Source => "Auto" & AutospeichernWert'Wide_Wide_Image);

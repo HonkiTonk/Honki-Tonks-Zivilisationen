@@ -7,6 +7,8 @@ with SchreibeStadtGebaut;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
+with SchreibeWichtiges;
+with LeseGrenzen;
 
 with LadezeitenLogik;
 with NachGrafiktask;
@@ -20,14 +22,14 @@ package body RasseEntfernenLogik is
    begin
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
+      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
          
          SchreibeEinheitenGebaut.Nullsetzung (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert));
          
       end loop EinheitenSchleife;
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
@@ -59,7 +61,7 @@ package body RasseEntfernenLogik is
       end if;
       
       SpielVariablen.CursorImSpiel (RasseExtern) := WichtigesRecordKonstanten.LeerCursor;
-      SpielVariablen.Wichtiges (RasseExtern) := WichtigesRecordKonstanten.LeerWichtigesZeug;
+      SchreibeWichtiges.LeerEintrag (RasseExtern => RasseExtern);
       
       SpielVariablen.Rassenbelegung (RasseExtern).Besiegt := True;
       
@@ -72,7 +74,7 @@ package body RasseEntfernenLogik is
    is begin
             
       EinheitenSchleife:
-      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
+      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
          
          case
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert))
@@ -87,7 +89,7 @@ package body RasseEntfernenLogik is
       end loop EinheitenSchleife;
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))

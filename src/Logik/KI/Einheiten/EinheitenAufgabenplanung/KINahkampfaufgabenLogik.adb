@@ -27,12 +27,12 @@ package body KINahkampfaufgabenLogik is
          null;
          
       elsif
-        KIEinheitFestlegenErkundenLogik.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+        KIEinheitFestlegenAngreifenLogik.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
       then
          null;
          
       elsif
-        KIEinheitFestlegenAngreifenLogik.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+        KIEinheitFestlegenErkundenLogik.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
       then
          null;
          

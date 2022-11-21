@@ -1,5 +1,6 @@
 with KartenartDatentypen;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 with KIKonstanten;
 
@@ -44,7 +45,7 @@ package body KIEAchsenbewertung is
       end if;
       
       case
-        Weltkarte.Karteneinstellungen.Kartenform.EAchseOben
+        LeseWeltkarteneinstellungen.EAchseOben
       is
          when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
             Bewertung (True) := KIKonstanten.LeerBewertung;
@@ -56,7 +57,7 @@ package body KIEAchsenbewertung is
       end case;
       
       case
-        Weltkarte.Karteneinstellungen.Kartenform.EAchseUnten
+        LeseWeltkarteneinstellungen.EAchseUnten
       is
          when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
             Bewertung (False) := KIKonstanten.LeerBewertung;

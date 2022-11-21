@@ -4,6 +4,8 @@ with EinheitenRecords;
 
 private with StadtDatentypen;
 
+with LeseGrenzen;
+
 package KISiedleraufgabenLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Rassen_Enum;
@@ -13,7 +15,7 @@ package KISiedleraufgabenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               );

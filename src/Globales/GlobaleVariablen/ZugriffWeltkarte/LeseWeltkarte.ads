@@ -6,8 +6,10 @@ with KartenverbesserungDatentypen;
 with SpielVariablen;
 with StadtRecords;
 with EinheitenRecords;
+with WeltkarteRecords;
 
 with LeseWeltkarteneinstellungen;
+with LeseGrenzen;
 
 package LeseWeltkarte is
    pragma Elaborate_Body;
@@ -135,7 +137,7 @@ package LeseWeltkarte is
       return Boolean
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
@@ -157,6 +159,16 @@ package LeseWeltkarte is
    function EinheitenbelegungGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.RasseEinheitnummerRecord
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
+   function GanzerEintrag
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+      return WeltkarteRecords.WeltkarteRecord
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

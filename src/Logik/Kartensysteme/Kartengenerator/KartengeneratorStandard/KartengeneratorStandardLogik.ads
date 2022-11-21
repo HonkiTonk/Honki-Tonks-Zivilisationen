@@ -1,6 +1,7 @@
 private with KartenDatentypen;
 private with KartenRecords;
 private with SystemDatentypen;
+private with KartenartDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -13,6 +14,12 @@ private
    use type KartenDatentypen.Kartenfeld;
    
    LandHöheBreite : Boolean;
+   
+   ÜbergangNorden : KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
+   ÜbergangSüden : KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
+   
+   ÜbergangWesten : KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
+   ÜbergangOsten : KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
    
    YAchseZwischenwert : KartenDatentypen.KartenfeldPositiv;
    XAchseZwischenwert : KartenDatentypen.KartenfeldPositiv;

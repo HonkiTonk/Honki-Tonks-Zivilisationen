@@ -1,7 +1,6 @@
 with KartenDatentypen;
 with Rassentexte;
 with TextnummernKonstanten;
-with KartenKonstanten;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
@@ -136,7 +135,7 @@ package body StadtBauenLogik is
    is begin
       
       StadtSchleife:
-      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert))
@@ -248,7 +247,7 @@ package body StadtBauenLogik is
    is begin
       
       HauptsstadtSchleife:
-      for HauptstadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for HauptstadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, HauptstadtSchleifenwert))

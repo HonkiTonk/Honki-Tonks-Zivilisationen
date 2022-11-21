@@ -9,6 +9,7 @@ with KartenkoordinatenberechnungssystemLogik;
 with MausauswahlLogik;
 with PZBEingesetztLogik;
 with EinheitentransporterLogik;
+with NachGrafiktask;
 
 package body EinheitenkontrollsystemLogik is
 
@@ -49,6 +50,7 @@ package body EinheitenkontrollsystemLogik is
             return BefehleMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when BefehleDatentypen.Einheiten_Bewegung_Enum'Range =>
+            NachGrafiktask.EinheitBewegt := True;
             return EinheitenbewegungLogik.PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                            ÄnderungExtern           => Richtung (BefehlExtern));
                

@@ -5,6 +5,7 @@ with EinheitenRecords;
 with KartenRecords;
 
 with LeseWeltkarteneinstellungen;
+with LeseGrenzen;
 
 with KIDatentypen;
 
@@ -20,7 +21,7 @@ package KIBewegungsbewertungLogik is
       return KIDatentypen.BewegungBewertung
      with
        Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  AktuelleKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and

@@ -3,6 +3,7 @@ with SystemDatentypen;
 with StadtKonstanten;
 with TextnummernKonstanten;
 with GrafikDatentypen;
+with ZahlenDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -157,7 +158,7 @@ package body RundenendeLogik is
       case
         SpielVariablen.Allgemeines.Rundenanzahl
       is
-         when Positive'Last =>
+         when ZahlenDatentypen.EigenesPositive'Last =>
             null;
             
          when others =>

@@ -1,4 +1,3 @@
-with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with StadtDatentypen;
@@ -25,7 +24,7 @@ package body StadtEinheitenBauenLogik is
       EinheitNummer := 0;
             
       EinheitenSchleife:
-      for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze loop
+      for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => StadtRasseNummerExtern.Rasse) loop
             
          case
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert))

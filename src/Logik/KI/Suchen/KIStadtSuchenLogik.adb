@@ -43,7 +43,7 @@ package body KIStadtSuchenLogik is
       AktuelleStadt := StadtDatentypen.MaximaleStädteMitNullWert'First;
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
          
          if
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
@@ -90,7 +90,7 @@ package body KIStadtSuchenLogik is
    begin
       
       StadtSchleife:
-      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (FeindlicheRasseExtern).Städtegrenze loop
+      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => FeindlicheRasseExtern) loop
          
          if
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum

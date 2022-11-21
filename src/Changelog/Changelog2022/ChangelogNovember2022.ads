@@ -63,17 +63,24 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (21.11.2022):
+   -- Version 0.04.4035 => 0.04. (21.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.3935 => 0.04. (20.11.2022):
+   -- Version 0.04.3935 => 0.04.4035 (20.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Schreibe- und Lesesystem für die Weltkarte auf die Karteneinstellungen erweitert.
+   -- Sämtliche Zugriffe auf die Weltkarte und ihre Einstellungen erfolgen jetzt über das dazugehörige Lese- und Schreibesystem.
+   -- Wenn man mit den Bewegungstasten eine Einheit aus dem Bild bewegt wird jetzt das Bild korrekt mitgescrollt.
+   -- Die Menge an Kartenfelder die die KI in ihren Berechnungen nutzt ist jetzt abhängig vom Schwierigkeitsgrad.
+   -- KI überarbeitet.
+   -- Angefangen den Zugriff auf die SpielVariablen nur noch durch Lese- und Schreibesystem zu erlauben.
+   -- Generische Überlaufprüfung angelegt und angefangen einzubauen.
+   -- Fehler korrigiert der dazu führte dass die Anzahl der eingesetzten PZB beim Start eines weiteren Spieles nicht zurückgesetzt wurde.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

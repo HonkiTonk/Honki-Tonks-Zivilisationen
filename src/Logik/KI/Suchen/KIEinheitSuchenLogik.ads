@@ -4,6 +4,9 @@ with KartenRecords;
 with SpielVariablen;
 
 private with EinheitenDatentypen;
+private with KartenDatentypen;
+
+with LeseGrenzen;
 
 package KIEinheitSuchenLogik is
    pragma Elaborate_Body;
@@ -17,7 +20,7 @@ package KIEinheitSuchenLogik is
        Pre => (
                  SpielVariablen.Rassenbelegung (FeindExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               );
@@ -28,6 +31,9 @@ package KIEinheitSuchenLogik is
 private
    
    FeindlicheEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   
+   UmgebungPrüfen : KartenDatentypen.KartenfeldNatural;
+   BereitsGeprüft : KartenDatentypen.KartenfeldNatural;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;

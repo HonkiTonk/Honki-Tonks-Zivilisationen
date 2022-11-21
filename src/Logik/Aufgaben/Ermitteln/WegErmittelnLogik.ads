@@ -10,6 +10,7 @@ private with ProduktionDatentypen;
 private with KartengrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
+with LeseGrenzen;
 
 package WegErmittelnLogik is
    pragma Elaborate_Body;
@@ -27,7 +28,7 @@ package WegErmittelnLogik is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );

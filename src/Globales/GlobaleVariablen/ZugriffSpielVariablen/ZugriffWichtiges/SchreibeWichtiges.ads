@@ -3,6 +3,7 @@ with ZahlenDatentypen;
 with SpielVariablen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
+with SpielRecords;
 
 package SchreibeWichtiges is
    pragma Elaborate_Body;
@@ -97,5 +98,18 @@ package SchreibeWichtiges is
        Pre => (
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
+   
+   procedure Standardeinstellungen;
+   
+   procedure LeerEintrag
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure GanzerEintrag
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      EintragExtern : in SpielRecords.WichtigesRecord);
 
 end SchreibeWichtiges;

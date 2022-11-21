@@ -6,6 +6,7 @@ with StadtRecords;
 with SpielVariablen;
 
 with LeseWeltkarteneinstellungen;
+with LeseGrenzen;
 
 private with SystemRecords;
 
@@ -29,7 +30,7 @@ package StadtSuchenLogik is
               ),
                       
        Post => (
-                  KoordinatenStadtMitRasseSuchen'Result <= SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+                  KoordinatenStadtMitRasseSuchen'Result <= LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
                );
    
    function KoordinatenStadtOhneRasseSuchen

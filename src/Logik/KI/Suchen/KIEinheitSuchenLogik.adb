@@ -1,4 +1,3 @@
-with KartenDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
@@ -8,6 +7,8 @@ with LeseEinheitenGebaut;
 
 with KartenkoordinatenberechnungssystemLogik;
 with EinheitSuchenLogik;
+
+with KIKonstanten;
 
 package body KIEinheitSuchenLogik is
 
@@ -21,43 +22,53 @@ package body KIEinheitSuchenLogik is
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+      UmgebungPrüfen := 1;
+      BereitsGeprüft := UmgebungPrüfen - 1;
+      
+      FeindSuchenSchleife:
+      while UmgebungPrüfen <= KIKonstanten.Felderreichweite (SpielVariablen.Allgemeines.Schwierigkeitsgrad) loop
+         YAchseSchleife:
+         for YAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                         LogikGrafikExtern => True);
             
-            if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
-            then
-               null;
+               if
+                 KartenWert.XAchse = KartenKonstanten.LeerXAchse
+               then
+                  null;
                
-            elsif
-              False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                              RasseExtern       => EinheitRasseNummerExtern.Rasse)
-            then
-               null;
+               elsif
+                 False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
+                                                 RasseExtern       => EinheitRasseNummerExtern.Rasse)
+               then
+                  null;
                   
-            else
-               FeindlicheEinheit := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindExtern,
-                                                                                         KoordinatenExtern => KartenWert,
-                                                                                         LogikGrafikExtern => True);
-               case
-                 FeindlicheEinheit
-               is
-                  when EinheitenKonstanten.LeerNummer =>
-                     null;
+               else
+                  FeindlicheEinheit := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindExtern,
+                                                                                            KoordinatenExtern => KartenWert,
+                                                                                            LogikGrafikExtern => True);
+                  case
+                    FeindlicheEinheit
+                  is
+                     when EinheitenKonstanten.LeerNummer =>
+                        null;
                      
-                  when others =>
-                     return KartenWert;
-               end case;
-            end if;
+                     when others =>
+                        return KartenWert;
+                  end case;
+               end if;
                
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+         
+         UmgebungPrüfen := UmgebungPrüfen + 1;
+         BereitsGeprüft := UmgebungPrüfen - 1;
+         
+      end loop FeindSuchenSchleife;
       
       return KartenRecordKonstanten.LeerKoordinate;
       

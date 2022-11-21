@@ -3,14 +3,18 @@ with StadtRecordKonstanten;
 with SpielVariablen;
 with KartenRecordKonstanten;
 with EinheitenRecordKonstanten;
-with WeltkarteRecords;
 with KartengeneratorRecordKonstanten;
 with KartenartDatentypen;
-with Weltkarte;
+
+with SchreibeWeltkarteneinstellungen;
+with SchreibeWeltkarte;
+with SchreibeWichtiges;
+with SchreibeAllgemeines;
 
 with KartengeneratorVariablenLogik;
 with SichtweitenGrafik;
 
+-- Das hier auch mal in die verschiedenen Zugriffsdateien aufteilen? äöü
 package body StandardSpielwerteSetzenLogik is
 
    procedure StandardSpielwerteSetzenLogik
@@ -31,14 +35,14 @@ package body StandardSpielwerteSetzenLogik is
       
       SpielVariablen.EinheitenGebaut := (others => (others => EinheitenRecordKonstanten.LeerEinheit));
       SpielVariablen.StadtGebaut := (others => (others => StadtRecordKonstanten.LeerStadt));
-      SpielVariablen.Wichtiges := (others => WichtigesRecordKonstanten.LeerWichtigesZeug);
+      SchreibeWichtiges.Standardeinstellungen;
       SpielVariablen.Diplomatie := (others => (others => WichtigesRecordKonstanten.StartDiplomatie));
       SpielVariablen.CursorImSpiel := (others => WichtigesRecordKonstanten.LeerCursor);
       SpielVariablen.Rassenbelegung := (others => WichtigesRecordKonstanten.LeerRassenbelegung);
-      SpielVariablen.Allgemeines := WichtigesRecordKonstanten.LeerAllgemeines;
+      SchreibeAllgemeines.Standardeinstellungen;
       
-      Weltkarte.Karteneinstellungen := KartenRecordKonstanten.Standardkartenparameter;
-      Weltkarte.Karte := (others => (others => (others => WeltkarteRecords.LeerWeltkarte)));
+      SchreibeWeltkarteneinstellungen.Standardeinstellungen;
+      SchreibeWeltkarte.Standardeinstellungen;
       
       SpielVariablen.Debug := (others => False);
       

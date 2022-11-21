@@ -2,6 +2,7 @@ with StadtKonstanten;
 with StadtRecords;
 
 with LeseStadtGebaut;
+with LeseGrenzen;
 
 with NachGrafiktask;
 
@@ -19,7 +20,7 @@ package body NaechsteStadtLogik is
       loop
 
          if
-           AktuelleStadt (RasseExtern) >= SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+           AktuelleStadt (RasseExtern) >= LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
          then
             AktuelleStadt (RasseExtern) := SpielVariablen.StadtGebautArray'First (2);
                
@@ -38,7 +39,7 @@ package body NaechsteStadtLogik is
          end case;
          
          if
-           StadtSchleifenbegrenzung < SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+           StadtSchleifenbegrenzung < LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
          then
             StadtSchleifenbegrenzung := StadtSchleifenbegrenzung + 1;
             
@@ -67,7 +68,7 @@ package body NaechsteStadtLogik is
       loop
 
          if
-           AktuelleStadtMeldung (RasseExtern) >= SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+           AktuelleStadtMeldung (RasseExtern) >= LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
          then
             AktuelleStadtMeldung (RasseExtern) := SpielVariablen.StadtGebautArray'First (2);
                
@@ -99,7 +100,7 @@ package body NaechsteStadtLogik is
          end case;
          
          if
-           MeldungSchleifenbegrenzung < SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+           MeldungSchleifenbegrenzung < LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
          then
             MeldungSchleifenbegrenzung := MeldungSchleifenbegrenzung + 1;
             

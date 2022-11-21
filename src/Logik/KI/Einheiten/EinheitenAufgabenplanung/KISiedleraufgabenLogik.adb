@@ -37,7 +37,7 @@ package body KISiedleraufgabenLogik is
          null;
          
       elsif
-        (VorhandeneStädte < SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze
+        (VorhandeneStädte < LeseGrenzen.Städtegrenzen (RasseExtern => EinheitRasseNummerExtern.Rasse)
          and
            1 > KIAufgabenVerteiltLogik.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum))

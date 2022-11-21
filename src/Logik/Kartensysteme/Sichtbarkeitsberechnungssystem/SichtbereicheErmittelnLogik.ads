@@ -3,11 +3,12 @@ with EinheitenRecords;
 with SpielVariablen;
 with KartenDatentypen;
 with KartenRecords;
-with Weltkarte;
+with KartenKonstanten;
 
 private with EinheitenDatentypen;
 
 with LeseWeltkarteneinstellungen;
+with LeseGrenzen;
 
 package SichtbereicheErmittelnLogik is
    pragma Elaborate_Body;
@@ -18,7 +19,7 @@ package SichtbereicheErmittelnLogik is
       return KartenDatentypen.Sichtweite
      with
        Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );
@@ -31,9 +32,9 @@ package SichtbereicheErmittelnLogik is
       return Boolean
      with
        Pre => (
-                 KoordinatenExtern.YAchse in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse
+                 KoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
                and
-                 KoordinatenExtern.XAchse in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse
+                 KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
               );
 
 private

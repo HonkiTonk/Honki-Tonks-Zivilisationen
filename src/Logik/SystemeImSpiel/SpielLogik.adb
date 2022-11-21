@@ -3,6 +3,8 @@ with GrafikDatentypen;
 with MenueDatentypen;
 with TextnummernKonstanten;
 
+with LeseGrenzen;
+
 with OptionenLogik;
 with LadezeitenLogik;
 with SpeichernLogik;
@@ -107,9 +109,9 @@ package body SpielLogik is
          return RueckgabeDatentypen.Start_Weiter_Enum;
       
       elsif
-        SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze < SpielVariablen.Allgemeines.Rundenanzahl
+        LeseGrenzen.Rassenrundengrenze (RasseExtern => RasseExtern) < SpielVariablen.Allgemeines.Rundenanzahl
         and
-          SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze > 0
+          LeseGrenzen.Rassenrundengrenze (RasseExtern => RasseExtern) > 0
       then
          RasseEntfernenLogik.RasseEntfernen (RasseExtern => RasseExtern);
          return RueckgabeDatentypen.Start_Weiter_Enum;

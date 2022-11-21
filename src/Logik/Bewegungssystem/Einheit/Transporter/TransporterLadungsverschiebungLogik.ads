@@ -5,6 +5,7 @@ with SpielVariablen;
 with KartenRecords;
 
 with LeseWeltkarteneinstellungen;
+with LeseGrenzen;
 
 private with EinheitenDatentypen;
 
@@ -18,7 +19,7 @@ package TransporterLadungsverschiebungLogik is
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and

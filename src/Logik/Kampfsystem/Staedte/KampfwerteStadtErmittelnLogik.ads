@@ -3,6 +3,8 @@ with SpielVariablen;
 with KampfDatentypen;
 with StadtRecords;
 
+with LeseGrenzen;
+
 package KampfwerteStadtErmittelnLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Rassen_Enum;
@@ -15,7 +17,7 @@ package KampfwerteStadtErmittelnLogik is
        Pre => (
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
               );
    
    function AktuellerAngriffStadt
@@ -25,7 +27,7 @@ package KampfwerteStadtErmittelnLogik is
        Pre => (
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
               );
    
 private

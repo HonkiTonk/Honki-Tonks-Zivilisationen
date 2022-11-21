@@ -1,5 +1,7 @@
 with KartenDatentypen;
 
+private with KartenartDatentypen;
+
 private with KartenkoordinatenWerteLogik;
 
 with LeseWeltkarteneinstellungen;
@@ -38,6 +40,9 @@ package KartenkoordinateXAchseBerechnenLogik is
 private
       
    ÜberhangXAchse : KartenkoordinatenWerteLogik.ÜberhangArray;
+   
+   type KartenartArray is array (Boolean'Range) of KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
+   Kartenart : KartenartArray;
    
    
    

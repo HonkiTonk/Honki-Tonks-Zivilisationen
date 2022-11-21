@@ -6,6 +6,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 with LeseWeltkarteneinstellungen;
+with LeseGrenzen;
 
 package TransporterSuchenLogik is
    pragma Elaborate_Body;
@@ -52,7 +53,7 @@ package TransporterSuchenLogik is
       return EinheitenDatentypen.Transportplätze
      with
        Pre => (
-                 TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
+                 TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (TransporterExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );

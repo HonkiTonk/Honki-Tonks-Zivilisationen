@@ -10,6 +10,7 @@ with TextKonstanten;
 with ForschungKonstanten;
 
 with LeseWichtiges;
+with LeseGrenzen;
 
 with ForschungsbeschreibungenGrafik;
 with EinstellungenGrafik;
@@ -83,14 +84,14 @@ package body WichtigesSeitenleisteGrafik is
    is begin
                   
       case
-        SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze
+        LeseGrenzen.Rassenrundengrenze (RasseExtern => RasseExtern)
       is
          when 0 =>
             null;
             
          when others =>
             return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & SpielVariablen.Allgemeines.Rundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
-              & ZahlAlsStringPositive (ZahlExtern => SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze);
+              & ZahlAlsStringPositive (ZahlExtern => LeseGrenzen.Rassenrundengrenze (RasseExtern => RasseExtern));
       end case;
       
       case

@@ -1,6 +1,7 @@
 with KartenKonstanten;
 with KartenartDatentypen;
-with Weltkarte;
+
+with LeseWeltkarteneinstellungen;
 
 package body KartenkoordinateEAchseBerechnenLogik is
 
@@ -14,14 +15,14 @@ package body KartenkoordinateEAchseBerechnenLogik is
    begin
       
       if
-        EAchseExtern + ÄnderungEAchseExtern < Weltkarte.KarteArray'First (1)
+        EAchseExtern + ÄnderungEAchseExtern < KartenKonstanten.AnfangEAchse
       then
          return KartenkoordinateEAchseÜbergangUnten (EAchseExtern         => EAchseExtern,
                                                       ÄnderungEAchseExtern => ÄnderungEAchseExtern,
                                                       LogikGrafikExtern    => LogikGrafikExtern);
          
       elsif
-        EAchseExtern + ÄnderungEAchseExtern > Weltkarte.KarteArray'Last (1)
+        EAchseExtern + ÄnderungEAchseExtern > KartenKonstanten.EndeEAchse
       then
          return KartenkoordinateEAchseÜbergangOben (EAchseExtern         => EAchseExtern,
                                                      ÄnderungEAchseExtern => ÄnderungEAchseExtern,
@@ -43,7 +44,7 @@ package body KartenkoordinateEAchseBerechnenLogik is
    is begin
       
       case
-        Weltkarte.Karteneinstellungen.Kartenform.EAchseUnten
+        LeseWeltkarteneinstellungen.EAchseUnten
       is
          when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerEAchse;
@@ -57,9 +58,9 @@ package body KartenkoordinateEAchseBerechnenLogik is
       while ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) > 0 loop
             
          if
-           ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) - 1 < Integer (Weltkarte.KarteArray'First (1))
+           ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) - 1 < Integer (KartenKonstanten.AnfangEAchse)
          then
-            ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Positive (Weltkarte.KarteArray'Last (1));
+            ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Positive (KartenKonstanten.EndeEAchse);
                
          else
             ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) - 1;
@@ -83,7 +84,7 @@ package body KartenkoordinateEAchseBerechnenLogik is
    is begin
       
       case
-        Weltkarte.Karteneinstellungen.Kartenform.EAchseOben
+        LeseWeltkarteneinstellungen.EAchseOben
       is
          when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerEAchse;
@@ -97,9 +98,9 @@ package body KartenkoordinateEAchseBerechnenLogik is
       while ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) > 0 loop
             
          if
-           ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) + 1 > Positive (Weltkarte.KarteArray'Last (1))
+           ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) + 1 > Positive (KartenKonstanten.EndeEAchse)
          then
-            ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Integer (Weltkarte.KarteArray'First (1));
+            ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Integer (KartenKonstanten.AnfangEAchse);
                
          else
             ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) + 1;

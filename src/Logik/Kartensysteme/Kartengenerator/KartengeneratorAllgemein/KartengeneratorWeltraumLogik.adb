@@ -1,7 +1,6 @@
 with KartengrundDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
-with Weltkarte;
 
 with SchreibeWeltkarte;
 with LeseWeltkarteneinstellungen;
@@ -18,9 +17,9 @@ package body KartengeneratorWeltraumLogik is
       Kartenzeitwert := (LeseWeltkarteneinstellungen.YAchse + (25 - 1)) / 25;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
+      for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
+         for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
 
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.WeltraumKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
                                           GrundExtern       => KartengrundDatentypen.Weltraum_Enum);

@@ -4,6 +4,8 @@ with EinheitenDatentypen;
 with StadtRecords;
 with SpielVariablen;
 
+with LeseGrenzen;
+
 package KIStadtLaufendeBauprojekteLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
@@ -18,7 +20,7 @@ package KIStadtLaufendeBauprojekteLogik is
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
                and
@@ -28,7 +30,7 @@ package KIStadtLaufendeBauprojekteLogik is
               ),
    
        Post => (
-                  StadtLaufendeBauprojekte'Result <= SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+                  StadtLaufendeBauprojekte'Result <= LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
                );
    
    function GleicheEinheitArtBauprojekte
@@ -37,13 +39,13 @@ package KIStadtLaufendeBauprojekteLogik is
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               ),
    
        Post => (
-                  GleicheEinheitArtBauprojekte'Result <= SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze
+                  GleicheEinheitArtBauprojekte'Result <= LeseGrenzen.Einheitengrenze (RasseExtern => StadtRasseNummerExtern.Rasse)
                );
    
    function EinheitenInProduktion
@@ -57,7 +59,7 @@ package KIStadtLaufendeBauprojekteLogik is
    -- Sollte so eine Post Bedingung nicht auf <= MaximaleStädte eingeschränkt sein? äöü
    -- Einen subtype für MaximaleEinheiten erstellen der nur bis MaximalStädte geht? äöü
        Post => (
-                  EinheitenInProduktion'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+                  EinheitenInProduktion'Result <= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
                );
    
 private

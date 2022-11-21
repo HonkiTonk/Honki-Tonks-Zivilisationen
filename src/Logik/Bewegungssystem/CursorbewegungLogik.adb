@@ -1,6 +1,5 @@
 with TextnummernKonstanten;
 with KartenKonstanten;
-with Weltkarte;
 
 with LeseWeltkarteneinstellungen;
 
@@ -66,8 +65,8 @@ package body CursorbewegungLogik is
    procedure GeheZu
    is begin
       
-      KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Integer (Weltkarte.Karte'First (1)),
-                                                            ZahlenMaximumExtern => Integer (Weltkarte.Karte'Last (1)),
+      KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Integer (KartenKonstanten.AnfangEAchse),
+                                                            ZahlenMaximumExtern => Integer (KartenKonstanten.EndeEAchse),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheEbene);
       
       case
@@ -78,7 +77,7 @@ package body CursorbewegungLogik is
          
          when True =>
             NeueKoordinate.EAchse := KartenDatentypen.EbeneVorhanden (KoordinatenPunkt.EingegebeneZahl);
-            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (Weltkarte.Karte'First (2)),
+            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (KartenKonstanten.AnfangYAchse),
                                                                   ZahlenMaximumExtern => Positive (LeseWeltkarteneinstellungen.YAchse),
                                                                   WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheYPosition);
       end case;
@@ -91,7 +90,7 @@ package body CursorbewegungLogik is
          
          when True =>
             NeueKoordinate.YAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
-            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (Weltkarte.Karte'First (3)),
+            KoordinatenPunkt := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (KartenKonstanten.AnfangXAchse),
                                                                   ZahlenMaximumExtern => Positive (LeseWeltkarteneinstellungen.XAchse),
                                                                   WelcheFrageExtern   => TextnummernKonstanten.FrageWelcheXPosition);
       end case;

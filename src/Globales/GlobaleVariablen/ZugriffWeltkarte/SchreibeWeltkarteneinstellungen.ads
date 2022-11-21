@@ -8,5 +8,10 @@ package SchreibeWeltkarteneinstellungen is
    
    procedure Kartenform
      (KartenformExtern : in KartenRecords.KartenformRecord);
+   
+   procedure GesamteEinstellungen
+     (EinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord);
+   
+   procedure Standardeinstellungen;
 
 end SchreibeWeltkarteneinstellungen;

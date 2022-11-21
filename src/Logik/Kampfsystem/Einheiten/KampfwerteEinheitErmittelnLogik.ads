@@ -3,6 +3,8 @@ with EinheitenRecords;
 with SpielVariablen;
 with KampfDatentypen;
 
+with LeseGrenzen;
+
 package KampfwerteEinheitErmittelnLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Rassen_Enum;
@@ -15,7 +17,7 @@ package KampfwerteEinheitErmittelnLogik is
        Pre => (
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
               );
    
    function Gesamtangriff
@@ -25,7 +27,7 @@ package KampfwerteEinheitErmittelnLogik is
        Pre => (
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
               );
    
 private

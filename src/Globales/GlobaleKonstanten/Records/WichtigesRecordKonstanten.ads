@@ -31,17 +31,18 @@ package WichtigesRecordKonstanten is
                                                                 );
   
    LeerAllgemeines : constant SpielRecords.AllgemeinesRecord := (
-                                                                 Gewonnen            => False,
-                                                                 Weiterspielen       => False,
-                                                                 RasseAmZugNachLaden => EinheitenKonstanten.LeerRasse,
+                                                                 Gewonnen              => False,
+                                                                 Weiterspielen         => False,
+                                                                 RasseAmZugNachLaden   => EinheitenKonstanten.LeerRasse,
                                                                  -- Das auslagern damit man es nicht immer neu setzen muss? äöü
-                                                                 Schwierigkeitsgrad  => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
-                                                                 Rundenanzahl        => Positive'First,
+                                                                 Schwierigkeitsgrad    => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
+                                                                 Rundenanzahl          => Positive'First,
                                                                   -- Das auslagern damit man es nicht immer neu setzen muss? äöü
-                                                                 Rundengrenze        => Natural'First,
-                                                                 IronmanName         => TextKonstanten.LeerUnboundedString,
-                                                                 PlanetVernichtet    => RassenDatentypen.Keine_Rasse_Enum,
-                                                                 Zusammenbruchszeit  => -1
+                                                                 Rundengrenze          => Natural'First,
+                                                                 IronmanName           => TextKonstanten.LeerUnboundedString,
+                                                                 PlanetVernichtet      => RassenDatentypen.Keine_Rasse_Enum,
+                                                                 Zusammenbruchszeit    => -1,
+                                                                 AnzahlEingesetzterPZB => 0
                                                                 );
    
    LeerGrenzen : constant SpielRecords.GrenzenRecord := (

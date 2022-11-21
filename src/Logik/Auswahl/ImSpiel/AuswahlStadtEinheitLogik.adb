@@ -17,7 +17,7 @@ package body AuswahlStadtEinheitLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       -- Wenn die StadtNummerExtern = 0 ist, dann wird von einem beladenen Transporter ausgegangen.
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
-      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
+      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return Integer
    is begin
       

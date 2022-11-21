@@ -1,5 +1,3 @@
-with KartenKonstanten;
-
 with KartenkoordinatenberechnungssystemLogik;
 with SichtbarkeitSetzenLogik;
 with SichtbereicheErmittelnLogik;

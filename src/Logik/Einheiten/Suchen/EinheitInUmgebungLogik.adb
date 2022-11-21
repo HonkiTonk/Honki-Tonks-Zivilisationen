@@ -8,6 +8,7 @@ with StadtDatentypen;
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
+with LeseGrenzen;
 
 with KartenkoordinatenberechnungssystemLogik;
 with EinheitSuchenLogik;
@@ -44,7 +45,7 @@ package body EinheitInUmgebungLogik is
    is begin
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
                   
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
@@ -77,7 +78,7 @@ package body EinheitInUmgebungLogik is
    is begin
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
+      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
                   
          case
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert))

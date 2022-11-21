@@ -18,7 +18,7 @@ package body KIStadtLaufendeBauprojekteLogik is
       GleichesGebäudeBauprojekt := StadtKonstanten.LeerNummer;
      
       StadtSchleife:
-      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
+      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse) loop
             
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Nummer
@@ -58,7 +58,7 @@ package body KIStadtLaufendeBauprojekteLogik is
       GleichesEinheitenBauprojekt := EinheitenKonstanten.LeerNummer;
       
       StadtSchleife:
-      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
+      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse) loop
             
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Nummer
@@ -99,7 +99,7 @@ package body KIStadtLaufendeBauprojekteLogik is
       EinheitenImBau := EinheitenKonstanten.LeerNummer;
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtDatentypen.MaximaleStädte'First .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in StadtDatentypen.MaximaleStädte'First .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
          
          if
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum

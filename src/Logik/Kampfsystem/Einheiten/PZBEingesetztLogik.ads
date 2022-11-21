@@ -6,8 +6,13 @@ private with EinheitenDatentypen;
 private with KartenRecords;
 private with StadtRecords;
 private with KartenDatentypen;
+private with ZahlenDatentypen;
+
+with LeseGrenzen;
 
 private with LeseWeltkarteneinstellungen;
+
+private with Grenzpruefungen;
 
 package PZBEingesetztLogik is
    pragma Elaborate_Body;
@@ -21,7 +26,7 @@ package PZBEingesetztLogik is
        Pre => (
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
               );
 
 private
@@ -29,8 +34,9 @@ private
 
    Einheitenart : EinheitenDatentypen.Einheitart_Enum;
 
-   PZBGezündet : Natural := 0;
-   Verbleibendezeit : Natural;
+   Verbleibendezeit : ZahlenDatentypen.EigenesNatural;
+
+   Zusammenbruchszeit : ZahlenDatentypen.EigenerInteger;
 
    Einheit : EinheitenRecords.RasseEinheitnummerRecord;
 
@@ -62,5 +68,9 @@ private
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
+
+
+
+   function GanzeZahlPrüfen is new Grenzpruefungen.Standardprüfung (GanzeZahl => ZahlenDatentypen.EigenesNatural);
 
 end PZBEingesetztLogik;

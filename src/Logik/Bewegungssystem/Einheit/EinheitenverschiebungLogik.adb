@@ -30,7 +30,7 @@ package body EinheitenverschiebungLogik is
       end case;
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
@@ -116,7 +116,7 @@ package body EinheitenverschiebungLogik is
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       BereichSchleife:
-      loop
+      while UmgebungPrüfen < KartenDatentypen.Sichtweite'Last loop
          YAchseSchleife:
          for YAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
             XAchseSchleife:
@@ -160,16 +160,8 @@ package body EinheitenverschiebungLogik is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
          
-         case
-           UmgebungPrüfen
-         is
-            when KartenDatentypen.Sichtweite'Last =>
-               return;
-               
-            when others =>
-               BereitsGeprüft := UmgebungPrüfen;
-               UmgebungPrüfen := UmgebungPrüfen + 1;
-         end case;
+         BereitsGeprüft := UmgebungPrüfen;
+         UmgebungPrüfen := UmgebungPrüfen + 1;
          
       end loop BereichSchleife;
       

@@ -1,5 +1,5 @@
 with DiplomatieDatentypen;
-with Weltkarte;
+with KartenKonstanten;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -269,11 +269,11 @@ package body HandelnLogik is
    is begin
      
       EAchseEinsSchleife:
-      for EAchseEinsSchleifenwert in Weltkarte.KarteArray'Range (1) loop
+      for EAchseEinsSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
          YAchseEinsSchleife:
-         for YAchseEinsSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
+         for YAchseEinsSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
             XAchseEinsSchleife:
-            for XAchseEinsSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
+            for XAchseEinsSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
 
                if
                  False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
@@ -303,11 +303,11 @@ package body HandelnLogik is
    is begin
   
       EAchseZweiSchleife:
-      for EAchseZweiSchleifenwert in Weltkarte.KarteArray'Range (1) loop
+      for EAchseZweiSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
          YAchseZweiSchleife:
-         for YAchseZweiSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
+         for YAchseZweiSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
             XAchseZweiSchleife:
-            for XAchseZweiSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
+            for XAchseZweiSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
 
                if
                  False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),

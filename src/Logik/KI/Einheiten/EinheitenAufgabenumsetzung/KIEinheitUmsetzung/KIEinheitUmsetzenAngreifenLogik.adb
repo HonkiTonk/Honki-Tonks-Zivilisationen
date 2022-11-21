@@ -11,17 +11,7 @@ package body KIEinheitUmsetzenAngreifenLogik is
       -- KIEinheitFestlegenAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern); äöü
       
       -- Platzhalter
-      case
-        KIKriegErmittelnLogik.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse)
-      is
-         when True =>
-            null;
-            
-         when False =>
-            null;
-      end case;
-      
-      return False;
+        return KIKriegErmittelnLogik.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
    end Angreifen;
 

@@ -2,6 +2,7 @@ with EinheitenKonstanten;
 with EinheitenRecords;
 
 with LeseEinheitenGebaut;
+with LeseGrenzen;
 
 with NachGrafiktask;
 
@@ -22,7 +23,7 @@ package body NaechsteEinheitLogik is
       loop
 
          if
-           AktuelleEinheit (RasseExtern) >= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+           AktuelleEinheit (RasseExtern) >= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
          then
             AktuelleEinheit (RasseExtern) := SpielVariablen.EinheitenGebautArray'First (2);
                
@@ -50,7 +51,7 @@ package body NaechsteEinheitLogik is
          end if;
          
          if
-           EinheitSchleifenbegrenzung < SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+           EinheitSchleifenbegrenzung < LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
          then
             EinheitSchleifenbegrenzung := EinheitSchleifenbegrenzung + 1;
             
@@ -79,7 +80,7 @@ package body NaechsteEinheitLogik is
       loop
 
          if
-           AktuelleEinheitMeldung (RasseExtern) >= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+           AktuelleEinheitMeldung (RasseExtern) >= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
          then
             AktuelleEinheitMeldung (RasseExtern) := SpielVariablen.EinheitenGebautArray'First (2);
                
@@ -111,7 +112,7 @@ package body NaechsteEinheitLogik is
          end if;
          
          if
-           MeldungSchleifenbegrenzung < SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+           MeldungSchleifenbegrenzung < LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
          then
             MeldungSchleifenbegrenzung := MeldungSchleifenbegrenzung + 1;
             

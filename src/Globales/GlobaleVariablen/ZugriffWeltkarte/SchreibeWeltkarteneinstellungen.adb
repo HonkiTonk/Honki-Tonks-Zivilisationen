@@ -1,4 +1,5 @@
 with Weltkarte;
+with KartenRecordKonstanten;
 
 package body SchreibeWeltkarteneinstellungen is
    
@@ -19,5 +20,24 @@ package body SchreibeWeltkarteneinstellungen is
       Weltkarte.Karteneinstellungen.Kartenform := KartenformExtern;
       
    end Kartenform;
+   
+   
+   
+   procedure Standardeinstellungen
+   is begin
+      
+      Weltkarte.Karteneinstellungen := KartenRecordKonstanten.Standardkartenparameter;
+      
+   end Standardeinstellungen;
+   
+   
+   
+   procedure GesamteEinstellungen
+     (EinstellungenExtern : in KartenRecords.PermanenteKartenparameterRecord)
+   is begin
+      
+      Weltkarte.Karteneinstellungen := EinstellungenExtern;
+      
+   end GesamteEinstellungen;
 
 end SchreibeWeltkarteneinstellungen;

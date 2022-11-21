@@ -1,5 +1,6 @@
 with KartenDatentypen;
 with KartenartDatentypen;
+with KartenRecords;
 
 package LeseWeltkarteneinstellungen is
    pragma Elaborate_Body;
@@ -27,5 +28,14 @@ package LeseWeltkarteneinstellungen is
    
    function XAchseOsten
      return KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
+   
+   function KartenformYAchse
+     return KartenRecords.KartenformYAchseRecord;
+   
+   function KartenformXAchse
+     return KartenRecords.KartenformXAchseRecord;
+   
+   function GesamteEinstellungen
+     return KartenRecords.PermanenteKartenparameterRecord;
 
 end LeseWeltkarteneinstellungen;

@@ -30,7 +30,7 @@ package body VerbesserungFertiggestelltLogik is
                
             when others =>
                EinheitenSchleife:
-               for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
+               for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseSchleifenwert) loop
          
                   case
                     LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert))

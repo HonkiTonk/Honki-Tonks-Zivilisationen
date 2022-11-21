@@ -7,6 +7,7 @@ with SpielVariablen;
 private with EinheitenDatentypen;
 
 with LeseWeltkarteneinstellungen;
+with LeseGrenzen;
 
 package BewegungsberechnungEinheitenLogik is
    pragma Elaborate_Body;
@@ -19,7 +20,7 @@ package BewegungsberechnungEinheitenLogik is
       EinheitentauschExtern : in Boolean)
      with
        Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -39,7 +40,7 @@ private
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and

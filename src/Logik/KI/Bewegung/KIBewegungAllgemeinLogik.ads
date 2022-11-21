@@ -6,6 +6,8 @@ with SpielVariablen;
 
 with LeseWeltkarteneinstellungen;
 
+private with LeseGrenzen;
+
 with KIDatentypen;
 
 package KIBewegungAllgemeinLogik is
@@ -43,7 +45,7 @@ private
       return KIDatentypen.Bewegung_Enum
      with
        Pre => (
-                 EigeneEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EigeneEinheitExtern.Rasse).Einheitengrenze
+                 EigeneEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EigeneEinheitExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (EigeneEinheitExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
               );

@@ -46,9 +46,9 @@ package body KIEinheitFestlegenAufloesenLogik is
       VorhandeneEinheiten := LeseWichtiges.AnzahlEinheiten (RasseExtern => EinheitRasseNummerExtern.Rasse);
          
       if
-        VorhandeneEinheiten > SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+        VorhandeneEinheiten > LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
         or
-          VorhandeneEinheiten + KIStadtLaufendeBauprojekteLogik.EinheitenInProduktion (RasseExtern => EinheitRasseNummerExtern.Rasse) > SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          VorhandeneEinheiten + KIStadtLaufendeBauprojekteLogik.EinheitenInProduktion (RasseExtern => EinheitRasseNummerExtern.Rasse) > LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
       then
          return True;
          

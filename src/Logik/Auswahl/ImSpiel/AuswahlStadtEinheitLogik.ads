@@ -5,21 +5,24 @@ with SpielVariablen;
 
 private with EinheitenRecords;
 
+with LeseGrenzen;
+
 package AuswahlStadtEinheitLogik is
    pragma Elaborate_Body;
    use type StadtDatentypen.MaximaleStädteMitNullWert;
    use type RassenDatentypen.Spieler_Enum;
+   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    function AuswahlStadtEinheit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
-      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
+      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return Integer
      with
        Pre => (
-                 StadtNummerExtern <= SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+                 StadtNummerExtern <= LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
                and
-                 EinheitNummerExtern in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+                 EinheitNummerExtern <= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
                and
                  SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );

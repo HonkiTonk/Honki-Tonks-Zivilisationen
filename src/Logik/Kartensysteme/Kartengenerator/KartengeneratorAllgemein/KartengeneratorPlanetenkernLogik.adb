@@ -1,6 +1,5 @@
 with LadezeitenDatentypen;
 with KartenKonstanten;
-with Weltkarte;
 
 with SchreibeWeltkarte;
 
@@ -20,9 +19,9 @@ package body KartengeneratorPlanetenkernLogik is
       XKernende := LeseWeltkarteneinstellungen.XAchse / 2 + LeseWeltkarteneinstellungen.XAchse / 10;
                
       YAchseSchleife:
-      for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
+      for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
+         for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
             
             if
               YAchseSchleifenwert in YKernanfang .. YKernende

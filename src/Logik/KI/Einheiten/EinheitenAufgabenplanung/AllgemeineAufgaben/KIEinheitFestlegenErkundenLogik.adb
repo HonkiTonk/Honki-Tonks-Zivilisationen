@@ -8,6 +8,7 @@ with PassierbarkeitspruefungLogik;
 with KartenkoordinatenberechnungssystemLogik;
 
 with KIDatentypen;
+with KIKonstanten;
 
 with KIAufgabenVerteiltLogik;
 with KIEinheitAllgemeinePruefungenLogik;
@@ -26,7 +27,7 @@ package body KIEinheitFestlegenErkundenLogik is
       BereitsGeprüft := UmgebungPrüfen - 1;
       
       UnbekanntesFeldSuchenSchleife:
-      loop
+      while UmgebungPrüfen <= KIKonstanten.Felderreichweite (SpielVariablen.Allgemeines.Schwierigkeitsgrad) loop
          
          case
            ZielSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -38,18 +39,9 @@ package body KIEinheitFestlegenErkundenLogik is
                return True;
                
             when False =>
-               null;
+               UmgebungPrüfen := UmgebungPrüfen + 1;
+               BereitsGeprüft := UmgebungPrüfen - 1;
          end case;
-         
-         if
-           UmgebungPrüfen > 15
-         then
-            exit UnbekanntesFeldSuchenSchleife;
-            
-         else
-            UmgebungPrüfen := UmgebungPrüfen + 1;
-            BereitsGeprüft := UmgebungPrüfen - 1;
-         end if;
          
       end loop UnbekanntesFeldSuchenSchleife;
       

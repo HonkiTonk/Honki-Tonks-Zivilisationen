@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with MenueDatentypen;
-with Weltkarte;
+with KartenKonstanten;
 
 with SchreibeWeltkarte;
 with LeseWeltkarteneinstellungen;
@@ -88,11 +88,11 @@ package body DebugmenueLogik is
    is begin
       
       EbeneSchleife:
-      for EAchseSchleifenwert in Weltkarte.KarteArray'Range (1) loop
+      for EAchseSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
          YAchseSchleife:
-         for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
+         for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
             XAchseSchleife:
-            for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
+            for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
             
                SchreibeWeltkarte.Sichtbar (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                            RasseExtern       => RasseExtern,

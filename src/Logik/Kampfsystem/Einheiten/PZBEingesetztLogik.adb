@@ -7,6 +7,8 @@ with EinheitenKonstanten;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 with SchreibeWeltkarte;
+with SchreibeAllgemeines;
+with LeseAllgemeines;
 
 with EinheitenErzeugenEntfernenLogik;
 with KartenkoordinatenberechnungssystemLogik;
@@ -28,40 +30,42 @@ package body PZBEingesetztLogik is
         Einheitenart
       is
          when EinheitenDatentypen.PZB_Enum'Range =>
-            PZBGezündet := PZBGezündet + 1;
-            SpielVariablen.Allgemeines.PlanetVernichtet := EinheitRasseNummerExtern.Rasse;
+            SchreibeAllgemeines.AnzahlEingesetzterPZB (AnzahlExtern => GanzeZahlPrüfen (AktuellerWertExtern => LeseAllgemeines.AnzahlEingesetzterPZB,
+                                                                                         ÄnderungExtern      => 1));
+            SchreibeAllgemeines.PlanetVernichtet (RasseExtern => EinheitRasseNummerExtern.Rasse);
+            Zusammenbruchszeit := LeseAllgemeines.Zusammenbruchszeit;
             
          when others =>
             return False;
       end case;
       
       case
-        SpielVariablen.Allgemeines.Zusammenbruchszeit
+        Zusammenbruchszeit
       is
          when -1 =>
             if
               LeseWeltkarteneinstellungen.YAchse <= LeseWeltkarteneinstellungen.XAchse
             then
-               SpielVariablen.Allgemeines.Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10);
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10);
                   
             else
-               SpielVariablen.Allgemeines.Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10 );
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10 );
             end if;
                
          when others =>
             if
               LeseWeltkarteneinstellungen.YAchse <= LeseWeltkarteneinstellungen.XAchse
               and
-                SpielVariablen.Allgemeines.Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10) / PZBGezündet
+                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10) / LeseAllgemeines.AnzahlEingesetzterPZB
             then
-               SpielVariablen.Allgemeines.Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10) / PZBGezündet;
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10) / LeseAllgemeines.AnzahlEingesetzterPZB;
                
             elsif
               LeseWeltkarteneinstellungen.YAchse > LeseWeltkarteneinstellungen.XAchse
               and
-                SpielVariablen.Allgemeines.Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10) / PZBGezündet
+                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10) / LeseAllgemeines.AnzahlEingesetzterPZB
             then
-               SpielVariablen.Allgemeines.Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10) / PZBGezündet;
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10) / LeseAllgemeines.AnzahlEingesetzterPZB;
                   
             else
                null;

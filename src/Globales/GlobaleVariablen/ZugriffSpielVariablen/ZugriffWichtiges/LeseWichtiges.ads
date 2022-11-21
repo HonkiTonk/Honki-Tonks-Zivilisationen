@@ -4,6 +4,9 @@ with StadtDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with SpielVariablen;
+with SpielRecords;
+
+with LeseGrenzen;
 
 package LeseWichtiges is
    pragma Elaborate_Body;
@@ -77,7 +80,7 @@ package LeseWichtiges is
               ),
    
        Post => (
-                  AnzahlStädte'Result <= SpielVariablen.Grenzen (RasseExtern).Städtegrenze
+                  AnzahlStädte'Result <= LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
                );
    
    function AnzahlEinheiten
@@ -89,7 +92,7 @@ package LeseWichtiges is
               ),
    
        Post => (
-                  AnzahlEinheiten'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+                  AnzahlEinheiten'Result <= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
                );
    
    function AnzahlArbeiter
@@ -101,7 +104,7 @@ package LeseWichtiges is
               ),
    
        Post => (
-                  AnzahlArbeiter'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+                  AnzahlArbeiter'Result <= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
                );
      
    function AnzahlKämpfer
@@ -113,7 +116,7 @@ package LeseWichtiges is
               ),
    
        Post => (
-                  AnzahlKämpfer'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+                  AnzahlKämpfer'Result <= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
                );
      
    function AnzahlSonstiges
@@ -125,7 +128,15 @@ package LeseWichtiges is
               ),
    
        Post => (
-                  AnzahlSonstiges'Result <= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
+                  AnzahlSonstiges'Result <= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
                );
+   
+   function GanzerEintrag
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return SpielRecords.WichtigesRecord
+     with
+       Pre => (
+                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 end LeseWichtiges;

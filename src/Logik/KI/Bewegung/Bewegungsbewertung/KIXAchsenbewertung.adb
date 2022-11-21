@@ -1,5 +1,4 @@
 with KartenartDatentypen;
-with Weltkarte;
 
 with LeseWeltkarteneinstellungen;
 
@@ -48,7 +47,7 @@ package body KIXAchsenbewertung is
       end if;
       
       case
-        Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten
+        LeseWeltkarteneinstellungen.XAchseWesten
       is
          when KartenartDatentypen.Karte_X_Kein_Übergang_Enum =>
             Bewertung (True) := KIKonstanten.LeerBewertung;
@@ -68,7 +67,7 @@ package body KIXAchsenbewertung is
       end case;
       
       case
-        Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten
+        LeseWeltkarteneinstellungen.XAchseOsten
       is
          when KartenartDatentypen.Karte_X_Kein_Übergang_Enum =>
             Bewertung (False) := KIKonstanten.LeerBewertung;

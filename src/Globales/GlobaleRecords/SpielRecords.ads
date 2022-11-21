@@ -12,10 +12,12 @@ with DiplomatieDatentypen;
 package SpielRecords is
    pragma Preelaborate;
    
+   type InvestierteForschungArray is array (ForschungenDatentypen.ErforschtArray'Range) of ProduktionDatentypen.Produktion;
+   
    type ForschungRecord is record -- XXX
       
       TechnologieErforscht : ForschungenDatentypen.ErforschtArray;
-      InvestierteForschung : ProduktionDatentypen.Produktion;
+      InvestierteForschung : InvestierteForschungArray;
       
    end record;
    
@@ -59,12 +61,12 @@ package SpielRecords is
    
    type GrenzenRecord is record
       
-      Städtegrenze : StadtDatentypen.MaximaleStädte;
+      Städtegrenze : StadtDatentypen.MaximaleStädteMitNullWert;
       Einheitengrenze : EinheitenDatentypen.MaximaleEinheiten;
-      Geldgrenze : ZahlenDatentypen.EigenerInteger;
-      Forschungsgrenze : ProduktionDatentypen.Produktion;
-      Geldgewinngrenze : ProduktionDatentypen.Produktion;
-      ForschungGewinngrenze : ProduktionDatentypen.Produktion;
+      Geldgrenze : ZahlenDatentypen.EigenesNatural;
+      Forschungsgrenze : ProduktionDatentypen.Lagermenge;
+      Geldgewinngrenze : ProduktionDatentypen.Lagermenge;
+      ForschungGewinngrenze : ProduktionDatentypen.Lagermenge;
       RassenRundengrenze : ZahlenDatentypen.EigenesNatural;
       
    end record;
@@ -77,11 +79,12 @@ package SpielRecords is
       Weiterspielen : Boolean;
       RasseAmZugNachLaden : RassenDatentypen.Rassen_Enum;
       Schwierigkeitsgrad : SpielDatentypen.Schwierigkeitsgrad_Enum;
-      Rundenanzahl : Positive;
-      Rundengrenze : Natural;   
+      Rundenanzahl : ZahlenDatentypen.EigenesPositive;
+      Rundengrenze : ZahlenDatentypen.EigenesNatural;   
       IronmanName : Unbounded_Wide_Wide_String;
       PlanetVernichtet : RassenDatentypen.Rassen_Enum;
-      Zusammenbruchszeit : Integer;
+      Zusammenbruchszeit : ZahlenDatentypen.EigenerInteger;
+      AnzahlEingesetzterPZB : ZahlenDatentypen.EigenesNatural;
       
    end record;
    

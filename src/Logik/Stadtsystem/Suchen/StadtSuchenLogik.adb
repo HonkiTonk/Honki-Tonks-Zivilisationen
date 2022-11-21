@@ -120,7 +120,7 @@ package body StadtSuchenLogik is
                
             when others =>
                StadtSchleife:
-               for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
+               for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseSchleifenwert) loop
                   
                   if
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = StadtKonstanten.LeerID

@@ -8,7 +8,6 @@ with KartenKonstanten;
 with ZeitKonstanten;
 with Views;
 with EinheitenKonstanten;
-with Weltkarte;
 
 with LeseEinheitenGebaut;
 
@@ -79,17 +78,16 @@ package body CursorplatzierungAltGrafik is
       
       -- Die EAchse später auch noch über eine Funktion die Änderung ermitteln oder einfach so lassen? äöü
       SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.EAchse := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell.EAchse;
-            
       
-      -- case
-      --   EinheitRasseNummerExtern.Nummer
-      -- is
-      --    when EinheitenKonstanten.LeerNummer =>
-      EinheitFolgen := True;
-                        
-      --    when others =>
-      -- EinheitFolgen := Einheitenbereich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      -- end case;
+      case
+        EinheitRasseNummerExtern.Nummer
+      is
+         when EinheitenKonstanten.LeerNummer =>
+            EinheitFolgen := True;
+            
+         when others =>
+            EinheitFolgen := Einheitenbereich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end case;
       
       case
         EinheitFolgen
@@ -125,14 +123,22 @@ package body CursorplatzierungAltGrafik is
    
    
    
-   -- Sorgt dafür das man mit ausgewählter Einheit zwar immer die Einheit im Blick hat, aber auch dass man nicht frei herumscrollen kann. äöü
-   -- Löst auch nicht das Problem mit dem Übergang. äöü
    function Einheitenbereich
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
+      
+      case
+        NachGrafiktask.EinheitBewegt
+      is
+         when False =>
+            return True;
+            
+         when True =>
+            NachGrafiktask.EinheitBewegt := False;
+      end case;
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       AlteCursorkoordinaten := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt;
@@ -259,16 +265,16 @@ package body CursorplatzierungAltGrafik is
         MauspositionExtern.y in 0.00 .. SichtweitenGrafik.KartenfelderAbmessung.y / 2.00
       then
          if
-           YAchseAltExtern - AktuelleSichtweite <= Weltkarte.KarteArray'First (2)
+           YAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangYAchse
            and
-             Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+             LeseWeltkarteneinstellungen.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
          then
             return 0;
             
          elsif
-           YAchseAltExtern - AktuelleSichtweite <= Weltkarte.KarteArray'First (2) - 1
+           YAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangYAchse - 1
            and
-             Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
+             LeseWeltkarteneinstellungen.YAchseNorden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
          then
             return 0;
             
@@ -282,14 +288,14 @@ package body CursorplatzierungAltGrafik is
          if
            YAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.YAchse
            and
-             Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+             LeseWeltkarteneinstellungen.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
          then
             return 0;
             
          elsif
            YAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.YAchse + 1
            and
-             Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
+             LeseWeltkarteneinstellungen.YAchseSüden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
          then
             return 0;
          
@@ -315,21 +321,22 @@ package body CursorplatzierungAltGrafik is
       
       XAchsenbereich := Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x;
       AktuelleSichtweite := SichtweitenGrafik.SichtweiteLesen;
+      XAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformXAchse;
       
       if
         MausachseExtern in 0.00 .. SichtweitenGrafik.KartenfelderAbmessung.x / 2.00
       then
          if
-           XAchseAltExtern - AktuelleSichtweite <= Weltkarte.KarteArray'First (3)
+           XAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangXAchse
            and
-             Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+             XAchseÜbergänge.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
          then
             return 0;
             
          elsif
-           XAchseAltExtern - AktuelleSichtweite <= Weltkarte.KarteArray'First (3) - 1
+           XAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangXAchse - 1
            and
-             Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
+             XAchseÜbergänge.XAchseWesten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
          then
             return 0;
             
@@ -343,14 +350,14 @@ package body CursorplatzierungAltGrafik is
          if
            XAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.XAchse
            and
-             Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+             XAchseÜbergänge.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
          then
             return 0;
             
          elsif
            XAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.XAchse + 1
            and
-             Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
+             XAchseÜbergänge.XAchseOsten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
          then
             return 0;
          

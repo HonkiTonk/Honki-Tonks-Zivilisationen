@@ -241,4 +241,24 @@ package body SchreibeWeltkarte is
       
    end EinheitEntfernen;
    
+   
+   
+   procedure Standardeinstellungen
+   is begin
+      
+      Weltkarte.Karte := (others => (others => (others => WeltkarteRecords.LeerWeltkarte)));
+      
+   end Standardeinstellungen;
+   
+   
+   
+   procedure GanzerEintrag
+     (EintrageExtern : in WeltkarteRecords.WeltkarteRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+   is begin
+      
+      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) := EintrageExtern;
+      
+   end GanzerEintrag;
+   
 end SchreibeWeltkarte;

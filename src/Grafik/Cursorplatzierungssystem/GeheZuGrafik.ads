@@ -22,6 +22,9 @@ private
    
    AktuelleSichtweite : KartenDatentypen.KartenfeldPositiv;
    
+   YAchseÜbergänge : KartenRecords.KartenformYAchseRecord;
+   XAchseÜbergänge : KartenRecords.KartenformXAchseRecord;
+   
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenwertKoordinatenberechnung : KartenRecords.AchsenKartenfeldNaturalRecord;
    

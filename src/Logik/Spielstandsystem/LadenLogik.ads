@@ -4,6 +4,9 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 private with RassenDatentypen;
 private with SonstigesKonstanten;
 private with SpielVariablen;
+private with KartenRecords;
+private with WeltkarteRecords;
+private with SpielRecords;
 
 package LadenLogik is
    pragma Elaborate_Body;
@@ -19,6 +22,14 @@ private
    DateiLaden : File_Type;
 
    Spielstandname : Unbounded_Wide_Wide_String;
+
+   Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
+
+   Wichtiges : SpielRecords.WichtigesRecord;
+
+   Grenzen : SpielRecords.GrenzenRecord;
+
+   Karteneintrag : WeltkarteRecords.WeltkarteRecord;
 
    procedure Allgemeines
      (DateiLadenExtern : in File_Type);

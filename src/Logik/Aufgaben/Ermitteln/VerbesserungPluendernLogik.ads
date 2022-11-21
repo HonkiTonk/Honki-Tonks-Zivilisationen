@@ -5,6 +5,7 @@ with SpielVariablen;
 with KartenRecords;
 
 with LeseWeltkarteneinstellungen;
+with LeseGrenzen;
 
 package VerbesserungPluendernLogik is
    pragma Elaborate_Body;
@@ -22,7 +23,7 @@ package VerbesserungPluendernLogik is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
               );

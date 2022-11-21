@@ -31,7 +31,7 @@ package body KIEinheitenBauenLogik is
       if
         VorhandeneEinheiten >= 5 * AnzahlStädte
         or
-          VorhandeneEinheiten >= SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze
+          VorhandeneEinheiten >= LeseGrenzen.Einheitengrenze (RasseExtern => StadtRasseNummerExtern.Rasse)
       then
          return KIKonstanten.LeerEinheitenbewertung;
          

@@ -6,6 +6,7 @@ with SpielVariablen;
 with KartenRecords;
 with EinheitenRecords;
 with StadtRecords;
+with WeltkarteRecords;
 
 with LeseWeltkarteneinstellungen;
 
@@ -127,5 +128,11 @@ package SchreibeWeltkarte is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
+   
+   procedure GanzerEintrag
+     (EintrageExtern : in WeltkarteRecords.WeltkarteRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord);
+   
+   procedure Standardeinstellungen;
    
 end SchreibeWeltkarte;

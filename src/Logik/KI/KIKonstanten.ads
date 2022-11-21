@@ -1,4 +1,5 @@
 with SpielDatentypen;
+with KartenDatentypen;
 
 with KIDatentypen;
 with KIRecords;
@@ -44,5 +45,13 @@ package KIKonstanten is
                                                                      SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 25,
                                                                      SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => 50
                                                                     );
+
+   type FelderreichweiteArray is array (SpielDatentypen.Schwierigkeitsgrad_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
+   Felderreichweite : constant FelderreichweiteArray := (
+                                                         SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum => 15,
+                                                         SpielDatentypen.Schwierigkeitsgrad_Mittel_Enum => 20,
+                                                         SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => 25
+                                                        );
+
 
 end KIKonstanten;

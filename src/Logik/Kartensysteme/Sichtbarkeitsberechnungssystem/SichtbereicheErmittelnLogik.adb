@@ -1,5 +1,4 @@
 with KartengrundDatentypen;
-with KartenKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;

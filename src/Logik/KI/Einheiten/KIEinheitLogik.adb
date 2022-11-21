@@ -12,6 +12,7 @@ package body KIEinheitLogik is
    is begin
       
       FeindlicheEinheit := KIGefahrErmittelnLogik.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      -- FeindlicheEinheit.Rasse := EinheitenKonstanten.LeerRasse;
       
       -- Kriegshandlungen einbauen oder die bei den entsprechenden Punkten mit berücksichtigen? äöü
       case

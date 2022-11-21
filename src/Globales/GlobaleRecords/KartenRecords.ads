@@ -87,6 +87,24 @@ package KartenRecords is
    
    
    
+   type KartenformYAchseRecord is record
+      
+      YAchseNorden : KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
+      YAchseSüden : KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
+      
+   end record;
+   
+   
+   
+   type KartenformXAchseRecord is record
+      
+      XAchseWesten : KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
+      XAchseOsten : KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
+      
+   end record;
+   
+   
+   
    type KartenformRecord is record
       
       EAchseOben : KartenartDatentypen.Kartenform_E_Einstellbar_Enum;

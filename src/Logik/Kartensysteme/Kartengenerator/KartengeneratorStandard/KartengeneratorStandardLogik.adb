@@ -1,8 +1,6 @@
 with KartengrundDatentypen;
-with KartenartDatentypen;
 with KartenKonstanten;
 with LadezeitenDatentypen;
-with Weltkarte;
 
 with SchreibeWeltkarte;
 with LeseWeltkarte;
@@ -188,10 +186,13 @@ package body KartengeneratorStandardLogik is
       use type KartenartDatentypen.Kartenform_Enum;
    begin
       
+      ÜbergangNorden := LeseWeltkarteneinstellungen.YAchseNorden;
+      ÜbergangSüden := LeseWeltkarteneinstellungen.YAchseSüden;
+      
       if
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+        ÜbergangNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
         and
-          Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+          ÜbergangSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
            YAchseExtern - AnfangExtern < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse
@@ -208,7 +209,7 @@ package body KartengeneratorStandardLogik is
          end if;
          
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+        ÜbergangNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
            YAchseExtern - AnfangExtern < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse
@@ -220,7 +221,7 @@ package body KartengeneratorStandardLogik is
          end if;
          
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+        ÜbergangSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
       then
          if
            YAchseExtern + EndeExtern > KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse
@@ -250,10 +251,13 @@ package body KartengeneratorStandardLogik is
       use type KartenartDatentypen.Kartenform_Enum;
    begin
       
+      ÜbergangWesten := LeseWeltkarteneinstellungen.XAchseWesten;
+      ÜbergangOsten := LeseWeltkarteneinstellungen.XAchseOsten;
+      
       if
-        Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+        ÜbergangWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
         and
-          Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+          ÜbergangOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
            XAchseExtern - AnfangExtern < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse
@@ -270,7 +274,7 @@ package body KartengeneratorStandardLogik is
          end if;
          
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+        ÜbergangWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
            XAchseExtern - AnfangExtern < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse
@@ -282,7 +286,7 @@ package body KartengeneratorStandardLogik is
          end if;
          
       elsif
-        Weltkarte.Karteneinstellungen.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
+        ÜbergangOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
       then
          if
            XAchseExtern + EndeExtern > KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse

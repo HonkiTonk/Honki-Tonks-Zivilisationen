@@ -1,17 +1,19 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
-with KartenRecords;
 with StadtRecords;
-with SpielRecords;
 with EinheitenRecords;
 with TextnummernKonstanten;
 with GrafikDatentypen;
 with VerzeichnisKonstanten;
-with WeltkarteRecords;
 with TextKonstanten;
-with Weltkarte;
+with KartenKonstanten;
 
 with LeseWeltkarteneinstellungen;
+with SchreibeWeltkarte;
+with SchreibeWeltkarteneinstellungen;
+with SchreibeWichtiges;
+with LeseGrenzen;
+with SchreibeGrenzen;
 
 with LadezeitenLogik;
 with JaNeinLogik;
@@ -99,17 +101,22 @@ package body LadenLogik is
    is begin
       
       KartenRecords.PermanenteKartenparameterRecord'Read (Stream (File => DateiLadenExtern),
-                                                          Weltkarte.Karteneinstellungen);
+                                                          Karteneinstellungen);
+      
+      SchreibeWeltkarteneinstellungen.GesamteEinstellungen (EinstellungenExtern => Karteneinstellungen);
 
       EAchseSchleife:
-      for EAchseSchleifenwert in Weltkarte.KarteArray'Range (1) loop
+      for EAchseSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
          YAchseSchleife:
-         for YAchseSchleifenwert in Weltkarte.KarteArray'First (2) .. LeseWeltkarteneinstellungen.YAchse loop
+         for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
             XAchseSchleife:
-            for XAchseSchleifenwert in Weltkarte.KarteArray'First (3) .. LeseWeltkarteneinstellungen.XAchse loop
+            for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
 
                WeltkarteRecords.WeltkarteRecord'Read (Stream (File => DateiLadenExtern),
-                                                      Weltkarte.Karte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                      Karteneintrag);
+               
+               SchreibeWeltkarte.GanzerEintrag (EintrageExtern    => Karteneintrag,
+                                                KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -152,10 +159,13 @@ package body LadenLogik is
    is begin
       
       SpielRecords.GrenzenRecord'Read (Stream (File => DateiLadenExtern),
-                                       SpielVariablen.Grenzen (RasseExtern));
+                                       Grenzen);
+      
+      SchreibeGrenzen.GanzerEintrag (RasseExtern   => RasseExtern,
+                                     EintragExtern => Grenzen);
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
+      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
             
          EinheitenRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenExtern),
                                                       SpielVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert));
@@ -163,7 +173,7 @@ package body LadenLogik is
       end loop EinheitenSchleife;
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
                   
          StadtRecords.StadtGebautRecord'Read (Stream (File => DateiLadenExtern),
                                               SpielVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert));
@@ -171,7 +181,10 @@ package body LadenLogik is
       end loop StadtSchleife;
       
       SpielRecords.WichtigesRecord'Read (Stream (File => DateiLadenExtern),
-                                         SpielVariablen.Wichtiges (RasseExtern));
+                                         Wichtiges);
+      
+      SchreibeWichtiges.GanzerEintrag (RasseExtern   => RasseExtern,
+                                       EintragExtern => Wichtiges);
       
       DiplomatieSchleife:
       for RasseDiplomatieSchleifenwert in SpielVariablen.DiplomatieArray'Range (2) loop
