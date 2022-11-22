@@ -3,16 +3,17 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 private with Sf.System.Vector2;
 
 with RassenDatentypen;
-with KartenDatentypen; 
-with SpielVariablen;
+with KartenDatentypen;
 with KartenRecords;
 
 private with TextaccessVariablen;
 private with ProduktionDatentypen;
 private with GrafikRecordKonstanten;
 private with ForschungenDatentypen;
+private with ZahlenDatentypen;
 
 with LeseWeltkarteneinstellungen;
+with LeseRassenbelegung;
 
 private with UmwandlungenAdaNachEigenes;
 
@@ -27,7 +28,7 @@ package WichtigesSeitenleisteGrafik is
       ViewbereichExtern : in Positive)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -40,6 +41,10 @@ private
    Forschungszeit : ProduktionDatentypen.Lagermenge;
    
    Forschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
+   
+   AktuelleRundenanzahl : ZahlenDatentypen.EigenesPositive;
+   
+   Rundengrenze : ZahlenDatentypen.EigenesNatural;
    
    Textbreite : Float;
       
@@ -56,7 +61,7 @@ private
       return Unbounded_Wide_Wide_String
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               ),
          
        Post => (
@@ -68,7 +73,7 @@ private
       return Unbounded_Wide_Wide_String
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
    function Forschung
@@ -76,7 +81,7 @@ private
       return Unbounded_Wide_Wide_String
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
    function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Produktion);

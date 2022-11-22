@@ -13,10 +13,11 @@ private with RassenDatentypen;
 private with KartengrundDatentypen;
 private with KartenverbesserungDatentypen;
 private with EinheitenDatentypen;
-private with SpielVariablen;
 private with StadtRecords;
 
 with LeseWeltkarteneinstellungen;
+
+private with LeseRassenbelegung;
 
 package WeltkarteZeichnenGrafik is
    pragma Elaborate_Body;
@@ -92,7 +93,7 @@ private
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  PositionExtern.x >= 0.00
                and
@@ -105,7 +106,7 @@ private
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and

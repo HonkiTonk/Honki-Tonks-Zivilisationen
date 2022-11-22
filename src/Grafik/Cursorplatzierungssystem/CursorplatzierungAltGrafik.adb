@@ -10,6 +10,8 @@ with Views;
 with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
+with LeseCursor;
+with SchreibeCursor;
 
 with KartenkoordinatenberechnungssystemLogik;
 with SichtweitenGrafik;
@@ -76,8 +78,8 @@ package body CursorplatzierungAltGrafik is
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                  view         => Views.KartenviewAccess);
       
-      -- Die EAchse später auch noch über eine Funktion die Änderung ermitteln oder einfach so lassen? äöü
-      SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.EAchse := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell.EAchse;
+      SchreibeCursor.EAchseAlt (RasseExtern  => EinheitRasseNummerExtern.Rasse,
+                                EAchseExtern => LeseCursor.EAchseAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse));
       
       case
         EinheitRasseNummerExtern.Nummer
@@ -98,25 +100,26 @@ package body CursorplatzierungAltGrafik is
             
          when True =>
             Koordinatenänderung.YAchse := AlteYAchseFestlegen (MauspositionExtern => Mausposition,
-                                                                YAchseAltExtern    => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.YAchse);
+                                                                YAchseAltExtern    => LeseCursor.YAchseAlt (RasseExtern => EinheitRasseNummerExtern.Rasse));
             
             Koordinatenänderung.XAchse := AlteXAchseFestlegen (MausachseExtern => Mausposition.x,
-                                                                XAchseAltExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt.XAchse);
+                                                                XAchseAltExtern => LeseCursor.XAchseAlt (RasseExtern => EinheitRasseNummerExtern.Rasse));
       end case;
       
       Koordinatenänderung.EAchse := KartenKonstanten.LeerEAchseÄnderung;
       
-      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt,
+      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseCursor.KoordinatenAlt (RasseExtern => EinheitRasseNummerExtern.Rasse),
                                                                                                 ÄnderungExtern    => Koordinatenänderung,
                                                                                                 LogikGrafikExtern => False);
-            
+      
       if
         Kartenwert.EAchse = KartenKonstanten.LeerEAchse
       then
          null;
                   
       else
-         SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt := Kartenwert;
+         SchreibeCursor.KoordinatenAlt (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                        KoordinatenExtern => Kartenwert);
       end if;
       
    end Platzierung;
@@ -141,7 +144,7 @@ package body CursorplatzierungAltGrafik is
       end case;
       
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      AlteCursorkoordinaten := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt;
+      AlteCursorkoordinaten := LeseCursor.KoordinatenAlt (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       YAchseSchleife:
       for YAchseSchleifenwert in -SichtweitenGrafik.SichtweiteLesen .. SichtweitenGrafik.SichtweiteLesen loop

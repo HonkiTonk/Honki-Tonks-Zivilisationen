@@ -1,5 +1,6 @@
 with RassenDatentypen;
-with SpielVariablen;
+
+with LeseRassenbelegung;
 
 package KIDiplomatieLogik is
    pragma Elaborate_Body;
@@ -9,7 +10,7 @@ package KIDiplomatieLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
               );
 
    procedure DiplomatieKIMensch
@@ -17,9 +18,9 @@ package KIDiplomatieLogik is
       RasseKIExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseMenschExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseMenschExtern) = RassenDatentypen.Mensch_Spieler_Enum
                and
-                 SpielVariablen.Rassenbelegung (RasseKIExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseKIExtern) = RassenDatentypen.KI_Spieler_Enum
               );
 
    procedure DiplomatieKIKI
@@ -27,9 +28,9 @@ package KIDiplomatieLogik is
       FremdeRasseKIExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.KI_Spieler_Enum
                and
-                 SpielVariablen.Rassenbelegung (FremdeRasseKIExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseKIExtern) = RassenDatentypen.KI_Spieler_Enum
               );
 
 end KIDiplomatieLogik;

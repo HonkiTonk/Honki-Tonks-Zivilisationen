@@ -1,8 +1,10 @@
 with RassenDatentypen;
-with SpielVariablen;
 with WichtigesRecordKonstanten;
 
 with LeseWichtiges;
+with SchreibeAllgemeines;
+with LeseRassenbelegung;
+with SchreibeRassenbelegung;
 
 with AbspannLogik;
 with NachGrafiktask;
@@ -30,11 +32,6 @@ package body SiegbedingungenLogik is
       
       elsif
         SiegbedingungZwei = True
-      then
-         Sieg := GrafikDatentypen.Gewonnen_Enum;
-      
-      elsif
-        SiegbedingungDrei = True
       then
          Sieg := GrafikDatentypen.Gewonnen_Enum;
             
@@ -69,20 +66,21 @@ package body SiegbedingungenLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Besiegt
+           LeseRassenbelegung.Besiegt (RasseExtern => RasseSchleifenwert)
          is
             when True =>
+               SchreibeRassenbelegung.GanzerEintrag (RasseExtern   => RasseSchleifenwert,
+                                                     EintragExtern => WichtigesRecordKonstanten.LeerRassenbelegung);
+               
                if
-                 SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Mensch_Spieler_Enum
                then
-                  SpielVariablen.Rassenbelegung (RasseSchleifenwert) := WichtigesRecordKonstanten.LeerRassenbelegung;
                   return True;
                   
                else
-                  SpielVariablen.Rassenbelegung (RasseSchleifenwert) := WichtigesRecordKonstanten.LeerRassenbelegung;
                   return False;
                end if;
-           
+               
             when False =>
                null;
          end case;
@@ -105,7 +103,7 @@ package body SiegbedingungenLogik is
       for RassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.Rassenbelegung (RassenSchleifenwert).Belegung
+          LeseRassenbelegung.Belegung (RasseExtern => RassenSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -124,7 +122,7 @@ package body SiegbedingungenLogik is
             return True;
             
          when 1 =>
-            SpielVariablen.Allgemeines.Gewonnen := True;
+            SchreibeAllgemeines.Gewonnen;
             return True;
             
          when others =>
@@ -145,14 +143,14 @@ package body SiegbedingungenLogik is
       for RassenGeldSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           SpielVariablen.Rassenbelegung (RassenGeldSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
+           LeseRassenbelegung.Belegung (RasseExtern => RassenGeldSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             
          elsif
            LeseWichtiges.Geldmenge (RasseExtern => RassenGeldSchleifenwert) = Integer'Last
          then
-            SpielVariablen.Allgemeines.Gewonnen := True;
+            SchreibeAllgemeines.Gewonnen;
             return True;
             
          else
@@ -164,24 +162,5 @@ package body SiegbedingungenLogik is
       return False;
       
    end SiegbedingungZwei;
-   
-   
-   
-   function SiegbedingungDrei
-     return Boolean
-   is begin
-      
-      case
-        SpielVariablen.Debug.Sieg
-      is
-         when False =>
-            return False;
-            
-         when True =>
-            SpielVariablen.Allgemeines.Gewonnen := True;
-            return True;
-      end case;
-         
-   end SiegbedingungDrei;
 
 end SiegbedingungenLogik;

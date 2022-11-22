@@ -1,6 +1,5 @@
 with RassenDatentypen;
 with KartenRecords;
-with SpielVariablen;
 with KartenKonstanten;
 with KartenDatentypen;
 
@@ -9,6 +8,7 @@ private with EinheitenRecords;
 private with KartengrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
+with LeseRassenbelegung;
 
 package SichtbarkeitSetzenLogik is
    pragma Elaborate_Body;
@@ -23,7 +23,7 @@ package SichtbarkeitSetzenLogik is
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
                and
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    procedure EbenenBerechnungen
@@ -35,7 +35,7 @@ package SichtbarkeitSetzenLogik is
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
                and
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private

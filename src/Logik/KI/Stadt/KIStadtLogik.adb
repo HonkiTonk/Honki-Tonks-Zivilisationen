@@ -6,17 +6,17 @@ with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
-with KIDatentypen;
-
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
+with LeseDiplomatie;
 
 with EinheitSuchenLogik;
 with KartenkoordinatenberechnungssystemLogik;
-with DiplomatischerZustandLogik;
 with EinheitenmodifizierungLogik;
+
+with KIDatentypen;
 
 with KIEinheitenBauenLogik;
 with KIGebaeudeBauenLogik;
@@ -197,8 +197,8 @@ package body KIStadtLogik is
                      null;
                      
                   elsif
-                    DiplomatieDatentypen.Krieg_Enum /= DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                               FremdeRasseExtern => FremdeEinheit.Rasse)
+                    DiplomatieDatentypen.Krieg_Enum /= LeseDiplomatie.AktuellerZustand (RasseEinsExtern => StadtRasseNummerExtern.Rasse,
+                                                                                        RasseZweiExtern => FremdeEinheit.Rasse)
                   then
                      null;
                      

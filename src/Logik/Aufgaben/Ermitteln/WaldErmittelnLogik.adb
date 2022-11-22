@@ -39,7 +39,7 @@ package body WaldErmittelnLogik is
          or
            VorhandeneVerbesserung = KartenverbesserungDatentypen.Mine_Enum)
         and
-          SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+          LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
       then
          case
            JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLandverbesserungErsetzen)

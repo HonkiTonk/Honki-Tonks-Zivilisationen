@@ -1,10 +1,11 @@
 with RassenDatentypen;
-with SpielVariablen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with AufgabenDatentypen;
 with SystemDatentypen;
 with BefehleDatentypen;
+
+with LeseRassenbelegung;
 
 package LeseForschungenDatenbank is
    pragma Elaborate_Body;
@@ -16,7 +17,7 @@ package LeseForschungenDatenbank is
       return ProduktionDatentypen.Lagermenge
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function AnforderungForschung
@@ -26,7 +27,7 @@ package LeseForschungenDatenbank is
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function Verbesserungen
@@ -35,7 +36,7 @@ package LeseForschungenDatenbank is
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function Wege
@@ -44,7 +45,7 @@ package LeseForschungenDatenbank is
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function Umgebung
@@ -53,7 +54,7 @@ package LeseForschungenDatenbank is
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end LeseForschungenDatenbank;

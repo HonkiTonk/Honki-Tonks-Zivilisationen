@@ -38,7 +38,7 @@ package body StadtproduktionLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
                
          case
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;

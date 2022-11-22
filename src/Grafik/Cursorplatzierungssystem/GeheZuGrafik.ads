@@ -1,8 +1,9 @@
 with RassenDatentypen;
-with SpielVariablen;
 
 private with KartenRecords;
 private with KartenDatentypen;
+
+with LeseRassenbelegung;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -14,7 +15,7 @@ package GeheZuGrafik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private

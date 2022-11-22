@@ -6,6 +6,7 @@ with EinheitenRecords;
 with EinheitenDatentypen;
 
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 package MeldungenSetzenLogik is
    pragma Elaborate_Body;
@@ -18,7 +19,7 @@ package MeldungenSetzenLogik is
       EreignisExtern : in StadtDatentypen.Stadt_Meldungen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
               );
@@ -28,7 +29,7 @@ package MeldungenSetzenLogik is
       EreignisExtern : in EinheitenDatentypen.Einheit_Meldung_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
               );

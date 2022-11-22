@@ -36,7 +36,7 @@ package body VerbesserungPluendernLogik is
       end if;
       
       case
-        SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung
+        LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse)
       is
          when RassenDatentypen.KI_Spieler_Enum =>
             null;

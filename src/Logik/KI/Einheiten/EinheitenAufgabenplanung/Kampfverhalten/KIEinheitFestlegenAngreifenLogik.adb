@@ -4,8 +4,7 @@ with KartenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
-
-with DiplomatischerZustandLogik;
+with LeseDiplomatie;
 
 with KIDatentypen;
 
@@ -80,15 +79,15 @@ package body KIEinheitFestlegenAngreifenLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
+           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
            or
              RasseSchleifenwert = RasseExtern
          then
             null;
             
          elsif
-           DiplomatieDatentypen.Krieg_Enum = DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
-                                                                                                     FremdeRasseExtern => RasseSchleifenwert)
+           DiplomatieDatentypen.Krieg_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
+                                                                              RasseZweiExtern => RasseSchleifenwert)
          then
             -- Es sollte auch noch Prüfungen auf die Stärke der feindlichen Rassen erfolgen. äöü
             Ziel := RasseSchleifenwert;

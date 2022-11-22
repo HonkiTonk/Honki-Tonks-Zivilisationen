@@ -5,6 +5,7 @@ with KartenRecordKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseWeltkarte;
+with LeseAllgemeines;
 
 with BewegungsberechnungEinheitenLogik;
 with EinheitSuchenLogik;
@@ -33,7 +34,7 @@ package body KIBewegungDurchfuehrenLogik is
       Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       BewegungSchleife:
-      for BewegungSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.SchwierigkeitsgradBewegung (SpielVariablen.Allgemeines.Schwierigkeitsgrad) loop
+      for BewegungSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.SchwierigkeitsgradBewegung (LeseAllgemeines.Schwierigkeitsgrad) loop
          
          case
            LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)

@@ -1,4 +1,4 @@
-with SpielVariablen;
+with LeseRassenbelegung;
 
 package body Spielertests is
    
@@ -16,7 +16,7 @@ package body Spielertests is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung not in RassenDatentypen.Spieler_Belegt_Enum'Range
+             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) not in RassenDatentypen.Spieler_Belegt_Enum'Range
          then
             null;
             
@@ -46,7 +46,7 @@ package body Spielertests is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung /= RassenDatentypen.Mensch_Spieler_Enum
+             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) /= RassenDatentypen.Mensch_Spieler_Enum
          then
             null;
             
@@ -76,7 +76,7 @@ package body Spielertests is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung /= RassenDatentypen.KI_Spieler_Enum
+             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) /= RassenDatentypen.KI_Spieler_Enum
          then
             null;
             

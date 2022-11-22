@@ -1,12 +1,13 @@
 with RassenDatentypen;
 with KartenDatentypen;
-with SpielVariablen;
 with StadtDatentypen;
 with KartengrundDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with KartenverbesserungDatentypen;
+
+with LeseRassenbelegung;
 
 package LeseGebaeudeDatenbank is
    pragma Elaborate_Body;
@@ -18,7 +19,7 @@ package LeseGebaeudeDatenbank is
       return ProduktionDatentypen.Produktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function Produktionskosten
@@ -27,7 +28,7 @@ package LeseGebaeudeDatenbank is
       return ProduktionDatentypen.Produktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function PermanenteKosten
@@ -37,7 +38,7 @@ package LeseGebaeudeDatenbank is
       return ProduktionDatentypen.Stadtproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
       
    function Anforderungen
@@ -46,7 +47,7 @@ package LeseGebaeudeDatenbank is
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function WirtschaftBonus
@@ -56,7 +57,7 @@ package LeseGebaeudeDatenbank is
       return ProduktionDatentypen.Feldproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
          
    function KampfBonus
@@ -66,7 +67,7 @@ package LeseGebaeudeDatenbank is
       return KampfDatentypen.KampfwerteEinheiten
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
       
    function BasisgrundBenötigt
@@ -75,7 +76,7 @@ package LeseGebaeudeDatenbank is
       return KartengrundDatentypen.Basisgrund_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
       
    function FlussBenötigt
@@ -84,7 +85,7 @@ package LeseGebaeudeDatenbank is
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
       
    function RessourceBenötigt
@@ -93,7 +94,7 @@ package LeseGebaeudeDatenbank is
       return KartengrundDatentypen.Kartenressourcen_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function VerbesserungBenötigt
@@ -102,7 +103,7 @@ package LeseGebaeudeDatenbank is
       return KartenverbesserungDatentypen.Karten_Verbesserung_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
      
    function GebäudeBenötigt
@@ -111,7 +112,7 @@ package LeseGebaeudeDatenbank is
       return StadtDatentypen.GebäudeIDMitNullwert
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function FalscheEbene
@@ -121,7 +122,7 @@ package LeseGebaeudeDatenbank is
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function GebäudeSpezielleEigenschaft
@@ -130,7 +131,7 @@ package LeseGebaeudeDatenbank is
       return StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end LeseGebaeudeDatenbank;

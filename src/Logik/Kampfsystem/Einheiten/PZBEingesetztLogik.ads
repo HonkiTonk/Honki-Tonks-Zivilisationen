@@ -9,6 +9,7 @@ private with KartenDatentypen;
 private with ZahlenDatentypen;
 
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -24,7 +25,7 @@ package PZBEingesetztLogik is
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
               );
@@ -35,6 +36,7 @@ private
    Einheitenart : EinheitenDatentypen.Einheitart_Enum;
 
    Verbleibendezeit : ZahlenDatentypen.EigenesNatural;
+   EingesetztePZB : ZahlenDatentypen.EigenesNatural;
 
    Zusammenbruchszeit : ZahlenDatentypen.EigenerInteger;
 

@@ -1,11 +1,11 @@
 with RassenDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
-with SpielVariablen;
 
 private with EinheitenRecords;
 
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 package AuswahlStadtEinheitLogik is
    pragma Elaborate_Body;
@@ -24,7 +24,7 @@ package AuswahlStadtEinheitLogik is
                and
                  EinheitNummerExtern <= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
                and
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private

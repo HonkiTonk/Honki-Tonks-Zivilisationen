@@ -2,6 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with KartenverbesserungDatentypen;
 with StadtKonstanten;
+with SpielVariablen;
 
 with LeseStadtGebaut;
 with LeseWeltkarte;
@@ -113,7 +114,7 @@ package body StadtSuchenLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;

@@ -1,10 +1,11 @@
 private with Sf.System.Vector2;
 
 with RassenDatentypen;
-with SpielVariablen;
 
 private with GrafikRecordKonstanten;
 private with ForschungenDatentypen;
+
+with LeseRassenbelegung;
 
 package ForschungserfolgGrafik is
    pragma Elaborate_Body;
@@ -15,7 +16,7 @@ package ForschungserfolgGrafik is
       AuswahlExtern : in Natural)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
                and
                  AuswahlExtern in 1 .. 2
               );
@@ -38,7 +39,7 @@ private
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
                and
                  ViewbreiteExtern >= 0.00
               );
@@ -50,7 +51,7 @@ private
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
                and
                  ViewbreiteExtern >= 0.00
               );

@@ -5,7 +5,6 @@ with StadtDatentypen;
 with EinheitenDatentypen;
 with EinheitenRecords;
 with StadtRecords;
-with SystemRecords;
 with EinheitenRecordKonstanten;
 with StadtRecordKonstanten;
 with WichtigesRecordKonstanten;
@@ -15,8 +14,6 @@ package SpielVariablen is
       
    type RassenbelegungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of SpielRecords.RassenRecords;
    Rassenbelegung : RassenbelegungArray := (others => WichtigesRecordKonstanten.LeerRassenbelegung);
-   
-   Debug : SystemRecords.DebugRecord := (others => False);
    
    Allgemeines : SpielRecords.AllgemeinesRecord := WichtigesRecordKonstanten.LeerAllgemeines;
       

@@ -2,6 +2,7 @@ with WichtigesRecordKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with GrafikDatentypen;
+with SpielVariablen;
 
 with SchreibeStadtGebaut;
 with SchreibeEinheitenGebaut;
@@ -9,6 +10,9 @@ with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with SchreibeWichtiges;
 with LeseGrenzen;
+with SchreibeDiplomatie;
+with SchreibeRassenbelegung;
+with SchreibeCursor;
 
 with LadezeitenLogik;
 with NachGrafiktask;
@@ -46,8 +50,19 @@ package body RasseEntfernenLogik is
       DiplomatieSchleife:
       for DiplomatieSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         SpielVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert) := WichtigesRecordKonstanten.LeerDiplomatie;
-         SpielVariablen.Diplomatie (DiplomatieSchleifenwert, RasseExtern) := WichtigesRecordKonstanten.LeerDiplomatie;
+         if
+           DiplomatieSchleifenwert = RasseExtern
+         then
+            null;
+               
+         else
+            SchreibeDiplomatie.GanzerEintrag (RasseEinsExtern => RasseExtern,
+                                              RasseZweiExtern => DiplomatieSchleifenwert,
+                                              EintragExtern   => WichtigesRecordKonstanten.LeerDiplomatie);
+            SchreibeDiplomatie.GanzerEintrag (RasseEinsExtern => DiplomatieSchleifenwert,
+                                              RasseZweiExtern => RasseExtern,
+                                              EintragExtern   => WichtigesRecordKonstanten.LeerDiplomatie);
+         end if;
          
       end loop DiplomatieSchleife;
       
@@ -60,10 +75,11 @@ package body RasseEntfernenLogik is
          null;
       end if;
       
-      SpielVariablen.CursorImSpiel (RasseExtern) := WichtigesRecordKonstanten.LeerCursor;
+      SchreibeCursor.GanzerEintrag (RasseExtern   => RasseExtern,
+                                    EintragExtern => WichtigesRecordKonstanten.LeerCursor);
       SchreibeWichtiges.LeerEintrag (RasseExtern => RasseExtern);
       
-      SpielVariablen.Rassenbelegung (RasseExtern).Besiegt := True;
+      SchreibeRassenbelegung.Besiegt (RasseExtern => RasseExtern);
       
    end RasseEntfernen;
    
@@ -113,7 +129,8 @@ package body RasseEntfernenLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      SpielVariablen.Rassenbelegung (RasseExtern).Belegung := RassenDatentypen.KI_Spieler_Enum;
+      SchreibeRassenbelegung.Belegung (RasseExtern    => RasseExtern,
+                                       BelegungExtern => RassenDatentypen.KI_Spieler_Enum);
       LadezeitenLogik.SpielweltNullsetzen;
       
    end RasseAufKISetzen;

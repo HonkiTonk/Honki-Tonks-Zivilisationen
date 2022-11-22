@@ -1,6 +1,7 @@
 with RassenDatentypen;
 with DiplomatieDatentypen;
-with SpielVariablen;
+
+with LeseRassenbelegung;
 
 package DiplomatischerZustandAenderbarLogik is
    pragma Elaborate_Body;
@@ -15,9 +16,9 @@ package DiplomatischerZustandAenderbarLogik is
        Pre => (
                  RasseEinsExtern /= RasseZweiExtern
                and
-                 SpielVariablen.Rassenbelegung (RasseEinsExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseEinsExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.Rassenbelegung (RasseZweiExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseZweiExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private

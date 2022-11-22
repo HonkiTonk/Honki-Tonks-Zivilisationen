@@ -7,6 +7,7 @@ with EinheitenRecords;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 package TransporterSuchenLogik is
    pragma Elaborate_Body;
@@ -24,7 +25,7 @@ package TransporterSuchenLogik is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function EinheitAufTransporterSuchen
@@ -33,7 +34,7 @@ package TransporterSuchenLogik is
       return EinheitenDatentypen.Transportplätze
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (TransporterExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  TransporterExtern.Nummer > 0
               );
@@ -43,7 +44,7 @@ package TransporterSuchenLogik is
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  EinheitRasseNummerExtern.Nummer > 0
               );
@@ -55,7 +56,7 @@ package TransporterSuchenLogik is
        Pre => (
                  TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (TransporterExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private

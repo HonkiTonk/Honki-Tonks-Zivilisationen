@@ -3,6 +3,9 @@ with Sf.Graphics.RenderWindow;
 with KartenKonstanten;
 with Views;
 
+with LeseCursor;
+with SchreibeCursor;
+
 with NachLogiktask;
 with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
@@ -27,7 +30,8 @@ package body CursorplatzierungGrafik is
             Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
             
          when others =>
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := NachGrafiktask.GeheZu;
+            SchreibeCursor.KoordinatenAktuell (RasseExtern       => RasseExtern,
+                                               KoordinatenExtern => NachGrafiktask.GeheZu);
             return;
       end case;
       
@@ -57,7 +61,7 @@ package body CursorplatzierungGrafik is
          Kartenänderung.XAchse := -Sichtbereich + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / SichtweitenGrafik.KartenfelderAbmessung.x));
       end if;
       
-      KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+      KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseCursor.KoordinatenAlt (RasseExtern => RasseExtern),
                                                                                                 ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Kartenänderung.YAchse, Kartenänderung.XAchse),
                                                                                                 LogikGrafikExtern => False);
       
@@ -68,8 +72,8 @@ package body CursorplatzierungGrafik is
             null;
                      
          when others =>
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse := KartenWert.YAchse;
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse := KartenWert.XAchse;
+            SchreibeCursor.KoordinatenAktuell (RasseExtern       => RasseExtern,
+                                               KoordinatenExtern => KartenWert);
       end case;
                            
    end Weltkarte;

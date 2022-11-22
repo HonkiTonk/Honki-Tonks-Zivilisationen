@@ -7,12 +7,14 @@ with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseWeltkarte;
+with LeseCursor;
 
 with StadtSuchenLogik;
 with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
 with StadtproduktionLogik;
 with ForschungstestsLogik;
+with DebugobjekteLogik;
 
 package body EinheitenmodifizierungLogik is
 
@@ -25,7 +27,7 @@ package body EinheitenmodifizierungLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -167,12 +169,12 @@ package body EinheitenmodifizierungLogik is
       is
          when EinheitenKonstanten.LeerNummer =>
             EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                  KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell,
+                                                                                  KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse),
                                                                                   LogikGrafikExtern => True);
       
             NeueHeimatstadt.Rasse := EinheitRasseNummerExtern.Rasse;
             NeueHeimatstadt.Nummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                       KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell);
+                                                                                       KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse));
             
          when others =>
             EinheitNummer := EinheitRasseNummerExtern.Nummer;
@@ -227,7 +229,7 @@ package body EinheitenmodifizierungLogik is
         EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                               IDExtern    => IDExtern)
       then
-         return SpielVariablen.Debug.VolleInformation;
+         return DebugobjekteLogik.Debug.VolleInformation;
          
       elsif
         False = PassierbarkeitspruefungLogik.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,

@@ -3,6 +3,7 @@ with EinheitenKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
+with SchreibeCursor;
 
 with SichtbarkeitsberechnungssystemLogik;
 with KennenlernenLogik;
@@ -41,10 +42,11 @@ package body BewegungsberechnungEinheitenLogik is
       end if;
       
       case
-        SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung
+        LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse)
       is
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell.EAchse := NeueKoordinatenExtern.EAchse;
+            SchreibeCursor.EAchseAktuell (RasseExtern  => EinheitRasseNummerExtern.Rasse,
+                                          EAchseExtern => NeueKoordinatenExtern.EAchse);
             
          when others =>
             null;
@@ -87,12 +89,12 @@ package body BewegungsberechnungEinheitenLogik is
       -- Prüft ob die Einheit jetzt auf einem Feld steht welches von einer fremden Rasse bereits aufgedeckt wurde und stellt entsprechend Kontakt her.
       -- Anders als die Berechnung in SichtbarkeitLogik, wo geprüft wird ob eine fremde Stadt oder Einheit auf einem neu aufgedecktem Feld steht.
       KontaktSchleife:
-      for FremdeSichtbarkeitSchleifenwert in SpielVariablen.RassenbelegungArray'Range loop
+      for FremdeSichtbarkeitSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
            or
-             SpielVariablen.Rassenbelegung (FremdeSichtbarkeitSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
+             LeseRassenbelegung.Belegung (RasseExtern => FremdeSichtbarkeitSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             

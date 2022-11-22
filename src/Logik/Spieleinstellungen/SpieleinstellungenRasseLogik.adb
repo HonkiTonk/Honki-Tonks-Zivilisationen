@@ -5,9 +5,11 @@ with KartenRecordKonstanten;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with MenueDatentypen;
-with SpielVariablen;
 
 with LeseWeltkarte;
+with LeseRassenbelegung;
+with SchreibeRassenbelegung;
+with SchreibeCursor;
 
 with ZufallsgeneratorenSpieleinstellungenLogik;
 with ZufallsgeneratorenStartkoordinatenLogik;
@@ -57,16 +59,19 @@ package body SpieleinstellungenRasseLogik is
    is begin
       
       case
-        SpielVariablen.Rassenbelegung (RasseExtern).Belegung
+        LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
       is
          when RassenDatentypen.Leer_Spieler_Enum =>
-            SpielVariablen.Rassenbelegung (RasseExtern).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
+            SchreibeRassenbelegung.Belegung (RasseExtern    => RasseExtern,
+                                             BelegungExtern => RassenDatentypen.Mensch_Spieler_Enum);
                   
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            SpielVariablen.Rassenbelegung (RasseExtern).Belegung := RassenDatentypen.KI_Spieler_Enum;
+            SchreibeRassenbelegung.Belegung (RasseExtern    => RasseExtern,
+                                             BelegungExtern => RassenDatentypen.KI_Spieler_Enum);
                   
          when RassenDatentypen.KI_Spieler_Enum =>
-            SpielVariablen.Rassenbelegung (RasseExtern).Belegung := RassenDatentypen.Leer_Spieler_Enum;
+            SchreibeRassenbelegung.Belegung (RasseExtern    => RasseExtern,
+                                             BelegungExtern => RassenDatentypen.Leer_Spieler_Enum);
       end case;
       
    end BelegungÄndern;
@@ -81,7 +86,7 @@ package body SpieleinstellungenRasseLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -101,7 +106,8 @@ package body SpieleinstellungenRasseLogik is
    procedure RasseAutomatischBelegen
    is begin
       
-      SpielVariablen.Rassenbelegung (ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeRasse).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
+      SchreibeRassenbelegung.Belegung (RasseExtern    => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeRasse,
+                                       BelegungExtern => RassenDatentypen.Mensch_Spieler_Enum);
       
    end RasseAutomatischBelegen;
    
@@ -114,7 +120,8 @@ package body SpieleinstellungenRasseLogik is
       
       RasseMenschSchnellstart := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeRasse;
       
-      SpielVariablen.Rassenbelegung (RasseMenschSchnellstart).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
+      SchreibeRassenbelegung.Belegung (RasseExtern    => RasseMenschSchnellstart,
+                                       BelegungExtern => RassenDatentypen.Mensch_Spieler_Enum);
       
       KIBelegenSchleife:
       loop
@@ -127,7 +134,8 @@ package body SpieleinstellungenRasseLogik is
             null;
             
          else
-            SpielVariablen.Rassenbelegung (RasseKISchnellstart).Belegung := RassenDatentypen.KI_Spieler_Enum;
+            SchreibeRassenbelegung.Belegung (RasseExtern    => RasseKISchnellstart,
+                                             BelegungExtern => RassenDatentypen.KI_Spieler_Enum);
             exit KIBelegenSchleife;
          end if;
          
@@ -146,7 +154,7 @@ package body SpieleinstellungenRasseLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
         
          case
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -171,7 +179,8 @@ package body SpieleinstellungenRasseLogik is
                   is
                      when ZahlenDatentypen.NotAus'Last =>
                         -- Hier wieder eine Meldung einbauen für den Fall dass die Rasse nicht platziert werden konnte? äöü
-                        SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung := RassenDatentypen.Leer_Spieler_Enum;
+                        SchreibeRassenbelegung.Belegung (RasseExtern    => RasseSchleifenwert,
+                                                         BelegungExtern => RassenDatentypen.Leer_Spieler_Enum);
                         
                      when others =>
                         null;
@@ -365,11 +374,13 @@ package body SpieleinstellungenRasseLogik is
                                                        StadtRasseNummerExtern => (RasseExtern, 0));
       
       case
-        SpielVariablen.Rassenbelegung (RasseExtern).Belegung
+        LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
       is
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := StartkoordinateEinsExtern;
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := StartkoordinateEinsExtern;
+            SchreibeCursor.KoordinatenAktuell (RasseExtern       => RasseExtern,
+                                               KoordinatenExtern => StartkoordinateEinsExtern);
+            SchreibeCursor.KoordinatenAlt (RasseExtern       => RasseExtern,
+                                           KoordinatenExtern => StartkoordinateEinsExtern);
             
          when others =>
             null;

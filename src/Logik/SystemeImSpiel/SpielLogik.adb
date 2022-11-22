@@ -4,6 +4,8 @@ with MenueDatentypen;
 with TextnummernKonstanten;
 
 with LeseGrenzen;
+with LeseAllgemeines;
+with SchreibeAllgemeines;
 
 with OptionenLogik;
 with LadezeitenLogik;
@@ -49,13 +51,13 @@ package body SpielLogik is
                   null;
                
                when others =>
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.Spiel: Falsche Rückgabe: " & RückgabeRassen'Wide_Wide_Image);
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.Spiel - Falsche Rückgabe:" & RückgabeRassen'Wide_Wide_Image);
             end case;
             
          end loop RassenSchleife;
          
          if
-           SpielVariablen.Allgemeines.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
+          LeseAllgemeines.RasseAmzugNachLaden = EinheitenKonstanten.LeerRasse
          then
             case
               Spielertests.MenschlicheSpieler (RasseExtern => RassenDatentypen.Keine_Rasse_Enum)
@@ -78,9 +80,9 @@ package body SpielLogik is
             end case;
             
          elsif
-           SpielVariablen.Allgemeines.Rundengrenze > 0
+           LeseAllgemeines.Rundengrenze > 0
            and
-             SpielVariablen.Allgemeines.Rundengrenze < SpielVariablen.Allgemeines.Rundenanzahl
+             LeseAllgemeines.Rundengrenze < LeseAllgemeines.Rundenanzahl
          then
             exit SpielSchleife;
             
@@ -102,14 +104,14 @@ package body SpielLogik is
    is begin
       
       if
-        SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Leer_Spieler_Enum
+        LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
         or
-          SpielVariablen.Rassenbelegung (RasseExtern).Besiegt = True
+         LeseRassenbelegung.Besiegt (RasseExtern => RasseExtern) = True
       then
          return RueckgabeDatentypen.Start_Weiter_Enum;
       
       elsif
-        LeseGrenzen.Rassenrundengrenze (RasseExtern => RasseExtern) < SpielVariablen.Allgemeines.Rundenanzahl
+        LeseGrenzen.Rassenrundengrenze (RasseExtern => RasseExtern) < LeseAllgemeines.Rundenanzahl
         and
           LeseGrenzen.Rassenrundengrenze (RasseExtern => RasseExtern) > 0
       then
@@ -132,14 +134,14 @@ package body SpielLogik is
    begin
             
       if
-        SpielVariablen.Allgemeines.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
+        LeseAllgemeines.RasseAmzugNachLaden = EinheitenKonstanten.LeerRasse
         or
-          RasseExtern = SpielVariablen.Allgemeines.RasseAmZugNachLaden
+          LeseAllgemeines.RasseAmzugNachLaden = RasseExtern
       then
-         SpielVariablen.Allgemeines.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
+         SchreibeAllgemeines.RasseAmzugNachLaden (RasseExtern => EinheitenKonstanten.LeerRasse);
             
          case
-           SpielVariablen.Rassenbelegung (RasseExtern).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                return MenschlicherSpieler (RasseExtern => RasseExtern);
@@ -238,7 +240,7 @@ package body SpielLogik is
          NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
          
          case
-           SpielVariablen.Rassenbelegung (RasseExtern).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                AktuellerBefehlSpieler := BefehlsauswahlLogik.Befehlsauswahl (RasseExtern => RasseExtern);
@@ -249,7 +251,7 @@ package body SpielLogik is
          end case;
          
          case
-           SpielVariablen.Rassenbelegung (RasseExtern).Besiegt
+           LeseRassenbelegung.Besiegt (RasseExtern => RasseExtern)
          is
             when True =>
                exit SpielerSchleife;
@@ -263,7 +265,7 @@ package body SpielLogik is
          is
             when RueckgabeDatentypen.Start_Weiter_Enum =>
                if
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
                then
                   null;
                   
@@ -331,7 +333,7 @@ package body SpielLogik is
            AuswahlSpielmenü
          is
             when RueckgabeDatentypen.Speichern_Enum =>
-               SpielVariablen.Allgemeines.RasseAmZugNachLaden := RasseExtern;
+               SchreibeAllgemeines.RasseAmzugNachLaden (RasseExtern => RasseExtern);
                SpeichernLogik.Speichern (AutospeichernExtern => False);
                
             when RueckgabeDatentypen.Laden_Enum =>

@@ -9,6 +9,7 @@ private with EinheitenDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 package SichtbereicheErmittelnLogik is
    pragma Elaborate_Body;
@@ -21,7 +22,7 @@ package SichtbereicheErmittelnLogik is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function SichtbarkeitBlockadeTesten

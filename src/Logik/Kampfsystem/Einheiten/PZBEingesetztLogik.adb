@@ -30,8 +30,7 @@ package body PZBEingesetztLogik is
         Einheitenart
       is
          when EinheitenDatentypen.PZB_Enum'Range =>
-            SchreibeAllgemeines.AnzahlEingesetzterPZB (AnzahlExtern => GanzeZahlPrüfen (AktuellerWertExtern => LeseAllgemeines.AnzahlEingesetzterPZB,
-                                                                                         ÄnderungExtern      => 1));
+            SchreibeAllgemeines.AnzahlEingesetzterPZB;
             SchreibeAllgemeines.PlanetVernichtet (RasseExtern => EinheitRasseNummerExtern.Rasse);
             Zusammenbruchszeit := LeseAllgemeines.Zusammenbruchszeit;
             
@@ -53,24 +52,29 @@ package body PZBEingesetztLogik is
             end if;
                
          when others =>
+            EingesetztePZB := LeseAllgemeines.AnzahlEingesetzterPZB;
+            
             if
               LeseWeltkarteneinstellungen.YAchse <= LeseWeltkarteneinstellungen.XAchse
               and
-                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10) / LeseAllgemeines.AnzahlEingesetzterPZB
+                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10) / EingesetztePZB
             then
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10) / LeseAllgemeines.AnzahlEingesetzterPZB;
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10) / EingesetztePZB;
                
             elsif
               LeseWeltkarteneinstellungen.YAchse > LeseWeltkarteneinstellungen.XAchse
               and
-                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10) / LeseAllgemeines.AnzahlEingesetzterPZB
+                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10) / EingesetztePZB
             then
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10) / LeseAllgemeines.AnzahlEingesetzterPZB;
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10) / EingesetztePZB;
                   
             else
                null;
             end if;
       end case;
+      
+      SchreibeAllgemeines.Zusammenbruchszeit (ZeitExtern          => Zusammenbruchszeit,
+                                              RechnenSetzenExtern => False);
          
       PlanetenVernichten (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
             

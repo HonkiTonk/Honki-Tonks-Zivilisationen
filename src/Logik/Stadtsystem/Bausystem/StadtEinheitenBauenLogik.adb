@@ -7,6 +7,8 @@ with KIDatentypen;
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
+with LeseCursor;
+with SchreibeCursor;
 
 with EinheitSuchenLogik;
 with StadtumgebungErreichbarLogik;
@@ -42,10 +44,12 @@ package body StadtEinheitenBauenLogik is
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
         and
-          SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+          LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
       then
-         SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAlt := SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell;
+         SchreibeCursor.KoordinatenAktuell (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                            KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern));
+         SchreibeCursor.KoordinatenAlt (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                        KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => StadtRasseNummerExtern.Rasse));
          
       elsif
         EinheitNummer = EinheitenKonstanten.LeerNummer
@@ -112,7 +116,7 @@ package body StadtEinheitenBauenLogik is
                                       BauprojektExtern       => StadtKonstanten.LeerBauprojekt);
             
       case
-        SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung
+        LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse)
       is
          when RassenDatentypen.Mensch_Spieler_Enum =>
             MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern,

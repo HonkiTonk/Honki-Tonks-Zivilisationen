@@ -1,5 +1,6 @@
 with RassenDatentypen;
-with SpielVariablen;
+
+with LeseRassenbelegung;
 
 package KennenlernenLogik is
    pragma Elaborate_Body;
@@ -13,9 +14,9 @@ package KennenlernenLogik is
        Pre => (
                  EigeneRasseExtern /= FremdeRasseExtern
                and
-                 SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.Rassenbelegung (FremdeRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 private
@@ -27,9 +28,9 @@ private
        Pre => (
                  EigeneRasseExtern /= FremdeRasseExtern
                and
-                 SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
                and
-                 SpielVariablen.Rassenbelegung (FremdeRasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
    procedure ErstkontaktMenschKI
@@ -39,9 +40,9 @@ private
        Pre => (
                  EigeneRasseExtern /= FremdeRasseExtern
                and
-                 (SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 (LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
                   or
-                    SpielVariablen.Rassenbelegung (FremdeRasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum)
+                    LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum)
               );
 
 end KennenlernenLogik;

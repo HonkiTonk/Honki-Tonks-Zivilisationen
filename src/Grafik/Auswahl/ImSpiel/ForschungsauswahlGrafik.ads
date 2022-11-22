@@ -3,11 +3,12 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 private with Sf.System.Vector2;
 
 with RassenDatentypen;
-with SpielVariablen;
 
 private with ForschungenDatentypen;
 private with GrafikRecordKonstanten;
 private with ProduktionDatentypen;
+
+with LeseRassenbelegung;
 
 package ForschungsauswahlGrafik is
    pragma Elaborate_Body;
@@ -18,7 +19,7 @@ package ForschungsauswahlGrafik is
       AktuelleAuswahlExtern : in Natural)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private
@@ -45,7 +46,7 @@ private
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
    procedure Beschreibung
@@ -54,7 +55,7 @@ private
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
    procedure Ermöglicht
@@ -63,7 +64,7 @@ private
       ViewnummerExtern : in Positive)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum  
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum  
               );
    
    procedure Aktuell
@@ -71,7 +72,7 @@ private
       ViewnummerExtern : in Positive)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum  
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum  
               );
    
 end ForschungsauswahlGrafik;

@@ -7,6 +7,7 @@ private with KartenRecords;
 private with KartenDatentypen;
 
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -20,7 +21,7 @@ package EinheitentransporterLogik is
        Pre => (
                  TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (TransporterExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function KannTransportiertWerden
@@ -31,11 +32,11 @@ package EinheitentransporterLogik is
        Pre => (
                  LadungExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => LadungExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (LadungExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                LeseRassenbelegung.Belegung (RasseExtern => LadungExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (TransporterExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private
@@ -60,7 +61,7 @@ private
        Pre => (
                  LadungExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => LadungExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (LadungExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => LadungExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  TranspoterKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -77,7 +78,7 @@ private
        Pre => (
                  LadungExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => LadungExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (LadungExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => LadungExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and

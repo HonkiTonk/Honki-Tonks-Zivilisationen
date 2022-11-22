@@ -7,9 +7,9 @@ package KIKriegBeendenLogik is
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (EigeneRasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.KI_Spieler_Enum
                and
-                 SpielVariablen.Rassenbelegung (FeindlicheRasseExtern) /= GlobaleDatentypen.Leer
+                 LeseRassenbelegung.Belegung (RasseExtern => FeindlicheRasseExtern) /= GlobaleDatentypen.Leer
                and
                  EigeneRasseExtern /= FeindlicheRasseExtern
               );

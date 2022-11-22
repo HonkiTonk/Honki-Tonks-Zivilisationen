@@ -2,12 +2,16 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with MenueDatentypen;
 with KartenKonstanten;
+with SpielVariablen;
 
 with SchreibeWeltkarte;
 with LeseWeltkarteneinstellungen;
+with SchreibeRassenbelegung;
+with SchreibeCursor;
 
 with AuswahlaufteilungLogik;
 with Fehlermeldungssystem;
+with DebugobjekteLogik;
 
 package body DebugmenueLogik is
 
@@ -34,7 +38,7 @@ package body DebugmenueLogik is
                MenschKITauschen (TasteExtern => Taste);
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               SpielVariablen.Debug.VolleInformation := not SpielVariablen.Debug.VolleInformation;
+               DebugobjekteLogik.Debug.VolleInformation := not DebugobjekteLogik.Debug.VolleInformation;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -64,20 +68,25 @@ package body DebugmenueLogik is
       end case;
       
       case
-        SpielVariablen.Rassenbelegung (Wechsel (TasteExtern)).Belegung
+        LeseRassenbelegung.Belegung (RasseExtern => Wechsel (TasteExtern))
       is
          when RassenDatentypen.Leer_Spieler_Enum =>
             null;
             
          when RassenDatentypen.KI_Spieler_Enum =>
-            SpielVariablen.Rassenbelegung (Wechsel (TasteExtern)).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
-            SpielVariablen.CursorImSpiel (Wechsel (TasteExtern)).KoordinatenAktuell := (0, 1, 1);
-            SpielVariablen.CursorImSpiel (Wechsel (TasteExtern)).KoordinatenAlt := (0, 1, 1);
+            SchreibeRassenbelegung.Belegung (RasseExtern    => Wechsel (TasteExtern),
+                                             BelegungExtern => RassenDatentypen.Mensch_Spieler_Enum);
             
+            SchreibeCursor.KoordinatenAktuell (RasseExtern       => Wechsel (TasteExtern),
+                                               KoordinatenExtern => (0, 1, 1));
+            SchreibeCursor.KoordinatenAlt (RasseExtern       => Wechsel (TasteExtern),
+                                           KoordinatenExtern => (0, 1, 1));
+                                             
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            SpielVariablen.Rassenbelegung (Wechsel (TasteExtern)).Belegung := RassenDatentypen.KI_Spieler_Enum;
+            SchreibeRassenbelegung.Belegung (RasseExtern    => Wechsel (TasteExtern),
+                                             BelegungExtern => RassenDatentypen.KI_Spieler_Enum);
       end case;
-      
+                                             
    end MenschKITauschen;
    
    
@@ -118,9 +127,9 @@ package body DebugmenueLogik is
          for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
             
             if
-              SpielVariablen.Rassenbelegung (RasseEinsSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
+              LeseRassenbelegung.Belegung (RasseExtern => RasseEinsSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
               or
-                SpielVariablen.Rassenbelegung (RasseZweiSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
+                LeseRassenbelegung.Belegung (RasseExtern => RasseZweiSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
             then
                null;
                

@@ -8,6 +8,7 @@ private with KartenverbesserungDatentypen;
 private with BefehleDatentypen;
 
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 package KIEinheitUmsetzenVerbesserungenLogik is
    pragma Elaborate_Body;
@@ -20,7 +21,7 @@ package KIEinheitUmsetzenVerbesserungenLogik is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
    
 private

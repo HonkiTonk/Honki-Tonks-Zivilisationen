@@ -1,6 +1,7 @@
 with WichtigesKonstanten;
 with KartenverbesserungDatentypen;
 with StadtKonstanten;
+with SpielVariablen;
 
 with SchreibeWichtiges;
 with LeseStadtGebaut;
@@ -20,7 +21,7 @@ package body GlobalesWachstumLogik is
             for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
                
                case
-                 SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
                is
                   when RassenDatentypen.Leer_Spieler_Enum =>
                      null;

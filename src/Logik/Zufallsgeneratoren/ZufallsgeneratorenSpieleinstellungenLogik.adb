@@ -1,7 +1,6 @@
-with SpielVariablen;
-with WichtigesRecordKonstanten;
-
 with LeseWeltkarteneinstellungen;
+with SchreibeRassenbelegung;
+with LeseRassenbelegung;
 
 with KartengeneratorVariablenLogik;
 with KartentestsLogik;
@@ -132,7 +131,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    begin
       
       SpielerVorhanden := False;
-      SpielVariablen.Rassenbelegung := (others => WichtigesRecordKonstanten.LeerRassenbelegung);
+      SchreibeRassenbelegung.Standardeinstellungen;
       ZufälligeRassenbelegungWählen.Reset (Gen => ZufälligeRassenbelegungGewählt);
       
       SpielerSchleife:
@@ -145,7 +144,8 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
             if
               RasseImSpiel = RassenDatentypen.KI_Spieler_Enum
             then
-               SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung := RasseImSpiel;
+               SchreibeRassenbelegung.Belegung (RasseExtern    => RasseSchleifenwert,
+                                                BelegungExtern => RasseImSpiel);
                SpielerVorhanden := True;
             
             else
@@ -163,7 +163,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
          for MenschlicheRasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
 
             if
-              SpielVariablen.Rassenbelegung (MenschlicheRasseSchleifenwert).Belegung = RassenDatentypen.KI_Spieler_Enum
+              LeseRassenbelegung.Belegung (RasseExtern => MenschlicheRasseSchleifenwert) = RassenDatentypen.KI_Spieler_Enum
             then
                RasseImSpiel := ZufälligeRassenbelegungWählen.Random (Gen => ZufälligeRassenbelegungGewählt);
                
@@ -171,7 +171,8 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
                  RasseImSpiel
                is
                   when RassenDatentypen.Mensch_Spieler_Enum =>
-                     SpielVariablen.Rassenbelegung (MenschlicheRasseSchleifenwert).Belegung := RassenDatentypen.Mensch_Spieler_Enum;
+                     SchreibeRassenbelegung.Belegung (RasseExtern    => MenschlicheRasseSchleifenwert,
+                                                      BelegungExtern => RassenDatentypen.Mensch_Spieler_Enum);
                      return;
                      
                   when others =>

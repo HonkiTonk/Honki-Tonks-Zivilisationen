@@ -5,6 +5,8 @@ with SystemKonstanten;
 with TastenbelegungDatentypen;
 with MenueDatentypen;
 
+with LeseDiplomatie;
+
 with NachGrafiktask;
 with TasteneingabeLogik;
 with MausauswahlLogik;
@@ -40,9 +42,15 @@ package body DiplomatieLogik is
          if
            RassenSchleifenwert = RasseExtern
            or
-             SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Leer_Spieler_Enum
+             LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
            or
-             SpielVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = DiplomatieDatentypen.Unbekannt_Enum
+             LeseRassenbelegung.Belegung (RasseExtern => RassenSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+         then
+            InteraktionAuswahl.RassenMöglich (RassenSchleifenwert) := False;
+            
+         elsif
+           DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
+                                                                                  RasseZweiExtern => RassenSchleifenwert)
          then
             InteraktionAuswahl.RassenMöglich (RassenSchleifenwert) := False;
             

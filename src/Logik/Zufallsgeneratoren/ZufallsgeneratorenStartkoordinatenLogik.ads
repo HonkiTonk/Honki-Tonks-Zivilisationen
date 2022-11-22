@@ -2,10 +2,10 @@ private with Ada.Numerics.Discrete_Random;
 
 with KartenDatentypen;
 with RassenDatentypen;
-with SpielVariablen;
 with KartenRecords;
 
 with LeseWeltkarteneinstellungen;
+with LeseRassenbelegung;
 
 package ZufallsgeneratorenStartkoordinatenLogik is
    pragma Elaborate_Body;
@@ -18,7 +18,7 @@ package ZufallsgeneratorenStartkoordinatenLogik is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               ),
            
        Post => (

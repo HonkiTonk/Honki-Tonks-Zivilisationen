@@ -22,6 +22,7 @@ with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextberechnungenBreiteGrafik;
 with KartenfelderwerteLogik;
+with DebugobjekteLogik;
 
 package body EinheitenseitenleisteGrafik is
    
@@ -98,7 +99,7 @@ package body EinheitenseitenleisteGrafik is
       if
         RasseExtern = EinheitRasseNummer.Rasse
         or
-          SpielVariablen.Debug.VolleInformation
+          DebugobjekteLogik.Debug.VolleInformation
       then
          FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer)'Wide_Wide_Image
            & TextKonstanten.Trennzeichen & ZahlAlsStringBewegungspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummer.Rasse,
@@ -155,7 +156,7 @@ package body EinheitenseitenleisteGrafik is
          end case;
          
          if
-           SpielVariablen.Debug.VolleInformation
+           DebugobjekteLogik.Debug.VolleInformation
            and
              TextSchleifenwert = TextaccessVariablen.EinheitenInformationenAccess'Last
          then
@@ -172,7 +173,7 @@ package body EinheitenseitenleisteGrafik is
       end loop TextSchleife;
       
       case
-        SpielVariablen.Debug.VolleInformation
+        DebugobjekteLogik.Debug.VolleInformation
       is
          when True =>
             Viewfläche := PlanZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

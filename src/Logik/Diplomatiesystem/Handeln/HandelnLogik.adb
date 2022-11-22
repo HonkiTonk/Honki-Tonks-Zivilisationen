@@ -5,10 +5,11 @@ with SchreibeWichtiges;
 with LeseWichtiges;
 with LeseWeltkarte;
 with LeseWeltkarteneinstellungen;
+with LeseDiplomatie;
+with SchreibeDiplomatie;
 
 with SichtbarkeitSetzenLogik;
 with KennenlernenLogik;
-with DiplomatischerZustandLogik;
 
 package body HandelnLogik is
 
@@ -19,7 +20,8 @@ package body HandelnLogik is
    is begin
       
       case
-        SpielVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
+        LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
+                                         RasseZweiExtern => KontaktierteRasseExtern)
       is
          when DiplomatieDatentypen.Krieg_Enum =>
             return 1;
@@ -123,14 +125,16 @@ package body HandelnLogik is
          -- if
          --    Geldmenge / 25 > Integer (ProduktionDatentypen.Feldproduktion'Last)
          --  then
-         DiplomatischerZustandLogik.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
-                                                      FremdeRasseExtern => RasseExtern,
-                                                      ÄnderungExtern    => DiplomatieDatentypen.Meinung'Last);
+         SchreibeDiplomatie.AktuelleSympathie (RasseEinsExtern     => KontaktierteRasseExtern,
+                                               RasseZweiExtern     => RasseExtern,
+                                               SympathieExtern     => DiplomatieDatentypen.Meinung'Last,
+                                               RechnenSetzenExtern => False);
                      
          --  else
-         DiplomatischerZustandLogik.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
-                                                      FremdeRasseExtern => RasseExtern,
-                                                      ÄnderungExtern    => DiplomatieDatentypen.Meinung (Geldmenge / 25));
+         SchreibeDiplomatie.AktuelleSympathie (RasseEinsExtern     => KontaktierteRasseExtern,
+                                               RasseZweiExtern     => RasseExtern,
+                                               SympathieExtern     => DiplomatieDatentypen.Meinung (Geldmenge / 25),
+                                               RechnenSetzenExtern => True);
          --   end if;
                   
       else
@@ -191,26 +195,28 @@ package body HandelnLogik is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
-      RassenZweiSchleife:
-      for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      RassenSchleife:
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
                
          if
-           RasseZweiSchleifenwert = RasseExtern
-           or
-             RasseZweiSchleifenwert = KontaktierteRasseExtern
-             or
-               SpielVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert).AktuellerZustand = DiplomatieDatentypen.Unbekannt_Enum
-           or
-             SpielVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert).AktuellerZustand /= DiplomatieDatentypen.Unbekannt_Enum
+           (RasseSchleifenwert = RasseExtern
+            or
+              RasseSchleifenwert = KontaktierteRasseExtern)
+           or else
+             (DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
+                                                                                     RasseZweiExtern => RasseSchleifenwert)
+              or
+                DiplomatieDatentypen.Unbekannt_Enum /= LeseDiplomatie.AktuellerZustand (RasseEinsExtern => KontaktierteRasseExtern,
+                                                                                        RasseZweiExtern => RasseSchleifenwert))
          then
             null;
                   
          else
             KennenlernenLogik.Erstkontakt (EigeneRasseExtern => KontaktierteRasseExtern,
-                                           FremdeRasseExtern => RasseZweiSchleifenwert);
+                                           FremdeRasseExtern => RasseSchleifenwert);
          end if;
                
-      end loop RassenZweiSchleife;
+      end loop RassenSchleife;
       
    end KontakteVerkaufen;
    
@@ -224,26 +230,31 @@ package body HandelnLogik is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
-      RassenEinsSchleife:
-      for RasseEinsSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      RassenSchleife:
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
                
          if
-           RasseEinsSchleifenwert = RasseExtern
-           or
-             RasseEinsSchleifenwert = KontaktierteRasseExtern
-             or
-               SpielVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert).AktuellerZustand = DiplomatieDatentypen.Unbekannt_Enum
-           or
-             SpielVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert).AktuellerZustand /= DiplomatieDatentypen.Unbekannt_Enum
+           RasseSchleifenwert = RasseExtern
+            or
+             RasseSchleifenwert = KontaktierteRasseExtern
          then
             null;
-                  
+            
+         elsif
+           DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => KontaktierteRasseExtern,
+                                                                                  RasseZweiExtern => RasseSchleifenwert)
+           or
+             DiplomatieDatentypen.Unbekannt_Enum /= LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
+                                                                                     RasseZweiExtern => RasseSchleifenwert)
+         then
+            null;
+            
          else
             KennenlernenLogik.Erstkontakt (EigeneRasseExtern => RasseExtern,
-                                           FremdeRasseExtern => RasseEinsSchleifenwert);
+                                           FremdeRasseExtern => RasseSchleifenwert);
          end if;
                
-      end loop RassenEinsSchleife;
+      end loop RassenSchleife;
       
    end KontakteKaufen;
    

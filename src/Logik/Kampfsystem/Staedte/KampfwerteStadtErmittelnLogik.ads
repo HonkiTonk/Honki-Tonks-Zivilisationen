@@ -4,6 +4,7 @@ with KampfDatentypen;
 with StadtRecords;
 
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 package KampfwerteStadtErmittelnLogik is
    pragma Elaborate_Body;
@@ -15,7 +16,7 @@ package KampfwerteStadtErmittelnLogik is
       return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
               );
@@ -25,7 +26,7 @@ package KampfwerteStadtErmittelnLogik is
       return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
               );

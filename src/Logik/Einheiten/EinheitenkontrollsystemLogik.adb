@@ -1,4 +1,5 @@
 with LeseEinheitenGebaut;
+with LeseCursor;
 
 with TasteneingabeLogik;
 with EinheitenmodifizierungLogik;
@@ -142,7 +143,7 @@ package body EinheitenkontrollsystemLogik is
                
                -- In diesem Fall wird die Prüfung auf Leer nicht benötigt, da im aktuellen System die Cursorkoordinaten niemals ungültig sein können.
                if
-                 KartenWert = SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell
+                 KartenWert = LeseCursor.KoordinatenAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse)
                then
                   return EinheitenbewegungLogik.PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                  ÄnderungExtern           => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
@@ -183,7 +184,7 @@ package body EinheitenkontrollsystemLogik is
                
                -- In diesem Fall wird die Prüfung auf Leer nicht benötigt, da im aktuellen System die Cursorkoordinaten niemals ungültig sein können.
                if
-                 KartenWert = SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell
+                 KartenWert = LeseCursor.KoordinatenAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse)
                then
                   -- Und hier müsste ich dann ein Webgfindungssystem einbauen wie es die KI hat. äöü
                   -- Kann ich das KI System dazu anpassen? Wahrscheinlich nicht. äöü

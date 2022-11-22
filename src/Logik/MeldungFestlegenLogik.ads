@@ -1,5 +1,6 @@
 with RassenDatentypen;
-with SpielVariablen;
+
+with LeseRassenbelegung;
 
 package MeldungFestlegenLogik is
    pragma Elaborate_Body;
@@ -13,7 +14,7 @@ package MeldungFestlegenLogik is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end MeldungFestlegenLogik;

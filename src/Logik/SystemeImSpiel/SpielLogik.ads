@@ -1,7 +1,8 @@
 with RueckgabeDatentypen;
 
 private with RassenDatentypen;
-private with SpielVariablen;
+
+private with LeseRassenbelegung;
 
 package SpielLogik is
    pragma Elaborate_Body;
@@ -24,7 +25,7 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
               );
 
    function RasseImSpiel
@@ -36,7 +37,7 @@ private
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function MenschlicherSpieler
@@ -44,7 +45,7 @@ private
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
    function MenschAmZug
@@ -52,7 +53,7 @@ private
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
    function Spielmenü
@@ -60,7 +61,7 @@ private
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
 end SpielLogik;

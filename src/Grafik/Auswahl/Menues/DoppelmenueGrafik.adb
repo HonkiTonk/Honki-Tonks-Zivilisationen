@@ -4,11 +4,12 @@ with Sf.Graphics.RenderWindow;
 with RassenDatentypen;
 with Views;
 with GrafikDatentypen;
-with SpielVariablen;
 with TextaccessVariablen;
 with SystemKonstanten;
 with InteraktionAuswahl;
 with RassenKonstanten;
+
+with LeseRassenbelegung;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
@@ -140,7 +141,7 @@ package body DoppelmenueGrafik is
         AktuellerTextExtern - 1 in RassenKonstanten.Rassenanfang .. RassenKonstanten.Rassenende
       then
          case
-           SpielVariablen.Rassenbelegung (RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuellerTextExtern - 1)).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuellerTextExtern - 1))
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;

@@ -20,6 +20,7 @@ with ViewsEinstellenGrafik;
 with GebaeudebeschreibungenGrafik;
 with EinheitenbeschreibungenGrafik;
 with TextberechnungenBreiteGrafik;
+with DebugobjekteLogik;
 
 package body StadtseitenleisteGrafik is
    
@@ -89,7 +90,7 @@ package body StadtseitenleisteGrafik is
       if
         StadtRasseNummerExtern.Rasse = RasseExtern
         or
-          SpielVariablen.Debug.VolleInformation
+          DebugobjekteLogik.Debug.VolleInformation
       then
          FestzulegenderText (2) := Nahrung (StadtRasseNummerExtern => StadtRasseNummerExtern);
          FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " "

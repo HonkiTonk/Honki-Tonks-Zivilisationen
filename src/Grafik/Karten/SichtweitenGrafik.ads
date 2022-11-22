@@ -3,9 +3,11 @@ with Sf.Graphics.Rect;
 
 with RassenDatentypen;
 with KartenDatentypen;
-with SpielVariablen;
 
 private with TastenbelegungDatentypen;
+private with KartenRecords;
+
+with LeseRassenbelegung;
 
 -- Das Ganze später besser aufteilen? äöü
 -- Um ein im Kreis linken zu verhindern erst einmal die KartenberechnungenGrafik hier mit rein geschoben. äöü
@@ -42,7 +44,7 @@ package SichtweitenGrafik is
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private
@@ -53,5 +55,7 @@ private
    StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 4;
    MinimaleZoomstufe : KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv'First;
    AktuelleZoomstufe : KartenDatentypen.KartenfeldPositiv := StandardZoomstufe;
+   
+   Cursor : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end SichtweitenGrafik;

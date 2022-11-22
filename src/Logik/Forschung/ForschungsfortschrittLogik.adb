@@ -18,7 +18,7 @@ package body ForschungsfortschrittLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -73,7 +73,7 @@ package body ForschungsfortschrittLogik is
          end if;
          
          case
-           SpielVariablen.Rassenbelegung (RasseExtern).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                ForschungsauswahlLogik.Forschungserfolg (RasseExtern => RasseExtern);
@@ -85,7 +85,7 @@ package body ForschungsfortschrittLogik is
          
       else
          case
-           SpielVariablen.Rassenbelegung (RasseExtern).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);

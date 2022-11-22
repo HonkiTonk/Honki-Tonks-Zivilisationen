@@ -1,7 +1,7 @@
 with DiplomatieDatentypen;
 with EinheitenKonstanten;
 
-with DiplomatischerZustandLogik;
+with LeseDiplomatie;
 
 package body KIKriegErmittelnLogik is
 
@@ -18,13 +18,13 @@ package body KIKriegErmittelnLogik is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
+             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             
          elsif
-           DiplomatieDatentypen.Krieg_Enum = DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
-                                                                                                     FremdeRasseExtern => RasseSchleifenwert)
+           DiplomatieDatentypen.Krieg_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
+                                                                              RasseZweiExtern => RasseSchleifenwert)
          then
             return True;
                   
@@ -64,7 +64,7 @@ package body KIKriegErmittelnLogik is
          if
            RasseSchleifenwert = RasseExtern
            or
-             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
+             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             

@@ -1,5 +1,6 @@
 with StadtKonstanten;
 with StadtRecords;
+with SpielVariablen;
 
 with LeseStadtGebaut;
 with LeseGrenzen;

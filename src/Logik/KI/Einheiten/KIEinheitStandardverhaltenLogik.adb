@@ -1,3 +1,5 @@
+with LeseAllgemeines;
+
 with KIDatentypen;
 with KIKonstanten;
 
@@ -10,7 +12,7 @@ package body KIEinheitStandardverhaltenLogik is
    is begin
       
       AktivitätSchleife:
-      for AktivitätSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.SchwierigkeitsgradAktivität (SpielVariablen.Allgemeines.Schwierigkeitsgrad) loop
+      for AktivitätSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.SchwierigkeitsgradAktivität (LeseAllgemeines.Schwierigkeitsgrad) loop
          
          case
            KIEinheitHandlungenLogik.Aufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)

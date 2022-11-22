@@ -3,7 +3,8 @@ with Sf.Graphics.Text;
 with KartenartDatentypen;
 with SystemKonstanten;
 with SpielDatentypen;
-with SpielVariablen;
+
+with LeseAllgemeines;
 
 with KartengeneratorVariablenLogik;
 with TexteinstellungenGrafik;
@@ -63,7 +64,7 @@ package body TextfarbeGrafik is
             AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenressourcen_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen);
             
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
-            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (SpielVariablen.Allgemeines.Schwierigkeitsgrad);
+            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (LeseAllgemeines.Schwierigkeitsgrad);
             
          when others =>
             AktuelleEinstellung := 0;

@@ -2,6 +2,7 @@ with TextnummernKonstanten;
 with KartenKonstanten;
 
 with LeseWeltkarteneinstellungen;
+with LeseCursor;
 
 with ZahleneingabeLogik;
 with NachGrafiktask;
@@ -21,7 +22,7 @@ package body CursorbewegungLogik is
         NachGrafiktask.GeheZu.XAchse
       is
          when KartenKonstanten.LeerXAchse =>
-            BasisKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt;
+            BasisKoordinaten := LeseCursor.KoordinatenAlt (RasseExtern => RasseExtern);
             
          when others =>
             BasisKoordinaten := NachGrafiktask.GeheZu;

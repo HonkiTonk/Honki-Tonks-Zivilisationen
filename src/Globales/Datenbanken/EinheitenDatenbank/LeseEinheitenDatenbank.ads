@@ -1,9 +1,10 @@
 with RassenDatentypen;
-with SpielVariablen;
 with EinheitenDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
+
+with LeseRassenbelegung;
 
 package LeseEinheitenDatenbank is
    pragma Elaborate_Body;
@@ -15,7 +16,7 @@ package LeseEinheitenDatenbank is
       return EinheitenDatentypen.Einheitart_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function PreisGeld
@@ -24,7 +25,7 @@ package LeseEinheitenDatenbank is
       return ProduktionDatentypen.Produktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function Produktionskosten
@@ -33,7 +34,7 @@ package LeseEinheitenDatenbank is
       return ProduktionDatentypen.Produktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function PermanenteKosten
@@ -43,7 +44,7 @@ package LeseEinheitenDatenbank is
       return ProduktionDatentypen.Stadtproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function Anforderungen
@@ -52,7 +53,7 @@ package LeseEinheitenDatenbank is
       return ForschungenDatentypen.ForschungIDNichtMöglich
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function Passierbarkeit
@@ -62,7 +63,7 @@ package LeseEinheitenDatenbank is
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
       
    function MaximaleLebenspunkte
@@ -71,7 +72,7 @@ package LeseEinheitenDatenbank is
       return EinheitenDatentypen.VorhandeneLebenspunkte
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function MaximaleBewegungspunkte
@@ -80,7 +81,7 @@ package LeseEinheitenDatenbank is
       return EinheitenDatentypen.VorhandeneBewegungspunkte
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function VerbesserungZu
@@ -89,7 +90,7 @@ package LeseEinheitenDatenbank is
       return EinheitenDatentypen.EinheitenIDMitNullWert
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function Beförderungsgrenze
@@ -98,7 +99,7 @@ package LeseEinheitenDatenbank is
       return KampfDatentypen.Erfahrungspunkte
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function MaximalerRang
@@ -107,7 +108,7 @@ package LeseEinheitenDatenbank is
       return KampfDatentypen.Rang
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function Reichweite
@@ -116,7 +117,7 @@ package LeseEinheitenDatenbank is
       return KampfDatentypen.Reichweite
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function Angriff
@@ -125,7 +126,7 @@ package LeseEinheitenDatenbank is
       return KampfDatentypen.KampfwerteEinheiten
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function Verteidigung
@@ -134,7 +135,7 @@ package LeseEinheitenDatenbank is
       return KampfDatentypen.KampfwerteEinheiten
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function KannTransportieren
@@ -143,7 +144,7 @@ package LeseEinheitenDatenbank is
       return EinheitenDatentypen.Transport_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function KannTransportiertWerden
@@ -152,7 +153,7 @@ package LeseEinheitenDatenbank is
       return EinheitenDatentypen.Transport_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function Transportkapazität
@@ -161,7 +162,7 @@ package LeseEinheitenDatenbank is
       return EinheitenDatentypen.Transportplätze
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end LeseEinheitenDatenbank;

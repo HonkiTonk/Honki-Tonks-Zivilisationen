@@ -1,9 +1,9 @@
 with RassenDatentypen;
 with KartenDatentypen;
 with KartenRecords;
-with SpielVariablen;
 
 with LeseWeltkarteneinstellungen;
+with LeseRassenbelegung;
 
 package KIKartenfeldbewertungModifizierenLogik is
    pragma Elaborate_Body;
@@ -16,7 +16,7 @@ package KIKartenfeldbewertungModifizierenLogik is
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -69,7 +69,7 @@ private
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and

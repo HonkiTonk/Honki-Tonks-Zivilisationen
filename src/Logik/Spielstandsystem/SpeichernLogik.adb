@@ -12,12 +12,15 @@ with WeltkarteRecords;
 with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
 with KartenKonstanten;
+with SpielVariablen;
 
 with LeseWeltkarte;
 with LeseWeltkarteneinstellungen;
 with LeseWichtiges;
 with LeseGrenzen;
 with LeseAllgemeines;
+with LeseDiplomatie;
+with LeseCursor;
 
 with LadezeitenLogik;
 with NachGrafiktask;
@@ -161,7 +164,7 @@ package body SpeichernLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -180,7 +183,9 @@ package body SpeichernLogik is
    procedure Rassenwerte
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       DateiSpeichernExtern : in File_Type)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       SpielRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernExtern),
                                         LeseGrenzen.GanzerEintrag (RasseExtern => RasseExtern));
@@ -205,23 +210,25 @@ package body SpeichernLogik is
                                           LeseWichtiges.GanzerEintrag (RasseExtern => RasseExtern));
       
       DiplomatieSchleife:
-      for DiplomatieSchleifenwert in SpielVariablen.DiplomatieArray'Range (2) loop
+      for DiplomatieSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
 
-         case
-           SpielVariablen.Rassenbelegung (DiplomatieSchleifenwert).Belegung
-         is
-            when RassenDatentypen.Leer_Spieler_Enum =>
-               null;
+         if
+          LeseRassenbelegung.Belegung (RasseExtern => DiplomatieSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+           or
+             DiplomatieSchleifenwert = RasseExtern
+         then
+            null;
                      
-            when others =>
-               SpielRecords.DiplomatieRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                    SpielVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert));
-         end case;
+         else
+            SpielRecords.DiplomatieRecord'Write (Stream (File => DateiSpeichernExtern),
+                                                 LeseDiplomatie.GanzerEintrag (RasseEinsExtern => RasseExtern,
+                                                                               RasseZweiExtern => DiplomatieSchleifenwert));
+         end if;
 
       end loop DiplomatieSchleife;
       
       KartenRecords.CursorRecord'Write (Stream (File => DateiSpeichernExtern),
-                                        SpielVariablen.CursorImSpiel (RasseExtern));
+                                        LeseCursor.GanzerEintrag (RasseExtern => RasseExtern));
       
    end Rassenwerte;
    
@@ -274,7 +281,7 @@ package body SpeichernLogik is
       end case;
       
       case
-        SpielVariablen.Allgemeines.Rundenanzahl mod OptionenVariablen.NutzerEinstellungen.RundenBisAutosave
+        LeseAllgemeines.Rundenanzahl mod OptionenVariablen.NutzerEinstellungen.RundenBisAutosave
       is
          when 0 =>
             Speichern (AutospeichernExtern => True);

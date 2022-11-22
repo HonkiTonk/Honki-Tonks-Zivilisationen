@@ -31,8 +31,6 @@ package Fehlermeldungssystem is
    
 private
    
-   FehlerWarnung : Boolean := True;
-
    LogikStopp : exception;
    GrafikStopp : exception;
    MusikStopp : exception;

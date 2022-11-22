@@ -1,5 +1,6 @@
 with TastenbelegungDatentypen;
-with SpielVariablen;
+
+with LeseAllgemeines;
 
 with NachGrafiktask;
 with TasteneingabeLogik;
@@ -14,7 +15,7 @@ package body AbspannLogik is
         AbspannExtern
       is
          when GrafikDatentypen.Planet_Vernichtet_Enum =>
-            NachGrafiktask.AktuelleRasse := SpielVariablen.Allgemeines.PlanetVernichtet;
+            NachGrafiktask.AktuelleRasse := LeseAllgemeines.PlanetVernichtet;
             
          when others =>
             null;

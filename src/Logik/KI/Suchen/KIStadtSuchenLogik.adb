@@ -1,6 +1,7 @@
 with KartenverbesserungDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
+with SpielVariablen;
 
 with LeseStadtGebaut;
 

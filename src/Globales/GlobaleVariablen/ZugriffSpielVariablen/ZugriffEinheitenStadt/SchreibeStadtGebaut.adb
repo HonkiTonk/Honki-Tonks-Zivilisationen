@@ -608,5 +608,14 @@ package body SchreibeStadtGebaut is
       SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer) := EintragExtern;
       
    end GanzerEintrag;
+   
+   
+   
+   procedure Standardeinstellungen
+   is begin
+      
+      SpielVariablen.StadtGebaut := (others => (others => StadtRecordKonstanten.LeerStadt));
+      
+   end Standardeinstellungen;
 
 end SchreibeStadtGebaut;

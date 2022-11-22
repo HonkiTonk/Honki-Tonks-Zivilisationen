@@ -1,11 +1,11 @@
 with KartenDatentypen;
 with RassenDatentypen;
-with SpielVariablen;
 with KartenRecords;
 with ProduktionDatentypen;
 with KampfDatentypen;
 
 with LeseWeltkarteneinstellungen;
+with LeseRassenbelegung;
 
 package KartenfelderwerteLogik is
    pragma Elaborate_Body;
@@ -18,7 +18,7 @@ package KartenfelderwerteLogik is
       return ProduktionDatentypen.Feldproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -31,7 +31,7 @@ package KartenfelderwerteLogik is
       return ProduktionDatentypen.Feldproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -44,7 +44,7 @@ package KartenfelderwerteLogik is
       return ProduktionDatentypen.Feldproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -57,7 +57,7 @@ package KartenfelderwerteLogik is
       return ProduktionDatentypen.Feldproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -70,7 +70,7 @@ package KartenfelderwerteLogik is
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -83,7 +83,7 @@ package KartenfelderwerteLogik is
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and

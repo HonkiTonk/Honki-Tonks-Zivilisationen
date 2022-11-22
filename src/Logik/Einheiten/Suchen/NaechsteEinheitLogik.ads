@@ -1,7 +1,8 @@
 with RassenDatentypen;
-with SpielVariablen;
 
 private with EinheitenDatentypen;
+
+with LeseRassenbelegung;
 
 package NaechsteEinheitLogik is
    pragma Elaborate_Body;
@@ -18,14 +19,14 @@ package NaechsteEinheitLogik is
       BewegungspunkteExtern : in Bewegungspunkte_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
    procedure NächsteEinheitMeldung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private

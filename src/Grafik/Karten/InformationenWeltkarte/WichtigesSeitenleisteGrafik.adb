@@ -11,6 +11,7 @@ with ForschungKonstanten;
 
 with LeseWichtiges;
 with LeseGrenzen;
+with LeseAllgemeines;
 
 with ForschungsbeschreibungenGrafik;
 with EinstellungenGrafik;
@@ -82,27 +83,29 @@ package body WichtigesSeitenleisteGrafik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Unbounded_Wide_Wide_String
    is begin
+      
+      AktuelleRundenanzahl := LeseAllgemeines.Rundenanzahl;
                   
       case
         LeseGrenzen.Rassenrundengrenze (RasseExtern => RasseExtern)
       is
-         when 0 =>
-            null;
+         when ZahlenDatentypen.EigenesNatural'First =>
+            Rundengrenze := LeseAllgemeines.Rundengrenze;
             
          when others =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & SpielVariablen.Allgemeines.Rundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
               & ZahlAlsStringPositive (ZahlExtern => LeseGrenzen.Rassenrundengrenze (RasseExtern => RasseExtern));
       end case;
       
       case
-        SpielVariablen.Allgemeines.Rundengrenze
+        Rundengrenze
       is
-         when 0 =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & SpielVariablen.Allgemeines.Rundenanzahl'Wide_Wide_Image;
+         when ZahlenDatentypen.EigenesNatural'First =>
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image;
             
          when others =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & SpielVariablen.Allgemeines.Rundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
-              & ZahlAlsStringPositive (ZahlExtern => SpielVariablen.Allgemeines.Rundengrenze);
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
+              & ZahlAlsStringPositive (ZahlExtern => Rundengrenze);
       end case;
       
    end Rundenanzahl;

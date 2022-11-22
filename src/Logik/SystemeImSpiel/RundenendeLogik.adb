@@ -3,16 +3,18 @@ with SystemDatentypen;
 with StadtKonstanten;
 with TextnummernKonstanten;
 with GrafikDatentypen;
-with ZahlenDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
+with SchreibeAllgemeines;
+with LeseAllgemeines;
+with LeseDiplomatie;
+with SchreibeDiplomatie;
 
 with StadtwachstumLogik;
 with ForschungsfortschrittLogik;
 with StadtproduktionLogik;
 with SiegbedingungenLogik;
-with DiplomatischerZustandLogik;
 with MeldungenSetzenLogik;
 with EinheitInUmgebungLogik;
 with EinheitenmodifizierungLogik;
@@ -61,11 +63,11 @@ package body RundenendeLogik is
       
       ForschungsfortschrittLogik.Forschungsfortschritt;
       LadezeitenLogik.RundenendeSchreiben;
-            
-      RundenanzahlSetzen;
-      LadezeitenLogik.RundenendeSchreiben;
       
       GeldForschungDiplomatieÄndern;
+      LadezeitenLogik.RundenendeSchreiben;
+            
+      SchreibeAllgemeines.Rundenanzahl;
       LadezeitenLogik.RundenendeSchreiben;
       
       -- Autospeichern muss immer nach allen Änderungen kommen, sonst werden nicht alle Änderungen gespeichert.
@@ -83,23 +85,25 @@ package body RundenendeLogik is
    is begin
       
       case
-        SpielVariablen.Allgemeines.Zusammenbruchszeit
+        LeseAllgemeines.Zusammenbruchszeit
       is
          when -1 =>
-            null;
+            Weiterspielen := LeseAllgemeines.Weiterspielen;
             
          when 0 =>
             AbspannLogik.Abspann (AbspannExtern => GrafikDatentypen.Planet_Vernichtet_Enum);
             return False;
             
          when others =>
-            SpielVariablen.Allgemeines.Zusammenbruchszeit := SpielVariablen.Allgemeines.Zusammenbruchszeit - 1;
+            SchreibeAllgemeines.Zusammenbruchszeit (ZeitExtern          => -1,
+                                                    RechnenSetzenExtern => True);
+            
             -- Das True muss später raus, wenn ich eine Siegoption für interstellares Siedeln einbaue. äöü
             return True;
       end case;
       
       case
-        SpielVariablen.Allgemeines.Weiterspielen
+        Weiterspielen
       is
          when True =>
             return MenschlicherSpielerVorhanden;
@@ -115,8 +119,8 @@ package body RundenendeLogik is
             return True;
             
          when SystemDatentypen.Gewonnen_Enum =>
-            SpielVariablen.Allgemeines.Weiterspielen := JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen);
-            return SpielVariablen.Allgemeines.Weiterspielen;
+            SchreibeAllgemeines.Weiterspielen (WeiterspielenExtern => JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen));
+            return Weiterspielen;
             
          when SystemDatentypen.Verloren_Enum =>
             return False;
@@ -134,12 +138,12 @@ package body RundenendeLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
                
          if
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Besiegt = False
+           LeseRassenbelegung.Besiegt (RasseExtern => RasseSchleifenwert) = False
            and
-             SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Mensch_Spieler_Enum
          then
             return True;
-                  
+            
          else
             null;
          end if;
@@ -152,23 +156,6 @@ package body RundenendeLogik is
    
    
    
-   procedure RundenanzahlSetzen
-   is begin
-      
-      case
-        SpielVariablen.Allgemeines.Rundenanzahl
-      is
-         when ZahlenDatentypen.EigenesPositive'Last =>
-            null;
-            
-         when others =>
-            SpielVariablen.Allgemeines.Rundenanzahl := SpielVariablen.Allgemeines.Rundenanzahl + 1;
-      end case;
-      
-   end RundenanzahlSetzen;
-   
-   
-   
    procedure GeldForschungDiplomatieÄndern
    is begin
       
@@ -176,7 +163,7 @@ package body RundenendeLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -228,22 +215,29 @@ package body RundenendeLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
             
          if
-           SpielVariablen.Diplomatie (RasseExtern, RasseSchleifenwert).AktuellerZustand = DiplomatieDatentypen.Unbekannt_Enum
+           RasseExtern = RasseSchleifenwert
            or
-             RasseExtern = RasseSchleifenwert
-             or
-               SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
+             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+         then
+            null;
+            
+         elsif
+           DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
+                                                                                  RasseZweiExtern => RasseSchleifenwert)
          then
             null;
                   
          else
-            DiplomatischerZustandLogik.VergangeneZeitÄndern (RasseEinsExtern => RasseExtern,
-                                                              RasseZweiExtern => RasseSchleifenwert);
-            DiplomatischerZustandLogik.SympathieÄndern (EigeneRasseExtern => RasseExtern,
-                                                         FremdeRasseExtern => RasseSchleifenwert,
-                                                         ÄnderungExtern    => 1);
+            SchreibeDiplomatie.ZeitSeitÄnderung (RasseEinsExtern     => RasseExtern,
+                                                  RasseZweiExtern     => RasseSchleifenwert,
+                                                  ÄnderungExtern     => 1,
+                                                  RechnenSetzenExtern => True);
+            SchreibeDiplomatie.AktuelleSympathie (RasseEinsExtern     => RasseExtern,
+                                                  RasseZweiExtern     => RasseSchleifenwert,
+                                                  SympathieExtern     => 1,
+                                                  RechnenSetzenExtern => True);
          end if;
-            
+         
       end loop RassenSchleife;
       
    end Diplomatie;

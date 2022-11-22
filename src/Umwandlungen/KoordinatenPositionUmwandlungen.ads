@@ -2,10 +2,10 @@ with Sf.System.Vector2;
 
 with RassenDatentypen;
 with KartenDatentypen;
-with SpielVariablen;
 with KartenRecords;
 
 with LeseWeltkarteneinstellungen;
+with LeseRassenbelegung;
 
 package KoordinatenPositionUmwandlungen is
    pragma Elaborate_Body;
@@ -18,7 +18,7 @@ package KoordinatenPositionUmwandlungen is
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -37,7 +37,7 @@ package KoordinatenPositionUmwandlungen is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  PositionExtern.x >= 0.00
                and

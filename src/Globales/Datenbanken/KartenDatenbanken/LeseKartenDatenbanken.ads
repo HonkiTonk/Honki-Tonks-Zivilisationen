@@ -1,10 +1,11 @@
 with RassenDatentypen;
-with SpielVariablen;
 with EinheitenDatentypen;
 with KartengrundDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with BewertungDatentypen;
+
+with LeseRassenbelegung;
 
 package LeseKartenDatenbanken is
    pragma Elaborate_Body;
@@ -21,7 +22,7 @@ package LeseKartenDatenbanken is
       return BewertungDatentypen.Bewertung_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
               );
    
    function BewertungZusatzgrund
@@ -30,7 +31,7 @@ package LeseKartenDatenbanken is
       return BewertungDatentypen.Bewertung_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
               );
    
    function BewegungBasisgrund
@@ -39,7 +40,7 @@ package LeseKartenDatenbanken is
       return EinheitenDatentypen.VorhandeneBewegungspunkte
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
      
    function BewegungZusatzgrund
@@ -48,7 +49,7 @@ package LeseKartenDatenbanken is
       return EinheitenDatentypen.VorhandeneBewegungspunkte
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function BewertungFluss
@@ -57,7 +58,7 @@ package LeseKartenDatenbanken is
       return BewertungDatentypen.Bewertung_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function BewertungRessource
@@ -66,7 +67,7 @@ package LeseKartenDatenbanken is
       return BewertungDatentypen.Bewertung_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function WirtschaftBasisgrund
@@ -76,7 +77,7 @@ package LeseKartenDatenbanken is
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function WirtschaftZusatzgrund
@@ -86,7 +87,7 @@ package LeseKartenDatenbanken is
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function WirtschaftFluss
@@ -96,7 +97,7 @@ package LeseKartenDatenbanken is
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function WirtschaftRessourcen
@@ -106,7 +107,7 @@ package LeseKartenDatenbanken is
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function KampfBasisgrund
@@ -116,7 +117,7 @@ package LeseKartenDatenbanken is
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function KampfZusatzgrund
@@ -126,7 +127,7 @@ package LeseKartenDatenbanken is
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function KampfFluss
@@ -136,7 +137,7 @@ package LeseKartenDatenbanken is
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function KampfRessource
@@ -146,7 +147,7 @@ package LeseKartenDatenbanken is
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end LeseKartenDatenbanken;

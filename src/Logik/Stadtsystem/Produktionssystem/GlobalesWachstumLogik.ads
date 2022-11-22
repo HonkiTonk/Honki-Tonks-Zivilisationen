@@ -1,5 +1,6 @@
 with RassenDatentypen;
-with SpielVariablen;
+
+with LeseRassenbelegung;
 
 package GlobalesWachstumLogik is
    pragma Elaborate_Body;
@@ -9,7 +10,7 @@ package GlobalesWachstumLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private
@@ -18,7 +19,7 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end GlobalesWachstumLogik;

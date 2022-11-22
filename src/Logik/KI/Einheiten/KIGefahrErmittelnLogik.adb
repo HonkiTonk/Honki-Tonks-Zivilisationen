@@ -9,10 +9,10 @@ with KIDatentypen;
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
+with LeseDiplomatie;
 
 with KartenkoordinatenberechnungssystemLogik;
 with EinheitSuchenLogik;
-with DiplomatischerZustandLogik;
 
 with KIKriegErmittelnLogik;
 
@@ -120,8 +120,8 @@ package body KIGefahrErmittelnLogik is
       end if;
                      
       case
-        DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                FremdeRasseExtern => AndereEinheitExtern.Rasse)
+        LeseDiplomatie.AktuellerZustand (RasseEinsExtern => EinheitRasseNummerExtern.Rasse,
+                                         RasseZweiExtern => AndereEinheitExtern.Rasse)
       is
          when DiplomatieDatentypen.Krieg_Enum =>
             null;

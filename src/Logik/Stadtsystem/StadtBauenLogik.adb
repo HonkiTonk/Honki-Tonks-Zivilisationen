@@ -47,7 +47,7 @@ package body StadtBauenLogik is
       end case;
       
       case
-        SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung
+        LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse)
       is
          when RassenDatentypen.KI_Spieler_Enum =>
             StadtName.EingegebenerText := Rassentexte.Städtenamen (EinheitRasseNummerExtern.Rasse, StadtNummer);
@@ -116,7 +116,7 @@ package body StadtBauenLogik is
          return True;
          
       elsif
-        SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+        LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
       then
          return False;
          
@@ -150,7 +150,7 @@ package body StadtBauenLogik is
       end loop StadtSchleife;
       
       case
-        SpielVariablen.Rassenbelegung (RasseExtern).Belegung
+        LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
       is
          when RassenDatentypen.Mensch_Spieler_Enum =>
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungStädtemaximum);

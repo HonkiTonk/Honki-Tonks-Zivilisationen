@@ -21,6 +21,8 @@ package StadtKonstanten is
    LeerNummer : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerRasseNummer : constant StadtRecords.RasseStadtnummerRecord := (LeerRasse, LeerNummer);
    
+   AnfangNummer : constant StadtDatentypen.MaximaleStädte := StadtDatentypen.MaximaleStädte'First;
+   
    LeerID : constant KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
    LeerEinwohner : constant ProduktionDatentypen.Einwohner := 0;
    LeerArbeiter : constant ProduktionDatentypen.Einwohner := 0;

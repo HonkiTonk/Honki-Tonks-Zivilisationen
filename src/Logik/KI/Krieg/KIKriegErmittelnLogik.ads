@@ -1,7 +1,8 @@
 with RassenDatentypen;
-with SpielVariablen;
 
 private with ProduktionDatentypen;
+
+with LeseRassenbelegung;
 
 package KIKriegErmittelnLogik is
    pragma Elaborate_Body;
@@ -12,7 +13,7 @@ package KIKriegErmittelnLogik is
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
               );
 
    function KriegAnfangen
@@ -20,7 +21,7 @@ package KIKriegErmittelnLogik is
       return RassenDatentypen.Rassen_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
               );
 
 private
@@ -59,9 +60,9 @@ private
       return RassenDatentypen.Rassen_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.KI_Spieler_Enum
                and
-                 SpielVariablen.Rassenbelegung (FremdeRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  EigeneRasseExtern /= FremdeRasseExtern
               );

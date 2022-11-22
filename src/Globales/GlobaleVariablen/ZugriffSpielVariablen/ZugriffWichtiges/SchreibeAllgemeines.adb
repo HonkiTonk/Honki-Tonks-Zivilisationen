@@ -3,11 +3,11 @@ with WichtigesRecordKonstanten;
 
 package body SchreibeAllgemeines is
    
+   -- Später erweitern damit man weiß wer gewonnen hat. äöü
    procedure Gewonnen
-     (GewonnenExtern : in Boolean)
    is begin
       
-      SpielVariablen.Allgemeines.Gewonnen := GewonnenExtern;
+      SpielVariablen.Allgemeines.Gewonnen := True;
       
    end Gewonnen;
    
@@ -44,10 +44,10 @@ package body SchreibeAllgemeines is
       
    
    procedure Rundenanzahl
-     (RundenanzahlExtern : in ZahlenDatentypen.EigenesPositive)
    is begin
       
-      SpielVariablen.Allgemeines.Rundenanzahl := RundenanzahlExtern;
+      SpielVariablen.Allgemeines.Rundenanzahl := EigeneZahlPrüfen (AktuellerWertExtern => SpielVariablen.Allgemeines.Rundenanzahl,
+                                                                    ÄnderungExtern      => 1);
       
    end Rundenanzahl;
    
@@ -73,7 +73,7 @@ package body SchreibeAllgemeines is
    
    
    
-      procedure PlanetVernichtet
+   procedure PlanetVernichtet
      (RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
       
@@ -84,20 +84,30 @@ package body SchreibeAllgemeines is
       
    
    procedure Zusammenbruchszeit
-     (ZusammenbruchszeitExtern : in ZahlenDatentypen.EigenerInteger)
+     (ZeitExtern : in ZahlenDatentypen.EigenerInteger;
+      RechnenSetzenExtern : in Boolean)
    is begin
       
-      SpielVariablen.Allgemeines.Zusammenbruchszeit := ZusammenbruchszeitExtern;
+      case
+        RechnenSetzenExtern
+      is
+         when True =>
+            SpielVariablen.Allgemeines.Zusammenbruchszeit := EigeneZahlPrüfen (AktuellerWertExtern => SpielVariablen.Allgemeines.Zusammenbruchszeit,
+                                                                                ÄnderungExtern      => ZeitExtern);
+            
+         when False =>
+            SpielVariablen.Allgemeines.Zusammenbruchszeit := ZeitExtern;
+      end case;
       
    end Zusammenbruchszeit;
    
    
    
    procedure AnzahlEingesetzterPZB
-     (AnzahlExtern : in ZahlenDatentypen.EigenesNatural)
    is begin
       
-      SpielVariablen.Allgemeines.AnzahlEingesetzterPZB := AnzahlExtern;
+      SpielVariablen.Allgemeines.AnzahlEingesetzterPZB := EigeneZahlPrüfen (AktuellerWertExtern => SpielVariablen.Allgemeines.AnzahlEingesetzterPZB,
+                                                                             ÄnderungExtern      => 1);
       
    end AnzahlEingesetzterPZB;
    

@@ -1,5 +1,6 @@
 with EinheitenKonstanten;
 with EinheitenRecords;
+with SpielVariablen;
 
 with LeseEinheitenGebaut;
 with LeseGrenzen;

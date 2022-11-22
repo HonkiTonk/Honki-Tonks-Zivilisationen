@@ -6,9 +6,10 @@ with SystemKonstanten;
 with MenueDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
-with SpielVariablen;
 with DiplomatieDatentypen;
 with Menuetexte;
+
+with LeseDiplomatie;
 
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
@@ -66,7 +67,8 @@ package body ZusatztextDiplomatieGrafik is
         TextnummerExtern = SystemKonstanten.EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum)
       then
          case
-           SpielVariablen.Diplomatie (NachGrafiktask.AktuelleRasse, NachGrafiktask.KontaktierteRasse).AktuellerZustand
+           LeseDiplomatie.AktuellerZustand (RasseEinsExtern => NachGrafiktask.AktuelleRasse,
+                                            RasseZweiExtern => NachGrafiktask.KontaktierteRasse)
          is
             when DiplomatieDatentypen.Neutral_Enum =>
                Zustandnummer := TextnummernKonstanten.ZeugFrieden;
@@ -78,13 +80,14 @@ package body ZusatztextDiplomatieGrafik is
                Zustandnummer := TextnummernKonstanten.ZeugKrieg;
                
             when DiplomatieDatentypen.Unbekannt_Enum =>
-               Fehlermeldungssystem.Grafik (FehlermeldungExtern => "ZusatztextDiplomatieGrafik.TextSetzen: Kontakt ist unbekannt.");
+               Fehlermeldungssystem.Grafik (FehlermeldungExtern => "ZusatztextDiplomatieGrafik.TextSetzen: Unbekannter Kontakt.");
          end case;
          
          Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & Meldungstexte.Zeug (Zustandnummer);
          
       else
-         Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & SpielVariablen.Diplomatie (NachGrafiktask.AktuelleRasse, NachGrafiktask.KontaktierteRasse).AktuelleSympathieBewertung'Wide_Wide_Image;
+         Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & LeseDiplomatie.AktuelleSympathie (RasseEinsExtern => NachGrafiktask.AktuelleRasse,
+                                                                                                         RasseZweiExtern => NachGrafiktask.KontaktierteRasse)'Wide_Wide_Image;
       end if;
       
       return To_Wide_Wide_String (Source => Text);

@@ -8,6 +8,7 @@ private with EinheitenDatentypen;
 private with StadtRecords;
 
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 package EinheitenverschiebungLogik is
    pragma Elaborate_Body;
@@ -18,9 +19,9 @@ package EinheitenverschiebungLogik is
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.Rassenbelegung (KontaktierteRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => KontaktierteRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    procedure EinheitVerschieben
@@ -30,9 +31,9 @@ package EinheitenverschiebungLogik is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.Rassenbelegung (RasseLandExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseLandExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private
@@ -54,9 +55,9 @@ private
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.Rassenbelegung (KontaktierteRasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => KontaktierteRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end EinheitenverschiebungLogik;

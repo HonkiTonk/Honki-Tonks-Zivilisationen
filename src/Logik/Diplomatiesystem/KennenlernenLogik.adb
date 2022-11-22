@@ -1,5 +1,7 @@
 with DiplomatieDatentypen;
 
+with LeseDiplomatie;
+
 with DiplomatischerZustandLogik;
 
 with KIDiplomatieLogik;
@@ -12,8 +14,8 @@ package body KennenlernenLogik is
    is begin
       
       case
-        DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
-                                                                FremdeRasseExtern => FremdeRasseExtern)
+        LeseDiplomatie.AktuellerZustand (RasseEinsExtern => EigeneRasseExtern,
+                                         RasseZweiExtern => FremdeRasseExtern)
       is
          when DiplomatieDatentypen.Unbekannt_Enum =>
             DiplomatischerZustandLogik.DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
@@ -25,17 +27,17 @@ package body KennenlernenLogik is
       end case;
       
       if
-        SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+        LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
         and
-          SpielVariablen.Rassenbelegung (FremdeRasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+          LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
       then
          ErstkontaktMenschMensch (EigeneRasseExtern => EigeneRasseExtern,
                                   FremdeRasseExtern => FremdeRasseExtern);
       
       elsif
-        SpielVariablen.Rassenbelegung (EigeneRasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+        LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
         or
-          SpielVariablen.Rassenbelegung (FremdeRasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+          LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
       then
          ErstkontaktMenschKI (EigeneRasseExtern => EigeneRasseExtern,
                               FremdeRasseExtern => FremdeRasseExtern);

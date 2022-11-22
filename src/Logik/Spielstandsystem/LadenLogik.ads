@@ -3,10 +3,11 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with RassenDatentypen;
 private with SonstigesKonstanten;
-private with SpielVariablen;
 private with KartenRecords;
 private with WeltkarteRecords;
 private with SpielRecords;
+
+private with LeseRassenbelegung;
 
 package LadenLogik is
    pragma Elaborate_Body;
@@ -27,7 +28,11 @@ private
 
    Wichtiges : SpielRecords.WichtigesRecord;
 
+   Diplomatie : SpielRecords.DiplomatieRecord;
+
    Grenzen : SpielRecords.GrenzenRecord;
+
+   Cursor : KartenRecords.CursorRecord;
 
    Karteneintrag : WeltkarteRecords.WeltkarteRecord;
 
@@ -45,7 +50,7 @@ private
       DateiLadenExtern : in File_Type)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end LadenLogik;

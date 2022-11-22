@@ -1,8 +1,4 @@
-with WichtigesRecordKonstanten;
-with StadtRecordKonstanten;
-with SpielVariablen;
 with KartenRecordKonstanten;
-with EinheitenRecordKonstanten;
 with KartengeneratorRecordKonstanten;
 with KartenartDatentypen;
 
@@ -10,11 +6,15 @@ with SchreibeWeltkarteneinstellungen;
 with SchreibeWeltkarte;
 with SchreibeWichtiges;
 with SchreibeAllgemeines;
+with SchreibeDiplomatie;
+with SchreibeRassenbelegung;
+with SchreibeCursor;
+with SchreibeEinheitenGebaut;
+with SchreibeStadtGebaut;
 
 with KartengeneratorVariablenLogik;
 with SichtweitenGrafik;
 
--- Das hier auch mal in die verschiedenen Zugriffsdateien aufteilen? äöü
 package body StandardSpielwerteSetzenLogik is
 
    procedure StandardSpielwerteSetzenLogik
@@ -33,18 +33,16 @@ package body StandardSpielwerteSetzenLogik is
             KartengeneratorVariablenLogik.Landgrößen := KartengeneratorRecordKonstanten.Kartenartgrößen (KartenartDatentypen.Kartenart_Kontinente_Enum);
       end case;
       
-      SpielVariablen.EinheitenGebaut := (others => (others => EinheitenRecordKonstanten.LeerEinheit));
-      SpielVariablen.StadtGebaut := (others => (others => StadtRecordKonstanten.LeerStadt));
+      SchreibeEinheitenGebaut.Standardeinstellungen;
+      SchreibeStadtGebaut.Standardeinstellungen;
       SchreibeWichtiges.Standardeinstellungen;
-      SpielVariablen.Diplomatie := (others => (others => WichtigesRecordKonstanten.StartDiplomatie));
-      SpielVariablen.CursorImSpiel := (others => WichtigesRecordKonstanten.LeerCursor);
-      SpielVariablen.Rassenbelegung := (others => WichtigesRecordKonstanten.LeerRassenbelegung);
+      SchreibeDiplomatie.Standardeinstellungen;
+      SchreibeCursor.Standardeinstellungen;
+      SchreibeRassenbelegung.Standardeinstellungen; 
       SchreibeAllgemeines.Standardeinstellungen;
       
       SchreibeWeltkarteneinstellungen.Standardeinstellungen;
       SchreibeWeltkarte.Standardeinstellungen;
-      
-      SpielVariablen.Debug := (others => False);
       
       SichtweitenGrafik.StandardSichtweiten;
       

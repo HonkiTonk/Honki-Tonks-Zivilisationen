@@ -3,10 +3,11 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 private with Sf.System.Vector2;
 
 with RassenDatentypen;
-with SpielVariablen;
 with StadtDatentypen;
 
 private with GrafikRecordKonstanten;
+
+with LeseRassenbelegung;
 
 package BauauswahlGebaeudeGrafik is
    pragma Elaborate_Body;
@@ -18,7 +19,7 @@ package BauauswahlGebaeudeGrafik is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private
@@ -38,7 +39,7 @@ private
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
 end BauauswahlGebaeudeGrafik;

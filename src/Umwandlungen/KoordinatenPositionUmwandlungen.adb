@@ -1,6 +1,8 @@
 with KartenKonstanten;
 with KartenRecordKonstanten;
 
+with LeseCursor;
+
 with SichtweitenGrafik;
 with KartenkoordinatenberechnungssystemLogik;
 with Vergleiche;
@@ -16,7 +18,7 @@ package body KoordinatenPositionUmwandlungen is
    begin
       
       Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
-      CursorKoordinatenAlt := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt;
+      CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (RasseExtern => RasseExtern);
       Feldposition := (0.00, 0.00);
             
       YAchseSchleife:
@@ -64,7 +66,7 @@ package body KoordinatenPositionUmwandlungen is
    is begin
       
       Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
-      CursorKoordinatenAlt := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt;
+      CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (RasseExtern => RasseExtern);
       Feldposition := (0.00, 0.00);
             
       YAchseSchleife:

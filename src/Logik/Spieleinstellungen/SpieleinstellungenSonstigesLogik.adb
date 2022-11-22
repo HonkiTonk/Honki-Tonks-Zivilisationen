@@ -1,5 +1,6 @@
-with SpielVariablen;
 with MenueDatentypen;
+
+with SchreibeAllgemeines;
 
 with ZufallsgeneratorenSpieleinstellungenLogik;
 with AuswahlaufteilungLogik;
@@ -20,10 +21,10 @@ package body SpieleinstellungenSonstigesLogik is
            SchwierigkeitAuswahl
          is
             when RueckgabeDatentypen.Schwierigkeitsgrad_Enum'Range =>
-               SpielVariablen.Allgemeines.Schwierigkeitsgrad := UmwandlungenVerschiedeneDatentypen.RückgabeNachSchwierigkeitsgrad (RückgabeExtern => SchwierigkeitAuswahl);
+               SchreibeAllgemeines.Schwierigkeitsgrad (SchwierigkeitsgradExtern => UmwandlungenVerschiedeneDatentypen.RückgabeNachSchwierigkeitsgrad (RückgabeExtern => SchwierigkeitAuswahl));
 
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               SpielVariablen.Allgemeines.Schwierigkeitsgrad := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligerSchwiewrigkeitsgrad;
+               SchreibeAllgemeines.Schwierigkeitsgrad (SchwierigkeitsgradExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligerSchwiewrigkeitsgrad);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;

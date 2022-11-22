@@ -5,6 +5,7 @@ with KartenRecordKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseWeltkarte;
+with LeseAllgemeines;
 
 with KartenkoordinatenberechnungssystemLogik;
 
@@ -55,7 +56,7 @@ package body KIEinheitFestlegenSiedelnLogik is
       BereitsGeprüft := UmgebungPrüfen - 1;
             
       KartenfeldSuchenSchleife:
-      while UmgebungPrüfen <= KIKonstanten.Felderreichweite (SpielVariablen.Allgemeines.Schwierigkeitsgrad) loop
+      while UmgebungPrüfen <= KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
          
          MöglichesFeld := NeuesStadtfeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                            UmgebungExtern           => UmgebungPrüfen,

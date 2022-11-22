@@ -3,16 +3,17 @@ with DiplomatieDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with SpielVariablen;
 with StadtDatentypen;
 
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with LeseGrenzen;
+with LeseDiplomatie;
 
 with KartenkoordinatenberechnungssystemLogik;
 with EinheitSuchenLogik;
-with DiplomatischerZustandLogik;
 with MeldungenSetzenLogik;
 
 package body EinheitInUmgebungLogik is
@@ -24,7 +25,7 @@ package body EinheitInUmgebungLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
          is
             when RassenDatentypen.Mensch_Spieler_Enum =>
                UmgebungStadt (RasseExtern => RasseSchleifenwert);
@@ -147,8 +148,8 @@ package body EinheitInUmgebungLogik is
                   null;
                     
                elsif
-                 DiplomatieDatentypen.Nichtangriffspakt_Enum = DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
-                                                                                                                       FremdeRasseExtern => AndereEinheit.Rasse)
+                 DiplomatieDatentypen.Nichtangriffspakt_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
+                                                                                                RasseZweiExtern => AndereEinheit.Rasse)
                then
                   null;
                   

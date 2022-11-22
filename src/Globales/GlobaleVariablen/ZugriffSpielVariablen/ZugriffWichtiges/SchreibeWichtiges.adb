@@ -4,6 +4,7 @@ with WichtigesKonstanten;
 with ForschungKonstanten;
 with ProduktionKonstanten;
 with WichtigesRecordKonstanten;
+with SpielVariablen;
 
 with LeseForschungenDatenbank;
 with LeseGrenzen;

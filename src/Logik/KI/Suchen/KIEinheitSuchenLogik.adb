@@ -4,6 +4,7 @@ with KartenRecordKonstanten;
 
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
+with LeseAllgemeines;
 
 with KartenkoordinatenberechnungssystemLogik;
 with EinheitSuchenLogik;
@@ -26,7 +27,7 @@ package body KIEinheitSuchenLogik is
       BereitsGeprüft := UmgebungPrüfen - 1;
       
       FeindSuchenSchleife:
-      while UmgebungPrüfen <= KIKonstanten.Felderreichweite (SpielVariablen.Allgemeines.Schwierigkeitsgrad) loop
+      while UmgebungPrüfen <= KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
          YAchseSchleife:
          for YAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
             XAchseSchleife:

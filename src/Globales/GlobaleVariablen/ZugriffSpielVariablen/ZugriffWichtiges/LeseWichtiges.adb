@@ -1,3 +1,5 @@
+with SpielVariablen;
+
 package body LeseWichtiges is
 
    function Geldmenge

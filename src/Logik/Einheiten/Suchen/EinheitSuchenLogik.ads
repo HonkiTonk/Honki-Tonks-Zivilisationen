@@ -3,10 +3,10 @@ with RassenDatentypen;
 with EinheitenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
-with SpielVariablen;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 package EinheitSuchenLogik is
    pragma Elaborate_Body;
@@ -25,7 +25,7 @@ package EinheitSuchenLogik is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               ),
                       
        Post => (
@@ -54,7 +54,7 @@ package EinheitSuchenLogik is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function TransporterladungSuchen
@@ -80,7 +80,7 @@ private
       return EinheitenRecords.RasseEinheitnummerRecord
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 end EinheitSuchenLogik;

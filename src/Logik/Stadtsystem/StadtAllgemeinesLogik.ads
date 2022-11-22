@@ -5,6 +5,7 @@ with SpielVariablen;
 private with SystemRecords;
 
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 package StadtAllgemeinesLogik is
    pragma Elaborate_Body;
@@ -16,7 +17,7 @@ package StadtAllgemeinesLogik is
        Pre => (
                  StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private

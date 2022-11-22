@@ -1,6 +1,7 @@
 with EinheitenKonstanten;
 with KartenverbesserungDatentypen;
 with LadezeitenDatentypen;
+with SpielVariablen;
 
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;

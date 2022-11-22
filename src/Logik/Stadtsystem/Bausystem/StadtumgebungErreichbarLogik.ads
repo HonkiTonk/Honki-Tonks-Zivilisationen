@@ -2,9 +2,9 @@ with KartenDatentypen;
 with RassenDatentypen;
 with KartenRecords;
 with EinheitenDatentypen;
-with SpielVariablen;
 
 with LeseWeltkarteneinstellungen;
+with LeseRassenbelegung;
 
 package StadtumgebungErreichbarLogik is
    pragma Elaborate_Body;
@@ -23,7 +23,7 @@ package StadtumgebungErreichbarLogik is
                and
                  AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               ),
            
        Post => (
@@ -53,7 +53,7 @@ private
                and
                  AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end StadtumgebungErreichbarLogik;

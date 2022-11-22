@@ -2,6 +2,8 @@ with KartenartDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
 
+with SchreibeCursor;
+
 with NachGrafiktask;
 with SichtweitenGrafik;
 with KartenkoordinatenberechnungssystemLogik;
@@ -18,10 +20,12 @@ package body GeheZuGrafik is
         Kartenwert.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := NachGrafiktask.GeheZu;
+            SchreibeCursor.KoordinatenAlt (RasseExtern       => RasseExtern,
+                                           KoordinatenExtern => NachGrafiktask.GeheZu);
             
          when others =>
-            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := Kartenwert;
+            SchreibeCursor.KoordinatenAlt (RasseExtern       => RasseExtern,
+                                           KoordinatenExtern => Kartenwert);
       end case;
       
       NachGrafiktask.GeheZu := KartenRecordKonstanten.LeerKoordinate;

@@ -25,7 +25,4 @@ private
    function SiegbedingungZwei
      return Boolean;
 
-   function SiegbedingungDrei
-     return Boolean;
-
 end SiegbedingungenLogik;

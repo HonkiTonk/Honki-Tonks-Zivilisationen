@@ -1,7 +1,8 @@
 with RassenDatentypen;
 with SystemRecords;
 with StadtRecords;
-with SpielVariablen;
+
+with LeseRassenbelegung;
 
 package TexteingabeLogik is
    pragma Elaborate_Body;
@@ -13,7 +14,7 @@ package TexteingabeLogik is
       return SystemRecords.TextEingabeRecord
      with
        Pre => (
-                 if StadtRasseNummerExtern.Rasse /= RassenDatentypen.Keine_Rasse_Enum then SpielVariablen.Rassenbelegung (StadtRasseNummerExtern.Rasse).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 if StadtRasseNummerExtern.Rasse /= RassenDatentypen.Keine_Rasse_Enum then LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
    function SpielstandName

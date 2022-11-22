@@ -10,8 +10,9 @@ with InteraktionAuswahl;
 with RassenDatentypen;
 with MenueDatentypen;
 with DiplomatieDatentypen;
-with SpielVariablen;
 with TextKonstanten;
+
+with LeseDiplomatie;
 
 with AllgemeineViewsGrafik;
 with HintergrundGrafik;
@@ -77,7 +78,8 @@ package body DiplomatieauswahlGrafik is
                  & TextKonstanten.StandardAbstand;
                
                case
-                 SpielVariablen.Diplomatie (NachGrafiktask.AktuelleRasse, RassenDatentypen.Rassen_Enum'Val (PositionSchleifenwert)).AktuellerZustand
+                 LeseDiplomatie.AktuellerZustand (RasseEinsExtern => NachGrafiktask.AktuelleRasse,
+                                                  RasseZweiExtern => RassenDatentypen.Rassen_Enum'Val (PositionSchleifenwert))
                is
                   when DiplomatieDatentypen.Neutral_Enum =>
                      Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugFrieden);
@@ -89,7 +91,7 @@ package body DiplomatieauswahlGrafik is
                      Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKrieg);
                
                   when DiplomatieDatentypen.Unbekannt_Enum =>
-                     Fehlermeldungssystem.Grafik (FehlermeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung: Kontakt ist unbekannt.");
+                     Fehlermeldungssystem.Grafik (FehlermeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung: Unbekannter Kontakt.");
                      Text := TextKonstanten.LeerUnboundedString;
                end case;
 

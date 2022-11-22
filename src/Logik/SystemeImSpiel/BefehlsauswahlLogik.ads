@@ -1,9 +1,10 @@
 with RassenDatentypen;
-with SpielVariablen;
 with RueckgabeDatentypen;
 
 private with TastenbelegungDatentypen;
 private with StadtRecords;
+
+with LeseRassenbelegung;
 
 package BefehlsauswahlLogik is
    pragma Elaborate_Body;
@@ -14,7 +15,7 @@ package BefehlsauswahlLogik is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private
@@ -31,7 +32,7 @@ private
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
 end BefehlsauswahlLogik;

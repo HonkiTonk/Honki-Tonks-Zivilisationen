@@ -2,13 +2,13 @@ with KartenDatentypen;
 with RassenDatentypen;
 with KartenverbesserungDatentypen;
 with KartengrundDatentypen;
-with SpielVariablen;
 with KartenRecords;
 with EinheitenRecords;
 with StadtRecords;
 with WeltkarteRecords;
 
 with LeseWeltkarteneinstellungen;
+with LeseRassenbelegung;
 
 package SchreibeWeltkarte is
    pragma Elaborate_Body;
@@ -51,7 +51,7 @@ package SchreibeWeltkarte is
       SichtbarExtern : in Boolean)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and

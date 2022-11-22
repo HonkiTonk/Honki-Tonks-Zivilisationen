@@ -1,8 +1,9 @@
 with RassenDatentypen;
-with SpielVariablen;
 
 private with ForschungenDatentypen;
 private with ForschungenDatenbank;
+
+with LeseRassenbelegung;
 
 private with KIDatentypen;
 
@@ -14,7 +15,7 @@ package KIForschungLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
               );
    
 private
@@ -34,7 +35,7 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
               );
 
 end KIForschungLogik;

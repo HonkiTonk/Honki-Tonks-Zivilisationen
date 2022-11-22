@@ -1,6 +1,8 @@
 with WichtigesKonstanten;
 with TextnummernKonstanten;
 
+with LeseDiplomatie;
+
 with DiplomatischerZustandLogik;
 with MeldungFestlegenLogik;
 
@@ -15,21 +17,22 @@ package body DiplomatischerZustandAenderbarLogik is
    begin
       
       if
-        NeuerStatusExtern = SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand
+        NeuerStatusExtern = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseEinsExtern,
+                                                             RasseZweiExtern => RasseZweiExtern)
       then
          MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungStatus);
          return;
          
       else
-         AktuellerStatus := DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseEinsExtern,
-                                                                                    FremdeRasseExtern => RasseZweiExtern);
+         AktuellerStatus := LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseEinsExtern,
+                                                             RasseZweiExtern => RasseZweiExtern);
          
-         ZeitSeitÄnderung := DiplomatischerZustandLogik.DiplomatischerStatusLetzteÄnderung (EigeneRasseExtern => RasseEinsExtern,
-                                                                                              FremdeRasseExtern => RasseZweiExtern);
+         ZeitSeitÄnderung := LeseDiplomatie.ZeitSeitÄnderung (RasseEinsExtern => RasseEinsExtern,
+                                                                RasseZweiExtern => RasseZweiExtern);
          
          -- Die Sympathiewerte einer Rasse zu einer Anderen müssen nur Zwei zu Eins berücksichtigt werden, da Eins ja was von Zwei will.
-         SympathieZweiZuEins := DiplomatischerZustandLogik.AktuelleSympathie (EigeneRasseExtern => RasseZweiExtern,
-                                                                              FremdeRasseExtern => RasseEinsExtern);
+         SympathieZweiZuEins := LeseDiplomatie.AktuelleSympathie (RasseEinsExtern => RasseZweiExtern,
+                                                                  RasseZweiExtern => RasseEinsExtern);
       end if;
       
       case

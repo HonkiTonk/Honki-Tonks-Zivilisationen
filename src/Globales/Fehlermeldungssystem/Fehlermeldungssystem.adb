@@ -1,6 +1,7 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with FehlermeldungSchreiben;
+with DebugobjekteLogik;
 
 package body Fehlermeldungssystem is
 
@@ -12,7 +13,7 @@ package body Fehlermeldungssystem is
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Logikfehler: " & FehlermeldungExtern);
       
       case
-        FehlerWarnung
+        DebugobjekteLogik.Debug.FehlerWarnung
       is
          when True =>
             raise LogikStopp;
@@ -33,7 +34,7 @@ package body Fehlermeldungssystem is
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Grafikfehler: " & FehlermeldungExtern);
       
       case
-        FehlerWarnung
+        DebugobjekteLogik.Debug.FehlerWarnung
       is
          when True =>
             raise GrafikStopp;
@@ -54,7 +55,7 @@ package body Fehlermeldungssystem is
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Musikfehler: " & FehlermeldungExtern);
       
       case
-        FehlerWarnung
+        DebugobjekteLogik.Debug.FehlerWarnung
       is
          when True =>
             raise MusikStopp;
@@ -75,7 +76,7 @@ package body Fehlermeldungssystem is
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Soundfehler: " & FehlermeldungExtern);
       
       case
-        FehlerWarnung
+        DebugobjekteLogik.Debug.FehlerWarnung
       is
          when True =>
             raise SoundStopp;

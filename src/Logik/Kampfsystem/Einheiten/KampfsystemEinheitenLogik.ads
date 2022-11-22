@@ -6,6 +6,7 @@ private with KampfRecords;
 private with EinheitenDatentypen;
 
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 package KampfsystemEinheitenLogik is
    pragma Elaborate_Body;
@@ -20,9 +21,9 @@ package KampfsystemEinheitenLogik is
        Pre => (
                  AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
                and
-                 SpielVariablen.Rassenbelegung (AngreiferExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                LeseRassenbelegung.Belegung (RasseExtern => AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.Rassenbelegung (VerteidigerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                LeseRassenbelegung.Belegung (RasseExtern => VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => VerteidigerExtern.Rasse)
                and
@@ -51,9 +52,9 @@ private
        Pre => (
                  AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
                and
-                 SpielVariablen.Rassenbelegung (AngreiferExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                LeseRassenbelegung.Belegung (RasseExtern => AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 SpielVariablen.Rassenbelegung (VerteidigerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => VerteidigerExtern.Rasse)
                and

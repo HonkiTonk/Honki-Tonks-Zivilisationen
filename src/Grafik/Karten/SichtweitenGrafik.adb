@@ -1,4 +1,5 @@
 with LeseWeltkarteneinstellungen;
+with LeseCursor;
 
 with CursorbewegungLogik;
 with NachGrafiktask;
@@ -91,10 +92,12 @@ package body SichtweitenGrafik is
       use type KartenDatentypen.Kartenfeld;
    begin
       
+      Cursor := LeseCursor.KoordinatenAlt (RasseExtern => RasseExtern);
+      
       if
-        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse >= LeseWeltkarteneinstellungen.YAchse - SichtweiteLesen
+        Cursor.YAchse >= LeseWeltkarteneinstellungen.YAchse - SichtweiteLesen
         and
-          SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse >= LeseWeltkarteneinstellungen.XAchse - SichtweiteLesen
+          Cursor.XAchse >= LeseWeltkarteneinstellungen.XAchse - SichtweiteLesen
       then
          return False;
                

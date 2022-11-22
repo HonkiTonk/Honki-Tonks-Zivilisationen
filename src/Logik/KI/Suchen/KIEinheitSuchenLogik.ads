@@ -7,6 +7,7 @@ private with EinheitenDatentypen;
 private with KartenDatentypen;
 
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 package KIEinheitSuchenLogik is
    pragma Elaborate_Body;
@@ -18,11 +19,11 @@ package KIEinheitSuchenLogik is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (FeindExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => FeindExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
    
    function TransporterSuchen

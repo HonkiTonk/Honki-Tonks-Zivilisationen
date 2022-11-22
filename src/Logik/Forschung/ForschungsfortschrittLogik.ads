@@ -1,6 +1,7 @@
 private with RassenDatentypen;
-private with SpielVariablen;
 private with ForschungenDatentypen;
+
+private with LeseRassenbelegung;
 
 package ForschungsfortschrittLogik is
    pragma Elaborate_Body;
@@ -16,7 +17,7 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end ForschungsfortschrittLogik;

@@ -5,6 +5,7 @@ with KartengrundDatentypen;
 with GrafikKonstanten;
 
 with LeseWeltkarte;
+with LeseCursor;
 
 with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
@@ -24,7 +25,7 @@ package body WeltkarteGrafik is
       
       Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
       
-      CursorKoordinatenAlt := SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAlt;
+      CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (RasseExtern => EinheitRasseNummerExtern.Rasse);
       Feldposition := (0.00, 0.00);
             
       YAchseSchleife:

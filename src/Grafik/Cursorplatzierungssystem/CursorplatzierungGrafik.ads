@@ -1,10 +1,11 @@
 private with Sf.System.Vector2;
 
 with RassenDatentypen;
-with SpielVariablen;
 
 private with KartenDatentypen;
 private with KartenRecords;
+
+with LeseRassenbelegung;
 
 package CursorplatzierungGrafik is
    pragma Elaborate_Body;
@@ -14,7 +15,7 @@ package CursorplatzierungGrafik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private

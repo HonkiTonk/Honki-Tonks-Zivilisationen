@@ -56,17 +56,24 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (22.11.2022):
+   -- Version 0.04.4140 => 0.04. (22.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.4035 => 0.04. (21.11.2022):
+   -- Version 0.04.4035 => 0.04.4140 (21.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter daran gearbeitet den Zugriff auf die SpielVariablen nur noch durch Lese- und Schreibesystem zu erlauben.
+   -- Fehler im Diplomatiesystem korrigiert der dazu führte das eine nicht belegte Rasse berücksichtigt wurde.
+   -- Unnötigen Code gelöscht.
+   -- Zusätzliche Überlaufprüfungen eingebaut.
+   -- Zusätzliche Sicherheitsprüfungen eingebaut.
+   -- Interne Sturktur überarbeitet.
+   -- Teile des Debugsystems und des Fehlermeldungssystem miteinander verschmolzen.
+   -- Doppelten Code zusammengeführt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/entfernt.
    
    
 

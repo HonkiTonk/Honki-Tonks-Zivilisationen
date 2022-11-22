@@ -3,6 +3,7 @@ with KartenKonstanten;
 with LeseWeltkarte;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
+with LeseAllgemeines;
 
 with PassierbarkeitspruefungLogik;
 with KartenkoordinatenberechnungssystemLogik;
@@ -27,7 +28,7 @@ package body KIEinheitFestlegenErkundenLogik is
       BereitsGeprüft := UmgebungPrüfen - 1;
       
       UnbekanntesFeldSuchenSchleife:
-      while UmgebungPrüfen <= KIKonstanten.Felderreichweite (SpielVariablen.Allgemeines.Schwierigkeitsgrad) loop
+      while UmgebungPrüfen <= KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
          
          case
            ZielSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

@@ -7,6 +7,7 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with LeseWeltkarte;
+with LeseDiplomatie;
 
 with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
@@ -20,7 +21,8 @@ package body EinheitenverschiebungLogik is
    is begin
       
       case
-        SpielVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
+        LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
+                                         RasseZweiExtern => KontaktierteRasseExtern)
       is
          when DiplomatieDatentypen.Nichtangriffspakt_Enum | DiplomatieDatentypen.Neutral_Enum =>
             null;

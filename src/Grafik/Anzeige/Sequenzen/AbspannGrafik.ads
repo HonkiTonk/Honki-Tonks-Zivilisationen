@@ -14,7 +14,7 @@ package AbspannGrafik is
    -- Später wieder einbauen, funktioniert aktuell nicht richtig da die gewinnende Rasse nicht festgetzt wird. äöü
    --  with
    --    Pre => (
-   --            SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+   --            LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
    --       );
 
 private

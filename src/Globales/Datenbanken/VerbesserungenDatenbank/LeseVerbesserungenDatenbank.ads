@@ -1,9 +1,10 @@
 with RassenDatentypen;
-with SpielVariablen;
 with EinheitenDatentypen;
 with KartenverbesserungDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
+
+with LeseRassenbelegung;
 
 package LeseVerbesserungenDatenbank is
    pragma Elaborate_Body;
@@ -20,7 +21,7 @@ package LeseVerbesserungenDatenbank is
       return EinheitenDatentypen.Bewegungspunkte
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function WirtschaftVerbesserung
@@ -30,7 +31,7 @@ package LeseVerbesserungenDatenbank is
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function WirtschaftWeg
@@ -40,7 +41,7 @@ package LeseVerbesserungenDatenbank is
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function KampfVerbesserung
@@ -50,7 +51,7 @@ package LeseVerbesserungenDatenbank is
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function KampfWeg
@@ -60,7 +61,7 @@ package LeseVerbesserungenDatenbank is
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end LeseVerbesserungenDatenbank;

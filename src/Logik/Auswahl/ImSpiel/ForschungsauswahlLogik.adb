@@ -4,6 +4,7 @@ with GrafikDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
+with LeseAllgemeines;
 
 with TasteneingabeLogik;
 with MausauswahlLogik;
@@ -61,7 +62,7 @@ package body ForschungsauswahlLogik is
    is begin
       
       case
-        SpielVariablen.Rassenbelegung (RasseExtern).Belegung
+        LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
       is
          when RassenDatentypen.Mensch_Spieler_Enum =>
             null;
@@ -71,7 +72,7 @@ package body ForschungsauswahlLogik is
       end case;
       
       case
-        SpielVariablen.Allgemeines.Rundenanzahl
+        LeseAllgemeines.Rundenanzahl
       is
          when 1 =>
             NachGrafiktask.AktuelleRasse := RasseExtern;

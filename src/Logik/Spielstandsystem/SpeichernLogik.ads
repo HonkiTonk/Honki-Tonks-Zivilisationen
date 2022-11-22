@@ -2,7 +2,8 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with RassenDatentypen;
-private with SpielVariablen;
+
+private with LeseRassenbelegung;
 
 package SpeichernLogik is
    pragma Elaborate_Body;
@@ -40,7 +41,7 @@ private
       DateiSpeichernExtern : in File_Type)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 

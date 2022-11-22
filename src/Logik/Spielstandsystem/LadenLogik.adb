@@ -7,6 +7,7 @@ with GrafikDatentypen;
 with VerzeichnisKonstanten;
 with TextKonstanten;
 with KartenKonstanten;
+with SpielVariablen;
 
 with LeseWeltkarteneinstellungen;
 with SchreibeWeltkarte;
@@ -14,6 +15,8 @@ with SchreibeWeltkarteneinstellungen;
 with SchreibeWichtiges;
 with LeseGrenzen;
 with SchreibeGrenzen;
+with SchreibeDiplomatie;
+with SchreibeCursor;
 
 with LadezeitenLogik;
 with JaNeinLogik;
@@ -137,7 +140,7 @@ package body LadenLogik is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           SpielVariablen.Rassenbelegung (RasseSchleifenwert).Belegung
+           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -156,7 +159,9 @@ package body LadenLogik is
    procedure Rassenwerte
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       DateiLadenExtern : in File_Type)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       SpielRecords.GrenzenRecord'Read (Stream (File => DateiLadenExtern),
                                        Grenzen);
@@ -187,23 +192,31 @@ package body LadenLogik is
                                        EintragExtern => Wichtiges);
       
       DiplomatieSchleife:
-      for RasseDiplomatieSchleifenwert in SpielVariablen.DiplomatieArray'Range (2) loop
+      for RasseDiplomatieSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
 
-         case
-           SpielVariablen.Rassenbelegung (RasseDiplomatieSchleifenwert).Belegung
-         is
-            when RassenDatentypen.Leer_Spieler_Enum =>
-               null;
-                     
-            when others =>
-               SpielRecords.DiplomatieRecord'Read (Stream (File => DateiLadenExtern),
-                                                   SpielVariablen.Diplomatie (RasseExtern, RasseDiplomatieSchleifenwert));
-         end case;
+         if
+           LeseRassenbelegung.Belegung (RasseExtern => RasseDiplomatieSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+           or
+             RasseExtern = RasseDiplomatieSchleifenwert
+         then
+            null;
+            
+         else
+            SpielRecords.DiplomatieRecord'Read (Stream (File => DateiLadenExtern),
+                                                Diplomatie);
+               
+            SchreibeDiplomatie.GanzerEintrag (RasseEinsExtern => RasseExtern,
+                                              RasseZweiExtern => RasseDiplomatieSchleifenwert,
+                                              EintragExtern   => Diplomatie);
+         end if;
 
       end loop DiplomatieSchleife;
       
       KartenRecords.CursorRecord'Read (Stream (File => DateiLadenExtern),
-                                       SpielVariablen.CursorImSpiel (RasseExtern));
+                                       Cursor);
+      
+      SchreibeCursor.GanzerEintrag (RasseExtern   => RasseExtern,
+                                    EintragExtern => Cursor);
       
    end Rassenwerte;
 

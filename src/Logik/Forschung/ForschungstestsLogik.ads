@@ -1,6 +1,7 @@
 with RassenDatentypen;
-with SpielVariablen;
 with ForschungenDatentypen;
+
+with LeseRassenbelegung;
 
 package ForschungstestsLogik is
    pragma Elaborate_Body;
@@ -12,7 +13,7 @@ package ForschungstestsLogik is
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
    function TechnologieVorhanden
@@ -21,7 +22,7 @@ package ForschungstestsLogik is
       return Boolean
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 private

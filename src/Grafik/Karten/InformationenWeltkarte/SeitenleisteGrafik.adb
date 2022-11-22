@@ -2,10 +2,10 @@ with StadtKonstanten;
 with EinheitenKonstanten;
 with GrafikRecordKonstanten;
 with Views;
-with SpielVariablen;
 with KartenRecordKonstanten;
 
 with LeseWeltkarte;
+with LeseCursor;
 
 with StadtSuchenLogik;
 with EinheitSuchenLogik;
@@ -22,7 +22,7 @@ package body SeitenleisteGrafik is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
-      AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
+      AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern);
       
       -- Ist der Cursor jemals Leer? Wenn nein, dann eventuell einbauen? äöü
       if
@@ -37,7 +37,7 @@ package body SeitenleisteGrafik is
       end if;
       
       case
-        LeseWeltkarte.Sichtbar (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+        LeseWeltkarte.Sichtbar (KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern),
                                 RasseExtern       => RasseExtern)
       is
          when True =>

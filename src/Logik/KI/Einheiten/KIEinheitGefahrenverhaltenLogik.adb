@@ -4,6 +4,7 @@ with KartenRecordKonstanten;
 with KartenRecords;
 
 with LeseEinheitenGebaut;
+with LeseAllgemeines;
 
 with KIDatentypen;
 with KIKonstanten;
@@ -32,7 +33,7 @@ package body KIEinheitGefahrenverhaltenLogik is
       end if;
       
       AktivitätSchleife:
-      for AktivitätSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.SchwierigkeitsgradAktivität (SpielVariablen.Allgemeines.Schwierigkeitsgrad) loop
+      for AktivitätSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.SchwierigkeitsgradAktivität (LeseAllgemeines.Schwierigkeitsgrad) loop
          
          case
            KIEinheitHandlungenLogik.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern)

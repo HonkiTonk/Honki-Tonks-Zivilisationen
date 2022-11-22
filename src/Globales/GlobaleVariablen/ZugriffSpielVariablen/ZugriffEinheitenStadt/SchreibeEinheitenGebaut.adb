@@ -463,5 +463,14 @@ package body SchreibeEinheitenGebaut is
       SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) := EintragExtern;
       
    end GanzerEintrag;
+   
+   
+   
+   procedure Standardeinstellungen
+   is begin
+      
+      SpielVariablen.EinheitenGebaut := (others => (others => EinheitenRecordKonstanten.LeerEinheit));
+      
+   end Standardeinstellungen;
 
 end SchreibeEinheitenGebaut;

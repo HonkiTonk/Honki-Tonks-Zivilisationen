@@ -5,8 +5,9 @@ with TastenbelegungDatentypen;
 with SystemKonstanten;
 with MenueDatentypen;
 with GrafikDatentypen;
-with SpielVariablen;
 with TextnummernKonstanten;
+
+with LeseAllgemeines;
 
 with MausauswahlLogik;
 with TasteneingabeLogik;
@@ -218,9 +219,9 @@ package body SpielstandlisteLogik is
    is begin
       
       if
-        To_Wide_Wide_String (Source => SpielVariablen.Allgemeines.IronmanName) /= TextKonstanten.LeerString
+        LeseAllgemeines.Ironman /= TextKonstanten.LeerUnboundedString
       then
-         Spielstandname := SpielVariablen.Allgemeines.IronmanName;
+         Spielstandname := LeseAllgemeines.Ironman;
                
       else
          Spielstandname := SpielstandAllgemeinesLogik.SpielstandNameErmitteln;

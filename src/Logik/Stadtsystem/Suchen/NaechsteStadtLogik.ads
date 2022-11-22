@@ -1,7 +1,8 @@
 with RassenDatentypen;
-with SpielVariablen;
 
 private with StadtDatentypen;
+
+with LeseRassenbelegung;
 
 package NaechsteStadtLogik is
    pragma Elaborate_Body;
@@ -11,14 +12,14 @@ package NaechsteStadtLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
    procedure NächsteStadtMeldung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private

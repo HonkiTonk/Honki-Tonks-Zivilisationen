@@ -1,8 +1,9 @@
 with RassenDatentypen;
-with SpielVariablen;
 
 private with RueckgabeDatentypen;
 private with DiplomatieDatentypen;
+
+with LeseRassenbelegung;
 
 package DebugmenueLogik is
    pragma Elaborate_Body;
@@ -12,7 +13,7 @@ package DebugmenueLogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
 private
@@ -49,7 +50,7 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
    procedure DiplomatischenStatusÄndern

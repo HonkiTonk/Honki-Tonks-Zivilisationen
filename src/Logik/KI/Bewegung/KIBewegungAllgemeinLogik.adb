@@ -3,14 +3,14 @@ with EinheitenDatentypen;
 with EinheitenKonstanten;
 with AufgabenDatentypen;
 
-with KIKonstanten;
-
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
+with LeseDiplomatie;
 
-with DiplomatischerZustandLogik;
 with EinheitSuchenLogik;
 with StadtSuchenLogik;
+
+with KIKonstanten;
 
 package body KIBewegungAllgemeinLogik is
 
@@ -97,16 +97,16 @@ package body KIBewegungAllgemeinLogik is
       if
         FeindlicheRasseEinheitExtern = EinheitenKonstanten.LeerRasse
         and then
-          DiplomatieDatentypen.Krieg_Enum /= DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneEinheitExtern.Rasse,
-                                                                                                     FremdeRasseExtern => FeindlicheRasseStadtExtern)
+          DiplomatieDatentypen.Krieg_Enum /= LeseDiplomatie.AktuellerZustand (RasseEinsExtern => EigeneEinheitExtern.Rasse,
+                                                                              RasseZweiExtern => FeindlicheRasseStadtExtern)
       then
          return KIKonstanten.KeineBewegung;
          
       elsif
         FeindlicheRasseStadtExtern = EinheitenKonstanten.LeerRasse
         and then
-          DiplomatieDatentypen.Krieg_Enum /= DiplomatischerZustandLogik.DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneEinheitExtern.Rasse,
-                                                                                                     FremdeRasseExtern => FeindlicheRasseEinheitExtern)
+          DiplomatieDatentypen.Krieg_Enum /= LeseDiplomatie.AktuellerZustand (RasseEinsExtern => EigeneEinheitExtern.Rasse,
+                                                                              RasseZweiExtern => FeindlicheRasseEinheitExtern)
       then
          return KIKonstanten.KeineBewegung;
          

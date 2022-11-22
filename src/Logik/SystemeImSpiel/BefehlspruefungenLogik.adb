@@ -4,6 +4,7 @@ with StadtKonstanten;
 with TextnummernKonstanten;
 
 with LeseEinheitenGebaut;
+with LeseCursor;
 
 with StadtmenueLogik;
 with AufgabenLogik;
@@ -31,10 +32,10 @@ package body BefehlspruefungenLogik is
    begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                            KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern),
                                                                             LogikGrafikExtern => True);
       StadtNummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                      KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+                                                                      KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern));
       
       if
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
@@ -85,11 +86,11 @@ package body BefehlspruefungenLogik is
    begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                            KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern),
                                                                             LogikGrafikExtern => True);
       
       StadtNummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                      KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+                                                                      KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern));
 
       if
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
@@ -247,7 +248,7 @@ package body BefehlspruefungenLogik is
    is begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                            KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern),
                                                                             LogikGrafikExtern => True);
       case
         EinheitNummer
@@ -279,7 +280,7 @@ package body BefehlspruefungenLogik is
    is begin
                      
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                            KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern),
                                                                             LogikGrafikExtern => True);
       
       case
@@ -313,7 +314,7 @@ package body BefehlspruefungenLogik is
    is begin
       
       StadtNummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                      KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+                                                                      KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern));
       
       case
         StadtNummer

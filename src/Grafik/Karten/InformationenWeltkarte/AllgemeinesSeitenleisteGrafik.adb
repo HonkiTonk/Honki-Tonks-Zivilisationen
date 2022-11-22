@@ -10,6 +10,7 @@ with Meldungstexte;
 with TextnummernKonstanten;
 
 with LeseWeltkarte;
+with LeseCursor;
 
 with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
@@ -51,7 +52,7 @@ package body AllgemeinesSeitenleisteGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       RealeYPosition := Textposition.y;
       
-      AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
+      AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern);
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten);
       
       TextAnzeigen (1) := True;

@@ -3,6 +3,7 @@ with SpielVariablen;
 with EinheitenRecords;
 
 with LeseGrenzen;
+with LeseRassenbelegung;
 
 package EinheitVerschanzenLogik is
    pragma Elaborate_Body;
@@ -15,7 +16,7 @@ package EinheitVerschanzenLogik is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
-                 SpielVariablen.Rassenbelegung (EinheitRasseNummerExtern.Rasse).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end EinheitVerschanzenLogik;

@@ -1,11 +1,11 @@
 with RassenDatentypen;
 with KartenDatentypen;
 with KartenRecords;
-with SpielVariablen;
 
 private with StadtDatentypen;
 
 with LeseWeltkarteneinstellungen;
+with LeseRassenbelegung;
 
 private with LeseGrenzen;
 
@@ -20,7 +20,7 @@ package KIStadtSuchenLogik is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  AnfangKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -38,7 +38,7 @@ package KIStadtSuchenLogik is
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (FeindlicheRasseExtern).Belegung = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => FeindlicheRasseExtern) = RassenDatentypen.KI_Spieler_Enum
               ),
 
        Post => (
@@ -66,7 +66,7 @@ private
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  AnfangKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and

@@ -1,10 +1,11 @@
 with RassenDatentypen;
-with SpielVariablen;
 with TastenbelegungDatentypen;
 
 private with SystemRecords;
 private with KartenRecords;
 private with KartenDatentypen;
+
+with LeseRassenbelegung;
 
 package CursorbewegungLogik is
    pragma Elaborate_Body;
@@ -15,7 +16,7 @@ package CursorbewegungLogik is
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
-                 SpielVariablen.Rassenbelegung (RasseExtern).Belegung = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
               );
      
    procedure GeheZu;

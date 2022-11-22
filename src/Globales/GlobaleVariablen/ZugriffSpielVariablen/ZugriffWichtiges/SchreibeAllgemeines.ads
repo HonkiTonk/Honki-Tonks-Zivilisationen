@@ -4,11 +4,12 @@ with ZahlenDatentypen;
 with RassenDatentypen;
 with SpielDatentypen;
 
+private with Grenzpruefungen;
+
 package SchreibeAllgemeines is
    pragma Elaborate_Body;
    
-   procedure Gewonnen
-     (GewonnenExtern : in Boolean);
+   procedure Gewonnen;
    
    procedure Weiterspielen
      (WeiterspielenExtern : in Boolean);
@@ -19,8 +20,7 @@ package SchreibeAllgemeines is
    procedure Schwierigkeitsgrad
      (SchwierigkeitsgradExtern : in SpielDatentypen.Schwierigkeitsgrad_Enum);
    
-   procedure Rundenanzahl
-     (RundenanzahlExtern : in ZahlenDatentypen.EigenesPositive);
+   procedure Rundenanzahl;
    
    procedure Rundengrenze
      (RundengrenzeExtern : in ZahlenDatentypen.EigenesNatural);
@@ -32,11 +32,15 @@ package SchreibeAllgemeines is
      (RasseExtern : in RassenDatentypen.Rassen_Enum);
    
    procedure Zusammenbruchszeit
-     (ZusammenbruchszeitExtern : in ZahlenDatentypen.EigenerInteger);
+     (ZeitExtern : in ZahlenDatentypen.EigenerInteger;
+      RechnenSetzenExtern : in Boolean);
    
-   procedure AnzahlEingesetzterPZB
-     (AnzahlExtern : in ZahlenDatentypen.EigenesNatural);
+   procedure AnzahlEingesetzterPZB;
    
    procedure Standardeinstellungen;
+   
+private
+      
+   function EigeneZahlPrüfen is new Grenzpruefungen.Standardprüfung (GanzeZahl => ZahlenDatentypen.EigenerInteger);
 
 end SchreibeAllgemeines;
