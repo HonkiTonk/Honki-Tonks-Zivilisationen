@@ -1,0 +1,11 @@
+name = "honki_tonks_zivilisationen"
+description = "Shiny new project"
+version = "0.1.0-dev"
+
+authors = ["Stefan Hild"]
+maintainers = ["Stefan Hild <krapfen@totalplanlos.de>"]
+maintainers-logins = ["HonkiTonk"]
+
+executables = ["honki_tonks_zivilisationen"]
+[[depends-on]]
+asfml = "^2.5.2"
