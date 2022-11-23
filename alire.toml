@@ -10,6 +10,10 @@ authors = ["Stefan Hild"]
 maintainers = ["Stefan Hild <krapfen@totalplanlos.de>"]
 maintainers-logins = ["HonkiTonk"]
 
+licenses = "GPL-3.0-or-later"
+website = "https://github.com/HonkiTonk/Honki-Tonks-Zivilisationen"
+tags = ["game", "sfml", ""]
+
 executables = ["honki_tonks_zivilisationen"]
 [[depends-on]]
 asfml = "^2.5.2"
