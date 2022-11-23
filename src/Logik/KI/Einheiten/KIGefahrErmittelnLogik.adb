@@ -2,9 +2,6 @@ with EinheitenDatentypen;
 with KartenDatentypen;
 with DiplomatieDatentypen;
 with KartenKonstanten;
-with EinheitenKonstanten;
-
-with KIDatentypen;
 
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
@@ -13,6 +10,8 @@ with LeseDiplomatie;
 
 with KartenkoordinatenberechnungssystemLogik;
 with EinheitSuchenLogik;
+
+with KIDatentypen;
 
 with KIKriegErmittelnLogik;
 

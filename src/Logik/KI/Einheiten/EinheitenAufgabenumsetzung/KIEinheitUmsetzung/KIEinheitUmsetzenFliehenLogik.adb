@@ -1,5 +1,3 @@
-with EinheitenKonstanten;
-
 with KIGefahrErmittelnLogik;
 
 package body KIEinheitUmsetzenFliehenLogik is

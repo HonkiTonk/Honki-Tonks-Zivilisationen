@@ -1,7 +1,7 @@
 with EinheitenKonstanten;
 with KartenverbesserungDatentypen;
 with LadezeitenDatentypen;
-with SpielVariablen;
+with StadtKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
@@ -38,7 +38,7 @@ package body KILogik is
       Einheitenzeitwert := (LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) + (100 - 1)) / 100;
       
       EinheitenSchleife:
-      for EinheitenSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
+      for EinheitenSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
          
          case
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitenSchleifenwert))
@@ -77,7 +77,7 @@ package body KILogik is
       Städtezeitwert := StadtDatentypen.MaximaleStädte ((Positive (LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)) + (100 - 1)) / 100);
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
             
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))

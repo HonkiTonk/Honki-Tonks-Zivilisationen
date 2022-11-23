@@ -96,5 +96,7 @@ package SpielRecords is
       Besiegt : Boolean;
       
    end record;
+   
+   type RassenbelegungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of RassenRecords;
 
 end SpielRecords;

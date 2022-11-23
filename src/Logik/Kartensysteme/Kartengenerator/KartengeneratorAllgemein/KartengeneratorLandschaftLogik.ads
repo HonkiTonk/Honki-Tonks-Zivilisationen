@@ -18,7 +18,7 @@ private
    Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
    
-  -- BasisWahrscheinlichkeitAktuell : KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum;
+   Zwischenspeicher : Natural;
    
    Gesamtgrund : KartenRecords.KartengrundRecord;
    
@@ -40,14 +40,22 @@ private
    
    
    
-   type ZusatzWahrscheinlichkeitenArray is array (KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum'Range) of SystemDatentypen.NullBisHundert;
+   type ZusatzWahrscheinlichkeitenArray is array (1 .. 3) of SystemDatentypen.NullBisHundert;
    ZusatzWahrscheinlichkeiten : ZusatzWahrscheinlichkeitenArray := (
-                                                                    KartengrundDatentypen.Wald_Enum      => 40,
-                                                                    KartengrundDatentypen.Dschungel_Enum => 30,
-                                                                    KartengrundDatentypen.Sumpf_Enum     => 30
+                                                                    1 => 40,
+                                                                    2 => 30,
+                                                                    3 => 30
                                                                    );
-   
+        
    ZusatzZahlen : ZusatzWahrscheinlichkeitenArray;
+   
+   type ZahlenNachZusatzgrundArray is array (0 .. ZusatzWahrscheinlichkeitenArray'Last) of KartengrundDatentypen.Zusatzgrund_Enum;
+   ZahlenNachZusatzgrund : constant ZahlenNachZusatzgrundArray := (
+                                                                   0 => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
+                                                                   1 => KartengrundDatentypen.Wald_Enum,
+                                                                   2 => KartengrundDatentypen.Dschungel_Enum,
+                                                                   3 => KartengrundDatentypen.Sumpf_Enum
+                                                                  );
    
    type ZusatzMöglichkeitenArray is array (ZusatzWahrscheinlichkeitenArray'Range) of Boolean;
    ZusatzMöglichkeiten : ZusatzMöglichkeitenArray;

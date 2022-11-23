@@ -1,6 +1,5 @@
 with EinheitenKonstanten;
 with EinheitenRecords;
-with SpielVariablen;
 
 with LeseEinheitenGebaut;
 with LeseGrenzen;
@@ -26,7 +25,7 @@ package body NaechsteEinheitLogik is
          if
            AktuelleEinheit (RasseExtern) >= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
          then
-            AktuelleEinheit (RasseExtern) := SpielVariablen.EinheitenGebautArray'First (2);
+            AktuelleEinheit (RasseExtern) := EinheitenKonstanten.AnfangNummer;
                
          else
             AktuelleEinheit (RasseExtern) := AktuelleEinheit (RasseExtern) + 1;
@@ -83,7 +82,7 @@ package body NaechsteEinheitLogik is
          if
            AktuelleEinheitMeldung (RasseExtern) >= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
          then
-            AktuelleEinheitMeldung (RasseExtern) := SpielVariablen.EinheitenGebautArray'First (2);
+            AktuelleEinheitMeldung (RasseExtern) := EinheitenKonstanten.AnfangNummer;
                
          else
             AktuelleEinheitMeldung (RasseExtern) := AktuelleEinheitMeldung (RasseExtern) + 1;

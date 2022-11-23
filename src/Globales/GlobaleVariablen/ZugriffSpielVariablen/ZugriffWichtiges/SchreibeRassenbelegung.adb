@@ -41,5 +41,15 @@ package body SchreibeRassenbelegung is
       SpielVariablen.Rassenbelegung (RasseExtern) := EintragExtern;
       
    end GanzerEintrag;
+   
+   
+   
+   procedure GanzesArray
+     (ArrayExtern : in SpielRecords.RassenbelegungArray)
+   is begin
+      
+      SpielVariablen.Rassenbelegung := ArrayExtern;
+      
+   end GanzesArray;
 
 end SchreibeRassenbelegung;

@@ -1,6 +1,5 @@
 with StadtKonstanten;
 with StadtRecords;
-with SpielVariablen;
 
 with LeseStadtGebaut;
 with LeseGrenzen;
@@ -23,7 +22,7 @@ package body NaechsteStadtLogik is
          if
            AktuelleStadt (RasseExtern) >= LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
          then
-            AktuelleStadt (RasseExtern) := SpielVariablen.StadtGebautArray'First (2);
+            AktuelleStadt (RasseExtern) := StadtKonstanten.AnfangNummer;
                
          else
             AktuelleStadt (RasseExtern) := AktuelleStadt (RasseExtern) + 1;
@@ -71,7 +70,7 @@ package body NaechsteStadtLogik is
          if
            AktuelleStadtMeldung (RasseExtern) >= LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
          then
-            AktuelleStadtMeldung (RasseExtern) := SpielVariablen.StadtGebautArray'First (2);
+            AktuelleStadtMeldung (RasseExtern) := StadtKonstanten.AnfangNummer;
                
          else
             AktuelleStadtMeldung (RasseExtern) := AktuelleStadtMeldung (RasseExtern) + 1;

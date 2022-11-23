@@ -1,5 +1,5 @@
-with TastenbelegungVariablen;
 with VerzeichnisKonstanten;
+with TastenbelegungDatenbank;
 
 package body SchreibenTastaturLogik is
 
@@ -10,14 +10,14 @@ package body SchreibenTastaturLogik is
               Mode => Out_File,
               Name => VerzeichnisKonstanten.Tastenbelegung);
       
-      TastenbelegungVariablen.AllgemeineBelegungArray'Write (Stream (File => TastenbelegungSpeichern),
-                                                             TastenbelegungVariablen.AllgemeineBelegung);
+      TastenbelegungDatenbank.AllgemeineBelegungArray'Write (Stream (File => TastenbelegungSpeichern),
+                                                             TastenbelegungDatenbank.AllgemeineBelegung);
       
-      TastenbelegungVariablen.EinheitenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
-                                                            TastenbelegungVariablen.Einheitenbelegung);
+      TastenbelegungDatenbank.EinheitenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
+                                                            TastenbelegungDatenbank.Einheitenbelegung);
       
-      TastenbelegungVariablen.StadtbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
-                                                        TastenbelegungVariablen.Stadtbelegung);
+      TastenbelegungDatenbank.StadtbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
+                                                        TastenbelegungDatenbank.Stadtbelegung);
       
       Close (File => TastenbelegungSpeichern);
       

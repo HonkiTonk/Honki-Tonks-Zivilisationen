@@ -1,5 +1,4 @@
 with EinheitenDatentypen;
-with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
 with LeseEinheitenGebaut;
@@ -19,7 +18,7 @@ package body KIAufgabenVerteiltLogik is
       GleicheAufgabe := 0;
      
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse) loop
+      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse) loop
             
          if
            EinheitNummerSchleifenwert = EinheitRasseNummerExtern.Nummer
@@ -57,7 +56,7 @@ package body KIAufgabenVerteiltLogik is
    begin
       
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
+      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
          
          Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert));
          
@@ -97,7 +96,7 @@ package body KIAufgabenVerteiltLogik is
    begin
       
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
+      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
          
          if
            LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = ZielKoordinatenExtern

@@ -2,12 +2,13 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with MenueDatentypen;
 with KartenKonstanten;
-with SpielVariablen;
 
 with SchreibeWeltkarte;
 with LeseWeltkarteneinstellungen;
 with SchreibeRassenbelegung;
 with SchreibeCursor;
+with SchreibeDiplomatie;
+with SchreibeWichtiges;
 
 with AuswahlaufteilungLogik;
 with Fehlermeldungssystem;
@@ -31,8 +32,8 @@ package body DebugmenueLogik is
                KarteAufdecken (RasseExtern => RasseExtern);
                
             when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
-               SpielVariablen.Wichtiges (RasseExtern).Erforscht := (others => True);
-               
+               SchreibeWichtiges.ErforschtDebug (RasseExtern => RasseExtern);
+                              
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
                Get_Immediate (Item => Taste);
                MenschKITauschen (TasteExtern => Taste);
@@ -119,7 +120,9 @@ package body DebugmenueLogik is
    
    procedure DiplomatischenStatusÄndern
      (NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum)
-   is begin
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       RassenErsteSchleife:
       for RasseEinsSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -130,11 +133,15 @@ package body DebugmenueLogik is
               LeseRassenbelegung.Belegung (RasseExtern => RasseEinsSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
               or
                 LeseRassenbelegung.Belegung (RasseExtern => RasseZweiSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+              or
+                RasseEinsSchleifenwert = RasseZweiSchleifenwert
             then
                null;
                
             else
-               SpielVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := NeuerStatusExtern;
+               SchreibeDiplomatie.AktuellerZustand (RasseEinsExtern => RasseEinsSchleifenwert,
+                                                    RasseZweiExtern => RasseZweiSchleifenwert,
+                                                    ZustandExtern   => NeuerStatusExtern);
             end if;
             
          end loop RassenZweiteSchleife;

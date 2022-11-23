@@ -1,5 +1,4 @@
 with KampfDatentypen;
-with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;

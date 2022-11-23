@@ -1,6 +1,5 @@
 with KartengrundDatentypen;
 with KartenKonstanten;
-with StadtKonstanten;
 
 with LeseWeltkarte;
 with LeseEinheitenGebaut;

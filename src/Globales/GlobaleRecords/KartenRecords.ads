@@ -2,7 +2,6 @@ with KartenDatentypen;
 with KartengrundDatentypen;
 with RassenDatentypen;
 with KartenartDatentypen;
-
 with BewertungDatentypen;
 
 package KartenRecords is

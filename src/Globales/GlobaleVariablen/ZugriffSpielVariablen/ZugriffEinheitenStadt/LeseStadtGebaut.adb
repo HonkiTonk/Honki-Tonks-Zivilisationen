@@ -1,5 +1,5 @@
 with TextKonstanten;
-with StadtKonstanten;
+with GebautVariablen;
 
 package body LeseStadtGebaut is
 
@@ -8,7 +8,7 @@ package body LeseStadtGebaut is
       return KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).ID;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).ID;
       
    end ID;
    
@@ -19,7 +19,7 @@ package body LeseStadtGebaut is
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
             
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell;
       
    end Koordinaten;
    
@@ -35,10 +35,10 @@ package body LeseStadtGebaut is
         EinwohnerArbeiterExtern
       is
          when True =>
-            return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1);
+            return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1);
             
          when False =>
-            return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2);
+            return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2);
       end case;
       
    end EinwohnerArbeiter;
@@ -66,7 +66,7 @@ package body LeseStadtGebaut is
       return ProduktionDatentypen.Stadtproduktion
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Nahrungsmittel;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Nahrungsmittel;
       
    end Nahrungsmittel;
    
@@ -77,7 +77,7 @@ package body LeseStadtGebaut is
       return ProduktionDatentypen.Stadtproduktion
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Nahrungsproduktion;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Nahrungsproduktion;
       
    end Nahrungsproduktion;
    
@@ -88,7 +88,7 @@ package body LeseStadtGebaut is
       return ProduktionDatentypen.StadtLagermenge
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen;
       
    end Ressourcen;
    
@@ -99,7 +99,7 @@ package body LeseStadtGebaut is
       return ProduktionDatentypen.Stadtproduktion
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Produktionrate;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Produktionrate;
       
    end Produktionrate;
    
@@ -110,7 +110,7 @@ package body LeseStadtGebaut is
       return ProduktionDatentypen.Stadtproduktion
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Geldgewinnung;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Geldgewinnung;
       
    end Geldgewinnung;
    
@@ -122,7 +122,7 @@ package body LeseStadtGebaut is
       return ProduktionDatentypen.Stadtproduktion
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).PermanenteKostenPosten (WelcherPostenExtern);
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).PermanenteKostenPosten (WelcherPostenExtern);
       
    end PermanenteKostenPosten;
    
@@ -133,7 +133,7 @@ package body LeseStadtGebaut is
       return ProduktionDatentypen.StadtLagermenge
    is begin
             
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Forschungsrate;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Forschungsrate;
       
    end Forschungsrate;
    
@@ -144,7 +144,7 @@ package body LeseStadtGebaut is
       return StadtRecords.BauprojektRecord
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt;
       
    end Bauprojekt;
    
@@ -155,7 +155,7 @@ package body LeseStadtGebaut is
       return ProduktionDatentypen.Produktion
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauzeit;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauzeit;
       
    end Bauzeit;
    
@@ -166,7 +166,7 @@ package body LeseStadtGebaut is
       return ProduktionDatentypen.StadtLagermenge
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Korruption;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Korruption;
       
    end Korruption;
    
@@ -177,7 +177,7 @@ package body LeseStadtGebaut is
       return ProduktionDatentypen.Feldproduktion
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit;
       
    end Zufriedenheit;
    
@@ -189,7 +189,7 @@ package body LeseStadtGebaut is
       return Boolean
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).GebäudeVorhanden (WelchesGebäudeExtern);
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).GebäudeVorhanden (WelchesGebäudeExtern);
       
    end GebäudeVorhanden;
    
@@ -211,7 +211,7 @@ package body LeseStadtGebaut is
          return TextKonstanten.LeerUnboundedString;
       
       else
-         return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Name;
+         return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Name;
       end if;
    
    end Name;
@@ -225,7 +225,7 @@ package body LeseStadtGebaut is
       return Boolean
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungBewirtschaftung (YKoordinateExtern, XKoordinateExtern);
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungBewirtschaftung (YKoordinateExtern, XKoordinateExtern);
       
    end UmgebungBewirtschaftung;
    
@@ -236,7 +236,7 @@ package body LeseStadtGebaut is
       return KartenDatentypen.UmgebungsbereichDrei
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungGröße;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungGröße;
       
    end UmgebungGröße;
       
@@ -248,7 +248,7 @@ package body LeseStadtGebaut is
       return StadtDatentypen.Stadt_Meldung_Enum
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Meldungen (WelcheMeldungExtern);
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Meldungen (WelcheMeldungExtern);
       
    end Meldungen;
    
@@ -259,7 +259,7 @@ package body LeseStadtGebaut is
       return KIDatentypen.Stadt_Aufgabe_Enum
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KIBeschäftigung;
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KIBeschäftigung;
       
    end KIBeschäftigung;
    
@@ -270,7 +270,7 @@ package body LeseStadtGebaut is
       return StadtRecords.StadtGebautRecord
    is begin
       
-      return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer);
+      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer);
       
    end GanzerEintrag;
    

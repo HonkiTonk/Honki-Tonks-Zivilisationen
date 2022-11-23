@@ -6,6 +6,8 @@ private with SonstigesKonstanten;
 private with KartenRecords;
 private with WeltkarteRecords;
 private with SpielRecords;
+private with StadtRecords;
+private with EinheitenRecords;
 
 private with LeseRassenbelegung;
 
@@ -34,9 +36,17 @@ private
 
    Cursor : KartenRecords.CursorRecord;
 
+   Stadt : StadtRecords.StadtGebautRecord;
+
+   Einheit : EinheitenRecords.EinheitenGebautRecord;
+
+   Allgemeines : SpielRecords.AllgemeinesRecord;
+
+   Rassenbelegung : SpielRecords.RassenbelegungArray;
+
    Karteneintrag : WeltkarteRecords.WeltkarteRecord;
 
-   procedure Allgemeines
+   procedure AllgemeinesLaden
      (DateiLadenExtern : in File_Type);
 
    procedure KarteLaden

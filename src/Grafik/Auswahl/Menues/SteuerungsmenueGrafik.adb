@@ -11,9 +11,10 @@ with TextKonstanten;
 with TastenbelegungKonstanten;
 with Meldungstexte;
 with TextnummernKonstanten;
-with TastenbelegungVariablen;
 with Menuetexte;
 with BefehleDatentypen;
+
+with LeseTastenbelegungDatenbank;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
@@ -64,10 +65,10 @@ package body SteuerungsmenueGrafik is
    -- Das hier später noch in einer Schleife zusammenfassen. äöü
    function Steuerungsaufteilung
      (AuswahlExtern : in Integer;
-      WelcheSteuerungExtern : in SteuerungsauswahlLogik.Kategorie_Enum)
+      WelcheSteuerungExtern : in SteuerungsauswahlLogik.Tastenbelegungskategorie_Enum)
       return Sf.System.Vector2.sfVector2f
    is
-      use type SteuerungsauswahlLogik.Kategorie_Enum;
+      use type SteuerungsauswahlLogik.Tastenbelegungskategorie_Enum;
    begin
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
@@ -81,7 +82,7 @@ package body SteuerungsmenueGrafik is
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText);
          
       elsif
-        WelcheSteuerungExtern = SteuerungsauswahlLogik.Kategorie_Eins_Enum
+        WelcheSteuerungExtern = SteuerungsauswahlLogik.Allgemeine_Belegung_Enum
       then
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeMenschText);
@@ -109,7 +110,7 @@ package body SteuerungsmenueGrafik is
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText);
          
       elsif
-        WelcheSteuerungExtern = SteuerungsauswahlLogik.Kategorie_Zwei_Enum
+        WelcheSteuerungExtern = SteuerungsauswahlLogik.Einheitenbelegung_Enum
       then
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeMenschText);
@@ -137,7 +138,7 @@ package body SteuerungsmenueGrafik is
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText);
          
       elsif
-        WelcheSteuerungExtern = SteuerungsauswahlLogik.Kategorie_Drei_Enum
+        WelcheSteuerungExtern = SteuerungsauswahlLogik.Stadtbelegung_Enum
       then
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeMenschText);
@@ -169,22 +170,22 @@ package body SteuerungsmenueGrafik is
    
    function Steuerung
      (AuswahlExtern : in Integer;
-      WelcheSteuerungExtern : in SteuerungsauswahlLogik.Kategorie_Enum)
+      WelcheSteuerungExtern : in SteuerungsauswahlLogik.Tastenbelegungskategorie_Enum)
       return Sf.System.Vector2.sfVector2f
    is begin
             
       case
         WelcheSteuerungExtern
       is
-         when SteuerungsauswahlLogik.Kategorie_Eins_Enum =>
+         when SteuerungsauswahlLogik.Allgemeine_Belegung_Enum =>
             ArrayAnfang := SystemKonstanten.AllgemeineSteuerung + 1;
             ArrayEnde := SystemKonstanten.Einheitensteuerung - 1;
             
-         when SteuerungsauswahlLogik.Kategorie_Zwei_Enum =>
+         when SteuerungsauswahlLogik.Einheitenbelegung_Enum =>
             ArrayAnfang := SystemKonstanten.Einheitensteuerung + 1;
             ArrayEnde := SystemKonstanten.Stadtsteuerung - 1;
             
-         when SteuerungsauswahlLogik.Kategorie_Drei_Enum =>
+         when SteuerungsauswahlLogik.Stadtbelegung_Enum =>
             ArrayAnfang := SystemKonstanten.Stadtsteuerung + 1;
             ArrayEnde := SystemKonstanten.SonstigesSteuerung - 1;
       end case;
@@ -242,7 +243,7 @@ package body SteuerungsmenueGrafik is
    
    
    function TextFestlegen
-     (WelcheSteuerungExtern : in SteuerungsauswahlLogik.Kategorie_Enum;
+     (WelcheSteuerungExtern : in SteuerungsauswahlLogik.Tastenbelegungskategorie_Enum;
       WelcheZeileExtern : in Positive)
       return Wide_Wide_String
    is begin
@@ -259,14 +260,15 @@ package body SteuerungsmenueGrafik is
       case
         WelcheSteuerungExtern
       is
-         when SteuerungsauswahlLogik.Kategorie_Eins_Enum =>
-            AktuelleBelegung := TastenbelegungVariablen.AllgemeineBelegung (TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Val (WelcheZeileExtern - SystemKonstanten.AllgemeineSteuerungEnumausgleich));
+         when SteuerungsauswahlLogik.Allgemeine_Belegung_Enum =>
+            AktuelleBelegung
+              := LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Val (WelcheZeileExtern - SystemKonstanten.AllgemeineSteuerungEnumausgleich));
             
-         when SteuerungsauswahlLogik.Kategorie_Zwei_Enum =>
-            AktuelleBelegung := TastenbelegungVariablen.Einheitenbelegung (BefehleDatentypen.Einheiten_Bewegung_Enum'Val (WelcheZeileExtern - SystemKonstanten.EinheitensteuerungEnumausgleich));
+         when SteuerungsauswahlLogik.Einheitenbelegung_Enum =>
+            AktuelleBelegung := LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Einheiten_Bewegung_Enum'Val (WelcheZeileExtern - SystemKonstanten.EinheitensteuerungEnumausgleich));
             
-         when SteuerungsauswahlLogik.Kategorie_Drei_Enum =>
-            AktuelleBelegung := TastenbelegungVariablen.Stadtbelegung (BefehleDatentypen.Stadtbefehle_Vorhanden_Enum'Val (WelcheZeileExtern - SystemKonstanten.StadtsteuerungEnumausgleich));
+         when SteuerungsauswahlLogik.Stadtbelegung_Enum =>
+            AktuelleBelegung := LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => BefehleDatentypen.Stadtbefehle_Vorhanden_Enum'Val (WelcheZeileExtern - SystemKonstanten.StadtsteuerungEnumausgleich));
       end case;
       
       case

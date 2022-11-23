@@ -49,17 +49,24 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (23.11.2022):
+   -- Version 0.04.4245 => 0.04. (23.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.4140 => 0.04. (22.11.2022):
+   -- Version 0.04.4140 => 0.04.4245 (22.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Alle Zugriffe auf die SpielVariablen erfolgen jetzt durch das Lese- und Schreibesystem.
+   -- Alle Zugriffe auf die Steuerungsdatenbank erfolgt jetzt über ein Lese- und Schreibesystem.
+   -- Angefangen 'Succ bei den Enumbereichen einzubauen.
+   -- Den Zusatzgrund erweitert, so dass es jetzt möglich ist verschiedene Stücke des Grundes zu haben ähnlich den Fluss- und Wegearten.
+   -- Den Kartengenerator an die Zusatzgrundänderungen angepast.
+   -- Angefangen eine Platzierungssystem für die verschiedenen Arten von Zusatzgrund einzubauen, ähnlich dem Fluss- oder Wegeplatzierungssystem.
+   -- Hülle für das Basisgrundplatzierungssystem angelegt.
+   -- Den Kartenfelderordner für die Texturen in Basisgrund und Zusatzgrund aufgeteilt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/verbessert.
    
    
 
@@ -71,7 +78,7 @@ package ChangelogNovember2022 is
    -- Zusätzliche Überlaufprüfungen eingebaut.
    -- Zusätzliche Sicherheitsprüfungen eingebaut.
    -- Interne Sturktur überarbeitet.
-   -- Teile des Debugsystems und des Fehlermeldungssystem miteinander verschmolzen.
+   -- Teile des Debugsystems und des Fehlermeldungssystems miteinander verschmolzen.
    -- Doppelten Code zusammengeführt.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/entfernt.
    

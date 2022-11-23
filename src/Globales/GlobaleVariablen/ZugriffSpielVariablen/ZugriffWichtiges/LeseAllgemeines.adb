@@ -99,5 +99,15 @@ package body LeseAllgemeines is
       return SpielVariablen.Allgemeines.Zusammenbruchszeit;
       
    end Zusammenbruchszeit;
+   
+   
+   
+   function GanzerEintrag
+     return SpielRecords.AllgemeinesRecord
+   is begin
+      
+      return SpielVariablen.Allgemeines;
+      
+   end GanzerEintrag;
 
 end LeseAllgemeines;

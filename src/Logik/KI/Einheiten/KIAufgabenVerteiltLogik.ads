@@ -1,7 +1,7 @@
 with RassenDatentypen;
 with KartenDatentypen;
 with EinheitenRecords;
-with SpielVariablen;
+with EinheitenKonstanten;
 with KartenRecords;
 
 with LeseWeltkarteneinstellungen;
@@ -21,7 +21,7 @@ package KIAufgabenVerteiltLogik is
       return Natural
      with
        Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );

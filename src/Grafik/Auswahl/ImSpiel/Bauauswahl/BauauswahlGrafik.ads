@@ -5,8 +5,8 @@ private with Sf.System.Vector2;
 with RassenDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
-with SpielVariablen;
 with StadtRecords;
+with StadtKonstanten;
 
 private with GrafikRecordKonstanten;
 
@@ -24,7 +24,7 @@ package BauauswahlGrafik is
       AktuelleAuswahlExtern : in StadtRecords.BauprojektRecord)
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
                and

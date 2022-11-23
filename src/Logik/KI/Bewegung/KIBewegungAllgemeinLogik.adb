@@ -1,6 +1,5 @@
 with DiplomatieDatentypen;
 with EinheitenDatentypen;
-with EinheitenKonstanten;
 with AufgabenDatentypen;
 
 with LeseEinheitenGebaut;

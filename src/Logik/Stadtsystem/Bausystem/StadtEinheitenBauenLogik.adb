@@ -1,5 +1,4 @@
 with EinheitenKonstanten;
-with StadtKonstanten;
 with StadtDatentypen;
 
 with KIDatentypen;
@@ -26,7 +25,7 @@ package body StadtEinheitenBauenLogik is
       EinheitNummer := 0;
             
       EinheitenSchleife:
-      for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => StadtRasseNummerExtern.Rasse) loop
+      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => StadtRasseNummerExtern.Rasse) loop
             
          case
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert))
@@ -79,8 +78,7 @@ package body StadtEinheitenBauenLogik is
       else
          KartenWert := StadtumgebungErreichbarLogik.UmgebungErreichbar (AktuelleKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                         RasseExtern               => StadtRasseNummerExtern.Rasse,
-                                                                        IDExtern                  => EinheitenDatentypen.EinheitenID (SpielVariablen.StadtGebaut
-                                                                          (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt.Einheit),
+                                                                        IDExtern                  => EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit),
                                                                         NotwendigeFelderExtern    => 1);
       end if;
       

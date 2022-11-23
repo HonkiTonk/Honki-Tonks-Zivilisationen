@@ -15,5 +15,8 @@ package SchreibeRassenbelegung is
    procedure GanzerEintrag
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EintragExtern : in SpielRecords.RassenRecords);
+   
+   procedure GanzesArray
+     (ArrayExtern : in SpielRecords.RassenbelegungArray);
 
 end SchreibeRassenbelegung;

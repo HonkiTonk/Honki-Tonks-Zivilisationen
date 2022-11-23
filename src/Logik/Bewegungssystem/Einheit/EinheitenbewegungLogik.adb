@@ -1,8 +1,6 @@
 with EinheitenDatentypen;
 with StadtDatentypen;
-with EinheitenKonstanten;
 with KartenKonstanten;
-with StadtKonstanten;
 with KartenRecordKonstanten;
 
 with LeseEinheitenGebaut;

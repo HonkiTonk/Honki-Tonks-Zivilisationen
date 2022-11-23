@@ -1,6 +1,5 @@
 with EinheitenRecordKonstanten;
 with TextnummernKonstanten;
-with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseWeltkarte;

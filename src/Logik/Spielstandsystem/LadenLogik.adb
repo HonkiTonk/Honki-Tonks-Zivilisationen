@@ -1,13 +1,12 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
-with StadtRecords;
-with EinheitenRecords;
 with TextnummernKonstanten;
 with GrafikDatentypen;
 with VerzeichnisKonstanten;
 with TextKonstanten;
 with KartenKonstanten;
-with SpielVariablen;
+with StadtKonstanten;
+with EinheitenKonstanten;
 
 with LeseWeltkarteneinstellungen;
 with SchreibeWeltkarte;
@@ -17,6 +16,10 @@ with LeseGrenzen;
 with SchreibeGrenzen;
 with SchreibeDiplomatie;
 with SchreibeCursor;
+with SchreibeEinheitenGebaut;
+with SchreibeStadtGebaut;
+with SchreibeAllgemeines;
+with SchreibeRassenbelegung;
 
 with LadezeitenLogik;
 with JaNeinLogik;
@@ -66,7 +69,7 @@ package body LadenLogik is
       LadezeitenLogik.SpeichernLadenNullsetzen;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
       
-      Allgemeines (DateiLadenExtern => DateiLaden);
+      AllgemeinesLaden (DateiLadenExtern => DateiLaden);
       LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
       KarteLaden (DateiLadenExtern => DateiLaden);
@@ -85,17 +88,21 @@ package body LadenLogik is
    
    
    
-   procedure Allgemeines
+   procedure AllgemeinesLaden
      (DateiLadenExtern : in File_Type)
    is begin
       
       SpielRecords.AllgemeinesRecord'Read (Stream (File => DateiLadenExtern),
-                                           SpielVariablen.Allgemeines);
+                                           Allgemeines);
       
-      SpielVariablen.RassenbelegungArray'Read (Stream (File => DateiLadenExtern),
-                                               SpielVariablen.Rassenbelegung);
+      SchreibeAllgemeines.GanzerEintrag (EintragExtern => Allgemeines);
       
-   end Allgemeines;
+      SpielRecords.RassenbelegungArray'Read (Stream (File => DateiLadenExtern),
+                                             Rassenbelegung);
+      
+      SchreibeRassenbelegung.GanzesArray (ArrayExtern => Rassenbelegung);
+      
+   end AllgemeinesLaden;
    
    
    
@@ -170,19 +177,25 @@ package body LadenLogik is
                                      EintragExtern => Grenzen);
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
+      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
             
          EinheitenRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenExtern),
-                                                      SpielVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert));
+                                                      Einheit);
+         
+         SchreibeEinheitenGebaut.GanzerEintrag (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
+                                                EintragExtern            => Einheit);
             
       end loop EinheitenSchleife;
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
-                  
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+         
          StadtRecords.StadtGebautRecord'Read (Stream (File => DateiLadenExtern),
-                                              SpielVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert));
-            
+                                              Stadt);
+         
+         SchreibeStadtGebaut.GanzerEintrag (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
+                                            EintragExtern          => Stadt);
+         
       end loop StadtSchleife;
       
       SpielRecords.WichtigesRecord'Read (Stream (File => DateiLadenExtern),

@@ -1,4 +1,4 @@
-with TastenbelegungVariablen;
+with LeseTastenbelegungDatenbank;
 
 with NachLogiktask;
 with EingabeAllgemeinLogik;
@@ -25,8 +25,8 @@ package body TasteneingabeLogik is
         Maustaste = Sf.Window.Mouse.sfMouseLeft
         or
           (Taste /= Sf.Window.Keyboard.sfKeyUnknown
-          and
-            Taste = TastenbelegungVariablen.AllgemeineBelegung (TastenbelegungDatentypen.Auswählen_Enum))
+           and
+             Taste = LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Auswählen_Enum))
       then
          return TastenbelegungDatentypen.Auswählen_Enum;
          
@@ -35,7 +35,7 @@ package body TasteneingabeLogik is
         or
           (Taste /= Sf.Window.Keyboard.sfKeyUnknown
            and
-             Taste = TastenbelegungVariablen.AllgemeineBelegung (TastenbelegungDatentypen.Abwählen_Enum))
+             Taste = LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Abwählen_Enum))
       then
          return TastenbelegungDatentypen.Abwählen_Enum;
          
@@ -80,19 +80,19 @@ package body TasteneingabeLogik is
          null;
       end if;
       
-      BelegungSchleife:
-      for BelegungSchleifenwert in TastenbelegungVariablen.AllgemeineBelegungArray'Range loop
+      AllgemeineBelegungSchleife:
+      for AllgemeineBelegungSchleifenwert in TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Range loop
             
          if
-           TastenbelegungVariablen.AllgemeineBelegung (BelegungSchleifenwert) = Taste
+           LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => AllgemeineBelegungSchleifenwert) = Taste
          then
-            return BelegungSchleifenwert;
+            return AllgemeineBelegungSchleifenwert;
                
          else
             null;
          end if;
-            
-      end loop BelegungSchleife;
+         
+      end loop AllgemeineBelegungSchleife;
       
       return TastenbelegungDatentypen.Leer_Allgemeine_Belegung_Enum;
       
@@ -134,19 +134,19 @@ package body TasteneingabeLogik is
          null;
       end if;
       
-      BelegungSchleife:
-      for BelegungSchleifenwert in TastenbelegungVariablen.EinheitenbelegungArray'Range loop
+      EinheitenbelegungSchleife:
+      for EinheitenbelegungSchleifenwert in BefehleDatentypen.Einheitenbelegung_Vorhanden_Enum'Range loop
             
          if
-           TastenbelegungVariablen.Einheitenbelegung (BelegungSchleifenwert) = Taste
+           LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => EinheitenbelegungSchleifenwert) = Taste
          then
-            return BelegungSchleifenwert;
+            return EinheitenbelegungSchleifenwert;
                
          else
             null;
          end if;
             
-      end loop BelegungSchleife;
+      end loop EinheitenbelegungSchleife;
             
       return BefehleDatentypen.Leer_Einheitenbelegung_Enum;
         
@@ -188,19 +188,19 @@ package body TasteneingabeLogik is
          null;
       end if;
       
-      BelegungSchleife:
-      for BelegungSchleifenwert in TastenbelegungVariablen.StadtbelegungArray'Range loop
+      StadtbelegungSchleife:
+      for StadtbelegungSchleifenwert in BefehleDatentypen.Stadtbefehle_Auswählen_Enum'Range loop
             
          if
-           TastenbelegungVariablen.Stadtbelegung (BelegungSchleifenwert) = Taste
+           LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => StadtbelegungSchleifenwert) = Taste
          then
-            return BelegungSchleifenwert;
+            return StadtbelegungSchleifenwert;
                
          else
             null;
          end if;
             
-      end loop BelegungSchleife;
+      end loop StadtbelegungSchleife;
             
       return BefehleDatentypen.Leer_Stadtbefehle_Enum;
       

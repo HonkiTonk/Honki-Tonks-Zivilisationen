@@ -1,5 +1,3 @@
-with EinheitenKonstanten;
-
 with SchreibeEinheitenGebaut;
 
 package body AufgabenAllgemeinLogik is

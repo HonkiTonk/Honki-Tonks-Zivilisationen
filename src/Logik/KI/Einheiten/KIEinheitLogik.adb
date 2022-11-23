@@ -1,5 +1,3 @@
-with EinheitenKonstanten;
-
 with KIGefahrErmittelnLogik;
 with KIEinheitStandardverhaltenLogik;
 with KIEinheitGefahrenverhaltenLogik;

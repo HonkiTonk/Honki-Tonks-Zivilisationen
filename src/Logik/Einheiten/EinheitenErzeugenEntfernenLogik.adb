@@ -1,5 +1,3 @@
-with EinheitenKonstanten;
-
 with SchreibeEinheitenGebaut;
 with SchreibeWichtiges;
 with LeseEinheitenDatenbank;
@@ -102,7 +100,7 @@ package body EinheitenErzeugenEntfernenLogik is
       
       case
         LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                             IDExtern    => (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID))
+                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => EinheitRasseNummerExtern.Rasse,

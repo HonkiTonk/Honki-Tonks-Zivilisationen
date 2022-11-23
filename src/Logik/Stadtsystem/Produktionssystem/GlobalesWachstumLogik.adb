@@ -1,7 +1,6 @@
 with WichtigesKonstanten;
 with KartenverbesserungDatentypen;
 with StadtKonstanten;
-with SpielVariablen;
 
 with SchreibeWichtiges;
 with LeseStadtGebaut;
@@ -63,7 +62,7 @@ package body GlobalesWachstumLogik is
                                                RechnenSetzenExtern          => False);
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))

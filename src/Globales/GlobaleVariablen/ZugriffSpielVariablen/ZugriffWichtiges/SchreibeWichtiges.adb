@@ -232,6 +232,16 @@ package body SchreibeWichtiges is
    
    
    
+   procedure ErforschtDebug
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      SpielVariablen.Wichtiges (RasseExtern).Erforscht := (others => True);
+      
+   end ErforschtDebug;
+   
+   
+   
    procedure AnzahlStädte
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)

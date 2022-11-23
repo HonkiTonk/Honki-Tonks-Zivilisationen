@@ -10,7 +10,7 @@ package ZusatzgrundUnterflaeche is
 
    type ZusatzgrundlisteUnterflächeArray is array (KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum'Range) of KartendatenbankRecord.KartenzusatzgrundlisteRecord;
    ZusatzgrundlisteUnterfläche : constant ZusatzgrundlisteUnterflächeArray := (
-                                                                                 KartengrundDatentypen.Korallen_Enum =>
+                                                                                 KartengrundDatentypen.Zusatzgrund_Korallen_Enum'Range =>
                                                                                    (
                                                                                     Bewertung =>
                                                                                       (
@@ -83,7 +83,7 @@ package ZusatzgrundUnterflaeche is
                                                                                     Bewegung => (others => 3)
                                                                                    ),
 
-                                                                                 KartengrundDatentypen.Unterwald_Enum =>
+                                                                                 KartengrundDatentypen.Zusatzgrund_Unterwald_Enum'Range =>
                                                                                    (
                                                                                     Bewertung =>
                                                                                       (

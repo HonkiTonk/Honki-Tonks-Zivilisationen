@@ -6,7 +6,6 @@ with EinheitenKonstanten;
 with SpielDatentypen;
 with TextKonstanten;
 with RassenDatentypen;
-
 with DatenbankRecords;
 
 package WichtigesRecordKonstanten is

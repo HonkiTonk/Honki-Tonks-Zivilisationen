@@ -68,6 +68,13 @@ package SchreibeWichtiges is
                  LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
+   procedure ErforschtDebug
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
    procedure AnzahlStädte
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)

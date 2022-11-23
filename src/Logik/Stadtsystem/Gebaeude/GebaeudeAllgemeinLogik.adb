@@ -1,5 +1,4 @@
 with ProduktionDatentypen;
-with StadtKonstanten;
 
 with SchreibeWichtiges;
 with SchreibeStadtGebaut;

@@ -3,6 +3,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with RassenDatentypen;
 with ZahlenDatentypen;
 with SpielDatentypen;
+with SpielRecords;
 
 package LeseAllgemeines is
    pragma Elaborate_Body;
@@ -36,5 +37,8 @@ package LeseAllgemeines is
    
    function AnzahlEingesetzterPZB
      return ZahlenDatentypen.EigenesNatural;
+   
+   function GanzerEintrag
+     return SpielRecords.AllgemeinesRecord;
 
 end LeseAllgemeines;

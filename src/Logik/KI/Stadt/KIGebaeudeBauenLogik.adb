@@ -1,5 +1,4 @@
 with WichtigesKonstanten;
-with StadtKonstanten;
 with KartenKonstanten;
 
 with KIKonstanten;

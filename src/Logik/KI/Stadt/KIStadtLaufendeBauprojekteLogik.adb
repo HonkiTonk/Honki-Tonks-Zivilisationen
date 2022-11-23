@@ -1,6 +1,5 @@
 with KartenverbesserungDatentypen;
 with EinheitenKonstanten;
-with StadtKonstanten;
 
 with LeseStadtGebaut;
 with LeseEinheitenDatenbank;
@@ -18,7 +17,7 @@ package body KIStadtLaufendeBauprojekteLogik is
       GleichesGebäudeBauprojekt := StadtKonstanten.LeerNummer;
      
       StadtSchleife:
-      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse) loop
+      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse) loop
             
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Nummer
@@ -58,7 +57,7 @@ package body KIStadtLaufendeBauprojekteLogik is
       GleichesEinheitenBauprojekt := EinheitenKonstanten.LeerNummer;
       
       StadtSchleife:
-      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse) loop
+      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse) loop
             
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Nummer

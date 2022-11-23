@@ -23,12 +23,21 @@ private
          
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
    
-   type ZusatzWahrscheinlichkeitenArray is array (KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum'Range) of SystemDatentypen.NullBisHundert;
+   Zwischenspeicher : Natural;
+   
+   type ZusatzWahrscheinlichkeitenArray is array (1 .. 2) of SystemDatentypen.NullBisHundert;
    ZusatzWahrscheinlichkeiten : ZusatzWahrscheinlichkeitenArray := (
-                                                                    KartengrundDatentypen.Korallen_Enum    => 30,
-                                                                    KartengrundDatentypen.Unterwald_Enum   => 30
+                                                                    1 => 30,
+                                                                    2 => 30
                                                                    );
    ZusatzZahlen : ZusatzWahrscheinlichkeitenArray;
+   
+   type ZahlenNachZusatzgrundArray is array (0 .. ZusatzWahrscheinlichkeitenArray'Last) of KartengrundDatentypen.Zusatzgrund_Enum;
+   ZahlenNachZusatzgrund : constant ZahlenNachZusatzgrundArray := (
+                                                                   0 => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
+                                                                   1 => KartengrundDatentypen.Korallen_Enum,
+                                                                   2 => KartengrundDatentypen.Unterwald_Enum
+                                                                  );
    
    type ZusatzMöglichkeitenArray is array (ZusatzWahrscheinlichkeitenArray'Range) of Boolean;
    ZusatzMöglichkeiten : ZusatzMöglichkeitenArray;

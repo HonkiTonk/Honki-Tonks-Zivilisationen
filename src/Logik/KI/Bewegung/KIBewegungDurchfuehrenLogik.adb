@@ -1,5 +1,4 @@
 with EinheitenDatentypen;
-with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
 with SchreibeEinheitenGebaut;

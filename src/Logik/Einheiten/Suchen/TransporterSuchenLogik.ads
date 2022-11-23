@@ -2,7 +2,7 @@ with RassenDatentypen;
 with EinheitenDatentypen;
 with KartenDatentypen;
 with KartenRecords;
-with SpielVariablen;
+with EinheitenKonstanten;
 with EinheitenRecords;
 
 with LeseWeltkarteneinstellungen;
@@ -54,7 +54,7 @@ package TransporterSuchenLogik is
       return EinheitenDatentypen.Transportplätze
      with
        Pre => (
-                 TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
+                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );

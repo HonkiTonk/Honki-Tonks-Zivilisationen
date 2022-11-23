@@ -2,7 +2,6 @@ with KartenKonstanten;
 with KartengrundDatentypen;
 with KartenverbesserungDatentypen;
 with StadtKonstanten;
-with EinheitenKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;

@@ -521,164 +521,164 @@ package ArbeitszeitRodenLogik is
    Zusatzzeit : constant ZusatzzeitArray := (
                                              RassenDatentypen.Menschen_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Kasrodiah_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Lasupin_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Lamustra_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Manuky_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Suroka_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Pryolon_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Moru_Phisihl_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Larinos_Lotaris_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Carupex_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Alary_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Natries_Zermanis_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Tridatus_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Senelari_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Aspari_2_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Ekropa_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Tesorahn_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                ),
 
                                              RassenDatentypen.Talbidahr_Enum =>
                                                (
-                                                KartengrundDatentypen.Wald_Enum           => 3,
-                                                KartengrundDatentypen.Dschungel_Enum      => 3,
-                                                KartengrundDatentypen.Sumpf_Enum          => 3,
-                                                KartengrundDatentypen.Korallen_Enum       => 3,
-                                                KartengrundDatentypen.Unterwald_Enum      => 3
+                                                KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Dschungel_Enum  => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Sumpf_Enum      => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Korallen_Enum   => 3,
+                                                KartengrundDatentypen.Zusatzgrund_Unterwald_Enum  => 3
                                                )
                                             );
 

@@ -3,7 +3,6 @@ with Sf.Graphics;
 with Sf.Graphics.Text;
 
 with Meldungstexte;
-with EinheitenKonstanten;
 with StadtKonstanten;
 with TextnummernKonstanten;
 with Views;
@@ -366,23 +365,31 @@ package body EinheitenseitenleisteGrafik is
       use type EinheitenDatentypen.BewegungsplanVorhanden;
    begin
       
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-      Textposition.y := TextwerteExtern.y;
-      Textbreite := TextwerteExtern.x;
-      
-      Koordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                         str  => "Nr:" & EinheitRasseNummerExtern.Nummer'Wide_Wide_Image & " Z:" & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & ","
-                                         & Koordinaten.XAchse'Wide_Wide_Image & " Au:" & LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                    position => Textposition);
+      case
+        LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse)
+      is
+         when RassenDatentypen.Mensch_Spieler_Enum =>
+            return TextwerteExtern;
             
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.TextAccess);
+         when others =>
+            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+            Textposition.y := TextwerteExtern.y;
+            Textbreite := TextwerteExtern.x;
       
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                          TextbreiteExtern => Textbreite);
+            Koordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
+                                               str  => "Nr:" & EinheitRasseNummerExtern.Nummer'Wide_Wide_Image & " Z:" & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & ","
+                                               & Koordinaten.XAchse'Wide_Wide_Image & " Au:" & LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
+            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
+                                          position => Textposition);
+            
+            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                               text         => TextaccessVariablen.TextAccess);
+      
+            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                                TextbreiteExtern => Textbreite);
+      end case;
       
       PlanSchleife:
       for PlanSchleifenwert in EinheitenDatentypen.BewegungsplanVorhanden'Range loop

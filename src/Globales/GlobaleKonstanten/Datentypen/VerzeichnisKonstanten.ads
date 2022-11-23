@@ -35,7 +35,8 @@ package VerzeichnisKonstanten is
    -- Oder die Nulldateien in den hauptordner schieben und von da alles einlesen? äöü
    System : constant String (1 .. 7) := "/System";
    Hintergrund : constant String (1 .. 12) := "/Hintergrund";
-   Kartenfelder : constant String (1 .. 13) := "/Kartenfelder";
+   Basisgrund : constant String (1 .. 11) := "/Basisgrund";
+   Zusatzgrund : constant String (1 .. 12) := "/Zusatzgrund";
    Kartenfluss : constant String (1 .. 12) := "/Kartenfluss";
    Kartenressourcen : constant String (1 .. 17) := "/Kartenressourcen";
    Kartenverbesserungen : constant String (1 .. 15) := "/Verbesserungen";

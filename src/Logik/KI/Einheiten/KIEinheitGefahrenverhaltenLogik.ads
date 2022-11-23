@@ -1,6 +1,6 @@
 with RassenDatentypen;
 with EinheitenRecords;
-with SpielVariablen;
+with EinheitenKonstanten;
 
 with LeseGrenzen;
 with LeseRassenbelegung;
@@ -15,11 +15,11 @@ package KIEinheitGefahrenverhaltenLogik is
       FeindlicheEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
                and
-                 FeindlicheEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => FeindlicheEinheitExtern.Rasse)
+                 FeindlicheEinheitExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => FeindlicheEinheitExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => FeindlicheEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and

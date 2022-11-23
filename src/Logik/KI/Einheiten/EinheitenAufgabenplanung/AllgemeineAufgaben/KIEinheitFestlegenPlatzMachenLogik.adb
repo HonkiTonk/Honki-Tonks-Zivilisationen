@@ -20,7 +20,7 @@ package body KIEinheitFestlegenPlatzMachenLogik is
    --    EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    --    BlockiertSchleife:
-   --    for BlockiertSchleifenwert in SpielVariablen.EinheitenGebautArray'Range (2) loop
+   --    for BlockiertSchleifenwert in EinheitenDatentypen.MaximaleEinheiten'Range loop
          
    --      case
    --        Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => EinheitenKoordinaten,

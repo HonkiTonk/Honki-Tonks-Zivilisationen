@@ -1,6 +1,5 @@
 with EinheitenDatentypen;
 with StadtDatentypen;
-with StadtKonstanten;
 with KartenverbesserungDatentypen;
 with SystemDatentypen;
 
@@ -32,7 +31,7 @@ package body StadtwachstumLogik is
                
             when others =>
                StadtSchleife:
-               for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseSchleifenwert) loop
+               for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseSchleifenwert) loop
                   
                   case
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert))

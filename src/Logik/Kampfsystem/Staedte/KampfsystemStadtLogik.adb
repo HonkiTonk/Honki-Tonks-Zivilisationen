@@ -1,7 +1,5 @@
 with ProduktionDatentypen;
 with KampfDatentypen;
-with EinheitenKonstanten;
-with StadtKonstanten;
 with SystemDatentypen;
 with StadtDatentypen;
 

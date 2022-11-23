@@ -1,5 +1,4 @@
 with KartenKonstanten;
-with StadtKonstanten;
 with StadtDatentypen;
 with KartenRecordKonstanten;
 
@@ -19,7 +18,7 @@ package body StadtwerteFestlegenLogik is
    is begin
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))

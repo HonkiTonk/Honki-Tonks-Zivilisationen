@@ -1,6 +1,6 @@
 with RassenDatentypen;
 with EinheitenRecords;
-with SpielVariablen;
+with EinheitenKonstanten;
 
 private with KampfRecords;
 private with EinheitenDatentypen;
@@ -25,9 +25,9 @@ package KampfsystemEinheitenLogik is
                and
                 LeseRassenbelegung.Belegung (RasseExtern => VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => VerteidigerExtern.Rasse)
+                 VerteidigerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => VerteidigerExtern.Rasse)
                and
-                 AngreiferExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreiferExtern.Rasse)
+                 AngreiferExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreiferExtern.Rasse)
               );
 
 private
@@ -56,9 +56,9 @@ private
                and
                  LeseRassenbelegung.Belegung (RasseExtern => VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 VerteidigerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => VerteidigerExtern.Rasse)
+                 VerteidigerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => VerteidigerExtern.Rasse)
                and
-                 AngreiferExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreiferExtern.Rasse)
+                 AngreiferExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreiferExtern.Rasse)
               );
 
 end KampfsystemEinheitenLogik;

@@ -119,5 +119,15 @@ package body SchreibeAllgemeines is
       SpielVariablen.Allgemeines := WichtigesRecordKonstanten.LeerAllgemeines;
       
    end Standardeinstellungen;
+   
+   
+   
+   procedure GanzerEintrag
+     (EintragExtern : in SpielRecords.AllgemeinesRecord)
+   is begin
+      
+      SpielVariablen.Allgemeines := EintragExtern;
+      
+   end GanzerEintrag;
 
 end SchreibeAllgemeines;

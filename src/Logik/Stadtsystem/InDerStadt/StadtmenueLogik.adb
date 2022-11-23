@@ -1,4 +1,3 @@
-with StadtKonstanten;
 with GrafikDatentypen;
 
 with StadtbausystemLogik;

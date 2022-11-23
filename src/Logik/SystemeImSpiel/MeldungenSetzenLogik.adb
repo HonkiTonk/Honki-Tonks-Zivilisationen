@@ -17,16 +17,16 @@ package body MeldungenSetzenLogik is
                
             when others =>
                StadtSchleife:
-               for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseSchleifenwert) loop
+               for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseSchleifenwert) loop
                   
-                  SpielVariablen.StadtGebaut (RasseSchleifenwert, StadtSchleifenwert).Meldungen := (others => StadtDatentypen.Leer_Stadt_Meldung_Enum);
+                  SchreibeStadtGebaut.LeerMeldungen (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert));
                   
                end loop StadtSchleife;
                                              
                EinheitenSchleife:
-               for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseSchleifenwert) loop
+               for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseSchleifenwert) loop
                   
-                  SpielVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitSchleifenwert).Meldungen := (others => EinheitenDatentypen.Leer_Einheit_Meldung_Enum);
+                  SchreibeEinheitenGebaut.LeerMeldungen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitSchleifenwert));
                   
                end loop EinheitenSchleife;
          end case;

@@ -1,5 +1,6 @@
 with KartenKonstanten;
 with KartenDatentypen;
+with StadtKonstanten;
 
 with LeseStadtGebaut;
 with SchreibeEinheitenGebaut;
@@ -18,7 +19,7 @@ package body KIEinheitFestlegenBewachenLogik is
    begin
             
       StadtSchleife:
-      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => EinheitRasseNummerExtern.Rasse) loop
+      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => EinheitRasseNummerExtern.Rasse) loop
          
          Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert));
          

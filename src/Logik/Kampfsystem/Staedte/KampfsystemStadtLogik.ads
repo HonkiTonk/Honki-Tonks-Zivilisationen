@@ -1,7 +1,8 @@
 with RassenDatentypen;
 with EinheitenRecords;
-with SpielVariablen;
+with EinheitenKonstanten;
 with StadtRecords;
+with StadtKonstanten;
 
 private with KampfRecords;
 private with EinheitenDatentypen;
@@ -26,9 +27,9 @@ package KampfsystemStadtLogik is
                and
                  AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
                and
-                 AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse)
+                 AngreifendeEinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse)
                and
-                 VerteidigendeStadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => VerteidigendeStadtRasseNummerExtern.Rasse)
+                 VerteidigendeStadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => VerteidigendeStadtRasseNummerExtern.Rasse)
               );
    
 private
@@ -57,9 +58,9 @@ private
                and
                  AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
                and
-                 AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse)
+                 AngreifendeEinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse)
                and
-                 VerteidigendeStadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => VerteidigendeStadtRasseNummerExtern.Rasse)
+                 VerteidigendeStadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => VerteidigendeStadtRasseNummerExtern.Rasse)
               );
    
    function Kampf
@@ -76,9 +77,9 @@ private
                and
                  AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
                and
-                 AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse)
+                 AngreifendeEinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse)
                and
-                 VerteidigendeStadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => VerteidigendeStadtRasseNummerExtern.Rasse)
+                 VerteidigendeStadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => VerteidigendeStadtRasseNummerExtern.Rasse)
               );
 
 end KampfsystemStadtLogik;

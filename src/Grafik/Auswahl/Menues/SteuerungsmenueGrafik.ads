@@ -32,7 +32,7 @@ private
    
    function Steuerungsaufteilung
      (AuswahlExtern : in Integer;
-      WelcheSteuerungExtern : in SteuerungsauswahlLogik.Kategorie_Enum)
+      WelcheSteuerungExtern : in SteuerungsauswahlLogik.Tastenbelegungskategorie_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
@@ -43,7 +43,7 @@ private
    
    function Steuerung
      (AuswahlExtern : in Integer;
-      WelcheSteuerungExtern : in SteuerungsauswahlLogik.Kategorie_Enum)
+      WelcheSteuerungExtern : in SteuerungsauswahlLogik.Tastenbelegungskategorie_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
@@ -53,7 +53,7 @@ private
                );
    
    function TextFestlegen
-     (WelcheSteuerungExtern : in SteuerungsauswahlLogik.Kategorie_Enum;
+     (WelcheSteuerungExtern : in SteuerungsauswahlLogik.Tastenbelegungskategorie_Enum;
       WelcheZeileExtern : in Positive)
       return Wide_Wide_String;
 

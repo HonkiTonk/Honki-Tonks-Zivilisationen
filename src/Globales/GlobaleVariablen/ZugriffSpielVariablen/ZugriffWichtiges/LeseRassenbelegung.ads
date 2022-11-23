@@ -15,5 +15,8 @@ package LeseRassenbelegung is
    function GanzerEintrag
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return SpielRecords.RassenRecords;
+   
+   function GanzesArray
+     return SpielRecords.RassenbelegungArray;
 
 end LeseRassenbelegung;

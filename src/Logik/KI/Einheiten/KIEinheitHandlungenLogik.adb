@@ -1,6 +1,5 @@
 with AufgabenDatentypen;
 with KartenRecords;
-with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
 with LeseEinheitenDatenbank;

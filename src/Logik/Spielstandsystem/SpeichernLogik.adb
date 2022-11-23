@@ -12,7 +12,8 @@ with WeltkarteRecords;
 with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
 with KartenKonstanten;
-with SpielVariablen;
+with StadtKonstanten;
+with EinheitenKonstanten;
 
 with LeseWeltkarte;
 with LeseWeltkarteneinstellungen;
@@ -21,6 +22,8 @@ with LeseGrenzen;
 with LeseAllgemeines;
 with LeseDiplomatie;
 with LeseCursor;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
 with LadezeitenLogik;
 with NachGrafiktask;
@@ -118,10 +121,10 @@ package body SpeichernLogik is
                               SonstigesKonstanten.Versionsnummer);
       
       SpielRecords.AllgemeinesRecord'Write (Stream (File => DateiSpeichernExtern),
-                                            SpielVariablen.Allgemeines);
+                                            LeseAllgemeines.GanzerEintrag);
             
-      SpielVariablen.RassenbelegungArray'Write (Stream (File => DateiSpeichernExtern),
-                                                SpielVariablen.Rassenbelegung);
+      SpielRecords.RassenbelegungArray'Write (Stream (File => DateiSpeichernExtern),
+                                                LeseRassenbelegung.GanzesArray);
       
    end Allgemeines;
    
@@ -191,18 +194,18 @@ package body SpeichernLogik is
                                         LeseGrenzen.GanzerEintrag (RasseExtern => RasseExtern));
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
+      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
                   
          EinheitenRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                       SpielVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert));
-            
+                                                       LeseEinheitenGebaut.GanzerEintrag (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert)));
+                                                       
       end loop EinheitenSchleife;
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
                   
          StadtRecords.StadtGebautRecord'Write (Stream (File => DateiSpeichernExtern),
-                                               SpielVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert));
+                                               LeseStadtGebaut.GanzerEintrag (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)));
             
       end loop StadtSchleife;
       

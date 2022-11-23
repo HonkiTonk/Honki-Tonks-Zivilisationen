@@ -1,6 +1,5 @@
 with ProduktionDatentypen;
 with WichtigesKonstanten;
-with StadtKonstanten;
 
 with KIKonstanten;
 

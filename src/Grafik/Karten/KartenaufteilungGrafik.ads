@@ -3,8 +3,8 @@ private with Sf.System.Vector2;
 with RassenDatentypen;
 with EinheitenDatentypen;
 with EinheitenRecords;
-with SpielVariablen;
 with StadtRecords;
+with StadtKonstanten;
 
 with LeseGrenzen;
 with LeseRassenbelegung;
@@ -27,7 +27,7 @@ package KartenaufteilungGrafik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );

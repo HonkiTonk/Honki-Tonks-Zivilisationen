@@ -4,7 +4,6 @@ with StadtDatentypen;
 with DiplomatieDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with StadtKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;

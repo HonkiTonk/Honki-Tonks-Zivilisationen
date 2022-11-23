@@ -2,7 +2,6 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with KartenverbesserungDatentypen;
 with StadtKonstanten;
-with SpielVariablen;
 
 with LeseStadtGebaut;
 with LeseWeltkarte;
@@ -121,7 +120,7 @@ package body StadtSuchenLogik is
                
             when others =>
                StadtSchleife:
-               for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseSchleifenwert) loop
+               for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseSchleifenwert) loop
                   
                   if
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = StadtKonstanten.LeerID

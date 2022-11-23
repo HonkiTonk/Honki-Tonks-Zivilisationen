@@ -1,5 +1,4 @@
 with KartenKonstanten;
-with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
 with KIKonstanten;
@@ -309,7 +308,7 @@ package body KIBewegungsplanBerechnenLogik is
    begin
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitSchleifenwert in EinheitenDatentypen.MaximaleEinheiten'Range loop
          
          if
            EinheitRasseNummerExtern.Nummer = EinheitSchleifenwert

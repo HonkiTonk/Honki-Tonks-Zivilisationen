@@ -1,7 +1,6 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with AufgabenDatentypen;
-with EinheitenKonstanten;
 with TextnummernKonstanten;
 
 with LeseEinheitenGebaut;

@@ -1,7 +1,8 @@
 with Ada.Directories; use Ada.Directories;
 
-with TastenbelegungVariablen;
+with TastenbelegungDatenbank;
 with VerzeichnisKonstanten;
+with StandardTastenbelegungDatenbank;
 
 package body EinlesenTastaturLogik is
 
@@ -16,19 +17,19 @@ package body EinlesenTastaturLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.Tastenbelegung);
       
-            TastenbelegungVariablen.AllgemeineBelegungArray'Read (Stream (File => TastenbelegungLaden),
-                                                                  TastenbelegungVariablen.AllgemeineBelegung);
+            TastenbelegungDatenbank.AllgemeineBelegungArray'Read (Stream (File => TastenbelegungLaden),
+                                                                  TastenbelegungDatenbank.AllgemeineBelegung);
       
-            TastenbelegungVariablen.EinheitenbelegungArray'Read (Stream (File => TastenbelegungLaden),
-                                                                 TastenbelegungVariablen.Einheitenbelegung);
+            TastenbelegungDatenbank.EinheitenbelegungArray'Read (Stream (File => TastenbelegungLaden),
+                                                                 TastenbelegungDatenbank.Einheitenbelegung);
       
-            TastenbelegungVariablen.StadtbelegungArray'Read (Stream (File => TastenbelegungLaden),
-                                                             TastenbelegungVariablen.Stadtbelegung);
+            TastenbelegungDatenbank.StadtbelegungArray'Read (Stream (File => TastenbelegungLaden),
+                                                             TastenbelegungDatenbank.Stadtbelegung);
       
             Close (File => TastenbelegungLaden);
 
          when False =>
-            TastenbelegungVariablen.StandardTastenbelegungLaden;
+            StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
       end case;
       
    end EinlesenTastaturbelegung;

@@ -3,10 +3,10 @@ with KartenDatentypen;
 with KartenRecords;
 with KartengrundDatentypen;
 with KartenverbesserungDatentypen;
-with SpielVariablen;
 with StadtRecords;
 with EinheitenRecords;
 with WeltkarteRecords;
+with StadtKonstanten;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -138,7 +138,7 @@ package LeseWeltkarte is
       return Boolean
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and

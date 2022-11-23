@@ -3,6 +3,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with ZahlenDatentypen;
 with RassenDatentypen;
 with SpielDatentypen;
+with SpielRecords;
 
 private with Grenzpruefungen;
 
@@ -38,6 +39,9 @@ package SchreibeAllgemeines is
    procedure AnzahlEingesetzterPZB;
    
    procedure Standardeinstellungen;
+   
+   procedure GanzerEintrag
+     (EintragExtern : in SpielRecords.AllgemeinesRecord);
    
 private
       

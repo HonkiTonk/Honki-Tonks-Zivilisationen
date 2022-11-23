@@ -6,7 +6,6 @@ with Meldungstexte;
 with TextnummernKonstanten;
 with TextaccessVariablen;
 with Views;
-with StadtKonstanten;
 with EinheitenKonstanten;
 
 with LeseStadtGebaut;

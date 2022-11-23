@@ -1,6 +1,4 @@
 with KartenKonstanten;
-with EinheitenKonstanten;
-with StadtKonstanten;
 with DiplomatieDatentypen;
 
 with SchreibeEinheitenGebaut;
@@ -32,7 +30,7 @@ package body EinheitenverschiebungLogik is
       end case;
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))

@@ -1,6 +1,5 @@
 with EinheitenDatentypen;
 with ProduktionDatentypen;
-with EinheitenKonstanten;
 
 with KIDatentypen;
 
@@ -30,7 +29,7 @@ package body VerbesserungFertiggestelltLogik is
                
             when others =>
                EinheitenSchleife:
-               for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseSchleifenwert) loop
+               for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseSchleifenwert) loop
          
                   case
                     LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert))

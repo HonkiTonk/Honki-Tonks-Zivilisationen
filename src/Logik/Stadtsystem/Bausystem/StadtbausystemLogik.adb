@@ -1,5 +1,4 @@
 with GrafikDatentypen;
-with StadtKonstanten;
 with TastenbelegungDatentypen;
 
 with SchreibeStadtGebaut;

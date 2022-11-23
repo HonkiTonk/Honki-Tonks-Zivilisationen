@@ -1,6 +1,6 @@
 with RassenDatentypen;
-with SpielVariablen;
 with EinheitenRecords;
+with EinheitenKonstanten;
 
 private with EinheitenDatentypen;
 private with KartenRecords;
@@ -27,7 +27,7 @@ package PZBEingesetztLogik is
        Pre => (
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
               );
 
 private

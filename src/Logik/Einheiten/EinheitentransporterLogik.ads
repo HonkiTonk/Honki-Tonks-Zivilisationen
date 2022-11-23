@@ -1,6 +1,6 @@
 with RassenDatentypen;
-with SpielVariablen;
 with EinheitenRecords;
+with EinheitenKonstanten;
 
 private with EinheitenDatentypen;
 private with KartenRecords;
@@ -19,7 +19,7 @@ package EinheitentransporterLogik is
      (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
-                 TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
+                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
@@ -30,11 +30,11 @@ package EinheitentransporterLogik is
       return Boolean
      with
        Pre => (
-                 LadungExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => LadungExtern.Rasse)
+                 LadungExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => LadungExtern.Rasse)
                and
                 LeseRassenbelegung.Belegung (RasseExtern => LadungExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
-                 TransporterExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
+                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
@@ -59,7 +59,7 @@ private
       LadungExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
-                 LadungExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => LadungExtern.Rasse)
+                 LadungExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => LadungExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => LadungExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
@@ -76,7 +76,7 @@ private
       return Boolean
      with
        Pre => (
-                 LadungExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => LadungExtern.Rasse)
+                 LadungExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => LadungExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => LadungExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and

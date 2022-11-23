@@ -1,5 +1,3 @@
-with EinheitenKonstanten;
-
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
@@ -16,7 +14,7 @@ package body TransporterSuchenLogik is
    begin
       
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
+      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
          
          if
            LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) /= KoordinatenExtern

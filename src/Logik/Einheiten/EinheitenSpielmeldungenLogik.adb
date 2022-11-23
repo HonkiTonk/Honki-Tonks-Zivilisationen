@@ -1,6 +1,5 @@
 with EinheitenDatentypen;
 with TextnummernKonstanten;
-with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;

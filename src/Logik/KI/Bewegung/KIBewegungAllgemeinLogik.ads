@@ -2,7 +2,8 @@ with KartenDatentypen;
 with RassenDatentypen;
 with EinheitenRecords;
 with KartenRecords;
-with SpielVariablen;
+
+private with EinheitenKonstanten;
 
 with LeseWeltkarteneinstellungen;
 with LeseRassenbelegung;
@@ -46,7 +47,7 @@ private
       return KIDatentypen.Bewegung_Enum
      with
        Pre => (
-                 EigeneEinheitExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. LeseGrenzen.Einheitengrenze (RasseExtern => EigeneEinheitExtern.Rasse)
+                 EigeneEinheitExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EigeneEinheitExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => EigeneEinheitExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );

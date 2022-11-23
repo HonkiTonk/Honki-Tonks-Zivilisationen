@@ -1,6 +1,4 @@
 with AufgabenDatentypen;
-with EinheitenKonstanten;
-with StadtKonstanten;
 with TextnummernKonstanten;
 
 with LeseEinheitenGebaut;

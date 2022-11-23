@@ -4,7 +4,9 @@ with InteraktionAuswahl;
 with SystemKonstanten;
 with GrafikDatentypen;
 with TextnummernKonstanten;
-with TastenbelegungVariablen;
+
+with LeseTastenbelegungDatenbank;
+with SchreibeTastenbelegungDatenbank;
 
 with NachGrafiktask;
 with TasteneingabeLogik;
@@ -64,7 +66,7 @@ package body SteuerungsauswahlLogik is
    
    procedure TasteBelegen
      (AuswahlExtern : in Positive;
-      WelcheSteuerungExtern : in Kategorie_Enum)
+      WelcheSteuerungExtern : in Tastenbelegungskategorie_Enum)
    is begin
       
       NachGrafiktask.AnzeigeFrage := TextnummernKonstanten.FrageNeueTaste;
@@ -87,15 +89,15 @@ package body SteuerungsauswahlLogik is
       case
         WelcheSteuerungExtern
       is
-         when Kategorie_Eins_Enum =>
+         when Allgemeine_Belegung_Enum =>
             AllgemeineBelegung (AuswahlExtern => AuswahlExtern - SystemKonstanten.AllgemeineSteuerungEnumausgleich,
                                 TasteExtern   => NeueTaste);
             
-         when Kategorie_Zwei_Enum =>
+         when Einheitenbelegung_Enum =>
             Einheitenbelegung (AuswahlExtern => AuswahlExtern - SystemKonstanten.EinheitensteuerungEnumausgleich,
                                TasteExtern   => NeueTaste);
             
-         when Kategorie_Drei_Enum =>
+         when Stadtbelegung_Enum =>
             Stadtbelegung (AuswahlExtern => AuswahlExtern - SystemKonstanten.StadtsteuerungEnumausgleich,
                            TasteExtern   => NeueTaste);
       end case;
@@ -112,17 +114,19 @@ package body SteuerungsauswahlLogik is
    begin
       
       AllgemeineBelegungSchleife:
-      for AllgemeineBelegungSchleifenwert in TastenbelegungVariablen.AllgemeineBelegungArray'Range loop
+      for AllgemeineBelegungSchleifenwert in TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Range loop
          
          if
            AllgemeineBelegungSchleifenwert = TastenbelegungDatentypen.Allgemeine_Belegung_Enum'Val (AuswahlExtern)
          then
-            TastenbelegungVariablen.AllgemeineBelegung (AllgemeineBelegungSchleifenwert) := TasteExtern;
+            SchreibeTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => AllgemeineBelegungSchleifenwert,
+                                                                TasteExtern  => TasteExtern);
             
          elsif
-           TastenbelegungVariablen.AllgemeineBelegung (AllgemeineBelegungSchleifenwert) = TasteExtern
+           LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => AllgemeineBelegungSchleifenwert) = TasteExtern
          then
-            TastenbelegungVariablen.AllgemeineBelegung (AllgemeineBelegungSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
+            SchreibeTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => AllgemeineBelegungSchleifenwert,
+                                                                TasteExtern  => Sf.Window.Keyboard.sfKeyUnknown);
             
          else
             null;
@@ -142,17 +146,19 @@ package body SteuerungsauswahlLogik is
    begin
       
       EinheitenbelegungSchleife:
-      for EinheitenbelegungSchleifenwert in TastenbelegungVariablen.EinheitenbelegungArray'Range loop
+      for EinheitenbelegungSchleifenwert in BefehleDatentypen.Einheitenbelegung_Vorhanden_Enum'Range loop
          
          if
            EinheitenbelegungSchleifenwert = BefehleDatentypen.Einheitenbelegung_Enum'Val (AuswahlExtern)
          then
-            TastenbelegungVariablen.Einheitenbelegung (EinheitenbelegungSchleifenwert) := TasteExtern;
+            SchreibeTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => EinheitenbelegungSchleifenwert,
+                                                               TasteExtern  => TasteExtern);
             
          elsif
-           TastenbelegungVariablen.Einheitenbelegung (EinheitenbelegungSchleifenwert) = TasteExtern
+           LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => EinheitenbelegungSchleifenwert) = TasteExtern
          then
-            TastenbelegungVariablen.Einheitenbelegung (EinheitenbelegungSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
+            SchreibeTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => EinheitenbelegungSchleifenwert,
+                                                               TasteExtern  => Sf.Window.Keyboard.sfKeyUnknown);
             
          else
             null;
@@ -172,17 +178,19 @@ package body SteuerungsauswahlLogik is
    begin
       
       StadtbelegungSchleife:
-      for StadtbelegungSchleifenwert in TastenbelegungVariablen.StadtbelegungArray'Range loop
+      for StadtbelegungSchleifenwert in BefehleDatentypen.Stadtbefehle_Auswählen_Enum'Range loop
          
          if
            StadtbelegungSchleifenwert = BefehleDatentypen.Stadtbefehle_Enum'Val (AuswahlExtern)
          then
-            TastenbelegungVariablen.Stadtbelegung (StadtbelegungSchleifenwert) := TasteExtern;
+            SchreibeTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => StadtbelegungSchleifenwert,
+                                                           TasteExtern  => TasteExtern);
             
          elsif
-           TastenbelegungVariablen.Stadtbelegung (StadtbelegungSchleifenwert) = TasteExtern
+           LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => StadtbelegungSchleifenwert) = TasteExtern
          then
-            TastenbelegungVariablen.Stadtbelegung (StadtbelegungSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
+            SchreibeTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => StadtbelegungSchleifenwert,
+                                                           TasteExtern  => Sf.Window.Keyboard.sfKeyUnknown);
             
          else
             null;

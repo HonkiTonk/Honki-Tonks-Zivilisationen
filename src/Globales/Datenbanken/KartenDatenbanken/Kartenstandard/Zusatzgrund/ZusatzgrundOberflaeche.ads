@@ -10,7 +10,7 @@ package ZusatzgrundOberflaeche is
 
    type ZusatzgrundlisteOberflächeArray is array (KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenzusatzgrundlisteRecord;
    ZusatzgrundlisteOberfläche : constant ZusatzgrundlisteOberflächeArray := (
-                                                                               KartengrundDatentypen.Wald_Enum =>
+                                                                               KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range =>
                                                                                  (
                                                                                   Bewertung =>
                                                                                     (
@@ -83,7 +83,7 @@ package ZusatzgrundOberflaeche is
                                                                                   Bewegung => (others => 3)
                                                                                  ),
 
-                                                                               KartengrundDatentypen.Dschungel_Enum =>
+                                                                               KartengrundDatentypen.Zusatzgrund_Dschungel_Enum'Range =>
                                                                                  (
                                                                                   Bewertung =>
                                                                                     (
@@ -156,7 +156,7 @@ package ZusatzgrundOberflaeche is
                                                                                   Bewegung => (others => 5)
                                                                                  ),
 
-                                                                               KartengrundDatentypen.Sumpf_Enum =>
+                                                                               KartengrundDatentypen.Zusatzgrund_Sumpf_Enum'Range =>
                                                                                  (
                                                                                   Bewertung =>
                                                                                     (

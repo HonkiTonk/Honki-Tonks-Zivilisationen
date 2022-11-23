@@ -32,6 +32,15 @@ package body LeseRassenbelegung is
       return SpielVariablen.Rassenbelegung (RasseExtern);
       
    end GanzerEintrag;
-     
+   
+   
+   
+   function GanzesArray
+     return SpielRecords.RassenbelegungArray
+   is begin
+      
+      return SpielVariablen.Rassenbelegung;
+      
+   end GanzesArray;
 
 end LeseRassenbelegung;

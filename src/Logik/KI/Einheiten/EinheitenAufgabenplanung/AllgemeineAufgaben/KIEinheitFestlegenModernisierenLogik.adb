@@ -1,7 +1,6 @@
-with StadtKonstanten;
 with KartenKonstanten;
 with KartenRecordKonstanten;
-with EinheitenKonstanten;
+with StadtDatentypen;
 
 with LeseStadtGebaut;
 with LeseEinheitenGebaut;
@@ -70,7 +69,7 @@ package body KIEinheitFestlegenModernisierenLogik is
       end case;
       
       StadtSchleife:
-      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'Range (2) loop
+      for StadtSchleifenwert in StadtDatentypen.MaximaleStädte'Range loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtSchleifenwert))

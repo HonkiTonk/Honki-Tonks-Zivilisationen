@@ -1,5 +1,7 @@
 package KartengrundDatentypen is
    pragma Pure;
+   
+   -- Es sind immer 16 Elemente bei den Mehrfachmöglichkeiten. äöü
 
    type Basisgrund_Enum is (
                             Leer_Basisgrund_Enum,
@@ -13,7 +15,9 @@ package KartengrundDatentypen is
                             -- Oberfläche
                             Eis_Enum,
                             Wasser_Enum, Küstengewässer_Enum,
-                            Flachland_Enum, Wüste_Enum, Hügel_Enum, Gebirge_Enum, Tundra_Enum,
+                            Flachland_Enum, Wüste_Enum, Tundra_Enum,
+                            
+                            Hügel_Enum, Gebirge_Enum,
                              
                             -- Unterfläche
                             Untereis_Enum,
@@ -29,7 +33,7 @@ package KartengrundDatentypen is
                            );
    pragma Ordered (Basisgrund_Enum);
       
-   subtype Basisgrund_Vorhanden_Enum is Basisgrund_Enum range Basisgrund_Enum'Val (Basisgrund_Enum'Pos (Basisgrund_Enum'First) + 1) .. Basisgrund_Enum'Last;
+   subtype Basisgrund_Vorhanden_Enum is Basisgrund_Enum range Basisgrund_Enum'Succ (Basisgrund_Enum'First) .. Basisgrund_Enum'Last;
    
    -- Weltraum
    subtype Basisgrund_Weltraum_Enum is Basisgrund_Vorhanden_Enum range Weltraum_Enum .. Weltraum_Enum;
@@ -38,12 +42,12 @@ package KartengrundDatentypen is
    subtype Basisgrund_Himmel_Enum is Basisgrund_Vorhanden_Enum range Wolken_Enum .. Wolken_Enum;
    
    -- Oberfläche
-   subtype Basisgrund_Oberfläche_Enum is Basisgrund_Vorhanden_Enum range Eis_Enum .. Tundra_Enum;
+   subtype Basisgrund_Oberfläche_Enum is Basisgrund_Vorhanden_Enum range Eis_Enum .. Gebirge_Enum;
    
    subtype Basisgrund_Oberfläche_Eiswasser_Enum is Basisgrund_Oberfläche_Enum range Eis_Enum .. Küstengewässer_Enum;
    subtype Basisgrund_Oberfläche_Wasser_Enum is Basisgrund_Oberfläche_Eiswasser_Enum range Wasser_Enum .. Küstengewässer_Enum;
    
-   subtype Basisgrund_Oberfläche_Land_Enum is Basisgrund_Oberfläche_Enum range Flachland_Enum .. Tundra_Enum;
+   subtype Basisgrund_Oberfläche_Land_Enum is Basisgrund_Oberfläche_Enum range Flachland_Enum .. Gebirge_Enum;
    
    -- Unterfläche
    subtype Basisgrund_Unterfläche_Enum is Basisgrund_Vorhanden_Enum range Untereis_Enum .. Gestein_Enum;
@@ -72,10 +76,26 @@ package KartengrundDatentypen is
                              -- Himmel
                               
                              -- Oberfläche
-                             Wald_Enum, Dschungel_Enum, Sumpf_Enum,
+                             Wald_Vier_Enum, Wald_Waagrecht_Enum, Wald_Senkrecht_Enum, Waldkurve_Unten_Rechts_Enum, Waldkurve_Unten_Links_Enum, Waldkurve_Oben_Rechts_Enum, Waldkurve_Oben_Links_Enum,
+                             Waldkreuzung_Drei_Oben_Enum, Waldkreuzung_Drei_Unten_Enum, Waldkreuzung_Drei_Rechts_Enum, Waldkreuzung_Drei_Links_Enum, Waldendstück_Links_Enum, Waldendstück_Rechts_Enum,
+                             Waldendstück_Unten_Enum, Waldendstück_Oben_Enum, Wald_Enum,
+                             
+                             Dschungel_Vier_Enum, Dschungel_Waagrecht_Enum, Dschungel_Senkrecht_Enum, Dschungelkurve_Unten_Rechts_Enum, Dschungelkurve_Unten_Links_Enum, Dschungelkurve_Oben_Rechts_Enum,
+                             Dschungelkurve_Oben_Links_Enum, Dschungelkreuzung_Drei_Oben_Enum, Dschungelkreuzung_Drei_Unten_Enum, Dschungelkreuzung_Drei_Rechts_Enum, Dschungelkreuzung_Drei_Links_Enum,
+                             Dschungelendstück_Links_Enum, Dschungelendstück_Rechts_Enum, Dschungelendstück_Unten_Enum, Dschungelendstück_Oben_Enum, Dschungel_Enum,
+                             
+                             Sumpf_Vier_Enum, Sumpf_Waagrecht_Enum, Sumpf_Senkrecht_Enum, Sumpfkurve_Unten_Rechts_Enum, Sumpfkurve_Unten_Links_Enum, Sumpfkurve_Oben_Rechts_Enum, Sumpfkurve_Oben_Links_Enum,
+                             Sumpfkreuzung_Drei_Oben_Enum, Sumpfkreuzung_Drei_Unten_Enum, Sumpfkreuzung_Drei_Rechts_Enum, Sumpfkreuzung_Drei_Links_Enum, Sumpfendstück_Links_Enum, Sumpfendstück_Rechts_Enum,
+                             Sumpfendstück_Unten_Enum, Sumpfendstück_Oben_Enum, Sumpf_Enum,
                              
                              -- Unterfläche
-                             Korallen_Enum, Unterwald_Enum
+                             Korallen_Vier_Enum, Korallen_Waagrecht_Enum, Korallen_Senkrecht_Enum, Korallenkurve_Unten_Rechts_Enum, Korallenkurve_Unten_Links_Enum, Korallenkurve_Oben_Rechts_Enum,
+                             Korallenkurve_Oben_Links_Enum, Korallenkreuzung_Drei_Oben_Enum, Korallenkreuzung_Drei_Unten_Enum, Korallenkreuzung_Drei_Rechts_Enum, Korallenkreuzung_Drei_Links_Enum,
+                             Korallenendstück_Links_Enum, Korallenendstück_Rechts_Enum, Korallenendstück_Unten_Enum, Korallenendstück_Oben_Enum, Korallen_Enum,
+                             
+                             Unterwald_Vier_Enum, Unterwald_Waagrecht_Enum, Unterwald_Senkrecht_Enum, Unterwaldkurve_Unten_Rechts_Enum, Unterwaldkurve_Unten_Links_Enum, Unterwaldkurve_Oben_Rechts_Enum,
+                             Unterwaldkurve_Oben_Links_Enum, Unterwaldkreuzung_Drei_Oben_Enum, Unterwaldkreuzung_Drei_Unten_Enum, Unterwaldkreuzung_Drei_Rechts_Enum, Unterwaldkreuzung_Drei_Links_Enum,
+                             Unterwaldendstück_Links_Enum, Unterwaldendstück_Rechts_Enum, Unterwaldendstück_Unten_Enum, Unterwaldendstück_Oben_Enum, Unterwald_Enum
                               
                              -- Planetenkern
                               
@@ -84,7 +104,7 @@ package KartengrundDatentypen is
                             );
    pragma Ordered (Zusatzgrund_Enum);
    
-   subtype Zusatzgrund_Vorhanden_Enum is Zusatzgrund_Enum range Zusatzgrund_Enum'Val (Zusatzgrund_Enum'Pos (Zusatzgrund_Enum'First) + 1) .. Zusatzgrund_Enum'Last;
+   subtype Zusatzgrund_Vorhanden_Enum is Zusatzgrund_Enum range Zusatzgrund_Enum'Succ (Zusatzgrund_Enum'First) .. Zusatzgrund_Enum'Last;
    
    -- Weltraum
    
@@ -93,11 +113,17 @@ package KartengrundDatentypen is
    
    
    -- Oberfläche
-   subtype Zusatzgrund_Oberfläche_Enum is Zusatzgrund_Vorhanden_Enum range Wald_Enum .. Sumpf_Enum;
+   subtype Zusatzgrund_Oberfläche_Enum is Zusatzgrund_Vorhanden_Enum range Wald_Vier_Enum .. Sumpf_Enum;
+   
+   subtype Zusatzgrund_Wald_Enum is Zusatzgrund_Oberfläche_Enum range Wald_Vier_Enum .. Wald_Enum;
+   subtype Zusatzgrund_Dschungel_Enum is Zusatzgrund_Oberfläche_Enum range Dschungel_Vier_Enum .. Dschungel_Enum;
+   subtype Zusatzgrund_Sumpf_Enum is Zusatzgrund_Oberfläche_Enum range Sumpf_Vier_Enum .. Sumpf_Enum;
    
    -- Unterfläche
-   subtype Zusatzgrund_Unterfläche_Enum is Zusatzgrund_Vorhanden_Enum range Korallen_Enum .. Unterwald_Enum;
+   subtype Zusatzgrund_Unterfläche_Enum is Zusatzgrund_Vorhanden_Enum range Korallen_Vier_Enum .. Unterwald_Enum;
    
+   subtype Zusatzgrund_Korallen_Enum is Zusatzgrund_Unterfläche_Enum range Korallen_Vier_Enum .. Korallen_Enum;
+   subtype Zusatzgrund_Unterwald_Enum is Zusatzgrund_Unterfläche_Enum range Unterwald_Vier_Enum .. Unterwald_Enum;
    -- Planeteinneres
    
    
@@ -122,7 +148,7 @@ package KartengrundDatentypen is
                                  );
    pragma Ordered (Kartenressourcen_Enum);
    
-   subtype Kartenressourcen_Vorhanden_Enum is Kartenressourcen_Enum range Fisch_Enum .. Kartenressourcen_Enum'Last;
+   subtype Kartenressourcen_Vorhanden_Enum is Kartenressourcen_Enum range Kartenressourcen_Enum'Succ (Kartenressourcen_Enum'First) .. Kartenressourcen_Enum'Last;
    
    subtype Kartenressourcen_Oberfläche_Enum is Kartenressourcen_Vorhanden_Enum range Fisch_Enum .. Gold_Enum;
    subtype Kartenressourcen_Oberfläche_Wasser_Enum is Kartenressourcen_Oberfläche_Enum range Fisch_Enum .. Wal_Enum;
@@ -155,7 +181,7 @@ package KartengrundDatentypen is
                             );
    pragma Ordered (Kartenfluss_Enum);
                               
-   subtype Kartenfluss_Vorhanden_Enum is Kartenfluss_Enum range Flusskreuzung_Vier_Enum .. Kartenfluss_Enum'Last;
+   subtype Kartenfluss_Vorhanden_Enum is Kartenfluss_Enum range Kartenfluss_Enum'Succ (Kartenfluss_Enum'First) .. Kartenfluss_Enum'Last;
    
    subtype Kartenfluss_Oberfläche_Enum is Kartenfluss_Vorhanden_Enum range Flusskreuzung_Vier_Enum .. See_Enum;
    subtype Kartenfluss_Unterfläche_Enum is Kartenfluss_Vorhanden_Enum range Unterirdische_Flusskreuzung_Vier_Enum .. Unterirdischer_See_Enum;
