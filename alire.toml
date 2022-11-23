@@ -12,7 +12,7 @@ maintainers-logins = ["HonkiTonk"]
 
 licenses = "GPL-3.0-or-later"
 website = "https://github.com/HonkiTonk/Honki-Tonks-Zivilisationen"
-tags = ["game", "sfml", ""]
+tags = ["game", "sfml", "4x", "roundbased", "strategy", "cross-platform", "multimedia", "2d"]
 
 executables = ["honki_tonks_zivilisationen"]
 [[depends-on]]
