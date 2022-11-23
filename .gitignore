@@ -11,4 +11,5 @@ Honki Tonk´s Zivilisationen/Start
 obj_Windows/
 GNAT*
 alire/
-alire.lock
+config/
+share/
