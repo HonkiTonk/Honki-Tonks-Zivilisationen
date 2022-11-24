@@ -22,7 +22,7 @@ package MenueDatentypen is
                                Spielstand_Menü_Enum
                               );
    
-   subtype Welches_Menü_Vorhanden_Enum is Welches_Menü_Enum range Haupt_Menü_Enum .. Welches_Menü_Enum'Last;
+   subtype Welches_Menü_Vorhanden_Enum is Welches_Menü_Enum range Welches_Menü_Enum'Succ (Welches_Menü_Enum'First) .. Welches_Menü_Enum'Last;
    subtype Menü_Ohne_Steuerung_Enum is Welches_Menü_Vorhanden_Enum range Welches_Menü_Vorhanden_Enum'First .. Kartenform_Menü_Enum;
    
    subtype Menü_Einfach_Enum is Menü_Ohne_Steuerung_Enum range Haupt_Menü_Enum .. Kartenpole_Menü_Enum;

@@ -18,7 +18,7 @@ package AufgabenDatentypen is
                                     Heilen_Enum, Verschanzen_Enum
                                    );
    
-   subtype Einheiten_Aufgabe_Vorhanden_Enum is Einheiten_Aufgaben_Enum range Straße_Bauen_Enum .. Einheiten_Aufgaben_Enum'Last;
+   subtype Einheiten_Aufgabe_Vorhanden_Enum is Einheiten_Aufgaben_Enum range Einheiten_Aufgaben_Enum'Succ (Einheiten_Aufgaben_Enum'First) .. Einheiten_Aufgaben_Enum'Last;
    
    subtype Einheitenbefehle_Verbesserungen_Enum is Einheiten_Aufgabe_Vorhanden_Enum range Straße_Bauen_Enum .. Roden_Trockenlegen_Enum;
    subtype Einheitenbefehle_Wege_Enum is Einheitenbefehle_Verbesserungen_Enum range Straße_Bauen_Enum .. Tunnel_Bauen_Enum;

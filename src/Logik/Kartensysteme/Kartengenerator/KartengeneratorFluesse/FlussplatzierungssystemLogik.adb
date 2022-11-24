@@ -11,10 +11,7 @@ package body FlussplatzierungssystemLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      FlussLinks (KoordinatenExtern.EAchse) := False;
-      FlussRechts (KoordinatenExtern.EAchse) := False;
-      FlussOben (KoordinatenExtern.EAchse) := False;
-      FlussUnten (KoordinatenExtern.EAchse) := False;
+      Flussseite (KoordinatenExtern.EAchse) := (others => False);
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
@@ -37,28 +34,28 @@ package body FlussplatzierungssystemLogik is
               and
                 XAchseSchleifenwert = -1
             then
-               FlussLinks (KoordinatenExtern.EAchse) := BerechnungLinks (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
+               Flussseite (KoordinatenExtern.EAchse).Links := BerechnungLinks (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                
             elsif
               YAchseSchleifenwert = 0
               and
                 XAchseSchleifenwert = 1
             then
-               FlussRechts (KoordinatenExtern.EAchse) := BerechnungRechts (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
+               Flussseite (KoordinatenExtern.EAchse).Rechts := BerechnungRechts (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                
             elsif
               YAchseSchleifenwert = -1
               and
                 XAchseSchleifenwert = 0
             then
-               FlussOben (KoordinatenExtern.EAchse) := BerechnungOben (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
+               Flussseite (KoordinatenExtern.EAchse).Oben := BerechnungOben (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                
             elsif
               YAchseSchleifenwert = 1
               and
                 XAchseSchleifenwert = 0
             then
-               FlussUnten (KoordinatenExtern.EAchse) := BerechnungUnten (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
+               Flussseite (KoordinatenExtern.EAchse).Unten := BerechnungUnten (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                
             else
                null;
@@ -68,8 +65,8 @@ package body FlussplatzierungssystemLogik is
       end loop YAchseSchleife;
 
       SchreibeWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern,
-                               FlussExtern       => KartengrundDatentypen.Kartenfluss_Enum'Val (Flusswert (FlussLinks (KoordinatenExtern.EAchse), FlussRechts (KoordinatenExtern.EAchse),
-                                 FlussOben (KoordinatenExtern.EAchse), FlussUnten (KoordinatenExtern.EAchse)) + Flusstyp (KoordinatenExtern.EAchse)));
+                               FlussExtern       => KartengrundDatentypen.Kartenfluss_Enum'Val (Flusswert (Flussseite (KoordinatenExtern.EAchse).Links, Flussseite (KoordinatenExtern.EAchse).Rechts,
+                                 Flussseite (KoordinatenExtern.EAchse).Oben, Flussseite (KoordinatenExtern.EAchse).Unten) + Flusstyp (KoordinatenExtern.EAchse)));
       
    end Flussplatzierung;
    

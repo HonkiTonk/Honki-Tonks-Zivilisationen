@@ -27,7 +27,7 @@ package ProduktionDatentypen is
                                    Nahrung_Enum, Geld_Enum, Produktion_Enum -- , Hier_Spezielle_Ressourcen_Einbauen_Enum? äöü
                                   );
    
-   subtype Permanente_Kosten_Verwendet_Enum is Permanente_Kosten_Enum range Nahrung_Enum .. Permanente_Kosten_Enum'Last;
+   subtype Permanente_Kosten_Verwendet_Enum is Permanente_Kosten_Enum range Permanente_Kosten_Enum'Succ (Permanente_Kosten_Enum'First) .. Permanente_Kosten_Enum'Last;
    
    
    

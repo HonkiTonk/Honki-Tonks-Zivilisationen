@@ -9,7 +9,7 @@ package BefehleDatentypen is
                               Bauen_Enum, Verkaufen_Enum, Umbenennen_Enum, Auflösen_Enum, Verlassen_Enum
                              );
    
-   subtype Stadtbefehle_Vorhanden_Enum is Stadtbefehle_Enum range Auswählen_Enum .. Stadtbefehle_Enum'Last;
+   subtype Stadtbefehle_Vorhanden_Enum is Stadtbefehle_Enum range Stadtbefehle_Enum'Succ (Stadtbefehle_Enum'First) .. Stadtbefehle_Enum'Last;
    subtype Stadtbefehle_Auswählen_Enum is Stadtbefehle_Vorhanden_Enum range Bauen_Enum .. Stadtbefehle_Vorhanden_Enum'Last;
    
    
@@ -37,7 +37,7 @@ package BefehleDatentypen is
                                    Abwählen_Enum
                                   );
    
-   subtype Einheitenbelegung_Vorhanden_Enum is Einheitenbelegung_Enum range Auswählen_Enum .. Einheitenbelegung_Enum'Last;
+   subtype Einheitenbelegung_Vorhanden_Enum is Einheitenbelegung_Enum range Einheitenbelegung_Enum'Succ (Einheitenbelegung_Enum'First) .. Einheitenbelegung_Enum'Last;
    subtype Belegung_Auswählen_Enum is Einheitenbelegung_Vorhanden_Enum range Oben_Enum .. Entladen_Enum;
    
    subtype Einheiten_Bewegung_Enum is Belegung_Auswählen_Enum range Oben_Enum .. Ebene_Runter_Enum;

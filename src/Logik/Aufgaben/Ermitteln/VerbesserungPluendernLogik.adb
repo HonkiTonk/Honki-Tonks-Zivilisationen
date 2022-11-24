@@ -6,6 +6,7 @@ with SchreibeWeltkarte;
 with SchreibeWichtiges;
 
 with JaNeinLogik;
+with WegeplatzierungssystemLogik;
 
 package body VerbesserungPluendernLogik is
 
@@ -60,7 +61,7 @@ package body VerbesserungPluendernLogik is
             
          when others =>
             SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
-                                         VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
+                                            VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
             SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                          GeldZugewinnExtern  => 10,
                                          RechnenSetzenExtern => True);
@@ -73,8 +74,7 @@ package body VerbesserungPluendernLogik is
             null;
             
          when others =>
-            SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                                WegExtern         => KartenverbesserungDatentypen.Leer_Weg_Enum);
+            WegeplatzierungssystemLogik.Wegentfernung (KoordinatenExtern => KoordinatenExtern);
             SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                          GeldZugewinnExtern  => 5,
                                          RechnenSetzenExtern => True);

@@ -11,7 +11,7 @@ package RassenDatentypen is
                        );
    pragma Ordered (Rassen_Enum);
    
-   subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen_Enum .. Rassen_Enum'Last;
+   subtype Rassen_Verwendet_Enum is Rassen_Enum range Rassen_Enum'Succ (Rassen_Enum'First) .. Rassen_Enum'Last;
    subtype Rassen_Überirdisch_Enum is Rassen_Verwendet_Enum range Rassen_Verwendet_Enum'First.. Ekropa_Enum;
    subtype Rassen_Unterirdisch_Enum is Rassen_Verwendet_Enum range Tesorahn_Enum .. Talbidahr_Enum;
    subtype Rassen_Wasser_Enum is Rassen_Unterirdisch_Enum range Tesorahn_Enum .. Tesorahn_Enum;
@@ -29,7 +29,7 @@ package RassenDatentypen is
                         );
    pragma Ordered (Spieler_Enum);
    
-   subtype Spieler_Belegt_Enum is Spieler_Enum range Mensch_Spieler_Enum .. KI_Spieler_Enum;
+   subtype Spieler_Belegt_Enum is Spieler_Enum range Spieler_Enum'Succ (Spieler_Enum'First) .. Spieler_Enum'Last;
    
    -- Soll ich das so überhaupt einbauen? Oder mir was besseres überlegen? äöü
    type Staatsform_Enum is (

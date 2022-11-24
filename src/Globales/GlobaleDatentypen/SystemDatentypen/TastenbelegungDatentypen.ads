@@ -31,7 +31,7 @@ package TastenbelegungDatentypen is
                                      Debugmenü_Enum
                                     );
    
-   subtype Allgemeine_Belegung_Vorhanden_Enum is Allgemeine_Belegung_Enum range Auswählen_Enum .. Allgemeine_Belegung_Enum'Last;
+   subtype Allgemeine_Belegung_Vorhanden_Enum is Allgemeine_Belegung_Enum range Allgemeine_Belegung_Enum'Succ (Allgemeine_Belegung_Enum'First) .. Allgemeine_Belegung_Enum'Last;
    
    subtype Tastenbelegung_Bewegung_Erweitert_Enum is Allgemeine_Belegung_Vorhanden_Enum range Auswählen_Enum .. Ebene_Runter_Enum;
    subtype Tastenbelegung_Bewegung_Enum is Tastenbelegung_Bewegung_Erweitert_Enum range Oben_Enum .. Tastenbelegung_Bewegung_Erweitert_Enum'Last;

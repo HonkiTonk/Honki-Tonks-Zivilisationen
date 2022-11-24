@@ -1,6 +1,5 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
-with TextnummernKonstanten;
 with GrafikDatentypen;
 with VerzeichnisKonstanten;
 with TextKonstanten;
@@ -8,11 +7,9 @@ with KartenKonstanten;
 with StadtKonstanten;
 with EinheitenKonstanten;
 
-with LeseWeltkarteneinstellungen;
 with SchreibeWeltkarte;
 with SchreibeWeltkarteneinstellungen;
 with SchreibeWichtiges;
-with LeseGrenzen;
 with SchreibeGrenzen;
 with SchreibeDiplomatie;
 with SchreibeCursor;
@@ -22,111 +19,149 @@ with SchreibeAllgemeines;
 with SchreibeRassenbelegung;
 
 with LadezeitenLogik;
-with JaNeinLogik;
 with NachGrafiktask;
 with SpielstandlisteLogik;
 
+-- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenLogik is
    
    function Laden
      return Boolean
    is begin
       
-      Spielstandname := SpielstandlisteLogik.Spielstandliste (SpeichernLadenExtern => False);
-      
-      if
-        Spielstandname = TextKonstanten.LeerUnboundedString
-      then
-         return False;
+      LadenSchleife:
+      loop
          
-      else
-         Open (File => DateiLaden,
-               Mode => In_File,
-               Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)));
-
-         Wide_Wide_String'Read (Stream (File => DateiLaden),
-                                VersionsnummerPrüfung);
-      end if;
-
-      if
-        VersionsnummerPrüfung = SonstigesKonstanten.Versionsnummer
-      then
-         null;
+         Spielstandname := SpielstandlisteLogik.Spielstandliste (SpeichernLadenExtern => False);
+      
+         if
+           Spielstandname = TextKonstanten.LeerUnboundedString
+         then
+            return False;
          
-      elsif
-        JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageLadeFalscheVersion) = True
-      then
-         null;
-         
-      else
-         Close (File => DateiLaden);
-         return False;
-      end if;
+         else
+            LadezeitenLogik.SpeichernLadenNullsetzen;
+            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
+            
+            Open (File => DateiLaden,
+                  Mode => In_File,
+                  Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)));
+         end if;
+               
+         case
+           Prüfen (DateiLadenExtern => DateiLaden)
+         is
+            when False =>
+               Close (File => DateiLaden);
+               
+            when True =>
+               Leerwert := KarteLaden (PrüfenLadenExtern => False,
+                                       DateiLadenExtern  => DateiLaden);
+               
+               Leerwert := AllgemeinesLaden (PrüfenLadenExtern => False,
+                                             DateiLadenExtern  => DateiLaden);
+               LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
-      -- Hier noch Prüfungen einbauen ob die Werte so korrekt geladen werden und wenn nicht dann abbrechen und auf Standard setzen. äöü
-      -- Bei Fehlschlag der Prüfungen dann einen Rückgabewert für das Hauptmenü einbauen. äöü
-      -- Das wird wahrscheinlich auch nur mit Exceptions gehen, oder? äöü
-      LadezeitenLogik.SpeichernLadenNullsetzen;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
+               Leerwert := RassenwerteLaden (PrüfenLadenExtern => False,
+                                             DateiLadenExtern  => DateiLaden);
+               LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
-      AllgemeinesLaden (DateiLadenExtern => DateiLaden);
-      LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
-      
-      KarteLaden (DateiLadenExtern => DateiLaden);
-      
-      RassenwerteLaden (DateiLadenExtern => DateiLaden);
-      LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
-      
-      Close (File => DateiLaden);
-      
-      LadezeitenLogik.SpeichernLadenMaximum;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+               Close (File => DateiLaden);
+               
+               LadezeitenLogik.SpeichernLadenMaximum;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
 
-      return True;
+               return True;
+         end case;
+         
+      end loop LadenSchleife;
       
    end Laden;
    
    
    
-   procedure AllgemeinesLaden
+   function Prüfen
      (DateiLadenExtern : in File_Type)
+      return Boolean
    is begin
       
-      SpielRecords.AllgemeinesRecord'Read (Stream (File => DateiLadenExtern),
-                                           Allgemeines);
+      case
+        KarteLaden (PrüfenLadenExtern => True,
+                    DateiLadenExtern  => DateiLadenExtern)
+      is
+         when False =>
+            return False;
+            
+         when True =>
+            null;
+      end case;
       
-      SchreibeAllgemeines.GanzerEintrag (EintragExtern => Allgemeines);
+      case
+        AllgemeinesLaden (PrüfenLadenExtern => True,
+                          DateiLadenExtern  => DateiLadenExtern)
+      is
+         when False =>
+            return False;
+            
+         when True =>
+            LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+      end case;
       
-      SpielRecords.RassenbelegungArray'Read (Stream (File => DateiLadenExtern),
-                                             Rassenbelegung);
+      case
+        RassenwerteLaden (PrüfenLadenExtern => True,
+                          DateiLadenExtern  => DateiLadenExtern)
+      is
+         when False =>
+            return False;
+            
+         when True =>
+            LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
+            return True;
+      end case;
       
-      SchreibeRassenbelegung.GanzesArray (ArrayExtern => Rassenbelegung);
-      
-   end AllgemeinesLaden;
+   end Prüfen;
    
    
    
-   procedure KarteLaden
-     (DateiLadenExtern : in File_Type)
+   function KarteLaden
+     (PrüfenLadenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean
    is begin
       
       KartenRecords.PermanenteKartenparameterRecord'Read (Stream (File => DateiLadenExtern),
                                                           Karteneinstellungen);
       
-      SchreibeWeltkarteneinstellungen.GesamteEinstellungen (EinstellungenExtern => Karteneinstellungen);
+      case
+        PrüfenLadenExtern
+      is
+         when False =>
+            null;
+            
+         when True =>
+            SchreibeWeltkarteneinstellungen.GesamteEinstellungen (EinstellungenExtern => Karteneinstellungen);
+      end case;
 
       EAchseSchleife:
       for EAchseSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
          YAchseSchleife:
-         for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
+         for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. Karteneinstellungen.Kartengröße.YAchse loop
             XAchseSchleife:
-            for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
+            for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. Karteneinstellungen.Kartengröße.XAchse loop
 
                WeltkarteRecords.WeltkarteRecord'Read (Stream (File => DateiLadenExtern),
                                                       Karteneintrag);
                
-               SchreibeWeltkarte.GanzerEintrag (EintrageExtern    => Karteneintrag,
-                                                KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+               case
+                 PrüfenLadenExtern
+               is
+                  when False =>
+                     null;
+            
+                  when True =>
+                     SchreibeWeltkarte.GanzerEintrag (EintrageExtern    => Karteneintrag,
+                                                      KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+               end case;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -135,37 +170,88 @@ package body LadenLogik is
          
       end loop EAchseSchleife;
       
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error =>
+         return False;
+      
    end KarteLaden;
+     
    
    
    
-   procedure RassenwerteLaden
-     (DateiLadenExtern : in File_Type)
+   function AllgemeinesLaden
+     (PrüfenLadenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean
+   is begin
+      
+      SpielRecords.AllgemeinesRecord'Read (Stream (File => DateiLadenExtern),
+                                           Allgemeines);
+      
+      SpielRecords.RassenbelegungArray'Read (Stream (File => DateiLadenExtern),
+                                             Rassenbelegung);
+      
+      case
+        PrüfenLadenExtern
+      is
+         when True =>
+            null;
+            
+         when False =>
+            SchreibeAllgemeines.GanzerEintrag (EintragExtern => Allgemeines);
+            SchreibeRassenbelegung.GanzesArray (ArrayExtern => Rassenbelegung);
+      end case;
+      
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error =>
+         return False;
+         
+   end AllgemeinesLaden;
+   
+   
+   
+   function RassenwerteLaden
+     (PrüfenLadenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean
    is begin
       
       RassenSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
-         is
-            when RassenDatentypen.Leer_Spieler_Enum =>
-               null;
+         if
+          Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
+         then
+            null;
                
-            when others =>
-               Rassenwerte (RasseExtern      => RasseSchleifenwert,
-                            DateiLadenExtern => DateiLadenExtern);
-         end case;
+         elsif
+           True = Rassenwerte (PrüfenLadenExtern => PrüfenLadenExtern,
+                               RasseExtern       => RasseSchleifenwert,
+                               DateiLadenExtern  => DateiLadenExtern)
+         then
+            null;
+            
+         else
+            return False;
+         end if;
          
       end loop RassenSchleife;
+      
+      return True;
       
    end RassenwerteLaden;
    
    
    
-   procedure Rassenwerte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+   function Rassenwerte
+     (PrüfenLadenExtern : in Boolean;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       DateiLadenExtern : in File_Type)
+      return Boolean
    is
       use type RassenDatentypen.Rassen_Enum;
    begin
@@ -173,42 +259,74 @@ package body LadenLogik is
       SpielRecords.GrenzenRecord'Read (Stream (File => DateiLadenExtern),
                                        Grenzen);
       
-      SchreibeGrenzen.GanzerEintrag (RasseExtern   => RasseExtern,
-                                     EintragExtern => Grenzen);
+      case
+        PrüfenLadenExtern
+      is
+         when True =>
+            null;
+            
+         when False =>
+            SchreibeGrenzen.GanzerEintrag (RasseExtern   => RasseExtern,
+                                           EintragExtern => Grenzen);
+      end case;
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
+      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. Grenzen.Einheitengrenze loop
             
          EinheitenRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenExtern),
                                                       Einheit);
          
-         SchreibeEinheitenGebaut.GanzerEintrag (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
-                                                EintragExtern            => Einheit);
+         case
+           PrüfenLadenExtern
+         is
+            when True =>
+               null;
+            
+            when False =>
+               SchreibeEinheitenGebaut.GanzerEintrag (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
+                                                      EintragExtern            => Einheit);
+         end case;
             
       end loop EinheitenSchleife;
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. Grenzen.Städtegrenze loop
          
          StadtRecords.StadtGebautRecord'Read (Stream (File => DateiLadenExtern),
                                               Stadt);
          
-         SchreibeStadtGebaut.GanzerEintrag (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
-                                            EintragExtern          => Stadt);
+         case
+           PrüfenLadenExtern
+         is
+            when True =>
+               null;
+            
+            when False =>
+               SchreibeStadtGebaut.GanzerEintrag (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
+                                                  EintragExtern          => Stadt);
+         end case;
          
       end loop StadtSchleife;
       
       SpielRecords.WichtigesRecord'Read (Stream (File => DateiLadenExtern),
                                          Wichtiges);
       
-      SchreibeWichtiges.GanzerEintrag (RasseExtern   => RasseExtern,
-                                       EintragExtern => Wichtiges);
+      case
+        PrüfenLadenExtern
+      is
+         when True =>
+            null;
+            
+         when False =>
+            SchreibeWichtiges.GanzerEintrag (RasseExtern   => RasseExtern,
+                                             EintragExtern => Wichtiges);
+      end case;
       
       DiplomatieSchleife:
       for RasseDiplomatieSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
 
          if
-           LeseRassenbelegung.Belegung (RasseExtern => RasseDiplomatieSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+          Rassenbelegung (RasseDiplomatieSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
            or
              RasseExtern = RasseDiplomatieSchleifenwert
          then
@@ -217,10 +335,17 @@ package body LadenLogik is
          else
             SpielRecords.DiplomatieRecord'Read (Stream (File => DateiLadenExtern),
                                                 Diplomatie);
-               
-            SchreibeDiplomatie.GanzerEintrag (RasseEinsExtern => RasseExtern,
-                                              RasseZweiExtern => RasseDiplomatieSchleifenwert,
-                                              EintragExtern   => Diplomatie);
+            case
+              PrüfenLadenExtern
+            is
+               when True =>
+                  null;
+            
+               when False =>
+                  SchreibeDiplomatie.GanzerEintrag (RasseEinsExtern => RasseExtern,
+                                                    RasseZweiExtern => RasseDiplomatieSchleifenwert,
+                                                    EintragExtern   => Diplomatie);
+            end case;
          end if;
 
       end loop DiplomatieSchleife;
@@ -228,8 +353,22 @@ package body LadenLogik is
       KartenRecords.CursorRecord'Read (Stream (File => DateiLadenExtern),
                                        Cursor);
       
-      SchreibeCursor.GanzerEintrag (RasseExtern   => RasseExtern,
-                                    EintragExtern => Cursor);
+      case
+        PrüfenLadenExtern
+      is
+         when True =>
+            null;
+            
+         when False =>
+            SchreibeCursor.GanzerEintrag (RasseExtern   => RasseExtern,
+                                          EintragExtern => Cursor);
+      end case;
+      
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error =>
+         return False;
       
    end Rassenwerte;
 

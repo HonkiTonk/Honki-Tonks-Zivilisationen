@@ -9,6 +9,15 @@ with LeseWeltkarteneinstellungen;
 package WegeplatzierungssystemLogik is
    pragma Elaborate_Body;
    use type KartenDatentypen.Kartenfeld;
+   
+   procedure Wegentfernung
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
 
    procedure Wegplatzierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -22,15 +31,15 @@ package WegeplatzierungssystemLogik is
    
 private
    
-   WegLinks : Boolean;
-   WegRechts : Boolean;
-   WegOben : Boolean;
-   WegUnten : Boolean;
       
    WelcherWeg : KartenverbesserungDatentypen.Karten_Weg_Enum;
    ZwischenWeg : KartenverbesserungDatentypen.Karten_Weg_Enum;
+   EntfernungWeg : KartenverbesserungDatentypen.Karten_Weg_Enum;
    
+   Entfernungskartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   Wegumgebung : KartenRecords.Umgebungskreuz;
    
    type StandardWegArray is array (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
    StandardWeg : constant StandardWegArray := (

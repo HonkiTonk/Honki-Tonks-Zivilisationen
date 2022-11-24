@@ -2,14 +2,11 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with RassenDatentypen;
-private with SonstigesKonstanten;
 private with KartenRecords;
 private with WeltkarteRecords;
 private with SpielRecords;
 private with StadtRecords;
 private with EinheitenRecords;
-
-private with LeseRassenbelegung;
 
 package LadenLogik is
    pragma Elaborate_Body;
@@ -20,7 +17,7 @@ package LadenLogik is
 private
    use type RassenDatentypen.Spieler_Enum;
 
-   VersionsnummerPrüfung : Wide_Wide_String (SonstigesKonstanten.Versionsnummer'Range);
+   Leerwert : Boolean;
 
    DateiLaden : File_Type;
 
@@ -46,21 +43,31 @@ private
 
    Karteneintrag : WeltkarteRecords.WeltkarteRecord;
 
-   procedure AllgemeinesLaden
-     (DateiLadenExtern : in File_Type);
 
-   procedure KarteLaden
-     (DateiLadenExtern : in File_Type);
 
-   procedure RassenwerteLaden
-     (DateiLadenExtern : in File_Type);
+   function Prüfen
+     (DateiLadenExtern : in File_Type)
+      return Boolean;
 
-   procedure Rassenwerte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+   function KarteLaden
+     (PrüfenLadenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
-     with
-       Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-              );
+      return Boolean;
+
+   function AllgemeinesLaden
+     (PrüfenLadenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean;
+
+   function RassenwerteLaden
+     (PrüfenLadenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean;
+
+   function Rassenwerte
+     (PrüfenLadenExtern : in Boolean;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      DateiLadenExtern : in File_Type)
+      return Boolean;
 
 end LadenLogik;

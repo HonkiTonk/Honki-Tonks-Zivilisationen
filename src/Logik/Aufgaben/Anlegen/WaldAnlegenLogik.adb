@@ -4,6 +4,7 @@ with SchreibeWeltkarte;
 with LeseWeltkarte;
 
 with Fehlermeldungssystem;
+with Zusatzgrundplatzierungssystem;
 
 package body WaldAnlegenLogik is
 
@@ -26,8 +27,8 @@ package body WaldAnlegenLogik is
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "WaldAnlegen.WaldAnlegen: Falsche Ebene.");
       end case;
       
-      SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
-                                     GrundExtern       => NeuerGrund);
+      Zusatzgrundplatzierungssystem.Zusatzgrundplatzierung (KoordinatenExtern => KoordinatenExtern,
+                                                            ZusatzgrundExtern => NeuerGrund);
       
       case
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)

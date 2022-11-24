@@ -3,14 +3,15 @@ with KartengrundDatentypen;
 with SchreibeWeltkarte;
 with LeseWeltkarte;
 
+with Zusatzgrundplatzierungssystem;
+
 package body RodenAnlegenLogik is
 
    procedure RodenAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
-                                     GrundExtern       => KartengrundDatentypen.Leer_Zusatzgrund_Enum);
+      Zusatzgrundplatzierungssystem.Zusatzgrundentfernung (KoordinatenExtern => KoordinatenExtern);
       
       case
         LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern)

@@ -35,7 +35,7 @@ package GrafikDatentypen is
                                 Einheit_Auswahl_Enum
                                );
    
-   subtype Eingaben_Vorhanden_Enum is Welche_Eingabe_Enum range Zahlen_Eingabe_Enum .. Welche_Eingabe_Enum'Last;
+   subtype Eingaben_Vorhanden_Enum is Welche_Eingabe_Enum range Welche_Eingabe_Enum'Succ (Welche_Eingabe_Enum'First) .. Welche_Eingabe_Enum'Last;
    subtype Eingaben_Fragen_Enum is Eingaben_Vorhanden_Enum range Zahlen_Eingabe_Enum .. Ja_Nein_Enum;
       
    
@@ -66,7 +66,7 @@ package GrafikDatentypen is
                                    Planet_Vernichtet_Enum
                                   );
    
-   subtype Rassenhintergrund_Vorhanden_Enum is Rassenhintergrund_Enum range Forschungserfolg_Enum .. Rassenhintergrund_Enum'Last;
+   subtype Rassenhintergrund_Vorhanden_Enum is Rassenhintergrund_Enum range Rassenhintergrund_Enum'Succ (Rassenhintergrund_Enum'First) .. Rassenhintergrund_Enum'Last;
    
    subtype Abspann_Enum is Rassenhintergrund_Vorhanden_Enum range Gewonnen_Enum .. Rassenhintergrund_Vorhanden_Enum'Last;
    

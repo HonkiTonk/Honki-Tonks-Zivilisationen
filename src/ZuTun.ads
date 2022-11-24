@@ -7,7 +7,7 @@
 -- Aktuell höchste Priorität:
 
 -- KI überarbeiten: Baut Städte, Gebäude und Einheiten. Erkundet die Karte. Legt Verbesserungen und Wege an. Betreibt Forschung. Greift Gegner an mit der sie im Krieg ist. Die KI baut und verwendet jetzt PZBs.
---                  Baut Städte auf anderen Ebenen. Modernisiert jetzt Einheiten die nicht die Städte bewachen.
+--                  Baut Städte auf anderen Ebenen. Modernisiert jetzt Einheiten die nicht die Städte bewachen. Modernisiert jetzt Einheiten die die Städte bewachen.
 --
 
 -- Einfache Musik/Sounds einbauen: Einlesesystem für Sound und rassenspezifische Musik eingebaut.
@@ -15,7 +15,8 @@
 -- Forschungen/Einheiten/Gebäude für zweite Rasse einbauen: Erste rudimentäre Version des Forschungs-, Einheiten- und Gebäudebaums der Tesorahn eingebaut.
 
 -- Sonstiges: Planetenzerstörerbombe inklusive Zusammenbruchszeit eingebaut. Sichtbarkeitsberechnungssystem ist nun ebenenübergreifend. Koordinatenberechnunssystem funktioniert jetzt mit allen Kartenformen ohne abzustürzen.
---            Steuerungsauswahl mit verschiedenen Kategorien eingebaut.
+--            Steuerungsauswahl mit verschiedenen Kategorien eingebaut. Zusatzgrund kann sich jetzt auch grafisch über mehrere Felder erstrecken.
+--            Vor dem Laden erfolgt jetzt immer eine Prüfung ob der Spielstand auch alle Daten in der richtigen Reihenfolge enthält.
 
 
 

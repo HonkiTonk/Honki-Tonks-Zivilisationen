@@ -6,16 +6,65 @@ with SchreibeWeltkarte;
 with KartenkoordinatenberechnungssystemLogik;
 
 package body WegeplatzierungssystemLogik is
+   
+   procedure Wegentfernung
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+   is
+      use type KartenverbesserungDatentypen.Karten_Weg_Enum;
+   begin
+      
+      SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
+                             WegExtern         => KartenverbesserungDatentypen.Leer_Weg_Enum);
+      
+      YAchseSchleife:
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            
+            if
+            abs (YAchseSchleifenwert) = abs (XAchseSchleifenwert)
+            then
+               null;
+               
+            else
+               Entfernungskartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                    ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                                    LogikGrafikExtern => True);
+            
+               case
+                 Entfernungskartenwert.XAchse
+               is
+                  when KartenKonstanten.LeerXAchse =>
+                     null;
+               
+                  when others =>
+                     EntfernungWeg := LeseWeltkarte.Weg (KoordinatenExtern => Entfernungskartenwert);
+                     
+                     if
+                       EntfernungWeg = KartenverbesserungDatentypen.Leer_Weg_Enum
+                     then
+                        null;
+                        
+                     else
+                        Wegplatzierung (KoordinatenExtern => Entfernungskartenwert,
+                                        WegartExtern      => StandardWeg (EntfernungWeg));
+                     end if;
+               end case;
+            end if;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+   end Wegentfernung;
+   
+   
 
    procedure Wegplatzierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       WegartExtern : in AufgabenDatentypen.Einheitenbefehle_Wege_Enum)
    is begin
       
-      WegLinks := False;
-      WegRechts := False;
-      WegOben := False;
-      WegUnten := False;
+      Wegumgebung := (others => False);
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
@@ -32,32 +81,32 @@ package body WegeplatzierungssystemLogik is
                null;
                
             elsif
-              XAchseSchleifenwert = -1
+              YAchseSchleifenwert = 0
               and
-                YAchseSchleifenwert = 0
+                XAchseSchleifenwert = -1
             then
-               WegLinks := BerechnungLinks (KoordinatenExtern => KartenWert);
+               Wegumgebung.Links := BerechnungLinks (KoordinatenExtern => KartenWert);
                
             elsif
-              XAchseSchleifenwert = 1
+              YAchseSchleifenwert = 0
               and
-                YAchseSchleifenwert = 0
+                XAchseSchleifenwert = 1
             then
-               WegRechts := BerechnungRechts (KoordinatenExtern => KartenWert);
+               Wegumgebung.Rechts := BerechnungRechts (KoordinatenExtern => KartenWert);
                
             elsif
               YAchseSchleifenwert = -1
               and
                 XAchseSchleifenwert = 0
             then
-               WegOben := BerechnungOben (KoordinatenExtern => KartenWert);
+               Wegumgebung.Oben := BerechnungOben (KoordinatenExtern => KartenWert);
                
             elsif
               YAchseSchleifenwert = 1
               and
                 XAchseSchleifenwert = 0
             then
-               WegUnten := BerechnungUnten (KoordinatenExtern => KartenWert);
+               Wegumgebung.Unten := BerechnungUnten (KoordinatenExtern => KartenWert);
                
             else
                null;
@@ -67,7 +116,7 @@ package body WegeplatzierungssystemLogik is
       end loop YAchseSchleife;
       
       SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                             WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Enum'Val (Wegwert (WegLinks, WegRechts, WegOben, WegUnten) + Wegtyp (WegartExtern)));
+                             WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Enum'Val (Wegwert (Wegumgebung.Links, Wegumgebung.Rechts, Wegumgebung.Oben, Wegumgebung.Unten) + Wegtyp (WegartExtern)));
       
    end Wegplatzierung;
    

@@ -12,19 +12,27 @@ package body RodenErmittelnLogik is
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type KartengrundDatentypen.Zusatzgrund_Enum;
+      use type ProduktionDatentypen.Arbeitszeit;
+   begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      case
-        ArbeitszeitRodenLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, Gesamtgrund.Basisgrund)
-      is
-         when EinheitenKonstanten.UnmöglicheArbeit =>
-            return False;
+      if
+        Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
+      then
+         -- Hier noch eine Meldung einbauen dass es auf diesem Feld nicht zum Roden/Trockenlegen gibt? äöü
+         return False;
          
-         when others =>
-            null;
-      end case;
+      elsif
+        ArbeitszeitRodenLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, Gesamtgrund.Basisgrund) = EinheitenKonstanten.UnmöglicheArbeit
+      then
+         return False;
+         
+      else
+         null;
+      end if;
       
       case
         Gesamtgrund.Basisgrund
@@ -83,16 +91,8 @@ package body RodenErmittelnLogik is
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitRodenLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
 
-      case
-        GrundExtern.Zusatzgrund
-      is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
-            null;
-            
-         when others =>
-            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitRodenLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
-      end case;
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
       
       return (
               Aufgabe     => AufgabenDatentypen.Roden_Trockenlegen_Enum,
@@ -112,16 +112,8 @@ package body RodenErmittelnLogik is
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitRodenLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
 
-      case
-        GrundExtern.Zusatzgrund
-      is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
-            null;
-            
-         when others =>
-            Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitRodenLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
-      end case;
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
+                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
       
       return (
               Aufgabe     => AufgabenDatentypen.Roden_Trockenlegen_Enum,

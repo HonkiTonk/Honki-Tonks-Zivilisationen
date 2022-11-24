@@ -14,6 +14,7 @@ with KartenkoordinatenberechnungssystemLogik;
 with StadtEntfernenLogik;
 with StadtSuchenLogik;
 with EinheitSuchenLogik;
+with WegeplatzierungssystemLogik;
 
 package body PZBEingesetztLogik is
 
@@ -149,8 +150,8 @@ package body PZBEingesetztLogik is
                                      GrundExtern       => (KartengrundDatentypen.Vernichtet_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum));
       SchreibeWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern,
                                FlussExtern       => KartengrundDatentypen.Leer_Fluss_Enum);
-      SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                             WegExtern         => KartenverbesserungDatentypen.Leer_Weg_Enum);
+      -- Könnte eventuell Leistungsprobleme erzeugen da unter bestimmten Umständen sehr viele Felder geprüft werden, später eine bessere Lösung suchen? äöü
+      WegeplatzierungssystemLogik.Wegentfernung (KoordinatenExtern => KoordinatenExtern);
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                       VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       SchreibeWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern,

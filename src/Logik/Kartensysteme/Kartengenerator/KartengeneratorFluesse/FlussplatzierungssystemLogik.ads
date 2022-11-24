@@ -47,11 +47,8 @@ private
                                          0  => 0
                                         );
    
-   type FlussseiteArray is array (StandardFlussArray'Range) of Boolean;
-   FlussLinks : FlussseiteArray;
-   FlussRechts : FlussseiteArray;
-   FlussOben : FlussseiteArray;
-   FlussUnten : FlussseiteArray;
+   type FlussseiteArray is array (StandardFlussArray'Range) of KartenRecords.Umgebungskreuz;
+   Flussseite : FlussseiteArray;
    
    type FlusswertArray is array (Boolean'Range, Boolean'Range, Boolean'Range, Boolean'Range) of Natural;
    Flusswert : constant FlusswertArray := (

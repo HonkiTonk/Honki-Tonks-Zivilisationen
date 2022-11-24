@@ -3,7 +3,6 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with KartenRecords;
 with StadtRecords;
 with SpielRecords;
-with SonstigesKonstanten;
 with TextKonstanten;
 with OptionenVariablen;
 with EinheitenRecords;
@@ -35,62 +34,67 @@ package body SpeichernLogik is
      (AutospeichernExtern : in Boolean)
    is begin
       
-      case
-        AutospeichernExtern
-      is
-         when True =>
-            Spielstandname := NameAutoSpeichern;
+      SpeichernSchleife:
+      loop
+         
+         case
+           AutospeichernExtern
+         is
+            when True =>
+               Spielstandname := NameAutoSpeichern;
             
-         when False =>
-            Spielstandname := SpielstandlisteLogik.Spielstandliste (SpeichernLadenExtern => True);
-      end case;
+            when False =>
+               Spielstandname := SpielstandlisteLogik.Spielstandliste (SpeichernLadenExtern => True);
+         end case;
       
-      if
-        Spielstandname = TextKonstanten.LeerUnboundedString
-      then
-         return;
+         if
+           Spielstandname = TextKonstanten.LeerUnboundedString
+         then
+            return;
       
-      else
-         null;
-      end if;
-
-      case
-        AutospeichernExtern
-      is
-         when True =>
+         else
             null;
-            
-         when False =>
-            LadezeitenLogik.SpeichernLadenNullsetzen;
-            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
-      end case;
-      
-      Create (File => DateiSpeichern,
-              Mode => Out_File,
-              Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => (To_Wide_Wide_String (Source => Spielstandname)))));
-      
-      Allgemeines (DateiSpeichernExtern => DateiSpeichern);
-      FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
-      
-      Karte (DateiSpeichernExtern => DateiSpeichern,
-             AutospeichernExtern  => AutospeichernExtern);
-      
-      RassenwerteSpeichern (DateiSpeichernExtern => DateiSpeichern);
-      FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
-            
-      Close (File => DateiSpeichern);
+         end if;
 
-      case
-        AutospeichernExtern
-      is
-         when True =>
-            null;
+         case
+           AutospeichernExtern
+         is
+            when True =>
+               null;
             
-         when False =>
-            LadezeitenLogik.SpeichernLadenMaximum;
-            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-      end case;
-   
+            when False =>
+               LadezeitenLogik.SpeichernLadenNullsetzen;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
+         end case;
+      
+         Create (File => DateiSpeichern,
+                 Mode => Out_File,
+                 Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => (To_Wide_Wide_String (Source => Spielstandname)))));
+      
+         Karte (DateiSpeichernExtern => DateiSpeichern,
+                AutospeichernExtern  => AutospeichernExtern);
+      
+         Allgemeines (DateiSpeichernExtern => DateiSpeichern);
+         FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+      
+         RassenwerteSpeichern (DateiSpeichernExtern => DateiSpeichern);
+         FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+            
+         Close (File => DateiSpeichern);
+
+         case
+           AutospeichernExtern
+         is
+            when True =>
+               return;
+            
+            when False =>
+               LadezeitenLogik.SpeichernLadenMaximum;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+         end case;
+         
+      end loop SpeichernSchleife;
+      
    end Speichern;
    
    
@@ -110,23 +114,6 @@ package body SpeichernLogik is
       end case;
       
    end FortschrittErhöhen;
-   
-   
-   
-   procedure Allgemeines
-     (DateiSpeichernExtern : in File_Type)
-   is begin
-      
-      Wide_Wide_String'Write (Stream (File => DateiSpeichernExtern),
-                              SonstigesKonstanten.Versionsnummer);
-      
-      SpielRecords.AllgemeinesRecord'Write (Stream (File => DateiSpeichernExtern),
-                                            LeseAllgemeines.GanzerEintrag);
-            
-      SpielRecords.RassenbelegungArray'Write (Stream (File => DateiSpeichernExtern),
-                                                LeseRassenbelegung.GanzesArray);
-      
-   end Allgemeines;
    
    
    
@@ -156,6 +143,20 @@ package body SpeichernLogik is
       end loop EAchseSchleife;
       
    end Karte;
+   
+   
+   
+   procedure Allgemeines
+     (DateiSpeichernExtern : in File_Type)
+   is begin
+            
+      SpielRecords.AllgemeinesRecord'Write (Stream (File => DateiSpeichernExtern),
+                                            LeseAllgemeines.GanzerEintrag);
+            
+      SpielRecords.RassenbelegungArray'Write (Stream (File => DateiSpeichernExtern),
+                                              LeseRassenbelegung.GanzesArray);
+      
+   end Allgemeines;
    
    
    
@@ -216,7 +217,7 @@ package body SpeichernLogik is
       for DiplomatieSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
 
          if
-          LeseRassenbelegung.Belegung (RasseExtern => DiplomatieSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+           LeseRassenbelegung.Belegung (RasseExtern => DiplomatieSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
            or
              DiplomatieSchleifenwert = RasseExtern
          then

@@ -43,7 +43,7 @@ private
                                                                2 => 1,
                                                                3 => 10,
                                                                4 => 14,
-                                                               5 => 14
+                                                               5 => 7
                                                               );
 
 end LadezeitenLogik;

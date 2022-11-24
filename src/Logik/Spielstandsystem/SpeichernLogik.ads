@@ -23,12 +23,12 @@ private
    Spielstandname : Unbounded_Wide_Wide_String;
    Autospeichernname : Unbounded_Wide_Wide_String;
 
-   procedure Allgemeines
-     (DateiSpeichernExtern : in File_Type);
-
    procedure Karte
      (DateiSpeichernExtern : in File_Type;
       AutospeichernExtern : in Boolean);
+
+   procedure Allgemeines
+     (DateiSpeichernExtern : in File_Type);
 
    procedure RassenwerteSpeichern
      (DateiSpeichernExtern : in File_Type);

@@ -59,7 +59,7 @@ package EinheitenDatentypen is
                             Cheat_Enum
                            );
    
-   subtype Einheitart_Vorhanden_Enum is Einheitart_Enum range Arbeiter_Enum .. Einheitart_Enum'Last;
+   subtype Einheitart_Vorhanden_Enum is Einheitart_Enum range Einheitart_Enum'Succ (Einheitart_Enum'First) .. Einheitart_Enum'Last;
    subtype Einheitart_Standard_Enum is Einheitart_Vorhanden_Enum range Arbeiter_Enum .. PZB_Groß_Enum;
    subtype Einheitenart_Kampf_Enum is Einheitart_Vorhanden_Enum range Nahkämpfer_Enum .. Beides_Enum;
    
@@ -77,7 +77,7 @@ package EinheitenDatentypen is
                                  Aufgabe_Abgeschlossen_Enum, Fremde_Einheit_Nahe_Enum
                                 );
    
-   subtype Einheit_Meldung_Verwendet_Enum is Einheit_Meldung_Enum range Aufgabe_Abgeschlossen_Enum .. Einheit_Meldung_Enum'Last;
+   subtype Einheit_Meldung_Verwendet_Enum is Einheit_Meldung_Enum range Einheit_Meldung_Enum'Succ (Einheit_Meldung_Enum'First) .. Einheit_Meldung_Enum'Last;
    
    
 
@@ -107,7 +107,7 @@ package EinheitenDatentypen is
                           );
    pragma Ordered (Transport_Enum);
    
-   subtype Transport_Vorhanden_Enum is Transport_Enum range Klein_Transport_Enum .. Gigantisch_Transport_Enum;
+   subtype Transport_Vorhanden_Enum is Transport_Enum range Transport_Enum'Succ (Transport_Enum'First) .. Transport_Enum'Last;
    
    
      

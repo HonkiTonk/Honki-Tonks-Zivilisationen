@@ -42,17 +42,27 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (24.11.2022):
+   -- Version 0.04.4380 => 0.04. (24.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.4245 => 0.04. (23.11.2022):
+   -- Version 0.04.4245 => 0.04.4380 (23.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Alire Version hinzugefügt.
+   -- Einige Anpassungen an der internen und externen Struktur vorgenommen damit es keine Probleme mit der Alire Version gibt.
+   -- Platzierungssystem für den Zusatzgrund fertiggestellt, es ist jetzt möglich Wälder/Dschungel/Sumpf/usw. über mehrere Felder zu ziehen.
+   -- Neue Graikfen für die verschiedenen Zusatzgrundarten erstellt.
+   -- Beim Entfernen von Wegen werden die angrenzenden Wege jetzt entsprechend angepasst.
+   -- Fehler korrigiert der dazu führte das man Roden/Trockenlegen auf einem Feld vornehmen konnte auf dem es nichts zum Roden/Trockenlegen gab.
+   -- Beim Entfernen von Zusatzgrund wird die Umgebung jetzt entsprechend angepasst.
+   -- Überall wo es sinnvoll erschien 'Succ in den Enumbereich eingebaut.
+   -- Hülle des Basisgrundplatzierungssystem erweitert.
+   -- Angefangen das Ladesystem zu erweitern, damit es beim Laden eines fehlerhaften oder veralteten Spielstandes nicht mehr zu einem Absturz führt.
+   -- Man wird nach dem Speichern nicht mehr sofort aus dem Speichermenü geworfen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/hinzugefügt.
    
    
 

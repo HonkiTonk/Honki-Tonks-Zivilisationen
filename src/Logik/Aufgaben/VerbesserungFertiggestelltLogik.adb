@@ -63,12 +63,10 @@ package body VerbesserungFertiggestelltLogik is
             return;
                
          when others =>
-            null;
+            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                         ZeitExtern               => -1,
+                                                         RechnenSetzenExtern      => True);
       end case;
-
-      SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   ZeitExtern               => -1,
-                                                   RechnenSetzenExtern      => True);
       
       if
         LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigungszeit

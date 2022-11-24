@@ -17,7 +17,7 @@ package body Diagnoseinformationen is
    
 
    procedure Koordinateninformationen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       Put_Line (Item => "EAchse: " & KoordinatenExtern.EAchse'Wide_Wide_Image & "    YAchse: " & KoordinatenExtern.YAchse'Wide_Wide_Image & "    XAchse: " & KoordinatenExtern.XAchse'Wide_Wide_Image);

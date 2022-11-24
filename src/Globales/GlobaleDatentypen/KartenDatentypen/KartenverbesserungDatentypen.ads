@@ -14,7 +14,7 @@ package KartenverbesserungDatentypen is
                                      Festung_Enum
                                     );
    
-   subtype Karten_Verbesserung_Vorhanden_Enum is Karten_Verbesserung_Enum range Hauptstadt_Enum .. Karten_Verbesserung_Enum'Last;
+   subtype Karten_Verbesserung_Vorhanden_Enum is Karten_Verbesserung_Enum range Karten_Verbesserung_Enum'Succ (Karten_Verbesserung_Enum'First) .. Karten_Verbesserung_Enum'Last;
 
    subtype Karten_Verbesserung_Stadt_ID_Enum is Karten_Verbesserung_Enum range Leer_Verbesserung_Enum .. Stadt_Enum;
    subtype Karten_Verbesserung_Städte_Enum is Karten_Verbesserung_Stadt_ID_Enum range Hauptstadt_Enum .. Stadt_Enum;
@@ -43,7 +43,7 @@ package KartenverbesserungDatentypen is
                             Tunnelendstück_Links_Enum, Tunnelendstück_Rechts_Enum, Tunnelendstück_Unten_Enum, Tunnelendstück_Oben_Enum, Tunnel_Einzeln_Enum
                            );
    
-   subtype Karten_Weg_Vorhanden_Enum is Karten_Weg_Enum range Straßenkreuzung_Vier_Enum .. Karten_Weg_Enum'Last;
+   subtype Karten_Weg_Vorhanden_Enum is Karten_Weg_Enum range Karten_Weg_Enum'Succ (Karten_Weg_Enum'First) .. Karten_Weg_Enum'Last;
    
    subtype Karten_Straße_Enum is Karten_Weg_Vorhanden_Enum range Straßenkreuzung_Vier_Enum .. Straße_Einzeln_Enum;
    subtype Karten_Schiene_Enum is Karten_Weg_Vorhanden_Enum range Schienenkreuzung_Vier_Enum .. Schiene_Einzeln_Enum;

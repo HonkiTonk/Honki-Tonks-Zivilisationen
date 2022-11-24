@@ -9,7 +9,7 @@ package Diagnoseinformationen is
    procedure Größenprüfung;
 
    procedure Koordinateninformationen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldRecord);
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord);
    
    procedure Einheiteninformationen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);

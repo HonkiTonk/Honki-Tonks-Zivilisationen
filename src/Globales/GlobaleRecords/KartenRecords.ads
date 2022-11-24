@@ -161,4 +161,30 @@ package KartenRecords is
             
    end record;
    
+   
+   
+   type Umgebungskreuz is record
+      
+      Links : Boolean;
+      Rechts : Boolean;
+      Oben : Boolean;
+      Unten : Boolean;
+      
+   end record;
+   
+   
+   
+   type Umgebungsstern is record
+      
+      Links_Oben_Enum : Boolean;
+      Oben_Enum : Boolean;
+      Rechts_Oben_Enum : Boolean;
+      Rechts_Enum : Boolean;
+      Rechts_Unten_Enum : Boolean;
+      Unten_Enum : Boolean;
+      Links_Unten_Enum : Boolean;
+      Links_Enum : Boolean;
+            
+   end record;
+   
 end KartenRecords;

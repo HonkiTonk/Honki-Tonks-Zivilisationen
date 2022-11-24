@@ -11,7 +11,8 @@ package StadtDatentypen is
                                                   Eigenschaft_Enum
                                                  );
    
-   subtype Gebäude_Spezielle_Eigenschaften_Verwendet_Enum is Gebäude_Spezielle_Eigenschaften_Enum range Eigenschaft_Enum .. Gebäude_Spezielle_Eigenschaften_Enum'Last;
+   subtype Gebäude_Spezielle_Eigenschaften_Verwendet_Enum
+     is Gebäude_Spezielle_Eigenschaften_Enum range Gebäude_Spezielle_Eigenschaften_Enum'Succ (Gebäude_Spezielle_Eigenschaften_Enum'First) .. Gebäude_Spezielle_Eigenschaften_Enum'Last;
    -- Für Gebäude
    
 
@@ -30,7 +31,7 @@ package StadtDatentypen is
                                Produktion_Abgeschlossen_Enum, Einheit_Unplatzierbar_Enum, Einwohner_Wachstum_Enum, Einwohner_Reduktion_Enum, Fremde_Einheit_Nahe_Stadt_Enum
                               );
    
-   subtype Stadt_Meldungen_Verwendet_Enum is Stadt_Meldung_Enum range Produktion_Abgeschlossen_Enum .. Stadt_Meldung_Enum'Last;
+   subtype Stadt_Meldungen_Verwendet_Enum is Stadt_Meldung_Enum range Stadt_Meldung_Enum'Succ (Stadt_Meldung_Enum'First) .. Stadt_Meldung_Enum'Last;
    -- Für Stadt
 
 end StadtDatentypen;

@@ -11,7 +11,7 @@ package KIDatentypen is
                                  Planet_Vernichten_Enum
                                 );
    -- Diesen Anfang mal überall einbauen wo es sinnvoll ist. äöü
-   subtype Einheit_Aufgabe_Vorhanden_Enum is Einheit_Aufgabe_Enum range Einheit_Aufgabe_Enum'Val (Einheit_Aufgabe_Enum'Pos (Einheit_Aufgabe_Enum'First) + 1) .. Einheit_Aufgabe_Enum'Last;
+   subtype Einheit_Aufgabe_Vorhanden_Enum is Einheit_Aufgabe_Enum range Einheit_Aufgabe_Enum'Succ (Einheit_Aufgabe_Enum'First) .. Einheit_Aufgabe_Enum'Last;
 
    type Stadt_Aufgabe_Enum is (
                                Keine_Aufgabe_Enum,

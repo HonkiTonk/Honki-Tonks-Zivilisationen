@@ -33,7 +33,7 @@ package SystemDatentypen is
                          Abspann_Eins_Enum
                         );
    
-   subtype Abspann_Vorhanden_Enum is Abspann_Enum range Abspann_Eins_Enum .. Abspann_Enum'Last;
+   subtype Abspann_Vorhanden_Enum is Abspann_Enum range Abspann_Enum'Succ (Abspann_Enum'First) .. Abspann_Enum'Last;
    
    
       
