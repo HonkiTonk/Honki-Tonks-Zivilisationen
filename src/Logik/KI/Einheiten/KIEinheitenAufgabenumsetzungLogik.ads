@@ -5,12 +5,13 @@ with EinheitenKonstanten;
 with LeseGrenzen;
 with LeseRassenbelegung;
 
-package KIEinheitLogik is
+package KIEinheitenAufgabenumsetzungLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
 
-   procedure Einheit
+   function Aufgabenumsetzung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
@@ -18,15 +19,4 @@ package KIEinheitLogik is
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
 
-private
-
-   procedure Handlungen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
-              );
-
-end KIEinheitLogik;
+end KIEinheitenAufgabenumsetzungLogik;

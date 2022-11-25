@@ -12,6 +12,7 @@ with ForschungenDatentypen;
 with ProduktionDatentypen;
 with StadtRecords;
 with KampfDatentypen;
+with KartenextraDatentypen;
 
 with KIDatentypen;
 
@@ -58,7 +59,7 @@ package StadtKonstanten is
    LeerBasisgrundBenötigt : constant KartengrundDatentypen.Basisgrund_Enum := KartengrundDatentypen.Leer_Basisgrund_Enum;
    LeerZusatzgrundBenötigt : constant KartengrundDatentypen.Zusatzgrund_Enum := KartengrundDatentypen.Leer_Zusatzgrund_Enum;
    LeerFlussBenötigt : constant Boolean := False;
-   LeerRessourceBenötigt : constant KartengrundDatentypen.Kartenressourcen_Enum := KartengrundDatentypen.Leer_Ressource_Enum;
+   LeerRessourceBenötigt : constant KartenextraDatentypen.Ressourcen_Enum := KartenextraDatentypen.Leer_Ressource_Enum;
    LeerVerbesserungBenötigt : constant KartenverbesserungDatentypen.Karten_Verbesserung_Enum := KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
    LeerSpezielleEigenschaft : constant StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := StadtDatentypen.Leer_Gebäude_Spezielle_Egienschaft_Enum;
    

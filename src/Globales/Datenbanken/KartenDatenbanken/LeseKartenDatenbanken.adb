@@ -112,7 +112,7 @@ package body LeseKartenDatenbanken is
       
    
    function BewertungFluss
-     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum;
+     (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
    is begin
@@ -120,7 +120,7 @@ package body LeseKartenDatenbanken is
       case
         FlussExtern
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             return KartenKonstanten.LeerBewertung;
             
          when others =>
@@ -132,7 +132,7 @@ package body LeseKartenDatenbanken is
    
    
    function BewertungRessource
-     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum;
+     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
    is begin
@@ -140,7 +140,7 @@ package body LeseKartenDatenbanken is
       case
         RessourceExtern
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             return KartenKonstanten.LeerBewertung;
             
          when others =>
@@ -195,7 +195,7 @@ package body LeseKartenDatenbanken is
    
    
    function WirtschaftFluss
-     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum;
+     (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
@@ -204,7 +204,7 @@ package body LeseKartenDatenbanken is
       case
         FlussExtern
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
@@ -216,7 +216,7 @@ package body LeseKartenDatenbanken is
    
    
    function WirtschaftRessourcen
-     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum;
+     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
@@ -225,7 +225,7 @@ package body LeseKartenDatenbanken is
       case
         RessourceExtern
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
@@ -280,7 +280,7 @@ package body LeseKartenDatenbanken is
    
    
    function KampfFluss
-     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum;
+     (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
@@ -289,7 +289,7 @@ package body LeseKartenDatenbanken is
       case
         FlussExtern
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
@@ -301,7 +301,7 @@ package body LeseKartenDatenbanken is
    
    
    function KampfRessource
-     (RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum;
+     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
@@ -310,7 +310,7 @@ package body LeseKartenDatenbanken is
       case
         RessourceExtern
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             return KampfKonstanten.LeerKampfwert;
             
          when others =>

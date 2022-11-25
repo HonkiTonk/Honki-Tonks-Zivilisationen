@@ -10,10 +10,10 @@ with EinheitenRecords;
 
 private with KartenartDatentypen;
 private with RassenDatentypen;
-private with KartengrundDatentypen;
 private with KartenverbesserungDatentypen;
 private with EinheitenDatentypen;
 private with StadtRecords;
+private with KartenextraDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -48,9 +48,9 @@ private
    
    AktuelleRasse : RassenDatentypen.Rassen_Enum;
       
-   KartenfeldFluss : KartengrundDatentypen.Kartenfluss_Enum;
+   KartenfeldFluss : KartenextraDatentypen.Fluss_Enum;
    
-   KartenfeldRessource : KartengrundDatentypen.Kartenressourcen_Enum;
+   KartenfeldRessource : KartenextraDatentypen.Ressourcen_Enum;
    
    Stadtart : KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
    Wegfeld : KartenverbesserungDatentypen.Karten_Weg_Enum;

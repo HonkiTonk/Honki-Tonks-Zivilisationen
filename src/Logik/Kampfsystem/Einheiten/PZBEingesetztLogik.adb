@@ -2,6 +2,7 @@ with KartenKonstanten;
 with KartengrundDatentypen;
 with KartenverbesserungDatentypen;
 with StadtKonstanten;
+with KartenextraDatentypen;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -149,13 +150,13 @@ package body PZBEingesetztLogik is
       SchreibeWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern,
                                      GrundExtern       => (KartengrundDatentypen.Vernichtet_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum));
       SchreibeWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern,
-                               FlussExtern       => KartengrundDatentypen.Leer_Fluss_Enum);
+                               FlussExtern       => KartenextraDatentypen.Leer_Fluss_Enum);
       SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
                              WegExtern         => KartenverbesserungDatentypen.Leer_Weg_Enum);
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                       VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       SchreibeWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern,
-                                   RessourceExtern   => KartengrundDatentypen.Leer_Ressource_Enum);
+                                   RessourceExtern   => KartenextraDatentypen.Leer_Ressource_Enum);
       
    end FeldVernichten;
 

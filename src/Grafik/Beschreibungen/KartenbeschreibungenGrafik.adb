@@ -51,44 +51,44 @@ package body KartenbeschreibungenGrafik is
    
    
    function KurzbeschreibungFluss
-     (KartenFlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
+     (KartenFlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Kartenflüsse (2 * KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Pos (KartenFlussExtern) - 1));
+      return To_Wide_Wide_String (Source => Kartentexte.Kartenflüsse (2 * KartenextraDatentypen.Fluss_Vorhanden_Enum'Pos (KartenFlussExtern) - 1));
       
    end KurzbeschreibungFluss;
    
    
    
    function LangbeschreibungFluss
-     (KartenFlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
+     (KartenFlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Kartenflüsse (2 * KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Pos (KartenFlussExtern)));
+      return To_Wide_Wide_String (Source => Kartentexte.Kartenflüsse (2 * KartenextraDatentypen.Fluss_Vorhanden_Enum'Pos (KartenFlussExtern)));
       
    end LangbeschreibungFluss;
    
    
    
    function KurzbeschreibungRessource
-     (KartenRessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
+     (KartenRessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
    
-      return To_Wide_Wide_String (Source => Kartentexte.Kartenressourcen (2 * KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern) - 1));
+      return To_Wide_Wide_String (Source => Kartentexte.Kartenressourcen (2 * KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern) - 1));
       
    end KurzbeschreibungRessource;
    
    
    
    function LangbeschreibungRessource
-     (KartenRessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
+     (KartenRessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
    
-      return To_Wide_Wide_String (Source => Kartentexte.Kartenressourcen (2 * KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern)));
+      return To_Wide_Wide_String (Source => Kartentexte.Kartenressourcen (2 * KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern)));
       
    end LangbeschreibungRessource;
 

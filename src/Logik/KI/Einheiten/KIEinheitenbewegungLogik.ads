@@ -5,12 +5,13 @@ with EinheitenKonstanten;
 with LeseGrenzen;
 with LeseRassenbelegung;
 
-package KIEinheitStandardverhaltenLogik is
+package KIEinheitenbewegungLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
 
-   procedure NormaleHandlungen
+   function Bewegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
@@ -18,4 +19,4 @@ package KIEinheitStandardverhaltenLogik is
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
 
-end KIEinheitStandardverhaltenLogik;
+end KIEinheitenbewegungLogik;

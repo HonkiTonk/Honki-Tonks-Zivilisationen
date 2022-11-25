@@ -1,8 +1,8 @@
 with KartenDatentypen;
 with KartenRecords;
 
-private with KartengrundDatentypen;
 private with SystemDatentypen;
+private with KartenextraDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -21,7 +21,7 @@ package KartengeneratorLandressourcenLogik is
 
 private
 
-   WelcheRessource : KartengrundDatentypen.Kartenressourcen_Enum;
+   WelcheRessource : KartenextraDatentypen.Ressourcen_Enum;
 
    GezogeneZahl : SystemDatentypen.NullBisHundert;
    Zahlenspeicher : SystemDatentypen.NullBisHundert;
@@ -30,8 +30,8 @@ private
 
    function RessourceZusatzberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Oberfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -41,8 +41,8 @@ private
 
    function ZusatzberechnungKohle
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Oberfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -52,8 +52,8 @@ private
 
    function ZusatzberechnungEisen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Oberfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -63,8 +63,8 @@ private
 
    function ZusatzberechnungÖl
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Oberfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -74,8 +74,8 @@ private
 
    function ZusatzberechnungHochwertigerBoden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Oberfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -85,8 +85,8 @@ private
 
    function ZusatzberechnungHochwertigesHolz
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Oberfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -96,8 +96,8 @@ private
 
    function ZusatzberechnungGold
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Oberfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

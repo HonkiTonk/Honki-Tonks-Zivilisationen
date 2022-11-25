@@ -7,6 +7,7 @@ private with KartenRecords;
 private with KartengrundDatentypen;
 private with KartenverbesserungDatentypen;
 private with KartenDatentypen;
+private with KartenextraDatentypen;
 
 with LeseGrenzen;
 with LeseRassenbelegung;
@@ -44,7 +45,7 @@ private
       
       NotwendigerGrund : KartengrundDatentypen.Basisgrund_Enum;
       
-      NotwendigeRessource : KartengrundDatentypen.Kartenressourcen_Enum;
+      NotwendigeRessource : KartenextraDatentypen.Ressourcen_Enum;
    
       NotwendigeVerbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    

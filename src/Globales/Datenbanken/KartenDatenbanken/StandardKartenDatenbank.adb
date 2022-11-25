@@ -9,6 +9,7 @@ with BasisgrundUnterflaeche;
 with BasisgrundWeltall;
 with ZusatzgrundOberflaeche;
 with ZusatzgrundUnterflaeche;
+with KartenextraDatentypen;
 with KartengrundFluss;
 with KartengrundRessourcen;
 
@@ -74,7 +75,7 @@ package body StandardKartenDatenbank is
    is begin
       
       KartenflussSchleife:
-      for KartenflussSchleifenwert in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Range loop
+      for KartenflussSchleifenwert in KartenextraDatentypen.Fluss_Vorhanden_Enum'Range loop
          
          case
            KartenflussSchleifenwert
@@ -99,7 +100,7 @@ package body StandardKartenDatenbank is
    is begin
       
       KartenressourcenSchleife:
-      for KartenressourcenSchleifenwert in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum'Range loop
+      for KartenressourcenSchleifenwert in KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range loop
          
          case
            KartenressourcenSchleifenwert

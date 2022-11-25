@@ -6,6 +6,7 @@ with KartenRecordKonstanten;
 with EinheitenRecords;
 with EinheitenKonstanten;
 with StadtRecords;
+with KartenextraDatentypen;
 
 package WeltkarteRecords is
 
@@ -14,8 +15,8 @@ package WeltkarteRecords is
       Grund : KartenRecords.KartengrundRecord;
       Sichtbar : KartenRecords.SichtbarkeitArray;
       
-      Fluss : KartengrundDatentypen.Kartenfluss_Enum;
-      Ressource : KartengrundDatentypen.Kartenressourcen_Enum;
+      Fluss : KartenextraDatentypen.Fluss_Enum;
+      Ressource : KartenextraDatentypen.Ressourcen_Enum;
       
       Weg : KartenverbesserungDatentypen.Karten_Weg_Enum;
       Verbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
@@ -31,8 +32,8 @@ package WeltkarteRecords is
    LeerWeltkarte : constant WeltkarteRecord := (
                                                 Grund                   => (KartengrundDatentypen.Leer_Basisgrund_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum),
                                                 Sichtbar                => (others => KartenKonstanten.LeerSichtbar),
-                                                Fluss                   => KartengrundDatentypen.Leer_Fluss_Enum,
-                                                Ressource               => KartengrundDatentypen.Leer_Ressource_Enum,
+                                                Fluss                   => KartenextraDatentypen.Leer_Fluss_Enum,
+                                                Ressource               => KartenextraDatentypen.Leer_Ressource_Enum,
                                                 Weg                     => KartenverbesserungDatentypen.Leer_Weg_Enum,
                                                 Verbesserung            => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
                                                 Einheit                 => EinheitenKonstanten.LeerRasseNummer,

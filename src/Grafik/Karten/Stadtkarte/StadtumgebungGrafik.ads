@@ -5,11 +5,11 @@ with RassenDatentypen;
 with StadtRecords;
 with StadtKonstanten;
 
-private with KartengrundDatentypen;
 private with KartenverbesserungDatentypen;
 private with KartenRecords;
 private with GrafikRecordKonstanten;
 private with KartenKonstanten;
+private with KartenextraDatentypen;
 
 with LeseGrenzen;
 with LeseRassenbelegung;
@@ -33,9 +33,9 @@ private
    
    FeldBewirtschaftet : Boolean;
    
-   KartenfeldRessource : KartengrundDatentypen.Kartenressourcen_Enum;
+   KartenfeldRessource : KartenextraDatentypen.Ressourcen_Enum;
    
-   KartenfeldFluss : KartengrundDatentypen.Kartenfluss_Enum;
+   KartenfeldFluss : KartenextraDatentypen.Fluss_Enum;
    
    Wegfeld : KartenverbesserungDatentypen.Karten_Weg_Enum;
 

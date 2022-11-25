@@ -255,7 +255,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       return Boolean
    is
       use type KartengrundDatentypen.Basisgrund_Enum;
-      use type KartengrundDatentypen.Kartenressourcen_Enum;
+      use type KartenextraDatentypen.Ressourcen_Enum;
    begin
       
       Ressourcen := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
@@ -263,7 +263,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       case
         Ressourcen
       is
-         when KartengrundDatentypen.Hochwertiges_Holz_Enum =>
+         when KartenextraDatentypen.Hochwertiges_Holz_Enum =>
             return False;
             
          when others =>
@@ -281,11 +281,11 @@ package body KIEinheitFestlegenVerbesserungenLogik is
               or
                 Basisgrund = KartengrundDatentypen.Gebirge_Enum
                 or
-                  Ressourcen = KartengrundDatentypen.Kohle_Enum
+                  Ressourcen = KartenextraDatentypen.Kohle_Enum
                   or
-                    Ressourcen = KartengrundDatentypen.Eisen_Enum
+                    Ressourcen = KartenextraDatentypen.Eisen_Enum
                     or
-                      Ressourcen = KartengrundDatentypen.Gold_Enum
+                      Ressourcen = KartenextraDatentypen.Gold_Enum
             then
                SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        BeschäftigungExtern      => AufgabenDatentypen.Mine_Bauen_Enum);

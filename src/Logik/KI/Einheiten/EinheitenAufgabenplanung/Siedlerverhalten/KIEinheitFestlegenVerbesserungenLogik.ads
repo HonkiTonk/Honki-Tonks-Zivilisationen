@@ -8,6 +8,7 @@ private with EinheitenDatentypen;
 private with KartengrundDatentypen;
 private with KartenDatentypen;
 private with StadtKonstanten;
+private with KartenextraDatentypen;
 
 with LeseGrenzen;
 with LeseRassenbelegung;
@@ -38,7 +39,7 @@ private
 
    Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
 
-   Ressourcen : KartengrundDatentypen.Kartenressourcen_Enum;
+   Ressourcen : KartenextraDatentypen.Ressourcen_Enum;
 
    EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
 

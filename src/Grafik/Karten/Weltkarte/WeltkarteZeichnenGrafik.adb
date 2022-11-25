@@ -9,6 +9,7 @@ with TextaccessVariablen;
 with ZeitKonstanten;
 with KartenKonstanten;
 with GrafikKonstanten;
+with KartengrundDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseWeltkarte;
@@ -102,7 +103,7 @@ package body WeltkarteZeichnenGrafik is
       case
         KartenfeldFluss
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             null;
             
          when others =>
@@ -125,7 +126,7 @@ package body WeltkarteZeichnenGrafik is
       case
         KartenfeldRessource
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             null;
             
          when others =>

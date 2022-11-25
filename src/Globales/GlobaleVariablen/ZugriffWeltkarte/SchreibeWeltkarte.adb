@@ -89,7 +89,7 @@ package body SchreibeWeltkarte is
    
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum)
+      FlussExtern : in KartenextraDatentypen.Fluss_Enum)
    is begin
       
       case
@@ -108,7 +108,7 @@ package body SchreibeWeltkarte is
    
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
    is begin
       
       case

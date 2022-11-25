@@ -6,6 +6,7 @@ with KartenverbesserungDatentypen;
 with StadtDatentypen;
 with KampfDatentypen;
 with StadtRecords;
+with KartenextraDatentypen;
 
 package GebaeudedatenbankRecord is
    pragma Preelaborate;
@@ -19,8 +20,8 @@ package GebaeudedatenbankRecord is
    -- Könnte man theoretisch um das vernichtete Feld kürzen, aber ob sich das lohnt? äöü
    -- Wenn ich Leer mit reinnehme könnte ich daran prüfen ob überhaupt eines gebraucht wird und entsprechend die Prüfung verkürzen? Ist das sinnvoll? äöü
    type GrundArray is array (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Boolean;
-   type FlussArray is array (KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Range) of Boolean;
-   type RessourcenArray is array (KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum'Range) of Boolean;
+   type FlussArray is array (KartenextraDatentypen.Fluss_Vorhanden_Enum'Range) of Boolean;
+   type RessourcenArray is array (KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range) of Boolean;
    type VerbesserungenArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of Boolean;
    
    -- Da müsste man dann immer darauf achten dass das Gebäude sich nicht selbst benötigt, oder Gebäude benötigt die dieses Gebäude zum Bau benötigt. äöü
@@ -40,7 +41,7 @@ package GebaeudedatenbankRecord is
       
       BasisgrundBenötigt : KartengrundDatentypen.Basisgrund_Enum;
       FlussBenötigt : Boolean;
-      RessourceBenötigt : KartengrundDatentypen.Kartenressourcen_Enum;
+      RessourceBenötigt : KartenextraDatentypen.Ressourcen_Enum;
       VerbesserungBenötigt : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
       GebäudeBenötigt : StadtDatentypen.GebäudeIDMitNullwert;
       

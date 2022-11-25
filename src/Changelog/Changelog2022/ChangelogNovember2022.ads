@@ -28,17 +28,22 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (26.11.2022):
+   -- Version 0.04.4585 => 0.04. (26.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.4505 => 0.04. (25.11.2022):
+   -- Version 0.04.4505 => 0.04.4585 (25.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kleine Anpassungen für Alire vorgenommen.
+   -- Datentypen aufgeteilt.
+   -- KI überarbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Einige Fehler korrigiert die auftraten wenn der aktive menschliche Spieler besiegt wurde, die Grafik aber noch auf diese Spielerinformationen Zugriff.
+   -- Die KI bricht jetzt bestimmte Aufgaben ab wenn sie sich im Krieg befindet und eine feindliche Angriffseinheit zu Nahe ist.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

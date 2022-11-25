@@ -1,5 +1,6 @@
 with KartenKonstanten;
 with KampfKonstanten;
+with KartengrundDatentypen;
 
 with LeseWeltkarte;
 with LeseKartenDatenbanken;
@@ -199,7 +200,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenFluss
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             return 0;
             
          when others =>
@@ -223,7 +224,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenFluss
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             return 0;
             
          when others =>
@@ -247,7 +248,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenFluss
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             return 0;
             
          when others =>
@@ -272,7 +273,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenFluss
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             return 0;
             
          when others =>
@@ -296,7 +297,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenFluss
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
@@ -320,7 +321,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenFluss
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
@@ -344,7 +345,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenFluss
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             return KartenKonstanten.LeerBewertung;
             
          when others =>
@@ -655,7 +656,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenRessource
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             return 0;
             
          when others =>
@@ -679,7 +680,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenRessource
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             return 0;
             
          when others =>
@@ -703,7 +704,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenRessource
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             return 0;
             
          when others =>
@@ -727,7 +728,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenRessource
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             return 0;
             
          when others =>
@@ -751,7 +752,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenRessource
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
@@ -775,7 +776,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenRessource
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
@@ -799,7 +800,7 @@ package body KartenAllgemeinesLogik is
       case
         KartenRessource
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             return KartenKonstanten.LeerBewertung;
             
          when others =>

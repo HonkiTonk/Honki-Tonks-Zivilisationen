@@ -7,6 +7,7 @@ with StadtRecords;
 with EinheitenRecords;
 with WeltkarteRecords;
 with StadtKonstanten;
+with KartenextraDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -60,7 +61,7 @@ package LeseWeltkarte is
 
    function Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Kartenfluss_Enum
+      return KartenextraDatentypen.Fluss_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -90,7 +91,7 @@ package LeseWeltkarte is
 
    function Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      return KartenextraDatentypen.Ressourcen_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

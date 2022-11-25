@@ -20,10 +20,10 @@ package body KILogik is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
+      KIDiplomatieLogik.Diplomatie (RasseExtern => RasseExtern);
       EinheitenDurchgehen (RasseExtern => RasseExtern);
       StädteDurchgehen (RasseExtern => RasseExtern);
       KIForschungLogik.Forschung (RasseExtern => RasseExtern);
-      KIDiplomatieLogik.Diplomatie (RasseExtern => RasseExtern);
             
    end KI;
    

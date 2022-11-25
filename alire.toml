@@ -1,6 +1,6 @@
 name = "honki_tonks_zivilisationen"
 description = "The Code of my 4X turn-based strategy game."
-version = "0.04.4505-dev"
+version = "0.04.4585-dev"
 
 long-description = """
 Der Code meines 4X-Rundenstrategiespiels. Geschrieben in Ada mit der Standardbibliothek und ASFML. Nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren.
@@ -18,4 +18,4 @@ tags = ["game", "sfml", "4x", "roundbased", "strategy", "cross-platform", "multi
 
 executables = ["honki_tonks_zivilisationen"]
 [[depends-on]]
-asfml = "^2.5.2"
+asfml = "^2.5.3"

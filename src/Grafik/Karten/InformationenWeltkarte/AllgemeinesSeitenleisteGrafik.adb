@@ -8,6 +8,7 @@ with Views;
 with GrafikDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
+with KartengrundDatentypen;
 
 with LeseWeltkarte;
 with LeseCursor;
@@ -78,7 +79,7 @@ package body AllgemeinesSeitenleisteGrafik is
       case
         KartenRessource
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             TextAnzeigen (2) := False;
             
          when others =>
@@ -129,7 +130,7 @@ package body AllgemeinesSeitenleisteGrafik is
       case
         KartenFluss
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             TextAnzeigen (5) := False;
             
          when others =>

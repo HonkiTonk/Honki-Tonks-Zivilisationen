@@ -1,5 +1,6 @@
 with KartenDatentypen;
 with Views;
+with KartengrundDatentypen;
 
 with LeseStadtGebaut;
 with LeseWeltkarte;
@@ -180,7 +181,7 @@ package body StadtumgebungGrafik is
       case
         KartenfeldFluss
       is
-         when KartengrundDatentypen.Leer_Fluss_Enum =>
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
             null;
             
          when others =>
@@ -202,7 +203,7 @@ package body StadtumgebungGrafik is
       case
         KartenfeldRessource
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             null;
             
          when others =>

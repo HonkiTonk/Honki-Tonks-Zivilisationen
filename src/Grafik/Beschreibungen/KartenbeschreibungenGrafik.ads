@@ -1,4 +1,5 @@
 with KartengrundDatentypen;
+with KartenextraDatentypen;
 
 package KartenbeschreibungenGrafik is
    pragma Elaborate_Body;
@@ -20,19 +21,19 @@ package KartenbeschreibungenGrafik is
       return Wide_Wide_String;
 
    function KurzbeschreibungFluss
-     (KartenFlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
+     (KartenFlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
       return Wide_Wide_String;
 
    function LangbeschreibungFluss
-     (KartenFlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
+     (KartenFlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
       return Wide_Wide_String;
 
    function KurzbeschreibungRessource
-     (KartenRessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
+     (KartenRessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
       return Wide_Wide_String;
 
    function LangbeschreibungRessource
-     (KartenRessourceExtern : in KartengrundDatentypen.Kartenressourcen_Vorhanden_Enum)
+     (KartenRessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
       return Wide_Wide_String;
 
 end KartenbeschreibungenGrafik;

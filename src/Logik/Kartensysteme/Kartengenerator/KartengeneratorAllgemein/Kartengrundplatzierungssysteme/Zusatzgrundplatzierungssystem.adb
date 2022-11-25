@@ -14,9 +14,17 @@ package body Zusatzgrundplatzierungssystem is
    begin
             
       AktuellerGrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern);
-      
-      SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
-                                     GrundExtern       => KartengrundDatentypen.Leer_Zusatzgrund_Enum);
+            
+      case
+        AktuellerGrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            return;
+            
+         when others =>
+            SchreibeWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern,
+                                           GrundExtern       => KartengrundDatentypen.Leer_Zusatzgrund_Enum);
+      end case;
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop

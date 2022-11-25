@@ -7,13 +7,10 @@ with KartenDatentypen;
 private with TastenbelegungDatentypen;
 private with KartenRecords;
 
-with LeseRassenbelegung;
-
 -- Das Ganze später besser aufteilen? äöü
 -- Um ein im Kreis linken zu verhindern erst einmal die KartenberechnungenGrafik hier mit rein geschoben. äöü
 package SichtweitenGrafik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
    
    -- Das hier über eine Funktion abrufen? äöü
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
@@ -39,13 +36,10 @@ package SichtweitenGrafik is
    function BewegungsfeldLesen
      return KartenDatentypen.KartenfeldPositiv;
    
+   -- Hier keinen Contract einfügen, da die Grafik möglicherweise noch einmal darauf zugreift nachdem die Spielerrasse besiegt und entfernt wurde.
    function UntenRechts
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
-     with
-       Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
-              );
+      return Boolean;
    
 private
    

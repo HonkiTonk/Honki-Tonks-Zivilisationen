@@ -15,7 +15,7 @@ package body GebaeudeumgebungLogik is
       return Boolean
    is
       use type KartengrundDatentypen.Basisgrund_Enum;
-      use type KartengrundDatentypen.Kartenressourcen_Enum;
+      use type KartenextraDatentypen.Ressourcen_Enum;
       use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
       use type StadtDatentypen.GebäudeIDMitNullwert;
    begin
@@ -46,7 +46,7 @@ package body GebaeudeumgebungLogik is
         and
           False = Anforderungen.NotwendigFluss
           and
-            KartengrundDatentypen.Leer_Ressource_Enum = Anforderungen.NotwendigeRessource
+            KartenextraDatentypen.Leer_Ressource_Enum = Anforderungen.NotwendigeRessource
             and
               KartenverbesserungDatentypen.Leer_Verbesserung_Enum = Anforderungen.NotwendigeVerbesserung
               and
@@ -125,8 +125,8 @@ package body GebaeudeumgebungLogik is
       return Boolean
    is
       use type KartengrundDatentypen.Basisgrund_Enum;
-      use type KartengrundDatentypen.Kartenfluss_Enum;
-      use type KartengrundDatentypen.Kartenressourcen_Enum;
+      use type KartenextraDatentypen.Fluss_Enum;
+      use type KartenextraDatentypen.Ressourcen_Enum;
       use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
       use type StadtDatentypen.GebäudeIDMitNullwert;
    begin
@@ -151,7 +151,7 @@ package body GebaeudeumgebungLogik is
          null;
          
       elsif
-        LeseWeltkarte.Fluss (KoordinatenExtern => KartenWert) /= KartengrundDatentypen.Leer_Fluss_Enum
+        LeseWeltkarte.Fluss (KoordinatenExtern => KartenWert) /= KartenextraDatentypen.Leer_Fluss_Enum
       then
          null;
          
@@ -160,7 +160,7 @@ package body GebaeudeumgebungLogik is
       end if;
         
       if
-        AnforderungenExtern.NotwendigeRessource = KartengrundDatentypen.Leer_Ressource_Enum
+        AnforderungenExtern.NotwendigeRessource = KartenextraDatentypen.Leer_Ressource_Enum
       then
          null;
          

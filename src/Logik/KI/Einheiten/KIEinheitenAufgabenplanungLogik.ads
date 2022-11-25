@@ -1,32 +1,28 @@
-with RassenDatentypen;
 with EinheitenRecords;
+with RassenDatentypen;
 with EinheitenKonstanten;
 
-with LeseGrenzen;
-with LeseRassenbelegung;
+private with EinheitenDatentypen;
 
-package KIEinheitLogik is
+with LeseRassenbelegung;
+with LeseGrenzen;
+
+package KIEinheitenAufgabenplanungLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
-
-   procedure Einheit
+   
+   function Aufgabenplanung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
-
+   
 private
+   
+   EinheitID : EinheitenDatentypen.EinheitenID;
 
-   procedure Handlungen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
-              );
-
-end KIEinheitLogik;
+end KIEinheitenAufgabenplanungLogik;

@@ -3,10 +3,10 @@ private with Sf.System.Vector2;
 with RassenDatentypen;
 
 private with KartenRecords;
-private with KartengrundDatentypen;
 private with KartenverbesserungDatentypen;
 private with TextaccessVariablen;
 private with GrafikRecordKonstanten;
+private with KartenextraDatentypen;
 
 with LeseRassenbelegung;
 
@@ -26,9 +26,9 @@ package AllgemeinesSeitenleisteGrafik is
    
 private
    
-   KartenFluss : KartengrundDatentypen.Kartenfluss_Enum;
+   KartenFluss : KartenextraDatentypen.Fluss_Enum;
    
-   KartenRessource : KartengrundDatentypen.Kartenressourcen_Enum;
+   KartenRessource : KartenextraDatentypen.Ressourcen_Enum;
 
    KartenVerbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    KartenWeg : KartenverbesserungDatentypen.Karten_Weg_Enum;

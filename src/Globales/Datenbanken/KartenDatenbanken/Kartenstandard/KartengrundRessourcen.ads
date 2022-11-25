@@ -1,15 +1,15 @@
-with KartengrundDatentypen;
 with RassenDatentypen;
 with KartendatenbankRecord;
 with BewertungDatentypen;
+with KartenextraDatentypen;
 
 -- Das hier später auch in verschiedene Dateien aufteilen, vorher aber mehr Ressourcen hinzufügen und in bessere Bereiche einteilen. äöü
 package KartengrundRessourcen is
    pragma Pure;
    
-   type KartenressourcenlisteLandArray is array (KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
+   type KartenressourcenlisteLandArray is array (KartenextraDatentypen.Ressourcen_Oberfläche_Land_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenressourcenlisteLand : constant KartenressourcenlisteLandArray := (
-                                                                           KartengrundDatentypen.Kohle_Enum =>
+                                                                           KartenextraDatentypen.Kohle_Enum =>
                                                                              (
                                                                               Bewertung  =>
                                                                                 (
@@ -80,7 +80,7 @@ package KartengrundRessourcen is
                                                                                 )
                                                                              ),
                                       
-                                                                           KartengrundDatentypen.Eisen_Enum =>
+                                                                           KartenextraDatentypen.Eisen_Enum =>
                                                                              (
                                                                               Bewertung  =>
                                                                                 (
@@ -151,7 +151,7 @@ package KartengrundRessourcen is
                                                                                 )
                                                                              ),
                                       
-                                                                           KartengrundDatentypen.Öl_Enum =>
+                                                                           KartenextraDatentypen.Öl_Enum =>
                                                                              (
                                                                               Bewertung  =>
                                                                                 (
@@ -222,7 +222,7 @@ package KartengrundRessourcen is
                                                                                 )
                                                                              ),
                                                                            
-                                                                           KartengrundDatentypen.Hochwertiger_Boden_Enum =>
+                                                                           KartenextraDatentypen.Hochwertiger_Boden_Enum =>
                                                                              (
                                                                               Bewertung  =>
                                                                                 (
@@ -293,7 +293,7 @@ package KartengrundRessourcen is
                                                                                 )
                                                                              ),
                                                                            
-                                                                           KartengrundDatentypen.Hochwertiges_Holz_Enum =>
+                                                                           KartenextraDatentypen.Hochwertiges_Holz_Enum =>
                                                                              (
                                                                               Bewertung  =>
                                                                                 (
@@ -364,7 +364,7 @@ package KartengrundRessourcen is
                                                                                 )
                                                                              ),
                                       
-                                                                           KartengrundDatentypen.Gold_Enum =>
+                                                                           KartenextraDatentypen.Gold_Enum =>
                                                                              (
                                                                               Bewertung  =>
                                                                                 (
@@ -436,9 +436,9 @@ package KartengrundRessourcen is
                                                                              )
                                                                           );
 
-   type KartenressourcenlisteWasserArray is array (KartengrundDatentypen.Kartenressourcen_Oberfläche_Wasser_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
+   type KartenressourcenlisteWasserArray is array (KartenextraDatentypen.Ressourcen_Oberfläche_Wasser_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenressourcenlisteWasser : constant KartenressourcenlisteWasserArray := (
-                                                                               KartengrundDatentypen.Fisch_Enum =>
+                                                                               KartenextraDatentypen.Fisch_Enum =>
                                                                                  (
                                                                                   Bewertung  =>
                                                                                     (
@@ -509,7 +509,7 @@ package KartengrundRessourcen is
                                                                                     )
                                                                                  ),
       
-                                                                               KartengrundDatentypen.Wal_Enum =>
+                                                                               KartenextraDatentypen.Wal_Enum =>
                                                                                  (
                                                                                   Bewertung  =>
                                                                                     (

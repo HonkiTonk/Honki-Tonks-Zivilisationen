@@ -87,14 +87,14 @@ package body LeseWeltkarte is
    
    function Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Kartenfluss_Enum
+      return KartenextraDatentypen.Fluss_Enum
    is begin
       
       case
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            return KartengrundDatentypen.Leer_Fluss_Enum;
+            return KartenextraDatentypen.Leer_Fluss_Enum;
             
          when others =>
             return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss;
@@ -144,14 +144,14 @@ package body LeseWeltkarte is
    
    function Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       case
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            return KartengrundDatentypen.Leer_Ressource_Enum;
+            return KartenextraDatentypen.Leer_Ressource_Enum;
             
          when others =>
             return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource;

@@ -6,6 +6,7 @@ with KartenRecords;
 with EinheitenRecords;
 with StadtRecords;
 with WeltkarteRecords;
+with KartenextraDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseRassenbelegung;
@@ -60,7 +61,7 @@ package SchreibeWeltkarte is
 
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum)
+      FlussExtern : in KartenextraDatentypen.Fluss_Enum)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -70,7 +71,7 @@ package SchreibeWeltkarte is
 
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Enum)
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

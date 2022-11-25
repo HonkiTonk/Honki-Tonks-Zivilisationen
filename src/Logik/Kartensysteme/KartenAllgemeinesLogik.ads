@@ -7,7 +7,7 @@ with KampfDatentypen;
 with BewertungDatentypen;
 
 private with KartenverbesserungDatentypen;
-private with KartengrundDatentypen;
+private with KartenextraDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -391,8 +391,8 @@ package KartenAllgemeinesLogik is
 
 private
 
-   KartenFluss : KartengrundDatentypen.Kartenfluss_Enum;
-   KartenRessource : KartengrundDatentypen.Kartenressourcen_Enum;
+   KartenFluss : KartenextraDatentypen.Fluss_Enum;
+   KartenRessource : KartenextraDatentypen.Ressourcen_Enum;
    KartenWeg : KartenverbesserungDatentypen.Karten_Weg_Enum;
    KartenVerbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
 

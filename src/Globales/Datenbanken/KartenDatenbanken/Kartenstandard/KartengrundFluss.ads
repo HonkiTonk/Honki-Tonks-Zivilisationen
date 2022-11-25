@@ -1,12 +1,12 @@
-with KartengrundDatentypen;
 with RassenDatentypen;
 with KartendatenbankRecord;
 with BewertungDatentypen;
+with KartenextraDatentypen;
 
 package KartengrundFluss is
    pragma Pure;
    
-   type KartenflusslisteOberflächeArray is array (KartengrundDatentypen.Kartenfluss_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
+   type KartenflusslisteOberflächeArray is array (KartenextraDatentypen.Fluss_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenflusslisteOberfläche : constant KartenflusslisteOberflächeArray := (
                                                                                others =>
                                                                                  (
@@ -80,7 +80,7 @@ package KartengrundFluss is
                                                                                  )
                                                                               );
    
-   type KartenflusslisteUnterflächeArray is array (KartengrundDatentypen.Kartenfluss_Unterfläche_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
+   type KartenflusslisteUnterflächeArray is array (KartenextraDatentypen.Fluss_Unterfläche_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenflusslisteUnterfläche : constant KartenflusslisteUnterflächeArray := (
                                                                                  others =>
                                                                                    (
@@ -154,7 +154,7 @@ package KartengrundFluss is
                                                                                    )
                                                                                 );
    
-   type KartenflusslisteKernArray is array (KartengrundDatentypen.Kartenfluss_Kern_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
+   type KartenflusslisteKernArray is array (KartenextraDatentypen.Fluss_Kern_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenflusslisteKern : constant KartenflusslisteKernArray := (
                                                                  others =>
                                                                    (

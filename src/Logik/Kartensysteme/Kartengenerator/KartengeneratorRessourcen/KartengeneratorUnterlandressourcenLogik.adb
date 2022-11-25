@@ -11,11 +11,11 @@ package body KartengeneratorUnterlandressourcenLogik is
       use type SystemDatentypen.NullBisHundert;
    begin
       
-      WelcheRessource := KartengrundDatentypen.Leer_Ressource_Enum;
+      WelcheRessource := KartenextraDatentypen.Leer_Ressource_Enum;
       Zahlenspeicher := 0;
       
       ZufallszahlenSchleife:
-      for ZufallszahlSchleifenwert in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum'Range loop
+      for ZufallszahlSchleifenwert in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum'Range loop
          
          GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
@@ -45,7 +45,7 @@ package body KartengeneratorUnterlandressourcenLogik is
       case
         WelcheRessource
       is
-         when KartengrundDatentypen.Leer_Ressource_Enum =>
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
             return;
               
          when others =>
@@ -56,7 +56,7 @@ package body KartengeneratorUnterlandressourcenLogik is
       case
         WelcheRessource
       is
-         when KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum'Range =>
+         when KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum'Range =>
             SchreibeWeltkarte.Ressource (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
                                       RessourceExtern   => WelcheRessource);
             
@@ -70,30 +70,30 @@ package body KartengeneratorUnterlandressourcenLogik is
    
    function RessourceZusatzberechnungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       case
         RessourceExtern
       is
-         when KartengrundDatentypen.Kohle_Enum =>
+         when KartenextraDatentypen.Kohle_Enum =>
             return ZusatzberechnungKohle (KoordinatenExtern => KoordinatenExtern,
                                           RessourceExtern   => RessourceExtern);
             
-         when KartengrundDatentypen.Eisen_Enum =>
+         when KartenextraDatentypen.Eisen_Enum =>
             return ZusatzberechnungEisen (KoordinatenExtern => KoordinatenExtern,
                                           RessourceExtern   => RessourceExtern);
             
-         when KartengrundDatentypen.Öl_Enum =>
+         when KartenextraDatentypen.Öl_Enum =>
             return ZusatzberechnungÖl (KoordinatenExtern => KoordinatenExtern,
                                         RessourceExtern   => RessourceExtern);
             
-         when KartengrundDatentypen.Hochwertiger_Boden_Enum =>
+         when KartenextraDatentypen.Hochwertiger_Boden_Enum =>
             return ZusatzberechnungHochwertigerBoden (KoordinatenExtern => KoordinatenExtern,
                                                       RessourceExtern   => RessourceExtern);
             
-         when KartengrundDatentypen.Gold_Enum =>
+         when KartenextraDatentypen.Gold_Enum =>
             return ZusatzberechnungGold (KoordinatenExtern => KoordinatenExtern,
                                          RessourceExtern   => RessourceExtern);
       end case;
@@ -104,8 +104,8 @@ package body KartengeneratorUnterlandressourcenLogik is
    
    function ZusatzberechnungKohle
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       if
@@ -125,8 +125,8 @@ package body KartengeneratorUnterlandressourcenLogik is
    
    function ZusatzberechnungEisen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       if
@@ -146,8 +146,8 @@ package body KartengeneratorUnterlandressourcenLogik is
    
    function ZusatzberechnungÖl
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       if
@@ -167,8 +167,8 @@ package body KartengeneratorUnterlandressourcenLogik is
    
    function ZusatzberechnungHochwertigerBoden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       if
@@ -188,8 +188,8 @@ package body KartengeneratorUnterlandressourcenLogik is
    
    function ZusatzberechnungGold
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      RessourceExtern : in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum)
+      return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       if

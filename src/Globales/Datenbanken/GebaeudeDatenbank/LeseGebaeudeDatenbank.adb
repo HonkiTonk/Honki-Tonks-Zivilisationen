@@ -172,14 +172,14 @@ package body LeseGebaeudeDatenbank is
    function RessourceBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return KartengrundDatentypen.Kartenressourcen_Enum
+      return KartenextraDatentypen.Ressourcen_Enum
    is begin
       
       case
         IDExtern
       is
          when StadtKonstanten.LeerGebäudeID =>
-            return KartengrundDatentypen.Leer_Ressource_Enum;
+            return KartenextraDatentypen.Leer_Ressource_Enum;
             
          when others =>
             return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).RessourceBenötigt;

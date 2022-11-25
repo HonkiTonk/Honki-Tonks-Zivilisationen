@@ -2,11 +2,17 @@ with LadezeitenDatentypen;
 
 with LadezeitenLogik;
 
+with KIVariablen;
+
+with KIKriegErmittelnLogik;
+
 package body KIDiplomatieLogik is
    
    procedure Diplomatie
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
+      
+      KIVariablen.Kriegszustand := KIKriegErmittelnLogik.IstImKrieg (RasseExtern => RasseExtern);
       
       case
         RasseExtern

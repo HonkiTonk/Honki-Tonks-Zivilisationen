@@ -112,8 +112,6 @@ package KartengrundDatentypen is
                              Unterwaldendstück_Links_Enum, Unterwaldendstück_Rechts_Enum, Unterwaldendstück_Unten_Enum, Unterwaldendstück_Oben_Enum, Unterwald_Enum
                               
                              -- Planetenkern
-                              
-                             -- Sonstiges
                              
                             );
    pragma Ordered (Zusatzgrund_Enum);
@@ -138,68 +136,8 @@ package KartengrundDatentypen is
    
    subtype Zusatzgrund_Korallen_Enum is Zusatzgrund_Unterfläche_Enum range Korallenkreuzung_Vier_Enum .. Korallen_Enum;
    subtype Zusatzgrund_Unterwald_Enum is Zusatzgrund_Unterfläche_Enum range Unterwaldkreuzung_Vier_Enum .. Unterwald_Enum;
+   
    -- Planeteinneres
    
-   
-   -- Sonstiges
-   
-   
-   
-   
-   -- Ressourcen für den Kern hinzufügen. äöü
-   type Kartenressourcen_Enum is (
-                                  Leer_Ressource_Enum,
-                                   
-                                  -- Wasserressourcen
-                                  Fisch_Enum, Wal_Enum,
-                                  Hochwertiges_Holz_Enum,
-                                   
-                                  -- Landressourcen
-                                  -- Diese Ressourcuen kann man aber auch im Wasser finden, mal anpassen. äöü
-                                  Kohle_Enum, Eisen_Enum, Öl_Enum, Hochwertiger_Boden_Enum, Gold_Enum
-                                     
-                                  -- Kernressourcen
-                                   
-                                 );
-   pragma Ordered (Kartenressourcen_Enum);
-   
-   subtype Kartenressourcen_Vorhanden_Enum is Kartenressourcen_Enum range Kartenressourcen_Enum'Succ (Kartenressourcen_Enum'First) .. Kartenressourcen_Enum'Last;
-   
-   subtype Kartenressourcen_Oberfläche_Enum is Kartenressourcen_Vorhanden_Enum range Fisch_Enum .. Gold_Enum;
-   subtype Kartenressourcen_Oberfläche_Wasser_Enum is Kartenressourcen_Oberfläche_Enum range Fisch_Enum .. Wal_Enum;
-   subtype Kartenressourcen_Oberfläche_Land_Enum is Kartenressourcen_Oberfläche_Enum range Hochwertiges_Holz_Enum .. Gold_Enum;
-   
-   subtype Kartenressourcen_Unterfläche_Enum is Kartenressourcen_Vorhanden_Enum range Fisch_Enum .. Gold_Enum;
-   subtype Kartenressourcen_Unterfläche_Wasser_Enum is Kartenressourcen_Unterfläche_Enum range Fisch_Enum .. Hochwertiges_Holz_Enum;
-   subtype Kartenressourcen_Unterfläche_Land_Enum is Kartenressourcen_Unterfläche_Enum range Kohle_Enum .. Gold_Enum;
-   
-   
-   
-   type Kartenfluss_Enum is (
-                             Leer_Fluss_Enum,
-                              
-                             -- Fluss
-                             Flusskreuzung_Vier_Enum, Fluss_Waagrecht_Enum, Fluss_Senkrecht_Enum, Flusskurve_Unten_Rechts_Enum, Flusskurve_Unten_Links_Enum, Flusskurve_Oben_Rechts_Enum, Flusskurve_Oben_Links_Enum,
-                             Flusskreuzung_Drei_Oben_Enum, Flusskreuzung_Drei_Unten_Enum, Flusskreuzung_Drei_Rechts_Enum, Flusskreuzung_Drei_Links_Enum, Flussendstück_Links_Enum, Flussendstück_Rechts_Enum,
-                             Flussendstück_Unten_Enum, Flussendstück_Oben_Enum, See_Enum,
-                              
-                             -- Unterirdischer Fluss
-                             Unterirdische_Flusskreuzung_Vier_Enum, Unterirdischer_Fluss_Waagrecht_Enum, Unterirdischer_Fluss_Senkrecht_Enum, Unterirdische_Flusskurve_Unten_Rechts_Enum,
-                             Unterirdische_Flusskurve_Unten_Links_Enum, Unterirdische_Flusskurve_Oben_Rechts_Enum, Unterirdische_Flusskurve_Oben_Links_Enum, Unterirdische_Flusskreuzung_Drei_Oben_Enum,
-                             Unterirdische_Flusskreuzung_Drei_Unten_Enum, Unterirdische_Flusskreuzung_Drei_Rechts_Enum, Unterirdische_Flusskreuzung_Drei_Links_Enum, Unterirdisches_Flussendstück_Links_Enum,
-                             Unterirdisches_Flussendstück_Rechts_Enum, Unterirdisches_Flussendstück_Unten_Enum, Unterirdisches_Flussendstück_Oben_Enum, Unterirdischer_See_Enum,
-                              
-                             -- Lavafluss
-                             Lavaflusskreuzung_Vier_Enum, Lavafluss_Waagrecht_Enum, Lavafluss_Senkrecht_Enum, Lavaflusskurve_Unten_Rechts_Enum, Lavaflusskurve_Unten_Links_Enum, Lavaflusskurve_Oben_Rechts_Enum,
-                             Lavaflusskurve_Oben_Links_Enum, Lavaflusskreuzung_Drei_Oben_Enum, Lavaflusskreuzung_Drei_Unten_Enum, Lavaflusskreuzung_Drei_Rechts_Enum, Lavaflusskreuzung_Drei_Links_Enum,
-                             Lavaflussendstück_Links_Enum, Lavaflussendstück_Rechts_Enum, Lavaflussendstück_Unten_Enum, Lavaflussendstück_Oben_Enum, Lavasee_Enum
-                            );
-   pragma Ordered (Kartenfluss_Enum);
-                              
-   subtype Kartenfluss_Vorhanden_Enum is Kartenfluss_Enum range Kartenfluss_Enum'Succ (Kartenfluss_Enum'First) .. Kartenfluss_Enum'Last;
-   
-   subtype Kartenfluss_Oberfläche_Enum is Kartenfluss_Vorhanden_Enum range Flusskreuzung_Vier_Enum .. See_Enum;
-   subtype Kartenfluss_Unterfläche_Enum is Kartenfluss_Vorhanden_Enum range Unterirdische_Flusskreuzung_Vier_Enum .. Unterirdischer_See_Enum;
-   subtype Kartenfluss_Kern_Enum is Kartenfluss_Vorhanden_Enum range Lavaflusskreuzung_Vier_Enum .. Lavasee_Enum;
 
 end KartengrundDatentypen;

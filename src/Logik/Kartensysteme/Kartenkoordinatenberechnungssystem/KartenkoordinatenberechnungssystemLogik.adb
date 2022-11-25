@@ -16,7 +16,20 @@ package body KartenkoordinatenberechnungssystemLogik is
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
       LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldNaturalRecord
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
+      
+      if
+        KoordinatenExtern = KartenRecordKonstanten.LeerKoordinate
+        and
+          LogikGrafikExtern = False
+      then
+         return KartenRecordKonstanten.LeerKoordinate;
+         
+      else
+         null;
+      end if;
       
       case
         ÄnderungExtern.EAchse

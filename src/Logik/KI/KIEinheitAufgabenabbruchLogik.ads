@@ -5,11 +5,11 @@ with EinheitenKonstanten;
 with LeseGrenzen;
 with LeseRassenbelegung;
 
-package KIEinheitLogik is
+package KIEinheitAufgabenabbruchLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
 
-   procedure Einheit
+   procedure Friedenshandlung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
@@ -18,15 +18,4 @@ package KIEinheitLogik is
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
 
-private
-
-   procedure Handlungen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
-              );
-
-end KIEinheitLogik;
+end KIEinheitAufgabenabbruchLogik;
