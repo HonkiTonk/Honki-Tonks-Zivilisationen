@@ -25,6 +25,7 @@ package NachGrafiktask is
    
    -- Sprache
    MehrereSeiten : Boolean;
+   LöschenAusgewählt : Boolean := False;
    
    Endauswahl : Natural;
    -- Wird für Spielstart benötigt.

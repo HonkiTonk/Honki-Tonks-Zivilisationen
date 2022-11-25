@@ -124,6 +124,7 @@ package body SpielstandlisteLogik is
                      --  end if;
                      
                   when Löschen =>
+                     NachGrafiktask.LöschenAusgewählt := True;
                      Ausgewählt := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
                      
                      if
@@ -198,10 +199,12 @@ package body SpielstandlisteLogik is
                   
                else
                   NachGrafiktask.AktuelleAuswahl.AuswahlEins := SystemKonstanten.LeerAuswahl;
+                  NachGrafiktask.LöschenAusgewählt := False;
                   return AktuelleAuswahl;
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
+               NachGrafiktask.LöschenAusgewählt := False;
                return SystemKonstanten.LeerAuswahl;
                
             when others =>

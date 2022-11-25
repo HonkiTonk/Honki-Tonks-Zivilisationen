@@ -23,6 +23,9 @@ private
       
    Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
    
+   GezogeneZahl : SystemDatentypen.NullBisHundert;
+   Zahlenspeicher : SystemDatentypen.NullBisHundert;
+      
    type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range) of SystemDatentypen.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
                                                                   KartengrundDatentypen.Erde_Enum       => 30,
@@ -30,10 +33,6 @@ private
                                                                   KartengrundDatentypen.Sand_Enum       => 30,
                                                                   KartengrundDatentypen.Gestein_Enum    => 30
                                                                  );
-   BasisZahlen : BasisWahrscheinlichkeitenArray;
-   
-   type BasisMöglichkeitenArray is array (BasisWahrscheinlichkeitenArray'Range) of Boolean;
-   BasisMöglichkeiten : BasisMöglichkeitenArray;
    
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)

@@ -35,17 +35,26 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (25.11.2022):
+   -- Version 0.04.4505 => 0.04. (25.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.4380 => 0.04. (24.11.2022):
+   -- Version 0.04.4380 => 0.04.4505 (24.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Ladesystem prüft jetzt erst ob ein Spielstand alle benötigten Daten enthält bevor er geladen wird.
+   -- Es wird jetzt eine Meldung angezeigt wenn ein Spielstand nicht geladen werden kann.
+   -- Hügel- und Gebirge_Enums erweitert damit es möglich ist sie über mehrere Felder zu ziehen wie den Zusatzgrund.
+   -- Neue Grafiken für die zusätzlichen Basisgründe erstellt.
+   -- Kartengenerator an die ganzen Änderungen angepasst.
+   -- Basisgrundplatzierungssystem fertiggestellt, es ist jetzt möglich Hügel und Gebirge über mehrere Felder zu ziehen.
+   -- Code vereinfacht.
+   -- Die Änderung der Ressourcenmenge hat jetzt wieder einen Einfluss auf die vorhandenen Ressourcen.
+   -- Neue Beispielbilder erstellt.
+   -- KI überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/entfernt.
    
    
 
@@ -54,7 +63,7 @@ package ChangelogNovember2022 is
    -- Alire Version hinzugefügt.
    -- Einige Anpassungen an der internen und externen Struktur vorgenommen damit es keine Probleme mit der Alire Version gibt.
    -- Platzierungssystem für den Zusatzgrund fertiggestellt, es ist jetzt möglich Wälder/Dschungel/Sumpf/usw. über mehrere Felder zu ziehen.
-   -- Neue Graikfen für die verschiedenen Zusatzgrundarten erstellt.
+   -- Neue Grafiken für die verschiedenen Zusatzgrundarten erstellt.
    -- Beim Entfernen von Wegen werden die angrenzenden Wege jetzt entsprechend angepasst.
    -- Fehler korrigiert der dazu führte das man Roden/Trockenlegen auf einem Feld vornehmen konnte auf dem es nichts zum Roden/Trockenlegen gab.
    -- Beim Entfernen von Zusatzgrund wird die Umgebung jetzt entsprechend angepasst.

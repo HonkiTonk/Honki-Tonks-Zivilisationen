@@ -207,6 +207,7 @@ package body StadtBauenLogik is
    
    
    
+   -- Später auch eine Schiene anlegen? äöü
    procedure WegAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin

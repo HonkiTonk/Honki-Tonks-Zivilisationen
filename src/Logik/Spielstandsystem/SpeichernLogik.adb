@@ -210,9 +210,6 @@ package body SpeichernLogik is
             
       end loop StadtSchleife;
       
-      SpielRecords.WichtigesRecord'Write (Stream (File => DateiSpeichernExtern),
-                                          LeseWichtiges.GanzerEintrag (RasseExtern => RasseExtern));
-      
       DiplomatieSchleife:
       for DiplomatieSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
 
@@ -230,6 +227,9 @@ package body SpeichernLogik is
          end if;
 
       end loop DiplomatieSchleife;
+      
+      SpielRecords.WichtigesRecord'Write (Stream (File => DateiSpeichernExtern),
+                                          LeseWichtiges.GanzerEintrag (RasseExtern => RasseExtern));
       
       KartenRecords.CursorRecord'Write (Stream (File => DateiSpeichernExtern),
                                         LeseCursor.GanzerEintrag (RasseExtern => RasseExtern));

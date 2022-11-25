@@ -35,10 +35,12 @@ package KartenartDatentypen is
    
    
    
-   type Kartenressourcen_Enum is (
-                                  Kartenressourcen_Arm_Enum, Kartenressourcen_Wenig_Enum, Kartenressourcen_Mittel_Enum, Kartenressourcen_Viel_Enum, Kartenressourcen_Überfluss_Enum
-                                 );
-   pragma Ordered (Kartenressourcen_Enum);
+   -- Das hier durch einen Zahlenwert von 0 bis 100 ersetzen? äöü
+   -- Und später noch eine Möglichkeit einbauen um jeden Wert einzeln festzulegen? äöü
+   type Kartenressourcenmenge_Enum is (
+                                       Kartenressourcen_Arm_Enum, Kartenressourcen_Wenig_Enum, Kartenressourcen_Mittel_Enum, Kartenressourcen_Viel_Enum, Kartenressourcen_Überfluss_Enum
+                                      );
+   pragma Ordered (Kartenressourcenmenge_Enum);
    
    
    

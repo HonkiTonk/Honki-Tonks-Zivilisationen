@@ -14,6 +14,9 @@ package Diagnoseinformationen is
    procedure Einheiteninformationen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
    
+   procedure Grundinformationen
+     (GrundExtern : in KartenRecords.KartengrundRecord);
+   
 private
       
    ByteTeiler : constant Positive := System.Storage_Unit;

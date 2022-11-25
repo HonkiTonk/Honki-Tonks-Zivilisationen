@@ -33,62 +33,39 @@ package body KartengeneratorWasserweltLogik is
    is
       use type SystemDatentypen.NullBisHundert;
    begin
+      
+      Zahlenspeicher := 0;
+      WelcherGrund := 0;
             
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in ZusatzWahrscheinlichkeitenArray'Range loop
          
-         ZusatzZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
+         GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
          if
-           ZusatzZahlen (ZufallszahlSchleifenwert) < ZusatzWahrscheinlichkeiten (ZufallszahlSchleifenwert)
+           GezogeneZahl > ZusatzWahrscheinlichkeiten (ZufallszahlSchleifenwert)
+           or
+             GezogeneZahl = 0
          then
-            ZusatzMöglichkeiten (ZufallszahlSchleifenwert) := True;
+            null;
+            
+         elsif
+           (GezogeneZahl = Zahlenspeicher
+            and
+              ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True)
+           or
+             GezogeneZahl > Zahlenspeicher
+         then
+            Zahlenspeicher := GezogeneZahl;
+            WelcherGrund := ZufallszahlSchleifenwert;
             
          else
-            ZusatzMöglichkeiten (ZufallszahlSchleifenwert) := False;
+            null;
          end if;
          
       end loop ZufallszahlenSchleife;
       
-      Zwischenspeicher := 0;
-      
-      WahrscheinlichkeitSchleife:
-      for WahrscheinlichkeitSchleifenwert in ZusatzWahrscheinlichkeitenArray'Range loop
-            
-         if
-           ZusatzMöglichkeiten (WahrscheinlichkeitSchleifenwert) = False
-         then
-            null;
-         
-         else
-            case
-              Zwischenspeicher
-            is
-               when 0 =>
-                  Zwischenspeicher := WahrscheinlichkeitSchleifenwert; 
-                        
-               when others =>
-                  if
-                    ZusatzZahlen (WahrscheinlichkeitSchleifenwert) > ZusatzZahlen (Zwischenspeicher)
-                  then
-                     Zwischenspeicher := WahrscheinlichkeitSchleifenwert;
-                        
-                  elsif
-                    ZusatzZahlen (WahrscheinlichkeitSchleifenwert) = ZusatzZahlen (Zwischenspeicher)
-                    and
-                      ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True
-                  then
-                     Zwischenspeicher := WahrscheinlichkeitSchleifenwert;
-                           
-                  else
-                     null;
-                  end if;
-            end case;
-         end if;
-            
-      end loop WahrscheinlichkeitSchleife;
-      
-      Zusatzgrund := ZahlenNachZusatzgrund (Zwischenspeicher);
+      Zusatzgrund := ZahlenNachZusatzgrund (WelcherGrund);
       
       case
         Zusatzgrund
@@ -179,7 +156,7 @@ package body KartengeneratorWasserweltLogik is
    
    function ZusatzberechnungKorallen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum)
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Korallen_Enum)
       return KartengrundDatentypen.Zusatzgrund_Enum
    is begin
       
@@ -200,7 +177,7 @@ package body KartengeneratorWasserweltLogik is
    
    function ZusatzberechnungUnterwald
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum)
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterwald_Enum)
       return KartengrundDatentypen.Zusatzgrund_Enum
    is begin
       

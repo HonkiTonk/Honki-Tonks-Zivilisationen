@@ -60,6 +60,40 @@ package body KIEinheitAllgemeinePruefungenLogik is
    
    
    
+   function DirekteUmgebung
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+   is begin
+      
+      EAchseSchleife:
+      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         YAchseSchleife:
+         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+               
+               case
+                 PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                           NeueKoordinatenExtern    => KoordinatenExtern)
+               is
+                  when False =>
+                     null;
+                     
+                  when True =>
+                     return True;
+               end case;
+                              
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
+      
+      return False;
+      
+   end DirekteUmgebung;
+   
+   
+   
    -- Das prüft auch nicht für die Ebenen darunter und drüber, auch mal anpassen. äöü
    -- Oder muss das angepasst werden?
    function AktuellUnpassierbar

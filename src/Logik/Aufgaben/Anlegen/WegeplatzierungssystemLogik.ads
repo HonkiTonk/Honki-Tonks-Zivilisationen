@@ -61,7 +61,7 @@ private
                                      - KartenverbesserungDatentypen.Karten_Straße_Enum'Pos (KartenverbesserungDatentypen.Straßenkreuzung_Vier_Enum)
                                     );
    
-   type WegwertArray is array (Boolean'Range, Boolean'Range, Boolean'Range, Boolean'Range) of Natural;
+   type WegwertArray is array (Boolean'Range, Boolean'Range, Boolean'Range, Boolean'Range) of Positive;
    Wegwert : constant WegwertArray := (
                                        True =>
                                          (
@@ -130,7 +130,7 @@ private
                                          )
                                       );
    
-   type WegeSeitenArray is array (KartenverbesserungDatentypen.Karten_Straße_Enum'Range) of Natural;
+   type WegeSeitenArray is array (KartenverbesserungDatentypen.Karten_Straße_Enum'Range) of Positive;
    WegeLinks : constant WegeSeitenArray := (
                                             -- Alle Möglichkeiten die sich ändern.
                                             KartenverbesserungDatentypen.Straße_Senkrecht_Enum            => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos

@@ -23,16 +23,8 @@ private
 
    WelcheRessource : KartengrundDatentypen.Kartenressourcen_Enum;
 
-   type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartenressourcen_Unterfläche_Wasser_Enum'Range) of SystemDatentypen.NullBisHundert;
-   KartenressourceWahrscheinlichkeit : KartenressourceWahrscheinlichkeitArray := (
-                                                                                  KartengrundDatentypen.Fisch_Enum             => 2,
-                                                                                  KartengrundDatentypen.Wal_Enum               => 2,
-                                                                                  KartengrundDatentypen.Hochwertiges_Holz_Enum => 2
-                                                                                 );
-   GezogeneZahlen : KartenressourceWahrscheinlichkeitArray;
-
-   type WelcheMöglichkeitenArray is array (KartenressourceWahrscheinlichkeitArray'Range) of Boolean;
-   WelcheMöglichkeiten : WelcheMöglichkeitenArray;
+   GezogeneZahl : SystemDatentypen.NullBisHundert;
+   Zahlenspeicher : SystemDatentypen.NullBisHundert;
 
 
 

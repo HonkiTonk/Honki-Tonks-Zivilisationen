@@ -17,10 +17,7 @@ package body Basisgrundplatzierungssystem is
       is
          when KartengrundDatentypen.Basisgrund_Hügel_Enum'Range | KartengrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
             Grundumgebung := (others => False);
-            -- Grundnummer := GrundZuNummer (BasisgrundExtern);
-            -- Die beiden Zuweisungen müssen später entfernt werden damit es funktioniert. äöü
-            Grundnummer := 1;
-            AndersfeldigeGrundnummer := 2;
+            Grundnummer := GrundZuNummer (BasisgrundExtern);
             
          when others =>
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
@@ -82,7 +79,8 @@ package body Basisgrundplatzierungssystem is
       end loop YAchseSchleife;
       
       SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-                                    GrundExtern       => BasisgrundExtern);
+                                    GrundExtern       => KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (Basisgrundwert (Grundumgebung.Links, Grundumgebung.Rechts,
+                                      Grundumgebung.Oben, Grundumgebung.Unten) + Basisgrundtyp (Grundnummer)));
       
    end Basisgrundplatzierung;
    
@@ -92,9 +90,7 @@ package body Basisgrundplatzierungssystem is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
-   is
-      -- use type KartengrundDatentypen.Basisgrund_Enum;
-   begin
+   is begin
       
       WelcherGrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -105,8 +101,7 @@ package body Basisgrundplatzierungssystem is
             return False;
          
          when others =>
-            null;
-            -- AndersfeldigeGrundnummer := GrundZuNummer (WelcherGrund);
+            AndersfeldigeGrundnummer := GrundZuNummer (WelcherGrund);
       end case;
       
       if
@@ -115,9 +110,9 @@ package body Basisgrundplatzierungssystem is
          return False;
             
       else
-         -- WelcherGrund := KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Zusatzgrundtyp (AndersfeldigeGrundnummer));
-         -- SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-         --                                GrundExtern       => KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (ZusatzgrundLinks (WelcherGrund) + Zusatzgrundtyp (AndersfeldigeGrundnummer)));
+         WelcherGrund := KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Basisgrundtyp (AndersfeldigeGrundnummer));
+         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                       GrundExtern       => KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (BasisgrundLinks (WelcherGrund) + Basisgrundtyp (AndersfeldigeGrundnummer)));
          return True;
       end if;
             
@@ -129,9 +124,7 @@ package body Basisgrundplatzierungssystem is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
-   is
-      -- use type KartengrundDatentypen.Basisgrund_Enum;
-   begin
+   is begin
       
       WelcherGrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -142,8 +135,7 @@ package body Basisgrundplatzierungssystem is
             return False;
          
          when others =>
-            null;
-            -- AndersfeldigeGrundnummer := GrundZuNummer (WelcherGrund);
+            AndersfeldigeGrundnummer := GrundZuNummer (WelcherGrund);
       end case;
       
       if
@@ -152,9 +144,9 @@ package body Basisgrundplatzierungssystem is
          return False;
             
       else
-         -- WelcherGrund := KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Zusatzgrundtyp (AndersfeldigeGrundnummer));
-         -- SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-         --                                GrundExtern       => KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (ZusatzgrundRechts (WelcherGrund) + Zusatzgrundtyp (AndersfeldigeGrundnummer)));
+         WelcherGrund := KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Basisgrundtyp (AndersfeldigeGrundnummer));
+         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                       GrundExtern       => KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (BasisgrundRechts (WelcherGrund) + Basisgrundtyp (AndersfeldigeGrundnummer)));
          return True;
       end if;
       
@@ -166,9 +158,7 @@ package body Basisgrundplatzierungssystem is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
-   is
-      -- use type KartengrundDatentypen.Basisgrund_Enum;
-   begin
+   is begin
       
       WelcherGrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -179,8 +169,7 @@ package body Basisgrundplatzierungssystem is
             return False;
          
          when others =>
-            null;
-            -- AndersfeldigeGrundnummer := GrundZuNummer (WelcherGrund);
+            AndersfeldigeGrundnummer := GrundZuNummer (WelcherGrund);
       end case;
       
       if
@@ -189,9 +178,9 @@ package body Basisgrundplatzierungssystem is
          return False;
             
       else
-         -- WelcherGrund := KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Zusatzgrundtyp (AndersfeldigeGrundnummer));
-         -- SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-         --                                GrundExtern       => KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (ZusatzgrundOben (WelcherGrund) + Zusatzgrundtyp (AndersfeldigeGrundnummer)));
+         WelcherGrund := KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Basisgrundtyp (AndersfeldigeGrundnummer));
+         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                       GrundExtern       => KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (BasisgrundOben (WelcherGrund) + Basisgrundtyp (AndersfeldigeGrundnummer)));
          return True;
       end if;
             
@@ -203,9 +192,7 @@ package body Basisgrundplatzierungssystem is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
-   is
-      -- use type KartengrundDatentypen.Basisgrund_Enum;
-   begin
+   is begin
       
       WelcherGrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -216,8 +203,7 @@ package body Basisgrundplatzierungssystem is
             return False;
          
          when others =>
-            null;
-            -- AndersfeldigeGrundnummer := GrundZuNummer (WelcherGrund);
+            AndersfeldigeGrundnummer := GrundZuNummer (WelcherGrund);
       end case;
       
       if
@@ -226,9 +212,9 @@ package body Basisgrundplatzierungssystem is
          return False;
             
       else
-         -- WelcherGrund := KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Zusatzgrundtyp (AndersfeldigeGrundnummer));
-         -- SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-         --                                GrundExtern       => KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (ZusatzgrundUnten (WelcherGrund) + Zusatzgrundtyp (AndersfeldigeGrundnummer)));
+         WelcherGrund := KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (WelcherGrund) - Basisgrundtyp (AndersfeldigeGrundnummer));
+         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                       GrundExtern       => KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Val (BasisgrundUnten (WelcherGrund) + Basisgrundtyp (AndersfeldigeGrundnummer)));
          return True;
       end if;
       

@@ -23,14 +23,15 @@ private
          
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
    
-   Zwischenspeicher : Natural;
+   GezogeneZahl : SystemDatentypen.NullBisHundert;
+   Zahlenspeicher : SystemDatentypen.NullBisHundert;
+   WelcherGrund : SystemDatentypen.NullBisHundert;
    
-   type ZusatzWahrscheinlichkeitenArray is array (1 .. 2) of SystemDatentypen.NullBisHundert;
+   type ZusatzWahrscheinlichkeitenArray is array (SystemDatentypen.EinsBisHundert'First .. 2) of SystemDatentypen.NullBisHundert;
    ZusatzWahrscheinlichkeiten : ZusatzWahrscheinlichkeitenArray := (
                                                                     1 => 30,
                                                                     2 => 30
                                                                    );
-   ZusatzZahlen : ZusatzWahrscheinlichkeitenArray;
    
    type ZahlenNachZusatzgrundArray is array (0 .. ZusatzWahrscheinlichkeitenArray'Last) of KartengrundDatentypen.Zusatzgrund_Enum;
    ZahlenNachZusatzgrund : constant ZahlenNachZusatzgrundArray := (
@@ -38,9 +39,6 @@ private
                                                                    1 => KartengrundDatentypen.Korallen_Enum,
                                                                    2 => KartengrundDatentypen.Unterwald_Enum
                                                                   );
-   
-   type ZusatzMöglichkeitenArray is array (ZusatzWahrscheinlichkeitenArray'Range) of Boolean;
-   ZusatzMöglichkeiten : ZusatzMöglichkeitenArray;
    
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
@@ -97,7 +95,7 @@ private
    
    function ZusatzberechnungKorallen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum)
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Korallen_Enum)
       return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (
@@ -108,7 +106,7 @@ private
    
    function ZusatzberechnungUnterwald
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
-      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum)
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Unterwald_Enum)
       return KartengrundDatentypen.Zusatzgrund_Enum
      with
        Pre => (

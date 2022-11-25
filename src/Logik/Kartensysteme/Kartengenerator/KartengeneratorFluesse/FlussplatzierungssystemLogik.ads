@@ -2,6 +2,7 @@ with KartenDatentypen;
 with KartenRecords;
 
 private with KartengrundDatentypen;
+private with KartenKonstanten;
 
 with LeseWeltkarteneinstellungen;
 
@@ -21,11 +22,11 @@ package FlussplatzierungssystemLogik is
 private
    use type KartenDatentypen.Ebene;
    
-   type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
+   type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. KartenKonstanten.OberflächeKonstante) of KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
    StandardFluss : constant StandardFlussArray := (
-                                                   -2 => KartengrundDatentypen.Lavasee_Enum,
-                                                   -1 => KartengrundDatentypen.Unterirdischer_See_Enum,
-                                                   0  => KartengrundDatentypen.See_Enum
+                                                   KartenKonstanten.PlaneteninneresKonstante => KartengrundDatentypen.Lavasee_Enum,
+                                                   KartenKonstanten.UnterflächeKonstante => KartengrundDatentypen.Unterirdischer_See_Enum,
+                                                   KartenKonstanten.OberflächeKonstante  => KartengrundDatentypen.See_Enum
                                                   );
    
    type WelcherFlussArray is array (StandardFlussArray'Range) of KartengrundDatentypen.Kartenfluss_Enum;
@@ -36,21 +37,21 @@ private
    
    type FlusstypArray is array (StandardFlussArray'Range) of Natural;
    Flusstyp : constant FlusstypArray := (
-                                         -2 =>
+                                         KartenKonstanten.PlaneteninneresKonstante =>
                                            KartengrundDatentypen.Kartenfluss_Kern_Enum'Pos (KartengrundDatentypen.Lavaflusskreuzung_Vier_Enum)
                                          - KartengrundDatentypen.Kartenfluss_Oberfläche_Enum'Pos (KartengrundDatentypen.Flusskreuzung_Vier_Enum),
                                                        
-                                         -1 =>
+                                         KartenKonstanten.UnterflächeKonstante =>
                                            KartengrundDatentypen.Kartenfluss_Unterfläche_Enum'Pos (KartengrundDatentypen.Unterirdische_Flusskreuzung_Vier_Enum)
                                          - KartengrundDatentypen.Kartenfluss_Oberfläche_Enum'Pos (KartengrundDatentypen.Flusskreuzung_Vier_Enum),
                                          
-                                         0  => 0
+                                         KartenKonstanten.OberflächeKonstante  => 0
                                         );
    
    type FlussseiteArray is array (StandardFlussArray'Range) of KartenRecords.Umgebungskreuz;
    Flussseite : FlussseiteArray;
    
-   type FlusswertArray is array (Boolean'Range, Boolean'Range, Boolean'Range, Boolean'Range) of Natural;
+   type FlusswertArray is array (Boolean'Range, Boolean'Range, Boolean'Range, Boolean'Range) of Positive;
    Flusswert : constant FlusswertArray := (
                                            True =>
                                              (

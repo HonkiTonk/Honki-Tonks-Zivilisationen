@@ -13,6 +13,11 @@ package KartengeneratorPlanetenkernLogik is
 private
    use type KartenDatentypen.Kartenfeld;
 
+   WelcherGrund : KartengrundDatentypen.Basisgrund_Enum;
+
+   GezogeneZahl : SystemDatentypen.NullBisHundert;
+   Zahlenspeicher : SystemDatentypen.NullBisHundert;
+
    YKernanfang : KartenDatentypen.KartenfeldPositiv;
    XKernanfang : KartenDatentypen.KartenfeldPositiv;
    YKernende : KartenDatentypen.KartenfeldPositiv;
@@ -20,19 +25,13 @@ private
 
    Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
 
-   WelcherGrund : KartengrundDatentypen.Basisgrund_Enum;
-
    type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range) of SystemDatentypen.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
-                                                                  KartengrundDatentypen.Ringwoodit_Enum     => 20,
-                                                                  KartengrundDatentypen.Majorit_Enum        => 20,
-                                                                  KartengrundDatentypen.Perowskit_Enum      => 20,
-                                                                  KartengrundDatentypen.Magnesiowüstit_Enum => 20
+                                                                  KartengrundDatentypen.Ringwoodit_Enum     => 15,
+                                                                  KartengrundDatentypen.Majorit_Enum        => 15,
+                                                                  KartengrundDatentypen.Perowskit_Enum      => 15,
+                                                                  KartengrundDatentypen.Magnesiowüstit_Enum => 15
                                                                  );
-   BasisZahlen : BasisWahrscheinlichkeitenArray;
-
-   type BasisMöglichkeitenArray is array (BasisWahrscheinlichkeitenArray'Range) of Boolean;
-   BasisMöglichkeiten : BasisMöglichkeitenArray;
 
    procedure BasisgrundBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)

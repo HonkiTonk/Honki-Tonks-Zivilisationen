@@ -12,11 +12,7 @@ package KartengeneratorFlussLogik is
 private
    use type KartenDatentypen.Kartenfeld;
    use type KartenDatentypen.Ebene;
-   
-   -- Später vom Nutzer einstellbar machen. äöü
-   -- Oder rauswerfen? äöü
-   FlussumgebungBonus : Float := 1.25;
-   
+      
    type KartenzeitwertArray is array (KartenDatentypen.EbenePlanet'Range) of KartenDatentypen.KartenfeldNatural;
    Kartenzeitwert : KartenzeitwertArray;
    
@@ -30,16 +26,13 @@ private
          
    type BeliebigerFlusswertArray is array (WahrscheinlichkeitFlussArray'Range) of SystemDatentypen.NullBisHundert;
    BeliebigerFlusswert : BeliebigerFlusswertArray;
-
-   type KartenWertArray is array (WahrscheinlichkeitFlussArray'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenWert : KartenWertArray;
    
    procedure FlussGenerierung
      (EbeneExtern : in KartenDatentypen.EbenePlanet);
    
       
       
-   function FlussumgebungTesten
+   function FlussAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with

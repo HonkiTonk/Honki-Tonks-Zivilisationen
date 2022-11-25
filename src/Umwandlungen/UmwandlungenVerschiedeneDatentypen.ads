@@ -26,7 +26,7 @@ package UmwandlungenVerschiedeneDatentypen is
    
    function KartenressourcenrückgabeNachKartenressource
      (RückgabeExtern : in RueckgabeDatentypen.Kartenressourcen_Enum)
-      return KartenartDatentypen.Kartenressourcen_Enum;
+      return KartenartDatentypen.Kartenressourcenmenge_Enum;
    
    function RückgabeNachSchwierigkeitsgrad
      (RückgabeExtern : in RueckgabeDatentypen.Schwierigkeitsgrad_Enum)
@@ -79,7 +79,7 @@ private
                                                                                                            RueckgabeDatentypen.Auswahl_Fünf_Enum => KartenartDatentypen.Kartentemperatur_Wüste_Enum
                                                                                                           );
    
-   type KartenressourcenrückgabeKartenressourceArray is array (RueckgabeDatentypen.Kartenressourcen_Enum'Range) of KartenartDatentypen.Kartenressourcen_Enum;
+   type KartenressourcenrückgabeKartenressourceArray is array (RueckgabeDatentypen.Kartenressourcen_Enum'Range) of KartenartDatentypen.Kartenressourcenmenge_Enum;
    KartenressourcenrückgabeKartenressource : constant KartenressourcenrückgabeKartenressourceArray := (
                                                                                                          RueckgabeDatentypen.Auswahl_Eins_Enum => KartenartDatentypen.Kartenressourcen_Arm_Enum,
                                                                                                          RueckgabeDatentypen.Auswahl_Zwei_Enum => KartenartDatentypen.Kartenressourcen_Wenig_Enum,

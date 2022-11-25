@@ -402,7 +402,7 @@ package BasisgrundOberflaeche is
                                                                                ),
                                       
                                                                                -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
-                                                                             KartengrundDatentypen.Hügel_Enum =>
+                                                                             KartengrundDatentypen.Basisgrund_Hügel_Enum'Range =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,
@@ -480,7 +480,7 @@ package BasisgrundOberflaeche is
                                                                                 Bewegung => (others => 4)
                                                                                ),
                                       
-                                                                             KartengrundDatentypen.Gebirge_Enum =>
+                                                                             KartengrundDatentypen.Basisgrund_Gebirge_Enum'Range =>
                                                                                (
                                                                                 Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
                                                                                                    EinheitenDatentypen.Luft_Enum     => True,

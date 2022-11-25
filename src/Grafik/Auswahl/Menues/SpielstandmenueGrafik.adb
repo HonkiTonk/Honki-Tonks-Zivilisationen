@@ -93,10 +93,20 @@ package body SpielstandmenueGrafik is
          
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
                                           position => Textposition);
-         
-            TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert - SystemKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition,
-                                                   AuswahlExtern    => AuswahlExtern,
-                                                   TextaccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
+            
+            if
+              TextSchleifenwert = SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) - 1
+              and
+                NachGrafiktask.LöschenAusgewählt
+            then
+               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
+                                          color => Sf.Graphics.Color.sfRed);
+               
+            else
+               TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert - SystemKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition,
+                                                      AuswahlExtern    => AuswahlExtern,
+                                                      TextaccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
+            end if;
          
             InteraktionAuswahl.PositionenSpielstand (TextSchleifenwert - SystemKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition)
               := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));

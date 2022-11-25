@@ -23,9 +23,18 @@ package body KIEinheitFestlegenErkundenLogik is
    is begin
       
       EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      case
+        KIEinheitAllgemeinePruefungenLogik.DirekteUmgebung (KoordinatenExtern        => EinheitKoordinaten,
+                                                            EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      is
+         when False =>
+            return False;
             
-      UmgebungPrüfen := 1;
-      BereitsGeprüft := UmgebungPrüfen - 1;
+         when True =>
+            UmgebungPrüfen := 2;
+            BereitsGeprüft := UmgebungPrüfen - 1;
+      end case;
       
       UnbekanntesFeldSuchenSchleife:
       while UmgebungPrüfen <= KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
@@ -52,6 +61,8 @@ package body KIEinheitFestlegenErkundenLogik is
    
    
    
+   -- Warum wird bei all diesen Dinger hier immer nur eine Achse geprüft und nicht alle? äöü
+   -- Oder ein sich vergrößernder Bereich. äöü
    function ZielSuchen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

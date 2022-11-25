@@ -33,5 +33,15 @@ package body Diagnoseinformationen is
       Put_Line (Item => "Rasse: " & EinheitRasseNummerExtern.Rasse'Wide_Wide_Image & "    Nummer: " & EinheitRasseNummerExtern.Nummer'Wide_Wide_Image);
       
    end Einheiteninformationen;
+   
+   
+   
+   procedure Grundinformationen
+     (GrundExtern : in KartenRecords.KartengrundRecord)
+   is begin
+      
+      Put_Line (Item => "Basisgrund: " & GrundExtern.Basisgrund'Wide_Wide_Image & "    Zusatzgrund: " & GrundExtern.Zusatzgrund'Wide_Wide_Image);
+      
+   end Grundinformationen;
 
 end Diagnoseinformationen;

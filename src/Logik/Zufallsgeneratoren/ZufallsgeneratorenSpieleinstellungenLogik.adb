@@ -104,7 +104,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    
    function ZufälligeKartenressourcen
-     return KartenartDatentypen.Kartenressourcen_Enum
+     return KartenartDatentypen.Kartenressourcenmenge_Enum
    is begin
       
       ZufälligeKartenressourcenWählen.Reset (Gen => ZufälligeKartenressourcenGewählt);

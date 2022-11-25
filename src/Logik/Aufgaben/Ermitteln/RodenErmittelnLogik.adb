@@ -1,9 +1,12 @@
+with TextnummernKonstanten;
+
 with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
   
 with Fehlermeldungssystem;
 with ArbeitszeitRodenLogik;
 with Grenzpruefungen;
+with MeldungFestlegenLogik;
 
 package body RodenErmittelnLogik is
 
@@ -22,7 +25,8 @@ package body RodenErmittelnLogik is
       if
         Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
       then
-         -- Hier noch eine Meldung einbauen dass es auf diesem Feld nicht zum Roden/Trockenlegen gibt? äöü
+         MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserung,
+                                                        RasseExtern   => EinheitRasseNummerExtern.Rasse);
          return False;
          
       elsif

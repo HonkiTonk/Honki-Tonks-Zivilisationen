@@ -68,7 +68,7 @@ private
                                                      - KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Vier_Enum)
                                                     );
 
-   type ZusatzgrundwertArray is array (Boolean'Range, Boolean'Range, Boolean'Range, Boolean'Range) of Natural;
+   type ZusatzgrundwertArray is array (Boolean'Range, Boolean'Range, Boolean'Range, Boolean'Range) of Positive;
    Zusatzgrundwert : constant ZusatzgrundwertArray := (
                                                        True =>
                                                          (
@@ -137,7 +137,7 @@ private
                                                          )
                                                       );
 
-   type ZusatzgrundSeitenArray is array (KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range) of Natural;
+   type ZusatzgrundSeitenArray is array (KartengrundDatentypen.Zusatzgrund_Wald_Enum'Range) of Positive;
    ZusatzgrundLinks : constant ZusatzgrundSeitenArray := (
                                                           -- Alle Möglichkeiten die sich ändern.
                                                           KartengrundDatentypen.Wald_Senkrecht_Enum           => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Rechts_Enum),
@@ -225,6 +225,7 @@ private
                                                           KartengrundDatentypen.Waldendstück_Unten_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Unten_Enum),
                                                           KartengrundDatentypen.Waldkreuzung_Vier_Enum        => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Vier_Enum)
                                                          );
+
 
 
    function BerechnungLinks

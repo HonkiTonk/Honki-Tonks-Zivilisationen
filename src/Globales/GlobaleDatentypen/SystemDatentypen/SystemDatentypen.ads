@@ -22,7 +22,7 @@ package SystemDatentypen is
    subtype Fragen is Natural range 0 .. 48;
    subtype FragenVorhanden is Fragen range 1 .. Fragen'Last;
      
-   subtype Spielmeldungen is Natural range 0 .. 16;
+   subtype Spielmeldungen is Natural range 0 .. 17;
    subtype SpielmeldungenVorhanden is Spielmeldungen range 1 .. Spielmeldungen'Last;
    
    

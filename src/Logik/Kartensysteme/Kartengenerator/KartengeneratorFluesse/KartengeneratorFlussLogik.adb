@@ -4,7 +4,6 @@ with LadezeitenDatentypen;
 
 with LeseWeltkarte;
 
-with KartenkoordinatenberechnungssystemLogik;
 with ZufallsgeneratorenKartenLogik;
 with KartengeneratorVariablenLogik;
 with FlussplatzierungssystemLogik;
@@ -62,7 +61,7 @@ package body KartengeneratorFlussLogik is
                   
                when others =>
                   if
-                    FlussumgebungTesten (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) = True
+                    FlussAnlegen (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) = True
                   then
                      FlussplatzierungssystemLogik.Flussplatzierung (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                      
@@ -89,60 +88,29 @@ package body KartengeneratorFlussLogik is
    
    
    
-   function FlussumgebungTesten
+   function FlussAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
       use type SystemDatentypen.NullBisHundert;
-      use type KartengrundDatentypen.Kartenfluss_Enum;
    begin
          
       BeliebigerFlusswert (KoordinatenExtern.EAchse) := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
-                  
+      
       if
-        BeliebigerFlusswert (KoordinatenExtern.EAchse) <= WahrscheinlichkeitFluss (KoordinatenExtern.EAchse)
+        BeliebigerFlusswert (KoordinatenExtern.EAchse) = 0
       then
-         return True;
+         return False;
          
       elsif
-        Float (BeliebigerFlusswert (KoordinatenExtern.EAchse)) * FlussumgebungBonus > Float (WahrscheinlichkeitFluss (KoordinatenExtern.EAchse))
+        BeliebigerFlusswert (KoordinatenExtern.EAchse) > WahrscheinlichkeitFluss (KoordinatenExtern.EAchse)
       then
          return False;
          
       else
-         null;
+         return True;
       end if;
-      
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
-                  
-            KartenWert (KoordinatenExtern.EAchse) := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                                 ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
-                                                                                                                                                        YAchseSchleifenwert,
-                                                                                                                                                        XAchseSchleifenwert),
-                                                                                                                                 LogikGrafikExtern => True);
-            
-            if
-              KartenWert (KoordinatenExtern.EAchse).XAchse = KartenKonstanten.LeerXAchse
-            then
-               null;
-               
-            elsif
-              LeseWeltkarte.Fluss (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse)) /= KartengrundDatentypen.Leer_Fluss_Enum
-            then
-               return True;
-
-            else
-               null;
-            end if;
          
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
-      
-      return False;
-         
-   end FlussumgebungTesten;
+   end FlussAnlegen;
 
 end KartengeneratorFlussLogik;

@@ -139,9 +139,7 @@ package body Zusatzgrundplatzierungssystem is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
-   is
-      use type KartengrundDatentypen.Zusatzgrund_Enum;
-   begin
+   is begin
       
       WelcherGrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -175,9 +173,7 @@ package body Zusatzgrundplatzierungssystem is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
-   is
-      use type KartengrundDatentypen.Zusatzgrund_Enum;
-   begin
+   is begin
       
       WelcherGrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -211,9 +207,7 @@ package body Zusatzgrundplatzierungssystem is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
-   is
-      use type KartengrundDatentypen.Zusatzgrund_Enum;
-   begin
+   is begin
       
       WelcherGrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern);
       
@@ -247,9 +241,7 @@ package body Zusatzgrundplatzierungssystem is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrundnummerExtern : in Positive)
       return Boolean
-   is
-      use type KartengrundDatentypen.Zusatzgrund_Enum;
-   begin
+   is begin
       
       WelcherGrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern);
       

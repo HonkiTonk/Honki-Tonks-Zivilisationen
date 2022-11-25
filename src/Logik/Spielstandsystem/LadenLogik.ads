@@ -18,6 +18,8 @@ private
    use type RassenDatentypen.Spieler_Enum;
 
    Leerwert : Boolean;
+   PrüfungErfolgreich : Boolean;
+   Zwischenprüfung : Boolean;
 
    DateiLaden : File_Type;
 
@@ -43,6 +45,9 @@ private
 
    Karteneintrag : WeltkarteRecords.WeltkarteRecord;
 
+   procedure Ladevorgang
+     (DateiLadenExtern : in File_Type);
+
 
 
    function Prüfen
@@ -50,22 +55,22 @@ private
       return Boolean;
 
    function KarteLaden
-     (PrüfenLadenExtern : in Boolean;
+     (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
       return Boolean;
 
    function AllgemeinesLaden
-     (PrüfenLadenExtern : in Boolean;
+     (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
       return Boolean;
 
    function RassenwerteLaden
-     (PrüfenLadenExtern : in Boolean;
+     (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
       return Boolean;
 
    function Rassenwerte
-     (PrüfenLadenExtern : in Boolean;
+     (LadenPrüfenExtern : in Boolean;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       DateiLadenExtern : in File_Type)
       return Boolean;

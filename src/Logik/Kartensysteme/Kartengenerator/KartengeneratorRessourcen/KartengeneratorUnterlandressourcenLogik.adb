@@ -1,6 +1,7 @@
 with SchreibeWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
+with KartengeneratorVariablenLogik;
 
 package body KartengeneratorUnterlandressourcenLogik is
 
@@ -11,58 +12,35 @@ package body KartengeneratorUnterlandressourcenLogik is
    begin
       
       WelcheRessource := KartengrundDatentypen.Leer_Ressource_Enum;
+      Zahlenspeicher := 0;
       
       ZufallszahlenSchleife:
-      for ZufallszahlSchleifenwert in KartenressourceWahrscheinlichkeitArray'Range loop
+      for ZufallszahlSchleifenwert in KartengrundDatentypen.Kartenressourcen_Unterfläche_Land_Enum'Range loop
          
-         GezogeneZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
+         GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
          if
-           GezogeneZahlen (ZufallszahlSchleifenwert) < KartenressourceWahrscheinlichkeit (ZufallszahlSchleifenwert)
+           GezogeneZahl > KartengeneratorVariablenLogik.KartenressourcenWahrscheinlichkeiten (ZufallszahlSchleifenwert)
+           or
+             GezogeneZahl = 0
          then
-            WelcheMöglichkeiten (ZufallszahlSchleifenwert) := True;
+            null;
+            
+         elsif
+           (GezogeneZahl = Zahlenspeicher
+            and
+              ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True)
+           or
+             GezogeneZahl > Zahlenspeicher
+         then
+            Zahlenspeicher := GezogeneZahl;
+            WelcheRessource := ZufallszahlSchleifenwert;
             
          else
-            WelcheMöglichkeiten (ZufallszahlSchleifenwert) := False;
+            null;
          end if;
          
       end loop ZufallszahlenSchleife;
-      
-      WahrscheinlichkeitSchleife:
-      for WahrscheinlichkeitSchleifenwert in KartenressourceWahrscheinlichkeitArray'Range loop
-         
-         if
-           WelcheMöglichkeiten (WahrscheinlichkeitSchleifenwert) = False
-         then
-            null;
-         
-         else
-            case
-              WelcheRessource
-            is
-               when KartengrundDatentypen.Leer_Ressource_Enum =>
-                  WelcheRessource := WahrscheinlichkeitSchleifenwert; 
-                        
-               when others =>
-                  if
-                    GezogeneZahlen (WahrscheinlichkeitSchleifenwert) > GezogeneZahlen (WelcheRessource)
-                  then
-                     WelcheRessource := WahrscheinlichkeitSchleifenwert;
-                        
-                  elsif
-                    GezogeneZahlen (WahrscheinlichkeitSchleifenwert) = GezogeneZahlen (WelcheRessource)
-                    and
-                      ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True
-                  then
-                     WelcheRessource := WahrscheinlichkeitSchleifenwert;
-                           
-                  else
-                     null;
-                  end if;
-            end case;
-         end if;
-         
-      end loop WahrscheinlichkeitSchleife;
       
       case
         WelcheRessource

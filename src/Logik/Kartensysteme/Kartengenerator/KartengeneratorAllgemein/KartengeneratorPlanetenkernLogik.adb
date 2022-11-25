@@ -31,6 +31,14 @@ package body KartengeneratorPlanetenkernLogik is
                SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
                                              GrundExtern       => KartengrundDatentypen.Planetenkern_Enum);
                
+            elsif
+              YAchseSchleifenwert in YKernanfang - 1 .. YKernende + 1
+              and
+                XAchseSchleifenwert in XKernanfang - 1 .. XKernende + 1
+            then
+               SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
+                                             GrundExtern       => KartengrundDatentypen.Lava_Enum);
+               
             else
                BasisgrundBestimmen (KoordinatenExtern => (KartenKonstanten.PlaneteninneresKonstante, YAchseSchleifenwert, XAchseSchleifenwert));
             end if;
@@ -60,58 +68,35 @@ package body KartengeneratorPlanetenkernLogik is
    begin
       
       WelcherGrund := KartengrundDatentypen.Leer_Basisgrund_Enum;
+      Zahlenspeicher := 0;
       
       ZufallszahlenSchleife:
       for ZufallszahlSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
          
-         BasisZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
+         GezogeneZahl := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
          
          if
-           BasisZahlen (ZufallszahlSchleifenwert) < BasisWahrscheinlichkeiten (ZufallszahlSchleifenwert)
-         then
-            BasisMöglichkeiten (ZufallszahlSchleifenwert) := True;
-            
-         else
-            BasisMöglichkeiten (ZufallszahlSchleifenwert) := False;
-         end if;
-         
-      end loop ZufallszahlenSchleife;
-      
-      WahrscheinlichkeitSchleife:
-      for WahrscheinlichkeitSchleifenwert in BasisWahrscheinlichkeitenArray'Range loop
-            
-         if
-           BasisMöglichkeiten (WahrscheinlichkeitSchleifenwert) = False
+           GezogeneZahl > BasisWahrscheinlichkeiten (ZufallszahlSchleifenwert)
+           or
+             GezogeneZahl = 0
          then
             null;
          
-         else
-            case
-              WelcherGrund
-            is
-            when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-               WelcherGrund := WahrscheinlichkeitSchleifenwert; 
-                        
-            when others =>
-               if
-                 BasisZahlen (WahrscheinlichkeitSchleifenwert) > BasisZahlen (WelcherGrund)
-               then
-                  WelcherGrund := WahrscheinlichkeitSchleifenwert;
-                        
-               elsif
-                 BasisZahlen (WahrscheinlichkeitSchleifenwert) = BasisZahlen (WelcherGrund)
-                 and
-                   ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True
-               then
-                  WelcherGrund := WahrscheinlichkeitSchleifenwert;
-                           
-               else
-                  null;
-               end if;
-            end case;
-         end if;
+         elsif
+           (GezogeneZahl = Zahlenspeicher
+            and
+              ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True)
+           or
+             GezogeneZahl > Zahlenspeicher
+         then
+            Zahlenspeicher := GezogeneZahl;
+            WelcherGrund := ZufallszahlSchleifenwert;
             
-      end loop WahrscheinlichkeitSchleife;
+         else
+            null;
+         end if;
+         
+      end loop ZufallszahlenSchleife;
       
       case
         WelcherGrund

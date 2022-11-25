@@ -156,5 +156,6 @@ package TextnummernKonstanten is
    MeldungImKrieg : constant Positive := 14;
    MeldungNichtangriffspakt : constant Positive := 15;
    MeldungBelegt : constant Positive := 16;
+   MeldungUnladbar : constant Positive := 17;
 
 end TextnummernKonstanten;

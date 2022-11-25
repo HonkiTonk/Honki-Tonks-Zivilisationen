@@ -14,7 +14,6 @@ with KartenkoordinatenberechnungssystemLogik;
 with StadtEntfernenLogik;
 with StadtSuchenLogik;
 with EinheitSuchenLogik;
-with WegeplatzierungssystemLogik;
 
 package body PZBEingesetztLogik is
 
@@ -117,6 +116,7 @@ package body PZBEingesetztLogik is
    
    
    
+   -- Hier die Entfernung von Grund/Verbesserungen nicht durch die Platzierungssysteme vornehmen, da ja alles zerstört wird wäre das hier unsinnig.
    procedure FeldVernichten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
@@ -150,8 +150,8 @@ package body PZBEingesetztLogik is
                                      GrundExtern       => (KartengrundDatentypen.Vernichtet_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum));
       SchreibeWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern,
                                FlussExtern       => KartengrundDatentypen.Leer_Fluss_Enum);
-      -- Könnte eventuell Leistungsprobleme erzeugen da unter bestimmten Umständen sehr viele Felder geprüft werden, später eine bessere Lösung suchen? äöü
-      WegeplatzierungssystemLogik.Wegentfernung (KoordinatenExtern => KoordinatenExtern);
+      SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
+                             WegExtern         => KartenverbesserungDatentypen.Leer_Weg_Enum);
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                       VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       SchreibeWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern,

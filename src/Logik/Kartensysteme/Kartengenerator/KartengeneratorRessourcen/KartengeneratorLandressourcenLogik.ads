@@ -23,19 +23,8 @@ private
 
    WelcheRessource : KartengrundDatentypen.Kartenressourcen_Enum;
 
-   type KartenressourceWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartenressourcen_Oberfläche_Land_Enum'Range) of SystemDatentypen.NullBisHundert;
-   KartenressourceWahrscheinlichkeit : KartenressourceWahrscheinlichkeitArray := (
-                                                                                  KartengrundDatentypen.Kohle_Enum              => 2,
-                                                                                  KartengrundDatentypen.Eisen_Enum              => 2,
-                                                                                  KartengrundDatentypen.Öl_Enum                 => 2,
-                                                                                  KartengrundDatentypen.Hochwertiger_Boden_Enum => 2,
-                                                                                  KartengrundDatentypen.Hochwertiges_Holz_Enum  => 2,
-                                                                                  KartengrundDatentypen.Gold_Enum               => 2
-                                                                                 );
-   GezogeneZahlen : KartenressourceWahrscheinlichkeitArray;
-
-   type WelcheMöglichkeitenArray is array (KartenressourceWahrscheinlichkeitArray'Range) of Boolean;
-   WelcheMöglichkeiten : WelcheMöglichkeitenArray;
+   GezogeneZahl : SystemDatentypen.NullBisHundert;
+   Zahlenspeicher : SystemDatentypen.NullBisHundert;
 
 
 

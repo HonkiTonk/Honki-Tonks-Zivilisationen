@@ -46,7 +46,7 @@ package body UmwandlungenVerschiedeneDatentypen is
    
    function KartenressourcenrückgabeNachKartenressource
      (RückgabeExtern : in RueckgabeDatentypen.Kartenressourcen_Enum)
-      return KartenartDatentypen.Kartenressourcen_Enum
+      return KartenartDatentypen.Kartenressourcenmenge_Enum
    is begin
       
       return KartenressourcenrückgabeKartenressource (RückgabeExtern);

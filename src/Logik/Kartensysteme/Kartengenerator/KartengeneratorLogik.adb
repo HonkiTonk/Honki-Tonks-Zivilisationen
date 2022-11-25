@@ -7,15 +7,15 @@ with KartengeneratorRessourcenLogik;
 with KartengeneratorUnterflaecheLogik;
 with KartengeneratorAllgemeinesLogik;
 with LadezeitenLogik;
+with KartengeneratorVariablenLogik;
 
 package body KartengeneratorLogik is
 
    procedure Kartengenerator
    is begin
       
-      PrüfeEinstellungen;
-      
       KartengeneratorAllgemeinesLogik.GenerierungAllgemeines;
+      PrüfeEinstellungen;
       LadezeitenLogik.FortschrittSpielweltMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
       
       KartengeneratorKuesteLogik.GenerierungKüstenSeeGewässer;
@@ -40,7 +40,13 @@ package body KartengeneratorLogik is
    procedure PrüfeEinstellungen
    is begin
       
-      null;
+      RessourcenSchleife:
+      for RessourcenSchleifenwert in KartengeneratorVariablenLogik.KartenressourcenWahrscheinlichkeitenArray'Range loop
+         
+         KartengeneratorVariablenLogik.KartenressourcenWahrscheinlichkeiten (RessourcenSchleifenwert)
+           := KartengeneratorVariablenLogik.StandardKartenressourcenWahrscheinlichkeiten (KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen, RessourcenSchleifenwert);
+         
+      end loop RessourcenSchleife;
       
    end PrüfeEinstellungen;
 
