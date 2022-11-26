@@ -13,32 +13,33 @@ with EinheitSuchenLogik;
 
 with KIDatentypen;
 
-with KIKriegErmittelnLogik;
+with LeseKIVariablen;
 
 package body KIGefahrErmittelnLogik is
    
    -- Noch eine Version bauen um die Kampfstärken direkt zu vergleichen? äöü
+   -- Diese function kann vermutlich später raus? äöü
    function GefahrErmitteln
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenRecords.RasseEinheitnummerRecord
    is begin
       
-      case
-        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-      is
-         when KIDatentypen.Angreifen_Enum | KIDatentypen.Verteidigen_Enum | KIDatentypen.Verbesserung_Zerstören_Enum | KIDatentypen.Flucht_Enum =>
-            return EinheitenKonstanten.LeerRasseNummer;
-            
-         when others =>
-            if
-              KIKriegErmittelnLogik.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse) = False
-            then
+      if
+        LeseKIVariablen.Kriegszustand = False
+      then
+         return EinheitenKonstanten.LeerRasseNummer;
+         
+      else
+         case
+           LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+         is
+            when KIDatentypen.Angreifen_Enum | KIDatentypen.Verteidigen_Enum | KIDatentypen.Verbesserung_Zerstören_Enum | KIDatentypen.Flucht_Enum =>
                return EinheitenKonstanten.LeerRasseNummer;
-               
-            else
+            
+            when others =>
                return GefahrSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            end if;
-      end case;
+         end case;
+      end if;
             
    end GefahrErmitteln;
    
@@ -137,11 +138,9 @@ package body KIGefahrErmittelnLogik is
             return False;
             
          when others =>
-            null;
+            return True;
       end case;
-      
-      return True;
-      
+            
    end ReaktionErfoderlich;
 
 end KIGefahrErmittelnLogik;

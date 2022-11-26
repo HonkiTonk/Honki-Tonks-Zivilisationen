@@ -2,7 +2,8 @@ with LeseAllgemeines;
 
 with KIDatentypen;
 with KIKonstanten;
-with KIVariablen;
+
+with LeseKIVariablen;
 
 with KIEinheitHandlungstestsLogik;
 with KIEinheitenAufgabenplanungLogik;
@@ -17,7 +18,7 @@ package body KIEinheitLogik is
    is begin
             
       case
-        KIVariablen.Kriegszustand
+        LeseKIVariablen.Kriegszustand
       is
          when False =>
             if

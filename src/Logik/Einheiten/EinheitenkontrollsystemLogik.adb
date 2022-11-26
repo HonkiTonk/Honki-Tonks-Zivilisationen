@@ -156,7 +156,7 @@ package body EinheitenkontrollsystemLogik is
          end loop YAchseSchleife;
       end loop EAchseSchleife;
       
-      return False;
+      return True;
       
    end AllgemeineEinheitenbewegungMaus;
    
@@ -200,7 +200,7 @@ package body EinheitenkontrollsystemLogik is
          end loop YAchseSchleife;
       end loop EAchseSchleife;
       
-      return False;
+      return True;
       
    end EinheitenbewegungMaus;
 

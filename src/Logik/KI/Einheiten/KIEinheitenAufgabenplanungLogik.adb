@@ -38,7 +38,7 @@ package body KIEinheitenAufgabenplanungLogik is
                                              IDExtern    => EinheitID)
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
-            KISiedleraufgabenLogik.KISiedleraufgabenLogik (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KISiedleraufgabenLogik.Siedleraufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when EinheitenDatentypen.Nahkämpfer_Enum | EinheitenDatentypen.Cheat_Enum =>
             KINahkampfaufgabenLogik.Nahkämpferaufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

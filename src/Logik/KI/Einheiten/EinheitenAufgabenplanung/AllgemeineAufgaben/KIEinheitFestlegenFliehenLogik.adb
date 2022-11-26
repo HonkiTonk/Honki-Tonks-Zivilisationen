@@ -4,26 +4,16 @@ with SchreibeEinheitenGebaut;
 
 with KIDatentypen;
 
-with KIGefahrErmittelnLogik;
-
 package body KIEinheitFestlegenFliehenLogik is
 
    function Fliehen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is
-      use type EinheitenRecords.RasseEinheitnummerRecord;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
-      if
-        KIGefahrErmittelnLogik.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer
-      then
-         return False;
-         
-      else
-         ZielKoordinate := Ziel (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      end if;
+      ZielKoordinate := Ziel (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       case
         ZielKoordinate = KartenRecordKonstanten.LeerKoordinate

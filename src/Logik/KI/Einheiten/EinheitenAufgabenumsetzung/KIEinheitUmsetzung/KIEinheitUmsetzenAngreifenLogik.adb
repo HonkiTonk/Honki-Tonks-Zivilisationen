@@ -1,17 +1,26 @@
-with KIKriegErmittelnLogik;
+with KartenRecordKonstanten;
+with KartenRecords;
+
+with LeseEinheitenGebaut;
 
 package body KIEinheitUmsetzenAngreifenLogik is
 
    function Angreifen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
       
-      -- Hier direkt nächste Einheit zum Angreifen suchen? äöü
-      -- KIEinheitFestlegenAngreifen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern); äöü
-      
-      -- Platzhalter
-        return KIKriegErmittelnLogik.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      case
+        LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
+      is
+         when True =>
+            return False;
+            
+         when False =>
+            return True;
+      end case;
       
    end Angreifen;
 

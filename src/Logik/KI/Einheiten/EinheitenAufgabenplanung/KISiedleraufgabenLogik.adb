@@ -4,6 +4,8 @@ with LeseWichtiges;
 
 with KIDatentypen;
 
+with LeseKIVariablen;
+
 with KIAufgabenVerteiltLogik;
 with KIEinheitFestlegenSiedelnLogik;
 with KIEinheitFestlegenVerbesserungenLogik;
@@ -12,11 +14,11 @@ with KIEinheitFestlegenAufloesenLogik;
 with KIEinheitFestlegenFliehenLogik;
 with KIEinheitFestlegenBefestigenLogik;
 with KIEinheitFestlegenNichtsLogik;
+with KIGefahrErmittelnLogik;
 
--- Siedler auch Verbessern? äöü
 package body KISiedleraufgabenLogik is
 
-   procedure KISiedleraufgabenLogik
+   procedure Siedleraufgaben
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
@@ -29,9 +31,34 @@ package body KISiedleraufgabenLogik is
         and then
           KIEinheitFestlegenSiedelnLogik.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
       then
-         null;
+         return;
          
-      elsif
+      else
+         null;
+      end if;
+      
+      case
+        LeseKIVariablen.Kriegszustand
+      is
+         when False =>
+            NormaleAufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         when True =>
+            Kriegsaufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end case;
+      
+   end Siedleraufgaben;
+   
+   
+   
+   -- Siedler auch Verbessern? äöü
+   procedure NormaleAufgaben
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   is
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+   begin
+      
+      if
         KIEinheitFestlegenVerbesserungenLogik.StadtumgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
       then
          null;
@@ -56,21 +83,41 @@ package body KISiedleraufgabenLogik is
       then
          null;
          
-      elsif
-        KIEinheitFestlegenFliehenLogik.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
-      then
-         null;
-         
-      elsif
-        KIEinheitFestlegenBefestigenLogik.Befestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
-      then
-         null;
-         
          -- Hier noch eine Prüfung einbauen ob eine andere Einheit auf das Feld dieser Einheit will und dann aus dem Weg gehen? äöü
       else
          KIEinheitFestlegenNichtsLogik.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
-   end KISiedleraufgabenLogik;
+   end NormaleAufgaben;
+     
+   
+   
+   procedure Kriegsaufgaben
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   is begin
+      
+      case
+        KIGefahrErmittelnLogik.GefahrSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern).Nummer
+      is
+         when EinheitenKonstanten.LeerNummer =>
+            NormaleAufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         when others =>
+            if
+              KIEinheitFestlegenFliehenLogik.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+            then
+               null;
+         
+            elsif
+              KIEinheitFestlegenBefestigenLogik.Befestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+            then
+               null;
+         
+            else
+               KIEinheitFestlegenNichtsLogik.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            end if;
+      end case;
+      
+   end Kriegsaufgaben;
 
 end KISiedleraufgabenLogik;

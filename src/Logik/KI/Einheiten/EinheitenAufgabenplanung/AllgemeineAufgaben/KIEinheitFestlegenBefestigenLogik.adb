@@ -14,7 +14,7 @@ package body KIEinheitFestlegenBefestigenLogik is
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               AufgabeExtern            => KIDatentypen.Einheit_Festsetzen_Enum);
       
-      return False;
+      return True;
       
    end Befestigen;
 

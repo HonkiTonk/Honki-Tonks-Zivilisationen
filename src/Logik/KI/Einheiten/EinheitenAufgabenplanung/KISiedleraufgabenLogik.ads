@@ -12,7 +12,7 @@ package KISiedleraufgabenLogik is
    use type RassenDatentypen.Rassen_Enum;
    use type RassenDatentypen.Spieler_Enum;
 
-   procedure KISiedleraufgabenLogik
+   procedure Siedleraufgaben
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (
@@ -24,5 +24,23 @@ package KISiedleraufgabenLogik is
 private
 
    VorhandeneStädte : StadtDatentypen.MaximaleStädteMitNullWert;
+
+   procedure NormaleAufgaben
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+               and
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+              );
+
+   procedure Kriegsaufgaben
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+               and
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+              );
 
 end KISiedleraufgabenLogik;

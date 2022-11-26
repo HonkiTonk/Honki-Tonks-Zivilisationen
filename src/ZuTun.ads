@@ -1,5 +1,8 @@
 -- Womit ich aufgehört habe:
 
+-- Über mehrere Felder auf einmal bewegen als Mensch.
+-- Grafische Anzeige der ausgewählten Anzeige wenn man sich auf einer anderen Ebene befindet.
+-- Bei ausgewählter Einheit und Ebenenwechsel automatisch zur Position der EInheit springen?
 --
 
 

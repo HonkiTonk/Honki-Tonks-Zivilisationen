@@ -1,6 +1,12 @@
+with StadtDatentypen;
+with EinheitenDatentypen;
+
+with LeseWichtiges;
+
 with PZBEingesetztLogik;
 
-with KIKriegErmittelnLogik;
+with LeseKIVariablen;
+
 with KIEinheitFestlegenNichtsLogik;
 
 package body KIPZBAufgabenLogik is
@@ -9,8 +15,41 @@ package body KIPZBAufgabenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
+      case
+        LeseKIVariablen.Kriegszustand
+      is
+         when False =>
+            NormaleAufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         when True =>
+            Kriegsaufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end case;
+      
+   end PZBAufgaben;
+   
+   
+   
+   procedure NormaleAufgaben
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   is begin
+      
+      KIEinheitFestlegenNichtsLogik.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+   end NormaleAufgaben;
+   
+   
+     
+   procedure Kriegsaufgaben
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   is
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
+      
       if
-        KIKriegErmittelnLogik.IstImKrieg (RasseExtern => EinheitRasseNummerExtern.Rasse) = True
+        LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse) = 0
+        and
+          LeseWichtiges.AnzahlArbeiter (RasseExtern => EinheitRasseNummerExtern.Rasse) = 0
       then
          case
            PZBEingesetztLogik.PZBEingesetzt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
@@ -20,9 +59,9 @@ package body KIPZBAufgabenLogik is
          end case;
          
       else
-         KIEinheitFestlegenNichtsLogik.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         NormaleAufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
-   end PZBAufgaben;
+   end Kriegsaufgaben;
 
 end KIPZBAufgabenLogik;

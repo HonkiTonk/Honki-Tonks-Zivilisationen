@@ -21,17 +21,21 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (27.11.2022):
+   -- Version 0.04.4655 => 0.04. (27.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.4585 => 0.04. (26.11.2022):
+   -- Version 0.04.4585 => 0.04.4655 (26.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Den Zugriff auf die KIVariablen durch ein Lese- und Schreibesystem eingeschränkt.
+   -- KI überarbeitet.
+   -- Im Krieg versucht die KI im Bedrohungsfall mit ihren Siedler zu fliehen oder sie zu befestigen.
+   -- Die KI prüft nur noch im Krieg ob sie mit einer Einheit angreifen soll.
+   -- Die KI setzt eine PZB nur noch ein wenn sie keine Städte und keine Siedler mehr hat.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
