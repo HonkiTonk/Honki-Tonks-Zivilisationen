@@ -216,6 +216,16 @@ package body WeltkarteZeichnenGrafik is
       
       if
         EinheitRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
+        and
+          EinheitRasseNummerExtern.Nummer /= EinheitenKonstanten.LeerNummer
+      then
+         Einheitenmarkierung (KoordinatenExtern        => KoordinatenExtern,
+                              EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                              PositionExtern           => PositionExtern);
+         return;
+         
+      elsif
+        EinheitRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
       then
          return;
          
@@ -308,6 +318,42 @@ package body WeltkarteZeichnenGrafik is
       end case;
             
    end AnzeigeEinheit;
+   
+   
+   
+   -- Anstelle des Rahmens später vielleicht eine bessere Markierung ausdenken? äöü
+   procedure Einheitenmarkierung
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is
+      use type KartenDatentypen.EbeneVorhanden;
+   begin
+      
+      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      if
+        KoordinatenExtern.EAchse /= EinheitKoordinaten.EAchse
+        and
+          KoordinatenExtern.YAchse = EinheitKoordinaten.YAchse
+          and
+            KoordinatenExtern.XAchse = EinheitKoordinaten.XAchse
+      then
+         RahmenSchleife:
+         for RahmenSchleifenwert in UmgebungArray'Range loop
+            
+            RahmenZeichnen (WelcheRichtungExtern => RahmenSchleifenwert,
+                            PositionExtern       => PositionExtern,
+                            RasseExtern          => EinheitRasseNummerExtern.Rasse);
+            
+         end loop RahmenSchleife;
+         
+      else
+         null;
+      end if;
+      
+   end Einheitenmarkierung;
+     
    
    
    

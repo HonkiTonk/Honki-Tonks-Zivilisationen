@@ -18,12 +18,12 @@ package body ZufallsgeneratorenStartkoordinatenLogik is
       KartenpunktWählen.Reset (Gen => KartenpunktGewählt);
          
       Startkoordinate.YAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
-                                                           First => KartenDatentypen.KartenfeldPositiv'First,
-                                                           Last  => LeseWeltkarteneinstellungen.YAchse);
+                                                           First => KartenDatentypen.KartenfeldPositiv'First + 2,
+                                                           Last  => LeseWeltkarteneinstellungen.YAchse - 2);
       
       Startkoordinate.XAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
-                                                           First => KartenDatentypen.KartenfeldPositiv'First,
-                                                           Last  => LeseWeltkarteneinstellungen.XAchse);
+                                                           First => KartenDatentypen.KartenfeldPositiv'First + 2,
+                                                           Last  => LeseWeltkarteneinstellungen.XAchse - 2);
          
       return Startkoordinate;
       

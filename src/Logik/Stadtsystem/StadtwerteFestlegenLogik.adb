@@ -110,9 +110,17 @@ package body StadtwerteFestlegenLogik is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      NeueUmgebungsgrößePrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                   GrößeNeuExtern         => GrößeNeu,
-                                   GrößeAltExtern         => GrößeAlt);
+      case
+        GrößeNeu
+      is
+         when 0 =>
+            null;
+            
+         when others =>
+            NeueUmgebungsgrößePrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         GrößeNeuExtern         => GrößeNeu,
+                                         GrößeAltExtern         => GrößeAlt);
+      end case;
       
    end StadtUmgebungGrößeFestlegen;
    
@@ -181,6 +189,7 @@ package body StadtwerteFestlegenLogik is
       
       UmgebungFestlegen (ZuwachsOderSchwundExtern => ZuwachsOderSchwundExtern,
                          StadtRasseNummerExtern   => StadtRasseNummerExtern);
+      -- Diese Verwendung hier überall auch mal anpassen. äöü
       WelchesFeld := (0, 0, 0);
       
       case

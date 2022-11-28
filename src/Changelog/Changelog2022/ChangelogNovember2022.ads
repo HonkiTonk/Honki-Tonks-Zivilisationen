@@ -14,17 +14,18 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (28.11.2022):
+   -- Version 0.04.4695 => 0.04. (28.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.4655 => 0.04. (27.11.2022):
+   -- Version 0.04.4655 => 0.04.4695 (27.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Hat man eine Einheit ausgewählt und befindet sich auf einer anderen Ebene als diese, dann wird das Einheitenfeld mit einem Rahmen markiert.
+   -- Beim Entfernen einer Stadt wird jetzt geprüft ob Städte in der Nähe diese gebiet belegen können.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

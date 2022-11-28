@@ -11,12 +11,18 @@ with MausauswahlLogik;
 with PZBEingesetztLogik;
 with EinheitentransporterLogik;
 with NachGrafiktask;
+with EinheitenbewegungsbereichLogik;
 
 package body EinheitenkontrollsystemLogik is
 
    procedure Einheitenkontrolle
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type EinheitenDatentypen.Bewegungspunkte;
+   begin
+      
+      Bewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitenbewegungsbereichLogik.BewegungsbereichBerechnen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       KontrollSchleife:
       loop
@@ -26,7 +32,14 @@ package body EinheitenkontrollsystemLogik is
                            BefehlExtern             => TasteneingabeLogik.Einheitentaste)
          is
             when True =>
-               null;
+               if
+                 Bewegungspunkte = LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+               then
+                  null;
+                  
+               else
+                  EinheitenbewegungsbereichLogik.BewegungsbereichBerechnen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               end if;
                
             when False =>
                return;

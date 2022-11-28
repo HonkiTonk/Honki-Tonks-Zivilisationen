@@ -5,6 +5,7 @@ with EinheitenKonstanten;
 private with BefehleDatentypen;
 private with KartenDatentypen;
 private with KartenRecords;
+private with EinheitenDatentypen;
 
 with LeseGrenzen;
 with LeseRassenbelegung;
@@ -27,6 +28,8 @@ private
    use type KartenDatentypen.Ebene;
       
    Mausbefehl : BefehleDatentypen.Einheitenbelegung_Enum;
+   
+   Bewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    EinheitenKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;

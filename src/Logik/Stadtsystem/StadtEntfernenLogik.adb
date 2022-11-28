@@ -18,6 +18,7 @@ with KartenkoordinatenberechnungssystemLogik;
 with RasseEntfernenLogik;
 with JaNeinLogik;
 with GlobalesWachstumLogik;
+with StadtwerteFestlegenLogik;
 
 package body StadtEntfernenLogik is
    
@@ -67,10 +68,12 @@ package body StadtEntfernenLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is
       use type KartenDatentypen.Kartenfeld;
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
+      -- Warum ist das nicht auch Teil von StadtUmgebungGrößeFestlegen? äöü
       YAchseSchleife:
       for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
          XAchseSchleife:
@@ -98,6 +101,45 @@ package body StadtEntfernenLogik is
          
          end loop XAchseSchleife;
       end loop YAchseSchleife;
+      
+      -- Und das hier muss ich auch in StadtUmgebungGrößeFestlegen durchführen. äöü
+      YUmgebungSchleife:
+      for YUmgebungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'First -1 .. KartenDatentypen.UmgebungsbereichDrei'Last + 1 loop
+         XUmgebungSchleife:
+         for XUmgebungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'First -1 .. KartenDatentypen.UmgebungsbereichDrei'Last + 1 loop
+         
+            if
+            abs (YUmgebungSchleifenwert) < KartenDatentypen.UmgebungsbereichDrei'Last + 1
+              and
+            abs (XUmgebungSchleifenwert) < KartenDatentypen.UmgebungsbereichDrei'Last + 1
+            then
+               null;
+               
+            else
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YUmgebungSchleifenwert, XUmgebungSchleifenwert),
+                                                                                                         LogikGrafikExtern => True);
+               
+               case
+                 KartenWert.XAchse
+               is
+                  when KartenKonstanten.LeerXAchse =>
+                     null;
+                     
+                  when others =>
+                     if
+                       LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KartenWert).Nummer = StadtKonstanten.LeerNummer
+                     then
+                        null;
+                        
+                     else
+                        StadtwerteFestlegenLogik.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KartenWert));
+                     end if;
+               end case;
+            end if;
+         
+         end loop XUmgebungSchleife;
+      end loop YUmgebungSchleife;
       
    end BelegteStadtfelderFreigeben;
    

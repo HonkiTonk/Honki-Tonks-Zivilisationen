@@ -74,6 +74,7 @@ private
    Rahmengröße : Sf.System.Vector2.sfVector2f;
    
    KartenWertRahmen : KartenRecords.AchsenKartenfeldNaturalRecord;
+   EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    Farbe : Sf.Graphics.Color.sfColor;
    
@@ -220,6 +221,21 @@ private
    
    procedure StadtnameAnzeigen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+              );
+   
+   procedure Einheitenmarkierung
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
