@@ -13,6 +13,7 @@ with StadtSuchenLogik;
 with KampfsystemStadtLogik;
 with PassierbarkeitspruefungLogik;
 with EinheitenbewegungLogik;
+with BewegungspunkteBerechnenLogik;
 
 with KIKonstanten;
 with KIDatentypen;
@@ -20,11 +21,13 @@ with KIDatentypen;
 with KIBewegungsplanBerechnenLogik;
 with KIBewegungAllgemeinLogik;
 with KIBewegungsplanVereinfachenLogik;
+with KIEinheitHandlungstestsLogik;
 
-package body KIBewegungDurchfuehrenLogik is
+package body KIEinheitenbewegungLogik is
    
-   procedure KIBewegung
+   function Bewegung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
       use type EinheitenDatentypen.Bewegungspunkte;
@@ -50,7 +53,7 @@ package body KIBewegungDurchfuehrenLogik is
                   null;
                end if;
                
-               return;
+               exit BewegungSchleife;
                
             when others =>
                null;
@@ -58,11 +61,13 @@ package body KIBewegungDurchfuehrenLogik is
             
          if
            LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = Zielkoordinaten
+           or
+             Zielkoordinaten = KartenRecordKonstanten.LeerKoordinate
          then
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
             SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            return;
+            exit BewegungSchleife;
             
          elsif
            True = LeseWeltkarte.Sichtbar (KoordinatenExtern => Zielkoordinaten,
@@ -74,7 +79,7 @@ package body KIBewegungDurchfuehrenLogik is
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
             SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            return;
+            exit BewegungSchleife;
             
          elsif
            KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -87,7 +92,7 @@ package body KIBewegungDurchfuehrenLogik is
                   null;
                   
                when False =>
-                  return;
+                  exit BewegungSchleife;
             end case;
             
          else
@@ -96,7 +101,9 @@ package body KIBewegungDurchfuehrenLogik is
          
       end loop BewegungSchleife;
       
-   end KIBewegung;
+      return KIEinheitHandlungstestsLogik.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+   end Bewegung;
 
 
 
@@ -170,14 +177,29 @@ package body KIBewegungDurchfuehrenLogik is
    
    procedure BewegtSich
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+   is
+      use type EinheitenDatentypen.Bewegungspunkte;
+   begin
       
-      BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                             NeueKoordinatenExtern    => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                             PlanschrittExtern        => 1),
-                                                             EinheitentauschExtern    => False);
+      Bewegungsschritt := LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                              PlanschrittExtern        => 1);
       
-      KIBewegungsplanVereinfachenLogik.BewegungsplanVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      case
+        BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern    => Bewegungsschritt,
+                                                       EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      is
+         when EinheitenKonstanten.LeerBewegungspunkte =>
+            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                     BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
+                                                     RechnenSetzenExtern      => False);
+         
+         when others =>
+            BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                   NeueKoordinatenExtern    => Bewegungsschritt,
+                                                                   EinheitentauschExtern    => False);
+      
+            KIBewegungsplanVereinfachenLogik.BewegungsplanVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end case;
       
    end BewegtSich;
    
@@ -222,4 +244,4 @@ package body KIBewegungDurchfuehrenLogik is
          
    end Blockiert;
 
-end KIBewegungDurchfuehrenLogik;
+end KIEinheitenbewegungLogik;

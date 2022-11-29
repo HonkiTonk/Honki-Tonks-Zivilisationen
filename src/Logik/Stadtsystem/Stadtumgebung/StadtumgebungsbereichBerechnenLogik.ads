@@ -8,7 +8,7 @@ private with KartenDatentypen;
 with LeseGrenzen;
 with LeseRassenbelegung;
 
-package StadtumgebungsbereichFestlegenLogik is
+package StadtumgebungsbereichBerechnenLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
 
@@ -36,4 +36,4 @@ private
                  LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
-end StadtumgebungsbereichFestlegenLogik;
+end StadtumgebungsbereichBerechnenLogik;

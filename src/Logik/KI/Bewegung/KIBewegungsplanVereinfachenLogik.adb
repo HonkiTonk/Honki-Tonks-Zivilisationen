@@ -43,7 +43,7 @@ package body KIBewegungsplanVereinfachenLogik is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      AktuellerPlankoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      AktuellePlankoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                       PlanschrittExtern        => PlanschrittExtern);
       
       EAchseSchleife:
@@ -53,7 +53,7 @@ package body KIBewegungsplanVereinfachenLogik is
             XAchseSchleife:
             for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
-               KartenwertVereinfachung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuellerPlankoordinaten,
+               KartenwertVereinfachung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuellePlankoordinaten,
                                                                                                                       ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                                       LogikGrafikExtern => True);
                
@@ -91,48 +91,18 @@ package body KIBewegungsplanVereinfachenLogik is
       use type EinheitenDatentypen.BewegungsplanVorhanden;
    begin
       
+      Planschritt := 0;
+      
       BewegungsplanSchleife:
-      for BewegungplanSchleifenwert in reverse PlanschrittExtern + ÜbernächsterSchritt .. EinheitenRecords.KIBewegungPlanArray'Last loop
+      for BewegungsplanSchleifenwert in reverse PlanschrittExtern + ÜbernächsterSchritt .. EinheitenRecords.KIBewegungPlanArray'Last loop
                         
          if
            KoordinatenExtern = LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                   PlanschrittExtern        => BewegungplanSchleifenwert)
+                                                                   PlanschrittExtern        => BewegungsplanSchleifenwert)
          then
-            SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    KoordinatenExtern        => KoordinatenExtern,
-                                                    PlanplatzExtern          => PlanschrittExtern + NächsterSchritt);
+            Planschritt := BewegungsplanSchleifenwert;
             
-            Planschritt := PlanschrittExtern + ÜbernächsterSchritt;
-            
-            VerschiebungSchleife:
-            for VerschiebungSchleifenwert in BewegungplanSchleifenwert + 1 .. EinheitenRecords.KIBewegungPlanArray'Last loop
-               
-               SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       KoordinatenExtern        => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                       PlanschrittExtern        => VerschiebungSchleifenwert),
-                                                       PlanplatzExtern          => Planschritt);
-               
-               if
-                 Planschritt = EinheitenRecords.KIBewegungPlanArray'Last
-               then
-                  null;
-                  
-               else
-                  Planschritt := Planschritt + 1;
-               end if;
-               
-            end loop VerschiebungSchleife;
-            
-            LeerenSchleife:
-            for LeerenSchleifenwert in Planschritt .. EinheitenRecords.KIBewegungPlanArray'Last loop
-            
-               SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate,
-                                                       PlanplatzExtern          => LeerenSchleifenwert);
-               
-            end loop LeerenSchleife;
-            
-            return True;
+            exit BewegungsplanSchleife;
             
          else
             null;
@@ -140,7 +110,38 @@ package body KIBewegungsplanVereinfachenLogik is
                         
       end loop BewegungsplanSchleife;
       
-      return False;
+      case
+        Planschritt
+      is
+         when 0 =>
+            return False;
+            
+         when others =>
+            Zusatzschritt := NächsterSchritt;
+      end case;
+      
+      VerschiebungSchleife:
+      for VerschiebungSchleifenwert in Planschritt .. EinheitenRecords.KIBewegungPlanArray'Last loop
+                  
+         SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 KoordinatenExtern        => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                 PlanschrittExtern        => VerschiebungSchleifenwert),
+                                                 PlanplatzExtern          => PlanschrittExtern + Zusatzschritt);
+            
+         Zusatzschritt := Zusatzschritt + 1;
+               
+      end loop VerschiebungSchleife;
+      
+      LöschenSchleife:
+      for LöschenSchleifenwert in PlanschrittExtern + Zusatzschritt .. EinheitenRecords.KIBewegungPlanArray'Last loop
+         
+        SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate,
+                                                PlanplatzExtern          => LöschenSchleifenwert);
+         
+      end loop LöschenSchleife;
+            
+      return True;
       
    end Verschieben;
    

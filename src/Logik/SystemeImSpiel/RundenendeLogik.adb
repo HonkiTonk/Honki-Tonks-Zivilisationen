@@ -119,7 +119,8 @@ package body RundenendeLogik is
             return True;
             
          when SystemDatentypen.Gewonnen_Enum =>
-            SchreibeAllgemeines.Weiterspielen (WeiterspielenExtern => JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen));
+            Weiterspielen := JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageGewonnenWeiterspielen);
+            SchreibeAllgemeines.Weiterspielen (WeiterspielenExtern => Weiterspielen);
             return Weiterspielen;
             
          when SystemDatentypen.Verloren_Enum =>

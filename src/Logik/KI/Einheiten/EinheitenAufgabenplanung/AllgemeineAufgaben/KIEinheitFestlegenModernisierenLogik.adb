@@ -5,11 +5,10 @@ with StadtDatentypen;
 with LeseStadtGebaut;
 with LeseEinheitenGebaut;
 with SchreibeEinheitenGebaut;
-with LeseEinheitenDatenbank;
 
 with PassierbarkeitspruefungLogik;
-with ForschungstestsLogik;
 with KartenkoordinatenberechnungssystemLogik;
+with EinheitVerbessernLogik;
 
 with KIDatentypen;
 with KIKonstanten;
@@ -28,28 +27,13 @@ package body KIEinheitFestlegenModernisierenLogik is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      NeueEinheitenID := LeseEinheitenDatenbank.VerbesserungZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-      
       case
-        NeueEinheitenID
+        EinheitVerbessernLogik.EinheitVerbesserbar (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when EinheitenKonstanten.LeerID =>
             return False;
-            
-         when others =>
-            null;
-      end case;
-      
-      case
-        ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                   TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                              IDExtern    => NeueEinheitenID))
-      is
-         when False =>
-            return False;
               
-         when True =>
+         when others =>
             PlatzGefunden := KISonstigesSuchenLogik.EigenesFeldSuchen (AktuelleKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                        EinheitRasseNummerExtern  => EinheitRasseNummerExtern);
       end case;

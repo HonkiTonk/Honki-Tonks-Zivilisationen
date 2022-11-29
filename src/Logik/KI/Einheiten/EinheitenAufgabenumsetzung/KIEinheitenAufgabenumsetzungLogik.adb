@@ -1,4 +1,6 @@
 with AufgabenDatentypen;
+with KartenRecordKonstanten;
+with KartenRecords;
 
 with LeseEinheitenGebaut;
 with SchreibeEinheitenGebaut;
@@ -21,13 +23,32 @@ with KIEinheitUmsetzenAufloesenLogik;
 with KIEinheitUmsetzenAngriffskriegLogik;
 with KIEinheitUmsetzenVerteidigungskriegLogik;
 with KIEinheitUmsetzenPlatzMachenLogik;
+with KIEinheitHandlungstestsLogik;
 
 -- Die Umsetzung so gestalten wie die Planung? äöü
-package body KIEinheitAufgabenumsetzungLogik is
+package body KIEinheitenAufgabenumsetzungLogik is
 
-   procedure AufgabeUmsetzen
+   function Aufgabenumsetzung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-   is begin
+      return Boolean
+   is
+      use type KIDatentypen.Einheit_Aufgabe_Enum;
+      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
+      
+      if
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Leer_Aufgabe_Enum
+        and
+          LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
+        and
+          LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
+      then
+         null;
+         
+      else
+         return False;
+      end if;
       
       case
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
@@ -103,7 +124,9 @@ package body KIEinheitAufgabenumsetzungLogik is
             SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern      => AufgabenDatentypen.Leer_Aufgabe_Enum);
       end case;
+            
+      return KIEinheitHandlungstestsLogik.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-   end AufgabeUmsetzen;
+   end Aufgabenumsetzung;
 
-end KIEinheitAufgabenumsetzungLogik;
+end KIEinheitenAufgabenumsetzungLogik;

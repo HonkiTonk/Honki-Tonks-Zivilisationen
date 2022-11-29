@@ -7,24 +7,34 @@ package ChangelogNovember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (29.11.2022):
+   -- Version 0.04.4830 => 0.04. (29.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.4695 => 0.04. (28.11.2022):
+   -- Version 0.04.4695 => 0.04.4830 (28.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Code zusammengeführt.
+   -- Das Erweitern und Verkleinern der Stadtumgebung zusammengeführt.
+   -- Code gelöscht.
+   -- GPRBuild/GPRProject auf Version 23.0.0.1 aktualisiert.
+   -- Berechnung der Stadtumgebung und der automatischen Stadtfeldbewirtschaftung überarbeitet.
+   -- Fehler korrigiert der verhinderte dass ein Weiterspielen nach dem Besiegen aller Feinde möglich war.
+   -- Kleine grafische Anpassungen vorgenommen.
+   -- Bewegungsplanvereinfachung für die KI optimiert.
+   -- Einen Fehler korrigiert der der KI ermöglichte auf ein Feld zu ziehen ohne die benötigten Bewegungspunkte dafür zu haben.
+   -- KI überarbeitet.
+   -- Die KI ist jetzt in der Lage das Erkunden abzubrechen um eine Einheit zu verbessern.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/erweitert.
    
    
 
    -- Version 0.04.4655 => 0.04.4695 (27.11.2022):
    
    -- Hat man eine Einheit ausgewählt und befindet sich auf einer anderen Ebene als diese, dann wird das Einheitenfeld mit einem Rahmen markiert.
-   -- Beim Entfernen einer Stadt wird jetzt geprüft ob Städte in der Nähe diese gebiet belegen können.
+   -- Beim Entfernen einer Stadt wird jetzt geprüft ob Städte in der Nähe dieses Gebiet belegen können.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    

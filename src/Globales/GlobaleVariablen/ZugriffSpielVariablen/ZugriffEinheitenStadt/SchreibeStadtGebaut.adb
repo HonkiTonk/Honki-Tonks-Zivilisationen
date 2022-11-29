@@ -587,13 +587,14 @@ package body SchreibeStadtGebaut is
    
    
    
-   procedure Standardbewirtschaftung
+   procedure Bewohnerentfernung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungBewirtschaftung := (0 => (0 => True, others => False), others => (others => False));
+      GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1) := 0;
+      GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2) := 0;
       
-   end Standardbewirtschaftung;
+   end Bewohnerentfernung;
    
    
    

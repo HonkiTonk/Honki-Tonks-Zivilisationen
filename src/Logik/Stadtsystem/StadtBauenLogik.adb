@@ -9,7 +9,7 @@ with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with SchreibeWeltkarte;
 
-with StadtwerteFestlegenLogik;
+with StadtumgebungFestlegenLogik;
 with TexteingabeLogik;
 with StadtproduktionLogik;
 with SichtbarkeitsberechnungssystemLogik;
@@ -172,36 +172,27 @@ package body StadtBauenLogik is
       
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
+      SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
+                                       PlusMinusExtern => True);
+      
       Stadtart := HauptstadtPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
       SchreibeStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern,
                               IDExtern               => Stadtart);
       SchreibeStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                        KoordinatenExtern      => KoordinatenExtern);
-      SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                           UmgebungGrößeExtern    => 1,
-                                           ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => True,
                                              WachsenSchrumpfenExtern => True);
-      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                             EinwohnerArbeiterExtern => False,
-                                             WachsenSchrumpfenExtern => True);
-      
-      SchreibeStadtGebaut.Standardbewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
-                                       PlusMinusExtern => True);
-      
-      StadtwerteFestlegenLogik.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => StadtRasseNummerExtern.Rasse);
-      SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       WegAnlegen (KoordinatenExtern => KoordinatenExtern);
-      
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                       VerbesserungExtern => Stadtart);
       
-      -- Stadtproduktion muss immer nach Änderungen an Verbesserungen/Wege berechnet werden, sonst werden diese Änderungen ja nicht berücksichtigt.
+      -- StadtwerteFestlegenLogik/Stadtproduktion muss immer nach Änderungen an Verbesserungen/Wege berechnet werden, sonst werden diese Änderungen ja nicht berücksichtigt.
+      StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => StadtRasseNummerExtern.Rasse);
+      SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end StadtEintragen;
    

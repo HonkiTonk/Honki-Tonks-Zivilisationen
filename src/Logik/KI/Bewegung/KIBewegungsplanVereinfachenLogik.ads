@@ -34,10 +34,12 @@ private
    
    NächsterSchritt : constant EinheitenDatentypen.BewegungsplanVorhanden := 1;
    ÜbernächsterSchritt : constant EinheitenDatentypen.BewegungsplanVorhanden := 2;
-   Planschritt : EinheitenDatentypen.BewegungsplanVorhanden;
+   Zusatzschritt : EinheitenDatentypen.BewegungsplanVorhanden;
+   
+   Planschritt : EinheitenDatentypen.Bewegungsplan;
       
    KartenwertVereinfachung : KartenRecords.AchsenKartenfeldNaturalRecord;
-   AktuellerPlankoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   AktuellePlankoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure PlanvereinfachungPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;

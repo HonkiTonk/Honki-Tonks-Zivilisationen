@@ -1,8 +1,7 @@
 with RassenDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
-
-private with EinheitenDatentypen;
+with EinheitenDatentypen;
 
 with LeseGrenzen;
 with LeseRassenbelegung;
@@ -22,10 +21,18 @@ package EinheitVerbessernLogik is
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
+   function EinheitVerbesserbar
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.EinheitenIDMitNullWert
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+               and
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
 private
-   
-   IDEinheit : EinheitenDatentypen.EinheitenID;
-   
-   IDNeueEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
+      
+   NeueEinheitenID : EinheitenDatentypen.EinheitenIDMitNullWert;
 
 end EinheitVerbessernLogik;

@@ -6,7 +6,7 @@ with SchreibeWichtiges;
 with LeseWichtiges;
 with LeseForschungenDatenbank;
 
-with StadtwerteFestlegenLogik;
+with StadtumgebungFestlegenLogik;
 with ForschungsauswahlLogik;
 
 package body ForschungsfortschrittLogik is
@@ -66,7 +66,7 @@ package body ForschungsfortschrittLogik is
              AktuellesForschungsprojekt = LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Endwert_Enum,
                                                                              RasseExtern      => RasseExtern)
          then
-            StadtwerteFestlegenLogik.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseExtern);
+            StadtumgebungFestlegenLogik.StadtumgebungFestlegenTechnologie (RasseExtern => RasseExtern);
 
          else
             null;

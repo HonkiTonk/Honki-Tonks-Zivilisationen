@@ -11,12 +11,13 @@ with LeseRassenbelegung;
 
 private with LeseWeltkarteneinstellungen;
 
-package KIBewegungDurchfuehrenLogik is
+package KIEinheitenbewegungLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
    
-   procedure KIBewegung
+   function Bewegung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
@@ -36,6 +37,7 @@ private
    Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    BewegendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    StehendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Bewegungsschritt : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    procedure BewegungDurchführen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -78,4 +80,4 @@ private
                  NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
-end KIBewegungDurchfuehrenLogik;
+end KIEinheitenbewegungLogik;

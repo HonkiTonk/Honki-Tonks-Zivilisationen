@@ -7,7 +7,7 @@ with LeseForschungenDatenbank;
 with Fehlermeldungssystem;
 with ForschungstestsLogik;
 
-package body StadtumgebungsbereichFestlegenLogik is
+package body StadtumgebungsbereichBerechnenLogik is
 
    procedure StadtumgebungsbereichFestlegen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
@@ -38,6 +38,11 @@ package body StadtumgebungsbereichFestlegenLogik is
                                                       EinwohnerArbeiterExtern => True);
       
       if
+        Einwohner = StadtKonstanten.LeerEinwohner
+      then
+         Umgebung := 0;
+      
+      elsif
         True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
                                                           TechnologieExtern => LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Endwert_Enum,
                                                                                                                   RasseExtern      => StadtRasseNummerExtern.Rasse))
@@ -53,7 +58,7 @@ package body StadtumgebungsbereichFestlegenLogik is
         and
           Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse)
       then
-         Umgebung := 2;      
+         Umgebung := 2;
          
       else
          Umgebung := 1;
@@ -65,4 +70,4 @@ package body StadtumgebungsbereichFestlegenLogik is
       
    end StadtumgebungErmitteln;
 
-end StadtumgebungsbereichFestlegenLogik;
+end StadtumgebungsbereichBerechnenLogik;

@@ -263,7 +263,7 @@ package SchreibeStadtGebaut is
                  LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
-   procedure Standardbewirtschaftung
+   procedure Bewohnerentfernung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (

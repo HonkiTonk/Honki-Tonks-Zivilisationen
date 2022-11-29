@@ -1,15 +1,15 @@
 with RassenDatentypen;
-with EinheitenRecords;
 with EinheitenKonstanten;
+with EinheitenRecords;
 
 with LeseGrenzen;
 with LeseRassenbelegung;
 
-package KIEinheitenbewegungLogik is
+package KIEinheitenAufgabenumsetzungLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
 
-   function Bewegen
+   function AufgabeUmsetzen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with
@@ -18,5 +18,9 @@ package KIEinheitenbewegungLogik is
                and
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
+   
+private
+      
+   AufgabeDurchführen : Boolean;
 
-end KIEinheitenbewegungLogik;
+end KIEinheitenAufgabenumsetzungLogik;

@@ -1,7 +1,11 @@
 with KartenRecordKonstanten;
+with EinheitenDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseWeltkarte;
+-- with LeseAllgemeines;
+
+with EinheitVerbessernLogik;
 
 package body KIEinheitUmsetzenErkundenLogik is
 
@@ -10,6 +14,7 @@ package body KIEinheitUmsetzenErkundenLogik is
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
    begin
       
       ZielKoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -27,6 +32,13 @@ package body KIEinheitUmsetzenErkundenLogik is
       elsif
         True = LeseWeltkarte.Sichtbar (KoordinatenExtern => ZielKoordinaten,
                                        RasseExtern       => EinheitRasseNummerExtern.Rasse)
+      then
+         return False;
+         
+      elsif
+       -- LeseAllgemeines.Rundenanzahl mod 20 = 0
+       -- and
+          EinheitVerbessernLogik.EinheitVerbesserbar (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerID
       then
          return False;
          

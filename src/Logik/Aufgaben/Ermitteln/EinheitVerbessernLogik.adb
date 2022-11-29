@@ -19,25 +19,16 @@ package body EinheitVerbessernLogik is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      IDEinheit := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      IDNeueEinheit := LeseEinheitenDatenbank.VerbesserungZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                IDExtern    => IDEinheit);
+      NeueEinheitenID := EinheitVerbesserbar (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
-        IDNeueEinheit = EinheitenDatentypen.EinheitenIDMitNullWert'First
+        NeueEinheitenID = EinheitenKonstanten.LeerID
       then
          return False;
            
       elsif
         False = LeseWeltkarte.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                          KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-      then
-         return False;
-         
-      elsif
-        False = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                           TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                      IDExtern    => IDNeueEinheit))
+                                             KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       then
          return False;
          
@@ -57,7 +48,7 @@ package body EinheitVerbessernLogik is
                                                                  VorzeichenWechselExtern  => -1);
       
             SchreibeEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                        IDExtern                 => IDNeueEinheit);
+                                        IDExtern                 => NeueEinheitenID);
       
             EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                  VorzeichenWechselExtern  => 1);
@@ -69,5 +60,39 @@ package body EinheitVerbessernLogik is
       return True;
       
    end VerbesserungEinheit;
+   
+   
+   
+   function EinheitVerbesserbar
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.EinheitenIDMitNullWert
+   is begin
+   
+      NeueEinheitenID := LeseEinheitenDatenbank.VerbesserungZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
+      case
+        NeueEinheitenID
+      is
+         when EinheitenKonstanten.LeerID =>
+            return EinheitenKonstanten.LeerID;
+            
+         when others =>
+            null;
+      end case;
+      
+      case
+        ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                   TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                              IDExtern    => NeueEinheitenID))
+      is
+         when True =>
+            return NeueEinheitenID;
+            
+         when False =>
+            return EinheitenKonstanten.LeerID;
+      end case;
+      
+   end EinheitVerbesserbar;
 
 end EinheitVerbessernLogik;

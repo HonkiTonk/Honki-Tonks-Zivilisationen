@@ -31,6 +31,15 @@ package GebaeudeAllgemeinLogik is
                and
                  LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
+   
+   procedure UmgebungsreduktionGebäudeEntfernen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+               and
+                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    
    

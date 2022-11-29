@@ -67,7 +67,7 @@ package body KIEinheitLogik is
          end case;
                   
          case
-           KIEinheitenbewegungLogik.Bewegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           KIEinheitenbewegungLogik.Bewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is
             when True =>
                exit AktivitätSchleife;

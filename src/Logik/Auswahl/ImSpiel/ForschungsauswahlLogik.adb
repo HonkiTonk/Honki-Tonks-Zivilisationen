@@ -174,6 +174,9 @@ package body ForschungsauswahlLogik is
          
       end loop ErfolgSchleife;
       
+      -- Das Setzen auf Leer ist nötig damit die Grafik nicht die alte Forschung anzeigt, wenn man eine neue Forschung auswählt.
+      SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
+                                           ForschungIDExtern => ForschungKonstanten.LeerForschung);
       SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
                                            ForschungIDExtern => Forschungsmöglichkeiten (RasseExtern => RasseExtern));
       

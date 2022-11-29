@@ -219,9 +219,28 @@ package body WeltkarteZeichnenGrafik is
         and
           EinheitRasseNummerExtern.Nummer /= EinheitenKonstanten.LeerNummer
       then
-         Einheitenmarkierung (KoordinatenExtern        => KoordinatenExtern,
-                              EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                              PositionExtern           => PositionExtern);
+         if
+           Clock - StartzeitBlinkintervall > ZeitKonstanten.Blinkintervall
+         then
+            AusgewählteEinheitAnzeigen := not AusgewählteEinheitAnzeigen;
+            StartzeitBlinkintervall := Clock;
+            
+         else
+            null;
+         end if;
+         
+         case
+           AusgewählteEinheitAnzeigen
+         is
+            when False =>
+               null;
+               
+            when True =>
+               Einheitenmarkierung (KoordinatenExtern        => KoordinatenExtern,
+                                    EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                    PositionExtern           => PositionExtern);
+         end case;
+         
          return;
          
       elsif

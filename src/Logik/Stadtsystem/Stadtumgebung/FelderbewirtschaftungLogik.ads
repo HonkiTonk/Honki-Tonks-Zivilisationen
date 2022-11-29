@@ -1,46 +1,52 @@
-with RassenDatentypen;
 with StadtRecords;
 with StadtKonstanten;
+with RassenDatentypen;
 
+private with ProduktionDatentypen;
+private with KartenDatentypen;
 private with KartenRecords;
 
 with LeseGrenzen;
 with LeseRassenbelegung;
 
-package StadtEntfernenLogik is
+package FelderbewirtschaftungLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
 
-   procedure StadtEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+   procedure BewirtschaftbareFelderBelegen
+     (ZuwachsSchwundExtern : in Boolean;
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   
-   
-   function StadtAbreißen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return Boolean
-     with
-       Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-               and
-                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
               );
    
 private
    
-   Abriss : Boolean;
+   NutzbarerBereich : KartenDatentypen.Kartenfeld;
    
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Bewertung : ProduktionDatentypen.Produktion;
+      
+   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-        
-   procedure HeimatstädteEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+   
+   type FeldRecord is record
+      
+      Bewertung : ProduktionDatentypen.Produktion;
+      YKoordinate : KartenDatentypen.UmgebungsbereichDrei;
+      XKoordinate : KartenDatentypen.UmgebungsbereichDrei;
+      
+   end record;
+   
+   Feld : FeldRecord;
+   
+   procedure ArbeiterBelegenEntfernen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      BelegenEntfernenExtern : in Boolean;
+      WachsenSchrumpfenExtern : in Boolean;
+      FeldExtern : in FeldRecord)
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
@@ -48,8 +54,12 @@ private
                  LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
-   procedure NeueHauptstadtSetzen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+   
+   
+   function OptimalesFeldErmitteln
+     (ZuwachsSchwundExtern : in Boolean;
+      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      return FeldRecord
      with
        Pre => (
                  StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
@@ -57,4 +67,4 @@ private
                  LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
-end StadtEntfernenLogik;
+end FelderbewirtschaftungLogik;

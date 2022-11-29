@@ -33,6 +33,42 @@ package body GebaeudeAllgemeinLogik is
    
    
    
+   procedure UmgebungsreduktionGebäudeEntfernen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+   is begin
+      
+      GebäudeSchleife:
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+         
+         if
+           False = LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                      WelchesGebäudeExtern  => GebäudeSchleifenwert)
+         then
+            null;
+            
+         elsif
+           True = GebaeudeumgebungLogik.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                   GebäudeIDExtern        => GebäudeSchleifenwert)
+         then
+            null;
+            
+         else
+            SchreibeStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern     => StadtRasseNummerExtern,
+                                                   WelchesGebäudeExtern      => GebäudeSchleifenwert,
+                                                   HinzufügenEntfernenExtern => False);
+            
+            PermanenteKostenDurchGebäudeÄndern (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                  IDExtern                => GebäudeSchleifenwert,
+                                                  VorzeichenWechselExtern => -1);
+            
+         end if;
+         
+      end loop GebäudeSchleife;
+      
+   end UmgebungsreduktionGebäudeEntfernen;
+   
+   
+   
    procedure GebäudeEntfernen
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
