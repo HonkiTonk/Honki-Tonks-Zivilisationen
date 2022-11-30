@@ -15,6 +15,16 @@ package body Diagnoseinformationen is
    end Größenprüfung;
    
    
+   
+   procedure Zahl
+     (ZahlExtern : in Integer)
+   is begin
+      
+      Put_Line (ZahlExtern'Wide_Wide_Image);
+      
+   end Zahl;
+   
+   
 
    procedure Koordinateninformationen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

@@ -7,6 +7,9 @@ package Diagnoseinformationen is
    pragma Elaborate_Body;
    
    procedure Größenprüfung;
+   
+   procedure Zahl
+     (ZahlExtern : in Integer);
 
    procedure Koordinateninformationen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord);

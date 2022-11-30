@@ -5,7 +5,7 @@ with EinheitenRecords;
 with LeseGrenzen;
 with LeseRassenbelegung;
 
-package KINahkampfaufgabenLogik is
+package KIKampfaufgabenLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
 
@@ -38,4 +38,4 @@ private
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
 
-end KINahkampfaufgabenLogik;
+end KIKampfaufgabenLogik;

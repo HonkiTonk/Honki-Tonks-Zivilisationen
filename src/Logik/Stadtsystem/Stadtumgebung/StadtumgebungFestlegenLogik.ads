@@ -35,12 +35,29 @@ package StadtumgebungFestlegenLogik is
 private
    use type KartenDatentypen.Kartenfeld;
    
+   GrundBelegbar : Boolean;
+   
    GrößeAlt : KartenDatentypen.UmgebungsbereichDrei;
    GrößeNeu : KartenDatentypen.UmgebungsbereichDrei;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    UmgebendesKartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   BelegungKartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   procedure GrundBelegen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+               and
+                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
    
    procedure UmgebendeStädteAnpassen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

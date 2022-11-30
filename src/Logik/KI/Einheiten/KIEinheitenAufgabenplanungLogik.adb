@@ -8,7 +8,7 @@ with Fehlermeldungssystem;
 with KIDatentypen;
 
 with KISiedleraufgabenLogik;
-with KINahkampfaufgabenLogik;
+with KIKampfaufgabenLogik;
 with KIPZBAufgabenLogik;
 with KIEinheitHandlungstestsLogik;
 
@@ -40,16 +40,8 @@ package body KIEinheitenAufgabenplanungLogik is
          when EinheitenDatentypen.Arbeiter_Enum =>
             KISiedleraufgabenLogik.Siedleraufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when EinheitenDatentypen.Nahkämpfer_Enum | EinheitenDatentypen.Cheat_Enum =>
-            KINahkampfaufgabenLogik.Nahkämpferaufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when EinheitenDatentypen.Fernkämpfer_Enum =>
-            -- Vorübergehend gibt es nur Nahkämpfer, später entsprechend erweitern. äöü
-            KINahkampfaufgabenLogik.Nahkämpferaufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when EinheitenDatentypen.Beides_Enum =>
-            -- Vorübergehend gibt es nur Nahkämpfer, später entsprechend erweitern. äöü
-            KINahkampfaufgabenLogik.Nahkämpferaufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when EinheitenDatentypen.Einheitenart_Kampf_Enum'Range | EinheitenDatentypen.Cheat_Enum =>
+            KIKampfaufgabenLogik.Nahkämpferaufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when EinheitenDatentypen.PZB_Enum'Range =>
             KIPZBAufgabenLogik.PZBAufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

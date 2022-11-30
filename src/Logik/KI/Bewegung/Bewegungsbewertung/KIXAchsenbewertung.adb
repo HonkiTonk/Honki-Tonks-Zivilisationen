@@ -2,93 +2,92 @@ with KartenartDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
-with KIKonstanten;
-
-with KIZufallsbewertungLogik;
-
--- Für eine bessere Bewertung muss ich vermutlich ein System ähnlich der Koordinatenberechnung bauen. äöü
 package body KIXAchsenbewertung is
 
    function XAchseBewerten
      (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
       AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
       NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KIDatentypen.Achsenbewertung
+      return KartenDatentypen.KartenfeldNatural
    is
       use type KartenDatentypen.Kartenfeld;
    begin
       
       if
-        AktuellerPunktExtern /= ZielpunktExtern
-        and
-          NeuerPunktExtern = ZielpunktExtern
+        NeuerPunktExtern = ZielpunktExtern
       then
-         return 10;
-         
-      elsif
-        AktuellerPunktExtern = ZielpunktExtern
-        and
-          NeuerPunktExtern = ZielpunktExtern
-      then
-         return 10;
-         
-      elsif
-        AktuellerPunktExtern = NeuerPunktExtern
-      then
-         return 5;
-         
-      elsif
-      abs (ZielpunktExtern - NeuerPunktExtern) < abs (ZielpunktExtern - AktuellerPunktExtern)
-      then
-         return 7;
+         return 0;
          
       else
-         null;
+         AnzahlFelder := abs (ZielpunktExtern - AktuellerPunktExtern);
+         Felder (1) := abs (ZielpunktExtern - NeuerPunktExtern);
       end if;
       
       case
         LeseWeltkarteneinstellungen.XAchseWesten
       is
          when KartenartDatentypen.Karte_X_Kein_Übergang_Enum =>
-            Bewertung (True) := KIKonstanten.LeerBewertung;
+            Felder (2) := KartenDatentypen.KartenfeldPositiv'Last;
             
-         when KartenartDatentypen.Karte_X_Übergang_Enum =>
-            Bewertung (True) := StandardübergangWesten (ZielpunktExtern      => ZielpunktExtern,
-                                                         AktuellerPunktExtern => AktuellerPunktExtern,
-                                                         NeuerPunktExtern     => NeuerPunktExtern);
+         when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
+            Felder (2) := StandardübergangWesten (ZielpunktExtern      => ZielpunktExtern,
+                                                   AktuellerPunktExtern => AktuellerPunktExtern,
+                                                   NeuerPunktExtern     => NeuerPunktExtern);
             
          when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            Bewertung (True) := KIKonstanten.LeerBewertung;
-            
-         when KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            Bewertung (True) := StandardübergangWesten (ZielpunktExtern      => ZielpunktExtern,
-                                                         AktuellerPunktExtern => AktuellerPunktExtern,
-                                                         NeuerPunktExtern     => NeuerPunktExtern);
+            Felder (2) := KartenDatentypen.KartenfeldPositiv'Last;
       end case;
       
       case
         LeseWeltkarteneinstellungen.XAchseOsten
       is
          when KartenartDatentypen.Karte_X_Kein_Übergang_Enum =>
-            Bewertung (False) := KIKonstanten.LeerBewertung;
+            Felder (3) := KartenDatentypen.KartenfeldPositiv'Last;
             
-         when KartenartDatentypen.Karte_X_Übergang_Enum =>
-            Bewertung (False) := StandardübergangOsten (ZielpunktExtern      => ZielpunktExtern,
-                                                         AktuellerPunktExtern => AktuellerPunktExtern,
-                                                         NeuerPunktExtern     => NeuerPunktExtern);
+         when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
+            Felder (3) := StandardübergangOsten (ZielpunktExtern      => ZielpunktExtern,
+                                                  AktuellerPunktExtern => AktuellerPunktExtern,
+                                                  NeuerPunktExtern     => NeuerPunktExtern);
             
          when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            Bewertung (False) := KIKonstanten.LeerBewertung;
-            
-         when KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            Bewertung (False) := StandardübergangOsten (ZielpunktExtern      => ZielpunktExtern,
-                                                         AktuellerPunktExtern => AktuellerPunktExtern,
-                                                         NeuerPunktExtern     => NeuerPunktExtern);
+            Felder (3) := KartenDatentypen.KartenfeldPositiv'Last;
       end case;
       
-      return KIZufallsbewertungLogik.Bewertung (BewertungEinsExtern => Bewertung (True),
-                                                BewertungZweiExtern => Bewertung (False));
+      WelcheFelderanzahl := 0;
+      
+      BewertenSchleife:
+      for BewertenSchleifenwert in FelderArray'Range loop
+         
+         if
+           Felder (BewertenSchleifenwert) < AnzahlFelder
+           and
+             WelcheFelderanzahl = 0
+         then
+            WelcheFelderanzahl := BewertenSchleifenwert;
             
+         elsif
+           WelcheFelderanzahl /= 0
+           and then
+             Felder (BewertenSchleifenwert) < Felder (WelcheFelderanzahl)
+         then
+            WelcheFelderanzahl := BewertenSchleifenwert;
+            
+         else
+            null;
+         end if;
+                    
+      end loop BewertenSchleife;
+      
+      case
+        WelcheFelderanzahl
+      is
+         when 0 =>
+            return AnzahlFelder;
+            
+         when others =>
+            return Felder (WelcheFelderanzahl);
+      end case;
+      
    end XAchseBewerten;
    
    
@@ -97,7 +96,7 @@ package body KIXAchsenbewertung is
      (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
       AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
       NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KIDatentypen.Achsenbewertung
+      return KartenDatentypen.KartenfeldNatural
    is
       use type KartenDatentypen.Kartenfeld;
    begin
@@ -107,20 +106,10 @@ package body KIXAchsenbewertung is
         and
           AktuellerPunktExtern < ZielpunktExtern
       then
-         ZwischenspeicherNeu := Positive (NeuerPunktExtern) - Positive (ZielpunktExtern) + Positive (LeseWeltkarteneinstellungen.XAchse);
-         ZwischenspeicherAktuell := Positive (ZielpunktExtern) - Positive (AktuellerPunktExtern);
+         return NeuerPunktExtern - ZielpunktExtern + LeseWeltkarteneinstellungen.XAchse;
                   
       else
-         return KIKonstanten.LeerBewertung;
-      end if;
-      
-      if
-        ZwischenspeicherNeu < ZwischenspeicherAktuell
-      then
-         return 7;
-         
-      else
-         return KIKonstanten.LeerBewertung;
+         return KartenDatentypen.KartenfeldPositiv'Last;
       end if;
       
    end StandardübergangWesten;
@@ -131,7 +120,7 @@ package body KIXAchsenbewertung is
      (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
       AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
       NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KIDatentypen.Achsenbewertung
+      return KartenDatentypen.KartenfeldNatural
    is
       use type KartenDatentypen.Kartenfeld;
    begin
@@ -141,20 +130,10 @@ package body KIXAchsenbewertung is
         and
           AktuellerPunktExtern < NeuerPunktExtern
       then
-         ZwischenspeicherNeu := Positive (ZielpunktExtern) - Positive (NeuerPunktExtern) + Positive (LeseWeltkarteneinstellungen.XAchse);
-         ZwischenspeicherAktuell := Positive (AktuellerPunktExtern) - Positive (ZielpunktExtern);
+         return ZielpunktExtern - NeuerPunktExtern + LeseWeltkarteneinstellungen.XAchse;
          
       else
-         return KIKonstanten.LeerBewertung;
-      end if;
-      
-      if
-        ZwischenspeicherNeu < ZwischenspeicherAktuell
-      then
-         return 7;
-         
-      else
-         return KIKonstanten.LeerBewertung;
+         return KartenDatentypen.KartenfeldPositiv'Last;
       end if;
       
    end StandardübergangOsten;

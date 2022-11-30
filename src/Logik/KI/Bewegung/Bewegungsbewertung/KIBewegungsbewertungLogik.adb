@@ -1,7 +1,5 @@
 with LeseEinheitenGebaut;
 
-with KIKonstanten;
-
 with KIEAchsenbewertung;
 with KIYAchsenbewertung;
 with KIXAchsenbewertung;
@@ -12,9 +10,8 @@ package body KIBewegungsbewertungLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KIDatentypen.BewegungBewertung
+      return KartenDatentypen.KartenfeldNatural
    is
-      use type KIDatentypen.BauenBewertung;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
@@ -24,7 +21,7 @@ package body KIBewegungsbewertungLogik is
         Zielkoordinate = NeueKoordinatenExtern
       is
          when True =>
-            return KIKonstanten.BewertungBewegungZielpunkt;
+            return KartenDatentypen.KartenfeldNatural'First;
          
          when False =>
             BewertungEAchse := KIEAchsenbewertung.EAchseBewerten (ZielebeneExtern     => Zielkoordinate.EAchse,
@@ -38,9 +35,16 @@ package body KIBewegungsbewertungLogik is
             BewertungXAchse := KIXAchsenbewertung.XAchseBewerten (ZielpunktExtern      => Zielkoordinate.XAchse,
                                                                   AktuellerPunktExtern => AktuelleKoordinatenExtern.XAchse,
                                                                   NeuerPunktExtern     => NeueKoordinatenExtern.XAchse);
-      
-            return BewertungEAchse + BewertungYAchse + BewertungXAchse;
       end case;
+      
+      if
+        Natural (BewertungEAchse) + Natural (BewertungYAchse) + Natural (BewertungXAchse) >= Positive (KartenDatentypen.KartenfeldPositiv'Last)
+      then
+         return KartenDatentypen.KartenfeldPositiv'Last;
+         
+      else
+         return BewertungEAchse + BewertungYAchse + BewertungXAchse;
+      end if;
       
    end Positionsbewertung;
 

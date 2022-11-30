@@ -8,8 +8,6 @@ with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
 with LeseRassenbelegung;
 
-with KIDatentypen;
-
 package KIBewegungsbewertungLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
@@ -19,7 +17,7 @@ package KIBewegungsbewertungLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KIDatentypen.BewegungBewertung
+      return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
@@ -32,14 +30,14 @@ package KIBewegungsbewertungLogik is
                and
                  NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private
    
-   BewertungEAchse : KIDatentypen.Achsenbewertung;
-   BewertungYAchse : KIDatentypen.Achsenbewertung;
-   BewertungXAchse : KIDatentypen.Achsenbewertung;
+   BewertungEAchse : KartenDatentypen.KartenfeldNatural;
+   BewertungYAchse : KartenDatentypen.KartenfeldNatural;
+   BewertungXAchse : KartenDatentypen.KartenfeldNatural;
    
    Zielkoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
    

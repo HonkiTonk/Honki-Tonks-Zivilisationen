@@ -11,8 +11,6 @@ with LeseRassenbelegung;
 
 private with LeseWeltkarteneinstellungen;
 
-private with KIDatentypen;
-
 package KIBewegungsplanBerechnenLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
@@ -24,7 +22,7 @@ package KIBewegungsplanBerechnenLogik is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private
@@ -46,7 +44,7 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWertTransporter : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   type FeldBewertungArray is array (KartenDatentypen.EbenenbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range) of KIDatentypen.BewegungBewertung;
+   type FeldBewertungArray is array (KartenDatentypen.EbenenbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range) of KartenDatentypen.KartenfeldNatural;
    FeldBewertung : FeldBewertungArray;
    
    type BewertungRecord is record
@@ -55,7 +53,7 @@ private
       YAchse : KartenDatentypen.KartenfeldNatural;
       XAchse : KartenDatentypen.KartenfeldNatural;
       
-      Bewertung : KIDatentypen.BewegungBewertung;
+      Bewertung : KartenDatentypen.KartenfeldNatural;
       
    end record;
    
@@ -71,7 +69,7 @@ private
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  AktuelleKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -93,7 +91,7 @@ private
                and
                  AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function BewertungFeldposition
@@ -102,7 +100,7 @@ private
       EÄnderungExtern : in KartenDatentypen.EbenenbereichEins;
       YÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
       XÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins)
-      return KIDatentypen.BewegungBewertung
+      return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
@@ -111,7 +109,7 @@ private
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function FeldBereitsBetreten
@@ -126,7 +124,7 @@ private
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function TransporterNutzen
@@ -141,7 +139,7 @@ private
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function PlanschrittFestlegen
@@ -153,7 +151,7 @@ private
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end KIBewegungsplanBerechnenLogik;

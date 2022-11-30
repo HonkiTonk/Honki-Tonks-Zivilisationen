@@ -11,6 +11,7 @@ with KartenkoordinatenberechnungssystemLogik;
 with StadtumgebungsbereichBerechnenLogik;
 with GebaeudeAllgemeinLogik;
 with FelderbewirtschaftungLogik;
+with StadtSuchenLogik;
 
 package body StadtumgebungFestlegenLogik is
    
@@ -107,8 +108,8 @@ package body StadtumgebungFestlegenLogik is
             elsif
               LeseWeltkarte.UnbelegterGrund (KoordinatenExtern => KartenWert) = True
             then
-               SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => KartenWert,
-                                                BelegterGrundExtern => (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer));
+               GrundBelegen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                             KoordinatenExtern      => KartenWert);
                
             else
                null;
@@ -142,6 +143,64 @@ package body StadtumgebungFestlegenLogik is
       end if;
       
    end StadtumgebungFestlegen;
+   
+   
+   
+   procedure GrundBelegen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+   is
+      use type RassenDatentypen.Rassen_Enum;
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+   begin
+      
+      GrundBelegbar := False;
+            
+      EAchseSchleife:
+      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         YAchseSchleife:
+         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+               
+               BelegungKartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                 ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                                 LogikGrafikExtern => True);
+               
+               if
+                 BelegungKartenwert.XAchse = KartenKonstanten.LeerXAchse
+               then
+                  null;
+                  
+               elsif
+                 StadtRasseNummerExtern.Rasse = LeseWeltkarte.RasseBelegtGrund (KoordinatenExtern => BelegungKartenwert)
+                 or
+                   StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                                                                  KoordinatenExtern => BelegungKartenwert)
+               then
+                  GrundBelegbar := True;
+                  exit EAchseSchleife;
+                  
+               else
+                  null;
+               end if;
+               
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
+      
+      case
+        GrundBelegbar
+      is
+         when True =>
+            SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => KoordinatenExtern,
+                                             BelegterGrundExtern => StadtRasseNummerExtern);
+            
+         when False =>
+            null;
+      end case;
+               
+   end GrundBelegen;
    
    
    

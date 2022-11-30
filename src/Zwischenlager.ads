@@ -1,217 +1,220 @@
-with KartenKonstanten;
+with LeseEinheitenGebaut;
+with LeseCursor;
 
-with SchreibeStadtGebaut;
-with LeseStadtGebaut;
-with LeseWeltkarte;
-
+with TasteneingabeLogik;
+with EinheitenmodifizierungLogik;
+with StadtBauenLogik;
+with AufgabenLogik;
+with EinheitenbewegungLogik;
 with KartenkoordinatenberechnungssystemLogik;
-with StadtfeldBewertenLogik;
+with MausauswahlLogik;
+with PZBEingesetztLogik;
+with EinheitentransporterLogik;
+with NachGrafiktask;
+with EinheitenbewegungsbereichLogik;
 
-package body FelderbewirtschaftungLogik is
+package body EinheitenkontrollsystemLogik is
 
-   procedure BewirtschaftbareFelderBelegen
-     (ZuwachsSchwundExtern : in Boolean;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+   procedure Einheitenkontrolle
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is
-      use type ProduktionDatentypen.Einwohner;
+      use type EinheitenDatentypen.Bewegungspunkte;
    begin
 
-      case
-        ZuwachsSchwundExtern
-      is
-         when False =>
-            SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                   EinwohnerArbeiterExtern => True,
-                                                   WachsenSchrumpfenExtern => False);
+      Bewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitenbewegungsbereichLogik.BewegungsbereichBerechnen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
 
-            if
-              LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                 EinwohnerArbeiterExtern => True)
-              >= LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                    EinwohnerArbeiterExtern => False)
-            then
+      KontrollSchleife:
+      loop
+
+         case
+           EinheitBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                           BefehlExtern             => TasteneingabeLogik.Einheitentaste)
+         is
+            when True =>
+               if
+                 Bewegungspunkte = LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+               then
+                  null;
+
+               else
+                  EinheitenbewegungsbereichLogik.BewegungsbereichBerechnen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               end if;
+
+            when False =>
                return;
+         end case;
 
-            else
-               null;
-            end if;
+      end loop KontrollSchleife;
 
-         when True =>
-            null;
-      end case;
-
-      UmgebungFestlegen (ZuwachsSchwundExtern   => ZuwachsSchwundExtern,
-                         StadtRasseNummerExtern => StadtRasseNummerExtern);
-
-      case
-        ZuwachsSchwundExtern
-      is
-         when True =>
-            ArbeiterBelegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-
-         when False =>
-            ArbeiterEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      end case;
-
-   end BewirtschaftbareFelderBelegen;
+   end Einheitenkontrolle;
 
 
 
-   procedure UmgebungFestlegen
-     (ZuwachsSchwundExtern : in Boolean;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is
-      use type KartenDatentypen.Kartenfeld;
-   begin
-
-      NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      Umgebung := (others => (others => (False, ProduktionDatentypen.Stadtproduktion'First)));
-
-      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
-
-      YAchseSchleife:
-      for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
-
-            BewirtschaftungKartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
-                                                                                                                     ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                     LogikGrafikExtern => True);
-
-            if
-              BewirtschaftungKartenwert.XAchse = KartenKonstanten.LeerXAchse
-            then
-               null;
-
-            elsif
-              False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                               KoordinatenExtern      => BewirtschaftungKartenwert)
-            then
-               null;
-
-            elsif
-              ZuwachsSchwundExtern = LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                              YKoordinateExtern      => YAchseSchleifenwert,
-                                                                              XKoordinateExtern      => XAchseSchleifenwert)
-            then
-               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Belegt := ZuwachsSchwundExtern;
-
-            else
-               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert) := (not ZuwachsSchwundExtern, StadtfeldBewertenLogik.FeldBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                                                                      KoordinatenExtern      => BewirtschaftungKartenwert,
-                                                                                                                                      BelegenEntfernenExtern => ZuwachsSchwundExtern));
-            end if;
-
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
-
-   end UmgebungFestlegen;
-
-
-
-   procedure ArbeiterBelegen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is
-      use type ProduktionDatentypen.Produktion;
-      use type KartenDatentypen.Kartenfeld;
-   begin
-
-      WelchesFeld := (0, 0, 0);
-
-      YAchseSchleife:
-      for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
-
-            if
-              Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Belegt = True
-            then
-               null;
-
-            elsif
-              Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Gesamtbewertung > WelchesFeld.HöchsterWert
-            then
-               WelchesFeld := (Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Gesamtbewertung, YAchseSchleifenwert, XAchseSchleifenwert);
-
-            else
-               null;
-            end if;
-
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
-
-      ArbeiterBelegenEntfernen (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                BelegenEntfernenExtern  => True,
-                                WachsenSchrumpfenExtern => True,
-                                FeldExtern              => WelchesFeld);
-
-   end ArbeiterBelegen;
-
-
-
-   procedure ArbeiterEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is
-      use type ProduktionDatentypen.Produktion;
-      use type KartenDatentypen.Kartenfeld;
-   begin
-
-      WelchesFeld := (0, 0, 0);
-
-      YAchseSchleife:
-      for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
-
-            if
-              Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Belegt = False
-            then
-               null;
-
-            elsif
-              Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Gesamtbewertung < WelchesFeld.HöchsterWert
-            then
-               WelchesFeld := (Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Gesamtbewertung, YAchseSchleifenwert, XAchseSchleifenwert);
-
-            else
-               null;
-            end if;
-
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
-
-      ArbeiterBelegenEntfernen (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                BelegenEntfernenExtern  => False,
-                                WachsenSchrumpfenExtern => False,
-                                FeldExtern              => WelchesFeld);
-
-   end ArbeiterEntfernen;
-
-
-
-   procedure ArbeiterBelegenEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      BelegenEntfernenExtern : in Boolean;
-      WachsenSchrumpfenExtern : in Boolean;
-      FeldExtern : in WelchesFeldRecord)
+   function EinheitBefehle
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      BefehlExtern : in BefehleDatentypen.Einheitenbelegung_Enum)
+      return Boolean
    is begin
 
       case
-        FeldExtern.HöchsterWert
+        BefehlExtern
       is
-         when 0 =>
-            null;
+         when BefehleDatentypen.Auswählen_Enum =>
+            return BefehleMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+
+         when BefehleDatentypen.Einheiten_Bewegung_Enum'Range =>
+            NachGrafiktask.EinheitBewegt := True;
+            return EinheitenbewegungLogik.PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                           ÄnderungExtern           => Richtung (BefehlExtern));
+
+         when BefehleDatentypen.Heimatstadt_Ändern_Enum =>
+            EinheitenmodifizierungLogik.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            return True;
+
+         when BefehleDatentypen.Entladen_Enum =>
+            EinheitentransporterLogik.TransporterEntladen (TransporterExtern => EinheitRasseNummerExtern);
+            return True;
+
+         when BefehleDatentypen.Siedler_Verbesserung_Enum'Range | BefehleDatentypen.Einheiten_Allgemeine_Befehle_Enum'Range =>
+            -- Das Umgekehrte zurückgeben da bei erfolgreichen Aufgabenanfang keine Bewegung mehr möglich ist und umgekehrt.
+            return not AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              BefehlExtern             => BefehlExtern,
+                                              KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+
+         when BefehleDatentypen.Bauen_Enum =>
+            -- Das Umgekehrte zurückgeben da bei erfolgreichem Städtebau keine Bewegung mehr möglich ist und umgekehrt.
+            return not StadtBauenLogik.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+
+            -- Da das der Standardrückgabewert ist muss hier True zurückgegeben werden, da sonst die Schleife direkt nach der Auswahl wieder verlassen wird!
+         when BefehleDatentypen.Leer_Einheitenbelegung_Enum =>
+            return True;
 
          when others =>
-            SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                         YKoordinateExtern      => FeldExtern.YKoordinate,
-                                                         XKoordinateExtern      => FeldExtern.XKoordinate,
-                                                         BelegenEntfernenExtern => BelegenEntfernenExtern);
-            SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                   EinwohnerArbeiterExtern => False,
-                                                   WachsenSchrumpfenExtern => WachsenSchrumpfenExtern);
+            return False;
       end case;
 
-   end ArbeiterBelegenEntfernen;
+   end EinheitBefehle;
 
-end FelderbewirtschaftungLogik;
+
+
+   function BefehleMaus
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+   is begin
+
+      Mausbefehl := MausauswahlLogik.Einheitenbefehle;
+
+      case
+        Mausbefehl
+      is
+         when BefehleDatentypen.Einheiten_Bewegung_Enum'Range =>
+            return EinheitenbewegungLogik.PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                           ÄnderungExtern          => Richtung (Mausbefehl));
+
+         when BefehleDatentypen.Einheiten_Aufgaben_Enum'Range =>
+            if
+              PZBEingesetztLogik.PZBEingesetzt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+            then
+               return False;
+
+            else
+               return EinheitBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                      BefehlExtern             => Mausbefehl);
+            end if;
+
+         when BefehleDatentypen.Auswählen_Enum =>
+            return AllgemeineEinheitenbewegungMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+
+         when others =>
+            return False;
+      end case;
+
+   end BefehleMaus;
+
+
+
+   function AllgemeineEinheitenbewegungMaus
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
+
+      EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+
+      EAchseSchleife:
+      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         YAchseSchleife:
+         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
+                                                                                                         ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                         LogikGrafikExtern => True);
+
+               -- In diesem Fall wird die Prüfung auf Leer nicht benötigt, da im aktuellen System die Cursorkoordinaten niemals ungültig sein können.
+               if
+                 KartenWert = LeseCursor.KoordinatenAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse)
+               then
+                  return EinheitenbewegungLogik.PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 ÄnderungExtern           => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+
+               else
+                  null;
+               end if;
+
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
+
+      return True;
+
+   end AllgemeineEinheitenbewegungMaus;
+
+
+
+   function EinheitenbewegungMaus
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
+
+      EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+
+      EAchseSchleife:
+      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         YAchseSchleife:
+         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
+
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
+                                                                                                         ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                         LogikGrafikExtern => True);
+
+               -- In diesem Fall wird die Prüfung auf Leer nicht benötigt, da im aktuellen System die Cursorkoordinaten niemals ungültig sein können.
+               if
+                 KartenWert = LeseCursor.KoordinatenAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse)
+               then
+                  -- Und hier müsste ich dann ein Webgfindungssystem einbauen wie es die KI hat. äöü
+                  -- Kann ich das KI System dazu anpassen? Wahrscheinlich nicht. äöü
+                  -- Aber ich kann das Bewegungsarrray der Einheit dazu verwenden, da es bei menschlichen Spielern ja leer sein sollte und dann entsprechend die Bewegung berechnen. äöü
+                  return EinheitenbewegungLogik.PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 ÄnderungExtern           => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+
+               else
+                  null;
+               end if;
+
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
+
+      return True;
+
+   end EinheitenbewegungMaus;
+
+end EinheitenkontrollsystemLogik;

@@ -1,7 +1,6 @@
-with ZufallsgeneratorenKILogik;
-
 package body KIZufallsbewertungLogik is
 
+   -- Wird das überhaupt noch gebraucht? äöü
    function Bewertung
      (BewertungEinsExtern : in KIDatentypen.BauenBewertung;
       BewertungZweiExtern : in KIDatentypen.BauenBewertung)
@@ -21,15 +20,7 @@ package body KIZufallsbewertungLogik is
          return BewertungZweiExtern;
          
       else
-         case
-           ZufallsgeneratorenKILogik.Münzwurf
-         is
-            when True =>
-               return BewertungEinsExtern;
-               
-            when False =>
-               return BewertungZweiExtern;
-         end case;
+         return BewertungEinsExtern;
       end if;
       
    end Bewertung;

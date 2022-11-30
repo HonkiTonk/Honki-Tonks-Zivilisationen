@@ -1,7 +1,7 @@
 with KIDatentypen;
 
 package KIZufallsbewertungLogik is
-   pragma Elaborate_Body;
+   pragma Preelaborate;
 
    function Bewertung
      (BewertungEinsExtern : in KIDatentypen.BauenBewertung;

@@ -53,8 +53,8 @@ private
    AktuelleStadt : StadtDatentypen.MaximaleStädteMitNullWert;
    GefundeneStadt : StadtDatentypen.MaximaleStädteMitNullWert;
 
-   Entfernung : Positive;
-   EntfernungNeu : Positive;
+   Entfernung : Natural;
+   EntfernungNeu : Natural;
 
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 

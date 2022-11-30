@@ -1,7 +1,5 @@
 with KartenDatentypen;
 
-with KIDatentypen;
-
 package KIEAchsenbewertung is
    pragma Elaborate_Body;
 
@@ -9,15 +7,12 @@ package KIEAchsenbewertung is
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
       AktuelleEbeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
-      return KIDatentypen.Achsenbewertung;
+      return KartenDatentypen.KartenfeldNatural;
 
 private
    use type KartenDatentypen.Ebene;
-
-   type BewertungArray is array (Boolean'Range) of KIDatentypen.Achsenbewertung;
-   Bewertung : BewertungArray;
    
-   type EbenenumrechnungArray is array (KartenDatentypen.EbeneVorhanden'Range) of Positive;
+   type EbenenumrechnungArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.KartenfeldPositiv;
    Ebenenumrechnung : constant EbenenumrechnungArray := (
                                                          -2 => 1,
                                                          -1 => 2,
@@ -25,9 +20,13 @@ private
                                                          1 => 4,
                                                          2 => 5
                                                         );
+   
+   type FelderArray is array (1 .. 3) of KartenDatentypen.KartenfeldNatural;
+   Felder : FelderArray;
 
-   ZwischenspeicherAktuell : Integer;
-   ZwischenspeicherNeu : Integer;
+   AnzahlFelder : KartenDatentypen.KartenfeldNatural;
+
+   WelcheFelderanzahl : Natural;
    
    
    
@@ -35,12 +34,12 @@ private
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
       AktuelleEbeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
-      return KIDatentypen.Achsenbewertung;
+      return KartenDatentypen.KartenfeldNatural;
    
    function StandardübergangUnten
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
       AktuelleEbeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
-      return KIDatentypen.Achsenbewertung;
+      return KartenDatentypen.KartenfeldNatural;
 
 end KIEAchsenbewertung;

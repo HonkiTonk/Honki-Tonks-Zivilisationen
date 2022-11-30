@@ -208,7 +208,13 @@ package LeseStadtGebaut is
    
    function Name
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-      return Unbounded_Wide_Wide_String;
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+               and
+                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
    function UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;

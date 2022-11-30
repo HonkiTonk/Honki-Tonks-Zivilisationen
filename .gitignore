@@ -8,8 +8,9 @@ Honki Tonk´s Zivilisationen/Grafikeinstellungen
 Honki Tonk´s Zivilisationen/Meldungen
 Honki Tonk´s Zivilisationen/Nutzereinstellungen
 Honki Tonk´s Zivilisationen/Start
-obj_Windows/
+obj_windows/
 GNAT*
 alire/
 config/
 share/
+obj_alire/

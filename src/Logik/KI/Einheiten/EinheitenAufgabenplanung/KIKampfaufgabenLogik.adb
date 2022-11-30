@@ -7,7 +7,7 @@ with KIEinheitFestlegenErkundenLogik;
 with KIEinheitFestlegenAngreifenLogik;
 with KIEinheitFestlegenNichtsLogik;
 
-package body KINahkampfaufgabenLogik is
+package body KIKampfaufgabenLogik is
 
    procedure Nahkämpferaufgaben
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -79,4 +79,4 @@ package body KINahkampfaufgabenLogik is
       
    end Kriegsaufgaben;
 
-end KINahkampfaufgabenLogik;
+end KIKampfaufgabenLogik;

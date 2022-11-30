@@ -188,6 +188,9 @@ package body StadtBauenLogik is
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                       VerbesserungExtern => Stadtart);
       
+      SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => KoordinatenExtern,
+                                       BelegterGrundExtern => StadtRasseNummerExtern);
+      
       -- StadtwerteFestlegenLogik/Stadtproduktion muss immer nach Änderungen an Verbesserungen/Wege berechnet werden, sonst werden diese Änderungen ja nicht berücksichtigt.
       StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);

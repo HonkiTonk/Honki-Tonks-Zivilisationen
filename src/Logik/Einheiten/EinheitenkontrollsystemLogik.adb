@@ -1,5 +1,8 @@
+with KartenRecordKonstanten;
+
 with LeseEinheitenGebaut;
 with LeseCursor;
+with SchreibeEinheitenGebaut;
 
 with TasteneingabeLogik;
 with EinheitenmodifizierungLogik;
@@ -12,6 +15,9 @@ with PZBEingesetztLogik;
 with EinheitentransporterLogik;
 with NachGrafiktask;
 with EinheitenbewegungsbereichLogik;
+
+with KIBewegungsplanBerechnenLogik;
+with KIEinheitenbewegungLogik;
 
 package body EinheitenkontrollsystemLogik is
 
@@ -56,7 +62,7 @@ package body EinheitenkontrollsystemLogik is
       BefehlExtern : in BefehleDatentypen.Einheitenbelegung_Enum)
       return Boolean
    is begin
-            
+      
       case
         BefehlExtern
       is
@@ -124,7 +130,8 @@ package body EinheitenkontrollsystemLogik is
             end if;
             
          when BefehleDatentypen.Auswählen_Enum =>
-            return AllgemeineEinheitenbewegungMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            return EinheitenbewegungMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            -- return AllgemeineEinheitenbewegungMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when others =>
             return False;
@@ -180,38 +187,53 @@ package body EinheitenkontrollsystemLogik is
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
-                                          
-               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitenKoordinaten,
-                                                                                                         ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                         LogikGrafikExtern => True);
+      SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 KoordinatenExtern        => LeseCursor.KoordinatenAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse));
+            
+      BewegenSchleife:
+      loop
+         
+         case
+           KIBewegungsplanBerechnenLogik.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+         is
+            when True =>
+               DurchführungSchleife:
+               loop
+                  
+                  AktuelleBewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
-               -- In diesem Fall wird die Prüfung auf Leer nicht benötigt, da im aktuellen System die Cursorkoordinaten niemals ungültig sein können.
-               if
-                 KartenWert = LeseCursor.KoordinatenAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               then
-                  -- Und hier müsste ich dann ein Webgfindungssystem einbauen wie es die KI hat. äöü
-                  -- Kann ich das KI System dazu anpassen? Wahrscheinlich nicht. äöü
-                  -- Aber ich kann das Bewegungsarrray der Einheit dazu verwenden, da es bei menschlichen Spielern ja leer sein sollte und dann entsprechend die Bewegung berechnen. äöü
-                  return EinheitenbewegungLogik.PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 ÄnderungExtern           => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                  if
+                    AktuelleBewegungspunkte = EinheitenKonstanten.LeerBewegungspunkte
+                  then
+                     return False;
                         
-               else
-                  null;
-               end if;
+                  else
+                     null;
+                  end if;
+                  
+                  if
+                    KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                PlanschrittExtern        => 1)
+                  then
+                     exit DurchführungSchleife;
+                  
+                  else
+                     KIEinheitenbewegungLogik.BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                  end if;
+                  
+               end loop DurchführungSchleife;
                
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            when False =>
+               exit BewegenSchleife;
+         end case;
+               
+      end loop BewegenSchleife;
       
       return True;
       

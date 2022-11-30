@@ -24,6 +24,15 @@ package KIEinheitenbewegungLogik is
                and
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
+      
+   procedure BewegtSich
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+               and
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
 
 private
    use type KartenDatentypen.Kartenfeld;
@@ -40,15 +49,6 @@ private
    Bewegungsschritt : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    procedure BewegungDurchführen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
-              );
-   
-   procedure BewegtSich
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      with
        Pre => (

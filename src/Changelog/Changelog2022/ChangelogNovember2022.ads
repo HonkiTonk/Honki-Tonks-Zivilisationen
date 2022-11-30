@@ -1,16 +1,24 @@
 package ChangelogNovember2022 is
 
-   -- Version 0.04. => 0.04. (30.11.2022):
+   -- Version 0.04.4940 => 0.04. (30.11.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.4830 => 0.04. (29.11.2022):
+   -- Version 0.04.4830 => 0.04.4940 (29.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Anpassungen an den gpr Dateien vorgenommen.
+   -- KI überarbeitet.
+   -- Fehler in der Wegfindung der KI korrigiert, welcher dazu führen konnte dass die KI den längeren Weg nahm statt den Kürzeren.
+   -- Eine Stadt kann jetzt nur noch Grund belegen wenn dieser Grund mit dem eigenen Reich verbunden ist.
+   -- Fehler korrigiert der zu einem Überlauf führen konnte wenn die KI feindliche Städte zum Angreifen suchte.
+   -- Die KI sollte jetzt problemfrei mit allen Arten von Kartenübergängen klar kommen.
+   -- Fehler korrigiert der dafür sorgte dass die Bewegungsplanberechnung falsche Felder als das Ziel erkannte.
+   -- Es ist jetzt möglich eine Einheit über mehrere Felder auf einmal zu bewegen.
+   -- Wegfindung überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

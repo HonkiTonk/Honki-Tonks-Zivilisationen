@@ -1,14 +1,15 @@
 with KartenKonstanten;
 with KartenRecordKonstanten;
 
-with KIKonstanten;
-
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
 with KartenkoordinatenberechnungssystemLogik;
 with PassierbarkeitspruefungLogik;
 with EinheitentransporterLogik;
+
+with KIDatentypen;
+with KIKonstanten;
 
 with KIBewegungAllgemeinLogik;
 with KIBewegungsplanVereinfachenLogik;
@@ -20,7 +21,7 @@ package body KIBewegungsplanBerechnenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
-               
+      
       PlanungErfolgreich := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
                                             AktuelleKoordinatenExtern  => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                             AktuellePlanpositionExtern => 1);
@@ -52,10 +53,21 @@ package body KIBewegungsplanBerechnenLogik is
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
-   is begin
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin
+      
+      if
+        LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      then
+         return False;
+         
+      else
+         null;
+      end if;
       
       DurchlaufSchleife:
-      for DurchlaufSchleifenwert in BewertungArray'First .. BewertungArray'Last - 1 loop
+      for DurchlaufSchleifenwert in BewertungArray'Range loop
          
          Felderbewertung (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
                           AktuelleKoordinatenExtern => AktuelleKoordinatenExtern);
@@ -85,9 +97,7 @@ package body KIBewegungsplanBerechnenLogik is
    procedure Felderbewertung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is
-      use type KIDatentypen.BauenBewertung;
-   begin
+   is begin
       
       BewertungPosition := BewertungArray'First;
       
@@ -111,14 +121,12 @@ package body KIBewegungsplanBerechnenLogik is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
       end loop EAchseSchleife;
-      
-      
-      
+                  
       SortierenEinsSchleife:
       for SortierenEinsSchleifenwert in BewertungArray'Range loop
          SortierenZweiSchleife:
-         for SortierenZweiSchleifenwert in BewertungArray'Range loop
-               
+         for SortierenZweiSchleifenwert in SortierenEinsSchleifenwert + 1 .. BewertungArray'Last loop
+                           
             if
               Bewertung (SortierenEinsSchleifenwert).Bewertung > Bewertung (SortierenZweiSchleifenwert).Bewertung
             then
@@ -149,10 +157,10 @@ package body KIBewegungsplanBerechnenLogik is
       case
         Bewertung (DurchlaufExtern).Bewertung
       is
-         when KIKonstanten.BewertungBewegungNullwert =>
+         when KartenDatentypen.KartenfeldPositiv'Last =>
             return False;
                
-         when KIKonstanten.BewertungBewegungZielpunkt =>
+         when KartenDatentypen.KartenfeldNatural'First =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     KoordinatenExtern        => (Bewertung (DurchlaufExtern).EAchse, Bewertung (DurchlaufExtern).YAchse, Bewertung (DurchlaufExtern).XAchse),
                                                     PlanplatzExtern          => AktuellePlanpositionExtern);
@@ -187,9 +195,8 @@ package body KIBewegungsplanBerechnenLogik is
       EÄnderungExtern : in KartenDatentypen.EbenenbereichEins;
       YÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
       XÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins)
-      return KIDatentypen.BewegungBewertung
+      return KartenDatentypen.KartenfeldNatural
    is
-      use type KIDatentypen.BauenBewertung;
       use type KartenDatentypen.Ebene;
    begin
             
@@ -200,7 +207,7 @@ package body KIBewegungsplanBerechnenLogik is
           and
             XÄnderungExtern = 0
       then
-         return KIKonstanten.BewertungBewegungNullwert;
+         return KartenDatentypen.KartenfeldNatural'Last;
 
       else
          KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
@@ -212,7 +219,7 @@ package body KIBewegungsplanBerechnenLogik is
         KartenWert.XAchse
       is
          when KartenKonstanten.LeerXAchse =>
-            return KIKonstanten.BewertungBewegungNullwert;
+            return KartenDatentypen.KartenfeldNatural'Last;
 
          when others =>
             null;
@@ -226,7 +233,7 @@ package body KIBewegungsplanBerechnenLogik is
             null;
             
          when True =>
-            return KIKonstanten.BewertungBewegungNullwert;
+            return KartenDatentypen.KartenfeldNatural'Last;
       end case;
                   
       case
@@ -244,7 +251,7 @@ package body KIBewegungsplanBerechnenLogik is
                null;
                
             else
-               return KIKonstanten.BewertungBewegungNullwert;
+               return KartenDatentypen.KartenfeldNatural'Last;
             end if;
       end case;
       
@@ -259,10 +266,10 @@ package body KIBewegungsplanBerechnenLogik is
             
             -- Hier später noch einmal anpassen. äöü
          when KIKonstanten.Tauschbewegung =>
-            return KIKonstanten.BewertungBewegungNullwert + 1;
+            return KartenDatentypen.KartenfeldNatural'Last;
             
          when KIKonstanten.KeineBewegung =>
-            return KIKonstanten.BewertungBewegungNullwert;
+            return KartenDatentypen.KartenfeldNatural'Last;
       end case;
       
    end BewertungFeldposition;

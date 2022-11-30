@@ -57,14 +57,14 @@ package body KIStadtSuchenLogik is
             AktuelleStadt := StadtSchleifenwert;
             Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt));
             
-            Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - Stadtkoordinaten.EAchse)) + Positive (abs (AnfangKoordinatenExtern.YAchse - Stadtkoordinaten.YAchse))
-              + Positive (abs (AnfangKoordinatenExtern.XAchse - Stadtkoordinaten.XAchse));
+            Entfernung := Natural (abs (AnfangKoordinatenExtern.EAchse - Stadtkoordinaten.EAchse)) + Natural (abs (AnfangKoordinatenExtern.YAchse - Stadtkoordinaten.YAchse))
+              + Natural (abs (AnfangKoordinatenExtern.XAchse - Stadtkoordinaten.XAchse));
             
          else
             Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert));
             
-            EntfernungNeu := Positive (abs (AnfangKoordinatenExtern.EAchse - Stadtkoordinaten.EAchse)) + Positive (abs (AnfangKoordinatenExtern.YAchse - Stadtkoordinaten.YAchse))
-              + Positive (abs (AnfangKoordinatenExtern.XAchse - Stadtkoordinaten.XAchse));
+            EntfernungNeu := Natural (abs (AnfangKoordinatenExtern.EAchse - Stadtkoordinaten.EAchse)) + Natural (abs (AnfangKoordinatenExtern.YAchse - Stadtkoordinaten.YAchse))
+              + Natural (abs (AnfangKoordinatenExtern.XAchse - Stadtkoordinaten.XAchse));
             
             if
               Entfernung > EntfernungNeu
