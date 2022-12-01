@@ -1,9 +1,18 @@
 package ChangelogNovember2022 is
 
-   -- Version 0.04.4940 => 0.04. (30.11.2022):
+   -- Version 0.04.4940 => 0.04.5060 (30.11.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- KI überarbeitet.
+   -- Die Wegfindung sollte jetzt wieder korrekt funktionieren.
+   -- Wegfindung optimiert.
+   -- Das Bewegen von Einheiten über mehrere Felder sollte jetzt fehlerfrei funktionieren.
+   -- Unnötigen Code gelöscht.
+   -- Bewegungssystem für menschliche Spielen angefangen großflächig zu überarbeiten.
+   -- Einheiten in Transporter laden funktioniert korrekt mit dem neuen Bewegungssystem.
+   -- Eigene Einheiten die Plätze tauschen zu lassen funktioniert jetzt mit dem neuen Bewegungssystem.
+   -- Es ist jetzt möglich Einheiten über Felder mit eigenen Einheiten zu bewegen ohne sie zu tauschen.
+   -- Code zusammengeführt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

@@ -203,14 +203,14 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.0. => 0.0. (02.12.2022):
+   -- Version 0.04. => 0.0. (02.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (01.12.2022):
+   -- Version 0.04.5060 => 0.04. (01.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.

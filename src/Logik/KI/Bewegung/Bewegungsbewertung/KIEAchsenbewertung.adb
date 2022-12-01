@@ -6,7 +6,6 @@ package body KIEAchsenbewertung is
 
    function EAchseBewerten
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
-      AktuelleEbeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.KartenfeldNatural
    is
@@ -19,50 +18,38 @@ package body KIEAchsenbewertung is
          return 0;
          
       else
-         AnzahlFelder := abs (Ebenenumrechnung (ZielebeneExtern) - Ebenenumrechnung (AktuelleEbeneExtern));
-         Felder (1) := abs (Ebenenumrechnung (ZielebeneExtern) - Ebenenumrechnung (NeueEbeneExtern));
+         Felderanzahl (1) := abs (Ebenenumrechnung (ZielebeneExtern) - Ebenenumrechnung (NeueEbeneExtern));
       end if;
       
       case
         LeseWeltkarteneinstellungen.EAchseOben
       is
          when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
-            Felder (2) := KartenDatentypen.KartenfeldPositiv'Last;
+            Felderanzahl (2) := KartenDatentypen.KartenfeldPositiv'Last;
             
          when KartenartDatentypen.Karte_E_Übergang_Enum =>
-            Felder (2) := StandardübergangOben (ZielebeneExtern     => ZielebeneExtern,
-                                                       AktuelleEbeneExtern => AktuelleEbeneExtern,
-                                                       NeueEbeneExtern     => NeueEbeneExtern);
+            Felderanzahl (2) := StandardübergangOben (ZielebeneExtern     => ZielebeneExtern,
+                                                 NeueEbeneExtern     => NeueEbeneExtern);
       end case;
       
       case
         LeseWeltkarteneinstellungen.EAchseUnten
       is
          when KartenartDatentypen.Karte_E_Kein_Übergang_Enum =>
-            Felder (3) := KartenDatentypen.KartenfeldPositiv'Last;
+            Felderanzahl (3) := KartenDatentypen.KartenfeldPositiv'Last;
             
          when KartenartDatentypen.Karte_E_Übergang_Enum =>
-            Felder (3) := StandardübergangUnten (ZielebeneExtern     => ZielebeneExtern,
-                                                  AktuelleEbeneExtern => AktuelleEbeneExtern,
+            Felderanzahl (3) := StandardübergangUnten (ZielebeneExtern     => ZielebeneExtern,
                                                   NeueEbeneExtern     => NeueEbeneExtern);
       end case;
       
-      WelcheFelderanzahl := 0;
+      WelcheFelderanzahl := 1;
       
       BewertenSchleife:
-      for BewertenSchleifenwert in FelderArray'Range loop
+      for BewertenSchleifenwert in FelderanzahlArray'Range loop
          
          if
-           Felder (BewertenSchleifenwert) < AnzahlFelder
-           and
-             WelcheFelderanzahl = 0
-         then
-            WelcheFelderanzahl := BewertenSchleifenwert;
-            
-         elsif
-           WelcheFelderanzahl /= 0
-           and then
-             Felder (BewertenSchleifenwert) < Felder (WelcheFelderanzahl)
+           Felderanzahl (BewertenSchleifenwert) < Felderanzahl (WelcheFelderanzahl)
          then
             WelcheFelderanzahl := BewertenSchleifenwert;
             
@@ -72,15 +59,7 @@ package body KIEAchsenbewertung is
                     
       end loop BewertenSchleife;
       
-      case
-        WelcheFelderanzahl
-      is
-         when 0 =>
-            return AnzahlFelder;
-            
-         when others =>
-            return Felder (WelcheFelderanzahl);
-      end case;
+      return Felderanzahl (WelcheFelderanzahl);
    
    end EAchseBewerten;
    
@@ -88,7 +67,6 @@ package body KIEAchsenbewertung is
    
    function StandardübergangOben
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
-      AktuelleEbeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.KartenfeldNatural
    is
@@ -96,9 +74,7 @@ package body KIEAchsenbewertung is
    begin
       
       if
-        Ebenenumrechnung (NeueEbeneExtern) > Ebenenumrechnung (AktuelleEbeneExtern)
-        and
-          Ebenenumrechnung (AktuelleEbeneExtern) > Ebenenumrechnung (ZielebeneExtern)
+        Ebenenumrechnung (NeueEbeneExtern) > Ebenenumrechnung (ZielebeneExtern)
       then
          return Ebenenumrechnung (ZielebeneExtern) - Ebenenumrechnung (NeueEbeneExtern) + Ebenenumrechnung (KartenDatentypen.EbeneVorhanden'Last);
                   
@@ -112,7 +88,6 @@ package body KIEAchsenbewertung is
    
    function StandardübergangUnten
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
-      AktuelleEbeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.KartenfeldNatural
    is
@@ -120,9 +95,7 @@ package body KIEAchsenbewertung is
    begin
       
       if
-        Ebenenumrechnung (ZielebeneExtern) > Ebenenumrechnung (AktuelleEbeneExtern)
-        and
-          Ebenenumrechnung (AktuelleEbeneExtern) > Ebenenumrechnung (NeueEbeneExtern)
+        Ebenenumrechnung (ZielebeneExtern) > Ebenenumrechnung (NeueEbeneExtern)
       then
          return Ebenenumrechnung (NeueEbeneExtern) - Ebenenumrechnung (ZielebeneExtern) + Ebenenumrechnung (KartenDatentypen.EbeneVorhanden'Last);
          

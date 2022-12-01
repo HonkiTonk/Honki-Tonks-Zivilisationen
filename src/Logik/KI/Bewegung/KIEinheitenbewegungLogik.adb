@@ -159,6 +159,7 @@ package body KIEinheitenbewegungLogik is
          null;
       end if;
       
+     -- Aufgrund der Änderungen in EinheitenbewegungLogik.Einheitentausch wird das hier nicht mehr funktionieren, später also anpassen. äöü
       case
         EinheitenbewegungLogik.Einheitentausch (BewegendeEinheitExtern => EinheitRasseNummerExtern,
                                                 StehendeEinheitExtern  => Tauscheinheit)

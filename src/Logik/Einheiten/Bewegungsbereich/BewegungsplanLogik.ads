@@ -1,38 +1,59 @@
 with RassenDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
+with KartenRecords;
+with KartenDatentypen;
 
-private with KartenRecords;
 private with EinheitenDatentypen;
-private with KartenDatentypen;
 
 with LeseGrenzen;
 with LeseRassenbelegung;
+with LeseWeltkarteneinstellungen;
 
-private with LeseWeltkarteneinstellungen;
-
-package KIBewegungsplanBerechnenLogik is
+package BewegungsplanLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
-   
+   use type KartenDatentypen.Kartenfeld;
+
    function BewegungPlanen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 ZielkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 ZielkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
+   function Einzelschritt
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return Boolean
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+               and
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
    
 private
-   use type KartenDatentypen.Kartenfeld;
    
    PlanungErfolgreich : Boolean;
    
-   BewertungPosition : Positive;
+   AktuelleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
    
+   BewertungPosition : Positive;
+      
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   EinheitenKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
    
    type BewertungRecord is record
             
@@ -108,22 +129,7 @@ private
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
-   
-   function TransporterNutzen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
-   
+         
    function PlanschrittFestlegen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       DurchlaufExtern : in Positive;
@@ -136,4 +142,4 @@ private
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
-end KIBewegungsplanBerechnenLogik;
+end BewegungsplanLogik;

@@ -15,22 +15,17 @@ package KIBewegungsbewertungLogik is
 
    function Positionsbewertung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
-                 AktuelleKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
                and
                  NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
 private

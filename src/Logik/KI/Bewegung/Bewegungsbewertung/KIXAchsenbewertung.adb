@@ -1,17 +1,12 @@
 with KartenartDatentypen;
 
-with LeseWeltkarteneinstellungen;
-
 package body KIXAchsenbewertung is
 
    function XAchseBewerten
      (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
-      AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
       NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.KartenfeldNatural
-   is
-      use type KartenDatentypen.Kartenfeld;
-   begin
+   is begin
       
       if
         NeuerPunktExtern = ZielpunktExtern
@@ -19,56 +14,44 @@ package body KIXAchsenbewertung is
          return 0;
          
       else
-         AnzahlFelder := abs (ZielpunktExtern - AktuellerPunktExtern);
-         Felder (1) := abs (ZielpunktExtern - NeuerPunktExtern);
+         Felderanzahl (1) := abs (ZielpunktExtern - NeuerPunktExtern);
       end if;
       
       case
         LeseWeltkarteneinstellungen.XAchseWesten
       is
          when KartenartDatentypen.Karte_X_Kein_Übergang_Enum =>
-            Felder (2) := KartenDatentypen.KartenfeldPositiv'Last;
+            Felderanzahl (2) := KartenDatentypen.KartenfeldPositiv'Last;
             
          when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            Felder (2) := StandardübergangWesten (ZielpunktExtern      => ZielpunktExtern,
-                                                   AktuellerPunktExtern => AktuellerPunktExtern,
-                                                   NeuerPunktExtern     => NeuerPunktExtern);
+            Felderanzahl (2) := StandardübergangWesten (ZielpunktExtern      => ZielpunktExtern,
+                                                         NeuerPunktExtern     => NeuerPunktExtern);
             
          when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            Felder (2) := KartenDatentypen.KartenfeldPositiv'Last;
+            Felderanzahl (2) := KartenDatentypen.KartenfeldPositiv'Last;
       end case;
       
       case
         LeseWeltkarteneinstellungen.XAchseOsten
       is
          when KartenartDatentypen.Karte_X_Kein_Übergang_Enum =>
-            Felder (3) := KartenDatentypen.KartenfeldPositiv'Last;
+            Felderanzahl (3) := KartenDatentypen.KartenfeldPositiv'Last;
             
          when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            Felder (3) := StandardübergangOsten (ZielpunktExtern      => ZielpunktExtern,
-                                                  AktuellerPunktExtern => AktuellerPunktExtern,
-                                                  NeuerPunktExtern     => NeuerPunktExtern);
+            Felderanzahl (3) := StandardübergangOsten (ZielpunktExtern      => ZielpunktExtern,
+                                                        NeuerPunktExtern     => NeuerPunktExtern);
             
          when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            Felder (3) := KartenDatentypen.KartenfeldPositiv'Last;
+            Felderanzahl (3) := KartenDatentypen.KartenfeldPositiv'Last;
       end case;
       
-      WelcheFelderanzahl := 0;
+      WelcheFelderanzahl := 1;
       
       BewertenSchleife:
-      for BewertenSchleifenwert in FelderArray'Range loop
+      for BewertenSchleifenwert in FelderanzahlArray'Range loop
          
          if
-           Felder (BewertenSchleifenwert) < AnzahlFelder
-           and
-             WelcheFelderanzahl = 0
-         then
-            WelcheFelderanzahl := BewertenSchleifenwert;
-            
-         elsif
-           WelcheFelderanzahl /= 0
-           and then
-             Felder (BewertenSchleifenwert) < Felder (WelcheFelderanzahl)
+           Felderanzahl (BewertenSchleifenwert) < Felderanzahl (WelcheFelderanzahl)
          then
             WelcheFelderanzahl := BewertenSchleifenwert;
             
@@ -78,15 +61,7 @@ package body KIXAchsenbewertung is
                     
       end loop BewertenSchleife;
       
-      case
-        WelcheFelderanzahl
-      is
-         when 0 =>
-            return AnzahlFelder;
-            
-         when others =>
-            return Felder (WelcheFelderanzahl);
-      end case;
+      return Felderanzahl (WelcheFelderanzahl);
       
    end XAchseBewerten;
    
@@ -94,17 +69,12 @@ package body KIXAchsenbewertung is
    
    function StandardübergangWesten
      (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
-      AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
       NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.KartenfeldNatural
-   is
-      use type KartenDatentypen.Kartenfeld;
-   begin
+   is begin
       
       if
-        NeuerPunktExtern < AktuellerPunktExtern
-        and
-          AktuellerPunktExtern < ZielpunktExtern
+        NeuerPunktExtern < ZielpunktExtern
       then
          return NeuerPunktExtern - ZielpunktExtern + LeseWeltkarteneinstellungen.XAchse;
                   
@@ -118,17 +88,12 @@ package body KIXAchsenbewertung is
    
    function StandardübergangOsten
      (ZielpunktExtern : in KartenDatentypen.KartenfeldPositiv;
-      AktuellerPunktExtern : in KartenDatentypen.KartenfeldPositiv;
       NeuerPunktExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.KartenfeldNatural
-   is
-      use type KartenDatentypen.Kartenfeld;
-   begin
+   is begin
       
       if
-        ZielpunktExtern < AktuellerPunktExtern
-        and
-          AktuellerPunktExtern < NeuerPunktExtern
+        ZielpunktExtern < NeuerPunktExtern
       then
          return ZielpunktExtern - NeuerPunktExtern + LeseWeltkarteneinstellungen.XAchse;
          

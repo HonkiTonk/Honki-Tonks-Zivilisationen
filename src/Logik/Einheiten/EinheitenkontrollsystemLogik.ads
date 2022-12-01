@@ -33,7 +33,7 @@ private
    AktuelleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   EinheitenKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Bewegungsschritt : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    type RichtungArray is array (BefehleDatentypen.Einheiten_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Richtung : constant RichtungArray := (
@@ -63,26 +63,6 @@ private
               );
    
    function BefehleMaus
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-   
-   function AllgemeineEinheitenbewegungMaus
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return Boolean
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-   
-   function EinheitenbewegungMaus
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
      with

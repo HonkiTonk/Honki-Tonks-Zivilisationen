@@ -5,12 +5,16 @@ package KIEAchsenbewertung is
 
    function EAchseBewerten
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
-      AktuelleEbeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.KartenfeldNatural;
 
 private
    use type KartenDatentypen.Ebene;
+
+   WelcheFelderanzahl : Positive;
+
+   type FelderanzahlArray is array (1 .. 3) of KartenDatentypen.KartenfeldNatural;
+   Felderanzahl : FelderanzahlArray;
    
    type EbenenumrechnungArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.KartenfeldPositiv;
    Ebenenumrechnung : constant EbenenumrechnungArray := (
@@ -21,24 +25,15 @@ private
                                                          2 => 5
                                                         );
    
-   type FelderArray is array (1 .. 3) of KartenDatentypen.KartenfeldNatural;
-   Felder : FelderArray;
-
-   AnzahlFelder : KartenDatentypen.KartenfeldNatural;
-
-   WelcheFelderanzahl : Natural;
-   
    
    
    function StandardübergangOben
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
-      AktuelleEbeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.KartenfeldNatural;
    
    function StandardübergangUnten
      (ZielebeneExtern : in KartenDatentypen.EbeneVorhanden;
-      AktuelleEbeneExtern : in KartenDatentypen.EbeneVorhanden;
       NeueEbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.KartenfeldNatural;
 

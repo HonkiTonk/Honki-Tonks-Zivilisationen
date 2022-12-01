@@ -15,34 +15,7 @@ package EinheitenbewegungLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
-   
-   function NochBewegungspunkte
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      BewegungDurchführenExtern : in Boolean;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
-   
-   function PositionÄndern
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
-      return Boolean
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-              );
-   
+      
    function Einheitentausch
      (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -58,6 +31,21 @@ package EinheitenbewegungLogik is
                  LeseRassenbelegung.Belegung (RasseExtern => StehendeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
+   function BewegungPrüfen
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+               and
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
 private
    
    FeldPassierbar : Boolean;
@@ -71,6 +59,7 @@ private
    NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    BewegendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    StehendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
       
     
       
@@ -102,17 +91,6 @@ private
                  FremdeStadtExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => FremdeStadtExtern.Rasse)
                and
                  LeseRassenbelegung.Belegung (RasseExtern => FremdeStadtExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
-              );
-   
-   function BewegungPrüfen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      PositionÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
-      return Boolean
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
               );
 
 end EinheitenbewegungLogik;

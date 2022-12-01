@@ -5,33 +5,74 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
 with KartenkoordinatenberechnungssystemLogik;
+with EinheitenbewegungLogik;
+with BewegungsberechnungEinheitenLogik;
 with PassierbarkeitspruefungLogik;
-with EinheitentransporterLogik;
+with EinheitSuchenLogik;
 
-with KIDatentypen;
-with KIKonstanten;
-
-with KIBewegungAllgemeinLogik;
 with KIBewegungsplanVereinfachenLogik;
 with KIBewegungsbewertungLogik;
 
-package body KIBewegungsplanBerechnenLogik is
+package body BewegungsplanLogik is
    
-   function BewegungPlanen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   function Einzelschritt
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return Boolean
    is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type KartenRecords.AchsenKartenfeldRecord;
    begin
       
       if
-        LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        ÄnderungExtern = KeineÄnderung
       then
-         return False;
+         return True;
+            
+      else
+         return BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                ZielkoordinatenExtern    =>
+                                  KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                                              ÄnderungExtern    => ÄnderungExtern,
+                                                                                                              LogikGrafikExtern => True));
+      end if;
+      
+   end Einzelschritt;
+   
+   
+      
+   function BewegungPlanen
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type EinheitenDatentypen.Bewegungspunkte;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
+      
+      EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      if
+        EinheitenKoordinaten = ZielkoordinatenExtern
+      then
+         return True;
+         
+      elsif
+        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                          NeueKoordinatenExtern    => ZielkoordinatenExtern)
+        and
+          EinheitRasseNummerExtern.Rasse /= EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => ZielkoordinatenExtern,
+                                                                                                  LogikGrafikExtern => True).Rasse
+      then
+         return True;
          
       else
+         SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    KoordinatenExtern        => ZielkoordinatenExtern);
+         
          PlanungErfolgreich := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                               AktuelleKoordinatenExtern  => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                               AktuelleKoordinatenExtern  => EinheitenKoordinaten,
                                                AktuellePlanpositionExtern => 1);
       end if;
       
@@ -41,17 +82,66 @@ package body KIBewegungsplanBerechnenLogik is
          when True =>
             KIBewegungsplanVereinfachenLogik.Planvereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
+            DurchführungSchleife:
+            loop
+                  
+               AktuelleBewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               
+               if
+                 AktuelleBewegungspunkte = EinheitenKonstanten.LeerBewegungspunkte
+               then
+                  return False;
+                        
+               else
+                  NeueKoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                         PlanschrittExtern        => 1);
+               end if;
+                  
+               if
+                 KartenRecordKonstanten.LeerKoordinate = NeueKoordinaten
+               then
+                  exit DurchführungSchleife;
+                  
+               elsif
+                 ZielkoordinatenExtern = NeueKoordinaten
+                 and
+                   EinheitRasseNummerExtern.Rasse = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => ZielkoordinatenExtern,
+                                                                                                          LogikGrafikExtern => True).Rasse
+               then
+                  BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => ZielkoordinatenExtern,
+                                                                                                                                                           LogikGrafikExtern => True),
+                                                                         NeueKoordinatenExtern    => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                         EinheitentauschExtern    => True);
+                  
+                  BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                         NeueKoordinatenExtern    => NeueKoordinaten,
+                                                                         EinheitentauschExtern    => False);
+                  
+               else
+                  BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                         NeueKoordinatenExtern    => NeueKoordinaten,
+                                                                         EinheitentauschExtern    => False);
+                  
+                  if
+                    KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                PlanschrittExtern        => 2)
+                  then
+                     null;
+                     
+                  else
+                     delay 0.20;
+                  end if;
+               end if;
+               
+               KIBewegungsplanVereinfachenLogik.BewegungsplanVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                  
+            end loop DurchführungSchleife;
+            
          when False =>
-            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
-            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
+            null;
       end case;
       
-      return PlanungErfolgreich;
+      return True;
       
    end BewegungPlanen;
    
@@ -209,44 +299,16 @@ package body KIBewegungsplanBerechnenLogik is
       then
          return KartenDatentypen.KartenfeldPositiv'Last;
          
+      elsif
+        False = EinheitenbewegungLogik.BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                        KoordinatenExtern        => NeueKoordinatenExtern)
+      then
+         return KartenDatentypen.KartenfeldPositiv'Last;
+          
       else
-         null;
+         return KIBewegungsbewertungLogik.Positionsbewertung (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                                                              NeueKoordinatenExtern     => NeueKoordinatenExtern);
       end if;
-                  
-      case
-        PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                  NeueKoordinatenExtern    => NeueKoordinatenExtern)
-      is
-         when True =>
-            null;
-                        
-         when False =>
-            if
-              True = TransporterNutzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                        KoordinatenExtern        => NeueKoordinatenExtern)
-            then
-               null;
-               
-            else
-               return KartenDatentypen.KartenfeldPositiv'Last;
-            end if;
-      end case;
-      
-      case
-        KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern    => NeueKoordinatenExtern,
-                                               EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-      is
-         when KIKonstanten.BewegungAngriff | KIKonstanten.BewegungNormal | KIKonstanten.Tauschbewegung =>
-            return KIBewegungsbewertungLogik.Positionsbewertung (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
-                                                                 NeueKoordinatenExtern     => NeueKoordinatenExtern);
-            
-            -- Hier später noch einmal anpassen. äöü
-        -- when KIKonstanten.Tauschbewegung =>
-         --   return KartenDatentypen.KartenfeldPositiv'Last - 1;
-            
-         when KIKonstanten.KeineBewegung =>
-            return KartenDatentypen.KartenfeldPositiv'Last;
-      end case;
       
    end BewertungFeldposition;
    
@@ -278,49 +340,5 @@ package body KIBewegungsplanBerechnenLogik is
       return False;
       
    end FeldBereitsBetreten;
-   
-   
-   
-   function TransporterNutzen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-   is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
-   begin
-      
-      EinheitenSchleife:
-      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse) loop
-         
-         if
-           EinheitRasseNummerExtern.Nummer = EinheitSchleifenwert
-           or
-             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert)) = EinheitenKonstanten.LeerID
-         then
-            null;
-            
-         elsif
-           True = EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
-                                                                     TransporterExtern => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert))
-           and
-             True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern    => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert),
-                                                                              NeueKoordinatenExtern       => KoordinatenExtern)
-         then
-            -- Hier später True zurückgeben äöü
-            -- return True;
-            null;
-            
-         else
-            null;
-         end if;
-         
-         exit EinheitenSchleife;
-                  
-      end loop EinheitenSchleife;
-      
-      return False;
-      
-   end TransporterNutzen;
 
-end KIBewegungsplanBerechnenLogik;
+end BewegungsplanLogik;

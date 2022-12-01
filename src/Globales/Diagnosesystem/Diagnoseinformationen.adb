@@ -46,6 +46,16 @@ package body Diagnoseinformationen is
    
    
    
+   procedure Stadtinformationen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+   is begin
+      
+      Put_Line (Item => "Rasse: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & "    Nummer: " & StadtRasseNummerExtern.Nummer'Wide_Wide_Image);
+      
+   end Stadtinformationen;
+   
+   
+   
    procedure Grundinformationen
      (GrundExtern : in KartenRecords.KartengrundRecord)
    is begin

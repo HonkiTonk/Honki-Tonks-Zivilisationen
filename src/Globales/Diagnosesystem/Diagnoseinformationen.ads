@@ -2,6 +2,7 @@ private with System;
 
 with KartenRecords;
 with EinheitenRecords;
+with StadtRecords;
 
 package Diagnoseinformationen is
    pragma Elaborate_Body;
@@ -16,6 +17,9 @@ package Diagnoseinformationen is
    
    procedure Einheiteninformationen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+   
+   procedure Stadtinformationen
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord);
    
    procedure Grundinformationen
      (GrundExtern : in KartenRecords.KartengrundRecord);

@@ -1,10 +1,9 @@
 with AufgabenDatentypen;
 with KartenRecords;
 with KartenRecordKonstanten;
+with EinheitenDatentypen;
 
 with LeseEinheitenGebaut;
-
-with EinheitenbewegungLogik;
 
 with KIDatentypen;
 
@@ -67,12 +66,21 @@ package body KIEinheitHandlungstestsLogik is
    function Unbewegbar
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
      return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.Bewegungspunkte;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   begin
       
-      -- Muss hier not sein wegen den Rückgabewerten in der Funktion selbst, die nicht geändert werden können wegen der Einbindung im Bewegungssystem.
-      return not EinheitenbewegungLogik.NochBewegungspunkte (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
-                                                             BewegungDurchführenExtern => False,
-                                                             KoordinatenExtern         => KartenRecordKonstanten.LeerKoordinate);
+      if
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
+        or
+          LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerID
+      then
+         return True;
+            
+      else
+         return False;
+      end if;
       
    end Unbewegbar;
    
