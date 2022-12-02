@@ -1,5 +1,7 @@
 with KartenKonstanten;
 with KartenRecordKonstanten;
+with StadtKonstanten;
+with StadtDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -9,6 +11,8 @@ with EinheitenbewegungLogik;
 with BewegungsberechnungEinheitenLogik;
 with PassierbarkeitspruefungLogik;
 with EinheitSuchenLogik;
+with StadtSuchenLogik;
+with NachGrafiktask;
 
 with KIBewegungsplanVereinfachenLogik;
 with KIBewegungsbewertungLogik;
@@ -29,12 +33,21 @@ package body BewegungsplanLogik is
          return True;
             
       else
-         return BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                ZielkoordinatenExtern    =>
-                                  KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                                              ÄnderungExtern    => ÄnderungExtern,
-                                                                                                              LogikGrafikExtern => True));
+         EinzelbewegungKartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                                                 ÄnderungExtern    => ÄnderungExtern,
+                                                                                                                 LogikGrafikExtern => True);
       end if;
+      
+      case
+        EinzelbewegungKartenwert.XAchse
+      is
+         when KartenKonstanten.LeerXAchse =>
+            return True;
+            
+         when others =>
+            return BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                   ZielkoordinatenExtern    => EinzelbewegungKartenwert);
+      end case;
       
    end Einzelschritt;
    
@@ -48,6 +61,8 @@ package body BewegungsplanLogik is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
       use type EinheitenDatentypen.Bewegungspunkte;
       use type RassenDatentypen.Rassen_Enum;
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type EinheitenDatentypen.Lebenspunkte;
    begin
       
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -70,17 +85,15 @@ package body BewegungsplanLogik is
          SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     KoordinatenExtern        => ZielkoordinatenExtern);
-         
-         PlanungErfolgreich := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                               AktuelleKoordinatenExtern  => EinheitenKoordinaten,
-                                               AktuellePlanpositionExtern => 1);
       end if;
       
       case
-        PlanungErfolgreich
+        PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
+                        AktuelleKoordinatenExtern  => EinheitenKoordinaten,
+                        AktuellePlanpositionExtern => 1)
       is
          when True =>
-            KIBewegungsplanVereinfachenLogik.Planvereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            NachGrafiktask.Einheitenbewegung := True;
             
             DurchführungSchleife:
             loop
@@ -89,14 +102,21 @@ package body BewegungsplanLogik is
                
                if
                  AktuelleBewegungspunkte = EinheitenKonstanten.LeerBewegungspunkte
+                 or
+                   EinheitenKonstanten.LeerLebenspunkte = LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                then
+                  NachGrafiktask.Einheitenbewegung := False;
                   return False;
                         
                else
                   NeueKoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                          PlanschrittExtern        => 1);
+                  AndereEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeueKoordinaten,
+                                                                                         LogikGrafikExtern => True);
+                  StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                             KoordinatenExtern => NeueKoordinaten);
                end if;
-                  
+               
                if
                  KartenRecordKonstanten.LeerKoordinate = NeueKoordinaten
                then
@@ -104,18 +124,92 @@ package body BewegungsplanLogik is
                   
                elsif
                  ZielkoordinatenExtern = NeueKoordinaten
-                 and
-                   EinheitRasseNummerExtern.Rasse = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                                          LogikGrafikExtern => True).Rasse
                then
-                  BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                                                                                           LogikGrafikExtern => True),
-                                                                         NeueKoordinatenExtern    => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                         EinheitentauschExtern    => True);
+                  if
+                    EinheitRasseNummerExtern.Rasse = AndereEinheit.Rasse
+                  then
+                     BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => ZielkoordinatenExtern,
+                                                                                                                                                              LogikGrafikExtern => True),
+                                                                            NeueKoordinatenExtern    => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                            EinheitentauschExtern    => True);
+                     
+                     BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                            NeueKoordinatenExtern    => ZielkoordinatenExtern,
+                                                                            EinheitentauschExtern    => False);
                   
-                  BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                         NeueKoordinatenExtern    => NeueKoordinaten,
-                                                                         EinheitentauschExtern    => False);
+                  elsif
+                    EinheitRasseNummerExtern.Rasse /= AndereEinheit.Rasse
+                    and
+                      EinheitenKonstanten.LeerRasse /= AndereEinheit.Rasse
+                      and
+                        StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                                                 KoordinatenExtern => ZielkoordinatenExtern).Nummer
+                  then
+                     case
+                       EinheitenbewegungLogik.FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                              FremdeEinheitExtern      => AndereEinheit)
+                     is
+                        when False =>
+                           null;
+                           
+                        when True =>
+                           BewegungDurchführen := EinheitenbewegungLogik.FremdeStadtAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                              FremdeStadtExtern        => StadtAufFeld);
+                     end case;
+                     
+                     case 
+                       BewegungDurchführen
+                     is
+                        when False =>
+                           null;
+                           
+                        when True =>
+                           BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                  NeueKoordinatenExtern    => NeueKoordinaten,
+                                                                                  EinheitentauschExtern    => False);
+                     end case;
+                     
+                  elsif
+                    AndereEinheit.Rasse /= EinheitRasseNummerExtern.Rasse
+                    and
+                      AndereEinheit.Rasse /= EinheitenKonstanten.LeerRasse
+                  then
+                     case
+                       EinheitenbewegungLogik.FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                              FremdeEinheitExtern      => AndereEinheit)
+                     is
+                        when False =>
+                           null;
+                           
+                        when True =>
+                           BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                  NeueKoordinatenExtern    => NeueKoordinaten,
+                                                                                  EinheitentauschExtern    => False);
+                     end case;
+                  
+                  elsif
+                    StadtAufFeld.Rasse /= StadtKonstanten.LeerRasse
+                    and
+                      StadtAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
+                  then
+                     case
+                       EinheitenbewegungLogik.FremdeStadtAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                  FremdeStadtExtern        => StadtAufFeld)
+                     is
+                        when False =>
+                           null;
+                           
+                        when True =>
+                           BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                  NeueKoordinatenExtern    => NeueKoordinaten,
+                                                                                  EinheitentauschExtern    => False);
+                     end case;
+                     
+                  else
+                     BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                            NeueKoordinatenExtern    => NeueKoordinaten,
+                                                                            EinheitentauschExtern    => False);
+                  end if;
                   
                else
                   BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -141,6 +235,7 @@ package body BewegungsplanLogik is
             null;
       end case;
       
+      NachGrafiktask.Einheitenbewegung := False;
       return True;
       
    end BewegungPlanen;

@@ -39,6 +39,7 @@ package body KIBewegungsplanBerechnenLogik is
         PlanungErfolgreich
       is
          when True =>
+            -- Das hier entfernen? Sollte vermutlich keine Bedutung mehr haben mit dem neuen System? äöü
             KIBewegungsplanVereinfachenLogik.Planvereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when False =>
@@ -236,13 +237,13 @@ package body KIBewegungsplanBerechnenLogik is
         KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern    => NeueKoordinatenExtern,
                                                EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when KIKonstanten.BewegungAngriff | KIKonstanten.BewegungNormal | KIKonstanten.Tauschbewegung =>
+         when KIKonstanten.BewegungAngriff | KIKonstanten.BewegungNormal =>
             return KIBewegungsbewertungLogik.Positionsbewertung (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
                                                                  NeueKoordinatenExtern     => NeueKoordinatenExtern);
             
             -- Hier später noch einmal anpassen. äöü
-        -- when KIKonstanten.Tauschbewegung =>
-         --   return KartenDatentypen.KartenfeldPositiv'Last - 1;
+         when KIKonstanten.Tauschbewegung =>
+            return KartenDatentypen.KartenfeldPositiv'Last;
             
          when KIKonstanten.KeineBewegung =>
             return KartenDatentypen.KartenfeldPositiv'Last;

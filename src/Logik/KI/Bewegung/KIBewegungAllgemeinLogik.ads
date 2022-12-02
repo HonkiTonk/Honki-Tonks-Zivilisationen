@@ -27,7 +27,7 @@ package KIBewegungAllgemeinLogik is
                and
                  FeldKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
    
 private
@@ -49,7 +49,7 @@ private
        Pre => (
                  EigeneEinheitExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EigeneEinheitExtern.Rasse)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EigeneEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseRassenbelegung.Belegung (RasseExtern => EigeneEinheitExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
               );
 
 end KIBewegungAllgemeinLogik;

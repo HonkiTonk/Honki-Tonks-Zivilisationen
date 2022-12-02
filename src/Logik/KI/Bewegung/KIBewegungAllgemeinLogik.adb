@@ -50,7 +50,8 @@ package body KIBewegungAllgemeinLogik is
               or
                 Aufgabe = KIDatentypen.Erkunden_Enum)
          then
-            return KIKonstanten.Tauschbewegung;
+            -- return KIKonstanten.Tauschbewegung;
+            return KIKonstanten.KeineBewegung;
             
          else
             return KIKonstanten.KeineBewegung;

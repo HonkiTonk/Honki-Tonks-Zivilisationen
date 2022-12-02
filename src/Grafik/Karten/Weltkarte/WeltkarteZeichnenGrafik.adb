@@ -26,6 +26,7 @@ with TextberechnungenHoeheGrafik;
 with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
 with SichtweitenGrafik;
+with NachGrafiktask;
 
 package body WeltkarteZeichnenGrafik is
    
@@ -314,15 +315,16 @@ package body WeltkarteZeichnenGrafik is
          null;
       end if;
       
-      case
-        AusgewählteEinheitAnzeigen
-      is
-         when False =>
-            return;
+      if
+        AusgewählteEinheitAnzeigen = False
+        and
+          NachGrafiktask.Einheitenbewegung = False
+      then
+         return;
                
-         when True =>
-            AusgewählteEinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      end case;
+      else
+         AusgewählteEinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end if;
       
       case
         AusgewählteEinheitID

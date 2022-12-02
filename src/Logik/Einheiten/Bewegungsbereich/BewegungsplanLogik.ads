@@ -3,6 +3,7 @@ with EinheitenRecords;
 with EinheitenKonstanten;
 with KartenRecords;
 with KartenDatentypen;
+with StadtRecords;
 
 private with EinheitenDatentypen;
 
@@ -43,13 +44,18 @@ package BewegungsplanLogik is
    
 private
    
-   PlanungErfolgreich : Boolean;
+   BewegungDurchführen : Boolean;
    
    AktuelleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
    
    BewertungPosition : Positive;
+   
+   StadtAufFeld : StadtRecords.RasseStadtnummerRecord;
+   
+   AndereEinheit : EinheitenRecords.RasseEinheitnummerRecord;
       
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   EinzelbewegungKartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    EinheitenKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    

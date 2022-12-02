@@ -62,6 +62,7 @@ package GrafikDatentypen is
                                    
                                    -- Abspann
                                    Gewonnen_Enum,
+                                   Verloren_Enum,
                                    
                                    Planet_Vernichtet_Enum
                                   );

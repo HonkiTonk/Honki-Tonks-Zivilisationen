@@ -106,7 +106,7 @@ package body RundenendeLogik is
         Weiterspielen
       is
          when True =>
-            return MenschlicherSpielerVorhanden;
+            return True;
             
          when False =>
             null;
@@ -128,33 +128,6 @@ package body RundenendeLogik is
       end case;
       
    end NachSiegWeiterspielen;
-   
-   
-   
-   function MenschlicherSpielerVorhanden
-     return Boolean
-   is begin
-      
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
-               
-         if
-           LeseRassenbelegung.Besiegt (RasseExtern => RasseSchleifenwert) = False
-           and
-             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Mensch_Spieler_Enum
-         then
-            return True;
-            
-         else
-            null;
-         end if;
-               
-      end loop RassenSchleife;
-            
-      return False;
-      
-   end MenschlicherSpielerVorhanden;
-   
    
    
    procedure GeldForschungDiplomatieÄndern

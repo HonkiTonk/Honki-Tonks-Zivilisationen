@@ -10,16 +10,15 @@ package body KampfwerteEinheitErmittelnLogik is
    function Gesamtverteidigung
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KampfDatentypen.KampfwerteGroß
-   is
-      use type KampfDatentypen.KampfwerteGroß;
-   begin
+   is begin
       
       Grundverteidigung := LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       Bonusverteidigung := KartenfelderwerteLogik.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                     RasseExtern       => EinheitRasseNummerExtern.Rasse);
         
-      GesamteVerteidigung := Grundverteidigung + Bonusverteidigung;
+      GesamteVerteidigung := Rangbonus (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                        KampfwertExtern          => (Grundverteidigung + Bonusverteidigung));
       
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
@@ -40,9 +39,7 @@ package body KampfwerteEinheitErmittelnLogik is
    function Gesamtangriff
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return KampfDatentypen.KampfwerteGroß
-   is
-      use type KampfDatentypen.KampfwerteGroß;
-   begin
+   is begin
       
       Grundangriff := LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
@@ -50,10 +47,24 @@ package body KampfwerteEinheitErmittelnLogik is
       Bonusangriff := KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                           RasseExtern       => EinheitRasseNummerExtern.Rasse);
       
-      GesamterAngriff := Grundangriff + Bonusangriff;
+      GesamterAngriff := Rangbonus (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                    KampfwertExtern          => (Grundangriff + Bonusangriff));
       
       return GesamterAngriff;
       
    end Gesamtangriff;
+   
+   
+   
+   -- Das hier später noch einmal anpassen/erweitern. äöü
+   function Rangbonus
+     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      KampfwertExtern : in KampfDatentypen.KampfwerteGroß)
+      return KampfDatentypen.KampfwerteGroß
+   is begin
+      
+      return KampfDatentypen.KampfwerteGroß (Float (KampfwertExtern) * (1.00 + Float (LeseEinheitenGebaut.Rang (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) / 10.00));
+      
+   end Rangbonus;
 
 end KampfwerteEinheitErmittelnLogik;

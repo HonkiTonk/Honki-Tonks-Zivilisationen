@@ -1,5 +1,6 @@
 with EinheitenDatentypen;
 with KartenRecordKonstanten;
+with StadtKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -159,7 +160,7 @@ package body KIEinheitenbewegungLogik is
          null;
       end if;
       
-     -- Aufgrund der Änderungen in EinheitenbewegungLogik.Einheitentausch wird das hier nicht mehr funktionieren, später also anpassen. äöü
+      -- Aufgrund der Änderungen in EinheitenbewegungLogik.Einheitentausch wird das hier nicht mehr funktionieren, später also anpassen. äöü
       case
         EinheitenbewegungLogik.Einheitentausch (BewegendeEinheitExtern => EinheitRasseNummerExtern,
                                                 StehendeEinheitExtern  => Tauscheinheit)
@@ -215,8 +216,26 @@ package body KIEinheitenbewegungLogik is
       FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeueKoordinaten,
                                                                              LogikGrafikExtern => True);
       FremdeStadt := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeueKoordinaten);
-            
+      
       if
+        FremdeStadt.Rasse /= StadtKonstanten.LeerRasse
+        and
+          FremdeEinheit.Rasse /= EinheitenKonstanten.LeerRasse
+      then
+         if
+           True = KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                          VerteidigendeStadtRasseNummerExtern => FremdeStadt)
+           and then
+             True = KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern   => EinheitRasseNummerExtern,
+                                                                   VerteidigerExtern => FremdeEinheit)
+         then
+            BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         else
+            null;
+         end if;
+            
+      elsif
         FremdeStadt.Rasse = EinheitenKonstanten.LeerRasse
       then
          case

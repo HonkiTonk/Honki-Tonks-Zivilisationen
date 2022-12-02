@@ -13,7 +13,9 @@ package body SiegbedingungenLogik is
 
    function Siegbedingungen
      return SystemDatentypen.Ende_Enum
-   is begin
+   is
+      use type GrafikDatentypen.Rassenhintergrund_Enum;
+   begin
       
       case
         RasseBesiegt
@@ -28,7 +30,15 @@ package body SiegbedingungenLogik is
       if
         SiegbedingungEins = True
       then
-         Sieg := GrafikDatentypen.Gewonnen_Enum;
+         case
+           MenschlicherSpielerVorhanden
+         is
+            when True =>
+               Sieg := GrafikDatentypen.Gewonnen_Enum;
+               
+            when False =>
+               Sieg := GrafikDatentypen.Verloren_Enum;
+         end case;
       
       elsif
         SiegbedingungZwei = True
@@ -46,7 +56,15 @@ package body SiegbedingungenLogik is
             NachGrafiktask.AktuelleRasse := RassenDatentypen.Ekropa_Enum;
             AbspannLogik.Abspann (AbspannExtern => Sieg);
             NachGrafiktask.AktuelleRasse := RassenDatentypen.Keine_Rasse_Enum;
-            return SystemDatentypen.Gewonnen_Enum;
+            
+            if
+              Sieg = GrafikDatentypen.Gewonnen_Enum
+            then
+               return SystemDatentypen.Gewonnen_Enum;
+               
+            else
+               return SystemDatentypen.Verloren_Enum;
+            end if;
             
          when others =>
             return SystemDatentypen.Leer_Enum;
@@ -162,5 +180,34 @@ package body SiegbedingungenLogik is
       return False;
       
    end SiegbedingungZwei;
+   
+   
+   
+   function MenschlicherSpielerVorhanden
+     return Boolean
+   is
+      use type RassenDatentypen.Spieler_Enum;
+   begin
+      
+      RassenSchleife:
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+               
+         if
+           LeseRassenbelegung.Besiegt (RasseExtern => RasseSchleifenwert) = False
+           and
+             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Mensch_Spieler_Enum
+         then
+            return True;
+            
+         else
+            null;
+         end if;
+               
+      end loop RassenSchleife;
+            
+      return False;
+      
+   end MenschlicherSpielerVorhanden;
+   
 
 end SiegbedingungenLogik;

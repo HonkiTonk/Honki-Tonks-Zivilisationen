@@ -11,18 +11,21 @@ package body LeseEinheitenDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.Einheitart_Enum
-   is begin
+   is
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   begin
       
-      case
-        IDExtern
-      is
-         when EinheitenKonstanten.LeerID =>
-            return EinheitenKonstanten.LeerEinheitArt;
+      if
+        IDExtern = EinheitenKonstanten.LeerID
+        or
+          LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
+      then
+         return EinheitenKonstanten.LeerEinheitArt;
               
-         when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Einheitenart;
-      end case;
-            
+      else
+         return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Einheitenart;
+      end if;
+      
    end Einheitenart;
    
    

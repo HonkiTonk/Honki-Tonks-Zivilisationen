@@ -16,8 +16,19 @@ with KartengeneratorVariablenLogik;
 with SichtweitenGrafik;
 
 package body StandardSpielwerteSetzenLogik is
+   
+   procedure Standardspielwerte
+     (EinstellungenBehaltenExtern : in Boolean)
+   is begin
+      
+      StandardspielwerteLogik (EinstellungenBehaltenExtern => EinstellungenBehaltenExtern);
+      StandardspielwerteGrafik;
+      
+   end Standardspielwerte;
+   
+   
 
-   procedure StandardSpielwerteSetzenLogik
+   procedure StandardspielwerteLogik
      (EinstellungenBehaltenExtern : in Boolean)
    is begin
       
@@ -44,8 +55,15 @@ package body StandardSpielwerteSetzenLogik is
       SchreibeWeltkarteneinstellungen.Standardeinstellungen;
       SchreibeWeltkarte.Standardeinstellungen;
       
+   end StandardspielwerteLogik;
+   
+   
+   
+   procedure StandardspielwerteGrafik
+   is begin
+      
       SichtweitenGrafik.StandardSichtweiten;
       
-   end StandardSpielwerteSetzenLogik;
+   end StandardspielwerteGrafik;
 
 end StandardSpielwerteSetzenLogik;

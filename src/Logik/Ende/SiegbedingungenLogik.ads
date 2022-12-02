@@ -25,4 +25,7 @@ private
    function SiegbedingungZwei
      return Boolean;
 
+   function MenschlicherSpielerVorhanden
+     return Boolean;
+
 end SiegbedingungenLogik;

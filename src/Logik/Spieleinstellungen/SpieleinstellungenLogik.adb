@@ -23,18 +23,17 @@ package body SpieleinstellungenLogik is
      (SchnellstartExtern : in Boolean)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
-      
-      StandardSpielwerteSetzenLogik.StandardSpielwerteSetzenLogik (EinstellungenBehaltenExtern => True);
-      
+            
       case
         SchnellstartExtern
       is
          when True =>
+            StandardSpielwerteSetzenLogik.Standardspielwerte (EinstellungenBehaltenExtern => False);
             SpieleinstellungenRasseLogik.RasseBelegenSchnellstart;
             return AutomatischeEinstellungen;
             
          when False =>
-            null;
+            StandardSpielwerteSetzenLogik.Standardspielwerte (EinstellungenBehaltenExtern => True);
       end case;
       
       SpielGespieltSchleife:

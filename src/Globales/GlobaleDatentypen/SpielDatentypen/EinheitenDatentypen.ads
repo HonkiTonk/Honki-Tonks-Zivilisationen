@@ -1,9 +1,6 @@
 package EinheitenDatentypen is
    pragma Pure;
-   
-   -- Eigenen Datentyp für Arbeitszeit anlegen. äöü
-   -- Eigene Datentypen für Erfahrung/Rang anlegen. äöü
-   
+      
    type MaximaleEinheitenMitNullWert is range 0 .. 1_000;
    subtype MaximaleEinheiten is MaximaleEinheitenMitNullWert range 1 .. MaximaleEinheitenMitNullWert'Last;
    
@@ -95,8 +92,8 @@ package EinheitenDatentypen is
    
    
    
-   type Bewegungsplan is range 0 .. 20;
-   subtype BewegungsplanVorhanden is Bewegungsplan range 1 .. 20;
+   type Bewegungsplan is range 0 .. VorhandeneBewegungspunkte'Last;
+   subtype BewegungsplanVorhanden is Bewegungsplan range 1 .. Bewegungsplan'Last;
    
    
       

@@ -1,6 +1,5 @@
 -- Womit ich aufgehört habe:
 
--- Über mehrere Felder auf einmal bewegen als Mensch.
 --
 
 
@@ -17,7 +16,7 @@
 
 -- Sonstiges: Planetenzerstörerbombe inklusive Zusammenbruchszeit eingebaut. Sichtbarkeitsberechnungssystem ist nun ebenenübergreifend. Koordinatenberechnunssystem funktioniert jetzt mit allen Kartenformen ohne abzustürzen.
 --            Steuerungsauswahl mit verschiedenen Kategorien eingebaut. Zusatzgrund kann sich jetzt auch grafisch über mehrere Felder erstrecken.
---            Vor dem Laden erfolgt jetzt immer eine Prüfung ob der Spielstand auch alle Daten in der richtigen Reihenfolge enthält. Es ist jetzt möglich EInheiten über mehrere Felder zu bewegen.
+--            Vor dem Laden erfolgt jetzt immer eine Prüfung ob der Spielstand auch alle Daten in der richtigen Reihenfolge enthält. Es ist jetzt möglich Einheiten über mehrere Felder zu bewegen.
 --
 
 

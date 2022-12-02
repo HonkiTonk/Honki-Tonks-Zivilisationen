@@ -110,8 +110,18 @@ package body LeseEinheitenGebaut is
       use type KampfDatentypen.Erfahrungspunkte;
    begin
       
-      Beförderungsgrenze := LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                         IDExtern    => ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      EinheitID := GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID;
+      
+      case
+        EinheitID
+      is
+         when EinheitenKonstanten.LeerID =>
+            return EinheitenKonstanten.LeerErfahrungspunkte;
+            
+         when others =>
+            Beförderungsgrenze := LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                               IDExtern    => EinheitID);
+      end case;
       
       if
         GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte > Beförderungsgrenze
@@ -136,8 +146,18 @@ package body LeseEinheitenGebaut is
       use type KampfDatentypen.Erfahrungspunkte;
    begin
       
-      MaximalerRang := LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                             IDExtern    => ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      EinheitID := GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID;
+      
+      case
+        EinheitID
+      is
+         when EinheitenKonstanten.LeerID =>
+            return EinheitenKonstanten.LeerRang;
+            
+         when others =>
+            MaximalerRang := LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                   IDExtern    => EinheitID);
+      end case;
       
       if
         GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang > MaximalerRang

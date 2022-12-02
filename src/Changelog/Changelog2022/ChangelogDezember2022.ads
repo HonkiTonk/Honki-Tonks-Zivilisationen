@@ -203,16 +203,24 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.04. => 0.0. (02.12.2022):
+   -- Version 0.04.5170 => 0.0. (02.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.5060 => 0.04. (01.12.2022):
+   -- Version 0.04.5060 => 0.04.5170 (01.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Zurücksetzen der Werte beim Starten eines neuen Spiels in Logik und Grafik aufgeteilt.
+   -- Die Frage ob angegriffen werden soll und der Kampf finden jetzt erst statt wenn die eigenen Einheit die andere Einheit erreicht hat.
+   -- Es ist erst einmal nicht mehr möglich Einheiten über andere eigene Einheiten darüber zu bewegen.
+   -- Wenn sich eine Einheit bewegt blinkt sie jetzt nicht mehr.
+   -- Der Rang einer Einheit wird jetzt beim Ermitteln der Kampfwerte berücksichtigt.
+   -- KI überarbeitet.
+   -- Mehr Sicherheitsprüfungen eingebaut.
+   -- Einige Fehler korrigiert die zum Anhalten des Spiels führten.
+   -- Wenn alle menschlichen Spieler besiegt wurden kommt jetzt nicht mehr die Frage ob man weiterspielen will.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
 
 end ChangelogDezember2022;

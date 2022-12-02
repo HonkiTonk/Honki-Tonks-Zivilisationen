@@ -13,11 +13,11 @@ package LeseEinheitenDatenbank is
    function Einheitenart
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return EinheitenDatentypen.Einheitart_Enum
-     with
-       Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-              );
+      return EinheitenDatentypen.Einheitart_Enum;
+    -- with
+    --   Pre => (
+    --             LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+     --         );
    
    function PreisGeld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

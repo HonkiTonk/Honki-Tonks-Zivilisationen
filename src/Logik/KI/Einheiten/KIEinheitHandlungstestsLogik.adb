@@ -11,6 +11,7 @@ with KIEinheitUmsetzenModernisierenLogik;
 
 package body KIEinheitHandlungstestsLogik is
    
+   -- Das hier später anpassen, dass die Verschanzung für eine Runde beendet wird. äöü
    function BewachtStadt
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean

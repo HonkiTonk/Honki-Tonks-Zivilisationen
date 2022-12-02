@@ -3,9 +3,8 @@ with KartenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
 with EinheitenKonstanten;
-
-private with StadtRecords;
-private with StadtKonstanten;
+with StadtRecords;
+with StadtKonstanten;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -46,23 +45,6 @@ package EinheitenbewegungLogik is
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
-private
-   
-   FeldPassierbar : Boolean;
-   BewegungDurchführen : Boolean;
-   
-   StadtAufFeld : StadtRecords.RasseStadtnummerRecord;
-      
-   EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
-
-   KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
-   NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   BewegendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   StehendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-      
-    
-      
    function FremderAufFeld
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       FremdeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
@@ -92,5 +74,20 @@ private
                and
                  LeseRassenbelegung.Belegung (RasseExtern => FremdeStadtExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
+   
+private
+   
+   FeldPassierbar : Boolean;
+   BewegungDurchführen : Boolean;
+   
+   StadtAufFeld : StadtRecords.RasseStadtnummerRecord;
+      
+   EinheitAufFeld : EinheitenRecords.RasseEinheitnummerRecord;
+
+   KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
+   NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   BewegendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   StehendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end EinheitenbewegungLogik;

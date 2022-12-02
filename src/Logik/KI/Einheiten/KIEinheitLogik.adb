@@ -65,7 +65,7 @@ package body KIEinheitLogik is
             when False =>
                null;
          end case;
-                  
+                           
          case
            KIEinheitenbewegungLogik.Bewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is

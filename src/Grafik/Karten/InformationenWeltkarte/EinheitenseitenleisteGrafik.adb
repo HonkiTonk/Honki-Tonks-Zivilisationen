@@ -392,7 +392,7 @@ package body EinheitenseitenleisteGrafik is
       end case;
       
       PlanSchleife:
-      for PlanSchleifenwert in EinheitenDatentypen.BewegungsplanVorhanden'Range loop
+      for PlanSchleifenwert in EinheitenDatentypen.BewegungsplanVorhanden'First .. 10 loop
          
          case
            PlanSchleifenwert mod 2
@@ -424,7 +424,7 @@ package body EinheitenseitenleisteGrafik is
          
       end loop PlanSchleife;
       
-      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
    end PlanZielKoordinaten;
    

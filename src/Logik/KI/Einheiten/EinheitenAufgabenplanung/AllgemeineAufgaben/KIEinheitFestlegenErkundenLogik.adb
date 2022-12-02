@@ -110,9 +110,9 @@ package body KIEinheitFestlegenErkundenLogik is
                     and
                       False = KIAufgabenVerteiltLogik.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
                                                                    ZielKoordinatenExtern => KartenWert)
-                    and
-                      False = KIEinheitAllgemeinePruefungenLogik.AktuellUnpassierbar (KoordinatenExtern        => KartenWert,
-                                                                                      EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                    -- and
+                    --   False = KIEinheitAllgemeinePruefungenLogik.AktuellUnpassierbar (KoordinatenExtern        => KartenWert,
+                    --                                                                   EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                   then
                      SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                 KoordinatenExtern        => KartenWert);

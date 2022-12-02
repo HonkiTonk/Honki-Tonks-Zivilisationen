@@ -1,5 +1,4 @@
 with EinheitenDatentypen;
-with StadtDatentypen;
 
 with LeseEinheitenGebaut;
 
@@ -21,7 +20,6 @@ package body EinheitenbewegungLogik is
       return Boolean
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
       use type RassenDatentypen.Rassen_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
@@ -49,6 +47,13 @@ package body EinheitenbewegungLogik is
                                  StehendeEinheitExtern  => EinheitAufFeld);
          
       elsif
+        EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
+        and
+          KoordinatenExtern /= Zielkoordinaten
+      then
+         return False;
+         
+      elsif
         FeldPassierbar = False
       then
          return False;
@@ -59,54 +64,21 @@ package body EinheitenbewegungLogik is
       end if;
          
       if
-        EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
+        (EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
         and
-          EinheitAufFeld.Rasse /= EinheitenKonstanten.LeerRasse
-          and
-            StadtAufFeld.Nummer /= StadtKonstanten.LeerNummer              
+           EinheitAufFeld.Rasse /= EinheitenKonstanten.LeerRasse)
+        or
+          (StadtAufFeld.Rasse /= StadtKonstanten.LeerRasse
+           and
+             StadtAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse)
       then
          if
            KoordinatenExtern /= Zielkoordinaten
-         then
-            return False;
-            
-         elsif
-           False = FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                   FremdeEinheitExtern      => EinheitAufFeld)
          then
             return False;
                
          else
-            BewegungDurchführen := FremdeStadtAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                        FremdeStadtExtern        => StadtAufFeld);
-         end if;
-            
-      elsif
-        EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
-        and
-          EinheitAufFeld.Rasse /= EinheitenKonstanten.LeerRasse
-      then
-         if
-           KoordinatenExtern /= Zielkoordinaten
-         then
-            return False;
-         
-         else  
-            BewegungDurchführen := FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    FremdeEinheitExtern      => EinheitAufFeld);
-         end if;
-      
-      elsif
-        StadtAufFeld.Nummer /= StadtKonstanten.LeerNummer
-      then
-         if
-           KoordinatenExtern /= Zielkoordinaten
-         then
-            return False;
-            
-         else
-            BewegungDurchführen := FremdeStadtAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                        FremdeStadtExtern        => StadtAufFeld);
+            return True;
          end if;
          
       else
@@ -204,10 +176,6 @@ package body EinheitenbewegungLogik is
          return False;
          
       else
-         -- BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => StehendeEinheitExtern,
-         --                                                        NeueKoordinatenExtern    => BewegendeKoordinaten,
-         --                                                        EinheitentauschExtern    => True);
-         
          return True;
       end if;
       
