@@ -68,13 +68,16 @@ private
    StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
    
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
-   
+      
    Textposition : Sf.System.Vector2.sfVector2f;
    Rahmenposition : Sf.System.Vector2.sfVector2f;
    Rahmengröße : Sf.System.Vector2.sfVector2f;
    
    KartenWertRahmen : KartenRecords.AchsenKartenfeldNaturalRecord;
    EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   BewegungsfeldKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   Zwischenspeicher : KartenRecords.AchsenKartenfeldRecord;
    
    Farbe : Sf.Graphics.Color.sfColor;
    
@@ -234,6 +237,21 @@ private
               );
    
    procedure Einheitenmarkierung
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+              );
+   
+   procedure AnzeigeBewegungsfeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)

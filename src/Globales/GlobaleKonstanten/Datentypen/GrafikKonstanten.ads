@@ -9,5 +9,6 @@ package GrafikKonstanten is
    Wassertransparents : constant Sf.sfUint8 := 215;
    Weltraumtransparents : constant Sf.sfUint8 := 220;
    VerschiedenerGrundtransparents : constant Sf.sfUint8 := 180;
+   Bewegungsfeldtransparents : constant Sf.sfUint8 := 120;
 
 end GrafikKonstanten;

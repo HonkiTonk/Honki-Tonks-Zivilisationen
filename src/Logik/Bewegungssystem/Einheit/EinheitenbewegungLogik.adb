@@ -65,7 +65,7 @@ package body EinheitenbewegungLogik is
          
       if
         (EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
-        and
+         and
            EinheitAufFeld.Rasse /= EinheitenKonstanten.LeerRasse)
         or
           (StadtAufFeld.Rasse /= StadtKonstanten.LeerRasse
@@ -139,9 +139,7 @@ package body EinheitenbewegungLogik is
      (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return Boolean
-   is
-      use type EinheitenDatentypen.Bewegungspunkte;
-   begin
+   is begin
       
       if
         True = EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => BewegendeEinheitExtern,
@@ -153,10 +151,34 @@ package body EinheitenbewegungLogik is
          return False;
          
       else
-         BewegendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => BewegendeEinheitExtern);
-         StehendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => StehendeEinheitExtern);
+         return EinheitentauschPrüfung (BewegendeEinheitExtern => BewegendeEinheitExtern,
+                                         StehendeEinheitExtern  => StehendeEinheitExtern);
       end if;
-            
+      
+   end Einheitentausch;
+   
+   
+   
+   function EinheitentauschPrüfung
+     (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+   is
+      use type EinheitenDatentypen.Bewegungspunkte;
+   begin
+      
+      case
+        EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => BewegendeEinheitExtern,
+                                                           TransporterExtern => StehendeEinheitExtern)
+      is
+         when True =>
+            return True;
+         
+         when False =>
+            BewegendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => BewegendeEinheitExtern);
+            StehendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => StehendeEinheitExtern);
+      end case;
+   
       if
         False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => StehendeEinheitExtern,
                                                                           NeueKoordinatenExtern    => BewegendeKoordinaten)
@@ -179,6 +201,6 @@ package body EinheitenbewegungLogik is
          return True;
       end if;
       
-   end Einheitentausch;
+   end EinheitentauschPrüfung;
 
 end EinheitenbewegungLogik;

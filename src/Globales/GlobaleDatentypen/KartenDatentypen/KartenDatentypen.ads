@@ -6,6 +6,8 @@ package KartenDatentypen is
    subtype KartenfeldPositiv is KartenfeldNatural range 1 .. KartenfeldNatural'Last;
    
    subtype Bewegungsbereich is Kartenfeld range -100 .. 100;
+   subtype BewegungsbereichNatural is Bewegungsbereich range KartenfeldNatural'First .. Bewegungsbereich'Last;
+   subtype BewegungsbereichNegativ is Bewegungsbereich range Bewegungsbereich'First .. KartenfeldNatural'First;
    subtype Stadtfeld is KartenfeldPositiv range KartenfeldPositiv'First .. 20;
    
    -- Das heir kann vermutlich auch mal umgebaut/ersetzt/entfernt werden. äöü

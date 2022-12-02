@@ -27,6 +27,7 @@ with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
 with SichtweitenGrafik;
 with NachGrafiktask;
+with EinheitenbewegungsbereichLogik;
 
 package body WeltkarteZeichnenGrafik is
    
@@ -36,7 +37,9 @@ package body WeltkarteZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       TransparentsExtern : in Sf.sfUint8;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
       
       KartenfeldZeichnen (KoordinatenExtern      => KoordinatenExtern,
                           PositionExtern         => PositionExtern,
@@ -61,6 +64,21 @@ package body WeltkarteZeichnenGrafik is
       AnzeigeEinheit (KoordinatenExtern        => KoordinatenExtern,
                       EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                       PositionExtern           => PositionExtern);
+      
+      if
+        NachGrafiktask.EinheitBewegungsbereich
+        and
+          (NachGrafiktask.Einheitenbewegung = False)
+        and
+          EinheitRasseNummerExtern.Nummer /= EinheitenKonstanten.LeerNummer
+      then
+         AnzeigeBewegungsfeld (KoordinatenExtern        => KoordinatenExtern,
+                               EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                               PositionExtern           => PositionExtern);
+         
+      else
+         null;
+      end if;
       
    end EbeneZeichnen;
    
@@ -514,5 +532,58 @@ package body WeltkarteZeichnenGrafik is
                                          text         => TextaccessVariablen.KarteAccess);
       
    end StadtnameAnzeigen;
+   
+   
+   
+   procedure AnzeigeBewegungsfeld
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      BewegungsfeldKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      Zwischenspeicher.EAchse := BewegungsfeldKoordinaten.EAchse;
+      Zwischenspeicher.YAchse := KoordinatenExtern.YAchse - BewegungsfeldKoordinaten.YAchse;
+      Zwischenspeicher.XAchse := KoordinatenExtern.XAchse - BewegungsfeldKoordinaten.XAchse;
+      
+      if
+        Zwischenspeicher.EAchse in KartenDatentypen.EbeneVorhanden'Range
+        and
+          Zwischenspeicher.YAchse in KartenDatentypen.Bewegungsbereich'Range
+          and
+            Zwischenspeicher.XAchse in KartenDatentypen.Bewegungsbereich'Range
+      then
+         null;
+         
+      else
+         return;
+      end if;
+      
+      case
+        KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => BewegungsfeldKoordinaten,
+                                                                                    ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Zwischenspeicher.YAchse, Zwischenspeicher.XAchse),
+                                                                                    LogikGrafikExtern => False).EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return;
+            
+         when others =>
+            null;
+      end case;
+      
+      case
+        EinheitenbewegungsbereichLogik.Bewegungsbereich (Zwischenspeicher.EAchse, Zwischenspeicher.YAchse, Zwischenspeicher.XAchse)
+      is
+         when False =>
+            null;
+            
+         when True =>
+            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => SichtweitenGrafik.KartenfelderAbmessung,
+                                                    PositionExtern  => PositionExtern,
+                                                    FarbeExtern     => (255, 255, 255, GrafikKonstanten.Bewegungsfeldtransparents));
+      end case;
+        
+   end AnzeigeBewegungsfeld;
 
 end WeltkarteZeichnenGrafik;

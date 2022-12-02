@@ -1,1 +1,2 @@
 pragma Warnings (Off, "*array aggregate*");
+pragma License (GPL);

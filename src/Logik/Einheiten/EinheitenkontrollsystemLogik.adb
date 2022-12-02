@@ -23,6 +23,7 @@ package body EinheitenkontrollsystemLogik is
       
       Bewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       EinheitenbewegungsbereichLogik.BewegungsbereichBerechnen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      NachGrafiktask.EinheitBewegungsbereich := True;
       
       KontrollSchleife:
       loop
@@ -38,14 +39,17 @@ package body EinheitenkontrollsystemLogik is
                   null;
                   
                else
+                  Bewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                   EinheitenbewegungsbereichLogik.BewegungsbereichBerechnen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                end if;
                
             when False =>
-               return;
+               exit KontrollSchleife;
          end case;
          
       end loop KontrollSchleife;
+      
+      NachGrafiktask.EinheitBewegungsbereich := False;
       
    end Einheitenkontrolle;
    

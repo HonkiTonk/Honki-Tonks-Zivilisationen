@@ -81,6 +81,16 @@ package body BewegungsplanLogik is
       then
          return True;
          
+      elsif
+        EinheitRasseNummerExtern.Rasse = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => ZielkoordinatenExtern,
+                                                                                               LogikGrafikExtern => True).Rasse
+        and then
+          False = EinheitenbewegungLogik.EinheitentauschPrüfung (BewegendeEinheitExtern => EinheitRasseNummerExtern,
+                                                                  StehendeEinheitExtern  => EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => ZielkoordinatenExtern,
+                                                                                                                                                  LogikGrafikExtern => True))
+      then
+         return True;
+        
       else
          SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

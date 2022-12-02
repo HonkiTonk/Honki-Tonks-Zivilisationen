@@ -10,36 +10,58 @@ package body BewegungspunkteBerechnenLogik is
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
       return EinheitenDatentypen.Bewegungspunkte
-   is
-      use type EinheitenDatentypen.Bewegungspunkte;
-   begin
+   is begin
       
       AktuelleBewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      NotwendigeBewegungspunkte := NotwendigeBewegungspunkteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      BenötigteBewegungspunkte := NotwendigeBewegungspunkteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                        NeueKoordinatenExtern    => NeueKoordinatenExtern);
       
       if
-        NotwendigeBewegungspunkte < EinheitenKonstanten.MinimalerBewegungspunkt
+        BenötigteBewegungspunkte < EinheitenKonstanten.MinimalerBewegungspunkt
       then
-         NotwendigeBewegungspunkte := EinheitenKonstanten.MinimalerBewegungspunkt;
+         BenötigteBewegungspunkte := EinheitenKonstanten.MinimalerBewegungspunkt;
          
       else
          null;
       end if;
       
       if
-        AktuelleBewegungspunkte < NotwendigeBewegungspunkte
+        AktuelleBewegungspunkte < BenötigteBewegungspunkte
         and
           AktuelleBewegungspunkte = EinheitenKonstanten.MinimalerBewegungspunkt
       then
          return EinheitenKonstanten.LeerBewegungspunkte;
          
       else
-         return NotwendigeBewegungspunkte;
+         return BenötigteBewegungspunkte;
       end if;
       
    end Bewegungspunkte;
+   
+   
+   
+   function NotwendigeBewegungspunkte
+     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return EinheitenDatentypen.VorhandeneBewegungspunkte
+   is begin
+            
+      BenötigteBewegungspunkte := NotwendigeBewegungspunkteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                       NeueKoordinatenExtern    => NeueKoordinatenExtern);
+      
+      if
+        BenötigteBewegungspunkte < EinheitenKonstanten.MinimalerBewegungspunkt
+      then
+         BenötigteBewegungspunkte := EinheitenKonstanten.MinimalerBewegungspunkt;
+         
+      else
+         null;
+      end if;
+      
+      return BenötigteBewegungspunkte;
+      
+   end NotwendigeBewegungspunkte;
 
    
 
@@ -47,9 +69,7 @@ package body BewegungspunkteBerechnenLogik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenDatentypen.Bewegungspunkte
-   is
-      use type EinheitenDatentypen.Bewegungspunkte;
-   begin
+   is begin
       
       case
         NeueKoordinatenExtern.EAchse

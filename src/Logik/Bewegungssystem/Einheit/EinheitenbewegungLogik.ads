@@ -30,6 +30,21 @@ package EinheitenbewegungLogik is
                  LeseRassenbelegung.Belegung (RasseExtern => StehendeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
+   function EinheitentauschPrüfung
+     (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      return Boolean
+     with
+       Pre => (
+                 BewegendeEinheitExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => BewegendeEinheitExtern.Rasse)
+               and
+                 LeseRassenbelegung.Belegung (RasseExtern => BewegendeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
+                 StehendeEinheitExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => StehendeEinheitExtern.Rasse)
+               and
+                 LeseRassenbelegung.Belegung (RasseExtern => StehendeEinheitExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
    function BewegungPrüfen
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

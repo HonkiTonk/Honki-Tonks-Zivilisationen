@@ -196,17 +196,18 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.0. => 0.0. (03.12.2022):
+   -- Version 0.04.5210 => 0.0. (03.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.5170 => 0.0. (02.12.2022):
+   -- Version 0.04.5170 => 0.04.5210 (02.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einheiten bewegen sich jetzt nicht mehr um andere Einheiten herum, wenn ein Tausch mit dieser Einheit unmöglich ist, die Einheit sich aber auf das Feld der Anderen bewegen soll.
+   -- Angefangen eine Anzeige für den Bewegungsbereich der aktuell ausgewählten Einheit einzubauen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
