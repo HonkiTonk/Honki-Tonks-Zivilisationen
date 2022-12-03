@@ -23,11 +23,11 @@ package BewegungspunkteBerechnenLogik is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
                  NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
    function NotwendigeBewegungspunkte
@@ -38,11 +38,11 @@ package BewegungspunkteBerechnenLogik is
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
                  NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               ),
          
        Post => (
@@ -69,11 +69,11 @@ private
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
                and
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+               and
                  NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
 
 end BewegungspunkteBerechnenLogik;

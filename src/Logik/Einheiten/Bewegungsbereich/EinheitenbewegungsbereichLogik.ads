@@ -30,13 +30,17 @@ private
    use type KartenDatentypen.Kartenfeld;
 
    VorhandeneBewegungspunkte : Positive;
+   ZusätzlicheBewegungspunkte : Positive;
 
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenwertQuadrantEins : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenwertQuadrantZwei : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenwertQuadrantDrei : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KartenwertQuadrantVier : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    Bewegungsfeldkoordinaten : KartenRecords.AchsenKartenfeldRecord;
 
-   procedure RekursivEins
+   procedure QuadrantEins
      (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -53,7 +57,7 @@ private
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
-   procedure RekursivZwei
+   procedure QuadrantZwei
      (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -70,7 +74,7 @@ private
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
-   procedure RekursivDrei
+   procedure QuadrantDrei
      (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -87,7 +91,7 @@ private
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
-   procedure RekursivVier
+   procedure QuadrantVier
      (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -102,6 +106,25 @@ private
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+
+
+
+   function FeldPrüfen
+     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      NotwendigeBewegungspunkteExtern : in Natural;
+      VorhandeneBewegungspunkteExtern : in Positive)
+      return Boolean
+     with
+       Pre => (
+                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+               and
+                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end EinheitenbewegungsbereichLogik;

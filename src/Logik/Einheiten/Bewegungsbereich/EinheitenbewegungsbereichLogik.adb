@@ -1,12 +1,15 @@
 with KartenKonstanten;
+with StadtKonstanten;
 
 with LeseEinheitenGebaut;
 
 with KartenkoordinatenberechnungssystemLogik;
 with PassierbarkeitspruefungLogik;
 with BewegungspunkteBerechnenLogik;
+with StadtSuchenLogik;
+with EinheitSuchenLogik;
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Diagnoseinformationen;
 
 package body EinheitenbewegungsbereichLogik is
 
@@ -24,70 +27,132 @@ package body EinheitenbewegungsbereichLogik is
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
             if
-              YAchseSchleifenwert <= 0
+              YAchseSchleifenwert = 0
               and
-                XAchseSchleifenwert >= 0
+                XAchseSchleifenwert = 0
             then
-               Put_Line ("a");
-               RekursivEins (BewegungsfeldExtern             => (AktuelleKoordinaten.EAchse, YAchseSchleifenwert, XAchseSchleifenwert),
-                             KoordinatenExtern               => AktuelleKoordinaten,
-                             EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
-                             NotwendigeBewegungspunkteExtern => 0,
-                             VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkte);
-               Put_Line ("aaa");
-                 
-            elsif
-              YAchseSchleifenwert >= 0
-              and
-                XAchseSchleifenwert > 0
-            then
-               Put_Line ("b");
-               RekursivZwei (BewegungsfeldExtern             => (AktuelleKoordinaten.EAchse, YAchseSchleifenwert, XAchseSchleifenwert),
-                             KoordinatenExtern               => AktuelleKoordinaten,
-                             EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
-                             NotwendigeBewegungspunkteExtern => 0,
-                             VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkte);
-               Put_Line ("bbb");
-               
-            elsif
-              YAchseSchleifenwert > 0
-              and
-                XAchseSchleifenwert < 0
-            then
-               Put_Line ("c");
-               RekursivDrei (BewegungsfeldExtern             => (AktuelleKoordinaten.EAchse, YAchseSchleifenwert, XAchseSchleifenwert),
-                             KoordinatenExtern               => AktuelleKoordinaten,
-                             EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
-                             NotwendigeBewegungspunkteExtern => 0,
-                             VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkte);
-               Put_Line ("ccc");
-               
-            elsif
-              YAchseSchleifenwert < 0
-              and
-                XAchseSchleifenwert < 0
-            then
-               Put_Line ("d");
-               RekursivVier (BewegungsfeldExtern             => (AktuelleKoordinaten.EAchse, YAchseSchleifenwert, XAchseSchleifenwert),
-                             KoordinatenExtern               => AktuelleKoordinaten,
-                             EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
-                             NotwendigeBewegungspunkteExtern => 0,
-                             VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkte);
-               Put_Line ("ddd");
+               null;
                
             else
-               null;
+               if
+                 YAchseSchleifenwert <= 0
+                 and
+                   XAchseSchleifenwert >= 0
+               then
+                  QuadrantEins (BewegungsfeldExtern             => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                KoordinatenExtern               => AktuelleKoordinaten,
+                                EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                                NotwendigeBewegungspunkteExtern => 0,
+                                VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkte);
+                  
+               else
+                  null;
+               end if;
+               
+               if
+                 YAchseSchleifenwert >= 0
+                 and
+                   XAchseSchleifenwert >= 0
+               then
+                  QuadrantZwei (BewegungsfeldExtern             => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                KoordinatenExtern               => AktuelleKoordinaten,
+                                EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                                NotwendigeBewegungspunkteExtern => 0,
+                                VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkte);
+                  
+               else
+                  null;
+               end if;
+               
+               if
+                 YAchseSchleifenwert >= 0
+                 and
+                   XAchseSchleifenwert <= 0
+               then
+                  QuadrantDrei (BewegungsfeldExtern             => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                KoordinatenExtern               => AktuelleKoordinaten,
+                                EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                                NotwendigeBewegungspunkteExtern => 0,
+                                VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkte);
+                  
+               else
+                  null;
+               end if;
+               
+               if
+                 YAchseSchleifenwert <= 0
+                 and
+                   XAchseSchleifenwert <= 0
+               then
+                  QuadrantVier (BewegungsfeldExtern             => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                KoordinatenExtern               => AktuelleKoordinaten,
+                                EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                                NotwendigeBewegungspunkteExtern => 0,
+                                VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkte);
+                  
+               else
+                  null;
+               end if;
             end if;
-               
-               
+         
          end loop XAchseSchleife;
+         
+         Diagnoseinformationen.Zahl (ZahlExtern => 1);
+         
       end loop YAchseSchleife;
       
    end BewegungsbereichBerechnen;
    
    
    
-   procedure RekursivEins
+   function FeldPrüfen
+     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      NotwendigeBewegungspunkteExtern : in Natural;
+      VorhandeneBewegungspunkteExtern : in Positive)
+      return Boolean
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
+      
+      if
+        NeueKoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse
+      then
+         return False;
+      
+      elsif
+        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                          NeueKoordinatenExtern    => NeueKoordinatenExtern)
+      then
+         return False;
+         
+      elsif
+        StadtKonstanten.LeerRasse /= StadtSuchenLogik.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                                KoordinatenExtern => NeueKoordinatenExtern).Rasse
+      then
+         return False;
+         
+      elsif
+        EinheitenKonstanten.LeerRasse /= EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeueKoordinatenExtern,
+                                                                                               LogikGrafikExtern => True).Rasse
+      then
+         return False;
+               
+      elsif
+        VorhandeneBewegungspunkteExtern < NotwendigeBewegungspunkteExtern + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => NeueKoordinatenExtern,
+                                                                                                                                               EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+      then
+         return False;
+         
+      else
+         return True;
+      end if;
+      
+   end FeldPrüfen;
+   
+   
+   
+   procedure QuadrantEins
      (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -95,63 +160,60 @@ package body EinheitenbewegungsbereichLogik is
       VorhandeneBewegungspunkteExtern : in Positive)
    is begin
       
+      KartenwertQuadrantEins := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                            ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse),
+                                                                                                            LogikGrafikExtern => True);
+      
+      case
+        FeldPrüfen (NeueKoordinatenExtern           => KartenwertQuadrantEins,
+                     EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                     NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern,
+                     VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern)
+      is
+         when False =>
+            return;
+            
+         when True =>
+            ZusätzlicheBewegungspunkte := Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => KartenwertQuadrantEins,
+                                                                                                              EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+            Bewegungsbereich (KartenwertQuadrantEins.EAchse, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse) := True;
+      end case;
+            
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'First .. -1 loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'First .. 0 loop
          XAchseSchleife:
-         for XAchseSchleifenwert in 1 .. KartenDatentypen.UmgebungsbereichEins'Last loop
+         for XAchseSchleifenwert in 0 .. KartenDatentypen.UmgebungsbereichEins'Last loop
             
             if
+              YAchseSchleifenwert = 0
+              and
+                XAchseSchleifenwert = 0
+            then
+               null;
+               
+            elsif
               BewegungsfeldExtern.YAchse + YAchseSchleifenwert not in KartenDatentypen.Bewegungsbereich'Range
               or
                 BewegungsfeldExtern.XAchse + XAchseSchleifenwert not in KartenDatentypen.Bewegungsbereich'Range
             then
                null;
-               
+                  
             else
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
-                                                                                                                                BewegungsfeldExtern.YAchse + YAchseSchleifenwert,
-                                                                                                                                BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
-                                                                                                         LogikGrafikExtern => True);
-               
-               if
-                 Kartenwert.XAchse = KartenKonstanten.LeerXAchse
-               then
-                  null;
-               
-               elsif
-                 False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                   NeueKoordinatenExtern    => Kartenwert)
-               then
-                  null;
-                  
-               elsif
-                 VorhandeneBewegungspunkteExtern < NotwendigeBewegungspunkteExtern + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
-                                                                                                                                                        EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-               then
-                  null;
-                  
-               else
-                  Bewegungsbereich (Kartenwert.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert) := True;
-                  
-                  RekursivEins (BewegungsfeldExtern             => (BewegungsfeldExtern.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
-                                KoordinatenExtern               => KoordinatenExtern,
-                                EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
-                                NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern
-                                + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
-                                                                                                     EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
-                                VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern);
-               end if;
+               QuadrantEins (BewegungsfeldExtern             => (KartenwertQuadrantEins.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
+                             KoordinatenExtern               => KoordinatenExtern,
+                             EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                             NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern + ZusätzlicheBewegungspunkte,
+                             VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern);
             end if;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-   end RekursivEins;
+   end QuadrantEins;
    
    
    
-   procedure RekursivZwei
+   procedure QuadrantZwei
      (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -159,63 +221,60 @@ package body EinheitenbewegungsbereichLogik is
       VorhandeneBewegungspunkteExtern : in Positive)
    is begin
       
+      KartenwertQuadrantZwei := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                            ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse),
+                                                                                                            LogikGrafikExtern => True);
+            
+      case
+        FeldPrüfen (NeueKoordinatenExtern           => KartenwertQuadrantZwei,
+                     EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                     NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern,
+                     VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern)
+      is
+         when False =>
+            return;
+            
+         when True =>
+            ZusätzlicheBewegungspunkte := Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => KartenwertQuadrantZwei,
+                                                                                                              EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+            Bewegungsbereich (KartenwertQuadrantZwei.EAchse, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse) := True;
+      end case;
+            
       YAchseSchleife:
-      for YAchseSchleifenwert in 1 .. KartenDatentypen.UmgebungsbereichEins'Last loop
+      for YAchseSchleifenwert in 0 .. KartenDatentypen.UmgebungsbereichEins'Last loop
          XAchseSchleife:
-         for XAchseSchleifenwert in 1 .. KartenDatentypen.UmgebungsbereichEins'Last loop
-               
+         for XAchseSchleifenwert in 0 .. KartenDatentypen.UmgebungsbereichEins'Last loop
+            
             if
+              YAchseSchleifenwert = 0
+              and
+                XAchseSchleifenwert = 0
+            then
+               null;
+               
+            elsif
               BewegungsfeldExtern.YAchse + YAchseSchleifenwert not in KartenDatentypen.Bewegungsbereich'Range
               or
                 BewegungsfeldExtern.XAchse + XAchseSchleifenwert not in KartenDatentypen.Bewegungsbereich'Range
             then
                null;
-               
+                  
             else
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
-                                                                                                                                BewegungsfeldExtern.YAchse + YAchseSchleifenwert,
-                                                                                                                                BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
-                                                                                                         LogikGrafikExtern => True);
-               
-               if
-                 Kartenwert.XAchse = KartenKonstanten.LeerXAchse
-               then
-                  null;
-               
-               elsif
-                 False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                   NeueKoordinatenExtern    => Kartenwert)
-               then
-                  null;
-                  
-               elsif
-                 VorhandeneBewegungspunkteExtern < NotwendigeBewegungspunkteExtern + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
-                                                                                                                                                        EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-               then
-                  null;
-                  
-               else
-                  Bewegungsbereich (Kartenwert.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert) := True;
-                  
-                  RekursivZwei (BewegungsfeldExtern             => (BewegungsfeldExtern.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
-                                KoordinatenExtern               => KoordinatenExtern,
-                                EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
-                                NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern
-                                + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
-                                                                                                     EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
-                                VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern);
-               end if;
+               QuadrantZwei (BewegungsfeldExtern             => (KartenwertQuadrantZwei.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
+                             KoordinatenExtern               => KoordinatenExtern,
+                             EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                             NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern + ZusätzlicheBewegungspunkte,
+                             VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern);
             end if;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-   end RekursivZwei;
+   end QuadrantZwei;
    
    
    
-   procedure RekursivDrei
+   procedure QuadrantDrei
      (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -223,63 +282,60 @@ package body EinheitenbewegungsbereichLogik is
       VorhandeneBewegungspunkteExtern : in Positive)
    is begin
       
+      KartenwertQuadrantDrei := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                            ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse),
+                                                                                                            LogikGrafikExtern => True);
+            
+      case
+        FeldPrüfen (NeueKoordinatenExtern           => KartenwertQuadrantDrei,
+                     EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                     NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern,
+                     VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern)
+      is
+         when False =>
+            return;
+            
+         when True =>
+            ZusätzlicheBewegungspunkte := Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => KartenwertQuadrantDrei,
+                                                                                                              EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+            Bewegungsbereich (KartenwertQuadrantDrei.EAchse, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse) := True;
+      end case;
+      
       YAchseSchleife:
-      for YAchseSchleifenwert in -1 .. KartenDatentypen.UmgebungsbereichEins'Last loop
+      for YAchseSchleifenwert in 0 .. KartenDatentypen.UmgebungsbereichEins'Last loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'First .. -1 loop
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'First .. 0 loop
             
             if
+              YAchseSchleifenwert = 0
+              and
+                XAchseSchleifenwert = 0
+            then
+               null;
+               
+            elsif
               BewegungsfeldExtern.YAchse + YAchseSchleifenwert not in KartenDatentypen.Bewegungsbereich'Range
               or
                 BewegungsfeldExtern.XAchse + XAchseSchleifenwert not in KartenDatentypen.Bewegungsbereich'Range
             then
                null;
-               
+                  
             else
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
-                                                                                                                                BewegungsfeldExtern.YAchse + YAchseSchleifenwert,
-                                                                                                                                BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
-                                                                                                         LogikGrafikExtern => True);
-               
-               if
-                 Kartenwert.XAchse = KartenKonstanten.LeerXAchse
-               then
-                  null;
-               
-               elsif
-                 False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                   NeueKoordinatenExtern    => Kartenwert)
-               then
-                  null;
-                  
-               elsif
-                 VorhandeneBewegungspunkteExtern < NotwendigeBewegungspunkteExtern + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
-                                                                                                                                                        EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-               then
-                  null;
-                  
-               else
-                  Bewegungsbereich (Kartenwert.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert) := True;
-                  
-                  RekursivDrei (BewegungsfeldExtern             => (BewegungsfeldExtern.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
-                                KoordinatenExtern               => KoordinatenExtern,
-                                EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
-                                NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern
-                                + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
-                                                                                                     EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
-                                VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern);
-               end if;
+               QuadrantDrei (BewegungsfeldExtern             => (KartenwertQuadrantDrei.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
+                             KoordinatenExtern               => KoordinatenExtern,
+                             EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                             NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern + ZusätzlicheBewegungspunkte,
+                             VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern);
             end if;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-   end RekursivDrei;
+   end QuadrantDrei;
    
    
    
-   procedure RekursivVier
+   procedure QuadrantVier
      (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -287,58 +343,55 @@ package body EinheitenbewegungsbereichLogik is
       VorhandeneBewegungspunkteExtern : in Positive)
    is begin
       
+      KartenwertQuadrantVier := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                            ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse),
+                                                                                                            LogikGrafikExtern => True);
+            
+      case
+        FeldPrüfen (NeueKoordinatenExtern           => KartenwertQuadrantVier,
+                     EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                     NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern,
+                     VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern)
+      is
+         when False =>
+            return;
+            
+         when True =>
+            ZusätzlicheBewegungspunkte := Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => KartenwertQuadrantVier,
+                                                                                                              EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+            Bewegungsbereich (KartenwertQuadrantVier.EAchse, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse) := True;
+      end case;
+            
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'First .. KartenDatentypen.UmgebungsbereichEins'First loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'First .. 0 loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'First .. KartenDatentypen.UmgebungsbereichEins'First loop
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'First .. 0 loop
             
             if
+              YAchseSchleifenwert = 0
+              and
+                XAchseSchleifenwert = 0
+            then
+               null;
+               
+            elsif
               BewegungsfeldExtern.YAchse + YAchseSchleifenwert not in KartenDatentypen.Bewegungsbereich'Range
               or
                 BewegungsfeldExtern.XAchse + XAchseSchleifenwert not in KartenDatentypen.Bewegungsbereich'Range
             then
                null;
-               
+                  
             else
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
-                                                                                                                                BewegungsfeldExtern.YAchse + YAchseSchleifenwert,
-                                                                                                                                BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
-                                                                                                         LogikGrafikExtern => True);
-               
-               if
-                 Kartenwert.XAchse = KartenKonstanten.LeerXAchse
-               then
-                  null;
-               
-               elsif
-                 False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                   NeueKoordinatenExtern    => Kartenwert)
-               then
-                  null;
-                  
-               elsif
-                 VorhandeneBewegungspunkteExtern < NotwendigeBewegungspunkteExtern + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
-                                                                                                                                                        EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-               then
-                  null;
-                  
-               else
-                  Bewegungsbereich (Kartenwert.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert) := True;
-                  
-                  RekursivVier (BewegungsfeldExtern             => (BewegungsfeldExtern.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
-                                KoordinatenExtern               => KoordinatenExtern,
-                                EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
-                                NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern
-                                + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
-                                                                                                     EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
-                                VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern);
-               end if;
+               QuadrantVier (BewegungsfeldExtern             => (KartenwertQuadrantVier.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
+                             KoordinatenExtern               => KoordinatenExtern,
+                             EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                             NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern + ZusätzlicheBewegungspunkte,
+                             VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern);
             end if;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-   end RekursivVier;
+   end QuadrantVier;
 
 end EinheitenbewegungsbereichLogik;

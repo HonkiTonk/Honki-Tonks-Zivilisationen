@@ -189,17 +189,18 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.0. => 0.0. (04.12.2022):
+   -- Version 0.0.5250 => 0.0. (04.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.5210 => 0.0. (03.12.2022):
+   -- Version 0.04.5210 => 0.04.5250 (03.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Der Bewegungsbereich der ausgewählten Einheit wird jetzt angezeigt.
+   -- Angefangen die Ermittlung des Bewegungsbereiches zu optimieren.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeiten.
    
    
 

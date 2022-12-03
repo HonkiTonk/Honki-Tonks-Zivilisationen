@@ -546,7 +546,7 @@ package body WeltkarteZeichnenGrafik is
       Zwischenspeicher.EAchse := BewegungsfeldKoordinaten.EAchse;
       Zwischenspeicher.YAchse := KoordinatenExtern.YAchse - BewegungsfeldKoordinaten.YAchse;
       Zwischenspeicher.XAchse := KoordinatenExtern.XAchse - BewegungsfeldKoordinaten.XAchse;
-      
+            
       if
         Zwischenspeicher.EAchse in KartenDatentypen.EbeneVorhanden'Range
         and
