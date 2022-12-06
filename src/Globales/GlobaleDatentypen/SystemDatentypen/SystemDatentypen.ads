@@ -1,10 +1,15 @@
 package SystemDatentypen is
    pragma Pure;
 
-   -- Wichtige Werte
    type Anfang_Ende_Enum is (
                              Anfangswert_Enum, Endwert_Enum
                             );
+   
+   
+   
+   type Erweiterter_Boolean_Enum is (
+                                     True_Enum, Neutral_Enum, False_Enum
+                                    );
    
    
       

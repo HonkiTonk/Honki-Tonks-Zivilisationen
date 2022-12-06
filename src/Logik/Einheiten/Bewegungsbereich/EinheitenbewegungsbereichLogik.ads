@@ -4,6 +4,8 @@ with EinheitenKonstanten;
 with KartenDatentypen;
 
 private with KartenRecords;
+private with SystemDatentypen;
+private with StadtRecords;
 
 with LeseGrenzen;
 with LeseRassenbelegung;
@@ -29,69 +31,19 @@ package EinheitenbewegungsbereichLogik is
 private
    use type KartenDatentypen.Kartenfeld;
 
-   VorhandeneBewegungspunkte : Positive;
    ZusätzlicheBewegungspunkte : Positive;
+   ZwischenrechnungBewegungspunkte : Positive;
+
+   VorhandeneBewegungspunkte : Natural;
+
+   Stadt : StadtRecords.RasseStadtnummerRecord;
+
+   Einheit : EinheitenRecords.RasseEinheitnummerRecord;
 
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenwertQuadrantEins : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenwertQuadrantZwei : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenwertQuadrantDrei : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenwertQuadrantVier : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-   Bewegungsfeldkoordinaten : KartenRecords.AchsenKartenfeldRecord;
-
-   procedure QuadrantEins
-     (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      NotwendigeBewegungspunkteExtern : in Natural;
-      VorhandeneBewegungspunkteExtern : in Positive)
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
-
-   procedure QuadrantZwei
-     (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      NotwendigeBewegungspunkteExtern : in Natural;
-      VorhandeneBewegungspunkteExtern : in Positive)
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
-
-   procedure QuadrantDrei
-     (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      NotwendigeBewegungspunkteExtern : in Natural;
-      VorhandeneBewegungspunkteExtern : in Positive)
-     with
-       Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
-
-   procedure QuadrantVier
+   procedure BewegungsbereichErmitteln
      (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -115,7 +67,7 @@ private
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NotwendigeBewegungspunkteExtern : in Natural;
       VorhandeneBewegungspunkteExtern : in Positive)
-      return Boolean
+      return SystemDatentypen.Erweiterter_Boolean_Enum
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)

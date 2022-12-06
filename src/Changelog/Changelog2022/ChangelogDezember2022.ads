@@ -161,38 +161,42 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.0. => 0.0. (08.12.2022):
+   -- Version 0.04. => 0.04. (08.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (07.12.2022):
+   -- Version 0.04. => 0.04. (07.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (06.12.2022):
+   -- Version 0.04.5325 => 0.04. (06.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (05.12.2022):
+   -- Version 0.04.5250 => 0.04.5325 (05.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Berechnung des Einheitenbewegungsfeldes optimiert.
+   -- Code zusammengefasst.
+   -- Unnötigen Code gelöscht.
+   -- Berechnung des Einheitenbewegungsfeldes erweitert.
+   -- Einfache Anpassung der Städtename an die jeweiligen Rassen.
+   -- Fehler korrigiert welcher das Programm stoppte.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.0.5250 => 0.0. (04.12.2022):
+   -- Version 0.04.5250 => 0.04.5250 (04.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

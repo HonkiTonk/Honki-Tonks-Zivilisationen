@@ -36,7 +36,8 @@ private
    
    MinimaleSiedlerMenge : constant EinheitenDatentypen.MaximaleEinheiten := 2;
    AnzahlStädte : EinheitenDatentypen.MaximaleEinheiten;
-   VorhandeneEinheiten : EinheitenDatentypen.MaximaleEinheiten;
+   
+   VorhandeneEinheiten : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    EinheitBewertet : KIRecords.EinheitIDBewertungRecord;
    

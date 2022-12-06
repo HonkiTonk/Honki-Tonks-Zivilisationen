@@ -29,7 +29,7 @@ package body BewegungspunkteBerechnenLogik is
       if
         AktuelleBewegungspunkte < BenötigteBewegungspunkte
         and
-          AktuelleBewegungspunkte = EinheitenKonstanten.MinimalerBewegungspunkt
+          AktuelleBewegungspunkte <= EinheitenKonstanten.MinimalerBewegungspunkt
       then
          return EinheitenKonstanten.LeerBewegungspunkte;
          

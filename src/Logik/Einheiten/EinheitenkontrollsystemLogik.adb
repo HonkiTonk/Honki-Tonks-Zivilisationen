@@ -33,13 +33,20 @@ package body EinheitenkontrollsystemLogik is
                            BefehlExtern             => TasteneingabeLogik.Einheitentaste)
          is
             when True =>
+               NeueBewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               
                if
-                 Bewegungspunkte = LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                 Bewegungspunkte = NeueBewegungspunkte
                then
                   null;
                   
+               elsif
+                 NeueBewegungspunkte = 0
+               then
+                  exit KontrollSchleife;
+                  
                else
-                  Bewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                  Bewegungspunkte := NeueBewegungspunkte;
                   EinheitenbewegungsbereichLogik.BewegungsbereichBerechnen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                end if;
                

@@ -19,7 +19,7 @@ package DebugobjekteLogik is
                                                                              Anforderungen           => -1,
                                                                              Passierbarkeit          => (others => True),
                                                                              MaximaleLebenspunkte    => EinheitenDatentypen.Lebenspunkte'Last,
-                                                                             MaximaleBewegungspunkte => 33,
+                                                                             MaximaleBewegungspunkte => 24,
                                                                              VerbesserungZu          => 0,
                                                                              Beförderungsgrenze      => 1,
                                                                              MaximalerRang           => KampfDatentypen.RangVorhanden'Last,
