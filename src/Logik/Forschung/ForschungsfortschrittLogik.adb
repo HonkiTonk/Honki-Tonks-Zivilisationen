@@ -46,7 +46,6 @@ package body ForschungsfortschrittLogik is
         AktuellesForschungsprojekt
       is
          when ForschungKonstanten.LeerForschung =>
-            ForschungsauswahlLogik.Anfangsauswahl (RasseExtern => RasseExtern);
             return;
             
          when others =>

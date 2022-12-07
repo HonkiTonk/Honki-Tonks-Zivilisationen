@@ -168,17 +168,19 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (07.12.2022):
+   -- Version 0.04.5370 => 0.04. (07.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.5325 => 0.04. (06.12.2022):
+   -- Version 0.04.5325 => 0.04.5370 (06.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Größe der Speicherdateien reduziert, vor allem bei kleinen Kartengrößen.
+   -- Sollte in der ersten Runde kein Forschungsprojekt gewählt worden sein, dann wird in der zweiten Runde jetzt nur noch der Spieler der am Zug ist gefragt was erforscht werden soll und nicht alle Spieler.
+   -- Angefangen das Bewegungsfeld an Kartenübergänge anzupassen.
+   -- Kommentare und Kleinigkeiten korrigiert/optimiert.
    
    
 

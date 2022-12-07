@@ -4,7 +4,6 @@ with GrafikDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
-with LeseAllgemeines;
 
 with TasteneingabeLogik;
 with MausauswahlLogik;
@@ -54,35 +53,6 @@ package body ForschungsauswahlLogik is
       return Forschungsauswahl;
 
    end Forschungsmöglichkeiten;
-   
-   
-   
-   procedure Anfangsauswahl
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      case
-        LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
-      is
-         when RassenDatentypen.Mensch_Spieler_Enum =>
-            null;
-            
-         when others =>
-            return;
-      end case;
-      
-      case
-        LeseAllgemeines.Rundenanzahl
-      is
-         when 1 =>
-            NachGrafiktask.AktuelleRasse := RasseExtern;
-            Forschung (RasseExtern => RasseExtern);
-            
-         when others =>
-            null;
-      end case;
-      
-   end Anfangsauswahl;
    
    
    

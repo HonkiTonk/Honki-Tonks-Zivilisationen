@@ -465,14 +465,32 @@ package body SchreibeEinheitenGebaut is
    
    
    
-   procedure GanzerEintrag
+   procedure LadenEintrag
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      EintragExtern : in EinheitenRecords.EinheitenGebautRecord)
+      EintragExtern : in EinheitenRecords.EinheitenGebautSpeichernRecord)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) := EintragExtern;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID := EintragExtern.ID;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell := EintragExtern.KoordinatenAktuell;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Heimatstadt := EintragExtern.Heimatstadt;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := EintragExtern.Lebenspunkte;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte := EintragExtern.Bewegungspunkte;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte := EintragExtern.Erfahrungspunkte;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang := EintragExtern.Rang;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung := EintragExtern.Beschäftigung;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger := EintragExtern.BeschäftigungNachfolger;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten := EintragExtern.KIZielKoordinaten;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBeschäftigt := EintragExtern.KIBeschäftigt;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinatenNachfolger := EintragExtern.KIZielKoordinatenNachfolger;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBeschäftigtNachfolger := EintragExtern.KIBeschäftigtNachfolger;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIVerbesserung := EintragExtern.KIVerbesserung;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Transportiert := EintragExtern.Transportiert;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).WirdTransportiert := EintragExtern.WirdTransportiert;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Meldungen := EintragExtern.Meldungen;
       
-   end GanzerEintrag;
+      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan := (others => KartenRecordKonstanten.LeerKoordinate);
+      
+   end LadenEintrag;
    
    
    

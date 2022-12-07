@@ -197,9 +197,9 @@ package body SpeichernLogik is
       EinheitenSchleife:
       for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
                   
-         EinheitenRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                       LeseEinheitenGebaut.GanzerEintrag (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert)));
-                                                       
+         EinheitenRecords.EinheitenGebautSpeichernRecord'Write (Stream (File => DateiSpeichernExtern),
+                                                                LeseEinheitenGebaut.SpeichernEintrag (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert)));
+         
       end loop EinheitenSchleife;
       
       StadtSchleife:

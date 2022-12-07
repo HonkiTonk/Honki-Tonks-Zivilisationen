@@ -2,10 +2,13 @@ with EinheitenKonstanten;
 with GrafikDatentypen;
 with MenueDatentypen;
 with TextnummernKonstanten;
+with ForschungKonstanten;
+with ForschungenDatentypen;
 
 with LeseGrenzen;
 with LeseAllgemeines;
 with SchreibeAllgemeines;
+with LeseWichtiges;
 
 with OptionenLogik;
 with LadezeitenLogik;
@@ -19,6 +22,7 @@ with BefehlsauswahlLogik;
 with JaNeinLogik;
 with Spielertests;
 with AuswahlaufteilungLogik;
+with ForschungsauswahlLogik;
 
 with KILogik;
 
@@ -230,9 +234,21 @@ package body SpielLogik is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is
       use type RueckgabeDatentypen.Rückgabe_Werte_Enum;
+      use type ForschungenDatentypen.ForschungIDNichtMöglich;
    begin
       
       NachGrafiktask.AktuelleRasse := RasseExtern;
+      
+      if
+        LeseAllgemeines.Rundenanzahl = 2
+        and
+          LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern) = ForschungKonstanten.LeerForschung
+      then
+         ForschungsauswahlLogik.Forschung (RasseExtern => RasseExtern);
+         
+      else
+         null;
+      end if;
       
       SpielerSchleife:
       loop

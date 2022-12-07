@@ -81,6 +81,33 @@ package EinheitenRecords is
       
    end record;
    
+   type EinheitenGebautSpeichernRecord is record
+      
+      ID : EinheitenDatentypen.EinheitenIDMitNullWert;
+      KoordinatenAktuell : KartenRecords.AchsenKartenfeldNaturalRecord;
+      Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
+      
+      Lebenspunkte : EinheitenDatentypen.Lebenspunkte;
+      Bewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
+      Erfahrungspunkte : KampfDatentypen.Erfahrungspunkte;
+      Rang : KampfDatentypen.Rang;
+      
+      Beschäftigung : ArbeitRecord;
+      BeschäftigungNachfolger : ArbeitRecord;
+      
+      KIZielKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+      KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
+      KIZielKoordinatenNachfolger : KartenRecords.AchsenKartenfeldNaturalRecord;
+      KIBeschäftigtNachfolger : KIDatentypen.Einheit_Aufgabe_Enum;
+      KIVerbesserung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+      
+      Transportiert : TransporterArray;
+      WirdTransportiert : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      
+      Meldungen : EinheitMeldungenArray;
+      
+   end record;
+   
    
    
    type MöglicheAuswahlenArray is array (0 .. TransporterArray'Last) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;

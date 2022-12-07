@@ -561,18 +561,6 @@ package body WeltkarteZeichnenGrafik is
       end if;
       
       case
-        KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => BewegungsfeldKoordinaten,
-                                                                                    ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Zwischenspeicher.YAchse, Zwischenspeicher.XAchse),
-                                                                                    LogikGrafikExtern => False).EAchse
-      is
-         when KartenKonstanten.LeerEAchse =>
-            return;
-            
-         when others =>
-            null;
-      end case;
-      
-      case
         EinheitenbewegungsbereichLogik.Bewegungsbereich (Zwischenspeicher.EAchse, Zwischenspeicher.YAchse, Zwischenspeicher.XAchse)
       is
          when False =>

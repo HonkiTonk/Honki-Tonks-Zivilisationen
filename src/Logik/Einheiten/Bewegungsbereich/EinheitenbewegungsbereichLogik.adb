@@ -136,10 +136,17 @@ package body EinheitenbewegungsbereichLogik is
       VorhandeneBewegungspunkteExtern : in Positive)
    is begin
       
-      
-      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse),
-                                                                                                LogikGrafikExtern => True);
+      case
+        NotwendigeBewegungspunkteExtern
+      is
+         when 0 .. 25  =>
+            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse),
+                                                                                                      LogikGrafikExtern => True);
+         
+         when others =>
+            return;
+      end case;
       
       case
         FeldPrüfen (NeueKoordinatenExtern           => Kartenwert,

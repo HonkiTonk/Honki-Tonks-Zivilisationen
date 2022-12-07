@@ -1,5 +1,4 @@
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
+private with Ada.Wide_Wide_Text_IO;
 private with Ada.Text_IO;
 
 package FehlermeldungSchreiben is
@@ -20,7 +19,8 @@ package FehlermeldungSchreiben is
               );
    
 private
-
+   use Ada.Wide_Wide_Text_IO;
+   
    DateiMeldungASCII : Ada.Text_IO.File_Type;
    
    DateiMeldung : File_Type;

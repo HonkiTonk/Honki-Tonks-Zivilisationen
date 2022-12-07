@@ -14,17 +14,8 @@ package body BewegungspunkteBerechnenLogik is
       
       AktuelleBewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      BenötigteBewegungspunkte := NotwendigeBewegungspunkteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                       NeueKoordinatenExtern    => NeueKoordinatenExtern);
-      
-      if
-        BenötigteBewegungspunkte < EinheitenKonstanten.MinimalerBewegungspunkt
-      then
-         BenötigteBewegungspunkte := EinheitenKonstanten.MinimalerBewegungspunkt;
-         
-      else
-         null;
-      end if;
+      BenötigteBewegungspunkte := NotwendigeBewegungspunkte (NeueKoordinatenExtern    => NeueKoordinatenExtern,
+                                                              EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
         AktuelleBewegungspunkte < BenötigteBewegungspunkte
@@ -47,19 +38,19 @@ package body BewegungspunkteBerechnenLogik is
       return EinheitenDatentypen.VorhandeneBewegungspunkte
    is begin
             
-      BenötigteBewegungspunkte := NotwendigeBewegungspunkteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                       NeueKoordinatenExtern    => NeueKoordinatenExtern);
+      BewegungspunkteNotwendig := NotwendigeBewegungspunkteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                      NeueKoordinatenExtern    => NeueKoordinatenExtern);
       
       if
-        BenötigteBewegungspunkte < EinheitenKonstanten.MinimalerBewegungspunkt
+        BewegungspunkteNotwendig < EinheitenKonstanten.MinimalerBewegungspunkt
       then
-         BenötigteBewegungspunkte := EinheitenKonstanten.MinimalerBewegungspunkt;
+         BewegungspunkteNotwendig := EinheitenKonstanten.MinimalerBewegungspunkt;
          
       else
          null;
       end if;
       
-      return BenötigteBewegungspunkte;
+      return BewegungspunkteNotwendig;
       
    end NotwendigeBewegungspunkte;
 
@@ -98,13 +89,21 @@ package body BewegungspunkteBerechnenLogik is
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => NeueKoordinatenExtern);
       
-      -- Es gibt hier noch keine Prüfung ob das Ergebnis überhaupt im erlaubten Bereich ist, später einbauen. äöü
-      return LeseKartenDatenbanken.BewegungBasisgrund (GrundExtern => Gesamtgrund.Basisgrund,
-                                                       RasseExtern => EinheitRasseNummerExtern.Rasse)
-        + LeseKartenDatenbanken.BewegungZusatzgrund (GrundExtern => Gesamtgrund.Zusatzgrund,
-                                                     RasseExtern => EinheitRasseNummerExtern.Rasse)
-        + LeseVerbesserungenDatenbank.BewegungWeg (WegExtern   => LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern),
-                                                   RasseExtern => EinheitRasseNummerExtern.Rasse);
+      BewegungspunkteGesamt := Positive (LeseKartenDatenbanken.BewegungBasisgrund (GrundExtern => Gesamtgrund.Basisgrund,
+                                                                                   RasseExtern => EinheitRasseNummerExtern.Rasse))
+        + Natural (LeseKartenDatenbanken.BewegungZusatzgrund (GrundExtern => Gesamtgrund.Zusatzgrund,
+                                                              RasseExtern => EinheitRasseNummerExtern.Rasse))
+        + Integer (LeseVerbesserungenDatenbank.BewegungWeg (WegExtern   => LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern),
+                                                            RasseExtern => EinheitRasseNummerExtern.Rasse));
+      
+      if
+        BewegungspunkteGesamt >= Positive (EinheitenDatentypen.VorhandeneBewegungspunkte'Last)
+      then
+         return EinheitenDatentypen.VorhandeneBewegungspunkte'Last;
+         
+      else
+         return EinheitenDatentypen.Bewegungspunkte (BewegungspunkteGesamt);
+      end if;
       
    end NotwendigeBewegungspunkteErmitteln;
 

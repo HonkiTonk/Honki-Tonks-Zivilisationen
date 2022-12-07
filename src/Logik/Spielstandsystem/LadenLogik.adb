@@ -282,15 +282,15 @@ package body LadenLogik is
       EinheitenSchleife:
       for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. Grenzen.Einheitengrenze loop
             
-         EinheitenRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenExtern),
-                                                      Einheit);
+         EinheitenRecords.EinheitenGebautSpeichernRecord'Read (Stream (File => DateiLadenExtern),
+                                                               Einheit);
          
          case
            LadenPrüfenExtern
          is
             when True =>
-               SchreibeEinheitenGebaut.GanzerEintrag (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
-                                                      EintragExtern            => Einheit);
+               SchreibeEinheitenGebaut.LadenEintrag (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
+                                                     EintragExtern            => Einheit);
             
             when False =>
                null;

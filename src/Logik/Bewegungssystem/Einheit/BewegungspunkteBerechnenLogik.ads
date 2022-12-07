@@ -58,6 +58,9 @@ private
    AktuelleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
    
    BenötigteBewegungspunkte : EinheitenDatentypen.Bewegungspunkte;
+   BewegungspunkteNotwendig : EinheitenDatentypen.Bewegungspunkte;
+   
+   BewegungspunkteGesamt : Positive;
    
    
 
