@@ -1,0 +1,43 @@
+with "asfml.gpr";
+
+project HonkiTonksZivilisationen is
+
+   for Source_Dirs use ("src/**");
+   for Object_Dir use "obj";
+   for Create_Missing_Dirs use "True";
+   for Exec_Dir use "Honki Tonk´s Zivilisationen";
+   for Main use ("Start.adb");
+
+   package Naming is
+      for Casing use "MixedCase";
+   end Naming;
+
+   package Compiler is
+      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2020", "-g", "-gnata", "-fstack-check", "-gnato", "-gnatVacdefimoprst", 
+         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf", "-gnatyACOSadefhiklnprsxM222L7");
+      for Local_Configuration_Pragmas use "Lokale Pragmas";
+   end Compiler;
+
+   package Builder is
+      for Switches ("ada") use ("-k", "-s", "-C", "-gnatW8", "-j4");
+   end Builder;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-static", "-d_C", "-W8");
+   end Binder;
+
+   package Pretty_Printer is
+      for Default_Switches ("ada") use ("-W8");
+   end Pretty_Printer;
+
+   package Prove is
+      for Proof_Switches ("ada") use ("-j4", "--proof-warnings", "--codepeer=on");
+   end Prove;
+
+   package Linker is
+      for Switches ("ada") use ("-s", "-Wl,--gc-sections");
+      for Linker_Options use ("-static");
+   end Linker;
+
+end HonkiTonksZivilisationen;
+
