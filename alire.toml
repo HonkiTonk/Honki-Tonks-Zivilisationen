@@ -19,3 +19,4 @@ tags = ["game", "sfml", "4x", "roundbased", "strategy", "cross-platform", "multi
 executables = ["honki_tonks_zivilisationen"]
 [[depends-on]]
 asfml = "^2.5.3"
+gnat = ">=12.0.0"
