@@ -14,3 +14,4 @@ alire/
 config/
 share/
 obj_alire/
+obj_dynamic/
