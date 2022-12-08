@@ -36,7 +36,7 @@ package Views is
    SeitenleisteWeltkarteAccesse : constant ViewsArray (1 .. 4) := (others => Sf.Graphics.View.create);
 
    -- Später durch Enum'Range ersetzen? Bei allen Arrays? äöü
-   -- 1 = Stadtkarte, 2 = Stadtumgebung, 3 = Stadtbefehle, 4 = Stadtseitenleiste
+   -- 1 = Stadtumgebung, 2 = Stadtbefehle, 3 = Stadtseitenleiste, 4 = Stadtkarte
    StadtviewAccesse : constant ViewsArray (1 .. 4) := (others => Sf.Graphics.View.create);
 
    ForschungsviewAccesse : constant ViewsArray (1 .. 4) := (others => Sf.Graphics.View.create);

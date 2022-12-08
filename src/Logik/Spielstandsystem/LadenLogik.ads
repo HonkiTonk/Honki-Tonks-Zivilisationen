@@ -37,7 +37,7 @@ private
 
    Stadt : StadtRecords.StadtGebautRecord;
 
-   Einheit : EinheitenRecords.EinheitenGebautSpeichernRecord;
+   Einheit : EinheitenRecords.EinheitenGebautRecord;
 
    Allgemeines : SpielRecords.AllgemeinesRecord;
 

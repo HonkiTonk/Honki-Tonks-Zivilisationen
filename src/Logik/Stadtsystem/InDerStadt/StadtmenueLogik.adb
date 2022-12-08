@@ -8,6 +8,7 @@ with NachGrafiktask;
 with MausauswahlLogik;
 with StadtEntfernenLogik;
 with StadtAllgemeinesLogik;
+with TastenbelegungDatentypen;
 
 package body StadtmenueLogik is
 
@@ -33,6 +34,9 @@ package body StadtmenueLogik is
                else
                   exit StadtSchleife;
                end if;
+               
+            when BefehleDatentypen.Stadtkarte_Enum =>
+               Stadtkarte;
                
             when BefehleDatentypen.Bauen_Enum =>
                StadtbausystemLogik.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -90,6 +94,10 @@ package body StadtmenueLogik is
          when BefehleDatentypen.Leer_Stadtbefehle_Enum =>
             return False;
             
+         when BefehleDatentypen.Stadtkarte_Enum =>
+            Stadtkarte;
+            return False;
+            
          when others =>
             return Mausbefehle (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                 AuswahlExtern          => Befehlsauswahl);
@@ -127,5 +135,31 @@ package body StadtmenueLogik is
       return False;
       
    end Mausbefehle;
+   
+   
+   
+   procedure Stadtkarte
+   is begin
+      
+      NachGrafiktask.Stadtkarte := True;
+      
+      StadtkarteSchleife:
+      loop
+         
+         case
+           TasteneingabeLogik.VereinfachteEingabe
+         is
+            when TastenbelegungDatentypen.Leer_Allgemeine_Belegung_Enum =>
+               null;
+               
+            when others =>
+               exit StadtkarteSchleife;
+         end case;
+         
+      end loop StadtkarteSchleife;
+      
+      NachGrafiktask.Stadtkarte := False;
+      
+   end Stadtkarte;
 
 end StadtmenueLogik;

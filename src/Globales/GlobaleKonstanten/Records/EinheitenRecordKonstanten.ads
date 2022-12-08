@@ -20,7 +20,6 @@ package EinheitenRecordKonstanten is
                                                                      KIBeschäftigt               => EinheitenKonstanten.LeerKIBeschäftigt,
                                                                      KIBeschäftigtNachfolger     => EinheitenKonstanten.LeerKIBeschäftigt, 
                                                                      KIVerbesserung              => EinheitenKonstanten.LeerBeschäftigung,
-                                                                     KIBewegungPlan              => (others => KartenRecordKonstanten.LeerKoordinate),
                                                                      Transportiert               => (others => EinheitenKonstanten.LeerTransportiert),
                                                                      WirdTransportiert           => EinheitenKonstanten.LeerWirdTransportiert,
                                                                      Meldungen                   => (others => EinheitenKonstanten.LeerMeldung)

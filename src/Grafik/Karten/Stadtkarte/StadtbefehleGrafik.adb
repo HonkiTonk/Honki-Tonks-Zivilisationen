@@ -18,11 +18,11 @@ package body StadtbefehleGrafik is
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Stadtbereich (3).width, GrafikRecordKonstanten.Stadtbereich (3).height));
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Stadtbereich (2).width, GrafikRecordKonstanten.Stadtbereich (2).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (3),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (2),
                                             GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (3));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (2));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);

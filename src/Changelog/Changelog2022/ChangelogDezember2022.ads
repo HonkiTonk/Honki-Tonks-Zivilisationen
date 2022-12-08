@@ -154,24 +154,28 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.0. => 0.0. (09.12.2022):
+   -- Version 0.04. => 0.0. (09.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (08.12.2022):
+   -- Version 0.04.5440 => 0.04. (08.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.5370 => 0.04. (07.12.2022):
+   -- Version 0.04.5370 => 0.04.5440 (07.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- An der Alire Version herumgebastelt.
+   -- Angefangen die Stadtanzeige zu überarbeiten.
+   -- Felder die von anderen Städten in der Umgebung belegt werden, werden jetzt ebenfalls grafisch in der Stadt angezeigt.
+   -- Die Stadtkarte hat jetzt ihr eigene Anzeige.
+   -- Umgebungsanzeige neu positioniert und vergrößert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

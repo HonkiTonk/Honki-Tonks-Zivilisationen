@@ -277,9 +277,9 @@ package LeseEinheitenGebaut is
                  LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
               );
    
-   function SpeichernEintrag
+   function GanzerEintrag
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return EinheitenRecords.EinheitenGebautSpeichernRecord
+      return EinheitenRecords.EinheitenGebautRecord
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)

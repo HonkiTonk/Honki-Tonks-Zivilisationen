@@ -87,6 +87,7 @@ package TastenbelegungStandard is
    
    
    StadtbelegungStandard : constant TastenbelegungDatenbank.StadtbelegungArray := (
+                                                                                   BefehleDatentypen.Stadtkarte_Enum => Sf.Window.Keyboard.sfKeyK,
                                                                                    BefehleDatentypen.Bauen_Enum      => Sf.Window.Keyboard.sfKeyB,
                                                                                    BefehleDatentypen.Verkaufen_Enum  => Sf.Window.Keyboard.sfKeyV,
                                                                                    BefehleDatentypen.Umbenennen_Enum => Sf.Window.Keyboard.sfKeyU,

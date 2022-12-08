@@ -44,6 +44,7 @@ package NachGrafiktask is
    AktuelleEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenKonstanten.LeerNummer;
    
    AktuelleStadt : StadtDatentypen.MaximaleStädteMitNullWert := StadtKonstanten.LeerNummer;
+   Stadtkarte : Boolean := False;
    
    FensterVerändert : GrafikDatentypen.Fenster_Ändern_Enum;
    

@@ -321,9 +321,9 @@ package SchreibeEinheitenGebaut is
                  (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
               );
    
-   procedure LadenEintrag
+   procedure GanzerEintrag
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      EintragExtern : in EinheitenRecords.EinheitenGebautSpeichernRecord)
+      EintragExtern : in EinheitenRecords.EinheitenGebautRecord)
      with
        Pre => (
                  EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)

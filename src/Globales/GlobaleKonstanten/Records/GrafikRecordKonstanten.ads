@@ -75,12 +75,12 @@ package GrafikRecordKonstanten is
                                                                                      );
    
    -- Später durch Enum'Range ersetzen? Bei allen Arrays? äöü
-   -- 1 = Stadtkarte, 2 = Stadtumgebung, 3 = Stadtbefehle, 4 = Stadtseitenleiste
+   -- 1 = Stadtumgebung, 2 = Stadtbefehle, 3 = Stadtseitenleiste, 4 = Stadtkarte
    Stadtbereich : constant BereicheArray (Views.StadtviewAccesse'Range) := (
                                                                             1 => (0.00, 0.00, 0.75, 1.00),
-                                                                            2 => (0.75, 0.00, 0.25, 0.25),
-                                                                            3 => (0.75, 0.25, 0.25, 0.25),
-                                                                            4 => (0.75, 0.50, 0.25, 0.50)
+                                                                            2 => (0.75, 0.75, 0.25, 0.25),
+                                                                            3 => (0.75, 0.00, 0.25, 0.75),
+                                                                            4 => (0.00, 0.00, 1.00, 1.00)
                                                                            );
    
    Editorenbereich : constant BereicheArray (Views.EditorenviewAccesse'Range) := (

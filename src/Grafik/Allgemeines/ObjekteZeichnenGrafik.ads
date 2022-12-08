@@ -50,22 +50,24 @@ package ObjekteZeichnenGrafik is
               );
    
    procedure RahmenZeichnen
-         (PositionExtern : in Sf.System.Vector2.sfVector2f;
-          FarbeExtern : in Sf.Graphics.Color.sfColor;
-          GrößeExtern : in Sf.System.Vector2.sfVector2f;
-          RahmendickeExtern : in Float)
-     with
-       Pre => (
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-               and
-                 GrößeExtern.x >= 0.00
-               and
-                 GrößeExtern.y >= 0.00
-               and
-                 RahmendickeExtern >= 0.00
-              );
+     (PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor;
+      GrößeExtern : in Sf.System.Vector2.sfVector2f;
+      RahmendickeExtern : in Float);
+   -- with
+   --   Pre => (
+   -- Führt bei sehr kleinem Fenster zu Problemen, deswegen draußen lassen.
+   -- Evventuell kann ein Teil später wieder rein? äöü
+   --   PositionExtern.x >= 0.00
+   --  and
+   --    PositionExtern.y >= 0.00
+   --  and
+   --  GrößeExtern.x >= 0.00
+   -- and
+   --  GrößeExtern.y >= 0.00
+   -- and
+   --   RahmendickeExtern >= 0.00
+   --     );
    
    procedure RahmenteilZeichnen
      (PositionExtern : in Sf.System.Vector2.sfVector2f;

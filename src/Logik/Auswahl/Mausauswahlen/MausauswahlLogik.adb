@@ -364,11 +364,11 @@ package body MausauswahlLogik is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.StadtviewAccesse (2));
+                                                                 view         => Views.StadtviewAccesse (1));
       
       case
         Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    TextboxExtern      => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (2)).x, Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (2)).y))
+                                    TextboxExtern      => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (1)).x, Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (1)).y))
       is
          when False =>
             return (-1.00, -1.00);
@@ -388,7 +388,7 @@ package body MausauswahlLogik is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.StadtviewAccesse (3));
+                                                                 view         => Views.StadtviewAccesse (2));
       
       BefehleSchleife:
       for BefehleSchleifenwert in InteraktionAuswahl.PositionenStadtbefehleArray'Range loop

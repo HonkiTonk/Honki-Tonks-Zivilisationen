@@ -30,8 +30,8 @@ package body StadtseitenleisteGrafik is
       
       Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
              StadtRasseNummerExtern => StadtRasseNummerExtern,
-             AnzeigebereichExtern   => GrafikRecordKonstanten.Stadtbereich (4),
-             ViewExtern             => Views.StadtviewAccesse (4));
+             AnzeigebereichExtern   => GrafikRecordKonstanten.Stadtbereich (3),
+             ViewExtern             => Views.StadtviewAccesse (3));
       
    end Stadtinformationen;
    

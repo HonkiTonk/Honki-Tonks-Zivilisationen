@@ -6,11 +6,11 @@ package BefehleDatentypen is
                               
                               Auswählen_Enum,
                               
-                              Bauen_Enum, Verkaufen_Enum, Umbenennen_Enum, Auflösen_Enum, Verlassen_Enum
+                              Stadtkarte_Enum, Bauen_Enum, Verkaufen_Enum, Umbenennen_Enum, Auflösen_Enum, Verlassen_Enum
                              );
    
    subtype Stadtbefehle_Vorhanden_Enum is Stadtbefehle_Enum range Stadtbefehle_Enum'Succ (Stadtbefehle_Enum'First) .. Stadtbefehle_Enum'Last;
-   subtype Stadtbefehle_Auswählen_Enum is Stadtbefehle_Vorhanden_Enum range Bauen_Enum .. Stadtbefehle_Vorhanden_Enum'Last;
+   subtype Stadtbefehle_Auswählen_Enum is Stadtbefehle_Vorhanden_Enum range Stadtkarte_Enum .. Stadtbefehle_Vorhanden_Enum'Last;
    
    
    

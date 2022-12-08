@@ -42,6 +42,10 @@ private
    Stadtfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
    Verbesserungsfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    
+   Rahmendicke : Float;
+   
+   Grundbelegung : StadtRecords.RasseStadtnummerRecord;
+   
    Gesamtgrund : KartenRecords.KartengrundRecord;
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;

@@ -13,14 +13,13 @@ with ViewsEinstellenGrafik;
 
 package body StadtkarteGrafik is
 
-   -- Die Darstellung der Informationen und Gebäude auch in eigene Views? äöü
    procedure Stadtkarte
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (1),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (4),
                                             GrößeExtern          => EinstellungenGrafik.AktuelleFensterAuflösung,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (1));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (4));
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern));
       

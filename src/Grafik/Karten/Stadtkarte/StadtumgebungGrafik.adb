@@ -22,9 +22,9 @@ package body StadtumgebungGrafik is
       
       Viewfläche := (7.00 * SichtweitenGrafik.StadtfelderAbmessung.x, 7.00 * SichtweitenGrafik.StadtfelderAbmessung.y);
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (2),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (1),
                                             GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (2));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (1));
             
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
@@ -88,35 +88,49 @@ package body StadtumgebungGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       BewirtschaftetExtern : in Boolean)
-   is begin
+   is
+      use type StadtRecords.RasseStadtnummerRecord;
+      use type RassenDatentypen.Rassen_Enum;
+   begin
       
       AnzeigeLandschaft (KoordinatenExtern => KarteKoordinatenExtern,
                          PositionExtern    => PositionExtern);
       
-      case
-        LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                 KoordinatenExtern      => KarteKoordinatenExtern)
-      is
-         when True =>
-            if
-              BewirtschaftetExtern
-            then
+      Grundbelegung := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KarteKoordinatenExtern);
+      
+      if
+        Grundbelegung.Rasse = StadtKonstanten.LeerRasse
+      then
+         return;
+        
+      elsif
+        Grundbelegung = StadtRasseNummerExtern
+      then
+         case
+           BewirtschaftetExtern
+         is
+            when True =>
                Farbe := Sf.Graphics.Color.sfGreen;
                
-            else
-               Farbe := Sf.Graphics.Color.sfRed;
-            end if;
+            when False =>
+               Farbe := Sf.Graphics.Color.sfBlue;
+         end case;
             
-            -- Hier noch eine bessere Lösung bauen, damit die besetzbaren Felder immer zu erkennen sind. äöü
-            -- Muss vermutlich Ebenenabhängig sein. äöü
-            ObjekteZeichnenGrafik.RahmenZeichnen (PositionExtern    => (PositionExtern.x + 3.00, PositionExtern.y + 3.00),
-                                                  FarbeExtern       => Farbe,
-                                                  GrößeExtern       => (SichtweitenGrafik.StadtfelderAbmessung.x - 6.00, SichtweitenGrafik.StadtfelderAbmessung.y - 6.00),
-                                                  RahmendickeExtern => 3.00);
-            
-         when False =>
-            null;
-      end case;
+      elsif
+        Grundbelegung.Rasse = StadtRasseNummerExtern.Rasse
+      then
+         Farbe := Sf.Graphics.Color.sfCyan;
+         
+      else
+         Farbe := Sf.Graphics.Color.sfRed;
+      end if;
+         
+      Rahmendicke := (SichtweitenGrafik.StadtfelderAbmessung.y / 20.00 + SichtweitenGrafik.StadtfelderAbmessung.x / 20.00) / 2.00;
+      
+      ObjekteZeichnenGrafik.RahmenZeichnen (PositionExtern    => (PositionExtern.x + Rahmendicke, PositionExtern.y + Rahmendicke),
+                                            FarbeExtern       => Farbe,
+                                            GrößeExtern       => (SichtweitenGrafik.StadtfelderAbmessung.x - 2.00 * Rahmendicke, SichtweitenGrafik.StadtfelderAbmessung.y - 2.00 * Rahmendicke),
+                                            RahmendickeExtern => Rahmendicke);
                
    end DarstellungUmgebung;
    

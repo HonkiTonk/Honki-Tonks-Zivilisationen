@@ -24,6 +24,8 @@ private
 
    Befehlsauswahl : BefehleDatentypen.Stadtbefehle_Enum;
 
+   procedure Stadtkarte;
+
 
 
    function WasIstAusgewählt

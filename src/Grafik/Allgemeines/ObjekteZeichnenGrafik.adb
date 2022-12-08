@@ -84,8 +84,7 @@ package body ObjekteZeichnenGrafik is
                                                   color => FarbeExtern);
       Sf.Graphics.RectangleShape.setOutlineThickness (shape     => RahmenAccess,
                                                       thickness => RahmendickeExtern);
-      
-      
+            
       Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => EinstellungenGrafik.FensterAccess,
                                                    object       => RahmenAccess);
       

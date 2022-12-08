@@ -5,7 +5,6 @@ with Views;
 
 with LeseEinheitenGebaut;
 
-with StadtkarteGrafik;
 with CursorplatzierungGrafik;
 with CursorplatzierungAltGrafik;
 with WeltkarteGrafik;
@@ -16,6 +15,8 @@ with StadtbefehleGrafik;
 with WeltkartenbefehleGrafik;
 with KoordinatenPositionUmwandlungen;
 with SichtweitenGrafik;
+with StadtkarteGrafik;
+with NachGrafiktask;
 
 package body KartenaufteilungGrafik is
    
@@ -66,12 +67,18 @@ package body KartenaufteilungGrafik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      -- Von außen die Arraypositionen für die Bereiche/Views hineingeben? äöü
-      StadtkarteGrafik.Stadtkarte (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      StadtumgebungGrafik.Stadtumgebung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      -- Von außen die Arraypositionen für die Bereiche/Views hineingeben! äöü
+      case
+        NachGrafiktask.Stadtkarte
+      is
+         when True =>
+            StadtkarteGrafik.Stadtkarte (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      StadtbefehleGrafik.Stadtbefehle;
-      StadtseitenleisteGrafik.Stadtinformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         when False =>
+            StadtumgebungGrafik.Stadtumgebung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtbefehleGrafik.Stadtbefehle;
+            StadtseitenleisteGrafik.Stadtinformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      end case;
       
    end Stadtkarte;
 

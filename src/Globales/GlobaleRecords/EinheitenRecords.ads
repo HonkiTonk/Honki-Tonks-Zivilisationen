@@ -72,34 +72,7 @@ package EinheitenRecords is
       KIZielKoordinatenNachfolger : KartenRecords.AchsenKartenfeldNaturalRecord;
       KIBeschäftigtNachfolger : KIDatentypen.Einheit_Aufgabe_Enum;
       KIVerbesserung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-      KIBewegungPlan : KIBewegungPlanArray;
-      
-      Transportiert : TransporterArray;
-      WirdTransportiert : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      
-      Meldungen : EinheitMeldungenArray;
-      
-   end record;
-   
-   type EinheitenGebautSpeichernRecord is record
-      
-      ID : EinheitenDatentypen.EinheitenIDMitNullWert;
-      KoordinatenAktuell : KartenRecords.AchsenKartenfeldNaturalRecord;
-      Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
-      
-      Lebenspunkte : EinheitenDatentypen.Lebenspunkte;
-      Bewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
-      Erfahrungspunkte : KampfDatentypen.Erfahrungspunkte;
-      Rang : KampfDatentypen.Rang;
-      
-      Beschäftigung : ArbeitRecord;
-      BeschäftigungNachfolger : ArbeitRecord;
-      
-      KIZielKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-      KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
-      KIZielKoordinatenNachfolger : KartenRecords.AchsenKartenfeldNaturalRecord;
-      KIBeschäftigtNachfolger : KIDatentypen.Einheit_Aufgabe_Enum;
-      KIVerbesserung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+      -- KIBewegungPlan : KIBewegungPlanArray;
       
       Transportiert : TransporterArray;
       WirdTransportiert : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
