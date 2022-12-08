@@ -163,6 +163,8 @@ package ChangelogDezember2022 is
 
    -- Version 0.04.5440 => 0.04. (08.12.2022):
    
+   -- Anpassungen an den gpr Dateien vorgenommen.
+   -- Anpassungen für die Alire Version vorgenommen.
    -- 
    -- Kleinigkeiten korrigiert.
    
