@@ -4,6 +4,7 @@ with Sf.Graphics.RenderWindow;
 with TextaccessVariablen;
 with Views;
 with SonstigesKonstanten;
+with ViewKonstanten;
 
 with TextberechnungenBreiteGrafik;
 with ViewsEinstellenGrafik;
@@ -133,7 +134,7 @@ package body AllgemeineViewsGrafik is
       Viewfläche (Frage_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Frage_Enum),
                                                                                      VerhältnisExtern => (GrafikRecordKonstanten.Fragenbereich.width, GrafikRecordKonstanten.Fragenbereich.height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (1),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (ViewKonstanten.Frage),
                                             GrößeExtern          => Viewfläche (Frage_Enum),
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Fragenbereich);
       

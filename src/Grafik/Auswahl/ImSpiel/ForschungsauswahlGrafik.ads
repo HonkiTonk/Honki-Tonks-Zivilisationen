@@ -42,7 +42,6 @@ private
    
    procedure Auswahlmöglichkeiten
      (AuswahlExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
@@ -51,7 +50,6 @@ private
    
    procedure Beschreibung
      (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
@@ -60,16 +58,14 @@ private
    
    procedure Ermöglicht
      (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ViewnummerExtern : in Positive)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
                  LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum  
               );
    
    procedure Aktuell
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ViewnummerExtern : in Positive)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
                  LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum  

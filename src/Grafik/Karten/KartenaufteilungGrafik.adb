@@ -2,6 +2,7 @@ with Sf.Graphics.View;
 
 with EinheitenKonstanten;
 with Views;
+with ViewKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -41,9 +42,9 @@ package body KartenaufteilungGrafik is
                                                                                      RasseExtern       => EinheitRasseNummerExtern.Rasse);
             
             if
-              Position.y >= Sf.Graphics.View.getSize (view => Views.KartenviewAccess).y / 2.00
+              Position.y >= Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)).y / 2.00
               and
-                Position.x >= Sf.Graphics.View.getSize (view => Views.KartenviewAccess).x / 1.50
+                Position.x >= Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)).x / 1.50
             then
                RechtsLinksBefehlsanzeige := False;
                
@@ -67,7 +68,6 @@ package body KartenaufteilungGrafik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      -- Von außen die Arraypositionen für die Bereiche/Views hineingeben! äöü
       case
         NachGrafiktask.Stadtkarte
       is
@@ -76,8 +76,8 @@ package body KartenaufteilungGrafik is
       
          when False =>
             StadtumgebungGrafik.Stadtumgebung (StadtRasseNummerExtern => StadtRasseNummerExtern);
-            StadtbefehleGrafik.Stadtbefehle;
             StadtseitenleisteGrafik.Stadtinformationen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtbefehleGrafik.Stadtbefehle;
       end case;
       
    end Stadtkarte;

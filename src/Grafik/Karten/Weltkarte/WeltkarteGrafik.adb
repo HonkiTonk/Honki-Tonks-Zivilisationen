@@ -3,6 +3,7 @@ with GrafikRecordKonstanten;
 with Views;
 with KartengrundDatentypen;
 with GrafikKonstanten;
+with ViewKonstanten;
 
 with LeseWeltkarte;
 with LeseCursor;
@@ -19,9 +20,9 @@ package body WeltkarteGrafik is
      (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
    is begin
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.KartenviewAccess,
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccess (ViewKonstanten.WeltKarte),
                                             GrößeExtern          => EinstellungenGrafik.AktuelleFensterAuflösung,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.KarteAnzeigebereich);
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte));
       
       Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
       

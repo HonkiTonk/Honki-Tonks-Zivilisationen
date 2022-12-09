@@ -1,6 +1,7 @@
 with Views;
 with GrafikRecordKonstanten;
 with KartengrundDatentypen;
+with ViewKonstanten;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -17,9 +18,9 @@ package body StadtkarteGrafik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (4),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtKarte),
                                             GrößeExtern          => EinstellungenGrafik.AktuelleFensterAuflösung,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (4));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtKarte));
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern));
       

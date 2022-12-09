@@ -15,7 +15,6 @@ package BauauswahlEinheitenGrafik is
 
    procedure Einheiteninformationen
      (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
@@ -39,7 +38,6 @@ private
 
    procedure Einheitenbeschreibung
      (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (

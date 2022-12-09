@@ -147,26 +147,30 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.0. => 0.0. (10.12.2022):
+   -- Version 0.04.5545 => 0.0. (10.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.0. (09.12.2022):
+   -- Version 0.04.5480 => 0.04.5545 (09.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Es endlich geschafft die Alire Version dem Alire Index hinzuzufügen.
+   -- Weiter die Stadtansicht/karte überarbeitet.
+   -- Einige Zahlen in Konstante umgewandelt.
+   -- Debian GNAT 12.2.0-9 aud Debian GNAT 12.2.0-9.1 aktualisiert.
+   -- Fehler korrigiert welcher dazu führte dass die Datenbanken falsch geschrieben wurden und beim Einlesen einen Programmstopp verursachten.
+   -- Kommentare und Kleinigkeiten korrigiert/zusammengefasst/überarbeitet.
    
    
 
-   -- Version 0.04.5440 => 0.04. (08.12.2022):
+   -- Version 0.04.5440 => 0.04.5480 (08.12.2022):
    
    -- Anpassungen an den gpr Dateien vorgenommen.
    -- Anpassungen für die Alire Version vorgenommen.
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die verschiedenen Versionen aneinander angepasst.
+   -- Neues Release auf GitHub veröffentlicht..
    
    
 
@@ -176,7 +180,7 @@ package ChangelogDezember2022 is
    -- Angefangen die Stadtanzeige zu überarbeiten.
    -- Felder die von anderen Städten in der Umgebung belegt werden, werden jetzt ebenfalls grafisch in der Stadt angezeigt.
    -- Die Stadtkarte hat jetzt ihr eigene Anzeige.
-   -- Umgebungsanzeige neu positioniert und vergrößert.
+   -- Stadtumgebungsanzeige neu positioniert und vergrößert.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    

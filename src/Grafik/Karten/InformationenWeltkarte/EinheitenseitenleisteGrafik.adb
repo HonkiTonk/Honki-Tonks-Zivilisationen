@@ -52,14 +52,15 @@ package body EinheitenseitenleisteGrafik is
       use type RassenDatentypen.Rassen_Enum;
    begin
       
+      Leer (AnzeigebereichExtern => 4);
+      
       case
         StadtVorhandenExtern
       is
          when True =>
-            Leer (AnzeigebereichExtern => 4);
+            null;
             
          when False =>
-            Leer (AnzeigebereichExtern => 4);
             Leer (AnzeigebereichExtern => 3);
       end case;
       

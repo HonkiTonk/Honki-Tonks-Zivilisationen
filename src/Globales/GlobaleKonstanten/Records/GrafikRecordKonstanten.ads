@@ -2,6 +2,7 @@ with Sf.Graphics.Rect;
 with Sf.System.Vector2;
 
 with Views;
+with ViewKonstanten;
 
 package GrafikRecordKonstanten is
 
@@ -12,15 +13,15 @@ package GrafikRecordKonstanten is
    Leerbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.00, 0.00);
    Gesamtbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 1.00);
    
+   Kartenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.80, 1.00);
+   Leistendicke : constant Sf.System.Vector2.sfVector2f := (Kartenbereich.width, 1.00 - Kartenbereich.width);
+  
    Sprachenbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
-   Forschungserfolgbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
    Abspannbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
    
    Überschriftbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 0.10);
    Unterschriftbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, Überschriftbereich.height, 1.00, 1.00 - Überschriftbereich.height);
-   
-   KarteAnzeigebereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.80, 1.00);
-     
+        
    Versionsbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.35, 0.95, 0.30, 0.05);
    MenüEinfachbereich : constant Sf.Graphics.Rect.sfFloatRect := Unterschriftbereich;
    Ladebereich : constant Sf.Graphics.Rect.sfFloatRect := Unterschriftbereich;
@@ -41,32 +42,45 @@ package GrafikRecordKonstanten is
                                                            );
    
    Steuerungbereich : constant BereicheArray (Views.SteuerungviewAccesse'Range) := (
-                                                                                    1 => (0.00, Überschriftbereich.height, 1.00, 0.05),
-                                                                                    2 => (0.00, Überschriftbereich.height + 0.05, 1.00, 1.00 - Überschriftbereich.height - 0.05)
+                                                                                    ViewKonstanten.SteuerungKategorie => (0.00, Überschriftbereich.height, 1.00, 0.05),
+                                                                                    ViewKonstanten.SteuerungAuswahl   => (0.00, Überschriftbereich.height + 0.05, 1.00, 1.00 - Überschriftbereich.height - 0.05)
                                                                                    );
-      
+   
+   Weltkartenbereich : constant BereicheArray (Views.WeltkarteAccess'Range) := (
+                                                                                ViewKonstanten.WeltKarte                  => (0.00, 0.00, 0.80, 1.00),
+                                                                                ViewKonstanten.WeltBefehleRechts          => (0.59, 0.79, 0.20, 0.20),
+                                                                                ViewKonstanten.WeltBefehleLinks           => (0.01, 0.79, 0.20, 0.20),
+                                                                                ViewKonstanten.WeltEinheitenbefehleRechts => (0.59, 0.59, 0.20, 0.20),
+                                                                                ViewKonstanten.WeltEinheitenbefehleLinks  => (0.01, 0.59, 0.20, 0.20),
+                                                                                ViewKonstanten.WeltWichtiges              => (Leistendicke.x, 0.00, Leistendicke.y, 0.20),
+                                                                                ViewKonstanten.WeltAllgemeines            => (Leistendicke.x, 0.20, Leistendicke.y, 0.10),
+                                                                                ViewKonstanten.WeltStadt                  => (Leistendicke.x, 0.30, Leistendicke.y, 0.35),
+                                                                                ViewKonstanten.WeltEinheit                => (Leistendicke.x, 0.65, Leistendicke.y, 0.35)
+                                                                               );
+   
    SeitenleisteWeltkartenbereich : constant BereicheArray (Views.SeitenleisteWeltkarteAccesse'Range) := (
-                                                                                                         1 => (KarteAnzeigebereich.width, 0.00, 1.00 - KarteAnzeigebereich.width, 0.20),
-                                                                                                         2 => (KarteAnzeigebereich.width, 0.20, 1.00 - KarteAnzeigebereich.width, 0.10),
-                                                                                                         3 => (KarteAnzeigebereich.width, 0.30, 1.00 - KarteAnzeigebereich.width, 0.35),
-                                                                                                         4 => (KarteAnzeigebereich.width, 0.65, 1.00 - KarteAnzeigebereich.width, 0.35)
+                                                                                                         1 => (Leistendicke.x, 0.00, Leistendicke.y, 0.20),
+                                                                                                         2 => (Leistendicke.x, 0.20, Leistendicke.y, 0.10),
+                                                                                                         3 => (Leistendicke.x, 0.30, Leistendicke.y, 0.35),
+                                                                                                         4 => (Leistendicke.x, 0.65, Leistendicke.y, 0.35)
                                                                                                         );
    
    Forschungsbereich : constant BereicheArray (Views.ForschungsviewAccesse'Range) := (
-                                                                                      1 => (0.00, 0.10, 0.50, 0.40),
-                                                                                      2 => (0.50, 0.10, 0.50, 0.40),
-                                                                                      3 => (0.00, 0.50, 1.00, 0.40),
-                                                                                      4 => (0.00, 0.90, 1.00, 0.10)
+                                                                                      ViewKonstanten.ForschungsmenüForschungsliste => (0.00, 0.10, 0.50, 0.40),
+                                                                                      ViewKonstanten.ForschungsmenüErmöglicht      => (0.50, 0.10, 0.50, 0.40),
+                                                                                      ViewKonstanten.ForschungsmenüBeschreibung    => (0.00, 0.50, 1.00, 0.40),
+                                                                                      ViewKonstanten.ForschungsmenüAktuell         => (0.00, 0.90, 1.00, 0.10),
+                                                                                      ViewKonstanten.ForschungsmenüErfolg          => Gesamtbereich
                                                                                      );
    
    Baumenübereich : constant BereicheArray (Views.BauviewAccesse'Range) := (
-                                                                             1 => (0.00, 0.10, 0.50, 0.80),
-                                                                             2 => (0.50, 0.10, 0.50, 0.80),
-                                                                             3 => (0.50, 0.10, 0.50, 0.40),
-                                                                             4 => (0.50, 0.50, 0.50, 0.40),
-                                                                             5 => (0.00, 0.10, 0.50, 0.40),
-                                                                             6 => (0.00, 0.50, 0.50, 0.40),
-                                                                             7 => (0.00, 0.90, 1.00, 0.10)
+                                                                             ViewKonstanten.BaumenüGebäudeliste           => (0.00, 0.10, 0.50, 0.80),
+                                                                             ViewKonstanten.BaumenüEinheitenliste         => (0.50, 0.10, 0.50, 0.80),
+                                                                             ViewKonstanten.BaumenüGebäudeinformationen   => (0.50, 0.10, 0.50, 0.40),
+                                                                             ViewKonstanten.BaumenüGebäudebeschreibung    => (0.50, 0.50, 0.50, 0.40),
+                                                                             ViewKonstanten.BaumenüEinheiteninformationen => (0.00, 0.10, 0.50, 0.40),
+                                                                             ViewKonstanten.BaumenüEinheitenbeschreibung  => (0.00, 0.50, 0.50, 0.40),
+                                                                             ViewKonstanten.BaumenüAktuell                => (0.00, 0.90, 1.00, 0.10)
                                                                             );
    
    Verkausmenübereich : constant BereicheArray (Views.VerkaufsviewAccesse'Range) := (
@@ -74,13 +88,11 @@ package GrafikRecordKonstanten is
                                                                                       2 => (0.50, 0.10, 0.50, 0.90)
                                                                                      );
    
-   -- Später durch Enum'Range ersetzen? Bei allen Arrays? äöü
-   -- 1 = Stadtumgebung, 2 = Stadtbefehle, 3 = Stadtseitenleiste, 4 = Stadtkarte
    Stadtbereich : constant BereicheArray (Views.StadtviewAccesse'Range) := (
-                                                                            1 => (0.00, 0.00, 0.75, 1.00),
-                                                                            2 => (0.75, 0.75, 0.25, 0.25),
-                                                                            3 => (0.75, 0.00, 0.25, 0.75),
-                                                                            4 => (0.00, 0.00, 1.00, 1.00)
+                                                                            ViewKonstanten.StadtUmgebung      => (0.00, 0.00, 0.80, 1.00),
+                                                                            ViewKonstanten.StadtInformationen => (0.80, 0.00, 0.20, 0.75),
+                                                                            ViewKonstanten.StadtBefehle       => (0.80, 0.75, 0.20, 0.25),
+                                                                            ViewKonstanten.StadtKarte         => (0.00, 0.00, 1.00, 1.00)
                                                                            );
    
    Editorenbereich : constant BereicheArray (Views.EditorenviewAccesse'Range) := (

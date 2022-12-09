@@ -15,7 +15,6 @@ package BauauswahlGebaeudeGrafik is
 
    procedure Gebäudeinformationen
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
@@ -35,7 +34,6 @@ private
 
    procedure Gebäudebeschreibung
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (

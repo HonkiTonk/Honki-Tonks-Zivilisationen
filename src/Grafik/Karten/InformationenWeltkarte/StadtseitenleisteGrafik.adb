@@ -9,6 +9,7 @@ with TextKonstanten;
 with Views;
 with KartenverbesserungDatentypen;
 with GrafikDatentypen;
+with ViewKonstanten;
 
 with LeseStadtGebaut;
 
@@ -30,8 +31,8 @@ package body StadtseitenleisteGrafik is
       
       Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
              StadtRasseNummerExtern => StadtRasseNummerExtern,
-             AnzeigebereichExtern   => GrafikRecordKonstanten.Stadtbereich (3),
-             ViewExtern             => Views.StadtviewAccesse (3));
+             AnzeigebereichExtern   => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen),
+             ViewExtern             => Views.StadtviewAccesse (ViewKonstanten.StadtInformationen));
       
    end Stadtinformationen;
    

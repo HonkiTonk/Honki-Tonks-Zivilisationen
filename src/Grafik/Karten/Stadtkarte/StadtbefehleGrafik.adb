@@ -5,6 +5,7 @@ with Views;
 with GrafikDatentypen;
 with TextaccessVariablen;
 with InteraktionAuswahl;
+with ViewKonstanten;
 
 with HintergrundGrafik;
 with ViewsEinstellenGrafik;
@@ -18,11 +19,12 @@ package body StadtbefehleGrafik is
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Stadtbereich (2).width, GrafikRecordKonstanten.Stadtbereich (2).height));
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtBefehle).width,
+                                                                                              GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtBefehle).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (2),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtBefehle),
                                             GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (2));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtBefehle));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);

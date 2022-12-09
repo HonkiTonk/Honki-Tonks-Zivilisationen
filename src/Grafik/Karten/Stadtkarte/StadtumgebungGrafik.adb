@@ -1,6 +1,7 @@
 with KartenDatentypen;
 with Views;
 with KartengrundDatentypen;
+with ViewKonstanten;
 
 with LeseStadtGebaut;
 with LeseWeltkarte;
@@ -22,9 +23,9 @@ package body StadtumgebungGrafik is
       
       Viewfläche := (7.00 * SichtweitenGrafik.StadtfelderAbmessung.x, 7.00 * SichtweitenGrafik.StadtfelderAbmessung.y);
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (1),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung),
                                             GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (1));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtUmgebung));
             
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       

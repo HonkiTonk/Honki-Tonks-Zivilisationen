@@ -4,6 +4,7 @@ with Sf.Graphics.RenderWindow;
 with Views;
 with TextaccessVariablen;
 with GrafikDatentypen;
+with ViewKonstanten;
 
 with LeseWichtiges;
 
@@ -24,9 +25,9 @@ package body ForschungserfolgGrafik is
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungserfolgviewAccess,
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewKonstanten.ForschungsmenüErfolg),
                                             GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Forschungserfolgbereich);
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüErfolg));
       
       HintergrundGrafik.Rassenhintergrund (RasseExtern       => RasseExtern,
                                            HintergrundExtern => GrafikDatentypen.Forschungserfolg_Enum,

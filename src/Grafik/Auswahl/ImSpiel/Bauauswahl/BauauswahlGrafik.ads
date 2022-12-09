@@ -48,7 +48,6 @@ private
 
    procedure Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
@@ -57,7 +56,6 @@ private
 
    procedure Einheiten
      (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre => (
@@ -65,8 +63,7 @@ private
               );
 
    procedure Aktuell
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      ViewnummerExtern : in Positive)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
      with
        Pre => (
                  LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum

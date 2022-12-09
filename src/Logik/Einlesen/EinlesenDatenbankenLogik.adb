@@ -198,7 +198,7 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.WegeDatenbank);
+                  Name => VerzeichnisKonstanten.VerbesserungenDatenbank);
       
             VerbesserungenDatenbank.VerbesserungenlisteArray'Read (Stream (File => DatenbankEinlesen),
                                                                    VerbesserungenDatenbank.Verbesserungenliste);

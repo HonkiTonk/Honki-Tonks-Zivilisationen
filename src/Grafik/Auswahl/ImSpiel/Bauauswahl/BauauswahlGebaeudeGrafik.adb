@@ -8,6 +8,7 @@ with Meldungstexte;
 with TextaccessVariablen;
 with ProduktionDatentypen;
 with KampfDatentypen;
+with ViewKonstanten;
 
 with LeseGebaeudeDatenbank;
 
@@ -24,17 +25,16 @@ package body BauauswahlGebaeudeGrafik is
 
    procedure Gebäudeinformationen
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
                   
       ViewflächeInformationen := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeInformationen,
-                                                                                     VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern).width,
-                                                                                                           GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern).height));
+                                                                                     VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeinformationen).width,
+                                                                                                           GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeinformationen).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewnummerExtern),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeinformationen),
                                             GrößeExtern          => ViewflächeInformationen,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeinformationen));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeInformationen);
@@ -100,7 +100,6 @@ package body BauauswahlGebaeudeGrafik is
       ViewflächeInformationen := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
       Gebäudebeschreibung (AuswahlExtern    => AuswahlExtern,
-                            ViewnummerExtern => ViewnummerExtern + 1,
                             RasseExtern      => RasseExtern);
             
    end Gebäudeinformationen;
@@ -109,17 +108,16 @@ package body BauauswahlGebaeudeGrafik is
    
    procedure Gebäudebeschreibung
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       ViewflächeBeschreibung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeBeschreibung,
-                                                                                    VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern).width,
-                                                                                                          GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern).height));
+                                                                                    VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudebeschreibung).width,
+                                                                                                          GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudebeschreibung).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewnummerExtern),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudebeschreibung),
                                             GrößeExtern          => ViewflächeBeschreibung,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudebeschreibung));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeBeschreibung);

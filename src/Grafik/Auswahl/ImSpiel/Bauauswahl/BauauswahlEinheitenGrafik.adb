@@ -9,6 +9,7 @@ with TextaccessVariablen;
 with ProduktionDatentypen;
 with EinheitenKonstanten;
 with TextKonstanten;
+with ViewKonstanten;
 
 with LeseEinheitenDatenbank;
 
@@ -25,7 +26,6 @@ package body BauauswahlEinheitenGrafik is
 
    procedure Einheiteninformationen
      (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is
       use type EinheitenDatentypen.Transport_Enum;
@@ -33,12 +33,12 @@ package body BauauswahlEinheitenGrafik is
    begin
       
       ViewflächeInformationen := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeInformationen,
-                                                                                     VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern).width,
-                                                                                                           GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern).height));
+                                                                                     VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheiteninformationen).width,
+                                                                                                           GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheiteninformationen).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewnummerExtern),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheiteninformationen),
                                             GrößeExtern          => ViewflächeInformationen,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheiteninformationen));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeInformationen);
@@ -127,7 +127,6 @@ package body BauauswahlEinheitenGrafik is
       ViewflächeInformationen := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
       Einheitenbeschreibung (AuswahlExtern    => AuswahlExtern,
-                             ViewnummerExtern => ViewnummerExtern + 1,
                              RasseExtern      => RasseExtern);
             
    end Einheiteninformationen;
@@ -136,17 +135,16 @@ package body BauauswahlEinheitenGrafik is
    
    procedure Einheitenbeschreibung
      (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      ViewnummerExtern : in Positive;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       ViewflächeBeschreibung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeBeschreibung,
-                                                                                    VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern).width,
-                                                                                                          GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern).height));
+                                                                                    VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenbeschreibung).width,
+                                                                                                          GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenbeschreibung).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewnummerExtern),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenbeschreibung),
                                             GrößeExtern          => ViewflächeBeschreibung,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewnummerExtern));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenbeschreibung));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeBeschreibung);
