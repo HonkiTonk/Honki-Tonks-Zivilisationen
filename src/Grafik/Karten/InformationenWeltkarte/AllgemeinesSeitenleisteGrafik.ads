@@ -13,9 +13,6 @@ with LeseRassenbelegung;
 package AllgemeinesSeitenleisteGrafik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
-   
-   procedure Leer
-     (ViewbereichExtern : in Positive);
 
    procedure AllgemeineInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

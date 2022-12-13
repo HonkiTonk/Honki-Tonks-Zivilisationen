@@ -4,49 +4,29 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
-with Views;
-with GrafikDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
 with KartengrundDatentypen;
+with ViewKonstanten;
 
 with LeseWeltkarte;
 with LeseCursor;
 
 with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
-with ViewsEinstellenGrafik;
-with HintergrundGrafik;
 with TextberechnungenBreiteGrafik;
 with AufgabenbeschreibungenGrafik;
 with KartenbeschreibungenGrafik;
+with SeitenleisteLeerenGrafik;
 
 package body AllgemeinesSeitenleisteGrafik is
-   
-   procedure Leer
-     (ViewbereichExtern : in Positive)
-   is begin
-      
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (ViewbereichExtern).width,
-                                                                                              GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (ViewbereichExtern).height));
-      
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (ViewbereichExtern),
-                                            GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (ViewbereichExtern));
-      
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                     AbmessungenExtern => Viewfläche);
-      
-   end Leer;
-   
-   
 
    procedure AllgemeineInformationen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
-            
-      Leer (ViewbereichExtern => 2);
+      
+      Viewfläche := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltAllgemeines,
+                                                    ViewflächeExtern     => Viewfläche);
       
       Textbreite := 0.00;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;

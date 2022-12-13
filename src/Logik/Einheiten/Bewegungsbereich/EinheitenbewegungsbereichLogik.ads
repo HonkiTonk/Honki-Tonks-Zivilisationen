@@ -16,7 +16,7 @@ package EinheitenbewegungsbereichLogik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
 
-   type BewegungsbereichArray is array (KartenDatentypen.EbeneVorhanden'Range, KartenDatentypen.Bewegungsbereich'Range, KartenDatentypen.Bewegungsbereich'Range) of Boolean;
+   type BewegungsbereichArray is array (KartenDatentypen.EbeneVorhanden'Range, KartenDatentypen.KartenfeldPositiv'Range, KartenDatentypen.KartenfeldPositiv'Range) of Boolean;
    Bewegungsbereich : BewegungsbereichArray := (others => (others => (others => False)));
 
    procedure BewegungsbereichBerechnen

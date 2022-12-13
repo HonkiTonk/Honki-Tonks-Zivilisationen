@@ -30,12 +30,11 @@ package Views is
    SteuerungviewAccesse : constant ViewsArray (ViewKonstanten.SteuerungKategorie .. ViewKonstanten.SteuerungAuswahl) := (others => Sf.Graphics.View.create);
 
    WeltkarteAccess : constant ViewsArray (ViewKonstanten.WeltKarte .. ViewKonstanten.WeltEinheit) := (others => Sf.Graphics.View.create);
-   SeitenleisteWeltkarteAccesse : constant ViewsArray (1 .. 4) := (others => Sf.Graphics.View.create);
-
    StadtviewAccesse : constant ViewsArray (ViewKonstanten.StadtUmgebung .. ViewKonstanten.StadtKarte) := (others => Sf.Graphics.View.create);
 
    ForschungsviewAccesse : constant ViewsArray (ViewKonstanten.ForschungsmenüForschungsliste .. ViewKonstanten.ForschungsmenüErfolg) := (others => Sf.Graphics.View.create);
    BauviewAccesse : constant ViewsArray (ViewKonstanten.BaumenüGebäudeliste .. ViewKonstanten.BaumenüAktuell) := (others => Sf.Graphics.View.create);
+
    VerkaufsviewAccesse : constant ViewsArray (1 .. 2) := (others => Sf.Graphics.View.create);
 
    EditorenviewAccesse : constant ViewsArray (1 .. 2) := (others => Sf.Graphics.View.create);

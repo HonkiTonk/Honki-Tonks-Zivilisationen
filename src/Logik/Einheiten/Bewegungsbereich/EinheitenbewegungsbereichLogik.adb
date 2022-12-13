@@ -10,7 +10,7 @@ with StadtSuchenLogik;
 with EinheitSuchenLogik;
 with EinheitenbewegungLogik;
 
--- with Diagnoseinformationen;
+with Diagnoseinformationen;
 
 package body EinheitenbewegungsbereichLogik is
 
@@ -44,87 +44,11 @@ package body EinheitenbewegungsbereichLogik is
          
          end loop XAchseSchleife;
          
-         -- Diagnoseinformationen.Zahl (ZahlExtern => Integer (YAchseSchleifenwert));
+         Diagnoseinformationen.Zahl (ZahlExtern => Integer (YAchseSchleifenwert));
          
       end loop YAchseSchleife;
       
    end BewegungsbereichBerechnen;
-   
-   
-      
-   function FeldPrüfen
-     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      NotwendigeBewegungspunkteExtern : in Natural;
-      VorhandeneBewegungspunkteExtern : in Positive)
-      return SystemDatentypen.Erweiterter_Boolean_Enum
-   is
-      use type RassenDatentypen.Rassen_Enum;
-   begin
-      
-      if
-        NeueKoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse
-      then
-         return SystemDatentypen.False_Enum;
-      
-      elsif
-        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                          NeueKoordinatenExtern    => NeueKoordinatenExtern)
-      then
-         return SystemDatentypen.False_Enum;
-         
-      else
-         ZwischenrechnungBewegungspunkte := NotwendigeBewegungspunkteExtern + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => NeueKoordinatenExtern,
-                                                                                                                                                 EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-      end if;
-         
-      if
-        VorhandeneBewegungspunkteExtern = ZwischenrechnungBewegungspunkte
-      then
-         return SystemDatentypen.False_Enum;
-         
-      elsif
-        VorhandeneBewegungspunkteExtern < ZwischenrechnungBewegungspunkte
-        and
-          VorhandeneBewegungspunkteExtern - NotwendigeBewegungspunkteExtern <= Positive (EinheitenKonstanten.MinimalerBewegungspunkt)
-      then
-         return SystemDatentypen.False_Enum;
-         
-      else
-         Stadt := StadtSuchenLogik.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                             KoordinatenExtern => NeueKoordinatenExtern);
-      end if;
-      
-      if
-        Stadt.Rasse = StadtKonstanten.LeerRasse
-        or
-          Stadt.Rasse = EinheitRasseNummerExtern.Rasse
-      then
-         Einheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeueKoordinatenExtern,
-                                                                          LogikGrafikExtern => True);
-            
-      else
-         return SystemDatentypen.Neutral_Enum;
-      end if;
-         
-      if
-        EinheitenKonstanten.LeerRasse = Einheit.Rasse
-      then
-         return SystemDatentypen.True_Enum;
-         
-      elsif
-        Einheit.Rasse = EinheitRasseNummerExtern.Rasse
-        and
-          True = EinheitenbewegungLogik.EinheitentauschPrüfung (BewegendeEinheitExtern => EinheitRasseNummerExtern,
-                                                                 StehendeEinheitExtern  => Einheit)
-      then
-         return SystemDatentypen.True_Enum;
-         
-      else
-         return SystemDatentypen.Neutral_Enum;
-      end if;
-      
-   end FeldPrüfen;
    
    
    
@@ -135,11 +59,26 @@ package body EinheitenbewegungsbereichLogik is
       NotwendigeBewegungspunkteExtern : in Natural;
       VorhandeneBewegungspunkteExtern : in Positive)
    is begin
+   
+      if
+      abs (Integer (BewegungsfeldExtern.YAchse)) > VorhandeneBewegungspunkteExtern
+        or
+      abs (Integer (BewegungsfeldExtern.YAchse)) > Positive (LeseWeltkarteneinstellungen.YAchse)
+        or
+      abs (Integer (BewegungsfeldExtern.XAchse)) > VorhandeneBewegungspunkteExtern
+        or
+      abs (Integer (BewegungsfeldExtern.XAchse)) > Positive (LeseWeltkarteneinstellungen.XAchse)
+      then
+         return;
+         
+      else
+         null;
+      end if;
       
       case
         NotwendigeBewegungspunkteExtern
       is
-         when 0 .. 25  =>
+         when 0 .. 25 =>
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse),
                                                                                                       LogikGrafikExtern => True);
@@ -158,26 +97,15 @@ package body EinheitenbewegungsbereichLogik is
             return;
             
          when SystemDatentypen.Neutral_Enum =>
-            ZusätzlicheBewegungspunkte := Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
-                                                                                                              EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+            null;
             
          when SystemDatentypen.True_Enum =>
-            ZusätzlicheBewegungspunkte := Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
-                                                                                                              EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-            Bewegungsbereich (Kartenwert.EAchse, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse) := True;
+            Bewegungsbereich (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse) := True;
       end case;
-   
-      if
-      abs (Integer (BewegungsfeldExtern.YAchse)) >= VorhandeneBewegungspunkteExtern
-        or
-      abs (Integer (BewegungsfeldExtern.XAchse)) >= VorhandeneBewegungspunkteExtern
-      then
-         return;
          
-      else
-         null;
-      end if;
-            
+      ZusätzlicheBewegungspunkte := Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
+                                                                                                        EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
       YAchseSchleife:
       for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseSchleife:
@@ -237,5 +165,86 @@ package body EinheitenbewegungsbereichLogik is
       end loop YAchseSchleife;
       
    end BewegungsbereichErmitteln;
+   
+   
+      
+   function FeldPrüfen
+     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      NotwendigeBewegungspunkteExtern : in Natural;
+      VorhandeneBewegungspunkteExtern : in Positive)
+      return SystemDatentypen.Erweiterter_Boolean_Enum
+   is
+      use type RassenDatentypen.Rassen_Enum;
+   begin
+      
+      if
+        NeueKoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse
+      then
+         return SystemDatentypen.False_Enum;
+         
+         -- elsif
+         --   Bewegungsbereich (NeueKoordinatenExtern.EAchse, NeueKoordinatenExtern.YAchse, NeueKoordinatenExtern.XAchse) = True
+         -- then
+         --    return SystemDatentypen.False_Enum;
+         
+      elsif
+        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                          NeueKoordinatenExtern    => NeueKoordinatenExtern)
+      then
+         return SystemDatentypen.False_Enum;
+         
+      else
+         ZwischenrechnungBewegungspunkte := NotwendigeBewegungspunkteExtern + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => NeueKoordinatenExtern,
+                                                                                                                                                 EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      end if;
+         
+      if
+        VorhandeneBewegungspunkteExtern = ZwischenrechnungBewegungspunkte
+      then
+         return SystemDatentypen.False_Enum;
+         
+      elsif
+        VorhandeneBewegungspunkteExtern < ZwischenrechnungBewegungspunkte
+        and
+          VorhandeneBewegungspunkteExtern - NotwendigeBewegungspunkteExtern <= Positive (EinheitenKonstanten.MinimalerBewegungspunkt)
+      then
+         return SystemDatentypen.False_Enum;
+         
+      else
+         Stadt := StadtSuchenLogik.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                             KoordinatenExtern => NeueKoordinatenExtern);
+      end if;
+      
+      if
+        Stadt.Rasse = StadtKonstanten.LeerRasse
+        or
+          Stadt.Rasse = EinheitRasseNummerExtern.Rasse
+      then
+         Einheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeueKoordinatenExtern,
+                                                                          LogikGrafikExtern => True);
+            
+      else
+         return SystemDatentypen.Neutral_Enum;
+      end if;
+         
+      if
+        EinheitenKonstanten.LeerRasse = Einheit.Rasse
+      then
+         return SystemDatentypen.True_Enum;
+         
+      elsif
+        Einheit.Rasse = EinheitRasseNummerExtern.Rasse
+        and
+          True = EinheitenbewegungLogik.EinheitentauschPrüfung (BewegendeEinheitExtern => EinheitRasseNummerExtern,
+                                                                 StehendeEinheitExtern  => Einheit)
+      then
+         return SystemDatentypen.True_Enum;
+         
+      else
+         return SystemDatentypen.Neutral_Enum;
+      end if;
+      
+   end FeldPrüfen;
 
 end EinheitenbewegungsbereichLogik;

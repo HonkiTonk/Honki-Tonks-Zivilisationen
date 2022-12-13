@@ -8,6 +8,7 @@ with StadtRecordKonstanten;
 with KartenRecordKonstanten;
 
 package GebautVariablen is
+   pragma Elaborate_Body;
 
    type EinheitenGebautArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitenDatentypen.MaximaleEinheiten'Range) of EinheitenRecords.EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => EinheitenRecordKonstanten.LeerEinheit));

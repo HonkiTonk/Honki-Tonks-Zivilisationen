@@ -2,8 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics;
 with Sf.Graphics.Rect;
-
-private with Sf.System.Vector2;
+with Sf.System.Vector2;
 
 with RassenDatentypen;
 with StadtRecords;
@@ -32,13 +31,25 @@ package StadtseitenleisteGrafik is
                  StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
               );
    
-   procedure Leer
+   function Leer
      (AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
-      ViewExtern : in Sf.Graphics.sfView_Ptr)
+      ViewExtern : in Sf.Graphics.sfView_Ptr;
+      ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
      with
        Pre => (
                  ViewExtern /= null
-              );
+               and
+                 ViewflächeExtern.x >= 0.00
+               and
+                 ViewflächeExtern.y >= 0.00
+              ),
+         
+       Post => (
+                  Leer'Result.x >= 0.00
+                and
+                  Leer'Result.y >= 0.00
+               );
      
    procedure Stadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -73,6 +84,7 @@ private
    Bauprojekt : StadtRecords.BauprojektRecord;
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   Zwischenfläche : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
    Mausposition : Sf.System.Vector2.sfVector2f;
       

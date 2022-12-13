@@ -3,6 +3,7 @@ with Sf.Graphics.Texture;
 with Views;
 with InteraktionAuswahl;
 with EinheitenKonstanten;
+with ViewKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -39,15 +40,15 @@ package body WeltkartenbefehleGrafik is
         RechtsLinksExtern
       is
          when True =>
-            WelcherViewbereich := 1;
+            WelcherViewbereich := ViewKonstanten.WeltEinheitenbefehleRechts;
             
          when False =>
-            WelcherViewbereich := 2;
+            WelcherViewbereich := ViewKonstanten.WeltEinheitenbefehleLinks;
       end case;
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.EinheitenbefehlsviewAccess,
                                             GrößeExtern          => EinheitenViewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Einheitenbefehlsbereich (WelcherViewbereich));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (WelcherViewbereich));
       
       EinheitenViewfläche := Einheitenbefehlsknöpfe (EinheitenArtExtern => Einheitart,
                                                        WelcheTexturExtern => WelcherKnopf);
@@ -136,15 +137,15 @@ package body WeltkartenbefehleGrafik is
         RechtsLinksExtern
       is
          when True =>
-            WelcherViewbereich := 1;
+            WelcherViewbereich := ViewKonstanten.WeltBefehleRechts;
             
          when False =>
-            WelcherViewbereich := 2;
+            WelcherViewbereich := ViewKonstanten.WeltBefehleLinks;
       end case;
             
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.KartenbefehlsviewAccess,
                                             GrößeExtern          => KartenbefehleViewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Kartenbefehlsbereich (WelcherViewbereich));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (WelcherViewbereich));
       
       KartenbefehleViewfläche := Kartenbefehlsknöpfe;
       

@@ -73,7 +73,6 @@ package body WeltkarteZeichnenGrafik is
           EinheitRasseNummerExtern.Nummer /= EinheitenKonstanten.LeerNummer
       then
          AnzeigeBewegungsfeld (KoordinatenExtern        => KoordinatenExtern,
-                               EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                PositionExtern           => PositionExtern);
          
       else
@@ -537,31 +536,11 @@ package body WeltkarteZeichnenGrafik is
    
    procedure AnzeigeBewegungsfeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      BewegungsfeldKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
-      Zwischenspeicher.EAchse := BewegungsfeldKoordinaten.EAchse;
-      Zwischenspeicher.YAchse := KoordinatenExtern.YAchse - BewegungsfeldKoordinaten.YAchse;
-      Zwischenspeicher.XAchse := KoordinatenExtern.XAchse - BewegungsfeldKoordinaten.XAchse;
-            
-      if
-        Zwischenspeicher.EAchse in KartenDatentypen.EbeneVorhanden'Range
-        and
-          Zwischenspeicher.YAchse in KartenDatentypen.Bewegungsbereich'Range
-          and
-            Zwischenspeicher.XAchse in KartenDatentypen.Bewegungsbereich'Range
-      then
-         null;
-         
-      else
-         return;
-      end if;
-      
       case
-        EinheitenbewegungsbereichLogik.Bewegungsbereich (Zwischenspeicher.EAchse, Zwischenspeicher.YAchse, Zwischenspeicher.XAchse)
+        EinheitenbewegungsbereichLogik.Bewegungsbereich (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse)
       is
          when False =>
             null;

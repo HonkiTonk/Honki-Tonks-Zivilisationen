@@ -1,156 +1,158 @@
 package ChangelogDezember2022 is
 
-   -- Version 0.0. => 0.0. (31.12.2022):
+   -- Version 0.04. => 0.04. (31.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (30.12.2022):
+   -- Version 0.04. => 0.04. (30.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29.12.2022):
+   -- Version 0.04. => 0.04. (29.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28.12.2022):
+   -- Version 0.04. => 0.04. (28.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.12.2022):
+   -- Version 0.04. => 0.04. (27.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.12.2022):
+   -- Version 0.04. => 0.04. (26.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.12.2022):
+   -- Version 0.04. => 0.04. (25.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24.12.2022):
+   -- Version 0.04. => 0.04. (24.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.12.2022):
+   -- Version 0.04. => 0.04. (23.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.12.2022):
+   -- Version 0.04. => 0.04. (22.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21.12.2022):
+   -- Version 0.04. => 0.04. (21.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20.12.2022):
+   -- Version 0.04. => 0.04. (20.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (19.12.2022):
+   -- Version 0.04. => 0.04. (19.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18.12.2022):
+   -- Version 0.04. => 0.04. (18.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17.12.2022):
+   -- Version 0.04. => 0.04. (17.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (16.12.2022):
+   -- Version 0.04. => 0.04. (16.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (15.12.2022):
+   -- Version 0.04. => 0.04. (15.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (14.12.2022):
+   -- Version 0.04. => 0.04. (14.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (13.12.2022):
+   -- Version 0.04.5615 => 0.04. (13.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (12.12.2022):
+   -- Version 0.04.5545 => 0.04.5615 (12.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (11.12.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Debian GNAT 12.2.0-9.1 auf Debian GNAT 12.2.0-10 aktualisiert.
+   -- Einige Zahlen in Konstante umgewandelt.
+   -- Code zusammengefasst.
+   -- Die Anzeige des Einheitenbewegungsfeldes funktioniert jetzt auch korrekt bei Kartenübergängen.
+   -- Dynamische Version erstellt, welche GNAT statisch einkompiliert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.04.5545 => 0.0. (10.12.2022):
+   -- Version 0.04.5545 => 0.04.5545 (11.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.04.5545 => 0.04.5545 (10.12.2022):
+   
+   -- null.
    
    
 
@@ -159,7 +161,7 @@ package ChangelogDezember2022 is
    -- Es endlich geschafft die Alire Version dem Alire Index hinzuzufügen.
    -- Weiter die Stadtansicht/karte überarbeitet.
    -- Einige Zahlen in Konstante umgewandelt.
-   -- Debian GNAT 12.2.0-9 aud Debian GNAT 12.2.0-9.1 aktualisiert.
+   -- Debian GNAT 12.2.0-9 auf Debian GNAT 12.2.0-9.1 aktualisiert.
    -- Fehler korrigiert welcher dazu führte dass die Datenbanken falsch geschrieben wurden und beim Einlesen einen Programmstopp verursachten.
    -- Kommentare und Kleinigkeiten korrigiert/zusammengefasst/überarbeitet.
    
@@ -170,7 +172,7 @@ package ChangelogDezember2022 is
    -- Anpassungen an den gpr Dateien vorgenommen.
    -- Anpassungen für die Alire Version vorgenommen.
    -- Die verschiedenen Versionen aneinander angepasst.
-   -- Neues Release auf GitHub veröffentlicht..
+   -- Neues Release auf GitHub veröffentlicht.
    
    
 

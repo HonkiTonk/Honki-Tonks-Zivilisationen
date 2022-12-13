@@ -28,7 +28,6 @@ package body KartenaufteilungGrafik is
       CursorplatzierungGrafik.Weltkarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
       CursorplatzierungAltGrafik.CursorplatzierungAlt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      -- Von außen die Arraypositionen für die Bereiche/Views hineingeben? äöü
       WeltkarteGrafik.WeltkarteAnzeigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       case
@@ -40,11 +39,12 @@ package body KartenaufteilungGrafik is
          when others =>
             Position := KoordinatenPositionUmwandlungen.KoordinatenZuKartenposition (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                                      RasseExtern       => EinheitRasseNummerExtern.Rasse);
+            Viewgröße := Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
             
             if
-              Position.y >= Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)).y / 2.00
+              Position.y >= Viewgröße.y / 2.00
               and
-                Position.x >= Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)).x / 1.50
+                Position.x >= Viewgröße.x / 1.50
             then
                RechtsLinksBefehlsanzeige := False;
                

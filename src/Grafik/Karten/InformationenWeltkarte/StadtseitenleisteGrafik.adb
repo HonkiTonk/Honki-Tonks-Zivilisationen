@@ -38,20 +38,25 @@ package body StadtseitenleisteGrafik is
    
    
    
-   procedure Leer
+   -- Das Leeren kann nicht mit den anderen SeitenleistenLeeren zusammengelegt werden, da es einmal für die Weltkarte und einmal für die Stadtkarte verwendet wird.
+   function Leer
      (AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
-      ViewExtern : in Sf.Graphics.sfView_Ptr)
+      ViewExtern : in Sf.Graphics.sfView_Ptr;
+      ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
    is begin
       
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (AnzeigebereichExtern.width, AnzeigebereichExtern.height));
+      Zwischenfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeExtern,
+                                                                            VerhältnisExtern => (AnzeigebereichExtern.width, AnzeigebereichExtern.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => ViewExtern,
-                                            GrößeExtern          => Viewfläche,
+                                            GrößeExtern          => Zwischenfläche,
                                             AnzeigebereichExtern => AnzeigebereichExtern);
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                     AbmessungenExtern => Viewfläche);
+                                     AbmessungenExtern => Zwischenfläche);
+      
+      return Zwischenfläche;
       
    end Leer;
    
@@ -66,8 +71,9 @@ package body StadtseitenleisteGrafik is
       use type RassenDatentypen.Rassen_Enum;
    begin
                         
-      Leer (AnzeigebereichExtern => AnzeigebereichExtern,
-            ViewExtern           => ViewExtern);
+      Viewfläche := Leer (AnzeigebereichExtern => AnzeigebereichExtern,
+                          ViewExtern           => ViewExtern,
+                          ViewflächeExtern     => Viewfläche);
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
@@ -100,7 +106,7 @@ package body StadtseitenleisteGrafik is
            ZahlAlsStringProduktion (ZahlExtern => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern));
          FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
          FestzulegenderText (6) := Kampfwerte (StadtRasseNummerExtern => StadtRasseNummerExtern);
-           FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKorruption) & LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKorruption) & LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
          FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & LeseStadtGebaut.Arbeitslose (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
          FestzulegenderText (9) := AktuellesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
                                  

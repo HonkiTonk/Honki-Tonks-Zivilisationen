@@ -5,10 +5,9 @@ with Sf.Graphics.Text;
 with Meldungstexte;
 with StadtKonstanten;
 with TextnummernKonstanten;
-with Views;
 with TextKonstanten;
-with GrafikDatentypen;
 with KampfKonstanten;
+with ViewKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -17,32 +16,12 @@ with LeseStadtGebaut;
 with EinheitenbeschreibungenGrafik;
 with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
-with ViewsEinstellenGrafik;
-with HintergrundGrafik;
 with TextberechnungenBreiteGrafik;
 with KartenfelderwerteLogik;
 with DebugobjekteLogik;
+with SeitenleisteLeerenGrafik;
 
 package body EinheitenseitenleisteGrafik is
-   
-   procedure Leer
-     (AnzeigebereichExtern : in Positive)
-   is begin
-      
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (AnzeigebereichExtern).width,
-                                                                                              GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (AnzeigebereichExtern).height));
-      
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SeitenleisteWeltkarteAccesse (AnzeigebereichExtern),
-                                            GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (AnzeigebereichExtern));
-      
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                     AbmessungenExtern => Viewfläche);
-      
-   end Leer;
-   
-   
 
    procedure Einheiten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -52,7 +31,8 @@ package body EinheitenseitenleisteGrafik is
       use type RassenDatentypen.Rassen_Enum;
    begin
       
-      Leer (AnzeigebereichExtern => 4);
+      Viewfläche := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltEinheit,
+                                                    ViewflächeExtern     => Viewfläche);
       
       case
         StadtVorhandenExtern
@@ -61,7 +41,8 @@ package body EinheitenseitenleisteGrafik is
             null;
             
          when False =>
-            Leer (AnzeigebereichExtern => 3);
+            Leerwert := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltStadt,
+                                                       ViewflächeExtern     => GrafikRecordKonstanten.LeerView);
       end case;
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;

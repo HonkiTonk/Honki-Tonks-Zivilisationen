@@ -6,6 +6,7 @@ with ViewKonstanten;
 
 package GrafikRecordKonstanten is
 
+   LeerView : constant Sf.System.Vector2.sfVector2f := (0.00, 0.00);
    StartgrößeView : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
    
    
@@ -36,6 +37,10 @@ package GrafikRecordKonstanten is
    
    type BereicheArray is array (Positive range <>) of Sf.Graphics.Rect.sfFloatRect;
    
+   -- Menübereich : constant BereicheArray (1 .. ) := (
+   -- 
+   -- );
+   
    MenüDoppelbereich : constant BereicheArray (1 .. 2) := (
                                                             1 => (0.00, Überschriftbereich.height, 0.25, 1.00 - Überschriftbereich.height),
                                                             2 => (0.25, Überschriftbereich.height, 0.75, 1.00 - Überschriftbereich.height)
@@ -47,7 +52,7 @@ package GrafikRecordKonstanten is
                                                                                    );
    
    Weltkartenbereich : constant BereicheArray (Views.WeltkarteAccess'Range) := (
-                                                                                ViewKonstanten.WeltKarte                  => (0.00, 0.00, 0.80, 1.00),
+                                                                                ViewKonstanten.WeltKarte                  => Kartenbereich,
                                                                                 ViewKonstanten.WeltBefehleRechts          => (0.59, 0.79, 0.20, 0.20),
                                                                                 ViewKonstanten.WeltBefehleLinks           => (0.01, 0.79, 0.20, 0.20),
                                                                                 ViewKonstanten.WeltEinheitenbefehleRechts => (0.59, 0.59, 0.20, 0.20),
@@ -57,13 +62,6 @@ package GrafikRecordKonstanten is
                                                                                 ViewKonstanten.WeltStadt                  => (Leistendicke.x, 0.30, Leistendicke.y, 0.35),
                                                                                 ViewKonstanten.WeltEinheit                => (Leistendicke.x, 0.65, Leistendicke.y, 0.35)
                                                                                );
-   
-   SeitenleisteWeltkartenbereich : constant BereicheArray (Views.SeitenleisteWeltkarteAccesse'Range) := (
-                                                                                                         1 => (Leistendicke.x, 0.00, Leistendicke.y, 0.20),
-                                                                                                         2 => (Leistendicke.x, 0.20, Leistendicke.y, 0.10),
-                                                                                                         3 => (Leistendicke.x, 0.30, Leistendicke.y, 0.35),
-                                                                                                         4 => (Leistendicke.x, 0.65, Leistendicke.y, 0.35)
-                                                                                                        );
    
    Forschungsbereich : constant BereicheArray (Views.ForschungsviewAccesse'Range) := (
                                                                                       ViewKonstanten.ForschungsmenüForschungsliste => (0.00, 0.10, 0.50, 0.40),
@@ -99,15 +97,5 @@ package GrafikRecordKonstanten is
                                                                                   1 => Unterschriftbereich,
                                                                                   2 => Gesamtbereich
                                                                                  );
-   
-   Einheitenbefehlsbereich : constant BereicheArray (1 .. 2) := (
-                                                                 1 => (0.59, 0.59, 0.20, 0.20),
-                                                                 2 => (0.01, 0.59, 0.20, 0.20)
-                                                                );
-   
-   Kartenbefehlsbereich : constant BereicheArray (1 .. 2) := (
-                                                              1 => (0.59, 0.79, 0.20, 0.20),
-                                                              2 => (0.01, 0.79, 0.20, 0.20)
-                                                             );
 
 end GrafikRecordKonstanten;

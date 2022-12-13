@@ -37,5 +37,6 @@ private
    RechtsLinksBefehlsanzeige : Boolean;
    
    Position : Sf.System.Vector2.sfVector2f;
+   Viewgröße : Sf.System.Vector2.sfVector2f;
 
 end KartenaufteilungGrafik;

@@ -27,9 +27,6 @@ package EinheitenseitenleisteGrafik is
    pragma Elaborate_Body;
    use type RassenDatentypen.Spieler_Enum;
    
-   procedure Leer
-     (AnzeigebereichExtern : in Positive);
-
    procedure Einheiten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
@@ -69,6 +66,7 @@ private
    EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   Leerwert : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
    
    Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;

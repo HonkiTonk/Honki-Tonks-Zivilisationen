@@ -3,6 +3,7 @@ with EinheitenKonstanten;
 with GrafikRecordKonstanten;
 with Views;
 with KartenRecordKonstanten;
+with ViewKonstanten;
 
 with LeseWeltkarte;
 with LeseCursor;
@@ -13,6 +14,7 @@ with StadtseitenleisteGrafik;
 with EinheitenseitenleisteGrafik;
 with WichtigesSeitenleisteGrafik;
 with AllgemeinesSeitenleisteGrafik;
+with SeitenleisteLeerenGrafik;
 
 package body SeitenleisteGrafik is
 
@@ -32,12 +34,11 @@ package body SeitenleisteGrafik is
             
       else
          WichtigesSeitenleisteGrafik.WichtigesInformationen (RasseExtern       => RasseExtern,
-                                                             KoordinatenExtern => AktuelleKoordinaten,
-                                                             ViewbereichExtern => 1);
+                                                             KoordinatenExtern => AktuelleKoordinaten);
       end if;
       
       case
-        LeseWeltkarte.Sichtbar (KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern),
+        LeseWeltkarte.Sichtbar (KoordinatenExtern => AktuelleKoordinaten,
                                 RasseExtern       => RasseExtern)
       is
          when True =>
@@ -49,15 +50,16 @@ package body SeitenleisteGrafik is
               StadtRasseNummer.Nummer
             is
                when StadtKonstanten.LeerNummer =>
-                  StadtseitenleisteGrafik.Leer (AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (3),
-                                                ViewExtern           => Views.SeitenleisteWeltkarteAccesse (3));
+                  Leerwert := StadtseitenleisteGrafik.Leer (AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt),
+                                                            ViewExtern           => Views.WeltkarteAccess (ViewKonstanten.WeltStadt),
+                                                            ViewflächeExtern     => GrafikRecordKonstanten.LeerView);
                   StadtVorhanden := False;
             
                when others =>
                   StadtseitenleisteGrafik.Stadt (RasseExtern            => RasseExtern,
                                                  StadtRasseNummerExtern => StadtRasseNummer,
-                                                 AnzeigebereichExtern   => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (3),
-                                                 ViewExtern             => Views.SeitenleisteWeltkarteAccesse (3));
+                                                 AnzeigebereichExtern   => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt),
+                                                 ViewExtern             => Views.WeltkarteAccess (ViewKonstanten.WeltStadt));
                   StadtVorhanden := True;
             end case;
             
@@ -68,7 +70,8 @@ package body SeitenleisteGrafik is
               EinheitRasseNummer.Nummer
             is
                when EinheitenKonstanten.LeerNummer =>
-                  EinheitenseitenleisteGrafik.Leer (AnzeigebereichExtern => 4);
+                  Leerwert := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltEinheit,
+                                                             ViewflächeExtern     => GrafikRecordKonstanten.LeerView);
             
                when others =>
                   EinheitenseitenleisteGrafik.Einheiten (RasseExtern              => RasseExtern,
@@ -77,10 +80,16 @@ package body SeitenleisteGrafik is
             end case;
             
          when False =>
-            AllgemeinesSeitenleisteGrafik.Leer (ViewbereichExtern => 2);
-            StadtseitenleisteGrafik.Leer (AnzeigebereichExtern => GrafikRecordKonstanten.SeitenleisteWeltkartenbereich (3),
-                                          ViewExtern           => Views.SeitenleisteWeltkarteAccesse (3));
-            EinheitenseitenleisteGrafik.Leer (AnzeigebereichExtern => 4);
+            Leerwert := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltAllgemeines,
+                                                       ViewflächeExtern     => GrafikRecordKonstanten.LeerView);
+            
+            Leerwert := StadtseitenleisteGrafik.Leer (AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt),
+                                                      ViewExtern           => Views.WeltkarteAccess (ViewKonstanten.WeltStadt),
+                                                      ViewflächeExtern     => GrafikRecordKonstanten.LeerView);
+            
+            Leerwert := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltEinheit,
+                                                       ViewflächeExtern     => GrafikRecordKonstanten.LeerView);
+            
       end case;
       
    end SeitenleisteGrafik;
