@@ -5,12 +5,9 @@ package KartenDatentypen is
    subtype KartenfeldNatural is Kartenfeld range 0 .. Kartenfeld'Last;
    subtype KartenfeldPositiv is KartenfeldNatural range 1 .. KartenfeldNatural'Last;
    
-   subtype Bewegungsbereich is Kartenfeld range -100 .. 100;
-   subtype BewegungsbereichNatural is Bewegungsbereich range KartenfeldNatural'First .. Bewegungsbereich'Last;
-   subtype BewegungsbereichNegativ is Bewegungsbereich range Bewegungsbereich'First .. KartenfeldNatural'First;
    subtype Stadtfeld is KartenfeldPositiv range KartenfeldPositiv'First .. 20;
    
-   -- Das heir kann vermutlich auch mal umgebaut/ersetzt/entfernt werden. äöü
+   -- Das hier kann vermutlich auch mal umgebaut/ersetzt/entfernt werden. äöü
    subtype SichtweiteNatural is KartenfeldNatural range KartenfeldNatural'First .. 10;
    -- Dafür auch mal einen subtype für die Einheitensichtweite einbauen? äöü
    subtype Sichtweite is SichtweiteNatural range 1 .. SichtweiteNatural'Last;

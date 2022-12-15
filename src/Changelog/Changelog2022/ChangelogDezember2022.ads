@@ -112,24 +112,27 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (15.12.2022):
+   -- Version 0.04.5680 => 0.04. (15.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (14.12.2022):
+   -- Version 0.04.5615 => 0.04.5680 (14.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Versucht eine Unix Version zu erstellen.
+   -- Fehler in der Ermittlung des Feldertausches korrigiert, welche dazu führte das man Einheiten verlieren konnte.
+   -- Die Anzeige des Bewegungsfeldes sollte jetzt korrekt sein.
+   -- Berechnung des Bewegungsfeldes deutlich beschleunigt.
+   -- Berechnung des Bewegungsfeldes auf die Ebene über und unter der Einheit erweitert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.04.5615 => 0.04. (13.12.2022):
+   -- Version 0.04.5615 => 0.04.5615 (13.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

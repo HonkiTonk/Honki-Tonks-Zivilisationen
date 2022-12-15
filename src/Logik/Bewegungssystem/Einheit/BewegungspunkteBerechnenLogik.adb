@@ -6,6 +6,7 @@ with LeseVerbesserungenDatenbank;
 
 package body BewegungspunkteBerechnenLogik is
 
+   -- Eventuell Bewegungspunkte entfernen und überall durch NotwendigeBewegungspunkte ersetzen? äöü
    function Bewegungspunkte
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)

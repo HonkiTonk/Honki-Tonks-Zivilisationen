@@ -189,11 +189,11 @@ package body EinheitenbewegungLogik is
          return False;
          
       elsif
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => StehendeEinheitExtern) < BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern    => BewegendeKoordinaten,
-                                                                                                                                                 EinheitRasseNummerExtern => StehendeEinheitExtern)
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => StehendeEinheitExtern) < BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => BewegendeKoordinaten,
+                                                                                                                                                           EinheitRasseNummerExtern => StehendeEinheitExtern)
         or
-          LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => BewegendeEinheitExtern) < BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern    => StehendeKoordinaten,
-                                                                                                                                                    EinheitRasseNummerExtern => BewegendeEinheitExtern)
+          LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => BewegendeEinheitExtern) < BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => StehendeKoordinaten,
+                                                                                                                                                              EinheitRasseNummerExtern => BewegendeEinheitExtern)
       then
          return False;
          
