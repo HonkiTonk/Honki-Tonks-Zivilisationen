@@ -190,7 +190,7 @@ package body KIEinheitenBauenLogik is
          when EinheitenDatentypen.Beides_Enum =>
             null;
             
-         when EinheitenDatentypen.PZB_Enum'Range =>
+         when EinheitenDatentypen.PZB_Enum =>
             null;
             
          when EinheitenDatentypen.Cheat_Enum =>

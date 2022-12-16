@@ -1,6 +1,8 @@
 with EinheitenDatentypen;
 with EinheitenRecordKonstanten;
 with EinheitendatenbankRecord;
+with KartengrundDatentypen;
+with KartenDatentypen;
 
 with DebugobjekteLogik;
 
@@ -30,7 +32,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Steinzeitkämpfer
@@ -54,7 +58,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Knochenkämpfer
@@ -78,7 +84,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
       
                                                                                         -- Erstes Schiff
@@ -104,7 +112,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                         Transportkapazität      => 1
+                                                                                         Transportkapazität      => 1,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Überwassereinheit
@@ -130,7 +140,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Überwassersiedler
@@ -156,7 +168,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Eisenkämpfer
@@ -182,7 +196,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Handelsschiff
@@ -208,7 +224,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Landsiedler
@@ -235,7 +253,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Dampfschiff
@@ -259,7 +279,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                         Transportkapazität      => 2
+                                                                                         Transportkapazität      => 2,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Motorschiff
@@ -283,7 +305,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                         Transportkapazität      => 4
+                                                                                         Transportkapazität      => 4,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Schlachtschiff
@@ -309,7 +333,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Auto
@@ -332,7 +358,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Genkämpfer
@@ -359,7 +387,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                         Transportkapazität      => 4
+                                                                                         Transportkapazität      => 4,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Atombombe
@@ -386,7 +416,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                         Transportkapazität      => 4
+                                                                                         Transportkapazität      => 4,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Kernsiedler
@@ -415,7 +447,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                         Transportkapazität      => 2
+                                                                                         Transportkapazität      => 2,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Kerngräber
@@ -444,13 +478,15 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- PZB200
                                                                                       18 =>
                                                                                         (
-                                                                                         Einheitenart            => EinheitenDatentypen.PZB_Klein_Enum,
+                                                                                         Einheitenart            => EinheitenDatentypen.PZB_Enum,
                                                                                          PreisGeld               => 25,
                                                                                          Produktionskosten       => 20,
                                                                                          PermanenteKosten        => (others => 0),
@@ -471,13 +507,15 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
+                                                                                         Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last, 200, 200)
                                                                                         ),
                                                
                                                                                         -- PZB400
                                                                                       19 =>
                                                                                         (
-                                                                                         Einheitenart            => EinheitenDatentypen.PZB_Mittel_Enum,
+                                                                                         Einheitenart            => EinheitenDatentypen.PZB_Enum,
                                                                                          PreisGeld               => 25,
                                                                                          Produktionskosten       => 20,
                                                                                          PermanenteKosten        => (others => 0),
@@ -498,13 +536,15 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
+                                                                                         Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last, 400, 400)
                                                                                         ),
                                                
                                                                                         -- PZB1000
                                                                                       20 =>
                                                                                         (
-                                                                                         Einheitenart            => EinheitenDatentypen.PZB_Groß_Enum,
+                                                                                         Einheitenart            => EinheitenDatentypen.PZB_Enum,
                                                                                          PreisGeld               => 25,
                                                                                          Produktionskosten       => 20,
                                                                                          PermanenteKosten        => (others => 0),
@@ -525,7 +565,11 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
+                                                                                         Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last,
+                                                                                                                     KartenDatentypen.KartenfeldPositiv'Last,
+                                                                                                                     KartenDatentypen.KartenfeldPositiv'Last)
                                                                                         ),
                                                
                                                                                         -- Gaußkämpfer
@@ -549,7 +593,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Himmel/Orbitalsiedler
@@ -571,7 +617,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Magnetkämpfer
@@ -595,7 +643,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Schwebepanzer
@@ -620,7 +670,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Atmosphärenjäger
@@ -644,7 +696,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Atmosphärenbomber
@@ -668,7 +722,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                
                                                                                         -- Stellare Artillerie
@@ -694,7 +750,9 @@ package EinheitenTesorahn is
                                                                                          Verteidigung            => 1,
                                                                                          KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                         Transportkapazität      => 0
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                         Effektreichweite        => (0, 0, 0)
                                                                                         ),
                                                                               
                                                                                       EinheitendatenbankRecord.EinheitenlisteArray'Last => DebugobjekteLogik.Alleskönner,

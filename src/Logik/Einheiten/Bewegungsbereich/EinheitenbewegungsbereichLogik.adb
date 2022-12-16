@@ -58,7 +58,9 @@ package body EinheitenbewegungsbereichLogik is
       EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
       NotwendigeBewegungspunkteExtern : in Natural;
       VorhandeneBewegungspunkteExtern : in Positive)
-   is begin
+   is
+      use type KartenDatentypen.Ebene;
+   begin
 
       Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                 ÄnderungExtern    => (BewegungsfeldExtern.EAchse, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse),
@@ -82,57 +84,82 @@ package body EinheitenbewegungsbereichLogik is
 
       ZusätzlicheBewegungspunkte := Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
                                                                                                         EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      EAchseSchleife:
+      for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
+         YAchseSchleife:
+         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
 
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+               if
+                 YAchseSchleifenwert = 0
+                 and
+                   XAchseSchleifenwert = 0
+                   and
+                     EAchseSchleifenwert = 0
+               then
+                  null;
+                  
+               elsif
+                 BewegungsfeldExtern.EAchse < 0
+                 and
+                   EAchseSchleifenwert > 0
+               then
+                  null;
+                  
+               elsif
+                 BewegungsfeldExtern.EAchse > 0
+                 and
+                   EAchseSchleifenwert < 0
+               then
+                  null;
 
-            if
-              YAchseSchleifenwert = 0
-              and
-                XAchseSchleifenwert = 0
-            then
-               null;
+               elsif
+                 BewegungsfeldExtern.XAchse < 0
+                 and
+                   XAchseSchleifenwert >= 0
+               then
+                  null;
 
-            elsif
-              BewegungsfeldExtern.XAchse < 0
-              and
-                XAchseSchleifenwert >= 0
-            then
-               null;
+               elsif
+                 BewegungsfeldExtern.XAchse > 0
+                 and
+                   XAchseSchleifenwert <= 0
+               then
+                  null;
 
-            elsif
-              BewegungsfeldExtern.XAchse > 0
-              and
-                XAchseSchleifenwert <= 0
-            then
-               null;
+               elsif
+                 BewegungsfeldExtern.YAchse < 0
+                 and
+                   YAchseSchleifenwert >= 0
+               then
+                  null;
 
-            elsif
-              BewegungsfeldExtern.YAchse < 0
-              and
-                YAchseSchleifenwert >= 0
-            then
-               null;
+               elsif
+                 BewegungsfeldExtern.YAchse > 0
+                 and
+                   YAchseSchleifenwert <= 0
+               then
+                  null;
+                  
+               elsif
+                 BewegungsfeldExtern.EAchse + EAchseSchleifenwert not in KartenDatentypen.EbeneVorhanden'Range
+               then
+                  null;
 
-            elsif
-              BewegungsfeldExtern.YAchse > 0
-              and
-                YAchseSchleifenwert <= 0
-            then
-               null;
+               else
+                  BewegungsbereichErmitteln (BewegungsfeldExtern             => (BewegungsfeldExtern.EAchse + EAchseSchleifenwert,
+                                                                                 BewegungsfeldExtern.YAchse + YAchseSchleifenwert,
+                                                                                 BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
+                                             KoordinatenExtern               => KoordinatenExtern,
+                                             EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                                             NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern + ZusätzlicheBewegungspunkte,
+                                             VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern);
+               end if;
 
-            else
-               BewegungsbereichErmitteln (BewegungsfeldExtern             => (BewegungsfeldExtern.EAchse, BewegungsfeldExtern.YAchse + YAchseSchleifenwert, BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
-                                          KoordinatenExtern               => KoordinatenExtern,
-                                          EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
-                                          NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern + ZusätzlicheBewegungspunkte,
-                                          VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern);
-            end if;
-
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
 
    end BewegungsbereichErmitteln;
    

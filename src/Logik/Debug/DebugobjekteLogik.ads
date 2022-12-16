@@ -4,9 +4,10 @@ with KampfDatentypen;
 with EinheitenRecords;
 with EinheitendatenbankRecord;
 with SystemRecords;
+with KartengrundDatentypen;
+with KartenRecordKonstanten;
 
 package DebugobjekteLogik is
-   pragma Preelaborate;
    use type ForschungenDatentypen.ForschungIDNichtMöglich;
 
    Debug : SystemRecords.DebugRecord := (others => True);
@@ -28,7 +29,9 @@ package DebugobjekteLogik is
                                                                              Verteidigung            => KampfDatentypen.KampfwerteEinheiten'Last,
                                                                              KannTransportieren      => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                             Transportkapazität      => EinheitenRecords.TransporterArray'Last
+                                                                             Transportkapazität      => EinheitenRecords.TransporterArray'Last,
+                                                                             Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                             Effektreichweite        => KartenRecordKonstanten.LeerKoordinate
                                                                             );
 
 end DebugobjekteLogik;

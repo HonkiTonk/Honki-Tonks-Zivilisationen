@@ -65,6 +65,25 @@ package body LeseWeltkarte is
    
    
    
+   function Effekt
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return KartengrundDatentypen.Effekt_Kartenfeld_Enum
+   is begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return KartengrundDatentypen.Leer_Effekt_Enum;
+            
+         when others =>
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekt;
+      end case;
+      
+   end Effekt;
+     
+   
+      
    function Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

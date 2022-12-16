@@ -98,24 +98,26 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (17.12.2022):
+   -- Version 0.04.5740 => 0.04. (17.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (16.12.2022):
+   -- Version 0.04.5680 => 0.04.5740 (16.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Zusatzeffekte für Kartenfelder eingebaut.
+   -- Einheitendatenbanken erweitert, so dass die Einheiten jetzt Zusatzeffekte und eine Effektreichweite besitzen können.
+   -- Anpassungen an verschiedenen Stellen vorgenommen damit die Systeme jetzt die Zusatzeffekte nutzen anstelle von festen Einstellungen.
+   -- Die Berechnung und Anzeige des Einheitenbewegungsfeldes auf alle Ebenen erweitert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.04.5680 => 0.04. (15.12.2022):
+   -- Version 0.04.5680 => 0.04.5680 (15.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

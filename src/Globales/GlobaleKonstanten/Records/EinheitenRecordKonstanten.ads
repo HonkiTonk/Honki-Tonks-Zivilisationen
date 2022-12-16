@@ -2,6 +2,7 @@ with EinheitenRecords;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 with EinheitendatenbankRecord;
+with KartengrundDatentypen;
 
 package EinheitenRecordKonstanten is
 
@@ -42,7 +43,9 @@ package EinheitenRecordKonstanten is
                                                                                  Verteidigung            => EinheitenKonstanten.LeerVerteidigung,
                                                                                  KannTransportieren      => EinheitenKonstanten.LeerKannTransportieren,
                                                                                  KannTransportiertWerden => EinheitenKonstanten.LeerKannTransportiertWerden,
-                                                                                 Transportkapazität      => EinheitenKonstanten.LeerTransportkapazität
+                                                                                 Transportkapazität      => EinheitenKonstanten.LeerTransportkapazität,
+                                                                                 Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                 Effektreichweite        => KartenRecordKonstanten.LeerKoordinate
                                                                                 );
    
    KeineArbeit : constant EinheitenRecords.ArbeitRecord := (

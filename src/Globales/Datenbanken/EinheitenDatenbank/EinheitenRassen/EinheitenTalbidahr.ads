@@ -1,6 +1,8 @@
 with EinheitenDatentypen;
 with EinheitenRecordKonstanten;
 with EinheitendatenbankRecord;
+with KartengrundDatentypen;
+with KartenDatentypen;
 
 with DebugobjekteLogik;
 
@@ -29,7 +31,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Steinzeitkämpfer
@@ -52,7 +56,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Bogenschütze
@@ -75,7 +81,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
       
                                                                                          -- Erstes Schiff
@@ -98,7 +106,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                          Transportkapazität      => 1
+                                                                                          Transportkapazität      => 1,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Bronzekämpfer
@@ -121,7 +131,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Eisenkämpfer
@@ -144,7 +156,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Streitwagen
@@ -167,7 +181,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Katapult
@@ -190,7 +206,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Balliste
@@ -213,7 +231,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Segelschiff
@@ -237,7 +257,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                          Transportkapazität      => 2
+                                                                                          Transportkapazität      => 2,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Großes Segelschiff
@@ -261,7 +283,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                          Transportkapazität      => 4
+                                                                                          Transportkapazität      => 4,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Gewehrkämpfer
@@ -284,7 +308,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Kanone
@@ -307,7 +333,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Dampfschiff
@@ -331,7 +359,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                          Transportkapazität      => 4
+                                                                                          Transportkapazität      => 4,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Motorschiff
@@ -355,7 +385,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                          Transportkapazität      => 4
+                                                                                          Transportkapazität      => 4,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- U-Boot
@@ -381,7 +413,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                          Transportkapazität      => 2
+                                                                                          Transportkapazität      => 2,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Gepanzerter Wagen
@@ -404,7 +438,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Panzer
@@ -427,7 +463,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Jäger
@@ -450,7 +488,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Bomber
@@ -473,7 +513,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Rakete
@@ -497,7 +539,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Düsenjäger
@@ -520,7 +564,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Düsenbomber
@@ -543,7 +589,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Atombombe
@@ -566,7 +614,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Drohne
@@ -589,7 +639,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Gensoldat
@@ -612,7 +664,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Wassersiedler
@@ -639,7 +693,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Cyborg
@@ -662,7 +718,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Unterwasser/Unterirdischer Siedler
@@ -690,13 +748,15 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- PZB200
                                                                                        30 =>
                                                                                          (
-                                                                                          Einheitenart            => EinheitenDatentypen.PZB_Klein_Enum,
+                                                                                          Einheitenart            => EinheitenDatentypen.PZB_Enum,
                                                                                           PreisGeld               => 25,
                                                                                           Produktionskosten       => 20,
                                                                                           PermanenteKosten        => (others => 0),
@@ -713,13 +773,15 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
+                                                                                          Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last, 200, 200)
                                                                                          ),
                                                
                                                                                          -- PZB400
                                                                                        31 =>
                                                                                          (
-                                                                                          Einheitenart            => EinheitenDatentypen.PZB_Mittel_Enum,
+                                                                                          Einheitenart            => EinheitenDatentypen.PZB_Enum,
                                                                                           PreisGeld               => 25,
                                                                                           Produktionskosten       => 20,
                                                                                           PermanenteKosten        => (others => 0),
@@ -736,13 +798,15 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
+                                                                                          Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last, 400, 400)
                                                                                          ),
                                                
                                                                                          -- PZB1000
                                                                                        32 =>
                                                                                          (
-                                                                                          Einheitenart            => EinheitenDatentypen.PZB_Groß_Enum,
+                                                                                          Einheitenart            => EinheitenDatentypen.PZB_Enum,
                                                                                           PreisGeld               => 25,
                                                                                           Produktionskosten       => 20,
                                                                                           PermanenteKosten        => (others => 0),
@@ -759,7 +823,11 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
+                                                                                          Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last,
+                                                                                                                      KartenDatentypen.KartenfeldPositiv'Last,
+                                                                                                                      KartenDatentypen.KartenfeldPositiv'Last)
                                                                                          ),
                                                
                                                                                          -- Gaußkämpfer
@@ -782,7 +850,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Magnetkämpfer
@@ -805,7 +875,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Schwebepanzer
@@ -830,7 +902,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Planetenkernsiedler
@@ -860,7 +934,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Himmel/Orbitalsiedler
@@ -887,7 +963,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Atmosphärenjäger
@@ -911,7 +989,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Atmosphärenbomber
@@ -935,7 +1015,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Artillerie
@@ -958,7 +1040,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Stellare Artillerie
@@ -983,7 +1067,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Gräberschiff
@@ -1011,7 +1097,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                          Transportkapazität      => 4
+                                                                                          Transportkapazität      => 4,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Kerngräber
@@ -1041,7 +1129,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                          Transportkapazität      => 1
+                                                                                          Transportkapazität      => 1,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                
                                                                                          -- Moderne Infanterie
@@ -1064,7 +1154,9 @@ package EinheitenTalbidahr is
                                                                                           Verteidigung            => 1,
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                          Transportkapazität      => 0
+                                                                                          Transportkapazität      => 0,
+                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Effektreichweite        => (0, 0, 0)
                                                                                          ),
                                                                               
                                                                                        EinheitendatenbankRecord.EinheitenlisteArray'Last => DebugobjekteLogik.Alleskönner,

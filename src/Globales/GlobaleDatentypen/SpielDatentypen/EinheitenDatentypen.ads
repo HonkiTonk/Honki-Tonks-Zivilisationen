@@ -51,16 +51,14 @@ package EinheitenDatentypen is
                             
                             Nahkämpfer_Enum, Fernkämpfer_Enum, Beides_Enum,
                             
-                            PZB_Klein_Enum, PZB_Mittel_Enum, PZB_Groß_Enum,
+                            PZB_Enum,
                             
                             Cheat_Enum
                            );
    
    subtype Einheitart_Vorhanden_Enum is Einheitart_Enum range Einheitart_Enum'Succ (Einheitart_Enum'First) .. Einheitart_Enum'Last;
-   subtype Einheitart_Standard_Enum is Einheitart_Vorhanden_Enum range Arbeiter_Enum .. PZB_Groß_Enum;
+   subtype Einheitart_Standard_Enum is Einheitart_Vorhanden_Enum range Arbeiter_Enum .. PZB_Enum;
    subtype Einheitenart_Kampf_Enum is Einheitart_Vorhanden_Enum range Nahkämpfer_Enum .. Beides_Enum;
-   
-   subtype PZB_Enum is Einheitart_Standard_Enum range PZB_Klein_Enum .. PZB_Groß_Enum;
      
      
 

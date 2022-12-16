@@ -3,6 +3,8 @@ with EinheitenDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
+with KartengrundDatentypen;
+with KartenRecords;
 
 with LeseRassenbelegung;
 
@@ -14,10 +16,10 @@ package LeseEinheitenDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.Einheitart_Enum;
-    -- with
-    --   Pre => (
-    --             LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
-     --         );
+   -- with
+   --   Pre => (
+   --             LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+   --         );
    
    function PreisGeld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -160,6 +162,24 @@ package LeseEinheitenDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.Transportplätze
+     with
+       Pre => (
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
+   
+   function Zusatzeffekt
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      return KartengrundDatentypen.Effekt_Enum
+     with
+       Pre => (
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+              );
+     
+   function Effektreichweite
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
                  LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum

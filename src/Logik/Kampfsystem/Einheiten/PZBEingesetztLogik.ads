@@ -35,6 +35,8 @@ private
 
    Einheitenart : EinheitenDatentypen.Einheitart_Enum;
 
+   EinheitenID : EinheitenDatentypen.EinheitenIDMitNullWert;
+
    Verbleibendezeit : ZahlenDatentypen.EigenesNatural;
    EingesetztePZB : ZahlenDatentypen.EigenesNatural;
 
@@ -45,16 +47,11 @@ private
    Stadt : StadtRecords.RasseStadtnummerRecord;
 
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
-
-   type KartengrößenArray is array (EinheitenDatentypen.PZB_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
-   Kartengrößen : constant KartengrößenArray := (
-                                                     EinheitenDatentypen.PZB_Klein_Enum  => KartenDatentypen.KartenfeldPositiv'Last / 5,
-                                                     EinheitenDatentypen.PZB_Mittel_Enum => 400,
-                                                     EinheitenDatentypen.PZB_Groß_Enum   => KartenDatentypen.KartenfeldPositiv'Last
-                                                    );
+   Vernichtungsbereich : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    procedure PlanetenVernichten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      VernichtungsbereichExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

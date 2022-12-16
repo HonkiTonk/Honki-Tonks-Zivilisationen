@@ -4,6 +4,7 @@ with EinheitenDatenbank;
 with ProduktionKonstanten;
 with ForschungKonstanten;
 with KampfKonstanten;
+with KartenRecordKonstanten;
 
 package body LeseEinheitenDatenbank is
 
@@ -265,7 +266,7 @@ package body LeseEinheitenDatenbank is
         IDExtern
       is
          when EinheitenKonstanten.LeerID =>
-           return KampfKonstanten.LeerReichweite;
+            return KampfKonstanten.LeerReichweite;
             
          when others =>
             return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Reichweite;
@@ -389,5 +390,45 @@ package body LeseEinheitenDatenbank is
       end if;
       
    end Transportkapazität;
+   
+   
+   
+   function Zusatzeffekt
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      return KartengrundDatentypen.Effekt_Enum
+   is begin
+            
+      case
+        IDExtern
+      is
+         when EinheitenKonstanten.LeerID =>
+            return KartengrundDatentypen.Leer_Effekt_Enum;
+            
+         when others =>
+            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Zusatzeffekt;
+      end case;
+            
+   end Zusatzeffekt;
+   
+   
+   
+   function Effektreichweite
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      return KartenRecords.AchsenKartenfeldNaturalRecord
+   is begin
+            
+      case
+        IDExtern
+      is
+         when EinheitenKonstanten.LeerID =>
+            return KartenRecordKonstanten.LeerKoordinate;
+            
+         when others =>
+            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Effektreichweite;
+      end case;
+      
+   end Effektreichweite;
 
 end LeseEinheitenDatenbank;

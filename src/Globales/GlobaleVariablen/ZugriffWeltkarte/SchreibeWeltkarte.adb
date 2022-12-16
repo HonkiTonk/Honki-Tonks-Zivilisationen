@@ -67,6 +67,25 @@ package body SchreibeWeltkarte is
    
    
    
+   procedure Effekt
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EffektExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
+   is begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Effekt: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekt := EffektExtern;
+      end case;
+      
+   end Effekt;
+   
+   
+   
    procedure Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

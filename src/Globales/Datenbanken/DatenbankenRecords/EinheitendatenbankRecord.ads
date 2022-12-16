@@ -4,6 +4,8 @@ with ProduktionDatentypen;
 with StadtRecords;
 with ForschungenDatentypen;
 with KampfDatentypen;
+with KartengrundDatentypen;
+with KartenRecords;
 
 package EinheitendatenbankRecord is
    pragma Preelaborate;
@@ -31,6 +33,9 @@ package EinheitendatenbankRecord is
       KannTransportieren : EinheitenDatentypen.Transport_Enum;
       KannTransportiertWerden : EinheitenDatentypen.Transport_Enum;
       Transportkapazität : EinheitenDatentypen.Transportplätze;
+      
+      Zusatzeffekt : KartengrundDatentypen.Effekt_Enum;
+      Effektreichweite : KartenRecords.AchsenKartenfeldNaturalRecord;
       
    end record;
    

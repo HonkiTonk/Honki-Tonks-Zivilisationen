@@ -23,16 +23,20 @@ package body PZBEingesetztLogik is
       return Boolean
    is begin
       
+      EinheitenID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
       Einheitenart := LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+                                                           IDExtern    => EinheitenID);
       
       case
         Einheitenart
       is
-         when EinheitenDatentypen.PZB_Enum'Range =>
+         when EinheitenDatentypen.PZB_Enum =>
             SchreibeAllgemeines.AnzahlEingesetzterPZB;
             SchreibeAllgemeines.PlanetVernichtet (RasseExtern => EinheitRasseNummerExtern.Rasse);
             Zusammenbruchszeit := LeseAllgemeines.Zusammenbruchszeit;
+            Vernichtungsbereich := LeseEinheitenDatenbank.Effektreichweite (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                            IDExtern    => EinheitenID);
             
          when others =>
             return False;
@@ -45,10 +49,10 @@ package body PZBEingesetztLogik is
             if
               LeseWeltkarteneinstellungen.YAchse <= LeseWeltkarteneinstellungen.XAchse
             then
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10);
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Vernichtungsbereich.YAchse) / 10);
                   
             else
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10 );
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Vernichtungsbereich.XAchse) / 10 );
             end if;
                
          when others =>
@@ -57,16 +61,16 @@ package body PZBEingesetztLogik is
             if
               LeseWeltkarteneinstellungen.YAchse <= LeseWeltkarteneinstellungen.XAchse
               and
-                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10) / EingesetztePZB
+                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.YAchse - Vernichtungsbereich.YAchse) / 10) / EingesetztePZB
             then
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Kartengrößen (Einheitenart)) / 10) / EingesetztePZB;
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Vernichtungsbereich.YAchse) / 10) / EingesetztePZB;
                
             elsif
               LeseWeltkarteneinstellungen.YAchse > LeseWeltkarteneinstellungen.XAchse
               and
-                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10) / EingesetztePZB
+                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.XAchse - Vernichtungsbereich.XAchse) / 10) / EingesetztePZB
             then
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Kartengrößen (Einheitenart)) / 10) / EingesetztePZB;
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Vernichtungsbereich.XAchse) / 10) / EingesetztePZB;
                   
             else
                null;
@@ -76,7 +80,8 @@ package body PZBEingesetztLogik is
       SchreibeAllgemeines.Zusammenbruchszeit (ZeitExtern          => Zusammenbruchszeit,
                                               RechnenSetzenExtern => False);
          
-      PlanetenVernichten (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      PlanetenVernichten (KoordinatenExtern         => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                          VernichtungsbereichExtern => Vernichtungsbereich);
             
       return True;
       
@@ -85,15 +90,18 @@ package body PZBEingesetztLogik is
    
    
    procedure PlanetenVernichten
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is begin
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      VernichtungsbereichExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+   is
+      use type KartenDatentypen.Ebene;
+   begin
       
       EAchseSchleife:
-      for EAchseSchleifenwert in KartenDatentypen.EbeneVorhanden'Range loop
+      for EAchseSchleifenwert in -VernichtungsbereichExtern.EAchse .. VernichtungsbereichExtern.EAchse loop
          YAchseSchleife:
-         for YAchseSchleifenwert in -Kartengrößen (Einheitenart) / 2 .. Kartengrößen (Einheitenart) / 2 loop
+         for YAchseSchleifenwert in -VernichtungsbereichExtern.YAchse / 2 .. VernichtungsbereichExtern.YAchse / 2 loop
             XAchseSchleife:
-            for XAchseSchleifenwert in -Kartengrößen (Einheitenart) / 2 .. Kartengrößen (Einheitenart) / 2 loop
+            for XAchseSchleifenwert in -VernichtungsbereichExtern.XAchse / 2 .. VernichtungsbereichExtern.XAchse / 2 loop
 
                Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

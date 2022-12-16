@@ -48,6 +48,16 @@ package LeseWeltkarte is
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
+   function Effekt
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return KartengrundDatentypen.Effekt_Kartenfeld_Enum
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
    function Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

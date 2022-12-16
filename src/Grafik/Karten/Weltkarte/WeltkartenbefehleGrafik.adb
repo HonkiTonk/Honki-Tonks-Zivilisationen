@@ -29,7 +29,7 @@ package body WeltkartenbefehleGrafik is
          when EinheitenKonstanten.LeerEinheitArt =>
             return;
             
-         when EinheitenDatentypen.PZB_Enum'Range =>
+         when EinheitenDatentypen.PZB_Enum =>
             WelcherKnopf := BefehleDatentypen.Roter_Knopf_Enum;
             
          when others =>
@@ -80,35 +80,36 @@ package body WeltkartenbefehleGrafik is
       PositionenSchleife:
       for PositionSchleifenwert in InteraktionAuswahl.PositionenEinheitenbefehleArray'Range loop
          
-         if
-           EinheitenArtExtern in EinheitenDatentypen.PZB_Enum'Range
-         then
-            InteraktionAuswahl.PositionenEinheitenbefehle := (others => (0.00, 0.00, Texturgröße.x, Texturgröße.y));
-            exit PositionenSchleife;
+         case
+           EinheitenArtExtern
+         is
+            when EinheitenDatentypen.PZB_Enum =>
+               InteraktionAuswahl.PositionenEinheitenbefehle := (others => (0.00, 0.00, Texturgröße.x, Texturgröße.y));
+               exit PositionenSchleife;
             
-         else
-            if
-              Teiler mod 2 = 0
-            then
-               Knopfposition.x := Textbox.width;
-               Knopfposition.y := Textbox.height * Multiplikator;
+            when others =>
+               if
+                 Teiler mod 2 = 0
+               then
+                  Knopfposition.x := Textbox.width;
+                  Knopfposition.y := Textbox.height * Multiplikator;
                
-            elsif
-              Teiler mod 3 = 0
-            then
-               Knopfposition.x := 2.00 * Textbox.width;
-               Knopfposition.y := Textbox.height * Multiplikator;
+               elsif
+                 Teiler mod 3 = 0
+               then
+                  Knopfposition.x := 2.00 * Textbox.width;
+                  Knopfposition.y := Textbox.height * Multiplikator;
                   
-            else
-               Knopfposition.x := 0.00;
-               Knopfposition.y := Textbox.height * Multiplikator;
-            end if;
+               else
+                  Knopfposition.x := 0.00;
+                  Knopfposition.y := Textbox.height * Multiplikator;
+               end if;
             
-            Textbox.left := Knopfposition.x;
-            Textbox.top := Knopfposition.y;
+               Textbox.left := Knopfposition.x;
+               Textbox.top := Knopfposition.y;
             
-            InteraktionAuswahl.PositionenEinheitenbefehle (PositionSchleifenwert) := Textbox;
-         end if;
+               InteraktionAuswahl.PositionenEinheitenbefehle (PositionSchleifenwert) := Textbox;
+         end case;
          
          case
            Teiler

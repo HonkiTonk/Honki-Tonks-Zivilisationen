@@ -1,6 +1,8 @@
 with EinheitenDatentypen;
 with EinheitenRecordKonstanten;
 with EinheitendatenbankRecord;
+with KartengrundDatentypen;
+with KartenDatentypen;
 
 with DebugobjekteLogik;
 
@@ -28,7 +30,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Steinzeitkämpfer
@@ -51,7 +55,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Bogenschütze
@@ -74,7 +80,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
       
                                                                                            -- Erstes Schiff
@@ -97,7 +105,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                            Transportkapazität      => 1
+                                                                                            Transportkapazität      => 1,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Bronzekämpfer
@@ -120,7 +130,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Eisenkämpfer
@@ -143,7 +155,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Streitwagen
@@ -166,7 +180,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Katapult
@@ -189,7 +205,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Balliste
@@ -212,7 +230,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Segelschiff
@@ -236,7 +256,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                            Transportkapazität      => 2
+                                                                                            Transportkapazität      => 2,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Großes Segelschiff
@@ -260,7 +282,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                            Transportkapazität      => 4
+                                                                                            Transportkapazität      => 4,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Gewehrkämpfer
@@ -283,7 +307,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Kanone
@@ -306,7 +332,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Dampfschiff
@@ -330,7 +358,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                            Transportkapazität      => 4
+                                                                                            Transportkapazität      => 4,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Motorschiff
@@ -354,7 +384,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                            Transportkapazität      => 4
+                                                                                            Transportkapazität      => 4,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- U-Boot
@@ -380,7 +412,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                            Transportkapazität      => 2
+                                                                                            Transportkapazität      => 2,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Gepanzerter Wagen
@@ -403,7 +437,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Panzer
@@ -426,7 +462,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Jäger
@@ -449,7 +487,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Bomber
@@ -472,7 +512,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Rakete
@@ -496,7 +538,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Düsenjäger
@@ -519,7 +563,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Düsenbomber
@@ -542,7 +588,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Atombombe
@@ -565,7 +613,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Drohne
@@ -588,7 +638,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Gensoldat
@@ -611,7 +663,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Wassersiedler
@@ -636,7 +690,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Cyborg
@@ -659,7 +715,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Unterwasser/Unterirdischer Siedler
@@ -687,13 +745,15 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- PZB200
                                                                                          30 =>
                                                                                            (
-                                                                                            Einheitenart            => EinheitenDatentypen.PZB_Klein_Enum,
+                                                                                            Einheitenart            => EinheitenDatentypen.PZB_Enum,
                                                                                             PreisGeld               => 25,
                                                                                             Produktionskosten       => 20,
                                                                                             PermanenteKosten        => (others => 0),
@@ -710,13 +770,15 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
+                                                                                            Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last, 200, 200)
                                                                                            ),
                                                
                                                                                            -- PZB400
                                                                                          31 =>
                                                                                            (
-                                                                                            Einheitenart            => EinheitenDatentypen.PZB_Mittel_Enum,
+                                                                                            Einheitenart            => EinheitenDatentypen.PZB_Enum,
                                                                                             PreisGeld               => 25,
                                                                                             Produktionskosten       => 20,
                                                                                             PermanenteKosten        => (others => 0),
@@ -733,13 +795,15 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
+                                                                                            Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last, 400, 400)
                                                                                            ),
                                                
                                                                                            -- PZB1000
                                                                                          32 =>
                                                                                            (
-                                                                                            Einheitenart            => EinheitenDatentypen.PZB_Groß_Enum,
+                                                                                            Einheitenart            => EinheitenDatentypen.PZB_Enum,
                                                                                             PreisGeld               => 25,
                                                                                             Produktionskosten       => 20,
                                                                                             PermanenteKosten        => (others => 0),
@@ -756,7 +820,11 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
+                                                                                            Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last,
+                                                                                                                        KartenDatentypen.KartenfeldPositiv'Last,
+                                                                                                                        KartenDatentypen.KartenfeldPositiv'Last)
                                                                                            ),
                                                
                                                                                            -- Gaußkämpfer
@@ -779,7 +847,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Magnetkämpfer
@@ -802,7 +872,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Schwebepanzer
@@ -827,7 +899,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Planetenkernsiedler
@@ -857,7 +931,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Himmel/Orbitalsiedler
@@ -884,7 +960,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Atmosphärenjäger
@@ -908,7 +986,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Atmosphärenbomber
@@ -932,7 +1012,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Artillerie
@@ -955,7 +1037,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Stellare Artillerie
@@ -980,7 +1064,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Gräberschiff
@@ -1008,7 +1094,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                            Transportkapazität      => 4
+                                                                                            Transportkapazität      => 4,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Kerngräber
@@ -1038,7 +1126,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
-                                                                                            Transportkapazität      => 1
+                                                                                            Transportkapazität      => 1,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                
                                                                                            -- Moderne Infanterie
@@ -1061,7 +1151,9 @@ package EinheitenMoruPhisihl is
                                                                                             Verteidigung            => 1,
                                                                                             KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                             KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
-                                                                                            Transportkapazität      => 0
+                                                                                            Transportkapazität      => 0,
+                                                                                            Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                            Effektreichweite        => (0, 0, 0)
                                                                                            ),
                                                                               
                                                                                          EinheitendatenbankRecord.EinheitenlisteArray'Last => DebugobjekteLogik.Alleskönner,
