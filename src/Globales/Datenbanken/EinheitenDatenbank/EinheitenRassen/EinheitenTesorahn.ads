@@ -3,11 +3,13 @@ with EinheitenRecordKonstanten;
 with EinheitendatenbankRecord;
 with KartengrundDatentypen;
 with KartenDatentypen;
+with KartenRecordKonstanten;
 
 with DebugobjekteLogik;
 
 -- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package EinheitenTesorahn is
+   use type KartenDatentypen.Kartenfeld;
 
    -- Unterwasser
    EinheitenlisteTesorahn : constant EinheitendatenbankRecord.EinheitenlisteArray := (
@@ -34,7 +36,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Steinzeitkämpfer
@@ -60,7 +62,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Knochenkämpfer
@@ -86,7 +88,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
       
                                                                                         -- Erstes Schiff
@@ -114,7 +116,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                          Transportkapazität      => 1,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Überwassereinheit
@@ -142,7 +144,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Überwassersiedler
@@ -170,7 +172,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Eisenkämpfer
@@ -198,7 +200,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Handelsschiff
@@ -226,7 +228,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Landsiedler
@@ -255,7 +257,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Dampfschiff
@@ -281,7 +283,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                          Transportkapazität      => 2,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Motorschiff
@@ -307,7 +309,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                          Transportkapazität      => 4,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Schlachtschiff
@@ -335,7 +337,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Auto
@@ -360,7 +362,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Genkämpfer
@@ -389,7 +391,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                          Transportkapazität      => 4,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Atombombe
@@ -418,7 +420,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                          Transportkapazität      => 4,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Kernsiedler
@@ -449,7 +451,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                          Transportkapazität      => 2,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Kerngräber
@@ -480,7 +482,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- PZB200
@@ -509,7 +511,14 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
-                                                                                         Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last, 200, 200)
+                                                                                         Effektreichweite        => (
+                                                                                                                     EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
+                                                                                                                     EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
+                                                                                                                     YAchseAnfang => -100,
+                                                                                                                     YAchseEnde   => 100,
+                                                                                                                     XAchseAnfang => -100,
+                                                                                                                     XAchseEnde   => 100
+                                                                                                                    )
                                                                                         ),
                                                
                                                                                         -- PZB400
@@ -538,7 +547,14 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
-                                                                                         Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last, 400, 400)
+                                                                                         Effektreichweite        => (
+                                                                                                                     EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
+                                                                                                                     EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
+                                                                                                                     YAchseAnfang => -200,
+                                                                                                                     YAchseEnde   => 200,
+                                                                                                                     XAchseAnfang => -200,
+                                                                                                                     XAchseEnde   => 200
+                                                                                                                    )
                                                                                         ),
                                                
                                                                                         -- PZB1000
@@ -567,9 +583,14 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
-                                                                                         Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last,
-                                                                                                                     KartenDatentypen.KartenfeldPositiv'Last,
-                                                                                                                     KartenDatentypen.KartenfeldPositiv'Last)
+                                                                                         Effektreichweite        => (
+                                                                                                                     EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
+                                                                                                                     EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
+                                                                                                                     YAchseAnfang => KartenDatentypen.Kartenfeld'First,
+                                                                                                                     YAchseEnde   => KartenDatentypen.Kartenfeld'Last,
+                                                                                                                     XAchseAnfang => KartenDatentypen.Kartenfeld'First,
+                                                                                                                     XAchseEnde   => KartenDatentypen.Kartenfeld'Last
+                                                                                                                    )
                                                                                         ),
                                                
                                                                                         -- Gaußkämpfer
@@ -595,7 +616,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Himmel/Orbitalsiedler
@@ -619,7 +640,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Magnetkämpfer
@@ -645,7 +666,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Schwebepanzer
@@ -672,7 +693,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Atmosphärenjäger
@@ -698,7 +719,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Atmosphärenbomber
@@ -724,7 +745,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                
                                                                                         -- Stellare Artillerie
@@ -752,7 +773,7 @@ package EinheitenTesorahn is
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                          Transportkapazität      => 0,
                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                         Effektreichweite        => (0, 0, 0)
+                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
                                                                               
                                                                                       EinheitendatenbankRecord.EinheitenlisteArray'Last => DebugobjekteLogik.Alleskönner,

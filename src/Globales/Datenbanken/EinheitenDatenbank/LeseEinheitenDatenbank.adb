@@ -416,14 +416,14 @@ package body LeseEinheitenDatenbank is
    function Effektreichweite
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.EffektbereichRecord
    is begin
             
       case
         IDExtern
       is
          when EinheitenKonstanten.LeerID =>
-            return KartenRecordKonstanten.LeerKoordinate;
+            return KartenRecordKonstanten.LeerEffektbereich;
             
          when others =>
             return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Effektreichweite;

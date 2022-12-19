@@ -246,7 +246,7 @@ package body EinheitenbewegungsbereichLogik is
       elsif
         Einheit.Rasse /= EinheitRasseNummerExtern.Rasse
       then
-         return SystemDatentypen.False_Enum;
+         return SystemDatentypen.Neutral_Enum;
          
       elsif
         False = EinheitenbewegungLogik.EinheitentauschPrüfung (BewegendeEinheitExtern => EinheitRasseNummerExtern,

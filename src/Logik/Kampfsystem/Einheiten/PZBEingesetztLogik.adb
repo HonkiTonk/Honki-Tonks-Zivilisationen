@@ -49,10 +49,10 @@ package body PZBEingesetztLogik is
             if
               LeseWeltkarteneinstellungen.YAchse <= LeseWeltkarteneinstellungen.XAchse
             then
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Vernichtungsbereich.YAchse) / 10);
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse + 2 * Vernichtungsbereich.YAchseAnfang) / 10);
                   
             else
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Vernichtungsbereich.XAchse) / 10 );
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse + 2 * Vernichtungsbereich.XAchseAnfang) / 10 );
             end if;
                
          when others =>
@@ -61,16 +61,16 @@ package body PZBEingesetztLogik is
             if
               LeseWeltkarteneinstellungen.YAchse <= LeseWeltkarteneinstellungen.XAchse
               and
-                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.YAchse - Vernichtungsbereich.YAchse) / 10) / EingesetztePZB
+                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.YAchse + 2 * Vernichtungsbereich.YAchseAnfang) / 10) / EingesetztePZB
             then
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse - Vernichtungsbereich.YAchse) / 10) / EingesetztePZB;
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.YAchse + 2 * Vernichtungsbereich.YAchseAnfang) / 10) / EingesetztePZB;
                
             elsif
               LeseWeltkarteneinstellungen.YAchse > LeseWeltkarteneinstellungen.XAchse
               and
-                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.XAchse - Vernichtungsbereich.XAchse) / 10) / EingesetztePZB
+                Zusammenbruchszeit > Natural (abs (LeseWeltkarteneinstellungen.XAchse + 2 * Vernichtungsbereich.XAchseAnfang) / 10) / EingesetztePZB
             then
-               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse - Vernichtungsbereich.XAchse) / 10) / EingesetztePZB;
+               Zusammenbruchszeit := Natural (abs (LeseWeltkarteneinstellungen.XAchse + 2 * Vernichtungsbereich.XAchseAnfang) / 10) / EingesetztePZB;
                   
             else
                null;
@@ -91,17 +91,17 @@ package body PZBEingesetztLogik is
    
    procedure PlanetenVernichten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      VernichtungsbereichExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      VernichtungsbereichExtern : in KartenRecords.EffektbereichRecord)
    is
       use type KartenDatentypen.Ebene;
    begin
       
       EAchseSchleife:
-      for EAchseSchleifenwert in -VernichtungsbereichExtern.EAchse .. VernichtungsbereichExtern.EAchse loop
+      for EAchseSchleifenwert in VernichtungsbereichExtern.EAchseAnfang .. VernichtungsbereichExtern.EAchseEnde loop
          YAchseSchleife:
-         for YAchseSchleifenwert in -VernichtungsbereichExtern.YAchse / 2 .. VernichtungsbereichExtern.YAchse / 2 loop
+         for YAchseSchleifenwert in VernichtungsbereichExtern.YAchseAnfang .. VernichtungsbereichExtern.YAchseEnde loop
             XAchseSchleife:
-            for XAchseSchleifenwert in -VernichtungsbereichExtern.XAchse / 2 .. VernichtungsbereichExtern.XAchse / 2 loop
+            for XAchseSchleifenwert in VernichtungsbereichExtern.XAchseAnfang .. VernichtungsbereichExtern.XAchseEnde loop
 
                Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

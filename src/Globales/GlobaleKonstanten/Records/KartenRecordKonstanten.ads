@@ -13,6 +13,15 @@ package KartenRecordKonstanten is
                                                                              XAchse => KartenKonstanten.LeerXAchse
                                                                             );
    
+   LeerEffektbereich : constant KartenRecords.EffektbereichRecord := (
+                                                                      EAchseAnfang => 0,
+                                                                      EAchseEnde   => 0,
+                                                                      YAchseAnfang => 0,
+                                                                      YAchseEnde   => 0,
+                                                                      XAchseAnfang => 0,
+                                                                      XAchseEnde   => 0
+                                                                     );
+   
    LeerDurchStadtBelegterGrund : constant StadtRecords.RasseStadtnummerRecord := (
                                                                                   Rasse  => RassenDatentypen.Keine_Rasse_Enum,
                                                                                   Nummer => StadtDatentypen.MaximaleStädteMitNullWert'First

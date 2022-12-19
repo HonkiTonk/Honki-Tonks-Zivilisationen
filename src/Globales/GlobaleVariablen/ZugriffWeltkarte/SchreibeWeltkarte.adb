@@ -79,7 +79,7 @@ package body SchreibeWeltkarte is
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Effekt: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekt := EffektExtern;
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekt (EffektExtern) := True;
       end case;
       
    end Effekt;
@@ -194,7 +194,7 @@ package body SchreibeWeltkarte is
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.BelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund := BelegterGrundExtern;
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung := BelegterGrundExtern;
       end case;
       
    end BelegterGrund;

@@ -84,24 +84,28 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (19.12.2022):
+   -- Version 0.04.5820 => 0.04. (19.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (18.12.2022):
+   -- Version 0.04.5740 => 0.04.5820 (18.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der zur falschen Skalierung bei den Einheiteninformationen führte.
+   -- Zusatzeffekte für Kartenfelder eingebaut überarbeitet.
+   -- Die Berechnungen des Einheitenbewegungsfeldes noch einmal leicht verbessert.
+   -- Unnötigen Code gelöscht.
+   -- Code zusammengeführt.
+   -- Anzeige der Stadtbewirtschaftung und Stadtkarte zu überarbeiten.
+   -- Contracts und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
-   -- Version 0.04.5740 => 0.04. (17.12.2022):
+   -- Version 0.04.5740 => 0.04.5740 (17.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

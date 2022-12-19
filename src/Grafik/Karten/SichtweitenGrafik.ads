@@ -17,16 +17,13 @@ package SichtweitenGrafik is
    StadtfelderAbmessung : Sf.System.Vector2.sfVector2f;
    
    FensterKarte : Sf.Graphics.Rect.sfFloatRect;
-   StadtKarte : Sf.Graphics.Rect.sfFloatRect;
    
    procedure KartenfelderAbmessungBerechnen;
-   procedure StadtfelderAbmessungBerechnen;
-   procedure SichtweiteBewegungsfeldFestlegen;
+   procedure StandardSichtweiten;
    
    procedure ZoomstufeÄndern
      (ÄnderungExtern : in KartenDatentypen.Kartenfeld);
    
-   procedure StandardSichtweiten;
    
    
    

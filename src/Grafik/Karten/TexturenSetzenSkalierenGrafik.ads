@@ -37,7 +37,7 @@ package TexturenSetzenSkalierenGrafik is
                   TexturenSetzenSkalierenWeltkarte'Result.y >= 0.00
                );
 
-   function TexturenSetzenSkalierenStadtkarte
+   function TexturenSetzenSkalierenStadtbewirtschaftung
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
@@ -49,26 +49,9 @@ package TexturenSetzenSkalierenGrafik is
               ),
          
        Post => (
-                  TexturenSetzenSkalierenStadtkarte'Result.x >= 0.00
+                  TexturenSetzenSkalierenStadtbewirtschaftung'Result.x >= 0.00
                 and
-                  TexturenSetzenSkalierenStadtkarte'Result.y >= 0.00
-               );
-   
-   function TexturenSetzenSkalierenGesamteStadtkarte
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
-      return Sf.System.Vector2.sfVector2f
-     with
-       Pre => (
-                 SpriteAccessExtern /= null
-               and
-                 TextureAccessExtern /= null
-              ),
-         
-       Post => (
-                  TexturenSetzenSkalierenGesamteStadtkarte'Result.x >= 0.00
-                and
-                  TexturenSetzenSkalierenGesamteStadtkarte'Result.y >= 0.00
+                  TexturenSetzenSkalierenStadtbewirtschaftung'Result.y >= 0.00
                );
    
    function TexturskalierungVariabel
@@ -95,10 +78,7 @@ private
    SkalierungBild : Sf.System.Vector2.sfVector2f;
    
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
-   StadtfelderAbmessung : Sf.System.Vector2.sfVector2f;
-   StadtAbmessung : Sf.System.Vector2.sfVector2f;
    
    Rechteck : Sf.Graphics.Rect.sfFloatRect;
-   RechteckZwei : Sf.Graphics.Rect.sfFloatRect;
 
 end TexturenSetzenSkalierenGrafik;

@@ -27,7 +27,7 @@ package body TexturenSetzenSkalierenGrafik is
    
    
    
-   function TexturenSetzenSkalierenStadtkarte
+   function TexturenSetzenSkalierenStadtbewirtschaftung
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
@@ -38,36 +38,14 @@ package body TexturenSetzenSkalierenGrafik is
                                      resetRect => Sf.sfTrue);
       
       Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
-      StadtfelderAbmessung := SichtweitenGrafik.StadtfelderAbmessung;
+      KartenfelderAbmessung := SichtweitenGrafik.KartenfelderAbmessung;
       
-      SkalierungKartenfeld.x := StadtfelderAbmessung.x / Rechteck.width;
-      SkalierungKartenfeld.y := StadtfelderAbmessung.y / Rechteck.height;
-      
-      return SkalierungKartenfeld;
-      
-   end TexturenSetzenSkalierenStadtkarte;
-   
-   
-   
-   function TexturenSetzenSkalierenGesamteStadtkarte
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
-      return Sf.System.Vector2.sfVector2f
-   is begin
-      
-      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
-                                     texture   => TextureAccessExtern,
-                                     resetRect => Sf.sfTrue);
-      
-      Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
-      StadtAbmessung := (SichtweitenGrafik.StadtKarte.width, SichtweitenGrafik.StadtKarte.height);
-      
-      SkalierungKartenfeld.x := StadtAbmessung.x / Rechteck.width;
-      SkalierungKartenfeld.y := StadtAbmessung.y / Rechteck.height;
+      SkalierungKartenfeld.x := KartenfelderAbmessung.x / Rechteck.width;
+      SkalierungKartenfeld.y := KartenfelderAbmessung.y / Rechteck.height;
       
       return SkalierungKartenfeld;
       
-   end TexturenSetzenSkalierenGesamteStadtkarte;
+   end TexturenSetzenSkalierenStadtbewirtschaftung;
    
    
    

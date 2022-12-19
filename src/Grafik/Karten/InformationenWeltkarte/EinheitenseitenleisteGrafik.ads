@@ -59,6 +59,7 @@ private
    Verteidigungsbonus : KampfDatentypen.KampfwerteGroß;
    
    Textbreite : Float;
+   TextbreiteDebug : Float;
       
    Ladungstext : Unbounded_Wide_Wide_String;
    Kampftext : Unbounded_Wide_Wide_String;
@@ -68,6 +69,7 @@ private
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Leerwert : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
+   TextpositionDebug : Sf.System.Vector2.sfVector2f;
    
    Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    

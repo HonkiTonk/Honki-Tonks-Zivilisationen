@@ -41,8 +41,8 @@ package body EinheitenseitenleisteGrafik is
             null;
             
          when False =>
-            Leerwert := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltStadt,
-                                                       ViewflächeExtern     => GrafikRecordKonstanten.LeerView);
+            Viewfläche := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltStadt,
+                                                          ViewflächeExtern     => Viewfläche);
       end case;
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
@@ -107,7 +107,7 @@ package body EinheitenseitenleisteGrafik is
             
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
-                  
+         
          if
            VolleInformation = False
            and
@@ -125,26 +125,16 @@ package body EinheitenseitenleisteGrafik is
                                                text         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
          end if;
          
-         case
-           TextSchleifenwert
-         is
-            when FestzulegenderTextArray'Last - 1 =>
-               null;
-                  
-            when others =>
-               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                                   TextbreiteExtern => Textbreite);
-         end case;
-         
          if
-           DebugobjekteLogik.Debug.VolleInformation
+           TextSchleifenwert = FestzulegenderTextArray'Last - 1
            and
-             TextSchleifenwert = TextaccessVariablen.EinheitenInformationenAccess'Last
+             To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert))'Length >= 50
          then
             null;
-            
+                  
          else
-            null;
+            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                                                TextbreiteExtern => Textbreite);
          end if;
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
@@ -235,6 +225,8 @@ package body EinheitenseitenleisteGrafik is
          when others =>
             if
               LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = AufgabenDatentypen.Verschanzen_Enum
+              and
+                Verteidigungsbonus > 0
             then
                Verteidigungsbonus := KampfDatentypen.KampfwerteGroß (Float (Verteidigungsbonus) * 1.25);
                
@@ -354,9 +346,9 @@ package body EinheitenseitenleisteGrafik is
             return TextwerteExtern;
             
          when others =>
-            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-            Textposition.y := TextwerteExtern.y;
-            Textbreite := TextwerteExtern.x;
+            TextpositionDebug.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+            TextpositionDebug.y := TextwerteExtern.y;
+            TextbreiteDebug := TextwerteExtern.x;
       
             Koordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -364,13 +356,13 @@ package body EinheitenseitenleisteGrafik is
                                                str  => "Nr:" & EinheitRasseNummerExtern.Nummer'Wide_Wide_Image & " Z:" & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & ","
                                                & Koordinaten.XAchse'Wide_Wide_Image & " Au:" & LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                          position => Textposition);
+                                          position => TextpositionDebug);
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.TextAccess);
       
-            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                                TextbreiteExtern => Textbreite);
+            TextbreiteDebug := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                                     TextbreiteExtern => TextbreiteDebug);
       end case;
       
       PlanSchleife:
@@ -380,13 +372,13 @@ package body EinheitenseitenleisteGrafik is
            PlanSchleifenwert mod 2
          is
             when 0 =>
-               Textposition.x := Textbreite / 2.00;
+               TextpositionDebug.x := TextbreiteDebug / 2.00;
                
             when others =>
-               Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+               TextpositionDebug.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+               TextpositionDebug.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => TextpositionDebug.y,
+                                                                                    TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                                    ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          end case;
          
          Koordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -396,17 +388,17 @@ package body EinheitenseitenleisteGrafik is
                                             str  => "Schritt" & PlanSchleifenwert'Wide_Wide_Image & ":" & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & ","
                                             & Koordinaten.XAchse'Wide_Wide_Image);
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                       position => Textposition);
+                                       position => TextpositionDebug);
             
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                             text         => TextaccessVariablen.TextAccess);
       
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                             TextbreiteExtern => Textbreite);
+         TextbreiteDebug := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                                  TextbreiteExtern => TextbreiteDebug);
          
       end loop PlanSchleife;
       
-      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+      return (TextbreiteDebug, TextpositionDebug.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
    end PlanZielKoordinaten;
    

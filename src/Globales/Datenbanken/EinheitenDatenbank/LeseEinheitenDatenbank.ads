@@ -179,7 +179,7 @@ package LeseEinheitenDatenbank is
    function Effektreichweite
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return KartenRecords.AchsenKartenfeldNaturalRecord
+      return KartenRecords.EffektbereichRecord
      with
        Pre => (
                  LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum

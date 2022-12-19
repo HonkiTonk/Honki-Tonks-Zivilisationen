@@ -47,11 +47,12 @@ private
    Stadt : StadtRecords.RasseStadtnummerRecord;
 
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Vernichtungsbereich : KartenRecords.AchsenKartenfeldNaturalRecord;
+
+   Vernichtungsbereich : KartenRecords.EffektbereichRecord;
 
    procedure PlanetenVernichten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      VernichtungsbereichExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      VernichtungsbereichExtern : in KartenRecords.EffektbereichRecord)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

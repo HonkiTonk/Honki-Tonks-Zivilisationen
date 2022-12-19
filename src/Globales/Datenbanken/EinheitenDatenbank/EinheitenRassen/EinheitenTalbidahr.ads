@@ -3,11 +3,13 @@ with EinheitenRecordKonstanten;
 with EinheitendatenbankRecord;
 with KartengrundDatentypen;
 with KartenDatentypen;
+with KartenRecordKonstanten;
 
 with DebugobjekteLogik;
 
 -- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package EinheitenTalbidahr is
+   use type KartenDatentypen.Kartenfeld;
 
    -- Unterirdisch
    EinheitenlisteTalbidahr : constant EinheitendatenbankRecord.EinheitenlisteArray := (
@@ -33,7 +35,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Steinzeitkämpfer
@@ -58,7 +60,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Bogenschütze
@@ -83,7 +85,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
       
                                                                                          -- Erstes Schiff
@@ -108,7 +110,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 1,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Bronzekämpfer
@@ -133,7 +135,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Eisenkämpfer
@@ -158,7 +160,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Streitwagen
@@ -183,7 +185,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Katapult
@@ -208,7 +210,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Balliste
@@ -233,7 +235,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Segelschiff
@@ -259,7 +261,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 2,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Großes Segelschiff
@@ -285,7 +287,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 4,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Gewehrkämpfer
@@ -310,7 +312,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Kanone
@@ -335,7 +337,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Dampfschiff
@@ -361,7 +363,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 4,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Motorschiff
@@ -387,7 +389,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 4,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- U-Boot
@@ -415,7 +417,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           Transportkapazität      => 2,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Gepanzerter Wagen
@@ -440,7 +442,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Panzer
@@ -465,7 +467,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Jäger
@@ -490,7 +492,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Bomber
@@ -515,7 +517,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Rakete
@@ -541,7 +543,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Düsenjäger
@@ -566,7 +568,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Düsenbomber
@@ -591,7 +593,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Atombombe
@@ -616,7 +618,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Drohne
@@ -641,7 +643,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Gensoldat
@@ -666,7 +668,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Wassersiedler
@@ -695,7 +697,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Cyborg
@@ -720,7 +722,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Unterwasser/Unterirdischer Siedler
@@ -750,7 +752,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- PZB200
@@ -775,7 +777,14 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
-                                                                                          Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last, 200, 200)
+                                                                                          Effektreichweite        => (
+                                                                                                                      EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
+                                                                                                                      EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
+                                                                                                                      YAchseAnfang => -100,
+                                                                                                                      YAchseEnde   => 100,
+                                                                                                                      XAchseAnfang => -100,
+                                                                                                                      XAchseEnde   => 100
+                                                                                                                     )
                                                                                          ),
                                                
                                                                                          -- PZB400
@@ -800,7 +809,14 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
-                                                                                          Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last, 400, 400)
+                                                                                          Effektreichweite        => (
+                                                                                                                      EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
+                                                                                                                      EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
+                                                                                                                      YAchseAnfang => -200,
+                                                                                                                      YAchseEnde   => 200,
+                                                                                                                      XAchseAnfang => -200,
+                                                                                                                      XAchseEnde   => 200
+                                                                                                                     )
                                                                                          ),
                                                
                                                                                          -- PZB1000
@@ -825,9 +841,14 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
-                                                                                          Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last,
-                                                                                                                      KartenDatentypen.KartenfeldPositiv'Last,
-                                                                                                                      KartenDatentypen.KartenfeldPositiv'Last)
+                                                                                          Effektreichweite        => (
+                                                                                                                      EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
+                                                                                                                      EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
+                                                                                                                      YAchseAnfang => KartenDatentypen.Kartenfeld'First,
+                                                                                                                      YAchseEnde   => KartenDatentypen.Kartenfeld'Last,
+                                                                                                                      XAchseAnfang => KartenDatentypen.Kartenfeld'First,
+                                                                                                                      XAchseEnde   => KartenDatentypen.Kartenfeld'Last
+                                                                                                                     )
                                                                                          ),
                                                
                                                                                          -- Gaußkämpfer
@@ -852,7 +873,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Magnetkämpfer
@@ -877,7 +898,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Schwebepanzer
@@ -904,7 +925,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Planetenkernsiedler
@@ -936,7 +957,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Himmel/Orbitalsiedler
@@ -965,7 +986,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Atmosphärenjäger
@@ -991,7 +1012,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Atmosphärenbomber
@@ -1017,7 +1038,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Artillerie
@@ -1042,7 +1063,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Stellare Artillerie
@@ -1069,7 +1090,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Gräberschiff
@@ -1099,7 +1120,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           Transportkapazität      => 4,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Kerngräber
@@ -1131,7 +1152,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           Transportkapazität      => 1,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- Moderne Infanterie
@@ -1156,7 +1177,7 @@ package EinheitenTalbidahr is
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
                                                                                           Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                          Effektreichweite        => (0, 0, 0)
+                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                                               
                                                                                        EinheitendatenbankRecord.EinheitenlisteArray'Last => DebugobjekteLogik.Alleskönner,

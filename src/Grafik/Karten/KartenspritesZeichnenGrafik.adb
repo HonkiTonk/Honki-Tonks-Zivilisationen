@@ -31,7 +31,7 @@ package body KartenspritesZeichnenGrafik is
    
    
    
-   procedure StadtfeldZeichnen
+   procedure StadtbewirtschaftungZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
@@ -46,12 +46,12 @@ package body KartenspritesZeichnenGrafik is
       else
          DurchsichtigesSpriteZeichnen (SpriteAccesExtern      => SpriteAccess,
                                        PositionExtern         => PositionExtern,
-                                       SkalierungExtern       => TexturenSetzenSkalierenGrafik.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                  TextureAccessExtern => TexturAccessExtern),
+                                       SkalierungExtern       => TexturenSetzenSkalierenGrafik.TexturenSetzenSkalierenStadtbewirtschaftung (SpriteAccessExtern  => SpriteAccess,
+                                                                                                                                            TextureAccessExtern => TexturAccessExtern),
                                        DurchsichtigkeitExtern => Sf.sfUint8'Last);
       end if;
       
-   end StadtfeldZeichnen;
+   end StadtbewirtschaftungZeichnen;
    
    
    

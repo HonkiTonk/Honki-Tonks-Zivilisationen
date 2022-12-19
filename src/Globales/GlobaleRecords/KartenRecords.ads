@@ -65,6 +65,19 @@ package KartenRecords is
    
    
    
+   type EffektbereichRecord is record
+      
+      EAchseAnfang : KartenDatentypen.EbeneVorhanden;
+      EAchseEnde : KartenDatentypen.EbeneOberfläche;
+      YAchseAnfang : KartenDatentypen.Kartenfeld;
+      YAchseEnde : KartenDatentypen.KartenfeldNatural;
+      XAchseAnfang : KartenDatentypen.Kartenfeld;
+      XAchseEnde : KartenDatentypen.KartenfeldNatural;
+      
+   end record;
+   
+   
+   
    type FelderwertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
    type SichtbarkeitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
    

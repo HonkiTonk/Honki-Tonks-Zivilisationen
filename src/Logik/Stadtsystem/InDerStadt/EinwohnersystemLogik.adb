@@ -27,8 +27,8 @@ package body EinwohnersystemLogik is
          return False;
                
       else
-         Stadtfeld.YAchse := KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.y / SichtweitenGrafik.StadtfelderAbmessung.y)) - 3;
-         Stadtfeld.XAchse := KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / SichtweitenGrafik.StadtfelderAbmessung.x)) - 3;
+         Stadtfeld.YAchse := KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.y / SichtweitenGrafik.KartenfelderAbmessung.y)) - 3;
+         Stadtfeld.XAchse := KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / SichtweitenGrafik.KartenfelderAbmessung.x)) - 3;
       end if;
       
       Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),

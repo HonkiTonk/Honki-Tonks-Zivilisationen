@@ -45,7 +45,7 @@ package EinheitenRecordKonstanten is
                                                                                  KannTransportiertWerden => EinheitenKonstanten.LeerKannTransportiertWerden,
                                                                                  Transportkapazität      => EinheitenKonstanten.LeerTransportkapazität,
                                                                                  Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                 Effektreichweite        => KartenRecordKonstanten.LeerKoordinate
+                                                                                 Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                 );
    
    KeineArbeit : constant EinheitenRecords.ArbeitRecord := (

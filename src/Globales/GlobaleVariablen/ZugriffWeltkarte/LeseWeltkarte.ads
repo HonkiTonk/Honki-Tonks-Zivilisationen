@@ -49,8 +49,9 @@ package LeseWeltkarte is
               );
    
    function Effekt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartengrundDatentypen.Effekt_Kartenfeld_Enum
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      WelcherEffektExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
+      return Boolean
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

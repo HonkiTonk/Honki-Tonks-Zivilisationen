@@ -21,7 +21,7 @@ package body StadtumgebungGrafik is
       use type KartenDatentypen.Ebene;
    begin
       
-      Viewfläche := (7.00 * SichtweitenGrafik.StadtfelderAbmessung.x, 7.00 * SichtweitenGrafik.StadtfelderAbmessung.y);
+      Viewfläche := (7.00 * SichtweitenGrafik.KartenfelderAbmessung.x, 7.00 * SichtweitenGrafik.KartenfelderAbmessung.y);
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung),
                                             GrößeExtern          => Viewfläche,
@@ -43,7 +43,7 @@ package body StadtumgebungGrafik is
             if
               KartenWert.EAchse = KartenKonstanten.LeerEAchse
             then
-               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => SichtweitenGrafik.StadtfelderAbmessung,
+               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => SichtweitenGrafik.KartenfelderAbmessung,
                                                        PositionExtern  => Viewfläche,
                                                        FarbeExtern     => Sf.Graphics.Color.sfBlack);
                
@@ -72,11 +72,11 @@ package body StadtumgebungGrafik is
                                     BewirtschaftetExtern   => FeldBewirtschaftet);
             end if;
             
-            Viewfläche.x := Viewfläche.x + SichtweitenGrafik.StadtfelderAbmessung.x;
+            Viewfläche.x := Viewfläche.x + SichtweitenGrafik.KartenfelderAbmessung.x;
             
          end loop XAchseSchleife;
          
-         Viewfläche := (0.00, Viewfläche.y + SichtweitenGrafik.StadtfelderAbmessung.y);
+         Viewfläche := (0.00, Viewfläche.y + SichtweitenGrafik.KartenfelderAbmessung.y);
          
       end loop YAchseSchleife;
       
@@ -126,11 +126,11 @@ package body StadtumgebungGrafik is
          Farbe := Sf.Graphics.Color.sfRed;
       end if;
          
-      Rahmendicke := (SichtweitenGrafik.StadtfelderAbmessung.y / 20.00 + SichtweitenGrafik.StadtfelderAbmessung.x / 20.00) / 2.00;
+      Rahmendicke := (SichtweitenGrafik.KartenfelderAbmessung.y / 20.00 + SichtweitenGrafik.KartenfelderAbmessung.x / 20.00) / 2.00;
       
       ObjekteZeichnenGrafik.RahmenZeichnen (PositionExtern    => (PositionExtern.x + Rahmendicke, PositionExtern.y + Rahmendicke),
                                             FarbeExtern       => Farbe,
-                                            GrößeExtern       => (SichtweitenGrafik.StadtfelderAbmessung.x - 2.00 * Rahmendicke, SichtweitenGrafik.StadtfelderAbmessung.y - 2.00 * Rahmendicke),
+                                            GrößeExtern       => (SichtweitenGrafik.KartenfelderAbmessung.x - 2.00 * Rahmendicke, SichtweitenGrafik.KartenfelderAbmessung.y - 2.00 * Rahmendicke),
                                             RahmendickeExtern => Rahmendicke);
                
    end DarstellungUmgebung;
@@ -168,8 +168,8 @@ package body StadtumgebungGrafik is
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
-      KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.BasisgrundAccess (Gesamtgrund.Basisgrund),
-                                                     PositionExtern     => PositionExtern);
+      KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.BasisgrundAccess (Gesamtgrund.Basisgrund),
+                                                                PositionExtern     => PositionExtern);
         
       case
         Gesamtgrund.Zusatzgrund
@@ -178,8 +178,8 @@ package body StadtumgebungGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.ZusatzgrundAccess (Gesamtgrund.Zusatzgrund),
-                                                           PositionExtern     => PositionExtern);
+            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.ZusatzgrundAccess (Gesamtgrund.Zusatzgrund),
+                                                                      PositionExtern     => PositionExtern);
       end case;
       
    end KartenfeldZeichnen;
@@ -200,8 +200,8 @@ package body StadtumgebungGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.KartenflussAccess (KartenfeldFluss),
-                                                           PositionExtern     => PositionExtern);
+            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.KartenflussAccess (KartenfeldFluss),
+                                                                      PositionExtern     => PositionExtern);
       end case;
       
    end FlussZeichnen;
@@ -222,8 +222,8 @@ package body StadtumgebungGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.KartenressourceAccess (KartenfeldRessource),
-                                                           PositionExtern     => PositionExtern);
+            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.KartenressourceAccess (KartenfeldRessource),
+                                                                      PositionExtern     => PositionExtern);
       end case;
       
    end RessourceZeichnen;
@@ -244,8 +244,8 @@ package body StadtumgebungGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.WegeAccess (Wegfeld),
-                                                           PositionExtern     => PositionExtern);
+            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.WegeAccess (Wegfeld),
+                                                                      PositionExtern     => PositionExtern);
       end case;
       
    end WegZeichnen;
@@ -266,8 +266,8 @@ package body StadtumgebungGrafik is
             null;
             
          when others =>
-            KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.VerbesserungenAccess (Verbesserungsfeld),
-                                                           PositionExtern     => PositionExtern);
+            KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.VerbesserungenAccess (Verbesserungsfeld),
+                                                                      PositionExtern     => PositionExtern);
       end case;
       
    end VerbesserungZeichnen;

@@ -3,11 +3,13 @@ with EinheitenRecordKonstanten;
 with EinheitendatenbankRecord;
 with KartengrundDatentypen;
 with KartenDatentypen;
+with KartenRecordKonstanten;
 
 with DebugobjekteLogik;
 
 -- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package EinheitenAlary is
+   use type KartenDatentypen.Kartenfeld;
 
    EinheitenlisteAlary : constant EinheitendatenbankRecord.EinheitenlisteArray := (
                                                                                    -- Siedler
@@ -32,7 +34,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Steinzeitkämpfer
@@ -57,7 +59,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Bogenschütze
@@ -82,7 +84,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
       
                                                                                      -- Erstes Schiff
@@ -107,7 +109,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                       Transportkapazität      => 1,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Bronzekämpfer
@@ -132,7 +134,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Eisenkämpfer
@@ -157,7 +159,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Streitwagen
@@ -182,7 +184,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Katapult
@@ -207,7 +209,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Balliste
@@ -232,7 +234,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Segelschiff
@@ -258,7 +260,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                       Transportkapazität      => 2,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Großes Segelschiff
@@ -284,7 +286,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                       Transportkapazität      => 4,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Gewehrkämpfer
@@ -309,7 +311,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Kanone
@@ -334,7 +336,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Dampfschiff
@@ -360,7 +362,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                       Transportkapazität      => 4,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Motorschiff
@@ -386,7 +388,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                       Transportkapazität      => 4,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- U-Boot
@@ -414,7 +416,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                       Transportkapazität      => 2,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Gepanzerter Wagen
@@ -439,7 +441,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Panzer
@@ -464,7 +466,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Jäger
@@ -489,7 +491,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Bomber
@@ -514,7 +516,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Rakete
@@ -540,7 +542,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Düsenjäger
@@ -565,7 +567,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Düsenbomber
@@ -590,7 +592,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Atombombe
@@ -615,7 +617,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Drohne
@@ -640,7 +642,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Gensoldat
@@ -665,7 +667,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Wassersiedler
@@ -692,7 +694,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Cyborg
@@ -717,7 +719,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Unterwasser/Unterirdischer Siedler
@@ -747,7 +749,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- PZB200
@@ -772,7 +774,14 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
-                                                                                      Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last, 200, 200)
+                                                                                      Effektreichweite        => (
+                                                                                                                  EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
+                                                                                                                  EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
+                                                                                                                  YAchseAnfang => -100,
+                                                                                                                  YAchseEnde   => 100,
+                                                                                                                  XAchseAnfang => -100,
+                                                                                                                  XAchseEnde   => 100
+                                                                                                                 )
                                                                                      ),
                                                
                                                                                      -- PZB400
@@ -797,7 +806,14 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
-                                                                                      Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last, 400, 400)
+                                                                                      Effektreichweite        => (
+                                                                                                                  EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
+                                                                                                                  EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
+                                                                                                                  YAchseAnfang => -200,
+                                                                                                                  YAchseEnde   => 200,
+                                                                                                                  XAchseAnfang => -200,
+                                                                                                                  XAchseEnde   => 200
+                                                                                                                 )
                                                                                      ),
                                                
                                                                                      -- PZB1000
@@ -822,9 +838,14 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
-                                                                                      Effektreichweite        => (KartenDatentypen.EbeneVorhanden'Last,
-                                                                                                                  KartenDatentypen.KartenfeldPositiv'Last,
-                                                                                                                  KartenDatentypen.KartenfeldPositiv'Last)
+                                                                                      Effektreichweite        => (
+                                                                                                                  EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
+                                                                                                                  EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
+                                                                                                                  YAchseAnfang => KartenDatentypen.Kartenfeld'First,
+                                                                                                                  YAchseEnde   => KartenDatentypen.Kartenfeld'Last,
+                                                                                                                  XAchseAnfang => KartenDatentypen.Kartenfeld'First,
+                                                                                                                  XAchseEnde   => KartenDatentypen.Kartenfeld'Last
+                                                                                                                 )
                                                                                      ),
                                                
                                                                                      -- Gaußkämpfer
@@ -849,7 +870,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Magnetkämpfer
@@ -874,7 +895,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Schwebepanzer
@@ -901,7 +922,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Planetenkernsiedler
@@ -933,7 +954,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Himmel/Orbitalsiedler
@@ -962,7 +983,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Atmosphärenjäger
@@ -988,7 +1009,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Atmosphärenbomber
@@ -1014,7 +1035,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Artillerie
@@ -1039,7 +1060,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Stellare Artillerie
@@ -1066,7 +1087,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Gräberschiff
@@ -1096,7 +1117,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                       Transportkapazität      => 4,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Kerngräber
@@ -1128,7 +1149,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                       Transportkapazität      => 1,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                
                                                                                      -- Moderne Infanterie
@@ -1153,7 +1174,7 @@ package EinheitenAlary is
                                                                                       KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                       Transportkapazität      => 0,
                                                                                       Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
-                                                                                      Effektreichweite        => (0, 0, 0)
+                                                                                      Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                      ),
                                                                               
                                                                                    EinheitendatenbankRecord.EinheitenlisteArray'Last => DebugobjekteLogik.Alleskönner,
