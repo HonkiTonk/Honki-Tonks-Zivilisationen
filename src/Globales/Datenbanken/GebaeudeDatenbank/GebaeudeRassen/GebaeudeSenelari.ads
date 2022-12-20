@@ -4,6 +4,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudeSenelari is
+   pragma Elaborate_Body;
 
    GebäudelisteSenelari : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                    -- Häuser

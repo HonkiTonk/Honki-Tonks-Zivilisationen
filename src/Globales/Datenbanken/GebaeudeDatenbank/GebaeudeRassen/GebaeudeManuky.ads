@@ -3,6 +3,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudeManuky is
+   pragma Elaborate_Body;
 
    GebäudelisteManuky : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                  -- Häuser

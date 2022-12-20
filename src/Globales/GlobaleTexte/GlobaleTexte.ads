@@ -3,6 +3,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with TextKonstanten;
 
 package GlobaleTexte is
+   pragma Elaborate_Body;
    
    NameBeschreibungMultiplikator : constant Positive := 2;
       

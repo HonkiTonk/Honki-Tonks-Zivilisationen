@@ -6,6 +6,7 @@ with StadtRecords;
 with KartenartDatentypen;
 
 package KartenRecordKonstanten is
+   pragma Elaborate_Body;
 
    LeerKoordinate : constant KartenRecords.AchsenKartenfeldNaturalRecord := (
                                                                              EAchse => KartenKonstanten.LeerEAchse,

@@ -4,6 +4,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudeKasrodiah is
+   pragma Elaborate_Body;
 
    GebäudelisteKasrodiah : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                     -- Häuser

@@ -7,6 +7,7 @@ with SystemDatentypen;
 with KartenextraDatentypen;
 
 package KartengeneratorVariablenLogik is
+   pragma Elaborate_Body;
 
    PolgrundOberfläche : KartengrundDatentypen.Basisgrund_Vorhanden_Enum := KartengrundDatentypen.Eis_Enum;
    PolgrundUnterfläche : KartengrundDatentypen.Basisgrund_Vorhanden_Enum := KartengrundDatentypen.Untereis_Enum;

@@ -3,6 +3,7 @@ with ForschungenDatentypen;
 with ForschungsdatenbankRecord;
 
 package ForschungenLarinosLotaris is
+   pragma Elaborate_Body;
 
    ForschungslisteLarinosLotaris : constant ForschungsdatenbankRecord.ForschungslisteArray := (
                                                                                                -- Steinwerkzeuge

@@ -5,6 +5,7 @@ with EinheitendatenbankRecord;
 with KartengrundDatentypen;
 
 package EinheitenRecordKonstanten is
+   pragma Elaborate_Body;
 
    LeerEinheit : constant EinheitenRecords.EinheitenGebautRecord := (
                                                                      ID                          => EinheitenKonstanten.LeerID,

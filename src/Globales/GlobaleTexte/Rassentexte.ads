@@ -7,6 +7,7 @@ with StadtDatentypen;
 with EinheitenDatentypen;
 
 package Rassentexte is
+   pragma Elaborate_Body;
    
    -- Brauche ich das hier wirklich? Wahrscheinlich nicht. äöü
    type NameBeschreibungZeilen is range 1 .. 2;

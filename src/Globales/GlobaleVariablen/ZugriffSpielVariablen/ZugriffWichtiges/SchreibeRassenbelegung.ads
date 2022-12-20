@@ -2,6 +2,7 @@ with RassenDatentypen;
 with SpielRecords;
 
 package SchreibeRassenbelegung is
+   pragma Elaborate_Body;
 
    procedure Belegung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

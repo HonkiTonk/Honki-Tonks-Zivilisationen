@@ -4,6 +4,7 @@ with SpielRecords;
 with WichtigesRecordKonstanten;
 
 package SpielVariablen is
+   pragma Elaborate_Body;
       
    Rassenbelegung : SpielRecords.RassenbelegungArray := (others => WichtigesRecordKonstanten.LeerRassenbelegung);
    

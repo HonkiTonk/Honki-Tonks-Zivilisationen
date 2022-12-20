@@ -4,6 +4,7 @@ with KartenRecordKonstanten;
 with WeltkarteRecords;
 
 package Weltkarte is
+   pragma Elaborate_Body;
 
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord := KartenRecordKonstanten.Standardkartenparameter;
 

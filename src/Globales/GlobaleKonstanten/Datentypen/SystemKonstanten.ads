@@ -2,6 +2,7 @@ with MenueDatentypen;
 
 -- Das hier mal aufteilen und anders benennen, ist ja hauptsächlich Menüzeug. äöü
 package SystemKonstanten is
+   pragma Elaborate_Body;
 
    -- Das mit der 0 funktioniert so auch nicht mehr, überarbeiten. äöü
    -- Nur die StadtEinheitenauswahl nutzt das aktuell anders, also das anpassen dann geht es wieder. äöü

@@ -5,6 +5,7 @@ with Views;
 with ViewKonstanten;
 
 package GrafikRecordKonstanten is
+   pragma Elaborate_Body;
 
    LeerView : constant Sf.System.Vector2.sfVector2f := (0.00, 0.00);
    StartgrößeView : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);

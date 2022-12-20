@@ -4,6 +4,7 @@ with TextKonstanten;
 with SystemDatentypen;
 
 package Meldungstexte is
+   pragma Elaborate_Body;
       
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
       

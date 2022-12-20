@@ -4,6 +4,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudePryolon is
+   pragma Elaborate_Body;
 
    GebäudelistePryolon : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                   -- Häuser

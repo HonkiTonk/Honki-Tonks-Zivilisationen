@@ -4,6 +4,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudeNatriesZermanis is
+   pragma Elaborate_Body;
 
    GebäudelisteNatriesZermanis : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                           -- Häuser

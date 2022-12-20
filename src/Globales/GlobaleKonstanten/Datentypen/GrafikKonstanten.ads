@@ -1,6 +1,7 @@
 with Sf;
 
 package GrafikKonstanten is
+   pragma Elaborate_Body;
 
    Undurchsichtig : constant Sf.sfUint8 := Sf.sfUint8'Last;
    Durchsichtig : constant Sf.sfUint8 := Sf.sfUint8'First;

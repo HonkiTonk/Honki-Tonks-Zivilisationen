@@ -4,6 +4,7 @@ with Sf.Graphics.Color;
 with Sf.Window.Cursor;
 
 package GrafikRecords is
+   pragma Elaborate_Body;
    
    type FensterRecord is record
       

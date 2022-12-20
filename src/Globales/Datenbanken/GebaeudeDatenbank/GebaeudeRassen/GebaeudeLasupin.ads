@@ -4,6 +4,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudeLasupin is
+   pragma Elaborate_Body;
 
    GebäudelisteLasupin : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                   -- Häuser

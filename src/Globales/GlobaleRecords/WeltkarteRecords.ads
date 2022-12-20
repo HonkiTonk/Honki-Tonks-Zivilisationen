@@ -9,6 +9,7 @@ with StadtRecords;
 with KartenextraDatentypen;
 
 package WeltkarteRecords is
+   pragma Elaborate_Body;
 
    type WeltkarteRecord is record
 

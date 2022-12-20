@@ -5,6 +5,7 @@ with TextKonstanten;
 with MenueDatentypen;
 
 package Menuetexte is
+   pragma Elaborate_Body;
    
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
    

@@ -9,6 +9,7 @@ with RassenDatentypen;
 with DatenbankRecords;
 
 package WichtigesRecordKonstanten is
+   pragma Elaborate_Body;
 
    LeerCursor : constant KartenRecords.CursorRecord := (
                                                         KoordinatenAktuell => KartenRecordKonstanten.LeerKoordinate,

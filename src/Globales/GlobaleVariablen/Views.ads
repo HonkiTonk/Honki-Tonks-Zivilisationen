@@ -4,6 +4,7 @@ with Sf.Graphics.View;
 with ViewKonstanten;
 
 package Views is
+   pragma Elaborate_Body;
 
    ÜberschriftviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
    VersionsnummerviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;

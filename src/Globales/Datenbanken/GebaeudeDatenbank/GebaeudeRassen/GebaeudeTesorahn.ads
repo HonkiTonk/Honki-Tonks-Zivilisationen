@@ -5,6 +5,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudeTesorahn is
+   pragma Elaborate_Body;
 
    GebäudelisteTesorahn : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                    -- Häuser

@@ -16,6 +16,7 @@ with InteraktionAuswahl;
 -- Warum habe ich hier nicht einfach ein Array mit unbekannter Länge? äöü
 -- Auch mal thematisch aufteilen? äöü
 package TextaccessVariablen is
+   pragma Elaborate_Body;
    
    -- Allgemeines
    ÜberschriftAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;

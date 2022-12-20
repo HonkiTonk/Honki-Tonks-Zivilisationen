@@ -9,6 +9,7 @@ with DebugobjekteLogik;
 
 -- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package EinheitenSenelari is
+   pragma Elaborate_Body;
    use type KartenDatentypen.Kartenfeld;
 
    EinheitenlisteSenelari : constant EinheitendatenbankRecord.EinheitenlisteArray := (

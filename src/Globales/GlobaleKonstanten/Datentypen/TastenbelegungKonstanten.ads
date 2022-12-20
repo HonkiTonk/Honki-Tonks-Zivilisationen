@@ -3,6 +3,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Window.Keyboard;
 
 package TastenbelegungKonstanten is
+   pragma Elaborate_Body;
    
    type TastennamenArray is array (Sf.Window.Keyboard.sfKeyA .. Sf.Window.Keyboard.sfKeyCount) of Unbounded_Wide_Wide_String;
    Tastennamen : constant TastennamenArray := (

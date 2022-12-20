@@ -17,6 +17,7 @@ with KartenextraDatentypen;
 with KIDatentypen;
 
 package StadtKonstanten is
+   pragma Elaborate_Body;
    
    LeerRasse : constant RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
    LeerNummer : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;

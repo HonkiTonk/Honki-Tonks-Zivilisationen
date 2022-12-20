@@ -3,6 +3,7 @@ with ForschungenDatentypen;
 with ForschungsdatenbankRecord;
 
 package ForschungenTridatus is
+   pragma Elaborate_Body;
 
    ForschungslisteTridatus : constant ForschungsdatenbankRecord.ForschungslisteArray := (
                                                                                          -- Steinwerkzeuge

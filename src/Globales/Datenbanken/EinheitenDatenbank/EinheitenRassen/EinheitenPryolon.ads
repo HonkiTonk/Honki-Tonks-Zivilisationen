@@ -9,6 +9,7 @@ with DebugobjekteLogik;
 
 -- Es muss darauf geachtet werden dass KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package EinheitenPryolon is
+   pragma Elaborate_Body;
    use type KartenDatentypen.Kartenfeld;
 
    EinheitenlistePryolon : constant EinheitendatenbankRecord.EinheitenlisteArray := (

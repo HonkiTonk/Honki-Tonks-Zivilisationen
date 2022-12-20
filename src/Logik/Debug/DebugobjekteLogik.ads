@@ -8,6 +8,7 @@ with KartengrundDatentypen;
 with KartenRecordKonstanten;
 
 package DebugobjekteLogik is
+   pragma Elaborate_Body;
    use type ForschungenDatentypen.ForschungIDNichtMöglich;
 
    Debug : SystemRecords.DebugRecord := (others => True);

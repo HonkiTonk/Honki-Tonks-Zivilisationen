@@ -4,6 +4,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudeTridatus is
+   pragma Elaborate_Body;
 
    GebäudelisteTridatus : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                    -- Häuser

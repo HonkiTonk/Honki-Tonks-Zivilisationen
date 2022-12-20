@@ -3,6 +3,7 @@ with ForschungenDatentypen;
 with ForschungsdatenbankRecord;
 
 package ForschungenCarupex is
+   pragma Elaborate_Body;
 
    ForschungslisteCarupex : constant ForschungsdatenbankRecord.ForschungslisteArray := (
                                                                                         -- Steinwerkzeuge

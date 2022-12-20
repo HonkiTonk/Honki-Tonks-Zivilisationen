@@ -4,6 +4,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudeLamustra is
+   pragma Elaborate_Body;
 
    GebäudelisteLamustra : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                    -- Häuser

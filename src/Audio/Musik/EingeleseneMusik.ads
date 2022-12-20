@@ -4,6 +4,7 @@ with RassenDatentypen;
 with TonDatentypen;
 
 package EingeleseneMusik is
+   pragma Elaborate_Body;
 
    type MusikArray is array (RassenDatentypen.Rassen_Enum'Range, TonDatentypen.AnzahlLieder'Range) of Sf.Audio.sfMusic_Ptr;
    Musik : MusikArray := (others => (others => null));

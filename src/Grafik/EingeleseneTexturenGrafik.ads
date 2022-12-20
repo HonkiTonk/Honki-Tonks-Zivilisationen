@@ -10,6 +10,7 @@ with BefehleDatentypen;
 with KartenDatenbank;
 
 package EingeleseneTexturenGrafik is
+   pragma Elaborate_Body;
 
    -- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird? äöü
    -- Wenn dann in die gleichen Bereiche wie in EinlesenTexturen. äöü

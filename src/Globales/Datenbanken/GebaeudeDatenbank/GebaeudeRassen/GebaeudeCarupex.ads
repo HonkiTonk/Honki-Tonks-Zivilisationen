@@ -4,6 +4,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudeCarupex is
+   pragma Elaborate_Body;
 
    GebäudelisteCarupex : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                   -- Häuser

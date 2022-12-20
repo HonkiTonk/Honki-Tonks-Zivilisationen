@@ -14,6 +14,7 @@ with KartengrundDatentypen;
 -- Das hier später auch mal thematisch aufteilen? äöü
 -- Auch mal besser benennen? äöü
 package InteraktionAuswahl is
+   pragma Elaborate_Body;
 
    type PositionenMenüeinträgeArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range, 1 .. SystemKonstanten.ZweitlängstesMenü) of Sf.Graphics.Rect.sfFloatRect;
    PositionenMenüeinträge : PositionenMenüeinträgeArray := (others => (others => GrafikRecordKonstanten.Leerbereich));

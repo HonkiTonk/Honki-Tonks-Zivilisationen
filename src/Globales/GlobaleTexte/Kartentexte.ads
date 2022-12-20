@@ -6,6 +6,7 @@ with KartenverbesserungDatentypen;
 with KartenextraDatentypen;
 
 package Kartentexte is
+   pragma Elaborate_Body;
    
    NameBeschreibungMultiplikator : constant Positive := 2;
 

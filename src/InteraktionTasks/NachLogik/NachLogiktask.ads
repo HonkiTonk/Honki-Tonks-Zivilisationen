@@ -5,6 +5,7 @@ with Sf.System.Vector2;
 with SystemRecords;
 
 package NachLogiktask is
+   pragma Elaborate_Body;
    
    Warten : Boolean := True;
    IntroAbwarten : Boolean := True;

@@ -2,6 +2,7 @@ with SystemRecords;
 with TextKonstanten;
 
 package SystemRecordKonstanten is
+   pragma Elaborate_Body;
 
    LeerTexteingabe : constant SystemRecords.TextEingabeRecord := (
                                                                   ErfolgreichAbbruch => False,

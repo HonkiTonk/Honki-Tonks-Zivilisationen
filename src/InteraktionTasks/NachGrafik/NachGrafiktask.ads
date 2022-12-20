@@ -16,8 +16,9 @@ with EinheitenRecords;
 with KartenRecords;
 with KartenRecordKonstanten;
 
--- Variablen mal nach Kategorien in Records sortieren.
+-- Variablen mal nach Kategorien in Records sortieren. äöü
 package NachGrafiktask is
+   pragma Elaborate_Body;
    
    -- Wird für Spielstart benötigt.
    ErzeugeFenster : Boolean := False;

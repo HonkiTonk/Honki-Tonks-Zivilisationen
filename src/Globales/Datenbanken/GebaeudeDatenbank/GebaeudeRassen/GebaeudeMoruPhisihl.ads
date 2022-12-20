@@ -4,6 +4,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudeMoruPhisihl is
+   pragma Elaborate_Body;
 
    GebäudelisteMoruPhisihl : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                       -- Häuser

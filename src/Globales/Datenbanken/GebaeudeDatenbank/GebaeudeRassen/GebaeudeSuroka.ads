@@ -4,6 +4,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudeSuroka is
+   pragma Elaborate_Body;
 
    GebäudelisteSuroka : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                  -- Häuser

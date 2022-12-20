@@ -5,6 +5,7 @@ with TastenbelegungDatentypen;
 with BefehleDatentypen;
 
 package TastenbelegungStandard is
+   pragma Elaborate_Body;
 
    AllgemeineBelegungStandard : constant TastenbelegungDatenbank.AllgemeineBelegungArray := (
                                                                                              TastenbelegungDatentypen.Auswählen_Enum                      => Sf.Window.Keyboard.sfKeyUnknown,

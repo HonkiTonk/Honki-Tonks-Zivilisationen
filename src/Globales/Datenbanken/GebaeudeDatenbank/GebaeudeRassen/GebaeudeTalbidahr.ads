@@ -4,6 +4,7 @@ with GebaeudedatenbankRecord;
 with ProduktionDatentypen;
 
 package GebaeudeTalbidahr is
+   pragma Elaborate_Body;
 
    GebäudelisteTalbidahr : constant GebaeudedatenbankRecord.GebäudelisteArray := (
                                                                                     -- Häuser

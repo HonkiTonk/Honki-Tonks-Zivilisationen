@@ -4,6 +4,7 @@ with KartenRecordKonstanten;
 with GebaeudedatenbankRecord;
 
 package StadtRecordKonstanten is
+   pragma Elaborate_Body;
 
    LeerStadt : constant StadtRecords.StadtGebautRecord := (
                                                            ID                      => StadtKonstanten.LeerID,
