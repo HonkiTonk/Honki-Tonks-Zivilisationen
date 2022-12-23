@@ -1,6 +1,7 @@
 with Sf;
 with Sf.Graphics.Sprite;
 
+with EinstellungenGrafik;
 with SichtweitenGrafik;
 
 package body TexturenSetzenSkalierenGrafik is
@@ -46,6 +47,28 @@ package body TexturenSetzenSkalierenGrafik is
       return SkalierungKartenfeld;
       
    end TexturenSetzenSkalierenStadtbewirtschaftung;
+   
+   
+   
+   function Stadtkarte
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
+                                     texture   => TextureAccessExtern,
+                                     resetRect => Sf.sfTrue);
+      
+      Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
+      Kartenabmessung := EinstellungenGrafik.AktuelleFensterAuflösung;
+      
+      SkalierungKartenfeld.x := Kartenabmessung.x / Rechteck.width;
+      SkalierungKartenfeld.y := Kartenabmessung.y / Rechteck.height;
+      
+      return SkalierungKartenfeld;
+      
+   end Stadtkarte;
    
    
    

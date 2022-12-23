@@ -55,6 +55,28 @@ package body KartenspritesZeichnenGrafik is
    
    
    
+   procedure StadtkarteZeichnen
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr)
+   is
+      use type Sf.Graphics.sfTexture_Ptr;
+   begin
+      
+      if
+        TexturAccessExtern = null
+      then
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtkarteZeichnen: TexturAccessExtern = null.");
+         
+      else
+         SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
+                         PositionExtern    => (0.00, 0.00),
+                         SkalierungExtern  => TexturenSetzenSkalierenGrafik.Stadtkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                                        TextureAccessExtern => TexturAccessExtern));
+      end if;
+      
+   end StadtkarteZeichnen;
+   
+   
+   
    procedure SpriteZeichnen
      (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;

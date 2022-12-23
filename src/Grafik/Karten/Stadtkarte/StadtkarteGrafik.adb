@@ -10,8 +10,8 @@ with LeseStadtGebaut;
 
 with SichtweitenGrafik;
 with EinstellungenGrafik;
--- with EingeleseneTexturenGrafik;
--- with KartenspritesZeichnenGrafik;
+with EingeleseneTexturenGrafik;
+with KartenspritesZeichnenGrafik;
 with ViewsEinstellenGrafik;
 
 package body StadtkarteGrafik is
@@ -62,7 +62,7 @@ package body StadtkarteGrafik is
      (GrundExtern : in KartenRecords.KartengrundRecord)
    is begin
       
-     -- KartenspritesZeichnenGrafik.K
+      KartenspritesZeichnenGrafik.StadtkarteZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.BasisgrundAccess (GrundExtern.Basisgrund));
       
       case
         GrundExtern.Zusatzgrund
@@ -71,7 +71,7 @@ package body StadtkarteGrafik is
             null;
             
          when others =>
-            null;
+            KartenspritesZeichnenGrafik.StadtkarteZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.ZusatzgrundAccess (GrundExtern.Zusatzgrund));
       end case;
             
    end GrafischeDarstellung;

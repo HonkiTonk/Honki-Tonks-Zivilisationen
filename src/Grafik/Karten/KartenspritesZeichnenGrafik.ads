@@ -29,6 +29,9 @@ package KartenspritesZeichnenGrafik is
                  PositionExtern.y >= 0.00
               );
 
+   procedure StadtkarteZeichnen
+     (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr);
+
    procedure BefehlsknöpfespriteZeichnen
      (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f)

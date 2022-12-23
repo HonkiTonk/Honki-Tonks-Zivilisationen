@@ -49,38 +49,35 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (24.12.2022):
+   -- Version 0.04.5880 => 0.04. (24.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (23.12.2022):
+   -- Version 0.04.5855 => 0.04.5880 (23.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (22.12.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Stadtkarte wird jetzt wieder korrekt skaliert.
+   -- Contracts und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (21.12.2022):
+   -- Version 0.04.5855 => 0.04.5855 (22.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.04.5855 => 0.04. (20.12.2022):
+   -- Version 0.04.5855 => 0.04.5855 (21.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.04.5855 => 0.04.5855 (20.12.2022):
+   
+   -- null.
    
    
 
