@@ -35,24 +35,22 @@ package ChangelogDezember2022 is
    
    
 
-   -- Version 0.04. => 0.04. (26.12.2022):
+   -- Version 0.04.5890 => 0.04. (26.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (25.12.2022):
+   -- Version 0.04.5880 => 0.04.5890 (25.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Alire Version erstellt.
    
    
 
-   -- Version 0.04.5880 => 0.04. (24.12.2022):
+   -- Version 0.04.5880 => 0.04.5880 (24.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
