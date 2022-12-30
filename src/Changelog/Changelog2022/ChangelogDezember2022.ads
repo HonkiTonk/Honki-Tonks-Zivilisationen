@@ -1,37 +1,34 @@
 package ChangelogDezember2022 is
 
-   -- Version 0.04. => 0.04. (31.12.2022):
+   -- Version 0.04.5925 => 0.04. (31.12.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (30.12.2022):
+   -- Version 0.04.5900 => 0.04.5925 (30.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (29.12.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen eine grafische Anzeige für die Produktion der einzelnen Stadtfelder einzubauen.
+   -- Contracts und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (28.12.2022):
+   -- Version 0.04.5900 => 0.04.5900 (29.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.04.5900 => 0.04. (27.12.2022):
+   -- Version 0.04.5900 => 0.04.5900 (28.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.04.5900 => 0.04.5900 (27.12.2022):
+   
+   -- null.
    
    
 

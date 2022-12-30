@@ -69,6 +69,10 @@ private
                  KarteKoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
                and
                  KarteKoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
 
    procedure AnzeigeLandschaft
@@ -129,6 +133,23 @@ private
                  KoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
+              );
+   
+   procedure Wirtschaftsinformationen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
               );
 
 end StadtumgebungGrafik;

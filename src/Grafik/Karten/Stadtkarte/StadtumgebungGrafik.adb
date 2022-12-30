@@ -1,7 +1,11 @@
+with Sf.Graphics.Text;
+with Sf.Graphics.RenderWindow;
+
 with KartenDatentypen;
 with Views;
 with KartengrundDatentypen;
 with ViewKonstanten;
+with TextaccessVariablen;
 
 with LeseStadtGebaut;
 with LeseWeltkarte;
@@ -12,6 +16,9 @@ with SichtweitenGrafik;
 with ObjekteZeichnenGrafik;
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
+with KartenfelderwerteLogik;
+with EinstellungenGrafik;
+with TexteinstellungenGrafik;
 
 package body StadtumgebungGrafik is
 
@@ -112,6 +119,9 @@ package body StadtumgebungGrafik is
          is
             when True =>
                Farbe := Sf.Graphics.Color.sfGreen;
+               Wirtschaftsinformationen (KoordinatenExtern => KarteKoordinatenExtern,
+                                         PositionExtern    => PositionExtern,
+                                         RasseExtern       => StadtRasseNummerExtern.Rasse);
                
             when False =>
                Farbe := Sf.Graphics.Color.sfBlue;
@@ -132,8 +142,61 @@ package body StadtumgebungGrafik is
                                             FarbeExtern       => Farbe,
                                             GrößeExtern       => (SichtweitenGrafik.KartenfelderAbmessung.x - 2.00 * Rahmendicke, SichtweitenGrafik.KartenfelderAbmessung.y - 2.00 * Rahmendicke),
                                             RahmendickeExtern => Rahmendicke);
-               
+      
    end DarstellungUmgebung;
+   
+   
+   
+   procedure Wirtschaftsinformationen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TextAccess,
+                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+      
+      
+     -- Sf.Graphics.Text.setScale (text  => TextaccessVariablen.TextAccess,
+     --                            scale => (4.00 * 1.00 / SichtweitenGrafik.KartenfelderAbmessung.x, 4.00 * 1.00 / SichtweitenGrafik.KartenfelderAbmessung.y));
+        
+      ProduktionSchleife:
+      for ProduktionSchleifenwert in 1 .. 4 loop
+         
+         case
+           ProduktionSchleifenwert
+         is
+            when 1 =>
+               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
+                                                  str  => KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
+                                                                                              RasseExtern       => RasseExtern)'Wide_Wide_Image);
+               
+            when 2 =>
+               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
+                                                  str  => KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
+                                                                                                 RasseExtern       => RasseExtern)'Wide_Wide_Image);
+               
+            when 3 =>
+               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
+                                                  str  => KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KoordinatenExtern,
+                                                                                           RasseExtern       => RasseExtern)'Wide_Wide_Image);
+               
+            when 4 =>
+               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
+                                                  str  => KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KoordinatenExtern,
+                                                                                             RasseExtern       => RasseExtern)'Wide_Wide_Image);
+         end case;
+         
+         
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
+                                       position => (PositionExtern.x, 15.00 * Float (ProduktionSchleifenwert - 1) + PositionExtern.y));
+            
+         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                            text         => TextaccessVariablen.TextAccess);
+         
+      end loop ProduktionSchleife;
+      
+   end Wirtschaftsinformationen;
    
    
    
