@@ -1,9 +1,8 @@
 package ChangelogDezember2022 is
 
-   -- Version 0.04.5925 => 0.04. (31.12.2022):
+   -- Version 0.04.5925 => 0.04.5925 (31.12.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
