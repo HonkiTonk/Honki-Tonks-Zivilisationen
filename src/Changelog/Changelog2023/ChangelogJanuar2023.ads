@@ -196,17 +196,16 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (03.01.2023):
+   -- Version 0.04.5940 => 0.04. (03.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.5930 => 04.0. (02.01.2023):
+   -- Version 0.04.5930 => 0.04.5940 (02.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Debian GNAT 12.2.0-11 auf Debian GNAT 12.2.0-12 aktualisiert.
    
    
 
