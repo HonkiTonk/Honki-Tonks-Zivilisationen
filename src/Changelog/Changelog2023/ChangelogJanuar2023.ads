@@ -182,17 +182,16 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (05.01.2023):
+   -- Version 0.04.5960 => 0.04. (05.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.5950 => 0.04. (04.01.2023):
+   -- Version 0.04.5950 => 0.04.5960 (04.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Mit GNAT 13 herumexperimentiert.
    
    
 
