@@ -8,7 +8,8 @@ package body StadtAllgemeinesLogik is
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is begin
       
-      NeuerName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      NeuerName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                               BauenExtern            => False);
                
       case
         NeuerName.ErfolgreichAbbruch

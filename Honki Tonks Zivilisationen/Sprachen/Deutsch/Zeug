@@ -1,10 +1,5 @@
-Hauptstadt
-Stadt
-Fremde Hauptstadt
-Fremde Stadt
 Einwohner:
-Nahrungsmittel:
-Nahrungsproduktion:
+Nahrung:
 Produktion:
 Geld:
 Wissen:
@@ -15,50 +10,23 @@ Leben:
 Bewegungspunkte:
 Erfahrung:
 Beschäftigung:
-Beschäftigungszeit:
-Verteidigungsbonus:
-Nahrungsgewinnung:
-Ressourcengewinnung:
-Geldgewinnung:
-Wissensgewinnung:
 Angriff:
 Verteidigung:
 Rang:
-Zurück
 Keines
-Produktion abgeschlossen!
-YKoordinate eingeben:
-XKoordinate eingeben:
-Stadtname eingeben:
 Runde:
 Geld:
-Geldzuwachs:
 Forschungszeit:
-Forschungsgewinn:
 Forschungsprojekt:
-Forschungsmenge:
-EKoordinate eingeben:
 Verfügbare Arbeiter:
-Feld bewirtschaftet:
 Wird benötigt für:
-Benötigt:
-Technologie:
-Aktuelle Belegung:
-Taste drücken zum fortfahren.
 Baukosten:
-Sieg durch:
 Ladung:
 Heimat:
-Keine
 Permanente Nahrungskosten:
 Permanente Geldkosten:
 Permanente Produktionskosten:
-Permanente Ressourcenkosten:
 Position:
-Angriffsbonus:
-Gesamtverteidigung auf diesem Feld:
-Gegenschlagskraft auf diesem Feld:
-Gegenschlagskraft:
 Permanenter Nahrungsbonus:
 Permanenter Produktionsbonus:
 Permanenter Geldbonus:
@@ -69,7 +37,6 @@ Gebäude:
 Einheiten:
 Leer
 Ja
-Nein
 mit
 Frieden
 Nichtangriffspakt

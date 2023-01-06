@@ -53,7 +53,8 @@ package body StadtBauenLogik is
             StadtName.EingegebenerText := Rassentexte.Städtenamen (EinheitRasseNummerExtern.Rasse, StadtNummer);
                   
          when RassenDatentypen.Mensch_Spieler_Enum =>
-            StadtName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
+            StadtName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+                                                     BauenExtern            => True);
             
             if
               StadtName.ErfolgreichAbbruch = False

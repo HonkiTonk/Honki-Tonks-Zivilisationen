@@ -43,7 +43,6 @@ package body StadtkarteGrafik is
                                     
             DarstellungGebäude (YAchseExtern           => YAchseSchleifenwert,
                                  XAchseExtern           => XAchseSchleifenwert,
-                                -- PositionExtern         => Grafikposition,
                                  StadtRasseNummerExtern => StadtRasseNummerExtern);
             
             XMultiplikator := XMultiplikator + 1.00;
@@ -81,7 +80,6 @@ package body StadtkarteGrafik is
    procedure DarstellungGebäude
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-     -- PositionExtern : in Sf.System.Vector2.sfVector2f;
       StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
    is
       use type KartenDatentypen.Kartenfeld;

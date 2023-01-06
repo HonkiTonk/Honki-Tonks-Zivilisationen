@@ -6,6 +6,8 @@ with SystemRecordKonstanten;
 with GrafikDatentypen;
 with TextKonstanten;
 
+with LeseStadtGebaut;
+
 with NachLogiktask;
 with NachGrafiktask;
 with EingabeAllgemeinLogik;
@@ -13,21 +15,27 @@ with EingabeAllgemeinLogik;
 package body TexteingabeLogik is
 
    function StadtName
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      BauenExtern : in Boolean)
       return SystemRecords.TextEingabeRecord
    is begin
       
-      case
-        StadtRasseNummerExtern.Rasse
-      is
-         when RassenDatentypen.Keine_Rasse_Enum =>
-            Frage := TextnummernKonstanten.FrageStadtSuchen;
-            NachLogiktask.EingegebenerText.EingegebenerText := TextKonstanten.LeerUnboundedString;
-            
-         when others =>
-            Frage := TextnummernKonstanten.FrageStadtname;
-            NachLogiktask.EingegebenerText.EingegebenerText := Rassentexte.Städtenamen (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer);
-      end case;
+      if
+        BauenExtern
+      then
+         Frage := TextnummernKonstanten.FrageStadtname;
+         NachLogiktask.EingegebenerText.EingegebenerText := Rassentexte.Städtenamen (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer);
+         
+      elsif
+        StadtRasseNummerExtern.Rasse = RassenDatentypen.Keine_Rasse_Enum
+      then
+         Frage := TextnummernKonstanten.FrageStadtSuchen;
+         NachLogiktask.EingegebenerText.EingegebenerText := TextKonstanten.LeerUnboundedString;
+         
+      else
+         Frage := TextnummernKonstanten.FrageStadtname;
+         NachLogiktask.EingegebenerText.EingegebenerText := LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      end if;
       
       return NameEingeben (WelcheFrageExtern => Frage);
       

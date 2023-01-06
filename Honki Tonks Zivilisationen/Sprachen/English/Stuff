@@ -1,10 +1,5 @@
-Capital city
-City
-Foreign capital
-Unfamiliar city
 Residents:
 Food:
-Food production:
 Production:
 Money:
 Knowledge:
@@ -15,50 +10,23 @@ Life:
 Movement Points:
 Experience:
 Occupation:
-Employment time:
-Defense bonus:
-Food production:
-Resource extraction:
-Funding:
-Knowledge acquisition:
 Attack:
 Defense:
 Rank:
-Return
 None
-Production finished!
-Enter Y coordinate:
-Enter X coordinate:
-Enter the city name:
 Round:
 Money:
-Money growth:
 Research time:
-Research gain:
 Research project:
-Amount of research:
-Enter e-coordinate:
 Available workers:
-Farmed field:
 Is required for:
-Needed:
-Technology:
-Occupancy:
-Press button to continue.
 Building-costs:
-Victory by:
 Charge:
 Home:
-Nothing
 Permanent food cost:
 Permanent cost of money:
 Permanent production costs:
-Permanent resource costs:
 Position:
-Attack bonus:
-Overall defense on this field:
-Counterstrike force on this field:
-Counterstrike force:
 Permanent food bonus:
 Permanent produktion bonus:
 Permanent money bonus:
@@ -69,7 +37,6 @@ Buildings:
 Units:
 Empty
 Yes
-No
 with
 Peace
 Non-aggression pact

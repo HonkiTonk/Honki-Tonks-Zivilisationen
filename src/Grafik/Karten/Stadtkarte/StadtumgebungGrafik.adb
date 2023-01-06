@@ -1,3 +1,5 @@
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 
@@ -6,6 +8,8 @@ with Views;
 with KartengrundDatentypen;
 with ViewKonstanten;
 with TextaccessVariablen;
+with Meldungstexte;
+with TextnummernKonstanten;
 
 with LeseStadtGebaut;
 with LeseWeltkarte;
@@ -105,6 +109,7 @@ package body StadtumgebungGrafik is
                          PositionExtern    => PositionExtern);
       
       Grundbelegung := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KarteKoordinatenExtern);
+      Rahmendicke := (SichtweitenGrafik.KartenfelderAbmessung.y / 20.00 + SichtweitenGrafik.KartenfelderAbmessung.x / 20.00) / 2.00;
       
       if
         Grundbelegung.Rasse = StadtKonstanten.LeerRasse
@@ -120,7 +125,7 @@ package body StadtumgebungGrafik is
             when True =>
                Farbe := Sf.Graphics.Color.sfGreen;
                Wirtschaftsinformationen (KoordinatenExtern => KarteKoordinatenExtern,
-                                         PositionExtern    => PositionExtern,
+                                         PositionExtern    => (PositionExtern.x, PositionExtern.y + Rahmendicke),
                                          RasseExtern       => StadtRasseNummerExtern.Rasse);
                
             when False =>
@@ -135,9 +140,7 @@ package body StadtumgebungGrafik is
       else
          Farbe := Sf.Graphics.Color.sfRed;
       end if;
-         
-      Rahmendicke := (SichtweitenGrafik.KartenfelderAbmessung.y / 20.00 + SichtweitenGrafik.KartenfelderAbmessung.x / 20.00) / 2.00;
-      
+            
       ObjekteZeichnenGrafik.RahmenZeichnen (PositionExtern    => (PositionExtern.x + Rahmendicke, PositionExtern.y + Rahmendicke),
                                             FarbeExtern       => Farbe,
                                             GrößeExtern       => (SichtweitenGrafik.KartenfelderAbmessung.x - 2.00 * Rahmendicke, SichtweitenGrafik.KartenfelderAbmessung.y - 2.00 * Rahmendicke),
@@ -155,10 +158,6 @@ package body StadtumgebungGrafik is
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TextAccess,
                                  color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
-      
-      
-     -- Sf.Graphics.Text.setScale (text  => TextaccessVariablen.TextAccess,
-     --                            scale => (4.00 * 1.00 / SichtweitenGrafik.KartenfelderAbmessung.x, 4.00 * 1.00 / SichtweitenGrafik.KartenfelderAbmessung.y));
         
       ProduktionSchleife:
       for ProduktionSchleifenwert in 1 .. 4 loop
@@ -169,32 +168,61 @@ package body StadtumgebungGrafik is
             when 1 =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
                                                   str  => KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                                                              RasseExtern       => RasseExtern)'Wide_Wide_Image);
+                                                                                              RasseExtern       => RasseExtern)'Wide_Wide_Image
+                                                  & To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel)));
                
             when 2 =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
                                                   str  => KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                                                                 RasseExtern       => RasseExtern)'Wide_Wide_Image);
+                                                                                                 RasseExtern       => RasseExtern)'Wide_Wide_Image
+                                                  & To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion)));
                
             when 3 =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
                                                   str  => KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KoordinatenExtern,
-                                                                                           RasseExtern       => RasseExtern)'Wide_Wide_Image);
+                                                                                           RasseExtern       => RasseExtern)'Wide_Wide_Image
+                                                  & To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion)));
                
             when 4 =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
                                                   str  => KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KoordinatenExtern,
-                                                                                             RasseExtern       => RasseExtern)'Wide_Wide_Image);
+                                                                                             RasseExtern       => RasseExtern)'Wide_Wide_Image
+                                                  & To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion)));
          end case;
-         
-         
+                  
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                       position => (PositionExtern.x, 15.00 * Float (ProduktionSchleifenwert - 1) + PositionExtern.y));
+                                       position => (PositionExtern.x, SichtweitenGrafik.KartenfelderAbmessung.y / 5.00 * Float (ProduktionSchleifenwert - 1) + PositionExtern.y));
+         
+         Textfläche := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height);
+         
+         if
+           Textfläche.x >= SichtweitenGrafik.KartenfelderAbmessung.x
+         then
+            Skalierung.x := SichtweitenGrafik.KartenfelderAbmessung.x / Textfläche.x;
+            
+         else
+            Skalierung.x := Textfläche.x / SichtweitenGrafik.KartenfelderAbmessung.x;
+         end if;
+         
+         if
+           Textfläche.y <= SichtweitenGrafik.KartenfelderAbmessung.y / 5.00
+         then
+            Skalierung.y := SichtweitenGrafik.KartenfelderAbmessung.y / Textfläche.y;
+            
+         else
+            Skalierung.y := Textfläche.y / SichtweitenGrafik.KartenfelderAbmessung.y;
+         end if;
+         
+         Sf.Graphics.Text.setScale (text  => TextaccessVariablen.TextAccess,
+                                    scale => Skalierung);
             
          Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                             text         => TextaccessVariablen.TextAccess);
          
       end loop ProduktionSchleife;
+      
+      Sf.Graphics.Text.setScale (text  => TextaccessVariablen.TextAccess,
+                                 scale => (1.00, 1.00));
       
    end Wirtschaftsinformationen;
    

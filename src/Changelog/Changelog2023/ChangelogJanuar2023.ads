@@ -168,24 +168,25 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (07.01.2023):
+   -- Version 0.04.6005 => 0.04. (07.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (06.01.2023):
+   -- Version 0.04.5960 => 0.04.6005 (06.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Belegte Stadtfelder zeigen jetzt die jeweilige Produktion an.
+   -- Veraltete Texte und dazugehörige Konstanten entfernt.
+   -- Anzeige verschiedener Stadttexte überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.04.5960 => 0.04. (05.01.2023):
+   -- Version 0.04.5960 => 0.04.5960 (05.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

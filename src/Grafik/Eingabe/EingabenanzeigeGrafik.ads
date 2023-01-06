@@ -2,12 +2,11 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
-with RassenDatentypen;
 with ZahlenDatentypen;
 with GrafikDatentypen;
+with StadtRecords;
 
 private with EinheitenRecords;
-private with StadtRecords;
 private with GrafikRecordKonstanten;
 
 private with UmwandlungenAdaNachEigenes;
@@ -21,7 +20,7 @@ package EingabenanzeigeGrafik is
    
    -- Später KORREKTEN Contract einfügen. äöü
    procedure AnzeigeEinheitenStadt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
       AktuelleAuswahlExtern : in Integer);
    
 private

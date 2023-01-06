@@ -97,7 +97,8 @@ package body StadtSuchenLogik is
       use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    begin
       
-      StadtName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer);
+      StadtName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer,
+                                               BauenExtern            => False);
       
       case
         StadtName.ErfolgreichAbbruch

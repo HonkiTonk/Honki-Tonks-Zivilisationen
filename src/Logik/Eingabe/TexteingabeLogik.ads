@@ -10,7 +10,8 @@ package TexteingabeLogik is
    use type RassenDatentypen.Rassen_Enum;
 
    function StadtName
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      BauenExtern : in Boolean)
       return SystemRecords.TextEingabeRecord
      with
        Pre => (

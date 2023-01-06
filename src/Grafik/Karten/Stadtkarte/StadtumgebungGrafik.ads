@@ -49,6 +49,8 @@ private
    Gesamtgrund : KartenRecords.KartengrundRecord;
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   Textfläche : Sf.System.Vector2.sfVector2f;
+   Skalierung : Sf.System.Vector2.sfVector2f;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;

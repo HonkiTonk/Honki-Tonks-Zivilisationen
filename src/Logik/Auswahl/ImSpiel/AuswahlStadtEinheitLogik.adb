@@ -52,6 +52,7 @@ package body AuswahlStadtEinheitLogik is
       NachGrafiktask.WelcheAuswahl := WelcheAuswahl;
       
       NachGrafiktask.Eingabe := GrafikDatentypen.Einheit_Auswahl_Enum;
+      NachGrafiktask.AktuelleStadt := StadtNummerExtern;
       
       AuswahlSchleife:
       loop

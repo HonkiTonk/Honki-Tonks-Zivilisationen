@@ -21,13 +21,13 @@ package SystemDatentypen is
    
    
    
-   subtype Zeug is Natural range 0 .. 85;
+   subtype Zeug is Natural range 0 .. 52;
    subtype ZeugVorhanden is Zeug range 1 .. Zeug'Last;
    
-   subtype Fragen is Natural range 0 .. 48;
+   subtype Fragen is Natural range 0 .. 34;
    subtype FragenVorhanden is Fragen range 1 .. Fragen'Last;
      
-   subtype Spielmeldungen is Natural range 0 .. 17;
+   subtype Spielmeldungen is Natural range 0 .. 11;
    subtype SpielmeldungenVorhanden is Spielmeldungen range 1 .. Spielmeldungen'Last;
    
    
