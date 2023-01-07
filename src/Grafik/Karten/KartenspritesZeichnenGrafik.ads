@@ -33,15 +33,30 @@ package KartenspritesZeichnenGrafik is
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr);
 
    procedure BefehlsknöpfespriteZeichnen
-     (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 SpriteAccesExtern /= null
+                 SpriteAccessExtern /= null
                and
                  PositionExtern.x >= 0.00
                and
                  PositionExtern.y >= 0.00
+              );
+
+   procedure SpriteZeichnenVariabel
+     (PositionExtern : in Sf.System.Vector2.sfVector2f;
+      GrößeExtern : in Sf.System.Vector2.sfVector2f;
+      TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr)
+     with
+       Pre => (
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+               and
+                 GrößeExtern.x >= 0.00
+               and
+                 GrößeExtern.y >= 0.00
               );
 
 private
@@ -51,12 +66,12 @@ private
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
    procedure SpriteZeichnen
-     (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       SkalierungExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
-                 SpriteAccesExtern /= null
+                 SpriteAccessExtern /= null
                and
                  PositionExtern.x >= 0.00
                and
@@ -68,13 +83,13 @@ private
               );
 
    procedure DurchsichtigesSpriteZeichnen
-     (SpriteAccesExtern : in Sf.Graphics.sfSprite_Ptr;
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       SkalierungExtern : in Sf.System.Vector2.sfVector2f;
       DurchsichtigkeitExtern : in Sf.sfUint8)
      with
        Pre => (
-                 SpriteAccesExtern /= null
+                 SpriteAccessExtern /= null
                and
                  PositionExtern.x >= 0.00
                and

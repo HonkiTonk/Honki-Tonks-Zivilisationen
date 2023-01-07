@@ -14,7 +14,6 @@ package SichtweitenGrafik is
    
    -- Das hier über eine Funktion abrufen? äöü
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
-   StadtfelderAbmessung : Sf.System.Vector2.sfVector2f;
    
    FensterKarte : Sf.Graphics.Rect.sfFloatRect;
    

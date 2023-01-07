@@ -8,7 +8,6 @@ with ViewKonstanten;
 with LeseWeltkarte;
 with LeseStadtGebaut;
 
-with SichtweitenGrafik;
 with EinstellungenGrafik;
 with EingeleseneTexturenGrafik;
 with KartenspritesZeichnenGrafik;
@@ -18,7 +17,9 @@ package body StadtkarteGrafik is
 
    procedure Stadtkarte
      (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtKarte),
                                             GrößeExtern          => EinstellungenGrafik.AktuelleFensterAuflösung,
@@ -28,29 +29,36 @@ package body StadtkarteGrafik is
       GrafischeDarstellung (GrundExtern => Gesamtgrund);
       
       Stadtgröße := KartenDatentypen.KartenfeldPositiv (Float'Ceiling (Sqrt (X => Float (StadtDatentypen.GebäudeID'Last))));
-      
-      YMultiplikator := 0.00;
+      Grafikgröße := (EinstellungenGrafik.AktuelleFensterAuflösung.x / Float (Stadtgröße), EinstellungenGrafik.AktuelleFensterAuflösung.y / Float (Stadtgröße));
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.Stadtfeld'Range loop
-         
-         XMultiplikator := 0.00;
-         
+      for YAchseSchleifenwert in 1 .. Stadtgröße loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.Stadtfeld'Range loop
-                        
-            Grafikposition := (XMultiplikator * SichtweitenGrafik.StadtfelderAbmessung.x, YMultiplikator * SichtweitenGrafik.StadtfelderAbmessung.y);
-                                    
-            DarstellungGebäude (YAchseExtern           => YAchseSchleifenwert,
-                                 XAchseExtern           => XAchseSchleifenwert,
-                                 StadtRasseNummerExtern => StadtRasseNummerExtern);
+         for XAchseSchleifenwert in 1 .. Stadtgröße loop
             
-            XMultiplikator := XMultiplikator + 1.00;
-            
+            if
+              (YAchseSchleifenwert - 1) * Stadtgröße + XAchseSchleifenwert > KartenDatentypen.KartenfeldPositiv (StadtDatentypen.GebäudeID'Last)
+            then
+               exit YAchseSchleife;
+               
+            else
+               GebäudeID := StadtDatentypen.GebäudeID ((YAchseSchleifenwert - 1) * Stadtgröße + XAchseSchleifenwert);
+            end if;
+                     
+            case
+              LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                 WelchesGebäudeExtern  => GebäudeID)
+            is
+               when False =>
+                  null;
+                  
+               when True =>
+                  KartenspritesZeichnenGrafik.SpriteZeichnenVariabel (PositionExtern     => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y),
+                                                                      GrößeExtern        => Grafikgröße,
+                                                                      TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtRasseNummerExtern.Rasse, GebäudeID));
+            end case;
+         
          end loop XAchseSchleife;
-         
-         YMultiplikator := YMultiplikator + 1.00;
-         
       end loop YAchseSchleife;
       
    end Stadtkarte;
@@ -74,55 +82,5 @@ package body StadtkarteGrafik is
       end case;
             
    end GrafischeDarstellung;
-      
-   
-   
-   procedure DarstellungGebäude
-     (YAchseExtern : in KartenDatentypen.Stadtfeld;
-      XAchseExtern : in KartenDatentypen.Stadtfeld;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-   is
-      use type KartenDatentypen.Kartenfeld;
-      use type StadtDatentypen.GebäudeIDMitNullwert;
-   begin
-      
-      if
-        YAchseExtern = 1
-        and
-          XAchseExtern <= 12
-      then
-         GebäudeID := StadtDatentypen.GebäudeID (XAchseExtern);
-               
-      elsif
-        YAchseExtern = 2
-        and
-          XAchseExtern <= 12
-      then
-         GebäudeID := StadtDatentypen.GebäudeID (XAchseExtern) + 12;
-               
-      elsif
-        YAchseExtern = 3
-        and
-          XAchseExtern < 3
-      then
-         GebäudeID := StadtDatentypen.GebäudeID (XAchseExtern) + 24;
-
-      else
-         return;
-      end if;
-      
-      if
-        False = LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                   WelchesGebäudeExtern  => GebäudeID)
-      then
-         null;
-         
-      else
-         null;
-        -- KartenspritesZeichnenGrafik.StadtfeldZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtRasseNummerExtern.Rasse, GebäudeID),
-         --                                               PositionExtern     => PositionExtern);
-      end if;
-      
-   end DarstellungGebäude;
 
 end StadtkarteGrafik;

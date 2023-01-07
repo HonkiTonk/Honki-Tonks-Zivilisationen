@@ -35,20 +35,9 @@ private
 
    Gesamtgrund : KartenRecords.KartengrundRecord;
 
-   Grafikposition : Sf.System.Vector2.sfVector2f;
+   Grafikgröße : Sf.System.Vector2.sfVector2f;
 
    procedure GrafischeDarstellung
      (GrundExtern : in KartenRecords.KartengrundRecord);
-
-   procedure DarstellungGebäude
-     (YAchseExtern : in KartenDatentypen.Stadtfeld;
-      XAchseExtern : in KartenDatentypen.Stadtfeld;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
-     with
-       Pre => (
-                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
-               and
-                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
-              );
 
 end StadtkarteGrafik;
