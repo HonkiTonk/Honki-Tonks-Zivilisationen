@@ -147,30 +147,29 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (10.01.2023):
+   -- Version 0.04.6070 => 0.04. (10.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (09.01.2023):
+   -- Version 0.04.6040 => 0.04.6070 (09.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Verschiedene Bibliotheken aktualisiert.
+   -- Zahlreiche Variablen/Verzeichnisse/Dateien umbenannt.
    
    
 
-   -- Version 0.04.6040 => 0.04. (08.01.2023):
+   -- Version 0.04.6040 => 0.04.6040 (08.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
    -- Version 0.04.6005 => 0.04.6040 (07.01.2023):
    
-   -- Gebäude werden jetzt in der Stadtkarte angezeigt.
+   -- Gebäude werden jetzt in der neuen Stadtkarte angezeigt.
    -- Variable Größendarstellung für Sprites eingebaut.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    

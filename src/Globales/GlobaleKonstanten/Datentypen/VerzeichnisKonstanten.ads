@@ -43,6 +43,6 @@ package VerzeichnisKonstanten is
    Kartenwege : constant String (1 .. 5) := "/Wege";
    Einheiten : constant String (1 .. 10) := "/Einheiten";
    Bauwerke : constant String (1 .. 9) := "/Bauwerke";
-   Rassen : constant String (1 .. 7) := "/Rassen";
+   Rassen : constant String (1 .. 8) := "/Spezies";
    
 end VerzeichnisKonstanten;
