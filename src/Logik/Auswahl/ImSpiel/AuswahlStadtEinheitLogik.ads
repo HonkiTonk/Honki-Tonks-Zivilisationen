@@ -1,30 +1,30 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
 
 private with EinheitenRecords;
 
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package AuswahlStadtEinheitLogik is
    pragma Elaborate_Body;
    use type StadtDatentypen.MaximaleStädteMitNullWert;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    function AuswahlStadtEinheit
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return Integer
      with
        Pre => (
-                 StadtNummerExtern <= LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
+                 StadtNummerExtern <= LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)
                and
-                 EinheitNummerExtern <= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
+                 EinheitNummerExtern <= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
 private

@@ -5,7 +5,7 @@ with EinheitenDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with ZahlenDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with SpielDatentypen;
 with DiplomatieDatentypen;
 
@@ -67,7 +67,7 @@ package SpielRecords is
       Forschungsgrenze : ProduktionDatentypen.Lagermenge;
       Geldgewinngrenze : ProduktionDatentypen.Lagermenge;
       ForschungGewinngrenze : ProduktionDatentypen.Lagermenge;
-      RassenRundengrenze : ZahlenDatentypen.EigenesNatural;
+      SpeziesRundengrenze : ZahlenDatentypen.EigenesNatural;
       
    end record;
    
@@ -77,12 +77,12 @@ package SpielRecords is
       
       Gewonnen : Boolean;
       Weiterspielen : Boolean;
-      RasseAmZugNachLaden : RassenDatentypen.Rassen_Enum;
+      SpeziesAmZugNachLaden : SpeziesDatentypen.Spezies_Enum;
       Schwierigkeitsgrad : SpielDatentypen.Schwierigkeitsgrad_Enum;
       Rundenanzahl : ZahlenDatentypen.EigenesPositive;
       Rundengrenze : ZahlenDatentypen.EigenesNatural;   
       IronmanName : Unbounded_Wide_Wide_String;
-      PlanetVernichtet : RassenDatentypen.Rassen_Enum;
+      PlanetVernichtet : SpeziesDatentypen.Spezies_Enum;
       Zusammenbruchszeit : ZahlenDatentypen.EigenerInteger;
       AnzahlEingesetzterPZB : ZahlenDatentypen.EigenesNatural;
       
@@ -90,13 +90,13 @@ package SpielRecords is
    
    
    
-   type RassenRecords is record
+   type SpeziesRecords is record
       
-      Belegung : RassenDatentypen.Spieler_Enum;
+      Belegung : SpeziesDatentypen.Spieler_Enum;
       Besiegt : Boolean;
       
    end record;
    
-   type RassenbelegungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of RassenRecords;
+   type SpeziesbelegungArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of SpeziesRecords;
 
 end SpielRecords;

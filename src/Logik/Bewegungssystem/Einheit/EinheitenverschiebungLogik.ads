@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
 
@@ -9,32 +9,32 @@ private with StadtRecords;
 private with StadtKonstanten;
 
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package EinheitenverschiebungLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    procedure VonEigenemLandWerfen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => KontaktierteRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => KontaktierteSpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    procedure EinheitVerschieben
-     (RasseLandExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (SpeziesLandExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      with
        Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseLandExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesLandExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
 private
@@ -50,15 +50,15 @@ private
    Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure EinheitenErmitteln
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => KontaktierteRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => KontaktierteSpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 end EinheitenverschiebungLogik;

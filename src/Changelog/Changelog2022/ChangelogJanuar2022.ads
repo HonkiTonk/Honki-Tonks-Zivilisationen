@@ -5,7 +5,7 @@ package ChangelogJanuar2022 is
    -- Mit dem Soundteil der SFML herumexperimentiert.
    -- Einlesen erweitert so dass jetzt auch Sounddateien eingelesen werden.
    -- Einfache Testsoundausgabe eingebaut.
-   -- Soundliste angelegt und die Möglichkeit für rassenspezifische Sounds eingebaut.
+   -- Soundliste angelegt und die Möglichkeit für Speziesspezifische Sounds eingebaut.
    -- Weitere Konstanten angelegt und eingebaut.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
@@ -19,7 +19,7 @@ package ChangelogJanuar2022 is
       
    -- Version 0.00.9845 => 0.00.9850 (29.01.2022):
    
-   -- Musikliste angelegt und die Möglichkeit für rassenspezifische Musikstücke eingebaut.
+   -- Musikliste angelegt und die Möglichkeit für Speziesspezifische Musikstücke eingebaut.
    -- Prüfung eingebaut ob ein Musikstück vorhanden und eingelesen ist.
    -- Kommentare und Kleinigkeiten korrigiert.
    
@@ -57,7 +57,7 @@ package ChangelogJanuar2022 is
       
    -- Version 0.00.9790 => 0.00.9810 (25.01.2022):
    
-   -- Farben für die einzelnen Rassen festgelegt.
+   -- Farben für die einzelnen Spezies festgelegt.
    -- Diverse Standardwerte für die Grafik werden jetzt bei nicht vorhandenen Nutzerwerten verwendet.
    -- Schriftarten in einen eigenen Ordner ausgelagert damit sie nicht mehr als Sprache erkannt werden.
    -- Die Grafikoptionen sollten jetzt korrekt die Werte ändern und speichern können.
@@ -132,7 +132,7 @@ package ChangelogJanuar2022 is
       
    -- Version 0.00.9745 => 0.00.9750 (16.01.2022):
    
-   -- Farben für die einzelnen Rassen eingebaut.
+   -- Farben für die einzelnen Spezies eingebaut.
    -- Angefangen ein System zur Rahmengebung von belegten Felder einzubauen.
    -- Versucht einen Fehler zu korrigieren der es ermöglicht Textdateien als Ordner einzulesen.
    -- Der Name einer Stadt wird jetzt direkt auf der Weltkarte angezeigt, noch etwas unsauber.
@@ -143,7 +143,7 @@ package ChangelogJanuar2022 is
    -- Version 0.00.9740 => 0.00.9745 (15.01.2022):
    
    -- Das Bausystem für Gebäude und das Forschungssystem überdacht.
-   -- Angefangen eine farbliche Markierung für Felder welche sich bereits im Besitz einer Rasse befinden anzulegen.
+   -- Angefangen eine farbliche Markierung für Felder welche sich bereits im Besitz einer Spezies befinden anzulegen.
    -- Kommentare und Kleinigkeiten angepasst.
    
    

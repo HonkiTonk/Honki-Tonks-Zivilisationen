@@ -3,88 +3,88 @@ with SpielVariablen;
 package body LeseGrenzen is
 
    function Städtegrenzen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
-      return SpielVariablen.Grenzen (RasseExtern).Städtegrenze;
+      return SpielVariablen.Grenzen (SpeziesExtern).Städtegrenze;
       
    end Städtegrenzen;
    
    
    
    function Einheitengrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return EinheitenDatentypen.MaximaleEinheiten
    is begin
       
-      return SpielVariablen.Grenzen (RasseExtern).Einheitengrenze;
+      return SpielVariablen.Grenzen (SpeziesExtern).Einheitengrenze;
       
    end Einheitengrenze;
    
    
    
    function Geldgrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ZahlenDatentypen.EigenesNatural
    is begin
       
-      return SpielVariablen.Grenzen (RasseExtern).Geldgrenze;
+      return SpielVariablen.Grenzen (SpeziesExtern).Geldgrenze;
       
    end Geldgrenze;
    
    
    
    function Forschungsgrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Lagermenge
    is begin
       
-      return SpielVariablen.Grenzen (RasseExtern).Forschungsgrenze;
+      return SpielVariablen.Grenzen (SpeziesExtern).Forschungsgrenze;
       
    end Forschungsgrenze;
    
    
    
    function Geldgewinngrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Lagermenge
    is begin
       
-      return SpielVariablen.Grenzen (RasseExtern).Geldgewinngrenze;
+      return SpielVariablen.Grenzen (SpeziesExtern).Geldgewinngrenze;
       
    end Geldgewinngrenze;
    
    
    
    function Forschungsgewinngrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Lagermenge
    is begin
       
-      return SpielVariablen.Grenzen (RasseExtern).ForschungGewinngrenze;
+      return SpielVariablen.Grenzen (SpeziesExtern).ForschungGewinngrenze;
       
    end Forschungsgewinngrenze;
    
    
    
-   function Rassenrundengrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   function Speziesrundengrenze
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ZahlenDatentypen.EigenesNatural
    is begin
       
-      return SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze;
+      return SpielVariablen.Grenzen (SpeziesExtern).SpeziesRundengrenze;
       
-   end Rassenrundengrenze;
+   end Speziesrundengrenze;
    
    
    
    function GanzerEintrag
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return SpielRecords.GrenzenRecord
    is begin
       
-      return SpielVariablen.Grenzen (RasseExtern);
+      return SpielVariablen.Grenzen (SpeziesExtern);
       
    end GanzerEintrag;
 

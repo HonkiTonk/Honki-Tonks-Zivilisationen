@@ -9,15 +9,15 @@ with KIKriegErmittelnLogik;
 package body KIDiplomatieLogik is
    
    procedure Diplomatie
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      SchreibeKIVariablen.Kriegszustand (ZustandExtern => KIKriegErmittelnLogik.IstImKrieg (RasseExtern => RasseExtern));
+      SchreibeKIVariablen.Kriegszustand (ZustandExtern => KIKriegErmittelnLogik.IstImKrieg (SpeziesExtern => SpeziesExtern));
       
       case
-        RasseExtern
+        SpeziesExtern
       is
-         when RassenDatentypen.Ekropa_Enum =>
+         when SpeziesDatentypen.Ekropa_Enum =>
             LadezeitenLogik.FortschrittKIMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Berechne_Diplomatie_Enum);
             return;
             
@@ -33,8 +33,8 @@ package body KIDiplomatieLogik is
    
 
    procedure DiplomatieKIMensch
-     (RasseMenschExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseKIExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesMenschExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesKIExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       null;
@@ -44,8 +44,8 @@ package body KIDiplomatieLogik is
    
    
    procedure DiplomatieKIKI
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseKIExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      FremdeSpeziesKIExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       null;

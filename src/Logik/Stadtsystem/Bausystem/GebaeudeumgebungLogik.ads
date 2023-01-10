@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with StadtDatentypen;
 with StadtRecords;
 with StadtKonstanten;
@@ -10,23 +10,23 @@ private with KartenDatentypen;
 private with KartenextraDatentypen;
 
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 private with LeseWeltkarteneinstellungen;
 
 package GebaeudeumgebungLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    function RichtigeUmgebungVorhanden
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       GebäudeIDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
 private
@@ -71,26 +71,26 @@ private
    
    
    function UmgebungPrüfen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       AnforderungenExtern : in AnforderungenRecord)
       return Boolean
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    function Detailprüfung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       AnforderungenExtern : in AnforderungenRecord)
       return Boolean
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and

@@ -15,11 +15,11 @@ with EinheitenbewegungLogik;
 package body EinheitenbewegungsbereichLogik is
 
    procedure BewegungsbereichBerechnen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
-      VorhandeneBewegungspunkte := Natural (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-      AktuelleKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      VorhandeneBewegungspunkte := Natural (LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+      AktuelleKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       Bewegungsbereich := (others => (others => (others => False)));
       
       EAchseSchleife:
@@ -36,7 +36,7 @@ package body EinheitenbewegungsbereichLogik is
                then
                   BewegungsbereichErmitteln (BewegungsfeldExtern             => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                              KoordinatenExtern               => AktuelleKoordinaten,
-                                             EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                                             EinheitSpeziesNummerExtern        => EinheitSpeziesNummerExtern,
                                              NotwendigeBewegungspunkteExtern => 0,
                                              VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkte);
                
@@ -55,7 +55,7 @@ package body EinheitenbewegungsbereichLogik is
    procedure BewegungsbereichErmitteln
      (BewegungsfeldExtern : in KartenRecords.AchsenKartenfeldRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NotwendigeBewegungspunkteExtern : in Natural;
       VorhandeneBewegungspunkteExtern : in Positive)
    is
@@ -68,7 +68,7 @@ package body EinheitenbewegungsbereichLogik is
 
       case
         FeldPrüfen (NeueKoordinatenExtern           => Kartenwert,
-                     EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                     EinheitSpeziesNummerExtern        => EinheitSpeziesNummerExtern,
                      NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern,
                      VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern)
       is
@@ -83,7 +83,7 @@ package body EinheitenbewegungsbereichLogik is
       end case;
 
       ZusätzlicheBewegungspunkte := Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
-                                                                                                        EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+                                                                                                        EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
          YAchseSchleife:
@@ -152,7 +152,7 @@ package body EinheitenbewegungsbereichLogik is
                                                                                  BewegungsfeldExtern.YAchse + YAchseSchleifenwert,
                                                                                  BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
                                              KoordinatenExtern               => KoordinatenExtern,
-                                             EinheitRasseNummerExtern        => EinheitRasseNummerExtern,
+                                             EinheitSpeziesNummerExtern        => EinheitSpeziesNummerExtern,
                                              NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern + ZusätzlicheBewegungspunkte,
                                              VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern);
                end if;
@@ -167,12 +167,12 @@ package body EinheitenbewegungsbereichLogik is
       
    function FeldPrüfen
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NotwendigeBewegungspunkteExtern : in Natural;
       VorhandeneBewegungspunkteExtern : in Positive)
       return SystemDatentypen.Erweiterter_Boolean_Enum
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
@@ -183,7 +183,7 @@ package body EinheitenbewegungsbereichLogik is
          return SystemDatentypen.False_Enum;
          
       elsif
-        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                           NeueKoordinatenExtern    => NeueKoordinatenExtern)
       then
          return SystemDatentypen.False_Enum;
@@ -192,7 +192,7 @@ package body EinheitenbewegungsbereichLogik is
         Bewegungsbereich (NeueKoordinatenExtern.EAchse, NeueKoordinatenExtern.YAchse, NeueKoordinatenExtern.XAchse) = False
       then
          ZwischenrechnungBewegungspunkte := NotwendigeBewegungspunkteExtern + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => NeueKoordinatenExtern,
-                                                                                                                                                 EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+                                                                                                                                                 EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
          
       else
          return SystemDatentypen.False_Enum;
@@ -211,9 +211,9 @@ package body EinheitenbewegungsbereichLogik is
          return SystemDatentypen.False_Enum;
          
       else
-         Stadt := StadtSuchenLogik.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+         Stadt := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                                                              KoordinatenExtern => NeueKoordinatenExtern);
-         Einheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeueKoordinatenExtern,
+         Einheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinatenExtern,
                                                                           LogikGrafikExtern => True);
       end if;
       
@@ -223,14 +223,14 @@ package body EinheitenbewegungsbereichLogik is
          null;
          
       elsif
-        LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => Stadt) /= NeueKoordinatenExtern
+        LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => Stadt) /= NeueKoordinatenExtern
       then
          null;
          
       elsif
-        Stadt.Rasse = EinheitRasseNummerExtern.Rasse
+        Stadt.Spezies = EinheitSpeziesNummerExtern.Spezies
         and
-          Einheit.Rasse = EinheitenKonstanten.LeerRasse
+          Einheit.Spezies = EinheitenKonstanten.LeerSpezies
       then
          return SystemDatentypen.True_Enum;
          
@@ -239,17 +239,17 @@ package body EinheitenbewegungsbereichLogik is
       end if;
          
       if
-        EinheitenKonstanten.LeerRasse = Einheit.Rasse
+        EinheitenKonstanten.LeerSpezies = Einheit.Spezies
       then
          return SystemDatentypen.True_Enum;
          
       elsif
-        Einheit.Rasse /= EinheitRasseNummerExtern.Rasse
+        Einheit.Spezies /= EinheitSpeziesNummerExtern.Spezies
       then
          return SystemDatentypen.Neutral_Enum;
          
       elsif
-        False = EinheitenbewegungLogik.EinheitentauschPrüfung (BewegendeEinheitExtern => EinheitRasseNummerExtern,
+        False = EinheitenbewegungLogik.EinheitentauschPrüfung (BewegendeEinheitExtern => EinheitSpeziesNummerExtern,
                                                                 StehendeEinheitExtern  => Einheit)
       then
          return SystemDatentypen.Neutral_Enum;

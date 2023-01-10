@@ -15,17 +15,17 @@ with JaNeinLogik;
 package body GebaeudeVerkaufenLogik is
    
    procedure Verkaufsliste
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
       case
-        VerkaufbareGebäudeErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        VerkaufbareGebäudeErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
       is
          when False =>
             return;
             
          when True =>
-            GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            GebäudeVerkaufen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end case;
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;
@@ -35,7 +35,7 @@ package body GebaeudeVerkaufenLogik is
    
    
    function VerkaufbareGebäudeErmitteln
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is begin
       
@@ -44,7 +44,7 @@ package body GebaeudeVerkaufenLogik is
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
-         InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                                                             WelchesGebäudeExtern  => GebäudeSchleifenwert);
          
          if
@@ -67,7 +67,7 @@ package body GebaeudeVerkaufenLogik is
    
    
    procedure GebäudeVerkaufen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type StadtDatentypen.GebäudeIDMitNullwert;
    begin
@@ -97,12 +97,12 @@ package body GebaeudeVerkaufenLogik is
                         null;
                         
                      when True =>
-                        GebaeudeAllgemeinLogik.GebäudeEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                        GebaeudeAllgemeinLogik.GebäudeEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                   WelchesGebäudeExtern   => AktuelleAuswahl);
-                        StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
+                        StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
                   
                         if
-                          VerkaufbareGebäudeErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
+                          VerkaufbareGebäudeErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) = True
                         then
                            null;
                         

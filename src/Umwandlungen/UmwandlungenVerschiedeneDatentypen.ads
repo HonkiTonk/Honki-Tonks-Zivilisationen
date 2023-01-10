@@ -1,6 +1,6 @@
 with KartenverbesserungDatentypen;
 with RueckgabeDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with SpielDatentypen;
 with BefehleDatentypen;
 with KartenartDatentypen;
@@ -16,9 +16,9 @@ package UmwandlungenVerschiedeneDatentypen is
      (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum)
       return BefehleDatentypen.Siedler_Konstruktionen_Enum;
    
-   function RückgabeNachRasse
-     (RückgabeExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
-      return RassenDatentypen.Rassen_Verwendet_Enum;
+   function RückgabeNachSpezies
+     (RückgabeExtern : in RueckgabeDatentypen.Spezies_Verwendet_Enum)
+      return SpeziesDatentypen.Spezies_Verwendet_Enum;
    
    function KartentemperaturrückgabeNachKartentemperatur
      (RückgabeExtern : in RueckgabeDatentypen.Kartentemperatur_Enum)
@@ -48,26 +48,26 @@ private
                                                                            KartenverbesserungDatentypen.Festung_Enum => BefehleDatentypen.Festung_Bauen_Enum
                                                                                         );
    
-   type RückgabeRasseArray is array (RueckgabeDatentypen.Rassen_Verwendet_Enum'Range) of RassenDatentypen.Rassen_Verwendet_Enum;
-   RückgabeRasse : constant RückgabeRasseArray := (
-                                                     RueckgabeDatentypen.Auswahl_Eins_Enum     => RassenDatentypen.Menschen_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Zwei_Enum     => RassenDatentypen.Kasrodiah_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Drei_Enum     => RassenDatentypen.Lasupin_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Vier_Enum     => RassenDatentypen.Lamustra_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Fünf_Enum     => RassenDatentypen.Manuky_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Sechs_Enum    => RassenDatentypen.Suroka_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Sieben_Enum   => RassenDatentypen.Pryolon_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Acht_Enum     => RassenDatentypen.Moru_Phisihl_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Neun_Enum     => RassenDatentypen.Larinos_Lotaris_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Zehn_Enum     => RassenDatentypen.Carupex_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Elf_Enum      => RassenDatentypen.Alary_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Zwölf_Enum    => RassenDatentypen.Natries_Zermanis_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Dreizehn_Enum => RassenDatentypen.Tridatus_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Vierzehn_Enum => RassenDatentypen.Senelari_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Fünfzehn_Enum => RassenDatentypen.Aspari_2_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Sechzehn_Enum => RassenDatentypen.Ekropa_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Siebzehn_Enum => RassenDatentypen.Tesorahn_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Achtzehn_Enum => RassenDatentypen.Talbidahr_Enum
+   type RückgabeSpeziesArray is array (RueckgabeDatentypen.Spezies_Verwendet_Enum'Range) of SpeziesDatentypen.Spezies_Verwendet_Enum;
+   RückgabeSpezies : constant RückgabeSpeziesArray := (
+                                                     RueckgabeDatentypen.Auswahl_Eins_Enum     => SpeziesDatentypen.Menschen_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Zwei_Enum     => SpeziesDatentypen.Kasrodiah_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Drei_Enum     => SpeziesDatentypen.Lasupin_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Vier_Enum     => SpeziesDatentypen.Lamustra_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Fünf_Enum     => SpeziesDatentypen.Manuky_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Sechs_Enum    => SpeziesDatentypen.Suroka_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Sieben_Enum   => SpeziesDatentypen.Pryolon_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Acht_Enum     => SpeziesDatentypen.Moru_Phisihl_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Neun_Enum     => SpeziesDatentypen.Larinos_Lotaris_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Zehn_Enum     => SpeziesDatentypen.Carupex_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Elf_Enum      => SpeziesDatentypen.Alary_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Zwölf_Enum    => SpeziesDatentypen.Natries_Zermanis_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Dreizehn_Enum => SpeziesDatentypen.Tridatus_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Vierzehn_Enum => SpeziesDatentypen.Senelari_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Fünfzehn_Enum => SpeziesDatentypen.Aspari_2_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Sechzehn_Enum => SpeziesDatentypen.Ekropa_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Siebzehn_Enum => SpeziesDatentypen.Tesorahn_Enum,
+                                                     RueckgabeDatentypen.Auswahl_Achtzehn_Enum => SpeziesDatentypen.Talbidahr_Enum
                                                     );
    
    type KartentemperaturrückgabeKartentemperaturArray is array (RueckgabeDatentypen.Kartentemperatur_Enum'Range) of KartenartDatentypen.Kartentemperatur_Enum;

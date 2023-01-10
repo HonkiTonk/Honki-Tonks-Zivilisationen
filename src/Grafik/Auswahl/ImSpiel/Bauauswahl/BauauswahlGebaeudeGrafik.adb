@@ -25,7 +25,7 @@ package body BauauswahlGebaeudeGrafik is
 
    procedure Gebäudeinformationen
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
                   
       ViewflächeInformationen := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeInformationen,
@@ -39,34 +39,34 @@ package body BauauswahlGebaeudeGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeInformationen);
       
-      Gebäudetexte (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseGebaeudeDatenbank.Produktionskosten (RasseExtern => RasseExtern,
+      Gebäudetexte (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => SpeziesExtern,
                                                                                                                              IDExtern    => AuswahlExtern)'Wide_Wide_Image;
-      Gebäudetexte (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteNahrungskosten) & LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
+      Gebäudetexte (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteNahrungskosten) & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern        => SpeziesExtern,
                                                                                                                                              IDExtern           => AuswahlExtern,
                                                                                                                                              WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
-      Gebäudetexte (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteGeldkosten) & LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
+      Gebäudetexte (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteGeldkosten) & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern        => SpeziesExtern,
                                                                                                                                          IDExtern           => AuswahlExtern,
                                                                                                                                          WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
-      Gebäudetexte (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteProduktionskosten) & LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
+      Gebäudetexte (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteProduktionskosten) & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern        => SpeziesExtern,
                                                                                                                                                 IDExtern           => AuswahlExtern,
                                                                                                                                                 WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)'Wide_Wide_Image;
-      Gebäudetexte (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterNahrungsbonus) & LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => RasseExtern,
+      Gebäudetexte (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterNahrungsbonus) & LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern            => SpeziesExtern,
                                                                                                                                             IDExtern               => AuswahlExtern,
                                                                                                                                             WirtschaftBonusExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
       Gebäudetexte (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterProduktionsbonus)
-        & LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => RasseExtern,
+        & LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern            => SpeziesExtern,
                                                  IDExtern               => AuswahlExtern,
                                                  WirtschaftBonusExtern => ProduktionDatentypen.Produktion_Enum)'Wide_Wide_Image;
-      Gebäudetexte (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterGeldbonus) & LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => RasseExtern,
+      Gebäudetexte (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterGeldbonus) & LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern            => SpeziesExtern,
                                                                                                                                         IDExtern               => AuswahlExtern,
                                                                                                                                         WirtschaftBonusExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
-      Gebäudetexte (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterWissenbonus) & LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => RasseExtern,
+      Gebäudetexte (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterWissenbonus) & LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern            => SpeziesExtern,
                                                                                                                                           IDExtern               => AuswahlExtern,
                                                                                                                                           WirtschaftBonusExtern => ProduktionDatentypen.Forschung_Enum)'Wide_Wide_Image;
-      Gebäudetexte (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterVerteidigungsbonus) & LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => RasseExtern,
+      Gebäudetexte (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterVerteidigungsbonus) & LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern      => SpeziesExtern,
                                                                                                                                             IDExtern         => AuswahlExtern,
                                                                                                                                             KampfBonusExtern => KampfDatentypen.Verteidigung_Enum)'Wide_Wide_Image;
-      Gebäudetexte (10) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterAngriffsbonus) & LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => RasseExtern,
+      Gebäudetexte (10) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterAngriffsbonus) & LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern      => SpeziesExtern,
                                                                                                                                         IDExtern         => AuswahlExtern,
                                                                                                                                         KampfBonusExtern => KampfDatentypen.Angriff_Enum)'Wide_Wide_Image;
       
@@ -100,7 +100,7 @@ package body BauauswahlGebaeudeGrafik is
       ViewflächeInformationen := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
       Gebäudebeschreibung (AuswahlExtern    => AuswahlExtern,
-                            RasseExtern      => RasseExtern);
+                            SpeziesExtern      => SpeziesExtern);
             
    end Gebäudeinformationen;
    
@@ -108,7 +108,7 @@ package body BauauswahlGebaeudeGrafik is
    
    procedure Gebäudebeschreibung
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       ViewflächeBeschreibung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeBeschreibung,
@@ -125,19 +125,19 @@ package body BauauswahlGebaeudeGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
                                     position => Textposition);
             
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
                                          str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
-                                                                                                                                                                               RasseExtern => RasseExtern),
+                                                                                                                                                                               SpeziesExtern => SpeziesExtern),
                                                                                                         TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x));
          
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern));
+                                         text         => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern));
             
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.GebäudezusatztextAccess (RasseExtern, AuswahlExtern),
+                                                                      TextAccessExtern => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
       ViewflächeBeschreibung := (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);

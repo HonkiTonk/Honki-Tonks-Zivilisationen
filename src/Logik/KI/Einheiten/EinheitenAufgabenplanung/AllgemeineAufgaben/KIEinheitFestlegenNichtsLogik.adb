@@ -6,14 +6,14 @@ with KIDatentypen;
 package body KIEinheitFestlegenNichtsLogik is
 
    procedure NichtsTun
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
-      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                               AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
-      SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                               BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
-      SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                RechnenSetzenExtern      => False);
       

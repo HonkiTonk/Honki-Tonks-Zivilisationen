@@ -23,13 +23,13 @@ package body SchreibeAllgemeines is
    
    
    
-   procedure RasseAmzugNachLaden
-     (RasseExtern : in RassenDatentypen.Rassen_Enum)
+   procedure SpeziesAmzugNachLaden
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
    is begin
       
-      SpielVariablen.Allgemeines.RasseAmZugNachLaden := RasseExtern;
+      SpielVariablen.Allgemeines.SpeziesAmZugNachLaden := SpeziesExtern;
       
-   end RasseAmzugNachLaden;
+   end SpeziesAmzugNachLaden;
    
       
    
@@ -74,10 +74,10 @@ package body SchreibeAllgemeines is
    
    
    procedure PlanetVernichtet
-     (RasseExtern : in RassenDatentypen.Rassen_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
    is begin
       
-      SpielVariablen.Allgemeines.PlanetVernichtet := RasseExtern;
+      SpielVariablen.Allgemeines.PlanetVernichtet := SpeziesExtern;
       
    end PlanetVernichtet;
    

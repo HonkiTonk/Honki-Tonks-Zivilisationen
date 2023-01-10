@@ -10,14 +10,14 @@ with EinheitVerbessernLogik;
 package body KIEinheitUmsetzenErkundenLogik is
 
    function Erkunden
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
       use type EinheitenDatentypen.EinheitenIDMitNullWert;
    begin
       
-      ZielKoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      ZielKoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       if
         ZielKoordinaten = KartenRecordKonstanten.LeerKoordinate
@@ -25,20 +25,20 @@ package body KIEinheitUmsetzenErkundenLogik is
          return False;
          
       elsif
-        LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = ZielKoordinaten
+        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = ZielKoordinaten
       then
          return False;
          
       elsif
         True = LeseWeltkarte.Sichtbar (KoordinatenExtern => ZielKoordinaten,
-                                       RasseExtern       => EinheitRasseNummerExtern.Rasse)
+                                       SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
       then
          return False;
          
       elsif
        -- LeseAllgemeines.Rundenanzahl mod 20 = 0
        -- and
-          EinheitVerbessernLogik.EinheitVerbesserbar (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerID
+          EinheitVerbessernLogik.EinheitVerbesserbar (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= EinheitenKonstanten.LeerID
       then
          return False;
          

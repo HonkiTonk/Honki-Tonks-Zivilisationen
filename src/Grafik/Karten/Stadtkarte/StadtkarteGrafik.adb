@@ -16,7 +16,7 @@ with ViewsEinstellenGrafik;
 package body StadtkarteGrafik is
 
    procedure Stadtkarte
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type KartenDatentypen.Kartenfeld;
    begin
@@ -25,7 +25,7 @@ package body StadtkarteGrafik is
                                             GrößeExtern          => EinstellungenGrafik.AktuelleFensterAuflösung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtKarte));
       
-      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern));
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
       GrafischeDarstellung (GrundExtern => Gesamtgrund);
       
       Stadtgröße := KartenDatentypen.KartenfeldPositiv (Float'Ceiling (Sqrt (X => Float (StadtDatentypen.GebäudeID'Last))));
@@ -46,7 +46,7 @@ package body StadtkarteGrafik is
             end if;
                      
             case
-              LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+              LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                  WelchesGebäudeExtern  => GebäudeID)
             is
                when False =>
@@ -55,7 +55,7 @@ package body StadtkarteGrafik is
                when True =>
                   KartenspritesZeichnenGrafik.SpriteZeichnenVariabel (PositionExtern     => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y),
                                                                       GrößeExtern        => Grafikgröße,
-                                                                      TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtRasseNummerExtern.Rasse, GebäudeID));
+                                                                      TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtSpeziesNummerExtern.Spezies, GebäudeID));
             end case;
          
          end loop XAchseSchleife;

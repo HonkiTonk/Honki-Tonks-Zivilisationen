@@ -1,48 +1,48 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package KennenlernenLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
-   use type RassenDatentypen.Rassen_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spezies_Enum;
 
    procedure Erstkontakt
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 EigeneRasseExtern /= FremdeRasseExtern
+                 EigeneSpeziesExtern /= FremdeSpeziesExtern
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EigeneSpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => FremdeSpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 private
 
    procedure ErstkontaktMenschMensch
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 EigeneRasseExtern /= FremdeRasseExtern
+                 EigeneSpeziesExtern /= FremdeSpeziesExtern
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EigeneSpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => FremdeSpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
    procedure ErstkontaktMenschKI
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 EigeneRasseExtern /= FremdeRasseExtern
+                 EigeneSpeziesExtern /= FremdeSpeziesExtern
                and
-                 (LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 (LeseSpeziesbelegung.Belegung (SpeziesExtern => EigeneSpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
                   or
-                    LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum)
+                    LeseSpeziesbelegung.Belegung (SpeziesExtern => FremdeSpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum)
               );
 
 end KennenlernenLogik;

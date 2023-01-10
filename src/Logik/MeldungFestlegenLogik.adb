@@ -18,13 +18,13 @@ package body MeldungFestlegenLogik is
    
    procedure SpielermeldungFestlegen
      (MeldungExtern : in Positive;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       case
-        LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
       is
-         when RassenDatentypen.Mensch_Spieler_Enum =>
+         when SpeziesDatentypen.Mensch_Spieler_Enum =>
             MeldungFestlegen (MeldungExtern => MeldungExtern);
             
          when others =>

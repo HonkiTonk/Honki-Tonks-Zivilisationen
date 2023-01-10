@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
 
@@ -6,28 +6,28 @@ private with KampfRecords;
 private with EinheitenDatentypen;
 
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package KampfsystemEinheitenLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Rassen_Enum;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spezies_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    function KampfsystemNahkampf
-     (AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (AngreiferExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      VerteidigerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
      with
        Pre => (
-                 AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
+                 AngreiferExtern.Spezies /= VerteidigerExtern.Spezies
                and
-                LeseRassenbelegung.Belegung (RasseExtern => AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreiferExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                LeseRassenbelegung.Belegung (RasseExtern => VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 VerteidigerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => VerteidigerExtern.Rasse)
+                 VerteidigerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => VerteidigerExtern.Spezies)
                and
-                 AngreiferExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreiferExtern.Rasse)
+                 AngreiferExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => AngreiferExtern.Spezies)
               );
 
 private
@@ -43,22 +43,22 @@ private
 
 
    function Kampf
-     (VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (VerteidigerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord;
-      AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      AngreiferExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
      with
        Pre => (
-                 AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
+                 AngreiferExtern.Spezies /= VerteidigerExtern.Spezies
                and
-                LeseRassenbelegung.Belegung (RasseExtern => AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreiferExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 VerteidigerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => VerteidigerExtern.Rasse)
+                 VerteidigerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => VerteidigerExtern.Spezies)
                and
-                 AngreiferExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreiferExtern.Rasse)
+                 AngreiferExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => AngreiferExtern.Spezies)
               );
 
 end KampfsystemEinheitenLogik;

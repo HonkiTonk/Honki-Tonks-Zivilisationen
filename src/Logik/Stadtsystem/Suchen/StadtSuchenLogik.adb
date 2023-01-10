@@ -11,12 +11,12 @@ with NachGrafiktask;
 
 package body StadtSuchenLogik is
 
-   function KoordinatenStadtMitRasseSuchen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+   function KoordinatenStadtMitSpeziesSuchen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       case
@@ -30,7 +30,7 @@ package body StadtSuchenLogik is
       end case;
             
       if
-        Stadt.Rasse = RasseExtern
+        Stadt.Spezies = SpeziesExtern
       then
          return Stadt.Nummer;
             
@@ -38,13 +38,13 @@ package body StadtSuchenLogik is
          return StadtKonstanten.LeerNummer;
       end if;
       
-   end KoordinatenStadtMitRasseSuchen;
+   end KoordinatenStadtMitSpeziesSuchen;
    
 
 
-   function KoordinatenStadtOhneRasseSuchen
+   function KoordinatenStadtOhneSpeziesSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return StadtRecords.RasseStadtnummerRecord
+      return StadtRecords.SpeziesStadtnummerRecord
    is begin
       
       case
@@ -54,19 +54,19 @@ package body StadtSuchenLogik is
             return LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KoordinatenExtern);
             
          when others =>
-            return StadtKonstanten.LeerRasseNummer;
+            return StadtKonstanten.LeerSpeziesNummer;
       end case;
       
-   end KoordinatenStadtOhneRasseSuchen;
+   end KoordinatenStadtOhneSpeziesSuchen;
    
    
    
-   function KoordinatenStadtOhneSpezielleRasseSuchen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+   function KoordinatenStadtOhneSpezielleSpeziesSuchen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return StadtRecords.RasseStadtnummerRecord
+      return StadtRecords.SpeziesStadtnummerRecord
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       case
@@ -76,19 +76,19 @@ package body StadtSuchenLogik is
             Stadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KoordinatenExtern);
             
          when others =>
-            return StadtKonstanten.LeerRasseNummer;
+            return StadtKonstanten.LeerSpeziesNummer;
       end case;
       
       if
-        Stadt.Rasse = RasseExtern
+        Stadt.Spezies = SpeziesExtern
       then
-         return StadtKonstanten.LeerRasseNummer;
+         return StadtKonstanten.LeerSpeziesNummer;
          
       else
          return Stadt;
       end if;
       
-   end KoordinatenStadtOhneSpezielleRasseSuchen;
+   end KoordinatenStadtOhneSpezielleSpeziesSuchen;
    
 
    
@@ -97,7 +97,7 @@ package body StadtSuchenLogik is
       use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    begin
       
-      StadtName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer,
+      StadtName := TexteingabeLogik.StadtName (StadtSpeziesNummerExtern => StadtKonstanten.LeerSpeziesNummer,
                                                BauenExtern            => False);
       
       case
@@ -110,28 +110,28 @@ package body StadtSuchenLogik is
             null;
       end case;
       
-      RasseSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
          is
-            when RassenDatentypen.Leer_Spieler_Enum =>
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                StadtSchleife:
-               for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseSchleifenwert) loop
+               for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesSchleifenwert) loop
                   
                   if
-                    LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = StadtKonstanten.LeerID
+                    LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtNummerSchleifenwert)) = StadtKonstanten.LeerID
                   then
                      null;
                      
                   elsif
-                    LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = StadtName.EingegebenerText
+                    LeseStadtGebaut.Name (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtNummerSchleifenwert)) = StadtName.EingegebenerText
                   then
-                     NachGrafiktask.GeheZu := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert));
+                     NachGrafiktask.GeheZu := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtNummerSchleifenwert));
                      return;
                
                   else
@@ -141,7 +141,7 @@ package body StadtSuchenLogik is
                end loop StadtSchleife;
          end case;
          
-      end loop RasseSchleife;
+      end loop SpeziesSchleife;
       
    end StadtNachNamenSuchen;
 

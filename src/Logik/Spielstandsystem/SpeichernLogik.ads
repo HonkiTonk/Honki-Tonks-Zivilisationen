@@ -1,9 +1,9 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with RassenDatentypen;
+private with SpeziesDatentypen;
 
-private with LeseRassenbelegung;
+private with LeseSpeziesbelegung;
 
 package SpeichernLogik is
    pragma Elaborate_Body;
@@ -14,7 +14,7 @@ package SpeichernLogik is
    procedure AutoSpeichern;
 
 private
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    AutospeichernWert : Positive := 1;
 
@@ -30,18 +30,18 @@ private
    procedure Allgemeines
      (DateiSpeichernExtern : in File_Type);
 
-   procedure RassenwerteSpeichern
+   procedure SpezieswerteSpeichern
      (DateiSpeichernExtern : in File_Type);
 
    procedure FortschrittErhöhen
      (AutospeichernExtern : in Boolean);
 
-   procedure Rassenwerte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+   procedure Spezieswerte
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateiSpeichernExtern : in File_Type)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 

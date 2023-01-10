@@ -9,7 +9,7 @@ with KartenkoordinatenberechnungssystemLogik;
 package body SichtbereicheErmittelnLogik is
 
    function SichtweiteErmitteln
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KartenDatentypen.Sichtweite
    is
       use type KartenDatentypen.Ebene;
@@ -17,17 +17,17 @@ package body SichtbereicheErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      KoordinatenEinheit := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      KoordinatenEinheit := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
       if
         KoordinatenEinheit.EAchse >= KartenKonstanten.OberflächeKonstante
         and
-          (True = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+          (True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies,
                                                          IDExtern             => EinheitID,
                                                          WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
            or
-             True = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+             True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies,
                                                            IDExtern             => EinheitID,
                                                            WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum))
       then

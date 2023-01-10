@@ -1,22 +1,22 @@
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package body Spielertests is
    
    function BeliebigeSpielerart
-     (RasseExtern : in RassenDatentypen.Rassen_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
       return Boolean
    is
-      use type RassenDatentypen.Rassen_Enum;
-      use type RassenDatentypen.Spieler_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
+      use type SpeziesDatentypen.Spieler_Enum;
    begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          if
-           RasseSchleifenwert = RasseExtern
+           SpeziesSchleifenwert = SpeziesExtern
            or
-             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) not in RassenDatentypen.Spieler_Belegt_Enum'Range
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) not in SpeziesDatentypen.Spieler_Belegt_Enum'Range
          then
             null;
             
@@ -24,7 +24,7 @@ package body Spielertests is
             return True;
          end if;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
       return False;
       
@@ -33,20 +33,20 @@ package body Spielertests is
    
 
    function MenschlicheSpieler
-     (RasseExtern : in RassenDatentypen.Rassen_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
       return Boolean
    is
-      use type RassenDatentypen.Rassen_Enum;
-      use type RassenDatentypen.Spieler_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
+      use type SpeziesDatentypen.Spieler_Enum;
    begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          if
-           RasseSchleifenwert = RasseExtern
+           SpeziesSchleifenwert = SpeziesExtern
            or
-             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) /= RassenDatentypen.Mensch_Spieler_Enum
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) /= SpeziesDatentypen.Mensch_Spieler_Enum
          then
             null;
             
@@ -54,7 +54,7 @@ package body Spielertests is
             return True;
          end if;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
       return False;
       
@@ -63,20 +63,20 @@ package body Spielertests is
    
    
    function KISpieler
-     (RasseExtern : in RassenDatentypen.Rassen_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
       return Boolean
    is
-      use type RassenDatentypen.Rassen_Enum;
-      use type RassenDatentypen.Spieler_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
+      use type SpeziesDatentypen.Spieler_Enum;
    begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          if
-           RasseSchleifenwert = RasseExtern
+           SpeziesSchleifenwert = SpeziesExtern
            or
-             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) /= RassenDatentypen.KI_Spieler_Enum
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) /= SpeziesDatentypen.KI_Spieler_Enum
          then
             null;
             
@@ -84,7 +84,7 @@ package body Spielertests is
             return True;
          end if;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
       return False;
       

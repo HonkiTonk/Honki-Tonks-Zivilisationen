@@ -184,7 +184,7 @@ package ChangelogSeptember2021 is
    -- Bewertung wann ein Feld für die KI belegt ist und nicht oder trotzdem betreten wird zusammengefasst und erweitert.
    -- Wann die KI mit einer Einheit ein belegtes Feld betritt/angreift optimiert.
    -- Cheats überarbeitet.
-   -- Fehler behoben der verhinderte dass man die Larinos Lotaris als Rassen auswählen konnte.
+   -- Fehler behoben der verhinderte dass man die Larinos Lotaris als Spezies auswählen konnte.
    -- Versucht die Felderbewertung der KI zu optimieren.
    -- Suchenfunktion für von eigenen Städten belegten Felder in der Umgebung von Einheiten eingebaut.
    -- KI ist jetzt in der Lage ihre Einheiten zu verbessern.
@@ -203,8 +203,8 @@ package ChangelogSeptember2021 is
    
    -- Versucht die Zahleneingabe zu verbessern/optimieren und dabei Probleme mit großen Zahlen entdeckt.
    -- Unnötigen Code gelöscht.
-   -- Die KI greift mit ihren Kampfeinheiten jetzt Einheiten in der Nähe an, wenn diese einer Rasse angehören mit der sie im Krieg ist.
-   -- Die KI greift mit ihren Kampfeinheiten jetzt Städte an, wenn diese einer Rasse angehören mit der sie im Krieg ist.
+   -- Die KI greift mit ihren Kampfeinheiten jetzt Einheiten in der Nähe an, wenn diese einer Spezies angehören mit der sie im Krieg ist.
+   -- Die KI greift mit ihren Kampfeinheiten jetzt Städte an, wenn diese einer Spezies angehören mit der sie im Krieg ist.
    -- Wegfindung und Bewegung der KI so angepasst dass die Kampfeinheiten in der Lage sind feindliche Einheiten und Städte anzugreifen.
    -- Contracts und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
@@ -231,7 +231,7 @@ package ChangelogSeptember2021 is
    -- Unnötigen Code gelöscht.
    -- Die Aufgabenbestimmung der KI erweitert und verbessert.
    -- Fehler behoben der dazu führte dass die KI ausschließlich Siedler baute.
-   -- Die Anzahl der Städte und Einheiten aller Rassen wird jetzt gespeichert anstatt jedes mal neu ermittelt.
+   -- Die Anzahl der Städte und Einheiten aller Spezies wird jetzt gespeichert anstatt jedes mal neu ermittelt.
    -- Vorübergehende Prüfung eingebaut damit die KI nicht mehr extrem viele Einheiten baut.
    -- Fehler behoben der zu Abstürzen führte, wenn die KI von zu viel Wasser umgeben war.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
@@ -270,7 +270,7 @@ package ChangelogSeptember2021 is
 
    -- Version 0.00.8550 => 0.00.8560 (01.09.2021):
    
-   -- Fehler behoben durch den es nicht möglich war eine ausgewählte Rasse wieder abzuwählen.
+   -- Fehler behoben durch den es nicht möglich war eine ausgewählte Spezies wieder abzuwählen.
    -- Zusätzliche Prüfungen eingebaut um fehlerhafte Werte zu korrigieren.
    -- Vorhandene Ressourcen, positiv wie negativ, werden jetzt nicht mehr verworfen wenn man das Bauprojekt wechselt.
    -- Eine negative Produktionsrate führt bei fehlendem Bauprojekt zu Geldabzug.

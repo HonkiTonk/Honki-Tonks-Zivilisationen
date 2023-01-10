@@ -1,7 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleTexte;
-with Rassentexte;
+with Speziestexte;
 with TextKonstanten;
 with EinheitenKonstanten;
 
@@ -9,7 +9,7 @@ package body EinheitenbeschreibungenGrafik is
 
    function Kurzbeschreibung
      (IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Wide_Wide_String
    is begin
           
@@ -20,7 +20,7 @@ package body EinheitenbeschreibungenGrafik is
             return TextKonstanten.LeerString;
             
          when others =>
-            return To_Wide_Wide_String (Source => Rassentexte.Einheiten (RasseExtern, IDExtern, 1));
+            return To_Wide_Wide_String (Source => Speziestexte.Einheiten (SpeziesExtern, IDExtern, 1));
       end case;
          
    end Kurzbeschreibung;
@@ -29,11 +29,11 @@ package body EinheitenbeschreibungenGrafik is
    
    function Langbeschreibung
      (IDExtern : in EinheitenDatentypen.EinheitenID;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Rassentexte.Einheiten (RasseExtern, IDExtern, 2));
+      return To_Wide_Wide_String (Source => Speziestexte.Einheiten (SpeziesExtern, IDExtern, 2));
       
    end Langbeschreibung;
    

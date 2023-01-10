@@ -17,7 +17,7 @@ with SchreibeCursor;
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
 with SchreibeAllgemeines;
-with SchreibeRassenbelegung;
+with SchreibeSpeziesbelegung;
 
 with LadezeitenLogik;
 with NachGrafiktask;
@@ -107,7 +107,7 @@ package body LadenLogik is
       end case;
       
       case
-        RassenwerteLaden (LadenPrüfenExtern => False,
+        SpezieswerteLaden (LadenPrüfenExtern => False,
                           DateiLadenExtern  => DateiLadenExtern)
       is
          when False =>
@@ -133,7 +133,7 @@ package body LadenLogik is
                                     DateiLadenExtern  => DateiLadenExtern);
       LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
-      Leerwert := RassenwerteLaden (LadenPrüfenExtern => True,
+      Leerwert := SpezieswerteLaden (LadenPrüfenExtern => True,
                                     DateiLadenExtern  => DateiLadenExtern);
       LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
                
@@ -210,15 +210,15 @@ package body LadenLogik is
       SpielRecords.AllgemeinesRecord'Read (Stream (File => DateiLadenExtern),
                                            Allgemeines);
       
-      SpielRecords.RassenbelegungArray'Read (Stream (File => DateiLadenExtern),
-                                             Rassenbelegung);
+      SpielRecords.SpeziesbelegungArray'Read (Stream (File => DateiLadenExtern),
+                                             Speziesbelegung);
       
       case
         LadenPrüfenExtern
       is
          when True =>
             SchreibeAllgemeines.GanzerEintrag (EintragExtern => Allgemeines);
-            SchreibeRassenbelegung.GanzesArray (ArrayExtern => Rassenbelegung);
+            SchreibeSpeziesbelegung.GanzesArray (ArrayExtern => Speziesbelegung);
             
          when False =>
             null;
@@ -234,23 +234,23 @@ package body LadenLogik is
    
    
    
-   function RassenwerteLaden
+   function SpezieswerteLaden
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
       return Boolean
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          if
-           Rassenbelegung (RasseSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
+           Speziesbelegung (SpeziesSchleifenwert).Belegung = SpeziesDatentypen.Leer_Spieler_Enum
          then
             null;
                
          elsif
-           True = Rassenwerte (LadenPrüfenExtern => LadenPrüfenExtern,
-                               RasseExtern       => RasseSchleifenwert,
+           True = Spezieswerte (LadenPrüfenExtern => LadenPrüfenExtern,
+                               SpeziesExtern       => SpeziesSchleifenwert,
                                DateiLadenExtern  => DateiLadenExtern)
          then
             null;
@@ -259,21 +259,21 @@ package body LadenLogik is
             return False;
          end if;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
       return True;
       
-   end RassenwerteLaden;
+   end SpezieswerteLaden;
    
    
    
-   function Rassenwerte
+   function Spezieswerte
      (LadenPrüfenExtern : in Boolean;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateiLadenExtern : in File_Type)
       return Boolean
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       SpielRecords.GrenzenRecord'Read (Stream (File => DateiLadenExtern),
@@ -289,7 +289,7 @@ package body LadenLogik is
            LadenPrüfenExtern
          is
             when True =>
-               SchreibeEinheitenGebaut.GanzerEintrag (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
+               SchreibeEinheitenGebaut.GanzerEintrag (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert),
                                                       EintragExtern            => Einheit);
             
             when False =>
@@ -308,7 +308,7 @@ package body LadenLogik is
            LadenPrüfenExtern
          is
             when True =>
-               SchreibeStadtGebaut.GanzerEintrag (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
+               SchreibeStadtGebaut.GanzerEintrag (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert),
                                                   EintragExtern          => Stadt);
             
             when False =>
@@ -318,12 +318,12 @@ package body LadenLogik is
       end loop StadtSchleife;
             
       DiplomatieSchleife:
-      for RasseDiplomatieSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      for SpeziesDiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
 
          if
-           Rassenbelegung (RasseDiplomatieSchleifenwert).Belegung = RassenDatentypen.Leer_Spieler_Enum
+           Speziesbelegung (SpeziesDiplomatieSchleifenwert).Belegung = SpeziesDatentypen.Leer_Spieler_Enum
            or
-             RasseExtern = RasseDiplomatieSchleifenwert
+             SpeziesExtern = SpeziesDiplomatieSchleifenwert
          then
             null;
             
@@ -335,8 +335,8 @@ package body LadenLogik is
               LadenPrüfenExtern
             is
                when True =>
-                  SchreibeDiplomatie.GanzerEintrag (RasseEinsExtern => RasseExtern,
-                                                    RasseZweiExtern => RasseDiplomatieSchleifenwert,
+                  SchreibeDiplomatie.GanzerEintrag (SpeziesEinsExtern => SpeziesExtern,
+                                                    SpeziesZweiExtern => SpeziesDiplomatieSchleifenwert,
                                                     EintragExtern   => Diplomatie);
             
                when False =>
@@ -357,11 +357,11 @@ package body LadenLogik is
         LadenPrüfenExtern
       is
          when True =>
-            SchreibeWichtiges.GanzerEintrag (RasseExtern   => RasseExtern,
+            SchreibeWichtiges.GanzerEintrag (SpeziesExtern   => SpeziesExtern,
                                              EintragExtern => Wichtiges);
-            SchreibeGrenzen.GanzerEintrag (RasseExtern   => RasseExtern,
+            SchreibeGrenzen.GanzerEintrag (SpeziesExtern   => SpeziesExtern,
                                            EintragExtern => Grenzen);
-            SchreibeCursor.GanzerEintrag (RasseExtern   => RasseExtern,
+            SchreibeCursor.GanzerEintrag (SpeziesExtern   => SpeziesExtern,
                                           EintragExtern => Cursor);
             
          when False =>
@@ -374,6 +374,6 @@ package body LadenLogik is
       when Constraint_Error | End_Error =>
          return False;
       
-   end Rassenwerte;
+   end Spezieswerte;
 
 end LadenLogik;

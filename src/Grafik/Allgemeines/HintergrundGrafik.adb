@@ -57,26 +57,26 @@ package body HintergrundGrafik is
    
    
    
-   procedure Rassenhintergrund
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      HintergrundExtern : in GrafikDatentypen.Rassenhintergrund_Vorhanden_Enum;
+   procedure Spezieshintergrund
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
    is
       use type Sf.Graphics.sfTexture_Ptr;
    begin
       
       if
-        EingeleseneTexturenGrafik.RassenhintergrundAccess (RasseExtern, HintergrundExtern) = null
+        EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, HintergrundExtern) = null
       then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "HintergrundGrafik.Rassenhintergrund: Hintergrund fehlt: " & RasseExtern'Wide_Wide_Image & " - " & HintergrundExtern'Wide_Wide_Image);
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "HintergrundGrafik.Spezieshintergrund: Hintergrund fehlt: " & SpeziesExtern'Wide_Wide_Image & " - " & HintergrundExtern'Wide_Wide_Image);
          
       else
-         Sf.Graphics.Sprite.scale (sprite  => RassenhintergrundSpriteAccess,
-                                   factors => TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => RassenhintergrundSpriteAccess,
-                                                                                                      TextureAccessExtern => EingeleseneTexturenGrafik.RassenhintergrundAccess (RasseExtern, HintergrundExtern),
+         Sf.Graphics.Sprite.scale (sprite  => SpezieshintergrundSpriteAccess,
+                                   factors => TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => SpezieshintergrundSpriteAccess,
+                                                                                                      TextureAccessExtern => EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, HintergrundExtern),
                                                                                                       GrößeExtern         => AbmessungenExtern));
          
-         -- Farbe := Sf.Graphics.Sprite.getColor (sprite => RassenhintergrundSpriteAccess);
+         -- Farbe := Sf.Graphics.Sprite.getColor (sprite => SpezieshintergrundSpriteAccess);
          
          -- case
          --   HintergrundExtern
@@ -88,11 +88,11 @@ package body HintergrundGrafik is
          --     Farbe.a := 150;
          -- end case;
          
-         --  Sf.Graphics.Sprite.setColor (sprite => RassenhintergrundSpriteAccess,
+         --  Sf.Graphics.Sprite.setColor (sprite => SpezieshintergrundSpriteAccess,
          --                               color  => Farbe);
                         
          Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
-                                              object       => RassenhintergrundSpriteAccess);
+                                              object       => SpezieshintergrundSpriteAccess);
          
          return;
       end if;
@@ -101,6 +101,6 @@ package body HintergrundGrafik is
                                               PositionExtern  => (0.00, 0.00),
                                               FarbeExtern     => Sf.Graphics.Color.sfBlack);
       
-   end Rassenhintergrund;
+   end Spezieshintergrund;
 
 end HintergrundGrafik;

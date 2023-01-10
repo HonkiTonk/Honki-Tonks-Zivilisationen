@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with KartenRecords;
 with KartenKonstanten;
 with KartenDatentypen;
@@ -8,14 +8,14 @@ private with EinheitenRecords;
 private with KartengrundDatentypen;
 
 with LeseWeltkarteneinstellungen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package SichtbarkeitSetzenLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    
    procedure SichtbarkeitSetzen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
@@ -23,11 +23,11 @@ package SichtbarkeitSetzenLogik is
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
    procedure EbenenBerechnungen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
@@ -35,7 +35,7 @@ package SichtbarkeitSetzenLogik is
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
 private
@@ -46,8 +46,8 @@ private
    Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum;
 
-   FremdeStadt : StadtRecords.RasseStadtnummerRecord;
+   FremdeStadt : StadtRecords.SpeziesStadtnummerRecord;
 
-   FremdeEinheit : EinheitenRecords.RasseEinheitnummerRecord;
+   FremdeEinheit : EinheitenRecords.SpeziesEinheitnummerRecord;
 
 end SichtbarkeitSetzenLogik;

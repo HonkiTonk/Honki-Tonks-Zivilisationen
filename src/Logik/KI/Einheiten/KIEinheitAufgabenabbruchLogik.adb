@@ -10,20 +10,20 @@ with KIGefahrErmittelnLogik;
 package body KIEinheitAufgabenabbruchLogik is
 
    procedure Friedenshandlung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
       
       if
-        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) not in KIDatentypen.Einheit_Aufgabe_Frieden_Enum'Range
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) not in KIDatentypen.Einheit_Aufgabe_Frieden_Enum'Range
         or
-          KIGefahrErmittelnLogik.GefahrSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern).Nummer = EinheitenKonstanten.LeerNummer
+          KIGefahrErmittelnLogik.GefahrSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern).Nummer = EinheitenKonstanten.LeerNummer
       then
          null;
             
       else
-         SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+         SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                  AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
       end if;
       

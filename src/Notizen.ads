@@ -1,21 +1,21 @@
-RassenDatentypen.Menschen_Enum         => ,
-  RassenDatentypen.Kasrodiah_Enum        => ,
-    RassenDatentypen.Lasupin_Enum          => ,
-      RassenDatentypen.Lamustra_Enum         => ,
-        RassenDatentypen.Manuky_Enum           => ,
-          RassenDatentypen.Suroka_Enum           => ,
-            RassenDatentypen.Pryolon_Enum          => ,
-              RassenDatentypen.Moru_Phisihl_Enum     => ,
-                RassenDatentypen.Larinos_Lotaris_Enum  => ,
-                  RassenDatentypen.Carupex_Enum          => ,
-                    RassenDatentypen.Alary_Enum            => ,
-                      RassenDatentypen.Natries_Zermanis_Enum => ,
-                        RassenDatentypen.Tridatus_Enum         => ,
-                          RassenDatentypen.Senelari_Enum         => ,
-                            RassenDatentypen.Aspari_2_Enum         => ,
-                              RassenDatentypen.Ekropa_Enum           => ,
-                                RassenDatentypen.Tesorahn_Enum         => ,
-                                  RassenDatentypen.Talbidahr_Enum        =>
+SpeziesDatentypen.Menschen_Enum         => ,
+  SpeziesDatentypen.Kasrodiah_Enum        => ,
+    SpeziesDatentypen.Lasupin_Enum          => ,
+      SpeziesDatentypen.Lamustra_Enum         => ,
+        SpeziesDatentypen.Manuky_Enum           => ,
+          SpeziesDatentypen.Suroka_Enum           => ,
+            SpeziesDatentypen.Pryolon_Enum          => ,
+              SpeziesDatentypen.Moru_Phisihl_Enum     => ,
+                SpeziesDatentypen.Larinos_Lotaris_Enum  => ,
+                  SpeziesDatentypen.Carupex_Enum          => ,
+                    SpeziesDatentypen.Alary_Enum            => ,
+                      SpeziesDatentypen.Natries_Zermanis_Enum => ,
+                        SpeziesDatentypen.Tridatus_Enum         => ,
+                          SpeziesDatentypen.Senelari_Enum         => ,
+                            SpeziesDatentypen.Aspari_2_Enum         => ,
+                              SpeziesDatentypen.Ekropa_Enum           => ,
+                                SpeziesDatentypen.Tesorahn_Enum         => ,
+                                  SpeziesDatentypen.Talbidahr_Enum        =>
 
 
 
@@ -38,5 +38,5 @@ Ekropa => bevorzugen bewaldete Flächen in gemäßigtem oder warmen Klima
 Tesorahn => bevorzugter Lebensraum sind Salzgewässer in flüssigem Zustand
 Talbidahr => Unterirdisch in gemäßigten Klimazonen
 
-use type RassenDatentypen.Rassen_Enum;
-use type RassenDatentypen.Spieler_Enum;
+use type SpeziesDatentypen.Spezies_Enum;
+use type SpeziesDatentypen.Spieler_Enum;

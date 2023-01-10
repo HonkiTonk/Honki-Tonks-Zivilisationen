@@ -129,7 +129,7 @@ package ChangelogNovember2022 is
    -- Version 0.04.4035 => 0.04.4140 (21.11.2022):
    
    -- Weiter daran gearbeitet den Zugriff auf die SpielVariablen nur noch durch Lese- und Schreibesystem zu erlauben.
-   -- Fehler im Diplomatiesystem korrigiert der dazu führte das eine nicht belegte Rasse berücksichtigt wurde.
+   -- Fehler im Diplomatiesystem korrigiert der dazu führte das eine nicht belegte Spezies berücksichtigt wurde.
    -- Unnötigen Code gelöscht.
    -- Zusätzliche Überlaufprüfungen eingebaut.
    -- Zusätzliche Sicherheitsprüfungen eingebaut.
@@ -183,7 +183,7 @@ package ChangelogNovember2022 is
    -- Einheitenbewegungssystem überarbeitet.
    -- Unnötigen Code gelöscht.
    -- Die notwendigen Bewegungspunkte und Bonusbewegungspunkte für ein Feld/Weg werden jetzt in den Kartengrund- und Wegedatenbanken gespeichert.
-   -- Die notwendigen Bewegungspunkte um ein Feld zu betreten können jetzt rassenspezifisch eingestellt werden.
+   -- Die notwendigen Bewegungspunkte um ein Feld zu betreten können jetzt Speziesspezifisch eingestellt werden.
    -- Zusätzliche Sicherheitsprüfungen eingebaut.
    -- Fehler korrigiert der dazu führte dass die KI versuchte mit sehr vielen Einheiten eine Stadt zu bewachen.
    -- Fehler korrigiert der es der KI erlaubte Einheiten zu bewegen die keine Bewegungspunkte mehr hatten.

@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with StadtDatentypen;
 with StadtRecords;
 with EinheitenRecords;
@@ -7,32 +7,32 @@ with StadtKonstanten;
 with EinheitenKonstanten;
 
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package MeldungenSetzenLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    procedure MeldungenRundenende;
    
    procedure StadtmeldungSetzen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EreignisExtern : in StadtDatentypen.Stadt_Meldungen_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
               );
    
    procedure EinheitmeldungSetzen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       EreignisExtern : in EinheitenDatentypen.Einheit_Meldung_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
               );
    
 private

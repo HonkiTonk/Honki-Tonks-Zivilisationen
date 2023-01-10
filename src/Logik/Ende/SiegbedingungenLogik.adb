@@ -1,10 +1,10 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with WichtigesRecordKonstanten;
 
 with LeseWichtiges;
 with SchreibeAllgemeines;
-with LeseRassenbelegung;
-with SchreibeRassenbelegung;
+with LeseSpeziesbelegung;
+with SchreibeSpeziesbelegung;
 
 with AbspannLogik;
 with NachGrafiktask;
@@ -14,11 +14,11 @@ package body SiegbedingungenLogik is
    function Siegbedingungen
      return SystemDatentypen.Ende_Enum
    is
-      use type GrafikDatentypen.Rassenhintergrund_Enum;
+      use type GrafikDatentypen.Spezieshintergrund_Enum;
    begin
       
       case
-        RasseBesiegt
+        SpeziesBesiegt
       is
          when False =>
             null;
@@ -53,9 +53,9 @@ package body SiegbedingungenLogik is
         Sieg
       is 
          when GrafikDatentypen.Abspann_Enum'Range =>
-            NachGrafiktask.AktuelleRasse := RassenDatentypen.Ekropa_Enum;
+            NachGrafiktask.AktuelleSpezies := SpeziesDatentypen.Ekropa_Enum;
             AbspannLogik.Abspann (AbspannExtern => Sieg);
-            NachGrafiktask.AktuelleRasse := RassenDatentypen.Keine_Rasse_Enum;
+            NachGrafiktask.AktuelleSpezies := SpeziesDatentypen.Keine_Spezies_Enum;
             
             if
               Sieg = GrafikDatentypen.Gewonnen_Enum
@@ -74,24 +74,24 @@ package body SiegbedingungenLogik is
    
    
    
-   function RasseBesiegt
+   function SpeziesBesiegt
      return Boolean
    is
-      use type RassenDatentypen.Spieler_Enum;
+      use type SpeziesDatentypen.Spieler_Enum;
    begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          case
-           LeseRassenbelegung.Besiegt (RasseExtern => RasseSchleifenwert)
+           LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesSchleifenwert)
          is
             when True =>
-               SchreibeRassenbelegung.GanzerEintrag (RasseExtern   => RasseSchleifenwert,
-                                                     EintragExtern => WichtigesRecordKonstanten.LeerRassenbelegung);
+               SchreibeSpeziesbelegung.GanzerEintrag (SpeziesExtern   => SpeziesSchleifenwert,
+                                                     EintragExtern => WichtigesRecordKonstanten.LeerSpeziesbelegung);
                
                if
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Mensch_Spieler_Enum
                then
                   return True;
                   
@@ -103,11 +103,11 @@ package body SiegbedingungenLogik is
                null;
          end case;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
       return False;
       
-   end RasseBesiegt;
+   end SpeziesBesiegt;
       
       
       
@@ -115,25 +115,25 @@ package body SiegbedingungenLogik is
      return Boolean
    is begin
          
-      VorhandeneRassen := 0;
+      VorhandeneSpezies := 0;
       
-      RassenSchleife:
-      for RassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          case
-          LeseRassenbelegung.Belegung (RasseExtern => RassenSchleifenwert)
+          LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
          is
-            when RassenDatentypen.Leer_Spieler_Enum =>
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
-               VorhandeneRassen := VorhandeneRassen + 1;
+               VorhandeneSpezies := VorhandeneSpezies + 1;
          end case;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
       case
-        VorhandeneRassen
+        VorhandeneSpezies
       is
          when 0 =>
             -- Was mache ich denn in diesem Fall? Kann eventuell im neuen System auftreten, auf True lassen bis ich was besseres für die Enden gebaut habe. äöü
@@ -154,19 +154,19 @@ package body SiegbedingungenLogik is
    function SiegbedingungZwei
      return Boolean
    is
-      use type RassenDatentypen.Spieler_Enum;
+      use type SpeziesDatentypen.Spieler_Enum;
    begin
       
-      RassenGeldSchleife:
-      for RassenGeldSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesGeldSchleife:
+      for SpeziesGeldSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          if
-           LeseRassenbelegung.Belegung (RasseExtern => RassenGeldSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesGeldSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
          then
             null;
             
          elsif
-           LeseWichtiges.Geldmenge (RasseExtern => RassenGeldSchleifenwert) = Integer'Last
+           LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesGeldSchleifenwert) = Integer'Last
          then
             SchreibeAllgemeines.Gewonnen;
             return True;
@@ -175,7 +175,7 @@ package body SiegbedingungenLogik is
             null;
          end if;
          
-      end loop RassenGeldSchleife;
+      end loop SpeziesGeldSchleife;
       
       return False;
       
@@ -186,16 +186,16 @@ package body SiegbedingungenLogik is
    function MenschlicherSpielerVorhanden
      return Boolean
    is
-      use type RassenDatentypen.Spieler_Enum;
+      use type SpeziesDatentypen.Spieler_Enum;
    begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
                
          if
-           LeseRassenbelegung.Besiegt (RasseExtern => RasseSchleifenwert) = False
+           LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesSchleifenwert) = False
            and
-             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Mensch_Spieler_Enum
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Mensch_Spieler_Enum
          then
             return True;
             
@@ -203,7 +203,7 @@ package body SiegbedingungenLogik is
             null;
          end if;
                
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
             
       return False;
       

@@ -2,16 +2,16 @@ package KIKriegBeendenLogik is
    pragma Elaborate_Body;
 
    function KriegBeenden
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      FeindlicheRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EigeneSpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => FeindlicheRasseExtern) /= GlobaleDatentypen.Leer
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => FeindlicheSpeziesExtern) /= GlobaleDatentypen.Leer
                and
-                 EigeneRasseExtern /= FeindlicheRasseExtern
+                 EigeneSpeziesExtern /= FeindlicheSpeziesExtern
               );
 
 end KIKriegBeendenLogik;

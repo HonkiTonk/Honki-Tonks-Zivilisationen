@@ -14,13 +14,13 @@ with MausauswahlLogik;
 package body StadtbausystemLogik is
 
    procedure Bauen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type StadtRecords.BauprojektRecord;
    begin
       
-      AktuellesBauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      NeuesBauprojekt := BauobjektAuswählen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      AktuellesBauprojekt := LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      NeuesBauprojekt := BauobjektAuswählen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       if
         (NeuesBauprojekt.Gebäude = 0
@@ -32,9 +32,9 @@ package body StadtbausystemLogik is
          null;
             
       else
-         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                          BauprojektExtern       => NeuesBauprojekt);
-         SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                          RessourcenExtern       => StadtKonstanten.LeerRessourcen,
                                          ÄndernSetzenExtern     => False);
       end if;
@@ -46,12 +46,12 @@ package body StadtbausystemLogik is
 
 
    function BauobjektAuswählen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return StadtRecords.BauprojektRecord
    is begin
 
-      GebäudeBaubar := MöglicheGebäudeErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      EinheitenBaubar := MöglicheEinheitenErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      GebäudeBaubar := MöglicheGebäudeErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      EinheitenBaubar := MöglicheEinheitenErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 
       if
         GebäudeBaubar = False
@@ -69,7 +69,7 @@ package body StadtbausystemLogik is
    
    
    function MöglicheGebäudeErmitteln
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is begin
       
@@ -78,7 +78,7 @@ package body StadtbausystemLogik is
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
-         InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := GebaeudeAllgemeinLogik.GebäudeAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := GebaeudeAllgemeinLogik.GebäudeAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                                                                                IDExtern               => GebäudeSchleifenwert);
          
          if
@@ -101,7 +101,7 @@ package body StadtbausystemLogik is
    
    
    function MöglicheEinheitenErmitteln
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is begin
       
@@ -112,7 +112,7 @@ package body StadtbausystemLogik is
       for EinheitSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          if
-           True = EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+           True = EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                             IDExtern               => EinheitSchleifenwert)
          then
             InteraktionAuswahl.MöglicheEinheiten (EinheitSchleifenwert) := True;

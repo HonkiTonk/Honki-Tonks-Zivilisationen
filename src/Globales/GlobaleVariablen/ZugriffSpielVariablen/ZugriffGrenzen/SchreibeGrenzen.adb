@@ -3,88 +3,88 @@ with SpielVariablen;
 package body SchreibeGrenzen is
    
    procedure Städtegrenzen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       StädtegrenzeExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
    is begin
       
-      SpielVariablen.Grenzen (RasseExtern).Städtegrenze := StädtegrenzeExtern;
+      SpielVariablen.Grenzen (SpeziesExtern).Städtegrenze := StädtegrenzeExtern;
       
    end Städtegrenzen;
    
    
    
    procedure Einheitengrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       EinheitengrenzeExtern : in EinheitenDatentypen.MaximaleEinheiten)
    is begin
       
-      SpielVariablen.Grenzen (RasseExtern).Einheitengrenze := EinheitengrenzeExtern;
+      SpielVariablen.Grenzen (SpeziesExtern).Einheitengrenze := EinheitengrenzeExtern;
       
    end Einheitengrenze;
    
    
    
    procedure Geldgrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       GeldgrenzeExtern : in ZahlenDatentypen.EigenesNatural)
    is begin
       
-      SpielVariablen.Grenzen (RasseExtern).Geldgrenze := GeldgrenzeExtern;
+      SpielVariablen.Grenzen (SpeziesExtern).Geldgrenze := GeldgrenzeExtern;
       
    end Geldgrenze;
    
    
    
    procedure Forschungsgrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       ForschungsgrenzeExtern : in ProduktionDatentypen.Lagermenge)
    is begin
       
-      SpielVariablen.Grenzen (RasseExtern).Forschungsgrenze := ForschungsgrenzeExtern;
+      SpielVariablen.Grenzen (SpeziesExtern).Forschungsgrenze := ForschungsgrenzeExtern;
       
    end Forschungsgrenze;
    
    
    
    procedure Geldgewinngrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       GeldgewinngrenzeExtern : in ProduktionDatentypen.Lagermenge)
    is begin
       
-      SpielVariablen.Grenzen (RasseExtern).Geldgewinngrenze := GeldgewinngrenzeExtern;
+      SpielVariablen.Grenzen (SpeziesExtern).Geldgewinngrenze := GeldgewinngrenzeExtern;
       
    end Geldgewinngrenze;
    
    
    
    procedure Forschungsgewinngrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       ForschungsgewinngrenzeExtern : in ProduktionDatentypen.Lagermenge)
    is begin
       
-      SpielVariablen.Grenzen (RasseExtern).ForschungGewinngrenze := ForschungsgewinngrenzeExtern;
+      SpielVariablen.Grenzen (SpeziesExtern).ForschungGewinngrenze := ForschungsgewinngrenzeExtern;
       
    end Forschungsgewinngrenze;
    
    
    
-   procedure Rassenrundengrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RassenrundengrenzeExtern : in ZahlenDatentypen.EigenesNatural)
+   procedure Speziesrundengrenze
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesrundengrenzeExtern : in ZahlenDatentypen.EigenesNatural)
    is begin
       
-      SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze := RassenrundengrenzeExtern;
+      SpielVariablen.Grenzen (SpeziesExtern).SpeziesRundengrenze := SpeziesrundengrenzeExtern;
       
-   end Rassenrundengrenze;
+   end Speziesrundengrenze;
    
    
    
    procedure GanzerEintrag
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       EintragExtern : in SpielRecords.GrenzenRecord)
    is begin
       
-      SpielVariablen.Grenzen (RasseExtern) := EintragExtern;
+      SpielVariablen.Grenzen (SpeziesExtern) := EintragExtern;
       
    end GanzerEintrag;
 

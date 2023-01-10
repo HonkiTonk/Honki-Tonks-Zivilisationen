@@ -95,7 +95,7 @@ package ChangelogSeptember2022 is
    
    -- Debian GNAT 12.2.0-2 auf Debian GNAT 12.2.0-3 aktualisiert.
    -- Aufbau des Forschungsmenüs angepasst.
-   -- Fehler in der Ermittlung der Sichtbarkeit korrigiert, welcher verhinderte dass die Unterflächenrassen die Karten aufgedeckt bekamen.
+   -- Fehler in der Ermittlung der Sichtbarkeit korrigiert, welcher verhinderte dass die UnterflächenSpezies die Karten aufgedeckt bekamen.
    -- Diverse Berechnungen mit zusätzlichen Prüfungen versehen, um Fehlberechnungen und Programmstopps zu verhindern.
    -- Bestimmung der Mausposition und dem Vergleichen mit Viewbereichen überarbeitet.
    -- Probleme die bei sehr niedrigen Fensterauflösungen autraten behoben.
@@ -212,7 +212,7 @@ package ChangelogSeptember2022 is
    -- Sichtbarkeit der Ebene unterhalb der aktuellen Ebene ist jetzt einstellbar.
    -- Code zusammengeführt.
    -- Unnötigen Code gelöscht.
-   -- Rassenspezifisches Einlesesystem für Musik eingebaut.
+   -- Speziesspezifisches Einlesesystem für Musik eingebaut.
    -- Einlesesystem für Sounds eingebaut.
    -- Angefangen bessere Warn- und Fehlermeldungen einzubauen.
    -- Interne Struktur des Menüsystems überarbeitet.
@@ -259,7 +259,7 @@ package ChangelogSeptember2022 is
    
    -- Diverse Fehler die zu Abstürzen führten und durch Einbau/Änderung von Funktionen in letzter Zeit auftraten behoben.
    -- Angefangern weitere Lese/Schreibeprüfungen einzubauen um so die zukünftige Modifizierbarkeit zu erhöhen.
-   -- System zur Überprüfung und Konsequenzermittlung für belegte und besiegte Rassen erweitert.
+   -- System zur Überprüfung und Konsequenzermittlung für belegte und besiegte Spezies erweitert.
    -- Der Kartengenerator berücksichtigt jetzt wieder die Kartenarteinstellung des Nutzers.
    -- Planetenvernichtung eingebaut.
    -- Angefangen die Maussteuerung von Einheiten besser an die SFML anzupassen und zu erweitern.
@@ -270,7 +270,7 @@ package ChangelogSeptember2022 is
    -- Version 0.03.8600 => 0.03.8725 (08.09.2022):
    
    -- Stadtbefehle existieren jetzt als auswählbare Texte.
-   -- Erstkontakt mit einer Rasse wird jetzt auch hergesetllt wenn man Land in ihren Grenzen sieht.
+   -- Erstkontakt mit einer Spezies wird jetzt auch hergesetllt wenn man Land in ihren Grenzen sieht.
    -- Texteingaben können jetzt auch mit der rechten Muastaste abgebrochen werden.
    -- Fehler behoben der dazu führen konnte das beim Entfernen einer Einheit es zu einem Absturz kam.
    -- Fehler behoben der beim bauen einer Farm auf Küstengrund zu einem Absturz führte.
@@ -287,7 +287,7 @@ package ChangelogSeptember2022 is
    
    -- Textanzeige und Skalierung des Baumenüs verbessert.
    -- Textanzeige und Skalierung des Diplomatiemenüs verbessert.
-   -- Bei mehreren menschlichen Spielern wird die Rasse jetzt korrekt auf KI gesetzt oder entfernt wenn einer das Spiel verlässt.
+   -- Bei mehreren menschlichen Spielern wird die Spezies jetzt korrekt auf KI gesetzt oder entfernt wenn einer das Spiel verlässt.
    -- Alle Textanzeige und -skalierungssysteme überarbeitet und an den variablen Abstand angepasst.
    -- Steuerungsmenü überarbeitet.
    -- Farbfestlegung der Texte überarbeitet.
@@ -319,7 +319,7 @@ package ChangelogSeptember2022 is
 
    -- Version 0.03.8245 => 0.03.8335 (05.09.2022):
    
-   -- Rassenspezifische Hintergrund-, Einheiten- und Gebäudetexturen sind jetzt möglich.
+   -- Speziesspezifische Hintergrund-, Einheiten- und Gebäudetexturen sind jetzt möglich.
    -- Forschungserfolganzeige eingebaut.
    -- Ladezeitenanzeige leicht verbessert.
    -- Code zusammengefasst und aufgeteilt.

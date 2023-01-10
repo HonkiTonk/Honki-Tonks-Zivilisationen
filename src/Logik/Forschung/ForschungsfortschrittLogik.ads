@@ -1,7 +1,7 @@
-private with RassenDatentypen;
+private with SpeziesDatentypen;
 private with ForschungenDatentypen;
 
-private with LeseRassenbelegung;
+private with LeseSpeziesbelegung;
 
 package ForschungsfortschrittLogik is
    pragma Elaborate_Body;
@@ -9,15 +9,15 @@ package ForschungsfortschrittLogik is
    procedure Forschungsfortschritt;
    
 private
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    
    AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
 
    procedure Fortschritt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 end ForschungsfortschrittLogik;

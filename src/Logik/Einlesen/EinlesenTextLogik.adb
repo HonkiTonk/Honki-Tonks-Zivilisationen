@@ -108,7 +108,7 @@ package body EinlesenTextLogik is
             Kartentemperatur;
                
          when 11 =>
-            Rassenauswahl;
+            Speziesauswahl;
                
          when 12 =>
             Schwierigkeitsgrad;
@@ -444,27 +444,27 @@ package body EinlesenTextLogik is
    
    
    
-   procedure Rassenauswahl
+   procedure Speziesauswahl
    is begin
       
-      RassenauswahlSchleife:
-      for ZeileSchleifenwert in Menuetexte.Rassenauswahl'Range loop
+      SpeziesauswahlSchleife:
+      for ZeileSchleifenwert in Menuetexte.Speziesauswahl'Range loop
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiText,
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenText.Rassenauswahl: Fehlende Zeilen.");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenText.Speziesauswahl: Fehlende Zeilen.");
                return;
                
             when False =>
-               Menuetexte.Rassenauswahl (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
+               Menuetexte.Speziesauswahl (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
          end case;
          
-      end loop RassenauswahlSchleife;
+      end loop SpeziesauswahlSchleife;
       
-   end Rassenauswahl;
+   end Speziesauswahl;
    
    
    

@@ -1,21 +1,21 @@
 with KartenDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with EinheitenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package EinheitSuchenLogik is
    pragma Elaborate_Body;
    use type KartenDatentypen.Kartenfeld;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
-   function KoordinatenEinheitMitRasseSuchen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+   function KoordinatenEinheitMitSpeziesSuchen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LogikGrafikExtern : in Boolean)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
@@ -25,17 +25,17 @@ package EinheitSuchenLogik is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               ),
                       
        Post => (
-                  KoordinatenEinheitMitRasseSuchen'Result <= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
+                  KoordinatenEinheitMitSpeziesSuchen'Result <= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
                );
 
-   function KoordinatenEinheitOhneRasseSuchen
+   function KoordinatenEinheitOhneSpeziesSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LogikGrafikExtern : in Boolean)
-      return EinheitenRecords.RasseEinheitnummerRecord
+      return EinheitenRecords.SpeziesEinheitnummerRecord
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -43,22 +43,22 @@ package EinheitSuchenLogik is
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
-   function KoordinatenEinheitOhneSpezielleRasseSuchen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+   function KoordinatenEinheitOhneSpezielleSpeziesSuchen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LogikGrafikExtern : in Boolean)
-      return EinheitenRecords.RasseEinheitnummerRecord
+      return EinheitenRecords.SpeziesEinheitnummerRecord
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    function TransporterladungSuchen
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungsnummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
       return Boolean;
    
@@ -69,18 +69,18 @@ private
    type TransporternummerArray is array (Boolean'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    Transporternummer : TransporternummerArray;
    
-   type EinheitArray is array (Boolean'Range) of EinheitenRecords.RasseEinheitnummerRecord;
+   type EinheitArray is array (Boolean'Range) of EinheitenRecords.SpeziesEinheitnummerRecord;
    Einheit : EinheitArray;
    
    
    
    function TransporterverschachtelungDurchgehen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LogikGrafikExtern : in Boolean)
-      return EinheitenRecords.RasseEinheitnummerRecord
+      return EinheitenRecords.SpeziesEinheitnummerRecord
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
 end EinheitSuchenLogik;

@@ -13,9 +13,9 @@ package ChangelogAugust2021 is
    -- Die KI kann jetzt auch Städte auf Wasser bauen.
    -- Unnötigen Code gelöscht.
    -- Fehler behoben der bei den Prüfungen der Siegbedingungen für einen Absturz sorgte.
-   -- Wenn sich Einheiten einer Rasse mit der die KI im Krieg ist in der Nähe einer Stadt auftauchen, dann ändert die KI in dieser Stadt jetzt ihr Bauprojekt auf eine möglichst gute Kampfeinheit.
-   -- Die KI baut jetzt mehr Kampfeinheiten wenn sie sich im Krieg mit einer anderen Rasse befindet.
-   -- Angefangen eine Überprüfung einzubauen mit der die KI ermitteln kann ob sich ein Krieg mit einer andere Rasse lohnt.
+   -- Wenn sich Einheiten einer Spezies mit der die KI im Krieg ist in der Nähe einer Stadt auftauchen, dann ändert die KI in dieser Stadt jetzt ihr Bauprojekt auf eine möglichst gute Kampfeinheit.
+   -- Die KI baut jetzt mehr Kampfeinheiten wenn sie sich im Krieg mit einer anderen Spezies befindet.
+   -- Angefangen eine Überprüfung einzubauen mit der die KI ermitteln kann ob sich ein Krieg mit einer andere Spezies lohnt.
    -- Angefangen die Gefahrenprüfungen für KI Einheiten zu überarbeiten/neu zu schreiben.
    -- Angefangen die Berechnung des Bewegungsplans für KI Einheiten zu überarbeiten.
    -- Die Informationsanzeige durch Cheat übersichtlicher und informativer gestaltet.
@@ -63,7 +63,7 @@ package ChangelogAugust2021 is
    -- Diverse Prüfungen ob eine Forschung möglich ist ausgelagert und in einer Funktion zusammengefasst.
    -- Die neue Forschungsfunktion bei der KI eingebaut.
    -- Unnötigen Code gelöscht.
-   -- LeseRassenDatenbank angelegt und überall eingebunden.
+   -- LeseSpeziesDatenbank angelegt und überall eingebunden.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/gelöscht/hinzugefügt.
    
    
@@ -229,8 +229,8 @@ package ChangelogAugust2021 is
    -- Fehler behoben der es verhinderte dass man bestimmte Technologien erforschen konnte.
    -- Passierbarkeitsprüfung beim Bauen einer Einheit eingebaut, so dass man jetzt keine Einheiten mehr in Städten bauen kann deren Umgebung für diese Einheit ungeeignet ist.
    -- GebäudeListeRecord um einen Eintrag für benötigten Kartengrund erweitert und eine Prüfung eingebaut um zu testen ob der eventuell benötigte Grund auch vorhanden ist.
-   -- Kurze Beschreibungen zu jeder Rasse eingefügt und englische Übersetzung erweitert.
-   -- Angefangen die Anfangstechnologien der restlichen Rassen für mich grafisch aufzuarbeiten.
+   -- Kurze Beschreibungen zu jeder Spezies eingefügt und englische Übersetzung erweitert.
+   -- Angefangen die Anfangstechnologien der restlichen Spezies für mich grafisch aufzuarbeiten.
    -- Kartenverbesserungsenum um Schienen und Tunnel erweitert, aber noch nicht ins Spiel eingebaut.
    -- Kartengrundenum um unterirdische und Lavaflüsse erweitert, aber noch nicht ins Spiel eingebaut.
    -- Fehler in der Steuerung belegen korrigiert, welcher verhinderte dass alle Auswahlmöglichkeiten angezeigt wurden und alle Befehle korrekt neu belegt werden konnten.
@@ -240,7 +240,7 @@ package ChangelogAugust2021 is
    
    -- Version 0.00.8240 => 0.00.8250 (11.08.2021):
    
-   -- Angefangen eine Prüfung ob von einer Rasse auf einem bestimmten Feld eine Verbesserung/Weg angelegt werden kann einzubauen.
+   -- Angefangen eine Prüfung ob von einer Spezies auf einem bestimmten Feld eine Verbesserung/Weg angelegt werden kann einzubauen.
    -- Unnötigen Code gelöscht und Dinge zusammengefasst.
    -- Fehler behoben der die aktuelle Beschäftigung falsch anzeigte.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt.
@@ -252,12 +252,12 @@ package ChangelogAugust2021 is
    -- Menschlichen Forschungsbaum verfeinert.
    -- Menschliche Einheitendatenbank vorerst vervollständigt.
    -- Umgebungsgrößenänderung von Städten an die aktuell vorhandenen Forschungsbäume angepasst.
-   -- Grundlegendes System angelegt um später die Änderung der Stadtumgebungsgröße an jede Rasse individuell anzupassen.
+   -- Grundlegendes System angelegt um später die Änderung der Stadtumgebungsgröße an jede Spezies individuell anzupassen.
    -- Die Stadtumgebungsgrößenänderungen finden jetzt nicht nur statt wenn die benötigten Bevölkerungen erreicht werden, sondern auch wenn die entsprechenden Technologien erforscht werden.
    -- Es ist jetzt als Mensch möglich, die entsprechenden erforschten Technologien vorausgesetzt, Städte auf dem Wasser, Unterwasser, Unterirdisch, im Planeteninneren, in der Luft und im Orbit zu bauen.
    -- Fehler behoben bei dem durch manuelle Arbeiterplatzierung ein Kartenfeld von mehreren Städte bewirtschaftet werden konnte.
    -- Simple englische Übersetzung eingebaut, welche ab jetzt auch beibehalten werden soll.
-   -- Menschliche Gebäudedatenbank stark erweitert und fürs Erste als Standard für alle Rassen gesetzt.
+   -- Menschliche Gebäudedatenbank stark erweitert und fürs Erste als Standard für alle Spezies gesetzt.
    -- Stadtanzeige für die neuen Gebäude erweitert.
    -- Angefangen Verbesserungen an die neuen Techbaum anzupassen.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
@@ -268,14 +268,14 @@ package ChangelogAugust2021 is
    
    -- Die Techbäume für mich grafisch weiter konstruiert.
    -- Den menschlichen Techbaum vorerst vervollständigt und eingebaut.
-   -- Alle Rassen nutzen fürs Erste den menschlichen Techbaum.
+   -- Alle Spezies nutzen fürs Erste den menschlichen Techbaum.
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8170 => 0.00.8190 (08.08.2021):
    
-   -- Kleine Hintergrundgeschichten für die jeweiligen Rassen geschrieben, welche ihre Lebensräume enthalten und eine kurze Beschreibung ihrer Eigenschaften/Entwicklungen liefern.
+   -- Kleine Hintergrundgeschichten für die jeweiligen Spezies geschrieben, welche ihre Lebensräume enthalten und eine kurze Beschreibung ihrer Eigenschaften/Entwicklungen liefern.
    -- TextDatenbank angelegt.
    -- Angefangen die Techbäume für mich persönlich grafisch aufzuarbeiten.
    -- Kleinigkeiten korrigiert.
@@ -284,9 +284,9 @@ package ChangelogAugust2021 is
    
    -- Version 0.00.8150 => 0.00.8170 (07.08.2021):
    
-   -- Rassenspezifische Verbesserungengewinne und Kartenbewertung eingebaut/erweitert.
+   -- Speziesspezifische Verbesserungengewinne und Kartenbewertung eingebaut/erweitert.
    -- Unnötigen Code gelöscht.
-   -- Bei Übernahme einer Rasse durch die KI wird jetzt die Kartenbewertung für diese Rasse durchgeführt.
+   -- Bei Übernahme einer Spezies durch die KI wird jetzt die Kartenbewertung für diese Spezies durchgeführt.
    -- Minimal nötige Kartenwerte für den Stadtbau durch die KI angepasst und als konstantes Array in KIKonstanten eingebaut.
    -- Bewertung der Kartenfelder deutlich beschleunigt.
    -- Optimierungsmöglichkeiten überprüft.
@@ -294,7 +294,7 @@ package ChangelogAugust2021 is
    -- Fehler behoben der dazu führte dass nach dem Verlust aller Einheiten und Städte eines menschlichen Spielers das Spiel abstürzte.
    -- Diverse interne und Ordnerumbenennungen.
    -- Hüllen für die Datenbankeditoren angelegt.
-   -- Hülle für die Überprüfung ob an einer bestimmten Position eine Verbesserung von dieser Rasse angelegt werden kann eingebaut, inklusive einer Übergangslösung bis die Forschungsbäume weiter/fertig/brauchbar sind.
+   -- Hülle für die Überprüfung ob an einer bestimmten Position eine Verbesserung von dieser Spezies angelegt werden kann eingebaut, inklusive einer Übergangslösung bis die Forschungsbäume weiter/fertig/brauchbar sind.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
@@ -303,10 +303,10 @@ package ChangelogAugust2021 is
    
    -- Die Tastaturbelegung wird jetzt genauso belegt wie die Datenbanken.
    -- Meldungen für Ereignisse bei Städten und Einheiten eingebaut, inklusive einer Taste um zu diesen Einheiten zu springen.
-   -- Wenn sich eine sichtbare Einheit einer anderen Rasse in der Nähe befindet und man mit dieser keinen Nichtangriffspak hat, wird jetzt auch eine Meldung gesetzt.
+   -- Wenn sich eine sichtbare Einheit einer anderen Spezies in der Nähe befindet und man mit dieser keinen Nichtangriffspak hat, wird jetzt auch eine Meldung gesetzt.
    -- Man startet jetzt mit 100 Geldeinheiten.
    -- Städtebau in der Luft/im Weltraum/im Planeteninnerem getestet.
-   -- Angefangen rassenspezifische Kartenbewertungen und Feldergewinne einzubauen.
+   -- Angefangen Speziesspezifische Kartenbewertungen und Feldergewinne einzubauen.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
@@ -323,13 +323,13 @@ package ChangelogAugust2021 is
    
    -- Zeit seit letzter Änderung des diplomatischen Zustandes wird jetzt am Ende jeder Runde erhöht (mit Überlaufschutz).
    -- Grenzen für die maximale Sympathie, in Abhängigkeit vom aktuellen Status, eingebaut.
-   -- Sympathie wird am Ende jeder Runde für bekannte Rassen um eins bis zum Maximum erhöht.
+   -- Sympathie wird am Ende jeder Runde für bekannte Spezies um eins bis zum Maximum erhöht.
    -- Einige diplomatischen Zustände rausgeworfen um die unnötige Komplexität zu reduzieren.
    -- Man kann jetzt Geld verlangen.
    -- Prüfungen ob die Änderuing des aktuellen Zustandes möglich ist, in Abhängigkeit von Sympathie und letzter Zustandänderung, eingebaut.
    -- Aktuelle Sympathiewerte werden bei Zustandänderung jetzt angepasst.
    -- Geld schenken/verlangen hat jetzt Auswirkung auf die aktuelle Sympathie.
-   -- Rassenspezifische Bewertung von Kartenfeldern/Verbesserungen eingebaut.
+   -- Speziesspezifische Bewertung von Kartenfeldern/Verbesserungen eingebaut.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
@@ -356,12 +356,12 @@ package ChangelogAugust2021 is
    -- Platzierung von neu gebauten Einheiten/Einheiten die aus einem Schiff entladen werden verbessert.
    -- Angefangen das Diplomatiesystem einzubauen.
    -- Das Ändern des diplomatischen Zustandes vereinheitlicht.
-   -- Sichtbarkeitscheat setzt jetzt auch alle Rassen auf Bekannt.
-   -- Es ist jetzt möglich den diplomatischen Zustand zu einer anderen Rasse zu ändern.
+   -- Sichtbarkeitscheat setzt jetzt auch alle Spezies auf Bekannt.
+   -- Es ist jetzt möglich den diplomatischen Zustand zu einer anderen Spezies zu ändern.
    -- Angefangen ein Handelsmenü einzubauen.
-   -- Wenn ein menschlicher Spieler das Spiel verlässt und noch weitere Menschen vorhanden sind, wird das Spiel jetzt nicht mehr beendet sonder die Rasse des Spielers auf die KI übertragen.
-   -- Eine Möglichkeit eingebaut Einheiten einer anderen Rasse unter bestimmten Bedingungen von seinem eigenen Land zu entfernen.
-   -- Fehler behoben der dazu führte dass eine Spielerrasse auch dann auf die KI gesetzt wurde wenn nur die Runde beendet wurde.
+   -- Wenn ein menschlicher Spieler das Spiel verlässt und noch weitere Menschen vorhanden sind, wird das Spiel jetzt nicht mehr beendet sonder die Spezies des Spielers auf die KI übertragen.
+   -- Eine Möglichkeit eingebaut Einheiten einer anderen Spezies unter bestimmten Bedingungen von seinem eigenen Land zu entfernen.
+   -- Fehler behoben der dazu führte dass eine SpielerSpezies auch dann auf die KI gesetzt wurde wenn nur die Runde beendet wurde.
    -- Karten tauschen/kaufen/verkaufen ist jetzt möglich bringt/kostet aber noch kein Geld und es existiert keine Ablehnungsmöglichkeit.
    -- Kontakte tauschen/kaufen/verkaufen ist jetzt möglich bringt/kostet aber noch kein Geld und es existiert keine Ablehnungsmöglichkeit.
    -- Man kann jetzt Geld verschenken, wenn man mehr Geld als 0 hat.

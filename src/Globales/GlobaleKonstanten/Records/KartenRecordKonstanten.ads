@@ -1,7 +1,7 @@
 with KartenRecords;
 with KartenKonstanten;
 with StadtDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with StadtRecords;
 with KartenartDatentypen;
 
@@ -23,8 +23,8 @@ package KartenRecordKonstanten is
                                                                       XAchseEnde   => 0
                                                                      );
    
-   LeerDurchStadtBelegterGrund : constant StadtRecords.RasseStadtnummerRecord := (
-                                                                                  Rasse  => RassenDatentypen.Keine_Rasse_Enum,
+   LeerDurchStadtBelegterGrund : constant StadtRecords.SpeziesStadtnummerRecord := (
+                                                                                  Spezies  => SpeziesDatentypen.Keine_Spezies_Enum,
                                                                                   Nummer => StadtDatentypen.MaximaleStädteMitNullWert'First
                                                                                  );
 

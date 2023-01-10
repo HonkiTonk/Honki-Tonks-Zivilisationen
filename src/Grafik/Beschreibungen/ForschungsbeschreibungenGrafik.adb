@@ -1,6 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Rassentexte;
+with Speziestexte;
 with ForschungKonstanten;
 with Meldungstexte;
 with TextnummernKonstanten;
@@ -9,7 +9,7 @@ package body ForschungsbeschreibungenGrafik is
 
    function Kurzbeschreibung
      (IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Wide_Wide_String
    is begin
       
@@ -20,7 +20,7 @@ package body ForschungsbeschreibungenGrafik is
             return To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeines));
             
          when others =>
-            return To_Wide_Wide_String (Source => Rassentexte.Forschungen (RasseExtern, IDExtern, 1));
+            return To_Wide_Wide_String (Source => Speziestexte.Forschungen (SpeziesExtern, IDExtern, 1));
       end case;
       
    end Kurzbeschreibung;
@@ -29,11 +29,11 @@ package body ForschungsbeschreibungenGrafik is
    
    function Langbeschreibung
      (IDExtern : in ForschungenDatentypen.ForschungID;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Rassentexte.Forschungen (RasseExtern, IDExtern, 2));
+      return To_Wide_Wide_String (Source => Speziestexte.Forschungen (SpeziesExtern, IDExtern, 2));
       
    end Langbeschreibung;
 

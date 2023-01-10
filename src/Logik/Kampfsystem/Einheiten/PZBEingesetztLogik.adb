@@ -19,13 +19,13 @@ with EinheitSuchenLogik;
 package body PZBEingesetztLogik is
 
    function PZBEingesetzt
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
-      EinheitenID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitenID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      Einheitenart := LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
+      Einheitenart := LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                            IDExtern    => EinheitenID);
       
       case
@@ -33,9 +33,9 @@ package body PZBEingesetztLogik is
       is
          when EinheitenDatentypen.PZB_Enum =>
             SchreibeAllgemeines.AnzahlEingesetzterPZB;
-            SchreibeAllgemeines.PlanetVernichtet (RasseExtern => EinheitRasseNummerExtern.Rasse);
+            SchreibeAllgemeines.PlanetVernichtet (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
             Zusammenbruchszeit := LeseAllgemeines.Zusammenbruchszeit;
-            Vernichtungsbereich := LeseEinheitenDatenbank.Effektreichweite (RasseExtern => EinheitRasseNummerExtern.Rasse,
+            Vernichtungsbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                             IDExtern    => EinheitenID);
             
          when others =>
@@ -80,7 +80,7 @@ package body PZBEingesetztLogik is
       SchreibeAllgemeines.Zusammenbruchszeit (ZeitExtern          => Zusammenbruchszeit,
                                               RechnenSetzenExtern => False);
          
-      PlanetenVernichten (KoordinatenExtern         => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+      PlanetenVernichten (KoordinatenExtern         => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                           VernichtungsbereichExtern => Vernichtungsbereich);
             
       return True;
@@ -130,7 +130,7 @@ package body PZBEingesetztLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      Einheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
+      Einheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
                                                                        LogikGrafikExtern => True);
       
       case
@@ -140,10 +140,10 @@ package body PZBEingesetztLogik is
             null;
             
          when others =>
-            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => Einheit);
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => Einheit);
       end case;
       
-      Stadt := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      Stadt := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern);
       
       case
         Stadt.Nummer
@@ -152,7 +152,7 @@ package body PZBEingesetztLogik is
             null;
             
          when others =>
-            StadtEntfernenLogik.StadtEntfernen (StadtRasseNummerExtern => Stadt);
+            StadtEntfernenLogik.StadtEntfernen (StadtSpeziesNummerExtern => Stadt);
       end case;
       
       SchreibeWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern,

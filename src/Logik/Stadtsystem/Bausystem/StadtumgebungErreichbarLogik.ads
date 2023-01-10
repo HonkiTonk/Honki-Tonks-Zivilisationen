@@ -1,19 +1,19 @@
 with KartenDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with KartenRecords;
 with EinheitenDatentypen;
 
 with LeseWeltkarteneinstellungen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package StadtumgebungErreichbarLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
    
    function UmgebungErreichbar
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       NotwendigeFelderExtern : in Positive)
       return KartenRecords.AchsenKartenfeldNaturalRecord
@@ -23,7 +23,7 @@ package StadtumgebungErreichbarLogik is
                and
                  AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               ),
            
        Post => (
@@ -44,7 +44,7 @@ private
    
    function NochErreichbar
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return Boolean
      with
@@ -53,7 +53,7 @@ private
                and
                  AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 end StadtumgebungErreichbarLogik;

@@ -1,5 +1,5 @@
 with EinheitenDatenbank;
-with RassenDatentypen;
+with SpeziesDatentypen;
 
 with EinheitenMenschen;
 with EinheitenKasrodiah;
@@ -25,71 +25,71 @@ package body StandardEinheitenDatenbank is
    procedure StandardEinheitenDatenbankLaden
    is begin
    
-      RassenSchleife:
-      for RasseSchleifenwert in EinheitenDatenbank.EinheitenlisteArray'Range (1) loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in EinheitenDatenbank.EinheitenlisteArray'Range (1) loop
          EinheitenSchleife:
          for EinheitSchleifenwert in EinheitenDatenbank.EinheitenlisteArray'Range (2) loop
             
             case
-              RasseSchleifenwert
+              SpeziesSchleifenwert
             is
-               when RassenDatentypen.Menschen_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenMenschen.EinheitenlisteMenschen (EinheitSchleifenwert);
+               when SpeziesDatentypen.Menschen_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenMenschen.EinheitenlisteMenschen (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Kasrodiah_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenKasrodiah.EinheitenlisteKasrodiah (EinheitSchleifenwert);
+               when SpeziesDatentypen.Kasrodiah_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenKasrodiah.EinheitenlisteKasrodiah (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Lasupin_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenLasupin.EinheitenlisteLasupin (EinheitSchleifenwert);
+               when SpeziesDatentypen.Lasupin_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenLasupin.EinheitenlisteLasupin (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Lamustra_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenLamustra.EinheitenlisteLamustra (EinheitSchleifenwert);
+               when SpeziesDatentypen.Lamustra_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenLamustra.EinheitenlisteLamustra (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Manuky_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenManuky.EinheitenlisteManuky (EinheitSchleifenwert);
+               when SpeziesDatentypen.Manuky_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenManuky.EinheitenlisteManuky (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Suroka_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenSuroka.EinheitenlisteSuroka (EinheitSchleifenwert);
+               when SpeziesDatentypen.Suroka_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenSuroka.EinheitenlisteSuroka (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Pryolon_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenPryolon.EinheitenlistePryolon (EinheitSchleifenwert);
+               when SpeziesDatentypen.Pryolon_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenPryolon.EinheitenlistePryolon (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Moru_Phisihl_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenMoruPhisihl.EinheitenlisteMoruPhisihl (EinheitSchleifenwert);
+               when SpeziesDatentypen.Moru_Phisihl_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenMoruPhisihl.EinheitenlisteMoruPhisihl (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Larinos_Lotaris_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenLarinosLotaris.EinheitenlisteLarinosLotaris (EinheitSchleifenwert);
+               when SpeziesDatentypen.Larinos_Lotaris_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenLarinosLotaris.EinheitenlisteLarinosLotaris (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Carupex_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenCarupex.EinheitenlisteCarupex (EinheitSchleifenwert);
+               when SpeziesDatentypen.Carupex_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenCarupex.EinheitenlisteCarupex (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Alary_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenAlary.EinheitenlisteAlary (EinheitSchleifenwert);
+               when SpeziesDatentypen.Alary_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenAlary.EinheitenlisteAlary (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Natries_Zermanis_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenNatriesZermanis.EinheitenlisteNatriesZermanis (EinheitSchleifenwert);
+               when SpeziesDatentypen.Natries_Zermanis_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenNatriesZermanis.EinheitenlisteNatriesZermanis (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Tridatus_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenTridatus.EinheitenlisteTridatus (EinheitSchleifenwert);
+               when SpeziesDatentypen.Tridatus_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenTridatus.EinheitenlisteTridatus (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Senelari_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenSenelari.EinheitenlisteSenelari (EinheitSchleifenwert);
+               when SpeziesDatentypen.Senelari_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenSenelari.EinheitenlisteSenelari (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Aspari_2_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenAspari2.EinheitenlisteAspari2 (EinheitSchleifenwert);
+               when SpeziesDatentypen.Aspari_2_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenAspari2.EinheitenlisteAspari2 (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Ekropa_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenEkropa.EinheitenlisteEkropa (EinheitSchleifenwert);
+               when SpeziesDatentypen.Ekropa_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenEkropa.EinheitenlisteEkropa (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Tesorahn_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenTesorahn.EinheitenlisteTesorahn (EinheitSchleifenwert);
+               when SpeziesDatentypen.Tesorahn_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenTesorahn.EinheitenlisteTesorahn (EinheitSchleifenwert);
                   
-               when RassenDatentypen.Talbidahr_Enum =>
-                  EinheitenDatenbank.Einheitenliste (RasseSchleifenwert, EinheitSchleifenwert) := EinheitenTalbidahr.EinheitenlisteTalbidahr (EinheitSchleifenwert);
+               when SpeziesDatentypen.Talbidahr_Enum =>
+                  EinheitenDatenbank.Einheitenliste (SpeziesSchleifenwert, EinheitSchleifenwert) := EinheitenTalbidahr.EinheitenlisteTalbidahr (EinheitSchleifenwert);
             end case;
             
          end loop EinheitenSchleife;
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
    end StandardEinheitenDatenbankLaden;
 

@@ -1,7 +1,7 @@
 with EinheitenDatentypen;
 with StadtDatentypen;
 with KampfDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 
 with KIDatentypen;
 
@@ -28,7 +28,7 @@ package KIRecords is
 
    type FeindlicheEinheitBewertet is record
 
-      Rasse : RassenDatentypen.Rassen_Enum;
+      Spezies : SpeziesDatentypen.Spezies_Enum;
       Nummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
       Angriff : KampfDatentypen.KampfwerteGroß;

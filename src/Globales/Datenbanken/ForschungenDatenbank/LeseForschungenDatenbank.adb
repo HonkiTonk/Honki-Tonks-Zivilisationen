@@ -5,7 +5,7 @@ with ProduktionKonstanten;
 package body LeseForschungenDatenbank is
 
    function Kosten
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
       return ProduktionDatentypen.Lagermenge
    is begin
@@ -17,7 +17,7 @@ package body LeseForschungenDatenbank is
             return ProduktionKonstanten.LeerProduktion;
 
          when others =>
-            return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).Kosten;
+            return ForschungenDatenbank.Forschungsliste (SpeziesExtern, IDExtern).Kosten;
       end case;
 
    end Kosten;
@@ -25,7 +25,7 @@ package body LeseForschungenDatenbank is
 
 
    function AnforderungForschung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
       WelcheAnforderungExtern : in ForschungenDatentypen.Forschung_Anforderung_Enum)
       return ForschungenDatentypen.ForschungIDNichtMöglich
@@ -38,7 +38,7 @@ package body LeseForschungenDatenbank is
             return ForschungKonstanten.ForschungUnmöglich;
 
          when others =>
-            return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).Anforderung (WelcheAnforderungExtern);
+            return ForschungenDatenbank.Forschungsliste (SpeziesExtern, IDExtern).Anforderung (WelcheAnforderungExtern);
       end case;
 
    end AnforderungForschung;
@@ -47,11 +47,11 @@ package body LeseForschungenDatenbank is
 
    function Verbesserungen
      (VerbesserungExtern : in BefehleDatentypen.Siedler_Verbesserung_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ForschungenDatentypen.ForschungIDNichtMöglich
    is begin
 
-      return ForschungenDatenbank.TechnologieVerbesserungen (VerbesserungExtern, RasseExtern);
+      return ForschungenDatenbank.TechnologieVerbesserungen (VerbesserungExtern, SpeziesExtern);
 
    end Verbesserungen;
 
@@ -59,11 +59,11 @@ package body LeseForschungenDatenbank is
 
    function Wege
      (WegExtern : in AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ForschungenDatentypen.ForschungIDNichtMöglich
    is begin
 
-      return ForschungenDatenbank.TechnologieWege (WegExtern, RasseExtern);
+      return ForschungenDatenbank.TechnologieWege (WegExtern, SpeziesExtern);
 
    end Wege;
 
@@ -71,11 +71,11 @@ package body LeseForschungenDatenbank is
 
    function Umgebung
      (AnfangEndeExtern : in SystemDatentypen.Anfang_Ende_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ForschungenDatentypen.ForschungIDNichtMöglich
    is begin
 
-      return ForschungenDatenbank.TechnologieUmgebungsgröße (AnfangEndeExtern, RasseExtern);
+      return ForschungenDatenbank.TechnologieUmgebungsgröße (AnfangEndeExtern, SpeziesExtern);
 
    end Umgebung;
 

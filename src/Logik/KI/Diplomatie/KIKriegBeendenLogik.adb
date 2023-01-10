@@ -1,13 +1,13 @@
 package body KIKriegBeendenLogik is
    
    function KriegBeenden
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      FeindlicheRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean
    is begin
       
       if
-        EigeneRasseExtern = FeindlicheRasseExtern
+        EigeneSpeziesExtern = FeindlicheSpeziesExtern
       then
          null;
          

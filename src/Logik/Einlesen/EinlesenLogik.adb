@@ -11,7 +11,7 @@ with EinlesenTexturenLogik;
 with Fehlermeldungssystem;
 with EinlesenMusikLogik;
 with EinlesenSoundsLogik;
-with EinlesenRassentexteLogik;
+with EinlesenSpeziestexteLogik;
 
 package body EinlesenLogik is
 
@@ -66,7 +66,7 @@ package body EinlesenLogik is
       end if;
       
       EinlesenTextLogik.EinlesenDateien;
-      EinlesenRassentexteLogik.RassentexteEinlesen;
+      EinlesenSpeziestexteLogik.SpeziestexteEinlesen;
       
    end EinlesenMitAnzeige;
 

@@ -14,7 +14,7 @@ with KIEinheitAufgabenabbruchLogik;
 package body KIEinheitLogik is
 
    procedure Einheit
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
             
       case
@@ -22,7 +22,7 @@ package body KIEinheitLogik is
       is
          when False =>
             if
-              KIEinheitHandlungstestsLogik.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+              KIEinheitHandlungstestsLogik.HandlungBeendet (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
             then
                return;
                
@@ -32,32 +32,32 @@ package body KIEinheitLogik is
             
          when True =>
             if
-              KIEinheitHandlungstestsLogik.BewachtStadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+              KIEinheitHandlungstestsLogik.BewachtStadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
               or
-                KIEinheitHandlungstestsLogik.Unbewegbar (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+                KIEinheitHandlungstestsLogik.Unbewegbar (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
             then
                return;
                
             else
-               KIEinheitAufgabenabbruchLogik.Friedenshandlung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               KIEinheitAufgabenabbruchLogik.Friedenshandlung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             end if;
       end case;
                 
-      Handlungen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Handlungen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
    end Einheit;
    
    
    
    procedure Handlungen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
       AktivitätSchleife:
       for AktivitätSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.SchwierigkeitsgradAktivität (LeseAllgemeines.Schwierigkeitsgrad) loop
          
          case
-           KIEinheitenAufgabenplanungLogik.Aufgabenplanung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           KIEinheitenAufgabenplanungLogik.Aufgabenplanung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
          is
             when True =>
                exit AktivitätSchleife;
@@ -67,7 +67,7 @@ package body KIEinheitLogik is
          end case;
                            
          case
-           KIEinheitenbewegungLogik.Bewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           KIEinheitenbewegungLogik.Bewegung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
          is
             when True =>
                exit AktivitätSchleife;
@@ -77,7 +77,7 @@ package body KIEinheitLogik is
          end case;
          
          case
-           KIEinheitenAufgabenumsetzungLogik.Aufgabenumsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           KIEinheitenAufgabenumsetzungLogik.Aufgabenumsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
          is
             when True =>
                exit AktivitätSchleife;

@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with KartenDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
@@ -6,29 +6,29 @@ with KartenRecords;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 with KIDatentypen;
 
 package KIAufgabenVerteiltLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
 
    function AufgabenVerteilt
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
       return Natural
      with
        Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               );
    
    function EinheitAufgabeZiel
      (AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
@@ -37,11 +37,11 @@ package KIAufgabenVerteiltLogik is
                and
                  ZielKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
    
    function EinheitZiel
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
@@ -50,7 +50,7 @@ package KIAufgabenVerteiltLogik is
                and
                  ZielKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
    
 private

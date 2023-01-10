@@ -22,7 +22,7 @@ with SeitenleisteLeerenGrafik;
 package body AllgemeinesSeitenleisteGrafik is
 
    procedure AllgemeineInformationen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       Viewfläche := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltAllgemeines,
@@ -33,7 +33,7 @@ package body AllgemeinesSeitenleisteGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       RealeYPosition := Textposition.y;
       
-      AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern);
+      AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten);
       
       TextAnzeigen (1) := True;

@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with EinheitenDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
@@ -6,31 +6,31 @@ with EinheitenKonstanten;
 private with KartenRecords;
 
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package TransporterBeladenEntladenLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    function TransporterBeladen
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return Boolean
      with
        Pre => (
-                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
+                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => TransporterExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    procedure EinheitAusladen
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
      with
        Pre => (
-                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
+                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => TransporterExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
 private

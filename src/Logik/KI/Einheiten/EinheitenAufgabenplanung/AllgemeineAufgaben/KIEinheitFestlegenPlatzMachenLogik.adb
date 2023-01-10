@@ -13,18 +13,18 @@ package body KIEinheitFestlegenPlatzMachenLogik is
    
    -- War vorher für die Berechnung der Aufgabenwerte zuständig, kann vermutlich nach einer Anpassung der Festlegung weg. äöü
    -- function PlatzMachen
-   --   (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+   --   (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    -- return KIDatentypen.AufgabenWichtigkeitKlein
    -- is begin
       
-   --    EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+   --    EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
    --    BlockiertSchleife:
    --    for BlockiertSchleifenwert in EinheitenDatentypen.MaximaleEinheiten'Range loop
          
    --      case
    --        Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => EinheitenKoordinaten,
-   -- KoordinatenZweiExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, BlockiertSchleifenwert)))
+   -- KoordinatenZweiExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, BlockiertSchleifenwert)))
    --      is
    --        when True =>
    --          return KIKonstanten.PlatzFreiMachen;
@@ -42,11 +42,11 @@ package body KIEinheitFestlegenPlatzMachenLogik is
    
 
    function PlatzMachen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
-      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
@@ -65,13 +65,13 @@ package body KIEinheitFestlegenPlatzMachenLogik is
                   null;
                   
                elsif
-                 True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                 True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                   NeueKoordinatenExtern    => Kartenwert)
                  and
-                   False = KIAufgabenVerteiltLogik.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                   False = KIAufgabenVerteiltLogik.EinheitZiel (SpeziesExtern           => EinheitSpeziesNummerExtern.Spezies,
                                                                 ZielKoordinatenExtern => Kartenwert)
                then
-                  SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                  SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                              KoordinatenExtern        => Kartenwert);
                   return True;
                  

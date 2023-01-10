@@ -31,7 +31,7 @@ package Menuetexte is
    Soundmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Sound_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
                                
    -- Doppelte Menüs.
-   Rassenauswahl : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Rassen_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
+   Speziesauswahl : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Spezies_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
    Kartenform : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenform_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
    
    -- Steuerungsmenü.

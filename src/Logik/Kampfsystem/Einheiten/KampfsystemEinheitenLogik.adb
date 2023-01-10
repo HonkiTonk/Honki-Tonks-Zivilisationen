@@ -12,25 +12,25 @@ with KampfberechnungenLogik;
 package body KampfsystemEinheitenLogik is
 
    function KampfsystemNahkampf
-     (AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (AngreiferExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      VerteidigerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KampfDatentypen.KampfwerteGroß;
    begin
       
       case
-        PZBEingesetztLogik.PZBEingesetzt (EinheitRasseNummerExtern => AngreiferExtern)
+        PZBEingesetztLogik.PZBEingesetzt (EinheitSpeziesNummerExtern => AngreiferExtern)
       is
          when True =>
             return False;
             
          when False =>
-            KampfwerteVerteidiger.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitRasseNummerExtern => VerteidigerExtern);
-            KampfwerteVerteidiger.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitRasseNummerExtern => VerteidigerExtern);
+            KampfwerteVerteidiger.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => VerteidigerExtern);
+            KampfwerteVerteidiger.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => VerteidigerExtern);
       
-            KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitRasseNummerExtern => AngreiferExtern);
-            KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitRasseNummerExtern => AngreiferExtern);
+            KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreiferExtern);
+            KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreiferExtern);
       end case;
       
       if
@@ -59,17 +59,17 @@ package body KampfsystemEinheitenLogik is
 
 
    function Kampf
-     (VerteidigerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (VerteidigerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord;
-      AngreiferExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      AngreiferExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
    is
       use type EinheitenDatentypen.Lebenspunkte;
    begin
       
-      IDAngreifer := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AngreiferExtern);
-      IDVerteidiger := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => VerteidigerExtern);
+      IDAngreifer := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => AngreiferExtern);
+      IDVerteidiger := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => VerteidigerExtern);
             
       KampfSchleife:
       loop
@@ -80,14 +80,14 @@ package body KampfsystemEinheitenLogik is
          if
            Kampfergebnis < 0
          then
-            SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern,
+            SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
                                                   LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
                                                   RechnenSetzenExtern      => True);
             
          elsif
            Kampfergebnis > 0
          then
-            SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
+            SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern,
                                                   LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
                                                   RechnenSetzenExtern      => True);
             
@@ -96,24 +96,24 @@ package body KampfsystemEinheitenLogik is
          end if;
 
          if
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern) <= EinheitenKonstanten.LeerLebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
-            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreiferExtern,
-                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreiferExtern.Rasse,
+            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
+                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => AngreiferExtern.Spezies,
                                                                                                                               IDExtern    => IDAngreifer),
                                                       AddierenSetzenExtern     => True);
             
-            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerExtern);
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => VerteidigerExtern);
             return True;
             
          elsif
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern) <= EinheitenKonstanten.LeerLebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreiferExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
-            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
-                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => VerteidigerExtern.Rasse,
+            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern,
+                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => VerteidigerExtern.Spezies,
                                                                                                                               IDExtern    => IDVerteidiger),
                                                       AddierenSetzenExtern     => True);
-            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferExtern);
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => AngreiferExtern);
             return False;
             
          else
@@ -126,14 +126,14 @@ package body KampfsystemEinheitenLogik is
          if
            Kampfergebnis < 0
          then
-            SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
+            SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern,
                                                   LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
                                                   RechnenSetzenExtern      => True);
             
          elsif
            Kampfergebnis > 0
          then
-            SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern,
+            SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
                                                   LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
                                                   RechnenSetzenExtern      => True);
             
@@ -142,24 +142,24 @@ package body KampfsystemEinheitenLogik is
          end if;
          
          if
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern) <= EinheitenKonstanten.LeerLebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
-            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreiferExtern,
-                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreiferExtern.Rasse,
+            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
+                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => AngreiferExtern.Spezies,
                                                                                                                               IDExtern    => IDAngreifer),
                                                       AddierenSetzenExtern     => True);
             
-            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerExtern);
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => VerteidigerExtern);
             return True;
             
          elsif
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern) <= EinheitenKonstanten.LeerLebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreiferExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
-            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
-                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => VerteidigerExtern.Rasse,
+            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern,
+                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => VerteidigerExtern.Spezies,
                                                                                                                               IDExtern    => IDVerteidiger),
                                                       AddierenSetzenExtern     => True);
-            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferExtern);
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => AngreiferExtern);
             return False;
             
          else

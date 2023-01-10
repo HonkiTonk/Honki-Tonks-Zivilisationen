@@ -1,6 +1,6 @@
-private with RassenDatentypen;
+private with SpeziesDatentypen;
 
-private with LeseRassenbelegung;
+private with LeseSpeziesbelegung;
 
 package RundenendeLogik is
    pragma Elaborate_Body;
@@ -9,24 +9,24 @@ package RundenendeLogik is
      return Boolean;
 
 private
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    Weiterspielen : Boolean;
 
    procedure GeldForschungDiplomatieÄndern;
 
    procedure GeldForschung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
    procedure Diplomatie
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 

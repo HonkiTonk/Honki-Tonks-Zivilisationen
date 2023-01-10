@@ -1,61 +1,61 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with DiplomatieDatentypen;
 with SpielRecords;
 with ZahlenDatentypen;
 
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package LeseDiplomatie is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
-   use type RassenDatentypen.Rassen_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spezies_Enum;
 
    function AktuellerZustand
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return DiplomatieDatentypen.Status_Untereinander_Enum
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseEinsExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesEinsExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseZweiExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesZweiExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 RasseEinsExtern /= RasseZweiExtern
+                 SpeziesEinsExtern /= SpeziesZweiExtern
               );
    
    function AktuelleSympathie
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return DiplomatieDatentypen.Meinung
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseEinsExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesEinsExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseZweiExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesZweiExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 RasseEinsExtern /= RasseZweiExtern
+                 SpeziesEinsExtern /= SpeziesZweiExtern
               );
    
    function ZeitSeitÄnderung
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ZahlenDatentypen.EigenesNatural
      with
        Pre => (
-                LeseRassenbelegung.Belegung (RasseExtern => RasseEinsExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesEinsExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseZweiExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesZweiExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 RasseEinsExtern /= RasseZweiExtern
+                 SpeziesEinsExtern /= SpeziesZweiExtern
               );
    
    function GanzerEintrag
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return SpielRecords.DiplomatieRecord
      with
        Pre => (
-                 RasseEinsExtern /= RasseZweiExtern
+                 SpeziesEinsExtern /= SpeziesZweiExtern
               );
 
 end LeseDiplomatie;

@@ -1,12 +1,12 @@
 with KartenDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with EinheitenRecords;
 with KartenRecords;
 
 private with EinheitenKonstanten;
 
 with LeseWeltkarteneinstellungen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 private with LeseGrenzen;
 
@@ -14,12 +14,12 @@ with KIDatentypen;
 
 package KIBewegungAllgemeinLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
    
    function FeldBetreten
      (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KIDatentypen.Bewegung_Enum
      with
        Pre => (
@@ -27,29 +27,29 @@ package KIBewegungAllgemeinLogik is
                and
                  FeldKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               );
    
 private
 
-   BlockierendeStadt : RassenDatentypen.Rassen_Enum;
+   BlockierendeStadt : SpeziesDatentypen.Spezies_Enum;
    
    Aufgabe : KIDatentypen.Einheit_Aufgabe_Enum;
    
-   BlockierendeEinheit : EinheitenRecords.RasseEinheitnummerRecord;
+   BlockierendeEinheit : EinheitenRecords.SpeziesEinheitnummerRecord;
    
    
    
    function FeldAngreifen
-     (EigeneEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      FeindlicheRasseEinheitExtern : in RassenDatentypen.Rassen_Enum;
-      FeindlicheRasseStadtExtern : in RassenDatentypen.Rassen_Enum)
+     (EigeneEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      FeindlicheSpeziesEinheitExtern : in SpeziesDatentypen.Spezies_Enum;
+      FeindlicheSpeziesStadtExtern : in SpeziesDatentypen.Spezies_Enum)
       return KIDatentypen.Bewegung_Enum
      with
        Pre => (
-                 EigeneEinheitExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EigeneEinheitExtern.Rasse)
+                 EigeneEinheitExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EigeneEinheitExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EigeneEinheitExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EigeneEinheitExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               );
 
 end KIBewegungAllgemeinLogik;

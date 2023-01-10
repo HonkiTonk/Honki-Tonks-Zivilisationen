@@ -16,20 +16,20 @@ with StadtSuchenLogik;
 package body StadtumgebungFestlegenLogik is
    
    procedure StadtumgebungFestlegenTechnologie
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
          
          case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
             when StadtKonstanten.LeerID =>
                null;
                
             when others =>
-               StadtumgebungFestlegen (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert));
+               StadtumgebungFestlegen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
          end case;
          
       end loop StadtSchleife;
@@ -39,14 +39,14 @@ package body StadtumgebungFestlegenLogik is
    
 
    procedure StadtumgebungFestlegen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      GrößeAlt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      StadtumgebungsbereichBerechnenLogik.StadtumgebungsbereichFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      GrößeNeu := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      GrößeAlt := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      StadtumgebungsbereichBerechnenLogik.StadtumgebungsbereichFestlegen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      GrößeNeu := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 
       -- StadtUmgebungGröße darf hier nicht genutzt werden, damit bei einer Verkleinerung auch alle Felder zurückgenommen werden können.
       YAchseSchleife:
@@ -64,7 +64,7 @@ package body StadtumgebungFestlegenLogik is
                null;
                
             elsif
-              True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+              True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                               KoordinatenExtern      => KartenWert)
               and
                 ((abs (YAchseSchleifenwert) > GrößeNeu
@@ -81,15 +81,15 @@ package body StadtumgebungFestlegenLogik is
                                                 BelegterGrundExtern => KartenRecordKonstanten.LeerDurchStadtBelegterGrund);
                
                case
-                 LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                 LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                           YKoordinateExtern      => YAchseSchleifenwert,
                                                           XKoordinateExtern      => XAchseSchleifenwert)
                is
                   when True =>
-                     SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                     SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                             EinwohnerArbeiterExtern => False,
                                                             WachsenSchrumpfenExtern => False);
-                     SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                     SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                   YKoordinateExtern      => YAchseSchleifenwert,
                                                                   XKoordinateExtern      => XAchseSchleifenwert,
                                                                   BelegenEntfernenExtern => False);
@@ -108,7 +108,7 @@ package body StadtumgebungFestlegenLogik is
             elsif
               LeseWeltkarte.UnbelegterGrund (KoordinatenExtern => KartenWert) = True
             then
-               GrundBelegen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+               GrundBelegen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                              KoordinatenExtern      => KartenWert);
                
             else
@@ -122,19 +122,19 @@ package body StadtumgebungFestlegenLogik is
         GrößeNeu > GrößeAlt
       then
          ArbeiterSchleife:
-         for ArbeiterSchleifenwert in 1 .. LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                              EinwohnerArbeiterExtern => True) - LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+         for ArbeiterSchleifenwert in 1 .. LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
+                                                                              EinwohnerArbeiterExtern => True) - LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                                                                                                                     EinwohnerArbeiterExtern => False) loop
             
             FelderbewirtschaftungLogik.BewirtschaftbareFelderBelegen (ZuwachsSchwundExtern   => True,
-                                                                      StadtRasseNummerExtern => StadtRasseNummerExtern);
+                                                                      StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
          end loop ArbeiterSchleife;
       
       elsif
         GrößeNeu < GrößeAlt
       then
-         GebaeudeAllgemeinLogik.UmgebungsreduktionGebäudeEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         GebaeudeAllgemeinLogik.UmgebungsreduktionGebäudeEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
          UmgebendeStädteAnpassen (KoordinatenExtern => Stadtkoordinaten,
                                    GrößeAltExtern    => GrößeAlt);
          
@@ -147,10 +147,10 @@ package body StadtumgebungFestlegenLogik is
    
    
    procedure GrundBelegen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
@@ -173,9 +173,9 @@ package body StadtumgebungFestlegenLogik is
                   null;
                   
                elsif
-                 StadtRasseNummerExtern.Rasse = LeseWeltkarte.RasseBelegtGrund (KoordinatenExtern => BelegungKartenwert)
+                 StadtSpeziesNummerExtern.Spezies = LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => BelegungKartenwert)
                  or
-                   StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                   StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
                                                                                                   KoordinatenExtern => BelegungKartenwert)
                then
                   GrundBelegbar := True;
@@ -194,7 +194,7 @@ package body StadtumgebungFestlegenLogik is
       is
          when True =>
             SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => KoordinatenExtern,
-                                             BelegterGrundExtern => StadtRasseNummerExtern);
+                                             BelegterGrundExtern => StadtSpeziesNummerExtern);
             
          when False =>
             null;
@@ -241,7 +241,7 @@ package body StadtumgebungFestlegenLogik is
                         null;
 
                      else
-                        StadtumgebungFestlegen (StadtRasseNummerExtern => LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => UmgebendesKartenwert));
+                        StadtumgebungFestlegen (StadtSpeziesNummerExtern => LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => UmgebendesKartenwert));
                      end if;
                end case;
             end if;

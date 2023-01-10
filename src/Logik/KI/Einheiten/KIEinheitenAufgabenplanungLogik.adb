@@ -15,7 +15,7 @@ with KIEinheitHandlungstestsLogik;
 package body KIEinheitenAufgabenplanungLogik is
 
    function Aufgabenplanung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KIDatentypen.Einheit_Aufgabe_Enum;
@@ -23,35 +23,35 @@ package body KIEinheitenAufgabenplanungLogik is
    begin
       
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
+        LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
         or
-          LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Leer_Aufgabe_Enum
+          LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= KIDatentypen.Leer_Aufgabe_Enum
       then
          return False;
          
       else
-         EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end if;
          
       case
-        LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
+        LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                              IDExtern    => EinheitID)
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
-            KISiedleraufgabenLogik.Siedleraufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KISiedleraufgabenLogik.Siedleraufgaben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when EinheitenDatentypen.Einheitenart_Kampf_Enum'Range | EinheitenDatentypen.Cheat_Enum =>
-            KIKampfaufgabenLogik.Nahkämpferaufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KIKampfaufgabenLogik.Nahkämpferaufgaben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when EinheitenDatentypen.PZB_Enum =>
-            KIPZBAufgabenLogik.PZBAufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KIPZBAufgabenLogik.PZBAufgaben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                            
          when EinheitenDatentypen.Leer_Einheitart_Enum =>
             Fehlermeldungssystem.Logik
-              (FehlermeldungExtern => "KIEinheitenAufgabenplanungLogik.Aufgabenplanung: KI nutzt leere Einheitenart: " & EinheitRasseNummerExtern.Rasse'Wide_Wide_Image & " " & EinheitID'Wide_Wide_Image);
+              (FehlermeldungExtern => "KIEinheitenAufgabenplanungLogik.Aufgabenplanung: KI nutzt leere Einheitenart: " & EinheitSpeziesNummerExtern.Spezies'Wide_Wide_Image & " " & EinheitID'Wide_Wide_Image);
       end case;
          
-      return KIEinheitHandlungstestsLogik.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      return KIEinheitHandlungstestsLogik.HandlungBeendet (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
    end Aufgabenplanung;
 

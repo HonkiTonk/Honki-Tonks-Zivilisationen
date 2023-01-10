@@ -3,7 +3,7 @@ with Sf.Graphics;
 with StadtDatentypen;
 with EinheitenDatentypen;
 with KartenverbesserungDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with GrafikDatentypen;
 with BefehleDatentypen;
 
@@ -38,20 +38,20 @@ package EingeleseneTexturenGrafik is
    type KartenressourcenAccessArray is array (KartenDatenbank.KartenressourcenlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenressourceAccess : KartenressourcenAccessArray := (others => null);
 
-   -- Auch auf Rasse erweitern, damit man verschieden aussehende Städte/Verbesserungen hat? äöü
+   -- Auch auf Spezies erweitern, damit man verschieden aussehende Städte/Verbesserungen hat? äöü
    type VerbesserungenAccessArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    VerbesserungenAccess : VerbesserungenAccessArray := (others => null);
 
    type WegeAccessArray is array (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    WegeAccess : WegeAccessArray := (others => null);
 
-   type RassenhintergrundAccessArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, GrafikDatentypen.Rassenhintergrund_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
-   RassenhintergrundAccess : RassenhintergrundAccessArray := (others => (others => null));
+   type SpezieshintergrundAccessArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   SpezieshintergrundAccess : SpezieshintergrundAccessArray := (others => (others => null));
 
-   type EinheitenAccesArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.sfTexture_Ptr;
+   type EinheitenAccesArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.sfTexture_Ptr;
    EinheitenAccess : EinheitenAccesArray := (others => (others => null));
 
-   type GebäudeAccessArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfTexture_Ptr;
+   type GebäudeAccessArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfTexture_Ptr;
    GebäudeAccess : GebäudeAccessArray := (others => (others => null));
 
 end EingeleseneTexturenGrafik;

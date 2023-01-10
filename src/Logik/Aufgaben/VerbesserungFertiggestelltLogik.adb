@@ -18,63 +18,63 @@ package body VerbesserungFertiggestelltLogik is
    procedure VerbesserungFertiggestellt
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
          is
-            when RassenDatentypen.Leer_Spieler_Enum =>
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                EinheitenSchleife:
-               for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseSchleifenwert) loop
+               for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesSchleifenwert) loop
          
                   case
-                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert))
+                    LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesSchleifenwert, EinheitNummerSchleifenwert))
                   is
                      when EinheitenKonstanten.LeerID =>
                         null;
 
                      when others =>
-                        VerbesserungFertiggestelltPrüfen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
+                        VerbesserungFertiggestelltPrüfen (EinheitSpeziesNummerExtern => (SpeziesSchleifenwert, EinheitNummerSchleifenwert));
                   end case;
                   
                end loop EinheitenSchleife;
          end case;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
    end VerbesserungFertiggestellt;
 
 
 
    procedure VerbesserungFertiggestelltPrüfen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type ProduktionDatentypen.Arbeitszeit;
    begin
       
       case
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when EinheitenKonstanten.LeerBeschäftigung | AufgabenDatentypen.Heilen_Enum | AufgabenDatentypen.Verschanzen_Enum =>
             return;
                
          when others =>
-            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                          ZeitExtern               => -1,
                                                          RechnenSetzenExtern      => True);
       end case;
       
       if
-        LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigungszeit
+        LeseEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerBeschäftigungszeit
       then
-         MeldungenSetzenLogik.EinheitmeldungSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+         MeldungenSetzenLogik.EinheitmeldungSetzen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                 EreignisExtern           => EinheitenDatentypen.Aufgabe_Abgeschlossen_Enum);
-         VerbesserungAngelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         AufgabeNachfolgerVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         VerbesserungAngelegt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+         AufgabeNachfolgerVerschieben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          
       else
          null;
@@ -85,26 +85,26 @@ package body VerbesserungFertiggestelltLogik is
    
    
    procedure AufgabeNachfolgerVerschieben
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
       case
-        LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when EinheitenKonstanten.LeerBeschäftigung =>
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
-            AufgabenAllgemeinLogik.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabenAllgemeinLogik.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
 
          when others =>
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                         ZeitExtern               => LeseEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+            SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                    BeschäftigungExtern     => LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                         ZeitExtern               => LeseEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                                                          RechnenSetzenExtern      => False);
-            SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                               BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
-            SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                    ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
                                                                    RechnenSetzenExtern      => False);
       end case;
@@ -114,11 +114,11 @@ package body VerbesserungFertiggestelltLogik is
 
 
    procedure VerbesserungAngelegt
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
-      WelcheAufgabe := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      WelcheAufgabe := LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
         WelcheAufgabe

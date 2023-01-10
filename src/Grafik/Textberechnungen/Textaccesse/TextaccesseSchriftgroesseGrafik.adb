@@ -11,7 +11,7 @@ package body TextaccesseSchriftgroesseGrafik is
       
       Allgemeines;
       Menüs;
-      Rassen;
+      Spezies;
       ZusatztextKartengröße;
       Sprachauswahl;
       Kartenformauswahl;
@@ -109,16 +109,16 @@ package body TextaccesseSchriftgroesseGrafik is
       
       
    
-   procedure Rassen
+   procedure Spezies
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in TextaccessVariablen.RassennamenAccess'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in TextaccessVariablen.SpeziesnamenAccess'Range loop
          
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RassennamenAccess (RasseSchleifenwert),
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SpeziesnamenAccess (SpeziesSchleifenwert),
                                             size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
          
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.RassenbeschreibungAccess (RasseSchleifenwert),
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesSchleifenwert),
                                             size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
          
          
@@ -130,14 +130,14 @@ package body TextaccesseSchriftgroesseGrafik is
               GebäudetextSchleifenwert
             is
                when TextaccessVariablen.GebäudetextAccessArray'First (2) =>
-                  Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                  Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                                      size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeÜberschrift);
                
                when others =>
-                  Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                  Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                                      size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
          
-                  Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudezusatztextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                  Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudezusatztextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                                      size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
             end case;
          
@@ -152,14 +152,14 @@ package body TextaccesseSchriftgroesseGrafik is
               EinheitentextSchleifenwert
             is
             when TextaccessVariablen.EinheitentextAccessArray'First (2) =>
-               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitentextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                                   size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeÜberschrift);
                
             when others =>
-               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitentextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                                   size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
          
-               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitenzusatztextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+               Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                                   size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
             end case;
          
@@ -170,20 +170,20 @@ package body TextaccesseSchriftgroesseGrafik is
          ForschungstextSchleife:
          for ForschungstextSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range (2) loop
          
-            Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüAccess (RasseSchleifenwert, ForschungstextSchleifenwert),
+            Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüAccess (SpeziesSchleifenwert, ForschungstextSchleifenwert),
                                                size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
                
-            Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseSchleifenwert, ForschungstextSchleifenwert),
+            Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesSchleifenwert, ForschungstextSchleifenwert),
                                                size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
          
          end loop ForschungstextSchleife;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
       
-   end Rassen;
+   end Spezies;
       
       
    

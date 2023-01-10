@@ -16,39 +16,39 @@ package body KIEinheitAllgemeinePruefungenLogik is
    -- Werde wohl mehrere Versionen bauen müssen? äöü
    -- Alleine schon wegen der Prüfung in AktuellUnpassierbar. äöü
    function KartenfeldPrüfen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      use type EinheitenRecords.RasseEinheitnummerRecord;
+      use type EinheitenRecords.SpeziesEinheitnummerRecord;
    begin
       
-      EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
+      EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
                                                                               LogikGrafikExtern => True);
       
       if
         EinheitAufFeld.Nummer /= EinheitenKonstanten.LeerNummer
         and
-          EinheitAufFeld /= EinheitRasseNummerExtern
+          EinheitAufFeld /= EinheitSpeziesNummerExtern
       then
          return False;
       
       elsif
-        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                           NeueKoordinatenExtern    => KoordinatenExtern)
       then
          return False;
          
       elsif
         True = AktuellUnpassierbar (KoordinatenExtern        => KoordinatenExtern,
-                                    EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                    EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       then
          return False;
                   
       elsif
         False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern,
-                                        RasseExtern       => EinheitRasseNummerExtern.Rasse)
+                                        SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
       then
          return False;
          
@@ -62,7 +62,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
    
    function DirekteUmgebung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -74,7 +74,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
             for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
                case
-                 PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                 PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                            NeueKoordinatenExtern    => KoordinatenExtern)
                is
                   when False =>
@@ -98,7 +98,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
    -- Oder muss das angepasst werden?
    function AktuellUnpassierbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type EinheitenDatentypen.Transport_Enum;
@@ -137,7 +137,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
                   
                      when others =>
                         BlockierteFelder := BlockierteFelder + FeldUnpassierbar (KoordinatenExtern        => Kartenwert,
-                                                                                 EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                                                                                 EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                         
                   end case;
                end if;
@@ -184,8 +184,8 @@ package body KIEinheitAllgemeinePruefungenLogik is
                   
       end loop PassierbareUmgebungSchleife;
       
-      TransportMöglich := LeseEinheitenDatenbank.KannTransportiertWerden (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      TransportMöglich := LeseEinheitenDatenbank.KannTransportiertWerden (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       case
         TransportMöglich
@@ -203,12 +203,12 @@ package body KIEinheitAllgemeinePruefungenLogik is
       for EinheitenartSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          if
-           TransportMöglich >= LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
+           TransportMöglich >= LeseEinheitenDatenbank.KannTransportieren (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                            IDExtern    => EinheitenartSchleifenwert)
          then
             case
-              ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                         TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
+              ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+                                                         TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                                                     IDExtern    => EinheitenartSchleifenwert))
             is
                when True =>
@@ -234,12 +234,12 @@ package body KIEinheitAllgemeinePruefungenLogik is
    
    function FeldUnpassierbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KartenDatentypen.SichtweiteNatural
    is begin
       
       case
-        PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                   NeueKoordinatenExtern    => KoordinatenExtern)
       is
          when True =>

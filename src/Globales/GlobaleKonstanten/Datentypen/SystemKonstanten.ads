@@ -35,7 +35,7 @@ package SystemKonstanten is
                                            MenueDatentypen.Kartenpole_Menü_Enum         => 8,
 
                                            -- Doppelte Menüs.
-                                           MenueDatentypen.Rassen_Menü_Enum             => 21,
+                                           MenueDatentypen.Spezies_Menü_Enum             => 21,
                                            MenueDatentypen.Kartenform_Menü_Enum         => 14,
 
                                            -- Steuerungsmenü.
@@ -47,7 +47,7 @@ package SystemKonstanten is
 
    -- Theoretich kann man hier noch -1 machen um die Überschrift abzuziehen, wird in den Positionen/Textaccessen nicht mehr benötigt. äöü
    -- Braucht aber diverse Anpassungen, später mal anschauen. äöü
-   ZweitlängstesMenü : constant Positive := EndeMenü (MenueDatentypen.Rassen_Menü_Enum);
+   ZweitlängstesMenü : constant Positive := EndeMenü (MenueDatentypen.Spezies_Menü_Enum);
    LängstesMenü : constant Positive := EndeMenü (MenueDatentypen.Steuerung_Menü_Enum);
 
    type EndeAbzugArray is array (EndeMenüArray'Range) of Positive;
@@ -75,7 +75,7 @@ package SystemKonstanten is
                                                  MenueDatentypen.Kartenpole_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum),
 
                                                  -- Doppelte Menüs.
-                                                 MenueDatentypen.Rassen_Menü_Enum             => EndeMenü (MenueDatentypen.Rassen_Menü_Enum),
+                                                 MenueDatentypen.Spezies_Menü_Enum             => EndeMenü (MenueDatentypen.Spezies_Menü_Enum),
                                                  MenueDatentypen.Kartenform_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenform_Menü_Enum) - 4,
 
                                                  -- Steuerungsmenü.

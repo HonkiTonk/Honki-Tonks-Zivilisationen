@@ -1,15 +1,15 @@
 package body KIEinheitUmsetzenTransporterLogik is
 
    function AbholungAbwarten
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
       -- Platzhalter
       case
-        EinheitRasseNummerExtern.Rasse
+        EinheitSpeziesNummerExtern.Spezies
       is
-         when RassenDatentypen.Ekropa_Enum =>
+         when SpeziesDatentypen.Ekropa_Enum =>
             null;
             
          when others =>

@@ -19,7 +19,7 @@ with HintergrundGrafik;
 package body ForschungserfolgGrafik is
 
    procedure Forschungserfolg
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       AuswahlExtern : in Natural)
    is begin
       
@@ -29,22 +29,22 @@ package body ForschungserfolgGrafik is
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüErfolg));
       
-      HintergrundGrafik.Rassenhintergrund (RasseExtern       => RasseExtern,
+      HintergrundGrafik.Spezieshintergrund (SpeziesExtern       => SpeziesExtern,
                                            HintergrundExtern => GrafikDatentypen.Forschungserfolg_Enum,
                                            AbmessungenExtern => Viewfläche);
       
-      Forschungprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
+      Forschungprojekt := LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern);
       
       case
         AuswahlExtern
       is
          when 1 =>
-            Viewfläche := Forschung (RasseExtern       => RasseExtern,
+            Viewfläche := Forschung (SpeziesExtern       => SpeziesExtern,
                                       TechnologieExtern => Forschungprojekt,
                                       ViewbreiteExtern  => Viewfläche.x);
             
          when 2 =>
-            Viewfläche := Infotext (RasseExtern       => RasseExtern,
+            Viewfläche := Infotext (SpeziesExtern       => SpeziesExtern,
                                      TechnologieExtern => Forschungprojekt,
                                      ViewbreiteExtern  => Viewfläche.x);
             
@@ -59,7 +59,7 @@ package body ForschungserfolgGrafik is
    
    
    function Forschung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       TechnologieExtern : in ForschungenDatentypen.ForschungID;
       ViewbreiteExtern : in Float)
       return Sf.System.Vector2.sfVector2f
@@ -68,19 +68,19 @@ package body ForschungserfolgGrafik is
       Textbreite := 0.00;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, TechnologieExtern),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern),
                                     position => Textposition);
       
-      TextfarbeGrafik.Standardfarbe (TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, TechnologieExtern));
+      TextfarbeGrafik.Standardfarbe (TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern));
       
-      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, TechnologieExtern),
+      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern),
                                                                               ViewbreiteExtern => ViewbreiteExtern);
       
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, TechnologieExtern),
+      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern),
                                                                           TextbreiteExtern => Textbreite);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, TechnologieExtern));
+                                         text         => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern));
       
       return (Textbreite, Textposition.y);
       
@@ -89,7 +89,7 @@ package body ForschungserfolgGrafik is
      
      
    function Infotext
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       TechnologieExtern : in ForschungenDatentypen.ForschungID;
       ViewbreiteExtern : in Float)
       return Sf.System.Vector2.sfVector2f
@@ -98,17 +98,17 @@ package body ForschungserfolgGrafik is
       Textbreite := 0.00;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, TechnologieExtern),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, TechnologieExtern),
                                     position => Textposition);
       
-      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, TechnologieExtern),
+      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, TechnologieExtern),
                                                                               ViewbreiteExtern => ViewbreiteExtern);
       
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, TechnologieExtern),
+      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, TechnologieExtern),
                                                                           TextbreiteExtern => Textbreite);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, TechnologieExtern));
+                                         text         => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, TechnologieExtern));
       
       return (Textbreite, Textposition.y);
       

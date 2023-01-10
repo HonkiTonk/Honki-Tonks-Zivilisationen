@@ -19,12 +19,12 @@ with SeitenleisteLeerenGrafik;
 package body SeitenleisteGrafik is
 
    procedure SeitenleisteGrafik
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
-      AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern);
+      AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
       
       -- Ist der Cursor jemals Leer? Wenn nein, dann eventuell einbauen? äöü
       if
@@ -33,21 +33,21 @@ package body SeitenleisteGrafik is
          return;
             
       else
-         WichtigesSeitenleisteGrafik.WichtigesInformationen (RasseExtern       => RasseExtern,
+         WichtigesSeitenleisteGrafik.WichtigesInformationen (SpeziesExtern       => SpeziesExtern,
                                                              KoordinatenExtern => AktuelleKoordinaten);
       end if;
       
       case
         LeseWeltkarte.Sichtbar (KoordinatenExtern => AktuelleKoordinaten,
-                                RasseExtern       => RasseExtern)
+                                SpeziesExtern       => SpeziesExtern)
       is
          when True =>
-            AllgemeinesSeitenleisteGrafik.AllgemeineInformationen (RasseExtern => RasseExtern);
+            AllgemeinesSeitenleisteGrafik.AllgemeineInformationen (SpeziesExtern => SpeziesExtern);
                                     
-            StadtRasseNummer := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => AktuelleKoordinaten);
+            StadtSpeziesNummer := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => AktuelleKoordinaten);
       
             case
-              StadtRasseNummer.Nummer
+              StadtSpeziesNummer.Nummer
             is
                when StadtKonstanten.LeerNummer =>
                   Leerwert := StadtseitenleisteGrafik.Leer (AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt),
@@ -56,26 +56,26 @@ package body SeitenleisteGrafik is
                   StadtVorhanden := False;
             
                when others =>
-                  StadtseitenleisteGrafik.Stadt (RasseExtern            => RasseExtern,
-                                                 StadtRasseNummerExtern => StadtRasseNummer,
+                  StadtseitenleisteGrafik.Stadt (SpeziesExtern            => SpeziesExtern,
+                                                 StadtSpeziesNummerExtern => StadtSpeziesNummer,
                                                  AnzeigebereichExtern   => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt),
                                                  ViewExtern             => Views.WeltkarteAccess (ViewKonstanten.WeltStadt));
                   StadtVorhanden := True;
             end case;
             
-            EinheitRasseNummer := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => AktuelleKoordinaten,
+            EinheitSpeziesNummer := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => AktuelleKoordinaten,
                                                                                         LogikGrafikExtern => False);
       
             case
-              EinheitRasseNummer.Nummer
+              EinheitSpeziesNummer.Nummer
             is
                when EinheitenKonstanten.LeerNummer =>
                   Leerwert := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltEinheit,
                                                              ViewflächeExtern     => GrafikRecordKonstanten.LeerView);
             
                when others =>
-                  EinheitenseitenleisteGrafik.Einheiten (RasseExtern              => RasseExtern,
-                                                         EinheitRasseNummerExtern => EinheitRasseNummer,
+                  EinheitenseitenleisteGrafik.Einheiten (SpeziesExtern              => SpeziesExtern,
+                                                         EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
                                                          StadtVorhandenExtern     => StadtVorhanden);
             end case;
             

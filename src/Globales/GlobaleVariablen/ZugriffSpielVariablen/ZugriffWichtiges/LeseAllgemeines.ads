@@ -1,6 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with RassenDatentypen;
+with SpeziesDatentypen;
 with ZahlenDatentypen;
 with SpielDatentypen;
 with SpielRecords;
@@ -14,8 +14,8 @@ package LeseAllgemeines is
    function Weiterspielen
      return Boolean;
    
-   function RasseAmzugNachLaden
-     return RassenDatentypen.Rassen_Enum;
+   function SpeziesAmzugNachLaden
+     return SpeziesDatentypen.Spezies_Enum;
    
    function Schwierigkeitsgrad
      return SpielDatentypen.Schwierigkeitsgrad_Enum;
@@ -30,7 +30,7 @@ package LeseAllgemeines is
      return Unbounded_Wide_Wide_String;
    
    function PlanetVernichtet
-     return RassenDatentypen.Rassen_Enum;
+     return SpeziesDatentypen.Spezies_Enum;
    
    function Zusammenbruchszeit
      return ZahlenDatentypen.EigenerInteger;

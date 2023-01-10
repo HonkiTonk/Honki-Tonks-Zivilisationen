@@ -1,9 +1,9 @@
-private with RassenDatentypen;
+private with SpeziesDatentypen;
 private with KartenDatentypen;
 private with EinheitenRecords;
 private with KartenRecords;
 
-private with LeseRassenbelegung;
+private with LeseSpeziesbelegung;
 private with LeseWeltkarteneinstellungen;
 
 package EinheitInUmgebungLogik is
@@ -12,26 +12,26 @@ package EinheitInUmgebungLogik is
    procedure EinheitInUmgebung;
    
 private
-   use type RassenDatentypen.Rassen_Enum;
+   use type SpeziesDatentypen.Spezies_Enum;
    use type KartenDatentypen.Kartenfeld;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
       
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   AndereEinheit : EinheitenRecords.RasseEinheitnummerRecord;
+   AndereEinheit : EinheitenRecords.SpeziesEinheitnummerRecord;
    
    procedure UmgebungStadt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    procedure UmgebungEinheit
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    
@@ -39,7 +39,7 @@ private
    function EinheitFinden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       UmgebungExtern : in KartenDatentypen.Sichtweite;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean
      with
        Pre => (
@@ -47,7 +47,7 @@ private
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 end EinheitInUmgebungLogik;

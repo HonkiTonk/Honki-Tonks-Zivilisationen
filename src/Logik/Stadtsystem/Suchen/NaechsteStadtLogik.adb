@@ -9,7 +9,7 @@ with NachGrafiktask;
 package body NaechsteStadtLogik is
 
    procedure NächsteStadt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
@@ -20,16 +20,16 @@ package body NaechsteStadtLogik is
       loop
 
          if
-           AktuelleStadt (RasseExtern) >= LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
+           AktuelleStadt (SpeziesExtern) >= LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)
          then
-            AktuelleStadt (RasseExtern) := StadtKonstanten.AnfangNummer;
+            AktuelleStadt (SpeziesExtern) := StadtKonstanten.AnfangNummer;
                
          else
-            AktuelleStadt (RasseExtern) := AktuelleStadt (RasseExtern) + 1;
+            AktuelleStadt (SpeziesExtern) := AktuelleStadt (SpeziesExtern) + 1;
          end if;
          
          case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)))
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadt (SpeziesExtern)))
          is
             when StadtKonstanten.LeerID =>
                null;
@@ -39,7 +39,7 @@ package body NaechsteStadtLogik is
          end case;
          
          if
-           StadtSchleifenbegrenzung < LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
+           StadtSchleifenbegrenzung < LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)
          then
             StadtSchleifenbegrenzung := StadtSchleifenbegrenzung + 1;
             
@@ -49,14 +49,14 @@ package body NaechsteStadtLogik is
 
       end loop StadtSuchenSchleife;
       
-      NachGrafiktask.GeheZu := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)));
+      NachGrafiktask.GeheZu := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadt (SpeziesExtern)));
       
    end NächsteStadt;
    
    
    
    procedure NächsteStadtMeldung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
       use type StadtDatentypen.Stadt_Meldung_Enum;
@@ -68,16 +68,16 @@ package body NaechsteStadtLogik is
       loop
 
          if
-           AktuelleStadtMeldung (RasseExtern) >= LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
+           AktuelleStadtMeldung (SpeziesExtern) >= LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)
          then
-            AktuelleStadtMeldung (RasseExtern) := StadtKonstanten.AnfangNummer;
+            AktuelleStadtMeldung (SpeziesExtern) := StadtKonstanten.AnfangNummer;
                
          else
-            AktuelleStadtMeldung (RasseExtern) := AktuelleStadtMeldung (RasseExtern) + 1;
+            AktuelleStadtMeldung (SpeziesExtern) := AktuelleStadtMeldung (SpeziesExtern) + 1;
          end if;
                
          case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)))
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadtMeldung (SpeziesExtern)))
          is
             when StadtKonstanten.LeerID =>
                null;
@@ -87,7 +87,7 @@ package body NaechsteStadtLogik is
                for MeldungSchleifenwert in StadtRecords.StadtMeldungenArray'Range loop
                
                   if
-                    StadtDatentypen.Leer_Stadt_Meldung_Enum = LeseStadtGebaut.Meldungen (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)),
+                    StadtDatentypen.Leer_Stadt_Meldung_Enum = LeseStadtGebaut.Meldungen (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadtMeldung (SpeziesExtern)),
                                                                                          WelcheMeldungExtern    => MeldungSchleifenwert)
                   then
                      null;
@@ -100,7 +100,7 @@ package body NaechsteStadtLogik is
          end case;
          
          if
-           MeldungSchleifenbegrenzung < LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
+           MeldungSchleifenbegrenzung < LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)
          then
             MeldungSchleifenbegrenzung := MeldungSchleifenbegrenzung + 1;
             
@@ -110,7 +110,7 @@ package body NaechsteStadtLogik is
 
       end loop StadtSuchenSchleife;
       
-      NachGrafiktask.GeheZu := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)));
+      NachGrafiktask.GeheZu := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadtMeldung (SpeziesExtern)));
       
    end NächsteStadtMeldung;
 

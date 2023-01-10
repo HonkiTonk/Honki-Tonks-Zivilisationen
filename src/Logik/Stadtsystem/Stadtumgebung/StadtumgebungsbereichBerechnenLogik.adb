@@ -10,18 +10,18 @@ with ForschungstestsLogik;
 package body StadtumgebungsbereichBerechnenLogik is
 
    procedure StadtumgebungsbereichFestlegen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
       case
-        StadtRasseNummerExtern.Rasse
+        StadtSpeziesNummerExtern.Spezies
       is
-         when StadtKonstanten.LeerRasse =>
+         when StadtKonstanten.LeerSpezies =>
             -- Dieser Fall sollte niemals eintreten, muss aber mitgenommen werden wegen dem Record.
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtUmgebungsbereichFestlegen.StadtUmgebungsbereichFestlegen: Keine Rasse ausgewählt.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtUmgebungsbereichFestlegen.StadtUmgebungsbereichFestlegen: Keine Spezies ausgewählt.");
             
          when others =>
-            StadtumgebungErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtumgebungErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end case;
       
    end StadtumgebungsbereichFestlegen;
@@ -29,12 +29,12 @@ package body StadtumgebungsbereichBerechnenLogik is
    
    
    procedure StadtumgebungErmitteln
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type ProduktionDatentypen.Einwohner;
    begin
       
-      Einwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      Einwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                       EinwohnerArbeiterExtern => True);
       
       if
@@ -43,20 +43,20 @@ package body StadtumgebungsbereichBerechnenLogik is
          Umgebung := 0;
       
       elsif
-        True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+        True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
                                                           TechnologieExtern => LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Endwert_Enum,
-                                                                                                                  RasseExtern      => StadtRasseNummerExtern.Rasse))
+                                                                                                                  SpeziesExtern      => StadtSpeziesNummerExtern.Spezies))
         and
-          Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse)
+          Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtSpeziesNummerExtern.Spezies)
       then
          Umgebung := 3;
          
       elsif
-        True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
+        True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
                                                           TechnologieExtern => LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Anfangswert_Enum,
-                                                                                                                  RasseExtern      => StadtRasseNummerExtern.Rasse))
+                                                                                                                  SpeziesExtern      => StadtSpeziesNummerExtern.Spezies))
         and
-          Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse)
+          Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtSpeziesNummerExtern.Spezies)
       then
          Umgebung := 2;
          
@@ -64,7 +64,7 @@ package body StadtumgebungsbereichBerechnenLogik is
          Umgebung := 1;
       end if;
       
-      SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                            UmgebungGrößeExtern    => Umgebung,
                                            ÄndernSetzenExtern     => False);
       

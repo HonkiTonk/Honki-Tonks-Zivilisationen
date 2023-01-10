@@ -1,26 +1,26 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with KartenDatentypen;
 with KartenRecords;
 
 private with StadtDatentypen;
 
 with LeseWeltkarteneinstellungen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 private with LeseGrenzen;
 
 package KIStadtSuchenLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
 
    function NähesteFeindlicheStadtSuchen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  AnfangKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -34,11 +34,11 @@ package KIStadtSuchenLogik is
                );
 
    function UnbewachteStadtSuchen
-     (FeindlicheRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => FeindlicheRasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => FeindlicheSpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               ),
 
        Post => (
@@ -61,12 +61,12 @@ private
 
 
    function StadtSuchen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  AnfangKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -74,7 +74,7 @@ private
               ),
 
        Post => (
-                  StadtSuchen'Result <= LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)
+                  StadtSuchen'Result <= LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)
                );
 
 end KIStadtSuchenLogik;

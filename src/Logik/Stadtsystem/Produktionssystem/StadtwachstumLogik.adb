@@ -21,74 +21,74 @@ package body StadtwachstumLogik is
    procedure StadtWachstum
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
          is
-            when RassenDatentypen.Leer_Spieler_Enum =>
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                StadtSchleife:
-               for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseSchleifenwert) loop
+               for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesSchleifenwert) loop
                   
                   case
-                    LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert))
+                    LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtSchleifenwert))
                   is
                      when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                         null;
                
                      when others =>
-                        WachstumEinwohner (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert));
-                        WachstumProduktion (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert));
+                        WachstumEinwohner (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtSchleifenwert));
+                        WachstumProduktion (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtSchleifenwert));
                   end case;
             
                end loop StadtSchleife;
          end case;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
    end StadtWachstum;
 
 
 
    procedure WachstumEinwohner
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                          NahrungsmittelExtern   => LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern),
+      SchreibeStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                          NahrungsmittelExtern   => LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
                                           ÄndernSetzenExtern     => True);
       
-      VorhandeneNahrung := LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      VorhandeneNahrung := LeseStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 
       if
-        VorhandeneNahrung > BenötigteNahrung (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        VorhandeneNahrung > BenötigteNahrung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
       then
-         WachstumSchrumpfung := NeuerEinwohner (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         WachstumSchrumpfung := NeuerEinwohner (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 
       elsif
         VorhandeneNahrung < StadtKonstanten.LeerNahrungsmittel
       then
-         SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                              NahrungsmittelExtern   => StadtKonstanten.LeerNahrungsmittel,
                                              ÄndernSetzenExtern     => False);
          
          case
-           LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+           LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                               EinwohnerArbeiterExtern => True)
          is
             when 1 =>
-               StadtEntfernenLogik.StadtEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               StadtEntfernenLogik.StadtEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
                return;
                
             when others =>
                FelderbewirtschaftungLogik.BewirtschaftbareFelderBelegen (ZuwachsSchwundExtern   => False,
-                                                                         StadtRasseNummerExtern => StadtRasseNummerExtern);
+                                                                         StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
                WachstumSchrumpfung := False;
          end case;
          
@@ -96,7 +96,7 @@ package body StadtwachstumLogik is
          return;
       end if;
 
-      EinwohnerÄnderung (StadtRasseNummerExtern    => StadtRasseNummerExtern,
+      EinwohnerÄnderung (StadtSpeziesNummerExtern    => StadtSpeziesNummerExtern,
                           WachstumSchrumpfungExtern => WachstumSchrumpfung);
       
    end WachstumEinwohner;
@@ -104,14 +104,14 @@ package body StadtwachstumLogik is
    
    
    function BenötigteNahrung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.Stadtproduktion
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      return GrundwertEinwohnerwachstum (StadtRasseNummerExtern.Rasse)
-        + MultiplikatorEinwohnerwachstum (StadtRasseNummerExtern.Rasse) * ProduktionDatentypen.Produktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      return GrundwertEinwohnerwachstum (StadtSpeziesNummerExtern.Spezies)
+        + MultiplikatorEinwohnerwachstum (StadtSpeziesNummerExtern.Spezies) * ProduktionDatentypen.Produktion (LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                                                                                                               EinwohnerArbeiterExtern => True));
       
    end BenötigteNahrung;
@@ -119,18 +119,18 @@ package body StadtwachstumLogik is
    
    
    function NeuerEinwohner
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is begin
       
-      SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                           NahrungsmittelExtern   => StadtKonstanten.LeerNahrungsmittel,
                                           ÄndernSetzenExtern     => False);
-      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                              EinwohnerArbeiterExtern => True,
                                              WachsenSchrumpfenExtern => True);
       FelderbewirtschaftungLogik.BewirtschaftbareFelderBelegen (ZuwachsSchwundExtern   => True,
-                                                                StadtRasseNummerExtern => StadtRasseNummerExtern);
+                                                                StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       return True;
       
@@ -139,44 +139,44 @@ package body StadtwachstumLogik is
    
    
    procedure EinwohnerÄnderung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       WachstumSchrumpfungExtern : in Boolean)
    is
       use type ProduktionDatentypen.Einwohner;
    begin
       
-      VorhandeneEinwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      VorhandeneEinwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                                 EinwohnerArbeiterExtern => True);
       
       case
         WachstumSchrumpfungExtern
       is
          when True =>
-            MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            MeldungenSetzenLogik.StadtmeldungSetzen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                      EreignisExtern         => StadtDatentypen.Einwohner_Wachstum_Enum);
             
             if
-              VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse)
+              VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtSpeziesNummerExtern.Spezies)
               or
-                VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse)
+                VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtSpeziesNummerExtern.Spezies)
             then
-               StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-               SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+               SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürStadt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
          
             else
                null;
             end if;
             
          when False =>
-            MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            MeldungenSetzenLogik.StadtmeldungSetzen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                      EreignisExtern         => StadtDatentypen.Einwohner_Reduktion_Enum);
             
             if
-              VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse) - 1
+              VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtSpeziesNummerExtern.Spezies) - 1
               or
-                VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse) - 1
+                VorhandeneEinwohner = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtSpeziesNummerExtern.Spezies) - 1
             then
-               StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
             else
                null;
@@ -188,25 +188,25 @@ package body StadtwachstumLogik is
    
    
    procedure WachstumProduktion
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type StadtDatentypen.GebäudeIDMitNullwert;
       use type EinheitenDatentypen.EinheitenIDMitNullWert;
       use type ProduktionDatentypen.Produktion;
    begin
       
-      SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      RessourcenExtern       => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern),
+      SchreibeStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                      RessourcenExtern       => LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
                                       ÄndernSetzenExtern     => True);
       
-      Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
         
       if
         Bauprojekt.Gebäude = 0
         and
           Bauprojekt.Einheit = 0
       then
-         SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                          RessourcenExtern       => StadtKonstanten.LeerRessourcen,
                                          ÄndernSetzenExtern     => False);
          
@@ -214,10 +214,10 @@ package body StadtwachstumLogik is
         Bauprojekt.Gebäude /= 0
       then
          if
-           LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern) >= LeseGebaeudeDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
+           LeseStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) >= LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                                                                      IDExtern    => StadtDatentypen.GebäudeID (Bauprojekt.Gebäude))
          then
-            StadtGebaeudeBauenLogik.GebäudeFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtGebaeudeBauenLogik.GebäudeFertiggestellt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
          else
             null;
@@ -225,10 +225,10 @@ package body StadtwachstumLogik is
          
       else
          if
-           LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern) >= LeseEinheitenDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
+           LeseStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) >= LeseEinheitenDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                                                                       IDExtern    => EinheitenDatentypen.EinheitenID (Bauprojekt.Einheit))
          then
-            StadtEinheitenBauenLogik.EinheitFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtEinheitenBauenLogik.EinheitFertiggestellt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 
          else
             null;

@@ -11,7 +11,7 @@ with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextaccessVariablen;
 with LadezeitenLogik;
-with RassenbeschreibungenGrafik;
+with SpeziesbeschreibungenGrafik;
 with TextberechnungenBreiteGrafik;
 with ViewsEinstellenGrafik;
 with AllgemeineViewsGrafik;
@@ -20,7 +20,7 @@ package body LadezeitenGrafik is
    
    procedure Ladezeiten
      (WelcheLadeanzeigeExtern : in GrafikDatentypen.Ladezeiten_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
    is begin
             
       case
@@ -30,7 +30,7 @@ package body LadezeitenGrafik is
             Text := GlobaleTexte.Ladezeit (1);
             
          when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
-            Text := RassenbeschreibungenGrafik.Kurzbeschreibung (RasseExtern => RasseExtern) & " " & GlobaleTexte.Ladezeit (9);
+            Text := SpeziesbeschreibungenGrafik.Kurzbeschreibung (SpeziesExtern => SpeziesExtern) & " " & GlobaleTexte.Ladezeit (9);
             
          when GrafikDatentypen.Grafik_Rundenende_Enum =>
             Text := GlobaleTexte.Ladezeit (14);

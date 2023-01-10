@@ -9,7 +9,7 @@ with KartenRecordKonstanten;
 package body LeseEinheitenDatenbank is
 
    function Einheitenart
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.Einheitart_Enum
    is
@@ -19,12 +19,12 @@ package body LeseEinheitenDatenbank is
       if
         IDExtern = EinheitenKonstanten.LeerID
         or
-          LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
+          LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Leer_Spieler_Enum
       then
          return EinheitenKonstanten.LeerEinheitArt;
               
       else
-         return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Einheitenart;
+         return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Einheitenart;
       end if;
       
    end Einheitenart;
@@ -32,7 +32,7 @@ package body LeseEinheitenDatenbank is
    
    
    function PreisGeld
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return ProduktionDatentypen.Produktion
    is begin
@@ -44,7 +44,7 @@ package body LeseEinheitenDatenbank is
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PreisGeld;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).PreisGeld;
       end case;
       
    end PreisGeld;
@@ -52,7 +52,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Produktionskosten
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return ProduktionDatentypen.Produktion
    is begin
@@ -64,7 +64,7 @@ package body LeseEinheitenDatenbank is
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Produktionskosten;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Produktionskosten;
       end case;
       
    end Produktionskosten;
@@ -72,7 +72,7 @@ package body LeseEinheitenDatenbank is
    
    
    function PermanenteKosten
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
       return ProduktionDatentypen.Stadtproduktion
@@ -91,12 +91,12 @@ package body LeseEinheitenDatenbank is
       end case;
       
       if
-        EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern) < StadtKonstanten.LeerPermanenteKosten
+        EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).PermanenteKosten (WelcheKostenExtern) < StadtKonstanten.LeerPermanenteKosten
       then
          return EinheitenKonstanten.LeerPermanenteKosten;
       
       else
-         return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern);
+         return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).PermanenteKosten (WelcheKostenExtern);
       end if;
       
    end PermanenteKosten;
@@ -104,7 +104,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Anforderungen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return ForschungenDatentypen.ForschungIDNichtMöglich
    is begin
@@ -116,7 +116,7 @@ package body LeseEinheitenDatenbank is
             return ForschungKonstanten.ForschungUnmöglich;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Anforderungen;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Anforderungen;
       end case;
       
    end Anforderungen;
@@ -124,7 +124,7 @@ package body LeseEinheitenDatenbank is
    
 
    function Passierbarkeit
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
@@ -137,7 +137,7 @@ package body LeseEinheitenDatenbank is
             return False;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Passierbarkeit (WelcheUmgebungExtern);
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Passierbarkeit (WelcheUmgebungExtern);
       end case;
       
    end Passierbarkeit;
@@ -145,7 +145,7 @@ package body LeseEinheitenDatenbank is
    
          
    function MaximaleLebenspunkte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.VorhandeneLebenspunkte
    is begin
@@ -157,7 +157,7 @@ package body LeseEinheitenDatenbank is
             return EinheitenDatentypen.VorhandeneLebenspunkte'First;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximaleLebenspunkte;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).MaximaleLebenspunkte;
       end case;
       
    end MaximaleLebenspunkte;
@@ -165,7 +165,7 @@ package body LeseEinheitenDatenbank is
    
    
    function MaximaleBewegungspunkte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.VorhandeneBewegungspunkte
    is
@@ -183,12 +183,12 @@ package body LeseEinheitenDatenbank is
       end case;
       
       if
-        EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximaleBewegungspunkte < EinheitenKonstanten.MinimalerBewegungspunkt
+        EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).MaximaleBewegungspunkte < EinheitenKonstanten.MinimalerBewegungspunkt
       then
          return EinheitenKonstanten.MinimalerBewegungspunkt;
          
       else
-         return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximaleBewegungspunkte;
+         return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).MaximaleBewegungspunkte;
       end if;
         
       
@@ -197,7 +197,7 @@ package body LeseEinheitenDatenbank is
    
    
    function VerbesserungZu
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.EinheitenIDMitNullWert
    is begin
@@ -209,7 +209,7 @@ package body LeseEinheitenDatenbank is
             return EinheitenKonstanten.LeerID;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).VerbesserungZu;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).VerbesserungZu;
       end case;
       
    end VerbesserungZu;
@@ -217,7 +217,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Beförderungsgrenze
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KampfDatentypen.Erfahrungspunkte
    is begin
@@ -229,7 +229,7 @@ package body LeseEinheitenDatenbank is
             return KampfKonstanten.LeerErfahrungspunkte;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Beförderungsgrenze;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Beförderungsgrenze;
       end case;
       
    end Beförderungsgrenze;
@@ -237,7 +237,7 @@ package body LeseEinheitenDatenbank is
    
    
    function MaximalerRang
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KampfDatentypen.Rang
    is begin
@@ -249,7 +249,7 @@ package body LeseEinheitenDatenbank is
             return KampfKonstanten.LeerRang;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximalerRang;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).MaximalerRang;
       end case;
       
    end MaximalerRang;
@@ -257,7 +257,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Reichweite
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KampfDatentypen.Reichweite
    is begin
@@ -269,7 +269,7 @@ package body LeseEinheitenDatenbank is
             return KampfKonstanten.LeerReichweite;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Reichweite;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Reichweite;
       end case;
       
    end Reichweite;
@@ -277,7 +277,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Angriff
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KampfDatentypen.KampfwerteEinheiten
    is begin
@@ -289,7 +289,7 @@ package body LeseEinheitenDatenbank is
             return EinheitenKonstanten.LeerAngriff;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Angriff;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Angriff;
       end case;
       
    end Angriff;
@@ -297,7 +297,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Verteidigung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KampfDatentypen.KampfwerteEinheiten
    is begin
@@ -309,7 +309,7 @@ package body LeseEinheitenDatenbank is
             return EinheitenKonstanten.LeerVerteidigung;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Verteidigung;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Verteidigung;
       end case;
       
    end Verteidigung;
@@ -320,7 +320,7 @@ package body LeseEinheitenDatenbank is
    -- Deswegen hier entsprechende Zusatzprüfungen einbauen?
    -- Nö, wenn hier jemand dran herumbasteln will und dabei Mist rauskommt ist das ja nicht mein Problem.
    function KannTransportieren
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.Transport_Enum
    is begin
@@ -332,7 +332,7 @@ package body LeseEinheitenDatenbank is
             return EinheitenDatentypen.Kein_Transport_Enum;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).KannTransportieren;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).KannTransportieren;
       end case;
       
    end KannTransportieren;
@@ -340,7 +340,7 @@ package body LeseEinheitenDatenbank is
    
    
    function KannTransportiertWerden
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.Transport_Enum
    is begin
@@ -352,7 +352,7 @@ package body LeseEinheitenDatenbank is
             return EinheitenDatentypen.Kein_Transport_Enum;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).KannTransportiertWerden;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).KannTransportiertWerden;
       end case;
       
    end KannTransportiertWerden;
@@ -360,7 +360,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Transportkapazität
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return EinheitenDatentypen.Transportplätze
    is
@@ -379,14 +379,14 @@ package body LeseEinheitenDatenbank is
       end case;
       
       if
-        EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).KannTransportieren = EinheitenKonstanten.LeerKannTransportiertWerden
+        EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).KannTransportieren = EinheitenKonstanten.LeerKannTransportiertWerden
         or
-          EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Transportkapazität = EinheitenKonstanten.LeerTransportkapazität
+          EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Transportkapazität = EinheitenKonstanten.LeerTransportkapazität
       then
          return EinheitenKonstanten.LeerTransportkapazität;
          
       else
-         return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Transportkapazität;
+         return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Transportkapazität;
       end if;
       
    end Transportkapazität;
@@ -394,7 +394,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Zusatzeffekt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KartengrundDatentypen.Effekt_Enum
    is begin
@@ -406,7 +406,7 @@ package body LeseEinheitenDatenbank is
             return KartengrundDatentypen.Leer_Effekt_Enum;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Zusatzeffekt;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Zusatzeffekt;
       end case;
             
    end Zusatzeffekt;
@@ -414,7 +414,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Effektreichweite
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KartenRecords.EffektbereichRecord
    is begin
@@ -426,7 +426,7 @@ package body LeseEinheitenDatenbank is
             return KartenRecordKonstanten.LeerEffektbereich;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Effektreichweite;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Effektreichweite;
       end case;
       
    end Effektreichweite;

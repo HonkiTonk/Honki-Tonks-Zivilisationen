@@ -49,7 +49,7 @@ package GebaeudedatenbankRecord is
       -- Wäre vielleicht eine sinnvollere Benennung. äöü
       EbeneBenötigt : EbenenArray;
       
-      -- Spezielle Eigenschaft durch Koruptionsreduktion ersetzen und spezielle Eigenschaften stattdessen in rassenspezifische Wunder einbauen? äöü
+      -- Spezielle Eigenschaft durch Koruptionsreduktion ersetzen und spezielle Eigenschaften stattdessen in Speziesspezifische Wunder einbauen? äöü
       SpezielleEigenschaft : StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 
    end record;

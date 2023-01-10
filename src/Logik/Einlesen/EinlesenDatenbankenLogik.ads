@@ -9,7 +9,7 @@ package EinlesenDatenbankenLogik is
    procedure EinlesenGebäudeDatenbank;
    procedure EinlesenKartengrundDatenbank;
    procedure EinlesenVerbesserungenDatenbank;
-   procedure EinlesenRassenDatenbank;
+   procedure EinlesenSpeziesDatenbank;
    
 private
    

@@ -14,7 +14,7 @@ package VerzeichnisKonstanten is
    KartenDatenbank : constant String (1 .. 37) := Datenbanken & "/KartenRessourcenDatenbank";
    VerbesserungenDatenbank : constant String (1 .. 35) := Datenbanken & "/VerbesserungenDatenbank";
    WegeDatenbank : constant String (1 .. 25) := Datenbanken & "/WegeDatenbank";
-   RassenDatenbank : constant String (1 .. 27) := Datenbanken & "/RassenDatenbank";
+   SpeziesDatenbank : constant String (1 .. 28) := Datenbanken & "/SpeziesDatenbank";
    
    Nutzereinstellungen : constant String (1 .. 19) := "Nutzereinstellungen";
    Grafikeinstellungen : constant String (1 .. 19) := "Grafikeinstellungen";
@@ -43,6 +43,6 @@ package VerzeichnisKonstanten is
    Kartenwege : constant String (1 .. 5) := "/Wege";
    Einheiten : constant String (1 .. 10) := "/Einheiten";
    Bauwerke : constant String (1 .. 9) := "/Bauwerke";
-   Rassen : constant String (1 .. 8) := "/Spezies";
+   Spezies : constant String (1 .. 8) := "/Spezies";
    
 end VerzeichnisKonstanten;

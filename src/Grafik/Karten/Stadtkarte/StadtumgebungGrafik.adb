@@ -27,7 +27,7 @@ with TexteinstellungenGrafik;
 package body StadtumgebungGrafik is
 
    procedure Stadtumgebung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type KartenDatentypen.Ebene;
    begin
@@ -38,7 +38,7 @@ package body StadtumgebungGrafik is
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtUmgebung));
             
-      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       Viewfläche := (0.00, 0.00);
       
@@ -60,13 +60,13 @@ package body StadtumgebungGrafik is
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                              RasseExtern       => StadtRasseNummerExtern.Rasse)
+                                              SpeziesExtern       => StadtSpeziesNummerExtern.Spezies)
             then
                null;
                
             else
                case
-                 LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                 LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                           YKoordinateExtern      => YAchseSchleifenwert,
                                                           XKoordinateExtern      => XAchseSchleifenwert)
                is
@@ -79,7 +79,7 @@ package body StadtumgebungGrafik is
             
                DarstellungUmgebung (KarteKoordinatenExtern => KartenWert,
                                     PositionExtern         => Viewfläche,
-                                    StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                    StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                     BewirtschaftetExtern   => FeldBewirtschaftet);
             end if;
             
@@ -98,11 +98,11 @@ package body StadtumgebungGrafik is
    procedure DarstellungUmgebung
      (KarteKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       BewirtschaftetExtern : in Boolean)
    is
-      use type StadtRecords.RasseStadtnummerRecord;
-      use type RassenDatentypen.Rassen_Enum;
+      use type StadtRecords.SpeziesStadtnummerRecord;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       AnzeigeLandschaft (KoordinatenExtern => KarteKoordinatenExtern,
@@ -112,12 +112,12 @@ package body StadtumgebungGrafik is
       Rahmendicke := (SichtweitenGrafik.KartenfelderAbmessung.y / 20.00 + SichtweitenGrafik.KartenfelderAbmessung.x / 20.00) / 2.00;
       
       if
-        Grundbelegung.Rasse = StadtKonstanten.LeerRasse
+        Grundbelegung.Spezies = StadtKonstanten.LeerSpezies
       then
          return;
         
       elsif
-        Grundbelegung = StadtRasseNummerExtern
+        Grundbelegung = StadtSpeziesNummerExtern
       then
          case
            BewirtschaftetExtern
@@ -126,14 +126,14 @@ package body StadtumgebungGrafik is
                Farbe := Sf.Graphics.Color.sfGreen;
                Wirtschaftsinformationen (KoordinatenExtern => KarteKoordinatenExtern,
                                          PositionExtern    => (PositionExtern.x, PositionExtern.y + Rahmendicke),
-                                         RasseExtern       => StadtRasseNummerExtern.Rasse);
+                                         SpeziesExtern       => StadtSpeziesNummerExtern.Spezies);
                
             when False =>
                Farbe := Sf.Graphics.Color.sfBlue;
          end case;
             
       elsif
-        Grundbelegung.Rasse = StadtRasseNummerExtern.Rasse
+        Grundbelegung.Spezies = StadtSpeziesNummerExtern.Spezies
       then
          Farbe := Sf.Graphics.Color.sfCyan;
          
@@ -153,7 +153,7 @@ package body StadtumgebungGrafik is
    procedure Wirtschaftsinformationen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TextAccess,
@@ -168,25 +168,25 @@ package body StadtumgebungGrafik is
             when 1 =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
                                                   str  => KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                                                              RasseExtern       => RasseExtern)'Wide_Wide_Image
+                                                                                              SpeziesExtern       => SpeziesExtern)'Wide_Wide_Image
                                                   & To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel)));
                
             when 2 =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
                                                   str  => KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                                                                 RasseExtern       => RasseExtern)'Wide_Wide_Image
+                                                                                                 SpeziesExtern       => SpeziesExtern)'Wide_Wide_Image
                                                   & To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion)));
                
             when 3 =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
                                                   str  => KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KoordinatenExtern,
-                                                                                           RasseExtern       => RasseExtern)'Wide_Wide_Image
+                                                                                           SpeziesExtern       => SpeziesExtern)'Wide_Wide_Image
                                                   & To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion)));
                
             when 4 =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
                                                   str  => KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KoordinatenExtern,
-                                                                                             RasseExtern       => RasseExtern)'Wide_Wide_Image
+                                                                                             SpeziesExtern       => SpeziesExtern)'Wide_Wide_Image
                                                   & To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion)));
          end case;
                   

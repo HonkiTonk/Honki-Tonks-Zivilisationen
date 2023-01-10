@@ -10,13 +10,13 @@ package SiegbedingungenLogik is
 
 private
 
-   Sieg : GrafikDatentypen.Rassenhintergrund_Enum;
+   Sieg : GrafikDatentypen.Spezieshintergrund_Enum;
 
-   VorhandeneRassen : Natural;
+   VorhandeneSpezies : Natural;
 
 
 
-   function RasseBesiegt
+   function SpeziesBesiegt
      return Boolean;
 
    function SiegbedingungEins

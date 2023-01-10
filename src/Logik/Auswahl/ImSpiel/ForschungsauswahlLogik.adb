@@ -13,13 +13,13 @@ with ForschungstestsLogik;
 package body ForschungsauswahlLogik is
 
    procedure Forschung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
    begin
          
-      AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
-      WasErforschtWerdenSoll := Forschungsmöglichkeiten (RasseExtern => RasseExtern);
+      AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern);
+      WasErforschtWerdenSoll := Forschungsmöglichkeiten (SpeziesExtern => SpeziesExtern);
 
       if
         WasErforschtWerdenSoll = ForschungKonstanten.LeerForschungsanforderung
@@ -29,7 +29,7 @@ package body ForschungsauswahlLogik is
          null;
                
       else
-         SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
+         SchreibeWichtiges.Forschungsprojekt (SpeziesExtern       => SpeziesExtern,
                                               ForschungIDExtern => WasErforschtWerdenSoll);
       end if;
       
@@ -38,14 +38,14 @@ package body ForschungsauswahlLogik is
 
 
    function Forschungsmöglichkeiten
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
 
       ForschungSchleife:
       for ForschungenSchleifenwert in ForschungenDatentypen.ForschungID loop
          
-         InteraktionAuswahl.MöglicheForschungen (ForschungenSchleifenwert) := ForschungstestsLogik.ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
+         InteraktionAuswahl.MöglicheForschungen (ForschungenSchleifenwert) := ForschungstestsLogik.ForschungAnforderungErfüllt (SpeziesExtern       => SpeziesExtern,
                                                                                                                                   ForschungIDExtern => ForschungenSchleifenwert);
          
       end loop ForschungSchleife;
@@ -103,10 +103,10 @@ package body ForschungsauswahlLogik is
    
    
    procedure Forschungserfolg
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      NachGrafiktask.AktuelleRasse := RasseExtern;
+      NachGrafiktask.AktuelleSpezies := SpeziesExtern;
       Auswahl := 1;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Forschung_Erfolgreich_Enum;
       
@@ -145,12 +145,12 @@ package body ForschungsauswahlLogik is
       end loop ErfolgSchleife;
       
       -- Das Setzen auf Leer ist nötig damit die Grafik nicht die alte Forschung anzeigt, wenn man eine neue Forschung auswählt.
-      SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
+      SchreibeWichtiges.Forschungsprojekt (SpeziesExtern       => SpeziesExtern,
                                            ForschungIDExtern => ForschungKonstanten.LeerForschung);
-      SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
-                                           ForschungIDExtern => Forschungsmöglichkeiten (RasseExtern => RasseExtern));
+      SchreibeWichtiges.Forschungsprojekt (SpeziesExtern       => SpeziesExtern,
+                                           ForschungIDExtern => Forschungsmöglichkeiten (SpeziesExtern => SpeziesExtern));
       
-      NachGrafiktask.AktuelleRasse := RassenDatentypen.Keine_Rasse_Enum;
+      NachGrafiktask.AktuelleSpezies := SpeziesDatentypen.Keine_Spezies_Enum;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Rundenende_Enum;
       
    end Forschungserfolg;

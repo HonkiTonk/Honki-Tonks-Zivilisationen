@@ -3,18 +3,18 @@ with SchreibeEinheitenGebaut;
 package body AufgabenAllgemeinLogik is
    
    procedure Nullsetzung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
-      SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                               BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
-      SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                    ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
                                                    RechnenSetzenExtern      => False);
       
-      SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                         BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
-      SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                              ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
                                                              RechnenSetzenExtern      => False);
       

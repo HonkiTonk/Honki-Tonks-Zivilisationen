@@ -9,7 +9,7 @@ with KartenRecords;
 with EinheitenRecords;
 
 private with KartenartDatentypen;
-private with RassenDatentypen;
+private with SpeziesDatentypen;
 private with KartenverbesserungDatentypen;
 private with EinheitenDatentypen;
 private with StadtRecords;
@@ -17,7 +17,7 @@ private with KartenextraDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
-private with LeseRassenbelegung;
+private with LeseSpeziesbelegung;
 
 package WeltkarteZeichnenGrafik is
    pragma Elaborate_Body;
@@ -25,7 +25,7 @@ package WeltkarteZeichnenGrafik is
    
    procedure EbeneZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       TransparentsExtern : in Sf.sfUint8;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
@@ -41,12 +41,12 @@ package WeltkarteZeichnenGrafik is
               );
    
 private
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    
    AusgewählteEinheitAnzeigen : Boolean := True;
    ZusatzgrundVorhanden : Boolean;
    
-   AktuelleRasse : RassenDatentypen.Rassen_Enum;
+   AktuelleSpezies : SpeziesDatentypen.Spezies_Enum;
       
    KartenfeldFluss : KartenextraDatentypen.Fluss_Enum;
    
@@ -65,9 +65,9 @@ private
    
    Gesamtgrund : KartenRecords.KartengrundRecord;
          
-   StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
+   StadtSpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
    
-   EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
+   EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
       
    Textposition : Sf.System.Vector2.sfVector2f;
    Rahmenposition : Sf.System.Vector2.sfVector2f;
@@ -94,10 +94,10 @@ private
    procedure RahmenZeichnen
      (WelcheRichtungExtern : in KartenartDatentypen.Himmelsrichtungen_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  PositionExtern.x >= 0.00
                and
@@ -107,10 +107,10 @@ private
    procedure RahmenBesetztesFeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -123,7 +123,7 @@ private
    
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
@@ -238,7 +238,7 @@ private
    
    procedure Einheitenmarkierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (

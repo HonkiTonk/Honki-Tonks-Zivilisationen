@@ -14,7 +14,7 @@ package MausauswahlLogik is
    use type EinheitenDatentypen.EinheitenIDMitNullWert;
    use type EinheitenDatentypen.Transportplätze;
 
-   function RassenauswahlDiplomatie
+   function SpeziesauswahlDiplomatie
      return Natural;
    
    function Forschungsmenü

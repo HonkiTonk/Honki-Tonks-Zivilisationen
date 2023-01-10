@@ -19,53 +19,53 @@ with HandelnLogik;
 package body DiplomatieLogik is
    
    procedure DiplomatieMöglich
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      Rassenprüfungen (RasseExtern => RasseExtern);
-      Diplomatie (RasseExtern => RasseExtern);
+      Speziesprüfungen (SpeziesExtern => SpeziesExtern);
+      Diplomatie (SpeziesExtern => SpeziesExtern);
       
    end DiplomatieMöglich;
    
    
    
-   procedure Rassenprüfungen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   procedure Speziesprüfungen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      RassenSchleife:
-      for RassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          if
-           RassenSchleifenwert = RasseExtern
+           SpeziesSchleifenwert = SpeziesExtern
            or
-             LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Leer_Spieler_Enum
            or
-             LeseRassenbelegung.Belegung (RasseExtern => RassenSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
          then
-            InteraktionAuswahl.RassenMöglich (RassenSchleifenwert) := False;
+            InteraktionAuswahl.SpeziesMöglich (SpeziesSchleifenwert) := False;
             
          elsif
-           DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
-                                                                                  RasseZweiExtern => RassenSchleifenwert)
+           DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesExtern,
+                                                                                  SpeziesZweiExtern => SpeziesSchleifenwert)
          then
-            InteraktionAuswahl.RassenMöglich (RassenSchleifenwert) := False;
+            InteraktionAuswahl.SpeziesMöglich (SpeziesSchleifenwert) := False;
             
          else
-            InteraktionAuswahl.RassenMöglich (RassenSchleifenwert) := True;
+            InteraktionAuswahl.SpeziesMöglich (SpeziesSchleifenwert) := True;
          end if;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
-   end Rassenprüfungen;
+   end Speziesprüfungen;
    
    
    
    procedure Diplomatie
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       DiplomatieSchleife:
@@ -73,10 +73,10 @@ package body DiplomatieLogik is
          
          NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Diplomatie_Enum;
          
-         RassenauswahlSchleife:
+         SpeziesauswahlSchleife:
          loop
             
-            Auswahl := MausauswahlLogik.RassenauswahlDiplomatie;
+            Auswahl := MausauswahlLogik.SpeziesauswahlDiplomatie;
             NachGrafiktask.AktuelleAuswahl.AuswahlEins := Auswahl;
                         
             case
@@ -89,9 +89,9 @@ package body DiplomatieLogik is
                      null;
                   
                   else
-                     KontaktierteRasse := RassenDatentypen.Rassen_Verwendet_Enum'Val (Auswahl);
-                     NachGrafiktask.KontaktierteRasse := KontaktierteRasse;
-                     exit RassenauswahlSchleife;
+                     KontaktierteSpezies := SpeziesDatentypen.Spezies_Verwendet_Enum'Val (Auswahl);
+                     NachGrafiktask.KontaktierteSpezies := KontaktierteSpezies;
+                     exit SpeziesauswahlSchleife;
                   end if;
                
                when TastenbelegungDatentypen.Abwählen_Enum =>
@@ -101,7 +101,7 @@ package body DiplomatieLogik is
                   null;
             end case;
             
-         end loop RassenauswahlSchleife;
+         end loop SpeziesauswahlSchleife;
          
          
          
@@ -114,26 +114,26 @@ package body DiplomatieLogik is
               AktionAuswahl
             is
                when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-                  HandelnLogik.SichtbarkeitTauschen (RasseEinsExtern => RasseExtern,
-                                                     RasseZweiExtern => KontaktierteRasse);
+                  HandelnLogik.SichtbarkeitTauschen (SpeziesEinsExtern => SpeziesExtern,
+                                                     SpeziesZweiExtern => KontaktierteSpezies);
                   
                when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
-                  EinheitenverschiebungLogik.VonEigenemLandWerfen (RasseExtern             => RasseExtern,
-                                                                   KontaktierteRasseExtern => KontaktierteRasse);
+                  EinheitenverschiebungLogik.VonEigenemLandWerfen (SpeziesExtern             => SpeziesExtern,
+                                                                   KontaktierteSpeziesExtern => KontaktierteSpezies);
                   
                when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-                  DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
-                                                                                  RasseZweiExtern   => KontaktierteRasse,
+                  DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern   => SpeziesExtern,
+                                                                                  SpeziesZweiExtern   => KontaktierteSpezies,
                                                                                   NeuerStatusExtern => DiplomatieDatentypen.Nichtangriffspakt_Enum);
                   
                when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-                  DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
-                                                                                  RasseZweiExtern   => KontaktierteRasse,
+                  DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern   => SpeziesExtern,
+                                                                                  SpeziesZweiExtern   => KontaktierteSpezies,
                                                                                   NeuerStatusExtern => DiplomatieDatentypen.Neutral_Enum);
                   
                when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
-                  DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
-                                                                                  RasseZweiExtern   => KontaktierteRasse,
+                  DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern   => SpeziesExtern,
+                                                                                  SpeziesZweiExtern   => KontaktierteSpezies,
                                                                                   NeuerStatusExtern => DiplomatieDatentypen.Krieg_Enum);
                   
                when RueckgabeDatentypen.Hauptmenü_Enum | RueckgabeDatentypen.Zurück_Enum =>

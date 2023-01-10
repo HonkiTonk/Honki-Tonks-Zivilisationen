@@ -6,25 +6,25 @@ with LeseDiplomatie;
 package body KIKriegErmittelnLogik is
 
    function IstImKrieg
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          if
-           RasseSchleifenwert = RasseExtern
+           SpeziesSchleifenwert = SpeziesExtern
            or
-             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
          then
             null;
             
          elsif
-           DiplomatieDatentypen.Krieg_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
-                                                                              RasseZweiExtern => RasseSchleifenwert)
+           DiplomatieDatentypen.Krieg_Enum = LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesExtern,
+                                                                              SpeziesZweiExtern => SpeziesSchleifenwert)
          then
             return True;
                   
@@ -32,7 +32,7 @@ package body KIKriegErmittelnLogik is
             null;
          end if;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
       return False;
       
@@ -41,50 +41,50 @@ package body KIKriegErmittelnLogik is
    
    
    function KriegAnfangen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RassenDatentypen.Rassen_Enum
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return SpeziesDatentypen.Spezies_Enum
    is begin
       
       case
-        RasseExtern
+        SpeziesExtern
       is
-         when RassenDatentypen.Ekropa_Enum =>
-            return EinheitenKonstanten.LeerRasse;
+         when SpeziesDatentypen.Ekropa_Enum =>
+            return EinheitenKonstanten.LeerSpezies;
             
          when others =>
             null;
       end case;
       
-      RasseGewählt := EinheitenKonstanten.LeerRasse;
+      SpeziesGewählt := EinheitenKonstanten.LeerSpezies;
       Bewertungen := (others => 0);
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          if
-           RasseSchleifenwert = RasseExtern
+           SpeziesSchleifenwert = SpeziesExtern
            or
-             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
          then
             null;
             
          else
-            RasseGewählt := StärkeVerhältnisErmitteln (EigeneRasseExtern => RasseExtern,
-                                                          FremdeRasseExtern => RasseSchleifenwert);
+            SpeziesGewählt := StärkeVerhältnisErmitteln (EigeneSpeziesExtern => SpeziesExtern,
+                                                          FremdeSpeziesExtern => SpeziesSchleifenwert);
          end if;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
-      return RasseGewählt;
+      return SpeziesGewählt;
       
    end KriegAnfangen;
    
    
    
    function StärkeVerhältnisErmitteln
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RassenDatentypen.Rassen_Enum
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return SpeziesDatentypen.Spezies_Enum
    is
       use type ProduktionDatentypen.Produktion;
    begin
@@ -92,7 +92,7 @@ package body KIKriegErmittelnLogik is
       Bewertung := 0;
       
       if
-        EigeneRasseExtern = FremdeRasseExtern
+        EigeneSpeziesExtern = FremdeSpeziesExtern
       then
          null;
          
@@ -101,30 +101,30 @@ package body KIKriegErmittelnLogik is
       end if;
       
       if
-        Bewertung > NotwendigeBewertung (EigeneRasseExtern)
+        Bewertung > NotwendigeBewertung (EigeneSpeziesExtern)
       then
          null;
          
       else
-         return EinheitenKonstanten.LeerRasse;
+         return EinheitenKonstanten.LeerSpezies;
       end if;
       
       if
-        RasseGewählt = EinheitenKonstanten.LeerRasse
+        SpeziesGewählt = EinheitenKonstanten.LeerSpezies
       then
-         Bewertungen (FremdeRasseExtern) := Bewertung;
+         Bewertungen (FremdeSpeziesExtern) := Bewertung;
          
       elsif
-        Bewertungen (RasseGewählt) < Bewertung
+        Bewertungen (SpeziesGewählt) < Bewertung
       then
-         Bewertungen (FremdeRasseExtern) := Bewertung;
-         Bewertungen (RasseGewählt) := 0;
+         Bewertungen (FremdeSpeziesExtern) := Bewertung;
+         Bewertungen (SpeziesGewählt) := 0;
          
       else
          null;
       end if;
       
-      return FremdeRasseExtern;
+      return FremdeSpeziesExtern;
       
    end StärkeVerhältnisErmitteln;
 

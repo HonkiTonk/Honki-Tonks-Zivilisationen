@@ -12,36 +12,36 @@ with QuadrantenberechnungenLogik;
 package body SichtbarkeitsberechnungssystemLogik is
 
    procedure SichtbarkeitsprüfungFürEinheit
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type KartenDatentypen.Ebene;
    begin
       
-      SichtweiteObjekt := SichtbereicheErmittelnLogik.SichtweiteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      SichtweiteObjekt := SichtbereicheErmittelnLogik.SichtweiteErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
         SichtweiteObjekt
       is
          when KartenDatentypen.Sichtweite'First =>
-            SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SichtbarkeitsprüfungOhneBlockade (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                SichtweiteExtern         => SichtweiteObjekt);
             return;
             
          when 3 =>
-            EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
             if
-              LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse >= KartenKonstanten.OberflächeKonstante
+              LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern).EAchse >= KartenKonstanten.OberflächeKonstante
               and
-                (True = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                (True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies,
                                                                IDExtern             => EinheitID,
                                                                WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
                  or
-                   True = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                   True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies,
                                                                  IDExtern             => EinheitID,
                                                                  WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum))
             then
-               SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+               SichtbarkeitsprüfungOhneBlockade (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                   SichtweiteExtern         => SichtweiteObjekt);
                return;
                
@@ -53,22 +53,22 @@ package body SichtbarkeitsberechnungssystemLogik is
             null;
       end case;
 
-      QuadrantenberechnungenLogik.QuadrantenDurchlaufen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+      QuadrantenberechnungenLogik.QuadrantenDurchlaufen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                                          SichtweiteExtern  => SichtweiteObjekt,
-                                                         KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+                                                         KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
    end SichtbarkeitsprüfungFürEinheit;
    
    
    
    procedure SichtbarkeitsprüfungOhneBlockade
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite)
    is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       YAchseSchleife:
       for YAchseSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
@@ -86,7 +86,7 @@ package body SichtbarkeitsberechnungssystemLogik is
                   null;
                   
                when others =>
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                                               KoordinatenExtern => KartenWert);
             end case;
                
@@ -98,13 +98,13 @@ package body SichtbarkeitsberechnungssystemLogik is
    
 
    procedure SichtbarkeitsprüfungFürStadt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      SichtweiteObjekt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) + 1;
-      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      SichtweiteObjekt := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) + 1;
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
       for YAchseSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
@@ -122,7 +122,7 @@ package body SichtbarkeitsberechnungssystemLogik is
                   null;
                   
                when others =>
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
                                                               KoordinatenExtern => KartenWert);
             end case;
                         

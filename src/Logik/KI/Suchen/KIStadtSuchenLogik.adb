@@ -10,12 +10,12 @@ with EinheitSuchenLogik;
 package body KIStadtSuchenLogik is
    
    function NähesteFeindlicheStadtSuchen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
    
-      GefundeneStadt := StadtSuchen (RasseExtern             => RasseExtern,
+      GefundeneStadt := StadtSuchen (SpeziesExtern             => SpeziesExtern,
                                      AnfangKoordinatenExtern => AnfangKoordinatenExtern);
          
       case
@@ -25,7 +25,7 @@ package body KIStadtSuchenLogik is
             return KartenRecordKonstanten.LeerKoordinate;
             
          when others =>
-            return LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, GefundeneStadt));
+            return LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, GefundeneStadt));
       end case;
       
    end NähesteFeindlicheStadtSuchen;
@@ -33,7 +33,7 @@ package body KIStadtSuchenLogik is
    
    
    function StadtSuchen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
    is
@@ -44,10 +44,10 @@ package body KIStadtSuchenLogik is
       AktuelleStadt := StadtDatentypen.MaximaleStädteMitNullWert'First;
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
          
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
          then
             null;
             
@@ -55,13 +55,13 @@ package body KIStadtSuchenLogik is
            AktuelleStadt = StadtDatentypen.MaximaleStädteMitNullWert'First
          then
             AktuelleStadt := StadtSchleifenwert;
-            Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt));
+            Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadt));
             
             Entfernung := Natural (abs (AnfangKoordinatenExtern.EAchse - Stadtkoordinaten.EAchse)) + Natural (abs (AnfangKoordinatenExtern.YAchse - Stadtkoordinaten.YAchse))
               + Natural (abs (AnfangKoordinatenExtern.XAchse - Stadtkoordinaten.XAchse));
             
          else
-            Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert));
+            Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
             
             EntfernungNeu := Natural (abs (AnfangKoordinatenExtern.EAchse - Stadtkoordinaten.EAchse)) + Natural (abs (AnfangKoordinatenExtern.YAchse - Stadtkoordinaten.YAchse))
               + Natural (abs (AnfangKoordinatenExtern.XAchse - Stadtkoordinaten.XAchse));
@@ -85,25 +85,25 @@ package body KIStadtSuchenLogik is
    
    
    function UnbewachteStadtSuchen
-     (FeindlicheRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is
       use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    begin
       
       StadtSchleife:
-      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => FeindlicheRasseExtern) loop
+      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => FeindlicheSpeziesExtern) loop
          
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (FeindlicheSpeziesExtern, StadtNummerSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
          then
             null;
                
          else
-            Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert));
+            Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (FeindlicheSpeziesExtern, StadtNummerSchleifenwert));
                                                              
             case
-              EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
+              EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => FeindlicheSpeziesExtern,
                                                                    KoordinatenExtern => Stadtkoordinaten,
                                                                    LogikGrafikExtern => True)
             is

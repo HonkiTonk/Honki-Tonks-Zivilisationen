@@ -10,7 +10,7 @@ with TransporterLadungsverschiebungLogik;
 package body TransporterBeladenEntladenLogik is
 
    function TransporterBeladen
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return Boolean
    is begin
@@ -24,7 +24,7 @@ package body TransporterBeladenEntladenLogik is
             return False;
             
          when others =>
-            AlterTransporter := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern));
+            AlterTransporter := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern));
       end case;
             
       case
@@ -34,25 +34,25 @@ package body TransporterBeladenEntladenLogik is
             null;
                
          when others =>
-            EinheitAusladen (TransporterExtern => (TransporterExtern.Rasse, AlterTransporter),
+            EinheitAusladen (TransporterExtern => (TransporterExtern.Spezies, AlterTransporter),
                              LadungExtern      => LadungExtern);
       end case;
             
-      SchreibeEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+      SchreibeEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
                                              LadungExtern             => LadungExtern,
                                              LadungsplatzExtern       => FreierPlatzNummer);
-      SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
+      SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern),
                                                BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                RechnenSetzenExtern      => False);
-      SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
+      SchreibeEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern),
                                                  TransporterExtern        => TransporterExtern.Nummer);
             
-      NeueKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => TransporterExtern);
-      SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
+      NeueKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => TransporterExtern);
+      SchreibeEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern),
                                            KoordinatenExtern        => NeueKoordinaten,
                                            EinheitentauschExtern    => False);
             
-      TransporterLadungsverschiebungLogik.LadungVerschieben (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
+      TransporterLadungsverschiebungLogik.LadungVerschieben (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern),
                                                              NeueKoordinatenExtern    => NeueKoordinaten);
       
       return True;
@@ -62,26 +62,26 @@ package body TransporterBeladenEntladenLogik is
    
    
    procedure EinheitAusladen
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
       
-      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern));
+      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern));
       
       TransporterLeerenSchleife:
       for TransporterLeerenSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
 
          if
-           LadungExtern = LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+           LadungExtern = LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
                                                              PlatzExtern              => TransporterLeerenSchleifenwert)
          then
-            SchreibeEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+            SchreibeEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
                                                    LadungExtern             => EinheitenKonstanten.LeerTransportiert,
                                                    LadungsplatzExtern       => TransporterLeerenSchleifenwert);
-            SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
+            SchreibeEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern),
                                                        TransporterExtern        => EinheitenKonstanten.LeerWirdTransportiert);
             exit TransporterLeerenSchleife;
             

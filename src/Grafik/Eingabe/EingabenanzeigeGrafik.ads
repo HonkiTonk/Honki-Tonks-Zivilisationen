@@ -20,7 +20,7 @@ package EingabenanzeigeGrafik is
    
    -- Später KORREKTEN Contract einfügen. äöü
    procedure AnzeigeEinheitenStadt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       AktuelleAuswahlExtern : in Integer);
    
 private
@@ -33,9 +33,9 @@ private
    
    WelcheAuswahl : EinheitenRecords.AuswahlRecord;
    
-   StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
+   StadtSpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
    
-   EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
+   EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;

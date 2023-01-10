@@ -15,15 +15,15 @@ with KIStadtLaufendeBauprojekteLogik;
 package body KIEinheitFestlegenAufloesenLogik is
 
    function EinheitAuflösen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
       case
-        Auflösungsprüfung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        Auflösungsprüfung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when True =>
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Einheit_Auflösen_Enum);
             return True;
             
@@ -36,28 +36,29 @@ package body KIEinheitFestlegenAufloesenLogik is
    
    
    function Auflösungsprüfung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
       
-      VorhandeneEinheiten := LeseWichtiges.AnzahlEinheiten (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      VorhandeneEinheiten := LeseWichtiges.AnzahlEinheiten (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
          
       if
-        VorhandeneEinheiten > LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+        VorhandeneEinheiten > LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
         or
-          VorhandeneEinheiten + KIStadtLaufendeBauprojekteLogik.EinheitenInProduktion (RasseExtern => EinheitRasseNummerExtern.Rasse) > LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+          VorhandeneEinheiten
+            + KIStadtLaufendeBauprojekteLogik.EinheitenInProduktion (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) > LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
       then
          return True;
          
       elsif
-        Stadtzustand (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+        Stadtzustand (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
       then
          return True;
          
       elsif
-        GlobalerZustand (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+        GlobalerZustand (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
       then
          return True;
          
@@ -71,13 +72,13 @@ package body KIEinheitFestlegenAufloesenLogik is
    
    -- In einzelne Bereiche aufteilen? äöü
    function Stadtzustand
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
         Heimatstadt
@@ -86,13 +87,13 @@ package body KIEinheitFestlegenAufloesenLogik is
             return False;
             
          when others =>
-            EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
       if
-        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt)) < 0
+        LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Heimatstadt)) < 0
         and
-          LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+          LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                    IDExtern           => EinheitID,
                                                    WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
         > 0
@@ -100,9 +101,9 @@ package body KIEinheitFestlegenAufloesenLogik is
          return True;
          
       elsif
-        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt)) < 0
+        LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Heimatstadt)) < 0
         and
-          LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+          LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                    IDExtern           => EinheitID,
                                                    WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
         > 0
@@ -118,16 +119,16 @@ package body KIEinheitFestlegenAufloesenLogik is
    
    
    function GlobalerZustand
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
       case
-        EinheitRasseNummerExtern.Rasse
+        EinheitSpeziesNummerExtern.Spezies
       is
-         when RassenDatentypen.Ekropa_Enum =>
+         when SpeziesDatentypen.Ekropa_Enum =>
             return False;
             
          when others =>
@@ -135,12 +136,12 @@ package body KIEinheitFestlegenAufloesenLogik is
       end case;
          
       if
-        LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                                 IDExtern           => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+        LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
+                                                 IDExtern           => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                                                  WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
         > 0
         and
-          LeseWichtiges.GeldZugewinnProRunde (RasseExtern => EinheitRasseNummerExtern.Rasse) < 0
+          LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) < 0
       then
          return True;
             

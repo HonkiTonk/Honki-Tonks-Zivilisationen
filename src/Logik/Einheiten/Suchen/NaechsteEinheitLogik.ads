@@ -1,12 +1,12 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 
 private with EinheitenDatentypen;
 
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package NaechsteEinheitLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    -- Das hier auch mal austauschen? äöü
    -- Alternativ könnte man den erweiterten Boolean aus SystemDatentypen verwenden, aber es dann linke ich halt die SystemDatentypen mir ein, ob das sinnvoll ist? äöü
@@ -15,18 +15,18 @@ package NaechsteEinheitLogik is
                                 );
    
    procedure NächsteEinheit
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       BewegungspunkteExtern : in Bewegungspunkte_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
    procedure NächsteEinheitMeldung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
 private
@@ -36,7 +36,7 @@ private
    
    Bewegungspunkte : EinheitenDatentypen.Bewegungspunkte;
    
-   type AktuelleEinheitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   type AktuelleEinheitArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    AktuelleEinheit : AktuelleEinheitArray := (others => 0);
    AktuelleEinheitMeldung : AktuelleEinheitArray := (others => 0);
 

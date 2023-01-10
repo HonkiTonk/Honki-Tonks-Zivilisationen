@@ -1,5 +1,5 @@
 with KartenDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with KartenRecords;
 with EinheitenDatentypen;
 with ProduktionDatentypen;
@@ -17,7 +17,7 @@ package KartenAllgemeinesLogik is
 
    function GrundNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -28,7 +28,7 @@ package KartenAllgemeinesLogik is
 
    function GrundProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -39,7 +39,7 @@ package KartenAllgemeinesLogik is
 
    function GrundGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -50,7 +50,7 @@ package KartenAllgemeinesLogik is
 
    function GrundWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -61,7 +61,7 @@ package KartenAllgemeinesLogik is
 
    function GrundVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
      with
        Pre => (
@@ -72,7 +72,7 @@ package KartenAllgemeinesLogik is
 
    function GrundAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
      with
        Pre => (
@@ -83,7 +83,7 @@ package KartenAllgemeinesLogik is
 
    function FlussNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -94,7 +94,7 @@ package KartenAllgemeinesLogik is
 
    function FlussProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -105,7 +105,7 @@ package KartenAllgemeinesLogik is
 
    function FlussGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -116,7 +116,7 @@ package KartenAllgemeinesLogik is
 
    function FlussWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -127,7 +127,7 @@ package KartenAllgemeinesLogik is
 
    function FlussVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
      with
        Pre => (
@@ -138,7 +138,7 @@ package KartenAllgemeinesLogik is
 
    function FlussAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
      with
        Pre => (
@@ -149,7 +149,7 @@ package KartenAllgemeinesLogik is
 
    function FlussBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
      with
        Pre => (
@@ -160,7 +160,7 @@ package KartenAllgemeinesLogik is
 
    function WegNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -171,7 +171,7 @@ package KartenAllgemeinesLogik is
 
    function WegProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -182,7 +182,7 @@ package KartenAllgemeinesLogik is
 
    function WegGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -193,7 +193,7 @@ package KartenAllgemeinesLogik is
 
    function WegWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -204,7 +204,7 @@ package KartenAllgemeinesLogik is
 
    function WegVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
      with
        Pre => (
@@ -215,7 +215,7 @@ package KartenAllgemeinesLogik is
 
    function WegAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
      with
        Pre => (
@@ -226,7 +226,7 @@ package KartenAllgemeinesLogik is
 
    function VerbesserungNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -237,7 +237,7 @@ package KartenAllgemeinesLogik is
 
    function VerbesserungProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -248,7 +248,7 @@ package KartenAllgemeinesLogik is
 
    function VerbesserungGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -259,7 +259,7 @@ package KartenAllgemeinesLogik is
 
    function VerbesserungWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -270,7 +270,7 @@ package KartenAllgemeinesLogik is
 
    function VerbesserungVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
      with
        Pre => (
@@ -281,7 +281,7 @@ package KartenAllgemeinesLogik is
 
    function VerbesserungAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
      with
        Pre => (
@@ -292,7 +292,7 @@ package KartenAllgemeinesLogik is
 
    function RessourceNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -303,7 +303,7 @@ package KartenAllgemeinesLogik is
 
    function RessourceProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -314,7 +314,7 @@ package KartenAllgemeinesLogik is
 
    function RessourceGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -325,7 +325,7 @@ package KartenAllgemeinesLogik is
 
    function RessourceWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -336,7 +336,7 @@ package KartenAllgemeinesLogik is
 
    function RessourceVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
      with
        Pre => (
@@ -347,7 +347,7 @@ package KartenAllgemeinesLogik is
 
    function RessourceAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
      with
        Pre => (
@@ -358,7 +358,7 @@ package KartenAllgemeinesLogik is
 
    function RessourceBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
      with
        Pre => (

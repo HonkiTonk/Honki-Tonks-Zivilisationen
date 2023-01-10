@@ -5,7 +5,7 @@ with KartenKonstanten;
 
 with SchreibeWeltkarte;
 with LeseWeltkarteneinstellungen;
-with SchreibeRassenbelegung;
+with SchreibeSpeziesbelegung;
 with SchreibeCursor;
 with SchreibeDiplomatie;
 with SchreibeWichtiges;
@@ -17,7 +17,7 @@ with DebugobjekteLogik;
 package body DebugmenueLogik is
 
    procedure Debugmenü
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       DebugmenüSchleife:
@@ -29,10 +29,10 @@ package body DebugmenueLogik is
            RückgabeDebugmenü
          is
             when RueckgabeDatentypen.Auswahl_Eins_Enum =>
-               KarteAufdecken (RasseExtern => RasseExtern);
+               KarteAufdecken (SpeziesExtern => SpeziesExtern);
                
             when RueckgabeDatentypen.Auswahl_Zwei_Enum =>
-               SchreibeWichtiges.ErforschtDebug (RasseExtern => RasseExtern);
+               SchreibeWichtiges.ErforschtDebug (SpeziesExtern => SpeziesExtern);
                               
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
                Get_Immediate (Item => Taste);
@@ -69,23 +69,23 @@ package body DebugmenueLogik is
       end case;
       
       case
-        LeseRassenbelegung.Belegung (RasseExtern => Wechsel (TasteExtern))
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => Wechsel (TasteExtern))
       is
-         when RassenDatentypen.Leer_Spieler_Enum =>
+         when SpeziesDatentypen.Leer_Spieler_Enum =>
             null;
             
-         when RassenDatentypen.KI_Spieler_Enum =>
-            SchreibeRassenbelegung.Belegung (RasseExtern    => Wechsel (TasteExtern),
-                                             BelegungExtern => RassenDatentypen.Mensch_Spieler_Enum);
+         when SpeziesDatentypen.KI_Spieler_Enum =>
+            SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => Wechsel (TasteExtern),
+                                             BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
             
-            SchreibeCursor.KoordinatenAktuell (RasseExtern       => Wechsel (TasteExtern),
+            SchreibeCursor.KoordinatenAktuell (SpeziesExtern       => Wechsel (TasteExtern),
                                                KoordinatenExtern => (0, 1, 1));
-            SchreibeCursor.KoordinatenAlt (RasseExtern       => Wechsel (TasteExtern),
+            SchreibeCursor.KoordinatenAlt (SpeziesExtern       => Wechsel (TasteExtern),
                                            KoordinatenExtern => (0, 1, 1));
                                              
-         when RassenDatentypen.Mensch_Spieler_Enum =>
-            SchreibeRassenbelegung.Belegung (RasseExtern    => Wechsel (TasteExtern),
-                                             BelegungExtern => RassenDatentypen.KI_Spieler_Enum);
+         when SpeziesDatentypen.Mensch_Spieler_Enum =>
+            SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => Wechsel (TasteExtern),
+                                             BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
       end case;
                                              
    end MenschKITauschen;
@@ -94,7 +94,7 @@ package body DebugmenueLogik is
    
    -- Könnte ich nicht theoretisch hier einfach alle Felder auf True setzen? Die restlichen sollten ja eh nie geprüft werden. äöü
    procedure KarteAufdecken
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       EbeneSchleife:
@@ -105,7 +105,7 @@ package body DebugmenueLogik is
             for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
             
                SchreibeWeltkarte.Sichtbar (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                           RasseExtern       => RasseExtern,
+                                           SpeziesExtern       => SpeziesExtern,
                                            SichtbarExtern    => True);
                
             end loop XAchseSchleife;
@@ -121,31 +121,31 @@ package body DebugmenueLogik is
    procedure DiplomatischenStatusÄndern
      (NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      RassenErsteSchleife:
-      for RasseEinsSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
-         RassenZweiteSchleife:
-         for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesErsteSchleife:
+      for SpeziesEinsSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+         SpeziesZweiteSchleife:
+         for SpeziesZweiSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
             
             if
-              LeseRassenbelegung.Belegung (RasseExtern => RasseEinsSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+              LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesEinsSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
               or
-                LeseRassenbelegung.Belegung (RasseExtern => RasseZweiSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+                LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesZweiSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
               or
-                RasseEinsSchleifenwert = RasseZweiSchleifenwert
+                SpeziesEinsSchleifenwert = SpeziesZweiSchleifenwert
             then
                null;
                
             else
-               SchreibeDiplomatie.AktuellerZustand (RasseEinsExtern => RasseEinsSchleifenwert,
-                                                    RasseZweiExtern => RasseZweiSchleifenwert,
+               SchreibeDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesEinsSchleifenwert,
+                                                    SpeziesZweiExtern => SpeziesZweiSchleifenwert,
                                                     ZustandExtern   => NeuerStatusExtern);
             end if;
             
-         end loop RassenZweiteSchleife;
-      end loop RassenErsteSchleife;
+         end loop SpeziesZweiteSchleife;
+      end loop SpeziesErsteSchleife;
       
    end DiplomatischenStatusÄndern;
 

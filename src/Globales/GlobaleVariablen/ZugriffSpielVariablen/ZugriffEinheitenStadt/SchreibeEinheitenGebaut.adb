@@ -9,37 +9,37 @@ with SchreibeWeltkarte;
 package body SchreibeEinheitenGebaut is
 
    procedure ID
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID := IDExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID := IDExtern;
       
    end ID;
    
    
    
    procedure Koordinaten
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitentauschExtern : in Boolean)
    is begin
       
       case
-        LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse
+        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern).EAchse
       is
          when KartenKonstanten.LeerEAchse =>
             null;
             
          when others =>
-            SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                                EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KoordinatenAktuell := KoordinatenExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).KoordinatenAktuell := KoordinatenExtern;
       
       SchreibeWeltkarte.EinheitSchreiben (KoordinatenExtern        => KoordinatenExtern,
-                                          EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                          EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                           EinheitentauschExtern    => EinheitentauschExtern);
       
    end Koordinaten;
@@ -47,18 +47,18 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Heimatstadt
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       HeimatstadtExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Heimatstadt := HeimatstadtExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Heimatstadt := HeimatstadtExtern;
       
    end Heimatstadt;
    
    
    
    procedure Lebenspunkte
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LebenspunkteExtern : in EinheitenDatentypen.Lebenspunkte;
       RechnenSetzenExtern : in Boolean)
    is
@@ -69,22 +69,22 @@ package body SchreibeEinheitenGebaut is
         RechnenSetzenExtern
       is
          when True =>
-            MaximaleLebenspunkte := LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                 IDExtern    => GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+            MaximaleLebenspunkte := LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                 IDExtern    => GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID);
             
             if
-              GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte + LebenspunkteExtern >= MaximaleLebenspunkte
+              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Lebenspunkte + LebenspunkteExtern >= MaximaleLebenspunkte
             then
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := MaximaleLebenspunkte;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Lebenspunkte := MaximaleLebenspunkte;
                
                -- Wäre es sinnvoll das auszulagern? Scheint eher nicht der Fall zu sein. äöü
                case
-                 GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Aufgabe
+                 GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Aufgabe
                is
                   when AufgabenDatentypen.Heilen_Enum =>
-                     Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                     Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                      BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
-                     Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                     Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                           ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
                                           RechnenSetzenExtern      => False);
                   
@@ -93,17 +93,17 @@ package body SchreibeEinheitenGebaut is
                end case;
                
             elsif
-              GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte + LebenspunkteExtern <= EinheitenKonstanten.LeerLebenspunkte
+              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Lebenspunkte + LebenspunkteExtern <= EinheitenKonstanten.LeerLebenspunkte
             then
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := EinheitenKonstanten.LeerLebenspunkte;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Lebenspunkte := EinheitenKonstanten.LeerLebenspunkte;
                
             else
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte
-                 := GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte + LebenspunkteExtern;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Lebenspunkte
+                 := GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Lebenspunkte + LebenspunkteExtern;
             end if;
             
          when False =>
-            GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Lebenspunkte := LebenspunkteExtern;
+            GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Lebenspunkte := LebenspunkteExtern;
       end case;
       
    end Lebenspunkte;
@@ -111,7 +111,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Bewegungspunkte
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BewegungspunkteExtern : in EinheitenDatentypen.Bewegungspunkte;
       RechnenSetzenExtern : in Boolean)
    is
@@ -122,26 +122,26 @@ package body SchreibeEinheitenGebaut is
         RechnenSetzenExtern
       is
          when True =>
-            MaximaleBewegungspunkte := LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                       IDExtern    => GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+            MaximaleBewegungspunkte := LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                       IDExtern    => GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID);
             
             if
-              GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte + BewegungspunkteExtern >= MaximaleBewegungspunkte
+              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Bewegungspunkte + BewegungspunkteExtern >= MaximaleBewegungspunkte
             then
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte := MaximaleBewegungspunkte;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Bewegungspunkte := MaximaleBewegungspunkte;
                
             elsif
-              GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte + BewegungspunkteExtern <= EinheitenKonstanten.LeerBewegungspunkte
+              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Bewegungspunkte + BewegungspunkteExtern <= EinheitenKonstanten.LeerBewegungspunkte
             then
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte := EinheitenKonstanten.LeerBewegungspunkte;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Bewegungspunkte := EinheitenKonstanten.LeerBewegungspunkte;
                  
             else
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte
-                 := GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte + BewegungspunkteExtern;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Bewegungspunkte
+                 := GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Bewegungspunkte + BewegungspunkteExtern;
             end if;
             
          when False =>
-            GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Bewegungspunkte := BewegungspunkteExtern;
+            GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Bewegungspunkte := BewegungspunkteExtern;
       end case;
       
    end Bewegungspunkte;
@@ -149,7 +149,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Erfahrungspunkte
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       ErfahrungspunkteExtern : in KampfDatentypen.ErfahrungspunkteVorhanden;
       AddierenSetzenExtern : in Boolean)
    is
@@ -160,24 +160,24 @@ package body SchreibeEinheitenGebaut is
         AddierenSetzenExtern
       is
          when True =>
-            Beförderungsgrenze := LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                               IDExtern    => GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID);
+            Beförderungsgrenze := LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                               IDExtern    => GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID);
             
             if
-              GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte + ErfahrungspunkteExtern >= Beförderungsgrenze
+              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Erfahrungspunkte + ErfahrungspunkteExtern >= Beförderungsgrenze
             then
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte
-                 := GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte + ErfahrungspunkteExtern - Beförderungsgrenze;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Erfahrungspunkte
+                 := GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Erfahrungspunkte + ErfahrungspunkteExtern - Beförderungsgrenze;
                
-               Rang (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                
             else
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte :=
-                 GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte + ErfahrungspunkteExtern;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Erfahrungspunkte :=
+                 GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Erfahrungspunkte + ErfahrungspunkteExtern;
             end if;
             
          when False =>
-            GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Erfahrungspunkte := ErfahrungspunkteExtern;
+            GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Erfahrungspunkte := ErfahrungspunkteExtern;
       end case;
       
    end Erfahrungspunkte;
@@ -185,50 +185,51 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Rang
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type KampfDatentypen.Erfahrungspunkte;
    begin
       
       if
-        GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang + 1
-        > LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                IDExtern    => GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).ID)
+        GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang + 1
+        > LeseEinheitenDatenbank.MaximalerRang (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                IDExtern    => GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID)
       then
          null;
                            
       else
-         GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang := GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Rang + 1;
+         GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang
+           := GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang + 1;
       end if;
       
    end Rang;
-      
+   
    
    
    procedure Beschäftigung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BeschäftigungExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Aufgabe := BeschäftigungExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Aufgabe := BeschäftigungExtern;
       
    end Beschäftigung;
    
    
    
    procedure BeschäftigungNachfolger
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BeschäftigungExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Aufgabe := BeschäftigungExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Aufgabe := BeschäftigungExtern;
       
    end BeschäftigungNachfolger;
       
    
    
    procedure Beschäftigungszeit
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
       RechnenSetzenExtern : in Boolean)
    is
@@ -240,22 +241,22 @@ package body SchreibeEinheitenGebaut is
       is
          when True =>
             if
-              GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern >= ProduktionDatentypen.Arbeitszeit'Last
+              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern >= ProduktionDatentypen.Arbeitszeit'Last
             then
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'Last;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'Last;
                
             elsif
-              GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern <= EinheitenKonstanten.LeerBeschäftigungszeit
+              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern <= EinheitenKonstanten.LeerBeschäftigungszeit
             then
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit := EinheitenKonstanten.LeerBeschäftigungszeit;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit := EinheitenKonstanten.LeerBeschäftigungszeit;
                
             else
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit :=
-                 GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit :=
+                 GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit + ZeitExtern;
             end if;
             
          when False =>
-            GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Beschäftigung.Arbeitszeit := ZeitExtern;
+            GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Arbeitszeit := ZeitExtern;
       end case;
       
    end Beschäftigungszeit;
@@ -263,7 +264,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure BeschäftigungszeitNachfolger
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       ZeitExtern : in ProduktionDatentypen.Arbeitszeit;
       RechnenSetzenExtern : in Boolean)
    is
@@ -275,22 +276,22 @@ package body SchreibeEinheitenGebaut is
       is
          when True =>
             if
-              GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern >= ProduktionDatentypen.Arbeitszeit'Last
+              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern >= ProduktionDatentypen.Arbeitszeit'Last
             then
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'Last;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'Last;
                
             elsif
-              GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern <= EinheitenKonstanten.LeerBeschäftigungszeit
+              GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern <= EinheitenKonstanten.LeerBeschäftigungszeit
             then
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := EinheitenKonstanten.LeerBeschäftigungszeit;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := EinheitenKonstanten.LeerBeschäftigungszeit;
                
             else
-               GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit :=
-                 GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern;
+               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit :=
+                 GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit + ZeitExtern;
             end if;
             
          when False =>
-            GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := ZeitExtern;
+            GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).BeschäftigungNachfolger.Arbeitszeit := ZeitExtern;
       end case;
       
    end BeschäftigungszeitNachfolger;
@@ -298,166 +299,166 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure KIZielKoordinaten
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten := KoordinatenExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).KIZielKoordinaten := KoordinatenExtern;
       
    end KIZielKoordinaten;
    
    
    
    procedure KIBeschäftigt
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBeschäftigt := AufgabeExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).KIBeschäftigt := AufgabeExtern;
       
    end KIBeschäftigt;
    
    
       
    procedure KIZielKoordinatenNachfolger
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinatenNachfolger := KoordinatenExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).KIZielKoordinatenNachfolger := KoordinatenExtern;
       
    end KIZielKoordinatenNachfolger;
    
    
    
    procedure KIBeschäftigtNachfolger
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBeschäftigtNachfolger := AufgabeExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).KIBeschäftigtNachfolger := AufgabeExtern;
       
    end KIBeschäftigtNachfolger;
    
    
    
    procedure KIVerbesserung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BeschäftigungExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIVerbesserung := BeschäftigungExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).KIVerbesserung := BeschäftigungExtern;
       
    end KIVerbesserung;
    
    
    
    procedure KIBewegungPlan
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PlanplatzExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
    is begin
       
-      GebautVariablen.EinheitenBewegungsplan (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) (PlanplatzExtern) := KoordinatenExtern;
+      GebautVariablen.EinheitenBewegungsplan (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer) (PlanplatzExtern) := KoordinatenExtern;
       
    end KIBewegungPlan;
    
    
    
    procedure KIBewegungsplanLeeren
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
-      GebautVariablen.EinheitenBewegungsplan (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) := (others => KartenRecordKonstanten.LeerKoordinate);
+      GebautVariablen.EinheitenBewegungsplan (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer) := (others => KartenRecordKonstanten.LeerKoordinate);
       
    end KIBewegungsplanLeeren;
    
    
    
    procedure Transportiert
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       LadungsplatzExtern : in EinheitenDatentypen.Transportplätze)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Transportiert (LadungsplatzExtern) := LadungExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Transportiert (LadungsplatzExtern) := LadungExtern;
       
    end Transportiert;
    
    
    
    procedure WirdTransportiert
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TransporterExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).WirdTransportiert := TransporterExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).WirdTransportiert := TransporterExtern;
       
    end WirdTransportiert;
    
    
       
    procedure Meldungen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       MeldungExtern : in EinheitenDatentypen.Einheit_Meldung_Enum;
       WelcheMeldungExtern : in EinheitenDatentypen.Einheit_Meldung_Art_Enum)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Meldungen (WelcheMeldungExtern) := MeldungExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Meldungen (WelcheMeldungExtern) := MeldungExtern;
       
    end Meldungen;
    
    
       
    procedure LeerMeldungen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Meldungen := (others => EinheitenDatentypen.Leer_Einheit_Meldung_Enum);
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Meldungen := (others => EinheitenDatentypen.Leer_Einheit_Meldung_Enum);
       
    end LeerMeldungen;
    
    
    
    procedure Nullsetzung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
               
-      SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                          EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                          EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                                            
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) := EinheitenRecordKonstanten.LeerEinheit;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer) := EinheitenRecordKonstanten.LeerEinheit;
       
    end Nullsetzung;
    
    
    
    procedure Standardwerte
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenID;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
    is begin
       
-      Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
           IDExtern                 => IDExtern);
       
-      Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                    KoordinatenExtern        => KoordinatenExtern,
                    EinheitentauschExtern    => False);
       
-      Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                    HeimatstadtExtern        => StadtNummerExtern);
       
-      Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                    LebenspunkteExtern       => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+      Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                    LebenspunkteExtern       => LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                              IDExtern    => IDExtern),
                     RechnenSetzenExtern      => False);
       
-      Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                       BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+      Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                       BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                                    IDExtern    => IDExtern),
                        RechnenSetzenExtern      => False);
       
@@ -466,13 +467,13 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure GanzerEintrag
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       EintragExtern : in EinheitenRecords.EinheitenGebautRecord)
    is begin
       
-      GebautVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) := EintragExtern;
+      GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer) := EintragExtern;
       
-      GebautVariablen.EinheitenBewegungsplan (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer) := (others => KartenRecordKonstanten.LeerKoordinate);
+      GebautVariablen.EinheitenBewegungsplan (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer) := (others => KartenRecordKonstanten.LeerKoordinate);
       
    end GanzerEintrag;
    

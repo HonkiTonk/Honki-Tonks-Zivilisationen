@@ -16,10 +16,10 @@ package Diagnoseinformationen is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord);
    
    procedure Einheiteninformationen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord);
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord);
    
    procedure Stadtinformationen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord);
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord);
    
    procedure Grundinformationen
      (GrundExtern : in KartenRecords.KartengrundRecord);

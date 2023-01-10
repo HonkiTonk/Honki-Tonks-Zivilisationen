@@ -12,7 +12,7 @@ with TransporterBeladenEntladenLogik;
 package body BewegungsberechnungEinheitenLogik is
 
    procedure Bewegungsberechnung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitentauschExtern : in Boolean)
    is
@@ -20,30 +20,30 @@ package body BewegungsberechnungEinheitenLogik is
    begin
       
       BewegungspunkteAbzug := BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern    => NeueKoordinatenExtern,
-                                                                             EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                                                                             EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       -- Hier noch eine Erschöpfung einbauen? äöü
       if
         BewegungspunkteAbzug = EinheitenKonstanten.LeerBewegungspunkte
       then
-         SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+         SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                   BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                   RechnenSetzenExtern      => False);
          return;
          
       else
-         SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+         SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                   BewegungspunkteExtern    => -BewegungspunkteAbzug,
                                                   RechnenSetzenExtern      => True);
          
-         IstLadung := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         IstLadung := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end if;
       
       case
-        LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse)
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
       is
-         when RassenDatentypen.Mensch_Spieler_Enum =>
-            SchreibeCursor.EAchseAktuell (RasseExtern  => EinheitRasseNummerExtern.Rasse,
+         when SpeziesDatentypen.Mensch_Spieler_Enum =>
+            SchreibeCursor.EAchseAktuell (SpeziesExtern  => EinheitSpeziesNummerExtern.Spezies,
                                           EAchseExtern => NeueKoordinatenExtern.EAchse);
             
          when others =>
@@ -57,19 +57,19 @@ package body BewegungsberechnungEinheitenLogik is
             null;
             
          when others =>
-            TransporterBeladenEntladenLogik.EinheitAusladen (TransporterExtern => (EinheitRasseNummerExtern.Rasse, IstLadung),
-                                                             LadungExtern      => EinheitRasseNummerExtern.Nummer);
+            TransporterBeladenEntladenLogik.EinheitAusladen (TransporterExtern => (EinheitSpeziesNummerExtern.Spezies, IstLadung),
+                                                             LadungExtern      => EinheitSpeziesNummerExtern.Nummer);
       end case;
       
-      SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      SchreibeEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                            KoordinatenExtern        => NeueKoordinatenExtern,
                                            EinheitentauschExtern    => EinheitentauschExtern);
       
-      TransporterLadungsverschiebungLogik.LadungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      TransporterLadungsverschiebungLogik.LadungVerschieben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                              NeueKoordinatenExtern    => NeueKoordinatenExtern);
       
       NachBewegung (NeueKoordinatenExtern    => NeueKoordinatenExtern,
-                    EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                    EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
    end Bewegungsberechnung;
    
@@ -77,31 +77,31 @@ package body BewegungsberechnungEinheitenLogik is
    
    procedure NachBewegung
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürEinheit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      -- Prüft ob die Einheit jetzt auf einem Feld steht welches von einer fremden Rasse bereits aufgedeckt wurde und stellt entsprechend Kontakt her.
+      -- Prüft ob die Einheit jetzt auf einem Feld steht welches von einer fremden Spezies bereits aufgedeckt wurde und stellt entsprechend Kontakt her.
       -- Anders als die Berechnung in SichtbarkeitLogik, wo geprüft wird ob eine fremde Stadt oder Einheit auf einem neu aufgedecktem Feld steht.
       KontaktSchleife:
-      for FremdeSichtbarkeitSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      for FremdeSichtbarkeitSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          if
-           FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
+           FremdeSichtbarkeitSchleifenwert = EinheitSpeziesNummerExtern.Spezies
            or
-             LeseRassenbelegung.Belegung (RasseExtern => FremdeSichtbarkeitSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => FremdeSichtbarkeitSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
          then
             null;
             
          elsif
            True = LeseWeltkarte.Sichtbar (KoordinatenExtern => NeueKoordinatenExtern,
-                                          RasseExtern       => FremdeSichtbarkeitSchleifenwert)
+                                          SpeziesExtern       => FremdeSichtbarkeitSchleifenwert)
          then
-            KennenlernenLogik.Erstkontakt (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                           FremdeRasseExtern => FremdeSichtbarkeitSchleifenwert);
+            KennenlernenLogik.Erstkontakt (EigeneSpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                           FremdeSpeziesExtern => FremdeSichtbarkeitSchleifenwert);
             
          else
             null;

@@ -6,7 +6,7 @@ with EinheitenDatentypen;
 with StadtDatentypen;
 with ForschungenDatentypen;
 with TastenbelegungDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with BefehleDatentypen;
 with GrafikRecordKonstanten;
 with KartengrundDatentypen;
@@ -63,11 +63,11 @@ package InteraktionAuswahl is
 
 
 
-   type PositionenDiplomatieRasseArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
-   PositionenDiplomatieRasse : PositionenDiplomatieRasseArray := (others => GrafikRecordKonstanten.Leerbereich);
+   type PositionenDiplomatieSpeziesArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenDiplomatieSpezies : PositionenDiplomatieSpeziesArray := (others => GrafikRecordKonstanten.Leerbereich);
 
-   type RassenMöglicheArray is array (PositionenDiplomatieRasseArray'Range) of Boolean;
-   RassenMöglich : RassenMöglicheArray := (others => False);
+   type SpeziesMöglicheArray is array (PositionenDiplomatieSpeziesArray'Range) of Boolean;
+   SpeziesMöglich : SpeziesMöglicheArray := (others => False);
 
 
 

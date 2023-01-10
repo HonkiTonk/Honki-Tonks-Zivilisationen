@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with RassenDatentypen;
+private with SpeziesDatentypen;
 
 package EinlesenTexturenLogik is
    pragma Elaborate_Body;
@@ -14,7 +14,7 @@ private
    -- Wenn dann in die gleichen Bereiche wie in EingeleseneTexturenGrafik. äöü
 
    AktuelleZeile : Positive;
-   ZeileRassenhintergrund : Positive;
+   ZeileSpezieshintergrund : Positive;
    ZeileEinheiten : Positive;
    ZeileGebäude : Positive;
 
@@ -27,13 +27,13 @@ private
    DateiKartenressourcen : File_Type;
    DateiVerbesserungen : File_Type;
    DateiWege : File_Type;
-   DateiRassen : File_Type;
-   DateiRassenhintergründe : File_Type;
+   DateiSpezies : File_Type;
+   DateiSpezieshintergründe : File_Type;
    DateiEinheiten : File_Type;
    DateiGebäude : File_Type;
 
-   type RassenverzeichnisseArray is array (1 .. 3) of Unbounded_Wide_Wide_String;
-   Rassenverzeichnisse : RassenverzeichnisseArray;
+   type SpeziesverzeichnisseArray is array (1 .. 3) of Unbounded_Wide_Wide_String;
+   Speziesverzeichnisse : SpeziesverzeichnisseArray;
 
    procedure EinlesenSystem;
    procedure EinlesenHintergrund;
@@ -42,11 +42,11 @@ private
    procedure EinlesenKartenressourcen;
    procedure EinlesenVerbesserungen;
    procedure EinlesenWege;
-   procedure EinlesenRassen;
+   procedure EinlesenSpezies;
 
-   procedure EinlesenRassenhintergrund
+   procedure EinlesenSpezieshintergrund
      (DateipfadExtern : in Wide_Wide_String;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
                  DateipfadExtern'Length > 0
@@ -54,7 +54,7 @@ private
 
    procedure EinlesenEinheiten
      (DateipfadExtern : in Wide_Wide_String;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
                  DateipfadExtern'Length > 0
@@ -62,7 +62,7 @@ private
 
    procedure EinlesenGebäude
      (DateipfadExtern : in Wide_Wide_String;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
                  DateipfadExtern'Length > 0

@@ -12,20 +12,20 @@ with ForschungstestsLogik;
 package body GebaeudeAllgemeinLogik is
 
    procedure GebäudeProduktionBeenden
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
    is begin
       
-      SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                       RessourcenExtern       => StadtKonstanten.LeerRessourcen,
                                       ÄndernSetzenExtern     => False);
-      SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                       BauprojektExtern       => StadtKonstanten.LeerBauprojekt);
-      SchreibeStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern     => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern     => StadtSpeziesNummerExtern,
                                              WelchesGebäudeExtern       => IDExtern,
                                              HinzufügenEntfernenExtern  => True);
       
-      PermanenteKostenDurchGebäudeÄndern (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      PermanenteKostenDurchGebäudeÄndern (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                             IDExtern                => IDExtern,
                                             VorzeichenWechselExtern => 1);
                   
@@ -34,30 +34,30 @@ package body GebaeudeAllgemeinLogik is
    
    
    procedure UmgebungsreduktionGebäudeEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
          if
-           False = LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+           False = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                       WelchesGebäudeExtern  => GebäudeSchleifenwert)
          then
             null;
             
          elsif
-           True = GebaeudeumgebungLogik.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+           True = GebaeudeumgebungLogik.RichtigeUmgebungVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                    GebäudeIDExtern        => GebäudeSchleifenwert)
          then
             null;
             
          else
-            SchreibeStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern     => StadtRasseNummerExtern,
+            SchreibeStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern     => StadtSpeziesNummerExtern,
                                                    WelchesGebäudeExtern      => GebäudeSchleifenwert,
                                                    HinzufügenEntfernenExtern => False);
             
-            PermanenteKostenDurchGebäudeÄndern (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+            PermanenteKostenDurchGebäudeÄndern (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                   IDExtern                => GebäudeSchleifenwert,
                                                   VorzeichenWechselExtern => -1);
             
@@ -70,20 +70,20 @@ package body GebaeudeAllgemeinLogik is
    
    
    procedure GebäudeEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
    is begin
       
-      SchreibeWichtiges.Geldmenge (RasseExtern         => StadtRasseNummerExtern.Rasse,
-                                   GeldZugewinnExtern  => Integer (LeseGebaeudeDatenbank.PreisGeld (RasseExtern => StadtRasseNummerExtern.Rasse,
+      SchreibeWichtiges.Geldmenge (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
+                                   GeldZugewinnExtern  => Integer (LeseGebaeudeDatenbank.PreisGeld (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                                     IDExtern    => WelchesGebäudeExtern)) / 2,
                                    RechnenSetzenExtern => True);
       
-      SchreibeStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern     => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern     => StadtSpeziesNummerExtern,
                                              WelchesGebäudeExtern      => WelchesGebäudeExtern,
                                              HinzufügenEntfernenExtern => False);
       
-      PermanenteKostenDurchGebäudeÄndern (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      PermanenteKostenDurchGebäudeÄndern (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                             IDExtern                => WelchesGebäudeExtern,
                                             VorzeichenWechselExtern => -1);
       
@@ -92,7 +92,7 @@ package body GebaeudeAllgemeinLogik is
    
 
    procedure PermanenteKostenDurchGebäudeÄndern
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID;
       -- Der Vorzeichenwechsel wird benötigt um auch bei Entfernung von Gebäuden die permanenten Kosten korrekt zu ändern
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
@@ -103,31 +103,31 @@ package body GebaeudeAllgemeinLogik is
       PermanenteKostenSchleife:
       for PermanenteKostenSchleifenwert in StadtRecords.PermanenteKostenArray'Range loop
          
-         SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.PermanenteKostenPosten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                      WelcherPostenExtern    => PermanenteKostenSchleifenwert,
                                                      KostenExtern           => ProduktionDatentypen.Stadtproduktion (VorzeichenWechselExtern)
-                                                     * LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                     * LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
                                                                                                IDExtern           => IDExtern,
                                                                                                WelcheKostenExtern => PermanenteKostenSchleifenwert),
                                                      ÄndernSetzenExtern    => True);
          
       end loop PermanenteKostenSchleife;
       
-      StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
    end PermanenteKostenDurchGebäudeÄndern;
    
    
    
-   -- Sollte ein Gebäude für eine Rassen nicht existieren dann einfach die Forschugnsanforderungen auf -1 setzen.
+   -- Sollte ein Gebäude für eine Spezies nicht existieren dann einfach die Forschugnsanforderungen auf -1 setzen.
    function GebäudeAnforderungenErfüllt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
    is begin
             
       case
-        LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+        LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                            WelchesGebäudeExtern  => IDExtern)
       is
          when True =>
@@ -138,15 +138,15 @@ package body GebaeudeAllgemeinLogik is
       end case;
       
       case
-        GebaeudeumgebungLogik.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+        GebaeudeumgebungLogik.RichtigeUmgebungVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                          GebäudeIDExtern        => IDExtern)
       is
          when False =>
             return False;
             
          when True =>
-            return ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                                              TechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+            return ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
+                                                              TechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                                                         IDExtern    => IDExtern));
       end case;
       

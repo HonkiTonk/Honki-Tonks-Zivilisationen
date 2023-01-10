@@ -22,13 +22,13 @@ package body LeseAllgemeines is
    
    
    
-   function RasseAmzugNachLaden
-     return RassenDatentypen.Rassen_Enum
+   function SpeziesAmzugNachLaden
+     return SpeziesDatentypen.Spezies_Enum
    is begin
       
-      return SpielVariablen.Allgemeines.RasseAmZugNachLaden;
+      return SpielVariablen.Allgemeines.SpeziesAmZugNachLaden;
       
-   end RasseAmzugNachLaden;
+   end SpeziesAmzugNachLaden;
    
    
    
@@ -73,7 +73,7 @@ package body LeseAllgemeines is
    
    
    function PlanetVernichtet
-     return RassenDatentypen.Rassen_Enum
+     return SpeziesDatentypen.Spezies_Enum
    is begin
       
       return SpielVariablen.Allgemeines.PlanetVernichtet;

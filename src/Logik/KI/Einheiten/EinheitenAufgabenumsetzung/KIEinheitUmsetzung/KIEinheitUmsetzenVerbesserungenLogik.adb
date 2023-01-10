@@ -7,20 +7,20 @@ with Fehlermeldungssystem;
 package body KIEinheitUmsetzenVerbesserungenLogik is
 
    function WelcheVerbesserungAnlegen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      WelcheVerbesserung := LeseEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      WelcheVerbesserung := LeseEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       VorhandeneVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => EinheitKoordinaten);
       
       -- Verhindert das Verbinden von Städten mit Straßen und weiteres. Später eine bessere Lösung bauen. äöü
       if
-        LeseWeltkarte.RasseBelegtGrund (KoordinatenExtern => EinheitKoordinaten) /= EinheitRasseNummerExtern.Rasse
+        LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => EinheitKoordinaten) /= EinheitSpeziesNummerExtern.Spezies
       then
          return False;
          
@@ -42,7 +42,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                return False;
                
             elsif
-              True = AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+              True = AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                   BefehlExtern             => BefehleDatentypen.Mine_Bauen_Enum,
                                                   KoordinatenExtern        => EinheitKoordinaten)
             then
@@ -61,7 +61,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                return False;
                
             elsif
-              True = AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+              True = AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                   BefehlExtern             => BefehleDatentypen.Farm_Bauen_Enum,
                                                   KoordinatenExtern        => EinheitKoordinaten)
             then
@@ -80,7 +80,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                return False;
                
             elsif
-              True = AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+              True = AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                   BefehlExtern             => BefehleDatentypen.Festung_Bauen_Enum,
                                                   KoordinatenExtern        => EinheitKoordinaten)
             then
@@ -94,7 +94,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
             Befehl := BefehleDatentypen.Straße_Bauen_Enum;
             
             if
-              True = AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+              True = AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                   BefehlExtern             => BefehleDatentypen.Straße_Bauen_Enum,
                                                   KoordinatenExtern        => EinheitKoordinaten)
             then
@@ -109,7 +109,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
             return False;
       end case;
       
-      return AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      return AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                     BefehlExtern             => Befehl,
                                     KoordinatenExtern        => EinheitKoordinaten);
       

@@ -9,17 +9,17 @@ with KIDiplomatieLogik;
 package body KennenlernenLogik is
 
    procedure Erstkontakt
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       case
-        LeseDiplomatie.AktuellerZustand (RasseEinsExtern => EigeneRasseExtern,
-                                         RasseZweiExtern => FremdeRasseExtern)
+        LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => EigeneSpeziesExtern,
+                                         SpeziesZweiExtern => FremdeSpeziesExtern)
       is
          when DiplomatieDatentypen.Unbekannt_Enum =>
-            DiplomatischerZustandLogik.DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
-                                                                    RasseZweiExtern   => FremdeRasseExtern,
+            DiplomatischerZustandLogik.DiplomatischenStatusÄndern (SpeziesEinsExtern   => EigeneSpeziesExtern,
+                                                                    SpeziesZweiExtern   => FremdeSpeziesExtern,
                                                                     NeuerStatusExtern => DiplomatieDatentypen.Neutral_Enum);
                
          when others =>
@@ -27,24 +27,24 @@ package body KennenlernenLogik is
       end case;
       
       if
-        LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => EigeneSpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
         and
-          LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+          LeseSpeziesbelegung.Belegung (SpeziesExtern => FremdeSpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
       then
-         ErstkontaktMenschMensch (EigeneRasseExtern => EigeneRasseExtern,
-                                  FremdeRasseExtern => FremdeRasseExtern);
+         ErstkontaktMenschMensch (EigeneSpeziesExtern => EigeneSpeziesExtern,
+                                  FremdeSpeziesExtern => FremdeSpeziesExtern);
       
       elsif
-        LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => EigeneSpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
         or
-          LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+          LeseSpeziesbelegung.Belegung (SpeziesExtern => FremdeSpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
       then
-         ErstkontaktMenschKI (EigeneRasseExtern => EigeneRasseExtern,
-                              FremdeRasseExtern => FremdeRasseExtern);
+         ErstkontaktMenschKI (EigeneSpeziesExtern => EigeneSpeziesExtern,
+                              FremdeSpeziesExtern => FremdeSpeziesExtern);
          
       else
-         KIDiplomatieLogik.DiplomatieKIKI (EigeneRasseExtern   => EigeneRasseExtern,
-                                           FremdeRasseKIExtern => FremdeRasseExtern);
+         KIDiplomatieLogik.DiplomatieKIKI (EigeneSpeziesExtern   => EigeneSpeziesExtern,
+                                           FremdeSpeziesKIExtern => FremdeSpeziesExtern);
       end if;
       
    end Erstkontakt;
@@ -52,8 +52,8 @@ package body KennenlernenLogik is
    
    
    procedure ErstkontaktMenschMensch
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       null;
@@ -63,8 +63,8 @@ package body KennenlernenLogik is
    
    
    procedure ErstkontaktMenschKI
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       null;

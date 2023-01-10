@@ -28,7 +28,7 @@ package RueckgabeDatentypen is
    
    subtype Schwierigkeitsgrad_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Drei_Enum;
    
-   subtype Rassen_Verwendet_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Achtzehn_Enum;
+   subtype Spezies_Verwendet_Enum is Auswahl_Enum range Auswahl_Eins_Enum .. Auswahl_Achtzehn_Enum;
    
    subtype Speichern_Laden_Enum is Rückgabe_Werte_Enum range Auswahl_Null_Enum .. Auswahl_Elf_Enum;
    

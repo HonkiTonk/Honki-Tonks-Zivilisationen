@@ -43,7 +43,7 @@ package body SichtweitenGrafik is
       end if;
       
       CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => WelcheZoomanpassung,
-                                                   RasseExtern    => NachGrafiktask.AktuelleRasse);
+                                                   SpeziesExtern    => NachGrafiktask.AktuelleSpezies);
       
       KartenfelderAbmessungBerechnen;
       
@@ -76,13 +76,13 @@ package body SichtweitenGrafik is
    
    
    function UntenRechts
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean
    is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      Cursor := LeseCursor.KoordinatenAlt (RasseExtern => RasseExtern);
+      Cursor := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
       
       if
         Cursor.YAchse >= LeseWeltkarteneinstellungen.YAchse - SichtweiteLesen

@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with ForschungenDatentypen;
 
 package ForschungsbeschreibungenGrafik is
@@ -6,12 +6,12 @@ package ForschungsbeschreibungenGrafik is
 
    function Kurzbeschreibung
      (IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Wide_Wide_String;
 
    function Langbeschreibung
      (IDExtern : in ForschungenDatentypen.ForschungID;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Wide_Wide_String;
    
 end ForschungsbeschreibungenGrafik;

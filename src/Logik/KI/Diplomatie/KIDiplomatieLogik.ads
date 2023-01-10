@@ -1,36 +1,36 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package KIDiplomatieLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    procedure Diplomatie
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
 
    procedure DiplomatieKIMensch
-     (RasseMenschExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseKIExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesMenschExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesKIExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseMenschExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesMenschExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseKIExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesKIExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
 
    procedure DiplomatieKIKI
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseKIExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      FremdeSpeziesKIExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EigeneSpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseKIExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => FremdeSpeziesKIExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
 
 end KIDiplomatieLogik;

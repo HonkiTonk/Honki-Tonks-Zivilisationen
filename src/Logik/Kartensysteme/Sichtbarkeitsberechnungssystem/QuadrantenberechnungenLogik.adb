@@ -5,7 +5,7 @@ with SichtbereicheErmittelnLogik;
 package body QuadrantenberechnungenLogik is
 
    procedure QuadrantenDurchlaufen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
@@ -17,7 +17,7 @@ package body QuadrantenberechnungenLogik is
          XQuadrantSchleife:
          for XQuadrantSchleifenwert in 0 .. SichtweiteExtern loop
             
-            QuadrantEins (RasseExtern               => RasseExtern,
+            QuadrantEins (SpeziesExtern               => SpeziesExtern,
                           SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
                           SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
                           SichtweiteExtern          => SichtweiteExtern,
@@ -30,7 +30,7 @@ package body QuadrantenberechnungenLogik is
                   null;
                   
                when others =>
-                  QuadrantZwei (RasseExtern               => RasseExtern,
+                  QuadrantZwei (SpeziesExtern               => SpeziesExtern,
                                 SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
                                 SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
                                 SichtweiteExtern          => SichtweiteExtern,
@@ -44,7 +44,7 @@ package body QuadrantenberechnungenLogik is
                   null;
                   
                when others =>
-                  QuadrantDrei (RasseExtern               => RasseExtern,
+                  QuadrantDrei (SpeziesExtern               => SpeziesExtern,
                                 SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
                                 SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
                                 SichtweiteExtern          => SichtweiteExtern,
@@ -59,7 +59,7 @@ package body QuadrantenberechnungenLogik is
                null;
                
             else
-               QuadrantVier (RasseExtern               => RasseExtern,
+               QuadrantVier (SpeziesExtern               => SpeziesExtern,
                              SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
                              SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
                              SichtweiteExtern          => SichtweiteExtern,
@@ -75,7 +75,7 @@ package body QuadrantenberechnungenLogik is
    
    -- Auch mal einen zweidimensionalen Record für die Sichtweiten einbauen? äöü
    procedure QuadrantEins
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
@@ -103,7 +103,7 @@ package body QuadrantenberechnungenLogik is
         and
           SichtweiteXRichtungExtern <= 1
       then
-         SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+         SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                      KoordinatenExtern => KartenQuadrantWert);
                
       elsif
@@ -129,7 +129,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -162,7 +162,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -191,7 +191,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -207,7 +207,7 @@ package body QuadrantenberechnungenLogik is
    
    
    procedure QuadrantZwei
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
@@ -235,7 +235,7 @@ package body QuadrantenberechnungenLogik is
         and
           SichtweiteXRichtungExtern <= 1
       then
-         SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+         SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                      KoordinatenExtern => KartenQuadrantWert);
                
       elsif
@@ -261,7 +261,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -294,7 +294,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -323,7 +323,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -339,7 +339,7 @@ package body QuadrantenberechnungenLogik is
    
    
    procedure QuadrantDrei
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
@@ -367,7 +367,7 @@ package body QuadrantenberechnungenLogik is
         and
           SichtweiteXRichtungExtern <= 1
       then
-         SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+         SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                      KoordinatenExtern => KartenQuadrantWert);
          
       elsif
@@ -393,7 +393,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -426,7 +426,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -455,7 +455,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -471,7 +471,7 @@ package body QuadrantenberechnungenLogik is
    
    
    procedure QuadrantVier
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
@@ -499,7 +499,7 @@ package body QuadrantenberechnungenLogik is
         and
           SichtweiteXRichtungExtern <= 1
       then
-         SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+         SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                      KoordinatenExtern => KartenQuadrantWert);
                
       elsif
@@ -525,7 +525,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -558,7 +558,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -587,7 +587,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (RasseExtern       => RasseExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else

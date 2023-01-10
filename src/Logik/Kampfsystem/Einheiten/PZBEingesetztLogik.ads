@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
 
@@ -9,7 +9,7 @@ private with KartenDatentypen;
 private with ZahlenDatentypen;
 
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -17,17 +17,17 @@ private with Grenzpruefungen;
 
 package PZBEingesetztLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Rassen_Enum;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spezies_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    function PZBEingesetzt
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
               );
 
 private
@@ -42,9 +42,9 @@ private
 
    Zusammenbruchszeit : ZahlenDatentypen.EigenerInteger;
 
-   Einheit : EinheitenRecords.RasseEinheitnummerRecord;
+   Einheit : EinheitenRecords.SpeziesEinheitnummerRecord;
 
-   Stadt : StadtRecords.RasseStadtnummerRecord;
+   Stadt : StadtRecords.SpeziesStadtnummerRecord;
 
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
 

@@ -1,20 +1,20 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package MeldungFestlegenLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    procedure MeldungFestlegen
      (MeldungExtern : in Positive);
 
    procedure SpielermeldungFestlegen
      (MeldungExtern : in Positive;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 end MeldungFestlegenLogik;

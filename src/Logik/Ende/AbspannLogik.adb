@@ -15,7 +15,7 @@ package body AbspannLogik is
         AbspannExtern
       is
          when GrafikDatentypen.Planet_Vernichtet_Enum =>
-            NachGrafiktask.AktuelleRasse := LeseAllgemeines.PlanetVernichtet;
+            NachGrafiktask.AktuelleSpezies := LeseAllgemeines.PlanetVernichtet;
             
          when others =>
             null;

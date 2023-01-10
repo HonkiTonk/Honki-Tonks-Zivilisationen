@@ -23,9 +23,9 @@ package WeltkarteRecords is
       Weg : KartenverbesserungDatentypen.Karten_Weg_Enum;
       Verbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
       
-      Einheit : EinheitenRecords.RasseEinheitnummerRecord;
+      Einheit : EinheitenRecords.SpeziesEinheitnummerRecord;
       
-      Stadtbelegung : StadtRecords.RasseStadtnummerRecord;
+      Stadtbelegung : StadtRecords.SpeziesStadtnummerRecord;
 
    end record;
    
@@ -39,7 +39,7 @@ package WeltkarteRecords is
                                                 Ressource     => KartenextraDatentypen.Leer_Ressource_Enum,
                                                 Weg           => KartenverbesserungDatentypen.Leer_Weg_Enum,
                                                 Verbesserung  => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
-                                                Einheit       => EinheitenKonstanten.LeerRasseNummer,
+                                                Einheit       => EinheitenKonstanten.LeerSpeziesNummer,
                                                 Stadtbelegung => KartenRecordKonstanten.LeerDurchStadtBelegterGrund
                                                );
 

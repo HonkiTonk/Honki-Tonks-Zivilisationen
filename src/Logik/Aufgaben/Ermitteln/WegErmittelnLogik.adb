@@ -12,7 +12,7 @@ with ArbeitszeitWegLogik;
 package body WegErmittelnLogik is
    
    function WegErmitteln
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -21,7 +21,7 @@ package body WegErmittelnLogik is
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        ArbeitszeitWegLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, Gesamtgrund.Basisgrund)
+        ArbeitszeitWegLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, Gesamtgrund.Basisgrund)
       is
          when EinheitenKonstanten.UnmöglicheArbeit =>
             return False;
@@ -34,22 +34,22 @@ package body WegErmittelnLogik is
         Gesamtgrund.Basisgrund
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
-            Arbeitswerte := OberflächeLand (RasseExtern => EinheitRasseNummerExtern.Rasse,
+            Arbeitswerte := OberflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                              WegExtern   => WegVorhanden,
                                              GrundExtern => Gesamtgrund);
             
          when KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range =>
-            Arbeitswerte := OberflächeWasser (RasseExtern => EinheitRasseNummerExtern.Rasse,
+            Arbeitswerte := OberflächeWasser (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                WegExtern   => WegVorhanden,
                                                GrundExtern => Gesamtgrund);
             
          when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
-            Arbeitswerte := UnterflächeLand (RasseExtern => EinheitRasseNummerExtern.Rasse,
+            Arbeitswerte := UnterflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                               WegExtern   => WegVorhanden,
                                               GrundExtern => Gesamtgrund);
             
          when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
-            Arbeitswerte := UnterflächeWasser (RasseExtern => EinheitRasseNummerExtern.Rasse,
+            Arbeitswerte := UnterflächeWasser (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                 WegExtern   => WegVorhanden,
                                                 GrundExtern => Gesamtgrund);
                
@@ -74,9 +74,9 @@ package body WegErmittelnLogik is
         AnlegenTestenExtern
       is
          when True =>
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     BeschäftigungExtern     => Arbeitswerte.Aufgabe);
-            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                          ZeitExtern               => Arbeitswerte.Arbeitszeit,
                                                          RechnenSetzenExtern      => False);
             
@@ -91,7 +91,7 @@ package body WegErmittelnLogik is
    
    
    function OberflächeLand
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
@@ -102,9 +102,9 @@ package body WegErmittelnLogik is
       is
          when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+              True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => SpeziesExtern,
                                                                 TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern   => WelcheWegart (WegExtern),
-                                                                                                                    RasseExtern => RasseExtern))
+                                                                                                                    SpeziesExtern => SpeziesExtern))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                
@@ -117,7 +117,7 @@ package body WegErmittelnLogik is
       end case;
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
+                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -127,7 +127,7 @@ package body WegErmittelnLogik is
 
          when others =>
             Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return (WelcheArbeit, Arbeitszeit);
@@ -137,19 +137,19 @@ package body WegErmittelnLogik is
    
      
    function OberflächeWasser
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      -- Eventuell noch Wege für andere Rassen auf Küstengewässer zulassen? äöü
+      -- Eventuell noch Wege für andere Spezies auf Küstengewässer zulassen? äöü
       if
         GrundExtern.Basisgrund in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
         and
-          RasseExtern /= RassenDatentypen.Ekropa_Enum
+          SpeziesExtern /= SpeziesDatentypen.Ekropa_Enum
       then
          return EinheitenRecordKonstanten.KeineArbeit;
          
@@ -162,9 +162,9 @@ package body WegErmittelnLogik is
       is
          when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+              True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => SpeziesExtern,
                                                                 TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern   => WelcheWegart (KartenverbesserungDatentypen.Schiene_Einzeln_Enum),
-                                                                                                                    RasseExtern => RasseExtern))
+                                                                                                                    SpeziesExtern => SpeziesExtern))
             then
                WelcheArbeit := WelcheWegart (KartenverbesserungDatentypen.Schiene_Einzeln_Enum);
                
@@ -177,7 +177,7 @@ package body WegErmittelnLogik is
       end case;
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
+                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -187,7 +187,7 @@ package body WegErmittelnLogik is
 
          when others =>
             Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return (WelcheArbeit, Arbeitszeit);
@@ -197,7 +197,7 @@ package body WegErmittelnLogik is
      
      
    function UnterflächeLand
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
@@ -208,9 +208,9 @@ package body WegErmittelnLogik is
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum => -- KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+              True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => SpeziesExtern,
                                                                 TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern   => WelcheWegart (KartenverbesserungDatentypen.Tunnel_Einzeln_Enum),
-                                                                                                                    RasseExtern => RasseExtern))
+                                                                                                                    SpeziesExtern => SpeziesExtern))
             then
                WelcheArbeit := WelcheWegart (KartenverbesserungDatentypen.Tunnel_Einzeln_Enum);
                
@@ -223,7 +223,7 @@ package body WegErmittelnLogik is
       end case;
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
+                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -233,7 +233,7 @@ package body WegErmittelnLogik is
 
          when others =>
             Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return (WelcheArbeit, Arbeitszeit);
@@ -244,7 +244,7 @@ package body WegErmittelnLogik is
      
    -- Das ist doch ein wenig sinnfrei, oder? äöü
    function UnterflächeWasser
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
@@ -255,9 +255,9 @@ package body WegErmittelnLogik is
       is
          when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              True = ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+              True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => SpeziesExtern,
                                                                 TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern   => WelcheWegart (WegExtern),
-                                                                                                                    RasseExtern => RasseExtern))
+                                                                                                                    SpeziesExtern => SpeziesExtern))
             then
                WelcheArbeit := WelcheWegart (WegExtern);
                
@@ -270,7 +270,7 @@ package body WegErmittelnLogik is
       end case;
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
+                                                  ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -280,7 +280,7 @@ package body WegErmittelnLogik is
 
          when others =>
             Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+                                                        ÄnderungExtern      => ArbeitszeitWegLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return EinheitenRecordKonstanten.KeineArbeit;

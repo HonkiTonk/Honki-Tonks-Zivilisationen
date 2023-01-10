@@ -1,40 +1,40 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 
 private with RueckgabeDatentypen;
 
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package DiplomatieLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    procedure DiplomatieMöglich
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
 private
 
-   KontaktierteRasse : RassenDatentypen.Rassen_Verwendet_Enum;
+   KontaktierteSpezies : SpeziesDatentypen.Spezies_Verwendet_Enum;
 
    AktionAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    Auswahl : Natural;
 
-   procedure Rassenprüfungen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   procedure Speziesprüfungen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
    procedure Diplomatie
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 end DiplomatieLogik;

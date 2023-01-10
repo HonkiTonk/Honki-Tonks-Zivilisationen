@@ -10,16 +10,16 @@ with GebaeudeAllgemeinLogik;
 package body StadtGebaeudeBauenLogik is
 
    procedure GebäudeFertiggestellt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      GebaeudeAllgemeinLogik.GebäudeProduktionBeenden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                        IDExtern               => StadtDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Gebäude));
+      GebaeudeAllgemeinLogik.GebäudeProduktionBeenden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                        IDExtern               => StadtDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Gebäude));
             
       if
-        LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Mensch_Spieler_Enum
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Mensch_Spieler_Enum
       then
-         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.KIBeschäftigung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                BeschäftigungExtern   => KIDatentypen.Keine_Aufgabe_Enum);
                
       else

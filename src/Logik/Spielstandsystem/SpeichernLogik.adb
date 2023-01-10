@@ -77,7 +77,7 @@ package body SpeichernLogik is
          Allgemeines (DateiSpeichernExtern => DateiSpeichern);
          FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
       
-         RassenwerteSpeichern (DateiSpeichernExtern => DateiSpeichern);
+         SpezieswerteSpeichern (DateiSpeichernExtern => DateiSpeichern);
          FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
             
          Close (File => DateiSpeichern);
@@ -153,88 +153,88 @@ package body SpeichernLogik is
       SpielRecords.AllgemeinesRecord'Write (Stream (File => DateiSpeichernExtern),
                                             LeseAllgemeines.GanzerEintrag);
             
-      SpielRecords.RassenbelegungArray'Write (Stream (File => DateiSpeichernExtern),
-                                              LeseRassenbelegung.GanzesArray);
+      SpielRecords.SpeziesbelegungArray'Write (Stream (File => DateiSpeichernExtern),
+                                              LeseSpeziesbelegung.GanzesArray);
       
    end Allgemeines;
    
    
    
-   procedure RassenwerteSpeichern
+   procedure SpezieswerteSpeichern
      (DateiSpeichernExtern : in File_Type)
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
          is
-            when RassenDatentypen.Leer_Spieler_Enum =>
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
-               Rassenwerte (RasseExtern          => RasseSchleifenwert,
+               Spezieswerte (SpeziesExtern          => SpeziesSchleifenwert,
                             DateiSpeichernExtern => DateiSpeichernExtern);
          end case;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
-   end RassenwerteSpeichern;
+   end SpezieswerteSpeichern;
    
    
    
-   procedure Rassenwerte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+   procedure Spezieswerte
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateiSpeichernExtern : in File_Type)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       SpielRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernExtern),
-                                        LeseGrenzen.GanzerEintrag (RasseExtern => RasseExtern));
+                                        LeseGrenzen.GanzerEintrag (SpeziesExtern => SpeziesExtern));
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
+      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
                   
          EinheitenRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                       LeseEinheitenGebaut.GanzerEintrag (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert)));
+                                                       LeseEinheitenGebaut.GanzerEintrag (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
          
       end loop EinheitenSchleife;
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
                   
          StadtRecords.StadtGebautRecord'Write (Stream (File => DateiSpeichernExtern),
-                                               LeseStadtGebaut.GanzerEintrag (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)));
+                                               LeseStadtGebaut.GanzerEintrag (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
             
       end loop StadtSchleife;
       
       DiplomatieSchleife:
-      for DiplomatieSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      for DiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
 
          if
-           LeseRassenbelegung.Belegung (RasseExtern => DiplomatieSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => DiplomatieSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
            or
-             DiplomatieSchleifenwert = RasseExtern
+             DiplomatieSchleifenwert = SpeziesExtern
          then
             null;
                      
          else
             SpielRecords.DiplomatieRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                 LeseDiplomatie.GanzerEintrag (RasseEinsExtern => RasseExtern,
-                                                                               RasseZweiExtern => DiplomatieSchleifenwert));
+                                                 LeseDiplomatie.GanzerEintrag (SpeziesEinsExtern => SpeziesExtern,
+                                                                               SpeziesZweiExtern => DiplomatieSchleifenwert));
          end if;
 
       end loop DiplomatieSchleife;
       
       SpielRecords.WichtigesRecord'Write (Stream (File => DateiSpeichernExtern),
-                                          LeseWichtiges.GanzerEintrag (RasseExtern => RasseExtern));
+                                          LeseWichtiges.GanzerEintrag (SpeziesExtern => SpeziesExtern));
       
       KartenRecords.CursorRecord'Write (Stream (File => DateiSpeichernExtern),
-                                        LeseCursor.GanzerEintrag (RasseExtern => RasseExtern));
+                                        LeseCursor.GanzerEintrag (SpeziesExtern => SpeziesExtern));
       
-   end Rassenwerte;
+   end Spezieswerte;
    
    
    

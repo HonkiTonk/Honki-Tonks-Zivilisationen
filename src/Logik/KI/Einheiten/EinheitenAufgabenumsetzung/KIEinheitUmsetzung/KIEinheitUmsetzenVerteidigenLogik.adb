@@ -3,14 +3,14 @@ with KIGefahrErmittelnLogik;
 package body KIEinheitUmsetzenVerteidigenLogik is
 
    function Verteidigen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type EinheitenRecords.RasseEinheitnummerRecord;
+      use type EinheitenRecords.SpeziesEinheitnummerRecord;
    begin
       
       if
-        KIGefahrErmittelnLogik.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerRasseNummer
+        KIGefahrErmittelnLogik.GefahrErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerSpeziesNummer
       then
          null;
          

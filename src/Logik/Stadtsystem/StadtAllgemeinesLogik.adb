@@ -5,17 +5,17 @@ with TexteingabeLogik;
 package body StadtAllgemeinesLogik is
 
    procedure NeuerStadtname
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      NeuerName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      NeuerName := TexteingabeLogik.StadtName (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                BauenExtern            => False);
                
       case
         NeuerName.ErfolgreichAbbruch
       is
          when True =>
-            SchreibeStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            SchreibeStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                       NameExtern             => NeuerName.EingegebenerText);
             
          when False =>

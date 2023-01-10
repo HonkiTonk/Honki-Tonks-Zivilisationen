@@ -4,7 +4,7 @@ with Sf.Graphics.View;
 with Views;
 with InteraktionAuswahl;
 with SystemKonstanten;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with ForschungKonstanten;
 with StadtKonstanten;
 with EinheitenKonstanten;
@@ -18,7 +18,7 @@ with SichtweitenGrafik;
 -- Thematisch aufteilen? äöü
 package body MausauswahlLogik is
 
-   function RassenauswahlDiplomatie
+   function SpeziesauswahlDiplomatie
      return Natural
    is begin
       
@@ -27,17 +27,17 @@ package body MausauswahlLogik is
                                                                  view         => Views.MenüviewAccess);
             
       MauszeigerSchleife:
-      for RassenSchleifenwert in InteraktionAuswahl.RassenMöglicheArray'Range loop
+      for SpeziesSchleifenwert in InteraktionAuswahl.SpeziesMöglicheArray'Range loop
          
          case
-           InteraktionAuswahl.RassenMöglich (RassenSchleifenwert)
+           InteraktionAuswahl.SpeziesMöglich (SpeziesSchleifenwert)
          is
             when True =>
                if
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    TextboxExtern      => InteraktionAuswahl.PositionenDiplomatieRasse (RassenSchleifenwert))
+                                                    TextboxExtern      => InteraktionAuswahl.PositionenDiplomatieSpezies (SpeziesSchleifenwert))
                then
-                  return RassenDatentypen.Rassen_Enum'Pos (RassenSchleifenwert);
+                  return SpeziesDatentypen.Spezies_Enum'Pos (SpeziesSchleifenwert);
          
                else
                   null;
@@ -51,7 +51,7 @@ package body MausauswahlLogik is
       
       return SystemKonstanten.LeerAuswahl;
       
-   end RassenauswahlDiplomatie;
+   end SpeziesauswahlDiplomatie;
    
    
    

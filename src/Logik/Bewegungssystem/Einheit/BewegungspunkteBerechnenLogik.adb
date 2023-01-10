@@ -9,14 +9,14 @@ package body BewegungspunkteBerechnenLogik is
    -- Eventuell Bewegungspunkte entfernen und überall durch NotwendigeBewegungspunkte ersetzen? äöü
    function Bewegungspunkte
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return EinheitenDatentypen.Bewegungspunkte
    is begin
       
-      AktuelleBewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      AktuelleBewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       BenötigteBewegungspunkte := NotwendigeBewegungspunkte (NeueKoordinatenExtern    => NeueKoordinatenExtern,
-                                                              EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                                                              EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       if
         AktuelleBewegungspunkte < BenötigteBewegungspunkte
@@ -35,11 +35,11 @@ package body BewegungspunkteBerechnenLogik is
    
    function NotwendigeBewegungspunkte
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return EinheitenDatentypen.VorhandeneBewegungspunkte
    is begin
             
-      BewegungspunkteNotwendig := NotwendigeBewegungspunkteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      BewegungspunkteNotwendig := NotwendigeBewegungspunkteErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                       NeueKoordinatenExtern    => NeueKoordinatenExtern);
       
       if
@@ -58,7 +58,7 @@ package body BewegungspunkteBerechnenLogik is
    
 
    function NotwendigeBewegungspunkteErmitteln
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenDatentypen.Bewegungspunkte
    is begin
@@ -67,14 +67,14 @@ package body BewegungspunkteBerechnenLogik is
         NeueKoordinatenExtern.EAchse
       is
          when KartenDatentypen.EbeneOberfläche =>
-            EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
 
             if
-              True = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+              True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies,
                                                             IDExtern             => EinheitID,
                                                             WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
               or
-                True = LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies,
                                                               IDExtern             => EinheitID,
                                                               WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum)
             then
@@ -91,11 +91,11 @@ package body BewegungspunkteBerechnenLogik is
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => NeueKoordinatenExtern);
       
       BewegungspunkteGesamt := Positive (LeseKartenDatenbanken.BewegungBasisgrund (GrundExtern => Gesamtgrund.Basisgrund,
-                                                                                   RasseExtern => EinheitRasseNummerExtern.Rasse))
+                                                                                   SpeziesExtern => EinheitSpeziesNummerExtern.Spezies))
         + Natural (LeseKartenDatenbanken.BewegungZusatzgrund (GrundExtern => Gesamtgrund.Zusatzgrund,
-                                                              RasseExtern => EinheitRasseNummerExtern.Rasse))
+                                                              SpeziesExtern => EinheitSpeziesNummerExtern.Spezies))
         + Integer (LeseVerbesserungenDatenbank.BewegungWeg (WegExtern   => LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern),
-                                                            RasseExtern => EinheitRasseNummerExtern.Rasse));
+                                                            SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
       
       if
         BewegungspunkteGesamt >= Positive (EinheitenDatentypen.VorhandeneBewegungspunkte'Last)

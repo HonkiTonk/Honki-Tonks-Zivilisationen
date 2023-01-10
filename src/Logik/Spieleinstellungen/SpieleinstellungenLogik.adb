@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with MenueDatentypen;
 with GrafikDatentypen;
 
@@ -7,7 +7,7 @@ with SchreibeWeltkarteneinstellungen;
 with SpielLogik;
 with KartengeneratorLogik;
 with SpieleinstellungenKartenLogik;
-with SpieleinstellungenRasseLogik;
+with SpieleinstellungenSpeziesLogik;
 with SpieleinstellungenSonstigesLogik;
 with Fehlermeldungssystem;
 with LadezeitenLogik;
@@ -29,7 +29,7 @@ package body SpieleinstellungenLogik is
       is
          when True =>
             StandardSpielwerteSetzenLogik.Standardspielwerte (EinstellungenBehaltenExtern => False);
-            SpieleinstellungenRasseLogik.RasseBelegenSchnellstart;
+            SpieleinstellungenSpeziesLogik.SpeziesBelegenSchnellstart;
             return AutomatischeEinstellungen;
             
          when False =>
@@ -65,19 +65,19 @@ package body SpieleinstellungenLogik is
                   SpieleinstellungenKartenLogik.KartenressourcenWählen;
 
                when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
-                  SpieleinstellungenRasseLogik.RassenWählen;
+                  SpieleinstellungenSpeziesLogik.SpeziesWählen;
 
                when RueckgabeDatentypen.Auswahl_Acht_Enum =>
                   SpieleinstellungenSonstigesLogik.SchwierigkeitsgradFestlegen;
                
                when RueckgabeDatentypen.Fertig_Enum =>
                   if
-                    SpieleinstellungenRasseLogik.EineRasseBelegt = True
+                    SpieleinstellungenSpeziesLogik.EineSpeziesBelegt = True
                   then
                      null;
                   
                   else
-                     SpieleinstellungenRasseLogik.RasseAutomatischBelegen;
+                     SpieleinstellungenSpeziesLogik.SpeziesAutomatischBelegen;
                   end if;
                   
                   exit SpielEinstellungenSchleife;
@@ -121,16 +121,16 @@ package body SpieleinstellungenLogik is
       SchreibeWeltkarteneinstellungen.Kartenform (KartenformExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartenform);
       KartengeneratorLogik.Kartengenerator;
       
-      SpieleinstellungenRasseLogik.StartwerteErmitteln;
+      SpieleinstellungenSpeziesLogik.StartwerteErmitteln;
       
       case
-        Spielertests.BeliebigeSpielerart (RasseExtern => RassenDatentypen.Keine_Rasse_Enum)
+        Spielertests.BeliebigeSpielerart (SpeziesExtern => SpeziesDatentypen.Keine_Spezies_Enum)
       is
          when True =>
             null;
             
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen: Rassenplatzierung unmöglich.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen: Speziesplatzierung unmöglich.");
             return RueckgabeDatentypen.Spielmenü_Enum;
       end case;
             

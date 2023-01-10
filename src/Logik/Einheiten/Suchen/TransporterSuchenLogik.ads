@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with EinheitenDatentypen;
 with KartenDatentypen;
 with KartenRecords;
@@ -7,16 +7,16 @@ with EinheitenRecords;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package TransporterSuchenLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
    use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
-   function KoordinatenTransporterMitRasseSuchen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+   function KoordinatenTransporterMitSpeziesSuchen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
@@ -25,38 +25,38 @@ package TransporterSuchenLogik is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    function EinheitAufTransporterSuchen
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return EinheitenDatentypen.Transportplätze
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => TransporterExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  TransporterExtern.Nummer > 0
               );
 
    function HatTransporterLadung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 EinheitRasseNummerExtern.Nummer > 0
+                 EinheitSpeziesNummerExtern.Nummer > 0
               );
    
    function FreierPlatz
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return EinheitenDatentypen.Transportplätze
      with
        Pre => (
-                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
+                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => TransporterExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
 private

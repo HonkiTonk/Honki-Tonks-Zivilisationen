@@ -11,7 +11,7 @@ package body TextaccesseSchriftfarbeGrafik is
       
       Allgemeines;
       Menüs;
-      Rassen;
+      Spezies;
       ZusatztextKartengröße;
       Sprachauswahl;
       Kartenformauswahl;
@@ -109,16 +109,16 @@ package body TextaccesseSchriftfarbeGrafik is
    
    
    
-   procedure Rassen
+   procedure Spezies
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in TextaccessVariablen.RassennamenAccess'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in TextaccessVariablen.SpeziesnamenAccess'Range loop
          
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RassennamenAccess (RasseSchleifenwert),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpeziesnamenAccess (SpeziesSchleifenwert),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
          
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RassenbeschreibungAccess (RasseSchleifenwert),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesSchleifenwert),
                                     color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
          
          
@@ -130,14 +130,14 @@ package body TextaccesseSchriftfarbeGrafik is
               GebäudetextSchleifenwert
             is
             when TextaccessVariablen.GebäudetextAccessArray'First (2) =>
-               Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+               Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                           color => TexteinstellungenGrafik.Schriftfarben.FarbeÜberschrift);
                
             when others =>
-               Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+               Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                           color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
                
-               Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudezusatztextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+               Sf.Graphics.Text.setColor (text => TextaccessVariablen.GebäudezusatztextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                           color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
             end case;
             
@@ -152,14 +152,14 @@ package body TextaccesseSchriftfarbeGrafik is
               EinheitentextSchleifenwert
             is
             when TextaccessVariablen.EinheitentextAccessArray'First (2) =>
-               Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitentextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+               Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                           color => TexteinstellungenGrafik.Schriftfarben.FarbeÜberschrift);
                
             when others =>
-               Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitentextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+               Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                           color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
                
-               Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitenzusatztextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+               Sf.Graphics.Text.setColor (text => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                           color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
             end case;
          
@@ -170,20 +170,20 @@ package body TextaccesseSchriftfarbeGrafik is
          ForschungenSchleife:
          for ForschungSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range (2) loop
          
-            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (RasseSchleifenwert, ForschungSchleifenwert),
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
                                        color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
          
-            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseSchleifenwert, ForschungSchleifenwert),
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
                                        color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
          
          end loop ForschungenSchleife;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                  color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
       
-   end Rassen;
+   end Spezies;
       
       
    

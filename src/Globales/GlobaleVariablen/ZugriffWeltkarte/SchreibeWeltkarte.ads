@@ -1,5 +1,5 @@
 with KartenDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with KartenverbesserungDatentypen;
 with KartengrundDatentypen;
 with KartenRecords;
@@ -9,11 +9,11 @@ with WeltkarteRecords;
 with KartenextraDatentypen;
 
 with LeseWeltkarteneinstellungen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package SchreibeWeltkarte is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
    
    procedure Basisgrund
@@ -58,11 +58,11 @@ package SchreibeWeltkarte is
    
    procedure Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SichtbarExtern : in Boolean)
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -111,7 +111,7 @@ package SchreibeWeltkarte is
 
    procedure BelegterGrund
      (KoordinatenExtern : KartenRecords.AchsenKartenfeldNaturalRecord;
-      BelegterGrundExtern : in StadtRecords.RasseStadtnummerRecord)
+      BelegterGrundExtern : in StadtRecords.SpeziesStadtnummerRecord)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -121,7 +121,7 @@ package SchreibeWeltkarte is
    
    procedure EinheitSchreiben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       EinheitentauschExtern : in Boolean)
      with
        Pre => (
@@ -132,7 +132,7 @@ package SchreibeWeltkarte is
    
    procedure EinheitEntfernen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

@@ -21,66 +21,66 @@ package body EinheitenmodifizierungLogik is
    procedure HeilungBewegungspunkteNeueRundeErmitteln
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
          is
-            when RassenDatentypen.Leer_Spieler_Enum =>
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;
            
             when others =>
                EinheitenSchleife:
-               for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseSchleifenwert) loop
+               for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesSchleifenwert) loop
                               
                   case
-                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert))
+                    LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesSchleifenwert, EinheitNummerSchleifenwert))
                   is
                      when EinheitenKonstanten.LeerID =>
                         null;
                   
                      when others =>
-                        HeilungBewegungspunkteNeueRundeSetzen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
+                        HeilungBewegungspunkteNeueRundeSetzen (EinheitSpeziesNummerExtern => (SpeziesSchleifenwert, EinheitNummerSchleifenwert));
                   end case;
             
                end loop EinheitenSchleife;
          end case;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
    end HeilungBewegungspunkteNeueRundeErmitteln;
 
 
 
    procedure HeilungBewegungspunkteNeueRundeSetzen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       use type EinheitenDatentypen.Bewegungspunkte;
       use type EinheitenDatentypen.Lebenspunkte;
    begin
       
-      AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      KIBeschäftigung := LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      KIBeschäftigung := LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
 
       if
         AktuelleBeschäftigung = AufgabenDatentypen.Heilen_Enum
         or
           AktuelleBeschäftigung = AufgabenDatentypen.Verschanzen_Enum
       then
-         SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+         SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                LebenspunkteExtern       => Heilungsrate,
                                                RechnenSetzenExtern      => True);
          
       elsif
         AktuelleBeschäftigung = AufgabenDatentypen.Leer_Aufgabe_Enum
         and
-          LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+          LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                                                                                        IDExtern    => EinheitID)
       then
-         SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+         SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                LebenspunkteExtern       => Heilungsrate / 2,
                                                RechnenSetzenExtern      => True);
          
@@ -92,13 +92,13 @@ package body EinheitenmodifizierungLogik is
         AktuelleBeschäftigung
       is
          when EinheitenKonstanten.LeerBeschäftigung =>
-            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                     BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                     BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                                                                  IDExtern    => EinheitID),
                                                      RechnenSetzenExtern      => False);
 
          when others =>
-            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                      BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                      RechnenSetzenExtern      => False);
       end case;
@@ -108,13 +108,13 @@ package body EinheitenmodifizierungLogik is
       
    
    procedure PermanenteKostenÄndern
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
         Heimatstadt
@@ -123,24 +123,24 @@ package body EinheitenmodifizierungLogik is
             return;
             
          when others =>
-            AktuelleID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AktuelleID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
       PermanenteKostenSchleife:
       for PermanenteKostenSchleifenwert in StadtRecords.PermanenteKostenArray'Range loop
          
          if
-           0 > LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+           0 > LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                         IDExtern           => AktuelleID,
                                                         WelcheKostenExtern => PermanenteKostenSchleifenwert)
          then
             null;
             
          else
-            SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt),
+            SchreibeStadtGebaut.PermanenteKostenPosten (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Heimatstadt),
                                                         WelcherPostenExtern    => PermanenteKostenSchleifenwert,
                                                         KostenExtern           =>
-                                                          ProduktionDatentypen.Stadtproduktion (VorzeichenWechselExtern) * LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                                          ProduktionDatentypen.Stadtproduktion (VorzeichenWechselExtern) * LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
                                                                                                                                                                     IDExtern           => AktuelleID,
                                                                                                                                                                     WelcheKostenExtern => PermanenteKostenSchleifenwert),
                                                         ÄndernSetzenExtern     => True);
@@ -148,36 +148,36 @@ package body EinheitenmodifizierungLogik is
          
       end loop PermanenteKostenSchleife;
       
-      StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt));
+      StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Heimatstadt));
       
    end PermanenteKostenÄndern;
    
    
    
    procedure HeimatstadtÄndern
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       use type StadtDatentypen.MaximaleStädteMitNullWert;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       case
-        EinheitRasseNummerExtern.Nummer
+        EinheitSpeziesNummerExtern.Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
-            EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                  KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse),
+            EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+                                                                                  KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies),
                                                                                   LogikGrafikExtern => True);
       
-            NeueHeimatstadt.Rasse := EinheitRasseNummerExtern.Rasse;
-            NeueHeimatstadt.Nummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                       KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse));
+            NeueHeimatstadt.Spezies := EinheitSpeziesNummerExtern.Spezies;
+            NeueHeimatstadt.Nummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+                                                                                       KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
             
          when others =>
-            EinheitNummer := EinheitRasseNummerExtern.Nummer;
+            EinheitNummer := EinheitSpeziesNummerExtern.Nummer;
             
-            NeueHeimatstadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+            NeueHeimatstadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       end case;
       
       if
@@ -185,23 +185,23 @@ package body EinheitenmodifizierungLogik is
         or
           NeueHeimatstadt.Nummer = StadtKonstanten.LeerNummer
           or
-            EinheitRasseNummerExtern.Rasse /= NeueHeimatstadt.Rasse
+            EinheitSpeziesNummerExtern.Spezies /= NeueHeimatstadt.Spezies
       then
          return;
          
       elsif
-        NeueHeimatstadt.Nummer = LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))
+        NeueHeimatstadt.Nummer = LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer))
       then
          return;
          
       else
-         PermanenteKostenÄndern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
+         PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
                                   VorzeichenWechselExtern  => -1);
       
-         SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
+         SchreibeEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
                                               HeimatstadtExtern        => NeueHeimatstadt.Nummer);
       
-         PermanenteKostenÄndern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
+         PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
                                   VorzeichenWechselExtern  => 1);
       end if;
       
@@ -210,7 +210,7 @@ package body EinheitenmodifizierungLogik is
    
    
    function EinheitAnforderungenErfüllt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return Boolean
    is
@@ -224,20 +224,20 @@ package body EinheitenmodifizierungLogik is
          return False;
          
       elsif
-        EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
+        EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                               IDExtern    => IDExtern)
       then
          return DebugobjekteLogik.Debug.VolleInformation;
          
       elsif
-        False = PassierbarkeitspruefungLogik.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+        False = PassierbarkeitspruefungLogik.RichtigeUmgebungVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                         EinheitenIDExtern      => IDExtern)
       then
          return False;
          
       else
-         return ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                                           TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+         return ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
+                                                           TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                                                       IDExtern    => IDExtern));
       end if;
       

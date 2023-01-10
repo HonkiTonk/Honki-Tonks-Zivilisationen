@@ -1,17 +1,17 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with KartenKonstanten;
 with KartenRecords;
 with KartenDatentypen;
 
 with LeseWeltkarteneinstellungen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package QuadrantenberechnungenLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    procedure QuadrantenDurchlaufen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
@@ -20,7 +20,7 @@ package QuadrantenberechnungenLogik is
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
 private
@@ -28,7 +28,7 @@ private
    KartenQuadrantWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure QuadrantEins
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
@@ -39,11 +39,11 @@ private
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
    procedure QuadrantZwei
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
@@ -54,11 +54,11 @@ private
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
    procedure QuadrantDrei
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
@@ -69,11 +69,11 @@ private
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
    procedure QuadrantVier
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
@@ -84,7 +84,7 @@ private
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 end QuadrantenberechnungenLogik;

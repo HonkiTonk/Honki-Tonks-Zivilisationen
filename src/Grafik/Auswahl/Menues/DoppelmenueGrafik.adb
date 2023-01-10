@@ -1,15 +1,15 @@
 with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 
-with RassenDatentypen;
+with SpeziesDatentypen;
 with Views;
 with GrafikDatentypen;
 with TextaccessVariablen;
 with SystemKonstanten;
 with InteraktionAuswahl;
-with RassenKonstanten;
+with SpeziesKonstanten;
 
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
@@ -42,7 +42,7 @@ package body DoppelmenueGrafik is
       case
         WelchesMenüExtern
       is
-         when MenueDatentypen.Rassen_Menü_Enum =>
+         when MenueDatentypen.Spezies_Menü_Enum =>
             Viewfläche (Auswahlbereich) := TextpositionFestlegen (WelchesMenüExtern    => WelchesMenüExtern,
                                                                    ViewflächeExtern     => Viewfläche (Auswahlbereich),
                                                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern);
@@ -138,15 +138,15 @@ package body DoppelmenueGrafik is
          Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
          
       elsif
-        AktuellerTextExtern - 1 in RassenKonstanten.Rassenanfang .. RassenKonstanten.Rassenende
+        AktuellerTextExtern - 1 in SpeziesKonstanten.Speziesanfang .. SpeziesKonstanten.Speziesende
       then
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuellerTextExtern - 1))
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesDatentypen.Spezies_Verwendet_Enum'Val (AktuellerTextExtern - 1))
          is
-            when RassenDatentypen.Mensch_Spieler_Enum =>
+            when SpeziesDatentypen.Mensch_Spieler_Enum =>
                Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
                
-            when RassenDatentypen.KI_Spieler_Enum =>
+            when SpeziesDatentypen.KI_Spieler_Enum =>
                Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeKIText;
                
             when others =>

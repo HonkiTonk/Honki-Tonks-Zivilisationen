@@ -12,7 +12,7 @@ with NaechsteStadtLogik;
 package body BefehlsauswahlLogik is
 
    function Befehlsauswahl
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
@@ -22,11 +22,11 @@ package body BefehlsauswahlLogik is
         Befehl
       is
          when TastenbelegungDatentypen.Auswählen_Enum =>
-            return Tasteneingabe (RasseExtern  => RasseExtern,
+            return Tasteneingabe (SpeziesExtern  => SpeziesExtern,
                                   BefehlExtern => MausauswahlLogik.Weltkartenbefehle);
             
          when others =>
-            return Tasteneingabe (RasseExtern  => RasseExtern,
+            return Tasteneingabe (SpeziesExtern  => SpeziesExtern,
                                   BefehlExtern => Befehl);
       end case;
       
@@ -35,7 +35,7 @@ package body BefehlsauswahlLogik is
    
    
    function Tasteneingabe
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       BefehlExtern : in TastenbelegungDatentypen.Allgemeine_Belegung_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
@@ -45,34 +45,34 @@ package body BefehlsauswahlLogik is
       is
          when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
             CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => BefehlExtern,
-                                                         RasseExtern    => RasseExtern);
+                                                         SpeziesExtern    => SpeziesExtern);
             
          when TastenbelegungDatentypen.Auswählen_Enum =>
-            BefehlspruefungenLogik.AuswahlEinheitStadt (RasseExtern => RasseExtern);
+            BefehlspruefungenLogik.AuswahlEinheitStadt (SpeziesExtern => SpeziesExtern);
             
          when TastenbelegungDatentypen.Abwählen_Enum =>
             return RueckgabeDatentypen.Spielmenü_Enum;
            
          when TastenbelegungDatentypen.Forschung_Enum =>
-            ForschungsauswahlLogik.Forschung (RasseExtern => RasseExtern);
+            ForschungsauswahlLogik.Forschung (SpeziesExtern => SpeziesExtern);
             
          when TastenbelegungDatentypen.Nächste_Stadt_Enum =>
-            NaechsteStadtLogik.NächsteStadt (RasseExtern => RasseExtern);
+            NaechsteStadtLogik.NächsteStadt (SpeziesExtern => SpeziesExtern);
             
          when TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum =>
-            NaechsteEinheitLogik.NächsteEinheit (RasseExtern           => RasseExtern,
+            NaechsteEinheitLogik.NächsteEinheit (SpeziesExtern           => SpeziesExtern,
                                                   BewegungspunkteExtern => NaechsteEinheitLogik.Hat_Bewegungspunkte_Enum);
             
          when TastenbelegungDatentypen.Nächste_Einheit_Enum =>
-            NaechsteEinheitLogik.NächsteEinheit (RasseExtern           => RasseExtern,
+            NaechsteEinheitLogik.NächsteEinheit (SpeziesExtern           => SpeziesExtern,
                                                   BewegungspunkteExtern => NaechsteEinheitLogik.Egal_Bewegungspunkte_Enum);
             
          when TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum =>
-            NaechsteEinheitLogik.NächsteEinheit (RasseExtern           => RasseExtern,
+            NaechsteEinheitLogik.NächsteEinheit (SpeziesExtern           => SpeziesExtern,
                                                   BewegungspunkteExtern => NaechsteEinheitLogik.Keine_Bewegungspunkte_Enum);
 
          when TastenbelegungDatentypen.Diplomatie_Enum =>
-            DiplomatieLogik.DiplomatieMöglich (RasseExtern => RasseExtern);
+            DiplomatieLogik.DiplomatieMöglich (SpeziesExtern => SpeziesExtern);
 
          when TastenbelegungDatentypen.Gehe_Zu_Enum =>
             CursorbewegungLogik.GeheZu;
@@ -81,16 +81,16 @@ package body BefehlsauswahlLogik is
             StadtSuchenLogik.StadtNachNamenSuchen;
             
          when TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum =>
-            NaechsteStadtLogik.NächsteStadtMeldung (RasseExtern => RasseExtern);
+            NaechsteStadtLogik.NächsteStadtMeldung (SpeziesExtern => SpeziesExtern);
             
          when TastenbelegungDatentypen.Nächste_Einheit_Mit_Meldung_Enum =>
-            NaechsteEinheitLogik.NächsteEinheitMeldung (RasseExtern => RasseExtern);
+            NaechsteEinheitLogik.NächsteEinheitMeldung (SpeziesExtern => SpeziesExtern);
             
          when TastenbelegungDatentypen.Runde_Beenden_Enum =>
             return RueckgabeDatentypen.Runde_Beenden_Enum;
             
          when TastenbelegungDatentypen.Debugmenü_Enum =>
-            DebugmenueLogik.Debugmenü (RasseExtern => RasseExtern);
+            DebugmenueLogik.Debugmenü (SpeziesExtern => SpeziesExtern);
             
          when TastenbelegungDatentypen.Leer_Allgemeine_Belegung_Enum =>
             null;

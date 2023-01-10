@@ -2,27 +2,27 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
 
-with RassenDatentypen;
+with SpeziesDatentypen;
 with GrafikDatentypen;
 
 private with GrafikRecordKonstanten;
 private with SystemDatentypen;
 
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 private with UmwandlungenAdaNachEigenes;
 
 package LadezeitenGrafik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
-   use type RassenDatentypen.Rassen_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spezies_Enum;
    
    procedure Ladezeiten
      (WelcheLadeanzeigeExtern : in GrafikDatentypen.Ladezeiten_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
      with
        Pre => (
-               if RasseExtern /= RassenDatentypen.Keine_Rasse_Enum then LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+               if SpeziesExtern /= SpeziesDatentypen.Keine_Spezies_Enum then LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 private

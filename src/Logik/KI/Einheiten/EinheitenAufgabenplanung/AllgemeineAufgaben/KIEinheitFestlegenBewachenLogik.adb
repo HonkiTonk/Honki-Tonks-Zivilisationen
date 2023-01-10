@@ -12,16 +12,16 @@ with KIAufgabenVerteiltLogik;
 package body KIEinheitFestlegenBewachenLogik is
 
    function StadtBewachen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KartenDatentypen.Kartenfeld;
    begin
             
       StadtSchleife:
-      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => EinheitRasseNummerExtern.Rasse) loop
+      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) loop
          
-         Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert));
+         Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert));
          
          if
            Stadtkoordinaten.XAchse = KartenKonstanten.LeerXAchse
@@ -30,12 +30,12 @@ package body KIEinheitFestlegenBewachenLogik is
                
          elsif
            False = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen_Enum,
-                                                               RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                               SpeziesExtern           => EinheitSpeziesNummerExtern.Spezies,
                                                                ZielKoordinatenExtern => Stadtkoordinaten)
          then
-            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern        => Stadtkoordinaten);
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Stadt_Bewachen_Enum);
             return True;
                

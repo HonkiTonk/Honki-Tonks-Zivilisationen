@@ -1,21 +1,21 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with SystemRecords;
 with StadtRecords;
 
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package TexteingabeLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
-   use type RassenDatentypen.Rassen_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spezies_Enum;
 
    function StadtName
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       BauenExtern : in Boolean)
       return SystemRecords.TextEingabeRecord
      with
        Pre => (
-                 if StadtRasseNummerExtern.Rasse /= RassenDatentypen.Keine_Rasse_Enum then LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+                 if StadtSpeziesNummerExtern.Spezies /= SpeziesDatentypen.Keine_Spezies_Enum then LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
    function SpielstandName

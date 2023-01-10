@@ -16,7 +16,7 @@ with SichtweitenGrafik;
 package body CursorplatzierungGrafik is
    
    procedure Weltkarte
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type KartenDatentypen.Kartenfeld;
    begin
@@ -31,7 +31,7 @@ package body CursorplatzierungGrafik is
             Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
             
          when others =>
-            SchreibeCursor.KoordinatenAktuell (RasseExtern       => RasseExtern,
+            SchreibeCursor.KoordinatenAktuell (SpeziesExtern       => SpeziesExtern,
                                                KoordinatenExtern => NachGrafiktask.GeheZu);
             return;
       end case;
@@ -62,7 +62,7 @@ package body CursorplatzierungGrafik is
          Kartenänderung.XAchse := -Sichtbereich + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / SichtweitenGrafik.KartenfelderAbmessung.x));
       end if;
       
-      KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseCursor.KoordinatenAlt (RasseExtern => RasseExtern),
+      KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern),
                                                                                                 ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Kartenänderung.YAchse, Kartenänderung.XAchse),
                                                                                                 LogikGrafikExtern => False);
       
@@ -73,7 +73,7 @@ package body CursorplatzierungGrafik is
             null;
                      
          when others =>
-            SchreibeCursor.KoordinatenAktuell (RasseExtern       => RasseExtern,
+            SchreibeCursor.KoordinatenAktuell (SpeziesExtern       => SpeziesExtern,
                                                KoordinatenExtern => KartenWert);
       end case;
                            

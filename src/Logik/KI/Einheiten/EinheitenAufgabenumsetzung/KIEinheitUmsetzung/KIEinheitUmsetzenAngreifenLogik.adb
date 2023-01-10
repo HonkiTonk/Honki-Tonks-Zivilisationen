@@ -6,14 +6,14 @@ with LeseEinheitenGebaut;
 package body KIEinheitUmsetzenAngreifenLogik is
 
    function Angreifen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
       case
-        LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
+        LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = KartenRecordKonstanten.LeerKoordinate
       is
          when True =>
             return False;

@@ -20,13 +20,13 @@ with KIAchsenzufallLogik;
 package body KIEinheitFestlegenSiedelnLogik is
 
    function StadtBauen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
-      NeueStadtKoordinaten := StadtfeldSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      NeueStadtKoordinaten := StadtfeldSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
         NeueStadtKoordinaten = KartenRecordKonstanten.LeerKoordinate
@@ -35,9 +35,9 @@ package body KIEinheitFestlegenSiedelnLogik is
             return False;
             
          when False =>
-            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern        => NeueStadtKoordinaten);
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum);
             return True;
       end case;
@@ -48,7 +48,7 @@ package body KIEinheitFestlegenSiedelnLogik is
    
    -- Erst um die Einheit und dann um alle Städte herum prüfen, wie bei Verbesserungen? äöü
    function StadtfeldSuchen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
         
@@ -58,7 +58,7 @@ package body KIEinheitFestlegenSiedelnLogik is
       KartenfeldSuchenSchleife:
       while UmgebungPrüfen <= KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
          
-         MöglichesFeld := NeuesStadtfeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+         MöglichesFeld := NeuesStadtfeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                            UmgebungExtern           => UmgebungPrüfen,
                                            GeprüftExtern            => BereitsGeprüft);
          
@@ -82,7 +82,7 @@ package body KIEinheitFestlegenSiedelnLogik is
    
    
    function NeuesStadtfeld
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       UmgebungExtern : in KartenDatentypen.KartenfeldNatural;
       GeprüftExtern : in KartenDatentypen.KartenfeldNatural)
       return KartenRecords.AchsenKartenfeldNaturalRecord
@@ -92,7 +92,7 @@ package body KIEinheitFestlegenSiedelnLogik is
       
       Zufallsmultiplikator := KIAchsenzufallLogik.AlleAchsen;
 
-      EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
 
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins loop
@@ -121,7 +121,7 @@ package body KIEinheitFestlegenSiedelnLogik is
                      FeldGutUndFrei := False;
 
                   else
-                     FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                     FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                   KoordinatenExtern        => MöglichesStadtfeld);
                   end if;
                end if;
@@ -133,7 +133,7 @@ package body KIEinheitFestlegenSiedelnLogik is
 
                elsif
                  False = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen_Enum,
-                                                                     RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                                     SpeziesExtern           => EinheitSpeziesNummerExtern.Spezies,
                                                                      ZielKoordinatenExtern => MöglichesStadtfeld)
                then
                   return MöglichesStadtfeld;
@@ -153,7 +153,7 @@ package body KIEinheitFestlegenSiedelnLogik is
    
    
    function KartenfeldUmgebungPrüfen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
@@ -161,7 +161,7 @@ package body KIEinheitFestlegenSiedelnLogik is
    begin
       
       case
-        KIEinheitAllgemeinePruefungenLogik.KartenfeldPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        KIEinheitAllgemeinePruefungenLogik.KartenfeldPrüfen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                               KoordinatenExtern        => KoordinatenExtern)
       is
          when False =>
@@ -171,7 +171,7 @@ package body KIEinheitFestlegenSiedelnLogik is
             null;
       end case;
       
-      -- Diese Prüfung hier mal rassenspezifisch erweitern. äöü
+      -- Diese Prüfung hier mal Speziesspezifisch erweitern. äöü
       if
         LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
       then
@@ -179,7 +179,7 @@ package body KIEinheitFestlegenSiedelnLogik is
          
       elsif
         False = KIKartenfeldbewertungModifizierenLogik.BewertungStadtBauen (KoordinatenExtern => KoordinatenExtern,
-                                                                            RasseExtern       => EinheitRasseNummerExtern.Rasse)
+                                                                            SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
       then
          return False;
          

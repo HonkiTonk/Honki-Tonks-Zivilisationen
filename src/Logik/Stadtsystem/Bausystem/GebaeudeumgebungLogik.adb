@@ -10,7 +10,7 @@ with KartenkoordinatenberechnungssystemLogik;
 package body GebaeudeumgebungLogik is
 
    function RichtigeUmgebungVorhanden
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       GebäudeIDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
    is
@@ -21,23 +21,23 @@ package body GebaeudeumgebungLogik is
    begin
       
       case
-        LeseGebaeudeDatenbank.FalscheEbene (RasseExtern => StadtRasseNummerExtern.Rasse,
+        LeseGebaeudeDatenbank.FalscheEbene (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                             IDExtern    => GebäudeIDExtern,
-                                            EbeneExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern).EAchse)
+                                            EbeneExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).EAchse)
       is
          when True =>
             return False;
             
          when False =>
-            Anforderungen.NotwendigFluss := LeseGebaeudeDatenbank.FlussBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+            Anforderungen.NotwendigFluss := LeseGebaeudeDatenbank.FlussBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                   IDExtern    => GebäudeIDExtern);
-            Anforderungen.NotwendigerGrund := LeseGebaeudeDatenbank.BasisgrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+            Anforderungen.NotwendigerGrund := LeseGebaeudeDatenbank.BasisgrundBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                     IDExtern    => GebäudeIDExtern);
-            Anforderungen.NotwendigeRessource := LeseGebaeudeDatenbank.RessourceBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+            Anforderungen.NotwendigeRessource := LeseGebaeudeDatenbank.RessourceBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                            IDExtern    => GebäudeIDExtern);
-            Anforderungen.NotwendigeVerbesserung := LeseGebaeudeDatenbank.VerbesserungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+            Anforderungen.NotwendigeVerbesserung := LeseGebaeudeDatenbank.VerbesserungBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                                  IDExtern    => GebäudeIDExtern);
-            Anforderungen.NotwendigesGebäude := LeseGebaeudeDatenbank.GebäudeBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+            Anforderungen.NotwendigesGebäude := LeseGebaeudeDatenbank.GebäudeBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                           IDExtern    => GebäudeIDExtern);
       end case;
             
@@ -55,7 +55,7 @@ package body GebaeudeumgebungLogik is
          return True;
                
       else
-         return UmgebungPrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         return UmgebungPrüfen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                  AnforderungenExtern    => Anforderungen);
       end if;
             
@@ -64,13 +64,13 @@ package body GebaeudeumgebungLogik is
    
    
    function UmgebungPrüfen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       AnforderungenExtern : in AnforderungenRecord)
       return Boolean
    is begin
       
-      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      Umgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      Umgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       Ergebnis := False;
       
       YAchseSchleife:
@@ -88,13 +88,13 @@ package body GebaeudeumgebungLogik is
                null;
                         
             elsif
-              False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+              False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                KoordinatenExtern      => KartenWert)
             then
                null;
                
             else
-               Ergebnis := Detailprüfung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+               Ergebnis := Detailprüfung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                            KoordinatenExtern      => KartenWert,
                                            AnforderungenExtern    => AnforderungenExtern);
             end if;
@@ -119,7 +119,7 @@ package body GebaeudeumgebungLogik is
    
    
    function Detailprüfung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       AnforderungenExtern : in AnforderungenRecord)
       return Boolean
@@ -193,7 +193,7 @@ package body GebaeudeumgebungLogik is
          null;
          
       elsif
-        True = LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+        True = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                  WelchesGebäudeExtern   => AnforderungenExtern.NotwendigesGebäude)
       then
          null;

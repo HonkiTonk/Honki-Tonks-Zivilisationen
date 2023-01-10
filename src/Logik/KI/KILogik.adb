@@ -17,37 +17,37 @@ with KIEinheitLogik;
 package body KILogik is
 
    procedure KI
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      KIDiplomatieLogik.Diplomatie (RasseExtern => RasseExtern);
-      EinheitenDurchgehen (RasseExtern => RasseExtern);
-      StädteDurchgehen (RasseExtern => RasseExtern);
-      KIForschungLogik.Forschung (RasseExtern => RasseExtern);
+      KIDiplomatieLogik.Diplomatie (SpeziesExtern => SpeziesExtern);
+      EinheitenDurchgehen (SpeziesExtern => SpeziesExtern);
+      StädteDurchgehen (SpeziesExtern => SpeziesExtern);
+      KIForschungLogik.Forschung (SpeziesExtern => SpeziesExtern);
             
    end KI;
    
    
    
    procedure EinheitenDurchgehen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
       
-      Einheitenzeitwert := (LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) + (100 - 1)) / 100;
+      Einheitenzeitwert := (LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) + (100 - 1)) / 100;
       
       EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
+      for EinheitenSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
          
          case
-           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitenSchleifenwert))
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitenSchleifenwert))
          is
             when EinheitenKonstanten.LeerID =>
                null;
             
             when others =>
-               KIEinheitLogik.Einheit (EinheitRasseNummerExtern => (RasseExtern, EinheitenSchleifenwert));
+               KIEinheitLogik.Einheit (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitenSchleifenwert));
          end case;
             
          case
@@ -69,24 +69,24 @@ package body KILogik is
    
    
    procedure StädteDurchgehen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
-      Städtezeitwert := StadtDatentypen.MaximaleStädte ((Positive (LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern)) + (100 - 1)) / 100);
+      Städtezeitwert := StadtDatentypen.MaximaleStädte ((Positive (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)) + (100 - 1)) / 100);
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
             
          case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
             when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>
-               KIStadtLogik.KIStadt (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert));
+               KIStadtLogik.KIStadt (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
          end case;
             
          case

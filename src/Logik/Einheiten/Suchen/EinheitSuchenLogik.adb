@@ -6,127 +6,127 @@ with LeseEinheitenDatenbank;
 
 package body EinheitSuchenLogik is
 
-   -- Sucht für die hineingegebene Rasse.
-   function KoordinatenEinheitMitRasseSuchen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+   -- Sucht für die hineingegebene Spezies.
+   function KoordinatenEinheitMitSpeziesSuchen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LogikGrafikExtern : in Boolean)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
       Einheit (LogikGrafikExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Einheit (LogikGrafikExtern).Rasse /= RasseExtern
+        Einheit (LogikGrafikExtern).Spezies /= SpeziesExtern
         or
-          Einheit (LogikGrafikExtern).Rasse = EinheitenKonstanten.LeerRasse
+          Einheit (LogikGrafikExtern).Spezies = EinheitenKonstanten.LeerSpezies
         or
           Einheit (LogikGrafikExtern).Nummer = EinheitenKonstanten.LeerNummer
       then
          return EinheitenKonstanten.LeerNummer;
          
       elsif
-        LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => Einheit (LogikGrafikExtern)) /= KoordinatenExtern
+        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern)) /= KoordinatenExtern
       then
          return EinheitenKonstanten.LeerNummer;
             
       else
-         return TransporterverschachtelungDurchgehen (EinheitRasseNummerExtern => Einheit (LogikGrafikExtern),
+         return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern),
                                                       LogikGrafikExtern        => LogikGrafikExtern).Nummer;
       end if;
       
-   end KoordinatenEinheitMitRasseSuchen;
+   end KoordinatenEinheitMitSpeziesSuchen;
    
 
 
    -- Sucht beliebige Einheit.
-   function KoordinatenEinheitOhneRasseSuchen
+   function KoordinatenEinheitOhneSpeziesSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LogikGrafikExtern : in Boolean)
-      return EinheitenRecords.RasseEinheitnummerRecord
+      return EinheitenRecords.SpeziesEinheitnummerRecord
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
       Einheit (LogikGrafikExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Einheit (LogikGrafikExtern).Rasse = EinheitenKonstanten.LeerRasse
+        Einheit (LogikGrafikExtern).Spezies = EinheitenKonstanten.LeerSpezies
         or
           Einheit (LogikGrafikExtern).Nummer = EinheitenKonstanten.LeerNummer
       then
-         return EinheitenKonstanten.LeerRasseNummer;
+         return EinheitenKonstanten.LeerSpeziesNummer;
          
       elsif
-        LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => Einheit (LogikGrafikExtern)) /= KoordinatenExtern
+        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern)) /= KoordinatenExtern
       then
-         return EinheitenKonstanten.LeerRasseNummer;
+         return EinheitenKonstanten.LeerSpeziesNummer;
             
       else
-         return TransporterverschachtelungDurchgehen (EinheitRasseNummerExtern => Einheit (LogikGrafikExtern),
+         return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern),
                                                       LogikGrafikExtern        => LogikGrafikExtern);
       end if;
       
-   end KoordinatenEinheitOhneRasseSuchen;
+   end KoordinatenEinheitOhneSpeziesSuchen;
 
 
 
-   -- Sucht ohne die hineingegebene Rasse.
-   function KoordinatenEinheitOhneSpezielleRasseSuchen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+   -- Sucht ohne die hineingegebene Spezies.
+   function KoordinatenEinheitOhneSpezielleSpeziesSuchen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LogikGrafikExtern : in Boolean)
-      return EinheitenRecords.RasseEinheitnummerRecord
+      return EinheitenRecords.SpeziesEinheitnummerRecord
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
       Einheit (LogikGrafikExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Einheit (LogikGrafikExtern).Rasse = RasseExtern
+        Einheit (LogikGrafikExtern).Spezies = SpeziesExtern
         or
-          Einheit (LogikGrafikExtern).Rasse = EinheitenKonstanten.LeerRasse
+          Einheit (LogikGrafikExtern).Spezies = EinheitenKonstanten.LeerSpezies
         or
           Einheit (LogikGrafikExtern).Nummer = EinheitenKonstanten.LeerNummer
       then
-         return EinheitenKonstanten.LeerRasseNummer;
+         return EinheitenKonstanten.LeerSpeziesNummer;
          
       elsif
-        LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => Einheit (LogikGrafikExtern)) /= KoordinatenExtern
+        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern)) /= KoordinatenExtern
       then
-         return EinheitenKonstanten.LeerRasseNummer;
+         return EinheitenKonstanten.LeerSpeziesNummer;
             
       else
-         return TransporterverschachtelungDurchgehen (EinheitRasseNummerExtern => Einheit (LogikGrafikExtern),
+         return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern),
                                                       LogikGrafikExtern        => LogikGrafikExtern);
       end if;
       
-   end KoordinatenEinheitOhneSpezielleRasseSuchen;
+   end KoordinatenEinheitOhneSpezielleSpeziesSuchen;
    
    
    
    function TransporterverschachtelungDurchgehen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LogikGrafikExtern : in Boolean)
-      return EinheitenRecords.RasseEinheitnummerRecord
+      return EinheitenRecords.SpeziesEinheitnummerRecord
    is begin
       
-      Transporternummer (LogikGrafikExtern) := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Transporternummer (LogikGrafikExtern) := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
       case
         Transporternummer (LogikGrafikExtern)
       is
          when EinheitenKonstanten.LeerWirdTransportiert =>
-            return EinheitRasseNummerExtern;
+            return EinheitSpeziesNummerExtern;
                   
          when others =>
-            return TransporterverschachtelungDurchgehen (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Transporternummer (LogikGrafikExtern)),
+            return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Transporternummer (LogikGrafikExtern)),
                                                          LogikGrafikExtern        => LogikGrafikExtern);
       end case;
       
@@ -137,15 +137,15 @@ package body EinheitSuchenLogik is
    -- Prüft ob die hineingegebe Einheit geladen ist.
    -- Benötigt keine Taskaufteilung da sie nur vom Grafiktask aufgerufen wird.
    function TransporterladungSuchen
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungsnummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
       return Boolean
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       if
-        TransporterExtern.Rasse = EinheitenKonstanten.LeerRasse
+        TransporterExtern.Spezies = EinheitenKonstanten.LeerSpezies
         or
           TransporterExtern.Nummer = EinheitenKonstanten.LeerNummer
           or
@@ -154,15 +154,15 @@ package body EinheitSuchenLogik is
          return False;
          
       else
-         Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern));
+         Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
+                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern));
       end if;
             
       TransporterSchleife:
       for TransporterSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
          
          if
-           LadungsnummerExtern = LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+           LadungsnummerExtern = LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
                                                                     PlatzExtern              => TransporterSchleifenwert)
          then
             return True;

@@ -11,7 +11,7 @@ with ForschungstestsLogik;
 package body EinheitVerbessernLogik is
 
    function VerbesserungEinheit
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is
@@ -19,7 +19,7 @@ package body EinheitVerbessernLogik is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      NeueEinheitenID := EinheitVerbesserbar (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      NeueEinheitenID := EinheitVerbesserbar (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       if
         NeueEinheitenID = EinheitenKonstanten.LeerID
@@ -27,8 +27,8 @@ package body EinheitVerbessernLogik is
          return False;
            
       elsif
-        False = LeseWeltkarte.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                             KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        False = LeseWeltkarte.BelegterGrund (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+                                             KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
       then
          return False;
          
@@ -40,17 +40,17 @@ package body EinheitVerbessernLogik is
         AnlegenTestenExtern
       is
          when True =>
-            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                      BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                      RechnenSetzenExtern      => False);
       
-            EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                  VorzeichenWechselExtern  => -1);
       
-            SchreibeEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                         IDExtern                 => NeueEinheitenID);
       
-            EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                  VorzeichenWechselExtern  => 1);
                                     
          when False =>
@@ -64,12 +64,12 @@ package body EinheitVerbessernLogik is
    
    
    function EinheitVerbesserbar
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return EinheitenDatentypen.EinheitenIDMitNullWert
    is begin
    
-      NeueEinheitenID := LeseEinheitenDatenbank.VerbesserungZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      NeueEinheitenID := LeseEinheitenDatenbank.VerbesserungZu (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       case
         NeueEinheitenID
@@ -82,8 +82,8 @@ package body EinheitVerbessernLogik is
       end case;
       
       case
-        ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                   TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
+        ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+                                                   TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                                               IDExtern    => NeueEinheitenID))
       is
          when True =>

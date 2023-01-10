@@ -1,6 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with RassenDatentypen;
+with SpeziesDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
 with ProduktionDatentypen;
@@ -13,9 +13,9 @@ with KIDatentypen;
 package StadtRecords is
    pragma Preelaborate;
 
-   type RasseStadtnummerRecord is record
+   type SpeziesStadtnummerRecord is record
       
-      Rasse : RassenDatentypen.Rassen_Enum;
+      Spezies : SpeziesDatentypen.Spezies_Enum;
       Nummer : StadtDatentypen.MaximaleStädteMitNullWert;
       
    end record;

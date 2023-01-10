@@ -1,5 +1,5 @@
 with KartenDatentypen;
-with Rassentexte;
+with Speziestexte;
 with TextnummernKonstanten;
 
 with SchreibeStadtGebaut;
@@ -22,15 +22,15 @@ with MeldungFestlegenLogik;
 package body StadtBauenLogik is
 
    function StadtBauen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
         
       case
-        StadtBaubar (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        StadtBaubar (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when True =>
-            StadtNummer := StadtnummerErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
+            StadtNummer := StadtnummerErmitteln (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
             
          when False =>
             return False;
@@ -47,13 +47,13 @@ package body StadtBauenLogik is
       end case;
       
       case
-        LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse)
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
       is
-         when RassenDatentypen.KI_Spieler_Enum =>
-            StadtName.EingegebenerText := Rassentexte.Städtenamen (EinheitRasseNummerExtern.Rasse, StadtNummer);
+         when SpeziesDatentypen.KI_Spieler_Enum =>
+            StadtName.EingegebenerText := Speziestexte.Städtenamen (EinheitSpeziesNummerExtern.Spezies, StadtNummer);
                   
-         when RassenDatentypen.Mensch_Spieler_Enum =>
-            StadtName := TexteingabeLogik.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+         when SpeziesDatentypen.Mensch_Spieler_Enum =>
+            StadtName := TexteingabeLogik.StadtName (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummer),
                                                      BauenExtern            => True);
             
             if
@@ -65,16 +65,16 @@ package body StadtBauenLogik is
                null;
             end if;
             
-         when RassenDatentypen.Leer_Spieler_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtBauen.StadtBauen: Nicht vorhandene Rasse baut Stadt.");
+         when SpeziesDatentypen.Leer_Spieler_Enum =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtBauen.StadtBauen: Nicht vorhandene Spezies baut Stadt.");
       end case;
             
       -- Immer daran denken dass die Stadt bei StadtEintragen auf Leer gesetzt wird und deswegen der Name danach eingetragen werden muss.
-      StadtEintragen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                      KoordinatenExtern      => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-      SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+      StadtEintragen (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummer),
+                      KoordinatenExtern      => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+      SchreibeStadtGebaut.Name (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummer),
                                 NameExtern             => StadtName.EingegebenerText);
-      EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       return True;
       
@@ -83,25 +83,25 @@ package body StadtBauenLogik is
    
    
    function StadtBaubar
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
       use type KartenDatentypen.Ebene;
    begin
       
       case
-        EinheitenSpielmeldungenLogik.ArbeiteraufgabeMeldung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        EinheitenSpielmeldungenLogik.ArbeiteraufgabeMeldung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when False =>
             return False;
          
          when True =>
-            Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
       if
-        EinheitRasseNummerExtern.Rasse = RassenDatentypen.Ekropa_Enum
+        EinheitSpeziesNummerExtern.Spezies = SpeziesDatentypen.Ekropa_Enum
         and
           Einheitenkoordinaten.EAchse /= 0
       then
@@ -117,7 +117,7 @@ package body StadtBauenLogik is
          return True;
          
       elsif
-        LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
       then
          return False;
          
@@ -131,15 +131,15 @@ package body StadtBauenLogik is
    
    
    function StadtnummerErmitteln
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return StadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       StadtSchleife:
-      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
          
          case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert))
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummerSchleifenwert))
          is
             when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                return StadtNummerSchleifenwert;
@@ -151,9 +151,9 @@ package body StadtBauenLogik is
       end loop StadtSchleife;
       
       case
-        LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
       is
-         when RassenDatentypen.Mensch_Spieler_Enum =>
+         when SpeziesDatentypen.Mensch_Spieler_Enum =>
             MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungStädtemaximum);
             
          when others =>
@@ -167,21 +167,21 @@ package body StadtBauenLogik is
    
    
    procedure StadtEintragen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      SchreibeStadtGebaut.Nullsetzung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
+      SchreibeWichtiges.AnzahlStädte (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
                                        PlusMinusExtern => True);
       
-      Stadtart := HauptstadtPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
-      SchreibeStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      Stadtart := HauptstadtPrüfen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+      SchreibeStadtGebaut.ID (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                               IDExtern               => Stadtart);
-      SchreibeStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                        KoordinatenExtern      => KoordinatenExtern);
-      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                              EinwohnerArbeiterExtern => True,
                                              WachsenSchrumpfenExtern => True);
       
@@ -190,13 +190,13 @@ package body StadtBauenLogik is
                                       VerbesserungExtern => Stadtart);
       
       SchreibeWeltkarte.BelegterGrund (KoordinatenExtern   => KoordinatenExtern,
-                                       BelegterGrundExtern => StadtRasseNummerExtern);
+                                       BelegterGrundExtern => StadtSpeziesNummerExtern);
       
       -- StadtwerteFestlegenLogik/Stadtproduktion muss immer nach Änderungen an Verbesserungen/Wege berechnet werden, sonst werden diese Änderungen ja nicht berücksichtigt.
-      StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => StadtRasseNummerExtern.Rasse);
-      SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      SchreibeWichtiges.VerbleibendeForschungszeit (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+      SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürStadt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
    end StadtEintragen;
    
@@ -238,15 +238,15 @@ package body StadtBauenLogik is
 
 
    function HauptstadtPrüfen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum
    is begin
       
       HauptsstadtSchleife:
-      for HauptstadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for HauptstadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
          
          case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, HauptstadtSchleifenwert))
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, HauptstadtSchleifenwert))
          is
             when KartenverbesserungDatentypen.Hauptstadt_Enum =>
                return KartenverbesserungDatentypen.Stadt_Enum;

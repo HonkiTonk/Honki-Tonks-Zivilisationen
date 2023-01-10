@@ -27,7 +27,7 @@ package body LeseVerbesserungenDatenbank is
    
    function BewegungWeg
      (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return EinheitenDatentypen.Bewegungspunkte
    is begin
       
@@ -38,7 +38,7 @@ package body LeseVerbesserungenDatenbank is
             return EinheitenKonstanten.LeerBewegungspunkte;
             
          when others =>
-            return VerbesserungenDatenbank.Wegeliste (WegExtern).Bewegung (RasseExtern);
+            return VerbesserungenDatenbank.Wegeliste (WegExtern).Bewegung (SpeziesExtern);
       end case;
       
    end BewegungWeg;
@@ -47,7 +47,7 @@ package body LeseVerbesserungenDatenbank is
    
    function WirtschaftVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WelcherWertExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
@@ -59,7 +59,7 @@ package body LeseVerbesserungenDatenbank is
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
-            return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
+            return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Wirtschaft (SpeziesExtern, WelcherWertExtern);
       end case;
       
    end WirtschaftVerbesserung;
@@ -68,7 +68,7 @@ package body LeseVerbesserungenDatenbank is
    
    function WirtschaftWeg
      (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WelcherWertExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
@@ -80,7 +80,7 @@ package body LeseVerbesserungenDatenbank is
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
-            return VerbesserungenDatenbank.Wegeliste (WegExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
+            return VerbesserungenDatenbank.Wegeliste (WegExtern).Wirtschaft (SpeziesExtern, WelcherWertExtern);
       end case;
       
    end WirtschaftWeg;
@@ -89,7 +89,7 @@ package body LeseVerbesserungenDatenbank is
    
    function KampfVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WelcherWertExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
@@ -101,7 +101,7 @@ package body LeseVerbesserungenDatenbank is
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
-            return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Kampf (RasseExtern, WelcherWertExtern);
+            return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Kampf (SpeziesExtern, WelcherWertExtern);
       end case;
       
    end KampfVerbesserung;
@@ -110,7 +110,7 @@ package body LeseVerbesserungenDatenbank is
    
    function KampfWeg
      (WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WelcherWertExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
@@ -122,7 +122,7 @@ package body LeseVerbesserungenDatenbank is
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
-            return VerbesserungenDatenbank.Wegeliste (WegExtern).Kampf (RasseExtern, WelcherWertExtern);
+            return VerbesserungenDatenbank.Wegeliste (WegExtern).Kampf (SpeziesExtern, WelcherWertExtern);
       end case;
       
    end KampfWeg;

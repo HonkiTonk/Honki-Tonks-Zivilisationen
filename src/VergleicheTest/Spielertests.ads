@@ -1,18 +1,18 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 
 package Spielertests is
    pragma Elaborate_Body;
    
    function BeliebigeSpielerart
-     (RasseExtern : in RassenDatentypen.Rassen_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
    return Boolean;
 
    function MenschlicheSpieler
-     (RasseExtern : in RassenDatentypen.Rassen_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
       return Boolean;
    
    function KISpieler
-     (RasseExtern : in RassenDatentypen.Rassen_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
       return Boolean;
 
 end Spielertests;

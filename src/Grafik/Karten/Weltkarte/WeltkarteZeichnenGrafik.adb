@@ -21,7 +21,7 @@ with ObjekteZeichnenGrafik;
 with EingeleseneTexturenGrafik;
 with KartenspritesZeichnenGrafik;
 with TextberechnungenBreiteGrafik;
-with RasseneinstellungenGrafik;
+with SpezieseinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
 with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
@@ -33,7 +33,7 @@ package body WeltkarteZeichnenGrafik is
    
    procedure EbeneZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       TransparentsExtern : in Sf.sfUint8;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
@@ -62,7 +62,7 @@ package body WeltkarteZeichnenGrafik is
                            PositionExtern    => PositionExtern);
       
       AnzeigeEinheit (KoordinatenExtern        => KoordinatenExtern,
-                      EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                      EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                       PositionExtern           => PositionExtern);
       
       if
@@ -70,7 +70,7 @@ package body WeltkarteZeichnenGrafik is
         and
           (NachGrafiktask.Einheitenbewegung = False)
         and
-          EinheitRasseNummerExtern.Nummer /= EinheitenKonstanten.LeerNummer
+          EinheitSpeziesNummerExtern.Nummer /= EinheitenKonstanten.LeerNummer
       then
          AnzeigeBewegungsfeld (KoordinatenExtern        => KoordinatenExtern,
                                PositionExtern           => PositionExtern);
@@ -222,20 +222,20 @@ package body WeltkarteZeichnenGrafik is
    -- Das hier noch einmal überarbeiten. äöü
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      EinheitRasseNummer := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
+      EinheitSpeziesNummer := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
                                                                                   LogikGrafikExtern => False);
       
       if
-        EinheitRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
+        EinheitSpeziesNummer.Nummer = EinheitenKonstanten.LeerNummer
         and
-          EinheitRasseNummerExtern.Nummer /= EinheitenKonstanten.LeerNummer
+          EinheitSpeziesNummerExtern.Nummer /= EinheitenKonstanten.LeerNummer
       then
          if
            Clock - StartzeitBlinkintervall > ZeitKonstanten.Blinkintervall
@@ -255,23 +255,23 @@ package body WeltkarteZeichnenGrafik is
                
             when True =>
                Einheitenmarkierung (KoordinatenExtern        => KoordinatenExtern,
-                                    EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                    EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                     PositionExtern           => PositionExtern);
          end case;
          
          return;
          
       elsif
-        EinheitRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
+        EinheitSpeziesNummer.Nummer = EinheitenKonstanten.LeerNummer
       then
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse /= EinheitRasseNummer.Rasse
+        EinheitSpeziesNummerExtern.Spezies /= EinheitSpeziesNummer.Spezies
       then
-         FeldeinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer);
+         FeldeinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
          
-         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitRasseNummer.Rasse, FeldeinheitID),
+         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummer.Spezies, FeldeinheitID),
                                                          
                                                          PositionExtern         => PositionExtern,
                                                          DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
@@ -282,15 +282,15 @@ package body WeltkarteZeichnenGrafik is
       end if;
       
       if
-        EinheitRasseNummer.Nummer = EinheitRasseNummerExtern.Nummer
+        EinheitSpeziesNummer.Nummer = EinheitSpeziesNummerExtern.Nummer
       then
          null;
          
       elsif
-        True = EinheitSuchenLogik.TransporterladungSuchen (TransporterExtern   => EinheitRasseNummer,
-                                                           LadungsnummerExtern => EinheitRasseNummerExtern.Nummer)
+        True = EinheitSuchenLogik.TransporterladungSuchen (TransporterExtern   => EinheitSpeziesNummer,
+                                                           LadungsnummerExtern => EinheitSpeziesNummerExtern.Nummer)
       then
-         FeldeinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer);
+         FeldeinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
       
          case
            FeldeinheitID
@@ -299,13 +299,13 @@ package body WeltkarteZeichnenGrafik is
                null;
             
             when others =>
-               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitRasseNummer.Rasse, FeldeinheitID),
+               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummer.Spezies, FeldeinheitID),
                                                                PositionExtern         => PositionExtern,
                                                                DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
          end case;
          
       else
-         FeldeinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer);
+         FeldeinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
       
          case
            FeldeinheitID
@@ -314,7 +314,7 @@ package body WeltkarteZeichnenGrafik is
                null;
             
             when others =>
-               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitRasseNummer.Rasse, FeldeinheitID),
+               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummer.Spezies, FeldeinheitID),
                                                                PositionExtern         => PositionExtern,
                                                                DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
          end case;
@@ -340,7 +340,7 @@ package body WeltkarteZeichnenGrafik is
          return;
                
       else
-         AusgewählteEinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         AusgewählteEinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end if;
       
       case
@@ -350,7 +350,7 @@ package body WeltkarteZeichnenGrafik is
             return;
             
          when others =>
-            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitRasseNummerExtern.Rasse, AusgewählteEinheitID),
+            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummerExtern.Spezies, AusgewählteEinheitID),
                                                             PositionExtern         => PositionExtern,
                                                             DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end case;
@@ -362,13 +362,13 @@ package body WeltkarteZeichnenGrafik is
    -- Anstelle des Rahmens später vielleicht eine bessere Markierung ausdenken? äöü
    procedure Einheitenmarkierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
       use type KartenDatentypen.EbeneVorhanden;
    begin
       
-      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       if
         KoordinatenExtern.EAchse /= EinheitKoordinaten.EAchse
@@ -382,7 +382,7 @@ package body WeltkarteZeichnenGrafik is
             
             RahmenZeichnen (WelcheRichtungExtern => RahmenSchleifenwert,
                             PositionExtern       => PositionExtern,
-                            RasseExtern          => EinheitRasseNummerExtern.Rasse);
+                            SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies);
             
          end loop RahmenSchleife;
          
@@ -400,18 +400,18 @@ package body WeltkarteZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      AktuelleRasse := LeseWeltkarte.RasseBelegtGrund (KoordinatenExtern => KoordinatenExtern);
+      AktuelleSpezies := LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        AktuelleRasse
+        AktuelleSpezies
       is
-         when RassenDatentypen.Keine_Rasse_Enum =>
+         when SpeziesDatentypen.Keine_Spezies_Enum =>
             null;
             
          when others =>
             RahmenBesetztesFeld (KoordinatenExtern => KoordinatenExtern,
                                  PositionExtern    => PositionExtern,
-                                 RasseExtern       => AktuelleRasse);
+                                 SpeziesExtern       => AktuelleSpezies);
       end case;
             
    end AnzeigeFeldbesitzer;
@@ -421,13 +421,13 @@ package body WeltkarteZeichnenGrafik is
    procedure RahmenBesetztesFeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => PositionExtern,
-                                                FarbeExtern    => RasseneinstellungenGrafik.Rassenfarben (RasseExtern),
+                                                FarbeExtern    => SpezieseinstellungenGrafik.Speziesfarben (SpeziesExtern),
                                                 GrößeExtern    => SichtweitenGrafik.KartenfelderAbmessung);
       
       UmgebungSchleife:
@@ -442,14 +442,14 @@ package body WeltkarteZeichnenGrafik is
          then
             RahmenZeichnen (WelcheRichtungExtern => UmgebungSchleifenwert,
                             PositionExtern       => PositionExtern,
-                            RasseExtern          => RasseExtern);
+                            SpeziesExtern          => SpeziesExtern);
                      
          elsif
-           RasseExtern /= LeseWeltkarte.RasseBelegtGrund (KoordinatenExtern => KartenWertRahmen)
+           SpeziesExtern /= LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => KartenWertRahmen)
          then
             RahmenZeichnen (WelcheRichtungExtern => UmgebungSchleifenwert,
                             PositionExtern       => PositionExtern,
-                            RasseExtern          => RasseExtern);
+                            SpeziesExtern          => SpeziesExtern);
 
          else
             null;
@@ -464,7 +464,7 @@ package body WeltkarteZeichnenGrafik is
    procedure RahmenZeichnen
      (WelcheRichtungExtern : in KartenartDatentypen.Himmelsrichtungen_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
             
       case
@@ -488,7 +488,7 @@ package body WeltkarteZeichnenGrafik is
       end case;
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => Rahmenposition,
-                                                FarbeExtern    => RasseneinstellungenGrafik.RassenfarbenRahmen (RasseExtern),
+                                                FarbeExtern    => SpezieseinstellungenGrafik.SpeziesfarbenRahmen (SpeziesExtern),
                                                 GrößeExtern    => Rahmengröße);
       
    end RahmenZeichnen;
@@ -500,7 +500,7 @@ package body WeltkarteZeichnenGrafik is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
             
-      StadtRasseNummer := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      StadtSpeziesNummer := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern);
       
       case
         KoordinatenExtern.EAchse
@@ -515,7 +515,7 @@ package body WeltkarteZeichnenGrafik is
       end case;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
-                                         str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
+                                         str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummer)));
       
       Sf.Graphics.Text.setScale (text  => TextaccessVariablen.KarteAccess,
                                  scale => (0.70, 0.70));

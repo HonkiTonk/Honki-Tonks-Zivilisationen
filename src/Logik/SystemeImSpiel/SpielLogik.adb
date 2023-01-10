@@ -14,7 +14,7 @@ with OptionenLogik;
 with LadezeitenLogik;
 with SpeichernLogik;
 with LadenLogik;
-with RasseEntfernenLogik;
+with SpeziesEntfernenLogik;
 with RundenendeLogik;
 with Fehlermeldungssystem;
 with NachGrafiktask;
@@ -31,40 +31,40 @@ package body SpielLogik is
    function Spiel
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
             
       SpielSchleife:
       loop
                   
-         RassenSchleife:
-         for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+         SpeziesSchleife:
+         for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
             
-            RückgabeRassen := RasseImSpiel (RasseExtern => RasseSchleifenwert);
+            RückgabeSpezies := SpeziesImSpiel (SpeziesExtern => SpeziesSchleifenwert);
             
             case
-              RückgabeRassen
+              RückgabeSpezies
             is
                when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range =>
-                  return RückgabeRassen;
+                  return RückgabeSpezies;
                   
                when RueckgabeDatentypen.Schleife_Verlassen_Enum =>
-                  exit RassenSchleife;
+                  exit SpeziesSchleife;
                   
                when RueckgabeDatentypen.Start_Weiter_Enum =>
                   null;
                
                when others =>
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.Spiel - Falsche Rückgabe:" & RückgabeRassen'Wide_Wide_Image);
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.Spiel - Falsche Rückgabe:" & RückgabeSpezies'Wide_Wide_Image);
             end case;
             
-         end loop RassenSchleife;
+         end loop SpeziesSchleife;
          
          if
-          LeseAllgemeines.RasseAmzugNachLaden = EinheitenKonstanten.LeerRasse
+          LeseAllgemeines.SpeziesAmzugNachLaden = EinheitenKonstanten.LeerSpezies
          then
             case
-              Spielertests.MenschlicheSpieler (RasseExtern => RassenDatentypen.Keine_Rasse_Enum)
+              Spielertests.MenschlicheSpieler (SpeziesExtern => SpeziesDatentypen.Keine_Spezies_Enum)
             is
                when True =>
                   null;
@@ -102,59 +102,59 @@ package body SpielLogik is
    
    
    
-   function RasseImSpiel
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   function SpeziesImSpiel
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Leer_Spieler_Enum
         or
-         LeseRassenbelegung.Besiegt (RasseExtern => RasseExtern) = True
+         LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesExtern) = True
       then
          return RueckgabeDatentypen.Start_Weiter_Enum;
       
       elsif
-        LeseGrenzen.Rassenrundengrenze (RasseExtern => RasseExtern) < LeseAllgemeines.Rundenanzahl
+        LeseGrenzen.Speziesrundengrenze (SpeziesExtern => SpeziesExtern) < LeseAllgemeines.Rundenanzahl
         and
-          LeseGrenzen.Rassenrundengrenze (RasseExtern => RasseExtern) > 0
+          LeseGrenzen.Speziesrundengrenze (SpeziesExtern => SpeziesExtern) > 0
       then
-         RasseEntfernenLogik.RasseEntfernen (RasseExtern => RasseExtern);
+         SpeziesEntfernenLogik.SpeziesEntfernen (SpeziesExtern => SpeziesExtern);
          return RueckgabeDatentypen.Start_Weiter_Enum;
          
       else
-         return RasseDurchgehen (RasseExtern => RasseExtern);
+         return SpeziesDurchgehen (SpeziesExtern => SpeziesExtern);
       end if;
       
-   end RasseImSpiel;
+   end SpeziesImSpiel;
    
    
    
-   function RasseDurchgehen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   function SpeziesDurchgehen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
             
       if
-        LeseAllgemeines.RasseAmzugNachLaden = EinheitenKonstanten.LeerRasse
+        LeseAllgemeines.SpeziesAmzugNachLaden = EinheitenKonstanten.LeerSpezies
         or
-          LeseAllgemeines.RasseAmzugNachLaden = RasseExtern
+          LeseAllgemeines.SpeziesAmzugNachLaden = SpeziesExtern
       then
-         SchreibeAllgemeines.RasseAmzugNachLaden (RasseExtern => EinheitenKonstanten.LeerRasse);
+         SchreibeAllgemeines.SpeziesAmzugNachLaden (SpeziesExtern => EinheitenKonstanten.LeerSpezies);
             
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
          is
-            when RassenDatentypen.Mensch_Spieler_Enum =>
-               return MenschlicherSpieler (RasseExtern => RasseExtern);
+            when SpeziesDatentypen.Mensch_Spieler_Enum =>
+               return MenschlicherSpieler (SpeziesExtern => SpeziesExtern);
                
-            when RassenDatentypen.KI_Spieler_Enum =>
-               KISpieler (RasseExtern => RasseExtern);
+            when SpeziesDatentypen.KI_Spieler_Enum =>
+               KISpieler (SpeziesExtern => SpeziesExtern);
                
-            when RassenDatentypen.Leer_Spieler_Enum =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.RasseDurchgehen: Keine Rasse.");
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.SpeziesDurchgehen: Keine Spezies.");
          end case;
 
       else
@@ -163,41 +163,41 @@ package body SpielLogik is
       
       return RueckgabeDatentypen.Start_Weiter_Enum;
       
-   end RasseDurchgehen;
+   end SpeziesDurchgehen;
    
    
    
    procedure KISpieler
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       LadezeitenLogik.KINullsetzenFortschritt;
       
-      NachGrafiktask.KIRechnet := RasseExtern;
+      NachGrafiktask.KIRechnet := SpeziesExtern;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_KI_Rechenzeit_Enum;
       
-      KILogik.KI (RasseExtern => RasseExtern);
+      KILogik.KI (SpeziesExtern => SpeziesExtern);
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-      NachGrafiktask.KIRechnet := RassenDatentypen.Keine_Rasse_Enum;
+      NachGrafiktask.KIRechnet := SpeziesDatentypen.Keine_Spezies_Enum;
       
    end KISpieler;
    
    
    
    function MenschlicherSpieler
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
                            
-      RückgabeWert := MenschAmZug (RasseExtern => RasseExtern);
+      RückgabeWert := MenschAmZug (SpeziesExtern => SpeziesExtern);
       
       case
         RückgabeWert
       is
          when RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
             if
-              Spielertests.MenschlicheSpieler (RasseExtern => RasseExtern) = True
+              Spielertests.MenschlicheSpieler (SpeziesExtern => SpeziesExtern) = True
             then
                -- Es ist recht nervig wenn man zurück zum Hauptmenü will und für jeden menschlichen Spieler gefragt wird ob er auf die KI gesetzt werden soll. äöü
                -- Deswegen wird bei Nein jetzt erst einmal direkt zurückgegangen, eventuell später wieder ändern oder besser gestalten. äöü
@@ -205,11 +205,11 @@ package body SpielLogik is
                  JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKIEinsetzen)
                is
                   when True =>
-                     RasseEntfernenLogik.RasseAufKISetzen (RasseExtern => RasseExtern);
+                     SpeziesEntfernenLogik.SpeziesAufKISetzen (SpeziesExtern => SpeziesExtern);
                      
                   when False =>
                      return RückgabeWert;
-                     -- RasseEntfernenLogik.RasseEntfernen (RasseExtern => RasseExtern);
+                     -- SpeziesEntfernenLogik.SpeziesEntfernen (SpeziesExtern => SpeziesExtern);
                end case;
                
             else
@@ -230,21 +230,21 @@ package body SpielLogik is
 
 
    function MenschAmZug
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is
       use type RueckgabeDatentypen.Rückgabe_Werte_Enum;
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
    begin
       
-      NachGrafiktask.AktuelleRasse := RasseExtern;
+      NachGrafiktask.AktuelleSpezies := SpeziesExtern;
       
       if
         LeseAllgemeines.Rundenanzahl = 2
         and
-          LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern) = ForschungKonstanten.LeerForschung
+          LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern) = ForschungKonstanten.LeerForschung
       then
-         ForschungsauswahlLogik.Forschung (RasseExtern => RasseExtern);
+         ForschungsauswahlLogik.Forschung (SpeziesExtern => SpeziesExtern);
          
       else
          null;
@@ -256,10 +256,10 @@ package body SpielLogik is
          NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
          
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
          is
-            when RassenDatentypen.Mensch_Spieler_Enum =>
-               AktuellerBefehlSpieler := BefehlsauswahlLogik.Befehlsauswahl (RasseExtern => RasseExtern);
+            when SpeziesDatentypen.Mensch_Spieler_Enum =>
+               AktuellerBefehlSpieler := BefehlsauswahlLogik.Befehlsauswahl (SpeziesExtern => SpeziesExtern);
                
             when others =>
                RückgabeMenschAmZug := RueckgabeDatentypen.Hauptmenü_Enum;
@@ -267,7 +267,7 @@ package body SpielLogik is
          end case;
          
          case
-           LeseRassenbelegung.Besiegt (RasseExtern => RasseExtern)
+           LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesExtern)
          is
             when True =>
                exit SpielerSchleife;
@@ -281,7 +281,7 @@ package body SpielLogik is
          is
             when RueckgabeDatentypen.Start_Weiter_Enum =>
                if
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
                then
                   null;
                   
@@ -295,7 +295,7 @@ package body SpielLogik is
                exit SpielerSchleife;
                
             when RueckgabeDatentypen.Spielmenü_Enum =>
-               RückgabeSpielmenü := Spielmenü (RasseExtern => RasseExtern);
+               RückgabeSpielmenü := Spielmenü (SpeziesExtern => SpeziesExtern);
 
                if
                  RückgabeSpielmenü = RueckgabeDatentypen.Laden_Enum
@@ -327,7 +327,7 @@ package body SpielLogik is
       end loop SpielerSchleife;
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-      NachGrafiktask.AktuelleRasse := RassenDatentypen.Keine_Rasse_Enum;
+      NachGrafiktask.AktuelleSpezies := SpeziesDatentypen.Keine_Spezies_Enum;
       
       return RückgabeMenschAmZug;
       
@@ -336,7 +336,7 @@ package body SpielLogik is
 
 
    function Spielmenü
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
@@ -349,7 +349,7 @@ package body SpielLogik is
            AuswahlSpielmenü
          is
             when RueckgabeDatentypen.Speichern_Enum =>
-               SchreibeAllgemeines.RasseAmzugNachLaden (RasseExtern => RasseExtern);
+               SchreibeAllgemeines.SpeziesAmzugNachLaden (SpeziesExtern => SpeziesExtern);
                SpeichernLogik.Speichern (AutospeichernExtern => False);
                
             when RueckgabeDatentypen.Laden_Enum =>

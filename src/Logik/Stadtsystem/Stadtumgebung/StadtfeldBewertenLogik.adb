@@ -5,7 +5,7 @@ with KartenfelderwerteLogik;
 package body StadtfeldBewertenLogik is
 
    function FeldBewerten
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
@@ -13,16 +13,16 @@ package body StadtfeldBewertenLogik is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      return NahrungBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      return NahrungBewertung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                KoordinatenExtern      => KoordinatenExtern,
                                BelegenEntfernenExtern   => BelegenEntfernenExtern)
-        + ProduktionBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+        + ProduktionBewertung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                KoordinatenExtern      => KoordinatenExtern,
                                BelegenEntfernenExtern   => BelegenEntfernenExtern)
-        + GeldBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+        + GeldBewertung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                          KoordinatenExtern      => KoordinatenExtern,
                          BelegenEntfernenExtern   => BelegenEntfernenExtern)
-        + WissenBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+        + WissenBewertung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                            KoordinatenExtern      => KoordinatenExtern,
                            BelegenEntfernenExtern   => BelegenEntfernenExtern);
       
@@ -31,7 +31,7 @@ package body StadtfeldBewertenLogik is
    
    
    function NahrungBewertung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
@@ -40,10 +40,10 @@ package body StadtfeldBewertenLogik is
    begin
       
       NahrungGesamt := KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                           RasseExtern       => StadtRasseNummerExtern.Rasse);
+                                                           SpeziesExtern       => StadtSpeziesNummerExtern.Spezies);
       
       if
-        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 1
+        LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) <= 1
         and
           NahrungGesamt >= 1
       then
@@ -74,7 +74,7 @@ package body StadtfeldBewertenLogik is
    
    
    function ProduktionBewertung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
@@ -83,10 +83,10 @@ package body StadtfeldBewertenLogik is
    begin
       
       RessourcenGesamt := KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                                 RasseExtern       => StadtRasseNummerExtern.Rasse);
+                                                                 SpeziesExtern       => StadtSpeziesNummerExtern.Spezies);
       
       if
-        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 0
+        LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) <= 0
         and
           RessourcenGesamt >= 1
       then
@@ -117,7 +117,7 @@ package body StadtfeldBewertenLogik is
 
 
    function GeldBewertung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
@@ -126,10 +126,10 @@ package body StadtfeldBewertenLogik is
    begin
       
       GeldGesamt := KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KoordinatenExtern,
-                                                     RasseExtern       => StadtRasseNummerExtern.Rasse);
+                                                     SpeziesExtern       => StadtSpeziesNummerExtern.Spezies);
 
       if
-        LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 0
+        LeseStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) <= 0
         and
           GeldGesamt >= 1
       then
@@ -160,7 +160,7 @@ package body StadtfeldBewertenLogik is
    
    
    function WissenBewertung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       BelegenEntfernenExtern : in Boolean)
       return ProduktionDatentypen.Stadtproduktion
@@ -169,10 +169,10 @@ package body StadtfeldBewertenLogik is
    begin
 
       WissenGesamt := KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KoordinatenExtern,
-                                                         RasseExtern       => StadtRasseNummerExtern.Rasse);
+                                                         SpeziesExtern       => StadtSpeziesNummerExtern.Spezies);
       
       if
-        LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern) = 0
+        LeseStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) = 0
         and
           WissenGesamt >= 1
       then

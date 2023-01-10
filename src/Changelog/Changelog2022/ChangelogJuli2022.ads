@@ -183,7 +183,7 @@ package ChangelogJuli2022 is
    -- Berechnungen ob eine Festung gebaut werden kann und wie lange es dauern würde überarbeitet.
    -- Berechnungen ob ein Wald gepflanzt werden kann und wie lange es dauern würde überarbeitet.
    -- Berechnungen ob etwas gerodet/trockengelegt werden kann und wie lange es dauern würde überarbeitet.
-   -- Beim Bauen einer Stadt wird jetzt auch rassenabhängig ein Weg dazu angelegt.
+   -- Beim Bauen einer Stadt wird jetzt auch Speziesabhängig ein Weg dazu angelegt.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
@@ -202,7 +202,7 @@ package ChangelogJuli2022 is
    -- Aufgabensystem an die neue Einheitenberechnungen der KI angepasst.
    -- Aufgabensystem überarbeitet.
    -- Berechnungen ob ein Weg gebaut werden kann und wie lange es dauern würde überarbeitet.
-   -- Mehr rassenabhängige Prüfungen eingebaut.
+   -- Mehr Speziesabhängige Prüfungen eingebaut.
    -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/entfernt.
    
    

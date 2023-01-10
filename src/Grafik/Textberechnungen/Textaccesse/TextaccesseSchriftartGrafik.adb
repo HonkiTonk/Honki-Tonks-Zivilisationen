@@ -12,7 +12,7 @@ package body TextaccesseSchriftartGrafik is
       -- Ein paar der Sachen zusammenfassen? Oder doch lieber nach Dateien/Bereich getrennt lassen? äöü
       Allgemeines;
       Menüs;
-      Rassen;
+      Spezies;
       ZusatztextKartengröße;
       Sprachauswahl;
       Kartenformauswahl;
@@ -110,16 +110,16 @@ package body TextaccesseSchriftartGrafik is
       
       
    
-   procedure Rassen
+   procedure Spezies
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in TextaccessVariablen.RassennamenAccess'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in TextaccessVariablen.SpeziesnamenAccess'Range loop
          
-         Sf.Graphics.Text.setFont (text => TextaccessVariablen.RassennamenAccess (RasseSchleifenwert),
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.SpeziesnamenAccess (SpeziesSchleifenwert),
                                    font => TexteinstellungenGrafik.SchriftartAccess);
          
-         Sf.Graphics.Text.setFont (text => TextaccessVariablen.RassenbeschreibungAccess (RasseSchleifenwert),
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesSchleifenwert),
                                    font => TexteinstellungenGrafik.SchriftartAccess);
          
          
@@ -127,7 +127,7 @@ package body TextaccesseSchriftartGrafik is
          GebäudetextSchleife:
          for GebäudetextSchleifenwert in TextaccessVariablen.GebäudetextAccess'Range (2) loop
             
-            Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+            Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                       font => TexteinstellungenGrafik.SchriftartAccess);
          
             case
@@ -137,7 +137,7 @@ package body TextaccesseSchriftartGrafik is
                   null;
                
                when others =>
-                  Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudezusatztextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                  Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudezusatztextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                             font => TexteinstellungenGrafik.SchriftartAccess);
             end case;
             
@@ -148,7 +148,7 @@ package body TextaccesseSchriftartGrafik is
          EinheitentextSchleife:
          for EinheitentextSchleifenwert in TextaccessVariablen.EinheitentextAccess'Range (2) loop
             
-            Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitentextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+            Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                       font => TexteinstellungenGrafik.SchriftartAccess);
          
             case
@@ -158,7 +158,7 @@ package body TextaccesseSchriftartGrafik is
                   null;
                
                when others =>
-                  Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitenzusatztextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+                  Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                             font => TexteinstellungenGrafik.SchriftartAccess);
             end case;
             
@@ -169,20 +169,20 @@ package body TextaccesseSchriftartGrafik is
          ForschungenSchleife:
          for ForschungSchleifenwert in TextaccessVariablen.ForschungsmenüAccess'Range (2) loop
          
-            Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüAccess (RasseSchleifenwert, ForschungSchleifenwert),
+            Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
                                       font => TexteinstellungenGrafik.SchriftartAccess);
             
-            Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseSchleifenwert, ForschungSchleifenwert),
+            Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
                                       font => TexteinstellungenGrafik.SchriftartAccess);
          
          end loop ForschungenSchleife;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                 font => TexteinstellungenGrafik.SchriftartAccess);
       
-   end Rassen;
+   end Spezies;
       
       
    

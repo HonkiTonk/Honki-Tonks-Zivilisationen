@@ -7,7 +7,7 @@ with TextnummernKonstanten;
 with Views;
 with TextaccessVariablen;
 with InteraktionAuswahl;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with MenueDatentypen;
 with DiplomatieDatentypen;
 with TextKonstanten;
@@ -31,7 +31,7 @@ package body DiplomatieauswahlGrafik is
      (AuswahlExtern : in Natural)
    is begin
       
-      AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageRasseDiplomatie)),
+      AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageSpeziesDiplomatie)),
                                           HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                           SpielenamenExtern => False);
       
@@ -63,10 +63,10 @@ package body DiplomatieauswahlGrafik is
       Textbreite := 0.00;
 
       PositionenSchleife:
-      for PositionSchleifenwert in RassenDatentypen.Rassen_Enum'Pos (RassenDatentypen.Rassen_Verwendet_Enum'First) .. RassenDatentypen.Rassen_Enum'Pos (RassenDatentypen.Rassen_Enum'Last) loop
+      for PositionSchleifenwert in SpeziesDatentypen.Spezies_Enum'Pos (SpeziesDatentypen.Spezies_Verwendet_Enum'First) .. SpeziesDatentypen.Spezies_Enum'Pos (SpeziesDatentypen.Spezies_Enum'Last) loop
       
          case
-           InteraktionAuswahl.RassenMöglich (RassenDatentypen.Rassen_Enum'Val (PositionSchleifenwert))
+           InteraktionAuswahl.SpeziesMöglich (SpeziesDatentypen.Spezies_Enum'Val (PositionSchleifenwert))
          is
             when True =>
                TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
@@ -74,12 +74,12 @@ package body DiplomatieauswahlGrafik is
                                                       TextaccessExtern => TextaccessVariablen.TextAccess);
                
                Text := To_Unbounded_Wide_Wide_String (Source => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert + 1,
-                                                                                                             WelchesMenüExtern => MenueDatentypen.Rassen_Menü_Enum))
+                                                                                                             WelchesMenüExtern => MenueDatentypen.Spezies_Menü_Enum))
                  & TextKonstanten.StandardAbstand;
                
                case
-                 LeseDiplomatie.AktuellerZustand (RasseEinsExtern => NachGrafiktask.AktuelleRasse,
-                                                  RasseZweiExtern => RassenDatentypen.Rassen_Enum'Val (PositionSchleifenwert))
+                 LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => NachGrafiktask.AktuelleSpezies,
+                                                  SpeziesZweiExtern => SpeziesDatentypen.Spezies_Enum'Val (PositionSchleifenwert))
                is
                   when DiplomatieDatentypen.Neutral_Enum =>
                      Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugFrieden);
@@ -107,7 +107,7 @@ package body DiplomatieauswahlGrafik is
                Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                                    TextbreiteExtern => Textbreite);
                
-               InteraktionAuswahl.PositionenDiplomatieRasse (RassenDatentypen.Rassen_Enum'Val (PositionSchleifenwert)) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.TextAccess);
+               InteraktionAuswahl.PositionenDiplomatieSpezies (SpeziesDatentypen.Spezies_Enum'Val (PositionSchleifenwert)) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.TextAccess);
                
                Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                   text         => TextaccessVariablen.TextAccess);

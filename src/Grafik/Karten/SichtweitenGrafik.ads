@@ -1,7 +1,7 @@
 with Sf.System.Vector2;
 with Sf.Graphics.Rect;
 
-with RassenDatentypen;
+with SpeziesDatentypen;
 with KartenDatentypen;
 
 private with TastenbelegungDatentypen;
@@ -32,9 +32,9 @@ package SichtweitenGrafik is
    function BewegungsfeldLesen
      return KartenDatentypen.KartenfeldPositiv;
    
-   -- Hier keinen Contract einfügen, da die Grafik möglicherweise noch einmal darauf zugreift nachdem die Spielerrasse besiegt und entfernt wurde.
+   -- Hier keinen Contract einfügen, da die Grafik möglicherweise noch einmal darauf zugreift nachdem die SpielerSpezies besiegt und entfernt wurde.
    function UntenRechts
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean;
    
 private

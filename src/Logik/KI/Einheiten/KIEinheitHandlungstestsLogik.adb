@@ -13,7 +13,7 @@ package body KIEinheitHandlungstestsLogik is
    
    -- Das hier später anpassen, dass die Verschanzung für eine Runde beendet wird. äöü
    function BewachtStadt
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
@@ -22,13 +22,13 @@ package body KIEinheitHandlungstestsLogik is
    begin
       
       if
-        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Stadt_Bewachen_Enum
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = KIDatentypen.Stadt_Bewachen_Enum
         and
-          LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
+          LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = KartenRecordKonstanten.LeerKoordinate
         and
-          LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = AufgabenDatentypen.Verschanzen_Enum
+          LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = AufgabenDatentypen.Verschanzen_Enum
       then
-         Nullwert := KIEinheitUmsetzenModernisierenLogik.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         Nullwert := KIEinheitUmsetzenModernisierenLogik.EinheitVerbessern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          return True;
          
       else
@@ -40,24 +40,24 @@ package body KIEinheitHandlungstestsLogik is
    
 
    function HandlungBeendet
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    begin
             
       if
-        BewachtStadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+        BewachtStadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
       then
          return True;
          
       elsif
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
+        LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
       then
          return True;
             
       else
-         return Unbewegbar (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         return Unbewegbar (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end if;
       
    end HandlungBeendet;
@@ -65,7 +65,7 @@ package body KIEinheitHandlungstestsLogik is
    
    
    function Unbewegbar
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      return Boolean
    is
       use type EinheitenDatentypen.Bewegungspunkte;
@@ -73,9 +73,9 @@ package body KIEinheitHandlungstestsLogik is
    begin
       
       if
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
         or
-          LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerID
+          LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerID
       then
          return True;
             

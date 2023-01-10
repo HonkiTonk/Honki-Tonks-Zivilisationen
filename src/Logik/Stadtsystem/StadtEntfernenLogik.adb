@@ -10,7 +10,7 @@ with SchreibeWichtiges;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
-with RasseEntfernenLogik;
+with SpeziesEntfernenLogik;
 with JaNeinLogik;
 with GlobalesWachstumLogik;
 with StadtumgebungFestlegenLogik;
@@ -18,7 +18,7 @@ with StadtumgebungFestlegenLogik;
 package body StadtEntfernenLogik is
    
    function StadtAbreißen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is begin
       
@@ -28,7 +28,7 @@ package body StadtEntfernenLogik is
         Abriss
       is
          when True =>
-            StadtEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
          when False =>
             null;
@@ -41,39 +41,39 @@ package body StadtEntfernenLogik is
    
 
    procedure StadtEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      SchreibeStadtGebaut.Bewohnerentfernung (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      SchreibeStadtGebaut.Bewohnerentfernung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      HeimatstädteEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      NeueHauptstadtSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+      HeimatstädteEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      NeueHauptstadtSetzen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
                                       VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
-      SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      GlobalesWachstumLogik.WachstumWichtiges (RasseExtern => StadtRasseNummerExtern.Rasse);
-      SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
+      SchreibeStadtGebaut.Nullsetzung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      GlobalesWachstumLogik.WachstumWichtiges (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+      SchreibeWichtiges.AnzahlStädte (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
                                        PlusMinusExtern => False);
-      RasseEntfernenLogik.RasseExistenzPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
+      SpeziesEntfernenLogik.SpeziesExistenzPrüfen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       
    end StadtEntfernen;
    
    
    
    procedure HeimatstädteEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
       EinheitenSchleife:
-      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => StadtRasseNummerExtern.Rasse) loop
+      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) loop
          
          if
-           LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert)) = StadtRasseNummerExtern.Nummer
+           LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerSchleifenwert)) = StadtSpeziesNummerExtern.Nummer
          then
-            SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert),
+            SchreibeEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerSchleifenwert),
                                                  HeimatstadtExtern        => EinheitenKonstanten.LeerHeimatstadt);
             
          else
@@ -87,14 +87,14 @@ package body StadtEntfernenLogik is
    
    
    procedure NeueHauptstadtSetzen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
       use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    begin
       
       case
-        LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        LeseStadtGebaut.ID (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
       is
          when KartenverbesserungDatentypen.Hauptstadt_Enum =>
             null;
@@ -104,17 +104,17 @@ package body StadtEntfernenLogik is
       end case;
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) loop
          
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
            or
-             StadtSchleifenwert = StadtRasseNummerExtern.Nummer
+             StadtSchleifenwert = StadtSpeziesNummerExtern.Nummer
          then
             null;
             
          else
-            SchreibeStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert),
+            SchreibeStadtGebaut.ID (StadtSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, StadtSchleifenwert),
                                     IDExtern               => KartenverbesserungDatentypen.Hauptstadt_Enum);
             return;
          end if;

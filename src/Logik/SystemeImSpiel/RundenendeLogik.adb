@@ -58,7 +58,7 @@ package body RundenendeLogik is
       StadtwachstumLogik.StadtWachstum;
       LadezeitenLogik.RundenendeSchreiben;
       
-      StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer);
+      StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtKonstanten.LeerSpeziesNummer);
       LadezeitenLogik.RundenendeSchreiben;
       
       ForschungsfortschrittLogik.Forschungsfortschritt;
@@ -133,45 +133,45 @@ package body RundenendeLogik is
    procedure GeldForschungDiplomatieÄndern
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
          is
-            when RassenDatentypen.Leer_Spieler_Enum =>
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;
             
             when others =>
-               GeldForschung (RasseExtern => RasseSchleifenwert);
-               Diplomatie (RasseExtern => RasseSchleifenwert);
+               GeldForschung (SpeziesExtern => SpeziesSchleifenwert);
+               Diplomatie (SpeziesExtern => SpeziesSchleifenwert);
          end case;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
    end GeldForschungDiplomatieÄndern;
    
    
    
    procedure GeldForschung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       if
-        RasseExtern = RassenDatentypen.Ekropa_Enum
+        SpeziesExtern = SpeziesDatentypen.Ekropa_Enum
       then
          null;
                   
       else
-         SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
-                                      GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern)),
+         SchreibeWichtiges.Geldmenge (SpeziesExtern         => SpeziesExtern,
+                                      GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => SpeziesExtern)),
                                       RechnenSetzenExtern => True);
       end if;
                
-      SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseExtern,
-                                         ForschungZugewinnExtern => LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern),
+      SchreibeWichtiges.Forschungsmenge (SpeziesExtern             => SpeziesExtern,
+                                         ForschungZugewinnExtern => LeseWichtiges.GesamteForschungsrate (SpeziesExtern => SpeziesExtern),
                                          RechnenSetzenExtern     => True);
       
    end GeldForschung;
@@ -179,40 +179,40 @@ package body RundenendeLogik is
    
    
    procedure Diplomatie
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
             
          if
-           RasseExtern = RasseSchleifenwert
+           SpeziesExtern = SpeziesSchleifenwert
            or
-             LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
          then
             null;
             
          elsif
-           DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
-                                                                                  RasseZweiExtern => RasseSchleifenwert)
+           DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesExtern,
+                                                                                  SpeziesZweiExtern => SpeziesSchleifenwert)
          then
             null;
                   
          else
-            SchreibeDiplomatie.ZeitSeitÄnderung (RasseEinsExtern     => RasseExtern,
-                                                  RasseZweiExtern     => RasseSchleifenwert,
+            SchreibeDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern     => SpeziesExtern,
+                                                  SpeziesZweiExtern     => SpeziesSchleifenwert,
                                                   ÄnderungExtern     => 1,
                                                   RechnenSetzenExtern => True);
-            SchreibeDiplomatie.AktuelleSympathie (RasseEinsExtern     => RasseExtern,
-                                                  RasseZweiExtern     => RasseSchleifenwert,
+            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern     => SpeziesExtern,
+                                                  SpeziesZweiExtern     => SpeziesSchleifenwert,
                                                   SympathieExtern     => 1,
                                                   RechnenSetzenExtern => True);
          end if;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
    end Diplomatie;
 

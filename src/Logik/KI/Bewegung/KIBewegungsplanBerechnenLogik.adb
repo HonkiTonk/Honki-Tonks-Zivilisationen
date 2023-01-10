@@ -18,20 +18,20 @@ with KIBewegungsbewertungLogik;
 package body KIBewegungsplanBerechnenLogik is
    
    function BewegungPlanen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
       if
-        LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       then
          return False;
          
       else
-         PlanungErfolgreich := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                               AktuelleKoordinatenExtern  => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+         PlanungErfolgreich := PlanenRekursiv (EinheitSpeziesNummerExtern   => EinheitSpeziesNummerExtern,
+                                               AktuelleKoordinatenExtern  => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                                                AktuellePlanpositionExtern => 1);
       end if;
       
@@ -40,15 +40,15 @@ package body KIBewegungsplanBerechnenLogik is
       is
          when True =>
             -- Das hier entfernen? Sollte vermutlich keine Bedutung mehr haben mit dem neuen System? äöü
-            KIBewegungsplanVereinfachenLogik.Planvereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KIBewegungsplanVereinfachenLogik.Planvereinfachung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>
-            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
-            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
       end case;
       
@@ -59,20 +59,20 @@ package body KIBewegungsplanBerechnenLogik is
    
    
    function PlanenRekursiv
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
    is begin
       
-      Felderbewertung (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+      Felderbewertung (EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern,
                        AktuelleKoordinatenExtern => AktuelleKoordinatenExtern);
       
       DurchlaufSchleife:
       for DurchlaufSchleifenwert in BewertungArray'Range loop
          
          case
-           PlanschrittFestlegen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
+           PlanschrittFestlegen (EinheitSpeziesNummerExtern   => EinheitSpeziesNummerExtern,
                                  DurchlaufExtern            => DurchlaufSchleifenwert,
                                  AktuellePlanpositionExtern => AktuellePlanpositionExtern)
          is
@@ -80,7 +80,7 @@ package body KIBewegungsplanBerechnenLogik is
                return True;
                
             when False =>
-               SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+               SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate,
                                                        PlanplatzExtern          => AktuellePlanpositionExtern);
          end case;
@@ -94,7 +94,7 @@ package body KIBewegungsplanBerechnenLogik is
    
    
    function PlanschrittFestlegen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       DurchlaufExtern : in Positive;
       AktuellePlanpositionExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
       return Boolean
@@ -109,13 +109,13 @@ package body KIBewegungsplanBerechnenLogik is
             return False;
                
          when KartenDatentypen.KartenfeldNatural'First =>
-            SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     KoordinatenExtern        => Bewertung (DurchlaufExtern).Koordinaten,
                                                     PlanplatzExtern          => AktuellePlanpositionExtern);
             return True;
                
          when others =>
-            SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     KoordinatenExtern        => Bewertung (DurchlaufExtern).Koordinaten,
                                                     PlanplatzExtern          => AktuellePlanpositionExtern);
             
@@ -125,7 +125,7 @@ package body KIBewegungsplanBerechnenLogik is
                return True;
          
             else
-               return PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
+               return PlanenRekursiv (EinheitSpeziesNummerExtern   => EinheitSpeziesNummerExtern,
                                       AktuelleKoordinatenExtern  => Bewertung (DurchlaufExtern).Koordinaten,
                                       AktuellePlanpositionExtern => AktuellePlanpositionExtern + 1);
             end if;
@@ -136,7 +136,7 @@ package body KIBewegungsplanBerechnenLogik is
    
    
    procedure Felderbewertung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -165,7 +165,7 @@ package body KIBewegungsplanBerechnenLogik is
                   Bewertung (BewertungPosition).Bewertung := KartenDatentypen.KartenfeldPositiv'Last;
             
                else
-                  Bewertung (BewertungPosition).Bewertung := BewertungFeldposition (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                  Bewertung (BewertungPosition).Bewertung := BewertungFeldposition (EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern,
                                                                                     NeueKoordinatenExtern     => KartenWert);
                end if;
                
@@ -199,13 +199,13 @@ package body KIBewegungsplanBerechnenLogik is
    
    
    function BewertungFeldposition
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenDatentypen.KartenfeldNatural
    is begin
             
       if
-        True = FeldBereitsBetreten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        True = FeldBereitsBetreten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                     KoordinatenExtern        => NeueKoordinatenExtern)
       then
          return KartenDatentypen.KartenfeldPositiv'Last;
@@ -215,7 +215,7 @@ package body KIBewegungsplanBerechnenLogik is
       end if;
                   
       case
-        PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                   NeueKoordinatenExtern    => NeueKoordinatenExtern)
       is
          when True =>
@@ -223,7 +223,7 @@ package body KIBewegungsplanBerechnenLogik is
                         
          when False =>
             if
-              True = TransporterNutzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+              True = TransporterNutzen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                         KoordinatenExtern        => NeueKoordinatenExtern)
             then
                null;
@@ -235,10 +235,10 @@ package body KIBewegungsplanBerechnenLogik is
       
       case
         KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern    => NeueKoordinatenExtern,
-                                               EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                               EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when KIKonstanten.BewegungAngriff | KIKonstanten.BewegungNormal =>
-            return KIBewegungsbewertungLogik.Positionsbewertung (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+            return KIBewegungsbewertungLogik.Positionsbewertung (EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern,
                                                                  NeueKoordinatenExtern     => NeueKoordinatenExtern);
             
             -- Hier später noch einmal anpassen. äöü
@@ -254,7 +254,7 @@ package body KIBewegungsplanBerechnenLogik is
    
    
    function FeldBereitsBetreten
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
@@ -265,7 +265,7 @@ package body KIBewegungsplanBerechnenLogik is
       for FelderSchleifenwert in EinheitenRecords.KIBewegungPlanArray'Range loop
          
          if
-           KoordinatenExtern = LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+           KoordinatenExtern = LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                    PlanschrittExtern        => FelderSchleifenwert)
          then
             return True;
@@ -283,7 +283,7 @@ package body KIBewegungsplanBerechnenLogik is
    
    
    function TransporterNutzen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
@@ -292,20 +292,20 @@ package body KIBewegungsplanBerechnenLogik is
    begin
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse) loop
+      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) loop
          
          if
-           EinheitRasseNummerExtern.Nummer = EinheitSchleifenwert
+           EinheitSpeziesNummerExtern.Nummer = EinheitSchleifenwert
            or
-             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert)) = EinheitenKonstanten.LeerID
+             LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitSchleifenwert)) = EinheitenKonstanten.LeerID
          then
             null;
             
          elsif
-           True = EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
-                                                                     TransporterExtern => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert))
+           True = EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => EinheitSpeziesNummerExtern,
+                                                                     TransporterExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitSchleifenwert))
            and
-             True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern    => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert),
+             True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern    => (EinheitSpeziesNummerExtern.Spezies, EinheitSchleifenwert),
                                                                               NeueKoordinatenExtern       => KoordinatenExtern)
          then
             -- Hier später True zurückgeben äöü

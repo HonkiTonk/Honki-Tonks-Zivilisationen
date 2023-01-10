@@ -1,41 +1,41 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
 
 private with KartenRecords;
 
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package KIEinheitFestlegenAngreifenLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    function Angreifen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
      with
        Pre => (
-                 EinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse)
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               );
    
 private
    
-   WenAngreifen : RassenDatentypen.Rassen_Enum;
-   Ziel : RassenDatentypen.Rassen_Enum;
+   WenAngreifen : SpeziesDatentypen.Spezies_Enum;
+   Ziel : SpeziesDatentypen.Spezies_Enum;
    
    KoordinatenFeind : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    
    
    function ZielErmitteln
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RassenDatentypen.Rassen_Enum
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return SpeziesDatentypen.Spezies_Enum
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
 
 end KIEinheitFestlegenAngreifenLogik;

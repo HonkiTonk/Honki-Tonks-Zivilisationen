@@ -7,7 +7,7 @@ with GrafikRecords;
 
 with EinstellungenGrafik;
 with TexteinstellungenGrafik;
-with RasseneinstellungenGrafik;
+with SpezieseinstellungenGrafik;
 with EinstellungenMusik;
 with EinstellungenSound;
 
@@ -69,10 +69,10 @@ package body EinlesenEinstellungenLogik is
             GrafikRecords.SchriftfarbenRecord'Read (Stream (File => DateiGrafikeinstellungen),
                                                     TexteinstellungenGrafik.Schriftfarben);
       
-            RasseneinstellungenGrafik.RassenFarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
-                                                              RasseneinstellungenGrafik.Rassenfarben);
-            RasseneinstellungenGrafik.RassenFarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
-                                                              RasseneinstellungenGrafik.RassenfarbenRahmen);
+            SpezieseinstellungenGrafik.SpeziesFarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
+                                                              SpezieseinstellungenGrafik.Speziesfarben);
+            SpezieseinstellungenGrafik.SpeziesFarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
+                                                              SpezieseinstellungenGrafik.SpeziesfarbenRahmen);
       
             Close (File => DateiGrafikeinstellungen);
 

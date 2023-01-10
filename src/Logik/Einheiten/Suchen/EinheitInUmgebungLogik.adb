@@ -20,46 +20,46 @@ package body EinheitInUmgebungLogik is
    procedure EinheitInUmgebung
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
          is
-            when RassenDatentypen.Mensch_Spieler_Enum =>
-               UmgebungStadt (RasseExtern => RasseSchleifenwert);
-               UmgebungEinheit (RasseExtern => RasseSchleifenwert);
+            when SpeziesDatentypen.Mensch_Spieler_Enum =>
+               UmgebungStadt (SpeziesExtern => SpeziesSchleifenwert);
+               UmgebungEinheit (SpeziesExtern => SpeziesSchleifenwert);
                
             when others =>
                null;
          end case;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
    end EinheitInUmgebung;
    
    
    
    procedure UmgebungStadt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
                   
          case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
             when StadtKonstanten.LeerID =>
                null;
                         
             when others =>
                if
-                 True = EinheitFinden (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
-                                       UmgebungExtern    => LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) + 1,
-                                       RasseExtern       => RasseExtern)
+                 True = EinheitFinden (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)),
+                                       UmgebungExtern    => LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) + 1,
+                                       SpeziesExtern       => SpeziesExtern)
                then
-                  MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
+                  MeldungenSetzenLogik.StadtmeldungSetzen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert),
                                                            EreignisExtern         => StadtDatentypen.Fremde_Einheit_Nahe_Stadt_Enum);
                            
                else
@@ -74,25 +74,25 @@ package body EinheitInUmgebungLogik is
    
    
    procedure UmgebungEinheit
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
+      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
                   
          case
-           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert))
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert))
          is
             when EinheitenKonstanten.LeerID =>
                null;
                         
             when others =>
                if
-                 True = EinheitFinden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert)),
+                 True = EinheitFinden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)),
                                        UmgebungExtern    => 3,
-                                       RasseExtern       => RasseExtern)
+                                       SpeziesExtern       => SpeziesExtern)
                then
-                  MeldungenSetzenLogik.EinheitmeldungSetzen (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
+                  MeldungenSetzenLogik.EinheitmeldungSetzen (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert),
                                                              EreignisExtern           => EinheitenDatentypen.Fremde_Einheit_Nahe_Enum);
                            
                else
@@ -109,7 +109,7 @@ package body EinheitInUmgebungLogik is
    function EinheitFinden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       UmgebungExtern : in KartenDatentypen.Sichtweite;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
@@ -132,12 +132,12 @@ package body EinheitInUmgebungLogik is
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                              RasseExtern       => RasseExtern)
+                                              SpeziesExtern       => SpeziesExtern)
             then
                null;
                
             else
-               AndereEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => RasseExtern,
+               AndereEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
                                                                                                KoordinatenExtern => KartenWert,
                                                                                                LogikGrafikExtern => True);
                
@@ -147,8 +147,8 @@ package body EinheitInUmgebungLogik is
                   null;
                     
                elsif
-                 DiplomatieDatentypen.Nichtangriffspakt_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
-                                                                                                RasseZweiExtern => AndereEinheit.Rasse)
+                 DiplomatieDatentypen.Nichtangriffspakt_Enum = LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesExtern,
+                                                                                                SpeziesZweiExtern => AndereEinheit.Spezies)
                then
                   null;
                   

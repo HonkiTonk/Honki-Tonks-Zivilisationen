@@ -4,29 +4,29 @@ with GebautVariablen;
 package body LeseStadtGebaut is
 
    function ID
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).ID;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).ID;
       
    end ID;
    
    
    
    function Koordinaten
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
             
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KoordinatenAktuell;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).KoordinatenAktuell;
       
    end Koordinaten;
    
    
    
    function EinwohnerArbeiter
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean)
       return ProduktionDatentypen.Einwohner
    is begin
@@ -35,10 +35,10 @@ package body LeseStadtGebaut is
         EinwohnerArbeiterExtern
       is
          when True =>
-            return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (1);
+            return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).EinwohnerArbeiter (1);
             
          when False =>
-            return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).EinwohnerArbeiter (2);
+            return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).EinwohnerArbeiter (2);
       end case;
       
    end EinwohnerArbeiter;
@@ -46,15 +46,15 @@ package body LeseStadtGebaut is
    
    
    function Arbeitslose
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.Einwohner
    is
       use type ProduktionDatentypen.Einwohner;
    begin
       
-      return EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      return EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                 EinwohnerArbeiterExtern => True)
-        - EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+        - EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                              EinwohnerArbeiterExtern => False);
       
    end Arbeitslose;
@@ -62,156 +62,156 @@ package body LeseStadtGebaut is
    
    
    function Nahrungsmittel
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.Stadtproduktion
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Nahrungsmittel;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Nahrungsmittel;
       
    end Nahrungsmittel;
    
    
    
    function Nahrungsproduktion
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.Stadtproduktion
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Nahrungsproduktion;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Nahrungsproduktion;
       
    end Nahrungsproduktion;
    
    
    
    function Ressourcen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.StadtLagermenge
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Ressourcen;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Ressourcen;
       
    end Ressourcen;
    
    
    
    function Produktionrate
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.Stadtproduktion
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Produktionrate;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Produktionrate;
       
    end Produktionrate;
    
    
    
    function Geldgewinnung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.Stadtproduktion
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Geldgewinnung;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Geldgewinnung;
       
    end Geldgewinnung;
    
    
    
    function PermanenteKostenPosten
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       WelcherPostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
       return ProduktionDatentypen.Stadtproduktion
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).PermanenteKostenPosten (WelcherPostenExtern);
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).PermanenteKostenPosten (WelcherPostenExtern);
       
    end PermanenteKostenPosten;
    
    
       
    function Forschungsrate
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.StadtLagermenge
    is begin
             
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Forschungsrate;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Forschungsrate;
       
    end Forschungsrate;
    
    
    
    function Bauprojekt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return StadtRecords.BauprojektRecord
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauprojekt;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Bauprojekt;
       
    end Bauprojekt;
    
    
    
    function Bauzeit
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.Produktion
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Bauzeit;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Bauzeit;
       
    end Bauzeit;
    
    
    
    function Korruption
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.StadtLagermenge
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Korruption;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Korruption;
       
    end Korruption;
    
    
    
    function Zufriedenheit
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.Feldproduktion
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Zufriedenheit;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Zufriedenheit;
       
    end Zufriedenheit;
    
    
    
    function GebäudeVorhanden
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
       return Boolean
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).GebäudeVorhanden (WelchesGebäudeExtern);
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).GebäudeVorhanden (WelchesGebäudeExtern);
       
    end GebäudeVorhanden;
    
    
    
    function Name
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Unbounded_Wide_Wide_String
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
       if
-        StadtRasseNummerExtern.Rasse = RassenDatentypen.Keine_Rasse_Enum
+        StadtSpeziesNummerExtern.Spezies = SpeziesDatentypen.Keine_Spezies_Enum
         or
-          StadtRasseNummerExtern.Nummer = StadtKonstanten.LeerNummer
+          StadtSpeziesNummerExtern.Nummer = StadtKonstanten.LeerNummer
       then
          return TextKonstanten.LeerUnboundedString;
       
       else
-         return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Name;
+         return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Name;
       end if;
    
    end Name;
@@ -219,58 +219,58 @@ package body LeseStadtGebaut is
    
    
    function UmgebungBewirtschaftung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       YKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
       XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei)
       return Boolean
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungBewirtschaftung (YKoordinateExtern, XKoordinateExtern);
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungBewirtschaftung (YKoordinateExtern, XKoordinateExtern);
       
    end UmgebungBewirtschaftung;
    
    
    
    function UmgebungGröße
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return KartenDatentypen.UmgebungsbereichDrei
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).UmgebungGröße;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungGröße;
       
    end UmgebungGröße;
       
    
       
    function Meldungen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       WelcheMeldungExtern : in StadtDatentypen.Stadt_Meldung_Art_Enum)
       return StadtDatentypen.Stadt_Meldung_Enum
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).Meldungen (WelcheMeldungExtern);
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Meldungen (WelcheMeldungExtern);
       
    end Meldungen;
    
       
       
    function KIBeschäftigung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return KIDatentypen.Stadt_Aufgabe_Enum
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer).KIBeschäftigung;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).KIBeschäftigung;
       
    end KIBeschäftigung;
    
    
    
    function GanzerEintrag
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return StadtRecords.StadtGebautRecord
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer);
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer);
       
    end GanzerEintrag;
    

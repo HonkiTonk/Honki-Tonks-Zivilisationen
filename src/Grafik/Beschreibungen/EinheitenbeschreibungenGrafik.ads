@@ -1,18 +1,18 @@
 with EinheitenDatentypen;
 with AufgabenDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 
 package EinheitenbeschreibungenGrafik is
    pragma Elaborate_Body;
    
    function Kurzbeschreibung
      (IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Wide_Wide_String;
    
    function Langbeschreibung
      (IDExtern : in EinheitenDatentypen.EinheitenID;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Wide_Wide_String;
    
    function KurzbeschreibungBeschäftigung

@@ -7,12 +7,12 @@ with KIXAchsenbewertung;
 package body KIBewegungsbewertungLogik is
 
    function Positionsbewertung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenDatentypen.KartenfeldNatural
    is begin
       
-      Zielkoordinate := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Zielkoordinate := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       BewertungEAchse := KIEAchsenbewertung.EAchseBewerten (ZielebeneExtern     => Zielkoordinate.EAchse,
                                                             NeueEbeneExtern     => NeueKoordinatenExtern.EAchse);

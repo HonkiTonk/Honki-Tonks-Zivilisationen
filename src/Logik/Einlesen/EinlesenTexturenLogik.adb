@@ -21,7 +21,7 @@ package body EinlesenTexturenLogik is
       EinlesenKartenressourcen;
       EinlesenVerbesserungen;
       EinlesenWege;
-      EinlesenRassen;
+      EinlesenSpezies;
       
    end EinlesenTexturen;
    
@@ -493,122 +493,122 @@ package body EinlesenTexturenLogik is
    
    
    
-   procedure EinlesenRassen
+   procedure EinlesenSpezies
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei)
+        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenRassen: Es fehlt: "
-                                        & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei));
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSpezies: Es fehlt: "
+                                        & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
             return;
             
          when True =>
             AktuelleZeile := 1;
             
-            Open (File => DateiRassen,
+            Open (File => DateiSpezies,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei);
       end case;
       
-      RassenschleifeSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesschleifeSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          EinzelpfadeEinlesenSchleife:
-         for EinzelpfadeEinlesenSchleifenwert in RassenverzeichnisseArray'Range loop
+         for EinzelpfadeEinlesenSchleifenwert in SpeziesverzeichnisseArray'Range loop
          
             case
-              EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiRassen,
+              EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSpezies,
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenRassen: Fehlende Zeilen: "
-                                              & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Rassen & VerzeichnisKonstanten.NullDatei));
-                  exit RassenschleifeSchleife;
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSpezies: Fehlende Zeilen: "
+                                              & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
+                  exit SpeziesschleifeSchleife;
                
                when False =>
-                  Rassenverzeichnisse (EinzelpfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiRassen));
+                  Speziesverzeichnisse (EinzelpfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiSpezies));
                   AktuelleZeile := AktuelleZeile + 1;
             end case;
          
          end loop EinzelpfadeEinlesenSchleife;
          
-         EinlesenRassenhintergrund (DateipfadExtern => To_Wide_Wide_String (Source => Rassenverzeichnisse (1)),
-                                    RasseExtern     => RasseSchleifenwert);
+         EinlesenSpezieshintergrund (DateipfadExtern => To_Wide_Wide_String (Source => Speziesverzeichnisse (1)),
+                                    SpeziesExtern     => SpeziesSchleifenwert);
          
-         EinlesenEinheiten (DateipfadExtern => To_Wide_Wide_String (Source => Rassenverzeichnisse (2)),
-                            RasseExtern     => RasseSchleifenwert);
+         EinlesenEinheiten (DateipfadExtern => To_Wide_Wide_String (Source => Speziesverzeichnisse (2)),
+                            SpeziesExtern     => SpeziesSchleifenwert);
          
-         EinlesenGebäude (DateipfadExtern => To_Wide_Wide_String (Source => Rassenverzeichnisse (3)),
-                           RasseExtern     => RasseSchleifenwert);
+         EinlesenGebäude (DateipfadExtern => To_Wide_Wide_String (Source => Speziesverzeichnisse (3)),
+                           SpeziesExtern     => SpeziesSchleifenwert);
          
-      end loop RassenschleifeSchleife;
+      end loop SpeziesschleifeSchleife;
       
-      Close (File => DateiRassen);
+      Close (File => DateiSpezies);
       
-   end EinlesenRassen;
+   end EinlesenSpezies;
    
    
    
-   procedure EinlesenRassenhintergrund
+   procedure EinlesenSpezieshintergrund
      (DateipfadExtern : in Wide_Wide_String;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       case
         Exists (Name => Encode (Item => DateipfadExtern))
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenRassenhintergrund: Es fehlt: " & DateipfadExtern);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSpezieshintergrund: Es fehlt: " & DateipfadExtern);
             return;
             
          when True =>
-            ZeileRassenhintergrund := 1;
+            ZeileSpezieshintergrund := 1;
             
-            Open (File => DateiRassenhintergründe,
+            Open (File => DateiSpezieshintergründe,
                   Mode => In_File,
                   Name => Encode (Item => DateipfadExtern));
       end case;
       
       TexturenSchleife:
-      for TexturSchleifenwert in EingeleseneTexturenGrafik.RassenhintergrundAccessArray'Range (2) loop
+      for TexturSchleifenwert in EingeleseneTexturenGrafik.SpezieshintergrundAccessArray'Range (2) loop
             
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiRassenhintergründe,
-                                                           AktuelleZeileExtern => ZeileRassenhintergrund)
+           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSpezieshintergründe,
+                                                           AktuelleZeileExtern => ZeileSpezieshintergrund)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenRassenhintergrund: Fehlende Zeilen: " & DateipfadExtern);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSpezieshintergrund: Fehlende Zeilen: " & DateipfadExtern);
                exit TexturenSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiRassenhintergründe));
-               ZeileRassenhintergrund := ZeileRassenhintergrund + 1;
+               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiSpezieshintergründe));
+               ZeileSpezieshintergrund := ZeileSpezieshintergrund + 1;
          end case;
          
          case
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)))
          is
             when True =>
-               EingeleseneTexturenGrafik.RassenhintergrundAccess (RasseExtern, TexturSchleifenwert)
+               EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, TexturSchleifenwert)
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenEinheiten: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
-               EingeleseneTexturenGrafik.RassenhintergrundAccess (RasseExtern, TexturSchleifenwert) := null;
+               EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, TexturSchleifenwert) := null;
          end case;
                      
       end loop TexturenSchleife;
       
-      Close (File => DateiRassenhintergründe);
+      Close (File => DateiSpezieshintergründe);
       
-   end EinlesenRassenhintergrund;
+   end EinlesenSpezieshintergrund;
    
    
    
    procedure EinlesenEinheiten
      (DateipfadExtern : in Wide_Wide_String;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       case
@@ -646,12 +646,12 @@ package body EinlesenTexturenLogik is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)))
          is
             when True =>
-               EingeleseneTexturenGrafik.EinheitenAccess (RasseExtern, TexturSchleifenwert)
+               EingeleseneTexturenGrafik.EinheitenAccess (SpeziesExtern, TexturSchleifenwert)
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenEinheiten: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
-               EingeleseneTexturenGrafik.EinheitenAccess (RasseExtern, TexturSchleifenwert) := null;
+               EingeleseneTexturenGrafik.EinheitenAccess (SpeziesExtern, TexturSchleifenwert) := null;
          end case;
                      
       end loop TexturenSchleife;
@@ -664,7 +664,7 @@ package body EinlesenTexturenLogik is
    
    procedure EinlesenGebäude
      (DateipfadExtern : in Wide_Wide_String;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       case
@@ -702,12 +702,12 @@ package body EinlesenTexturenLogik is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)))
          is
             when True =>
-               EingeleseneTexturenGrafik.GebäudeAccess (RasseExtern, TexturSchleifenwert)
+               EingeleseneTexturenGrafik.GebäudeAccess (SpeziesExtern, TexturSchleifenwert)
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenGebäude: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
-               EingeleseneTexturenGrafik.GebäudeAccess (RasseExtern, TexturSchleifenwert) := null;
+               EingeleseneTexturenGrafik.GebäudeAccess (SpeziesExtern, TexturSchleifenwert) := null;
          end case;
                   
       end loop TexturenSchleife;

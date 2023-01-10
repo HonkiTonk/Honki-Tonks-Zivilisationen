@@ -10,12 +10,12 @@ package body KISonstigesSuchenLogik is
 
    function EigenesFeldSuchen
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       case
-        LeseWeltkarte.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+        LeseWeltkarte.BelegterGrund (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                      KoordinatenExtern => AktuelleKoordinatenExtern)
       is
          when True =>
@@ -31,7 +31,7 @@ package body KISonstigesSuchenLogik is
       loop
          
          Ziel := ZielSuchen (AktuelleKoordinatenExtern => AktuelleKoordinatenExtern,
-                             EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                             EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern,
                              BereichExtern             => Bereich);
          
          if
@@ -56,7 +56,7 @@ package body KISonstigesSuchenLogik is
    
    function ZielSuchen
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BereichExtern : in KartenDatentypen.Sichtweite)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
@@ -76,10 +76,10 @@ package body KISonstigesSuchenLogik is
                null;
                
             elsif
-              True = LeseWeltkarte.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+              True = LeseWeltkarte.BelegterGrund (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                                   KoordinatenExtern => KartenWert)
               and
-                True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                  NeueKoordinatenExtern    => KartenWert)
             then
                return KartenWert;

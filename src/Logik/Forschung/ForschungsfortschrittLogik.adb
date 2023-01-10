@@ -14,33 +14,33 @@ package body ForschungsfortschrittLogik is
    procedure Forschungsfortschritt
    is begin
       
-      RasseSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
          is
-            when RassenDatentypen.Leer_Spieler_Enum =>
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
-               Fortschritt (RasseExtern => RasseSchleifenwert);
+               Fortschritt (SpeziesExtern => SpeziesSchleifenwert);
          end case;
                
-      end loop RasseSchleife;
+      end loop SpeziesSchleife;
       
    end Forschungsfortschritt;
    
    
    
    procedure Fortschritt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
       use type ProduktionDatentypen.Produktion;
    begin
       
-      AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
+      AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern);
       
       case
         AktuellesForschungsprojekt
@@ -53,41 +53,41 @@ package body ForschungsfortschrittLogik is
       end case;
          
       if
-        LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern) >= LeseForschungenDatenbank.Kosten (RasseExtern => RasseExtern,
+        LeseWichtiges.Forschungsmenge (SpeziesExtern => SpeziesExtern) >= LeseForschungenDatenbank.Kosten (SpeziesExtern => SpeziesExtern,
                                                                                                        IDExtern    => AktuellesForschungsprojekt)
       then
-         SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
+         SchreibeWichtiges.Erforscht (SpeziesExtern => SpeziesExtern);
          
          if
            AktuellesForschungsprojekt = LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Anfangswert_Enum,
-                                                                           RasseExtern      => RasseExtern)
+                                                                           SpeziesExtern      => SpeziesExtern)
            or
              AktuellesForschungsprojekt = LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Endwert_Enum,
-                                                                             RasseExtern      => RasseExtern)
+                                                                             SpeziesExtern      => SpeziesExtern)
          then
-            StadtumgebungFestlegenLogik.StadtumgebungFestlegenTechnologie (RasseExtern => RasseExtern);
+            StadtumgebungFestlegenLogik.StadtumgebungFestlegenTechnologie (SpeziesExtern => SpeziesExtern);
 
          else
             null;
          end if;
          
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
          is
-            when RassenDatentypen.Mensch_Spieler_Enum =>
-               ForschungsauswahlLogik.Forschungserfolg (RasseExtern => RasseExtern);
+            when SpeziesDatentypen.Mensch_Spieler_Enum =>
+               ForschungsauswahlLogik.Forschungserfolg (SpeziesExtern => SpeziesExtern);
                
             when others =>
-               SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
+               SchreibeWichtiges.Forschungsprojekt (SpeziesExtern       => SpeziesExtern,
                                                     ForschungIDExtern => ForschungKonstanten.LeerForschung);
          end case;
          
       else
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseExtern)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
          is
-            when RassenDatentypen.Mensch_Spieler_Enum =>
-               SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
+            when SpeziesDatentypen.Mensch_Spieler_Enum =>
+               SchreibeWichtiges.VerbleibendeForschungszeit (SpeziesExtern => SpeziesExtern);
                
             when others =>
                null;

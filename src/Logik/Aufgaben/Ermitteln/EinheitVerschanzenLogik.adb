@@ -5,11 +5,11 @@ with SchreibeEinheitenGebaut;
 package body EinheitVerschanzenLogik is
 
    function Verschanzen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
-      SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                               BeschäftigungExtern     => AufgabenDatentypen.Verschanzen_Enum);
       
       return True;

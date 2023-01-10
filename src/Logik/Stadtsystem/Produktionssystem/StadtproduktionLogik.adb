@@ -13,18 +13,18 @@ with GlobalesWachstumLogik;
 package body StadtproduktionLogik is
    
    procedure Stadtproduktion
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
       case
-        StadtRasseNummerExtern.Rasse
+        StadtSpeziesNummerExtern.Spezies
       is
-         when StadtKonstanten.LeerRasse =>
+         when StadtKonstanten.LeerSpezies =>
             StadtProduktionAlle;
             
          when others =>
-            StadtProduktionBerechnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
-            GlobalesWachstumLogik.WachstumWichtiges (RasseExtern => StadtRasseNummerExtern.Rasse);
+            StadtProduktionBerechnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            GlobalesWachstumLogik.WachstumWichtiges (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       end case;
       
    end Stadtproduktion;
@@ -34,73 +34,73 @@ package body StadtproduktionLogik is
    procedure StadtProduktionAlle
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
                
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
          is
-            when RassenDatentypen.Leer_Spieler_Enum =>
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;
                      
             when others =>
                StadtSchleife:
-               for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseSchleifenwert) loop
+               for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesSchleifenwert) loop
                   
                   case
-                    LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert))
+                    LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtNummerSchleifenwert))
                   is
                      when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                         null;
                   
                      when others =>
-                        StadtProduktionBerechnung (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert));
+                        StadtProduktionBerechnung (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtNummerSchleifenwert));
                   end case;
                
                end loop StadtSchleife;
                
-               GlobalesWachstumLogik.WachstumWichtiges (RasseExtern => RasseSchleifenwert);
+               GlobalesWachstumLogik.WachstumWichtiges (SpeziesExtern => SpeziesSchleifenwert);
          end case;
                
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
    end StadtProduktionAlle;
    
 
 
    procedure StadtProduktionBerechnung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      StadtProduktionNullSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      KorruptionBerechnen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      ZufriedenheitBerechnen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtProduktionNullSetzen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      KorruptionBerechnen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      ZufriedenheitBerechnen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      FelderProduktionBerechnen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      FelderProduktionBerechnen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      WeitereNahrungsproduktionÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      WeitereProduktionrateÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      WeitereNahrungsproduktionÄnderungen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      WeitereProduktionrateÄnderungen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       -- Geldgewinnung muss immer nach der Produktionsrate ausgeführt werden, da bei keinem Bauprojekt sonst die Ressourcenumwandlung nach Geld nicht korrekt ist.
       -- Aktuell werden Ressourcen nicht in Geld umgewandelt, so lassen oder später wieder ändern? äöü
       case
-        StadtRasseNummerExtern.Rasse
+        StadtSpeziesNummerExtern.Spezies
       is
-         when RassenDatentypen.Ekropa_Enum =>
+         when SpeziesDatentypen.Ekropa_Enum =>
             null;
             
          when others =>
-            WeitereGeldgewinnungÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            WeitereGeldgewinnungÄnderungen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end case;
       
-      WeitereForschungsrateÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      WeitereForschungsrateÄnderungen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
    end StadtProduktionBerechnung;
    
    
    
    procedure KorruptionBerechnen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
       null;
@@ -110,7 +110,7 @@ package body StadtproduktionLogik is
    
    
    procedure ZufriedenheitBerechnen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
       null;
@@ -120,13 +120,13 @@ package body StadtproduktionLogik is
    
    
    procedure FelderProduktionBerechnen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type KartenDatentypen.Kartenfeld;
    begin
             
-      NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
       for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
@@ -143,38 +143,38 @@ package body StadtproduktionLogik is
                null;
                
             elsif
-              False = LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+              False = LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                YKoordinateExtern      => YAchseSchleifenwert,
                                                                XKoordinateExtern      => XAchseSchleifenwert)
             then
                null;
                
             else
-               SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
+               SchreibeStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern   => StadtSpeziesNummerExtern,
                                                        NahrungsproduktionExtern => KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KartenWert,
-                                                                                                                       RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                                                                                       SpeziesExtern       => StadtSpeziesNummerExtern.Spezies),
                                                        ÄndernSetzenExtern       => True);
-               SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
+               SchreibeStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                    ProduktionrateExtern   => KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KartenWert,
-                                                                                                                    RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                                                                                    SpeziesExtern       => StadtSpeziesNummerExtern.Spezies),
                                                    ÄndernSetzenExtern     => True);
                
                case
-                 StadtRasseNummerExtern.Rasse
+                 StadtSpeziesNummerExtern.Spezies
                is
-                  when RassenDatentypen.Ekropa_Enum =>
+                  when SpeziesDatentypen.Ekropa_Enum =>
                      null;
                      
                   when others =>
-                     SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                     SchreibeStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                         GeldgewinnungExtern    => KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KartenWert,
-                                                                                                                   RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                                                                                   SpeziesExtern       => StadtSpeziesNummerExtern.Spezies),
                                                         ÄndernSetzenExtern     => True);
                end case;
                
-               SchreibeStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
+               SchreibeStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                    ForschungsrateExtern   => KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KartenWert,
-                                                                                                                RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                                                                                SpeziesExtern       => StadtSpeziesNummerExtern.Spezies),
                                                    ÄndernSetzenExtern     => True);
             end if;
                            
@@ -186,35 +186,35 @@ package body StadtproduktionLogik is
    
    
    procedure StadtProduktionNullSetzen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern   => StadtSpeziesNummerExtern,
                                               NahrungsproduktionExtern => StadtKonstanten.LeerNahrungsproduktion,
                                               ÄndernSetzenExtern       => False);
-      SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                           ProduktionrateExtern   => StadtKonstanten.LeerProduktionrate,
                                           ÄndernSetzenExtern     => False);
       
       case
-        StadtRasseNummerExtern.Rasse
+        StadtSpeziesNummerExtern.Spezies
       is
-         when RassenDatentypen.Ekropa_Enum =>
+         when SpeziesDatentypen.Ekropa_Enum =>
             null;
             
          when others =>
-            SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            SchreibeStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                GeldgewinnungExtern    => StadtKonstanten.LeerGeldgewinnung,
                                                ÄndernSetzenExtern     => False);
       end case;
       
-      SchreibeStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                           ForschungsrateExtern   => StadtKonstanten.LeerForschungsrate,
                                           ÄndernSetzenExtern     => False);
-      SchreibeStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Korruption (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                       KorruptionExtern       => StadtKonstanten.LeerKorruption,
                                       ÄndernSetzenExtern     => False);
-      SchreibeStadtGebaut.Zufriedenheit (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Zufriedenheit (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                          ZufriedenheitExtern    => StadtKonstanten.LeerZufriedenheit,
                                          ÄndernSetzenExtern    => False);
       
@@ -223,22 +223,22 @@ package body StadtproduktionLogik is
    
    
    procedure WeitereNahrungsproduktionÄnderungen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
-                                              NahrungsproduktionExtern => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern   => StadtSpeziesNummerExtern,
+                                              NahrungsproduktionExtern => -LeseStadtGebaut.PermanenteKostenPosten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                                                                    WelcherPostenExtern    => ProduktionDatentypen.Nahrung_Enum),
                                               ÄndernSetzenExtern       => True);
       
-      SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
-                                              NahrungsproduktionExtern => -ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern   => StadtSpeziesNummerExtern,
+                                              NahrungsproduktionExtern => -ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                                                                                                                     EinwohnerArbeiterExtern => True)),
                                               ÄndernSetzenExtern       => True);
       
-      VorhandeneEinwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      VorhandeneEinwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                                 EinwohnerArbeiterExtern => True);
       case
         VorhandeneEinwohner
@@ -257,7 +257,7 @@ package body StadtproduktionLogik is
             NahrungsverbrauchEinwohnerMultiplikator := -0;
       end case;
       
-      SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern   => StadtSpeziesNummerExtern,
                                               NahrungsproduktionExtern => ProduktionDatentypen.Stadtproduktion (VorhandeneEinwohner) * NahrungsverbrauchEinwohnerMultiplikator,
                                               ÄndernSetzenExtern       => True);
       
@@ -266,19 +266,19 @@ package body StadtproduktionLogik is
 
 
    procedure WeitereProduktionrateÄnderungen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                          ProduktionrateExtern   => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                          ProduktionrateExtern   => -LeseStadtGebaut.PermanenteKostenPosten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                                                              WelcherPostenExtern    => ProduktionDatentypen.Produktion_Enum),
                                           ÄndernSetzenExtern     => True);
             
       case
         -- Diesen Wert an der Bevölkerung und nicht an der Korruption messen?
-        LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        LeseStadtGebaut.Korruption (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
       is
          -- Den Multiplikator immer Minus setzen, damit er später direkt einen negativen Wert übergibt, eventuelle für mehr nutzen, wenn Gebäude bestimmte Werte entsprechend beeinflussen.
          when 0 =>
@@ -297,8 +297,8 @@ package body StadtproduktionLogik is
             RessourcenverbrauchKorruptionMultiplikator := -0;
       end case;
       
-      SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                          ProduktionrateExtern   => ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                          ProduktionrateExtern   => ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                                                                                                              EinwohnerArbeiterExtern => True))
                                           * RessourcenverbrauchKorruptionMultiplikator,
                                           ÄndernSetzenExtern     => True);
@@ -308,27 +308,27 @@ package body StadtproduktionLogik is
 
 
    procedure WeitereGeldgewinnungÄnderungen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type ProduktionDatentypen.Produktion;
       use type EinheitenDatentypen.EinheitenIDMitNullWert;
       use type StadtDatentypen.GebäudeIDMitNullwert;
    begin
       
-      SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         GeldgewinnungExtern    => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                         GeldgewinnungExtern    => -LeseStadtGebaut.PermanenteKostenPosten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                                                             WelcherPostenExtern    => ProduktionDatentypen.Geld_Enum),
                                          ÄndernSetzenExtern     => True);
       
-      Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       if
         Bauprojekt.Gebäude = 0
         and
           Bauprojekt.Einheit = 0
       then
-         SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                            GeldgewinnungExtern    => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) / 5,
+         SchreibeStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                            GeldgewinnungExtern    => LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) / 5,
                                             ÄndernSetzenExtern     => True);
          
       else
@@ -337,7 +337,7 @@ package body StadtproduktionLogik is
 
       case
         -- Diesen Wert an der Bevölkerung und nicht an der Korruption messen?
-        LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        LeseStadtGebaut.Korruption (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
       is
          -- Den Multiplikator immer Minus setzen, damit er später direkt einen negativen Wert übergibt, eventuelle für mehr nutzen, wenn Gebäude bestimmte Werte entsprechend beeinflussen.
          when 0 =>
@@ -356,8 +356,8 @@ package body StadtproduktionLogik is
             GeldverbrauchKorruptionMultiplikator := -0;
       end case;
       
-      SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         GeldgewinnungExtern    => ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                         GeldgewinnungExtern    => ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                                                                                                             EinwohnerArbeiterExtern => True))
                                          * GeldverbrauchKorruptionMultiplikator,
                                          ÄndernSetzenExtern     => True);
@@ -367,14 +367,14 @@ package body StadtproduktionLogik is
 
 
    procedure WeitereForschungsrateÄnderungen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type ProduktionDatentypen.Produktion;
    begin
 
       case
         -- Diesen Wert an der Bevölkerung und nicht an der Korruption messen?
-        LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        LeseStadtGebaut.Korruption (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
       is
          -- Den Multiplikator immer Minus setzen, damit er später direkt einen negativen Wert übergibt, eventuelle für mehr nutzen, wenn Gebäude bestimmte Werte entsprechend beeinflussen.
          when 0 =>
@@ -393,8 +393,8 @@ package body StadtproduktionLogik is
             ForschungsverbrauchKorruptionMultiplikator := -0;
       end case;
       
-      SchreibeStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                          ForschungsrateExtern   => ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                          ForschungsrateExtern   => ProduktionDatentypen.Stadtproduktion (LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                                                                                                              EinwohnerArbeiterExtern => True))
                                           * ForschungsverbrauchKorruptionMultiplikator,
                                           ÄndernSetzenExtern     => True);

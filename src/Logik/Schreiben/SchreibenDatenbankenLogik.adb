@@ -3,7 +3,7 @@ with ForschungenDatenbank;
 with GebaeudeDatenbank;
 with KartenDatenbank;
 with VerbesserungenDatenbank;
-with RassenDatenbank;
+with SpeziesDatenbank;
 with VerzeichnisKonstanten;
 with ForschungKonstanten;
 
@@ -17,7 +17,7 @@ package body SchreibenDatenbankenLogik is
       SchreibenGebäudeDatenbank;
       SchreibenKartenDatenbanken;
       SchreibenVerbesserungenDatenbank;
-      SchreibenRassenDatenbank;
+      SchreibenSpeziesDatenbank;
       
    end SchreibenAlleDatenbanken;
    
@@ -199,18 +199,18 @@ package body SchreibenDatenbankenLogik is
       
          
    
-   procedure SchreibenRassenDatenbank
+   procedure SchreibenSpeziesDatenbank
    is begin
       
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.RassenDatenbank);
+              Name => VerzeichnisKonstanten.SpeziesDatenbank);
       
-      RassenDatenbank.RassenlisteArray'Write (Stream (File => DatenbankSpeichern),
-                                              RassenDatenbank.Rassenliste);
+      SpeziesDatenbank.SpezieslisteArray'Write (Stream (File => DatenbankSpeichern),
+                                              SpeziesDatenbank.Speziesliste);
       
       Close (File => DatenbankSpeichern);
       
-   end SchreibenRassenDatenbank;
+   end SchreibenSpeziesDatenbank;
 
 end SchreibenDatenbankenLogik;

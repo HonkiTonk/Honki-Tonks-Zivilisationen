@@ -1,6 +1,6 @@
 private with Sf.System.Vector2;
 
-with RassenDatentypen;
+with SpeziesDatentypen;
 
 private with EinheitenRecords;
 private with StadtRecords;
@@ -10,15 +10,15 @@ package SeitenleisteGrafik is
    pragma Elaborate_Body;
 
    procedure SeitenleisteGrafik
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum);
 
 private
 
    StadtVorhanden : Boolean;
 
-   StadtRasseNummer : StadtRecords.RasseStadtnummerRecord;
+   StadtSpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
 
-   EinheitRasseNummer : EinheitenRecords.RasseEinheitnummerRecord;
+   EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
 
    Leerwert : Sf.System.Vector2.sfVector2f;
 

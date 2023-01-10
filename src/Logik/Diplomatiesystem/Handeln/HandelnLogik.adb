@@ -14,21 +14,21 @@ with KennenlernenLogik;
 package body HandelnLogik is
 
    function Handelsmenü
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Integer
    is begin
       
       case
-        LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
-                                         RasseZweiExtern => KontaktierteRasseExtern)
+        LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesExtern,
+                                         SpeziesZweiExtern => KontaktierteSpeziesExtern)
       is
          when DiplomatieDatentypen.Krieg_Enum =>
             return 1;
             
          when others =>
-            return Handeln (RasseExtern             => RasseExtern,
-                            KontaktierteRasseExtern => KontaktierteRasseExtern);
+            return Handeln (SpeziesExtern             => SpeziesExtern,
+                            KontaktierteSpeziesExtern => KontaktierteSpeziesExtern);
       end case;
       
    end Handelsmenü;
@@ -36,8 +36,8 @@ package body HandelnLogik is
    
    
    function Handeln
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Integer
    is begin
       
@@ -49,43 +49,43 @@ package body HandelnLogik is
          is
             when 1 =>
                -- Karten tauschen
-               SichtbarkeitTauschen (RasseEinsExtern => RasseExtern,
-                                     RasseZweiExtern => KontaktierteRasseExtern);
+               SichtbarkeitTauschen (SpeziesEinsExtern => SpeziesExtern,
+                                     SpeziesZweiExtern => KontaktierteSpeziesExtern);
                
             when 2 =>
                -- Karten kaufen
-               SichtbarkeitKaufen (RasseEinsExtern => RasseExtern,
-                                   RasseZweiExtern => KontaktierteRasseExtern);
+               SichtbarkeitKaufen (SpeziesEinsExtern => SpeziesExtern,
+                                   SpeziesZweiExtern => KontaktierteSpeziesExtern);
                
             when 3 =>
                -- Karten verkaufen
-               SichtbarkeitVerkaufen (RasseEinsExtern => RasseExtern,
-                                      RasseZweiExtern => KontaktierteRasseExtern);
+               SichtbarkeitVerkaufen (SpeziesEinsExtern => SpeziesExtern,
+                                      SpeziesZweiExtern => KontaktierteSpeziesExtern);
                
             when 4 =>
                -- Kontakte tauschen
-               KontakteTauschen (RasseExtern             => RasseExtern,
-                                 KontaktierteRasseExtern => KontaktierteRasseExtern);
+               KontakteTauschen (SpeziesExtern             => SpeziesExtern,
+                                 KontaktierteSpeziesExtern => KontaktierteSpeziesExtern);
                
             when 5 =>
                -- Kontakte kaufen
-               KontakteKaufen (RasseExtern             => RasseExtern,
-                               KontaktierteRasseExtern => KontaktierteRasseExtern);
+               KontakteKaufen (SpeziesExtern             => SpeziesExtern,
+                               KontaktierteSpeziesExtern => KontaktierteSpeziesExtern);
                
             when 6 =>
                -- Kontakte verkaufen
-               KontakteVerkaufen (RasseExtern             => RasseExtern,
-                                  KontaktierteRasseExtern => KontaktierteRasseExtern);
+               KontakteVerkaufen (SpeziesExtern             => SpeziesExtern,
+                                  KontaktierteSpeziesExtern => KontaktierteSpeziesExtern);
                
             when 7 =>
                -- Geld verschenken
-               GeldVerschenken (RasseExtern             => RasseExtern,
-                                KontaktierteRasseExtern => KontaktierteRasseExtern);
+               GeldVerschenken (SpeziesExtern             => SpeziesExtern,
+                                KontaktierteSpeziesExtern => KontaktierteSpeziesExtern);
                
             when 8 =>
                -- Geld verlangen
-               GeldVerlangen (RasseExtern             => RasseExtern,
-                              KontaktierteRasseExtern => KontaktierteRasseExtern);
+               GeldVerlangen (SpeziesExtern             => SpeziesExtern,
+                              KontaktierteSpeziesExtern => KontaktierteSpeziesExtern);
                
                --   when RueckgabeDatentypen.Zurück_Enum =>
             when 9 =>
@@ -102,37 +102,37 @@ package body HandelnLogik is
    
    
    procedure GeldVerschenken
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       if
-        LeseWichtiges.Geldmenge (RasseExtern => RasseExtern) >= Positive'First
+        LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern) >= Positive'First
       then
          --      Geldmenge := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Handeln,
          --                                     ZeileExtern         => 11,
          --                                      ZahlenMinimumExtern => 0,
-         --                                      ZahlenMaximumExtern => LeseWichtiges.Geldmenge (RasseExtern => RasseExtern));
+         --                                      ZahlenMaximumExtern => LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern));
                
-         SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
+         SchreibeWichtiges.Geldmenge (SpeziesExtern         => SpeziesExtern,
                                       GeldZugewinnExtern  => -Geldmenge,
                                       RechnenSetzenExtern => True);
                
-         SchreibeWichtiges.Geldmenge (RasseExtern         => KontaktierteRasseExtern,
+         SchreibeWichtiges.Geldmenge (SpeziesExtern         => KontaktierteSpeziesExtern,
                                       GeldZugewinnExtern  => Geldmenge,
                                       RechnenSetzenExtern => True);
                   
          -- if
          --    Geldmenge / 25 > Integer (ProduktionDatentypen.Feldproduktion'Last)
          --  then
-         SchreibeDiplomatie.AktuelleSympathie (RasseEinsExtern     => KontaktierteRasseExtern,
-                                               RasseZweiExtern     => RasseExtern,
+         SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern     => KontaktierteSpeziesExtern,
+                                               SpeziesZweiExtern     => SpeziesExtern,
                                                SympathieExtern     => DiplomatieDatentypen.Meinung'Last,
                                                RechnenSetzenExtern => False);
                      
          --  else
-         SchreibeDiplomatie.AktuelleSympathie (RasseEinsExtern     => KontaktierteRasseExtern,
-                                               RasseZweiExtern     => RasseExtern,
+         SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern     => KontaktierteSpeziesExtern,
+                                               SpeziesZweiExtern     => SpeziesExtern,
                                                SympathieExtern     => DiplomatieDatentypen.Meinung (Geldmenge / 25),
                                                RechnenSetzenExtern => True);
          --   end if;
@@ -146,36 +146,36 @@ package body HandelnLogik is
    
    
    procedure GeldVerlangen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       if
-        LeseWichtiges.Geldmenge (RasseExtern => KontaktierteRasseExtern) >= Positive'First
+        LeseWichtiges.Geldmenge (SpeziesExtern => KontaktierteSpeziesExtern) >= Positive'First
       then
          --  Geldmenge := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Handeln,
          --                                  ZeileExtern         => 12,
          --                                  ZahlenMinimumExtern => 0,
-         --                                  ZahlenMaximumExtern => LeseWichtiges.Geldmenge (RasseExtern => KontaktierteRasseExtern));
+         --                                  ZahlenMaximumExtern => LeseWichtiges.Geldmenge (SpeziesExtern => KontaktierteSpeziesExtern));
                
-         SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
+         SchreibeWichtiges.Geldmenge (SpeziesExtern         => SpeziesExtern,
                                       GeldZugewinnExtern  => Geldmenge,
                                       RechnenSetzenExtern => True);
                
-         SchreibeWichtiges.Geldmenge (RasseExtern         => KontaktierteRasseExtern,
+         SchreibeWichtiges.Geldmenge (SpeziesExtern         => KontaktierteSpeziesExtern,
                                       GeldZugewinnExtern  => -Geldmenge,
                                       RechnenSetzenExtern => True);
                   
          --  if
          --    Geldmenge / 25 > Integer (ProduktionDatentypen.Feldproduktion'Last)
          --  then
-         --   DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
-         --                                          FremdeRasseExtern => RasseExtern,
+         --   DiplomatischerZustand.SympathieÄndern (EigeneSpeziesExtern => KontaktierteSpeziesExtern,
+         --                                          FremdeSpeziesExtern => SpeziesExtern,
          --                                         ÄnderungExtern    => -DiplomatieDatentypen.Meinung'Last);
                      
          --  else
-         --  DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
-         --                                        FremdeRasseExtern => RasseExtern,
+         --  DiplomatischerZustand.SympathieÄndern (EigeneSpeziesExtern => KontaktierteSpeziesExtern,
+         --                                        FremdeSpeziesExtern => SpeziesExtern,
          --                                      ÄnderungExtern    => -DiplomatieDatentypen.Meinung (Geldmenge / 25));
          --  end if;
                   
@@ -188,95 +188,95 @@ package body HandelnLogik is
    
    
    procedure KontakteVerkaufen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
                
          if
-           (RasseSchleifenwert = RasseExtern
+           (SpeziesSchleifenwert = SpeziesExtern
             or
-              RasseSchleifenwert = KontaktierteRasseExtern)
+              SpeziesSchleifenwert = KontaktierteSpeziesExtern)
            or else
-             (DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
-                                                                                     RasseZweiExtern => RasseSchleifenwert)
+             (DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesExtern,
+                                                                                     SpeziesZweiExtern => SpeziesSchleifenwert)
               or
-                DiplomatieDatentypen.Unbekannt_Enum /= LeseDiplomatie.AktuellerZustand (RasseEinsExtern => KontaktierteRasseExtern,
-                                                                                        RasseZweiExtern => RasseSchleifenwert))
+                DiplomatieDatentypen.Unbekannt_Enum /= LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => KontaktierteSpeziesExtern,
+                                                                                        SpeziesZweiExtern => SpeziesSchleifenwert))
          then
             null;
                   
          else
-            KennenlernenLogik.Erstkontakt (EigeneRasseExtern => KontaktierteRasseExtern,
-                                           FremdeRasseExtern => RasseSchleifenwert);
+            KennenlernenLogik.Erstkontakt (EigeneSpeziesExtern => KontaktierteSpeziesExtern,
+                                           FremdeSpeziesExtern => SpeziesSchleifenwert);
          end if;
                
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
    end KontakteVerkaufen;
    
    
    
    procedure KontakteKaufen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
                
          if
-           RasseSchleifenwert = RasseExtern
+           SpeziesSchleifenwert = SpeziesExtern
             or
-             RasseSchleifenwert = KontaktierteRasseExtern
+             SpeziesSchleifenwert = KontaktierteSpeziesExtern
          then
             null;
             
          elsif
-           DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => KontaktierteRasseExtern,
-                                                                                  RasseZweiExtern => RasseSchleifenwert)
+           DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => KontaktierteSpeziesExtern,
+                                                                                  SpeziesZweiExtern => SpeziesSchleifenwert)
            or
-             DiplomatieDatentypen.Unbekannt_Enum /= LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
-                                                                                     RasseZweiExtern => RasseSchleifenwert)
+             DiplomatieDatentypen.Unbekannt_Enum /= LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesExtern,
+                                                                                     SpeziesZweiExtern => SpeziesSchleifenwert)
          then
             null;
             
          else
-            KennenlernenLogik.Erstkontakt (EigeneRasseExtern => RasseExtern,
-                                           FremdeRasseExtern => RasseSchleifenwert);
+            KennenlernenLogik.Erstkontakt (EigeneSpeziesExtern => SpeziesExtern,
+                                           FremdeSpeziesExtern => SpeziesSchleifenwert);
          end if;
                
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
    end KontakteKaufen;
    
    
    
    procedure KontakteTauschen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      KontakteKaufen (RasseExtern             => RasseExtern,
-                      KontaktierteRasseExtern => KontaktierteRasseExtern);
-      KontakteVerkaufen (RasseExtern             => RasseExtern,
-                         KontaktierteRasseExtern => KontaktierteRasseExtern);
+      KontakteKaufen (SpeziesExtern             => SpeziesExtern,
+                      KontaktierteSpeziesExtern => KontaktierteSpeziesExtern);
+      KontakteVerkaufen (SpeziesExtern             => SpeziesExtern,
+                         KontaktierteSpeziesExtern => KontaktierteSpeziesExtern);
       
    end KontakteTauschen;
    
    
    
    procedure SichtbarkeitKaufen
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
      
       EAchseEinsSchleife:
@@ -288,12 +288,12 @@ package body HandelnLogik is
 
                if
                  False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                                 RasseExtern       => RasseEinsExtern)
+                                                 SpeziesExtern       => SpeziesEinsExtern)
                  and
                    True = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                                  RasseExtern       => RasseZweiExtern)
+                                                  SpeziesExtern       => SpeziesZweiExtern)
                then
-                  SichtbarkeitSetzenLogik.SichtbarkeitSetzen (RasseExtern       => RasseEinsExtern,
+                  SichtbarkeitSetzenLogik.SichtbarkeitSetzen (SpeziesExtern       => SpeziesEinsExtern,
                                                               KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert));
                         
                else
@@ -309,8 +309,8 @@ package body HandelnLogik is
 
 
    procedure SichtbarkeitVerkaufen
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
   
       EAchseZweiSchleife:
@@ -322,12 +322,12 @@ package body HandelnLogik is
 
                if
                  False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                                 RasseExtern       => RasseZweiExtern)
+                                                 SpeziesExtern       => SpeziesZweiExtern)
                  and
                    True = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                                  RasseExtern       => RasseEinsExtern)
+                                                  SpeziesExtern       => SpeziesEinsExtern)
                then
-                  SichtbarkeitSetzenLogik.SichtbarkeitSetzen (RasseExtern       => RasseZweiExtern,
+                  SichtbarkeitSetzenLogik.SichtbarkeitSetzen (SpeziesExtern       => SpeziesZweiExtern,
                                                               KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert));
                         
                else
@@ -343,14 +343,14 @@ package body HandelnLogik is
    
    
    procedure SichtbarkeitTauschen
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      SichtbarkeitKaufen (RasseEinsExtern => RasseEinsExtern,
-                          RasseZweiExtern => RasseZweiExtern);
-      SichtbarkeitVerkaufen (RasseEinsExtern => RasseEinsExtern,
-                             RasseZweiExtern => RasseZweiExtern);
+      SichtbarkeitKaufen (SpeziesEinsExtern => SpeziesEinsExtern,
+                          SpeziesZweiExtern => SpeziesZweiExtern);
+      SichtbarkeitVerkaufen (SpeziesEinsExtern => SpeziesEinsExtern,
+                             SpeziesZweiExtern => SpeziesZweiExtern);
               
    end SichtbarkeitTauschen;
 

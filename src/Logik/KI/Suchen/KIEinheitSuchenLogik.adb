@@ -13,14 +13,14 @@ with KIKonstanten;
 package body KIEinheitSuchenLogik is
 
    function FeindlicheEinheitInUmgebungSuchen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      FeindExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      FeindExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       UmgebungPrüfen := 1;
       BereitsGeprüft := UmgebungPrüfen - 1;
@@ -43,12 +43,12 @@ package body KIEinheitSuchenLogik is
                
                elsif
                  False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                                 RasseExtern       => EinheitRasseNummerExtern.Rasse)
+                                                 SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
                then
                   null;
                   
                else
-                  FeindlicheEinheit := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindExtern,
+                  FeindlicheEinheit := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => FeindExtern,
                                                                                             KoordinatenExtern => KartenWert,
                                                                                             LogikGrafikExtern => True);
                   case

@@ -16,24 +16,24 @@ with BewegungsplanLogik;
 package body EinheitenkontrollsystemLogik is
 
    procedure Einheitenkontrolle
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
-      Bewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      EinheitenbewegungsbereichLogik.BewegungsbereichBerechnen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Bewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      EinheitenbewegungsbereichLogik.BewegungsbereichBerechnen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       NachGrafiktask.EinheitBewegungsbereich := True;
       
       KontrollSchleife:
       loop
          
          case
-           EinheitBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+           EinheitBefehle (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                            BefehlExtern             => TasteneingabeLogik.Einheitentaste)
          is
             when True =>
-               NeueBewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               NeueBewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                
                if
                  Bewegungspunkte = NeueBewegungspunkte
@@ -47,7 +47,7 @@ package body EinheitenkontrollsystemLogik is
                   
                else
                   Bewegungspunkte := NeueBewegungspunkte;
-                  EinheitenbewegungsbereichLogik.BewegungsbereichBerechnen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                  EinheitenbewegungsbereichLogik.BewegungsbereichBerechnen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                end if;
                
             when False =>
@@ -63,7 +63,7 @@ package body EinheitenkontrollsystemLogik is
    
    
    function EinheitBefehle
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BefehlExtern : in BefehleDatentypen.Einheitenbelegung_Enum)
       return Boolean
    is begin
@@ -72,30 +72,30 @@ package body EinheitenkontrollsystemLogik is
         BefehlExtern
       is
          when BefehleDatentypen.Auswählen_Enum =>
-            return BefehleMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            return BefehleMaus (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when BefehleDatentypen.Einheiten_Bewegung_Enum'Range =>
             NachGrafiktask.EinheitBewegt := True;
-            return BewegungsplanLogik.Einzelschritt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return BewegungsplanLogik.Einzelschritt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                      ÄnderungExtern           =>  Richtung (BefehlExtern));
             
          when BefehleDatentypen.Heimatstadt_Ändern_Enum =>
-            EinheitenmodifizierungLogik.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            EinheitenmodifizierungLogik.HeimatstadtÄndern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             return True;
             
          when BefehleDatentypen.Entladen_Enum =>
-            EinheitentransporterLogik.TransporterEntladen (TransporterExtern => EinheitRasseNummerExtern);
+            EinheitentransporterLogik.TransporterEntladen (TransporterExtern => EinheitSpeziesNummerExtern);
             return True;
                
          when BefehleDatentypen.Siedler_Verbesserung_Enum'Range | BefehleDatentypen.Einheiten_Allgemeine_Befehle_Enum'Range =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichen Aufgabenanfang keine Bewegung mehr möglich ist und umgekehrt.
-            return not AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return not AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                               BefehlExtern             => BefehlExtern,
-                                              KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+                                              KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
                
          when BefehleDatentypen.Bauen_Enum =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichem Städtebau keine Bewegung mehr möglich ist und umgekehrt.
-            return not StadtBauenLogik.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            return not StadtBauenLogik.StadtBauen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
             -- Da das der Standardrückgabewert ist muss hier True zurückgegeben werden, da sonst die Schleife direkt nach der Auswahl wieder verlassen wird!
          when BefehleDatentypen.Leer_Einheitenbelegung_Enum =>
@@ -110,7 +110,7 @@ package body EinheitenkontrollsystemLogik is
    
    
    function BefehleMaus
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -120,23 +120,23 @@ package body EinheitenkontrollsystemLogik is
         Mausbefehl
       is
          when BefehleDatentypen.Einheiten_Bewegung_Enum'Range =>
-            return BewegungsplanLogik.Einzelschritt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return BewegungsplanLogik.Einzelschritt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                      ÄnderungExtern           =>  Richtung (Mausbefehl));
             
          when BefehleDatentypen.Einheiten_Aufgaben_Enum'Range =>
             if
-              PZBEingesetztLogik.PZBEingesetzt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+              PZBEingesetztLogik.PZBEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
             then
                return False;
               
             else
-               return EinheitBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+               return EinheitBefehle (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                       BefehlExtern             => Mausbefehl);
             end if;
             
          when BefehleDatentypen.Auswählen_Enum =>
-            return BewegungsplanLogik.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                      ZielkoordinatenExtern    => LeseCursor.KoordinatenAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse));
+            return BewegungsplanLogik.BewegungPlanen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                      ZielkoordinatenExtern    => LeseCursor.KoordinatenAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
             
          when others =>
             return False;

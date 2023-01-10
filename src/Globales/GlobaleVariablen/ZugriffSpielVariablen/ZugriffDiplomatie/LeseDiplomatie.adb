@@ -3,48 +3,48 @@ with SpielVariablen;
 package body LeseDiplomatie is
 
    function AktuellerZustand
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return DiplomatieDatentypen.Status_Untereinander_Enum
    is begin
       
-      return SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand;
+      return SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).AktuellerZustand;
       
    end AktuellerZustand;
    
    
    
    function AktuelleSympathie
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return DiplomatieDatentypen.Meinung
    is begin
       
-      return SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuelleSympathieBewertung;
+      return SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).AktuelleSympathieBewertung;
       
    end AktuelleSympathie;
    
    
    
    function ZeitSeitÄnderung
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ZahlenDatentypen.EigenesNatural
    is begin
       
-      return SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung;
+      return SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).ZeitSeitLetzterÄnderung;
       
    end ZeitSeitÄnderung;
    
    
    
    function GanzerEintrag
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return SpielRecords.DiplomatieRecord
    is begin
       
-      return SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern);
+      return SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern);
       
    end GanzerEintrag;
 

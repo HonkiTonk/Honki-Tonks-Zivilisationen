@@ -16,7 +16,7 @@ package ChangelogJuni2022 is
    
    -- Datentypen und Konstanten angepasst/besser aufgeteilt/erweitert.
    -- Weiter an den Einheitenberechnungen der KI gearbeitet.
-   -- Schnellstart fügt jetzt eine durch die KI gesteuerte Rasse ein.
+   -- Schnellstart fügt jetzt eine durch die KI gesteuerte Spezies ein.
    -- Weiter an der Aufgabenplanung der KIEinheiten gearbeitet.
    -- Weiter an der Aufgabenfestlegung der KIEinheiten gearbeitet.
    -- Interne Benennung überarbeitet.
@@ -124,7 +124,7 @@ package ChangelogJuni2022 is
    -- Festlegung und Speicherung der Kartengröße überarbeitet.
    -- Unnötigen Code gelöscht.
    -- Fehler behoben der das Spiel beendete anstatt zurück zum Hauptmenü zu gehen.
-   -- Es wird jetzt automatisch eine Rasse zugewiesen, wenn keine ausgewählt wurde man aber die Auswahl beendet.
+   -- Es wird jetzt automatisch eine Spezies zugewiesen, wenn keine ausgewählt wurde man aber die Auswahl beendet.
    -- Einheiten sollten bei der Startfestlegung nicht mehr auf Eis platziert werden.
    -- Schnellstart eingebaut.
    -- Alle Werte sollte jetzt wieder korrekt auf Standardwerte gesetzt werden, wenn man eine neue Runde startet ohne das Spiel zu beenden.
@@ -149,7 +149,7 @@ package ChangelogJuni2022 is
    -- Fehler in der Berechnung des Grunds für die Kernfläche korrigiert.
    -- Berechnungsfortschritt für die Spielweltgenerierung eingebaut.
    -- Debugmenü kann jetzt auch die KI Rechenzeiten anzeigen.
-   -- Allgemeines für den Rassennamen und die Rassenbeschreibung angelegt.
+   -- Allgemeines für den Speziesnamen und die Speziesbeschreibung angelegt.
    -- Berechnungsfortschrittanzeige für die KI Züge eingebaut.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
@@ -158,7 +158,7 @@ package ChangelogJuni2022 is
    -- Version 0.01.1095 => 0.01.1165 (14.06.2022):
    
    -- Übersichtlichkeit des Codes an einigen Stellen verbessert.
-   -- Angefangen die Berechnungen für einzelne Rassen individueller zu gestalten.
+   -- Angefangen die Berechnungen für einzelne Spezies individueller zu gestalten.
    -- KartengeneratorPlanetenInneres um Basisgrundberechnungen erweitert.
    -- Die Menüs werden jetzt auch dann angezeigt, wenn man eine Zahl eingibt.
    -- SFML Version der Spielweltgenerierungszeitanzeige eingebaut.
@@ -183,7 +183,7 @@ package ChangelogJuni2022 is
    
    -- Angefangen einige rudimentäre Teile für den Schwierigkeitsgrad einzubauen.
    -- Weiter an der Anpassung/Aufteilung der ProduktionDatentypen gearbeitet.
-   -- KIRassen können jetzt unterschiedliche Standardstadtnamen haben.
+   -- KISpezies können jetzt unterschiedliche Standardstadtnamen haben.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    

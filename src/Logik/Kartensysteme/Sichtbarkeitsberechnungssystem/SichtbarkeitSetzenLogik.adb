@@ -13,7 +13,7 @@ package body SichtbarkeitSetzenLogik is
    -- Beziehungsweise auch umgekehrt? äöü
    -- Sollte man von der Unterfläche auch den Himmel sehen können? äöü
    procedure EbenenBerechnungen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
@@ -65,7 +65,7 @@ package body SichtbarkeitSetzenLogik is
       EAchse:
       for EAchseSchleifenwert in EAchseAnfang .. EAchseEnde loop
          
-         SichtbarkeitSetzen (RasseExtern       => RasseExtern,
+         SichtbarkeitSetzen (SpeziesExtern       => SpeziesExtern,
                              KoordinatenExtern => (EAchseSchleifenwert, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse));
          
       end loop EAchse;
@@ -75,55 +75,55 @@ package body SichtbarkeitSetzenLogik is
    
    
    -- Prüft ob auf einem neu aufgedecktem Feld sich eine fremde Stadt/Einheit befindet und stellt entsprechend Kontakt her.
-   -- Anders als die Berechnung in BewegungsberechnungLogik, wo geprüft wird ob die Einheit jetzt auf einem Feld steht welches von einer fremden Rasse bereits aufgedeckt wurde.
+   -- Anders als die Berechnung in BewegungsberechnungLogik, wo geprüft wird ob die Einheit jetzt auf einem Feld steht welches von einer fremden Spezies bereits aufgedeckt wurde.
    procedure SichtbarkeitSetzen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
             
       case
         LeseWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern,
-                                RasseExtern       => RasseExtern)
+                                SpeziesExtern       => SpeziesExtern)
       is
          when True =>
             return;
             
          when False =>
             SchreibeWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern,
-                                        RasseExtern       => RasseExtern,
+                                        SpeziesExtern       => SpeziesExtern,
                                         SichtbarExtern    => True);
       end case;
       
-      FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => RasseExtern,
+      FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
                                                                                       KoordinatenExtern => KoordinatenExtern,
                                                                                       LogikGrafikExtern => True);
       
       case
-        FremdeEinheit.Rasse
+        FremdeEinheit.Spezies
       is
-         when StadtKonstanten.LeerRasse =>
+         when StadtKonstanten.LeerSpezies =>
             null;
             
          when others =>
-            KennenlernenLogik.Erstkontakt (EigeneRasseExtern => RasseExtern,
-                                           FremdeRasseExtern => FremdeEinheit.Rasse);
+            KennenlernenLogik.Erstkontakt (EigeneSpeziesExtern => SpeziesExtern,
+                                           FremdeSpeziesExtern => FremdeEinheit.Spezies);
             return;
       end case;
       
       FremdeStadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
-        FremdeStadt.Rasse = RassenDatentypen.Keine_Rasse_Enum
+        FremdeStadt.Spezies = SpeziesDatentypen.Keine_Spezies_Enum
         or
-          FremdeStadt.Rasse = RasseExtern
+          FremdeStadt.Spezies = SpeziesExtern
       then
          null;
             
       else
-         KennenlernenLogik.Erstkontakt (EigeneRasseExtern => RasseExtern,
-                                        FremdeRasseExtern => FremdeStadt.Rasse);
+         KennenlernenLogik.Erstkontakt (EigeneSpeziesExtern => SpeziesExtern,
+                                        FremdeSpeziesExtern => FremdeStadt.Spezies);
       end if;
       
    end SichtbarkeitSetzen;

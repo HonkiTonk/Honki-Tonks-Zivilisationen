@@ -13,20 +13,20 @@ with KIStadtSuchenLogik;
 package body KIEinheitFestlegenAngreifenLogik is
 
    function Angreifen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
-      WenAngreifen := ZielErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      WenAngreifen := ZielErmitteln (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
       
       case
         WenAngreifen
       is
-         when EinheitenKonstanten.LeerRasse =>
+         when EinheitenKonstanten.LeerSpezies =>
             return False;
             
          when others =>
-            KoordinatenFeind := KIEinheitSuchenLogik.FeindlicheEinheitInUmgebungSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            KoordinatenFeind := KIEinheitSuchenLogik.FeindlicheEinheitInUmgebungSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                         FeindExtern              => WenAngreifen);
       end case;
             
@@ -37,15 +37,15 @@ package body KIEinheitFestlegenAngreifenLogik is
             null;
             
          when others =>
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Angreifen_Enum);
-            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern        => KoordinatenFeind);
             return True;
       end case;
       
-      KoordinatenFeind := KIStadtSuchenLogik.NähesteFeindlicheStadtSuchen (RasseExtern             => WenAngreifen,
-                                                                            AnfangKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      KoordinatenFeind := KIStadtSuchenLogik.NähesteFeindlicheStadtSuchen (SpeziesExtern             => WenAngreifen,
+                                                                            AnfangKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       case
         KoordinatenFeind.XAchse
@@ -54,9 +54,9 @@ package body KIEinheitFestlegenAngreifenLogik is
             return False;
             
          when others =>
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Angreifen_Enum);
-            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern        => KoordinatenFeind);
             return True;
       end case;
@@ -65,38 +65,38 @@ package body KIEinheitFestlegenAngreifenLogik is
    
    
    function ZielErmitteln
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RassenDatentypen.Rassen_Enum
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return SpeziesDatentypen.Spezies_Enum
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      Ziel := EinheitenKonstanten.LeerRasse;
+      Ziel := EinheitenKonstanten.LeerSpezies;
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          if
-           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
            or
-             RasseSchleifenwert = RasseExtern
+             SpeziesSchleifenwert = SpeziesExtern
          then
             null;
             
          elsif
-           DiplomatieDatentypen.Krieg_Enum = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
-                                                                              RasseZweiExtern => RasseSchleifenwert)
+           DiplomatieDatentypen.Krieg_Enum = LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesExtern,
+                                                                              SpeziesZweiExtern => SpeziesSchleifenwert)
          then
-            -- Es sollte auch noch Prüfungen auf die Stärke der feindlichen Rassen erfolgen. äöü
-            Ziel := RasseSchleifenwert;
-            exit RassenSchleife;
+            -- Es sollte auch noch Prüfungen auf die Stärke der feindlichen Spezies erfolgen. äöü
+            Ziel := SpeziesSchleifenwert;
+            exit SpeziesSchleife;
             
          else
             null;
          end if;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
       return Ziel;
       

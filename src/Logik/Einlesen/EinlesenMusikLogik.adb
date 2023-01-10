@@ -52,7 +52,7 @@ package body EinlesenMusikLogik is
                
             when False =>
                EinlesenLieder (DateipfadExtern => Get_Line (File => DateiVerzeichnisse),
-                               RasseExtern     => VerzeichnisSchleifenwert);
+                               SpeziesExtern     => VerzeichnisSchleifenwert);
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
@@ -66,13 +66,13 @@ package body EinlesenMusikLogik is
    
    procedure EinlesenLieder
      (DateipfadExtern : in Wide_Wide_String;
-      RasseExtern : in RassenDatentypen.Rassen_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
    is begin
       
       case
-        RasseExtern
+        SpeziesExtern
       is
-         when RassenDatentypen.Keine_Rasse_Enum =>
+         when SpeziesDatentypen.Keine_Spezies_Enum =>
             null;
             
          when others =>
@@ -114,7 +114,7 @@ package body EinlesenMusikLogik is
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusik.EinlesenLieder: Es fehlt: " & To_Wide_Wide_String (Source => Lied));
             
             when True =>
-               EingeleseneMusik.Musik (RasseExtern, MusikSchleifenwert) := Sf.Audio.Music.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Lied)));
+               EingeleseneMusik.Musik (SpeziesExtern, MusikSchleifenwert) := Sf.Audio.Music.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Lied)));
          end case;
             
       end loop MusikSchleife;

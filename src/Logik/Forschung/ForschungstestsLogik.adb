@@ -6,7 +6,7 @@ with LeseWichtiges;
 package body ForschungstestsLogik is
 
    function TechnologieVorhanden
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       TechnologieExtern : in ForschungenDatentypen.ForschungIDNichtMöglich)
       return Boolean
    is begin
@@ -21,7 +21,7 @@ package body ForschungstestsLogik is
             return True;
             
          when others =>
-            return LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
+            return LeseWichtiges.Erforscht (SpeziesExtern             => SpeziesExtern,
                                             WelcheTechnologieExtern => TechnologieExtern);
       end case;
             
@@ -30,13 +30,13 @@ package body ForschungstestsLogik is
    
    
    function ForschungAnforderungErfüllt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       ForschungIDExtern : in ForschungenDatentypen.ForschungID)
       return Boolean
    is begin
    
       case
-        LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
+        LeseWichtiges.Erforscht (SpeziesExtern             => SpeziesExtern,
                                  WelcheTechnologieExtern => ForschungIDExtern)
       is
          when True =>
@@ -49,12 +49,12 @@ package body ForschungstestsLogik is
       AnforderungSchleife:
       for AnforderungSchleifenwert in ForschungenDatentypen.AnforderungForschungArray'Range loop
             
-         Forschungsanforderungen := LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+         Forschungsanforderungen := LeseForschungenDatenbank.AnforderungForschung (SpeziesExtern             => SpeziesExtern,
                                                                                    IDExtern                => ForschungIDExtern,
                                                                                    WelcheAnforderungExtern => AnforderungSchleifenwert);
          
          case
-           TechnologieVorhanden (RasseExtern       => RasseExtern,
+           TechnologieVorhanden (SpeziesExtern       => SpeziesExtern,
                                  TechnologieExtern => Forschungsanforderungen)
          is
             when True =>

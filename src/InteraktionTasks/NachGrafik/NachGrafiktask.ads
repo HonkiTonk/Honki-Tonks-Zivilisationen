@@ -3,7 +3,7 @@ with Ada.Calendar; use Ada.Calendar;
 with GrafikDatentypen;
 with MenueDatentypen;
 with EinheitenKonstanten;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with EinheitenDatentypen;
 with StadtKonstanten;
 with StadtDatentypen;
@@ -38,9 +38,9 @@ package NachGrafiktask is
    
    AktuellesMenü : MenueDatentypen.Welches_Menü_Enum := MenueDatentypen.Leer_Menü_Enum;
    
-   KIRechnet : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
-   AktuelleRasse : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
-   KontaktierteRasse : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
+   KIRechnet : SpeziesDatentypen.Spezies_Enum := SpeziesDatentypen.Keine_Spezies_Enum;
+   AktuelleSpezies : SpeziesDatentypen.Spezies_Enum := SpeziesDatentypen.Keine_Spezies_Enum;
+   KontaktierteSpezies : SpeziesDatentypen.Spezies_Enum := SpeziesDatentypen.Keine_Spezies_Enum;
    
    AktuelleEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenKonstanten.LeerNummer;
    
@@ -79,7 +79,7 @@ package NachGrafiktask is
    
    GeheZu : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKoordinate;
    
-   Abspannart : GrafikDatentypen.Rassenhintergrund_Enum := GrafikDatentypen.Leer_Hintergrund_Enum;
+   Abspannart : GrafikDatentypen.Spezieshintergrund_Enum := GrafikDatentypen.Leer_Hintergrund_Enum;
    
    
    

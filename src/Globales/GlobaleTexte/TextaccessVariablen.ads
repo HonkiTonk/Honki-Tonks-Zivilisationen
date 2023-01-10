@@ -1,7 +1,7 @@
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
-with RassenDatentypen;
+with SpeziesDatentypen;
 with EinheitenDatentypen;
 with StadtDatentypen;
 with ForschungenDatentypen;
@@ -53,34 +53,34 @@ package TextaccessVariablen is
    
    
    
-   -- Rassentexte
-   type RassenArray is array (RassenDatentypen.Rassen_Verwendet_Enum range <>) of Sf.Graphics.sfText_Ptr;
-   RassennamenAccess : constant RassenArray (RassenDatentypen.Rassen_Verwendet_Enum'Range) := (others => Sf.Graphics.Text.create);
+   -- Speziestexte
+   type SpeziesArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum range <>) of Sf.Graphics.sfText_Ptr;
+   SpeziesnamenAccess : constant SpeziesArray (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) := (others => Sf.Graphics.Text.create);
    
-   RassenbeschreibungAccess : constant RassenArray (RassenDatentypen.Rassen_Verwendet_Enum'Range) := (others => Sf.Graphics.Text.create);
+   SpeziesbeschreibungAccess : constant SpeziesArray (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) := (others => Sf.Graphics.Text.create);
    
       
       
-   type GebäudetextAccessArray is array (RassennamenAccess'Range, StadtDatentypen.GebäudeIDMitNullwert'Range) of Sf.Graphics.sfText_Ptr;
+   type GebäudetextAccessArray is array (SpeziesnamenAccess'Range, StadtDatentypen.GebäudeIDMitNullwert'Range) of Sf.Graphics.sfText_Ptr;
    GebäudetextAccess : constant GebäudetextAccessArray := (others => (others => Sf.Graphics.Text.create));
 
-   type GebäudezusatztextAccessArray is array (RassennamenAccess'Range, StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfText_Ptr;
+   type GebäudezusatztextAccessArray is array (SpeziesnamenAccess'Range, StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfText_Ptr;
    GebäudezusatztextAccess : constant GebäudezusatztextAccessArray := (others => (others => Sf.Graphics.Text.create));
    
    
 
-   type EinheitentextAccessArray is array (RassennamenAccess'Range, EinheitenDatentypen.EinheitenIDMitNullWert'Range) of Sf.Graphics.sfText_Ptr;
+   type EinheitentextAccessArray is array (SpeziesnamenAccess'Range, EinheitenDatentypen.EinheitenIDMitNullWert'Range) of Sf.Graphics.sfText_Ptr;
    EinheitentextAccess : constant EinheitentextAccessArray := (others => (others => Sf.Graphics.Text.create));
 
-   type EinheitenzusatztextAccessArray is array (RassennamenAccess'Range, EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.sfText_Ptr;
+   type EinheitenzusatztextAccessArray is array (SpeziesnamenAccess'Range, EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.sfText_Ptr;
    EinheitenzusatztextAccess : constant EinheitenzusatztextAccessArray := (others => (others => Sf.Graphics.Text.create));
    
    
    
-   type ForschungsmenüAccessArray is array (RassennamenAccess'Range, ForschungenDatentypen.ForschungID'Range) of Sf.Graphics.sfText_Ptr;
+   type ForschungsmenüAccessArray is array (SpeziesnamenAccess'Range, ForschungenDatentypen.ForschungID'Range) of Sf.Graphics.sfText_Ptr;
    ForschungsmenüAccess : constant ForschungsmenüAccessArray := (others => (others => Sf.Graphics.Text.create));
    
-   type ForschungsmenüZusatztextAccessArray is array (RassennamenAccess'Range, ForschungsmenüAccessArray'Range (2)) of Sf.Graphics.sfText_Ptr;
+   type ForschungsmenüZusatztextAccessArray is array (SpeziesnamenAccess'Range, ForschungsmenüAccessArray'Range (2)) of Sf.Graphics.sfText_Ptr;
    ForschungsmenüZusatztextAccess : constant ForschungsmenüZusatztextAccessArray := (others => (others => Sf.Graphics.Text.create));
    
    ForschungsmenüErmöglichtAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;

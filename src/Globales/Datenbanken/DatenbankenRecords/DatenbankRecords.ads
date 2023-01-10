@@ -1,6 +1,6 @@
 with StadtDatentypen;
 with EinheitenDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 
 package DatenbankRecords is
    pragma Pure;
@@ -9,10 +9,10 @@ package DatenbankRecords is
 
    
    
-   -- RassenDatenbank
+   -- SpeziesDatenbank
    -- Das entweder erweitern oder durch eine bessere Idee ersetzen. äöü
    -- Entsprechend auch einen eigenen Datentyp für diese Werte anlegen. äöü
-   type RassenlisteRecord is record
+   type SpezieslisteRecord is record
       
       Aggressivität : StadtDatentypen.MaximaleStädteMitNullWert;
       Expansion : StadtDatentypen.MaximaleStädteMitNullWert;
@@ -21,10 +21,10 @@ package DatenbankRecords is
       Wirtschaft : StadtDatentypen.MaximaleStädteMitNullWert;
       Bewirtschaftung : StadtDatentypen.MaximaleStädteMitNullWert;
       
-      Staatsformen : RassenDatentypen.StaatsformenArray;
+      Staatsformen : SpeziesDatentypen.StaatsformenArray;
       -- Besondere Eigenschaften hinzufügen, als Enum? oder was Anderes?
       
    end record;
-   -- RassenDatenbank
+   -- SpeziesDatenbank
    
 end DatenbankRecords;

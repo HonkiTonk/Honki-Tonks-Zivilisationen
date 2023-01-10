@@ -6,7 +6,7 @@ with LeseEinheitenGebaut;
 package body KIAufgabenVerteiltLogik is
 
    function AufgabenVerteilt
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
       return Natural
    is
@@ -18,17 +18,17 @@ package body KIAufgabenVerteiltLogik is
       GleicheAufgabe := 0;
      
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => EinheitRasseNummerExtern.Rasse) loop
+      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) loop
             
          if
-           EinheitNummerSchleifenwert = EinheitRasseNummerExtern.Nummer
+           EinheitNummerSchleifenwert = EinheitSpeziesNummerExtern.Nummer
            or
-             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerID
+             LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerID
          then
             null;
                
          elsif
-           LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = AufgabeExtern
+           LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = AufgabeExtern
          then
             GleicheAufgabe := GleicheAufgabe + 1;
                
@@ -47,7 +47,7 @@ package body KIAufgabenVerteiltLogik is
    -- Gibt es bereits eine Einheit die diese Aufgabe auf diesem Ziel ausführen will?
    function EinheitAufgabeZiel
      (AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
@@ -56,19 +56,19 @@ package body KIAufgabenVerteiltLogik is
    begin
       
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
+      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
          
-         Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert));
+         Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert));
          
          if
-           LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) /= AufgabeExtern
+           LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert)) /= AufgabeExtern
          then
             null;
             
          elsif
            Zielkoordinaten = ZielKoordinatenExtern
            or
-             (LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = ZielKoordinatenExtern
+             (LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert)) = ZielKoordinatenExtern
               and
                 Zielkoordinaten = KartenRecordKonstanten.LeerKoordinate)
          then
@@ -88,7 +88,7 @@ package body KIAufgabenVerteiltLogik is
    
    -- Gibt es bereits eine Einheit mit diesem Ziel?
    function EinheitZiel
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
@@ -96,10 +96,10 @@ package body KIAufgabenVerteiltLogik is
    begin
       
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern) loop
+      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
          
          if
-           LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = ZielKoordinatenExtern
+           LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert)) = ZielKoordinatenExtern
          then
             return True;
             

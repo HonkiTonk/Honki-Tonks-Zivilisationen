@@ -28,7 +28,7 @@ with BauauswahlGebaeudeGrafik;
 package body BauauswahlGrafik is
 
    procedure Bauauswahl
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       AktuelleAuswahlExtern : in StadtRecords.BauprojektRecord)
    is begin
       
@@ -41,11 +41,11 @@ package body BauauswahlGrafik is
       is
          when StadtKonstanten.LeerGebäudeID =>
             Einheiten (AuswahlExtern    => AktuelleAuswahlExtern.Einheit,
-                       RasseExtern      => StadtRasseNummerExtern.Rasse);
+                       SpeziesExtern      => StadtSpeziesNummerExtern.Spezies);
             
          when others =>
             BauauswahlGebaeudeGrafik.Gebäudeinformationen (AuswahlExtern    => AktuelleAuswahlExtern.Gebäude,
-                                                            RasseExtern      => StadtRasseNummerExtern.Rasse);
+                                                            SpeziesExtern      => StadtSpeziesNummerExtern.Spezies);
       end case;
       
       case
@@ -53,14 +53,14 @@ package body BauauswahlGrafik is
       is
          when EinheitenKonstanten.LeerID =>
             Gebäude (AuswahlExtern    => AktuelleAuswahlExtern.Gebäude,
-                      RasseExtern      => StadtRasseNummerExtern.Rasse);
+                      SpeziesExtern      => StadtSpeziesNummerExtern.Spezies);
             
          when others =>
             BauauswahlEinheitenGrafik.Einheiteninformationen (AuswahlExtern    => AktuelleAuswahlExtern.Einheit,
-                                                              RasseExtern      => StadtRasseNummerExtern.Rasse);
+                                                              SpeziesExtern      => StadtSpeziesNummerExtern.Spezies);
       end case;
       
-      Aktuell (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Aktuell (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
    end Bauauswahl;
    
@@ -68,7 +68,7 @@ package body BauauswahlGrafik is
    
    procedure Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       ViewflächeGebäude := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeGebäude,
@@ -94,25 +94,25 @@ package body BauauswahlGrafik is
             when True =>
                TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (GebäudeSchleifenwert),
                                                       AuswahlExtern    => Natural (AuswahlExtern),
-                                                      TextaccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert));
+                                                      TextaccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
                
-               Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert),
+               Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                                                                        ViewbreiteExtern => ViewflächeGebäude.x);
 
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert),
+               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                              position => Textposition);
                                                                       
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               TextAccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert),
+                                                                               TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
-               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert),
+               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                                                                    TextbreiteExtern => Textbreite);
                
-               InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert));
+               InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
                
                Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                  text         => TextaccessVariablen.GebäudetextAccess (RasseExtern, GebäudeSchleifenwert));
+                                                  text         => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
 
             when False =>
                null;
@@ -128,7 +128,7 @@ package body BauauswahlGrafik is
    
    procedure Einheiten
      (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       ViewflächeEinheiten := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeEinheiten,
@@ -154,25 +154,25 @@ package body BauauswahlGrafik is
             when True =>
                TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (EinheitenSchleifenwert),
                                                       AuswahlExtern    => Natural (AuswahlExtern),
-                                                      TextaccessExtern => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert));
+                                                      TextaccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert));
                
-               Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert),
+               Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
                                                                                        ViewbreiteExtern => ViewflächeEinheiten.x);
 
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert),
+               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
                                              position => Textposition);
                
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               TextAccessExtern => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert),
+                                                                               TextAccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
-               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert),
+               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
                                                                                    TextbreiteExtern => Textbreite);
                
-               InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert));
+               InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert));
                
                Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                  text         => TextaccessVariablen.EinheitentextAccess (RasseExtern, EinheitenSchleifenwert));
+                                                  text         => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert));
 
             when False =>
                null;
@@ -187,7 +187,7 @@ package body BauauswahlGrafik is
    
    
    procedure Aktuell
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
       ViewflächeAktuell := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeAktuell,
@@ -204,19 +204,19 @@ package body BauauswahlGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textbreite := 0.00;
       
-      AktuellesBauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      AktuellesBauprojekt := LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       if
         AktuellesBauprojekt.Gebäude /= 0
       then
          Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern    => AktuellesBauprojekt.Gebäude,
-                                                                                                                                  RasseExtern => StadtRasseNummerExtern.Rasse);
+                                                                                                                                  SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
          
       elsif
         AktuellesBauprojekt.Einheit /= 0
       then
          Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => AktuellesBauprojekt.Einheit,
-                                                                                                                                   RasseExtern => StadtRasseNummerExtern.Rasse);
+                                                                                                                                   SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
                      
       else
          return;
@@ -241,7 +241,7 @@ package body BauauswahlGrafik is
                                                                       TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-      Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+      Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & LeseStadtGebaut.Bauzeit (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          str  => To_Wide_Wide_String (Source => Text));

@@ -12,7 +12,7 @@ package body StadtumgebungErreichbarLogik is
    
    function UmgebungErreichbar
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       NotwendigeFelderExtern : in Positive)
       return KartenRecords.AchsenKartenfeldNaturalRecord
@@ -48,19 +48,19 @@ package body StadtumgebungErreichbarLogik is
                   null;
                   
                elsif
-                 True = LeseWeltkarte.BelegterGrund (RasseExtern       => RasseExtern,
+                 True = LeseWeltkarte.BelegterGrund (SpeziesExtern       => SpeziesExtern,
                                                      KoordinatenExtern => KartenWert)
                  and
-                   EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
+                   EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenWert,
                                                                                                           LogikGrafikExtern => True).Nummer
                  and
-                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern                => RasseExtern,
+                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern                => SpeziesExtern,
                                                                                 IDExtern                   => IDExtern,
                                                                                 NeueKoordinatenExtern      => KartenWert,
                                                                                 StadtBerücksichtigenExtern => True)
                  and
                    True = NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
-                                          RasseExtern               => RasseExtern,
+                                          SpeziesExtern               => SpeziesExtern,
                                           IDExtern                  => IDExtern)
                  and
                    GefundeneFelder < NotwendigeFelderExtern
@@ -68,19 +68,19 @@ package body StadtumgebungErreichbarLogik is
                   GefundeneFelder := GefundeneFelder + 1;
                   
                elsif
-                 True = LeseWeltkarte.BelegterGrund (RasseExtern       => RasseExtern,
+                 True = LeseWeltkarte.BelegterGrund (SpeziesExtern       => SpeziesExtern,
                                                      KoordinatenExtern => KartenWert)
                  and
-                   EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
+                   EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenWert,
                                                                                                           LogikGrafikExtern => True).Nummer
                  and
-                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern                => RasseExtern,
+                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern                => SpeziesExtern,
                                                                                 IDExtern                   => IDExtern,
                                                                                 NeueKoordinatenExtern      => KartenWert,
                                                                                 StadtBerücksichtigenExtern => True)
                  and
                    True = NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
-                                          RasseExtern               => RasseExtern,
+                                          SpeziesExtern               => SpeziesExtern,
                                           IDExtern                  => IDExtern)
                then
                   return KartenWert;
@@ -112,7 +112,7 @@ package body StadtumgebungErreichbarLogik is
    
    function NochErreichbar
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return Boolean
    is begin
@@ -139,10 +139,10 @@ package body StadtumgebungErreichbarLogik is
                null;
                
             elsif
-              True = LeseWeltkarte.BelegterGrund (RasseExtern       => RasseExtern,
+              True = LeseWeltkarte.BelegterGrund (SpeziesExtern       => SpeziesExtern,
                                                   KoordinatenExtern => KartenWertZwei)
               and
-                True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (RasseExtern                => RasseExtern,
+                True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern                => SpeziesExtern,
                                                                              IDExtern                   => IDExtern,
                                                                              NeueKoordinatenExtern      => KartenWertZwei,
                                                                              StadtBerücksichtigenExtern => True)

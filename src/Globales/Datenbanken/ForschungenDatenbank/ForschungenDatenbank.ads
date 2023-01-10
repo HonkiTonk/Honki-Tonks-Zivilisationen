@@ -1,12 +1,12 @@
 with ForschungenDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with ForschungKonstanten;
 with ForschungsdatenbankRecord;
 
 package ForschungenDatenbank is
    pragma Preelaborate;
 
-   type ForschungslisteArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, ForschungenDatentypen.ForschungID'Range) of ForschungsdatenbankRecord.ForschungslisteRecord;
+   type ForschungslisteArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, ForschungenDatentypen.ForschungID'Range) of ForschungsdatenbankRecord.ForschungslisteRecord;
    Forschungsliste : ForschungslisteArray;
 
    TechnologieVerbesserungen : ForschungKonstanten.TechnologieVerbesserungenArray;

@@ -1,5 +1,5 @@
 with TexteinstellungenGrafik;
-with RasseneinstellungenGrafik;
+with SpezieseinstellungenGrafik;
 
 package body EinstellungenGrafik is
 
@@ -10,7 +10,7 @@ package body EinstellungenGrafik is
       Grafikeinstellungen := GrafikeinstellungenStandard;
             
       TexteinstellungenGrafik.StandardLaden;
-      RasseneinstellungenGrafik.StandardLaden;
+      SpezieseinstellungenGrafik.StandardLaden;
       
    end StandardeinstellungenLaden;
 

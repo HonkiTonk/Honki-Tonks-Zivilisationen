@@ -5,13 +5,13 @@ with KIDatentypen;
 package body KIEinheitFestlegenBefestigenLogik is
 
    function Befestigen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      return Boolean
    is begin
       
       -- Hier auch ein Ziel festlegen lassen? Z. B. auf einer besseren Position mit mehr Vorteilen? äöü
       -- Muss Gefahren und Einheitenart abhängig sein. äöü
-      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                               AufgabeExtern            => KIDatentypen.Einheit_Festsetzen_Enum);
       
       return True;

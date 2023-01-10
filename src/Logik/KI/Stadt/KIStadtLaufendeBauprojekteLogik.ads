@@ -1,29 +1,29 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
 with StadtRecords;
 with StadtKonstanten;
 
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package KIStadtLaufendeBauprojekteLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    use type StadtDatentypen.MaximaleStädteMitNullWert;
    use type StadtDatentypen.GebäudeIDMitNullwert;
    use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    use type EinheitenDatentypen.EinheitenIDMitNullWert;
 
    function StadtLaufendeBauprojekte
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       BauprojektExtern : in StadtRecords.BauprojektRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
                and
                  (if BauprojektExtern.Gebäude /= 0 then BauprojektExtern.Einheit = 0)
                and
@@ -31,36 +31,36 @@ package KIStadtLaufendeBauprojekteLogik is
               ),
    
        Post => (
-                  StadtLaufendeBauprojekte'Result <= LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+                  StadtLaufendeBauprojekte'Result <= LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                );
    
    function GleicheEinheitArtBauprojekte
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre => (
-                 StadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse)
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               ),
    
        Post => (
-                  GleicheEinheitArtBauprojekte'Result <= LeseGrenzen.Einheitengrenze (RasseExtern => StadtRasseNummerExtern.Rasse)
+                  GleicheEinheitArtBauprojekte'Result <= LeseGrenzen.Einheitengrenze (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                );
    
    function EinheitenInProduktion
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               ),
    
    -- Sollte so eine Post Bedingung nicht auf <= MaximaleStädte eingeschränkt sein? äöü
    -- Einen subtype für MaximaleEinheiten erstellen der nur bis MaximalStädte geht? äöü
        Post => (
-                  EinheitenInProduktion'Result <= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
+                  EinheitenInProduktion'Result <= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
                );
    
 private

@@ -11,7 +11,7 @@ with BefehleDatentypen;
 with Befehlstexte;
 with Spieltexte;
 
-with RassenbeschreibungenGrafik;
+with SpeziesbeschreibungenGrafik;
 with ForschungsbeschreibungenGrafik;
 with EinheitenbeschreibungenGrafik;
 with GebaeudebeschreibungenGrafik;
@@ -23,7 +23,7 @@ package body TextaccesseTextGrafik is
       
       Allgemeines;
       Menüs;
-      Rassen;
+      Spezies;
       ZusatztextKartengröße;
       Sprachauswahl;
       Kartenformauswahl;
@@ -96,17 +96,17 @@ package body TextaccesseTextGrafik is
       
       
    
-   procedure Rassen
+   procedure Spezies
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in TextaccessVariablen.RassennamenAccess'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in TextaccessVariablen.SpeziesnamenAccess'Range loop
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RassennamenAccess (RasseSchleifenwert),
-                                            str  => RassenbeschreibungenGrafik.Kurzbeschreibung (RasseExtern => RasseSchleifenwert));
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpeziesnamenAccess (SpeziesSchleifenwert),
+                                            str  => SpeziesbeschreibungenGrafik.Kurzbeschreibung (SpeziesExtern => SpeziesSchleifenwert));
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RassenbeschreibungAccess (RasseSchleifenwert),
-                                            str  => RassenbeschreibungenGrafik.Langbeschreibung (RasseExtern => RasseSchleifenwert));
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesSchleifenwert),
+                                            str  => SpeziesbeschreibungenGrafik.Langbeschreibung (SpeziesExtern => SpeziesSchleifenwert));
          
          
          
@@ -117,17 +117,17 @@ package body TextaccesseTextGrafik is
               GebäudetextSchleifenwert
             is
                when TextaccessVariablen.GebäudetextAccessArray'First (2) =>
-                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                                      str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugGebäude)));
                
                when others =>
-                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                                      str  => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern    => GebäudetextSchleifenwert,
-                                                                                                            RasseExtern => RasseSchleifenwert));
+                                                                                                            SpeziesExtern => SpeziesSchleifenwert));
          
-                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (RasseSchleifenwert, GebäudetextSchleifenwert),
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
                                                      str  => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => GebäudetextSchleifenwert,
-                                                                                                            RasseExtern => RasseSchleifenwert));
+                                                                                                            SpeziesExtern => SpeziesSchleifenwert));
             end case;
             
          end loop GebäudetextSchleife;
@@ -141,17 +141,17 @@ package body TextaccesseTextGrafik is
               EinheitentextSchleifenwert
             is
                when TextaccessVariablen.EinheitentextAccessArray'First (2) =>
-                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                                      str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinheiten)));
                
                when others =>
-                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                                      str  => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => EinheitentextSchleifenwert,
-                                                                                                             RasseExtern => RasseSchleifenwert));
+                                                                                                             SpeziesExtern => SpeziesSchleifenwert));
          
-                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (RasseSchleifenwert, EinheitentextSchleifenwert),
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
                                                      str  => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern    => EinheitentextSchleifenwert,
-                                                                                                             RasseExtern => RasseSchleifenwert));
+                                                                                                             SpeziesExtern => SpeziesSchleifenwert));
             end case;
          
          end loop EinheitentextSchleife;
@@ -161,18 +161,18 @@ package body TextaccesseTextGrafik is
          ForschungenSchleife:
          for ForschungSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range (2) loop
          
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüAccess (RasseSchleifenwert, ForschungSchleifenwert),
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
                                                str  => ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => ForschungSchleifenwert,
-                                                                                                        RasseExtern => RasseSchleifenwert));
+                                                                                                        SpeziesExtern => SpeziesSchleifenwert));
          
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseSchleifenwert, ForschungSchleifenwert),
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
                                                str  => ForschungsbeschreibungenGrafik.Langbeschreibung (IDExtern    => ForschungSchleifenwert,
-                                                                                                        RasseExtern => RasseSchleifenwert));
+                                                                                                        SpeziesExtern => SpeziesSchleifenwert));
          
          end loop ForschungenSchleife;
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
-   end Rassen;
+   end Spezies;
       
       
    

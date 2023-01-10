@@ -25,7 +25,7 @@ with GeheZuGrafik;
 package body CursorplatzierungAltGrafik is
 
    procedure CursorplatzierungAlt
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
       case
@@ -53,16 +53,16 @@ package body CursorplatzierungAltGrafik is
             Scrollzeit := Clock;
             
             if
-              BefehlsknöpfePrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+              BefehlsknöpfePrüfen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
             then
                return;
                   
             else
-               Platzierung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               Platzierung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             end if;
                   
          when others =>
-            GeheZuGrafik.GeheZuFestlegung (RasseExtern => EinheitRasseNummerExtern.Rasse);
+            GeheZuGrafik.GeheZuFestlegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
       end case;
       
    end CursorplatzierungAlt;
@@ -70,7 +70,7 @@ package body CursorplatzierungAltGrafik is
    
    
    procedure Platzierung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type KartenDatentypen.Ebene;
    begin
@@ -79,37 +79,37 @@ package body CursorplatzierungAltGrafik is
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                  view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
       
-      SchreibeCursor.EAchseAlt (RasseExtern  => EinheitRasseNummerExtern.Rasse,
-                                EAchseExtern => LeseCursor.EAchseAktuell (RasseExtern => EinheitRasseNummerExtern.Rasse));
+      SchreibeCursor.EAchseAlt (SpeziesExtern  => EinheitSpeziesNummerExtern.Spezies,
+                                EAchseExtern => LeseCursor.EAchseAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
       
       case
-        EinheitRasseNummerExtern.Nummer
+        EinheitSpeziesNummerExtern.Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
             EinheitFolgen := True;
             
          when others =>
-            EinheitFolgen := Einheitenbereich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            EinheitFolgen := Einheitenbereich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
       case
         EinheitFolgen
       is
          when False =>
-            NachGrafiktask.GeheZu := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            NachGrafiktask.GeheZu := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             return;
             
          when True =>
             Koordinatenänderung.YAchse := AlteYAchseFestlegen (MauspositionExtern => Mausposition,
-                                                                YAchseAltExtern    => LeseCursor.YAchseAlt (RasseExtern => EinheitRasseNummerExtern.Rasse));
+                                                                YAchseAltExtern    => LeseCursor.YAchseAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
             
             Koordinatenänderung.XAchse := AlteXAchseFestlegen (MausachseExtern => Mausposition.x,
-                                                                XAchseAltExtern => LeseCursor.XAchseAlt (RasseExtern => EinheitRasseNummerExtern.Rasse));
+                                                                XAchseAltExtern => LeseCursor.XAchseAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
       end case;
       
       Koordinatenänderung.EAchse := KartenKonstanten.LeerEAchseÄnderung;
       
-      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseCursor.KoordinatenAlt (RasseExtern => EinheitRasseNummerExtern.Rasse),
+      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies),
                                                                                                 ÄnderungExtern    => Koordinatenänderung,
                                                                                                 LogikGrafikExtern => False);
       
@@ -119,7 +119,7 @@ package body CursorplatzierungAltGrafik is
          null;
                   
       else
-         SchreibeCursor.KoordinatenAlt (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+         SchreibeCursor.KoordinatenAlt (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                         KoordinatenExtern => Kartenwert);
       end if;
       
@@ -128,7 +128,7 @@ package body CursorplatzierungAltGrafik is
    
    
    function Einheitenbereich
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -144,8 +144,8 @@ package body CursorplatzierungAltGrafik is
             NachGrafiktask.EinheitBewegt := False;
       end case;
       
-      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      AlteCursorkoordinaten := LeseCursor.KoordinatenAlt (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      AlteCursorkoordinaten := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
       
       YAchseSchleife:
       for YAchseSchleifenwert in -SichtweitenGrafik.SichtweiteLesen .. SichtweitenGrafik.SichtweiteLesen loop
@@ -180,7 +180,7 @@ package body CursorplatzierungAltGrafik is
    
    
    function BefehlsknöpfePrüfen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
             
@@ -212,7 +212,7 @@ package body CursorplatzierungAltGrafik is
       end if;
                         
       if
-        EinheitRasseNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
+        EinheitSpeziesNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
       then
          null;
          

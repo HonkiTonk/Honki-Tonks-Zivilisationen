@@ -17,7 +17,7 @@ with EinheitenErzeugenEntfernenLogik;
 package body StadtEinheitenBauenLogik is
 
    procedure EinheitFertiggestellt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
@@ -25,10 +25,10 @@ package body StadtEinheitenBauenLogik is
       EinheitNummer := 0;
             
       EinheitenSchleife:
-      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => StadtRasseNummerExtern.Rasse) loop
+      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) loop
             
          case
-           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert))
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerSchleifenwert))
          is
             when EinheitenKonstanten.LeerID =>
                EinheitNummer := EinheitNummerSchleifenwert;
@@ -43,12 +43,12 @@ package body StadtEinheitenBauenLogik is
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
         and
-          LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse) = RassenDatentypen.Mensch_Spieler_Enum
+          LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
       then
-         SchreibeCursor.KoordinatenAktuell (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                            KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern));
-         SchreibeCursor.KoordinatenAlt (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                        KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => StadtRasseNummerExtern.Rasse));
+         SchreibeCursor.KoordinatenAktuell (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
+                                            KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
+         SchreibeCursor.KoordinatenAlt (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
+                                        KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
          
       elsif
         EinheitNummer = EinheitenKonstanten.LeerNummer
@@ -56,7 +56,7 @@ package body StadtEinheitenBauenLogik is
          null;
          
       else
-         PlatzErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         PlatzErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end if;
       
    end EinheitFertiggestellt;
@@ -64,33 +64,34 @@ package body StadtEinheitenBauenLogik is
    
    
    procedure PlatzErmitteln
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
       
       if
-        EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+        EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
                                                                                                LogikGrafikExtern => True).Nummer
       then
-         KartenWert := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         KartenWert := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
          
       else
-         KartenWert := StadtumgebungErreichbarLogik.UmgebungErreichbar (AktuelleKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        RasseExtern               => StadtRasseNummerExtern.Rasse,
-                                                                        IDExtern                  => EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit),
-                                                                        NotwendigeFelderExtern    => 1);
+         KartenWert :=
+           StadtumgebungErreichbarLogik.UmgebungErreichbar (AktuelleKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
+                                                            SpeziesExtern             => StadtSpeziesNummerExtern.Spezies,
+                                                            IDExtern                  => EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit),
+                                                            NotwendigeFelderExtern    => 1);
       end if;
       
       case
         KartenWert.XAchse
       is
          when KartenKonstanten.LeerXAchse =>
-            MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            MeldungenSetzenLogik.StadtmeldungSetzen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                              EreignisExtern         => StadtDatentypen.Einheit_Unplatzierbar_Enum);
             
          when others =>
-            EinheitPlatzieren (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            EinheitPlatzieren (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                KoordinatenExtern      => KartenWert);
       end case;
       
@@ -99,29 +100,29 @@ package body StadtEinheitenBauenLogik is
    
    
    procedure EinheitPlatzieren
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern      => KoordinatenExtern,
                                                        EinheitNummerExtern    => EinheitNummer,
-                                                       IDExtern               =>  EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit),
-                                                       StadtRasseNummerExtern => StadtRasseNummerExtern);
-      SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                       IDExtern               =>  EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit),
+                                                       StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      SchreibeStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                       RessourcenExtern       => StadtKonstanten.LeerRessourcen,
                                       ÄndernSetzenExtern     => False);
-      SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                       BauprojektExtern       => StadtKonstanten.LeerBauprojekt);
             
       case
-        LeseRassenbelegung.Belegung (RasseExtern => StadtRasseNummerExtern.Rasse)
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
       is
-         when RassenDatentypen.Mensch_Spieler_Enum =>
-            MeldungenSetzenLogik.StadtmeldungSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         when SpeziesDatentypen.Mensch_Spieler_Enum =>
+            MeldungenSetzenLogik.StadtmeldungSetzen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                              EreignisExtern         => StadtDatentypen.Produktion_Abgeschlossen_Enum);
          
          when others =>
-            SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            SchreibeStadtGebaut.KIBeschäftigung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                   BeschäftigungExtern    => KIDatentypen.Keine_Aufgabe_Enum);
       end case;
       

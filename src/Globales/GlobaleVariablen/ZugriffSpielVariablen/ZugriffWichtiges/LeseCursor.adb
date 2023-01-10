@@ -3,66 +3,66 @@ with SpielVariablen;
 package body LeseCursor is
 
    function KoordinatenAktuell
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
-      return SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
+      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell;
       
    end KoordinatenAktuell;
    
    
    
    function EAchseAktuell
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenDatentypen.EbeneVorhanden
    is begin
       
-      return SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse;
+      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell.EAchse;
       
    end EAchseAktuell;
    
    
 
    function KoordinatenAlt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
-      return SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt;
+      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt;
       
    end KoordinatenAlt;
    
    
    
    function YAchseAlt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      return SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse;
+      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.YAchse;
       
    end YAchseAlt;
    
    
    
    function XAchseAlt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      return SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse;
+      return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.XAchse;
       
    end XAchseAlt;
    
    
       
    function GanzerEintrag
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenRecords.CursorRecord
    is begin
       
-      return SpielVariablen.CursorImSpiel (RasseExtern);
+      return SpielVariablen.CursorImSpiel (SpeziesExtern);
       
    end GanzerEintrag;
 

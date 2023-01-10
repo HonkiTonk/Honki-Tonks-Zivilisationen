@@ -5,7 +5,7 @@ with WichtigesKonstanten;
 with EinheitenKonstanten;
 with SpielDatentypen;
 with TextKonstanten;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with DatenbankRecords;
 
 package WichtigesRecordKonstanten is
@@ -33,14 +33,14 @@ package WichtigesRecordKonstanten is
    LeerAllgemeines : constant SpielRecords.AllgemeinesRecord := (
                                                                  Gewonnen              => False,
                                                                  Weiterspielen         => False,
-                                                                 RasseAmZugNachLaden   => EinheitenKonstanten.LeerRasse,
+                                                                 SpeziesAmZugNachLaden   => EinheitenKonstanten.LeerSpezies,
                                                                  -- Das auslagern damit man es nicht immer neu setzen muss? äöü
                                                                  Schwierigkeitsgrad    => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
                                                                  Rundenanzahl          => Positive'First,
                                                                   -- Das auslagern damit man es nicht immer neu setzen muss? äöü
                                                                  Rundengrenze          => Natural'First,
                                                                  IronmanName           => TextKonstanten.LeerUnboundedString,
-                                                                 PlanetVernichtet      => RassenDatentypen.Keine_Rasse_Enum,
+                                                                 PlanetVernichtet      => SpeziesDatentypen.Keine_Spezies_Enum,
                                                                  Zusammenbruchszeit    => -1,
                                                                  AnzahlEingesetzterPZB => 0
                                                                 );
@@ -52,7 +52,7 @@ package WichtigesRecordKonstanten is
                                                          Forschungsgrenze      => WichtigesKonstanten.LeerForschungsgrenze,
                                                          Geldgewinngrenze      => WichtigesKonstanten.LeerGeldgewinngrenze,
                                                          ForschungGewinngrenze => WichtigesKonstanten.LeerForschungGewinngrenze,
-                                                         RassenRundengrenze    => WichtigesKonstanten.LeerRassenRundengrenze
+                                                         SpeziesRundengrenze    => WichtigesKonstanten.LeerSpeziesRundengrenze
                                                         );
    
    LeerDiplomatie : constant SpielRecords.DiplomatieRecord := (
@@ -67,13 +67,13 @@ package WichtigesRecordKonstanten is
                                                                 ZeitSeitLetzterÄnderung    => WichtigesKonstanten.DiplomatischerStatusÄnderungszeit
                                                                );
    
-   LeerRassenbelegung : constant SpielRecords.RassenRecords := (
-                                                                Belegung => RassenDatentypen.Leer_Spieler_Enum,
+   LeerSpeziesbelegung : constant SpielRecords.SpeziesRecords := (
+                                                                Belegung => SpeziesDatentypen.Leer_Spieler_Enum,
                                                                 Besiegt  => False
                                                                );
    
    -- Wird noch nicht verwendet. Wird das jemals sinnvoll sein? äöü
-   LeerRassenListe : constant DatenbankRecords.RassenlisteRecord := (
+   LeerSpeziesListe : constant DatenbankRecords.SpezieslisteRecord := (
                                                                      Aggressivität       => 0,
                                                                      Expansion           => 0,
                                                                      Wissenschaft        => 0,
@@ -82,11 +82,11 @@ package WichtigesRecordKonstanten is
                                                                      Bewirtschaftung     => 0,
                                                                      Staatsformen        =>
                                                                        (
-                                                                        RassenDatentypen.Anarchie_Enum,
-                                                                        RassenDatentypen.Anarchie_Enum,
-                                                                        RassenDatentypen.Anarchie_Enum,
-                                                                        RassenDatentypen.Anarchie_Enum,
-                                                                        RassenDatentypen.Anarchie_Enum
+                                                                        SpeziesDatentypen.Anarchie_Enum,
+                                                                        SpeziesDatentypen.Anarchie_Enum,
+                                                                        SpeziesDatentypen.Anarchie_Enum,
+                                                                        SpeziesDatentypen.Anarchie_Enum,
+                                                                        SpeziesDatentypen.Anarchie_Enum
                                                                        )
                                                                     );
    

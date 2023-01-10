@@ -6,21 +6,21 @@ with JaNeinLogik;
 package body EinheitAufloesenLogik is
 
    function EinheitAuflösen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
       case
-        LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse)
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
       is
-         when RassenDatentypen.KI_Spieler_Enum =>
-            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when SpeziesDatentypen.KI_Spieler_Enum =>
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when others =>
             if
               JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageEinheitAuflösen) = True
             then
-               EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          
             else
                return False;

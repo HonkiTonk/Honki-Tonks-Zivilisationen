@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
 
@@ -7,36 +7,36 @@ private with KartenRecords;
 private with KartenDatentypen;
 
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 private with LeseWeltkarteneinstellungen;
 
 package EinheitentransporterLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
    
    procedure TransporterEntladen
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      with
        Pre => (
-                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
+                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => TransporterExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    function KannTransportiertWerden
-     (LadungExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (LadungExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
      with
        Pre => (
-                 LadungExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => LadungExtern.Rasse)
+                 LadungExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => LadungExtern.Spezies)
                and
-                LeseRassenbelegung.Belegung (RasseExtern => LadungExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                LeseSpeziesbelegung.Belegung (SpeziesExtern => LadungExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => TransporterExtern.Rasse)
+                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => TransporterExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
 private
@@ -49,19 +49,19 @@ private
    
    AktuelleLadung : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
-   EinheitVorhanden : EinheitenRecords.RasseEinheitnummerRecord;
+   EinheitVorhanden : EinheitenRecords.SpeziesEinheitnummerRecord;
    
    TransporterKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    procedure TransporterUmgebung
      (TranspoterKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadungExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      LadungExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      with
        Pre => (
-                 LadungExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => LadungExtern.Rasse)
+                 LadungExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => LadungExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => LadungExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => LadungExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  TranspoterKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
@@ -72,13 +72,13 @@ private
    
    function Entladung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadungExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      LadungExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
      with
        Pre => (
-                 LadungExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => LadungExtern.Rasse)
+                 LadungExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => LadungExtern.Spezies)
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => LadungExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => LadungExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and

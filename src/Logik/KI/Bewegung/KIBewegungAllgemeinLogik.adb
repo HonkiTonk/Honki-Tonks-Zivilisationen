@@ -15,32 +15,32 @@ package body KIBewegungAllgemeinLogik is
 
    function FeldBetreten
      (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KIDatentypen.Bewegung_Enum
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
       use type KIDatentypen.Einheit_Aufgabe_Enum;
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    begin
       
-      BlockierendeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern,
+      BlockierendeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => FeldKoordinatenExtern,
                                                                                    LogikGrafikExtern => True);
-      BlockierendeStadt := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern).Rasse;
+      BlockierendeStadt := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => FeldKoordinatenExtern).Spezies;
       
       if
-        BlockierendeEinheit.Rasse = EinheitenKonstanten.LeerRasse
+        BlockierendeEinheit.Spezies = EinheitenKonstanten.LeerSpezies
         and
-          BlockierendeStadt = EinheitenKonstanten.LeerRasse
+          BlockierendeStadt = EinheitenKonstanten.LeerSpezies
       then
          return KIKonstanten.BewegungNormal;
          
       elsif
-        BlockierendeEinheit.Rasse = EinheitRasseNummerExtern.Rasse
+        BlockierendeEinheit.Spezies = EinheitSpeziesNummerExtern.Spezies
       then
-         Aufgabe := LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         Aufgabe := LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          
          if
-           LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = AufgabenDatentypen.Leer_Aufgabe_Enum
+           LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = AufgabenDatentypen.Leer_Aufgabe_Enum
            and
              (Aufgabe = KIDatentypen.Leer_Aufgabe_Enum
               or
@@ -58,7 +58,7 @@ package body KIBewegungAllgemeinLogik is
          end if;
          
       elsif
-        BlockierendeStadt = EinheitRasseNummerExtern.Rasse
+        BlockierendeStadt = EinheitSpeziesNummerExtern.Spezies
       then
          return KIKonstanten.BewegungNormal;
          
@@ -67,16 +67,16 @@ package body KIBewegungAllgemeinLogik is
       end if;
       
       case
-        LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             return KIKonstanten.KeineBewegung;
             
          when others =>
-            return FeldAngreifen (EigeneEinheitExtern          => EinheitRasseNummerExtern,
-                                  FeindlicheRasseEinheitExtern => BlockierendeEinheit.Rasse,
-                                  FeindlicheRasseStadtExtern   => BlockierendeStadt);
+            return FeldAngreifen (EigeneEinheitExtern          => EinheitSpeziesNummerExtern,
+                                  FeindlicheSpeziesEinheitExtern => BlockierendeEinheit.Spezies,
+                                  FeindlicheSpeziesStadtExtern   => BlockierendeStadt);
       end case;
       
    end FeldBetreten;
@@ -85,28 +85,28 @@ package body KIBewegungAllgemeinLogik is
    
    -- Hier nochmal besser unterscheiden mit was angegeriffen wird? äöü
    function FeldAngreifen
-     (EigeneEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      FeindlicheRasseEinheitExtern : in RassenDatentypen.Rassen_Enum;
-      FeindlicheRasseStadtExtern : in RassenDatentypen.Rassen_Enum)
+     (EigeneEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      FeindlicheSpeziesEinheitExtern : in SpeziesDatentypen.Spezies_Enum;
+      FeindlicheSpeziesStadtExtern : in SpeziesDatentypen.Spezies_Enum)
       return KIDatentypen.Bewegung_Enum
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       if
-        FeindlicheRasseEinheitExtern = EinheitenKonstanten.LeerRasse
+        FeindlicheSpeziesEinheitExtern = EinheitenKonstanten.LeerSpezies
         and then
-          DiplomatieDatentypen.Krieg_Enum /= LeseDiplomatie.AktuellerZustand (RasseEinsExtern => EigeneEinheitExtern.Rasse,
-                                                                              RasseZweiExtern => FeindlicheRasseStadtExtern)
+          DiplomatieDatentypen.Krieg_Enum /= LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => EigeneEinheitExtern.Spezies,
+                                                                              SpeziesZweiExtern => FeindlicheSpeziesStadtExtern)
       then
          return KIKonstanten.KeineBewegung;
          
       elsif
-        FeindlicheRasseStadtExtern = EinheitenKonstanten.LeerRasse
+        FeindlicheSpeziesStadtExtern = EinheitenKonstanten.LeerSpezies
         and then
-          DiplomatieDatentypen.Krieg_Enum /= LeseDiplomatie.AktuellerZustand (RasseEinsExtern => EigeneEinheitExtern.Rasse,
-                                                                              RasseZweiExtern => FeindlicheRasseEinheitExtern)
+          DiplomatieDatentypen.Krieg_Enum /= LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => EigeneEinheitExtern.Spezies,
+                                                                              SpeziesZweiExtern => FeindlicheSpeziesEinheitExtern)
       then
          return KIKonstanten.KeineBewegung;
          
@@ -115,7 +115,7 @@ package body KIBewegungAllgemeinLogik is
       end if;
       
       case
-        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EigeneEinheitExtern)
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EigeneEinheitExtern)
       is
          when KIDatentypen.Angreifen_Enum | KIDatentypen.Verbesserung_Zerstören_Enum | KIDatentypen.Erkunden_Enum | KIDatentypen.Verteidigen_Enum =>
             return KIKonstanten.BewegungAngriff;

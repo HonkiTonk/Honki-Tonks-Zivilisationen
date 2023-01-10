@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with RassenDatentypen;
+private with SpeziesDatentypen;
 
 package EinlesenMusikLogik is
    pragma Elaborate_Body;
@@ -21,6 +21,6 @@ private
    
    procedure EinlesenLieder
      (DateipfadExtern : in Wide_Wide_String;
-      RasseExtern : in RassenDatentypen.Rassen_Enum);
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Enum);
 
 end EinlesenMusikLogik;

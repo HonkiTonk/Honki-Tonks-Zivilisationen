@@ -177,7 +177,7 @@ package body Grafik is
             
          when GrafikDatentypen.Ladezeiten_Enum'Range =>
             LadezeitenGrafik.Ladezeiten (WelcheLadeanzeigeExtern => NachGrafiktask.AktuelleDarstellung,
-                                         RasseExtern             => NachGrafiktask.KIRechnet);
+                                         SpeziesExtern             => NachGrafiktask.KIRechnet);
             -- Diese Prüfung kann nicht rausgezogen werden, da er mit dem aktuellen System sonst Tasteneingaben nicht mehr korrekt erkennt.
             TasteneingabeGrafik.FensterAnpassen;
          
@@ -189,25 +189,25 @@ package body Grafik is
             EditorenGrafik.Editoren (WelcherEditorExtern => NachGrafiktask.WelcherEditor);
                
          when GrafikDatentypen.Grafik_Weltkarte_Enum =>
-            KartenaufteilungGrafik.Weltkarte (EinheitRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleEinheit));
+            KartenaufteilungGrafik.Weltkarte (EinheitSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleEinheit));
             
          when GrafikDatentypen.Grafik_Stadtkarte_Enum =>
-            KartenaufteilungGrafik.Stadtkarte (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt));
+            KartenaufteilungGrafik.Stadtkarte (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt));
                
          when GrafikDatentypen.Grafik_Forschung_Enum =>
-            ForschungsauswahlGrafik.ForschungAnzeige (RasseExtern           => NachGrafiktask.AktuelleRasse,
+            ForschungsauswahlGrafik.ForschungAnzeige (SpeziesExtern           => NachGrafiktask.AktuelleSpezies,
                                                       AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
          when GrafikDatentypen.Grafik_Forschung_Erfolgreich_Enum =>
-            ForschungserfolgGrafik.Forschungserfolg (RasseExtern   => NachGrafiktask.AktuelleRasse,
+            ForschungserfolgGrafik.Forschungserfolg (SpeziesExtern   => NachGrafiktask.AktuelleSpezies,
                                                      AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
          when GrafikDatentypen.Grafik_Bauen_Enum =>
-            BauauswahlGrafik.Bauauswahl (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt),
+            BauauswahlGrafik.Bauauswahl (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt),
                                          AktuelleAuswahlExtern  => NachGrafiktask.AktuelleBauauswahl);
             
          when GrafikDatentypen.Grafik_Verkaufen_Enum =>
-            VerkaufsauswahlGrafik.Verkaufsauswahl (RasseExtern           => NachGrafiktask.AktuelleRasse,
+            VerkaufsauswahlGrafik.Verkaufsauswahl (SpeziesExtern           => NachGrafiktask.AktuelleSpezies,
                                                    AktuelleAuswahlExtern => NachGrafiktask.AktuelleBauauswahl.Gebäude);
             
          when GrafikDatentypen.Grafik_Diplomatie_Enum =>
@@ -215,7 +215,7 @@ package body Grafik is
             
          when GrafikDatentypen.Grafik_Abspann_Enum =>
             AbspannGrafik.Abspann (AbspannExtern => NachGrafiktask.Abspannart,
-                                   RasseExtern   => NachGrafiktask.AktuelleRasse);
+                                   SpeziesExtern   => NachGrafiktask.AktuelleSpezies);
             
          when GrafikDatentypen.Grafik_Ende_Enum =>
             return False;
@@ -268,7 +268,7 @@ package body Grafik is
                                                     EingabeExtern => NachGrafiktask.Eingabe);
             
          when GrafikDatentypen.Einheit_Auswahl_Enum =>
-            EingabenanzeigeGrafik.AnzeigeEinheitenStadt (StadtRasseNummerExtern => (NachGrafiktask.AktuelleRasse, NachGrafiktask.AktuelleStadt),
+            EingabenanzeigeGrafik.AnzeigeEinheitenStadt (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt),
                                                          AktuelleAuswahlExtern  => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
             -- Wenn ich das Baumenü/Forschungsmenü hierher verschiebe, dann könnte ich das Neusetzen vermeiden und diese Setzsachen in eine Prozedur auslagern. äöü

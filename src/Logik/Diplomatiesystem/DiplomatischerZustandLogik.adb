@@ -9,28 +9,28 @@ with JaNeinLogik;
 package body DiplomatischerZustandLogik is
 
    procedure DiplomatischenStatusÄndern
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum)
    is
       use type DiplomatieDatentypen.Meinung;
    begin
       
-      SchreibeDiplomatie.AktuellerZustand (RasseEinsExtern => RasseEinsExtern,
-                                           RasseZweiExtern => RasseZweiExtern,
+      SchreibeDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesEinsExtern,
+                                           SpeziesZweiExtern => SpeziesZweiExtern,
                                            ZustandExtern   => NeuerStatusExtern);
       
-      SchreibeDiplomatie.AktuellerZustand (RasseEinsExtern => RasseZweiExtern,
-                                           RasseZweiExtern => RasseEinsExtern,
+      SchreibeDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesZweiExtern,
+                                           SpeziesZweiExtern => SpeziesEinsExtern,
                                            ZustandExtern   => NeuerStatusExtern);
       
-      SchreibeDiplomatie.ZeitSeitÄnderung (RasseEinsExtern     => RasseEinsExtern,
-                                           RasseZweiExtern     => RasseZweiExtern,
+      SchreibeDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern     => SpeziesEinsExtern,
+                                           SpeziesZweiExtern     => SpeziesZweiExtern,
                                            ÄnderungExtern      => 0,
                                             RechnenSetzenExtern => False);
       
-      SchreibeDiplomatie.ZeitSeitÄnderung (RasseEinsExtern     => RasseZweiExtern,
-                                            RasseZweiExtern     => RasseEinsExtern,
+      SchreibeDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern     => SpeziesZweiExtern,
+                                            SpeziesZweiExtern     => SpeziesEinsExtern,
                                             ÄnderungExtern      => 0,
                                             RechnenSetzenExtern => False);
             
@@ -38,13 +38,13 @@ package body DiplomatischerZustandLogik is
         NeuerStatusExtern
       is
          when DiplomatieDatentypen.Krieg_Enum =>
-            SchreibeDiplomatie.AktuelleSympathie (RasseEinsExtern     => RasseEinsExtern,
-                                                  RasseZweiExtern     => RasseZweiExtern,
+            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern     => SpeziesEinsExtern,
+                                                  SpeziesZweiExtern     => SpeziesZweiExtern,
                                                   SympathieExtern     => -30,
                                                   RechnenSetzenExtern => False);
             
-            SchreibeDiplomatie.AktuelleSympathie (RasseEinsExtern     => RasseZweiExtern,
-                                                  RasseZweiExtern     => RasseEinsExtern,
+            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern     => SpeziesZweiExtern,
+                                                  SpeziesZweiExtern     => SpeziesEinsExtern,
                                                   SympathieExtern     => -30,
                                                   RechnenSetzenExtern => False);
             
@@ -57,27 +57,27 @@ package body DiplomatischerZustandLogik is
 
 
    function GegnerAngreifen
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      GegnerischeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      GegnerischeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean
    is begin
       
       case
-        LeseDiplomatie.AktuellerZustand (RasseEinsExtern => EigeneRasseExtern,
-                                         RasseZweiExtern => GegnerischeRasseExtern)
+        LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => EigeneSpeziesExtern,
+                                         SpeziesZweiExtern => GegnerischeSpeziesExtern)
       is
          when DiplomatieDatentypen.Neutral_Enum =>
             if
-              WichtigesKonstanten.DiplomatischerStatusÄnderungszeit >= LeseDiplomatie.ZeitSeitÄnderung (RasseEinsExtern => EigeneRasseExtern,
-                                                                                                          RasseZweiExtern => GegnerischeRasseExtern)
+              WichtigesKonstanten.DiplomatischerStatusÄnderungszeit >= LeseDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern => EigeneSpeziesExtern,
+                                                                                                          SpeziesZweiExtern => GegnerischeSpeziesExtern)
             then
                return False;
               
             elsif
               JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKriegErklären) = True
             then
-               DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
-                                            RasseZweiExtern   => GegnerischeRasseExtern,
+               DiplomatischenStatusÄndern (SpeziesEinsExtern   => EigeneSpeziesExtern,
+                                            SpeziesZweiExtern   => GegnerischeSpeziesExtern,
                                             NeuerStatusExtern => DiplomatieDatentypen.Krieg_Enum);
                return True;
                   

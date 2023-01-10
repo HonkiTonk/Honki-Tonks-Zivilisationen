@@ -13,7 +13,7 @@ with KIKriegErmittelnLogik;
 package body KIGebaeudeBauenLogik is
 
    function GebäudeBauen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return KIRecords.GebäudeIDBewertungRecord
    is
       use type KIDatentypen.BauenBewertung;
@@ -26,11 +26,11 @@ package body KIGebaeudeBauenLogik is
       for GebäudeSchleifenwert in StadtRecords.GebäudeVorhandenArray'Range loop
          
          case
-           GebaeudeAllgemeinLogik.GebäudeAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+           GebaeudeAllgemeinLogik.GebäudeAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                  IDExtern               => GebäudeSchleifenwert)
          is
             when True =>
-               Gebäudewertung := GebäudeBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+               Gebäudewertung := GebäudeBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                     IDExtern               => GebäudeSchleifenwert);
                
                if
@@ -62,7 +62,7 @@ package body KIGebaeudeBauenLogik is
    
    
    function GebäudeBewerten
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is
@@ -71,19 +71,19 @@ package body KIGebaeudeBauenLogik is
       
       Gesamtwertung := KIKonstanten.LeerBewertung;
       
-      Gesamtwertung := Gesamtwertung + NahrungsproduktionBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      Gesamtwertung := Gesamtwertung + NahrungsproduktionBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                    IDExtern               => IDExtern);
-      Gesamtwertung := Gesamtwertung + GeldproduktionBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      Gesamtwertung := Gesamtwertung + GeldproduktionBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                IDExtern               => IDExtern);
-      Gesamtwertung := Gesamtwertung + WissensgewinnBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      Gesamtwertung := Gesamtwertung + WissensgewinnBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                               IDExtern               => IDExtern);
-      Gesamtwertung := Gesamtwertung + RessourcenproduktionBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      Gesamtwertung := Gesamtwertung + RessourcenproduktionBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                      IDExtern               => IDExtern);
-      Gesamtwertung := Gesamtwertung + VerteidigungBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      Gesamtwertung := Gesamtwertung + VerteidigungBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                              IDExtern               => IDExtern);
-      Gesamtwertung := Gesamtwertung + AngriffBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      Gesamtwertung := Gesamtwertung + AngriffBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                         IDExtern               => IDExtern);
-      Gesamtwertung := Gesamtwertung + KostenBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      Gesamtwertung := Gesamtwertung + KostenBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                        IDExtern               => IDExtern);
       
       return Gesamtwertung;
@@ -94,7 +94,7 @@ package body KIGebaeudeBauenLogik is
    
    -- Mal die Abfragen in ein lokale Variable schieben. äöü
    function NahrungsproduktionBewerten
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is
@@ -102,12 +102,12 @@ package body KIGebaeudeBauenLogik is
       use type KIDatentypen.BauenBewertung;
    begin
       
-      Produktion := LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Produktion := LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       if
         Produktion < StadtKonstanten.LeerNahrungsproduktion
         and
-          StadtKonstanten.LeerNahrungsproduktion < Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
+          StadtKonstanten.LeerNahrungsproduktion < Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern            => StadtSpeziesNummerExtern.Spezies,
                                                                                                        IDExtern               => IDExtern,
                                                                                                        WirtschaftBonusExtern => KartenKonstanten.WirtschaftNahrung)
       then
@@ -116,7 +116,7 @@ package body KIGebaeudeBauenLogik is
       elsif
         Produktion < StadtKonstanten.LeerNahrungsproduktion
         and
-          LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
+          LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern            => StadtSpeziesNummerExtern.Spezies,
                                                  IDExtern               => IDExtern,
                                                  WirtschaftBonusExtern => KartenKonstanten.WirtschaftNahrung)
         > StadtKonstanten.LeerNahrungsproduktion
@@ -126,24 +126,24 @@ package body KIGebaeudeBauenLogik is
       elsif
         Produktion < StadtKonstanten.LeerNahrungsproduktion
         and
-          StadtKonstanten.LeerNahrungsproduktion = LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
+          StadtKonstanten.LeerNahrungsproduktion = LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern            => StadtSpeziesNummerExtern.Spezies,
                                                                                           IDExtern               => IDExtern,
                                                                                           WirtschaftBonusExtern => KartenKonstanten.WirtschaftNahrung)
       then
          return 5;
       
       elsif
-        StadtKonstanten.LeerNahrungsproduktion >= Produktion - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+        StadtKonstanten.LeerNahrungsproduktion >= Produktion - LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
                                                                                                        IDExtern           => IDExtern,
                                                                                                        WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
       then
          return -20;
          
       else
-         return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
+         return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern            => StadtSpeziesNummerExtern.Spezies,
                                                                                     IDExtern               => IDExtern,
                                                                                     WirtschaftBonusExtern => KartenKonstanten.WirtschaftNahrung)
-                                             - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                             - LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
                                                                                        IDExtern           => IDExtern,
                                                                                        WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum));
       end if;
@@ -153,7 +153,7 @@ package body KIGebaeudeBauenLogik is
    
    
    function GeldproduktionBewerten
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is
@@ -161,12 +161,12 @@ package body KIGebaeudeBauenLogik is
       use type KIDatentypen.BauenBewertung;
    begin
       
-      Produktion := LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse);
+      Produktion := LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       
       if
         Produktion < WichtigesKonstanten.LeerGeldZugewinnProRunde
         and
-          WichtigesKonstanten.LeerGeldZugewinnProRunde < Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern           => StadtRasseNummerExtern.Rasse,
+          WichtigesKonstanten.LeerGeldZugewinnProRunde < Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern           => StadtSpeziesNummerExtern.Spezies,
                                                                                                              IDExtern              => IDExtern,
                                                                                                              WirtschaftBonusExtern => KartenKonstanten.WirtschaftGeld)
       then
@@ -175,7 +175,7 @@ package body KIGebaeudeBauenLogik is
       elsif
         Produktion < WichtigesKonstanten.LeerGeldZugewinnProRunde
         and
-          LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern           => StadtRasseNummerExtern.Rasse,
+          LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern           => StadtSpeziesNummerExtern.Spezies,
                                                  IDExtern              => IDExtern,
                                                  WirtschaftBonusExtern => KartenKonstanten.WirtschaftGeld)
         > StadtKonstanten.LeerGeldgewinnung
@@ -185,24 +185,24 @@ package body KIGebaeudeBauenLogik is
       elsif
         Produktion < WichtigesKonstanten.LeerGeldZugewinnProRunde
         and
-          StadtKonstanten.LeerGeldgewinnung = LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern           => StadtRasseNummerExtern.Rasse,
+          StadtKonstanten.LeerGeldgewinnung = LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern           => StadtSpeziesNummerExtern.Spezies,
                                                                                      IDExtern              => IDExtern,
                                                                                      WirtschaftBonusExtern => KartenKonstanten.WirtschaftGeld)
       then
          return 5;
          
       elsif
-        WichtigesKonstanten.LeerGeldZugewinnProRunde >= Produktion - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+        WichtigesKonstanten.LeerGeldZugewinnProRunde >= Produktion - LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
                                                                                                              IDExtern           => IDExtern,
                                                                                                              WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
       then
          return -20;
          
       else
-         return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern           => StadtRasseNummerExtern.Rasse,
+         return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern           => StadtSpeziesNummerExtern.Spezies,
                                                                                     IDExtern              => IDExtern,
                                                                                     WirtschaftBonusExtern => KartenKonstanten.WirtschaftGeld)
-                                             - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                             - LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
                                                                                        IDExtern           => IDExtern,
                                                                                        WelcheKostenExtern => ProduktionDatentypen.Geld_Enum));
       end if;
@@ -212,19 +212,19 @@ package body KIGebaeudeBauenLogik is
    
      
    function WissensgewinnBewerten
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      Produktion := LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Produktion := LeseStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       if
         Produktion = StadtKonstanten.LeerForschungsrate
         and
-          LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern           => StadtRasseNummerExtern.Rasse,
+          LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern           => StadtSpeziesNummerExtern.Spezies,
                                                  IDExtern              => IDExtern,
                                                  WirtschaftBonusExtern => KartenKonstanten.WirtschaftForschung)
         > WichtigesKonstanten.LeerGesamteForschungsrate
@@ -232,7 +232,7 @@ package body KIGebaeudeBauenLogik is
          return 5;
          
       else
-         return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern           => StadtRasseNummerExtern.Rasse,
+         return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern           => StadtSpeziesNummerExtern.Spezies,
                                                                                     IDExtern              => IDExtern,
                                                                                     WirtschaftBonusExtern => KartenKonstanten.WirtschaftForschung));
       end if;
@@ -242,7 +242,7 @@ package body KIGebaeudeBauenLogik is
      
           
    function RessourcenproduktionBewerten
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is
@@ -250,12 +250,12 @@ package body KIGebaeudeBauenLogik is
       use type KIDatentypen.BauenBewertung;
    begin
       
-      Produktion := LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Produktion := LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       if
         Produktion < StadtKonstanten.LeerProduktionrate
         and
-          StadtKonstanten.LeerProduktionrate < Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern           => StadtRasseNummerExtern.Rasse,
+          StadtKonstanten.LeerProduktionrate < Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern           => StadtSpeziesNummerExtern.Spezies,
                                                                                                    IDExtern              => IDExtern,
                                                                                                    WirtschaftBonusExtern => KartenKonstanten.WirtschaftProduktion)
       then
@@ -264,7 +264,7 @@ package body KIGebaeudeBauenLogik is
       elsif
         Produktion < StadtKonstanten.LeerProduktionrate
         and
-          StadtKonstanten.LeerProduktionrate <= Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern           => StadtRasseNummerExtern.Rasse,
+          StadtKonstanten.LeerProduktionrate <= Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern           => StadtSpeziesNummerExtern.Spezies,
                                                                                                     IDExtern              => IDExtern,
                                                                                                     WirtschaftBonusExtern => KartenKonstanten.WirtschaftProduktion)
       then
@@ -273,24 +273,24 @@ package body KIGebaeudeBauenLogik is
       elsif
         Produktion < StadtKonstanten.LeerProduktionrate
         and
-          StadtKonstanten.LeerProduktionrate = Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern           => StadtRasseNummerExtern.Rasse,
+          StadtKonstanten.LeerProduktionrate = Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern           => StadtSpeziesNummerExtern.Spezies,
                                                                                                    IDExtern              => IDExtern,
                                                                                                    WirtschaftBonusExtern => KartenKonstanten.WirtschaftProduktion)
       then
          return 5;
          
       elsif
-        StadtKonstanten.LeerProduktionrate >= Produktion - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+        StadtKonstanten.LeerProduktionrate >= Produktion - LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
                                                                                                    IDExtern           => IDExtern,
                                                                                                    WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
       then
          return -20;
          
       else
-         return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern           => StadtRasseNummerExtern.Rasse,
+         return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern           => StadtSpeziesNummerExtern.Spezies,
                                                                                     IDExtern              => IDExtern,
                                                                                     WirtschaftBonusExtern => KartenKonstanten.WirtschaftProduktion)
-                                             - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                             - LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
                                                                                        IDExtern           => IDExtern,
                                                                                        WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum));
       end if;
@@ -300,7 +300,7 @@ package body KIGebaeudeBauenLogik is
    
      
    function VerteidigungBewerten
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is
@@ -308,15 +308,15 @@ package body KIGebaeudeBauenLogik is
    begin
       
       case
-        KIKriegErmittelnLogik.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
+        KIKriegErmittelnLogik.IstImKrieg (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
       is
          when True =>
-            return 2 * KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => StadtRasseNummerExtern.Rasse,
+            return 2 * KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                       IDExtern         => IDExtern,
                                                                                       KampfBonusExtern => KartenKonstanten.KampfVerteidigung));
             
          when False =>
-            return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => StadtRasseNummerExtern.Rasse,
+            return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                   IDExtern         => IDExtern,
                                                                                   KampfBonusExtern => KartenKonstanten.KampfVerteidigung));
       end case;
@@ -326,7 +326,7 @@ package body KIGebaeudeBauenLogik is
    
      
    function AngriffBewerten
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is
@@ -334,15 +334,15 @@ package body KIGebaeudeBauenLogik is
    begin
       
       case
-        KIKriegErmittelnLogik.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
+        KIKriegErmittelnLogik.IstImKrieg (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
       is
          when True =>
-            return 2 * KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => StadtRasseNummerExtern.Rasse,
+            return 2 * KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                       IDExtern         => IDExtern,
                                                                                       KampfBonusExtern => KartenKonstanten.KampfAngriff));
             
          when False =>
-            return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => StadtRasseNummerExtern.Rasse,
+            return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                   IDExtern         => IDExtern,
                                                                                   KampfBonusExtern => KartenKonstanten.KampfAngriff));
       end case;
@@ -352,7 +352,7 @@ package body KIGebaeudeBauenLogik is
    
      
    function KostenBewerten
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung
    is
@@ -360,9 +360,9 @@ package body KIGebaeudeBauenLogik is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      return -(KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.Produktionskosten (RasseExtern => StadtRasseNummerExtern.Rasse,
+      return -(KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                      IDExtern    => IDExtern)
-               / LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
+               / LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
                / 10));
       
    end KostenBewerten;

@@ -29,21 +29,21 @@ with NachGrafiktask;
 package body AufgabenLogik is
    
    function AufgabeTesten
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       
       case
-        Anfangstest (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                     EinheitartExtern   => LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
+        Anfangstest (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
+                     EinheitartExtern   => LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)),
                      BefehlExtern       => BefehlExtern,
                      VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern))
       is
          when True =>
-            return AufgabeFestlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return AufgabeFestlegen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                      BefehlExtern             => BefehlExtern,
                                      AnlegenTestenExtern      => False,
                                      KoordinatenExtern        => KoordinatenExtern);
@@ -57,7 +57,7 @@ package body AufgabenLogik is
    
    
    function Aufgabe
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -66,9 +66,9 @@ package body AufgabenLogik is
    begin
       
       case
-        Anfangstest (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                     EinheitartExtern   => LeseEinheitenDatenbank.Einheitenart (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
+        Anfangstest (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
+                     EinheitartExtern   => LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)),
                      BefehlExtern       => BefehlExtern,
                      VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern))
       is
@@ -81,9 +81,9 @@ package body AufgabenLogik is
      
       -- Kann dieser Fall so noch auftreten? äöü
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
+        LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
         and
-          LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.KI_Spieler_Enum
+          LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.KI_Spieler_Enum
       then
          case
            JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen)
@@ -101,7 +101,7 @@ package body AufgabenLogik is
          null;
       end if;
       
-      return AufgabeFestlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      return AufgabeFestlegen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                BefehlExtern             => BefehlExtern,
                                AnlegenTestenExtern      => True,
                                KoordinatenExtern        => KoordinatenExtern);
@@ -111,7 +111,7 @@ package body AufgabenLogik is
    
    
    function Anfangstest
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       EinheitartExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
@@ -128,7 +128,7 @@ package body AufgabenLogik is
           EinheitartExtern /= EinheitenDatentypen.Arbeiter_Enum
       then
          MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungBefehl,
-                                                        RasseExtern   => RasseExtern);
+                                                        SpeziesExtern   => SpeziesExtern);
          return False;
          
       elsif
@@ -137,7 +137,7 @@ package body AufgabenLogik is
           EinheitartExtern = EinheitenDatentypen.Arbeiter_Enum
       then
          MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungBefehl,
-                                                        RasseExtern   => RasseExtern);
+                                                        SpeziesExtern   => SpeziesExtern);
          return False;
          
       else
@@ -148,17 +148,17 @@ package body AufgabenLogik is
         BefehlExtern
       is
          when BefehleDatentypen.Siedler_Verbesserung_Enum'Range =>
-            VerbesserungErforscht := ForschungstestsLogik.TechnologieVorhanden (RasseExtern       => RasseExtern,
+            VerbesserungErforscht := ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => SpeziesExtern,
                                                                                 TechnologieExtern => LeseForschungenDatenbank.Verbesserungen (VerbesserungExtern => BefehlExtern,
-                                                                                                                                              RasseExtern        => RasseExtern));
+                                                                                                                                              SpeziesExtern        => SpeziesExtern));
             
             if
               VerbesserungErforscht = False
               and
-                LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
             then
                MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserungTechnologie,
-                                                              RasseExtern   => RasseExtern);
+                                                              SpeziesExtern   => SpeziesExtern);
                return False;
                
             elsif
@@ -183,18 +183,18 @@ package body AufgabenLogik is
               VerbesserungExtern in KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range
             then
                MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserung,
-                                                              RasseExtern   => RasseExtern);
+                                                              SpeziesExtern   => SpeziesExtern);
                return False;
                
             elsif
               VerbesserungExtern = UmwandlungenVerschiedeneDatentypen.BefehleNachKartenverbesserung (TasteExtern => BefehlExtern)
             then
                MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserungExistiert,
-                                                              RasseExtern   => RasseExtern);
+                                                              SpeziesExtern   => SpeziesExtern);
                return False;
                
             elsif
-              (LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+              (LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
                  VerbesserungExtern /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum)
               and then
@@ -217,65 +217,65 @@ package body AufgabenLogik is
 
 
    function AufgabeFestlegen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       
-      AufgabenAllgemeinLogik.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      AufgabenAllgemeinLogik.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
         BefehlExtern
       is
          when BefehleDatentypen.Straße_Bauen_Enum =>
-            return WegErmittelnLogik.WegErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return WegErmittelnLogik.WegErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                    AnlegenTestenExtern      => AnlegenTestenExtern,
                                                    KoordinatenExtern        => KoordinatenExtern);
          
          when BefehleDatentypen.Mine_Bauen_Enum =>
-            return MineErmittelnLogik.MineErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return MineErmittelnLogik.MineErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                      AnlegenTestenExtern      => AnlegenTestenExtern,
                                                      KoordinatenExtern        => KoordinatenExtern);
             
          when BefehleDatentypen.Farm_Bauen_Enum =>
-            return FarmErmittelnLogik.FarmErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return FarmErmittelnLogik.FarmErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                      AnlegenTestenExtern      => AnlegenTestenExtern,
                                                      KoordinatenExtern        => KoordinatenExtern);
             
          when BefehleDatentypen.Festung_Bauen_Enum =>
-            return FestungErmittelnLogik.FestungErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return FestungErmittelnLogik.FestungErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                            AnlegenTestenExtern      => AnlegenTestenExtern,
                                                            KoordinatenExtern        => KoordinatenExtern);
             
          when BefehleDatentypen.Wald_Aufforsten_Enum =>
-            return WaldErmittelnLogik.WaldErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return WaldErmittelnLogik.WaldErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                      AnlegenTestenExtern      => AnlegenTestenExtern,
                                                      KoordinatenExtern        => KoordinatenExtern);
          
          when BefehleDatentypen.Roden_Trockenlegen_Enum =>
-            return RodenErmittelnLogik.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return RodenErmittelnLogik.RodenErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        AnlegenTestenExtern      => AnlegenTestenExtern,
                                                        KoordinatenExtern        => KoordinatenExtern);
          
          when BefehleDatentypen.Heilen_Enum =>
-            return EinheitHeilenLogik.EinheitHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return EinheitHeilenLogik.EinheitHeilen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                      AnlegenTestenExtern      => AnlegenTestenExtern);
             
          when BefehleDatentypen.Verschanzen_Enum =>
-            return EinheitVerschanzenLogik.Verschanzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            return EinheitVerschanzenLogik.Verschanzen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          
          when BefehleDatentypen.Auflösen_Enum =>
-            return EinheitAufloesenLogik.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            return EinheitAufloesenLogik.EinheitAuflösen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          
          when BefehleDatentypen.Plündern_Enum =>
-            return VerbesserungPluendernLogik.VerbesserungPlündern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return VerbesserungPluendernLogik.VerbesserungPlündern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                      AnlegenTestenExtern      => AnlegenTestenExtern,
                                                                      KoordinatenExtern        => KoordinatenExtern);
          
          when BefehleDatentypen.Einheit_Verbessern_Enum =>
-            return EinheitVerbessernLogik.VerbesserungEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            return EinheitVerbessernLogik.VerbesserungEinheit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                AnlegenTestenExtern      => AnlegenTestenExtern);
       end case;
       

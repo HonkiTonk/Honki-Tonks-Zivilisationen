@@ -4,44 +4,44 @@ with SpielVariablen;
 package body SchreibeCursor is
 
    procedure KoordinatenAktuell
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := KoordinatenExtern;
+      SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell := KoordinatenExtern;
       
    end KoordinatenAktuell;
    
    
    
    procedure EAchseAktuell
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       EAchseExtern : in KartenDatentypen.EbeneVorhanden)
    is begin
       
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := EAchseExtern;
+      SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell.EAchse := EAchseExtern;
       
    end EAchseAktuell;
    
    
 
    procedure KoordinatenAlt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := KoordinatenExtern;
+      SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt := KoordinatenExtern;
       
    end KoordinatenAlt;
    
    
    
    procedure EAchseAlt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       EAchseExtern : in KartenDatentypen.EbeneVorhanden)
    is begin
       
-      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.EAchse := EAchseExtern;
+      SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAlt.EAchse := EAchseExtern;
       
    end EAchseAlt;
    
@@ -57,11 +57,11 @@ package body SchreibeCursor is
    
    
    procedure GanzerEintrag
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       EintragExtern : in KartenRecords.CursorRecord)
    is begin
       
-      SpielVariablen.CursorImSpiel (RasseExtern) := EintragExtern;
+      SpielVariablen.CursorImSpiel (SpeziesExtern) := EintragExtern;
       
    end GanzerEintrag;
 

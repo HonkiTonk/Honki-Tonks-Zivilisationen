@@ -41,8 +41,8 @@ package body MenuestringsSetzenGrafik is
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
             AktuellerText := Menuetexte.Schwierigkeitsgrad (WelcheZeileExtern);
                         
-         when MenueDatentypen.Rassen_Menü_Enum =>
-            AktuellerText := Menuetexte.Rassenauswahl (WelcheZeileExtern);
+         when MenueDatentypen.Spezies_Menü_Enum =>
+            AktuellerText := Menuetexte.Speziesauswahl (WelcheZeileExtern);
             
          when MenueDatentypen.Grafik_Menü_Enum =>
             AktuellerText := Menuetexte.Grafikmenü (WelcheZeileExtern);

@@ -2,7 +2,7 @@ with MenueDatentypen;
 
 with SchreibenDatenbankenLogik;
 with StandardVerbesserungenDatenbank;
-with StandardRassenDatenbank;
+with StandardSpeziesDatenbank;
 with StandardKartenDatenbank;
 with StandardGebaeudeDatenbank;
 with StandardForschungenDatenbank;
@@ -81,7 +81,7 @@ package body DatenbankeneditorenLogik is
       StandardKartenDatenbank.StandardKartenressourcenDatenbankLaden;
       StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
       StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
-      StandardRassenDatenbank.StandardRassenDatenbankLaden;
+      StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
       
       SchreibenDatenbankenLogik.SchreibenAlleDatenbanken;
       

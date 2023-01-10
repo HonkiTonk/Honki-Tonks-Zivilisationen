@@ -3,7 +3,7 @@ package ChangelogAugust2022 is
    -- Version 0.03.7800 => 0.03.7935 (31.08.2022):
    
    -- Fehler behoben der bei Ladebildschirmen zu fehlerhafter Skalierung führte.
-   -- Rassenspezifische Standardstadtnamen werden jetzt beim Bauen einer Stadt vorgeschlagen.
+   -- Speziesspezifische Standardstadtnamen werden jetzt beim Bauen einer Stadt vorgeschlagen.
    -- Einige Spielmeldungen eingebaut.
    -- Unnötigen Code gelöscht.
    -- Durchsichtige Hintergründe eingebaut.
@@ -36,8 +36,8 @@ package ChangelogAugust2022 is
    -- Änderungen an den Spieltexten vorgenommen.
    -- Textdateien neu aufgeteilt
    -- Das Texteinlesesystem an die neue Textdateienaufteilung anzupassen.
-   -- Jede Rasse hat jetzt ihre eigenen Textdateien für NameBeschreibung, Städtenamen, Forschungen, Einheiten und Gebäude.
-   -- Alle Textaccesse an das neue Rassentextsystem angepasst.
+   -- Jede Spezies hat jetzt ihre eigenen Textdateien für NameBeschreibung, Städtenamen, Forschungen, Einheiten und Gebäude.
+   -- Alle Textaccesse an das neue Speziestextsystem angepasst.
    -- Unnötigen/Veralteten Code gelöscht.
    -- Code zusammengeführt.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/optimiert.
@@ -125,7 +125,7 @@ package ChangelogAugust2022 is
    -- Fehler im Menüsystem korrigiert, welche dafür sorgten dass man inkorrekterweise im Hauptmenü landete.
    -- Unnötige Code gelöscht.
    -- Code zusammengefasst.
-   -- Rassenmenü in das neue Viewsystem eingebaut.
+   -- Speziesmenü in das neue Viewsystem eingebaut.
    -- Einige Programmteile optimiert.
    -- Kartenformmenü in das neue Viewsystem eingebaut.
    -- Ladezeitenanzeige in das neue Viewsystem eingebaut.

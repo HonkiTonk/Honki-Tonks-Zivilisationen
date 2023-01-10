@@ -7,7 +7,7 @@ with SchreibeWeltkarte;
 with SchreibeWichtiges;
 with SchreibeAllgemeines;
 with SchreibeDiplomatie;
-with SchreibeRassenbelegung;
+with SchreibeSpeziesbelegung;
 with SchreibeCursor;
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
@@ -49,7 +49,7 @@ package body StandardSpielwerteSetzenLogik is
       SchreibeWichtiges.Standardeinstellungen;
       SchreibeDiplomatie.Standardeinstellungen;
       SchreibeCursor.Standardeinstellungen;
-      SchreibeRassenbelegung.Standardeinstellungen; 
+      SchreibeSpeziesbelegung.Standardeinstellungen; 
       SchreibeAllgemeines.Standardeinstellungen;
       
       SchreibeWeltkarteneinstellungen.Standardeinstellungen;

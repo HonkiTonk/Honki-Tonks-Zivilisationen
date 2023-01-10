@@ -32,7 +32,7 @@ with TextfarbeGrafik;
 package body ForschungsauswahlGrafik is
 
    procedure ForschungAnzeige
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       AktuelleAuswahlExtern : in Natural)
    is begin
       
@@ -43,14 +43,14 @@ package body ForschungsauswahlGrafik is
       AktuelleAuswahl := ForschungenDatentypen.ForschungIDMitNullWert (AktuelleAuswahlExtern);
       
       Auswahlmöglichkeiten (AuswahlExtern => AktuelleAuswahl,
-                             RasseExtern   => RasseExtern);
+                             SpeziesExtern   => SpeziesExtern);
       
       Ermöglicht (ZusatztextExtern => AktuelleAuswahl,
-                   RasseExtern      => RasseExtern);
+                   SpeziesExtern      => SpeziesExtern);
       Beschreibung (ZusatztextExtern => AktuelleAuswahl,
-                    RasseExtern      => RasseExtern);
+                    SpeziesExtern      => SpeziesExtern);
       
-      Aktuell (RasseExtern => RasseExtern);
+      Aktuell (SpeziesExtern => SpeziesExtern);
       
    end ForschungAnzeige;
    
@@ -58,7 +58,7 @@ package body ForschungsauswahlGrafik is
    
    procedure Auswahlmöglichkeiten
      (AuswahlExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       Viewfläche (ViewKonstanten.ForschungsmenüForschungsliste)
@@ -86,22 +86,22 @@ package body ForschungsauswahlGrafik is
             when True =>
                TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (ForschungSchleifenwert),
                                                       AuswahlExtern    => Natural (AuswahlExtern),
-                                                      TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, ForschungSchleifenwert));
+                                                      TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert));
                
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, ForschungSchleifenwert),
+               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert),
                                              position => Textposition);
                
-               AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, ForschungSchleifenwert),
+               AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert),
                                                                                            TextbreiteExtern => AktuelleTextbreite);
                
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, ForschungSchleifenwert),
+                                                                               TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert),
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
-               InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, ForschungSchleifenwert));
+               InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert));
                
                Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                  text         => TextaccessVariablen.ForschungsmenüAccess (RasseExtern, ForschungSchleifenwert));
+                                                  text         => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert));
                
             when False =>
                null;
@@ -117,7 +117,7 @@ package body ForschungsauswahlGrafik is
    
    procedure Ermöglicht
      (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
    begin
@@ -166,7 +166,7 @@ package body ForschungsauswahlGrafik is
          TechnologienSchleife:
          for TechnologieSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
             
-            Forschungswert := LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+            Forschungswert := LeseForschungenDatenbank.AnforderungForschung (SpeziesExtern             => SpeziesExtern,
                                                                              IDExtern                => TechnologieSchleifenwert,
                                                                              WelcheAnforderungExtern => NeueForschungSchleifenwert);
             
@@ -177,7 +177,7 @@ package body ForschungsauswahlGrafik is
                                              position => Textposition);
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                   str  => ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => TechnologieSchleifenwert,
-                                                                                                           RasseExtern => RasseExtern));
+                                                                                                           SpeziesExtern => SpeziesExtern));
                
                Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                   text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
@@ -201,14 +201,14 @@ package body ForschungsauswahlGrafik is
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
             
          if
-           ZusatztextExtern = LeseEinheitenDatenbank.Anforderungen (RasseExtern => RasseExtern,
+           ZusatztextExtern = LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => SpeziesExtern,
                                                                     IDExtern    => EinheitenSchleifenwert)
          then
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                           position => Textposition);
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                str  => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => EinheitenSchleifenwert,
-                                                                                                       RasseExtern => RasseExtern));
+                                                                                                       SpeziesExtern => SpeziesExtern));
                
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
@@ -231,14 +231,14 @@ package body ForschungsauswahlGrafik is
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
             
          if
-           ZusatztextExtern = LeseGebaeudeDatenbank.Anforderungen (RasseExtern => RasseExtern,
+           ZusatztextExtern = LeseGebaeudeDatenbank.Anforderungen (SpeziesExtern => SpeziesExtern,
                                                                    IDExtern    => GebäudeSchleifenwert)
          then
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                           position => Textposition);
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                str  => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern    => GebäudeSchleifenwert,
-                                                                                                      RasseExtern => RasseExtern));
+                                                                                                      SpeziesExtern => SpeziesExtern));
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
@@ -265,7 +265,7 @@ package body ForschungsauswahlGrafik is
    
    procedure Beschreibung
      (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung)
@@ -290,19 +290,19 @@ package body ForschungsauswahlGrafik is
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
+            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, ZusatztextExtern),
                                           position => Textposition);
       
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, ZusatztextExtern),
                                                str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => ForschungsbeschreibungenGrafik.Langbeschreibung (IDExtern    => ZusatztextExtern,
-                                                                                                                                                                                       RasseExtern => RasseExtern),
+                                                                                                                                                                                       SpeziesExtern => SpeziesExtern),
                                                                                                               TextfeldbreiteExtern => Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung).x / 2.00 - Textposition.x));
       
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               text         => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern));
+                                               text         => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, ZusatztextExtern));
       
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (RasseExtern, ZusatztextExtern),
+                                                                            TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, ZusatztextExtern),
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             
             Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
@@ -315,7 +315,7 @@ package body ForschungsauswahlGrafik is
    
    
    procedure Aktuell
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       Viewfläche (ViewKonstanten.ForschungsmenüAktuell)
@@ -333,7 +333,7 @@ package body ForschungsauswahlGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       AktuelleTextbreite := 0.00;
       
-      AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
+      AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern);
       
       case
         AktuellesForschungsprojekt
@@ -343,7 +343,7 @@ package body ForschungsauswahlGrafik is
             
          when others =>
             Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => AktuellesForschungsprojekt,
-                                                                                                                                                       RasseExtern => RasseExtern);
+                                                                                                                                                       SpeziesExtern => SpeziesExtern);
       end case;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
@@ -364,7 +364,7 @@ package body ForschungsauswahlGrafik is
                                                                       TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-      Forschungszeit := LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
+      Forschungszeit := LeseWichtiges.VerbleibendeForschungszeit (SpeziesExtern => SpeziesExtern);
       Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit);
       
       case

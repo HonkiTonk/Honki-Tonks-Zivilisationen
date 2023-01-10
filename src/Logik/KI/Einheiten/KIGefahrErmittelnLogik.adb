@@ -20,24 +20,24 @@ package body KIGefahrErmittelnLogik is
    -- Noch eine Version bauen um die Kampfstärken direkt zu vergleichen? äöü
    -- Diese function kann vermutlich später raus? äöü
    function GefahrErmitteln
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return EinheitenRecords.RasseEinheitnummerRecord
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return EinheitenRecords.SpeziesEinheitnummerRecord
    is begin
       
       if
         LeseKIVariablen.Kriegszustand = False
       then
-         return EinheitenKonstanten.LeerRasseNummer;
+         return EinheitenKonstanten.LeerSpeziesNummer;
          
       else
          case
-           LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
          is
             when KIDatentypen.Angreifen_Enum | KIDatentypen.Verteidigen_Enum | KIDatentypen.Verbesserung_Zerstören_Enum | KIDatentypen.Flucht_Enum =>
-               return EinheitenKonstanten.LeerRasseNummer;
+               return EinheitenKonstanten.LeerSpeziesNummer;
             
             when others =>
-               return GefahrSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               return GefahrSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          end case;
       end if;
             
@@ -46,13 +46,13 @@ package body KIGefahrErmittelnLogik is
    
    
    function GefahrSuchen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
-      return EinheitenRecords.RasseEinheitnummerRecord
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return EinheitenRecords.SpeziesEinheitnummerRecord
    is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      AktuelleKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      AktuelleKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
@@ -70,16 +70,16 @@ package body KIGefahrErmittelnLogik is
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                              RasseExtern       => EinheitRasseNummerExtern.Rasse)
+                                              SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
             then
                null;
                   
             else
-               EinheitUnzugeordnet := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert,
+               EinheitUnzugeordnet := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenWert,
                                                                                             LogikGrafikExtern => True);
                   
                case
-                 ReaktionErfoderlich (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                 ReaktionErfoderlich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                       AndereEinheitExtern      => EinheitUnzugeordnet)
                is
                   when False =>
@@ -93,25 +93,25 @@ package body KIGefahrErmittelnLogik is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return EinheitenKonstanten.LeerRasseNummer;
+      return EinheitenKonstanten.LeerSpeziesNummer;
       
    end GefahrSuchen;
    
    
    
    function ReaktionErfoderlich
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      AndereEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      AndereEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       if
         AndereEinheitExtern.Nummer = EinheitenKonstanten.LeerNummer
         or
-          AndereEinheitExtern.Rasse = EinheitRasseNummerExtern.Rasse
+          AndereEinheitExtern.Spezies = EinheitSpeziesNummerExtern.Spezies
       then
          return False;
          
@@ -120,8 +120,8 @@ package body KIGefahrErmittelnLogik is
       end if;
                      
       case
-        LeseDiplomatie.AktuellerZustand (RasseEinsExtern => EinheitRasseNummerExtern.Rasse,
-                                         RasseZweiExtern => AndereEinheitExtern.Rasse)
+        LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => EinheitSpeziesNummerExtern.Spezies,
+                                         SpeziesZweiExtern => AndereEinheitExtern.Spezies)
       is
          when DiplomatieDatentypen.Krieg_Enum =>
             null;
@@ -131,8 +131,8 @@ package body KIGefahrErmittelnLogik is
       end case;
       
       case
-        LeseEinheitenDatenbank.Einheitenart (RasseExtern => AndereEinheitExtern.Rasse,
-                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AndereEinheitExtern))
+        LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => AndereEinheitExtern.Spezies,
+                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => AndereEinheitExtern))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             return False;

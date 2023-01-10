@@ -25,87 +25,87 @@ package body StandardForschungenDatenbank is
    procedure StandardForschungenDatenbankLaden
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in ForschungenDatenbank.ForschungslisteArray'Range (1) loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in ForschungenDatenbank.ForschungslisteArray'Range (1) loop
                           
-         StandardTechnologienLaden (RasseExtern => RasseSchleifenwert);
+         StandardTechnologienLaden (SpeziesExtern => SpeziesSchleifenwert);
          
          ForschungenSchleife:
          for ForschungSchleifenwert in ForschungenDatenbank.ForschungslisteArray'Range (2) loop
             
             case
-              RasseSchleifenwert
+              SpeziesSchleifenwert
             is
-               when RassenDatentypen.Menschen_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenMenschen.ForschungslisteMenschen (ForschungSchleifenwert);
+               when SpeziesDatentypen.Menschen_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenMenschen.ForschungslisteMenschen (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Kasrodiah_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenKasrodiah.ForschungslisteKasrodiah (ForschungSchleifenwert);
+               when SpeziesDatentypen.Kasrodiah_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenKasrodiah.ForschungslisteKasrodiah (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Lasupin_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenLasupin.ForschungslisteLasupin (ForschungSchleifenwert);
+               when SpeziesDatentypen.Lasupin_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenLasupin.ForschungslisteLasupin (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Lamustra_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenLamustra.ForschungslisteLamustra (ForschungSchleifenwert);
+               when SpeziesDatentypen.Lamustra_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenLamustra.ForschungslisteLamustra (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Manuky_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenManuky.ForschungslisteManuky (ForschungSchleifenwert);
+               when SpeziesDatentypen.Manuky_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenManuky.ForschungslisteManuky (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Suroka_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenSuroka.ForschungslisteSuroka (ForschungSchleifenwert);
+               when SpeziesDatentypen.Suroka_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenSuroka.ForschungslisteSuroka (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Pryolon_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenPryolon.ForschungslistePryolon (ForschungSchleifenwert);
+               when SpeziesDatentypen.Pryolon_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenPryolon.ForschungslistePryolon (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Moru_Phisihl_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenMoruPhisihl.ForschungslisteMoruPhisihl (ForschungSchleifenwert);
+               when SpeziesDatentypen.Moru_Phisihl_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenMoruPhisihl.ForschungslisteMoruPhisihl (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Larinos_Lotaris_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenLarinosLotaris.ForschungslisteLarinosLotaris (ForschungSchleifenwert);
+               when SpeziesDatentypen.Larinos_Lotaris_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenLarinosLotaris.ForschungslisteLarinosLotaris (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Carupex_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenCarupex.ForschungslisteCarupex (ForschungSchleifenwert);
+               when SpeziesDatentypen.Carupex_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenCarupex.ForschungslisteCarupex (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Alary_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenAlary.ForschungslisteAlary (ForschungSchleifenwert);
+               when SpeziesDatentypen.Alary_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenAlary.ForschungslisteAlary (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Natries_Zermanis_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenNatriesZermanis.ForschungslisteNatriesZermanis (ForschungSchleifenwert);
+               when SpeziesDatentypen.Natries_Zermanis_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenNatriesZermanis.ForschungslisteNatriesZermanis (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Tridatus_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenTridatus.ForschungslisteTridatus (ForschungSchleifenwert);
+               when SpeziesDatentypen.Tridatus_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenTridatus.ForschungslisteTridatus (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Senelari_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenSenelari.ForschungslisteSenelari (ForschungSchleifenwert);
+               when SpeziesDatentypen.Senelari_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenSenelari.ForschungslisteSenelari (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Aspari_2_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenAspari2.ForschungslisteAspari2 (ForschungSchleifenwert);
+               when SpeziesDatentypen.Aspari_2_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenAspari2.ForschungslisteAspari2 (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Ekropa_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenEkropa.ForschungslisteEkropa (ForschungSchleifenwert);
+               when SpeziesDatentypen.Ekropa_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenEkropa.ForschungslisteEkropa (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Tesorahn_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenTesorahn.ForschungslisteTesorahn (ForschungSchleifenwert);
+               when SpeziesDatentypen.Tesorahn_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenTesorahn.ForschungslisteTesorahn (ForschungSchleifenwert);
                   
-               when RassenDatentypen.Talbidahr_Enum =>
-                  ForschungenDatenbank.Forschungsliste (RasseSchleifenwert, ForschungSchleifenwert) := ForschungenTalbidahr.ForschungslisteTalbidahr (ForschungSchleifenwert);
+               when SpeziesDatentypen.Talbidahr_Enum =>
+                  ForschungenDatenbank.Forschungsliste (SpeziesSchleifenwert, ForschungSchleifenwert) := ForschungenTalbidahr.ForschungslisteTalbidahr (ForschungSchleifenwert);
             end case;
             
          end loop ForschungenSchleife;
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
    end StandardForschungenDatenbankLaden;
    
    
    
    procedure StandardTechnologienLaden
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       VerbesserungenSchleife:
       for VerbesserungSchleifenwert in ForschungKonstanten.TechnologieVerbesserungenArray'Range (1) loop
          
-         ForschungenDatenbank.TechnologieVerbesserungen (VerbesserungSchleifenwert, RasseExtern) := ForschungKonstanten.StandardtechnologieVerbesserungen (VerbesserungSchleifenwert, RasseExtern);
+         ForschungenDatenbank.TechnologieVerbesserungen (VerbesserungSchleifenwert, SpeziesExtern) := ForschungKonstanten.StandardtechnologieVerbesserungen (VerbesserungSchleifenwert, SpeziesExtern);
          
       end loop VerbesserungenSchleife;
       
@@ -114,7 +114,7 @@ package body StandardForschungenDatenbank is
       WegeSchleife:
       for WegSchleifenwert in ForschungKonstanten.TechnologieWegeArray'Range (1) loop
          
-         ForschungenDatenbank.TechnologieWege (WegSchleifenwert, RasseExtern) := ForschungKonstanten.StandardtechnologieWege (WegSchleifenwert, RasseExtern);
+         ForschungenDatenbank.TechnologieWege (WegSchleifenwert, SpeziesExtern) := ForschungKonstanten.StandardtechnologieWege (WegSchleifenwert, SpeziesExtern);
          
       end loop WegeSchleife;
       
@@ -123,7 +123,7 @@ package body StandardForschungenDatenbank is
       UmgebungSchleife:
       for UmgebungSchleifenwert in ForschungKonstanten.TechnologieUmgebungsgrößeArray'Range (1) loop
          
-         ForschungenDatenbank.TechnologieUmgebungsgröße (UmgebungSchleifenwert, RasseExtern) := ForschungKonstanten.StandardtechnologieUmgebungsgröße (UmgebungSchleifenwert, RasseExtern);
+         ForschungenDatenbank.TechnologieUmgebungsgröße (UmgebungSchleifenwert, SpeziesExtern) := ForschungKonstanten.StandardtechnologieUmgebungsgröße (UmgebungSchleifenwert, SpeziesExtern);
          
       end loop UmgebungSchleife;
       

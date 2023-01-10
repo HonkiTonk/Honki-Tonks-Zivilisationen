@@ -9,30 +9,30 @@ with MeldungFestlegenLogik;
 package body DiplomatischerZustandAenderbarLogik is
 
    procedure StatusÄnderbarkeitPrüfen
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
       if
-        NeuerStatusExtern = LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseEinsExtern,
-                                                             RasseZweiExtern => RasseZweiExtern)
+        NeuerStatusExtern = LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesEinsExtern,
+                                                             SpeziesZweiExtern => SpeziesZweiExtern)
       then
          MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungStatus);
          return;
          
       else
-         AktuellerStatus := LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseEinsExtern,
-                                                             RasseZweiExtern => RasseZweiExtern);
+         AktuellerStatus := LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesEinsExtern,
+                                                             SpeziesZweiExtern => SpeziesZweiExtern);
          
-         ZeitSeitÄnderung := LeseDiplomatie.ZeitSeitÄnderung (RasseEinsExtern => RasseEinsExtern,
-                                                                RasseZweiExtern => RasseZweiExtern);
+         ZeitSeitÄnderung := LeseDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern => SpeziesEinsExtern,
+                                                                SpeziesZweiExtern => SpeziesZweiExtern);
          
-         -- Die Sympathiewerte einer Rasse zu einer Anderen müssen nur Zwei zu Eins berücksichtigt werden, da Eins ja was von Zwei will.
-         SympathieZweiZuEins := LeseDiplomatie.AktuelleSympathie (RasseEinsExtern => RasseZweiExtern,
-                                                                  RasseZweiExtern => RasseEinsExtern);
+         -- Die Sympathiewerte einer Spezies zu einer Anderen müssen nur Zwei zu Eins berücksichtigt werden, da Eins ja was von Zwei will.
+         SympathieZweiZuEins := LeseDiplomatie.AktuelleSympathie (SpeziesEinsExtern => SpeziesZweiExtern,
+                                                                  SpeziesZweiExtern => SpeziesEinsExtern);
       end if;
       
       case
@@ -52,8 +52,8 @@ package body DiplomatischerZustandAenderbarLogik is
         ÄnderungMöglich
       is
          when True =>
-            DiplomatischerZustandLogik.DiplomatischenStatusÄndern (RasseEinsExtern   => RasseEinsExtern,
-                                                                    RasseZweiExtern   => RasseZweiExtern,
+            DiplomatischerZustandLogik.DiplomatischenStatusÄndern (SpeziesEinsExtern   => SpeziesEinsExtern,
+                                                                    SpeziesZweiExtern   => SpeziesZweiExtern,
                                                                     NeuerStatusExtern => NeuerStatusExtern);
             
          when False =>

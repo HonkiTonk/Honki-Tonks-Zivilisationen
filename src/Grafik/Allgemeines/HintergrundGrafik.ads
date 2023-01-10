@@ -4,7 +4,7 @@ with Sf.System.Vector2;
 private with Sf.Graphics.Sprite;
 private with Sf.Graphics.Color;
 
-with RassenDatentypen;
+with SpeziesDatentypen;
 with GrafikDatentypen;
 
 package HintergrundGrafik is
@@ -20,10 +20,10 @@ package HintergrundGrafik is
                  AbmessungenExtern.y >= 0.00
               );
 
-   -- Rasse kann hier nicht geprrüft werden da der Abspann eventuell ohne belegte Rasse ankommt!
-   procedure Rassenhintergrund
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      HintergrundExtern : in GrafikDatentypen.Rassenhintergrund_Vorhanden_Enum;
+   -- Spezies kann hier nicht geprrüft werden da der Abspann eventuell ohne belegte Spezies ankommt!
+   procedure Spezieshintergrund
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      HintergrundExtern : in GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
@@ -35,7 +35,7 @@ package HintergrundGrafik is
 private
 
    HintergrundSpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
-   RassenhintergrundSpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
+   SpezieshintergrundSpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
    Farbe : Sf.Graphics.Color.sfColor;
 

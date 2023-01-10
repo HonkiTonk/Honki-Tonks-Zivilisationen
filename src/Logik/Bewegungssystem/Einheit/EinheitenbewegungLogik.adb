@@ -15,21 +15,21 @@ with TransporterBeladenEntladenLogik;
 package body EinheitenbewegungLogik is
    
    function BewegungPrüfen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
             
-      FeldPassierbar := PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      FeldPassierbar := PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                   NeueKoordinatenExtern    => KoordinatenExtern);
-      EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
+      EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
                                                                               LogikGrafikExtern => True);
       
-      Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       if
         FeldPassierbar = False
@@ -39,15 +39,15 @@ package body EinheitenbewegungLogik is
          return False;
          
       elsif
-        EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
+        EinheitAufFeld.Spezies = EinheitSpeziesNummerExtern.Spezies
         and
           KoordinatenExtern = Zielkoordinaten
       then
-         return Einheitentausch (BewegendeEinheitExtern => EinheitRasseNummerExtern,
+         return Einheitentausch (BewegendeEinheitExtern => EinheitSpeziesNummerExtern,
                                  StehendeEinheitExtern  => EinheitAufFeld);
          
       elsif
-        EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
+        EinheitAufFeld.Spezies = EinheitSpeziesNummerExtern.Spezies
         and
           KoordinatenExtern /= Zielkoordinaten
       then
@@ -59,18 +59,18 @@ package body EinheitenbewegungLogik is
          return False;
          
       else
-         StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+         StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                                                                     KoordinatenExtern => KoordinatenExtern);
       end if;
          
       if
-        (EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
+        (EinheitAufFeld.Spezies /= EinheitSpeziesNummerExtern.Spezies
          and
-           EinheitAufFeld.Rasse /= EinheitenKonstanten.LeerRasse)
+           EinheitAufFeld.Spezies /= EinheitenKonstanten.LeerSpezies)
         or
-          (StadtAufFeld.Rasse /= StadtKonstanten.LeerRasse
+          (StadtAufFeld.Spezies /= StadtKonstanten.LeerSpezies
            and
-             StadtAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse)
+             StadtAufFeld.Spezies /= EinheitSpeziesNummerExtern.Spezies)
       then
          if
            KoordinatenExtern /= Zielkoordinaten
@@ -92,20 +92,20 @@ package body EinheitenbewegungLogik is
    
    
    function FremderAufFeld
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      FremdeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      FremdeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
             
       case
-        DiplomatischerZustandLogik.GegnerAngreifen (EigeneRasseExtern      => EinheitRasseNummerExtern.Rasse,
-                                                    GegnerischeRasseExtern => FremdeEinheitExtern.Rasse)
+        DiplomatischerZustandLogik.GegnerAngreifen (EigeneSpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
+                                                    GegnerischeSpeziesExtern => FremdeEinheitExtern.Spezies)
       is
          when False =>
             return False;
             
          when True =>
-            return KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern    => EinheitRasseNummerExtern,
+            return KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern    => EinheitSpeziesNummerExtern,
                                                                   VerteidigerExtern => FremdeEinheitExtern);
       end case;
       
@@ -114,18 +114,18 @@ package body EinheitenbewegungLogik is
    
    
    function FremdeStadtAufFeld
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      FremdeStadtExtern : in StadtRecords.RasseStadtnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      FremdeStadtExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is begin
       
       case
-        DiplomatischerZustandLogik.GegnerAngreifen (EigeneRasseExtern      => EinheitRasseNummerExtern.Rasse,
-                                                    GegnerischeRasseExtern => FremdeStadtExtern.Rasse)
+        DiplomatischerZustandLogik.GegnerAngreifen (EigeneSpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
+                                                    GegnerischeSpeziesExtern => FremdeStadtExtern.Spezies)
       is
          when True =>
-            return KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                           VerteidigendeStadtRasseNummerExtern => FremdeStadtExtern);
+            return KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                           VerteidigendeStadtSpeziesNummerExtern => FremdeStadtExtern);
             
          when False =>
             return False;
@@ -136,8 +136,8 @@ package body EinheitenbewegungLogik is
    
    
    function Einheitentausch
-     (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (BewegendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      StehendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -160,8 +160,8 @@ package body EinheitenbewegungLogik is
    
    
    function EinheitentauschPrüfung
-     (BewegendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      StehendeEinheitExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (BewegendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      StehendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type EinheitenDatentypen.Bewegungspunkte;
@@ -175,25 +175,25 @@ package body EinheitenbewegungLogik is
             return True;
          
          when False =>
-            BewegendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => BewegendeEinheitExtern);
-            StehendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => StehendeEinheitExtern);
+            BewegendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => BewegendeEinheitExtern);
+            StehendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => StehendeEinheitExtern);
       end case;
    
       if
-        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => StehendeEinheitExtern,
+        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => StehendeEinheitExtern,
                                                                           NeueKoordinatenExtern    => BewegendeKoordinaten)
         or
-          False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => BewegendeEinheitExtern,
+          False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => BewegendeEinheitExtern,
                                                                             NeueKoordinatenExtern    => StehendeKoordinaten)
       then
          return False;
          
       elsif
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => StehendeEinheitExtern) < BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => BewegendeKoordinaten,
-                                                                                                                                                           EinheitRasseNummerExtern => StehendeEinheitExtern)
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => StehendeEinheitExtern) < BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => BewegendeKoordinaten,
+                                                                                                                                                           EinheitSpeziesNummerExtern => StehendeEinheitExtern)
         or
-          LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => BewegendeEinheitExtern) < BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => StehendeKoordinaten,
-                                                                                                                                                              EinheitRasseNummerExtern => BewegendeEinheitExtern)
+          LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => BewegendeEinheitExtern) < BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => StehendeKoordinaten,
+                                                                                                                                                              EinheitSpeziesNummerExtern => BewegendeEinheitExtern)
       then
          return False;
          

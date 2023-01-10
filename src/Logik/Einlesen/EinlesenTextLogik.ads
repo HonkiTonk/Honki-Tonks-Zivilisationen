@@ -26,7 +26,7 @@ private
    procedure Kartengröße;
    procedure Kartenart;
    procedure Kartentemperatur;
-   procedure Rassenauswahl;
+   procedure Speziesauswahl;
    procedure Schwierigkeitsgrad;
    procedure Kartenform;
    procedure Ressourcenmenge;

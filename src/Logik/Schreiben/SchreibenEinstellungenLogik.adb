@@ -5,7 +5,7 @@ with GrafikRecords;
 
 with EinstellungenGrafik;
 with TexteinstellungenGrafik;
-with RasseneinstellungenGrafik;
+with SpezieseinstellungenGrafik;
 
 package body SchreibenEinstellungenLogik is
    
@@ -42,10 +42,10 @@ package body SchreibenEinstellungenLogik is
       GrafikRecords.SchriftfarbenRecord'Write (Stream (File => DateiGrafikeinstellungen),
                                                TexteinstellungenGrafik.Schriftfarben);
       
-      RasseneinstellungenGrafik.RassenFarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
-                                                         RasseneinstellungenGrafik.Rassenfarben);
-      RasseneinstellungenGrafik.RassenFarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
-                                                         RasseneinstellungenGrafik.RassenfarbenRahmen);
+      SpezieseinstellungenGrafik.SpeziesFarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
+                                                         SpezieseinstellungenGrafik.Speziesfarben);
+      SpezieseinstellungenGrafik.SpeziesFarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
+                                                         SpezieseinstellungenGrafik.SpeziesfarbenRahmen);
       
       Close (File => DateiGrafikeinstellungen);
       

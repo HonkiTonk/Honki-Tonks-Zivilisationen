@@ -22,14 +22,14 @@ package body UmwandlungenVerschiedeneDatentypen is
    
    
    
-   function RückgabeNachRasse
-     (RückgabeExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum)
-      return RassenDatentypen.Rassen_Verwendet_Enum
+   function RückgabeNachSpezies
+     (RückgabeExtern : in RueckgabeDatentypen.Spezies_Verwendet_Enum)
+      return SpeziesDatentypen.Spezies_Verwendet_Enum
    is begin
       
-      return RückgabeRasse (RückgabeExtern);
+      return RückgabeSpezies (RückgabeExtern);
       
-   end RückgabeNachRasse;
+   end RückgabeNachSpezies;
    
    
    

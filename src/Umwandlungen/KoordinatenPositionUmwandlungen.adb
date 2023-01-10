@@ -11,14 +11,14 @@ package body KoordinatenPositionUmwandlungen is
 
    function KoordinatenZuKartenposition
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Sf.System.Vector2.sfVector2f
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
       Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
-      CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (RasseExtern => RasseExtern);
+      CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
       Feldposition := (0.00, 0.00);
             
       YAchseSchleife:
@@ -61,12 +61,12 @@ package body KoordinatenPositionUmwandlungen is
    -- Noch ungetestet, könnte eventuell nicht richtig funktionieren.
    function KartenpositionZuKoordinaten
      (PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
-      CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (RasseExtern => RasseExtern);
+      CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
       Feldposition := (0.00, 0.00);
             
       YAchseSchleife:

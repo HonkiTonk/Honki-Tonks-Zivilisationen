@@ -7,15 +7,15 @@ with KIKartenfeldbewertungModifizierenLogik;
 package body KIEinheitUmsetzenSiedelnLogik is
 
    function StadtErrichten
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
       case
-        KIKartenfeldbewertungModifizierenLogik.StadtabstandVorhanden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        KIKartenfeldbewertungModifizierenLogik.StadtabstandVorhanden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
       is
          when True =>
-            return StadtBauenLogik.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            return StadtBauenLogik.StadtBauen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>
             return False;

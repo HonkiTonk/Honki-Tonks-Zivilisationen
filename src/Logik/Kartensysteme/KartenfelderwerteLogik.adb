@@ -4,22 +4,22 @@ package body KartenfelderwerteLogik is
 
    function FeldNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Feldproduktion
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
       return KartenAllgemeinesLogik.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                  RasseExtern       => RasseExtern)
+                                                  SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.RessourceNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                   RasseExtern       => RasseExtern)
+                                                   SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.WegNahrung (KoordinatenExtern => KoordinatenExtern,
-                                             RasseExtern       => RasseExtern)
+                                             SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.VerbesserungNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                      RasseExtern       => RasseExtern)
+                                                      SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.FlussNahrung (KoordinatenExtern => KoordinatenExtern,
-                                               RasseExtern       => RasseExtern);
+                                               SpeziesExtern       => SpeziesExtern);
       
    end FeldNahrung;
      
@@ -27,22 +27,22 @@ package body KartenfelderwerteLogik is
    
    function FeldProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Feldproduktion
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
       return KartenAllgemeinesLogik.GrundProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                     RasseExtern       => RasseExtern)
+                                                     SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.RessourceProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                      RasseExtern       => RasseExtern)
+                                                      SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.WegProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                RasseExtern       => RasseExtern)
+                                                SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.VerbesserungProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                         RasseExtern       => RasseExtern)
+                                                         SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.FlussProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                  RasseExtern       => RasseExtern);
+                                                  SpeziesExtern       => SpeziesExtern);
       
    end FeldProduktion;
      
@@ -50,22 +50,22 @@ package body KartenfelderwerteLogik is
      
    function FeldGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Feldproduktion
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
       return KartenAllgemeinesLogik.GrundGeld (KoordinatenExtern => KoordinatenExtern,
-                                               RasseExtern       => RasseExtern)
+                                               SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.RessourceGeld (KoordinatenExtern => KoordinatenExtern,
-                                                RasseExtern       => RasseExtern)
+                                                SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.WegGeld (KoordinatenExtern => KoordinatenExtern,
-                                          RasseExtern       => RasseExtern)
+                                          SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.VerbesserungGeld (KoordinatenExtern => KoordinatenExtern,
-                                                   RasseExtern       => RasseExtern)
+                                                   SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.FlussGeld (KoordinatenExtern => KoordinatenExtern,
-                                            RasseExtern       => RasseExtern);
+                                            SpeziesExtern       => SpeziesExtern);
       
    end FeldGeld;
      
@@ -73,22 +73,22 @@ package body KartenfelderwerteLogik is
      
    function FeldWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Feldproduktion
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
       return KartenAllgemeinesLogik.GrundWissen (KoordinatenExtern => KoordinatenExtern,
-                                                 RasseExtern       => RasseExtern)
+                                                 SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.RessourceWissen (KoordinatenExtern => KoordinatenExtern,
-                                                  RasseExtern       => RasseExtern)
+                                                  SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.WegWissen (KoordinatenExtern => KoordinatenExtern,
-                                            RasseExtern       => RasseExtern)
+                                            SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.VerbesserungWissen (KoordinatenExtern => KoordinatenExtern,
-                                                     RasseExtern       => RasseExtern)
+                                                     SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.FlussWissen (KoordinatenExtern => KoordinatenExtern,
-                                              RasseExtern       => RasseExtern);
+                                              SpeziesExtern       => SpeziesExtern);
       
    end FeldWissen;
      
@@ -96,22 +96,22 @@ package body KartenfelderwerteLogik is
      
    function FeldVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is
       use type KampfDatentypen.KampfwerteGroß;
    begin
       
       return KartenAllgemeinesLogik.GrundVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                       RasseExtern       => RasseExtern)
+                                                       SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.RessourceVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                        RasseExtern       => RasseExtern)
+                                                        SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.WegVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                  RasseExtern       => RasseExtern)
+                                                  SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.VerbesserungVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                           RasseExtern       => RasseExtern)
+                                                           SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.FlussVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                    RasseExtern       => RasseExtern);
+                                                    SpeziesExtern       => SpeziesExtern);
       
    end FeldVerteidigung;
      
@@ -119,22 +119,22 @@ package body KartenfelderwerteLogik is
      
    function FeldAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is
       use type KampfDatentypen.KampfwerteGroß;
    begin
       
       return KartenAllgemeinesLogik.GrundAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                  RasseExtern       => RasseExtern)
+                                                  SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.RessourceAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                   RasseExtern       => RasseExtern)
+                                                   SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.WegAngriff (KoordinatenExtern => KoordinatenExtern,
-                                             RasseExtern       => RasseExtern)
+                                             SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.VerbesserungAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                      RasseExtern       => RasseExtern)
+                                                      SpeziesExtern       => SpeziesExtern)
         + KartenAllgemeinesLogik.FlussAngriff (KoordinatenExtern => KoordinatenExtern,
-                                               RasseExtern       => RasseExtern);
+                                               SpeziesExtern       => SpeziesExtern);
       
    end FeldAngriff;
 

@@ -15,12 +15,12 @@ with Fehlermeldungssystem;
 package body PassierbarkeitspruefungLogik is
    
    function PassierbarkeitPrüfenNummer
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
       
-      IDEinheit := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      IDEinheit := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
         IDEinheit
@@ -30,7 +30,7 @@ package body PassierbarkeitspruefungLogik is
             return False;
             
          when others =>
-            return PassierbarkeitPrüfenID (RasseExtern                => EinheitRasseNummerExtern.Rasse,
+            return PassierbarkeitPrüfenID (SpeziesExtern                => EinheitSpeziesNummerExtern.Spezies,
                                             IDExtern                   => IDEinheit,
                                             NeueKoordinatenExtern      => NeueKoordinatenExtern,
                                             StadtBerücksichtigenExtern => True);
@@ -43,7 +43,7 @@ package body PassierbarkeitspruefungLogik is
    -- Funktioniert noch nicht korrekt wenn sich darunter/oben drüber eine Stadt befindet. äöü
    -- So lassen oder später noch einmal anpassen? äöü
    function PassierbarkeitPrüfenID
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenID;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtBerücksichtigenExtern : in Boolean)
@@ -54,7 +54,7 @@ package body PassierbarkeitspruefungLogik is
       for PassierbarkeitSchleifenwert in EinheitenDatentypen.Passierbarkeit_Enum'Range loop
          
          case
-           LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => RasseExtern,
+           LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => SpeziesExtern,
                                                   IDExtern             => IDExtern,
                                                   WelcheUmgebungExtern => PassierbarkeitSchleifenwert)
          is
@@ -62,7 +62,7 @@ package body PassierbarkeitspruefungLogik is
                Passierbar := False;
                
             when True =>
-               Passierbar := IstPassierbar (RasseExtern                => RasseExtern,
+               Passierbar := IstPassierbar (SpeziesExtern                => SpeziesExtern,
                                             UmgebungExtern             => PassierbarkeitSchleifenwert,
                                             NeueKoordinatenExtern      => NeueKoordinatenExtern,
                                             StadtBerücksichtigenExtern => StadtBerücksichtigenExtern);
@@ -88,7 +88,7 @@ package body PassierbarkeitspruefungLogik is
    
    -- Eventuell mit IstNichtPassierbar zusammenführen oder anders aufteilen. äöü
    function IstPassierbar
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtBerücksichtigenExtern : in Boolean)
@@ -110,7 +110,7 @@ package body PassierbarkeitspruefungLogik is
         StadtBerücksichtigenExtern
       is
          when True =>
-            StadtVorhanden := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+            StadtVorhanden := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
                                                                                KoordinatenExtern => NeueKoordinatenExtern);
             
          when False =>
@@ -121,7 +121,7 @@ package body PassierbarkeitspruefungLogik is
         StadtVorhanden
       is
          when StadtKonstanten.LeerNummer =>
-            return IstNichtPassierbar (RasseExtern           => RasseExtern,
+            return IstNichtPassierbar (SpeziesExtern           => SpeziesExtern,
                                        UmgebungExtern        => UmgebungExtern,
                                        NeueKoordinatenExtern => NeueKoordinatenExtern);
             
@@ -134,12 +134,12 @@ package body PassierbarkeitspruefungLogik is
    
    
    function IstNichtPassierbar
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
             
       WegVorhanden := LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern);
@@ -149,7 +149,7 @@ package body PassierbarkeitspruefungLogik is
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
-              RasseExtern = RassenDatentypen.Ekropa_Enum
+              SpeziesExtern = SpeziesDatentypen.Ekropa_Enum
             then
                null;
                
@@ -212,13 +212,13 @@ package body PassierbarkeitspruefungLogik is
    
    -- In eine eigene Datei verschieben? äöü
    function RichtigeUmgebungVorhanden
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
       return Boolean
    is begin
             
-      StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      Stadtumgebung := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      Stadtumgebung := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
       for YAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
@@ -235,13 +235,13 @@ package body PassierbarkeitspruefungLogik is
                null;
                
             elsif
-              False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+              False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                KoordinatenExtern      => KartenWert)
             then
                null;
             
             elsif
-              False = PassierbarkeitPrüfenID (RasseExtern                => StadtRasseNummerExtern.Rasse,
+              False = PassierbarkeitPrüfenID (SpeziesExtern                => StadtSpeziesNummerExtern.Spezies,
                                                IDExtern                   => EinheitenIDExtern,
                                                NeueKoordinatenExtern      => KartenWert,
                                                StadtBerücksichtigenExtern => False)

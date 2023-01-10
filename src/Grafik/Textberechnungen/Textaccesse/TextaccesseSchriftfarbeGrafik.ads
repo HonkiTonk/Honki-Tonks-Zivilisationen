@@ -7,7 +7,7 @@ private
 
    procedure Allgemeines;
    procedure Menüs;
-   procedure Rassen;
+   procedure Spezies;
    procedure ZusatztextKartengröße;
    procedure Sprachauswahl;
    procedure Kartenformauswahl;

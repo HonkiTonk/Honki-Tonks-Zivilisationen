@@ -11,7 +11,7 @@ with Grenzpruefungen;
 package body FarmErmittelnLogik is
 
    function FarmErmitteln
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -20,7 +20,7 @@ package body FarmErmittelnLogik is
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        ArbeitszeitFarmLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, Gesamtgrund.Basisgrund)
+        ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, Gesamtgrund.Basisgrund)
       is
          when EinheitenKonstanten.UnmöglicheArbeit =>
             return False;
@@ -42,19 +42,19 @@ package body FarmErmittelnLogik is
         Gesamtgrund.Basisgrund
       is
          when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
-            Arbeitswerte := OberflächeLand (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            Arbeitswerte := OberflächeLand (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                              GrundExtern              => Gesamtgrund,
                                              AnlegenTestenExtern      => AnlegenTestenExtern,
                                              KoordinatenExtern        => KoordinatenExtern);
             
          when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
-            Arbeitswerte := UnterflächeWasser (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            Arbeitswerte := UnterflächeWasser (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                 GrundExtern              => Gesamtgrund,
                                                 AnlegenTestenExtern      => AnlegenTestenExtern,
                                                 KoordinatenExtern        => KoordinatenExtern);
             
          when KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
-            Arbeitswerte := UnterflächeLand (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            Arbeitswerte := UnterflächeLand (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                               GrundExtern              => Gesamtgrund);
             
          when others =>
@@ -81,16 +81,16 @@ package body FarmErmittelnLogik is
             if
               Arbeitswerte.Vorarbeit
             then
-               SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+               SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                  BeschäftigungExtern     => Arbeitswerte.Aufgabe);
-               SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+               SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                       ZeitExtern               => Arbeitswerte.Arbeitszeit,
                                                                       RechnenSetzenExtern      => False);
                
             else
-               SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+               SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        BeschäftigungExtern     => Arbeitswerte.Aufgabe);
-               SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+               SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                             ZeitExtern               => Arbeitswerte.Arbeitszeit,
                                                             RechnenSetzenExtern      => False);
             end if;
@@ -106,7 +106,7 @@ package body FarmErmittelnLogik is
    
    
    function OberflächeLand
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       GrundExtern : in KartenRecords.KartengrundRecord;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -116,7 +116,7 @@ package body FarmErmittelnLogik is
    begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));
+                                                  ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
         GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
@@ -124,12 +124,12 @@ package body FarmErmittelnLogik is
          VorarbeitNötig := False;
          
       elsif
-        True = RodenErmittelnLogik.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        True = RodenErmittelnLogik.RodenErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                    AnlegenTestenExtern      => AnlegenTestenExtern,
                                                    KoordinatenExtern        => KoordinatenExtern)
       then
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitFarmLogik.Zusatzzeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Zusatzgrund));
+                                                     ÄnderungExtern      => ArbeitszeitFarmLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
          VorarbeitNötig := True;
          
       else
@@ -147,7 +147,7 @@ package body FarmErmittelnLogik is
    
      
    function UnterflächeLand
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitVorleistungRecord
    is
@@ -155,7 +155,7 @@ package body FarmErmittelnLogik is
    begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));
+                                                  ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
         GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
@@ -164,7 +164,7 @@ package body FarmErmittelnLogik is
          
       else
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitFarmLogik.Zusatzzeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Zusatzgrund));
+                                                     ÄnderungExtern      => ArbeitszeitFarmLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
          VorarbeitNötig := False;
       end if;
       
@@ -179,7 +179,7 @@ package body FarmErmittelnLogik is
      
      
    function UnterflächeWasser
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       GrundExtern : in KartenRecords.KartengrundRecord;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -189,7 +189,7 @@ package body FarmErmittelnLogik is
    begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Basisgrund));
+                                                  ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
         GrundExtern.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
@@ -197,12 +197,12 @@ package body FarmErmittelnLogik is
          VorarbeitNötig := False;
          
       elsif
-        True = RodenErmittelnLogik.RodenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        True = RodenErmittelnLogik.RodenErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                    AnlegenTestenExtern      => AnlegenTestenExtern,
                                                    KoordinatenExtern        => KoordinatenExtern)
       then
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                     ÄnderungExtern      => ArbeitszeitFarmLogik.Zusatzzeit (EinheitRasseNummerExtern.Rasse, GrundExtern.Zusatzgrund));
+                                                     ÄnderungExtern      => ArbeitszeitFarmLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
          VorarbeitNötig := True;
          
       else

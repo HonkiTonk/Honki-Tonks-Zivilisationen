@@ -6,7 +6,7 @@ with TextnummernKonstanten;
 with SchreibenEinstellungenLogik;
 with EinlesenSpracheLogik;
 with EinlesenTextLogik;
-with EinlesenRassentexteLogik;
+with EinlesenSpeziestexteLogik;
 
 with SprachauswahlLogik;
 with ZahleneingabeLogik;
@@ -117,7 +117,7 @@ package body OptionenSonstigesLogik is
             else
                OptionenVariablen.NutzerEinstellungen.Sprache := GewählteSprache;
                EinlesenTextLogik.EinlesenDateien;
-               EinlesenRassentexteLogik.RassentexteEinlesen;
+               EinlesenSpeziestexteLogik.SpeziestexteEinlesen;
                NachGrafiktask.AccesseSetzen := True;
             end if;
             

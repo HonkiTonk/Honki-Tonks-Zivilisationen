@@ -67,8 +67,8 @@ package body ZusatztextDiplomatieGrafik is
         TextnummerExtern = SystemKonstanten.EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum)
       then
          case
-           LeseDiplomatie.AktuellerZustand (RasseEinsExtern => NachGrafiktask.AktuelleRasse,
-                                            RasseZweiExtern => NachGrafiktask.KontaktierteRasse)
+           LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => NachGrafiktask.AktuelleSpezies,
+                                            SpeziesZweiExtern => NachGrafiktask.KontaktierteSpezies)
          is
             when DiplomatieDatentypen.Neutral_Enum =>
                Zustandnummer := TextnummernKonstanten.ZeugFrieden;
@@ -86,8 +86,8 @@ package body ZusatztextDiplomatieGrafik is
          Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & Meldungstexte.Zeug (Zustandnummer);
          
       else
-         Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & LeseDiplomatie.AktuelleSympathie (RasseEinsExtern => NachGrafiktask.AktuelleRasse,
-                                                                                                         RasseZweiExtern => NachGrafiktask.KontaktierteRasse)'Wide_Wide_Image;
+         Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & LeseDiplomatie.AktuelleSympathie (SpeziesEinsExtern => NachGrafiktask.AktuelleSpezies,
+                                                                                                         SpeziesZweiExtern => NachGrafiktask.KontaktierteSpezies)'Wide_Wide_Image;
       end if;
       
       return To_Wide_Wide_String (Source => Text);

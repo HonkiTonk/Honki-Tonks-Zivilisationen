@@ -1,7 +1,7 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with RassenDatentypen;
+private with SpeziesDatentypen;
 private with KartenRecords;
 private with WeltkarteRecords;
 private with SpielRecords;
@@ -15,7 +15,7 @@ package LadenLogik is
      return Boolean;
 
 private
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    Leerwert : Boolean;
    PrüfungErfolgreich : Boolean;
@@ -41,7 +41,7 @@ private
 
    Allgemeines : SpielRecords.AllgemeinesRecord;
 
-   Rassenbelegung : SpielRecords.RassenbelegungArray;
+   Speziesbelegung : SpielRecords.SpeziesbelegungArray;
 
    Karteneintrag : WeltkarteRecords.WeltkarteRecord;
 
@@ -64,14 +64,14 @@ private
       DateiLadenExtern : in File_Type)
       return Boolean;
 
-   function RassenwerteLaden
+   function SpezieswerteLaden
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
       return Boolean;
 
-   function Rassenwerte
+   function Spezieswerte
      (LadenPrüfenExtern : in Boolean;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateiLadenExtern : in File_Type)
       return Boolean;
 

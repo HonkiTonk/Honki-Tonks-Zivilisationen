@@ -14,13 +14,13 @@ with KartenkoordinatenberechnungssystemLogik;
 package body EinheitenverschiebungLogik is
    
    procedure VonEigenemLandWerfen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       case
-        LeseDiplomatie.AktuellerZustand (RasseEinsExtern => RasseExtern,
-                                         RasseZweiExtern => KontaktierteRasseExtern)
+        LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesExtern,
+                                         SpeziesZweiExtern => KontaktierteSpeziesExtern)
       is
          when DiplomatieDatentypen.Nichtangriffspakt_Enum | DiplomatieDatentypen.Neutral_Enum =>
             null;
@@ -30,17 +30,17 @@ package body EinheitenverschiebungLogik is
       end case;
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
          
          case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
             when StadtKonstanten.LeerID =>
                null;
                
             when others =>
-               EinheitenErmitteln (StadtRasseNummerExtern  => (RasseExtern, StadtSchleifenwert),
-                                   KontaktierteRasseExtern => KontaktierteRasseExtern);
+               EinheitenErmitteln (StadtSpeziesNummerExtern  => (SpeziesExtern, StadtSchleifenwert),
+                                   KontaktierteSpeziesExtern => KontaktierteSpeziesExtern);
          end case;
          
       end loop StadtSchleife;
@@ -50,19 +50,19 @@ package body EinheitenverschiebungLogik is
    
    
    procedure EinheitenErmitteln
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
-      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      KontaktierteSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       EinheitNummer := EinheitenKonstanten.LeerNummer;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
+      for YAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
+         for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) loop
                
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (Stadtkoordinaten.EAchse, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -74,13 +74,13 @@ package body EinheitenverschiebungLogik is
                null;
                
             elsif
-              False = LeseWeltkarte.BelegterGrund (RasseExtern       => StadtRasseNummerExtern.Rasse,
+              False = LeseWeltkarte.BelegterGrund (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
                                                 KoordinatenExtern => Kartenwert)
             then
                null;
                                                                                                  
             else
-               EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => KontaktierteRasseExtern,
+               EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => KontaktierteSpeziesExtern,
                                                                                      KoordinatenExtern => Kartenwert,
                                                                                      LogikGrafikExtern => True);
             end if;
@@ -92,8 +92,8 @@ package body EinheitenverschiebungLogik is
                   null;
                      
                when others =>
-                  EinheitVerschieben (RasseLandExtern          => StadtRasseNummerExtern.Rasse,
-                                      EinheitRasseNummerExtern => (KontaktierteRasseExtern, EinheitNummer));
+                  EinheitVerschieben (SpeziesLandExtern          => StadtSpeziesNummerExtern.Spezies,
+                                      EinheitSpeziesNummerExtern => (KontaktierteSpeziesExtern, EinheitNummer));
             end case;
          
          end loop XAchseSchleife;
@@ -104,8 +104,8 @@ package body EinheitenverschiebungLogik is
    
 
    procedure EinheitVerschieben
-     (RasseLandExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (SpeziesLandExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type KartenDatentypen.Kartenfeld;
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
@@ -113,7 +113,7 @@ package body EinheitenverschiebungLogik is
       
       UmgebungPrüfen := KartenDatentypen.Sichtweite'First;
       BereitsGeprüft := UmgebungPrüfen - 1;
-      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       BereichSchleife:
       while UmgebungPrüfen < KartenDatentypen.Sichtweite'Last loop
@@ -139,16 +139,16 @@ package body EinheitenverschiebungLogik is
                   null;
             
                elsif
-                 False = LeseWeltkarte.BelegterGrund (RasseExtern       => RasseLandExtern,
+                 False = LeseWeltkarte.BelegterGrund (SpeziesExtern       => SpeziesLandExtern,
                                                    KoordinatenExtern => KartenwertVerschieben)
                  and
-                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                     NeueKoordinatenExtern    => KartenwertVerschieben)
                  and
-                   EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenwertVerschieben,
+                   EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenwertVerschieben,
                                                                                                           LogikGrafikExtern => True).Nummer
                then
-                  SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                  SchreibeEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern        => KartenwertVerschieben,
                                                        EinheitentauschExtern    => False);
                   return;

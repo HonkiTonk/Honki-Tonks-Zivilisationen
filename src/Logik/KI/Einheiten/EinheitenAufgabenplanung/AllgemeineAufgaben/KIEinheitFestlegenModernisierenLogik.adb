@@ -21,21 +21,21 @@ package body KIEinheitFestlegenModernisierenLogik is
    -- Hier wird weder geprüft ob das Feld schon belegt ist, noch ob sich eine andere Einheit bereits dahin befindet. äöü
    -- Muss prüfen ob die Heimatstadt das mitmacht und die Geldgewinnung. Und natürlich ob eine benötigte Ressource vorhanden ist. äöü
    function EinheitVerbessern
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KartenDatentypen.Kartenfeld;
    begin
       
       case
-        EinheitVerbessernLogik.EinheitVerbesserbar (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        EinheitVerbessernLogik.EinheitVerbesserbar (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when EinheitenKonstanten.LeerID =>
             return False;
               
          when others =>
-            PlatzGefunden := KISonstigesSuchenLogik.EigenesFeldSuchen (AktuelleKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                       EinheitRasseNummerExtern  => EinheitRasseNummerExtern);
+            PlatzGefunden := KISonstigesSuchenLogik.EigenesFeldSuchen (AktuelleKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                                                       EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern);
       end case;
             
       case
@@ -45,9 +45,9 @@ package body KIEinheitFestlegenModernisierenLogik is
             null;
             
          when others =>
-            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern        => PlatzGefunden);
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Einheit_Verbessern_Enum);
             return True;
       end case;
@@ -56,14 +56,14 @@ package body KIEinheitFestlegenModernisierenLogik is
       for StadtSchleifenwert in StadtDatentypen.MaximaleStädte'Range loop
          
          case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtSchleifenwert))
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtSchleifenwert))
          is
             when StadtKonstanten.LeerID =>
                null;
                
             when others =>
-               PlatzGefunden := EinheitVerbessernPlatz (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtSchleifenwert),
-                                                        EinheitNummerExtern    => EinheitRasseNummerExtern.Nummer);
+               PlatzGefunden := EinheitVerbessernPlatz (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtSchleifenwert),
+                                                        EinheitNummerExtern    => EinheitSpeziesNummerExtern.Nummer);
                
                if
                  PlatzGefunden.XAchse = KartenKonstanten.LeerXAchse
@@ -84,9 +84,9 @@ package body KIEinheitFestlegenModernisierenLogik is
             return False;
             
          when others =>
-            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern        => PlatzGefunden);
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Einheit_Verbessern_Enum);
             return True;
       end case;
@@ -96,7 +96,7 @@ package body KIEinheitFestlegenModernisierenLogik is
    
    
    function EinheitVerbessernPlatz
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is
@@ -104,8 +104,8 @@ package body KIEinheitFestlegenModernisierenLogik is
       use type KIDatentypen.Bewegung_Enum;
    begin
       
-      Umgebung := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Umgebung := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
       for YAchseSchleifenwert in -Umgebung .. Umgebung loop
@@ -122,14 +122,14 @@ package body KIEinheitFestlegenModernisierenLogik is
                null;
                
             elsif
-              False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
+              False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern),
                                                                                 NeueKoordinatenExtern    => KartenWert)
             then
                null;
                
             elsif
               KIKonstanten.BewegungNormal /= KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern    => KartenWert,
-                                                                                    EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern))
+                                                                                    EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern))
             then
                null;
                

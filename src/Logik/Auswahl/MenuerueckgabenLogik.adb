@@ -29,7 +29,7 @@ package body MenuerueckgabenLogik is
                                             AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Kartenpole_Menü_Enum | MenueDatentypen.Kartengröße_Menü_Enum | MenueDatentypen.Kartenart_Menü_Enum | MenueDatentypen.Kartenform_Menü_Enum | MenueDatentypen.Kartentemperatur_Menü_Enum
-            | MenueDatentypen.Kartenressourcen_Menü_Enum | MenueDatentypen.Schwierigkeitsgrad_Menü_Enum | MenueDatentypen.Rassen_Menü_Enum | MenueDatentypen.Debug_Menü_Enum =>
+            | MenueDatentypen.Kartenressourcen_Menü_Enum | MenueDatentypen.Schwierigkeitsgrad_Menü_Enum | MenueDatentypen.Spezies_Menü_Enum | MenueDatentypen.Debug_Menü_Enum =>
             MitFertig := True;
             
          when others =>

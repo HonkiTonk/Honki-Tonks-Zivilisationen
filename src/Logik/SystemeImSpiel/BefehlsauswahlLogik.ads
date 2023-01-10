@@ -1,38 +1,38 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with RueckgabeDatentypen;
 
 private with TastenbelegungDatentypen;
 private with StadtRecords;
 
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package BefehlsauswahlLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    function Befehlsauswahl
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
 private
       
    Befehl : TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
    
-   StadtSuchenNachNamen : StadtRecords.RasseStadtnummerRecord;
+   StadtSuchenNachNamen : StadtRecords.SpeziesStadtnummerRecord;
    
    
    
    function Tasteneingabe
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       BefehlExtern : in TastenbelegungDatentypen.Allgemeine_Belegung_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
 end BefehlsauswahlLogik;

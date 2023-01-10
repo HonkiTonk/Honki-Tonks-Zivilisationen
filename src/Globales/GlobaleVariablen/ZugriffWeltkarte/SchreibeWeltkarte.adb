@@ -88,7 +88,7 @@ package body SchreibeWeltkarte is
    
    procedure Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SichtbarExtern : in Boolean)
    is begin
       
@@ -99,7 +99,7 @@ package body SchreibeWeltkarte is
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Sichtbar: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern) := SichtbarExtern;
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (SpeziesExtern) := SichtbarExtern;
       end case;
         
    end Sichtbar;
@@ -184,7 +184,7 @@ package body SchreibeWeltkarte is
    
    procedure BelegterGrund
      (KoordinatenExtern : KartenRecords.AchsenKartenfeldNaturalRecord;
-      BelegterGrundExtern : in StadtRecords.RasseStadtnummerRecord)
+      BelegterGrundExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
       case
@@ -203,11 +203,11 @@ package body SchreibeWeltkarte is
    
    procedure EinheitSchreiben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       EinheitentauschExtern : in Boolean)
    is
       use type KartenDatentypen.Ebene;
-      use type EinheitenRecords.RasseEinheitnummerRecord;
+      use type EinheitenRecords.SpeziesEinheitnummerRecord;
    begin
       
       if
@@ -216,14 +216,14 @@ package body SchreibeWeltkarte is
          null;
          
       elsif
-        LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern) /= EinheitenKonstanten.LeerRasseNummer
+        LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern) /= EinheitenKonstanten.LeerSpeziesNummer
         and
           EinheitentauschExtern = False
       then
          null;
          
       else
-         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit := EinheitRasseNummerExtern;
+         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit := EinheitSpeziesNummerExtern;
       end if;
       
    end EinheitSchreiben;
@@ -232,30 +232,30 @@ package body SchreibeWeltkarte is
    
    procedure EinheitEntfernen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
       use type KartenDatentypen.Ebene;
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      use type EinheitenRecords.RasseEinheitnummerRecord;
+      use type EinheitenRecords.SpeziesEinheitnummerRecord;
    begin
       
       if
-        EinheitRasseNummerExtern.Rasse = EinheitenKonstanten.LeerRasse
+        EinheitSpeziesNummerExtern.Spezies = EinheitenKonstanten.LeerSpezies
         or
-          EinheitRasseNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
+          EinheitSpeziesNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
           or
             KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse
       then
          null;
          
       elsif
-        LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern) /= EinheitRasseNummerExtern
+        LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern) /= EinheitSpeziesNummerExtern
       then
          null;
          
       else
-         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit := EinheitenKonstanten.LeerRasseNummer;
+         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit := EinheitenKonstanten.LeerSpeziesNummer;
       end if;
       
    end EinheitEntfernen;

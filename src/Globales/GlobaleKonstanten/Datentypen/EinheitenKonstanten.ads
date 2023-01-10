@@ -1,7 +1,7 @@
 with EinheitenDatentypen;
 with ForschungKonstanten;
 with AufgabenDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with EinheitenRecords;
@@ -13,9 +13,9 @@ with KIDatentypen;
 package EinheitenKonstanten is
    pragma Preelaborate;
    
-   LeerRasse : constant RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
+   LeerSpezies : constant SpeziesDatentypen.Spezies_Enum := SpeziesDatentypen.Keine_Spezies_Enum;
    LeerNummer : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerRasseNummer : constant EinheitenRecords.RasseEinheitnummerRecord := (LeerRasse, LeerNummer);
+   LeerSpeziesNummer : constant EinheitenRecords.SpeziesEinheitnummerRecord := (LeerSpezies, LeerNummer);
    
    AnfangNummer : constant EinheitenDatentypen.MaximaleEinheiten := EinheitenDatentypen.MaximaleEinheiten'First;
 

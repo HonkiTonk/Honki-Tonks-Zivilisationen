@@ -6,12 +6,12 @@ with EinheitenDatenbank;
 with ForschungenDatenbank;
 with GebaeudeDatenbank;
 with KartenDatenbank;
-with RassenDatenbank;
+with SpeziesDatenbank;
 with ForschungKonstanten;
 with VerbesserungenDatenbank;
 
 with StandardVerbesserungenDatenbank;
-with StandardRassenDatenbank;
+with StandardSpeziesDatenbank;
 with StandardKartenDatenbank;
 with StandardGebaeudeDatenbank;
 with StandardForschungenDatenbank;
@@ -27,7 +27,7 @@ package body EinlesenDatenbankenLogik is
       EinlesenGebäudeDatenbank;
       EinlesenKartengrundDatenbank;
       EinlesenVerbesserungenDatenbank;
-      EinlesenRassenDatenbank;
+      EinlesenSpeziesDatenbank;
       
    end EinlesenAlleDatenbanken;
    
@@ -230,26 +230,26 @@ package body EinlesenDatenbankenLogik is
    
    
    
-   procedure EinlesenRassenDatenbank
+   procedure EinlesenSpeziesDatenbank
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.RassenDatenbank)
+        Exists (Name => VerzeichnisKonstanten.SpeziesDatenbank)
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.RassenDatenbank);
+                  Name => VerzeichnisKonstanten.SpeziesDatenbank);
       
-            RassenDatenbank.RassenlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                   RassenDatenbank.Rassenliste);
+            SpeziesDatenbank.SpezieslisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                   SpeziesDatenbank.Speziesliste);
       
             Close (File => DatenbankEinlesen);
 
          when False =>
-            StandardRassenDatenbank.StandardRassenDatenbankLaden;
+            StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
       end case;
       
-   end EinlesenRassenDatenbank;
+   end EinlesenSpeziesDatenbank;
 
 end EinlesenDatenbankenLogik;

@@ -1,7 +1,7 @@
 private with Ada.Numerics.Discrete_Random;
 
 with KartenartDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with SpielDatentypen;
 with RueckgabeDatentypen;
 with KartenRecords;
@@ -11,7 +11,7 @@ private with KartenDatentypen;
 package ZufallsgeneratorenSpieleinstellungenLogik is
    pragma Elaborate_Body;
      
-   procedure ZufälligeRassenbelegung;
+   procedure ZufälligeSpeziesbelegung;
    procedure ZufälligeKartenform;
    procedure ZufälligePole;
    procedure ZufälligeKartenart;
@@ -36,14 +36,14 @@ package ZufallsgeneratorenSpieleinstellungenLogik is
    function ZufälligerSchwiewrigkeitsgrad
      return SpielDatentypen.Schwierigkeitsgrad_Enum;
    
-   function ZufälligeRasse
-     return RassenDatentypen.Rassen_Verwendet_Enum;
+   function ZufälligeSpezies
+     return SpeziesDatentypen.Spezies_Verwendet_Enum;
 
 private
    
    SpielerVorhanden : Boolean;
    
-   RasseImSpiel : RassenDatentypen.Spieler_Enum;
+   SpeziesImSpiel : SpeziesDatentypen.Spieler_Enum;
    
    Poldicke : KartenDatentypen.KartenfeldNatural;
    
@@ -52,9 +52,9 @@ private
    package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenart_Normal_Enum);
    package ZufälligeKartentemperaturWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartentemperatur_Enum);
    package ZufälligeKartenressourcenWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenressourcenmenge_Enum);
-   package ZufälligeRassenbelegungWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => RassenDatentypen.Spieler_Enum);
+   package ZufälligeSpeziesbelegungWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpeziesDatentypen.Spieler_Enum);
    package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpielDatentypen.Schwierigkeitsgrad_Enum);
-   package ZufälligeRasseWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => RassenDatentypen.Rassen_Verwendet_Enum);
+   package ZufälligeSpeziesWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => SpeziesDatentypen.Spezies_Verwendet_Enum);
    
    package ZufälligerEAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenform_E_Einstellbar_Enum);
    package ZufälligerYAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (Result_Subtype => KartenartDatentypen.Kartenform_Y_Einstellbar_Enum);
@@ -67,9 +67,9 @@ private
    ZufälligeKartenartGewählt : ZufälligeKartenartWählen.Generator;
    ZufälligeKartentemperaturGewählt : ZufälligeKartentemperaturWählen.Generator;
    ZufälligeKartenressourcenGewählt : ZufälligeKartenressourcenWählen.Generator;
-   ZufälligeRassenbelegungGewählt : ZufälligeRassenbelegungWählen.Generator;
+   ZufälligeSpeziesbelegungGewählt : ZufälligeSpeziesbelegungWählen.Generator;
    ZufälligerSchwierigkeitsgradGewählt : ZufälligenSchwierigkeitsgradWählen.Generator;
-   ZufälligeRasseGewählt : ZufälligeRasseWählen.Generator;
+   ZufälligeSpeziesGewählt : ZufälligeSpeziesWählen.Generator;
    
    ZufälligerEAchsenÜbergangGewählt : ZufälligerEAchsenÜbergangWählen.Generator;
    ZufälligerYAchsenÜbergangGewählt : ZufälligerYAchsenÜbergangWählen.Generator;

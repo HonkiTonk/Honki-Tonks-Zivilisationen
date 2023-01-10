@@ -16,7 +16,7 @@ package WeltkartenbefehleGrafik is
      (RechtsLinksExtern : in Boolean);
    
    procedure Einheitenbefehle
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       RechtsLinksExtern : in Boolean);
    
 private

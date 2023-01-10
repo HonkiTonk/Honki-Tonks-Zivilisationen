@@ -12,14 +12,14 @@ with LadezeitenLogik;
 package body KIForschungLogik is
 
    procedure Forschung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       case
-        LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern)
+        LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern)
       is
          when ForschungKonstanten.LeerForschung =>
-            NeuesForschungsprojekt (RasseExtern => RasseExtern);
+            NeuesForschungsprojekt (SpeziesExtern => SpeziesExtern);
             
          when others =>
             null;
@@ -34,7 +34,7 @@ package body KIForschungLogik is
    -- Das muss durch eine bessere Berechnung ersetzt werden. äöü
    -- Bei Erweiterung der Forschungsliste muss die Ladezeitberechnung angepasst werden. äöü
    procedure NeuesForschungsprojekt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
       use type ProduktionDatentypen.Produktion;
@@ -47,7 +47,7 @@ package body KIForschungLogik is
       for ForschungSchleifenwert in ForschungenDatenbank.ForschungslisteArray'Range (2) loop
          
          case
-           ForschungstestsLogik.ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
+           ForschungstestsLogik.ForschungAnforderungErfüllt (SpeziesExtern       => SpeziesExtern,
                                                               ForschungIDExtern => ForschungSchleifenwert)
          is
             when True =>
@@ -57,9 +57,9 @@ package body KIForschungLogik is
                   WelchesProjekt := ForschungSchleifenwert;
                   
                elsif
-                 LeseForschungenDatenbank.Kosten (RasseExtern => RasseExtern,
+                 LeseForschungenDatenbank.Kosten (SpeziesExtern => SpeziesExtern,
                                                           IDExtern    => WelchesProjekt)
-                 > LeseForschungenDatenbank.Kosten (RasseExtern => RasseExtern,
+                 > LeseForschungenDatenbank.Kosten (SpeziesExtern => SpeziesExtern,
                                                             IDExtern    => ForschungSchleifenwert)
                then
                   WelchesProjekt := ForschungSchleifenwert;
@@ -92,7 +92,7 @@ package body KIForschungLogik is
             null;
             
          when others =>
-            SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
+            SchreibeWichtiges.Forschungsprojekt (SpeziesExtern       => SpeziesExtern,
                                                  ForschungIDExtern => WelchesProjekt);
       end case;
       

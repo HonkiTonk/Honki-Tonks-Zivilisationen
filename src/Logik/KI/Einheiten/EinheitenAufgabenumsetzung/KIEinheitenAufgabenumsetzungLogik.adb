@@ -29,7 +29,7 @@ with KIEinheitHandlungstestsLogik;
 package body KIEinheitenAufgabenumsetzungLogik is
 
    function Aufgabenumsetzung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KIDatentypen.Einheit_Aufgabe_Enum;
@@ -38,11 +38,11 @@ package body KIEinheitenAufgabenumsetzungLogik is
    begin
       
       if
-        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Leer_Aufgabe_Enum
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= KIDatentypen.Leer_Aufgabe_Enum
         and
-          LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
+          LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
         and
-          LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenRecordKonstanten.LeerKoordinate
+          LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = KartenRecordKonstanten.LeerKoordinate
       then
          null;
          
@@ -51,57 +51,57 @@ package body KIEinheitenAufgabenumsetzungLogik is
       end if;
       
       case
-        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when KIDatentypen.Stadt_Bauen_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenSiedelnLogik.StadtErrichten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenSiedelnLogik.StadtErrichten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Stadt_Bewachen_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenBewachenLogik.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenBewachenLogik.StadtBewachen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Verbesserung_Anlegen_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenVerbesserungenLogik.WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenVerbesserungenLogik.WelcheVerbesserungAnlegen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Verbesserung_Zerstören_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenPluendernLogik.StadtumgebungZerstören (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenPluendernLogik.StadtumgebungZerstören (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Flucht_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenFliehenLogik.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenFliehenLogik.Fliehen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Einheit_Heilen_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenHeilenLogik.Heilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenHeilenLogik.Heilen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Einheit_Festsetzen_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenBefestigenLogik.Befestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenBefestigenLogik.Befestigen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Einheit_Verbessern_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenModernisierenLogik.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenModernisierenLogik.EinheitVerbessern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Angreifen_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenAngreifenLogik.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenAngreifenLogik.Angreifen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Verteidigen_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenVerteidigenLogik.Verteidigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenVerteidigenLogik.Verteidigen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Erkunden_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenErkundenLogik.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenErkundenLogik.Erkunden (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Auf_Transporter_Warten_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenTransporterLogik.AbholungAbwarten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenTransporterLogik.AbholungAbwarten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Einheit_Auflösen_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenAufloesenLogik.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenAufloesenLogik.EinheitAuflösen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                
          when KIDatentypen.Angriffskrieg_Vorbereiten_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenAngriffskriegLogik.AngriffskriegVorbereiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenAngriffskriegLogik.AngriffskriegVorbereiten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Verteidigungskrieg_Vorbereiten_Enum =>
-            AufgabeDurchführen := KIEinheitUmsetzenVerteidigungskriegLogik.VerteidigungskriegVorbereiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenVerteidigungskriegLogik.VerteidigungskriegVorbereiten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Platz_Machen_Enum =>
             -- Wird aktuell nur Aufgerufen um einen vollständig Satz an Funktionen zu haben. äöü
             -- Eventuell später die Aufgabe PlatzMachen doch zuweisen und in der Funktion prüfen ob die Zielkoordinate Leer ist und dann auf Leer setzen lassen? äöü
-            AufgabeDurchführen := KIEinheitUmsetzenPlatzMachenLogik.PlatzMachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := KIEinheitUmsetzenPlatzMachenLogik.PlatzMachen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIDatentypen.Planet_Vernichten_Enum =>
             null;
@@ -117,15 +117,15 @@ package body KIEinheitenAufgabenumsetzungLogik is
             null;
             
          when False =>
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
-            SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     BeschäftigungExtern      => AufgabenDatentypen.Leer_Aufgabe_Enum);
       end case;
             
-      return KIEinheitHandlungstestsLogik.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      return KIEinheitHandlungstestsLogik.HandlungBeendet (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
    end Aufgabenumsetzung;
 

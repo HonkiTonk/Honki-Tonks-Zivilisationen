@@ -1,7 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with TextnummernKonstanten;
-with Rassentexte;
+with Speziestexte;
 with SystemRecordKonstanten;
 with GrafikDatentypen;
 with TextKonstanten;
@@ -15,7 +15,7 @@ with EingabeAllgemeinLogik;
 package body TexteingabeLogik is
 
    function StadtName
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       BauenExtern : in Boolean)
       return SystemRecords.TextEingabeRecord
    is begin
@@ -24,17 +24,17 @@ package body TexteingabeLogik is
         BauenExtern
       then
          Frage := TextnummernKonstanten.FrageStadtname;
-         NachLogiktask.EingegebenerText.EingegebenerText := Rassentexte.Städtenamen (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer);
+         NachLogiktask.EingegebenerText.EingegebenerText := Speziestexte.Städtenamen (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer);
          
       elsif
-        StadtRasseNummerExtern.Rasse = RassenDatentypen.Keine_Rasse_Enum
+        StadtSpeziesNummerExtern.Spezies = SpeziesDatentypen.Keine_Spezies_Enum
       then
          Frage := TextnummernKonstanten.FrageStadtSuchen;
          NachLogiktask.EingegebenerText.EingegebenerText := TextKonstanten.LeerUnboundedString;
          
       else
          Frage := TextnummernKonstanten.FrageStadtname;
-         NachLogiktask.EingegebenerText.EingegebenerText := LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         NachLogiktask.EingegebenerText.EingegebenerText := LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end if;
       
       return NameEingeben (WelcheFrageExtern => Frage);

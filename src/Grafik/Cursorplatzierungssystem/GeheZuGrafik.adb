@@ -11,7 +11,7 @@ with KartenkoordinatenberechnungssystemLogik;
 package body GeheZuGrafik is
 
    procedure GeheZuFestlegung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
                 
       Kartenwert := Koordinatenberechnung (KoordinatenExtern => NachGrafiktask.GeheZu);
@@ -20,11 +20,11 @@ package body GeheZuGrafik is
         Kartenwert.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            SchreibeCursor.KoordinatenAlt (RasseExtern       => RasseExtern,
+            SchreibeCursor.KoordinatenAlt (SpeziesExtern       => SpeziesExtern,
                                            KoordinatenExtern => NachGrafiktask.GeheZu);
             
          when others =>
-            SchreibeCursor.KoordinatenAlt (RasseExtern       => RasseExtern,
+            SchreibeCursor.KoordinatenAlt (SpeziesExtern       => SpeziesExtern,
                                            KoordinatenExtern => Kartenwert);
       end case;
       

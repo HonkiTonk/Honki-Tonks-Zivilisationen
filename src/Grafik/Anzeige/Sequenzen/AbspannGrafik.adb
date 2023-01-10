@@ -15,7 +15,7 @@ package body AbspannGrafik is
 
    procedure Abspann
      (AbspannExtern : in GrafikDatentypen.Abspann_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
@@ -34,7 +34,7 @@ package body AbspannGrafik is
             Viewfläche := PlanetVernichtet (ViewflächeExtern => Viewfläche);
             
          when GrafikDatentypen.Gewonnen_Enum | GrafikDatentypen.Verloren_Enum =>
-            HintergrundGrafik.Rassenhintergrund (RasseExtern       => RasseExtern,
+            HintergrundGrafik.Spezieshintergrund (SpeziesExtern       => SpeziesExtern,
                                                  HintergrundExtern => AbspannExtern,
                                                  AbmessungenExtern => Viewfläche);
             

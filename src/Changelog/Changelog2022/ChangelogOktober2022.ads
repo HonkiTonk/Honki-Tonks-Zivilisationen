@@ -17,7 +17,7 @@ package ChangelogOktober2022 is
    -- Version 0.04.2625 => 0.04.2685 (30.10.2022):
    
    -- Weiter pragma Pure, Preelaborate und Elaborate_Body eingebaut.
-   -- Eine KIEinheit kann jetzt unter bestimmten Bedingungen einer anderen KIEinheit der gleichen Rasse befehlen sich wegzubewegen.
+   -- Eine KIEinheit kann jetzt unter bestimmten Bedingungen einer anderen KIEinheit der gleichen Spezies befehlen sich wegzubewegen.
    -- Mehr Testgrafiken für die Einheiten erstellt und eingebaut.
    -- Ist eine Einheit auf einem Transporter ausgewählt, dann wird jetzt diese Einheit blinken angezeigt anstelle des Transporters.
    -- Conatracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
@@ -190,7 +190,7 @@ package ChangelogOktober2022 is
    -- Fehler korrigiert der es ermöglichte Einheiten auf ein Feld zu ziehen, welches für die Einheit nicht passierbar war.
    -- Fehler korrigiert mit dem es möglich war Einheiten in Städten zu bauen die nicht die richtige Umgebung hatten.
    -- Fehler korrigiert der dafür sorgte dass beim Spielstart manchmal die Karte nicht korrekt aufgedeckt oder die Kamera falsch positioniert wurde.
-   -- Fehler korrigiert der dafür sorgte dass erst bei Rundenende eine besiegte Rasse auf Leer gesetzt wurde.
+   -- Fehler korrigiert der dafür sorgte dass erst bei Rundenende eine besiegte Spezies auf Leer gesetzt wurde.
    -- Diverse Zahlen durch Konstante ersetzt.
    -- Code zusammengeführt.
    -- Teile des Codes neu aufgeteilt um die Kompilierzeit zu reduzieren.
@@ -286,7 +286,7 @@ package ChangelogOktober2022 is
    -- Abbrechen/Abwählen kann jetzt auch neu belegt werden, von ein paar Ausnahmen abgesehen.
    -- Die Tastenbelegung für die Stadt ist jetzt Nutzereinstellbar.
    -- Stadtbefehle können jetzt wieder über Tasteneingaben durchgeführt werden.
-   -- Diverse allgemeine und rassenspezifische Anpassungen an den Passierbarkeitprüfungen für Einheiten vorgenommen.
+   -- Diverse allgemeine und Speziesspezifische Anpassungen an den Passierbarkeitprüfungen für Einheiten vorgenommen.
    -- Es wird jetzt für den gesamten Bereich den eine Stadt belegt geprüft ob eine Einheit dort platziert werden kann und nicht nur für die direkte Umgebung.
    -- Die Ekropa können jetzt Schienen über das Wasser bauen.
    -- Angefangen die Kartenkoordinatenberechnungen für alle Kartenformen anzupassen.

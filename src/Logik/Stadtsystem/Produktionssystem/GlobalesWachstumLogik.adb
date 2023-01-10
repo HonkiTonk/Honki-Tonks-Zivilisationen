@@ -9,30 +9,30 @@ with LeseGrenzen;
 package body GlobalesWachstumLogik is
 
    procedure WachstumWichtiges
-     (RasseExtern : in RassenDatentypen.Rassen_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
    is begin
       
       case
-        RasseExtern
+        SpeziesExtern
       is
-         when StadtKonstanten.LeerRasse =>
-            RassenSchleife:
-            for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+         when StadtKonstanten.LeerSpezies =>
+            SpeziesSchleife:
+            for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
                
                case
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
                is
-                  when RassenDatentypen.Leer_Spieler_Enum =>
+                  when SpeziesDatentypen.Leer_Spieler_Enum =>
                      null;
                      
                   when others =>
-                     WachstumsratenBerechnen (RasseExtern => RasseSchleifenwert);
+                     WachstumsratenBerechnen (SpeziesExtern => SpeziesSchleifenwert);
                end case;
                
-            end loop RassenSchleife;
+            end loop SpeziesSchleife;
             
          when others =>
-            WachstumsratenBerechnen (RasseExtern => RasseExtern);
+            WachstumsratenBerechnen (SpeziesExtern => SpeziesExtern);
       end case;
       
    end WachstumWichtiges;
@@ -40,50 +40,50 @@ package body GlobalesWachstumLogik is
    
    
    procedure WachstumsratenBerechnen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       case
-        RasseExtern
+        SpeziesExtern
       is
-         when RassenDatentypen.Ekropa_Enum =>
+         when SpeziesDatentypen.Ekropa_Enum =>
             null;
             
          when others =>
-            SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,
+            SchreibeWichtiges.GeldZugewinnProRunde (SpeziesExtern         => SpeziesExtern,
                                                     GeldZugewinnExtern  => WichtigesKonstanten.LeerGeldZugewinnProRunde,
                                                     RechnenSetzenExtern => False);
       end case;
       
-      SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => RasseExtern,
+      SchreibeWichtiges.GesamteForschungsrate (SpeziesExtern                  => SpeziesExtern,
                                                ForschungsrateZugewinnExtern => WichtigesKonstanten.LeerGesamteForschungsrate,
                                                RechnenSetzenExtern          => False);
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
          
          case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
             when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>
                if
-                 RasseExtern = RassenDatentypen.Ekropa_Enum
+                 SpeziesExtern = SpeziesDatentypen.Ekropa_Enum
                then
                   null;
                   
                else
-                  SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,
-                                                          GeldZugewinnExtern  => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
+                  SchreibeWichtiges.GeldZugewinnProRunde (SpeziesExtern         => SpeziesExtern,
+                                                          GeldZugewinnExtern  => LeseStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)),
                                                           RechnenSetzenExtern => True);
                end if;
                
-               SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => RasseExtern,
-                                                        ForschungsrateZugewinnExtern => LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
+               SchreibeWichtiges.GesamteForschungsrate (SpeziesExtern                  => SpeziesExtern,
+                                                        ForschungsrateZugewinnExtern => LeseStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)),
                                                         RechnenSetzenExtern          => True);
          end case;
          

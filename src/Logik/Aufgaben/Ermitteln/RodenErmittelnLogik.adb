@@ -11,7 +11,7 @@ with MeldungFestlegenLogik;
 package body RodenErmittelnLogik is
 
    function RodenErmitteln
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -26,11 +26,11 @@ package body RodenErmittelnLogik is
         Gesamtgrund.Zusatzgrund = KartengrundDatentypen.Leer_Zusatzgrund_Enum
       then
          MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserung,
-                                                        RasseExtern   => EinheitRasseNummerExtern.Rasse);
+                                                        SpeziesExtern   => EinheitSpeziesNummerExtern.Spezies);
          return False;
          
       elsif
-        ArbeitszeitRodenLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, Gesamtgrund.Basisgrund) = EinheitenKonstanten.UnmöglicheArbeit
+        ArbeitszeitRodenLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, Gesamtgrund.Basisgrund) = EinheitenKonstanten.UnmöglicheArbeit
       then
          return False;
          
@@ -42,11 +42,11 @@ package body RodenErmittelnLogik is
         Gesamtgrund.Basisgrund
       is
          when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
-            Arbeitswerte := OberflächeLand (RasseExtern => EinheitRasseNummerExtern.Rasse,
+            Arbeitswerte := OberflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                              GrundExtern => Gesamtgrund);
             
          when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
-            Arbeitswerte := UnterflächeWasser (RasseExtern => EinheitRasseNummerExtern.Rasse,
+            Arbeitswerte := UnterflächeWasser (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                 GrundExtern => Gesamtgrund);
             
          when others =>
@@ -70,9 +70,9 @@ package body RodenErmittelnLogik is
         AnlegenTestenExtern
       is
          when True =>
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     BeschäftigungExtern     => Arbeitswerte.Aufgabe);
-            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                          ZeitExtern               => Arbeitswerte.Arbeitszeit,
                                                          RechnenSetzenExtern      => False);
             
@@ -87,16 +87,16 @@ package body RodenErmittelnLogik is
    
    
    function OberflächeLand
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
+                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       
       return (
               Aufgabe     => AufgabenDatentypen.Roden_Trockenlegen_Enum,
@@ -108,16 +108,16 @@ package body RodenErmittelnLogik is
      
      
    function UnterflächeWasser
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
+                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+                                                  ÄnderungExtern      => ArbeitszeitRodenLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       
       return (
               Aufgabe     => AufgabenDatentypen.Roden_Trockenlegen_Enum,

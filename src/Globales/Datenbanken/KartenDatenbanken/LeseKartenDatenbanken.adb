@@ -31,7 +31,7 @@ package body LeseKartenDatenbanken is
    
    function BewertungBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
    is begin
       
@@ -39,11 +39,11 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.BewertungBasisgrund - Grund ist Leer. Rasse: " & RasseExtern'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.BewertungBasisgrund - Grund ist Leer. Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return BewertungDatentypen.Bewertung_Eins_Enum;
             
          when others =>
-            return KartenDatenbank.Basisgrundliste (GrundExtern).Bewertung (RasseExtern);
+            return KartenDatenbank.Basisgrundliste (GrundExtern).Bewertung (SpeziesExtern);
       end case;
       
    end BewertungBasisgrund;
@@ -52,7 +52,7 @@ package body LeseKartenDatenbanken is
    
    function BewertungZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
    is begin
       
@@ -63,7 +63,7 @@ package body LeseKartenDatenbanken is
             return BewertungDatentypen.Bewertung_Eins_Enum;
               
          when others =>
-            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Bewertung (RasseExtern);
+            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Bewertung (SpeziesExtern);
       end case;
       
    end BewertungZusatzgrund;
@@ -72,7 +72,7 @@ package body LeseKartenDatenbanken is
    
    function BewegungBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return EinheitenDatentypen.VorhandeneBewegungspunkte
    is begin
       
@@ -80,11 +80,11 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.BewegungBasisgrund - Grund ist Leer. Rasse: " & RasseExtern'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.BewegungBasisgrund - Grund ist Leer. Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return EinheitenKonstanten.LeerBewegungspunkte;
             
          when others =>
-            return KartenDatenbank.Basisgrundliste (GrundExtern).Bewegung (RasseExtern);
+            return KartenDatenbank.Basisgrundliste (GrundExtern).Bewegung (SpeziesExtern);
       end case;
       
    end BewegungBasisgrund;
@@ -93,7 +93,7 @@ package body LeseKartenDatenbanken is
    
    function BewegungZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return EinheitenDatentypen.VorhandeneBewegungspunkte
    is begin
       
@@ -104,7 +104,7 @@ package body LeseKartenDatenbanken is
             return EinheitenKonstanten.LeerBewegungspunkte;
               
          when others =>
-            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Bewegung (RasseExtern);
+            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Bewegung (SpeziesExtern);
       end case;
       
    end BewegungZusatzgrund;
@@ -113,7 +113,7 @@ package body LeseKartenDatenbanken is
    
    function BewertungFluss
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
    is begin
       
@@ -124,7 +124,7 @@ package body LeseKartenDatenbanken is
             return KartenKonstanten.LeerBewertung;
             
          when others =>
-            return KartenDatenbank.Kartenflussliste (FlussExtern).Bewertung (RasseExtern);
+            return KartenDatenbank.Kartenflussliste (FlussExtern).Bewertung (SpeziesExtern);
       end case;
       
    end BewertungFluss;
@@ -133,7 +133,7 @@ package body LeseKartenDatenbanken is
    
    function BewertungRessource
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
    is begin
       
@@ -144,7 +144,7 @@ package body LeseKartenDatenbanken is
             return KartenKonstanten.LeerBewertung;
             
          when others =>
-            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Bewertung (RasseExtern);
+            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Bewertung (SpeziesExtern);
       end case;
       
    end BewertungRessource;
@@ -153,7 +153,7 @@ package body LeseKartenDatenbanken is
    
    function WirtschaftBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
@@ -162,11 +162,11 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.WirtschaftBasisgrund - Grund ist Leer. Rasse: " & RasseExtern'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.WirtschaftBasisgrund - Grund ist Leer. Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
-            return KartenDatenbank.Basisgrundliste (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+            return KartenDatenbank.Basisgrundliste (GrundExtern).Wirtschaft (SpeziesExtern, WirtschaftArtExtern);
       end case;
       
    end WirtschaftBasisgrund;
@@ -175,7 +175,7 @@ package body LeseKartenDatenbanken is
    
    function WirtschaftZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
@@ -187,7 +187,7 @@ package body LeseKartenDatenbanken is
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
-            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Wirtschaft (SpeziesExtern, WirtschaftArtExtern);
       end case;
       
    end WirtschaftZusatzgrund;
@@ -196,7 +196,7 @@ package body LeseKartenDatenbanken is
    
    function WirtschaftFluss
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
@@ -208,7 +208,7 @@ package body LeseKartenDatenbanken is
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
-            return KartenDatenbank.Kartenflussliste (FlussExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+            return KartenDatenbank.Kartenflussliste (FlussExtern).Wirtschaft (SpeziesExtern, WirtschaftArtExtern);
       end case;
       
    end WirtschaftFluss;
@@ -217,7 +217,7 @@ package body LeseKartenDatenbanken is
    
    function WirtschaftRessourcen
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
@@ -229,7 +229,7 @@ package body LeseKartenDatenbanken is
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
-            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Wirtschaft (SpeziesExtern, WirtschaftArtExtern);
       end case;
       
    end WirtschaftRessourcen;
@@ -238,7 +238,7 @@ package body LeseKartenDatenbanken is
    
    function KampfBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
@@ -247,11 +247,11 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.KampfBasisgrund - Grund ist Leer. Rasse: " & RasseExtern'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.KampfBasisgrund - Grund ist Leer. Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
-            return KartenDatenbank.Basisgrundliste (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
+            return KartenDatenbank.Basisgrundliste (GrundExtern).Kampf (SpeziesExtern, KampfArtExtern);
       end case;
       
    end KampfBasisgrund;
@@ -260,7 +260,7 @@ package body LeseKartenDatenbanken is
    
    function KampfZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
@@ -272,7 +272,7 @@ package body LeseKartenDatenbanken is
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
-            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
+            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Kampf (SpeziesExtern, KampfArtExtern);
       end case;
       
    end KampfZusatzgrund;
@@ -281,7 +281,7 @@ package body LeseKartenDatenbanken is
    
    function KampfFluss
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
@@ -293,7 +293,7 @@ package body LeseKartenDatenbanken is
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
-            return KartenDatenbank.Kartenflussliste (FlussExtern).Kampf (RasseExtern, KampfArtExtern);
+            return KartenDatenbank.Kartenflussliste (FlussExtern).Kampf (SpeziesExtern, KampfArtExtern);
       end case;
       
    end KampfFluss;
@@ -302,7 +302,7 @@ package body LeseKartenDatenbanken is
    
    function KampfRessource
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfArtExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
@@ -314,7 +314,7 @@ package body LeseKartenDatenbanken is
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
-            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Kampf (RasseExtern, KampfArtExtern);
+            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Kampf (SpeziesExtern, KampfArtExtern);
       end case;
       
    end KampfRessource;

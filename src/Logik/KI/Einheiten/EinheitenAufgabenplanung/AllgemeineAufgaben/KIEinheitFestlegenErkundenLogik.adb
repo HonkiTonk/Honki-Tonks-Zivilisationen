@@ -18,15 +18,15 @@ with KIAchsenzufallLogik;
 package body KIEinheitFestlegenErkundenLogik is
 
    function Erkunden
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
-      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
         KIEinheitAllgemeinePruefungenLogik.DirekteUmgebung (KoordinatenExtern        => EinheitKoordinaten,
-                                                            EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                            EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when False =>
             return False;
@@ -40,7 +40,7 @@ package body KIEinheitFestlegenErkundenLogik is
       while UmgebungPrüfen <= KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
          
          case
-           ZielSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+           ZielSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                        KoordinatenExtern        => EinheitKoordinaten,
                        KartenreichweiteExtern   => UmgebungPrüfen,
                        GeprüftExtern            => BereitsGeprüft)
@@ -64,7 +64,7 @@ package body KIEinheitFestlegenErkundenLogik is
    -- Warum wird bei all diesen Dinger hier immer nur eine Achse geprüft und nicht alle? äöü
    -- Oder ein sich vergrößernder Bereich. äöü
    function ZielSuchen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       KartenreichweiteExtern : in KartenDatentypen.KartenfeldNatural;
       GeprüftExtern : in KartenDatentypen.KartenfeldNatural)
@@ -103,20 +103,20 @@ package body KIEinheitFestlegenErkundenLogik is
                         
                   elsif
                     False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                                    RasseExtern       => EinheitRasseNummerExtern.Rasse)
+                                                    SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
                     and
-                      True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                      True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                        NeueKoordinatenExtern    => KartenWert)
                     and
-                      False = KIAufgabenVerteiltLogik.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                      False = KIAufgabenVerteiltLogik.EinheitZiel (SpeziesExtern           => EinheitSpeziesNummerExtern.Spezies,
                                                                    ZielKoordinatenExtern => KartenWert)
                     -- and
                     --   False = KIEinheitAllgemeinePruefungenLogik.AktuellUnpassierbar (KoordinatenExtern        => KartenWert,
-                    --                                                                   EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                    --                                                                   EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
                   then
-                     SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                     SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                 KoordinatenExtern        => KartenWert);
-                     SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                     SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                              AufgabeExtern            => KIDatentypen.Erkunden_Enum);
                      return True;
                      

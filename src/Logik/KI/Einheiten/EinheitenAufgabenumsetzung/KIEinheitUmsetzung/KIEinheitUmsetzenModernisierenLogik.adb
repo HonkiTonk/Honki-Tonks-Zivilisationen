@@ -11,19 +11,19 @@ with KIEinheitUmsetzenBewachenLogik;
 package body KIEinheitUmsetzenModernisierenLogik is
 
    function EinheitVerbessern
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
-      NullWert := AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      NullWert := AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                          BefehlExtern             => BefehleDatentypen.Einheit_Verbessern_Enum,
-                                         KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+                                         KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       case
-        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when KIDatentypen.Stadt_Bewachen_Enum =>
-            NullWert := KIEinheitUmsetzenBewachenLogik.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            NullWert := KIEinheitUmsetzenBewachenLogik.StadtBewachen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when others =>
             null;

@@ -9,7 +9,7 @@ package SchreibenDatenbankenLogik is
    procedure SchreibenGebäudeDatenbank;
    procedure SchreibenKartenDatenbanken;
    procedure SchreibenVerbesserungenDatenbank;
-   procedure SchreibenRassenDatenbank;
+   procedure SchreibenSpeziesDatenbank;
 
    procedure SchreibeBasisgrund;
    procedure SchreibeZusatzgrund;

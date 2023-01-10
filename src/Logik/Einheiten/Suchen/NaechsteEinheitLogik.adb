@@ -9,7 +9,7 @@ with NachGrafiktask;
 package body NaechsteEinheitLogik is
 
    procedure NächsteEinheit
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       BewegungspunkteExtern : in Bewegungspunkte_Enum)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
@@ -23,18 +23,18 @@ package body NaechsteEinheitLogik is
       loop
 
          if
-           AktuelleEinheit (RasseExtern) >= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
+           AktuelleEinheit (SpeziesExtern) >= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
          then
-            AktuelleEinheit (RasseExtern) := EinheitenKonstanten.AnfangNummer;
+            AktuelleEinheit (SpeziesExtern) := EinheitenKonstanten.AnfangNummer;
                
          else
-            AktuelleEinheit (RasseExtern) := AktuelleEinheit (RasseExtern) + 1;
+            AktuelleEinheit (SpeziesExtern) := AktuelleEinheit (SpeziesExtern) + 1;
          end if;
          
-         Bewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern)));
+         Bewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => (SpeziesExtern, AktuelleEinheit (SpeziesExtern)));
                
          if
-           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) = EinheitenKonstanten.LeerID
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, AktuelleEinheit (SpeziesExtern))) = EinheitenKonstanten.LeerID
            or
              (Bewegungspunkte <= EinheitenKonstanten.LeerBewegungspunkte
               and
@@ -51,7 +51,7 @@ package body NaechsteEinheitLogik is
          end if;
          
          if
-           EinheitSchleifenbegrenzung < LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
+           EinheitSchleifenbegrenzung < LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
          then
             EinheitSchleifenbegrenzung := EinheitSchleifenbegrenzung + 1;
             
@@ -61,14 +61,14 @@ package body NaechsteEinheitLogik is
 
       end loop EinheitSuchenSchleife;
       
-      NachGrafiktask.GeheZu := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern)));
+      NachGrafiktask.GeheZu := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, AktuelleEinheit (SpeziesExtern)));
       
    end NächsteEinheit;
    
    
    
    procedure NächsteEinheitMeldung
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       use type EinheitenDatentypen.EinheitenIDMitNullWert;
@@ -80,16 +80,16 @@ package body NaechsteEinheitLogik is
       loop
 
          if
-           AktuelleEinheitMeldung (RasseExtern) >= LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
+           AktuelleEinheitMeldung (SpeziesExtern) >= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
          then
-            AktuelleEinheitMeldung (RasseExtern) := EinheitenKonstanten.AnfangNummer;
+            AktuelleEinheitMeldung (SpeziesExtern) := EinheitenKonstanten.AnfangNummer;
                
          else
-            AktuelleEinheitMeldung (RasseExtern) := AktuelleEinheitMeldung (RasseExtern) + 1;
+            AktuelleEinheitMeldung (SpeziesExtern) := AktuelleEinheitMeldung (SpeziesExtern) + 1;
          end if;
                
          if
-           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern))) = EinheitenKonstanten.LeerID
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, AktuelleEinheitMeldung (SpeziesExtern))) = EinheitenKonstanten.LeerID
          then
             null;
          
@@ -98,7 +98,7 @@ package body NaechsteEinheitLogik is
             for MeldungSchleifenwert in EinheitenRecords.EinheitMeldungenArray'Range loop
                
                case
-                 LeseEinheitenGebaut.Meldungen (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)),
+                 LeseEinheitenGebaut.Meldungen (EinheitSpeziesNummerExtern => (SpeziesExtern, AktuelleEinheitMeldung (SpeziesExtern)),
                                                 WelcheMeldungExtern      => MeldungSchleifenwert)
                is
                   when EinheitenDatentypen.Leer_Einheit_Meldung_Enum =>
@@ -112,7 +112,7 @@ package body NaechsteEinheitLogik is
          end if;
          
          if
-           MeldungSchleifenbegrenzung < LeseGrenzen.Einheitengrenze (RasseExtern => RasseExtern)
+           MeldungSchleifenbegrenzung < LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
          then
             MeldungSchleifenbegrenzung := MeldungSchleifenbegrenzung + 1;
             
@@ -122,7 +122,7 @@ package body NaechsteEinheitLogik is
 
       end loop EinheitSuchenSchleife;
       
-      NachGrafiktask.GeheZu := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)));
+      NachGrafiktask.GeheZu := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, AktuelleEinheitMeldung (SpeziesExtern)));
       
    end NächsteEinheitMeldung;
 

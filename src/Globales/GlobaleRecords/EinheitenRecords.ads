@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
 with KartenRecords;
@@ -11,18 +11,18 @@ with KIDatentypen;
 package EinheitenRecords is
    pragma Pure;
 
-   type RasseEinheitnummerRecord is record
+   type SpeziesEinheitnummerRecord is record
       
-      Rasse : RassenDatentypen.Rassen_Enum;
+      Spezies : SpeziesDatentypen.Spezies_Enum;
       Nummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       
    end record;
    
    
    
-   type RasseIDRecord is record
+   type SpeziesIDRecord is record
       
-      Rasse : RassenDatentypen.Rassen_Enum;
+      Spezies : SpeziesDatentypen.Spezies_Enum;
       ID : EinheitenDatentypen.EinheitenIDMitNullWert;
       
    end record;

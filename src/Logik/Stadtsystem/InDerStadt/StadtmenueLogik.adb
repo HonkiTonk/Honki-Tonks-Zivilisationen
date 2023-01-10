@@ -13,10 +13,10 @@ with TastenbelegungDatentypen;
 package body StadtmenueLogik is
 
    procedure Stadtmenü
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      NachGrafiktask.AktuelleStadt := StadtRasseNummerExtern.Nummer;
+      NachGrafiktask.AktuelleStadt := StadtSpeziesNummerExtern.Nummer;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;
       
       StadtSchleife:
@@ -27,7 +27,7 @@ package body StadtmenueLogik is
          is
             when BefehleDatentypen.Auswählen_Enum =>
                if
-                 WasIstAusgewählt (StadtRasseNummerExtern => StadtRasseNummerExtern) = False
+                 WasIstAusgewählt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) = False
                then
                   null;
                   
@@ -39,14 +39,14 @@ package body StadtmenueLogik is
                Stadtkarte;
                
             when BefehleDatentypen.Bauen_Enum =>
-               StadtbausystemLogik.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               StadtbausystemLogik.Bauen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
                
             when BefehleDatentypen.Verkaufen_Enum =>
-               GebaeudeVerkaufenLogik.Verkaufsliste (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               GebaeudeVerkaufenLogik.Verkaufsliste (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
                
             when BefehleDatentypen.Auflösen_Enum =>
                if
-                 StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
+                 StadtEntfernenLogik.StadtAbreißen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) = True
                then
                   exit StadtSchleife;
                   
@@ -55,7 +55,7 @@ package body StadtmenueLogik is
                end if;
 
             when BefehleDatentypen.Umbenennen_Enum =>
-               StadtAllgemeinesLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               StadtAllgemeinesLogik.NeuerStadtname (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 
             when BefehleDatentypen.Verlassen_Enum =>
                exit StadtSchleife;
@@ -74,12 +74,12 @@ package body StadtmenueLogik is
    
    
    function WasIstAusgewählt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is begin
       
       case
-        EinwohnersystemLogik.EinwohnerZuweisenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        EinwohnersystemLogik.EinwohnerZuweisenEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
       is
          when True =>
             return False;
@@ -99,7 +99,7 @@ package body StadtmenueLogik is
             return False;
             
          when others =>
-            return Mausbefehle (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            return Mausbefehle (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                 AuswahlExtern          => Befehlsauswahl);
       end case;
                   
@@ -108,7 +108,7 @@ package body StadtmenueLogik is
    
    
    function Mausbefehle
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       AuswahlExtern : in BefehleDatentypen.Stadtbefehle_Vorhanden_Enum)
       return Boolean
    is begin
@@ -117,16 +117,16 @@ package body StadtmenueLogik is
         AuswahlExtern
       is
          when BefehleDatentypen.Bauen_Enum =>
-            StadtbausystemLogik.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtbausystemLogik.Bauen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
          when BefehleDatentypen.Verkaufen_Enum =>
-            GebaeudeVerkaufenLogik.Verkaufsliste (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            GebaeudeVerkaufenLogik.Verkaufsliste (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
          when BefehleDatentypen.Umbenennen_Enum =>
-            StadtAllgemeinesLogik.NeuerStadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtAllgemeinesLogik.NeuerStadtname (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
          when BefehleDatentypen.Auflösen_Enum =>
-            return StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            return StadtEntfernenLogik.StadtAbreißen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
          when others =>
             return True;

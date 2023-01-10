@@ -198,7 +198,7 @@ package body EingabenanzeigeGrafik is
    
    -- Das später in zwei Views aufteilen, damit der Stadtname nicht die gesamte Skalierung tötet. äöü
    procedure AnzeigeEinheitenStadt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       AktuelleAuswahlExtern : in Integer)
    is
       use type EinheitenDatentypen.Transportplätze;
@@ -245,18 +245,18 @@ package body EingabenanzeigeGrafik is
             is
                when True =>
                   if
-                    StadtRasseNummerExtern.Nummer = StadtKonstanten.LeerNummer
+                    StadtSpeziesNummerExtern.Nummer = StadtKonstanten.LeerNummer
                   then
                      null;
                      
                   else
-                     Text := LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern);
+                     Text := LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
                   end if;
                   
                when False =>
-                  Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse,
+                  Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies,
                                                                                                                                                                                        WelcheAuswahl.MöglicheAuswahlen (0))),
-                                                                                                                   RasseExtern => StadtRasseNummerExtern.Rasse));
+                                                                                                                   SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
             end case;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
@@ -271,8 +271,8 @@ package body EingabenanzeigeGrafik is
             else
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                   str  => EinheitenbeschreibungenGrafik.Kurzbeschreibung
-                                                    (IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert))),
-                                                     RasseExtern => StadtRasseNummerExtern.Rasse));
+                                                    (IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert))),
+                                                     SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
                
                Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                                                    TextbreiteExtern => Textbreite);

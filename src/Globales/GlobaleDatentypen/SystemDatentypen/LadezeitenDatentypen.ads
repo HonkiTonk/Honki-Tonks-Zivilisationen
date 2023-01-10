@@ -3,7 +3,7 @@ package LadezeitenDatentypen is
 
    type Spielwelt_Erstellen_Enum is (
                                      Generiere_Allgemeines_Enum, Generiere_Küstenwasser_Enum, Generiere_Landschaft_Enum, Generiere_Unterfläche_Enum, Generiere_Flüsse_Enum, Generiere_Ressourcen_Enum,
-                                     Platziere_Rassen_Enum
+                                     Platziere_Spezies_Enum
                                     );
    
    type KI_Rechnet_Enum is (

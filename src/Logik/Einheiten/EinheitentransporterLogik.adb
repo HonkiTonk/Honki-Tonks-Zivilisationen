@@ -13,14 +13,14 @@ with BewegungsberechnungEinheitenLogik;
 package body EinheitentransporterLogik is   
    
    function KannTransportiertWerden
-     (LadungExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (LadungExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type EinheitenDatentypen.Transport_Enum;
    begin
       
-      TransporterID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern);
+      TransporterID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern);
       
       case
         TransporterID
@@ -29,16 +29,16 @@ package body EinheitentransporterLogik is
             return False;
             
          when others =>
-            LadungID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => LadungExtern);
+            LadungID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => LadungExtern);
       end case;
             
       if
-        EinheitenKonstanten.LeerKannTransportiertWerden = LeseEinheitenDatenbank.KannTransportiertWerden (RasseExtern => LadungExtern.Rasse,
+        EinheitenKonstanten.LeerKannTransportiertWerden = LeseEinheitenDatenbank.KannTransportiertWerden (SpeziesExtern => LadungExtern.Spezies,
                                                                                                           IDExtern    => LadungID)
         or
-          LeseEinheitenDatenbank.KannTransportieren (RasseExtern => TransporterExtern.Rasse,
+          LeseEinheitenDatenbank.KannTransportieren (SpeziesExtern => TransporterExtern.Spezies,
                                                      IDExtern    => TransporterID)
-        < LeseEinheitenDatenbank.KannTransportiertWerden (RasseExtern => LadungExtern.Rasse,
+        < LeseEinheitenDatenbank.KannTransportiertWerden (SpeziesExtern => LadungExtern.Spezies,
                                                           IDExtern    => LadungID)
       then
          return False;
@@ -62,17 +62,17 @@ package body EinheitentransporterLogik is
    
    
    procedure TransporterEntladen
-     (TransporterExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
-      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern));
-      TransporterKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => TransporterExtern);
+      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
+                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern));
+      TransporterKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => TransporterExtern);
       
       TransporterAusladenSchleife:
       for TransporterAusladenSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
 
-         AktuelleLadung := LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+         AktuelleLadung := LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
                                                               PlatzExtern              => TransporterAusladenSchleifenwert);
          
          case
@@ -83,7 +83,7 @@ package body EinheitentransporterLogik is
                
             when others =>
                TransporterUmgebung (TranspoterKoordinatenExtern => TransporterKoordinaten,
-                                    LadungExtern                => (TransporterExtern.Rasse, AktuelleLadung));
+                                    LadungExtern                => (TransporterExtern.Spezies, AktuelleLadung));
          end case;
                
       end loop TransporterAusladenSchleife;
@@ -94,7 +94,7 @@ package body EinheitentransporterLogik is
    
    procedure TransporterUmgebung
      (TranspoterKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadungExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      LadungExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
       YAchseSchleife:
@@ -124,7 +124,7 @@ package body EinheitentransporterLogik is
                             LadungExtern      => LadungExtern)
                is
                   when True =>
-                     BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => LadungExtern,
+                     BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => LadungExtern,
                                                                             NeueKoordinatenExtern    => KartenWert,
                                                                             EinheitentauschExtern    => False);
                      return;
@@ -143,13 +143,13 @@ package body EinheitentransporterLogik is
    
    function Entladung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadungExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      LadungExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
-      EinheitVorhanden := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern,
+      EinheitVorhanden := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
                                                                                 LogikGrafikExtern => True);
       
       case
@@ -163,7 +163,7 @@ package body EinheitentransporterLogik is
       end case;
       
       case
-        PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => LadungExtern,
+        PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => LadungExtern,
                                                                   NeueKoordinatenExtern    => KoordinatenExtern)
       is
          when False =>
@@ -174,8 +174,8 @@ package body EinheitentransporterLogik is
       end case;
       
       if
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => LadungExtern) < BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern    => KoordinatenExtern,
-                                                                                                                                           EinheitRasseNummerExtern => LadungExtern)
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => LadungExtern) < BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern    => KoordinatenExtern,
+                                                                                                                                           EinheitSpeziesNummerExtern => LadungExtern)
       then
          return False;
          

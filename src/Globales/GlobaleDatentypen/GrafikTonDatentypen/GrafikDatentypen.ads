@@ -54,8 +54,8 @@ package GrafikDatentypen is
    
    
    
-   -- Bei Änderungen hier muss auch immer die Reihenfolge der 0-Dateien in den Rassenhintergründen angepasst werden!
-   type Rassenhintergrund_Enum is (
+   -- Bei Änderungen hier muss auch immer die Reihenfolge der 0-Dateien in den Spezieshintergründen angepasst werden!
+   type Spezieshintergrund_Enum is (
                                    Leer_Hintergrund_Enum,
                                    
                                    Forschungserfolg_Enum,
@@ -67,9 +67,9 @@ package GrafikDatentypen is
                                    Planet_Vernichtet_Enum
                                   );
    
-   subtype Rassenhintergrund_Vorhanden_Enum is Rassenhintergrund_Enum range Rassenhintergrund_Enum'Succ (Rassenhintergrund_Enum'First) .. Rassenhintergrund_Enum'Last;
+   subtype Spezieshintergrund_Vorhanden_Enum is Spezieshintergrund_Enum range Spezieshintergrund_Enum'Succ (Spezieshintergrund_Enum'First) .. Spezieshintergrund_Enum'Last;
    
-   subtype Abspann_Enum is Rassenhintergrund_Vorhanden_Enum range Gewonnen_Enum .. Rassenhintergrund_Vorhanden_Enum'Last;
+   subtype Abspann_Enum is Spezieshintergrund_Vorhanden_Enum range Gewonnen_Enum .. Spezieshintergrund_Vorhanden_Enum'Last;
    
    
    

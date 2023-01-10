@@ -10,11 +10,11 @@ with KIEinheitFestlegenNichtsLogik;
 package body KIKampfaufgabenLogik is
 
    procedure Nahkämpferaufgaben
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
       case
-        KIEinheitFestlegenBewachenLogik.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        KIEinheitFestlegenBewachenLogik.StadtBewachen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when True =>
             return;
@@ -27,10 +27,10 @@ package body KIKampfaufgabenLogik is
         LeseKIVariablen.Kriegszustand
       is
          when False =>
-            NormaleAufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            NormaleAufgaben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when True =>
-            Kriegsaufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Kriegsaufgaben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
    end Nahkämpferaufgaben;
@@ -38,26 +38,26 @@ package body KIKampfaufgabenLogik is
    
    
    procedure NormaleAufgaben
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
       if
-        KIEinheitFestlegenModernisierenLogik.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+        KIEinheitFestlegenModernisierenLogik.EinheitVerbessern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
       then
          null;
          
       elsif
-        KIEinheitFestlegenHeilenLogik.Heilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+        KIEinheitFestlegenHeilenLogik.Heilen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
       then
          null;
          
       elsif
-        KIEinheitFestlegenErkundenLogik.Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+        KIEinheitFestlegenErkundenLogik.Erkunden (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
       then
          null;
          
       else
-         KIEinheitFestlegenNichtsLogik.NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         KIEinheitFestlegenNichtsLogik.NichtsTun (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end if;
       
    end NormaleAufgaben;
@@ -65,16 +65,16 @@ package body KIKampfaufgabenLogik is
    
      
    procedure Kriegsaufgaben
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
       if
-        KIEinheitFestlegenAngreifenLogik.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+        KIEinheitFestlegenAngreifenLogik.Angreifen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
       then
          null;
          
       else
-         NormaleAufgaben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         NormaleAufgaben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end if;
       
    end Kriegsaufgaben;

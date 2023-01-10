@@ -23,11 +23,11 @@ with KIGebaeudeBauenLogik;
 package body KIStadtLogik is
 
    procedure KIStadt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
       case
-        GefahrStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        GefahrStadt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
       is
          when True =>
             return;
@@ -37,12 +37,12 @@ package body KIStadtLogik is
       end case;
       
       case
-        LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        LeseStadtGebaut.KIBeschäftigung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
       is
          when KIDatentypen.Keine_Aufgabe_Enum =>
-            NeuesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                             EinheitBauenExtern     => KIEinheitenBauenLogik.EinheitenBauen (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                             GebäudeBauenExtern     => KIGebaeudeBauenLogik.GebäudeBauen (StadtRasseNummerExtern => StadtRasseNummerExtern),
+            NeuesBauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                             EinheitBauenExtern     => KIEinheitenBauenLogik.EinheitenBauen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
+                             GebäudeBauenExtern     => KIGebaeudeBauenLogik.GebäudeBauen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
                              NotfallExtern          => False);
             
          when others =>
@@ -54,7 +54,7 @@ package body KIStadtLogik is
    
    
    procedure NeuesBauprojekt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitBauenExtern : in KIRecords.EinheitIDBewertungRecord;
       GebäudeBauenExtern : in KIRecords.GebäudeIDBewertungRecord;
       NotfallExtern : in Boolean)
@@ -74,9 +74,9 @@ package body KIStadtLogik is
       elsif
         EinheitBauenExtern.ID = EinheitenKonstanten.LeerID
       then
-         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.KIBeschäftigung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen_Enum);
-         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                          BauprojektExtern       => (GebäudeBauenExtern.ID, EinheitenKonstanten.LeerID));
          
       elsif
@@ -86,15 +86,15 @@ package body KIStadtLogik is
            NotfallExtern
          is
             when True =>
-               SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+               SchreibeStadtGebaut.KIBeschäftigung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                      BeschäftigungExtern   => KIDatentypen.Gefahr_Einheit_Bauen_Enum);
                
             when False =>
-               SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+               SchreibeStadtGebaut.KIBeschäftigung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                      BeschäftigungExtern   => KIDatentypen.Einheit_Bauen_Enum);
          end case;
          
-         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                          BauprojektExtern       => (StadtKonstanten.LeerGebäudeID, EinheitBauenExtern.ID));
       
       elsif
@@ -104,21 +104,21 @@ package body KIStadtLogik is
            NotfallExtern
          is
             when True =>
-               SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+               SchreibeStadtGebaut.KIBeschäftigung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                      BeschäftigungExtern   => KIDatentypen.Gefahr_Einheit_Bauen_Enum);
                
             when False =>
-               SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+               SchreibeStadtGebaut.KIBeschäftigung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                      BeschäftigungExtern   => KIDatentypen.Einheit_Bauen_Enum);
          end case;
          
-         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                          BauprojektExtern       => (StadtKonstanten.LeerGebäudeID, EinheitBauenExtern.ID));
 
       else
-         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.KIBeschäftigung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen_Enum);
-         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                          BauprojektExtern       => (GebäudeBauenExtern.ID, EinheitenKonstanten.LeerID));
       end if;
       
@@ -127,18 +127,18 @@ package body KIStadtLogik is
    
    
    function GefahrStadt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is begin
       
       case
-        FeindNahe (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        FeindNahe (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
       is
          when False =>
             return False;
             
          when True =>
-            NotfallEinheit := WelcheEinheitArt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            NotfallEinheit := WelcheEinheitArt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end case;
       
       case
@@ -148,7 +148,7 @@ package body KIStadtLogik is
             return False;
             
          when others =>
-            NeuesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            NeuesBauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                              EinheitBauenExtern     => (NotfallEinheit, 1),
                              GebäudeBauenExtern     => (StadtDatentypen.GebäudeIDMitNullwert'First, 0),
                              NotfallExtern          => True);
@@ -160,7 +160,7 @@ package body KIStadtLogik is
    
    
    function FeindNahe
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is
       use type KartenDatentypen.Kartenfeld;
@@ -168,12 +168,12 @@ package body KIStadtLogik is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
-      StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
+      for YAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
+         for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -186,7 +186,7 @@ package body KIStadtLogik is
                   null;
                   
                when others =>
-                  FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                  FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleSpeziesSuchen (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
                                                                                                   KoordinatenExtern => KartenWert,
                                                                                                   LogikGrafikExtern => True);
                   
@@ -196,15 +196,15 @@ package body KIStadtLogik is
                      null;
                      
                   elsif
-                    DiplomatieDatentypen.Krieg_Enum /= LeseDiplomatie.AktuellerZustand (RasseEinsExtern => StadtRasseNummerExtern.Rasse,
-                                                                                        RasseZweiExtern => FremdeEinheit.Rasse)
+                    DiplomatieDatentypen.Krieg_Enum /= LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => StadtSpeziesNummerExtern.Spezies,
+                                                                                        SpeziesZweiExtern => FremdeEinheit.Spezies)
                   then
                      null;
                      
                   else
                      case
-                       LeseEinheitenDatenbank.Einheitenart (RasseExtern => FremdeEinheit.Rasse,
-                                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FremdeEinheit))
+                       LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => FremdeEinheit.Spezies,
+                                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => FremdeEinheit))
                      is
                         when EinheitenDatentypen.Arbeiter_Enum =>
                            null;
@@ -225,7 +225,7 @@ package body KIStadtLogik is
    
    
    function WelcheEinheitArt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return EinheitenDatentypen.EinheitenIDMitNullWert
    is
       use type EinheitenDatentypen.Einheitart_Enum;
@@ -237,16 +237,16 @@ package body KIStadtLogik is
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          if
-           EinheitenDatentypen.Arbeiter_Enum = LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
+           EinheitenDatentypen.Arbeiter_Enum = LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                     IDExtern    => EinheitenSchleifenwert)
          then
             null;
             
          elsif
-           True = EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+           True = EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                             IDExtern               => EinheitenSchleifenwert)
          then
-            AktuelleEinheit := NotfalleinheitBauen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            AktuelleEinheit := NotfalleinheitBauen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                     AktuelleEinheitExtern  => AktuelleEinheit,
                                                     NächsteEinheitExtern   => EinheitenSchleifenwert);
                
@@ -264,7 +264,7 @@ package body KIStadtLogik is
    
    -- Die Baukosten noch mit in die Bewertung einfließen lassen. äöü
    function NotfalleinheitBauen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       AktuelleEinheitExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
       NächsteEinheitExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.EinheitenID
@@ -279,13 +279,13 @@ package body KIStadtLogik is
          return NächsteEinheitExtern;
          
       elsif
-        LeseEinheitenDatenbank.Angriff (RasseExtern => StadtRasseNummerExtern.Rasse,
+        LeseEinheitenDatenbank.Angriff (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                         IDExtern    => AktuelleEinheitExtern)
-        + LeseEinheitenDatenbank.Verteidigung (RasseExtern => StadtRasseNummerExtern.Rasse,
+        + LeseEinheitenDatenbank.Verteidigung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                IDExtern    => AktuelleEinheitExtern)
-        < LeseEinheitenDatenbank.Angriff (RasseExtern => StadtRasseNummerExtern.Rasse,
+        < LeseEinheitenDatenbank.Angriff (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                           IDExtern    => NächsteEinheitExtern)
-        + LeseEinheitenDatenbank.Verteidigung (RasseExtern => StadtRasseNummerExtern.Rasse,
+        + LeseEinheitenDatenbank.Verteidigung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                IDExtern    => NächsteEinheitExtern)
       then
          return NächsteEinheitExtern;

@@ -7,7 +7,7 @@ with LeseEinheitenDatenbank;
 package body KIStadtLaufendeBauprojekteLogik is
 
    function StadtLaufendeBauprojekte
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       BauprojektExtern : in StadtRecords.BauprojektRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
    is
@@ -17,19 +17,19 @@ package body KIStadtLaufendeBauprojekteLogik is
       GleichesGebäudeBauprojekt := StadtKonstanten.LeerNummer;
      
       StadtSchleife:
-      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse) loop
+      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) loop
             
          if
-           StadtNummerSchleifenwert = StadtRasseNummerExtern.Nummer
+           StadtNummerSchleifenwert = StadtSpeziesNummerExtern.Nummer
            or
-             LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+             LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
          then
             null;
             
          elsif
-           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Gebäude = BauprojektExtern.Gebäude
+           LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Gebäude = BauprojektExtern.Gebäude
            or
-             LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit = BauprojektExtern.Einheit
+             LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit = BauprojektExtern.Einheit
          then
             GleichesGebäudeBauprojekt := GleichesGebäudeBauprojekt + 1;
                
@@ -46,7 +46,7 @@ package body KIStadtLaufendeBauprojekteLogik is
    
    
    function GleicheEinheitArtBauprojekte
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is
@@ -57,21 +57,21 @@ package body KIStadtLaufendeBauprojekteLogik is
       GleichesEinheitenBauprojekt := EinheitenKonstanten.LeerNummer;
       
       StadtSchleife:
-      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => StadtRasseNummerExtern.Rasse) loop
+      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) loop
             
          if
-           StadtNummerSchleifenwert = StadtRasseNummerExtern.Nummer
+           StadtNummerSchleifenwert = StadtSpeziesNummerExtern.Nummer
            or
-             LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+             LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
          then
             null;
                
          elsif
-           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit /= 0
+           LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit /= 0
          then
             if
-              EinheitArtExtern = LeseEinheitenDatenbank.Einheitenart (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                      IDExtern    => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Einheit)
+              EinheitArtExtern = LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
+                                                                      IDExtern    => LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit)
             then
                GleichesEinheitenBauprojekt := GleichesEinheitenBauprojekt + 1;
                      
@@ -89,7 +89,7 @@ package body KIStadtLaufendeBauprojekteLogik is
    
    
    function EinheitenInProduktion
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is
       use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
@@ -98,15 +98,15 @@ package body KIStadtLaufendeBauprojekteLogik is
       EinheitenImBau := EinheitenKonstanten.LeerNummer;
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtDatentypen.MaximaleStädte'First .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseExtern) loop
+      for StadtSchleifenwert in StadtDatentypen.MaximaleStädte'First .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
          
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
          then
             null;
             
          elsif
-           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)).Einheit = StadtKonstanten.LeerBauprojekt.Einheit
+           LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)).Einheit = StadtKonstanten.LeerBauprojekt.Einheit
          then
             null;
             

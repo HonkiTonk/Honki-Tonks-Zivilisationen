@@ -11,7 +11,7 @@ package body FelderbewirtschaftungLogik is
 
    procedure BewirtschaftbareFelderBelegen
      (ZuwachsSchwundExtern : in Boolean;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type ProduktionDatentypen.Einwohner;
    begin
@@ -20,14 +20,14 @@ package body FelderbewirtschaftungLogik is
         ZuwachsSchwundExtern
       is
          when False =>
-            SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+            SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                    EinwohnerArbeiterExtern => True,
                                                    WachsenSchrumpfenExtern => False);
             
             if
-              LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+              LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                  EinwohnerArbeiterExtern => True)
-              >= LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+              >= LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                     EinwohnerArbeiterExtern => False)
             then
                return;
@@ -40,11 +40,11 @@ package body FelderbewirtschaftungLogik is
             null;
       end case;
       
-      ArbeiterBelegenEntfernen (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      ArbeiterBelegenEntfernen (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                 BelegenEntfernenExtern  => ZuwachsSchwundExtern,
                                 WachsenSchrumpfenExtern => ZuwachsSchwundExtern,
                                 FeldExtern              => OptimalesFeldErmitteln (ZuwachsSchwundExtern   => ZuwachsSchwundExtern,
-                                                                                   StadtRasseNummerExtern => StadtRasseNummerExtern));
+                                                                                   StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
       
    end BewirtschaftbareFelderBelegen;
    
@@ -52,17 +52,17 @@ package body FelderbewirtschaftungLogik is
    
    function OptimalesFeldErmitteln
      (ZuwachsSchwundExtern : in Boolean;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+      StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return FeldRecord
    is
       use type KartenDatentypen.Kartenfeld;
       use type ProduktionDatentypen.Produktion;
    begin
       
-      NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       Feld.Bewertung := ProduktionDatentypen.Stadtproduktion'First;
       
-      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 
       YAchseSchleife:
       for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
@@ -81,20 +81,20 @@ package body FelderbewirtschaftungLogik is
                null;
                
             elsif
-              False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+              False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                KoordinatenExtern      => Kartenwert)
             then
                null;
               
             elsif
-              ZuwachsSchwundExtern = LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+              ZuwachsSchwundExtern = LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                               YKoordinateExtern      => YAchseSchleifenwert,
                                                                               XKoordinateExtern      => XAchseSchleifenwert)
             then
                null;
                
             else
-               Bewertung := StadtfeldBewertenLogik.FeldBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+               Bewertung := StadtfeldBewertenLogik.FeldBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                  KoordinatenExtern      => Kartenwert,
                                                                  BelegenEntfernenExtern => ZuwachsSchwundExtern);
             end if;
@@ -118,7 +118,7 @@ package body FelderbewirtschaftungLogik is
    
    
    procedure ArbeiterBelegenEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       BelegenEntfernenExtern : in Boolean;
       WachsenSchrumpfenExtern : in Boolean;
       FeldExtern : in FeldRecord)
@@ -131,11 +131,11 @@ package body FelderbewirtschaftungLogik is
             null;
             
          when others =>
-            SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                          YKoordinateExtern      => FeldExtern.YKoordinate,
                                                          XKoordinateExtern      => FeldExtern.XKoordinate,
                                                          BelegenEntfernenExtern => BelegenEntfernenExtern);
-            SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+            SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                    EinwohnerArbeiterExtern => False,
                                                    WachsenSchrumpfenExtern => WachsenSchrumpfenExtern);
       end case;

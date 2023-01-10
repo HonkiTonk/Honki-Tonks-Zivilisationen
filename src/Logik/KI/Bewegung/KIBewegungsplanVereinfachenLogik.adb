@@ -10,7 +10,7 @@ with KartenkoordinatenberechnungssystemLogik;
 package body KIBewegungsplanVereinfachenLogik is
 
    procedure Planvereinfachung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
       use type EinheitenDatentypen.Bewegungsplan;
@@ -20,13 +20,13 @@ package body KIBewegungsplanVereinfachenLogik is
       for PlanschrittSchleifenwert in EinheitenRecords.KIBewegungPlanArray'First .. EinheitenRecords.KIBewegungPlanArray'Last - 2 loop
             
          if
-           KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+           KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                        PlanschrittExtern        => PlanschrittSchleifenwert)
          then
             return;
                
          else
-            PlanvereinfachungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            PlanvereinfachungPrüfen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                       PlanschrittExtern        => PlanschrittSchleifenwert);
          end if;
          
@@ -37,13 +37,13 @@ package body KIBewegungsplanVereinfachenLogik is
    
    
    procedure PlanvereinfachungPrüfen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PlanschrittExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
    is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      AktuellePlankoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      AktuellePlankoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                       PlanschrittExtern        => PlanschrittExtern);
       
       EAchseSchleife:
@@ -63,7 +63,7 @@ package body KIBewegungsplanVereinfachenLogik is
                   null;
                      
                elsif
-                 True = Verschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                 True = Verschieben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                      PlanschrittExtern        => PlanschrittExtern,
                                      KoordinatenExtern        => KartenwertVereinfachung)
                then
@@ -82,7 +82,7 @@ package body KIBewegungsplanVereinfachenLogik is
    
    
    function Verschieben
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PlanschrittExtern : in EinheitenDatentypen.BewegungsplanVorhanden;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -97,7 +97,7 @@ package body KIBewegungsplanVereinfachenLogik is
       for BewegungsplanSchleifenwert in reverse PlanschrittExtern + ÜbernächsterSchritt .. EinheitenRecords.KIBewegungPlanArray'Last loop
                         
          if
-           KoordinatenExtern = LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+           KoordinatenExtern = LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                    PlanschrittExtern        => BewegungsplanSchleifenwert)
          then
             Planschritt := BewegungsplanSchleifenwert;
@@ -123,8 +123,8 @@ package body KIBewegungsplanVereinfachenLogik is
       VerschiebungSchleife:
       for VerschiebungSchleifenwert in Planschritt .. EinheitenRecords.KIBewegungPlanArray'Last loop
                   
-         SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 KoordinatenExtern        => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+         SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                 KoordinatenExtern        => LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                                                  PlanschrittExtern        => VerschiebungSchleifenwert),
                                                  PlanplatzExtern          => PlanschrittExtern + Zusatzschritt);
             
@@ -135,7 +135,7 @@ package body KIBewegungsplanVereinfachenLogik is
       LöschenSchleife:
       for LöschenSchleifenwert in PlanschrittExtern + Zusatzschritt .. EinheitenRecords.KIBewegungPlanArray'Last loop
          
-        SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                 KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate,
                                                 PlanplatzExtern          => LöschenSchleifenwert);
          
@@ -148,7 +148,7 @@ package body KIBewegungsplanVereinfachenLogik is
    
    
    procedure BewegungsplanVerschieben
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type EinheitenDatentypen.BewegungsplanVorhanden;
    begin
@@ -156,14 +156,14 @@ package body KIBewegungsplanVereinfachenLogik is
       BewegungPlanVerschiebenSchleife:
       for PositionSchleifenwert in EinheitenRecords.KIBewegungPlanArray'First + 1 .. EinheitenRecords.KIBewegungPlanArray'Last loop
          
-         SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 KoordinatenExtern        => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+         SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                 KoordinatenExtern        => LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                                                  PlanschrittExtern        => PositionSchleifenwert),
                                                  PlanplatzExtern          => (PositionSchleifenwert - 1));
          
       end loop BewegungPlanVerschiebenSchleife;
             
-      SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                               KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate,
                                               PlanplatzExtern          => EinheitenRecords.KIBewegungPlanArray'Last);
       

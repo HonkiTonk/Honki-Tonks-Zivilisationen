@@ -11,7 +11,7 @@ with WegeplatzierungssystemLogik;
 package body VerbesserungPluendernLogik is
 
    function VerbesserungPlündern
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -37,9 +37,9 @@ package body VerbesserungPluendernLogik is
       end if;
       
       case
-        LeseRassenbelegung.Belegung (RasseExtern => EinheitRasseNummerExtern.Rasse)
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
       is
-         when RassenDatentypen.KI_Spieler_Enum =>
+         when SpeziesDatentypen.KI_Spieler_Enum =>
             null;
             
          when others =>
@@ -62,7 +62,7 @@ package body VerbesserungPluendernLogik is
          when others =>
             SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                             VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
-            SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+            SchreibeWichtiges.Geldmenge (SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
                                          GeldZugewinnExtern  => 10,
                                          RechnenSetzenExtern => True);
       end case;
@@ -75,7 +75,7 @@ package body VerbesserungPluendernLogik is
             
          when others =>
             WegeplatzierungssystemLogik.Wegentfernung (KoordinatenExtern => KoordinatenExtern);
-            SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+            SchreibeWichtiges.Geldmenge (SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
                                          GeldZugewinnExtern  => 5,
                                          RechnenSetzenExtern => True);
       end case;

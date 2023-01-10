@@ -8,7 +8,7 @@ with Grenzpruefungen;
 package body FestungErmittelnLogik is
 
    function FestungErmitteln
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -17,7 +17,7 @@ package body FestungErmittelnLogik is
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        ArbeitszeitFestungLogik.Basiszeit (EinheitRasseNummerExtern.Rasse, Gesamtgrund.Basisgrund)
+        ArbeitszeitFestungLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, Gesamtgrund.Basisgrund)
       is
          when EinheitenKonstanten.UnmöglicheArbeit =>
             return False;
@@ -30,15 +30,15 @@ package body FestungErmittelnLogik is
         Gesamtgrund.Basisgrund
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
-            Arbeitswerte := OberflächeLand (RasseExtern => EinheitRasseNummerExtern.Rasse,
+            Arbeitswerte := OberflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                              GrundExtern => Gesamtgrund);
             
          when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
-            Arbeitswerte := UnterflächeWasser (RasseExtern => EinheitRasseNummerExtern.Rasse,
+            Arbeitswerte := UnterflächeWasser (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                 GrundExtern => Gesamtgrund);
             
          when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
-            Arbeitswerte := UnterflächeLand (RasseExtern => EinheitRasseNummerExtern.Rasse,
+            Arbeitswerte := UnterflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                               GrundExtern => Gesamtgrund);
             
          when others =>
@@ -62,9 +62,9 @@ package body FestungErmittelnLogik is
         AnlegenTestenExtern
       is
          when True =>
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     BeschäftigungExtern     => Arbeitswerte.Aufgabe);
-            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                          ZeitExtern               => Arbeitswerte.Arbeitszeit,
                                                          RechnenSetzenExtern      => False);
             
@@ -79,13 +79,13 @@ package body FestungErmittelnLogik is
    
    
    function OberflächeLand
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
+                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -95,7 +95,7 @@ package body FestungErmittelnLogik is
 
          when others =>
             Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitFestungLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+                                                        ÄnderungExtern      => ArbeitszeitFestungLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return (
@@ -108,13 +108,13 @@ package body FestungErmittelnLogik is
    
    
    function UnterflächeLand
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
+                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -124,7 +124,7 @@ package body FestungErmittelnLogik is
 
          when others =>
             Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitFestungLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+                                                        ÄnderungExtern      => ArbeitszeitFestungLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return (
@@ -137,13 +137,13 @@ package body FestungErmittelnLogik is
      
      
    function UnterflächeWasser
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
       
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
-                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (RasseExtern, GrundExtern.Basisgrund));
+                                                  ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
         GrundExtern.Zusatzgrund
@@ -153,7 +153,7 @@ package body FestungErmittelnLogik is
 
          when others =>
             Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
-                                                        ÄnderungExtern      => ArbeitszeitFestungLogik.Zusatzzeit (RasseExtern, GrundExtern.Zusatzgrund));
+                                                        ÄnderungExtern      => ArbeitszeitFestungLogik.Zusatzzeit (SpeziesExtern, GrundExtern.Zusatzgrund));
       end case;
       
       return (

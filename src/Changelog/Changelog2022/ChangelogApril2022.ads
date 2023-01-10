@@ -47,7 +47,7 @@ package ChangelogApril2022 is
    
    -- Weiter an der neuen Version des Kartengenerators gearbeitet.
    -- Polsystem an die verschiedene Polgrößen und -abständen angepasst.
-   -- Wenn bei der Kartenerstellung keine Rasse platziert werden konnte, dann wird jetzt nicht mehr das Spiel angehalten sondern man kommt zurück ins Spieleinstellungsmenü.
+   -- Wenn bei der Kartenerstellung keine Spezies platziert werden konnte, dann wird jetzt nicht mehr das Spiel angehalten sondern man kommt zurück ins Spieleinstellungsmenü.
    -- KartengeneratorOberfläche fürs Erste fertig überarbeitet.
    -- Küste wird jetzt auch an Eis erzeugt.
    -- KartengeneratorLandschaft fürs Erste fertig überarbeitet.
@@ -97,7 +97,7 @@ package ChangelogApril2022 is
    -- Version 0.01.0370 => 0.01.0390 (21.04.2022):
    
    -- Weiter am neuen Menüsystem gebaut.
-   -- Zusatzanzeige für die Rassenauswahl eingebaut.
+   -- Zusatzanzeige für die Speziesauswahl eingebaut.
    -- Zusatzanzeige für Kartengröße eingebaut.
    -- Angefangen das neue Kartenformsystem einzubauen.
    -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.

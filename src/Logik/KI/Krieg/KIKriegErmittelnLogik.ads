@@ -1,70 +1,70 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 
 private with ProduktionDatentypen;
 
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package KIKriegErmittelnLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    function IstImKrieg
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
 
    function KriegAnfangen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RassenDatentypen.Rassen_Enum
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return SpeziesDatentypen.Spezies_Enum
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
 
 private
-   use type RassenDatentypen.Rassen_Enum;
+   use type SpeziesDatentypen.Spezies_Enum;
 
-   RasseGewählt : RassenDatentypen.Rassen_Enum;
+   SpeziesGewählt : SpeziesDatentypen.Spezies_Enum;
    Bewertung : ProduktionDatentypen.Feldproduktion;
 
-   type BewertungenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of ProduktionDatentypen.Feldproduktion;
+   type BewertungenArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ProduktionDatentypen.Feldproduktion;
    Bewertungen : BewertungenArray;
 
    NotwendigeBewertung : constant BewertungenArray := (
-                                                       RassenDatentypen.Menschen_Enum         => 10,
-                                                       RassenDatentypen.Kasrodiah_Enum        => 10,
-                                                       RassenDatentypen.Lasupin_Enum          => 10,
-                                                       RassenDatentypen.Lamustra_Enum         => 10,
-                                                       RassenDatentypen.Manuky_Enum           => 10,
-                                                       RassenDatentypen.Suroka_Enum           => 10,
-                                                       RassenDatentypen.Pryolon_Enum          => 10,
-                                                       RassenDatentypen.Talbidahr_Enum        => 10,
-                                                       RassenDatentypen.Moru_Phisihl_Enum     => 10,
-                                                       RassenDatentypen.Larinos_Lotaris_Enum  => 10,
-                                                       RassenDatentypen.Carupex_Enum          => 10,
-                                                       RassenDatentypen.Alary_Enum            => 10,
-                                                       RassenDatentypen.Tesorahn_Enum         => 10,
-                                                       RassenDatentypen.Natries_Zermanis_Enum => 10,
-                                                       RassenDatentypen.Tridatus_Enum         => 10,
-                                                       RassenDatentypen.Senelari_Enum         => 10,
-                                                       RassenDatentypen.Aspari_2_Enum         => 10,
-                                                       RassenDatentypen.Ekropa_Enum           => 0
+                                                       SpeziesDatentypen.Menschen_Enum         => 10,
+                                                       SpeziesDatentypen.Kasrodiah_Enum        => 10,
+                                                       SpeziesDatentypen.Lasupin_Enum          => 10,
+                                                       SpeziesDatentypen.Lamustra_Enum         => 10,
+                                                       SpeziesDatentypen.Manuky_Enum           => 10,
+                                                       SpeziesDatentypen.Suroka_Enum           => 10,
+                                                       SpeziesDatentypen.Pryolon_Enum          => 10,
+                                                       SpeziesDatentypen.Talbidahr_Enum        => 10,
+                                                       SpeziesDatentypen.Moru_Phisihl_Enum     => 10,
+                                                       SpeziesDatentypen.Larinos_Lotaris_Enum  => 10,
+                                                       SpeziesDatentypen.Carupex_Enum          => 10,
+                                                       SpeziesDatentypen.Alary_Enum            => 10,
+                                                       SpeziesDatentypen.Tesorahn_Enum         => 10,
+                                                       SpeziesDatentypen.Natries_Zermanis_Enum => 10,
+                                                       SpeziesDatentypen.Tridatus_Enum         => 10,
+                                                       SpeziesDatentypen.Senelari_Enum         => 10,
+                                                       SpeziesDatentypen.Aspari_2_Enum         => 10,
+                                                       SpeziesDatentypen.Ekropa_Enum           => 0
                                                       );
 
    function StärkeVerhältnisErmitteln
-     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return RassenDatentypen.Rassen_Enum
+     (EigeneSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      FremdeSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return SpeziesDatentypen.Spezies_Enum
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => EigeneRasseExtern) = RassenDatentypen.KI_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EigeneSpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => FremdeRasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => FremdeSpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 EigeneRasseExtern /= FremdeRasseExtern
+                 EigeneSpeziesExtern /= FremdeSpeziesExtern
               );
 
 end KIKriegErmittelnLogik;

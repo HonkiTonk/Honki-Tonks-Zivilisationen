@@ -4,20 +4,20 @@ with SpielVariablen;
 package body SchreibeDiplomatie is
 
    procedure AktuellerZustand
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       ZustandExtern : in DiplomatieDatentypen.Status_Untereinander_Enum)
    is begin
       
-      SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand := ZustandExtern;
+      SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).AktuellerZustand := ZustandExtern;
       
    end AktuellerZustand;
    
    
    
    procedure AktuelleSympathie
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SympathieExtern : in DiplomatieDatentypen.Meinung;
       RechnenSetzenExtern : in Boolean)
    is begin
@@ -26,12 +26,12 @@ package body SchreibeDiplomatie is
         RechnenSetzenExtern
       is
          when True =>
-            SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuelleSympathieBewertung :=
-              MeinungPrüfen (AktuellerWertExtern => SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuelleSympathieBewertung,
+            SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).AktuelleSympathieBewertung :=
+              MeinungPrüfen (AktuellerWertExtern => SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).AktuelleSympathieBewertung,
                               ÄnderungExtern      => SympathieExtern);
             
          when False =>
-            SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuelleSympathieBewertung := SympathieExtern;
+            SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).AktuelleSympathieBewertung := SympathieExtern;
       end case;
       
    end AktuelleSympathie;
@@ -39,8 +39,8 @@ package body SchreibeDiplomatie is
    
    
    procedure ZeitSeitÄnderung
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       ÄnderungExtern : in ZahlenDatentypen.EigenesNatural;
       RechnenSetzenExtern : in Boolean)
    is begin
@@ -49,12 +49,12 @@ package body SchreibeDiplomatie is
         RechnenSetzenExtern
       is
          when True =>
-            SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung
-              := EigeneZahlPrüfen (AktuellerWertExtern => SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung,
+            SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).ZeitSeitLetzterÄnderung
+              := EigeneZahlPrüfen (AktuellerWertExtern => SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).ZeitSeitLetzterÄnderung,
                                     ÄnderungExtern      => ÄnderungExtern);
             
          when False =>
-            SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung := ÄnderungExtern;
+            SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern).ZeitSeitLetzterÄnderung := ÄnderungExtern;
       end case;
       
    end ZeitSeitÄnderung;
@@ -71,12 +71,12 @@ package body SchreibeDiplomatie is
    
    
    procedure GanzerEintrag
-     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       EintragExtern : in SpielRecords.DiplomatieRecord)
    is begin
       
-      SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern) := EintragExtern;
+      SpielVariablen.Diplomatie (SpeziesEinsExtern, SpeziesZweiExtern) := EintragExtern;
       
    end GanzerEintrag;
 

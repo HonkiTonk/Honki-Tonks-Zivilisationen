@@ -27,28 +27,28 @@ with KIEinheitHandlungstestsLogik;
 package body KIEinheitenbewegungLogik is
    
    function Bewegung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
       use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
-      Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       BewegungSchleife:
       for BewegungSchleifenwert in KIDatentypen.KINotAus'First .. KIKonstanten.SchwierigkeitsgradBewegung (LeseAllgemeines.Schwierigkeitsgrad) loop
          
          case
-           LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
          is
             when EinheitenKonstanten.LeerBewegungspunkte =>
                if
-                 LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = Zielkoordinaten
+                 LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = Zielkoordinaten
                then
-                  SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                  SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                              KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
-                  SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                  SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                   
                else
                   null;
@@ -61,33 +61,33 @@ package body KIEinheitenbewegungLogik is
          end case;
             
          if
-           LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = Zielkoordinaten
+           LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = Zielkoordinaten
            or
              Zielkoordinaten = KartenRecordKonstanten.LeerKoordinate
          then
-            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
-            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             exit BewegungSchleife;
             
          elsif
            True = LeseWeltkarte.Sichtbar (KoordinatenExtern => Zielkoordinaten,
-                                          RasseExtern       => EinheitRasseNummerExtern.Rasse)
+                                          SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
            and
-             False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+             False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                NeueKoordinatenExtern    => Zielkoordinaten)
          then
-            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
-            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             exit BewegungSchleife;
             
          elsif
-           KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+           KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                        PlanschrittExtern        => 1)
          then
             case
-              KIBewegungsplanBerechnenLogik.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+              KIBewegungsplanBerechnenLogik.BewegungPlanen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
             is
                when True =>
                   null;
@@ -97,42 +97,42 @@ package body KIEinheitenbewegungLogik is
             end case;
             
          else
-            BewegungDurchführen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            BewegungDurchführen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          end if;
          
       end loop BewegungSchleife;
       
-      return KIEinheitHandlungstestsLogik.HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      return KIEinheitHandlungstestsLogik.HandlungBeendet (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
    end Bewegung;
 
 
 
    procedure BewegungDurchführen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
-      NeueKoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      NeueKoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                              PlanschrittExtern        => 1);
       
       case
         KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern    => NeueKoordinaten,
-                                               EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                               EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when KIKonstanten.BewegungNormal =>
-            BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            BewegtSich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIKonstanten.Tauschbewegung =>
-            -- SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            -- SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             -- Hier noch einmal genauer nachprüfen ob es auch wirklich funktioniert. äöü
-            EinheitTauschen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            EinheitTauschen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                              NeueKoordinatenExtern    => NeueKoordinaten);
             
          when KIKonstanten.KeineBewegung =>
-            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIKonstanten.BewegungAngriff =>
-            Blockiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Blockiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
    end BewegungDurchführen;
@@ -140,20 +140,20 @@ package body KIEinheitenbewegungLogik is
    
    
    procedure EinheitTauschen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
             
-      Tauscheinheit := (EinheitRasseNummerExtern.Rasse, EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+      Tauscheinheit := (EinheitSpeziesNummerExtern.Spezies, EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                                                                                              KoordinatenExtern => NeueKoordinatenExtern,
                                                                                                              LogikGrafikExtern => True));
       
       if
-        Tauscheinheit.Nummer = EinheitRasseNummerExtern.Nummer
+        Tauscheinheit.Nummer = EinheitSpeziesNummerExtern.Nummer
       then
-         SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          return;
          
       else
@@ -162,15 +162,15 @@ package body KIEinheitenbewegungLogik is
       
       -- Aufgrund der Änderungen in EinheitenbewegungLogik.Einheitentausch wird das hier nicht mehr funktionieren, später also anpassen. äöü
       case
-        EinheitenbewegungLogik.Einheitentausch (BewegendeEinheitExtern => EinheitRasseNummerExtern,
+        EinheitenbewegungLogik.Einheitentausch (BewegendeEinheitExtern => EinheitSpeziesNummerExtern,
                                                 StehendeEinheitExtern  => Tauscheinheit)
       is
          when True =>
-            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => Tauscheinheit);
-            BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => Tauscheinheit);
+            BewegtSich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>
-            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
    end EinheitTauschen;
@@ -178,29 +178,29 @@ package body KIEinheitenbewegungLogik is
    
    
    procedure BewegtSich
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
-      Bewegungsschritt := LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      Bewegungsschritt := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                               PlanschrittExtern        => 1);
       
       case
         BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern    => Bewegungsschritt,
-                                                       EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                       EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when EinheitenKonstanten.LeerBewegungspunkte =>
-            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                      BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
                                                      RechnenSetzenExtern      => False);
          
          when others =>
-            BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                    NeueKoordinatenExtern    => Bewegungsschritt,
                                                                    EinheitentauschExtern    => False);
       
-            KIBewegungsplanVereinfachenLogik.BewegungsplanVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KIBewegungsplanVereinfachenLogik.BewegungsplanVerschieben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
    end BewegtSich;
@@ -208,42 +208,42 @@ package body KIEinheitenbewegungLogik is
    
    
    procedure Blockiert
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeueKoordinaten,
+      FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinaten,
                                                                              LogikGrafikExtern => True);
-      FremdeStadt := StadtSuchenLogik.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeueKoordinaten);
+      FremdeStadt := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinaten);
       
       if
-        FremdeStadt.Rasse /= StadtKonstanten.LeerRasse
+        FremdeStadt.Spezies /= StadtKonstanten.LeerSpezies
         and
-          FremdeEinheit.Rasse /= EinheitenKonstanten.LeerRasse
+          FremdeEinheit.Spezies /= EinheitenKonstanten.LeerSpezies
       then
          if
-           True = KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                          VerteidigendeStadtRasseNummerExtern => FremdeStadt)
+           True = KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                          VerteidigendeStadtSpeziesNummerExtern => FremdeStadt)
            and then
-             True = KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern   => EinheitRasseNummerExtern,
+             True = KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern   => EinheitSpeziesNummerExtern,
                                                                    VerteidigerExtern => FremdeEinheit)
          then
-            BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            BewegtSich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          else
             null;
          end if;
             
       elsif
-        FremdeStadt.Rasse = EinheitenKonstanten.LeerRasse
+        FremdeStadt.Spezies = EinheitenKonstanten.LeerSpezies
       then
          case
-           KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern   => EinheitRasseNummerExtern,
+           KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern   => EinheitSpeziesNummerExtern,
                                                           VerteidigerExtern => FremdeEinheit)
          is
             when True =>
-               BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               BewegtSich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                
             when False =>
                null;
@@ -251,11 +251,11 @@ package body KIEinheitenbewegungLogik is
          
       else
          case
-           KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   VerteidigendeStadtRasseNummerExtern => FremdeStadt)
+           KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                   VerteidigendeStadtSpeziesNummerExtern => FremdeStadt)
          is
             when True =>
-               BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               BewegtSich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                
             when False =>
                null;

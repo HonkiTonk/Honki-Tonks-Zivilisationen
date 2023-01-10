@@ -147,17 +147,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04.6070 => 0.04. (10.01.2023):
+   -- Version 0.04.6080 => 0.04. (10.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.6040 => 0.04.6070 (09.01.2023):
+   -- Version 0.04.6040 => 0.04.6080 (09.01.2023):
    
    -- Verschiedene Bibliotheken aktualisiert.
    -- Zahlreiche Variablen/Verzeichnisse/Dateien umbenannt.
+   -- Unnötige Dateien gelöscht.
    
    
 

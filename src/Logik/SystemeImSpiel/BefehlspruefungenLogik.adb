@@ -23,17 +23,17 @@ with StadtAllgemeinesLogik;
 package body BefehlspruefungenLogik is
    
    procedure WasWirdEntfernt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
-      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern),
+      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
+                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
                                                                             LogikGrafikExtern => True);
-      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                      KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern));
+      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
+                                                                      KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
       
       if
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
@@ -42,15 +42,15 @@ package body BefehlspruefungenLogik is
       then
          -- Transporter sollten in der Stadt nicht beladen sein, deswegen es hier keine Prüfung auf Transporter braucht.
          case
-           AuswahlStadtEinheitLogik.AuswahlStadtEinheit (RasseExtern         => RasseExtern,
+           AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern         => SpeziesExtern,
                                                          StadtNummerExtern   => StadtNummer,
                                                          EinheitNummerExtern => EinheitNummer)
          is
             when 0 =>
-               LeerRückgabewert := StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+               LeerRückgabewert := StadtEntfernenLogik.StadtAbreißen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummer));
                
             when 1 =>
-               EinheitBefehle (RasseExtern  => RasseExtern,
+               EinheitBefehle (SpeziesExtern  => SpeziesExtern,
                                BefehlExtern => BefehleDatentypen.Auflösen_Enum);
                
             when others =>
@@ -60,12 +60,12 @@ package body BefehlspruefungenLogik is
       elsif
         StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
-         LeerRückgabewert := StadtEntfernenLogik.StadtAbreißen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+         LeerRückgabewert := StadtEntfernenLogik.StadtAbreißen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummer));
          
       elsif
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
       then
-         EinheitBefehle (RasseExtern  => RasseExtern,
+         EinheitBefehle (SpeziesExtern  => SpeziesExtern,
                          BefehlExtern => BefehleDatentypen.Auflösen_Enum);
                
       else
@@ -77,18 +77,18 @@ package body BefehlspruefungenLogik is
    
    
    procedure AuswahlEinheitStadt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
-      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern),
+      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
+                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
                                                                             LogikGrafikExtern => True);
       
-      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                      KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern));
+      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
+                                                                      KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
 
       if
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
@@ -96,19 +96,19 @@ package body BefehlspruefungenLogik is
           StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
          -- Transporter sollten in der Stadt nicht beladen sein, deswegen es hier keine Prüfung auf Transporter braucht.
-         EinheitOderStadt (RasseExtern         => RasseExtern,
+         EinheitOderStadt (SpeziesExtern         => SpeziesExtern,
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);
          
       elsif
         StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
-         StadtAktion (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+         StadtAktion (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummer));
          
       elsif
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
       then
-         AuswahlEinheitTransporter (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
+         AuswahlEinheitTransporter (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummer));
                
       else
          null;
@@ -119,32 +119,32 @@ package body BefehlspruefungenLogik is
    
    
    procedure AuswahlEinheitTransporter
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
       
-      Transportiert := TransporterSuchenLogik.HatTransporterLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Transportiert := TransporterSuchenLogik.HatTransporterLadung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       if
-        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerWirdTransportiert
+        LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerWirdTransportiert
         and
           Transportiert = False
       then
-         TransporterNummer := EinheitRasseNummerExtern.Nummer;
+         TransporterNummer := EinheitSpeziesNummerExtern.Nummer;
          AusgewählteEinheit := 0;
 
       elsif
-        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerWirdTransportiert
+        LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= EinheitenKonstanten.LeerWirdTransportiert
       then
-         TransporterNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+         TransporterNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+         AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
                                                                               StadtNummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
                                                                               EinheitNummerExtern => TransporterNummer);
 
       else
-         TransporterNummer := EinheitRasseNummerExtern.Nummer;
-         AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+         TransporterNummer := EinheitSpeziesNummerExtern.Nummer;
+         AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
                                                                               StadtNummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
                                                                               EinheitNummerExtern => TransporterNummer);
       end if;
@@ -153,10 +153,10 @@ package body BefehlspruefungenLogik is
         AusgewählteEinheit
       is
          when 0 =>
-            EinheitSteuern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransporterNummer));
+            EinheitSteuern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, TransporterNummer));
             
          when Positive (EinheitenRecords.TransporterArray'First) .. Positive (EinheitenRecords.TransporterArray'Last) =>
-            EinheitSteuern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransporterNummer),
+            EinheitSteuern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, TransporterNummer),
                                                                                                                             PlatzExtern              => EinheitenDatentypen.Transportplätze (AusgewählteEinheit))));
             
          when others =>
@@ -168,21 +168,21 @@ package body BefehlspruefungenLogik is
 
 
    procedure EinheitOderStadt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
    is begin
       
       case
-        AuswahlStadtEinheitLogik.AuswahlStadtEinheit (RasseExtern         => RasseExtern,
+        AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern         => SpeziesExtern,
                                                       StadtNummerExtern   => StadtNummerExtern,
                                                       EinheitNummerExtern => EinheitNummerExtern)
       is
          when 0 =>
-            StadtAktion (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
+            StadtAktion (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummerExtern));
             
          when 1 =>
-            EinheitSteuern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
+            EinheitSteuern (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerExtern));
                
          when others =>
             null;
@@ -193,22 +193,22 @@ package body BefehlspruefungenLogik is
    
    
    procedure EinheitSteuern
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type EinheitenDatentypen.Bewegungspunkte;
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    begin
       
-      NachGrafiktask.AktuelleEinheit := EinheitRasseNummerExtern.Nummer;
+      NachGrafiktask.AktuelleEinheit := EinheitSpeziesNummerExtern.Nummer;
       
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
+        LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
       then
          case
-           EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
          is
             when True =>
-               EinheitenkontrollsystemLogik.Einheitenkontrolle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               EinheitenkontrollsystemLogik.Einheitenkontrolle (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                
             when False =>
                null;
@@ -219,15 +219,15 @@ package body BefehlspruefungenLogik is
            JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen)
          is
             when True =>
-               AufgabenAllgemeinLogik.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               AufgabenAllgemeinLogik.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                
                if
-                 LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
+                 LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
                then
                   null;
                   
                else
-                  EinheitenkontrollsystemLogik.Einheitenkontrolle (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                  EinheitenkontrollsystemLogik.Einheitenkontrolle (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                end if;
                
             when others =>
@@ -242,11 +242,11 @@ package body BefehlspruefungenLogik is
    
    
    procedure BaueStadt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern),
+      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
+                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
                                                                             LogikGrafikExtern => True);
       case
         EinheitNummer
@@ -259,10 +259,10 @@ package body BefehlspruefungenLogik is
       end case;
       
       case
-        EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer))
+        EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummer))
       is
          when True =>
-            LeerRückgabewert := StadtBauenLogik.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
+            LeerRückgabewert := StadtBauenLogik.StadtBauen (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummer));
             
          when False =>
             null;
@@ -273,12 +273,12 @@ package body BefehlspruefungenLogik is
    
    
    procedure EinheitBefehle
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Klein_Enum)
    is begin
                      
-      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern),
+      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
+                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
                                                                             LogikGrafikExtern => True);
       
       case
@@ -292,12 +292,12 @@ package body BefehlspruefungenLogik is
       end case;
       
       case
-        EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer))
+        EinheitenSpielmeldungenLogik.BewegungspunkteMeldung (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummer))
       is
          when True =>
-            LeerRückgabewert := AufgabenLogik.Aufgabe (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
+            LeerRückgabewert := AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummer),
                                                         BefehlExtern             => BefehlExtern,
-                                                        KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)));
+                                                        KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummer)));
             
          when False =>
             null;
@@ -308,11 +308,11 @@ package body BefehlspruefungenLogik is
    
    
    procedure StadtUmbenennen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                      KoordinatenExtern => LeseCursor.KoordinatenAktuell (RasseExtern => RasseExtern));
+      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
+                                                                      KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
       
       case
         StadtNummer
@@ -321,7 +321,7 @@ package body BefehlspruefungenLogik is
             null;
          
          when others =>
-            StadtAllgemeinesLogik.NeuerStadtname (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+            StadtAllgemeinesLogik.NeuerStadtname (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummer));
       end case;
       
    end StadtUmbenennen;
@@ -330,12 +330,12 @@ package body BefehlspruefungenLogik is
    
    -- Hier dann später die Prüfungen für das vorhandene Stadtbewegungsgebäude und die entsprechende Auswahl zwischen Stadt betreten und bewegen einbauen. äöü
    procedure StadtAktion
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
       
       
-      StadtmenueLogik.Stadtmenü (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtmenueLogik.Stadtmenü (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
    end StadtAktion;
 

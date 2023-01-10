@@ -1,7 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with ZahlenDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with SpielDatentypen;
 with SpielRecords;
 
@@ -15,8 +15,8 @@ package SchreibeAllgemeines is
    procedure Weiterspielen
      (WeiterspielenExtern : in Boolean);
    
-   procedure RasseAmzugNachLaden
-     (RasseExtern : in RassenDatentypen.Rassen_Enum);
+   procedure SpeziesAmzugNachLaden
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum);
    
    procedure Schwierigkeitsgrad
      (SchwierigkeitsgradExtern : in SpielDatentypen.Schwierigkeitsgrad_Enum);
@@ -30,7 +30,7 @@ package SchreibeAllgemeines is
      (NameExtern : in Unbounded_Wide_Wide_String);
    
    procedure PlanetVernichtet
-     (RasseExtern : in RassenDatentypen.Rassen_Enum);
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum);
    
    procedure Zusammenbruchszeit
      (ZeitExtern : in ZahlenDatentypen.EigenerInteger;

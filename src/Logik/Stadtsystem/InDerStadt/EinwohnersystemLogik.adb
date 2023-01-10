@@ -13,7 +13,7 @@ with StadtproduktionLogik;
 package body EinwohnersystemLogik is
 
    function EinwohnerZuweisenEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is
       use type KartenDatentypen.Kartenfeld;
@@ -31,7 +31,7 @@ package body EinwohnersystemLogik is
          Stadtfeld.XAchse := KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / SichtweitenGrafik.KartenfelderAbmessung.x)) - 3;
       end if;
       
-      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
                                                                                                 ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Stadtfeld.YAchse, Stadtfeld.XAchse),
                                                                                                 LogikGrafikExtern => True);
       
@@ -42,7 +42,7 @@ package body EinwohnersystemLogik is
             return False;
             
          when others =>
-            EinwohnerBelegungÄndern (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            EinwohnerBelegungÄndern (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                       YAchseExtern           => Stadtfeld.YAchse,
                                       XAchseExtern           => Stadtfeld.XAchse);
             return True;
@@ -53,23 +53,23 @@ package body EinwohnersystemLogik is
 
 
    procedure EinwohnerBelegungÄndern
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       YAchseExtern : in KartenDatentypen.Kartenfeld;
       XAchseExtern : in KartenDatentypen.Kartenfeld)
    is begin
       
       case
-        LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+        LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                  YKoordinateExtern      => YAchseExtern,
                                                  XKoordinateExtern      => XAchseExtern)
       is
          when True =>
-            EinwohnerEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            EinwohnerEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                 YAchseExtern           => YAchseExtern,
                                 XAchseExtern           => XAchseExtern);
                         
          when False =>
-            EinwohnerZuweisen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            EinwohnerZuweisen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                YAchseExtern           => YAchseExtern,
                                XAchseExtern           => XAchseExtern);
       end case;
@@ -79,28 +79,28 @@ package body EinwohnersystemLogik is
    
    
    procedure EinwohnerEntfernen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       YAchseExtern : in KartenDatentypen.Kartenfeld;
       XAchseExtern : in KartenDatentypen.Kartenfeld)
    is begin
       
-      SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                    YKoordinateExtern      => YAchseExtern,
                                                    XKoordinateExtern      => XAchseExtern,
                                                    BelegenEntfernenExtern => False);
       
-      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                              EinwohnerArbeiterExtern => False,
                                              WachsenSchrumpfenExtern => False);
       
-      StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
    end EinwohnerEntfernen;
    
    
    
    procedure EinwohnerZuweisen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       YAchseExtern : in KartenDatentypen.Kartenfeld;
       XAchseExtern : in KartenDatentypen.Kartenfeld)
    is
@@ -108,24 +108,24 @@ package body EinwohnersystemLogik is
    begin
       
       if
-        LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+        LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                            EinwohnerArbeiterExtern => False)
-        < LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+        < LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                              EinwohnerArbeiterExtern => True)
         and
-          True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+          True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                           KoordinatenExtern      => Kartenwert)
       then
-         SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                       YKoordinateExtern      => YAchseExtern,
                                                       XKoordinateExtern      => XAchseExtern,
                                                       BelegenEntfernenExtern => True);
          
-         SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+         SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                 EinwohnerArbeiterExtern => False,
                                                 WachsenSchrumpfenExtern => True);
          
-         StadtproduktionLogik.Stadtproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
          
       else
          null;

@@ -1,4 +1,4 @@
-private with RassenDatentypen;
+private with SpeziesDatentypen;
 
 package StandardForschungenDatenbank is
    pragma Elaborate_Body;
@@ -8,6 +8,6 @@ package StandardForschungenDatenbank is
 private
 
    procedure StandardTechnologienLaden
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum);
 
 end StandardForschungenDatenbank;

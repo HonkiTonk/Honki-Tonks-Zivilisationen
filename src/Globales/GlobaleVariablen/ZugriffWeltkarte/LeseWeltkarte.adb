@@ -87,7 +87,7 @@ package body LeseWeltkarte is
       
    function Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -98,7 +98,7 @@ package body LeseWeltkarte is
             return False;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern);
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (SpeziesExtern);
       end case;
         
    end Sichtbar;
@@ -182,12 +182,12 @@ package body LeseWeltkarte is
    
    
    function BelegterGrund
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       case
@@ -195,14 +195,14 @@ package body LeseWeltkarte is
       is
          when KartenKonstanten.LeerEAchse =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.BelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern)
-                                        & "Rasse: " & RasseExtern'Wide_Wide_Image);
+                                        & "Spezies: " & SpeziesExtern'Wide_Wide_Image);
             
          when others =>
             null;
       end case;
             
       if
-        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Rasse = RasseExtern
+        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies = SpeziesExtern
         and
           Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer > StadtKonstanten.LeerNummer
       then
@@ -221,7 +221,7 @@ package body LeseWeltkarte is
       return Boolean
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       case
@@ -235,19 +235,19 @@ package body LeseWeltkarte is
       end case;
       
       if
-        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Rasse = StadtKonstanten.LeerRasse
+        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies = StadtKonstanten.LeerSpezies
         and
           Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer = StadtKonstanten.LeerNummer
       then
          return True;
          
       elsif
-        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Rasse = StadtKonstanten.LeerRasse
+        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies = StadtKonstanten.LeerSpezies
         or
           Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer = StadtKonstanten.LeerNummer
       then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.UnbelegterGrund - Werte ungültig. Rasse: "
-                             & Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Rasse'Wide_Wide_Image & " Nummer: "
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.UnbelegterGrund - Werte ungültig. Spezies: "
+                             & Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies'Wide_Wide_Image & " Nummer: "
                              & Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer'Wide_Wide_Image);
          return True;
          
@@ -261,7 +261,7 @@ package body LeseWeltkarte is
    
    function StadtbelegungGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return StadtRecords.RasseStadtnummerRecord
+      return StadtRecords.SpeziesStadtnummerRecord
    is begin
       
       case
@@ -281,12 +281,12 @@ package body LeseWeltkarte is
    
       
    function BestimmteStadtBelegtGrund
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
       
       case
@@ -300,9 +300,9 @@ package body LeseWeltkarte is
       end case;
      
       if
-        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Rasse = StadtRasseNummerExtern.Rasse
+        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies = StadtSpeziesNummerExtern.Spezies
         and
-          Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer = StadtRasseNummerExtern.Nummer
+          Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer = StadtSpeziesNummerExtern.Nummer
       then
          return True;
          
@@ -314,37 +314,37 @@ package body LeseWeltkarte is
    
    
    
-   function RasseBelegtGrund
+   function SpeziesBelegtGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return RassenDatentypen.Rassen_Enum
+      return SpeziesDatentypen.Spezies_Enum
    is begin
       
       case
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.RasseBelegtGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.SpeziesBelegtGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
             null;
       end case;
       
-      return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Rasse;
+      return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies;
       
-   end RasseBelegtGrund;
+   end SpeziesBelegtGrund;
    
    
    
    function EinheitenbelegungGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return EinheitenRecords.RasseEinheitnummerRecord
+      return EinheitenRecords.SpeziesEinheitnummerRecord
    is begin
       
       case
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            return EinheitenKonstanten.LeerRasseNummer;
+            return EinheitenKonstanten.LeerSpeziesNummer;
             
          when others =>
             return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit;

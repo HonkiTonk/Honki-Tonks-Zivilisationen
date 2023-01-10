@@ -11,14 +11,14 @@ package body KartenAllgemeinesLogik is
    -- Später mal ein besseres Berechnungssystem einbauen. äöü
    function GrundNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       Basiswirtschaft := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund.Basisgrund,
-                                                                     RasseExtern         => RasseExtern,
+                                                                     SpeziesExtern         => SpeziesExtern,
                                                                      WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
       
       case
@@ -29,7 +29,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             Zusatzwirtschaft := LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Gesamtgrund.Zusatzgrund,
-                                                                             RasseExtern         => RasseExtern,
+                                                                             SpeziesExtern         => SpeziesExtern,
                                                                              WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
             
             return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / 2.00 + Float (Zusatzwirtschaft) / 2.00);
@@ -41,14 +41,14 @@ package body KartenAllgemeinesLogik is
    
    function GrundProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       Basiswirtschaft := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund.Basisgrund,
-                                                                     RasseExtern         => RasseExtern,
+                                                                     SpeziesExtern         => SpeziesExtern,
                                                                      WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
       
       case
@@ -59,7 +59,7 @@ package body KartenAllgemeinesLogik is
          
          when others =>
             Zusatzwirtschaft := LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Gesamtgrund.Zusatzgrund,
-                                                                             RasseExtern         => RasseExtern,
+                                                                             SpeziesExtern         => SpeziesExtern,
                                                                              WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
             
             return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / 2.00 + Float (Zusatzwirtschaft) / 2.00);
@@ -71,14 +71,14 @@ package body KartenAllgemeinesLogik is
    
    function GrundGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       Basiswirtschaft := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund.Basisgrund,
-                                                                     RasseExtern         => RasseExtern,
+                                                                     SpeziesExtern         => SpeziesExtern,
                                                                      WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
       
       case
@@ -89,7 +89,7 @@ package body KartenAllgemeinesLogik is
          
          when others =>
             Zusatzwirtschaft := LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Gesamtgrund.Zusatzgrund,
-                                                                             RasseExtern         => RasseExtern,
+                                                                             SpeziesExtern         => SpeziesExtern,
                                                                              WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
             
             return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / 2.00 + Float (Zusatzwirtschaft) / 2.00);
@@ -101,14 +101,14 @@ package body KartenAllgemeinesLogik is
    
    function GrundWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       Basiswirtschaft := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund.Basisgrund,
-                                                                     RasseExtern         => RasseExtern,
+                                                                     SpeziesExtern         => SpeziesExtern,
                                                                      WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
       
       case
@@ -119,7 +119,7 @@ package body KartenAllgemeinesLogik is
          
          when others =>
             Zusatzwirtschaft := LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Gesamtgrund.Zusatzgrund,
-                                                                             RasseExtern         => RasseExtern,
+                                                                             SpeziesExtern         => SpeziesExtern,
                                                                              WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
             
             return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / 2.00 + Float (Zusatzwirtschaft) / 2.00);
@@ -131,14 +131,14 @@ package body KartenAllgemeinesLogik is
    
    function GrundVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
    is begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       Basiskampf := LeseKartenDatenbanken.KampfBasisgrund (GrundExtern    => Gesamtgrund.Basisgrund,
-                                                           RasseExtern    => RasseExtern,
+                                                           SpeziesExtern    => SpeziesExtern,
                                                            KampfArtExtern => KartenKonstanten.KampfVerteidigung);
       
       case
@@ -149,7 +149,7 @@ package body KartenAllgemeinesLogik is
          
          when others =>
             Zusatzkampf := LeseKartenDatenbanken.KampfZusatzgrund (GrundExtern    => Gesamtgrund.Zusatzgrund,
-                                                                   RasseExtern    => RasseExtern,
+                                                                   SpeziesExtern    => SpeziesExtern,
                                                                    KampfArtExtern => KartenKonstanten.KampfVerteidigung);
             
             return KampfDatentypen.KampfwerteKarte (Float (Basiskampf) / 2.00 + Float (Zusatzkampf) / 2.00);
@@ -161,14 +161,14 @@ package body KartenAllgemeinesLogik is
 
    function GrundAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
    is begin
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       Basiskampf := LeseKartenDatenbanken.KampfBasisgrund (GrundExtern    => Gesamtgrund.Basisgrund,
-                                                           RasseExtern    => RasseExtern,
+                                                           SpeziesExtern    => SpeziesExtern,
                                                            KampfArtExtern => KartenKonstanten.KampfAngriff);
       
       case
@@ -179,7 +179,7 @@ package body KartenAllgemeinesLogik is
          
          when others =>
             Zusatzkampf := LeseKartenDatenbanken.KampfZusatzgrund (GrundExtern    => Gesamtgrund.Zusatzgrund,
-                                                                   RasseExtern    => RasseExtern,
+                                                                   SpeziesExtern    => SpeziesExtern,
                                                                    KampfArtExtern => KartenKonstanten.KampfAngriff);
             
             return KampfDatentypen.KampfwerteKarte (Float (Basiskampf) / 2.00 + Float (Zusatzkampf) / 2.00);
@@ -191,7 +191,7 @@ package body KartenAllgemeinesLogik is
    
    function FlussNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -205,7 +205,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
-                                                          RasseExtern         => RasseExtern,
+                                                          SpeziesExtern         => SpeziesExtern,
                                                           WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
       end case;
       
@@ -215,7 +215,7 @@ package body KartenAllgemeinesLogik is
    
    function FlussProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -229,7 +229,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
-                                                          RasseExtern         => RasseExtern,
+                                                          SpeziesExtern         => SpeziesExtern,
                                                           WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
       end case;
       
@@ -239,7 +239,7 @@ package body KartenAllgemeinesLogik is
    
    function FlussGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -254,7 +254,7 @@ package body KartenAllgemeinesLogik is
          when others =>
             -- Hat schon einmal einen Absturz durch range check failed verursacht, eventuell müssen hier überall weitere Tests rein. äöü
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
-                                                          RasseExtern         => RasseExtern,
+                                                          SpeziesExtern         => SpeziesExtern,
                                                           WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
       end case;
       
@@ -264,7 +264,7 @@ package body KartenAllgemeinesLogik is
    
    function FlussWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -278,7 +278,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
-                                                          RasseExtern         => RasseExtern,
+                                                          SpeziesExtern         => SpeziesExtern,
                                                           WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
       end case;
       
@@ -288,7 +288,7 @@ package body KartenAllgemeinesLogik is
    
    function FlussVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
    is begin
       
@@ -302,7 +302,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.KampfFluss (FlussExtern    => KartenFluss,
-                                                     RasseExtern    => RasseExtern,
+                                                     SpeziesExtern    => SpeziesExtern,
                                                      KampfArtExtern => KartenKonstanten.KampfVerteidigung);
       end case;
       
@@ -312,7 +312,7 @@ package body KartenAllgemeinesLogik is
 
    function FlussAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
    is begin
       
@@ -326,7 +326,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.KampfFluss (FlussExtern    => KartenFluss,
-                                                     RasseExtern    => RasseExtern,
+                                                     SpeziesExtern    => SpeziesExtern,
                                                      KampfArtExtern => KartenKonstanten.KampfAngriff);
       end case;
       
@@ -336,7 +336,7 @@ package body KartenAllgemeinesLogik is
    
    function FlussBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
    is begin
       
@@ -350,7 +350,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.BewertungFluss (FlussExtern => KartenFluss,
-                                                         RasseExtern => RasseExtern);
+                                                         SpeziesExtern => SpeziesExtern);
       end case;
       
    end FlussBewertung;
@@ -359,7 +359,7 @@ package body KartenAllgemeinesLogik is
    
    function WegNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -373,7 +373,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
-                                                              RasseExtern       => RasseExtern,
+                                                              SpeziesExtern       => SpeziesExtern,
                                                               WelcherWertExtern => KartenKonstanten.WirtschaftNahrung);
       end case;
       
@@ -383,7 +383,7 @@ package body KartenAllgemeinesLogik is
    
    function WegProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -397,7 +397,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
-                                                              RasseExtern       => RasseExtern,
+                                                              SpeziesExtern       => SpeziesExtern,
                                                               WelcherWertExtern => KartenKonstanten.WirtschaftProduktion);
       end case;
       
@@ -407,7 +407,7 @@ package body KartenAllgemeinesLogik is
    
    function WegGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -421,7 +421,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
-                                                              RasseExtern       => RasseExtern,
+                                                              SpeziesExtern       => SpeziesExtern,
                                                               WelcherWertExtern => KartenKonstanten.WirtschaftGeld);
       end case;
       
@@ -431,7 +431,7 @@ package body KartenAllgemeinesLogik is
    
    function WegWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -445,7 +445,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
-                                                              RasseExtern       => RasseExtern,
+                                                              SpeziesExtern       => SpeziesExtern,
                                                               WelcherWertExtern => KartenKonstanten.WirtschaftForschung);
       end case;
       
@@ -455,7 +455,7 @@ package body KartenAllgemeinesLogik is
    
    function WegVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
    is begin
       
@@ -469,7 +469,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseVerbesserungenDatenbank.KampfWeg (WegExtern         => KartenWeg,
-                                                         RasseExtern       => RasseExtern,
+                                                         SpeziesExtern       => SpeziesExtern,
                                                          WelcherWertExtern => KartenKonstanten.KampfVerteidigung);
       end case;
       
@@ -479,7 +479,7 @@ package body KartenAllgemeinesLogik is
    
    function WegAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
    is begin
       
@@ -493,7 +493,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseVerbesserungenDatenbank.KampfWeg (WegExtern         => KartenWeg,
-                                                         RasseExtern       => RasseExtern,
+                                                         SpeziesExtern       => SpeziesExtern,
                                                          WelcherWertExtern => KartenKonstanten.KampfAngriff);
       end case;
       
@@ -503,7 +503,7 @@ package body KartenAllgemeinesLogik is
    
    function VerbesserungNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -517,7 +517,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => KartenVerbesserung,
-                                                                       RasseExtern        => RasseExtern,
+                                                                       SpeziesExtern        => SpeziesExtern,
                                                                        WelcherWertExtern  => KartenKonstanten.WirtschaftNahrung);
       end case;
       
@@ -527,7 +527,7 @@ package body KartenAllgemeinesLogik is
    
    function VerbesserungProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -541,7 +541,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => KartenVerbesserung,
-                                                                       RasseExtern        => RasseExtern,
+                                                                       SpeziesExtern        => SpeziesExtern,
                                                                        WelcherWertExtern  => KartenKonstanten.WirtschaftProduktion);
       end case;
       
@@ -551,7 +551,7 @@ package body KartenAllgemeinesLogik is
    
    function VerbesserungGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -565,7 +565,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => KartenVerbesserung,
-                                                                       RasseExtern        => RasseExtern,
+                                                                       SpeziesExtern        => SpeziesExtern,
                                                                        WelcherWertExtern  => KartenKonstanten.WirtschaftGeld);
       end case;
       
@@ -575,7 +575,7 @@ package body KartenAllgemeinesLogik is
    
    function VerbesserungWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -589,7 +589,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => KartenVerbesserung,
-                                                                       RasseExtern        => RasseExtern,
+                                                                       SpeziesExtern        => SpeziesExtern,
                                                                        WelcherWertExtern  => KartenKonstanten.WirtschaftForschung);
       end case;
       
@@ -599,7 +599,7 @@ package body KartenAllgemeinesLogik is
    
    function VerbesserungVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
    is begin
       
@@ -613,7 +613,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => KartenVerbesserung,
-                                                                  RasseExtern        => RasseExtern,
+                                                                  SpeziesExtern        => SpeziesExtern,
                                                                   WelcherWertExtern  => KartenKonstanten.KampfVerteidigung);
       end case;
       
@@ -623,7 +623,7 @@ package body KartenAllgemeinesLogik is
    
    function VerbesserungAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
    is begin
       
@@ -637,7 +637,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => KartenVerbesserung,
-                                                                  RasseExtern        => RasseExtern,
+                                                                  SpeziesExtern        => SpeziesExtern,
                                                                   WelcherWertExtern  => KartenKonstanten.KampfAngriff);
       end case;
       
@@ -647,7 +647,7 @@ package body KartenAllgemeinesLogik is
    
    function RessourceNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -661,7 +661,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,
-                                                               RasseExtern         => RasseExtern,
+                                                               SpeziesExtern         => SpeziesExtern,
                                                                WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
       end case;
       
@@ -671,7 +671,7 @@ package body KartenAllgemeinesLogik is
    
    function RessourceProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -685,7 +685,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,
-                                                               RasseExtern         => RasseExtern,
+                                                               SpeziesExtern         => SpeziesExtern,
                                                                WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
       end case;
       
@@ -695,7 +695,7 @@ package body KartenAllgemeinesLogik is
    
    function RessourceGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -709,7 +709,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,
-                                                               RasseExtern         => RasseExtern,
+                                                               SpeziesExtern         => SpeziesExtern,
                                                                WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
       end case;
       
@@ -719,7 +719,7 @@ package body KartenAllgemeinesLogik is
    
    function RessourceWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -733,7 +733,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,
-                                                               RasseExtern         => RasseExtern,
+                                                               SpeziesExtern         => SpeziesExtern,
                                                                WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
       end case;
       
@@ -743,7 +743,7 @@ package body KartenAllgemeinesLogik is
    
    function RessourceVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
    is begin
       
@@ -757,7 +757,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.KampfRessource (RessourceExtern => KartenRessource,
-                                                         RasseExtern     => RasseExtern,
+                                                         SpeziesExtern     => SpeziesExtern,
                                                          KampfArtExtern  => KartenKonstanten.KampfVerteidigung);
       end case;
       
@@ -767,7 +767,7 @@ package body KartenAllgemeinesLogik is
    
    function RessourceAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KampfDatentypen.KampfwerteKarte
    is begin
       
@@ -781,7 +781,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.KampfRessource (RessourceExtern => KartenRessource,
-                                                         RasseExtern     => RasseExtern,
+                                                         SpeziesExtern     => SpeziesExtern,
                                                          KampfArtExtern  => KartenKonstanten.KampfAngriff);
       end case;
       
@@ -791,7 +791,7 @@ package body KartenAllgemeinesLogik is
    
    function RessourceBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return BewertungDatentypen.Bewertung_Enum
    is begin
       
@@ -805,7 +805,7 @@ package body KartenAllgemeinesLogik is
             
          when others =>
             return LeseKartenDatenbanken.BewertungRessource (RessourceExtern => KartenRessource,
-                                                             RasseExtern     => RasseExtern);
+                                                             SpeziesExtern     => SpeziesExtern);
       end case;
       
    end RessourceBewertung;

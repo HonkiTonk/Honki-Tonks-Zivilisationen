@@ -12,7 +12,7 @@ package body CursorbewegungLogik is
    
    procedure CursorbewegungBerechnen
      (RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
    begin
@@ -22,7 +22,7 @@ package body CursorbewegungLogik is
         NachGrafiktask.GeheZu.XAchse
       is
          when KartenKonstanten.LeerXAchse =>
-            BasisKoordinaten := LeseCursor.KoordinatenAlt (RasseExtern => RasseExtern);
+            BasisKoordinaten := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
             
          when others =>
             BasisKoordinaten := NachGrafiktask.GeheZu;

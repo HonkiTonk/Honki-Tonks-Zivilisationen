@@ -1,6 +1,6 @@
 with LeseWeltkarteneinstellungen;
-with SchreibeRassenbelegung;
-with LeseRassenbelegung;
+with SchreibeSpeziesbelegung;
+with LeseSpeziesbelegung;
 
 with KartengeneratorVariablenLogik;
 with KartentestsLogik;
@@ -114,65 +114,65 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
    
    
    
-   function ZufälligeRasse
-     return RassenDatentypen.Rassen_Verwendet_Enum
+   function ZufälligeSpezies
+     return SpeziesDatentypen.Spezies_Verwendet_Enum
    is begin
       
-      ZufälligeRasseWählen.Reset (Gen => ZufälligeRasseGewählt);
-      return ZufälligeRasseWählen.Random (Gen => ZufälligeRasseGewählt);
+      ZufälligeSpeziesWählen.Reset (Gen => ZufälligeSpeziesGewählt);
+      return ZufälligeSpeziesWählen.Random (Gen => ZufälligeSpeziesGewählt);
       
-   end ZufälligeRasse;
+   end ZufälligeSpezies;
    
    
    
-   procedure ZufälligeRassenbelegung
+   procedure ZufälligeSpeziesbelegung
    is
-      use type RassenDatentypen.Spieler_Enum;
+      use type SpeziesDatentypen.Spieler_Enum;
    begin
       
       SpielerVorhanden := False;
-      SchreibeRassenbelegung.Standardeinstellungen;
-      ZufälligeRassenbelegungWählen.Reset (Gen => ZufälligeRassenbelegungGewählt);
+      SchreibeSpeziesbelegung.Standardeinstellungen;
+      ZufälligeSpeziesbelegungWählen.Reset (Gen => ZufälligeSpeziesbelegungGewählt);
       
       SpielerSchleife:
       while SpielerVorhanden = False loop
-         RassenSchleife:
-         for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+         SpeziesSchleife:
+         for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
-            RasseImSpiel := ZufälligeRassenbelegungWählen.Random (Gen => ZufälligeRassenbelegungGewählt);
+            SpeziesImSpiel := ZufälligeSpeziesbelegungWählen.Random (Gen => ZufälligeSpeziesbelegungGewählt);
 
             if
-              RasseImSpiel = RassenDatentypen.KI_Spieler_Enum
+              SpeziesImSpiel = SpeziesDatentypen.KI_Spieler_Enum
             then
-               SchreibeRassenbelegung.Belegung (RasseExtern    => RasseSchleifenwert,
-                                                BelegungExtern => RasseImSpiel);
+               SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesSchleifenwert,
+                                                BelegungExtern => SpeziesImSpiel);
                SpielerVorhanden := True;
             
             else
                null;
             end if;
          
-         end loop RassenSchleife;
+         end loop SpeziesSchleife;
       end loop SpielerSchleife;
       
-      ZufälligeRassenbelegungWählen.Reset (Gen => ZufälligeRassenbelegungGewählt);
+      ZufälligeSpeziesbelegungWählen.Reset (Gen => ZufälligeSpeziesbelegungGewählt);
       
       MenschFestlegenSchleife:
       loop
          MenschlicherSpielerSchleife:
-         for MenschlicheRasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+         for MenschlicheSpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
 
             if
-              LeseRassenbelegung.Belegung (RasseExtern => MenschlicheRasseSchleifenwert) = RassenDatentypen.KI_Spieler_Enum
+              LeseSpeziesbelegung.Belegung (SpeziesExtern => MenschlicheSpeziesSchleifenwert) = SpeziesDatentypen.KI_Spieler_Enum
             then
-               RasseImSpiel := ZufälligeRassenbelegungWählen.Random (Gen => ZufälligeRassenbelegungGewählt);
+               SpeziesImSpiel := ZufälligeSpeziesbelegungWählen.Random (Gen => ZufälligeSpeziesbelegungGewählt);
                
                case
-                 RasseImSpiel
+                 SpeziesImSpiel
                is
-                  when RassenDatentypen.Mensch_Spieler_Enum =>
-                     SchreibeRassenbelegung.Belegung (RasseExtern    => MenschlicheRasseSchleifenwert,
-                                                      BelegungExtern => RassenDatentypen.Mensch_Spieler_Enum);
+                  when SpeziesDatentypen.Mensch_Spieler_Enum =>
+                     SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => MenschlicheSpeziesSchleifenwert,
+                                                      BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
                      return;
                      
                   when others =>
@@ -186,7 +186,7 @@ package body ZufallsgeneratorenSpieleinstellungenLogik is
          end loop MenschlicherSpielerSchleife;
       end loop MenschFestlegenSchleife;
       
-   end ZufälligeRassenbelegung;
+   end ZufälligeSpeziesbelegung;
    
    
    

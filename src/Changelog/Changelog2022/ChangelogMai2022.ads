@@ -15,7 +15,7 @@ package ChangelogMai2022 is
 
    -- Version 0.01.0800 => 0.01.0820 (30.05.2022):
    
-   -- Besseres Textanzeigensystem für Rassenzusatztext gebaut und angefangen eine allgemeinere Version für alle Zusatztexte zu konstruieren.
+   -- Besseres Textanzeigensystem für Spezieszusatztext gebaut und angefangen eine allgemeinere Version für alle Zusatztexte zu konstruieren.
    -- EAchse in eigenen Datentyp umgewandelt.
    -- Interne Benennungen verbessert.
    -- Angefangen nutzerdefinierbare Polregionen einzubauen.
@@ -38,7 +38,7 @@ package ChangelogMai2022 is
 
    -- Version 0.01.0790 => 0.01.0800 (27.05.2022):
    
-   -- Angefangen die Textanzeigen für die Zusatzinformationen über die Rassen zu überarbeiten.
+   -- Angefangen die Textanzeigen für die Zusatzinformationen über die Spezies zu überarbeiten.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
@@ -184,7 +184,7 @@ package ChangelogMai2022 is
    -- Unnötige Anzeigen im Kartenformauswahlmenü entfernt.
    -- Fehler korrigiert welcher dazu führte dass die KI kein Feld zum Bauen einer Stadt fand.
    -- KartenDatenbank in KartengrundDatenbank, KartenflussDatenbank und KartenDatenbank. aufgeteilt um weniger Zeilenlänge der einzelnen Dateien zu reduzieren.
-   -- Angefangen die KartenDatenbanken mit rassenspezifische Werte zu füllen.
+   -- Angefangen die KartenDatenbanken mit Speziesspezifische Werte zu füllen.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
@@ -252,7 +252,7 @@ package ChangelogMai2022 is
    
    -- Fehler behoben der es ermöglichte einen Wald zu pflanzen ohne vorher den Sump/Dschungel trocken zu legen/zu roden.
    -- Das Anlegen/Entfernen von Feldverbesserungen deutlich überarbeitet und auf weitere Ebenen ausgedehnt.
-   -- Fehler in der Rassenauswahl, welcher dazu führte das die falsche Rasse ausgewählt wurde, korrigiert.
+   -- Fehler in der Speziesauswahl, welcher dazu führte das die falsche Spezies ausgewählt wurde, korrigiert.
    -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst.
 
 end ChangelogMai2022;

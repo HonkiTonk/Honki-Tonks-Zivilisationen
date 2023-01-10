@@ -14,7 +14,7 @@ with MausauswahlLogik;
 package body AuswahlStadtEinheitLogik is
 
    function AuswahlStadtEinheit
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       -- Wenn die StadtNummerExtern = 0 ist, dann wird von einem beladenen Transporter ausgegangen.
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
@@ -37,7 +37,7 @@ package body AuswahlStadtEinheitLogik is
          TransporterSchleife:
          for WirdTransportiertSchleifenwert in EinheitenRecords.TransporterArray'Range loop
             
-            WelcheAuswahl.MöglicheAuswahlen (WirdTransportiertSchleifenwert) := LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
+            WelcheAuswahl.MöglicheAuswahlen (WirdTransportiertSchleifenwert) := LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerExtern),
                                                                                                                     PlatzExtern              => WirdTransportiertSchleifenwert);
             
          end loop TransporterSchleife;

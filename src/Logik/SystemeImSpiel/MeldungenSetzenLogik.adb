@@ -6,39 +6,39 @@ package body MeldungenSetzenLogik is
    procedure MeldungenRundenende
    is begin
       
-      RassenSchleife:
-      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          case
-           LeseRassenbelegung.Belegung (RasseExtern => RasseSchleifenwert)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
          is
-            when RassenDatentypen.Leer_Spieler_Enum =>
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                StadtSchleife:
-               for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => RasseSchleifenwert) loop
+               for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesSchleifenwert) loop
                   
-                  SchreibeStadtGebaut.LeerMeldungen (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert));
+                  SchreibeStadtGebaut.LeerMeldungen (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtSchleifenwert));
                   
                end loop StadtSchleife;
                                              
                EinheitenSchleife:
-               for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => RasseSchleifenwert) loop
+               for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesSchleifenwert) loop
                   
-                  SchreibeEinheitenGebaut.LeerMeldungen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitSchleifenwert));
+                  SchreibeEinheitenGebaut.LeerMeldungen (EinheitSpeziesNummerExtern => (SpeziesSchleifenwert, EinheitSchleifenwert));
                   
                end loop EinheitenSchleife;
          end case;
          
-      end loop RassenSchleife;
+      end loop SpeziesSchleife;
       
    end MeldungenRundenende;
    
    
    
    procedure StadtmeldungSetzen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EreignisExtern : in StadtDatentypen.Stadt_Meldungen_Verwendet_Enum)
    is begin
       
@@ -55,7 +55,7 @@ package body MeldungenSetzenLogik is
             StadtMeldung := StadtDatentypen.Einheit_In_Stadtnähe_Enum;
       end case;
       
-      SchreibeStadtGebaut.Meldungen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      SchreibeStadtGebaut.Meldungen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                      WelcheMeldungExtern    => StadtMeldung,
                                      MeldungExtern          => EreignisExtern);
       
@@ -64,7 +64,7 @@ package body MeldungenSetzenLogik is
    
    
    procedure EinheitmeldungSetzen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       EreignisExtern : in EinheitenDatentypen.Einheit_Meldung_Verwendet_Enum)
    is begin
       
@@ -78,7 +78,7 @@ package body MeldungenSetzenLogik is
             EinheitMeldung := EinheitenDatentypen.Einheit_In_Der_Nähe_Enum;
       end case;
       
-      SchreibeEinheitenGebaut.Meldungen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      SchreibeEinheitenGebaut.Meldungen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                          MeldungExtern            => EreignisExtern,
                                          WelcheMeldungExtern      => EinheitMeldung);
       

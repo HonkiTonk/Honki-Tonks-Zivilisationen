@@ -26,11 +26,11 @@ with DebugobjekteLogik;
 package body StadtseitenleisteGrafik is
    
    procedure Stadtinformationen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
-             StadtRasseNummerExtern => StadtRasseNummerExtern,
+      Stadt (SpeziesExtern            => StadtSpeziesNummerExtern.Spezies,
+             StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
              AnzeigebereichExtern   => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen),
              ViewExtern             => Views.StadtviewAccesse (ViewKonstanten.StadtInformationen));
       
@@ -63,12 +63,12 @@ package body StadtseitenleisteGrafik is
    
 
    procedure Stadt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
       ViewExtern : in Sf.Graphics.sfView_Ptr)
    is
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
                         
       Viewfläche := Leer (AnzeigebereichExtern => AnzeigebereichExtern,
@@ -79,36 +79,36 @@ package body StadtseitenleisteGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       -- Die Anzeige des Stadtnamens mal noch nicht entfernen, eventuell will ich das später wieder einbauen?
-      -- Stadtname (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      -- Stadtname (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       Textbreite := 0.00;
       
       case
-        LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        LeseStadtGebaut.ID (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             return;
             
          when others =>
-            FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+            FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                                                                                                                                     EinwohnerArbeiterExtern => True)'Wide_Wide_Image;
       end case;
       
       -- Volle Stadtinformationen, nur sichtbar wenn eigene Stadt oder durch Debug.
       if
-        StadtRasseNummerExtern.Rasse = RasseExtern
+        StadtSpeziesNummerExtern.Spezies = SpeziesExtern
         or
           DebugobjekteLogik.Debug.VolleInformation
       then
-         FestzulegenderText (2) := Nahrung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         FestzulegenderText (2) := Nahrung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
          FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " "
-           & ZahlAlsStringProduktion (ZahlExtern => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
+           & ZahlAlsStringProduktion (ZahlExtern => LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
          FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " &
-           ZahlAlsStringProduktion (ZahlExtern => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern));
-         FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (6) := Kampfwerte (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKorruption) & LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & LeseStadtGebaut.Arbeitslose (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (9) := AktuellesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+           ZahlAlsStringProduktion (ZahlExtern => LeseStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
+         FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & LeseStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (6) := Kampfwerte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+         FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKorruption) & LeseStadtGebaut.Korruption (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & LeseStadtGebaut.Arbeitslose (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image;
+         FestzulegenderText (9) := AktuellesBauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
                                  
          VolleInformation := True;
 
@@ -153,11 +153,11 @@ package body StadtseitenleisteGrafik is
    
    -- Die Anzeige des Stadtnamens mal noch nicht entfernen, eventuell will ich das später wieder einbauen?
    procedure Stadtname
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
             
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                         str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern)));
+                                         str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)));
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
                                     position => Textposition);
       
@@ -182,27 +182,27 @@ package body StadtseitenleisteGrafik is
    
    
    function Nahrung
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Unbounded_Wide_Wide_String
    is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      Nahrungsproduktion := LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Nahrungsproduktion := LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       if
         Nahrungsproduktion = 0
       then
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image;
          
       elsif
         Nahrungsproduktion > 0
       then
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
          & "+" & ZahlAlsStringProduktion (ZahlExtern => Nahrungsproduktion);
          
       else
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
            & ZahlAlsStringProduktion (ZahlExtern => Nahrungsproduktion);
       end if;
       
@@ -211,44 +211,44 @@ package body StadtseitenleisteGrafik is
    
    
    function Kampfwerte
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Unbounded_Wide_Wide_String
    is begin
             
-      return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image
-        & " " & TextKonstanten.TrennzeichenUnterschiedlich & KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image;
+      return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image
+        & " " & TextKonstanten.TrennzeichenUnterschiedlich & KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image;
       
    end Kampfwerte;
    
    
    
    function AktuellesBauprojekt
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Unbounded_Wide_Wide_String
    is
       use type StadtDatentypen.GebäudeIDMitNullwert;
       use type EinheitenDatentypen.EinheitenIDMitNullWert;
    begin
             
-      Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       if
         Bauprojekt.Gebäude /= 0
       then
          Text := To_Unbounded_Wide_Wide_String (Source => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Bauprojekt.Gebäude,
-                                                                                                         RasseExtern => StadtRasseNummerExtern.Rasse));
+                                                                                                         SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
       
       elsif
         Bauprojekt.Einheit /= 0
       then
          Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Bauprojekt.Einheit,
-                                                                                                          RasseExtern => StadtRasseNummerExtern.Rasse));
+                                                                                                          SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
       
       else
          return TextKonstanten.LeerUnboundedString;
       end if;
       
-      Bauzeit := LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Bauzeit := LeseStadtGebaut.Bauzeit (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       case
         Bauzeit

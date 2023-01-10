@@ -1,4 +1,4 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
 with StadtRecords;
@@ -8,28 +8,28 @@ private with KampfRecords;
 private with EinheitenDatentypen;
 
 with LeseGrenzen;
-with LeseRassenbelegung;
+with LeseSpeziesbelegung;
 
 package KampfsystemStadtLogik is
    pragma Elaborate_Body;
-   use type RassenDatentypen.Rassen_Enum;
-   use type RassenDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spezies_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
 
    function KampfsystemStadt
-     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (AngreifendeEinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      VerteidigendeStadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => VerteidigendeStadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigendeStadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
+                 AngreifendeEinheitSpeziesNummerExtern.Spezies /= VerteidigendeStadtSpeziesNummerExtern.Spezies
                and
-                 AngreifendeEinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse)
+                 AngreifendeEinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies)
                and
-                 VerteidigendeStadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => VerteidigendeStadtRasseNummerExtern.Rasse)
+                 VerteidigendeStadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => VerteidigendeStadtSpeziesNummerExtern.Spezies)
               );
    
 private
@@ -45,41 +45,41 @@ private
    
    
    function Kampfverlauf
-     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (AngreifendeEinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord;
-      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      VerteidigendeStadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => VerteidigendeStadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigendeStadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
+                 AngreifendeEinheitSpeziesNummerExtern.Spezies /= VerteidigendeStadtSpeziesNummerExtern.Spezies
                and
-                 AngreifendeEinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse)
+                 AngreifendeEinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies)
                and
-                 VerteidigendeStadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => VerteidigendeStadtRasseNummerExtern.Rasse)
+                 VerteidigendeStadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => VerteidigendeStadtSpeziesNummerExtern.Spezies)
               );
    
    function Kampf
-     (AngreifendeEinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord;
+     (AngreifendeEinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord;
-      VerteidigendeStadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+      VerteidigendeStadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
      with
        Pre => (
-                 LeseRassenbelegung.Belegung (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseRassenbelegung.Belegung (RasseExtern => VerteidigendeStadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigendeStadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
+                 AngreifendeEinheitSpeziesNummerExtern.Spezies /= VerteidigendeStadtSpeziesNummerExtern.Spezies
                and
-                 AngreifendeEinheitRasseNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse)
+                 AngreifendeEinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies)
                and
-                 VerteidigendeStadtRasseNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => VerteidigendeStadtRasseNummerExtern.Rasse)
+                 VerteidigendeStadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => VerteidigendeStadtSpeziesNummerExtern.Spezies)
               );
 
 end KampfsystemStadtLogik;

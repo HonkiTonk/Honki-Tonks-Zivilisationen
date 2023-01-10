@@ -201,7 +201,7 @@ package ChangelogDezember2022 is
    -- Code zusammengefasst.
    -- Unnötigen Code gelöscht.
    -- Berechnung des Einheitenbewegungsfeldes erweitert.
-   -- Einfache Anpassung der Städtename an die jeweiligen Rassen.
+   -- Einfache Anpassung der Städtename an die jeweiligen Spezies.
    -- Fehler korrigiert welcher das Programm stoppte.
    -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    

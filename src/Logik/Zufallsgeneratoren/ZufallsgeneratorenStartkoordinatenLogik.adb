@@ -1,17 +1,17 @@
 package body ZufallsgeneratorenStartkoordinatenLogik is
 
    function Startkoordinaten
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
       case
-        RasseExtern
+        SpeziesExtern
       is
-         when RassenDatentypen.Rassen_Unterirdisch_Enum'Range =>
+         when SpeziesDatentypen.Spezies_Unterirdisch_Enum'Range =>
             Startkoordinate.EAchse := -1;
             
-         when RassenDatentypen.Rassen_Überirdisch_Enum'Range =>
+         when SpeziesDatentypen.Spezies_Überirdisch_Enum'Range =>
             Startkoordinate.EAchse := 0;
       end case;
       

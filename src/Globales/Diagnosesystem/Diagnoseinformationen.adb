@@ -37,20 +37,20 @@ package body Diagnoseinformationen is
    
    
    procedure Einheiteninformationen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
-      Put_Line (Item => "Rasse: " & EinheitRasseNummerExtern.Rasse'Wide_Wide_Image & "    Nummer: " & EinheitRasseNummerExtern.Nummer'Wide_Wide_Image);
+      Put_Line (Item => "Spezies: " & EinheitSpeziesNummerExtern.Spezies'Wide_Wide_Image & "    Nummer: " & EinheitSpeziesNummerExtern.Nummer'Wide_Wide_Image);
       
    end Einheiteninformationen;
    
    
    
    procedure Stadtinformationen
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      Put_Line (Item => "Rasse: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image & "    Nummer: " & StadtRasseNummerExtern.Nummer'Wide_Wide_Image);
+      Put_Line (Item => "Spezies: " & StadtSpeziesNummerExtern.Spezies'Wide_Wide_Image & "    Nummer: " & StadtSpeziesNummerExtern.Nummer'Wide_Wide_Image);
       
    end Stadtinformationen;
    

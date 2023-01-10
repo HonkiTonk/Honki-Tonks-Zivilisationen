@@ -1,6 +1,6 @@
 private with Sf.System.Vector2;
 
-with RassenDatentypen;
+with SpeziesDatentypen;
 with GrafikDatentypen;
 
 private with GrafikRecordKonstanten;
@@ -10,11 +10,11 @@ package AbspannGrafik is
 
    procedure Abspann
      (AbspannExtern : in GrafikDatentypen.Abspann_Enum;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
-   -- Später wieder einbauen, funktioniert aktuell nicht richtig da die gewinnende Rasse nicht festgetzt wird. äöü
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum);
+   -- Später wieder einbauen, funktioniert aktuell nicht richtig da die gewinnende Spezies nicht festgetzt wird. äöü
    --  with
    --    Pre => (
-   --            LeseRassenbelegung.Belegung (RasseExtern => RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
+   --            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
    --       );
 
 private

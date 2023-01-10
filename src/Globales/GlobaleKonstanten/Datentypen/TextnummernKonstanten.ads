@@ -73,7 +73,7 @@ package TextnummernKonstanten is
    FrageXAchsengrößeEingeben : constant Positive := 14;
    FrageNeueTaste : constant Positive := 15;
    FrageStadtAbreißen : constant Positive := 16;
-   FrageRasseDiplomatie : constant Positive := 17;
+   FrageSpeziesDiplomatie : constant Positive := 17;
    FrageGewonnenWeiterspielen : constant Positive := 18;
    FrageWelcheEbene : constant Positive := 19;
    FrageWelcheYPosition : constant Positive := 20;

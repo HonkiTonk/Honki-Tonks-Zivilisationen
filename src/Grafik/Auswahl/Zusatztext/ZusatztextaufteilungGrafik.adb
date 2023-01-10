@@ -1,6 +1,6 @@
-with RassenDatentypen;
+with SpeziesDatentypen;
 
-with ZusatztextRassenmenueGrafik;
+with ZusatztextSpeziesmenueGrafik;
 with ZusatztextKartengroesseGrafik;
 with ZusatztextKartenformGrafik;
 with ZusatztextDiplomatieGrafik;
@@ -56,11 +56,11 @@ package body ZusatztextaufteilungGrafik is
       case
         WelchesMenüExtern
       is
-         when MenueDatentypen.Rassen_Menü_Enum =>
+         when MenueDatentypen.Spezies_Menü_Enum =>
             if
-              AktuelleAuswahlExtern in RassenDatentypen.RassennummernVorhanden'Range
+              AktuelleAuswahlExtern in SpeziesDatentypen.SpeziesnummernVorhanden'Range
             then
-               return ZusatztextRassenmenueGrafik.ZusatztextRassenmenü (AktuelleAuswahlExtern => AktuelleAuswahlExtern,
+               return ZusatztextSpeziesmenueGrafik.ZusatztextSpeziesmenü (AktuelleAuswahlExtern => AktuelleAuswahlExtern,
                                                                         ViewflächeExtern      => ViewflächeExtern);
                
             else

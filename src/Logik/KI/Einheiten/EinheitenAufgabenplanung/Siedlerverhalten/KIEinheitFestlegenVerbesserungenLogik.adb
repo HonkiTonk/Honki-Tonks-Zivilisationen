@@ -20,13 +20,13 @@ with KIEinheitAllgemeinePruefungenLogik;
 package body KIEinheitFestlegenVerbesserungenLogik is
 
    function StadtumgebungVerbessern
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
-      ZielVerbesserungKoordinaten := StädteDurchgehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      ZielVerbesserungKoordinaten := StädteDurchgehen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
       case
         ZielVerbesserungKoordinaten = KartenRecordKonstanten.LeerKoordinate
@@ -35,9 +35,9 @@ package body KIEinheitFestlegenVerbesserungenLogik is
             return False;
             
          when False =>
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Verbesserung_Anlegen_Enum);
-            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern        => ZielVerbesserungKoordinaten);
             return True;
       end case;
@@ -47,11 +47,11 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    
    
    function StädteDurchgehen
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
             
-      VerbesserungAnlegen := DirekteUmgebung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      VerbesserungAnlegen := DirekteUmgebung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
         VerbesserungAnlegen.XAchse
@@ -64,17 +64,17 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       end case;
             
       StadtSchleife:
-      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (RasseExtern => EinheitRasseNummerExtern.Rasse) loop
+      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) loop
          
          case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert))
          is
             when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>
-               VerbesserungAnlegen := StadtumgebungErmitteln (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert),
-                                                              EinheitNummerExtern    => EinheitRasseNummerExtern.Nummer);
+               VerbesserungAnlegen := StadtumgebungErmitteln (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert),
+                                                              EinheitNummerExtern    => EinheitSpeziesNummerExtern.Nummer);
          end case;
          
          case
@@ -96,11 +96,11 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    
    
    function DirekteUmgebung
-     (EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
-      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
@@ -124,7 +124,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                   when others =>
                      if
                        True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern        => VerbesserungKoordinaten,
-                                                                  EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                                  EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
                      then
                         return VerbesserungKoordinaten;
                   
@@ -144,13 +144,13 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    
    
    function StadtumgebungErmitteln
-     (StadtRasseNummerExtern : in StadtRecords.RasseStadtnummerRecord;
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
-      Stadtumgebung := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Stadtumgebung := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
       for YAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
@@ -178,7 +178,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                   when others =>
                      if
                        True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern        => VerbesserungKoordinaten,
-                                                                  EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern))
+                                                                  EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern))
                      then
                         return VerbesserungKoordinaten;
                   
@@ -199,27 +199,27 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    
    function AllgemeineVerbesserungenPrüfungen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
-      use type RassenDatentypen.Rassen_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
    begin
             
       if
-        LeseWeltkarte.RasseBelegtGrund (KoordinatenExtern => VerbesserungKoordinaten) /= EinheitRasseNummerExtern.Rasse
+        LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => VerbesserungKoordinaten) /= EinheitSpeziesNummerExtern.Spezies
       then
          return False;
                
       elsif
         True = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen_Enum,
-                                                           RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                           SpeziesExtern           => EinheitSpeziesNummerExtern.Spezies,
                                                            ZielKoordinatenExtern => VerbesserungKoordinaten)
       then
          return False;
             
       elsif
-        False = KIEinheitAllgemeinePruefungenLogik.KartenfeldPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        False = KIEinheitAllgemeinePruefungenLogik.KartenfeldPrüfen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                       KoordinatenExtern        => KoordinatenExtern)
       then
          return False;
@@ -228,7 +228,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
       then
          WelcheVerbesserung := VerbesserungAnlegbar (KoordinatenExtern        => KoordinatenExtern,
-                                                     EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                                                     EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
       else
          WelcheVerbesserung := VerbesserungErsetzen;
@@ -242,7 +242,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
             
          when False =>
             return WegAnlegbar (KoordinatenExtern        => KoordinatenExtern,
-                                EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                                EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
    end AllgemeineVerbesserungenPrüfungen;
@@ -251,7 +251,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    
    function VerbesserungAnlegbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
       use type KartengrundDatentypen.Basisgrund_Enum;
@@ -271,7 +271,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       end case;
       
       case
-        AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                      BefehlExtern             => BefehleDatentypen.Mine_Bauen_Enum,
                                      KoordinatenExtern        => KoordinatenExtern)
       is
@@ -287,7 +287,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                     or
                       Ressourcen = KartenextraDatentypen.Gold_Enum
             then
-               SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+               SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        BeschäftigungExtern      => AufgabenDatentypen.Mine_Bauen_Enum);
                return True;
                
@@ -300,7 +300,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       end case;
       
       case
-        AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                      BefehlExtern             => BefehleDatentypen.Festung_Bauen_Enum,
                                      KoordinatenExtern        => KoordinatenExtern)
       is
@@ -308,7 +308,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
             if
               Basisgrund = KartengrundDatentypen.Eis_Enum
             then
-               SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+               SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        BeschäftigungExtern      => AufgabenDatentypen.Festung_Bauen_Enum);
                return True;
                
@@ -321,12 +321,12 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       end case;
          
       case
-        AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                      BefehlExtern             => BefehleDatentypen.Farm_Bauen_Enum,
                                      KoordinatenExtern        => KoordinatenExtern)
       is
          when True =>
-            SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     BeschäftigungExtern      => AufgabenDatentypen.Farm_Bauen_Enum);
             return True;
             
@@ -352,17 +352,17 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    
    function WegAnlegbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitRasseNummerExtern : in EinheitenRecords.RasseEinheitnummerRecord)
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is begin
       
       case
-        AufgabenLogik.AufgabeTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                      BefehlExtern             => BefehleDatentypen.Straße_Bauen_Enum,
                                      KoordinatenExtern        => KoordinatenExtern)
       is
          when True =>
-            SchreibeEinheitenGebaut.KIVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     BeschäftigungExtern      => AufgabenDatentypen.Straße_Bauen_Enum);
             return True;
             

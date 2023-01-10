@@ -1,6 +1,6 @@
 with KartengrundDatentypen;
 with EinheitenDatentypen;
-with RassenDatentypen;
+with SpeziesDatentypen;
 with KartendatenbankRecord;
 with BewertungDatentypen;
 
@@ -21,47 +21,47 @@ package BasisgrundSonstiges is
                                                                               -- Nahrung, Produktion, Geld, Forschung
                                                                             Wirtschaft =>
                                                                               (
-                                                                               RassenDatentypen.Menschen_Enum         => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Kasrodiah_Enum        => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Lasupin_Enum          => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Lamustra_Enum         => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Manuky_Enum           => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Suroka_Enum           => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Pryolon_Enum          => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Moru_Phisihl_Enum     => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Larinos_Lotaris_Enum  => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Carupex_Enum          => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Alary_Enum            => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Natries_Zermanis_Enum => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Tridatus_Enum         => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Senelari_Enum         => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Aspari_2_Enum         => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Ekropa_Enum           => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Tesorahn_Enum         => (1, 1, 1, 1),
-                                                                               RassenDatentypen.Talbidahr_Enum        => (1, 1, 1, 1)
+                                                                               SpeziesDatentypen.Menschen_Enum         => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Kasrodiah_Enum        => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Lasupin_Enum          => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Lamustra_Enum         => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Manuky_Enum           => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Suroka_Enum           => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Pryolon_Enum          => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Moru_Phisihl_Enum     => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Larinos_Lotaris_Enum  => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Carupex_Enum          => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Alary_Enum            => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Natries_Zermanis_Enum => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Tridatus_Enum         => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Senelari_Enum         => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Aspari_2_Enum         => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Ekropa_Enum           => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Tesorahn_Enum         => (1, 1, 1, 1),
+                                                                               SpeziesDatentypen.Talbidahr_Enum        => (1, 1, 1, 1)
                                                                               ),
 
                                                                               -- Verteidigung, Angriff
                                                                             Kampf =>
                                                                               (
-                                                                               RassenDatentypen.Menschen_Enum         => (1, 1),
-                                                                               RassenDatentypen.Kasrodiah_Enum        => (1, 1),
-                                                                               RassenDatentypen.Lasupin_Enum          => (1, 1),
-                                                                               RassenDatentypen.Lamustra_Enum         => (1, 1),
-                                                                               RassenDatentypen.Manuky_Enum           => (1, 1),
-                                                                               RassenDatentypen.Suroka_Enum           => (1, 1),
-                                                                               RassenDatentypen.Pryolon_Enum          => (1, 1),
-                                                                               RassenDatentypen.Moru_Phisihl_Enum     => (1, 1),
-                                                                               RassenDatentypen.Larinos_Lotaris_Enum  => (1, 1),
-                                                                               RassenDatentypen.Carupex_Enum          => (1, 1),
-                                                                               RassenDatentypen.Alary_Enum            => (1, 1),
-                                                                               RassenDatentypen.Natries_Zermanis_Enum => (1, 1),
-                                                                               RassenDatentypen.Tridatus_Enum         => (1, 1),
-                                                                               RassenDatentypen.Senelari_Enum         => (1, 1),
-                                                                               RassenDatentypen.Aspari_2_Enum         => (1, 1),
-                                                                               RassenDatentypen.Ekropa_Enum           => (1, 1),
-                                                                               RassenDatentypen.Tesorahn_Enum         => (1, 1),
-                                                                               RassenDatentypen.Talbidahr_Enum        => (1, 1)
+                                                                               SpeziesDatentypen.Menschen_Enum         => (1, 1),
+                                                                               SpeziesDatentypen.Kasrodiah_Enum        => (1, 1),
+                                                                               SpeziesDatentypen.Lasupin_Enum          => (1, 1),
+                                                                               SpeziesDatentypen.Lamustra_Enum         => (1, 1),
+                                                                               SpeziesDatentypen.Manuky_Enum           => (1, 1),
+                                                                               SpeziesDatentypen.Suroka_Enum           => (1, 1),
+                                                                               SpeziesDatentypen.Pryolon_Enum          => (1, 1),
+                                                                               SpeziesDatentypen.Moru_Phisihl_Enum     => (1, 1),
+                                                                               SpeziesDatentypen.Larinos_Lotaris_Enum  => (1, 1),
+                                                                               SpeziesDatentypen.Carupex_Enum          => (1, 1),
+                                                                               SpeziesDatentypen.Alary_Enum            => (1, 1),
+                                                                               SpeziesDatentypen.Natries_Zermanis_Enum => (1, 1),
+                                                                               SpeziesDatentypen.Tridatus_Enum         => (1, 1),
+                                                                               SpeziesDatentypen.Senelari_Enum         => (1, 1),
+                                                                               SpeziesDatentypen.Aspari_2_Enum         => (1, 1),
+                                                                               SpeziesDatentypen.Ekropa_Enum           => (1, 1),
+                                                                               SpeziesDatentypen.Tesorahn_Enum         => (1, 1),
+                                                                               SpeziesDatentypen.Talbidahr_Enum        => (1, 1)
                                                                               ),
 
                                                                             Bewegung => (others => 10)
