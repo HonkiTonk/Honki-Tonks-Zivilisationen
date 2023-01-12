@@ -30,7 +30,7 @@ package body OptionenSteuerungLogik is
                return AuswahlWert;
                      
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenSteuerung.SteuerungBelegen: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenSteuerungLogik.SteuerungBelegen: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop BelegungSchleife;

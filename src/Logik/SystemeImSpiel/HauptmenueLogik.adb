@@ -96,7 +96,7 @@ package body HauptmenueLogik is
                null;
                
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "Hauptmenue.Hauptmenü: Ungültige Menüauswahl: " & RückgabeAuswahl'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "HauptmenueLogik.Hauptmenü: Ungültige Menüauswahl: " & RückgabeAuswahl'Wide_Wide_Image);
          end case;
          
       end loop HauptmenüSchleife;

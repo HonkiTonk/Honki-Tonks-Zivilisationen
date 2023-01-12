@@ -66,7 +66,7 @@ package body StadtBauenLogik is
             end if;
             
          when SpeziesDatentypen.Leer_Spieler_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtBauen.StadtBauen: Nicht vorhandene Spezies baut Stadt.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtBauenLogik.StadtBauen: Nicht vorhandene Spezies baut Stadt");
       end case;
             
       -- Immer daran denken dass die Stadt bei StadtEintragen auf Leer gesetzt wird und deswegen der Name danach eingetragen werden muss.

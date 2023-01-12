@@ -62,7 +62,7 @@ package body MineErmittelnLogik is
             null;
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "MineErmitteln.MineErmitteln: Falsche Aufgabe:" & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "MineErmittelnLogik.MineErmitteln: Falsche Aufgabe:" & Arbeitswerte.Aufgabe'Wide_Wide_Image);
       end case;
       
       case

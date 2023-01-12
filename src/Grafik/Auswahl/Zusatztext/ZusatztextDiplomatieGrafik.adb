@@ -80,7 +80,7 @@ package body ZusatztextDiplomatieGrafik is
                Zustandnummer := TextnummernKonstanten.ZeugKrieg;
                
             when DiplomatieDatentypen.Unbekannt_Enum =>
-               Fehlermeldungssystem.Grafik (FehlermeldungExtern => "ZusatztextDiplomatieGrafik.TextSetzen: Unbekannter Kontakt.");
+               Fehlermeldungssystem.Grafik (FehlermeldungExtern => "ZusatztextDiplomatieGrafik.TextSetzen: Unbekannter Kontakt");
          end case;
          
          Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & Meldungstexte.Zeug (Zustandnummer);

@@ -130,7 +130,7 @@ package body SpieleinstellungenLogik is
             null;
             
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen: Speziesplatzierung unmöglich.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpieleinstellungenLogik.AutomatischeEinstellungen: Speziesplatzierung unmöglich");
             return RueckgabeDatentypen.Spielmenü_Enum;
       end case;
             

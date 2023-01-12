@@ -45,7 +45,7 @@ package body SpieleinstellungenSpeziesLogik is
                return;
                
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielEinstellungenSpeziesSpieler.SpeziesWählen: Falsche Auswahl: " & SpeziesAuswahl'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpieleinstellungenSpeziesLogik.SpeziesWählen: Falsche Auswahl: " & SpeziesAuswahl'Wide_Wide_Image);
          end case;
          
       end loop SpeziesSchleife;
@@ -63,15 +63,15 @@ package body SpieleinstellungenSpeziesLogik is
       is
          when SpeziesDatentypen.Leer_Spieler_Enum =>
             SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesExtern,
-                                             BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
+                                              BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
                   
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
             SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesExtern,
-                                             BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
+                                              BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
                   
          when SpeziesDatentypen.KI_Spieler_Enum =>
             SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesExtern,
-                                             BelegungExtern => SpeziesDatentypen.Leer_Spieler_Enum);
+                                              BelegungExtern => SpeziesDatentypen.Leer_Spieler_Enum);
       end case;
       
    end BelegungÄndern;
@@ -107,7 +107,7 @@ package body SpieleinstellungenSpeziesLogik is
    is begin
       
       SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpezies,
-                                       BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
+                                        BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
       
    end SpeziesAutomatischBelegen;
    
@@ -121,7 +121,7 @@ package body SpieleinstellungenSpeziesLogik is
       SpeziesMenschSchnellstart := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpezies;
       
       SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesMenschSchnellstart,
-                                       BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
+                                        BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
       
       KIBelegenSchleife:
       loop
@@ -135,7 +135,7 @@ package body SpieleinstellungenSpeziesLogik is
             
          else
             SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesKISchnellstart,
-                                             BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
+                                              BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
             exit KIBelegenSchleife;
          end if;
          
@@ -180,7 +180,7 @@ package body SpieleinstellungenSpeziesLogik is
                      when ZahlenDatentypen.NotAus'Last =>
                         -- Hier wieder eine Meldung einbauen für den Fall dass die Spezies nicht platziert werden konnte? äöü
                         SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesSchleifenwert,
-                                                         BelegungExtern => SpeziesDatentypen.Leer_Spieler_Enum);
+                                                          BelegungExtern => SpeziesDatentypen.Leer_Spieler_Enum);
                         
                      when others =>
                         null;
@@ -216,9 +216,9 @@ package body SpieleinstellungenSpeziesLogik is
          when others =>
             if
               True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern                => SpeziesExtern,
-                                                                          IDExtern                   => 1,
-                                                                          NeueKoordinatenExtern      => GezogeneKoordinate,
-                                                                          StadtBerücksichtigenExtern => False)
+                                                                           IDExtern                   => 1,
+                                                                           NeueKoordinatenExtern      => GezogeneKoordinate,
+                                                                           StadtBerücksichtigenExtern => False)
             then
                null;
                
@@ -229,7 +229,7 @@ package body SpieleinstellungenSpeziesLogik is
       
       case
         EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => GezogeneKoordinate,
-                                                              LogikGrafikExtern => True).Nummer
+                                                                LogikGrafikExtern => True).Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
             StartKoordinaten (1) := GezogeneKoordinate;
@@ -311,7 +311,7 @@ package body SpieleinstellungenSpeziesLogik is
             then
                case
                  EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenWert,
-                                                                       LogikGrafikExtern => True).Nummer
+                                                                         LogikGrafikExtern => True).Nummer
                is
                   when EinheitenKonstanten.LeerNummer =>
                      Zusatzkoordinate := KartenWert;

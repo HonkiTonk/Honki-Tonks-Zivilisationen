@@ -17,7 +17,7 @@ package body KartenspritesZeichnenGrafik is
       if
         TexturAccessExtern = null
       then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.KartenfeldZeichnen: TexturAccessExtern = null.");
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.KartenfeldZeichnen: TexturAccessExtern: null");
          
       else
          DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
@@ -41,7 +41,7 @@ package body KartenspritesZeichnenGrafik is
       if
         TexturAccessExtern = null
       then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtfeldZeichnen: TexturAccessExtern = null.");
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtfeldZeichnen: TexturAccessExtern: null");
          
       else
          DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
@@ -64,7 +64,7 @@ package body KartenspritesZeichnenGrafik is
       if
         TexturAccessExtern = null
       then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtkarteZeichnen: TexturAccessExtern = null.");
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtkarteZeichnen: TexturAccessExtern: null");
          
       else
          SpriteZeichnen (SpriteAccessExtern => SpriteAccess,
@@ -89,7 +89,7 @@ package body KartenspritesZeichnenGrafik is
       if
         TexturAccessExtern = null
       then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.SpriteZeichnenVariabel: TexturAccessExtern = null.");
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.SpriteZeichnenVariabel: TexturAccessExtern: null");
          
       else
          SpriteZeichnen (SpriteAccessExtern => SpriteAccess,

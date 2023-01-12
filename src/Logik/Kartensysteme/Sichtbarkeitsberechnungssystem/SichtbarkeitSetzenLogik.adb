@@ -97,8 +97,8 @@ package body SichtbarkeitSetzenLogik is
       end case;
       
       FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
-                                                                                      KoordinatenExtern => KoordinatenExtern,
-                                                                                      LogikGrafikExtern => True);
+                                                                                        KoordinatenExtern => KoordinatenExtern,
+                                                                                        LogikGrafikExtern => True);
       
       case
         FremdeEinheit.Spezies

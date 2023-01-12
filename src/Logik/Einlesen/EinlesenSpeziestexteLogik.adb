@@ -28,7 +28,7 @@ package body EinlesenSpeziestexteLogik is
 
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
-                                  & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
+                                        & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
             return;
       end case;
       
@@ -41,7 +41,7 @@ package body EinlesenSpeziestexteLogik is
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
-                                     & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
+                                           & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
                
             when False =>
                Hauptdatei (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNull));
@@ -87,7 +87,7 @@ package body EinlesenSpeziestexteLogik is
                                  DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (1)));
                
                Städtenamen (SpeziesExtern     => SpeziesSchleifenwert,
-                            DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (2)));
+                             DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (2)));
                
                Forschungen (SpeziesExtern     => SpeziesSchleifenwert,
                             DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (3)));
@@ -96,7 +96,7 @@ package body EinlesenSpeziestexteLogik is
                           DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (4)));
                
                Gebäude (SpeziesExtern     => SpeziesSchleifenwert,
-                        DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (5)));
+                         DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (5)));
          end case;
          
       end loop SpeziesSchleife;

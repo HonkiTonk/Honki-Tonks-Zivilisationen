@@ -68,7 +68,7 @@ package body HintergrundGrafik is
       if
         EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, HintergrundExtern) = null
       then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "HintergrundGrafik.Spezieshintergrund: Hintergrund fehlt: " & SpeziesExtern'Wide_Wide_Image & " - " & HintergrundExtern'Wide_Wide_Image);
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "HintergrundGrafik.Spezieshintergrund: Hintergrund fehlt: " & SpeziesExtern'Wide_Wide_Image & " " & HintergrundExtern'Wide_Wide_Image);
          
       else
          Sf.Graphics.Sprite.scale (sprite  => SpezieshintergrundSpriteAccess,

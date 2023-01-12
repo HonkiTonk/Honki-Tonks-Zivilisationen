@@ -34,7 +34,7 @@ package body EinlesenTexturenLogik is
         Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.System & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSystem: Es fehlt: "
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenSystem: Es fehlt: "
                                         & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.System & VerzeichnisKonstanten.NullDatei));
             return;
             
@@ -54,7 +54,7 @@ package body EinlesenTexturenLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSystem: Fehlende Zeilen: "
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenSystem: Fehlende Zeilen: "
                                            & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.System & VerzeichnisKonstanten.NullDatei));
                exit TexturenSchleife;
                
@@ -71,7 +71,7 @@ package body EinlesenTexturenLogik is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSystem: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenSystem: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
                EingeleseneTexturenGrafik.SystemAccess (TexturSchleifenwert) := null;
          end case;
                   
@@ -82,7 +82,7 @@ package body EinlesenTexturenLogik is
                                                         AktuelleZeileExtern => AktuelleZeile)
       is
          when True =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSystem: Fehlende Zeilen: "
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenSystem: Fehlende Zeilen: "
                                         & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.System & VerzeichnisKonstanten.NullDatei));
             Close (File => DateiSystem);
             return;
@@ -98,7 +98,7 @@ package body EinlesenTexturenLogik is
             EingeleseneTexturenGrafik.BilderAccess (1) := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSystem: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenSystem: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
             EingeleseneTexturenGrafik.BilderAccess (1) := null;
       end case;
       
@@ -115,7 +115,7 @@ package body EinlesenTexturenLogik is
         Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Hintergrund & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenHintergrund: Es fehlt: "
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenHintergrund: Es fehlt: "
                                         & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Hintergrund & VerzeichnisKonstanten.NullDatei));
             return;
             
@@ -135,7 +135,7 @@ package body EinlesenTexturenLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenHintergrund: Fehlende Zeilen: "
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenHintergrund: Fehlende Zeilen: "
                                            & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Hintergrund & VerzeichnisKonstanten.NullDatei));
                exit TexturenSchleife;
                
@@ -152,7 +152,7 @@ package body EinlesenTexturenLogik is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenHintergrund: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenHintergrund: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
                EingeleseneTexturenGrafik.HintergrundAccess (TexturSchleifenwert) := null;
          end case;
                   
@@ -171,7 +171,7 @@ package body EinlesenTexturenLogik is
         Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Basisgrund & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenfelder: Es fehlt: "
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenfelder: Es fehlt: "
                                         & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Basisgrund & VerzeichnisKonstanten.NullDatei));
             return;
             
@@ -191,7 +191,7 @@ package body EinlesenTexturenLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenfelder: Fehlende Zeilen: "
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenfelder: Fehlende Zeilen: "
                                            & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Basisgrund & VerzeichnisKonstanten.NullDatei));
                exit BasisgrundSchleife;
                
@@ -208,7 +208,7 @@ package body EinlesenTexturenLogik is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenfelder: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenfelder: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
                EingeleseneTexturenGrafik.BasisgrundAccess (BasisgrundSchleifenwert) := null;
          end case;
          
@@ -220,7 +220,7 @@ package body EinlesenTexturenLogik is
         Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Zusatzgrund & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenfelder: Es fehlt: "
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenfelder: Es fehlt: "
                                         & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Basisgrund & VerzeichnisKonstanten.NullDatei));
             return;
             
@@ -240,7 +240,7 @@ package body EinlesenTexturenLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenfelder: Fehlende Zeilen: "
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenfelder: Fehlende Zeilen: "
                                            & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Zusatzgrund & VerzeichnisKonstanten.NullDatei));
                exit ZusatzgrundSchleife;
                
@@ -257,7 +257,7 @@ package body EinlesenTexturenLogik is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenfelder: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenfelder: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
                EingeleseneTexturenGrafik.ZusatzgrundAccess (ZusatzgrundSchleifenwert) := null;
          end case;
          
@@ -276,7 +276,7 @@ package body EinlesenTexturenLogik is
         Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfluss & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse: Es fehlt: "
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenflüsse: Es fehlt: "
                                         & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfluss & VerzeichnisKonstanten.NullDatei));
             return;
             
@@ -296,7 +296,7 @@ package body EinlesenTexturenLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse: Fehlende Zeilen: "
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenflüsse: Fehlende Zeilen: "
                                            & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfluss & VerzeichnisKonstanten.NullDatei));
                exit TexturenSchleife;
                
@@ -313,7 +313,7 @@ package body EinlesenTexturenLogik is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenflüsse: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenflüsse: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
                EingeleseneTexturenGrafik.KartenflussAccess (TexturSchleifenwert) := null;
          end case;
                   
@@ -332,7 +332,7 @@ package body EinlesenTexturenLogik is
         Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenressourcen & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen: Es fehlt: "
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenressourcen: Es fehlt: "
                                         & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenressourcen & VerzeichnisKonstanten.NullDatei));
             return;
             
@@ -352,7 +352,7 @@ package body EinlesenTexturenLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen: Fehlende Zeilen: "
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenressourcen: Fehlende Zeilen: "
                                            & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenressourcen & VerzeichnisKonstanten.NullDatei));
                exit TexturenSchleife;
                
@@ -369,7 +369,7 @@ package body EinlesenTexturenLogik is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenressourcen: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenressourcen: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
                EingeleseneTexturenGrafik.KartenressourceAccess (TexturSchleifenwert) := null;
          end case;
          
@@ -388,7 +388,7 @@ package body EinlesenTexturenLogik is
         Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenverbesserungen & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen: Es fehlt: "
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenVerbesserungen: Es fehlt: "
                                         & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenverbesserungen & VerzeichnisKonstanten.NullDatei));
             return;
             
@@ -408,7 +408,7 @@ package body EinlesenTexturenLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen: Fehlende Zeilen: "
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenVerbesserungen: Fehlende Zeilen: "
                                            & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenverbesserungen & VerzeichnisKonstanten.NullDatei));
                exit TexturenSchleife;
                
@@ -425,7 +425,7 @@ package body EinlesenTexturenLogik is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenVerbesserungen: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
                EingeleseneTexturenGrafik.VerbesserungenAccess (TexturSchleifenwert) := null;
          end case;
                   
@@ -444,7 +444,7 @@ package body EinlesenTexturenLogik is
         Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenwege & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenWege: Es fehlt: "
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenWege: Es fehlt: "
                                         & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenwege & VerzeichnisKonstanten.NullDatei));
             return;
             
@@ -464,7 +464,7 @@ package body EinlesenTexturenLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenWege: Fehlende Zeilen: "
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenWege: Fehlende Zeilen: "
                                            & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenwege & VerzeichnisKonstanten.NullDatei));
                exit TexturenSchleife;
                
@@ -481,7 +481,7 @@ package body EinlesenTexturenLogik is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenWege: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenWege: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
                EingeleseneTexturenGrafik.WegeAccess (TexturSchleifenwert) := null;
          end case;
          
@@ -500,7 +500,7 @@ package body EinlesenTexturenLogik is
         Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSpezies: Es fehlt: "
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenSpezies: Es fehlt: "
                                         & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
             return;
             
@@ -522,7 +522,7 @@ package body EinlesenTexturenLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSpezies: Fehlende Zeilen: "
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenSpezies: Fehlende Zeilen: "
                                               & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
                   exit SpeziesschleifeSchleife;
                
@@ -534,7 +534,7 @@ package body EinlesenTexturenLogik is
          end loop EinzelpfadeEinlesenSchleife;
          
          EinlesenSpezieshintergrund (DateipfadExtern => To_Wide_Wide_String (Source => Speziesverzeichnisse (1)),
-                                    SpeziesExtern     => SpeziesSchleifenwert);
+                                     SpeziesExtern     => SpeziesSchleifenwert);
          
          EinlesenEinheiten (DateipfadExtern => To_Wide_Wide_String (Source => Speziesverzeichnisse (2)),
                             SpeziesExtern     => SpeziesSchleifenwert);
@@ -559,7 +559,7 @@ package body EinlesenTexturenLogik is
         Exists (Name => Encode (Item => DateipfadExtern))
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSpezieshintergrund: Es fehlt: " & DateipfadExtern);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenSpezieshintergrund: Es fehlt: " & DateipfadExtern);
             return;
             
          when True =>
@@ -578,7 +578,7 @@ package body EinlesenTexturenLogik is
                                                            AktuelleZeileExtern => ZeileSpezieshintergrund)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenSpezieshintergrund: Fehlende Zeilen: " & DateipfadExtern);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenSpezieshintergrund: Fehlende Zeilen: " & DateipfadExtern);
                exit TexturenSchleife;
                
             when False =>
@@ -594,7 +594,7 @@ package body EinlesenTexturenLogik is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenEinheiten: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenEinheiten: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
                EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, TexturSchleifenwert) := null;
          end case;
                      
@@ -615,7 +615,7 @@ package body EinlesenTexturenLogik is
         Exists (Name => Encode (Item => DateipfadExtern))
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenEinheiten: Es fehlt: " & DateipfadExtern);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenEinheiten: Es fehlt: " & DateipfadExtern);
             return;
             
          when True =>
@@ -634,7 +634,7 @@ package body EinlesenTexturenLogik is
                                                            AktuelleZeileExtern => ZeileEinheiten)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenEinheiten: Fehlende Zeilen: " & DateipfadExtern);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenEinheiten: Fehlende Zeilen: " & DateipfadExtern);
                exit TexturenSchleife;
                
             when False =>
@@ -650,7 +650,7 @@ package body EinlesenTexturenLogik is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenEinheiten: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenEinheiten: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
                EingeleseneTexturenGrafik.EinheitenAccess (SpeziesExtern, TexturSchleifenwert) := null;
          end case;
                      
@@ -671,7 +671,7 @@ package body EinlesenTexturenLogik is
         Exists (Name => Encode (Item => DateipfadExtern))
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenGebäude: Es fehlt: " & DateipfadExtern);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenGebäude: Es fehlt: " & DateipfadExtern);
             return;
             
          when True =>
@@ -690,7 +690,7 @@ package body EinlesenTexturenLogik is
                                                            AktuelleZeileExtern => ZeileGebäude)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenGebäude: Fehlende Zeilen: " & DateipfadExtern);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenGebäude: Fehlende Zeilen: " & DateipfadExtern);
                exit TexturenSchleife;
                
             when False =>
@@ -706,7 +706,7 @@ package body EinlesenTexturenLogik is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturen.EinlesenGebäude: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenGebäude: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
                EingeleseneTexturenGrafik.GebäudeAccess (SpeziesExtern, TexturSchleifenwert) := null;
          end case;
                   

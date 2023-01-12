@@ -24,7 +24,7 @@ package body WaldAnlegenLogik is
             NeuerGrund := KartengrundDatentypen.Unterwald_Enum;
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "WaldAnlegen.WaldAnlegen: Falsche Ebene.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "WaldAnlegenLogik.WaldAnlegen: Falsche Ebene");
       end case;
       
       Zusatzgrundplatzierungssystem.Zusatzgrundplatzierung (KoordinatenExtern => KoordinatenExtern,

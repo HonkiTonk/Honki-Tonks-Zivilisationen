@@ -18,7 +18,7 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.PassierbarkeitBasisgrund - Grund ist Leer.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.PassierbarkeitBasisgrund: Leerer Grund");
             return False;
             
          when others =>
@@ -39,7 +39,7 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.BewertungBasisgrund - Grund ist Leer. Spezies: " & SpeziesExtern'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.BewertungBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return BewertungDatentypen.Bewertung_Eins_Enum;
             
          when others =>
@@ -80,7 +80,7 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.BewegungBasisgrund - Grund ist Leer. Spezies: " & SpeziesExtern'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.BewegungBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return EinheitenKonstanten.LeerBewegungspunkte;
             
          when others =>
@@ -162,7 +162,7 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.WirtschaftBasisgrund - Grund ist Leer. Spezies: " & SpeziesExtern'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.WirtschaftBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
@@ -247,7 +247,7 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.KampfBasisgrund - Grund ist Leer. Spezies: " & SpeziesExtern'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.KampfBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return KampfKonstanten.LeerKampfwert;
             
          when others =>

@@ -42,7 +42,7 @@ package body OptionenSonstigesLogik is
                return AuswahlWert;
                
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenSonstiges.Sonstiges: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenSonstigesLogik.Sonstiges: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop SonstigesSchleife;
@@ -55,8 +55,8 @@ package body OptionenSonstigesLogik is
    is begin
       
       EingegebeneZahl := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
-                                                ZahlenMaximumExtern => 999_999_999,
-                                                WelcheFrageExtern   => TextnummernKonstanten.FrageWievieleAutospielstände);
+                                                           ZahlenMaximumExtern => 999_999_999,
+                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageWievieleAutospielstände);
       case
         EingegebeneZahl.ErfolgreichAbbruch
       is
@@ -122,7 +122,7 @@ package body OptionenSonstigesLogik is
             end if;
             
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenSonstiges.SpracheWechseln: Sprachen nicht gefunden.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenSonstigesLogik.SpracheWechseln: Sprachen nicht gefunden.");
       end case;
       
    end SpracheWechseln;

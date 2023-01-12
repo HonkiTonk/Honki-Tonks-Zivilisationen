@@ -246,9 +246,9 @@ package body LeseWeltkarte is
         or
           Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer = StadtKonstanten.LeerNummer
       then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.UnbelegterGrund - Werte ungültig. Spezies: "
-                             & Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies'Wide_Wide_Image & " Nummer: "
-                             & Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer'Wide_Wide_Image);
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.UnbelegterGrund: Werte ungültig: Spezies: "
+                                     & Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies'Wide_Wide_Image & " Nummer: "
+                                     & Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer'Wide_Wide_Image);
          return True;
          
       else

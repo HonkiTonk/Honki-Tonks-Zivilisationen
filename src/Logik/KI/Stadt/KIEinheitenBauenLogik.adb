@@ -147,8 +147,8 @@ package body KIEinheitenBauenLogik is
         AnzahlPassierbarkeiten
       is
          when 0 =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitenBauenLogik.EinheitBewerten - Einheit: "
-                                        & StadtSpeziesNummerExtern.Spezies'Wide_Wide_Image & " " & IDExtern'Wide_Wide_Image & " hat keine Passierbarkeit.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitenBauenLogik.EinheitBewerten: Einheit: "
+                                        & StadtSpeziesNummerExtern.Spezies'Wide_Wide_Image & " " & IDExtern'Wide_Wide_Image & " hat keine Passierbarkeit");
             
          when 1 =>
             null;
@@ -197,7 +197,7 @@ package body KIEinheitenBauenLogik is
             return KIDatentypen.BauenBewertung'First;
             
          when EinheitenDatentypen.Leer_Einheitart_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitenBauen.SpezielleEinheitBewerten: Leere Einheitart.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitenBauenLogik.SpezielleEinheitBewerten: Leere Einheitart");
       end case;
       
       return KIKonstanten.LeerBewertung;
@@ -399,11 +399,11 @@ package body KIEinheitenBauenLogik is
       return KIKonstanten.LeerBewertung;
       
       -- Da das System so wie es aktuell ist nicht korrekt funktioniert, wird vorübergehen hier mit 0 multipliziert, das später wieder entfernen. äöü
-     -- return -(KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-     --                                                                                 IDExtern    => EinheitenIDExtern)
-     --          / LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
-     --          / 10))
-     --   * 0;
+      -- return -(KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
+      --                                                                                 IDExtern    => EinheitenIDExtern)
+      --          / LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
+      --          / 10))
+      --   * 0;
       
    end HerstellungskostenBewerten;
      
@@ -427,8 +427,8 @@ package body KIEinheitenBauenLogik is
          
       elsif
         LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) - LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
-                                                                                                                                    IDExtern           => EinheitenIDExtern,
-                                                                                                                                    WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
+                                                                                                                                          IDExtern           => EinheitenIDExtern,
+                                                                                                                                          WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
         < WichtigesKonstanten.LeerGeldZugewinnProRunde
       then
          return -10;
@@ -459,8 +459,8 @@ package body KIEinheitenBauenLogik is
          
       elsif
         LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) - LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
-                                                                                                                                         IDExtern           => EinheitenIDExtern,
-                                                                                                                                         WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
+                                                                                                                                             IDExtern           => EinheitenIDExtern,
+                                                                                                                                             WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
         < StadtKonstanten.LeerNahrungsproduktion
       then
          return -20;
@@ -491,8 +491,8 @@ package body KIEinheitenBauenLogik is
          
       elsif
         LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) - LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
-                                                                                                                                     IDExtern           => EinheitenIDExtern,
-                                                                                                                                     WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
+                                                                                                                                         IDExtern           => EinheitenIDExtern,
+                                                                                                                                         WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
         < StadtKonstanten.LeerProduktionrate
       then
          return -20;

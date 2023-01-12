@@ -25,7 +25,7 @@ package body FensterGrafik is
       if
         EinstellungenGrafik.FensterAccess = null
       then
-         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "FensterGrafik.FensterErzeugen: FensterAccess = null.");
+         Fehlermeldungssystem.Grafik (FehlermeldungExtern => "FensterGrafik.FensterErzeugen: FensterAccess: null");
 
       else
          MauszeigerFestlegen;

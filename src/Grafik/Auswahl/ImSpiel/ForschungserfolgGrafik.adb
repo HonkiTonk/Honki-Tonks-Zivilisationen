@@ -30,8 +30,8 @@ package body ForschungserfolgGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüErfolg));
       
       HintergrundGrafik.Spezieshintergrund (SpeziesExtern       => SpeziesExtern,
-                                           HintergrundExtern => GrafikDatentypen.Forschungserfolg_Enum,
-                                           AbmessungenExtern => Viewfläche);
+                                            HintergrundExtern => GrafikDatentypen.Forschungserfolg_Enum,
+                                            AbmessungenExtern => Viewfläche);
       
       Forschungprojekt := LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern);
       

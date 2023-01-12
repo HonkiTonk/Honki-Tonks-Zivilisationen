@@ -30,7 +30,7 @@ package body SpieleinstellungenSonstigesLogik is
                return;
                
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen: Falsche Auswahl: " & SchwierigkeitAuswahl'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpieleinstellungenSonstigesLogik.SchwierigkeitsgradFestlegen: Falsche Auswahl: " & SchwierigkeitAuswahl'Wide_Wide_Image);
          end case;
          
       end loop SchwierigkeitsgradSchleife;

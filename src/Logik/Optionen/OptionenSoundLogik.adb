@@ -21,7 +21,7 @@ package body OptionenSoundLogik is
                return AuswahlWert;
                
             when others =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenSound.OptionenSound: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenSoundLogik.OptionenSound: Falsche Auswahl: " & AuswahlWert'Wide_Wide_Image);
          end case;
          
       end loop SoundSchleife;

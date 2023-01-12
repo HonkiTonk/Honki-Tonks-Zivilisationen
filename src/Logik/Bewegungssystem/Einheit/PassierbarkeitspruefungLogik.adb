@@ -26,7 +26,7 @@ package body PassierbarkeitspruefungLogik is
         IDEinheit
       is
          when EinheitenDatentypen.EinheitenIDMitNullWert'First =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer: Einheit ohne ID.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer: Einheit ohne ID");
             return False;
             
          when others =>
@@ -111,7 +111,7 @@ package body PassierbarkeitspruefungLogik is
       is
          when True =>
             StadtVorhanden := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
-                                                                               KoordinatenExtern => NeueKoordinatenExtern);
+                                                                                 KoordinatenExtern => NeueKoordinatenExtern);
             
          when False =>
             StadtVorhanden := StadtKonstanten.LeerNummer;

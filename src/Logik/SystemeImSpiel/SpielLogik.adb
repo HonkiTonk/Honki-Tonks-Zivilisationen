@@ -55,13 +55,13 @@ package body SpielLogik is
                   null;
                
                when others =>
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.Spiel - Falsche Rückgabe:" & RückgabeSpezies'Wide_Wide_Image);
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.Spiel: Falsche Rückgabe: " & RückgabeSpezies'Wide_Wide_Image);
             end case;
             
          end loop SpeziesSchleife;
          
          if
-          LeseAllgemeines.SpeziesAmzugNachLaden = EinheitenKonstanten.LeerSpezies
+           LeseAllgemeines.SpeziesAmzugNachLaden = EinheitenKonstanten.LeerSpezies
          then
             case
               Spielertests.MenschlicheSpieler (SpeziesExtern => SpeziesDatentypen.Keine_Spezies_Enum)
@@ -110,7 +110,7 @@ package body SpielLogik is
       if
         LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Leer_Spieler_Enum
         or
-         LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesExtern) = True
+          LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesExtern) = True
       then
          return RueckgabeDatentypen.Start_Weiter_Enum;
       
@@ -154,7 +154,7 @@ package body SpielLogik is
                KISpieler (SpeziesExtern => SpeziesExtern);
                
             when SpeziesDatentypen.Leer_Spieler_Enum =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.SpeziesDurchgehen: Keine Spezies.");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.SpeziesDurchgehen: Keine Spezies");
          end case;
 
       else

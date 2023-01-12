@@ -254,9 +254,10 @@ package body EingabenanzeigeGrafik is
                   end if;
                   
                when False =>
-                  Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies,
-                                                                                                                                                                                       WelcheAuswahl.MöglicheAuswahlen (0))),
-                                                                                                                   SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
+                  Text
+                    := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies,
+                                                                                                                                                                                        WelcheAuswahl.MöglicheAuswahlen (0))),
+                                                                                                                SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
             end case;
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),

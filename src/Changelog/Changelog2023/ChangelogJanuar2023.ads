@@ -133,24 +133,22 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (12.01.2023):
+   -- Version 0.04.6100 => 0.04. (12.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (11.01.2023):
+   -- Version 0.04.6080 => 0.04.6100 (11.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehlermeldungen angepasst.
    
    
 
-   -- Version 0.04.6080 => 0.04. (10.01.2023):
+   -- Version 0.04.6080 => 0.04.6080 (10.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

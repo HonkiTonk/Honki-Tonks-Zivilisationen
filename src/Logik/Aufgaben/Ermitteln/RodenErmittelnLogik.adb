@@ -63,7 +63,7 @@ package body RodenErmittelnLogik is
             null;
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "RodenErmitteln.RodenErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "RodenErmittelnLogik.RodenErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
       end case;
       
       case

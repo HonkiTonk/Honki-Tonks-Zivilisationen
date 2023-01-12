@@ -76,7 +76,7 @@ package body DebugmenueLogik is
             
          when SpeziesDatentypen.KI_Spieler_Enum =>
             SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => Wechsel (TasteExtern),
-                                             BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
+                                              BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
             
             SchreibeCursor.KoordinatenAktuell (SpeziesExtern       => Wechsel (TasteExtern),
                                                KoordinatenExtern => (0, 1, 1));
@@ -85,7 +85,7 @@ package body DebugmenueLogik is
                                              
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
             SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => Wechsel (TasteExtern),
-                                             BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
+                                              BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
       end case;
                                              
    end MenschKITauschen;

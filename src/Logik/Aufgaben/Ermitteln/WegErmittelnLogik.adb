@@ -67,7 +67,7 @@ package body WegErmittelnLogik is
             null;
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "WegErmitteln.WegErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "WegErmittelnLogik.WegErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
       end case;
       
       case

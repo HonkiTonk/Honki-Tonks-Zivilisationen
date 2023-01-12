@@ -27,7 +27,8 @@ package body EinlesenSoundsLogik is
         Exists (Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei)
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSounds.EinlesenSounds: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei));
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: "
+                                        & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei));
             return;
             
          when True =>
@@ -46,7 +47,7 @@ package body EinlesenSoundsLogik is
                                                            AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSounds.EinlesenSounds: Fehlende Zeilen: "
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Fehlende Zeilen: "
                                            & Decode (Item => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei));
                exit SoundsSchleife;
                
@@ -58,7 +59,7 @@ package body EinlesenSoundsLogik is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Sound)))
          is
             when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSounds.EinlesenSounds: Es fehlt: " & To_Wide_Wide_String (Source => Sound));
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Es fehlt: " & To_Wide_Wide_String (Source => Sound));
             
             when True =>
                EingeleseneSounds.Sound (SoundSchleifenwert) := Sf.Audio.SoundBuffer.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Sound)));

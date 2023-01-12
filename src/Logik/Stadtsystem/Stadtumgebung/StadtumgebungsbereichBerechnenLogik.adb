@@ -18,7 +18,7 @@ package body StadtumgebungsbereichBerechnenLogik is
       is
          when StadtKonstanten.LeerSpezies =>
             -- Dieser Fall sollte niemals eintreten, muss aber mitgenommen werden wegen dem Record.
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtUmgebungsbereichFestlegen.StadtUmgebungsbereichFestlegen: Keine Spezies ausgewählt.");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtumgebungsbereichBerechnenLogik.StadtUmgebungsbereichFestlegen: Keine Spezies");
             
          when others =>
             StadtumgebungErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);

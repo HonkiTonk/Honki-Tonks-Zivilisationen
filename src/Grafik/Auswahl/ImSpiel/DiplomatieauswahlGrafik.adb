@@ -91,7 +91,7 @@ package body DiplomatieauswahlGrafik is
                      Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKrieg);
                
                   when DiplomatieDatentypen.Unbekannt_Enum =>
-                     Fehlermeldungssystem.Grafik (FehlermeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung: Unbekannter Kontakt.");
+                     Fehlermeldungssystem.Grafik (FehlermeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung: Unbekannter Kontakt");
                      Text := TextKonstanten.LeerUnboundedString;
                end case;
 
