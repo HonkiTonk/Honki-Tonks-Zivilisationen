@@ -1,4 +1,3 @@
-with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with GrafikDatentypen;
@@ -11,7 +10,6 @@ with ViewKonstanten;
 
 with LeseStadtGebaut;
 
-with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
 with InteraktionAuswahl;
 with TextberechnungenHoeheGrafik;
@@ -23,6 +21,7 @@ with AllgemeineViewsGrafik;
 with TextfarbeGrafik;
 with BauauswahlEinheitenGrafik;
 with BauauswahlGebaeudeGrafik;
+with TextaccesseEinstellenGrafik;
 
 -- Kann man das so anpassen dass eine teilweise Verschmelzung mit VerkaufsauswahlGrafik möglich wäre? äöü
 package body BauauswahlGrafik is
@@ -100,8 +99,8 @@ package body BauauswahlGrafik is
                Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                                                                        ViewbreiteExtern => ViewflächeGebäude.x);
 
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
-                                             position => Textposition);
+               TextaccesseEinstellenGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
+                                                             PositionExtern   => Textposition);
                                                                       
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                                TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
@@ -111,9 +110,6 @@ package body BauauswahlGrafik is
                                                                                    TextbreiteExtern => Textbreite);
                
                InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
-               
-               Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                  text         => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
 
             when False =>
                null;
@@ -159,9 +155,9 @@ package body BauauswahlGrafik is
                
                Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
                                                                                        ViewbreiteExtern => ViewflächeEinheiten.x);
-
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
-                                             position => Textposition);
+               
+               TextaccesseEinstellenGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
+                                                             PositionExtern   => Textposition);
                
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                                TextAccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
@@ -171,9 +167,6 @@ package body BauauswahlGrafik is
                                                                                    TextbreiteExtern => Textbreite);
                
                InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert));
-               
-               Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                  text         => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert));
 
             when False =>
                null;
@@ -228,12 +221,9 @@ package body BauauswahlGrafik is
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                               ViewbreiteExtern => ViewflächeAktuell.x);
-      
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                    position => Textposition);
-      
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
+                     
+      TextaccesseEinstellenGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                                    PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                           TextbreiteExtern => Textbreite);
@@ -250,11 +240,8 @@ package body BauauswahlGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                               ViewbreiteExtern => ViewflächeAktuell.x);
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                    position => Textposition);
-      
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.ForschungsmenüErmöglichtAccess);
+      TextaccesseEinstellenGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+                                                    PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                           TextbreiteExtern => Textbreite);

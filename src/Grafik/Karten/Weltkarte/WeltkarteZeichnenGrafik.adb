@@ -518,9 +518,19 @@ package body WeltkarteZeichnenGrafik is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummer)));
       
-      Sf.Graphics.Text.setScale (text  => TextaccessVariablen.KarteAccess,
-                                 scale => (0.70, 0.70));
+      Textbreite := Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).width;
       
+      if
+        Textbreite > 5.00 * SichtweitenGrafik.KartenfelderAbmessung.x
+      then
+         Sf.Graphics.Text.setScale (text  => TextaccessVariablen.KarteAccess,
+                                    scale => (5.00 * SichtweitenGrafik.KartenfelderAbmessung.x / Textbreite, 0.70));
+         
+      else
+         Sf.Graphics.Text.setScale (text  => TextaccessVariablen.KarteAccess,
+                                    scale => (1.00, 0.70));
+      end if;
+            
       Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * SichtweitenGrafik.KartenfelderAbmessung.x;
       Textposition.y := PositionExtern.y - TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       

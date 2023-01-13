@@ -119,17 +119,19 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (14.01.2023):
+   -- Version 0.04.6240 => 0.04. (14.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.6190 => 0.04. (13.01.2023):
+   -- Version 0.04.6190 => 0.04.6240 (13.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Anpassungen an der Darstellung/Skalierung der Seitenleiste vorgenommen.
+   -- Stadtnamen auf der Weltkarte werden jetzt besser skaliert.
+   -- Angefangen ein System zum besseren Einstellen von Textaccessen zu bauen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

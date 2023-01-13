@@ -44,7 +44,7 @@ package body SpielmeldungenGrafik is
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.Spielmeldung,
                                     position => Textposition);
-            
+             
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                          text         => TextaccessVariablen.Spielmeldung);
       

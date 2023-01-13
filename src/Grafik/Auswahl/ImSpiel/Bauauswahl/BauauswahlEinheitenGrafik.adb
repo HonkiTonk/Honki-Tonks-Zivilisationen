@@ -1,6 +1,3 @@
-with Sf.Graphics.Text;
-with Sf.Graphics.RenderWindow;
-
 with Views;
 with GrafikDatentypen;
 with TextnummernKonstanten;
@@ -18,9 +15,9 @@ with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 with ViewsEinstellenGrafik;
 with TextfarbeGrafik;
-with EinstellungenGrafik;
 with ZeilenumbruchberechnungGrafik;
 with EinheitenbeschreibungenGrafik;
+with TextaccesseEinstellenGrafik;
 
 package body BauauswahlEinheitenGrafik is
 
@@ -104,16 +101,11 @@ package body BauauswahlEinheitenGrafik is
       InformationenSchleife:
       for InformationSchleifenwert in EinheitentexteArray'Range loop
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                            str  => To_Wide_Wide_String (Source => Einheitentexte (InformationSchleifenwert)));
-         
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                       position => Textposition);
-         
          TextfarbeGrafik.Standardfarbe (TextaccessExtern => TextaccessVariablen.TextAccess);
          
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.TextAccess);
+         TextaccesseEinstellenGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                           TextExtern       => To_Wide_Wide_String (Source => Einheitentexte (InformationSchleifenwert)),
+                                                           PositionExtern   => Textposition);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.TextAccess,
@@ -151,17 +143,13 @@ package body BauauswahlEinheitenGrafik is
             
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-            
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                    position => Textposition);
-
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                         str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
-                                                                                                                                                                                SpeziesExtern => SpeziesExtern),
-                                                                                                        TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x));
-         
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern));
+      
+      TextaccesseEinstellenGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),
+                                                        TextExtern       => 
+                                                          ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
+                                                                                                                                                                                         SpeziesExtern => SpeziesExtern),
+                                                                                                                 TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x),
+                                                        PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),

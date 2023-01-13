@@ -8,7 +8,7 @@ with KartenfelderwerteLogik;
 
 package body KampfwerteEinheitErmittelnLogik is
    
-   -- Wird aktuell von Grafik und Logik verwendet, mal sicherheitsmaßnahmen einbauen. äöü
+   -- Wird aktuell von Grafik und Logik verwendet, mal Sicherheitsmaßnahmen einbauen. äöü
    function Gesamtverteidigung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KampfDatentypen.KampfwerteGroß

@@ -55,6 +55,7 @@ private
    Verteidigungsbonus : KampfDatentypen.KampfwerteGroß;
    
    Textbreite : Float;
+   MaximaleTextbreite : Float;
    TextbreiteDebug : Float;
       
    Ladungstext : Unbounded_Wide_Wide_String;

@@ -11,6 +11,7 @@ with TexteinstellungenGrafik;
 
 package body TextfarbeGrafik is
 
+   -- Das heir alles in Funktionen umwandeln und hier nicht setzen? äöü
    procedure AuswahlfarbeFestlegen
      (TextnummerExtern : in Natural;
       AuswahlExtern : in Integer;

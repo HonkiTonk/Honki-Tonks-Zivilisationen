@@ -62,6 +62,7 @@ private
    Durchsichtigkeit : Sf.sfUint8;
    
    DickeRahmen : constant Float := 5.00;
+   Textbreite : Float;
    
    Gesamtgrund : KartenRecords.KartengrundRecord;
          
