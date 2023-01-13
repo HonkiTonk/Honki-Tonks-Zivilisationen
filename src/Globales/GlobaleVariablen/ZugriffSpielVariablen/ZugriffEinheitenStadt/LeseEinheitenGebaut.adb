@@ -1,4 +1,5 @@
 with GebautVariablen;
+with SpeziesKonstanten;
 
 with LeseEinheitenDatenbank;
 
@@ -15,7 +16,7 @@ package body LeseEinheitenGebaut is
    begin
       
       if
-        EinheitSpeziesNummerExtern.Spezies = SpeziesDatentypen.Keine_Spezies_Enum
+        EinheitSpeziesNummerExtern.Spezies = SpeziesKonstanten.LeerSpezies
         or
           EinheitSpeziesNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
       then

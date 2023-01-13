@@ -1,9 +1,9 @@
-with EinheitenKonstanten;
 with GrafikDatentypen;
 with MenueDatentypen;
 with TextnummernKonstanten;
 with ForschungKonstanten;
 with ForschungenDatentypen;
+with SpeziesKonstanten;
 
 with LeseGrenzen;
 with LeseAllgemeines;
@@ -61,10 +61,10 @@ package body SpielLogik is
          end loop SpeziesSchleife;
          
          if
-           LeseAllgemeines.SpeziesAmzugNachLaden = EinheitenKonstanten.LeerSpezies
+           LeseAllgemeines.SpeziesAmzugNachLaden = SpeziesKonstanten.LeerSpezies
          then
             case
-              Spielertests.MenschlicheSpieler (SpeziesExtern => SpeziesDatentypen.Keine_Spezies_Enum)
+              Spielertests.MenschlicheSpieler (SpeziesExtern => SpeziesKonstanten.LeerSpezies)
             is
                when True =>
                   null;
@@ -138,11 +138,11 @@ package body SpielLogik is
    begin
             
       if
-        LeseAllgemeines.SpeziesAmzugNachLaden = EinheitenKonstanten.LeerSpezies
+        LeseAllgemeines.SpeziesAmzugNachLaden = SpeziesKonstanten.LeerSpezies
         or
           LeseAllgemeines.SpeziesAmzugNachLaden = SpeziesExtern
       then
-         SchreibeAllgemeines.SpeziesAmzugNachLaden (SpeziesExtern => EinheitenKonstanten.LeerSpezies);
+         SchreibeAllgemeines.SpeziesAmzugNachLaden (SpeziesExtern => SpeziesKonstanten.LeerSpezies);
             
          case
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
@@ -179,7 +179,7 @@ package body SpielLogik is
       KILogik.KI (SpeziesExtern => SpeziesExtern);
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-      NachGrafiktask.KIRechnet := SpeziesDatentypen.Keine_Spezies_Enum;
+      NachGrafiktask.KIRechnet := SpeziesKonstanten.LeerSpezies;
       
    end KISpieler;
    
@@ -327,7 +327,7 @@ package body SpielLogik is
       end loop SpielerSchleife;
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-      NachGrafiktask.AktuelleSpezies := SpeziesDatentypen.Keine_Spezies_Enum;
+      NachGrafiktask.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
       
       return RückgabeMenschAmZug;
       

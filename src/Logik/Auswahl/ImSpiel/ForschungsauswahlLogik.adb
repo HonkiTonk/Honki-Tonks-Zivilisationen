@@ -1,6 +1,7 @@
 with TastenbelegungDatentypen;
 with InteraktionAuswahl;
 with GrafikDatentypen;
+with SpeziesKonstanten;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -150,7 +151,7 @@ package body ForschungsauswahlLogik is
       SchreibeWichtiges.Forschungsprojekt (SpeziesExtern       => SpeziesExtern,
                                            ForschungIDExtern => Forschungsmöglichkeiten (SpeziesExtern => SpeziesExtern));
       
-      NachGrafiktask.AktuelleSpezies := SpeziesDatentypen.Keine_Spezies_Enum;
+      NachGrafiktask.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Rundenende_Enum;
       
    end Forschungserfolg;

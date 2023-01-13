@@ -39,7 +39,7 @@ package WeltkarteRecords is
                                                 Ressource     => KartenextraDatentypen.Leer_Ressource_Enum,
                                                 Weg           => KartenverbesserungDatentypen.Leer_Weg_Enum,
                                                 Verbesserung  => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
-                                                Einheit       => EinheitenKonstanten.LeerSpeziesNummer,
+                                                Einheit       => EinheitenKonstanten.LeerEinheit,
                                                 Stadtbelegung => KartenRecordKonstanten.LeerDurchStadtBelegterGrund
                                                );
 

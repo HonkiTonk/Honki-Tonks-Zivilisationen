@@ -8,7 +8,7 @@ with Meldungstexte;
 with TextaccessVariablen;
 with ProduktionDatentypen;
 with KampfDatentypen;
-with ViewKonstanten;
+with StadtKonstanten;
 
 with LeseGebaeudeDatenbank;
 
@@ -25,22 +25,36 @@ package body BauauswahlGebaeudeGrafik is
 
    procedure Gebäudeinformationen
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      ViewbereichExtern : in Positive)
    is begin
                   
       ViewflächeInformationen := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeInformationen,
-                                                                                     VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeinformationen).width,
-                                                                                                           GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeinformationen).height));
+                                                                                     VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewbereichExtern).width,
+                                                                                                           GrafikRecordKonstanten.Baumenübereich (ViewbereichExtern).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeinformationen),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewbereichExtern),
                                             GrößeExtern          => ViewflächeInformationen,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeinformationen));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewbereichExtern));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeInformationen);
       
+      case
+        AuswahlExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            Gebäudebeschreibung (AuswahlExtern     => AuswahlExtern,
+                                  SpeziesExtern     => SpeziesExtern,
+                                  ViewbereichExtern => ViewbereichExtern + 1);
+            return;
+            
+         when others =>
+            null;
+      end case;
+      
       Gebäudetexte (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => SpeziesExtern,
-                                                                                                                             IDExtern    => AuswahlExtern)'Wide_Wide_Image;
+                                                                                                                               IDExtern    => AuswahlExtern)'Wide_Wide_Image;
       Gebäudetexte (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteNahrungskosten) & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern        => SpeziesExtern,
                                                                                                                                              IDExtern           => AuswahlExtern,
                                                                                                                                              WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
@@ -99,8 +113,9 @@ package body BauauswahlGebaeudeGrafik is
       
       ViewflächeInformationen := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-      Gebäudebeschreibung (AuswahlExtern    => AuswahlExtern,
-                            SpeziesExtern      => SpeziesExtern);
+      Gebäudebeschreibung (AuswahlExtern     => AuswahlExtern,
+                            SpeziesExtern     => SpeziesExtern,
+                            ViewbereichExtern => ViewbereichExtern + 1);
             
    end Gebäudeinformationen;
    
@@ -108,39 +123,48 @@ package body BauauswahlGebaeudeGrafik is
    
    procedure Gebäudebeschreibung
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      ViewbereichExtern : in Positive)
    is begin
       
       ViewflächeBeschreibung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeBeschreibung,
-                                                                                    VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudebeschreibung).width,
-                                                                                                          GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudebeschreibung).height));
+                                                                                    VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewbereichExtern).width,
+                                                                                                          GrafikRecordKonstanten.Baumenübereich (ViewbereichExtern).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudebeschreibung),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewbereichExtern),
                                             GrößeExtern          => ViewflächeBeschreibung,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudebeschreibung));
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewbereichExtern));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeBeschreibung);
       
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                    position => Textposition);
+      case
+        AuswahlExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return;
             
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                         str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
-                                                                                                                                                                               SpeziesExtern => SpeziesExtern),
-                                                                                                        TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x));
+         when others =>
+            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+            Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      
+            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
+                                          position => Textposition);
+            
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
+                                               str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
+                                                                                                                                                                                     SpeziesExtern => SpeziesExtern),
+                                                                                                              TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x));
          
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern));
+            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+                                               text         => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern));
             
-      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                            TextAccessExtern => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
-      ViewflächeBeschreibung := (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+            ViewflächeBeschreibung := (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      end case;
       
    end Gebäudebeschreibung;
 

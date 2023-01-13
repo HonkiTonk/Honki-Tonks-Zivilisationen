@@ -1,4 +1,5 @@
 with EinheitenDatentypen;
+with SpeziesKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -66,9 +67,9 @@ package body EinheitenbewegungLogik is
       if
         (EinheitAufFeld.Spezies /= EinheitSpeziesNummerExtern.Spezies
          and
-           EinheitAufFeld.Spezies /= EinheitenKonstanten.LeerSpezies)
+           EinheitAufFeld.Spezies /= SpeziesKonstanten.LeerSpezies)
         or
-          (StadtAufFeld.Spezies /= StadtKonstanten.LeerSpezies
+          (StadtAufFeld.Spezies /= SpeziesKonstanten.LeerSpezies
            and
              StadtAufFeld.Spezies /= EinheitSpeziesNummerExtern.Spezies)
       then

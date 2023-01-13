@@ -54,7 +54,7 @@ package body StadtSuchenLogik is
             return LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KoordinatenExtern);
             
          when others =>
-            return StadtKonstanten.LeerSpeziesNummer;
+            return StadtKonstanten.LeerStadt;
       end case;
       
    end KoordinatenStadtOhneSpeziesSuchen;
@@ -76,13 +76,13 @@ package body StadtSuchenLogik is
             Stadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KoordinatenExtern);
             
          when others =>
-            return StadtKonstanten.LeerSpeziesNummer;
+            return StadtKonstanten.LeerStadt;
       end case;
       
       if
         Stadt.Spezies = SpeziesExtern
       then
-         return StadtKonstanten.LeerSpeziesNummer;
+         return StadtKonstanten.LeerStadt;
          
       else
          return Stadt;
@@ -97,7 +97,7 @@ package body StadtSuchenLogik is
       use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    begin
       
-      StadtName := TexteingabeLogik.StadtName (StadtSpeziesNummerExtern => StadtKonstanten.LeerSpeziesNummer,
+      StadtName := TexteingabeLogik.StadtName (StadtSpeziesNummerExtern => StadtKonstanten.LeerStadt,
                                                BauenExtern            => False);
       
       case

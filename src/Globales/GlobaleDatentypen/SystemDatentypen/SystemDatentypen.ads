@@ -21,7 +21,7 @@ package SystemDatentypen is
    
    
    
-   subtype Zeug is Natural range 0 .. 52;
+   subtype Zeug is Natural range 0 .. 53;
    subtype ZeugVorhanden is Zeug range 1 .. Zeug'Last;
    
    subtype Fragen is Natural range 0 .. 34;

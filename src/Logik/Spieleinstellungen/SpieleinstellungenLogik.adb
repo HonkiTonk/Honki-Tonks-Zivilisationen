@@ -1,6 +1,6 @@
-with SpeziesDatentypen;
 with MenueDatentypen;
 with GrafikDatentypen;
+with SpeziesKonstanten;
 
 with SchreibeWeltkarteneinstellungen;
 
@@ -124,7 +124,7 @@ package body SpieleinstellungenLogik is
       SpieleinstellungenSpeziesLogik.StartwerteErmitteln;
       
       case
-        Spielertests.BeliebigeSpielerart (SpeziesExtern => SpeziesDatentypen.Keine_Spezies_Enum)
+        Spielertests.BeliebigeSpielerart (SpeziesExtern => SpeziesKonstanten.LeerSpezies)
       is
          when True =>
             null;

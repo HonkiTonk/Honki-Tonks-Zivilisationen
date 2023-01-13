@@ -421,7 +421,7 @@ package body MausauswahlLogik is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
-                                                                 view         => Views.VerkaufsviewAccesse (1));
+                                                                 view         => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudelisteVerkaufen));
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop

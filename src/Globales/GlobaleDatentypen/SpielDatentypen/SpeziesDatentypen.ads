@@ -2,7 +2,7 @@ package SpeziesDatentypen is
    pragma Pure;
    
    type Spezies_Enum is (
-                        Keine_Spezies_Enum,
+                        Leer_Spezies_Enum,
                         
                         Menschen_Enum, Kasrodiah_Enum, Lasupin_Enum, Lamustra_Enum, Manuky_Enum, Suroka_Enum, Pryolon_Enum, Moru_Phisihl_Enum, Larinos_Lotaris_Enum, Carupex_Enum,
                         Alary_Enum, Natries_Zermanis_Enum, Tridatus_Enum, Senelari_Enum, Aspari_2_Enum, Ekropa_Enum,

@@ -14,12 +14,9 @@ private with StadtDatentypen;
 private with GrafikRecordKonstanten;
 private with AufgabenDatentypen;
 private with KartenRecords;
-private with KartenDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
-
-private with LeseWeltkarteneinstellungen;
 
 private with UmwandlungenAdaNachEigenes;
 
@@ -42,7 +39,6 @@ package EinheitenseitenleisteGrafik is
    
    
 private
-   use type KartenDatentypen.Kartenfeld;
    
    VolleInformation : Boolean;
    Beladen : Boolean;
@@ -89,19 +85,13 @@ private
               );
    
    function Kampfwerte
-     (IDExtern : in EinheitenDatentypen.EinheitenID;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Unbounded_Wide_Wide_String
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               ),
          
        Post => (
@@ -156,7 +146,7 @@ private
    
    function ZahlAlsStringBewegungspunkte is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitenDatentypen.Bewegungspunkte);
    
-   function ZahlAlsStringKampfwerte is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KampfDatentypen.KampfwerteAllgemein);
+   function ZahlAlsStringKampfwerte is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KampfDatentypen.KampfwerteGroß);
    
    function ZahlAlsStringArbeitszeit is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
    

@@ -27,14 +27,14 @@ package body KIGefahrErmittelnLogik is
       if
         LeseKIVariablen.Kriegszustand = False
       then
-         return EinheitenKonstanten.LeerSpeziesNummer;
+         return EinheitenKonstanten.LeerEinheit;
          
       else
          case
            LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
          is
             when KIDatentypen.Angreifen_Enum | KIDatentypen.Verteidigen_Enum | KIDatentypen.Verbesserung_Zerstören_Enum | KIDatentypen.Flucht_Enum =>
-               return EinheitenKonstanten.LeerSpeziesNummer;
+               return EinheitenKonstanten.LeerEinheit;
             
             when others =>
                return GefahrSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -93,7 +93,7 @@ package body KIGefahrErmittelnLogik is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return EinheitenKonstanten.LeerSpeziesNummer;
+      return EinheitenKonstanten.LeerEinheit;
       
    end GefahrSuchen;
    

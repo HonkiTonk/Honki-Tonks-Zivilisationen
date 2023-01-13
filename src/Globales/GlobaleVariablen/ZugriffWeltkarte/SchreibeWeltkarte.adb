@@ -2,6 +2,7 @@ with EinheitenDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 with Weltkarte;
+with SpeziesKonstanten;
 
 with LeseWeltkarte;
 
@@ -216,7 +217,7 @@ package body SchreibeWeltkarte is
          null;
          
       elsif
-        LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern) /= EinheitenKonstanten.LeerSpeziesNummer
+        LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern) /= EinheitenKonstanten.LeerEinheit
         and
           EinheitentauschExtern = False
       then
@@ -241,7 +242,7 @@ package body SchreibeWeltkarte is
    begin
       
       if
-        EinheitSpeziesNummerExtern.Spezies = EinheitenKonstanten.LeerSpezies
+        EinheitSpeziesNummerExtern.Spezies = SpeziesKonstanten.LeerSpezies
         or
           EinheitSpeziesNummerExtern.Nummer = EinheitenKonstanten.LeerNummer
           or
@@ -255,7 +256,7 @@ package body SchreibeWeltkarte is
          null;
          
       else
-         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit := EinheitenKonstanten.LeerSpeziesNummer;
+         Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit := EinheitenKonstanten.LeerEinheit;
       end if;
       
    end EinheitEntfernen;

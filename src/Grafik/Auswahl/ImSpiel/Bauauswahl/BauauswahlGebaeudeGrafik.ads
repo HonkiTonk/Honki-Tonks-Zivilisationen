@@ -15,7 +15,8 @@ package BauauswahlGebaeudeGrafik is
 
    procedure Gebäudeinformationen
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      ViewbereichExtern : in Positive)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -34,7 +35,8 @@ private
 
    procedure Gebäudebeschreibung
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      ViewbereichExtern : in Positive)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum

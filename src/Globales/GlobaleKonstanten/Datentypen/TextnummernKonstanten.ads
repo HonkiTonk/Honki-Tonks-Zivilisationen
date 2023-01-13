@@ -39,21 +39,25 @@ package TextnummernKonstanten is
    ZeugGebäude : constant Positive := 36;
    ZeugEinheiten : constant Positive := 37;
    ZeugLeer : constant Positive := 38;
+   
+   -- Die Zahlen für die Ja/Nein müssen immer nacheinander kommen, da nur die erste Konstante verwendet wird und darauf aufbauen die Zweite ermittelt wird.
    ZeugJa : constant Positive := 39;
-   ZeugMit : constant Positive := 40;
-   ZeugFrieden : constant Positive := 41;
-   ZeugNichtangriffspakt : constant Positive := 42;
-   ZeugKrieg : constant Positive := 43;
-   ZeugKampfwerte : constant Positive := 44;
-   ZeugTransportkapazität : constant Positive := 45;
-   ZeugTransportergröße : constant Positive := 46;
-   ZeugEinheitengröße : constant Positive := 47;
+   ZeugNein : constant Positive := 40;
+   ZeugMit : constant Positive := 41;
+   ZeugFrieden : constant Positive := 42;
+   ZeugNichtangriffspakt : constant Positive := 43;
+   ZeugKrieg : constant Positive := 44;
+   ZeugKampfwerte : constant Positive := 45;
+   ZeugTransportkapazität : constant Positive := 46;
+   ZeugTransportergröße : constant Positive := 47;
+   ZeugEinheitengröße : constant Positive := 48;
+   
    -- Die Zahlen für die Größe müssen immer nacheinander kommen, da nur die erste Konstante verwendet wird und darauf aufbauen die weitern Größen ermittelt werden.
-   ZeugKlein : constant Positive := 48;
-   ZeugMittel : constant Positive := 49;
-   ZeugGroß : constant Positive := 50;
-   ZeugRiesige : constant Positive := 51;
-   ZeugGigantisch : constant Positive := 52;
+   ZeugKlein : constant Positive := 49;
+   ZeugMittel : constant Positive := 50;
+   ZeugGroß : constant Positive := 51;
+   ZeugRiesige : constant Positive := 52;
+   ZeugGigantisch : constant Positive := 53;
    
    
    

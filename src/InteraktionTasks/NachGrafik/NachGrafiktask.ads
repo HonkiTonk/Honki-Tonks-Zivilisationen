@@ -15,6 +15,7 @@ with SystemRecords;
 with EinheitenRecords;
 with KartenRecords;
 with KartenRecordKonstanten;
+with SpeziesKonstanten;
 
 -- Variablen mal nach Kategorien in Records sortieren. äöü
 package NachGrafiktask is
@@ -38,9 +39,9 @@ package NachGrafiktask is
    
    AktuellesMenü : MenueDatentypen.Welches_Menü_Enum := MenueDatentypen.Leer_Menü_Enum;
    
-   KIRechnet : SpeziesDatentypen.Spezies_Enum := SpeziesDatentypen.Keine_Spezies_Enum;
-   AktuelleSpezies : SpeziesDatentypen.Spezies_Enum := SpeziesDatentypen.Keine_Spezies_Enum;
-   KontaktierteSpezies : SpeziesDatentypen.Spezies_Enum := SpeziesDatentypen.Keine_Spezies_Enum;
+   KIRechnet : SpeziesDatentypen.Spezies_Enum := SpeziesKonstanten.LeerSpezies;
+   AktuelleSpezies : SpeziesDatentypen.Spezies_Enum := SpeziesKonstanten.LeerSpezies;
+   KontaktierteSpezies : SpeziesDatentypen.Spezies_Enum := SpeziesKonstanten.LeerSpezies;
    
    AktuelleEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenKonstanten.LeerNummer;
    

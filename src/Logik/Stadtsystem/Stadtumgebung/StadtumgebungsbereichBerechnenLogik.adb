@@ -1,4 +1,5 @@
 with SystemDatentypen;
+with SpeziesKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -16,7 +17,7 @@ package body StadtumgebungsbereichBerechnenLogik is
       case
         StadtSpeziesNummerExtern.Spezies
       is
-         when StadtKonstanten.LeerSpezies =>
+         when SpeziesKonstanten.LeerSpezies =>
             -- Dieser Fall sollte niemals eintreten, muss aber mitgenommen werden wegen dem Record.
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtumgebungsbereichBerechnenLogik.StadtUmgebungsbereichFestlegen: Keine Spezies");
             

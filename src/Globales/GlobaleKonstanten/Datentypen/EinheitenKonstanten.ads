@@ -1,21 +1,22 @@
 with EinheitenDatentypen;
 with ForschungKonstanten;
 with AufgabenDatentypen;
-with SpeziesDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with EinheitenRecords;
 with KampfDatentypen;
 with StadtDatentypen;
+with SpeziesKonstanten;
 
 with KIDatentypen;
 
 package EinheitenKonstanten is
    pragma Preelaborate;
    
-   LeerSpezies : constant SpeziesDatentypen.Spezies_Enum := SpeziesDatentypen.Keine_Spezies_Enum;
    LeerNummer : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerSpeziesNummer : constant EinheitenRecords.SpeziesEinheitnummerRecord := (LeerSpezies, LeerNummer);
+   
+   -- Wieso ist diese Recordkonstante hier und nicht bei den Recordkonstanten? äöü
+   LeerEinheit : constant EinheitenRecords.SpeziesEinheitnummerRecord := (SpeziesKonstanten.LeerSpezies, LeerNummer);
    
    AnfangNummer : constant EinheitenDatentypen.MaximaleEinheiten := EinheitenDatentypen.MaximaleEinheiten'First;
 

@@ -1,6 +1,7 @@
 with SpeziesDatentypen;
 with SystemRecords;
 with StadtRecords;
+with SpeziesKonstanten;
 
 with LeseSpeziesbelegung;
 
@@ -15,7 +16,7 @@ package TexteingabeLogik is
       return SystemRecords.TextEingabeRecord
      with
        Pre => (
-                 if StadtSpeziesNummerExtern.Spezies /= SpeziesDatentypen.Keine_Spezies_Enum then LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+                 if StadtSpeziesNummerExtern.Spezies /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
    function SpielstandName

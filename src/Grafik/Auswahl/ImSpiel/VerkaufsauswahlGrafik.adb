@@ -9,6 +9,7 @@ with GrafikDatentypen;
 with Views;
 with TextaccessVariablen;
 with InteraktionAuswahl;
+with ViewKonstanten;
 
 with AllgemeineViewsGrafik;
 with ViewsEinstellenGrafik;
@@ -17,8 +18,7 @@ with TextberechnungenHoeheGrafik;
 with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
 with TextfarbeGrafik;
-with ZeilenumbruchberechnungGrafik;
-with GebaeudebeschreibungenGrafik;
+with BauauswahlGebaeudeGrafik;
 
 package body VerkaufsauswahlGrafik is
 
@@ -32,12 +32,11 @@ package body VerkaufsauswahlGrafik is
                                           SpielenamenExtern => False);
       
       Gebäude (AuswahlExtern    => AktuelleAuswahlExtern,
-                ViewnummerExtern => 1,
-                SpeziesExtern      => SpeziesExtern);
+                SpeziesExtern    => SpeziesExtern);
       
-      InformationenGebäude (AuswahlExtern    => AktuelleAuswahlExtern,
-                             ViewnummerExtern => 2,
-                             SpeziesExtern      => SpeziesExtern);
+      BauauswahlGebaeudeGrafik.Gebäudeinformationen (AuswahlExtern     => AktuelleAuswahlExtern,
+                                                      SpeziesExtern     => SpeziesExtern,
+                                                      ViewbereichExtern => ViewKonstanten.BaumenüGebäudeinformationenVerkaufen);
       
    end Verkaufsauswahl;
    
@@ -45,20 +44,19 @@ package body VerkaufsauswahlGrafik is
    
    procedure Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      ViewnummerExtern : in Positive;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                           VerhältnisExtern => (GrafikRecordKonstanten.Verkausmenübereich (ViewnummerExtern).width,
-                                                                                                                 GrafikRecordKonstanten.Verkausmenübereich (ViewnummerExtern).height));
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudelisteVerkaufen).width,
+                                                                                              GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudelisteVerkaufen).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.VerkaufsviewAccesse (ViewnummerExtern),
-                                            GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Verkausmenübereich (ViewnummerExtern));
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudelisteVerkaufen),
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudelisteVerkaufen));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                     AbmessungenExtern => Viewfläche (ViewnummerExtern));
+                                     AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       AktuelleTextbreite := 0.00;
@@ -75,7 +73,7 @@ package body VerkaufsauswahlGrafik is
                                                       TextaccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
                
                Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
-                                                                                       ViewbreiteExtern => Viewfläche (ViewnummerExtern).x);
+                                                                                       ViewbreiteExtern => Viewfläche.x);
 
                Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                              position => Textposition);
@@ -98,57 +96,8 @@ package body VerkaufsauswahlGrafik is
                                                                                
       end loop GebäudeSchleife;
       
-      Viewfläche (ViewnummerExtern) := (AktuelleTextbreite, Textposition.y);
+      Viewfläche := (AktuelleTextbreite, Textposition.y);
       
    end Gebäude;
-
-
-
-   procedure InformationenGebäude
-     (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      ViewnummerExtern : in Positive;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-   is begin
-      
-      Viewfläche (ViewnummerExtern) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (ViewnummerExtern),
-                                                                                           VerhältnisExtern => (GrafikRecordKonstanten.Verkausmenübereich (ViewnummerExtern).width,
-                                                                                                                 GrafikRecordKonstanten.Verkausmenübereich (ViewnummerExtern).height));
-      
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.VerkaufsviewAccesse (ViewnummerExtern),
-                                            GrößeExtern          => Viewfläche (ViewnummerExtern),
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Verkausmenübereich (ViewnummerExtern));
-      
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                     AbmessungenExtern => Viewfläche (ViewnummerExtern));
-      
-      case
-        AuswahlExtern
-      is
-         when 0 =>
-            null;
-            
-         when others =>
-            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-            Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                          position => Textposition);
-            
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                               str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
-                                                                                                                                                                                     SpeziesExtern => SpeziesExtern),
-                                                                                                              TextfeldbreiteExtern => Viewfläche (ViewnummerExtern).x / 2.00 - Textposition.x));
-         
-            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               text         => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern));
-            
-            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
-      
-            Viewfläche (ViewnummerExtern) := Textposition;
-      end case;
-            
-   end InformationenGebäude;
 
 end VerkaufsauswahlGrafik;

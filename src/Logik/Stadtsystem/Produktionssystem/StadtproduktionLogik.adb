@@ -19,7 +19,7 @@ package body StadtproduktionLogik is
       case
         StadtSpeziesNummerExtern.Spezies
       is
-         when StadtKonstanten.LeerSpezies =>
+         when SpeziesKonstanten.LeerSpezies =>
             StadtProduktionAlle;
             
          when others =>

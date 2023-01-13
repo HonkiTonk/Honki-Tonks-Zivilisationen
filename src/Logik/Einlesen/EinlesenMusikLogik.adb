@@ -4,6 +4,7 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Sf.Audio.Music;
 
 with VerzeichnisKonstanten;
+with SpeziesKonstanten;
 
 with EingeleseneMusik;
 with Fehlermeldungssystem;
@@ -72,7 +73,7 @@ package body EinlesenMusikLogik is
       case
         SpeziesExtern
       is
-         when SpeziesDatentypen.Keine_Spezies_Enum =>
+         when SpeziesKonstanten.LeerSpezies =>
             null;
             
          when others =>

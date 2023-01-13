@@ -1,7 +1,6 @@
 with ProduktionDatentypen;
 with WichtigesKonstanten;
-
-with KIKonstanten;
+with SpeziesKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
@@ -9,6 +8,8 @@ with LeseWichtiges;
 
 with EinheitenmodifizierungLogik;
 with Fehlermeldungssystem;
+
+with KIKonstanten;
 
 with KIKriegErmittelnLogik;
 with KIStadtLaufendeBauprojekteLogik;
@@ -388,7 +389,7 @@ package body KIEinheitenBauenLogik is
       if
         EinheitenIDExtern = 1
         or
-          StadtSpeziesNummerExtern.Spezies = SpeziesDatentypen.Keine_Spezies_Enum
+          StadtSpeziesNummerExtern.Spezies = SpeziesKonstanten.LeerSpezies
       then
          null;
          

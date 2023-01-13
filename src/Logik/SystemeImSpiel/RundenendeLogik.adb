@@ -58,7 +58,7 @@ package body RundenendeLogik is
       StadtwachstumLogik.StadtWachstum;
       LadezeitenLogik.RundenendeSchreiben;
       
-      StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtKonstanten.LeerSpeziesNummer);
+      StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtKonstanten.LeerStadt);
       LadezeitenLogik.RundenendeSchreiben;
       
       ForschungsfortschrittLogik.Forschungsfortschritt;

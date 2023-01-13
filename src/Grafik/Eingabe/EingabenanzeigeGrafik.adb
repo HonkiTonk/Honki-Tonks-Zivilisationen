@@ -6,8 +6,6 @@ with Meldungstexte;
 with Views;
 with TextaccessVariablen;
 with ViewKonstanten;
-with StadtKonstanten;
-with StadtDatentypen;
 
 with LeseStadtGebaut;
 with LeseEinheitenGebaut;
@@ -196,14 +194,12 @@ package body EingabenanzeigeGrafik is
    
    
    
-   -- Das später in zwei Views aufteilen, damit der Stadtname nicht die gesamte Skalierung tötet. äöü
    procedure AnzeigeEinheitenStadt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       AktuelleAuswahlExtern : in Integer)
    is
       use type EinheitenDatentypen.Transportplätze;
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
       WelcheAuswahl := NachGrafiktask.WelcheAuswahl;
@@ -212,73 +208,45 @@ package body EingabenanzeigeGrafik is
         WelcheAuswahl.StadtEinheit
       is
          when True =>
-            Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                              VerhältnisExtern => (GrafikRecordKonstanten.Stadtauswahlbereich.width, GrafikRecordKonstanten.Stadtauswahlbereich.height));
-            
-            ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtEinheitviewAccess,
-                                                  GrößeExtern          => Viewfläche,
-                                                  AnzeigebereichExtern => GrafikRecordKonstanten.Stadtauswahlbereich);
+            Anzeigebereich := GrafikRecordKonstanten.Stadtauswahlbereich;
             
          when False =>
-            Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                              VerhältnisExtern => (GrafikRecordKonstanten.Einheitauswahlbereich.width, GrafikRecordKonstanten.Einheitauswahlbereich.height));
-            
-            ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtEinheitviewAccess,
-                                                  GrößeExtern          => Viewfläche,
-                                                  AnzeigebereichExtern => GrafikRecordKonstanten.Einheitauswahlbereich);
+            Anzeigebereich := GrafikRecordKonstanten.Einheitauswahlbereich;
       end case;
+      
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                        VerhältnisExtern => (Anzeigebereich.width, Anzeigebereich.height));
+            
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtEinheitviewAccess,
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => Anzeigebereich);
             
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textbreite := 0.00;
+      MaximaleTextbreite := Viewfläche.x;
       
       AuswahlSchleife:
       for AuswahlSchleifenwert in WelcheAuswahl.MöglicheAuswahlen'Range loop
          
          if
-           AuswahlSchleifenwert = WelcheAuswahl.MöglicheAuswahlen'First
+           WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
          then
-            case
-              WelcheAuswahl.StadtEinheit
-            is
-               when True =>
-                  if
-                    StadtSpeziesNummerExtern.Nummer = StadtKonstanten.LeerNummer
-                  then
-                     null;
-                     
-                  else
-                     Text := LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-                  end if;
-                  
-               when False =>
-                  Text
-                    := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies,
-                                                                                                                                                                                        WelcheAuswahl.MöglicheAuswahlen (0))),
-                                                                                                                SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
-            end case;
+            null;
             
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                               str  => To_Wide_Wide_String (Source => Text));
+         elsif
+           AuswahlSchleifenwert = WelcheAuswahl.MöglicheAuswahlen'First
+           and
+             WelcheAuswahl.StadtEinheit = True
+         then
+            Text := LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
          else
-            if
-              WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
-            then
-               null;
-               
-            else
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                  str  => EinheitenbeschreibungenGrafik.Kurzbeschreibung
-                                                    (IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert))),
-                                                     SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
-               
-               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                                                   TextbreiteExtern => Textbreite);
-               
-            end if;
+            Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung
+                                                   (IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert))),
+                                                    SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
          end if;
          
          if
@@ -287,6 +255,9 @@ package body EingabenanzeigeGrafik is
             null;
             
          else
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                               str  => To_Wide_Wide_String (Source => Text));
+            
             TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Natural (AuswahlSchleifenwert),
                                                    AuswahlExtern    => AktuelleAuswahlExtern,
                                                    TextaccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
@@ -297,13 +268,27 @@ package body EingabenanzeigeGrafik is
             Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                           position => Textposition);
             
+            Sf.Graphics.Text.setScale (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                       scale => (1.00, 1.00));
+            
+            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                                                                TextbreiteExtern => Textbreite);
+      
+            if
+              Textbreite > MaximaleTextbreite
+            then
+               Sf.Graphics.Text.scale (text    => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                       factors => (MaximaleTextbreite / Textbreite, 1.00));
+               Textbreite := MaximaleTextbreite;
+         
+            else
+               null;
+            end if;
+            
             InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
             
             Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                                text         => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
-            
-            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                                                TextbreiteExtern => Textbreite);
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                             TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);

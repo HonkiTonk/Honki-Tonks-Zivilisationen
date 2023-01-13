@@ -9,6 +9,7 @@ with KartengrundDatentypen;
 with ViewKonstanten;
 with TextaccessVariablen;
 with Meldungstexte;
+with SpeziesKonstanten;
 with TextnummernKonstanten;
 
 with LeseStadtGebaut;
@@ -112,7 +113,7 @@ package body StadtumgebungGrafik is
       Rahmendicke := (SichtweitenGrafik.KartenfelderAbmessung.y / 20.00 + SichtweitenGrafik.KartenfelderAbmessung.x / 20.00) / 2.00;
       
       if
-        Grundbelegung.Spezies = StadtKonstanten.LeerSpezies
+        Grundbelegung.Spezies = SpeziesKonstanten.LeerSpezies
       then
          return;
         

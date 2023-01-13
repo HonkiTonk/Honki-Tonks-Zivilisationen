@@ -1,6 +1,7 @@
 with WichtigesKonstanten;
 with KartenverbesserungDatentypen;
 with StadtKonstanten;
+with SpeziesKonstanten;
 
 with SchreibeWichtiges;
 with LeseStadtGebaut;
@@ -15,7 +16,7 @@ package body GlobalesWachstumLogik is
       case
         SpeziesExtern
       is
-         when StadtKonstanten.LeerSpezies =>
+         when SpeziesKonstanten.LeerSpezies =>
             SpeziesSchleife:
             for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
                

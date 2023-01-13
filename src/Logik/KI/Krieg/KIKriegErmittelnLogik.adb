@@ -1,5 +1,5 @@
 with DiplomatieDatentypen;
-with EinheitenKonstanten;
+with SpeziesKonstanten;
 
 with LeseDiplomatie;
 
@@ -49,13 +49,13 @@ package body KIKriegErmittelnLogik is
         SpeziesExtern
       is
          when SpeziesDatentypen.Ekropa_Enum =>
-            return EinheitenKonstanten.LeerSpezies;
+            return SpeziesKonstanten.LeerSpezies;
             
          when others =>
             null;
       end case;
       
-      SpeziesGewählt := EinheitenKonstanten.LeerSpezies;
+      SpeziesGewählt := SpeziesKonstanten.LeerSpezies;
       Bewertungen := (others => 0);
       
       SpeziesSchleife:
@@ -106,11 +106,11 @@ package body KIKriegErmittelnLogik is
          null;
          
       else
-         return EinheitenKonstanten.LeerSpezies;
+         return SpeziesKonstanten.LeerSpezies;
       end if;
       
       if
-        SpeziesGewählt = EinheitenKonstanten.LeerSpezies
+        SpeziesGewählt = SpeziesKonstanten.LeerSpezies
       then
          Bewertungen (FremdeSpeziesExtern) := Bewertung;
          

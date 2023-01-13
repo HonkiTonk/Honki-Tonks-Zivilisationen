@@ -4,6 +4,7 @@ private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
 with GrafikDatentypen;
+with SpeziesKonstanten;
 
 private with GrafikRecordKonstanten;
 private with SystemDatentypen;
@@ -22,7 +23,7 @@ package LadezeitenGrafik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
      with
        Pre => (
-               if SpeziesExtern /= SpeziesDatentypen.Keine_Spezies_Enum then LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+               if SpeziesExtern /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 private

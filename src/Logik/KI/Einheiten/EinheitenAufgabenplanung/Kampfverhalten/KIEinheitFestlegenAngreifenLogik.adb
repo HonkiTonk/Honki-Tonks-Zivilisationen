@@ -1,5 +1,6 @@
 with DiplomatieDatentypen;
 with KartenKonstanten;
+with SpeziesKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -22,7 +23,7 @@ package body KIEinheitFestlegenAngreifenLogik is
       case
         WenAngreifen
       is
-         when EinheitenKonstanten.LeerSpezies =>
+         when SpeziesKonstanten.LeerSpezies =>
             return False;
             
          when others =>
@@ -72,7 +73,7 @@ package body KIEinheitFestlegenAngreifenLogik is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      Ziel := EinheitenKonstanten.LeerSpezies;
+      Ziel := SpeziesKonstanten.LeerSpezies;
       
       SpeziesSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop

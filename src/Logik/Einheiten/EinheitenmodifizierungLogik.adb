@@ -5,10 +5,7 @@ with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseWeltkarte;
-with LeseCursor;
 
-with StadtSuchenLogik;
-with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
 with StadtproduktionLogik;
 with ForschungstestsLogik;
@@ -78,7 +75,7 @@ package body EinheitenmodifizierungLogik is
         AktuelleBeschäftigung = AufgabenDatentypen.Leer_Aufgabe_Enum
         and
           LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                                                                                                       IDExtern    => EinheitID)
+                                                                                                                                                           IDExtern    => EinheitID)
       then
          SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                LebenspunkteExtern       => Heilungsrate / 2,
@@ -157,36 +154,24 @@ package body EinheitenmodifizierungLogik is
    procedure HeimatstadtÄndern
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       use type StadtDatentypen.MaximaleStädteMitNullWert;
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      case
-        EinheitSpeziesNummerExtern.Nummer
-      is
-         when EinheitenKonstanten.LeerNummer =>
-            EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                                  KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies),
-                                                                                  LogikGrafikExtern => True);
-      
-            NeueHeimatstadt.Spezies := EinheitSpeziesNummerExtern.Spezies;
-            NeueHeimatstadt.Nummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                                       KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
+      EinheitNummer := EinheitSpeziesNummerExtern.Nummer;
             
-         when others =>
-            EinheitNummer := EinheitSpeziesNummerExtern.Nummer;
-            
-            NeueHeimatstadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
-      end case;
+      NeueHeimatstadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       if
-        EinheitNummer = EinheitenKonstanten.LeerNummer
+        NeueHeimatstadt.Nummer = StadtKonstanten.LeerNummer
         or
-          NeueHeimatstadt.Nummer = StadtKonstanten.LeerNummer
-          or
-            EinheitSpeziesNummerExtern.Spezies /= NeueHeimatstadt.Spezies
+          EinheitSpeziesNummerExtern.Spezies /= NeueHeimatstadt.Spezies
       then
+         PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
+                                  VorzeichenWechselExtern  => -1);
+      
+         SchreibeEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
+                                              HeimatstadtExtern          => StadtKonstanten.LeerNummer);
          return;
          
       elsif
@@ -199,7 +184,7 @@ package body EinheitenmodifizierungLogik is
                                   VorzeichenWechselExtern  => -1);
       
          SchreibeEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
-                                              HeimatstadtExtern        => NeueHeimatstadt.Nummer);
+                                              HeimatstadtExtern          => NeueHeimatstadt.Nummer);
       
          PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
                                   VorzeichenWechselExtern  => 1);

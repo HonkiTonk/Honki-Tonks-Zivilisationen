@@ -10,6 +10,7 @@ with ZeitKonstanten;
 with KartenKonstanten;
 with GrafikKonstanten;
 with KartengrundDatentypen;
+with SpeziesKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseWeltkarte;
@@ -405,7 +406,7 @@ package body WeltkarteZeichnenGrafik is
       case
         AktuelleSpezies
       is
-         when SpeziesDatentypen.Keine_Spezies_Enum =>
+         when SpeziesKonstanten.LeerSpezies =>
             null;
             
          when others =>

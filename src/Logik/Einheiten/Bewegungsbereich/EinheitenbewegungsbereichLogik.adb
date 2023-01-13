@@ -1,6 +1,7 @@
 with KartenKonstanten;
 with StadtKonstanten;
 with StadtDatentypen;
+with SpeziesKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
@@ -230,7 +231,7 @@ package body EinheitenbewegungsbereichLogik is
       elsif
         Stadt.Spezies = EinheitSpeziesNummerExtern.Spezies
         and
-          Einheit.Spezies = EinheitenKonstanten.LeerSpezies
+          Einheit.Spezies = SpeziesKonstanten.LeerSpezies
       then
          return SystemDatentypen.True_Enum;
          
@@ -239,7 +240,7 @@ package body EinheitenbewegungsbereichLogik is
       end if;
          
       if
-        EinheitenKonstanten.LeerSpezies = Einheit.Spezies
+        SpeziesKonstanten.LeerSpezies = Einheit.Spezies
       then
          return SystemDatentypen.True_Enum;
          

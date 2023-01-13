@@ -27,7 +27,7 @@ package body TexteingabeLogik is
          NachLogiktask.EingegebenerText.EingegebenerText := Speziestexte.Städtenamen (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer);
          
       elsif
-        StadtSpeziesNummerExtern.Spezies = SpeziesDatentypen.Keine_Spezies_Enum
+        StadtSpeziesNummerExtern.Spezies = SpeziesKonstanten.LeerSpezies
       then
          Frage := TextnummernKonstanten.FrageStadtSuchen;
          NachLogiktask.EingegebenerText.EingegebenerText := TextKonstanten.LeerUnboundedString;

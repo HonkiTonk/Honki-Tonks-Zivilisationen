@@ -1,4 +1,4 @@
-with StadtKonstanten;
+with SpeziesKonstanten;
 
 with LeseWeltkarte;
 with SchreibeWeltkarte;
@@ -103,7 +103,7 @@ package body SichtbarkeitSetzenLogik is
       case
         FremdeEinheit.Spezies
       is
-         when StadtKonstanten.LeerSpezies =>
+         when SpeziesKonstanten.LeerSpezies =>
             null;
             
          when others =>
@@ -115,7 +115,7 @@ package body SichtbarkeitSetzenLogik is
       FremdeStadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
-        FremdeStadt.Spezies = SpeziesDatentypen.Keine_Spezies_Enum
+        FremdeStadt.Spezies = SpeziesKonstanten.LeerSpezies
         or
           FremdeStadt.Spezies = SpeziesExtern
       then

@@ -1,6 +1,7 @@
 with DiplomatieDatentypen;
 with EinheitenDatentypen;
 with AufgabenDatentypen;
+with SpeziesKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -28,9 +29,9 @@ package body KIBewegungAllgemeinLogik is
       BlockierendeStadt := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => FeldKoordinatenExtern).Spezies;
       
       if
-        BlockierendeEinheit.Spezies = EinheitenKonstanten.LeerSpezies
+        BlockierendeEinheit.Spezies = SpeziesKonstanten.LeerSpezies
         and
-          BlockierendeStadt = EinheitenKonstanten.LeerSpezies
+          BlockierendeStadt = SpeziesKonstanten.LeerSpezies
       then
          return KIKonstanten.BewegungNormal;
          
@@ -95,7 +96,7 @@ package body KIBewegungAllgemeinLogik is
    begin
       
       if
-        FeindlicheSpeziesEinheitExtern = EinheitenKonstanten.LeerSpezies
+        FeindlicheSpeziesEinheitExtern = SpeziesKonstanten.LeerSpezies
         and then
           DiplomatieDatentypen.Krieg_Enum /= LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => EigeneEinheitExtern.Spezies,
                                                                               SpeziesZweiExtern => FeindlicheSpeziesStadtExtern)
@@ -103,7 +104,7 @@ package body KIBewegungAllgemeinLogik is
          return KIKonstanten.KeineBewegung;
          
       elsif
-        FeindlicheSpeziesStadtExtern = EinheitenKonstanten.LeerSpezies
+        FeindlicheSpeziesStadtExtern = SpeziesKonstanten.LeerSpezies
         and then
           DiplomatieDatentypen.Krieg_Enum /= LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => EigeneEinheitExtern.Spezies,
                                                                               SpeziesZweiExtern => FeindlicheSpeziesEinheitExtern)

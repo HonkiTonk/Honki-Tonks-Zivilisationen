@@ -126,17 +126,23 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (13.01.2023):
+   -- Version 0.04.6190 => 0.04. (13.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.6100 => 0.04. (12.01.2023):
+   -- Version 0.04.6100 => 0.04.6190 (12.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Anzeige der Stadt/Einheitennamen im Auswahlmenü angepasst, so dass lange Stadtnamen nicht mehr die Skalierung schreddert.
+   -- Beim Verkaufen eines Gebäudes werden jetzt genauere Informationen zum Gebäude angezeigt.
+   -- Diverse Konstanten eingebaut/umgebaut.
+   -- Es ist jetzt möglich die Heimatstadt einer Einheit ganz zu entfernen.
+   -- Einheiten die über keine Heimatstadt verfügen bekommen jetzt einen Malus auf ihre Verteidigung und ihren Angriff.
+   -- Fehler korrigiert welche bei der Ja/Nein Abfrage das falsche Wort anzeigte.
+   -- Es werden jetzt immer die aktuellen Kampfwerte einer Einheit angezeigt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

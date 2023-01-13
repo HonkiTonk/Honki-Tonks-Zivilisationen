@@ -1,5 +1,6 @@
 with TextKonstanten;
 with GebautVariablen;
+with SpeziesKonstanten;
 
 package body LeseStadtGebaut is
 
@@ -204,7 +205,7 @@ package body LeseStadtGebaut is
    begin
       
       if
-        StadtSpeziesNummerExtern.Spezies = SpeziesDatentypen.Keine_Spezies_Enum
+        StadtSpeziesNummerExtern.Spezies = SpeziesKonstanten.LeerSpezies
         or
           StadtSpeziesNummerExtern.Nummer = StadtKonstanten.LeerNummer
       then

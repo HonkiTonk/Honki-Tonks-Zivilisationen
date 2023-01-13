@@ -12,6 +12,7 @@ with ForschungenDatentypen;
 with ProduktionDatentypen;
 with StadtRecords;
 with KampfDatentypen;
+with SpeziesKonstanten;
 with KartenextraDatentypen;
 
 with KIDatentypen;
@@ -19,9 +20,10 @@ with KIDatentypen;
 package StadtKonstanten is
    pragma Elaborate_Body;
    
-   LeerSpezies : constant SpeziesDatentypen.Spezies_Enum := SpeziesDatentypen.Keine_Spezies_Enum;
    LeerNummer : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
-   LeerSpeziesNummer : constant StadtRecords.SpeziesStadtnummerRecord := (LeerSpezies, LeerNummer);
+   
+   -- Wieso ist diese Recordkonstante hier und nicht bei den Recordkonstanten? äöü
+   LeerStadt : constant StadtRecords.SpeziesStadtnummerRecord := (SpeziesKonstanten.LeerSpezies, LeerNummer);
    
    AnfangNummer : constant StadtDatentypen.MaximaleStädte := StadtDatentypen.MaximaleStädte'First;
    

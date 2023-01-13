@@ -1,4 +1,5 @@
 with AufgabenDatentypen;
+with StadtKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -7,18 +8,19 @@ with KartenfelderwerteLogik;
 
 package body KampfwerteEinheitErmittelnLogik is
    
+   -- Wird aktuell von Grafik und Logik verwendet, mal sicherheitsmaßnahmen einbauen. äöü
    function Gesamtverteidigung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return KampfDatentypen.KampfwerteGroß
    is begin
       
       Grundverteidigung := LeseEinheitenDatenbank.Verteidigung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                                                                IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       Bonusverteidigung := KartenfelderwerteLogik.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                    SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies);
+                                                                    SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies);
         
       GesamteVerteidigung := Rangbonus (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                        KampfwertExtern          => (Grundverteidigung + Bonusverteidigung));
+                                        KampfwertExtern            => (Grundverteidigung + Bonusverteidigung));
       
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
@@ -30,6 +32,16 @@ package body KampfwerteEinheitErmittelnLogik is
             null;
       end case;
       
+      case
+        LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
+      is
+         when StadtKonstanten.LeerNummer =>
+            GesamteVerteidigung := GesamteVerteidigung / 2;
+            
+         when others =>
+            null;
+      end case;
+           
       return GesamteVerteidigung;
       
    end Gesamtverteidigung;
@@ -42,13 +54,23 @@ package body KampfwerteEinheitErmittelnLogik is
    is begin
       
       Grundangriff := LeseEinheitenDatenbank.Angriff (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                      IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                                                      IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       Bonusangriff := KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                          SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies);
+                                                          SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies);
       
       GesamterAngriff := Rangbonus (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                    KampfwertExtern          => (Grundangriff + Bonusangriff));
+                                    KampfwertExtern            => (Grundangriff + Bonusangriff));
+      
+      case
+        LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
+      is
+         when StadtKonstanten.LeerNummer =>
+            GesamterAngriff := GesamterAngriff / 2;
+            
+         when others =>
+            null;
+      end case;
       
       return GesamterAngriff;
       

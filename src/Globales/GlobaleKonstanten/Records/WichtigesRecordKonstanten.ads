@@ -2,11 +2,11 @@ with KartenRecords;
 with KartenRecordKonstanten;
 with SpielRecords;
 with WichtigesKonstanten;
-with EinheitenKonstanten;
 with SpielDatentypen;
 with TextKonstanten;
 with SpeziesDatentypen;
 with DatenbankRecords;
+with SpeziesKonstanten;
 
 package WichtigesRecordKonstanten is
    pragma Elaborate_Body;
@@ -33,14 +33,14 @@ package WichtigesRecordKonstanten is
    LeerAllgemeines : constant SpielRecords.AllgemeinesRecord := (
                                                                  Gewonnen              => False,
                                                                  Weiterspielen         => False,
-                                                                 SpeziesAmZugNachLaden   => EinheitenKonstanten.LeerSpezies,
+                                                                 SpeziesAmZugNachLaden   => SpeziesKonstanten.LeerSpezies,
                                                                  -- Das auslagern damit man es nicht immer neu setzen muss? äöü
                                                                  Schwierigkeitsgrad    => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
                                                                  Rundenanzahl          => Positive'First,
                                                                   -- Das auslagern damit man es nicht immer neu setzen muss? äöü
                                                                  Rundengrenze          => Natural'First,
                                                                  IronmanName           => TextKonstanten.LeerUnboundedString,
-                                                                 PlanetVernichtet      => SpeziesDatentypen.Keine_Spezies_Enum,
+                                                                 PlanetVernichtet      => SpeziesKonstanten.LeerSpezies,
                                                                  Zusammenbruchszeit    => -1,
                                                                  AnzahlEingesetzterPZB => 0
                                                                 );

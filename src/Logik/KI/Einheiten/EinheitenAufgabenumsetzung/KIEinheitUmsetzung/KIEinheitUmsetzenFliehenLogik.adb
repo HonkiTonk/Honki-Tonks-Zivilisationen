@@ -10,7 +10,7 @@ package body KIEinheitUmsetzenFliehenLogik is
    begin
       
       if
-        KIGefahrErmittelnLogik.GefahrErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerSpeziesNummer
+        KIGefahrErmittelnLogik.GefahrErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerEinheit
       then
          null;
          

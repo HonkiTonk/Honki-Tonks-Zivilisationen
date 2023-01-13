@@ -1,9 +1,9 @@
 with KartenRecords;
 with KartenKonstanten;
 with StadtDatentypen;
-with SpeziesDatentypen;
 with StadtRecords;
 with KartenartDatentypen;
+with SpeziesKonstanten;
 
 package KartenRecordKonstanten is
    pragma Elaborate_Body;
@@ -24,8 +24,8 @@ package KartenRecordKonstanten is
                                                                      );
    
    LeerDurchStadtBelegterGrund : constant StadtRecords.SpeziesStadtnummerRecord := (
-                                                                                  Spezies  => SpeziesDatentypen.Keine_Spezies_Enum,
-                                                                                  Nummer => StadtDatentypen.MaximaleStädteMitNullWert'First
+                                                                                  Spezies => SpeziesKonstanten.LeerSpezies,
+                                                                                  Nummer  => StadtDatentypen.MaximaleStädteMitNullWert'First
                                                                                  );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (

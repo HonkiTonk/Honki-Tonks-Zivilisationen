@@ -1,4 +1,5 @@
 with EinheitenKonstanten;
+with SpeziesKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseWeltkarte;
@@ -22,7 +23,7 @@ package body EinheitSuchenLogik is
       if
         Einheit (LogikGrafikExtern).Spezies /= SpeziesExtern
         or
-          Einheit (LogikGrafikExtern).Spezies = EinheitenKonstanten.LeerSpezies
+          Einheit (LogikGrafikExtern).Spezies = SpeziesKonstanten.LeerSpezies
         or
           Einheit (LogikGrafikExtern).Nummer = EinheitenKonstanten.LeerNummer
       then
@@ -55,16 +56,16 @@ package body EinheitSuchenLogik is
       Einheit (LogikGrafikExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Einheit (LogikGrafikExtern).Spezies = EinheitenKonstanten.LeerSpezies
+        Einheit (LogikGrafikExtern).Spezies = SpeziesKonstanten.LeerSpezies
         or
           Einheit (LogikGrafikExtern).Nummer = EinheitenKonstanten.LeerNummer
       then
-         return EinheitenKonstanten.LeerSpeziesNummer;
+         return EinheitenKonstanten.LeerEinheit;
          
       elsif
         LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern)) /= KoordinatenExtern
       then
-         return EinheitenKonstanten.LeerSpeziesNummer;
+         return EinheitenKonstanten.LeerEinheit;
             
       else
          return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern),
@@ -91,16 +92,16 @@ package body EinheitSuchenLogik is
       if
         Einheit (LogikGrafikExtern).Spezies = SpeziesExtern
         or
-          Einheit (LogikGrafikExtern).Spezies = EinheitenKonstanten.LeerSpezies
+          Einheit (LogikGrafikExtern).Spezies = SpeziesKonstanten.LeerSpezies
         or
           Einheit (LogikGrafikExtern).Nummer = EinheitenKonstanten.LeerNummer
       then
-         return EinheitenKonstanten.LeerSpeziesNummer;
+         return EinheitenKonstanten.LeerEinheit;
          
       elsif
         LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern)) /= KoordinatenExtern
       then
-         return EinheitenKonstanten.LeerSpeziesNummer;
+         return EinheitenKonstanten.LeerEinheit;
             
       else
          return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern),
@@ -145,7 +146,7 @@ package body EinheitSuchenLogik is
    begin
       
       if
-        TransporterExtern.Spezies = EinheitenKonstanten.LeerSpezies
+        TransporterExtern.Spezies = SpeziesKonstanten.LeerSpezies
         or
           TransporterExtern.Nummer = EinheitenKonstanten.LeerNummer
           or

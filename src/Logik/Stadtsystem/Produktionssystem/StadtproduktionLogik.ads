@@ -1,6 +1,7 @@
 with SpeziesDatentypen;
 with StadtKonstanten;
 with StadtRecords;
+with SpeziesKonstanten;
 
 private with KartenRecords;
 private with KartenDatentypen;
@@ -19,7 +20,7 @@ package StadtproduktionLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
      with
        Pre => (
-                 if StadtSpeziesNummerExtern.Spezies /= StadtKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 if StadtSpeziesNummerExtern.Spezies /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 private

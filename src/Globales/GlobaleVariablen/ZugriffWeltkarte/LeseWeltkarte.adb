@@ -2,6 +2,7 @@ with StadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with Weltkarte;
+with SpeziesKonstanten;
 
 with Fehlermeldungssystem;
 with FehlermeldungssystemZusatzinformationen;
@@ -235,14 +236,14 @@ package body LeseWeltkarte is
       end case;
       
       if
-        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies = StadtKonstanten.LeerSpezies
+        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies = SpeziesKonstanten.LeerSpezies
         and
           Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer = StadtKonstanten.LeerNummer
       then
          return True;
          
       elsif
-        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies = StadtKonstanten.LeerSpezies
+        Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Spezies = SpeziesKonstanten.LeerSpezies
         or
           Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Stadtbelegung.Nummer = StadtKonstanten.LeerNummer
       then
@@ -344,7 +345,7 @@ package body LeseWeltkarte is
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            return EinheitenKonstanten.LeerSpeziesNummer;
+            return EinheitenKonstanten.LeerEinheit;
             
          when others =>
             return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Einheit;

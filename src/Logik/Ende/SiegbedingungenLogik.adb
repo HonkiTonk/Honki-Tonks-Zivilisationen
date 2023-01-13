@@ -1,5 +1,6 @@
 with SpeziesDatentypen;
 with WichtigesRecordKonstanten;
+with SpeziesKonstanten;
 
 with LeseWichtiges;
 with SchreibeAllgemeines;
@@ -55,7 +56,7 @@ package body SiegbedingungenLogik is
          when GrafikDatentypen.Abspann_Enum'Range =>
             NachGrafiktask.AktuelleSpezies := SpeziesDatentypen.Ekropa_Enum;
             AbspannLogik.Abspann (AbspannExtern => Sieg);
-            NachGrafiktask.AktuelleSpezies := SpeziesDatentypen.Keine_Spezies_Enum;
+            NachGrafiktask.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
             
             if
               Sieg = GrafikDatentypen.Gewonnen_Enum

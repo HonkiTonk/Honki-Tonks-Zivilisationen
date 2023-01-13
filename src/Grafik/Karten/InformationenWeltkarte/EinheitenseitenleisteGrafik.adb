@@ -6,7 +6,6 @@ with Meldungstexte;
 with StadtKonstanten;
 with TextnummernKonstanten;
 with TextKonstanten;
-with KampfKonstanten;
 with ViewKonstanten;
 
 with LeseEinheitenGebaut;
@@ -17,9 +16,9 @@ with EinheitenbeschreibungenGrafik;
 with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
-with KartenfelderwerteLogik;
 with DebugobjekteLogik;
 with SeitenleisteLeerenGrafik;
+with KampfwerteEinheitErmittelnLogik;
 
 package body EinheitenseitenleisteGrafik is
 
@@ -92,9 +91,7 @@ package body EinheitenseitenleisteGrafik is
            & ZahlAlsStringRang (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (SpeziesExtern => EinheitSpeziesNummer.Spezies,
                                                                                     IDExtern    => IDEinheit));
          FestzulegenderText (6) := Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
-         FestzulegenderText (7) := Kampfwerte (IDExtern                 => IDEinheit,
-                                               KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummer),
-                                               EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
+         FestzulegenderText (7) := Kampfwerte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
          FestzulegenderText (8) := Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
          FestzulegenderText (9) := Ladung (EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
                                            IDExtern                 => IDEinheit);
@@ -104,7 +101,8 @@ package body EinheitenseitenleisteGrafik is
       else
          VolleInformation := False;
       end if;
-            
+      
+      -- Kann man das hier auch so anpassen wie bei der Stadt/Einheitenauswahl?
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
          
@@ -181,80 +179,19 @@ package body EinheitenseitenleisteGrafik is
    
    
    function Kampfwerte
-     (IDExtern : in EinheitenDatentypen.EinheitenID;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Unbounded_Wide_Wide_String
-   is
-      use type KampfDatentypen.KampfwerteGroß;
-      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-   begin
+   is begin
       
-      Kampftext := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & LeseEinheitenDatenbank.Angriff (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                                                               IDExtern    => IDExtern)'Wide_Wide_Image;
-      
-      Angriffsbonus := KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                           SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies);
-        
-      if
-        Angriffsbonus < KampfKonstanten.LeerKampfwert
-      then
-         Kampftext := Kampftext & " " & ZahlAlsStringKampfwerte (ZahlExtern => Angriffsbonus);
-         
-      elsif
-        Angriffsbonus > KampfKonstanten.LeerKampfwert
-      then
-         Kampftext := Kampftext & " +" & ZahlAlsStringKampfwerte (ZahlExtern => Angriffsbonus);
-         
-      else
-         null;
-      end if;
-      
-      Kampftext := Kampftext & " " & TextKonstanten.TrennzeichenUnterschiedlich & " " & LeseEinheitenDatenbank.Verteidigung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                                                                             IDExtern    => IDExtern)'Wide_Wide_Image;
-      
-      Verteidigungsbonus := KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                                SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies);
-      
-      case
-        Verteidigungsbonus
-      is
-         when KampfKonstanten.LeerKampfwert =>
-            null;
-            
-         when others =>
-            if
-              LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = AufgabenDatentypen.Verschanzen_Enum
-              and
-                Verteidigungsbonus > 0
-            then
-               Verteidigungsbonus := KampfDatentypen.KampfwerteGroß (Float (Verteidigungsbonus) * 1.25);
-               
-            else
-               null;
-            end if;
-            
-            if
-              Verteidigungsbonus < KampfKonstanten.LeerKampfwert
-            then
-               Kampftext := Kampftext & " " & ZahlAlsStringKampfwerte (ZahlExtern => Verteidigungsbonus);
-               
-            elsif
-              Verteidigungsbonus > KampfKonstanten.LeerKampfwert
-            then
-               Kampftext := Kampftext & " +" & ZahlAlsStringKampfwerte (ZahlExtern => Verteidigungsbonus);
-               
-            else
-               null;
-            end if;
-      end case;
-      
-      return Kampftext;
+      return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & " "
+        & ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
+      & " " & TextKonstanten.TrennzeichenUnterschiedlich & " " & ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
    end Kampfwerte;
    
    
    
+   -- Kann man das hier auch so anpassen wie bei der Stadt/Einheitenauswahl?
    function Heimatstadt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Unbounded_Wide_Wide_String

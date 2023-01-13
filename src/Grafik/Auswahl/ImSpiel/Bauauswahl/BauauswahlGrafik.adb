@@ -44,8 +44,9 @@ package body BauauswahlGrafik is
                        SpeziesExtern      => StadtSpeziesNummerExtern.Spezies);
             
          when others =>
-            BauauswahlGebaeudeGrafik.Gebäudeinformationen (AuswahlExtern    => AktuelleAuswahlExtern.Gebäude,
-                                                            SpeziesExtern      => StadtSpeziesNummerExtern.Spezies);
+            BauauswahlGebaeudeGrafik.Gebäudeinformationen (AuswahlExtern     => AktuelleAuswahlExtern.Gebäude,
+                                                            SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+                                                            ViewbereichExtern => ViewKonstanten.BaumenüGebäudeinformationen);
       end case;
       
       case

@@ -40,3 +40,22 @@ Talbidahr => Unterirdisch in gemäßigten Klimazonen
 
 use type SpeziesDatentypen.Spezies_Enum;
 use type SpeziesDatentypen.Spieler_Enum;
+
+
+-- Ist das hier auch an anderen Stellen brauchbar? äöü
+Sf.Graphics.Text.setScale (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                           scale => (1.00, 1.00));
+
+Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                                                    TextbreiteExtern => Textbreite);
+
+if
+  Textbreite > MaximaleTextbreite
+then
+   Sf.Graphics.Text.scale (text    => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                           factors => (MaximaleTextbreite / Textbreite, 1.00));
+   Textbreite := MaximaleTextbreite;
+
+else
+   null;
+end if;

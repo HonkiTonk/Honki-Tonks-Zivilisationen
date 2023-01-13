@@ -73,19 +73,18 @@ package GrafikRecordKonstanten is
                                                                                      );
    
    Baumenübereich : constant BereicheArray (Views.BauviewAccesse'Range) := (
-                                                                             ViewKonstanten.BaumenüGebäudeliste           => (0.00, 0.10, 0.50, 0.80),
-                                                                             ViewKonstanten.BaumenüEinheitenliste         => (0.50, 0.10, 0.50, 0.80),
-                                                                             ViewKonstanten.BaumenüGebäudeinformationen   => (0.50, 0.10, 0.50, 0.40),
-                                                                             ViewKonstanten.BaumenüGebäudebeschreibung    => (0.50, 0.50, 0.50, 0.40),
-                                                                             ViewKonstanten.BaumenüEinheiteninformationen => (0.00, 0.10, 0.50, 0.40),
-                                                                             ViewKonstanten.BaumenüEinheitenbeschreibung  => (0.00, 0.50, 0.50, 0.40),
-                                                                             ViewKonstanten.BaumenüAktuell                => (0.00, 0.90, 1.00, 0.10)
+                                                                             ViewKonstanten.BaumenüGebäudeliste                  => (0.00, 0.10, 0.50, 0.80),
+                                                                             ViewKonstanten.BaumenüEinheitenliste                => (0.50, 0.10, 0.50, 0.80),
+                                                                             ViewKonstanten.BaumenüGebäudeinformationen          => (0.50, 0.10, 0.50, 0.40),
+                                                                             ViewKonstanten.BaumenüGebäudebeschreibung           => (0.50, 0.50, 0.50, 0.40),
+                                                                             ViewKonstanten.BaumenüEinheiteninformationen        => (0.00, 0.10, 0.50, 0.40),
+                                                                             ViewKonstanten.BaumenüEinheitenbeschreibung         => (0.00, 0.50, 0.50, 0.40),
+                                                                             ViewKonstanten.BaumenüAktuell                       => (0.00, 0.90, 1.00, 0.10),
+                                                                             
+                                                                             ViewKonstanten.BaumenüGebäudelisteVerkaufen         => (0.00, 0.10, 0.50, 0.90),
+                                                                             ViewKonstanten.BaumenüGebäudeinformationenVerkaufen => (0.50, 0.10, 0.50, 0.45),
+                                                                             ViewKonstanten.BaumenüGebäudebeschreibungVerkaufen  => (0.50, 0.55, 0.50, 0.45)
                                                                             );
-   
-   Verkausmenübereich : constant BereicheArray (Views.VerkaufsviewAccesse'Range) := (
-                                                                                      1 => (0.00, 0.10, 0.50, 0.90),
-                                                                                      2 => (0.50, 0.10, 0.50, 0.90)
-                                                                                     );
    
    Stadtbereich : constant BereicheArray (Views.StadtviewAccesse'Range) := (
                                                                             ViewKonstanten.StadtUmgebung      => (0.00, 0.00, 0.80, 1.00),

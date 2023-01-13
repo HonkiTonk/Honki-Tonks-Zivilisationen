@@ -2,6 +2,7 @@ with KartenKonstanten;
 with KartenRecordKonstanten;
 with StadtKonstanten;
 with StadtDatentypen;
+with SpeziesKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -151,7 +152,7 @@ package body BewegungsplanLogik is
                   elsif
                     EinheitSpeziesNummerExtern.Spezies /= AndereEinheit.Spezies
                     and
-                      EinheitenKonstanten.LeerSpezies /= AndereEinheit.Spezies
+                      SpeziesKonstanten.LeerSpezies /= AndereEinheit.Spezies
                       and
                         StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                                                                                                  KoordinatenExtern => ZielkoordinatenExtern).Nummer
@@ -183,7 +184,7 @@ package body BewegungsplanLogik is
                   elsif
                     AndereEinheit.Spezies /= EinheitSpeziesNummerExtern.Spezies
                     and
-                      AndereEinheit.Spezies /= EinheitenKonstanten.LeerSpezies
+                      AndereEinheit.Spezies /= SpeziesKonstanten.LeerSpezies
                   then
                      case
                        EinheitenbewegungLogik.FremderAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -199,7 +200,7 @@ package body BewegungsplanLogik is
                      end case;
                   
                   elsif
-                    StadtAufFeld.Spezies /= StadtKonstanten.LeerSpezies
+                    StadtAufFeld.Spezies /= SpeziesKonstanten.LeerSpezies
                     and
                       StadtAufFeld.Spezies /= EinheitSpeziesNummerExtern.Spezies
                   then

@@ -1,6 +1,6 @@
 with EinheitenDatentypen;
 with KartenRecordKonstanten;
-with StadtKonstanten;
+with SpeziesKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -218,9 +218,9 @@ package body KIEinheitenbewegungLogik is
       FremdeStadt := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinaten);
       
       if
-        FremdeStadt.Spezies /= StadtKonstanten.LeerSpezies
+        FremdeStadt.Spezies /= SpeziesKonstanten.LeerSpezies
         and
-          FremdeEinheit.Spezies /= EinheitenKonstanten.LeerSpezies
+          FremdeEinheit.Spezies /= SpeziesKonstanten.LeerSpezies
       then
          if
            True = KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -236,7 +236,7 @@ package body KIEinheitenbewegungLogik is
          end if;
             
       elsif
-        FremdeStadt.Spezies = EinheitenKonstanten.LeerSpezies
+        FremdeStadt.Spezies = SpeziesKonstanten.LeerSpezies
       then
          case
            KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern   => EinheitSpeziesNummerExtern,
