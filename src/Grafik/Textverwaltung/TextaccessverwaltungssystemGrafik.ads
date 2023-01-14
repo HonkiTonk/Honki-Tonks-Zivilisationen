@@ -2,15 +2,37 @@ with Sf.Graphics;
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
 
-package TextaccesseEinstellenGrafik is
+package TextaccessverwaltungssystemGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfText_Ptr;
+   
+   procedure TextFarbe
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      TextExtern : in Wide_Wide_String;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+              );
    
    procedure TextPositionFarbeZeichnen
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
       TextExtern : in Wide_Wide_String;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       FarbeExtern : in Sf.Graphics.Color.sfColor)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+              );
+   
+   procedure TextPosition
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      TextExtern : in Wide_Wide_String;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
                  TextaccessExtern /= null
@@ -83,5 +105,48 @@ package TextaccesseEinstellenGrafik is
                and
                  SkalierungExtern.y >= 0.00
               );
+   
+   procedure TextPositionSkalierenZeichnen
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      TextExtern : in Wide_Wide_String;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+               and
+                 SkalierungExtern.x >= 0.00
+               and
+                 SkalierungExtern.y >= 0.00
+              );
+   
+   procedure PositionSkalierenZeichnen
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+               and
+                 SkalierungExtern.x >= 0.00
+               and
+                 SkalierungExtern.y >= 0.00
+              );
+   
+   procedure TextStandardskalierung
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      TextExtern : in Wide_Wide_String)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+              );
 
-end TextaccesseEinstellenGrafik;
+end TextaccessverwaltungssystemGrafik;

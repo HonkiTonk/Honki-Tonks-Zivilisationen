@@ -19,7 +19,7 @@ with TextberechnungenBreiteGrafik;
 with DebugobjekteLogik;
 with SeitenleisteLeerenGrafik;
 with KampfwerteEinheitErmittelnLogik;
-with TextaccesseEinstellenGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body EinheitenseitenleisteGrafik is
 
@@ -115,7 +115,7 @@ package body EinheitenseitenleisteGrafik is
             null;
             
          else
-            TextaccesseEinstellenGrafik.TextPositionStandardskalierung (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+            TextaccessverwaltungssystemGrafik.TextPositionStandardskalierung (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
                                                                         TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
                                                                         PositionExtern   => Textposition);
          
@@ -127,7 +127,7 @@ package body EinheitenseitenleisteGrafik is
               and
                 TextSchleifenwert = FestzulegenderTextArray'Last - 1
             then
-               TextaccesseEinstellenGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+               TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
                                                               SkalierungExtern => (MaximaleTextbreite / Textbreite, 1.00));
                Textbreite := MaximaleTextbreite;
             
@@ -292,7 +292,7 @@ package body EinheitenseitenleisteGrafik is
       
             Koordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
-            TextaccesseEinstellenGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+            TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                               TextExtern       => ("Nr:" & EinheitSpeziesNummerExtern.Nummer'Wide_Wide_Image & " Z:" & Koordinaten.EAchse'Wide_Wide_Image & ","
                                                                                    & Koordinaten.YAchse'Wide_Wide_Image & "," & Koordinaten.XAchse'Wide_Wide_Image & " Au:"
                                                                                    & LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image),

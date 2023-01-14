@@ -1,5 +1,4 @@
 with Sf.Graphics.Text;
-with Sf.Graphics.RenderWindow;
 
 with TextaccessVariablen;
 with SystemKonstanten;
@@ -13,9 +12,9 @@ with LeseDiplomatie;
 
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
-with EinstellungenGrafik;
 with NachGrafiktask;
 with Fehlermeldungssystem;
+with TextaccessverwaltungssystemGrafik;
 
 package body ZusatztextDiplomatieGrafik is
 
@@ -33,18 +32,15 @@ package body ZusatztextDiplomatieGrafik is
          
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                                                                  ViewbreiteExtern => RealeViewbreiteExtern);
-      
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
-                                       position => Textposition);
-         
+               
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                             str  => TextSetzen (TextnummerExtern => TextSchleifenwert));
       
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                                                              TextbreiteExtern => RealeViewbreiteExtern);
       
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert));
+         TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
+                                                       PositionExtern   => Textposition);
       
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),

@@ -126,8 +126,8 @@ package body StadtumgebungGrafik is
             when True =>
                Farbe := Sf.Graphics.Color.sfGreen;
                Wirtschaftsinformationen (KoordinatenExtern => KarteKoordinatenExtern,
-                                         PositionExtern    => (PositionExtern.x, PositionExtern.y + Rahmendicke),
-                                         SpeziesExtern       => StadtSpeziesNummerExtern.Spezies);
+                                         PositionExtern    => (PositionExtern.x + Rahmendicke, PositionExtern.y + Rahmendicke),
+                                         SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
                
             when False =>
                Farbe := Sf.Graphics.Color.sfBlue;
@@ -168,27 +168,27 @@ package body StadtumgebungGrafik is
          is
             when 1 =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                                  str  => KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                                                              SpeziesExtern       => SpeziesExtern)'Wide_Wide_Image
-                                                  & To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel)));
+                                                  str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel))
+                                                  & KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
+                                                                                        SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image);
                
             when 2 =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                                  str  => KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                                                                 SpeziesExtern       => SpeziesExtern)'Wide_Wide_Image
-                                                  & To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion)));
+                                                  str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion))
+                                                  & KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
+                                                                                           SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image);
                
             when 3 =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                                  str  => KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KoordinatenExtern,
-                                                                                           SpeziesExtern       => SpeziesExtern)'Wide_Wide_Image
-                                                  & To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion)));
+                                                  str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion))
+                                                  & KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KoordinatenExtern,
+                                                                                     SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image);
                
             when 4 =>
                Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                                  str  => KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KoordinatenExtern,
-                                                                                             SpeziesExtern       => SpeziesExtern)'Wide_Wide_Image
-                                                  & To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion)));
+                                                  str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion))
+                                                  & KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KoordinatenExtern,
+                                                                                       SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image);
          end case;
                   
          Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
@@ -197,21 +197,21 @@ package body StadtumgebungGrafik is
          Textfläche := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height);
          
          if
-           Textfläche.x >= SichtweitenGrafik.KartenfelderAbmessung.x
+           Textfläche.x >= SichtweitenGrafik.KartenfelderAbmessung.x - 2.00 * Rahmendicke
          then
-            Skalierung.x := SichtweitenGrafik.KartenfelderAbmessung.x / Textfläche.x;
+            Skalierung.x := (SichtweitenGrafik.KartenfelderAbmessung.x - 2.00 * Rahmendicke) / Textfläche.x;
             
          else
-            Skalierung.x := Textfläche.x / SichtweitenGrafik.KartenfelderAbmessung.x;
+            Skalierung.x := Textfläche.x / (SichtweitenGrafik.KartenfelderAbmessung.x - 2.00 * Rahmendicke);
          end if;
          
          if
-           Textfläche.y <= SichtweitenGrafik.KartenfelderAbmessung.y / 5.00
+           Textfläche.y <= (SichtweitenGrafik.KartenfelderAbmessung.y - 2.00 * Rahmendicke) / 5.00
          then
-            Skalierung.y := SichtweitenGrafik.KartenfelderAbmessung.y / Textfläche.y;
+            Skalierung.y := (SichtweitenGrafik.KartenfelderAbmessung.y - 2.00 * Rahmendicke) / Textfläche.y;
             
          else
-            Skalierung.y := Textfläche.y / SichtweitenGrafik.KartenfelderAbmessung.y;
+            Skalierung.y := Textfläche.y / (SichtweitenGrafik.KartenfelderAbmessung.y - 2.00 * Rahmendicke);
          end if;
          
          Sf.Graphics.Text.setScale (text  => TextaccessVariablen.TextAccess,

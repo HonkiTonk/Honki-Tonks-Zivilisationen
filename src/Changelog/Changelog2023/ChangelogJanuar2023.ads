@@ -112,17 +112,20 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (15.01.2023):
+   -- Version 0.04.6300 => 0.04. (15.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.6240 => 0.04. (14.01.2023):
+   -- Version 0.04.6240 => 0.04.6300 (14.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am Textaccessverwaltungssystem gearbeitet.
+   -- Angefangen das Textaccessverwaltungssystem überall zu verwenden.
+   -- Unnötigen Code gelöscht.
+   -- Stadtanzeige überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

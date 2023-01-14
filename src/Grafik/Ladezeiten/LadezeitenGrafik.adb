@@ -1,4 +1,3 @@
-with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with GlobaleTexte;
@@ -7,7 +6,6 @@ with Views;
 with LadezeitenDatentypen;
 
 with HintergrundGrafik;
-with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextaccessVariablen;
 with LadezeitenLogik;
@@ -15,6 +13,7 @@ with SpeziesbeschreibungenGrafik;
 with TextberechnungenBreiteGrafik;
 with ViewsEinstellenGrafik;
 with AllgemeineViewsGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body LadezeitenGrafik is
    
@@ -100,15 +99,12 @@ package body LadezeitenGrafik is
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                                                              TextbreiteExtern => Textbreite);
          
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                       position => Textposition);
+         TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
+                                                       PositionExtern   => Textposition);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.LadezeitenAccess (WelcheZeit));
          
          WelcheZeit := WelcheZeit + 1;
          
@@ -147,11 +143,8 @@ package body LadezeitenGrafik is
                                                                          TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
             
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                       position => Textposition);
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.KIZeitenAccess (WelcheZeit));
+         TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
+                                                       PositionExtern   => Textposition);
          
          WelcheZeit := WelcheZeit + 1;
          
@@ -178,11 +171,8 @@ package body LadezeitenGrafik is
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
                                                                           TextbreiteExtern => 0.00);
             
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.RundenendeAccess (1),
-                                    position => Textposition);
-      
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.RundenendeAccess (1));
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.RundenendeAccess (1),
+                                                    PositionExtern   => Textposition);
                
       return (Textbreite, Textposition.y);
       
@@ -204,12 +194,9 @@ package body LadezeitenGrafik is
                                                                               ViewbreiteExtern => ViewflächeExtern.x);
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
                                                                           TextbreiteExtern => 0.00);
-            
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpeichernLadenAccess (1),
-                                    position => Textposition);
-               
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.SpeichernLadenAccess (1));
+      
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
+                                                    PositionExtern   => Textposition);
       
       return (Textbreite, Textposition.y);
       

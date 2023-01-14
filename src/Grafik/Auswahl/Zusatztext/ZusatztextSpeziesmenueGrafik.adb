@@ -1,13 +1,10 @@
-with Sf.Graphics.RenderWindow;
-with Sf.Graphics.Text;
-
 with TextaccessVariablen;
 
-with EinstellungenGrafik;
 with ZeilenumbruchberechnungGrafik;
 with SpeziesbeschreibungenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body ZusatztextSpeziesmenueGrafik is
 
@@ -23,14 +20,11 @@ package body ZusatztextSpeziesmenueGrafik is
       
       SpeziesAnzeigen := SpeziesDatentypen.Spezies_Verwendet_Enum'Val (AktuelleAuswahlExtern);
       
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesAnzeigen),
-                                         str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => SpeziesbeschreibungenGrafik.Langbeschreibung (SpeziesExtern => SpeziesAnzeigen),
-                                                                                                        TextfeldbreiteExtern => (ViewflächeExtern.x / 2.00 - Textposition.x)));
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesAnzeigen),
-                                    position => Textposition);
-      
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesAnzeigen));
+      TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesAnzeigen),
+                                                        TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
+                                                          (TextExtern           => SpeziesbeschreibungenGrafik.Langbeschreibung (SpeziesExtern => SpeziesAnzeigen),
+                                                           TextfeldbreiteExtern => (ViewflächeExtern.x / 2.00 - Textposition.x)),
+                                                        PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesAnzeigen),

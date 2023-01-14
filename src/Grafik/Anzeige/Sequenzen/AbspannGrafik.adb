@@ -1,4 +1,3 @@
-with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with Views;
@@ -7,9 +6,9 @@ with TextaccessVariablen;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
-with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body AbspannGrafik is
 
@@ -56,20 +55,14 @@ package body AbspannGrafik is
       AllgemeinSchleife:
       for AllgemeinSchleifenwert in TextaccessVariablen.OutroAccess'First .. AllgemeineTextzeilen loop
          
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
-                                       position => Textposition);
-         
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
-                                       position => Textposition);
-        
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert));
+         TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
+                                                       PositionExtern   => Textposition);
          
       end loop AllgemeinSchleife;
       
@@ -92,16 +85,11 @@ package body AbspannGrafik is
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                               ViewbreiteExtern => ViewflächeExtern.x);
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                          TextbreiteExtern => 0.00);
       Textposition.y := NeueViewfläche.y;
       Textbreite := NeueViewfläche.x;
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                    position => Textposition);
-        
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.TextAccess);
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                    PositionExtern   => Textposition);
       
       return (Textbreite, Textposition.y);
       
@@ -121,16 +109,11 @@ package body AbspannGrafik is
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                               ViewbreiteExtern => ViewflächeExtern.x);
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                          TextbreiteExtern => 0.00);
       Textposition.y := NeueViewfläche.y;
       Textbreite := NeueViewfläche.x;
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                    position => Textposition);
-        
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.TextAccess);
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                    PositionExtern   => Textposition);
       
       return (Textbreite, Textposition.y);
       

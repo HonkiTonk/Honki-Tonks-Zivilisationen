@@ -502,19 +502,7 @@ package body WeltkarteZeichnenGrafik is
    is begin
             
       StadtSpeziesNummer := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KoordinatenExtern.EAchse
-      is
-         when KartenKonstanten.HimmelKonstante =>
-            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KarteAccess,
-                                       color => Sf.Graphics.Color.sfBlack);
             
-         when others =>
-            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KarteAccess,
-                                       color => Sf.Graphics.Color.sfWhite);
-      end case;
-      
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummer)));
       
@@ -533,6 +521,18 @@ package body WeltkarteZeichnenGrafik is
             
       Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * SichtweitenGrafik.KartenfelderAbmessung.x;
       Textposition.y := PositionExtern.y - TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.HimmelKonstante =>
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KarteAccess,
+                                       color => Sf.Graphics.Color.sfBlack);
+            
+         when others =>
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KarteAccess,
+                                       color => Sf.Graphics.Color.sfWhite);
+      end case;
       
       -- Später noch einen Rahmen um den Namen bauen? äöü
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAccess,

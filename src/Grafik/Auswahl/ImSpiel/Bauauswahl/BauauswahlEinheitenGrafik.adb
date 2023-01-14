@@ -17,7 +17,7 @@ with ViewsEinstellenGrafik;
 with TextfarbeGrafik;
 with ZeilenumbruchberechnungGrafik;
 with EinheitenbeschreibungenGrafik;
-with TextaccesseEinstellenGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body BauauswahlEinheitenGrafik is
 
@@ -103,7 +103,7 @@ package body BauauswahlEinheitenGrafik is
          
          TextfarbeGrafik.Standardfarbe (TextaccessExtern => TextaccessVariablen.TextAccess);
          
-         TextaccesseEinstellenGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+         TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                            TextExtern       => To_Wide_Wide_String (Source => Einheitentexte (InformationSchleifenwert)),
                                                            PositionExtern   => Textposition);
          
@@ -144,7 +144,7 @@ package body BauauswahlEinheitenGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      TextaccesseEinstellenGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),
+      TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),
                                                         TextExtern       => 
                                                           ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
                                                                                                                                                                                          SpeziesExtern => SpeziesExtern),

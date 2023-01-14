@@ -1,4 +1,3 @@
-with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
@@ -7,7 +6,6 @@ with InteraktionAuswahl;
 with Views;
 with GrafikDatentypen;
 
-with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
 with MenuestringsSetzenGrafik;
 with ZusatztextaufteilungGrafik;
@@ -15,6 +13,7 @@ with TextberechnungenHoeheGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextfarbeGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body EinfachmenueGrafik is
 
@@ -82,8 +81,8 @@ package body EinfachmenueGrafik is
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                                  ViewbreiteExtern => ViewflächeExtern.x);
          
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                       position => Textposition);
+         TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
+                                                       PositionExtern   => Textposition);
 
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);
@@ -94,9 +93,6 @@ package body EinfachmenueGrafik is
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert));
          
       end loop PositionenSchleife;
 

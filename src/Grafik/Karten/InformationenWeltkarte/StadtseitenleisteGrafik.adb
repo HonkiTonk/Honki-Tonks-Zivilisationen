@@ -1,6 +1,3 @@
-with Sf.Graphics.RenderWindow;
-with Sf.Graphics.Text;
-
 with EinheitenDatentypen;
 with StadtDatentypen;
 with Meldungstexte;
@@ -14,7 +11,6 @@ with ViewKonstanten;
 with LeseStadtGebaut;
 
 with KampfwerteStadtErmittelnLogik;
-with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
 with HintergrundGrafik;
 with ViewsEinstellenGrafik;
@@ -22,6 +18,7 @@ with GebaeudebeschreibungenGrafik;
 with EinheitenbeschreibungenGrafik;
 with TextberechnungenBreiteGrafik;
 with DebugobjekteLogik;
+with TextaccessverwaltungssystemGrafik;
 
 package body StadtseitenleisteGrafik is
    
@@ -31,8 +28,8 @@ package body StadtseitenleisteGrafik is
       
       Stadt (SpeziesExtern            => StadtSpeziesNummerExtern.Spezies,
              StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-             AnzeigebereichExtern   => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen),
-             ViewExtern             => Views.StadtviewAccesse (ViewKonstanten.StadtInformationen));
+             AnzeigebereichExtern     => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen),
+             ViewExtern               => Views.StadtviewAccesse (ViewKonstanten.StadtInformationen));
       
    end Stadtinformationen;
    
@@ -127,57 +124,23 @@ package body StadtseitenleisteGrafik is
             null;
             
          else
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
-                                               str  => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)));
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
-                                          position => Textposition);
-            
-            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               text         => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert));
-         end if;
-                     
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
-                                                                             TextbreiteExtern => Textbreite);
+            TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
+                                                              TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
+                                                              PositionExtern   => Textposition);
       
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                            TextAccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                     
+            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
+                                                                                TextbreiteExtern => Textbreite);
+         end if;
          
       end loop TextSchleife;
       
       Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
    end Stadt;
-   
-   
-   
-   -- Die Anzeige des Stadtnamens mal noch nicht entfernen, eventuell will ich das später wieder einbauen?
-   procedure Stadtname
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-   is begin
-            
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                         str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)));
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                    position => Textposition);
-      
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                          TextbreiteExtern => Textbreite);
-      
-      Sf.Graphics.Text.scale (text    => TextaccessVariablen.TextAccess,
-                              factors => (Viewfläche.x / Textbreite, 1.00));
-            
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.TextAccess);
-      
-      Sf.Graphics.Text.setScale (text  => TextaccessVariablen.TextAccess,
-                                 scale => (1.00, 1.00));
-      
-      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-      
-   end Stadtname;
    
    
    

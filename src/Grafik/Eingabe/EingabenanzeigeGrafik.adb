@@ -21,6 +21,7 @@ with HintergrundGrafik;
 with NachGrafiktask;
 with AllgemeineViewsGrafik;
 with TextfarbeGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body EingabenanzeigeGrafik is
    
@@ -85,11 +86,8 @@ package body EingabenanzeigeGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                               ViewbreiteExtern => Viewfläche.x);
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                    position => Textposition);
-                  
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.TextAccess);
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                    PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.TextAccess,
@@ -126,11 +124,8 @@ package body EingabenanzeigeGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                               ViewbreiteExtern => Viewfläche.x);
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                    position => Textposition);
-            
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.TextAccess);
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                    PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.TextAccess,

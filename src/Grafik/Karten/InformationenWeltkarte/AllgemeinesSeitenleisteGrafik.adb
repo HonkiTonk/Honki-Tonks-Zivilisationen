@@ -1,6 +1,5 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Graphics.RenderWindow;
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
@@ -12,7 +11,7 @@ with ViewKonstanten;
 with LeseWeltkarte;
 with LeseCursor;
 
-with EinstellungenGrafik;
+with TextaccessverwaltungssystemGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with AufgabenbeschreibungenGrafik;
@@ -21,6 +20,8 @@ with SeitenleisteLeerenGrafik;
 
 package body AllgemeinesSeitenleisteGrafik is
 
+   -- Den ganzen Text in ein Array zusammenfassen und in der Schleife abarbeiten? äöü
+   -- Alternativ auch bei leerem Text ein Zeichen setzen um einen gleichmäßigeren Abstand zu erhalten? äöü
    procedure AllgemeineInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
@@ -127,23 +128,20 @@ package body AllgemeinesSeitenleisteGrafik is
            TextAnzeigen (TextSchleifenwert)
          is
             when True =>
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                             position => (Textposition.x, RealeYPosition));
-               
-               Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                  text         => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert));
+               TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
+                                                             PositionExtern   => (Textposition.x, RealeYPosition));
                
                RealeYPosition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => RealeYPosition,
                                                                                TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
+               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
+                                                                                   TextbreiteExtern => Textbreite);
+               
             when False =>
                null;
          end case;
-         
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                                             TextbreiteExtern => Textbreite);
-         
+                  
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);

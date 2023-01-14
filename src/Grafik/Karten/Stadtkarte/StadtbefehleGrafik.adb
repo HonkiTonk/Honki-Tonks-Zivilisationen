@@ -1,4 +1,3 @@
-with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with Views;
@@ -10,8 +9,8 @@ with ViewKonstanten;
 with HintergrundGrafik;
 with ViewsEinstellenGrafik;
 with TextberechnungenHoeheGrafik;
-with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body StadtbefehleGrafik is
 
@@ -38,8 +37,8 @@ package body StadtbefehleGrafik is
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert),
                                                                                  ViewbreiteExtern => Viewfläche.x);
          
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert),
-                                       position => Textposition);
+         TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert),
+                                                       PositionExtern   => Textposition);
 
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);
@@ -52,9 +51,6 @@ package body StadtbefehleGrafik is
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert));
          
       end loop PositionenSchleife;
 

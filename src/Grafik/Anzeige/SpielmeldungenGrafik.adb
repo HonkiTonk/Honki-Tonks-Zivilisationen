@@ -1,7 +1,6 @@
-with Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.Text;
-with Sf.Graphics.RenderWindow;
 
 with Meldungstexte;
 with Views;
@@ -11,8 +10,8 @@ with TextaccessVariablen;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextberechnungenBreiteGrafik;
-with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body SpielmeldungenGrafik is
 
@@ -34,7 +33,7 @@ package body SpielmeldungenGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.Spielmeldung,
-                                         str  => Ada.Strings.Wide_Wide_Unbounded.To_Wide_Wide_String (Source => Meldungstexte.Meldung (MeldungExtern)));
+                                         str  => To_Wide_Wide_String (Source => Meldungstexte.Meldung (MeldungExtern)));
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.Spielmeldung,
                                                                           TextbreiteExtern => 0.00);
@@ -42,11 +41,8 @@ package body SpielmeldungenGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.Spielmeldung,
                                                                               ViewbreiteExtern => Viewfläche.x);
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.Spielmeldung,
-                                    position => Textposition);
-             
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.Spielmeldung);
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.Spielmeldung,
+                                                    PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.Spielmeldung,

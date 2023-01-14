@@ -1,7 +1,3 @@
-with Sf.Graphics.RenderWindow;
-with Sf.Graphics;
-with Sf.Graphics.Text;
-
 with Meldungstexte;
 with TextnummernKonstanten;
 with Views;
@@ -15,7 +11,7 @@ with LeseGrenzen;
 with LeseAllgemeines;
 
 with ForschungsbeschreibungenGrafik;
-with EinstellungenGrafik;
+with TextaccessverwaltungssystemGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with HintergrundGrafik;
@@ -54,14 +50,9 @@ package body WichtigesSeitenleisteGrafik is
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.KarteWichtigesAccess'Range loop
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)));
-         
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
-                                       position => Textposition);
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert));
+         TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
+                                                           TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
+                                                           PositionExtern   => Textposition);
                   
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);

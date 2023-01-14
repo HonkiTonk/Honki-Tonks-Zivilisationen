@@ -15,6 +15,7 @@ with TexteinstellungenGrafik;
 with NachGrafiktask;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body SprachauswahlGrafik is
    
@@ -80,18 +81,14 @@ package body SprachauswahlGrafik is
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                                                     ViewbreiteExtern => Viewfläche.x);
             
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SprachauswahlAccess,
-                                          position => Textposition);
+            TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
+                                                          PositionExtern   => Textposition);
             
             NeueTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                                                     TextbreiteExtern => 0.00);
             
             InteraktionAuswahl.PositionenSprachauswahl (ZeileSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SprachauswahlAccess);
-            
-            -- Den Textteil in ein Array packen und bei leeren Zeilen einfach nichts darstellen? äöü
-            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               text         => TextaccessVariablen.SprachauswahlAccess);
-            
+                        
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                             TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
