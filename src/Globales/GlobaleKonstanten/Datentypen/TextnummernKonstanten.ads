@@ -59,6 +59,8 @@ package TextnummernKonstanten is
    ZeugRiesige : constant Positive := 52;
    ZeugGigantisch : constant Positive := 53;
    
+   ZeugStadt : constant Positive := 54;
+   
    
    
    FrageWievieleAutospielstände : constant Positive := 1;

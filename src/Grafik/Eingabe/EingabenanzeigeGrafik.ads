@@ -38,6 +38,7 @@ private
    AktuelleAuswahl : Integer;
    
    Textbreite : Float;
+   ZusätzlicheTextbreite : Float;
    MaximaleTextbreite : Float;
    
    Text : Unbounded_Wide_Wide_String;

@@ -100,7 +100,7 @@ package body SteuerungsmenueGrafik is
       
       InteraktionAuswahl.PositionenSteuerungsaufteilung (1) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung));
       
-      Textposition.x := Textposition.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung)).width
+      Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung)).width
         + 2.00 * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
@@ -128,7 +128,7 @@ package body SteuerungsmenueGrafik is
       
       InteraktionAuswahl.PositionenSteuerungsaufteilung (2) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung));
       
-      Textposition.x := Textposition.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung)).width
+      Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung)).width
         + 2.00 * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
@@ -156,7 +156,7 @@ package body SteuerungsmenueGrafik is
       
       InteraktionAuswahl.PositionenSteuerungsaufteilung (3) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung));
       
-      Textposition.x := Textposition.x + Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung)).width
+      Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung)).width
         + 2.00 * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung),

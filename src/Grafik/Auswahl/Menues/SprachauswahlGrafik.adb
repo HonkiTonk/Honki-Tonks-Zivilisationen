@@ -128,19 +128,19 @@ package body SprachauswahlGrafik is
             Sf.Graphics.ConvexShape.setFillColor (shape => PfeilAccess,
                                                   color => AktuelleTextFarbe);
             
-            Textposition.x := Viewfläche.x / 2.00 - 0.50 * Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess).width;
+            Textposition.x := Viewfläche.x / 2.00 - 0.50 * Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
             
             Sf.Graphics.ConvexShape.setPosition (shape    => PfeilAccess,
                                                  position => Textposition);
             
             InteraktionAuswahl.PositionenSprachauswahl (ZeileSchleifenwert) := Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess);
             
-            NeueTextbreite := TextberechnungenBreiteGrafik.SpaltenabstandVariabel + Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess).width;
+            NeueTextbreite := TextberechnungenBreiteGrafik.SpaltenabstandVariabel + Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
             
             Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => EinstellungenGrafik.FensterAccess,
                                                       object       => PfeilAccess);
             
-            Textposition.y := Textposition.y + Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess).height + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+            Textposition.y := Textposition.y + Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).height + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             
          else
             NeueTextbreite := 0.00;

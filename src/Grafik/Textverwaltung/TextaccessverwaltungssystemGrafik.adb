@@ -176,8 +176,8 @@ package body TextaccessverwaltungssystemGrafik is
       SkalierungExtern : in Sf.System.Vector2.sfVector2f)
    is begin
             
-      Sf.Graphics.Text.scale (text    => TextaccessExtern,
-                              factors => SkalierungExtern);
+      Sf.Graphics.Text.setScale (text  => TextaccessExtern,
+                                 scale => SkalierungExtern);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                          text         => TextaccessExtern);

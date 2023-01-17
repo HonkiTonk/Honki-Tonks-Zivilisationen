@@ -30,18 +30,19 @@ package body TextberechnungenBreiteGrafik is
       return Float
    is begin
       
-      return ViewbreiteExtern / 2.00 - Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).width / 2.00;
+      return ViewbreiteExtern / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width / 2.00;
       
    end MittelpositionBerechnen;
    
    
    
-   -- Wird aktuell für die Anzeige des Stadtnamens auf der Weltkarte benötigt, später mal überarbeiten und dann das hier entfernen. äöü
+   -- Wird aktuell nur für die Anzeige des Stadtnamens auf der Weltkarte benötigt.
+   -- Dazu ist es nötigt die skalierte Textgröße zu kennen, da sonst der Text zu weit nach links verschoben wird.
    function HalbeBreiteBerechnen
      (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
       return Float
    is begin
-      
+            
       return Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).width / 2.00;
       
    end HalbeBreiteBerechnen;
@@ -54,7 +55,7 @@ package body TextberechnungenBreiteGrafik is
       return Float
    is begin
       
-      NeueTextbreite := SpaltenabstandVariabel + Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).width;
+      NeueTextbreite := SpaltenabstandVariabel + Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width;
       
       if
         NeueTextbreite > TextbreiteExtern

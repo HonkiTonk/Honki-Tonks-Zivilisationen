@@ -91,31 +91,31 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (18.01.2023):
+   -- Version 0.04.6345 => 0.04. (18.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (17.01.2023):
+   -- Version 0.04.6300 => 0.04.6345 (17.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (16.01.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textberechnungen verwenden jetzt locale Bounds anstelle von globale Bounds.
+   -- Fehler korrigiert der bei leeren Stadtnamen zu einem Programmstopp führte.
+   -- Fehler korrigiert welcher bei Texteingaben das Bestätigen noch an den Text anhängte.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.04.6300 => 0.04. (15.01.2023):
+   -- Version 0.04.6300 => 0.04.6300 (16.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.04.6300 => 0.04.6300 (15.01.2023):
+   
+   -- null.
    
    
 

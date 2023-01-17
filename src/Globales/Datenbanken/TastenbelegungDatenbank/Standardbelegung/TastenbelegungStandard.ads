@@ -35,7 +35,7 @@ package TastenbelegungStandard is
                                                                                              TastenbelegungDatentypen.Nächste_Einheit_Enum                => Sf.Window.Keyboard.sfKeyE,
                                                                                              TastenbelegungDatentypen.Nächste_Einheit_Mit_Meldung_Enum    => Sf.Window.Keyboard.sfKeyO,
                                                                                              TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum    => Sf.Window.Keyboard.sfKeyB,
-                                                                                             TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum => Sf.Window.Keyboard.sfKeyO,
+                                                                                             TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum => Sf.Window.Keyboard.sfKeyP,
                                                                      
                                                                                              -- Sonstiges
                                                                                              TastenbelegungDatentypen.Gehe_Zu_Enum                        => Sf.Window.Keyboard.sfKeyG,

@@ -115,20 +115,20 @@ package body EinheitenseitenleisteGrafik is
             null;
             
          else
-            TextaccessverwaltungssystemGrafik.TextPositionStandardskalierung (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                        TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
-                                                                        PositionExtern   => Textposition);
+            TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                            TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
+                                                            PositionExtern   => Textposition);
          
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
                                                                                 TextbreiteExtern => Textbreite);
-         
+            
             if
               Textbreite > MaximaleTextbreite
               and
                 TextSchleifenwert = FestzulegenderTextArray'Last - 1
             then
                TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                              SkalierungExtern => (MaximaleTextbreite / Textbreite, 1.00));
+                                                                    SkalierungExtern => (MaximaleTextbreite / Textbreite, 1.00));
                Textbreite := MaximaleTextbreite;
             
             else

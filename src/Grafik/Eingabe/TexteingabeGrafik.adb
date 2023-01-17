@@ -34,6 +34,11 @@ package body TexteingabeGrafik is
                EingegebenesZeichen := Wide_Wide_Character'Val (TextEingegeben.text.unicode);
                
                if
+                 EingegebenesZeichen = CR
+               then
+                  null;
+               
+               elsif
                  EingegebenesZeichen = BS
                  or
                    EingegebenesZeichen = DEL

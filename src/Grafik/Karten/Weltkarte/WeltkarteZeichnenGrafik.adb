@@ -518,7 +518,7 @@ package body WeltkarteZeichnenGrafik is
          Sf.Graphics.Text.setScale (text  => TextaccessVariablen.KarteAccess,
                                     scale => (1.00, 0.70));
       end if;
-            
+      
       Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * SichtweitenGrafik.KartenfelderAbmessung.x;
       Textposition.y := PositionExtern.y - TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
