@@ -1,4 +1,4 @@
-with Ada.Calendar; use Ada.Calendar;
+with Ada.Real_Time; use Ada.Real_Time;
 
 with NachGrafiktask;
 

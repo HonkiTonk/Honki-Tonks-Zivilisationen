@@ -1,4 +1,3 @@
-with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with ForschungKonstanten;
@@ -16,7 +15,6 @@ with LeseEinheitenDatenbank;
 with LeseGebaeudeDatenbank;
 with LeseWichtiges;
 
-with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
 with InteraktionAuswahl;
 with TextberechnungenHoeheGrafik;
@@ -85,12 +83,10 @@ package body ForschungsauswahlGrafik is
            InteraktionAuswahl.MöglicheForschungen (ForschungSchleifenwert)
          is
             when True =>
-               TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (ForschungSchleifenwert),
-                                                      AuswahlExtern    => Natural (AuswahlExtern),
-                                                      TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert));
-               
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert),
-                                             position => Textposition);
+               TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert),
+                                                                        PositionExtern   => Textposition,
+                                                                        FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (ForschungSchleifenwert),
+                                                                                                                                   AuswahlExtern    => Natural (AuswahlExtern)));
                
                AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert),
                                                                                            TextbreiteExtern => AktuelleTextbreite);
@@ -100,9 +96,6 @@ package body ForschungsauswahlGrafik is
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
                InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert));
-               
-               Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                  text         => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert));
                
             when False =>
                null;
@@ -147,8 +140,8 @@ package body ForschungsauswahlGrafik is
             AktuelleTextbreite := 0.00;
             
             TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                              TextExtern       => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugWirdBenötigt)),
-                                                              PositionExtern   => Textposition);
+                                                                    TextExtern       => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugWirdBenötigt)),
+                                                                    PositionExtern   => Textposition);
       
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                             TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
@@ -171,9 +164,9 @@ package body ForschungsauswahlGrafik is
               Forschungswert = ZusatztextExtern
             then
                TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                 TextExtern       => ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => TechnologieSchleifenwert,
-                                                                                                                                      SpeziesExtern => SpeziesExtern),
-                                                                 PositionExtern   => Textposition);
+                                                                       TextExtern       => ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => TechnologieSchleifenwert,
+                                                                                                                                            SpeziesExtern => SpeziesExtern),
+                                                                       PositionExtern   => Textposition);
          
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                                TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
@@ -198,9 +191,9 @@ package body ForschungsauswahlGrafik is
                                                                     IDExtern    => EinheitenSchleifenwert)
          then
             TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                              TextExtern       => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => EinheitenSchleifenwert,
-                                                                                                                                  SpeziesExtern => SpeziesExtern),
-                                                              PositionExtern   => Textposition);
+                                                                    TextExtern       => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => EinheitenSchleifenwert,
+                                                                                                                                        SpeziesExtern => SpeziesExtern),
+                                                                    PositionExtern   => Textposition);
             
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                             TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
@@ -224,9 +217,9 @@ package body ForschungsauswahlGrafik is
                                                                    IDExtern      => GebäudeSchleifenwert)
          then
             TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                              TextExtern       => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => GebäudeSchleifenwert,
-                                                                                                                                 SpeziesExtern => SpeziesExtern),
-                                                              PositionExtern   => Textposition);
+                                                                    TextExtern       => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => GebäudeSchleifenwert,
+                                                                                                                                       SpeziesExtern => SpeziesExtern),
+                                                                    PositionExtern   => Textposition);
          
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                             TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
@@ -276,11 +269,11 @@ package body ForschungsauswahlGrafik is
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             
             TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, ZusatztextExtern),
-                                                              TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
-                                                                (TextExtern           => ForschungsbeschreibungenGrafik.Langbeschreibung (IDExtern      => ZusatztextExtern,
-                                                                                                                                          SpeziesExtern => SpeziesExtern),
-                                                                 TextfeldbreiteExtern => Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung).x / 2.00 - Textposition.x),
-                                                              PositionExtern   => Textposition);
+                                                                    TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
+                                                                      (TextExtern           => ForschungsbeschreibungenGrafik.Langbeschreibung (IDExtern      => ZusatztextExtern,
+                                                                                                                                                SpeziesExtern => SpeziesExtern),
+                                                                       TextfeldbreiteExtern => Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung).x / 2.00 - Textposition.x),
+                                                                    PositionExtern   => Textposition);
       
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                             TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, ZusatztextExtern),
@@ -334,7 +327,7 @@ package body ForschungsauswahlGrafik is
                                                                               ViewbreiteExtern => Viewfläche (ViewKonstanten.ForschungsmenüAktuell).x);
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                    PositionExtern   => Textposition);
+                                                          PositionExtern   => Textposition);
       
       AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                                   TextbreiteExtern => AktuelleTextbreite);
@@ -362,7 +355,7 @@ package body ForschungsauswahlGrafik is
                                                                               ViewbreiteExtern => Viewfläche (ViewKonstanten.ForschungsmenüAktuell).x);
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                    PositionExtern   => Textposition);
+                                                          PositionExtern   => Textposition);
       
       AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                                   TextbreiteExtern => AktuelleTextbreite);

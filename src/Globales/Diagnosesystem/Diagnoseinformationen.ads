@@ -1,5 +1,8 @@
 private with System;
 
+with Sf.System.Vector2;
+with Sf.Graphics.Rect;
+
 with KartenRecords;
 with EinheitenRecords;
 with StadtRecords;
@@ -23,6 +26,12 @@ package Diagnoseinformationen is
    
    procedure Grundinformationen
      (GrundExtern : in KartenRecords.KartengrundRecord);
+   
+   procedure Positionsinformationen
+     (PositionExtern : in Sf.System.Vector2.sfVector2f);
+   
+   procedure Boxinformationen
+     (BoxExtern : in Sf.Graphics.Rect.sfFloatRect);
    
 private
       

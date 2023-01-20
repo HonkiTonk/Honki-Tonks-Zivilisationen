@@ -1,6 +1,3 @@
-with Sf.Graphics.Text;
-with Sf.Graphics.RenderWindow;
-
 with Views;
 with TextaccessVariablen;
 with GrafikDatentypen;
@@ -11,10 +8,10 @@ with LeseWichtiges;
 with Fehlermeldungssystem;
 with ViewsEinstellenGrafik;
 with TextberechnungenHoeheGrafik;
-with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
 with TextfarbeGrafik;
 with HintergrundGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body ForschungserfolgGrafik is
 
@@ -68,19 +65,15 @@ package body ForschungserfolgGrafik is
       Textbreite := 0.00;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern),
-                                    position => Textposition);
-      
-      TextfarbeGrafik.Standardfarbe (TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern));
+      TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern),
+                                                               PositionExtern   => Textposition,
+                                                               FarbeExtern      => TextfarbeGrafik.Standardfarbe);
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern),
                                                                               ViewbreiteExtern => ViewbreiteExtern);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern),
                                                                           TextbreiteExtern => Textbreite);
-      
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern));
       
       return (Textbreite, Textposition.y);
       
@@ -98,17 +91,14 @@ package body ForschungserfolgGrafik is
       Textbreite := 0.00;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, TechnologieExtern),
-                                    position => Textposition);
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, TechnologieExtern),
+                                                          PositionExtern   => Textposition);
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, TechnologieExtern),
                                                                               ViewbreiteExtern => ViewbreiteExtern);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, TechnologieExtern),
                                                                           TextbreiteExtern => Textbreite);
-      
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, TechnologieExtern));
       
       return (Textbreite, Textposition.y);
       

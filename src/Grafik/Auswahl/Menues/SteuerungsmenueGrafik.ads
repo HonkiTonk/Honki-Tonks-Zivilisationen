@@ -2,6 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.Window.Keyboard;
 private with Sf.System.Vector2;
+private with Sf.Graphics.Color;
 
 private with GrafikRecordKonstanten;
 
@@ -27,6 +28,8 @@ private
    ViewflächeAufteilung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    ViewflächeBelegung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;
+   
+   Farbe : Sf.Graphics.Color.sfColor;
    
    
    

@@ -1,3 +1,5 @@
+with Ada.Real_Time; use Ada.Real_Time;
+
 with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
@@ -49,6 +51,8 @@ private
    AktuelleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
    
    BewertungPosition : Positive;
+   
+   Bewegungsverzögerung : constant Time_Span := Milliseconds (200);
    
    StadtAufFeld : StadtRecords.SpeziesStadtnummerRecord;
    

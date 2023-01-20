@@ -1,4 +1,4 @@
-with Ada.Calendar; use Ada.Calendar;
+with Ada.Real_Time; use Ada.Real_Time;
 
 with Sf.System.Vector2;
 
@@ -73,6 +73,7 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
    Rahmenposition : Sf.System.Vector2.sfVector2f;
    Rahmengröße : Sf.System.Vector2.sfVector2f;
+   Skalierung : Sf.System.Vector2.sfVector2f;
    
    KartenWertRahmen : KartenRecords.AchsenKartenfeldNaturalRecord;
    EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;

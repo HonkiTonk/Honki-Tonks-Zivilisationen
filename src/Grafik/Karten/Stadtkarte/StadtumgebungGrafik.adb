@@ -1,7 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with Sf.Graphics.Text;
-with Sf.Graphics.RenderWindow;
 
 with KartenDatentypen;
 with Views;
@@ -22,8 +19,8 @@ with ObjekteZeichnenGrafik;
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
 with KartenfelderwerteLogik;
-with EinstellungenGrafik;
 with TexteinstellungenGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body StadtumgebungGrafik is
 
@@ -167,32 +164,25 @@ package body StadtumgebungGrafik is
            ProduktionSchleifenwert
          is
             when 1 =>
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                                  str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel))
-                                                  & KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                                                        SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image);
+               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                           SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image;
                
             when 2 =>
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                                  str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion))
-                                                  & KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                                                           SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image);
+               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                    SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image;
                
             when 3 =>
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                                  str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion))
-                                                  & KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KoordinatenExtern,
-                                                                                     SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image);
+               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                        SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image;
                
             when 4 =>
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                                  str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion))
-                                                  & KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KoordinatenExtern,
-                                                                                       SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image);
+               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                             SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image;
          end case;
-                  
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                       position => (PositionExtern.x, SichtweitenGrafik.KartenfelderAbmessung.y / 5.00 * Float (ProduktionSchleifenwert - 1) + PositionExtern.y));
+         
+         TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                         TextExtern       => To_Wide_Wide_String (Source => Text),
+                                                         PositionExtern   => (PositionExtern.x, SichtweitenGrafik.KartenfelderAbmessung.y / 5.00 * Float (ProduktionSchleifenwert - 1) + PositionExtern.y));
          
          Textfläche := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height);
          
@@ -214,16 +204,13 @@ package body StadtumgebungGrafik is
             Skalierung.y := Textfläche.y / (SichtweitenGrafik.KartenfelderAbmessung.y - 2.00 * Rahmendicke);
          end if;
          
-         Sf.Graphics.Text.setScale (text  => TextaccessVariablen.TextAccess,
-                                    scale => Skalierung);
-            
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.TextAccess);
+         TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                              SkalierungExtern => Skalierung);
          
       end loop ProduktionSchleife;
       
-      Sf.Graphics.Text.setScale (text  => TextaccessVariablen.TextAccess,
-                                 scale => (1.00, 1.00));
+      TextaccessverwaltungssystemGrafik.Skalieren (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                   SkalierungExtern => (1.00, 1.00));
       
    end Wirtschaftsinformationen;
    

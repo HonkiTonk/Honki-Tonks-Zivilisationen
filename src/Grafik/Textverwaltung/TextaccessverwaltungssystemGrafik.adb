@@ -5,6 +5,21 @@ with EinstellungenGrafik;
 
 package body TextaccessverwaltungssystemGrafik is
    
+   procedure PositionFarbeZeichnen
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+   is begin
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessExtern,
+                                 color => FarbeExtern);
+      
+      PositionZeichnen (TextaccessExtern => TextaccessExtern,
+                        PositionExtern   => PositionExtern);
+      
+   end PositionFarbeZeichnen;
+     
+   
    procedure TextFarbe
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
       TextExtern : in Wide_Wide_String;
@@ -65,8 +80,7 @@ package body TextaccessverwaltungssystemGrafik is
                     TextExtern       => TextExtern,
                     PositionExtern   => PositionExtern);
       
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessExtern);
+      Zeichnen (TextaccessExtern => TextaccessExtern);
       
    end TextPositionZeichnen;
    
@@ -80,60 +94,9 @@ package body TextaccessverwaltungssystemGrafik is
       Sf.Graphics.Text.setPosition (text     => TextaccessExtern,
                                     position => PositionExtern);
             
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessExtern);
+      Zeichnen (TextaccessExtern => TextaccessExtern);
       
    end PositionZeichnen;
-   
-   
-   
-   procedure TextStandardskalierung
-     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
-      TextExtern : in Wide_Wide_String)
-   is begin
-      
-      Sf.Graphics.Text.setScale (text  => TextaccessExtern,
-                                 scale => (1.00, 1.00));
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessExtern,
-                                         str  => TextExtern);
-      
-   end TextStandardskalierung;
-   
-   
-   
-   procedure TextPositionStandardskalierungZeichnen
-     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
-      TextExtern : in Wide_Wide_String;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
-            
-      TextPositionStandardskalierung (TextaccessExtern => TextaccessExtern,
-                                      TextExtern       => TextExtern,
-                                      PositionExtern   => PositionExtern);
-            
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessExtern);
-      
-   end TextPositionStandardskalierungZeichnen;
-   
-   
-   
-   procedure TextPositionStandardskalierung
-     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
-      TextExtern : in Wide_Wide_String;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
-      
-      Sf.Graphics.Text.setScale (text  => TextaccessExtern,
-                                 scale => (1.00, 1.00));
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessExtern,
-                                         str  => TextExtern);
-      Sf.Graphics.Text.setPosition (text     => TextaccessExtern,
-                                    position => PositionExtern);
-      
-   end TextPositionStandardskalierung;
    
    
    
@@ -179,9 +142,31 @@ package body TextaccessverwaltungssystemGrafik is
       Sf.Graphics.Text.setScale (text  => TextaccessExtern,
                                  scale => SkalierungExtern);
       
+      Zeichnen (TextaccessExtern => TextaccessExtern);
+      
+   end SkalierenZeichnen;
+   
+   
+   
+   procedure Skalieren
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      Sf.Graphics.Text.setScale (text  => TextaccessExtern,
+                                 scale => SkalierungExtern);
+      
+   end Skalieren;
+   
+   
+   
+   procedure Zeichnen
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr)
+   is begin
+      
       Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
                                          text         => TextaccessExtern);
       
-   end SkalierenZeichnen;
+   end Zeichnen;
 
 end TextaccessverwaltungssystemGrafik;

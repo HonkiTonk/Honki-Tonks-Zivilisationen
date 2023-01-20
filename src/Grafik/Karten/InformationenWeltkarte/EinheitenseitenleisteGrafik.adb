@@ -1,7 +1,3 @@
-with Sf.Graphics.RenderWindow;
-with Sf.Graphics;
-with Sf.Graphics.Text;
-
 with Meldungstexte;
 with StadtKonstanten;
 with TextnummernKonstanten;
@@ -13,7 +9,6 @@ with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
 
 with EinheitenbeschreibungenGrafik;
-with EinstellungenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with DebugobjekteLogik;
@@ -124,17 +119,16 @@ package body EinheitenseitenleisteGrafik is
             
             if
               Textbreite > MaximaleTextbreite
-              and
-                TextSchleifenwert = FestzulegenderTextArray'Last - 1
             then
-               TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                    SkalierungExtern => (MaximaleTextbreite / Textbreite, 1.00));
+               Skalierung := (MaximaleTextbreite / Textbreite, 1.00);
                Textbreite := MaximaleTextbreite;
             
             else
-               Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                  text         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
+               Skalierung := (1.00, 1.00);
             end if;
+            
+            TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                                 SkalierungExtern => Skalierung);
          end if;
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
@@ -153,7 +147,7 @@ package body EinheitenseitenleisteGrafik is
          when False =>
             Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       end case;
-            
+      
    end Einheiten;
    
    
@@ -186,8 +180,10 @@ package body EinheitenseitenleisteGrafik is
    is begin
       
       return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & " "
-        & ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
-        & " " & TextKonstanten.TrennzeichenUnterschiedlich & " " & ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+        & ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                                                LogikGrafikExtern          => False))
+        & " " & TextKonstanten.TrennzeichenUnterschiedlich & " " & ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                                                                                                              LogikGrafikExtern          => False));
       
    end Kampfwerte;
    
@@ -321,14 +317,10 @@ package body EinheitenseitenleisteGrafik is
          Koordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                             PlanschrittExtern        => PlanSchleifenwert);
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                            str  => PlanSchleifenwert'Wide_Wide_Image & ":" & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & ","
-                                            & Koordinaten.XAchse'Wide_Wide_Image);
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                       position => TextpositionDebug);
-            
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.TextAccess);
+         TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                                 TextExtern       => PlanSchleifenwert'Wide_Wide_Image & ":" & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & ","
+                                                                 & Koordinaten.XAchse'Wide_Wide_Image,
+                                                                 PositionExtern   => TextpositionDebug);
       
          TextbreiteDebug := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                                   TextbreiteExtern => TextbreiteDebug);

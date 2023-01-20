@@ -1,43 +1,31 @@
-with Sf.Graphics;
-
-private with Sf.Graphics.Color;
+with Sf.Graphics.Color;
 
 with MenueDatentypen;
 
 package TextfarbeGrafik is
    pragma Elaborate_Body;
-   use type Sf.Graphics.sfText_Ptr;
 
-   procedure AuswahlfarbeFestlegen
+   function AuswahlfarbeFestlegen
      (TextnummerExtern : in Natural;
-      AuswahlExtern : in Integer;
-      TextaccessExtern : in Sf.Graphics.sfText_Ptr)
-     with
-       Pre => (
-                 TextaccessExtern /= null
-              );
+      AuswahlExtern : in Integer)
+      return Sf.Graphics.Color.sfColor;
    
-   procedure Standardfarbe
-     (TextaccessExtern : in Sf.Graphics.sfText_Ptr)
-     with
-       Pre => (
-                 TextaccessExtern /= null
-              );
+   function Standardfarbe
+     return Sf.Graphics.Color.sfColor;
    
-   procedure FarbeEinfachmenü
+   function FarbeEinfachmenü
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       AktuelleAuswahlExtern : in Natural;
-      AktuellerTextExtern : in Positive;
-      TextaccessExtern : in Sf.Graphics.sfText_Ptr)
-     with
-       Pre => (
-                 TextaccessExtern /= null
-              );
+      AktuellerTextExtern : in Positive)
+      return Sf.Graphics.Color.sfColor;
+   
+   function FarbeDoppelmenü
+     (AktuellerTextExtern : in Positive;
+      AktuelleAuswahlExtern : in Natural)
+      return Sf.Graphics.Color.sfColor;
    
 private
    
    AktuelleEinstellung : Natural;
-   
-   Farbe : Sf.Graphics.Color.sfColor;
 
 end TextfarbeGrafik;

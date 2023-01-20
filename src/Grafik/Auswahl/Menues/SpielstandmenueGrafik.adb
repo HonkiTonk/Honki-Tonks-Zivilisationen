@@ -4,7 +4,6 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Ada.Calendar.Formatting; use Ada.Calendar.Formatting;
 
 with Sf.Graphics.Text;
-with Sf.Graphics.RenderWindow;
 
 with Views;
 with GrafikDatentypen;
@@ -20,8 +19,8 @@ with ViewsEinstellenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with NachGrafiktask;
-with EinstellungenGrafik;
 with TextfarbeGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body SpielstandmenueGrafik is
 
@@ -90,32 +89,28 @@ package body SpielstandmenueGrafik is
          
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
                                                                                     ViewbreiteExtern => ViewflächeExtern.x);
-         
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                          position => Textposition);
             
             if
               TextSchleifenwert = SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) - 1
               and
                 NachGrafiktask.LöschenAusgewählt
             then
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                          color => Sf.Graphics.Color.sfRed);
+               Farbe := Sf.Graphics.Color.sfRed;
                
             else
-               TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert - SystemKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition,
-                                                      AuswahlExtern    => AuswahlExtern,
-                                                      TextaccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
+               Farbe := TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert - SystemKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition,
+                                                               AuswahlExtern    => AuswahlExtern);
             end if;
-         
+            
+            TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
+                                                                     PositionExtern   => Textposition,
+                                                                     FarbeExtern      => Farbe);
+            
             InteraktionAuswahl.PositionenSpielstand (TextSchleifenwert - SystemKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition)
               := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
          
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
                                                                                 TextbreiteExtern => Textbreite);
-         
-            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               text         => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
          end if;
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,

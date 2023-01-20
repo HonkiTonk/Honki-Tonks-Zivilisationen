@@ -47,7 +47,7 @@ package body AllgemeineViewsGrafik is
       Textposition.y := 2.00 * TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                    PositionExtern   => Textposition);
+                                                          PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                                           TextbreiteExtern => 0.00);
@@ -104,7 +104,7 @@ package body AllgemeineViewsGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.VersionsnummerAccess,
-                                                    PositionExtern   => Textposition);
+                                                          PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,
                                                                           TextbreiteExtern => 0.00);
@@ -142,7 +142,7 @@ package body AllgemeineViewsGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                    PositionExtern   => Textposition);
+                                                          PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                                           TextbreiteExtern => 0.00);

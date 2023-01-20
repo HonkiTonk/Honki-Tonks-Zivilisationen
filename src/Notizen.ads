@@ -43,19 +43,16 @@ use type SpeziesDatentypen.Spieler_Enum;
 
 
 -- Ist das hier auch an anderen Stellen brauchbar? äöü
-Sf.Graphics.Text.setScale (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                           scale => (1.00, 1.00));
-
-Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                                    TextbreiteExtern => Textbreite);
-
+-- Bzw. überall einbauen und das aktuelle Viewflächensystem dadurch ersetzen oder erweitern?
 if
   Textbreite > MaximaleTextbreite
 then
-   Sf.Graphics.Text.scale (text    => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                           factors => (MaximaleTextbreite / Textbreite, 1.00));
+   Skalierung := (MaximaleTextbreite / Textbreite, 1.00);
    Textbreite := MaximaleTextbreite;
 
 else
-   null;
+   Skalierung := (1.00, 1.00);
 end if;
+
+TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                     SkalierungExtern => Skalierung);

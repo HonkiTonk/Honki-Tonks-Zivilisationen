@@ -67,6 +67,7 @@ private
    Leerwert : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
    TextpositionDebug : Sf.System.Vector2.sfVector2f;
+   Skalierung : Sf.System.Vector2.sfVector2f;
    
    Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    

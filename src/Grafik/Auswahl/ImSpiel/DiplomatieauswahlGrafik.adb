@@ -89,19 +89,17 @@ package body DiplomatieauswahlGrafik is
                      Fehlermeldungssystem.Grafik (FehlermeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung: Unbekannter Kontakt");
                      Text := TextKonstanten.LeerUnboundedString;
                end case;
-
-               TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
-                                                      AuswahlExtern    => AuswahlExtern,
-                                                      TextaccessExtern => TextaccessVariablen.TextAccess);
                
-               Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                                  str  => To_Wide_Wide_String (Source => Text));
+               TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                            TextExtern       => To_Wide_Wide_String (Source => Text),
+                                                            FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
+                                                                                                                       AuswahlExtern    => AuswahlExtern));
                
                Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                                        ViewbreiteExtern => ViewflächeExtern.x);
                
                TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
-                                                             PositionExtern   => Textposition);
+                                                                   PositionExtern   => Textposition);
                
                Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                                    TextbreiteExtern => Textbreite);

@@ -6,6 +6,19 @@ package TextaccessverwaltungssystemGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfText_Ptr;
    
+   procedure PositionFarbeZeichnen
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+              );
+   
    procedure TextFarbe
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
       TextExtern : in Wide_Wide_String;
@@ -51,37 +64,11 @@ package TextaccessverwaltungssystemGrafik is
                  -- Das hier funktioniert aktuell nicht mit dem Hauptmenü, später anpassen. äöü
                -- and
                --   PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
+               -- and
+               --   PositionExtern.y >= 0.00
               );
 
    procedure TextPositionZeichnen
-     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
-      TextExtern : in Wide_Wide_String;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 TextaccessExtern /= null
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
-   
-   procedure TextPositionStandardskalierungZeichnen
-     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
-      TextExtern : in Wide_Wide_String;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 TextaccessExtern /= null
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
-   
-   procedure TextPositionStandardskalierung
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
       TextExtern : in Wide_Wide_String;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
@@ -131,8 +118,8 @@ package TextaccessverwaltungssystemGrafik is
      with
        Pre => (
                  TextaccessExtern /= null
-               and
-                 PositionExtern.x >= 0.00
+                 -- and
+               --   PositionExtern.x >= 0.00
                and
                  PositionExtern.y >= 0.00
                and
@@ -141,9 +128,20 @@ package TextaccessverwaltungssystemGrafik is
                  SkalierungExtern.y >= 0.00
               );
    
-   procedure TextStandardskalierung
+   procedure Skalieren
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
-      TextExtern : in Wide_Wide_String)
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+               and
+                 SkalierungExtern.x >= 0.00
+               and
+                 SkalierungExtern.y >= 0.00
+              );
+   
+   procedure Zeichnen
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr)
      with
        Pre => (
                  TextaccessExtern /= null

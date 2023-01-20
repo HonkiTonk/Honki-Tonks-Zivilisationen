@@ -26,11 +26,15 @@ package body KampfsystemEinheitenLogik is
             return False;
             
          when False =>
-            KampfwerteVerteidiger.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => VerteidigerExtern);
-            KampfwerteVerteidiger.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => VerteidigerExtern);
+            KampfwerteVerteidiger.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => VerteidigerExtern,
+                                                                                                      LogikGrafikExtern          => True);
+            KampfwerteVerteidiger.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => VerteidigerExtern,
+                                                                                            LogikGrafikExtern          => True);
       
-            KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreiferExtern);
-            KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreiferExtern);
+            KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreiferExtern,
+                                                                                                    LogikGrafikExtern          => True);
+            KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreiferExtern,
+                                                                                          LogikGrafikExtern          => True);
       end case;
       
       if

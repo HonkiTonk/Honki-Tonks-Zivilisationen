@@ -230,12 +230,12 @@ package body BewegungsplanLogik is
                   
                   if
                     KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                                PlanschrittExtern        => 2)
+                                                                                                PlanschrittExtern          => 2)
                   then
                      null;
                      
                   else
-                     delay 0.20;
+                     delay until Clock + Bewegungsverzögerung;
                   end if;
                end if;
                

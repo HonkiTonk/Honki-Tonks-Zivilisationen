@@ -1,5 +1,3 @@
-with Ada.Calendar; use Ada.Calendar;
-
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.View;
 
@@ -33,14 +31,14 @@ package body CursorplatzierungAltGrafik is
       is
          when KartenKonstanten.LeerEAchse =>
             if
-              Ada.Calendar.Clock - Scrollzeit > ZeitKonstanten.ScrollverzögernMinimalzoom
+              Clock - Scrollzeit > ZeitKonstanten.ScrollverzögernMinimalzoom
               and
                 SichtweitenGrafik.SichtweiteLesen <= 4
             then
                null;
                 
             elsif
-              Ada.Calendar.Clock - Scrollzeit > ZeitKonstanten.Scrollverzögerung
+              Clock - Scrollzeit > ZeitKonstanten.Scrollverzögerung
               and
                 SichtweitenGrafik.SichtweiteLesen > 4
             then

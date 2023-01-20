@@ -101,11 +101,10 @@ package body BauauswahlEinheitenGrafik is
       InformationenSchleife:
       for InformationSchleifenwert in EinheitentexteArray'Range loop
          
-         TextfarbeGrafik.Standardfarbe (TextaccessExtern => TextaccessVariablen.TextAccess);
-         
-         TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
-                                                           TextExtern       => To_Wide_Wide_String (Source => Einheitentexte (InformationSchleifenwert)),
-                                                           PositionExtern   => Textposition);
+         TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                                      TextExtern       => To_Wide_Wide_String (Source => Einheitentexte (InformationSchleifenwert)),
+                                                                      PositionExtern   => Textposition,
+                                                                      FarbeExtern      => TextfarbeGrafik.Standardfarbe);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.TextAccess,
@@ -118,8 +117,8 @@ package body BauauswahlEinheitenGrafik is
       
       ViewflächeInformationen := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-      Einheitenbeschreibung (AuswahlExtern    => AuswahlExtern,
-                             SpeziesExtern      => SpeziesExtern);
+      Einheitenbeschreibung (AuswahlExtern => AuswahlExtern,
+                             SpeziesExtern => SpeziesExtern);
             
    end Einheiteninformationen;
    

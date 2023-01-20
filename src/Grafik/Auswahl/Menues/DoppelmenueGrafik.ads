@@ -25,11 +25,6 @@ private
    Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartgrößeView);
    
    Farbe : Sf.Graphics.Color.sfColor;
-
-   procedure FarbenFestlegen
-     (AktuellerTextExtern : in Positive;
-      AktuelleAuswahlExtern : in Natural;
-      WelchesMenüExtern : in MenueDatentypen.Menü_Doppelt_Enum);
    
    
    

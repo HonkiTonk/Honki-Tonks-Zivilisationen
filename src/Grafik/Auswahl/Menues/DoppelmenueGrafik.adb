@@ -1,18 +1,14 @@
 with Sf.Graphics.Text;
 
-with SpeziesDatentypen;
 with Views;
 with GrafikDatentypen;
 with TextaccessVariablen;
 with SystemKonstanten;
 with InteraktionAuswahl;
-with SpeziesKonstanten;
-
-with LeseSpeziesbelegung;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
-with TexteinstellungenGrafik;
+with TextfarbeGrafik;
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 with MenuestringsSetzenGrafik;
@@ -90,19 +86,17 @@ package body DoppelmenueGrafik is
       PositionenSchleife:
       for PositionSchleifenwert in SystemKonstanten.StandardArrayanpassung .. SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
-         FarbenFestlegen (AktuellerTextExtern   => PositionSchleifenwert,
-                          AktuelleAuswahlExtern => AktuelleAuswahlExtern + 1,
-                          WelchesMenüExtern     => WelchesMenüExtern);
-
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                            str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,
-                                                                                                 WelchesMenüExtern => WelchesMenüExtern));
+         TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
+                                                      TextExtern       => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,
+                                                                                                                       WelchesMenüExtern => WelchesMenüExtern),
+                                                      FarbeExtern      => TextfarbeGrafik.FarbeDoppelmenü (AktuellerTextExtern   => PositionSchleifenwert,
+                                                                                                            AktuelleAuswahlExtern => AktuelleAuswahlExtern + 1));
                   
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                                  ViewbreiteExtern => ViewflächeExtern.x);
          
          TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
-                                                       PositionExtern   => Textposition);
+                                                             PositionExtern   => Textposition);
 
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);
@@ -119,43 +113,5 @@ package body DoppelmenueGrafik is
       return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
 
    end TextpositionFestlegen;
-   
-   
-   
-   procedure FarbenFestlegen
-     (AktuellerTextExtern : in Positive;
-      AktuelleAuswahlExtern : in Natural;
-      WelchesMenüExtern : in MenueDatentypen.Menü_Doppelt_Enum)
-   is begin
-      
-      if
-        AktuelleAuswahlExtern = AktuellerTextExtern
-      then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
-         
-      elsif
-        AktuellerTextExtern - 1 in SpeziesKonstanten.Speziesanfang .. SpeziesKonstanten.Speziesende
-      then
-         case
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesDatentypen.Spezies_Verwendet_Enum'Val (AktuellerTextExtern - 1))
-         is
-            when SpeziesDatentypen.Mensch_Spieler_Enum =>
-               Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
-               
-            when SpeziesDatentypen.KI_Spieler_Enum =>
-               Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeKIText;
-               
-            when others =>
-               Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
-         end case;
-               
-      else
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
-      end if;
-   
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, AktuellerTextExtern),
-                                 color => Farbe);
-      
-   end FarbenFestlegen;
 
 end DoppelmenueGrafik;

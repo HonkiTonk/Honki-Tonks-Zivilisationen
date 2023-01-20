@@ -1,4 +1,4 @@
-private with Ada.Calendar;
+with Ada.Real_Time; use Ada.Real_Time;
 
 private with Sf.System.Vector2;
 
@@ -37,7 +37,7 @@ private
    
    XAchsenbereich : Float;
          
-   Scrollzeit : Ada.Calendar.Time := Ada.Calendar.Clock;
+   Scrollzeit : Time := Clock;
    
    XAchseÜbergänge : KartenRecords.KartenformXAchseRecord;
    

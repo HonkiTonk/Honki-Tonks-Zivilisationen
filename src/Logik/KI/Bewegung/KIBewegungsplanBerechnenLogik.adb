@@ -30,7 +30,7 @@ package body KIBewegungsplanBerechnenLogik is
          return False;
          
       else
-         PlanungErfolgreich := PlanenRekursiv (EinheitSpeziesNummerExtern   => EinheitSpeziesNummerExtern,
+         PlanungErfolgreich := PlanenRekursiv (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                AktuelleKoordinatenExtern  => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                                                AktuellePlanpositionExtern => 1);
       end if;
@@ -39,7 +39,7 @@ package body KIBewegungsplanBerechnenLogik is
         PlanungErfolgreich
       is
          when True =>
-            -- Das hier entfernen? Sollte vermutlich keine Bedutung mehr haben mit dem neuen System? äöü
+            -- Das hier entfernen? Sollte vermutlich keine Bedeutung mehr haben mit dem neuen System? äöü
             KIBewegungsplanVereinfachenLogik.Planvereinfachung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>

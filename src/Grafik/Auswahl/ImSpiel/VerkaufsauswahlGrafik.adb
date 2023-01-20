@@ -1,7 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.Text;
-with Sf.Graphics.RenderWindow;
 
 with Meldungstexte;
 with TextnummernKonstanten;
@@ -15,10 +14,10 @@ with AllgemeineViewsGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextberechnungenHoeheGrafik;
-with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
 with TextfarbeGrafik;
 with BauauswahlGebaeudeGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body VerkaufsauswahlGrafik is
 
@@ -31,12 +30,12 @@ package body VerkaufsauswahlGrafik is
                                           HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                           SpielenamenExtern => False);
       
-      Gebäude (AuswahlExtern    => AktuelleAuswahlExtern,
-                SpeziesExtern    => SpeziesExtern);
+      Gebäude (AuswahlExtern => AktuelleAuswahlExtern,
+               SpeziesExtern => SpeziesExtern);
       
       BauauswahlGebaeudeGrafik.Gebäudeinformationen (AuswahlExtern     => AktuelleAuswahlExtern,
-                                                      SpeziesExtern     => SpeziesExtern,
-                                                      ViewbereichExtern => ViewKonstanten.BaumenüGebäudeinformationenVerkaufen);
+                                                     SpeziesExtern     => SpeziesExtern,
+                                                     ViewbereichExtern => ViewKonstanten.BaumenüGebäudeinformationenVerkaufen);
       
    end Verkaufsauswahl;
    
@@ -68,15 +67,13 @@ package body VerkaufsauswahlGrafik is
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
          is
             when True =>
-               TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (GebäudeSchleifenwert),
-                                                      AuswahlExtern    => Natural (AuswahlExtern),
-                                                      TextaccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
-               
                Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                                                                        ViewbreiteExtern => Viewfläche.x);
-
-               Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
-                                             position => Textposition);
+               
+               TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
+                                                                        PositionExtern   => Textposition,
+                                                                        FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (GebäudeSchleifenwert),
+                                                                                                                                   AuswahlExtern    => Natural (AuswahlExtern)));
                                                                       
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                                TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
@@ -86,9 +83,6 @@ package body VerkaufsauswahlGrafik is
                                                                                            TextbreiteExtern => AktuelleTextbreite);
                
                InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
-               
-               Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                  text         => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
 
             when False =>
                null;

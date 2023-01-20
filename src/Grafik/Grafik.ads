@@ -1,4 +1,4 @@
-with Ada.Calendar;
+with Ada.Real_Time; use Ada.Real_Time;
 
 package Grafik is
    pragma Elaborate_Body;
@@ -7,7 +7,7 @@ package Grafik is
 
 private
 
-   Startzeit : Ada.Calendar.Time;
+   Startzeit : Time;
 
    procedure AnzeigeEingaben;
    procedure GrafikanpassungenVorFensterleerung;

@@ -38,8 +38,8 @@ private
    AktuelleAuswahl : Integer;
    
    Textbreite : Float;
-   ZusätzlicheTextbreite : Float;
    MaximaleTextbreite : Float;
+   Test : Float;
    
    Text : Unbounded_Wide_Wide_String;
    
@@ -51,6 +51,7 @@ private
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
    Textposition : Sf.System.Vector2.sfVector2f;
+   Skalierung : Sf.System.Vector2.sfVector2f;
    
    Anzeigebereich : Sf.Graphics.Rect.sfFloatRect;
 

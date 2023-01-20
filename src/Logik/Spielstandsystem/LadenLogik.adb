@@ -250,8 +250,8 @@ package body LadenLogik is
                
          elsif
            True = Spezieswerte (LadenPrüfenExtern => LadenPrüfenExtern,
-                               SpeziesExtern       => SpeziesSchleifenwert,
-                               DateiLadenExtern  => DateiLadenExtern)
+                                SpeziesExtern     => SpeziesSchleifenwert,
+                                DateiLadenExtern  => DateiLadenExtern)
          then
             null;
             

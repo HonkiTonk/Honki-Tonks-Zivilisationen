@@ -73,16 +73,15 @@ package body SprachauswahlGrafik is
               and
                 ZeileSchleifenwert < Ende)
          then
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SprachauswahlAccess,
-                                               str  => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
-            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SprachauswahlAccess,
-                                       color => AktuelleTextFarbe);
+            TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
+                                                         TextExtern       => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)),
+                                                         FarbeExtern      => AktuelleTextFarbe);
             
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                                                     ViewbreiteExtern => Viewfläche.x);
             
             TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
-                                                          PositionExtern   => Textposition);
+                                                                PositionExtern   => Textposition);
             
             NeueTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                                                     TextbreiteExtern => 0.00);

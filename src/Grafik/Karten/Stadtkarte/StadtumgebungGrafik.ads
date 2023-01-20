@@ -1,3 +1,5 @@
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
 
@@ -43,6 +45,8 @@ private
    Verbesserungsfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    
    Rahmendicke : Float;
+   
+   Text : Unbounded_Wide_Wide_String;
    
    Grundbelegung : StadtRecords.SpeziesStadtnummerRecord;
    

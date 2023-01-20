@@ -77,24 +77,30 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (20.01.2023):
+   -- Version 0.04.6450 => 0.04. (20.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (19.01.2023):
+   -- Version 0.04.6345 => 0.04.6450 (19.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Bei der Auswahl zwischen Stadt/Einheit und Transporter/Ladung werden zu lange Namen jetzt skaliert.
+   -- Festlegen der Farbe in das das Textaccessverwaltungssystem integriert.
+   -- Das Textaccessverwaltungssystem überall eingebaut.
+   -- Diagnosesystem erweitert.
+   -- Textskalierung vereinfacht und verbessert.
+   -- 'delay' durch 'delay until' ersetzt.
+   -- Lokale Pragmas erweitert.
+   -- Ermittlung der Kampfwerte von Einheiten angepasst, damit es bei gleichzeitigem Zugriff durch Logik und Grafik keine Probleme mehr gibt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/zusammengefasst.
    
    
 
-   -- Version 0.04.6345 => 0.04. (18.01.2023):
+   -- Version 0.04.6345 => 0.04.6345 (18.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

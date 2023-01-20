@@ -38,8 +38,10 @@ package body KampfsystemStadtLogik is
             KampfwerteVerteidiger.Verteidigung := KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
             KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
       
-            KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern);
-            KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern);
+            KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
+                                                                                                    LogikGrafikExtern          => True);
+            KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
+                                                                                          LogikGrafikExtern          => True);
       end case;
       
       if

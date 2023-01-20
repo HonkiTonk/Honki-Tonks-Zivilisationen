@@ -13,7 +13,8 @@ package KampfwerteEinheitErmittelnLogik is
    use type KampfDatentypen.KampfwerteGroß;
    
    function Gesamtverteidigung
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      LogikGrafikExtern : in Boolean)
       return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
@@ -27,7 +28,8 @@ package KampfwerteEinheitErmittelnLogik is
                );
    
    function Gesamtangriff
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      LogikGrafikExtern : in Boolean)
       return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
@@ -42,14 +44,19 @@ package KampfwerteEinheitErmittelnLogik is
    
 private
    
-   Grundverteidigung : KampfDatentypen.KampfwerteEinheiten;
-   Bonusverteidigung : KampfDatentypen.KampfwerteAllgemein;
-   GesamteVerteidigung : KampfDatentypen.KampfwerteGroß;
-   Grundangriff : KampfDatentypen.KampfwerteEinheiten;
-   Bonusangriff : KampfDatentypen.KampfwerteAllgemein;
-   GesamterAngriff : KampfDatentypen.KampfwerteGroß;
-   
    Verschanzungsbonus : constant Float := 1.25;
+   
+   type GrundArray is array (Boolean'Range) of KampfDatentypen.KampfwerteEinheiten;
+   Grundverteidigung : GrundArray;
+   Grundangriff : GrundArray;
+   
+   type BonusArray is array (GrundArray'Range) of KampfDatentypen.KampfwerteAllgemein;
+   Bonusverteidigung : BonusArray;
+   Bonusangriff : BonusArray;
+   
+   type GesamtArray is array (GrundArray'Range) of KampfDatentypen.KampfwerteGroß;
+   GesamteVerteidigung : GesamtArray;
+   GesamterAngriff : GesamtArray;
    
    
    

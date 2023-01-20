@@ -129,7 +129,7 @@ package body AllgemeinesSeitenleisteGrafik is
          is
             when True =>
                TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                             PositionExtern   => (Textposition.x, RealeYPosition));
+                                                                   PositionExtern   => (Textposition.x, RealeYPosition));
                
                RealeYPosition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => RealeYPosition,
                                                                                TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),

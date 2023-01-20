@@ -1,6 +1,5 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with SystemKonstanten;
@@ -9,7 +8,7 @@ with KartenKonstanten;
 with TextKonstanten;
 with TextaccessVariablen;
 
-with EinstellungenGrafik;
+with TextaccessverwaltungssystemGrafik;
 with MenuestringsSetzenGrafik;
 with KartengeneratorVariablenLogik;
 with TextberechnungenBreiteGrafik;
@@ -29,8 +28,7 @@ package body ZusatztextKartengroesseGrafik is
       Rückgabewert := PositionFestlegen (ViewflächeExtern      => ViewflächeExtern,
                                           RealeViewbreiteExtern => RealeViewbreiteExtern);
       
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                         text         => TextaccessVariablen.ZusatztextKartengrößeAccess (1));
+      TextaccessverwaltungssystemGrafik.Zeichnen (TextaccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1));
       
       case
         AktuelleAuswahlExtern
@@ -39,8 +37,7 @@ package body ZusatztextKartengroesseGrafik is
             null;
             
          when others =>
-            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               text         => TextaccessVariablen.ZusatztextKartengrößeAccess (2));
+            TextaccessverwaltungssystemGrafik.Zeichnen (TextaccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2));
       end case;
       
       return Rückgabewert;

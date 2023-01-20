@@ -42,7 +42,7 @@ package body SpielmeldungenGrafik is
                                                                               ViewbreiteExtern => Viewfläche.x);
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.Spielmeldung,
-                                                    PositionExtern   => Textposition);
+                                                          PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.Spielmeldung,

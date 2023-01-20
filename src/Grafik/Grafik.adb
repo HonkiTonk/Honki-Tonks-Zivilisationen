@@ -1,5 +1,3 @@
-with Ada.Calendar; use Ada.Calendar;
-
 with GrafikDatentypen;
 with ZeitKonstanten;
 
@@ -34,7 +32,7 @@ package body Grafik is
       GrafikStartenSchleife:
       while NachGrafiktask.ErzeugeFenster = False loop
 
-         delay ZeitKonstanten.WartezeitGrafik;
+         delay until Clock + ZeitKonstanten.WartezeitGrafik;
          
       end loop GrafikStartenSchleife;
       
@@ -43,7 +41,7 @@ package body Grafik is
       FensterGrafik.FensterErzeugen;
       
       -- Diagnoseinformationen.Größenprüfung;
-      Startzeit := Ada.Calendar.Clock;
+      Startzeit := Clock;
       
       GrafikSchleife:
       loop
@@ -154,15 +152,15 @@ package body Grafik is
             -- Wenn ich diese schreckliche Introlösung ersetze, dann die Sprachauswahl auch in die Menüs verschieben? äöü
          when GrafikDatentypen.Grafik_Sprache_Enum =>
             SprachauswahlGrafik.Sprachauswahl;
-            Startzeit := Ada.Calendar.Clock;
+            Startzeit := Clock;
                
          when GrafikDatentypen.Grafik_Intro_Enum =>
             IntroGrafik.Intro;
             
             -- Später eine bessere Variante dafür bauen. äöü
             if
-            --  Startzeit + ZeitKonstanten.Introzeit < Ada.Calendar.Clock
-             -- or
+              Startzeit + ZeitKonstanten.Introzeit < Clock
+              or
                 NachGrafiktask.IntroAnzeigen = False
             then
                NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
@@ -173,7 +171,7 @@ package body Grafik is
             end if;
             
          when GrafikDatentypen.Grafik_Pause_Enum =>
-            delay ZeitKonstanten.WartezeitGrafik;
+            delay until Clock + ZeitKonstanten.WartezeitGrafik;
             
          when GrafikDatentypen.Ladezeiten_Enum'Range =>
             LadezeitenGrafik.Ladezeiten (WelcheLadeanzeigeExtern => NachGrafiktask.AktuelleDarstellung,
@@ -245,7 +243,7 @@ package body Grafik is
       end case;
       
       if
-        Ada.Calendar.Clock - NachGrafiktask.StartzeitSpielmeldung > ZeitKonstanten.AnzeigezeitSpielmeldungen
+        Clock - NachGrafiktask.StartzeitSpielmeldung > ZeitKonstanten.AnzeigezeitSpielmeldungen
       then
          NachGrafiktask.Spielmeldung := 0;
          

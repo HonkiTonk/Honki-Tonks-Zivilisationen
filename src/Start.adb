@@ -1,6 +1,9 @@
 with Ada.Task_Identification; use Ada.Task_Identification;
 with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Real_Time; use Ada.Real_Time;
+
+with ZeitKonstanten;
 
 with StartLogik;
 with Grafik;
@@ -138,7 +141,7 @@ begin
          exit TaskIDsBelegenLassenSchleife;
 
       else
-         delay 0.02;
+         delay until Clock + ZeitKonstanten.WartezeitStart;
       end if;
 
    end loop TaskIDsBelegenLassenSchleife;
@@ -158,7 +161,7 @@ begin
             exit SpielLäuftSchleife;
 
          when False =>
-            delay 0.20;
+            delay until Clock + ZeitKonstanten.WartezeitStart;
       end case;
 
       case

@@ -1,24 +1,28 @@
+with Ada.Real_Time; use Ada.Real_Time;
+
 package ZeitKonstanten is
-   pragma Preelaborate;
+   pragma Elaborate_Body;
+   
+   WartezeitStart : constant Time_Span := Milliseconds (2);
    
    -- Wird das so überhaupt benötigt?
-   WartezeitLogik : constant Duration := 0.20;
-   WartezeitGrafik : constant Duration := 0.0002;
-   WartezeitMusik : constant Duration := 0.20;
-   WartezeitSound : constant Duration := 0.20;
+   WartezeitLogik : constant Time_Span := Milliseconds (2);
+   WartezeitGrafik : constant Time_Span := Milliseconds (2);
+   WartezeitMusik : constant Time_Span := Milliseconds (2);
+   WartezeitSound : constant Time_Span := Milliseconds (2);
 
-   WartezeitEingabe : constant Duration := 0.0002;
+   WartezeitEingabe : constant Time_Span := Milliseconds (2);
    
    -- Intervalle durch Nutzer einstellen lassen? äöü
-   Blinkintervall : constant Duration := 0.50;
+   Blinkintervall : constant Time_Span := Milliseconds (500);
    
    -- Das hier vom Nutzer einstellbar machen. äöü
-   AnzeigezeitSpielmeldungen : constant Duration := 2.00;
+   AnzeigezeitSpielmeldungen : constant Time_Span := Milliseconds (2_000);
    
    -- Das hier vom Nutzer einstellbar machen. äöü
-   Scrollverzögerung : Duration := 0.02;
-   ScrollverzögernMinimalzoom : Duration := 0.05;
+   Scrollverzögerung : constant Time_Span := Milliseconds (20);
+   ScrollverzögernMinimalzoom : constant Time_Span := Milliseconds (50);
    
-   Introzeit : constant Duration := 5.00;
-
+   Introzeit : constant Time_Span := Milliseconds (5_000);
+   
 end ZeitKonstanten;

@@ -1,6 +1,3 @@
-with Sf.Graphics.Text;
-with Sf.Graphics.RenderWindow;
-
 with Views;
 with GrafikDatentypen;
 with TextnummernKonstanten;
@@ -18,8 +15,8 @@ with TextberechnungenHoeheGrafik;
 with ViewsEinstellenGrafik;
 with TextfarbeGrafik;
 with ZeilenumbruchberechnungGrafik;
-with EinstellungenGrafik;
 with GebaeudebeschreibungenGrafik;
+with TextaccessverwaltungssystemGrafik;
 
 package body BauauswahlGebaeudeGrafik is
 
@@ -91,16 +88,10 @@ package body BauauswahlGebaeudeGrafik is
       InformationenSchleife:
       for InformationSchleifenwert in GebäudetexteArray'Range loop
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
-                                            str  => To_Wide_Wide_String (Source => Gebäudetexte (InformationSchleifenwert)));
-         
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.TextAccess,
-                                       position => Textposition);
-         
-         TextfarbeGrafik.Standardfarbe (TextaccessExtern => TextaccessVariablen.TextAccess);
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.TextAccess);
+         TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                                      TextExtern       => To_Wide_Wide_String (Source => Gebäudetexte (InformationSchleifenwert)),
+                                                                      PositionExtern   => Textposition,
+                                                                      FarbeExtern      => TextfarbeGrafik.Standardfarbe);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.TextAccess,
@@ -147,17 +138,13 @@ package body BauauswahlGebaeudeGrafik is
          when others =>
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                          position => Textposition);
             
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                               str  => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
-                                                                                                                                                                                     SpeziesExtern => SpeziesExtern),
-                                                                                                              TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x));
-         
-            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               text         => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern));
+            TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
+                                                                    TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
+                                                                      (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
+                                                                                                                                              SpeziesExtern => SpeziesExtern),
+                                                                       TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x),
+                                                                    PositionExtern   => Textposition);
             
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                             TextAccessExtern => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),

@@ -72,7 +72,6 @@ package EinheitenRecords is
       KIZielKoordinatenNachfolger : KartenRecords.AchsenKartenfeldNaturalRecord;
       KIBeschäftigtNachfolger : KIDatentypen.Einheit_Aufgabe_Enum;
       KIVerbesserung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-      -- KIBewegungPlan : KIBewegungPlanArray;
       
       Transportiert : TransporterArray;
       WirdTransportiert : EinheitenDatentypen.MaximaleEinheitenMitNullWert;

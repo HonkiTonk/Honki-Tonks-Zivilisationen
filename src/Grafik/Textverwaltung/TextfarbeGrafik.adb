@@ -1,55 +1,51 @@
-with Sf.Graphics.Text;
-
 with KartenartDatentypen;
 with SystemKonstanten;
 with SpielDatentypen;
+with SpeziesKonstanten;
+with SpeziesDatentypen;
 
 with LeseAllgemeines;
+with LeseSpeziesbelegung;
 
 with KartengeneratorVariablenLogik;
 with TexteinstellungenGrafik;
 
 package body TextfarbeGrafik is
 
-   -- Das heir alles in Funktionen umwandeln und hier nicht setzen? äöü
-   procedure AuswahlfarbeFestlegen
+   function AuswahlfarbeFestlegen
      (TextnummerExtern : in Natural;
-      AuswahlExtern : in Integer;
-      TextaccessExtern : in Sf.Graphics.sfText_Ptr)
+      AuswahlExtern : in Integer)
+      return Sf.Graphics.Color.sfColor
    is begin
       
       if
         AuswahlExtern = TextnummerExtern
       then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+         return TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
             
       else
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
+         return Standardfarbe;
       end if;
-      
-      Sf.Graphics.Text.setColor (text  => TextaccessExtern,
-                                 color => Farbe);
       
    end AuswahlfarbeFestlegen;
    
    
    
-   procedure Standardfarbe
-     (TextaccessExtern : in Sf.Graphics.sfText_Ptr)
+   function Standardfarbe
+     return Sf.Graphics.Color.sfColor
    is begin
       
-      Sf.Graphics.Text.setColor (text  => TextaccessExtern,
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+      return TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
       
    end Standardfarbe;
    
    
    
-   procedure FarbeEinfachmenü
+   function FarbeEinfachmenü
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       AktuelleAuswahlExtern : in Natural;
-      AktuellerTextExtern : in Positive;
-      TextaccessExtern : in Sf.Graphics.sfText_Ptr)
+      AktuellerTextExtern : in Positive)
+      return Sf.Graphics.Color.sfColor
    is begin
             
       case
@@ -74,20 +70,54 @@ package body TextfarbeGrafik is
       if
         AktuellerTextExtern = AktuelleAuswahlExtern
       then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+         return TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
          
       elsif
         AktuelleEinstellung = AktuellerTextExtern
       then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
+         return TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
       
       else
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
+         return Standardfarbe;
       end if;
-   
-      Sf.Graphics.Text.setColor (text  => TextaccessExtern,
-                                 color => Farbe);
       
    end FarbeEinfachmenü;
+   
+   
+   
+   function FarbeDoppelmenü
+     (AktuellerTextExtern : in Positive;
+      AktuelleAuswahlExtern : in Natural)
+      return Sf.Graphics.Color.sfColor
+   is begin
+      
+      if
+        AktuelleAuswahlExtern = AktuellerTextExtern
+      then
+         return TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+         
+      elsif
+        AktuellerTextExtern - 1 in SpeziesKonstanten.Speziesanfang .. SpeziesKonstanten.Speziesende
+      then
+         case
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesDatentypen.Spezies_Verwendet_Enum'Val (AktuellerTextExtern - 1))
+         is
+            when SpeziesDatentypen.Mensch_Spieler_Enum =>
+               return TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
+               
+            when SpeziesDatentypen.KI_Spieler_Enum =>
+               return TexteinstellungenGrafik.Schriftfarben.FarbeKIText;
+               
+            when others =>
+               null;
+         end case;
+               
+      else
+         null;
+      end if;
+      
+      return Standardfarbe;
+      
+   end FarbeDoppelmenü;
 
 end TextfarbeGrafik;

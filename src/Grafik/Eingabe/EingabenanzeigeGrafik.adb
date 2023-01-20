@@ -1,4 +1,3 @@
-with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with EinheitenDatentypen;
@@ -11,7 +10,6 @@ with TextnummernKonstanten;
 with LeseStadtGebaut;
 with LeseEinheitenGebaut;
 
-with EinstellungenGrafik;
 with EinheitenbeschreibungenGrafik;
 with TextberechnungenHoeheGrafik;
 with InteraktionAuswahl;
@@ -159,15 +157,13 @@ package body EingabenanzeigeGrafik is
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
          
-         TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert,
-                                                AuswahlExtern    => AktuelleAuswahl,
-                                                TextaccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert));
-         
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
                                                                                  ViewbreiteExtern => Viewfläche.x);
          
-         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
-                                       position => Textposition);
+         TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
+                                                                  PositionExtern   => Textposition,
+                                                                  FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert,
+                                                                                                                             AuswahlExtern    => AktuelleAuswahl));
          
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);
@@ -178,9 +174,6 @@ package body EingabenanzeigeGrafik is
          
          
          InteraktionAuswahl.PositionenJaNein (TextSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.JaNeinAccess (TextSchleifenwert));
-         
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                            text         => TextaccessVariablen.JaNeinAccess (TextSchleifenwert));
          
       end loop TextSchleife;
             
@@ -261,18 +254,13 @@ package body EingabenanzeigeGrafik is
             null;
             
          else
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                               str  => To_Wide_Wide_String (Source => Text));
+            TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                                         TextExtern       => To_Wide_Wide_String (Source => Text),
+                                                         FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Natural (AuswahlSchleifenwert),
+                                                                                                                    AuswahlExtern    => AktuelleAuswahlExtern));
             
-            TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Natural (AuswahlSchleifenwert),
-                                                   AuswahlExtern    => AktuelleAuswahlExtern,
-                                                   TextaccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
-            
-            Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                                                    ViewbreiteExtern => Viewfläche.x);
-            
-            Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                          position => Textposition);
+            Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                                                                                  ViewbreiteExtern => Viewfläche.x);
             
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                                                 TextbreiteExtern => Textbreite);
@@ -280,19 +268,19 @@ package body EingabenanzeigeGrafik is
             if
               Textbreite > MaximaleTextbreite
             then
-               Sf.Graphics.Text.setScale (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                          scale => (MaximaleTextbreite / Textbreite, 1.00));
+               Skalierung := (MaximaleTextbreite / Textbreite, 1.00);
+               Textbreite := MaximaleTextbreite;
                
             else
-               Sf.Graphics.Text.setScale (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                          scale => (Textbreite / MaximaleTextbreite, 1.00));
+               Skalierung := (1.00, 1.00);
             end if;
             
-            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               text         => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
+            TextaccessverwaltungssystemGrafik.PositionSkalierenZeichnen (TextaccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                                                         PositionExtern   => Textposition,
+                                                                         SkalierungExtern => Skalierung);
             
             InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
-                        
+            
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                             TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);

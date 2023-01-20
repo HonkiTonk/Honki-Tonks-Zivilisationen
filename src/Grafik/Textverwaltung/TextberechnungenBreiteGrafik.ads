@@ -29,7 +29,18 @@ package TextberechnungenBreiteGrafik is
                  ViewbreiteExtern >= 0.00
               );
    
-   function HalbeBreiteBerechnen
+   function MittelpositionBerechnenGlobaleGrenzen
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      ViewbreiteExtern : in Float)
+      return Float
+     with
+       Pre => (
+                 TextAccessExtern /= null
+               and
+                 ViewbreiteExtern >= 0.00
+              );
+   
+   function HalbeBreiteBerechnenGlobaleGrenzen
      (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
       return Float
      with
@@ -38,7 +49,7 @@ package TextberechnungenBreiteGrafik is
               ),
          
        Post => (
-                  HalbeBreiteBerechnen'Result >= 0.00
+                  HalbeBreiteBerechnenGlobaleGrenzen'Result >= 0.00
                );
    
    function NeueTextbreiteErmitteln

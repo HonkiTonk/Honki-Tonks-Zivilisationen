@@ -34,8 +34,8 @@ package body AbspannGrafik is
             
          when GrafikDatentypen.Gewonnen_Enum | GrafikDatentypen.Verloren_Enum =>
             HintergrundGrafik.Spezieshintergrund (SpeziesExtern       => SpeziesExtern,
-                                                 HintergrundExtern => AbspannExtern,
-                                                 AbmessungenExtern => Viewfläche);
+                                                  HintergrundExtern => AbspannExtern,
+                                                  AbmessungenExtern => Viewfläche);
             
             Viewfläche := Gewonnen (ViewflächeExtern => Viewfläche);
       end case;
@@ -62,7 +62,7 @@ package body AbspannGrafik is
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
          TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
-                                                       PositionExtern   => Textposition);
+                                                             PositionExtern   => Textposition);
          
       end loop AllgemeinSchleife;
       
@@ -89,7 +89,7 @@ package body AbspannGrafik is
       Textbreite := NeueViewfläche.x;
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
-                                                    PositionExtern   => Textposition);
+                                                          PositionExtern   => Textposition);
       
       return (Textbreite, Textposition.y);
       
@@ -113,7 +113,7 @@ package body AbspannGrafik is
       Textbreite := NeueViewfläche.x;
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
-                                                    PositionExtern   => Textposition);
+                                                          PositionExtern   => Textposition);
       
       return (Textbreite, Textposition.y);
       
