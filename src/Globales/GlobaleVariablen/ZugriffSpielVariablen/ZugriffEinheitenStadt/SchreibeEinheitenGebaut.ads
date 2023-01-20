@@ -332,6 +332,7 @@ package SchreibeEinheitenGebaut is
               );
    
    procedure Standardeinstellungen;
+   procedure Standardbewegungsplan;
    
 private
    

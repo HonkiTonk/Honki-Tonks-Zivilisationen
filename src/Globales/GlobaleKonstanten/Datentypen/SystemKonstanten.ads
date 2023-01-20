@@ -35,11 +35,11 @@ package SystemKonstanten is
                                            MenueDatentypen.Kartenpole_Menü_Enum         => 8,
 
                                            -- Doppelte Menüs.
-                                           MenueDatentypen.Spezies_Menü_Enum             => 21,
+                                           MenueDatentypen.Spezies_Menü_Enum            => 21,
                                            MenueDatentypen.Kartenform_Menü_Enum         => 14,
 
                                            -- Steuerungsmenü.
-                                           MenueDatentypen.Steuerung_Menü_Enum          => 62,
+                                           MenueDatentypen.Steuerung_Menü_Enum          => 63,
 
                                            -- Spielstandmenü
                                            MenueDatentypen.Spielstand_Menü_Enum         => 15
@@ -91,9 +91,9 @@ package SystemKonstanten is
    AllgemeineSteuerungEnumausgleich : constant Positive := AllgemeineSteuerung - 1;
    Einheitensteuerung : constant Positive := 25;
    EinheitensteuerungEnumausgleich : constant Positive := Einheitensteuerung - 1;
-   Stadtsteuerung : constant Positive := 51;
+   Stadtsteuerung : constant Positive := 52;
    StadtsteuerungEnumausgleich : constant Positive := Stadtsteuerung - 1;
-   SonstigesSteuerung : constant Positive := 58;
+   SonstigesSteuerung : constant Positive := 59;
    -- Steuerung
 
 end SystemKonstanten;

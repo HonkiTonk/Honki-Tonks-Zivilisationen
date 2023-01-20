@@ -11,7 +11,7 @@ package GlobaleTexte is
    
    SprachenEinlesen : TexteArray (1 .. 100);
             
-   Beschäftigungen : TexteArray (1 .. NameBeschreibungMultiplikator * 11) := (others => TextKonstanten.FehlenderText);
+   Beschäftigungen : TexteArray (1 .. NameBeschreibungMultiplikator * 12) := (others => TextKonstanten.FehlenderText);
    Würdigung : TexteArray (1 .. 1) := (others => TextKonstanten.FehlenderText);
    DiplomatieKI : TexteArray (1 .. 3) := (others => TextKonstanten.FehlenderText);
    Handelsmenü : TexteArray (1 .. 10) := (others => TextKonstanten.FehlenderText);

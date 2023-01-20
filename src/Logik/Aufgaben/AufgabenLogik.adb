@@ -25,6 +25,7 @@ with UmwandlungenVerschiedeneDatentypen;
 with JaNeinLogik;
 with MeldungFestlegenLogik;
 with NachGrafiktask;
+with EffekteEntfernenLogik;
 
 package body AufgabenLogik is
    
@@ -36,17 +37,17 @@ package body AufgabenLogik is
    is begin
       
       case
-        Anfangstest (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
+        Anfangstest (SpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
                      EinheitartExtern   => LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)),
+                                                                                IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)),
                      BefehlExtern       => BefehlExtern,
                      VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern))
       is
          when True =>
             return AufgabeFestlegen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                     BefehlExtern             => BefehlExtern,
-                                     AnlegenTestenExtern      => False,
-                                     KoordinatenExtern        => KoordinatenExtern);
+                                     BefehlExtern               => BefehlExtern,
+                                     AnlegenTestenExtern        => False,
+                                     KoordinatenExtern          => KoordinatenExtern);
             
          when False =>
             return False;
@@ -258,7 +259,12 @@ package body AufgabenLogik is
             return RodenErmittelnLogik.RodenErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        AnlegenTestenExtern      => AnlegenTestenExtern,
                                                        KoordinatenExtern        => KoordinatenExtern);
-         
+            
+         when BefehleDatentypen.Effekte_Entfernen_Enum =>
+            return EffekteEntfernenLogik.EffekteEntfernen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                           AnlegenTestenExtern        => AnlegenTestenExtern,
+                                                           KoordinatenExtern          => KoordinatenExtern);
+            
          when BefehleDatentypen.Heilen_Enum =>
             return EinheitHeilenLogik.EinheitHeilen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                      AnlegenTestenExtern      => AnlegenTestenExtern);

@@ -485,5 +485,14 @@ package body SchreibeEinheitenGebaut is
       GebautVariablen.EinheitenGebaut := (others => (others => EinheitenRecordKonstanten.LeerEinheit));
       
    end Standardeinstellungen;
+   
+   
+   
+   procedure Standardbewegungsplan
+   is begin
+      
+      GebautVariablen.EinheitenBewegungsplan := (others => (others => (others => KartenRecordKonstanten.LeerKoordinate)));
+      
+   end Standardbewegungsplan;
 
 end SchreibeEinheitenGebaut;

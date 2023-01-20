@@ -5,6 +5,7 @@ with AufgabenDatentypen;
 with SystemDatentypen;
 with BefehleDatentypen;
 with ForschungsdatenbankRecord;
+with KartengrundDatentypen;
 
 package ForschungKonstanten is
    pragma Pure;
@@ -224,6 +225,97 @@ package ForschungKonstanten is
                                                                   SpeziesDatentypen.Talbidahr_Enum        => 20
                                                                  )
                                                               );
+   
+   type TechnologieEffektentfernungArray is array (KartengrundDatentypen.Effekt_Kartenfeld_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
+   StandardtechnologieEffektentfernung : constant TechnologieEffektentfernungArray := (
+                                                                                       KartengrundDatentypen.Atomar_Enum =>
+                                                                                         (
+                                                                                          SpeziesDatentypen.Menschen_Enum         => 0,
+                                                                                          SpeziesDatentypen.Kasrodiah_Enum        => 0,
+                                                                                          SpeziesDatentypen.Lasupin_Enum          => 0,
+                                                                                          SpeziesDatentypen.Lamustra_Enum         => 0,
+                                                                                          SpeziesDatentypen.Manuky_Enum           => 0,
+                                                                                          SpeziesDatentypen.Suroka_Enum           => 0,
+                                                                                          SpeziesDatentypen.Pryolon_Enum          => 0,
+                                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => 0,
+                                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => 0,
+                                                                                          SpeziesDatentypen.Carupex_Enum          => 0,
+                                                                                          SpeziesDatentypen.Alary_Enum            => 0,
+                                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => 0,
+                                                                                          SpeziesDatentypen.Tridatus_Enum         => 0,
+                                                                                          SpeziesDatentypen.Senelari_Enum         => 0,
+                                                                                          SpeziesDatentypen.Aspari_2_Enum         => 0,
+                                                                                          SpeziesDatentypen.Ekropa_Enum           => 0,
+                                                                                          SpeziesDatentypen.Tesorahn_Enum         => 0,
+                                                                                          SpeziesDatentypen.Talbidahr_Enum        => 0
+                                                                                         ),
+                                                                                       
+                                                                                       KartengrundDatentypen.Biologisch_Enum =>
+                                                                                         (
+                                                                                          SpeziesDatentypen.Menschen_Enum         => 0,
+                                                                                          SpeziesDatentypen.Kasrodiah_Enum        => 0,
+                                                                                          SpeziesDatentypen.Lasupin_Enum          => 0,
+                                                                                          SpeziesDatentypen.Lamustra_Enum         => 0,
+                                                                                          SpeziesDatentypen.Manuky_Enum           => 0,
+                                                                                          SpeziesDatentypen.Suroka_Enum           => 0,
+                                                                                          SpeziesDatentypen.Pryolon_Enum          => 0,
+                                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => 0,
+                                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => 0,
+                                                                                          SpeziesDatentypen.Carupex_Enum          => 0,
+                                                                                          SpeziesDatentypen.Alary_Enum            => 0,
+                                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => 0,
+                                                                                          SpeziesDatentypen.Tridatus_Enum         => 0,
+                                                                                          SpeziesDatentypen.Senelari_Enum         => 0,
+                                                                                          SpeziesDatentypen.Aspari_2_Enum         => 0,
+                                                                                          SpeziesDatentypen.Ekropa_Enum           => 0,
+                                                                                          SpeziesDatentypen.Tesorahn_Enum         => 0,
+                                                                                          SpeziesDatentypen.Talbidahr_Enum        => 0
+                                                                                         ),
+                                                                                       
+                                                                                       KartengrundDatentypen.Chemisch_Enum =>
+                                                                                         (
+                                                                                          SpeziesDatentypen.Menschen_Enum         => 0,
+                                                                                          SpeziesDatentypen.Kasrodiah_Enum        => 0,
+                                                                                          SpeziesDatentypen.Lasupin_Enum          => 0,
+                                                                                          SpeziesDatentypen.Lamustra_Enum         => 0,
+                                                                                          SpeziesDatentypen.Manuky_Enum           => 0,
+                                                                                          SpeziesDatentypen.Suroka_Enum           => 0,
+                                                                                          SpeziesDatentypen.Pryolon_Enum          => 0,
+                                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => 0,
+                                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => 0,
+                                                                                          SpeziesDatentypen.Carupex_Enum          => 0,
+                                                                                          SpeziesDatentypen.Alary_Enum            => 0,
+                                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => 0,
+                                                                                          SpeziesDatentypen.Tridatus_Enum         => 0,
+                                                                                          SpeziesDatentypen.Senelari_Enum         => 0,
+                                                                                          SpeziesDatentypen.Aspari_2_Enum         => 0,
+                                                                                          SpeziesDatentypen.Ekropa_Enum           => 0,
+                                                                                          SpeziesDatentypen.Tesorahn_Enum         => 0,
+                                                                                          SpeziesDatentypen.Talbidahr_Enum        => 0
+                                                                                         ),
+                                                                                       
+                                                                                       KartengrundDatentypen.Verschmutzt_Enum =>
+                                                                                         (
+                                                                                          SpeziesDatentypen.Menschen_Enum         => 0,
+                                                                                          SpeziesDatentypen.Kasrodiah_Enum        => 0,
+                                                                                          SpeziesDatentypen.Lasupin_Enum          => 0,
+                                                                                          SpeziesDatentypen.Lamustra_Enum         => 0,
+                                                                                          SpeziesDatentypen.Manuky_Enum           => 0,
+                                                                                          SpeziesDatentypen.Suroka_Enum           => 0,
+                                                                                          SpeziesDatentypen.Pryolon_Enum          => 0,
+                                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => 0,
+                                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => 0,
+                                                                                          SpeziesDatentypen.Carupex_Enum          => 0,
+                                                                                          SpeziesDatentypen.Alary_Enum            => 0,
+                                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => 0,
+                                                                                          SpeziesDatentypen.Tridatus_Enum         => 0,
+                                                                                          SpeziesDatentypen.Senelari_Enum         => 0,
+                                                                                          SpeziesDatentypen.Aspari_2_Enum         => 0,
+                                                                                          SpeziesDatentypen.Ekropa_Enum           => 0,
+                                                                                          SpeziesDatentypen.Tesorahn_Enum         => 0,
+                                                                                          SpeziesDatentypen.Talbidahr_Enum        => 0
+                                                                                         )
+                                                                                      );
       
    type TechnologieUmgebungsgrößeArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
    StandardtechnologieUmgebungsgröße : constant TechnologieUmgebungsgrößeArray := (

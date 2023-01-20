@@ -134,9 +134,10 @@ package body LadenLogik is
       LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
       
       Leerwert := SpezieswerteLaden (LadenPrüfenExtern => True,
-                                    DateiLadenExtern  => DateiLadenExtern);
+                                     DateiLadenExtern  => DateiLadenExtern);
       LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
-               
+      
+      SchreibeEinheitenGebaut.Standardbewegungsplan;
       LadezeitenLogik.SpeichernLadenMaximum;
       
    end Ladevorgang;
@@ -290,7 +291,7 @@ package body LadenLogik is
          is
             when True =>
                SchreibeEinheitenGebaut.GanzerEintrag (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert),
-                                                      EintragExtern            => Einheit);
+                                                      EintragExtern              => Einheit);
             
             when False =>
                null;

@@ -72,6 +72,7 @@ package TastenbelegungStandard is
                                                                                            BefehleDatentypen.Festung_Bauen_Enum      => Sf.Window.Keyboard.sfKeyS,
                                                                                            BefehleDatentypen.Wald_Aufforsten_Enum    => Sf.Window.Keyboard.sfKeyW,
                                                                                            BefehleDatentypen.Roden_Trockenlegen_Enum => Sf.Window.Keyboard.sfKeyR,
+                                                                                           BefehleDatentypen.Effekte_Entfernen_Enum  => Sf.Window.Keyboard.sfKeyT,
                                                                    
                                                                                            -- Einheitenbefehle Allgemein
                                                                                            BefehleDatentypen.Heilen_Enum             => Sf.Window.Keyboard.sfKeyH,

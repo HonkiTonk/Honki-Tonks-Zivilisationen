@@ -10,6 +10,9 @@ with KartenRecords;
 package EinheitendatenbankRecord is
    pragma Preelaborate;
 
+   -- Damit sollen mehrere Effekte auf einmal möglich sein. Wenn der Leerwert True ist, dann alle anderen Werte ignorieren? äöü
+   type EinheiteneffektArray is array (KartengrundDatentypen.Effekt_Enum'Range) of Boolean;
+   
    type EinheitenlisteRecord is record
       
       Einheitenart : EinheitenDatentypen.Einheitart_Enum;

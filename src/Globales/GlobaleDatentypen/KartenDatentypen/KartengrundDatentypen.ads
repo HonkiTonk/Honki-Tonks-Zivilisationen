@@ -154,8 +154,8 @@ package KartengrundDatentypen is
    
    subtype Effekt_Vorhanden_Enum is Effekt_Enum range Effekt_Enum'Succ (Effekt_Enum'First) .. Effekt_Enum'Last;
    
-   subtype Effekt_Kartenfeld_Enum is Effekt_Enum range Effekt_Vorhanden_Enum'First .. Effekt_Enum'Pred (Effekt_Enum'Last);
+   subtype Effekt_Kartenfeld_Enum is Effekt_Vorhanden_Enum range Effekt_Vorhanden_Enum'First .. Effekt_Enum'Pred (Effekt_Enum'Last);
    
-   type EffektArray is array (Effekt_Kartenfeld_Enum'Range) of Boolean;
+   type EffekteArray is array (Effekt_Kartenfeld_Enum'Range) of Boolean;
 
 end KartengrundDatentypen;

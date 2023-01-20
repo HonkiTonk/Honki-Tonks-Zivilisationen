@@ -45,6 +45,7 @@ package body StandardSpielwerteSetzenLogik is
       end case;
       
       SchreibeEinheitenGebaut.Standardeinstellungen;
+      SchreibeEinheitenGebaut.Standardbewegungsplan;
       SchreibeStadtGebaut.Standardeinstellungen;
       SchreibeWichtiges.Standardeinstellungen;
       SchreibeDiplomatie.Standardeinstellungen;

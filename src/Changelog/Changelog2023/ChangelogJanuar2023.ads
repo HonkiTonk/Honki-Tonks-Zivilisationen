@@ -70,17 +70,20 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (21.01.2023):
+   -- Version 0.04.6510 => 0.04. (21.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.6450 => 0.04. (20.01.2023):
+   -- Version 0.04.6450 => 0.04.6510 (20.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Beim Starten eine neuen Spiels/Laden eines Spielstandes wird jetzt der Bewegungsplan auch auf Standardwerte gesetzt.
+   -- Weiter am Effektsystem für Kartenfelder/Einheiten gearbeitet.
+   -- Angefangen das Aufgabensystem um einen Bereich für die Effektbehebung zu erweitern.
+   -- Neue Beispielbilder erstellt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

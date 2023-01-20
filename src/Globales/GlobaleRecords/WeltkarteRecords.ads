@@ -14,7 +14,7 @@ package WeltkarteRecords is
    type WeltkarteRecord is record
 
       Grund : KartenRecords.KartengrundRecord;
-      Effekt : KartengrundDatentypen.EffektArray;
+      Effekt : KartengrundDatentypen.EffekteArray;
       Sichtbar : KartenRecords.SichtbarkeitArray;
       
       Fluss : KartenextraDatentypen.Fluss_Enum;
