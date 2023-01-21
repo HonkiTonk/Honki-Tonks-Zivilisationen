@@ -96,8 +96,8 @@ package body KampfsystemStadtLogik is
       -- Kann man das teilweise mit der Personenänderung im Stadtsystem zusammenführen? äöü
       -- Scheinbar nicht, wenn dann müsste man eines der beiden Systeme anpassen. äöü
       if
-        LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => VerteidigendeStadtSpeziesNummerExtern,
-                                           EinwohnerArbeiterExtern => True)
+        LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
+                                           EinwohnerArbeiterExtern  => True)
         - 1
         <= StadtKonstanten.LeerEinwohner
       then

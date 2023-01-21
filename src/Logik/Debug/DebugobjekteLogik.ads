@@ -4,7 +4,6 @@ with KampfDatentypen;
 with EinheitenRecords;
 with EinheitendatenbankRecord;
 with SystemRecords;
-with KartengrundDatentypen;
 with KartenRecordKonstanten;
 
 package DebugobjekteLogik is
@@ -31,7 +30,7 @@ package DebugobjekteLogik is
                                                                              KannTransportieren      => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                              Transportkapazität      => EinheitenRecords.TransporterArray'Last,
-                                                                             Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                             Zusatzeffekt            => (others => False),
                                                                              Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                             );
 

@@ -17,7 +17,6 @@ private with Grenzpruefungen;
 
 package PZBEingesetztLogik is
    pragma Elaborate_Body;
-   use type SpeziesDatentypen.Spezies_Enum;
    use type SpeziesDatentypen.Spieler_Enum;
 
    function PZBEingesetzt

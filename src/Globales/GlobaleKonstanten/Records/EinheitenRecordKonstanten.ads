@@ -2,7 +2,6 @@ with EinheitenRecords;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 with EinheitendatenbankRecord;
-with KartengrundDatentypen;
 
 package EinheitenRecordKonstanten is
    pragma Elaborate_Body;
@@ -45,7 +44,7 @@ package EinheitenRecordKonstanten is
                                                                                  KannTransportieren      => EinheitenKonstanten.LeerKannTransportieren,
                                                                                  KannTransportiertWerden => EinheitenKonstanten.LeerKannTransportiertWerden,
                                                                                  Transportkapazität      => EinheitenKonstanten.LeerTransportkapazität,
-                                                                                 Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                 Zusatzeffekt            => (others => False),
                                                                                  Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                 );
    

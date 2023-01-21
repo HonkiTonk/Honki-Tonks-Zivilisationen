@@ -29,7 +29,7 @@ package body WeltkartenbefehleGrafik is
          when EinheitenKonstanten.LeerEinheitArt =>
             return;
             
-         when EinheitenDatentypen.PZB_Enum =>
+         when EinheitenDatentypen.Einmalig_Enum =>
             WelcherKnopf := BefehleDatentypen.Roter_Knopf_Enum;
             
          when others =>
@@ -83,7 +83,7 @@ package body WeltkartenbefehleGrafik is
          case
            EinheitenArtExtern
          is
-            when EinheitenDatentypen.PZB_Enum =>
+            when EinheitenDatentypen.Einmalig_Enum =>
                InteraktionAuswahl.PositionenEinheitenbefehle := (others => (0.00, 0.00, Texturgröße.x, Texturgröße.y));
                exit PositionenSchleife;
             

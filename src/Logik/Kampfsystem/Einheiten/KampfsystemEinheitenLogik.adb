@@ -8,6 +8,7 @@ with KampfwerteEinheitErmittelnLogik;
 with EinheitenErzeugenEntfernenLogik;
 with PZBEingesetztLogik;
 with KampfberechnungenLogik;
+with EffektberechnungenLogik;
 
 package body KampfsystemEinheitenLogik is
 
@@ -104,10 +105,12 @@ package body KampfsystemEinheitenLogik is
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => AngreiferExtern.Spezies,
-                                                                                                                              IDExtern    => IDAngreifer),
+                                                                                                                              IDExtern     => IDAngreifer),
                                                       AddierenSetzenExtern     => True);
             
             EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => VerteidigerExtern);
+            EffektberechnungenLogik.Effektberechnungen (EinheitSpeziesNummerExtern => AngreiferExtern);
+            
             return True;
             
          elsif
@@ -115,9 +118,12 @@ package body KampfsystemEinheitenLogik is
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern,
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => VerteidigerExtern.Spezies,
-                                                                                                                              IDExtern    => IDVerteidiger),
+                                                                                                                              IDExtern     => IDVerteidiger),
                                                       AddierenSetzenExtern     => True);
+            
             EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => AngreiferExtern);
+            EffektberechnungenLogik.Effektberechnungen (EinheitSpeziesNummerExtern => VerteidigerExtern);
+            
             return False;
             
          else

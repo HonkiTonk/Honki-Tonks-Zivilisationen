@@ -26,17 +26,17 @@ package body PZBEingesetztLogik is
       EinheitenID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       Einheitenart := LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                           IDExtern    => EinheitenID);
+                                                           IDExtern      => EinheitenID);
       
       case
         Einheitenart
       is
-         when EinheitenDatentypen.PZB_Enum =>
+         when EinheitenDatentypen.Einmalig_Enum =>
             SchreibeAllgemeines.AnzahlEingesetzterPZB;
             SchreibeAllgemeines.PlanetVernichtet (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
             Zusammenbruchszeit := LeseAllgemeines.Zusammenbruchszeit;
             Vernichtungsbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                            IDExtern    => EinheitenID);
+                                                                            IDExtern      => EinheitenID);
             
          when others =>
             return False;

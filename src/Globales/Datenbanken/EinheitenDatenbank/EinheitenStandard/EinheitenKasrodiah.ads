@@ -1,9 +1,9 @@
 with EinheitenDatentypen;
 with EinheitenRecordKonstanten;
 with EinheitendatenbankRecord;
-with KartengrundDatentypen;
 with KartenDatentypen;
 with KartenRecordKonstanten;
+with KartengrundDatentypen;
 
 with DebugobjekteLogik;
 
@@ -34,7 +34,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -59,7 +59,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -84,7 +84,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
       
@@ -109,7 +109,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 1,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -134,7 +134,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -159,7 +159,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -184,7 +184,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -209,7 +209,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -234,7 +234,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -260,7 +260,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 2,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -286,7 +286,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 4,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -311,7 +311,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -336,7 +336,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -362,7 +362,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 4,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -388,7 +388,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 4,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -416,7 +416,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           Transportkapazität      => 2,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -441,7 +441,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -466,7 +466,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -491,7 +491,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -516,7 +516,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -542,7 +542,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -567,7 +567,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -592,7 +592,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -617,7 +617,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -642,7 +642,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -667,7 +667,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -694,7 +694,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -719,7 +719,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -749,14 +749,14 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
                                                                                          -- PZB200
                                                                                        30 =>
                                                                                          (
-                                                                                          Einheitenart            => EinheitenDatentypen.PZB_Enum,
+                                                                                          Einheitenart            => EinheitenDatentypen.Einmalig_Enum,
                                                                                           PreisGeld               => 25,
                                                                                           Produktionskosten       => 20,
                                                                                           PermanenteKosten        => (others => 0),
@@ -774,7 +774,8 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
+                                                                                          Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => True,
+                                                                                                                      others                                => False),
                                                                                           Effektreichweite        => (
                                                                                                                       EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
                                                                                                                       EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
@@ -788,7 +789,7 @@ package EinheitenKasrodiah is
                                                                                          -- PZB400
                                                                                        31 =>
                                                                                          (
-                                                                                          Einheitenart            => EinheitenDatentypen.PZB_Enum,
+                                                                                          Einheitenart            => EinheitenDatentypen.Einmalig_Enum,
                                                                                           PreisGeld               => 25,
                                                                                           Produktionskosten       => 20,
                                                                                           PermanenteKosten        => (others => 0),
@@ -806,7 +807,8 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
+                                                                                          Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => True,
+                                                                                                                      others                                => False),
                                                                                           Effektreichweite        => (
                                                                                                                       EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
                                                                                                                       EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
@@ -820,7 +822,7 @@ package EinheitenKasrodiah is
                                                                                          -- PZB1000
                                                                                        32 =>
                                                                                          (
-                                                                                          Einheitenart            => EinheitenDatentypen.PZB_Enum,
+                                                                                          Einheitenart            => EinheitenDatentypen.Einmalig_Enum,
                                                                                           PreisGeld               => 25,
                                                                                           Produktionskosten       => 20,
                                                                                           PermanenteKosten        => (others => 0),
@@ -838,7 +840,8 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Vernichtet_Enum,
+                                                                                          Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => True,
+                                                                                                                      others                                => False),
                                                                                           Effektreichweite        => (
                                                                                                                       EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
                                                                                                                       EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
@@ -870,7 +873,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -895,7 +898,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -922,7 +925,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -954,7 +957,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -983,7 +986,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -1009,7 +1012,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -1035,7 +1038,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -1060,7 +1063,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -1087,7 +1090,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -1117,7 +1120,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           Transportkapazität      => 4,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -1149,7 +1152,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           Transportkapazität      => 1,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                
@@ -1174,7 +1177,7 @@ package EinheitenKasrodiah is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => KartengrundDatentypen.Leer_Effekt_Enum,
+                                                                                          Zusatzeffekt            => (others => False),
                                                                                           Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                          ),
                                                                               

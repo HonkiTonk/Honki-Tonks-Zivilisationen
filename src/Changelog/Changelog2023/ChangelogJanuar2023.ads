@@ -63,17 +63,19 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (22.01.2023):
+   -- Version 0.04.6560 => 0.04. (22.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.6510 => 0.04. (21.01.2023):
+   -- Version 0.04.6510 => 0.04.6560 (21.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einheitendatenbank an das neue Zusatzeffektsystem angepasst.
+   -- Effektberechnungen für das kampfsystem angefangen einzubauen.
+   -- PZBSystem angefangen zu überarbeiten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

@@ -43,7 +43,7 @@ package body KIEinheitenAufgabenplanungLogik is
          when EinheitenDatentypen.Einheitenart_Kampf_Enum'Range | EinheitenDatentypen.Cheat_Enum =>
             KIKampfaufgabenLogik.Nahkämpferaufgaben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
-         when EinheitenDatentypen.PZB_Enum =>
+         when EinheitenDatentypen.Einmalig_Enum =>
             KIPZBAufgabenLogik.PZBAufgaben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                            
          when EinheitenDatentypen.Leer_Einheitart_Enum =>

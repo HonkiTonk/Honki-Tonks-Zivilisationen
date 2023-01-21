@@ -52,13 +52,13 @@ package EinheitenDatentypen is
                             Nahkämpfer_Enum, Fernkämpfer_Enum, Beides_Enum,
                             
                             -- Hier einmal Nutzung einbauen und dann für alle die Zusatzwirkungen mit der Effekteinstellung bestimmen? äöü
-                            PZB_Enum,
+                            Einmalig_Enum,
                             
                             Cheat_Enum
                            );
    
    subtype Einheitart_Vorhanden_Enum is Einheitart_Enum range Einheitart_Enum'Succ (Einheitart_Enum'First) .. Einheitart_Enum'Last;
-   subtype Einheitart_Standard_Enum is Einheitart_Vorhanden_Enum range Einheitart_Vorhanden_Enum'First .. PZB_Enum;
+   subtype Einheitart_Standard_Enum is Einheitart_Vorhanden_Enum range Einheitart_Vorhanden_Enum'First .. Einmalig_Enum;
    subtype Einheitenart_Kampf_Enum is Einheitart_Vorhanden_Enum range Nahkämpfer_Enum .. Beides_Enum;
      
      

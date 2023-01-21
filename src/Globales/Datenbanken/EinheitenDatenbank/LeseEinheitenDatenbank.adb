@@ -395,18 +395,19 @@ package body LeseEinheitenDatenbank is
    
    function Zusatzeffekt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return KartengrundDatentypen.Effekt_Enum
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      EffektExtern : in KartengrundDatentypen.Effekt_Vorhanden_Enum)
+      return Boolean
    is begin
             
       case
         IDExtern
       is
          when EinheitenKonstanten.LeerID =>
-            return KartengrundDatentypen.Leer_Effekt_Enum;
+            return False;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Zusatzeffekt;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Zusatzeffekt (EffektExtern);
       end case;
             
    end Zusatzeffekt;

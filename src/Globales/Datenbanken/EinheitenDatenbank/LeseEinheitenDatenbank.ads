@@ -3,8 +3,8 @@ with EinheitenDatentypen;
 with ForschungenDatentypen;
 with ProduktionDatentypen;
 with KampfDatentypen;
-with KartengrundDatentypen;
 with KartenRecords;
+with KartengrundDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -169,8 +169,9 @@ package LeseEinheitenDatenbank is
    
    function Zusatzeffekt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return KartengrundDatentypen.Effekt_Enum
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      EffektExtern : in KartengrundDatentypen.Effekt_Vorhanden_Enum)
+      return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
