@@ -56,24 +56,29 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (23.01.2023):
+   -- Version 0.04.6640 => 0.04. (23.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.6560 => 0.04. (22.01.2023):
+   -- Version 0.04.6560 => 0.04.6640 (22.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Effektberechnungen erweitert.
+   -- Effektgrafiken erstellt.
+   -- Anpassungen vorgenommen damit alles mit dem neuen Effektsystem noch funktioneirt.
+   -- Effektanzeige für die Weltkarte eingebaut.
+   -- Effektanzeige für die Stadtumgebung eingebaut.
+   -- Es können jetzt verschiedene Arten von Einmalwaffen existieren, welche nach einmaliger Verwenndung verbraucht werden und Zusatzeffekte für Kartenfelder erzeugen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
    -- Version 0.04.6510 => 0.04.6560 (21.01.2023):
    
    -- Einheitendatenbank an das neue Zusatzeffektsystem angepasst.
-   -- Effektberechnungen für das kampfsystem angefangen einzubauen.
+   -- Effektberechnungen für das Kampfsystem angefangen einzubauen.
    -- PZBSystem angefangen zu überarbeiten.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    

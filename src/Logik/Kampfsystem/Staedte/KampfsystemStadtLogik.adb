@@ -15,8 +15,8 @@ with StadtumgebungFestlegenLogik;
 with MeldungenSetzenLogik;
 with EinheitenErzeugenEntfernenLogik;
 with KampfberechnungenLogik;
-with PZBEingesetztLogik;
 with FelderbewirtschaftungLogik;
+with EffektberechnungenLogik;
 
 package body KampfsystemStadtLogik is
 
@@ -28,21 +28,13 @@ package body KampfsystemStadtLogik is
       use type KampfDatentypen.KampfwerteGroß;
    begin
       
-      case
-        PZBEingesetztLogik.PZBEingesetzt (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern)
-      is
-         when True =>
-            return False;
-            
-         when False =>
-            KampfwerteVerteidiger.Verteidigung := KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
-            KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
+      KampfwerteVerteidiger.Verteidigung := KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
+      KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
       
-            KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                                                                    LogikGrafikExtern          => True);
-            KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                                                          LogikGrafikExtern          => True);
-      end case;
+      KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
+                                                                                              LogikGrafikExtern          => True);
+      KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
+                                                                                    LogikGrafikExtern          => True);
       
       if
         KampfwerteVerteidiger.Verteidigung = EinheitenKonstanten.LeerVerteidigung
@@ -82,9 +74,9 @@ package body KampfsystemStadtLogik is
       
       case
         Kampfverlauf (AngreifendeEinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                      KampfwerteAngreiferExtern           => KampfwerteAngreiferExtern,
+                      KampfwerteAngreiferExtern             => KampfwerteAngreiferExtern,
                       VerteidigendeStadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
-                      KampfwerteVerteidigerExtern         => KampfwerteVerteidigerExtern)
+                      KampfwerteVerteidigerExtern           => KampfwerteVerteidigerExtern)
       is
          when False =>
             return False;
@@ -175,9 +167,12 @@ package body KampfsystemStadtLogik is
            GesundheitStadt <= 0
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies,
-                                                                                                                              IDExtern    => IDAngreifer),
-                                                      AddierenSetzenExtern     => True);
+                                                      ErfahrungspunkteExtern     => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies,
+                                                                                                                               IDExtern      => IDAngreifer),
+                                                      AddierenSetzenExtern       => True);
+            
+            EffektberechnungenLogik.Effektberechnungen (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern);
+            
             return True;
             
          elsif

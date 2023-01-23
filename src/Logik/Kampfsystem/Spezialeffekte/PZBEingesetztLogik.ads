@@ -2,7 +2,6 @@ with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
 
-private with EinheitenDatentypen;
 private with KartenRecords;
 private with StadtRecords;
 private with KartenDatentypen;
@@ -19,9 +18,8 @@ package PZBEingesetztLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
 
-   function PZBEingesetzt
+   procedure PZBEingesetzt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -31,10 +29,6 @@ package PZBEingesetztLogik is
 
 private
    use type KartenDatentypen.Kartenfeld;
-
-   Einheitenart : EinheitenDatentypen.Einheitart_Enum;
-
-   EinheitenID : EinheitenDatentypen.EinheitenIDMitNullWert;
 
    Verbleibendezeit : ZahlenDatentypen.EigenesNatural;
    EingesetztePZB : ZahlenDatentypen.EigenesNatural;

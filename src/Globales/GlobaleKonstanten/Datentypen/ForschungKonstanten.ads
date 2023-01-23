@@ -228,7 +228,7 @@ package ForschungKonstanten is
    
    type TechnologieEffektentfernungArray is array (KartengrundDatentypen.Effekt_Kartenfeld_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
    StandardtechnologieEffektentfernung : constant TechnologieEffektentfernungArray := (
-                                                                                       KartengrundDatentypen.Atomar_Enum =>
+                                                                                       KartengrundDatentypen.Strahlung_Enum =>
                                                                                          (
                                                                                           SpeziesDatentypen.Menschen_Enum         => 0,
                                                                                           SpeziesDatentypen.Kasrodiah_Enum        => 0,

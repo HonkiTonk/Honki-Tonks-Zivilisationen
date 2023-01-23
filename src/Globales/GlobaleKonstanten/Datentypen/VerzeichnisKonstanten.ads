@@ -37,6 +37,7 @@ package VerzeichnisKonstanten is
    Hintergrund : constant String (1 .. 12) := "/Hintergrund";
    Basisgrund : constant String (1 .. 11) := "/Basisgrund";
    Zusatzgrund : constant String (1 .. 12) := "/Zusatzgrund";
+   Feldeffekte : constant String (1 .. 12) := "/Feldeffekte";
    Kartenfluss : constant String (1 .. 12) := "/Kartenfluss";
    Kartenressourcen : constant String (1 .. 17) := "/Kartenressourcen";
    Kartenverbesserungen : constant String (1 .. 15) := "/Verbesserungen";

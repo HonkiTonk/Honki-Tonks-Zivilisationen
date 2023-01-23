@@ -2,16 +2,16 @@ with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
 
-private with EinheitenDatentypen;
+private with KartenRecords;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 
-package EffektberechnungenLogik is
+package StrahlungswaffeEingesetztLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
 
-   procedure Effektberechnungen
+   procedure StrahlungswaffeEingesetzt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      with
        Pre => (
@@ -19,11 +19,12 @@ package EffektberechnungenLogik is
                and
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
               );
-   
-private
-   
-   Leerwert : Boolean;
-   
-   EinheitID : EinheitenDatentypen.EinheitenID;
 
-end EffektberechnungenLogik;
+private
+
+   Strahlungsbereich : KartenRecords.EffektbereichRecord;
+
+   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+
+end StrahlungswaffeEingesetztLogik;

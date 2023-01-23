@@ -18,29 +18,15 @@ with EinheitSuchenLogik;
 
 package body PZBEingesetztLogik is
 
-   function PZBEingesetzt
+   procedure PZBEingesetzt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return Boolean
    is begin
       
-      EinheitenID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-      
-      Einheitenart := LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                           IDExtern      => EinheitenID);
-      
-      case
-        Einheitenart
-      is
-         when EinheitenDatentypen.Einmalig_Enum =>
-            SchreibeAllgemeines.AnzahlEingesetzterPZB;
-            SchreibeAllgemeines.PlanetVernichtet (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
-            Zusammenbruchszeit := LeseAllgemeines.Zusammenbruchszeit;
-            Vernichtungsbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                            IDExtern      => EinheitenID);
-            
-         when others =>
-            return False;
-      end case;
+      SchreibeAllgemeines.AnzahlEingesetzterPZB;
+      SchreibeAllgemeines.PlanetVernichtet (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
+      Zusammenbruchszeit := LeseAllgemeines.Zusammenbruchszeit;
+      Vernichtungsbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                      IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       case
         Zusammenbruchszeit
@@ -82,8 +68,6 @@ package body PZBEingesetztLogik is
          
       PlanetenVernichten (KoordinatenExtern         => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                           VernichtungsbereichExtern => Vernichtungsbereich);
-            
-      return True;
       
    end PZBEingesetzt;
    
@@ -131,7 +115,7 @@ package body PZBEingesetztLogik is
    is begin
       
       Einheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
-                                                                       LogikGrafikExtern => True);
+                                                                         LogikGrafikExtern => True);
       
       case
         Einheit.Nummer

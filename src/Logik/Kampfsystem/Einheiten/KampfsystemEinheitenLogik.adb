@@ -6,7 +6,6 @@ with LeseEinheitenDatenbank;
 
 with KampfwerteEinheitErmittelnLogik;
 with EinheitenErzeugenEntfernenLogik;
-with PZBEingesetztLogik;
 with KampfberechnungenLogik;
 with EffektberechnungenLogik;
 
@@ -20,23 +19,15 @@ package body KampfsystemEinheitenLogik is
       use type KampfDatentypen.KampfwerteGroß;
    begin
       
-      case
-        PZBEingesetztLogik.PZBEingesetzt (EinheitSpeziesNummerExtern => AngreiferExtern)
-      is
-         when True =>
-            return False;
-            
-         when False =>
-            KampfwerteVerteidiger.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => VerteidigerExtern,
-                                                                                                      LogikGrafikExtern          => True);
-            KampfwerteVerteidiger.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => VerteidigerExtern,
-                                                                                            LogikGrafikExtern          => True);
+      KampfwerteVerteidiger.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => VerteidigerExtern,
+                                                                                                LogikGrafikExtern          => True);
+      KampfwerteVerteidiger.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => VerteidigerExtern,
+                                                                                      LogikGrafikExtern          => True);
       
-            KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreiferExtern,
-                                                                                                    LogikGrafikExtern          => True);
-            KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreiferExtern,
-                                                                                          LogikGrafikExtern          => True);
-      end case;
+      KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreiferExtern,
+                                                                                              LogikGrafikExtern          => True);
+      KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreiferExtern,
+                                                                                    LogikGrafikExtern          => True);
       
       if
         KampfwerteVerteidiger.Verteidigung = EinheitenKonstanten.LeerVerteidigung

@@ -4,7 +4,13 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
 with PZBEingesetztLogik;
+with StrahlungswaffeEingesetztLogik;
+with BiologischeWaffeEingesetztLogik;
+with ChemischeWaffeEingesetztLogik;
+with EinheitenErzeugenEntfernenLogik;
 
+-- Eventuell muss im Kampsystem noch ein paar Anpassungen vorgenommen werden, damit mit dem neuen System alles richtig funktioniert und gesetzt wird. äöü
+-- Sollten Einmalwaffen Städte direkt zerstören oder wäre ein eigenes System dafür besser? äöü
 package body EffektberechnungenLogik is
 
    procedure Effektberechnungen
@@ -13,21 +19,8 @@ package body EffektberechnungenLogik is
       
       EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      case
-        LeseEinheitenDatenbank.Zusatzeffekt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                             IDExtern      => EinheitID,
-                                             EffektExtern  => KartengrundDatentypen.Vernichtet_Enum)
-      is
-         when True =>
-            Leerwert := PZBEingesetztLogik.PZBEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-            return;
-            
-         when False =>
-            null;
-      end case;
-      
       EffekteSchleife:
-      for EffektSchleifenwert in KartengrundDatentypen.Effekt_Kartenfeld_Enum'Range loop
+      for EffektSchleifenwert in reverse KartengrundDatentypen.Effekt_Vorhanden_Enum'Range loop
          
          if
            True = LeseEinheitenDatenbank.Zusatzeffekt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
@@ -37,21 +30,21 @@ package body EffektberechnungenLogik is
             case
               EffektSchleifenwert
             is
-               when KartengrundDatentypen.Atomar_Enum =>
-                  AtomareZusatzberechnungen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                             IDExtern                   => EinheitID);
+               when KartengrundDatentypen.Strahlung_Enum =>
+                  StrahlungswaffeEingesetztLogik.StrahlungswaffeEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                   
                when KartengrundDatentypen.Biologisch_Enum =>
-                  BiologischeZusatzberechnungen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                 IDExtern                   => EinheitID);
+                  BiologischeWaffeEingesetztLogik.BiologischeWaffeEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                   
                when KartengrundDatentypen.Chemisch_Enum =>
-                  ChemischeZusatzberechnungen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                               IDExtern                   => EinheitID);
+                  ChemischeWaffeEingesetztLogik.ChemischeWaffeEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                   
                when KartengrundDatentypen.Verschmutzt_Enum =>
-                  VerschmutzungsZusatzberechnungen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    IDExtern                   => EinheitID);
+                  null;
+                  
+               when KartengrundDatentypen.Vernichtet_Enum =>
+                  PZBEingesetztLogik.PZBEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+                  exit EffekteSchleife;
             end case;
             
          else
@@ -60,50 +53,17 @@ package body EffektberechnungenLogik is
          
       end loop EffekteSchleife;
       
+      case
+        LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                             IDExtern      => EinheitID)
+      is
+         when EinheitenDatentypen.Einmalig_Enum =>
+            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+            
+         when others =>
+            null;
+      end case;
+      
    end Effektberechnungen;
-   
-   
-   
-   procedure AtomareZusatzberechnungen
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
-   is begin
-      
-      null;
-      
-   end AtomareZusatzberechnungen;
-   
-   
-   
-   procedure BiologischeZusatzberechnungen
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
-   is begin
-      
-      null;
-      
-   end BiologischeZusatzberechnungen;
-   
-   
-   
-   procedure ChemischeZusatzberechnungen
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
-   is begin
-      
-      null;
-      
-   end ChemischeZusatzberechnungen;
-   
-   
-   
-   procedure VerschmutzungsZusatzberechnungen
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
-   is begin
-      
-      null;
-      
-   end VerschmutzungsZusatzberechnungen;
 
 end EffektberechnungenLogik;

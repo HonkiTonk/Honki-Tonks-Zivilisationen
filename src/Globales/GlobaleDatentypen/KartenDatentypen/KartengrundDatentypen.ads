@@ -145,7 +145,7 @@ package KartengrundDatentypen is
    type Effekt_Enum is (
                         Leer_Effekt_Enum,
                         
-                        Atomar_Enum, Biologisch_Enum, Chemisch_Enum,
+                        Strahlung_Enum, Biologisch_Enum, Chemisch_Enum,
                         
                         Verschmutzt_Enum,
                         

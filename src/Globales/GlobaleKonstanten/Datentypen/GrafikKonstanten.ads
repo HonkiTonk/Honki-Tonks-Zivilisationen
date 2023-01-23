@@ -11,5 +11,6 @@ package GrafikKonstanten is
    Weltraumtransparents : constant Sf.sfUint8 := 220;
    VerschiedenerGrundtransparents : constant Sf.sfUint8 := 180;
    Bewegungsfeldtransparents : constant Sf.sfUint8 := 120;
+   Feldeffekttransparents : constant Sf.sfUint8 := 150;
 
 end GrafikKonstanten;

@@ -3,7 +3,7 @@ with EinheitenDatentypen;
 
 with LeseWichtiges;
 
-with PZBEingesetztLogik;
+-- with PZBEingesetztLogik;
 
 with LeseKIVariablen;
 
@@ -51,12 +51,12 @@ package body KIPZBAufgabenLogik is
         and
           LeseWichtiges.AnzahlArbeiter (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = 0
       then
-         case
-           PZBEingesetztLogik.PZBEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
-         is
-            when others =>
-               null;
-         end case;
+         -- case
+         --   PZBEingesetztLogik.PZBEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
+         --  is
+         --    when others =>
+         null;
+         --  end case;
          
       else
          NormaleAufgaben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

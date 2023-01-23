@@ -182,26 +182,29 @@ package body StadtumgebungGrafik is
          
          TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                          TextExtern       => To_Wide_Wide_String (Source => Text),
-                                                         PositionExtern   => (PositionExtern.x, SichtweitenGrafik.KartenfelderAbmessung.y / 5.00 * Float (ProduktionSchleifenwert - 1) + PositionExtern.y));
+                                                         -- Die Berechnung für die YPosition ist falsch? Könnte zu dieser merkwürdigen Verschiebung führen. äöü
+                                                         PositionExtern   => (PositionExtern.x, (SichtweitenGrafik.KartenfelderAbmessung.y / 5.00) * Float (ProduktionSchleifenwert - 1) + PositionExtern.y));
          
          Textfläche := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height);
          
          if
-           Textfläche.x >= SichtweitenGrafik.KartenfelderAbmessung.x - 2.00 * Rahmendicke
+           Textfläche.x >= SichtweitenGrafik.KartenfelderAbmessung.x - 3.00 * Rahmendicke
          then
-            Skalierung.x := (SichtweitenGrafik.KartenfelderAbmessung.x - 2.00 * Rahmendicke) / Textfläche.x;
+            Skalierung.x := (SichtweitenGrafik.KartenfelderAbmessung.x - 3.00 * Rahmendicke) / Textfläche.x;
             
          else
-            Skalierung.x := Textfläche.x / (SichtweitenGrafik.KartenfelderAbmessung.x - 2.00 * Rahmendicke);
+            Skalierung.x := Textfläche.x / (SichtweitenGrafik.KartenfelderAbmessung.x - 3.00 * Rahmendicke);
          end if;
          
+         -- Die YSkalierung passt hier noch nicht und kann auch nicht mit der Multiplikation der Rahmendicke korrigiert werden. äöü
+         -- Vermutlich wegen der Anpassung der Viewfläche? äöü
          if
-           Textfläche.y <= (SichtweitenGrafik.KartenfelderAbmessung.y - 2.00 * Rahmendicke) / 5.00
+           Textfläche.y <= (SichtweitenGrafik.KartenfelderAbmessung.y - Rahmendicke) / 5.00
          then
-            Skalierung.y := (SichtweitenGrafik.KartenfelderAbmessung.y - 2.00 * Rahmendicke) / Textfläche.y;
+            Skalierung.y := (SichtweitenGrafik.KartenfelderAbmessung.y - Rahmendicke) / Textfläche.y;
             
          else
-            Skalierung.y := Textfläche.y / (SichtweitenGrafik.KartenfelderAbmessung.y - 2.00 * Rahmendicke);
+            Skalierung.y := Textfläche.y / (SichtweitenGrafik.KartenfelderAbmessung.y - Rahmendicke);
          end if;
          
          TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
@@ -235,6 +238,9 @@ package body StadtumgebungGrafik is
       
       VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
                             PositionExtern    => PositionExtern);
+      
+      FeldeffektZeichnen (KoordinatenExtern => KoordinatenExtern,
+                          PositionExtern    => PositionExtern);
       
    end AnzeigeLandschaft;
    
@@ -350,5 +356,31 @@ package body StadtumgebungGrafik is
       end case;
       
    end VerbesserungZeichnen;
+   
+   
+   
+   procedure FeldeffektZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      EffekteSchleife:
+      for EffektSchleifenwert in KartengrundDatentypen.Effekt_Kartenfeld_Enum'Range loop
+         
+         case
+           LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,
+                                 WelcherEffektExtern => EffektSchleifenwert)
+         is
+            when True =>
+               KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.FeldeffekteAccess (EffektSchleifenwert),
+                                                                         PositionExtern     => PositionExtern);
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop EffekteSchleife;
+      
+   end FeldeffektZeichnen;
 
 end StadtumgebungGrafik;

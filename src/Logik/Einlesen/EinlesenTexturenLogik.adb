@@ -204,8 +204,7 @@ package body EinlesenTexturenLogik is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)))
          is
             when True =>
-               EingeleseneTexturenGrafik.BasisgrundAccess (BasisgrundSchleifenwert)
-                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
+               EingeleseneTexturenGrafik.BasisgrundAccess (BasisgrundSchleifenwert) := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenfelder: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
@@ -253,8 +252,7 @@ package body EinlesenTexturenLogik is
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)))
          is
             when True =>
-               EingeleseneTexturenGrafik.ZusatzgrundAccess (ZusatzgrundSchleifenwert)
-                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
+               EingeleseneTexturenGrafik.ZusatzgrundAccess (ZusatzgrundSchleifenwert) := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
                   
             when False =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenfelder: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
@@ -262,6 +260,56 @@ package body EinlesenTexturenLogik is
          end case;
          
       end loop ZusatzgrundSchleife;
+      
+      Close (File => DateiKartenfelder);
+      
+      
+      
+      case
+        Exists (Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Feldeffekte & VerzeichnisKonstanten.NullDatei)
+      is
+         when False =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenfelder: Es fehlt: "
+                                        & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Feldeffekte & VerzeichnisKonstanten.NullDatei));
+            return;
+            
+         when True =>
+            AktuelleZeile := 1;
+            
+            Open (File => DateiKartenfelder,
+                  Mode => In_File,
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Feldeffekte & VerzeichnisKonstanten.NullDatei);
+      end case;
+      
+      FeldeffekteSchleife:
+      for FeldeffekteSchleifenwert in EingeleseneTexturenGrafik.FeldeffekteAccessArray'Range loop
+         
+         case
+           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiKartenfelder,
+                                                           AktuelleZeileExtern => AktuelleZeile)
+         is
+            when True =>
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenfelder: Fehlende Zeilen: "
+                                           & Decode (Item => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Feldeffekte & VerzeichnisKonstanten.NullDatei));
+               exit FeldeffekteSchleife;
+               
+            when False =>
+               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiKartenfelder));
+               AktuelleZeile := AktuelleZeile + 1;
+         end case;
+         
+         case
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)))
+         is
+            when True =>
+               EingeleseneTexturenGrafik.FeldeffekteAccess (FeldeffekteSchleifenwert) := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Verzeichnisname)));
+                  
+            when False =>
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.EinlesenKartenfelder: Es fehlt: " & To_Wide_Wide_String (Source => Verzeichnisname));
+               EingeleseneTexturenGrafik.FeldeffekteAccess (FeldeffekteSchleifenwert) := null;
+         end case;
+         
+      end loop FeldeffekteSchleife;
       
       Close (File => DateiKartenfelder);
       

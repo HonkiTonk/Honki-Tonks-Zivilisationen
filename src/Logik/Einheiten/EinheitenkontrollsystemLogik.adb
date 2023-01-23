@@ -1,16 +1,16 @@
 with LeseEinheitenGebaut;
 with LeseCursor;
+with LeseEinheitenDatenbank;
 
 with TasteneingabeLogik;
 with EinheitenmodifizierungLogik;
 with StadtBauenLogik;
 with AufgabenLogik;
 with MausauswahlLogik;
-with PZBEingesetztLogik;
 with EinheitentransporterLogik;
 with NachGrafiktask;
 with EinheitenbewegungsbereichLogik;
-
+with EffektberechnungenLogik;
 with BewegungsplanLogik;
 
 package body EinheitenkontrollsystemLogik is
@@ -30,7 +30,7 @@ package body EinheitenkontrollsystemLogik is
          
          case
            EinheitBefehle (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                           BefehlExtern             => TasteneingabeLogik.Einheitentaste)
+                           BefehlExtern               => TasteneingabeLogik.Einheitentaste)
          is
             when True =>
                NeueBewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -112,7 +112,9 @@ package body EinheitenkontrollsystemLogik is
    function BefehleMaus
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.Einheitart_Enum;
+   begin
       
       Mausbefehl := MausauswahlLogik.Einheitenbefehle;
       
@@ -125,13 +127,15 @@ package body EinheitenkontrollsystemLogik is
             
          when BefehleDatentypen.Einheiten_Aufgaben_Enum'Range =>
             if
-              PZBEingesetztLogik.PZBEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
+              EinheitenDatentypen.Einmalig_Enum = LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                       IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
             then
+               EffektberechnungenLogik.Effektberechnungen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                return False;
               
             else
                return EinheitBefehle (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                      BefehlExtern             => Mausbefehl);
+                                      BefehlExtern               => Mausbefehl);
             end if;
             
          when BefehleDatentypen.Auswählen_Enum =>

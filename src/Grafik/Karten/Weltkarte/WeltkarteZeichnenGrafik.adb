@@ -61,9 +61,12 @@ package body WeltkarteZeichnenGrafik is
       AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
                            PositionExtern    => PositionExtern);
       
-      AnzeigeEinheit (KoordinatenExtern        => KoordinatenExtern,
+      AnzeigeEinheit (KoordinatenExtern          => KoordinatenExtern,
                       EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                      PositionExtern           => PositionExtern);
+                      PositionExtern             => PositionExtern);
+      
+      AnzeigeFeldeffekt (KoordinatenExtern => KoordinatenExtern,
+                         PositionExtern    => PositionExtern);
       
       if
         NachGrafiktask.EinheitBewegungsbereich
@@ -359,6 +362,34 @@ package body WeltkarteZeichnenGrafik is
    
    
    
+   -- Das später auch noch über die Ebenen hinweg sichtbar machen? äöü
+   procedure AnzeigeFeldeffekt
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      EffekteSchleife:
+      for EffektSchleifenwert in KartengrundDatentypen.Effekt_Kartenfeld_Enum'Range loop
+         
+         case
+           LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,
+                                 WelcherEffektExtern => EffektSchleifenwert)
+         is
+            when True =>
+               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.FeldeffekteAccess (EffektSchleifenwert),
+                                                               PositionExtern         => PositionExtern,
+                                                               DurchsichtigkeitExtern => GrafikKonstanten.Feldeffekttransparents);
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop EffekteSchleife;
+      
+   end AnzeigeFeldeffekt;
+   
+   
+   
    -- Anstelle des Rahmens später vielleicht eine bessere Markierung ausdenken? äöü
    procedure Einheitenmarkierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -382,7 +413,7 @@ package body WeltkarteZeichnenGrafik is
             
             RahmenZeichnen (WelcheRichtungExtern => RahmenSchleifenwert,
                             PositionExtern       => PositionExtern,
-                            SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies);
+                            SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies);
             
          end loop RahmenSchleife;
          
