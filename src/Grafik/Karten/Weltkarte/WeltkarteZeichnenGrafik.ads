@@ -9,15 +9,10 @@ with KartenRecords;
 with EinheitenRecords;
 
 private with KartenartDatentypen;
-private with SpeziesDatentypen;
-private with KartenverbesserungDatentypen;
 private with EinheitenDatentypen;
 private with StadtRecords;
-private with KartenextraDatentypen;
 
 with LeseWeltkarteneinstellungen;
-
-private with LeseSpeziesbelegung;
 
 package WeltkarteZeichnenGrafik is
    pragma Elaborate_Body;
@@ -41,20 +36,10 @@ package WeltkarteZeichnenGrafik is
               );
    
 private
-   use type SpeziesDatentypen.Spieler_Enum;
    
    AusgewählteEinheitAnzeigen : Boolean := True;
    ZusatzgrundVorhanden : Boolean;
    
-   AktuelleSpezies : SpeziesDatentypen.Spezies_Enum;
-      
-   KartenfeldFluss : KartenextraDatentypen.Fluss_Enum;
-   
-   KartenfeldRessource : KartenextraDatentypen.Ressourcen_Enum;
-   
-   Stadtart : KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
-   Wegfeld : KartenverbesserungDatentypen.Karten_Weg_Enum;
-   Verbesserungsfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    
    FeldeinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
    AusgewählteEinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
@@ -63,8 +48,6 @@ private
    
    DickeRahmen : constant Float := 5.00;
    Textbreite : Float;
-   
-   Gesamtgrund : KartenRecords.KartengrundRecord;
          
    StadtSpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
    
@@ -93,35 +76,7 @@ private
                                          KartenartDatentypen.Süden_Enum  => (0, 1, 0)
                                         );
    
-   procedure RahmenZeichnen
-     (WelcheRichtungExtern : in KartenartDatentypen.Himmelsrichtungen_Enum;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-     with
-       Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
    
-   procedure RahmenBesetztesFeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-     with
-       Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
    
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -138,119 +93,15 @@ private
                  PositionExtern.y >= 0.00
               );
    
-   procedure AnzeigeFeldbesitzer
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
    
-   procedure KartenfeldZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      DurchsichtigkeitExtern : in Sf.sfUint8)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
    
-   procedure FlussZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
    
-   procedure AnzeigeFeldeffekt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
    
-   procedure RessourceZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
    
-   procedure WegZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
    
-   procedure VerbesserungZeichnen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EbeneExtern : in KartenDatentypen.EbeneVorhanden;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
    
-   procedure StadtnameAnzeigen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
+   
+   
    
    procedure Einheitenmarkierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

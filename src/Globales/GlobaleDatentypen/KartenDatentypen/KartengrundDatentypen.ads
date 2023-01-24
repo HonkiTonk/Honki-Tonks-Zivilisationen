@@ -147,6 +147,7 @@ package KartengrundDatentypen is
                         
                         Strahlung_Enum, Biologisch_Enum, Chemisch_Enum,
                         
+                        -- Das hier vielleicht in Müll und Smog aufteilen? äöü
                         Verschmutzt_Enum,
                         
                         Vernichtet_Enum

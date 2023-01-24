@@ -8,6 +8,7 @@ with TextaccessVariablen;
 with Meldungstexte;
 with SpeziesKonstanten;
 with TextnummernKonstanten;
+with GrafikRecordKonstanten;
 
 with LeseStadtGebaut;
 with LeseWeltkarte;
@@ -30,15 +31,13 @@ package body StadtumgebungGrafik is
       use type KartenDatentypen.Ebene;
    begin
       
-      Viewfläche := (7.00 * SichtweitenGrafik.KartenfelderAbmessung.x, 7.00 * SichtweitenGrafik.KartenfelderAbmessung.y);
-      
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung),
-                                            GrößeExtern          => Viewfläche,
+                                            GrößeExtern          => (7.00 * SichtweitenGrafik.KartenfelderAbmessung.x, 7.00 * SichtweitenGrafik.KartenfelderAbmessung.y),
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtUmgebung));
             
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      Viewfläche := (0.00, 0.00);
+      AktuellePosition := (0.00, 0.00);
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
@@ -53,7 +52,7 @@ package body StadtumgebungGrafik is
               KartenWert.EAchse = KartenKonstanten.LeerEAchse
             then
                ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => SichtweitenGrafik.KartenfelderAbmessung,
-                                                       PositionExtern  => Viewfläche,
+                                                       PositionExtern  => AktuellePosition,
                                                        FarbeExtern     => Sf.Graphics.Color.sfBlack);
                
             elsif
@@ -75,17 +74,17 @@ package body StadtumgebungGrafik is
                      FeldBewirtschaftet := False;
                end case;
             
-               DarstellungUmgebung (KarteKoordinatenExtern => KartenWert,
-                                    PositionExtern         => Viewfläche,
+               DarstellungUmgebung (KarteKoordinatenExtern   => KartenWert,
+                                    PositionExtern           => AktuellePosition,
                                     StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                    BewirtschaftetExtern   => FeldBewirtschaftet);
+                                    BewirtschaftetExtern     => FeldBewirtschaftet);
             end if;
             
-            Viewfläche.x := Viewfläche.x + SichtweitenGrafik.KartenfelderAbmessung.x;
+            AktuellePosition.x := AktuellePosition.x + SichtweitenGrafik.KartenfelderAbmessung.x;
             
          end loop XAchseSchleife;
          
-         Viewfläche := (0.00, Viewfläche.y + SichtweitenGrafik.KartenfelderAbmessung.y);
+         AktuellePosition := (0.00, AktuellePosition.y + SichtweitenGrafik.KartenfelderAbmessung.y);
          
       end loop YAchseSchleife;
       
@@ -182,7 +181,6 @@ package body StadtumgebungGrafik is
          
          TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                          TextExtern       => To_Wide_Wide_String (Source => Text),
-                                                         -- Die Berechnung für die YPosition ist falsch? Könnte zu dieser merkwürdigen Verschiebung führen. äöü
                                                          PositionExtern   => (PositionExtern.x, (SichtweitenGrafik.KartenfelderAbmessung.y / 5.00) * Float (ProduktionSchleifenwert - 1) + PositionExtern.y));
          
          Textfläche := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height);
@@ -196,12 +194,10 @@ package body StadtumgebungGrafik is
             Skalierung.x := Textfläche.x / (SichtweitenGrafik.KartenfelderAbmessung.x - 3.00 * Rahmendicke);
          end if;
          
-         -- Die YSkalierung passt hier noch nicht und kann auch nicht mit der Multiplikation der Rahmendicke korrigiert werden. äöü
-         -- Vermutlich wegen der Anpassung der Viewfläche? äöü
          if
-           Textfläche.y <= (SichtweitenGrafik.KartenfelderAbmessung.y - Rahmendicke) / 5.00
+           Textfläche.y >= (SichtweitenGrafik.KartenfelderAbmessung.y - Rahmendicke) / 5.00
          then
-            Skalierung.y := (SichtweitenGrafik.KartenfelderAbmessung.y - Rahmendicke) / Textfläche.y;
+            Skalierung.y := (SichtweitenGrafik.KartenfelderAbmessung.y - Rahmendicke) / 5.00 / Textfläche.y;
             
          else
             Skalierung.y := Textfläche.y / (SichtweitenGrafik.KartenfelderAbmessung.y - Rahmendicke);

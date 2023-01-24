@@ -9,7 +9,6 @@ with StadtKonstanten;
 
 private with KartenverbesserungDatentypen;
 private with KartenRecords;
-private with GrafikRecordKonstanten;
 private with KartenKonstanten;
 private with KartenextraDatentypen;
 
@@ -52,7 +51,7 @@ private
    
    Gesamtgrund : KartenRecords.KartengrundRecord;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   AktuellePosition : Sf.System.Vector2.sfVector2f;
    Textfläche : Sf.System.Vector2.sfVector2f;
    Skalierung : Sf.System.Vector2.sfVector2f;
 

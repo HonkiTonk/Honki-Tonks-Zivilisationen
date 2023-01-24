@@ -8,6 +8,7 @@ with StrahlungswaffeEingesetztLogik;
 with BiologischeWaffeEingesetztLogik;
 with ChemischeWaffeEingesetztLogik;
 with EinheitenErzeugenEntfernenLogik;
+with VerschmutzendeWaffeEingesetztLogik;
 
 -- Eventuell muss im Kampsystem noch ein paar Anpassungen vorgenommen werden, damit mit dem neuen System alles richtig funktioniert und gesetzt wird. äöü
 -- Sollten Einmalwaffen Städte direkt zerstören oder wäre ein eigenes System dafür besser? äöü
@@ -40,7 +41,7 @@ package body EffektberechnungenLogik is
                   ChemischeWaffeEingesetztLogik.ChemischeWaffeEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                   
                when KartengrundDatentypen.Verschmutzt_Enum =>
-                  null;
+                  VerschmutzendeWaffeEingesetztLogik.VerschmutzendeWaffeEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                   
                when KartengrundDatentypen.Vernichtet_Enum =>
                   PZBEingesetztLogik.PZBEingesetzt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

@@ -20,5 +20,5 @@
    Transportkapazität      => 0,
    Zusatzeffekt            => (KartengrundDatentypen.Chemisch_Enum => True,
                                others => False),
-   Effektreichweite        => (0, 0, 1, 1, 1, 1)
+   Effektreichweite        => (0, 0, -1, 1, -1, 1)
   ),

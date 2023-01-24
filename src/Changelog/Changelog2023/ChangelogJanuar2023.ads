@@ -42,24 +42,26 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (25.01.2023):
+   -- Version 0.04.6700 => 0.04. (25.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (24.01.2023):
+   -- Version 0.04.6640 => 0.04.6700 (24.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der bei der Feldproduktuionsanzeige zur falschen Positionierung/Skalierung des Textes führte.
+   -- Chemische Verschmutzung folgt jetzt den Flussverläufen.
+   -- Neue Testgrafiken für die Effekte erstellt.
+   -- WeltkarteZeichnen angefangen aufzuteilen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/aufgeteilt.
    
    
 
-   -- Version 0.04.6640 => 0.04. (23.01.2023):
+   -- Version 0.04.6640 => 0.04.6640 (23.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
@@ -67,7 +69,7 @@ package ChangelogVorlage is
    
    -- Effektberechnungen erweitert.
    -- Effektgrafiken erstellt.
-   -- Anpassungen vorgenommen damit alles mit dem neuen Effektsystem noch funktioneirt.
+   -- Anpassungen vorgenommen damit alles mit dem neuen Effektsystem noch funktioniert.
    -- Effektanzeige für die Weltkarte eingebaut.
    -- Effektanzeige für die Stadtumgebung eingebaut.
    -- Es können jetzt verschiedene Arten von Einmalwaffen existieren, welche nach einmaliger Verwenndung verbraucht werden und Zusatzeffekte für Kartenfelder erzeugen.
