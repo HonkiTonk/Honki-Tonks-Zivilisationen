@@ -8,6 +8,7 @@ with EinheitenKonstanten;
 
 private with StadtDatentypen;
 private with AufgabenDatentypen;
+private with KartenRecords;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -55,6 +56,8 @@ package EinheitenmodifizierungLogik is
 
 private
    
+   Feldeffekt : Boolean;
+   
    AktuelleID : EinheitenDatentypen.EinheitenID;
    EinheitID : EinheitenDatentypen.EinheitenID;
    
@@ -65,10 +68,12 @@ private
    Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
    
    Heilungsrate : constant EinheitenDatentypen.VorhandeneLebenspunkte := 10;
-      
+         
    NeueHeimatstadt : StadtRecords.SpeziesStadtnummerRecord;
    
    EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   
+   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    procedure HeilungBewegungspunkteNeueRundeSetzen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

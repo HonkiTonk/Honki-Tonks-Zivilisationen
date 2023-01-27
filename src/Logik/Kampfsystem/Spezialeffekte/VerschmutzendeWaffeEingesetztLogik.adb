@@ -37,7 +37,7 @@ package body VerschmutzendeWaffeEingesetztLogik is
                      
                   when others =>
                      SchreibeWeltkarte.Effekt (KoordinatenExtern => Kartenwert,
-                                               EffektExtern      => KartengrundDatentypen.Strahlung_Enum);
+                                               EffektExtern      => KartengrundDatentypen.Verschmutzt_Enum);
                end case;
 
             end loop XAchseSchleife;

@@ -194,6 +194,9 @@ package body EinlesenTextLogik is
          when 39 =>
             Zusatzgrund;
             
+         when 40 =>
+            Feldeffekte;
+            
          when others =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenAufteilen: Mehr eingelesen als möglich");
       end case;
@@ -1137,5 +1140,29 @@ package body EinlesenTextLogik is
       end loop ZusatzgrundSchleife;
       
    end Zusatzgrund;
+   
+   
+   
+   procedure Feldeffekte
+   is begin
+      
+      FeldeffekteSchleife:
+      for ZeileSchleifenwert in Kartentexte.Feldeffekte'Range loop
+         
+         case
+           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiText,
+                                                           AktuelleZeileExtern => ZeileSchleifenwert)
+         is
+            when True =>
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Feldeffekte: Fehlende Zeilen");
+               return;
+               
+            when False =>
+               Kartentexte.Feldeffekte (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
+         end case;
+         
+      end loop FeldeffekteSchleife;
+      
+   end Feldeffekte;
 
 end EinlesenTextLogik;

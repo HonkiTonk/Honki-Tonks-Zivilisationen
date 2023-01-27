@@ -21,16 +21,17 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (28.01.2023):
+   -- Version 0.04.6805 => 0.04. (28.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.6770 => 0.04. (27.01.2023):
+   -- Version 0.04.6770 => 0.04.6805 (27.01.2023):
    
-   -- 
+   -- Texte für Feldeffekte hinzugefügt.
+   -- Feldeffekte haben jetzt eine Auswirkung auf die Regeneration der Lebens- und Bewegungspunkte von Einheiten.
    -- Kleinigkeiten korrigiert.
    
    

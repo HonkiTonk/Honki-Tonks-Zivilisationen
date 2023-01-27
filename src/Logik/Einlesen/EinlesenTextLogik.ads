@@ -13,7 +13,7 @@ private
    
    Verzeichnisse : Unbounded_Wide_Wide_String;
       
-   type TextdateienEinlesenArray is array (1 .. 39) of Unbounded_Wide_Wide_String;
+   type TextdateienEinlesenArray is array (1 .. 40) of Unbounded_Wide_Wide_String;
    TextdateienEinlesen : TextdateienEinlesenArray;
    
    procedure Hauptmenü;
@@ -55,6 +55,7 @@ private
    procedure Intro;
    procedure Outro;
    procedure Zusatzgrund;
+   procedure Feldeffekte;
    
    procedure EinlesenAufteilen
      (WelcheDateiExtern : in Positive;

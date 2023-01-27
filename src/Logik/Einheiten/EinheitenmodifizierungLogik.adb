@@ -61,21 +61,44 @@ package body EinheitenmodifizierungLogik is
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       KIBeschäftigung := LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      Feldeffekt := False;
+      
+      FeldeffekteSchleife:
+      for FeldeffekteSchleifenwert in KartenRecords.FeldeffektArray'Range loop
+         
+         case
+           LeseWeltkarte.Effekt (KoordinatenExtern   => Koordinaten,
+                                 WelcherEffektExtern => FeldeffekteSchleifenwert)
+         is
+            when True =>
+               Feldeffekt := True;
+               exit FeldeffekteSchleife;
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop FeldeffekteSchleife;
 
       if
-        AktuelleBeschäftigung = AufgabenDatentypen.Heilen_Enum
-        or
-          AktuelleBeschäftigung = AufgabenDatentypen.Verschanzen_Enum
+        Feldeffekt = False
+        and
+          (AktuelleBeschäftigung = AufgabenDatentypen.Heilen_Enum
+           or
+             AktuelleBeschäftigung = AufgabenDatentypen.Verschanzen_Enum)
       then
          SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                LebenspunkteExtern       => Heilungsrate,
                                                RechnenSetzenExtern      => True);
          
       elsif
-        AktuelleBeschäftigung = AufgabenDatentypen.Leer_Aufgabe_Enum
+        Feldeffekt = False
         and
-          LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                                                                                                           IDExtern    => EinheitID)
+          AktuelleBeschäftigung = AufgabenDatentypen.Leer_Aufgabe_Enum
+          and
+            LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                                                                                             IDExtern    => EinheitID)
       then
          SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                LebenspunkteExtern       => Heilungsrate / 2,
@@ -89,15 +112,26 @@ package body EinheitenmodifizierungLogik is
         AktuelleBeschäftigung
       is
          when EinheitenKonstanten.LeerBeschäftigung =>
-            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                     BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                                                                                 IDExtern    => EinheitID),
-                                                     RechnenSetzenExtern      => False);
+            if
+              Feldeffekt = False
+            then
+               SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                        BewegungspunkteExtern      => LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                                                                      IDExtern      => EinheitID),
+                                                        RechnenSetzenExtern        => False);
+               
+            else
+               SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                        BewegungspunkteExtern      => LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                                                                      IDExtern      => EinheitID)
+                                                        / 2,
+                                                        RechnenSetzenExtern        => False);
+            end if;
 
          when others =>
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                     BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                                     RechnenSetzenExtern      => False);
+                                                     BewegungspunkteExtern      => EinheitenKonstanten.LeerBewegungspunkte,
+                                                     RechnenSetzenExtern        => False);
       end case;
       
    end HeilungBewegungspunkteNeueRundeSetzen;
