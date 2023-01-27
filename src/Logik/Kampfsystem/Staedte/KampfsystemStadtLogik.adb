@@ -26,15 +26,23 @@ package body KampfsystemStadtLogik is
       return Boolean
    is
       use type KampfDatentypen.KampfwerteGroß;
+      use type EinheitenDatentypen.Lebenspunkte;
    begin
       
-      KampfwerteVerteidiger.Verteidigung := KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
-      KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
+      if
+        LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern) <= EinheitenKonstanten.LeerLebenspunkte
+      then
+         return False;
+         
+      else
+         KampfwerteVerteidiger.Verteidigung := KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
+         KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
       
-      KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                                                              LogikGrafikExtern          => True);
-      KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                                                    LogikGrafikExtern          => True);
+         KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
+                                                                                                 LogikGrafikExtern          => True);
+         KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
+                                                                                       LogikGrafikExtern          => True);
+      end if;
       
       if
         KampfwerteVerteidiger.Verteidigung = EinheitenKonstanten.LeerVerteidigung
@@ -117,8 +125,9 @@ package body KampfsystemStadtLogik is
          end if;
          
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                  BewegungspunkteExtern    => -2,
-                                                  RechnenSetzenExtern      => True);
+                                                  BewegungspunkteExtern      => -2,
+                                                  RechnenSetzenExtern        => True);
+         
          return False;
       end if;
       
@@ -168,7 +177,7 @@ package body KampfsystemStadtLogik is
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
                                                       ErfahrungspunkteExtern     => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies,
-                                                                                                                               IDExtern      => IDAngreifer),
+                                                                                                                                IDExtern      => IDAngreifer),
                                                       AddierenSetzenExtern       => True);
             
             EffektberechnungenLogik.Effektberechnungen (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern);
@@ -214,7 +223,7 @@ package body KampfsystemStadtLogik is
             return True;
             
          elsif
-           LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerLebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
             EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern);
             return False;

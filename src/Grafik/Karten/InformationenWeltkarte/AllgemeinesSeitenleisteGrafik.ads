@@ -1,3 +1,5 @@
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
@@ -31,7 +33,8 @@ private
    KartenWeg : KartenverbesserungDatentypen.Karten_Weg_Enum;
    
    Textbreite : Float;
-   RealeYPosition : Float;
+   
+   Text : Unbounded_Wide_Wide_String;
    
    Gesamtgrund : KartenRecords.KartengrundRecord;
 

@@ -1,5 +1,3 @@
-with Ada.Real_Time; use Ada.Real_Time;
-
 with ZeitKonstanten;
 
 with NachLogiktask;
@@ -11,7 +9,7 @@ package body EingabeAllgemeinLogik is
               
       while NachLogiktask.Warten loop
          
-         delay until Clock + ZeitKonstanten.WartezeitEingabe;
+         delay ZeitKonstanten.WartezeitEingabe;
          
       end loop;
       

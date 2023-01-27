@@ -4,6 +4,8 @@ with Views;
 with KartengrundDatentypen;
 with GrafikKonstanten;
 with ViewKonstanten;
+with EinheitenDatentypen;
+with EinheitenKonstanten;
 
 with LeseWeltkarte;
 with LeseCursor;
@@ -11,8 +13,11 @@ with LeseCursor;
 with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
 with ViewsEinstellenGrafik;
-with WeltkarteZeichnenGrafik;
 with SichtweitenGrafik;
+with WeltkarteFeldZeichnenGrafik;
+with WeltkartZusatzZeichnenGrafik;
+with WeltkarteEinheitZeichnenGrafik;
+with NachGrafiktask;
 
 package body WeltkarteGrafik is
    
@@ -112,11 +117,11 @@ package body WeltkarteGrafik is
          Transparents := GrafikKonstanten.Undurchsichtig;
       end if;
       
-      WeltkarteZeichnenGrafik.EbeneZeichnen (KoordinatenExtern        => AktuelleKoordinaten,
-                                             EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                             PositionExtern           => PositionExtern,
-                                             TransparentsExtern       => GrafikKonstanten.Undurchsichtig,
-                                             EbeneExtern              => KoordinatenExtern.EAchse);
+      EbeneZeichnen (KoordinatenExtern          => AktuelleKoordinaten,
+                     EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                     PositionExtern             => PositionExtern,
+                     TransparentsExtern         => GrafikKonstanten.Undurchsichtig,
+                     EbeneExtern                => KoordinatenExtern.EAchse);
       
       if
         KoordinatenExtern.EAchse = AktuelleKoordinaten.EAchse
@@ -124,13 +129,72 @@ package body WeltkarteGrafik is
          null;
             
       else
-         WeltkarteZeichnenGrafik.EbeneZeichnen (KoordinatenExtern        => KoordinatenExtern,
-                                                EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                PositionExtern           => PositionExtern,
-                                                TransparentsExtern       => Transparents,
-                                                EbeneExtern              => KoordinatenExtern.EAchse);
+         EbeneZeichnen (KoordinatenExtern          => KoordinatenExtern,
+                        EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                        PositionExtern             => PositionExtern,
+                        TransparentsExtern         => Transparents,
+                        EbeneExtern                => KoordinatenExtern.EAchse);
       end if;
       
    end IstSichtbar;
+   
+   
+   
+   procedure EbeneZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      TransparentsExtern : in Sf.sfUint8;
+      EbeneExtern : in KartenDatentypen.EbeneVorhanden)
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
+      
+      WeltkarteFeldZeichnenGrafik.KartenfeldZeichnen (KoordinatenExtern      => KoordinatenExtern,
+                                                      PositionExtern         => PositionExtern,
+                                                      DurchsichtigkeitExtern => TransparentsExtern);
+      
+      WeltkarteFeldZeichnenGrafik.FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                 PositionExtern    => PositionExtern);
+      
+      WeltkarteFeldZeichnenGrafik.RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                     PositionExtern    => PositionExtern);
+      
+      
+      
+      WeltkartZusatzZeichnenGrafik.WegZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                PositionExtern    => PositionExtern);
+      
+      WeltkartZusatzZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                         EbeneExtern       => EbeneExtern,
+                                                         PositionExtern    => PositionExtern);
+      
+      WeltkartZusatzZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
+                                                        PositionExtern    => PositionExtern);
+      
+      WeltkartZusatzZeichnenGrafik.AnzeigeFeldeffekt (KoordinatenExtern => KoordinatenExtern,
+                                                      PositionExtern    => PositionExtern);
+      
+      
+      
+      WeltkarteEinheitZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern          => KoordinatenExtern,
+                                                     EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                     PositionExtern             => PositionExtern);
+      
+      if
+        NachGrafiktask.EinheitBewegungsbereich
+        and
+          (NachGrafiktask.Einheitenbewegung = False)
+        and
+          EinheitSpeziesNummerExtern.Nummer /= EinheitenKonstanten.LeerNummer
+      then
+         WeltkarteEinheitZeichnenGrafik.AnzeigeBewegungsfeld (KoordinatenExtern        => KoordinatenExtern,
+                                                              PositionExtern           => PositionExtern);
+         
+      else
+         null;
+      end if;
+      
+   end EbeneZeichnen;
 
 end WeltkarteGrafik;

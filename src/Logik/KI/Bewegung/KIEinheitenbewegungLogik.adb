@@ -222,6 +222,7 @@ package body KIEinheitenbewegungLogik is
         and
           FremdeEinheit.Spezies /= SpeziesKonstanten.LeerSpezies
       then
+         -- Evenutell muss hier und weiter unten noch einmal Anpassungen vorgenommen werden, damit bei eimal Waffen alles richtig funktioniert. äöü
          if
            True = KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                           VerteidigendeStadtSpeziesNummerExtern => FremdeStadt)

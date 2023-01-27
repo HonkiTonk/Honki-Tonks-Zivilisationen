@@ -1,12 +1,15 @@
 with Sf;
 with Sf.System.Vector2;
 
+private with Sf.Graphics.Color;
+
 with KartenRecords;
 with SpeziesDatentypen;
 with KartenDatentypen;
 with KartenartDatentypen;
 
 private with KartenverbesserungDatentypen;
+private with StadtRecords;
 
 with LeseSpeziesbelegung;
 with LeseWeltkarteneinstellungen;
@@ -110,6 +113,28 @@ private
    Stadtart : KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
    Wegfeld : KartenverbesserungDatentypen.Karten_Weg_Enum;
    Verbesserungsfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   
+   DickeRahmen : constant Float := 5.00;
+   Textbreite : Float;
+         
+   StadtSpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
+   
+   Rahmenposition : Sf.System.Vector2.sfVector2f;
+   Rahmengröße : Sf.System.Vector2.sfVector2f;
+   Skalierung : Sf.System.Vector2.sfVector2f;
+   Textposition : Sf.System.Vector2.sfVector2f;
+   
+   KartenWertRahmen : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   Farbe : Sf.Graphics.Color.sfColor;
+      
+   type UmgebungArray is array (KartenartDatentypen.Himmelsrichtungen_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
+   Umgebung : constant UmgebungArray := (
+                                         KartenartDatentypen.Norden_Enum => (0, -1, 0),
+                                         KartenartDatentypen.Westen_Enum => (0, 0, -1),
+                                         KartenartDatentypen.Osten_Enum  => (0, 0, 1),
+                                         KartenartDatentypen.Süden_Enum  => (0, 1, 0)
+                                        );
    
    procedure StadtnameAnzeigen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

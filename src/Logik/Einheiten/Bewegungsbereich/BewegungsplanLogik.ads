@@ -1,5 +1,3 @@
-with Ada.Real_Time; use Ada.Real_Time;
-
 with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
@@ -52,7 +50,7 @@ private
    
    BewertungPosition : Positive;
    
-   Bewegungsverzögerung : constant Time_Span := Milliseconds (200);
+   Bewegungsverzögerung : constant Duration := 0.200;
    
    StadtAufFeld : StadtRecords.SpeziesStadtnummerRecord;
    

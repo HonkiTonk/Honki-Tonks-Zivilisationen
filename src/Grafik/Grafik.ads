@@ -1,4 +1,4 @@
-with Ada.Real_Time; use Ada.Real_Time;
+with Ada.Calendar; use Ada.Calendar;
 
 package Grafik is
    pragma Elaborate_Body;

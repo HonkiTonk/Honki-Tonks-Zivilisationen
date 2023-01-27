@@ -28,24 +28,27 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (27.01.2023):
+   -- Version 0.04.6770 => 0.04. (27.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (26.01.2023):
+   -- Version 0.04.6700 => 0.04.6770 (26.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- WeltkarteZeichnen vollständig aufgeteilt.
+   -- Fehler korrigiert, welcher zu eine Stopp führen konnte wenn man eine bewachte Stadt mit einer Einmalwaffe angriff.
+   -- Fehler korrigiert, der bei gültigen Fenstereinstellungen zu einem Stopp führte.
+   -- 'delay until' wieder auf 'delay' umgestellt, da sonst die Tasks nicht mehr korrekt abgebrochen werden.
+   -- Angefangen die Seitenleiste für Feldeffekte zu erweitern.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
-   -- Version 0.04.6700 => 0.04. (25.01.2023):
+   -- Version 0.04.6700 => 0.04.6700 (25.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

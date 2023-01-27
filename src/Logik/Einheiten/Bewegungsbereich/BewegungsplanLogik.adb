@@ -159,7 +159,7 @@ package body BewegungsplanLogik is
                   then
                      case
                        EinheitenbewegungLogik.FremderAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                              FremdeEinheitExtern      => AndereEinheit)
+                                                              FremdeEinheitExtern        => AndereEinheit)
                      is
                         when False =>
                            null;
@@ -235,7 +235,7 @@ package body BewegungsplanLogik is
                      null;
                      
                   else
-                     delay until Clock + Bewegungsverzögerung;
+                     delay Bewegungsverzögerung;
                   end if;
                end if;
                

@@ -1,5 +1,3 @@
-with Ada.Real_Time; use Ada.Real_Time;
-
 with GrafikDatentypen;
 with ZeitKonstanten;
 with TastenbelegungDatentypen;
@@ -28,7 +26,7 @@ package body StartLogik is
       FensterVorhandenSchleife:
       while NachLogiktask.Warten loop
          
-         delay until Clock + ZeitKonstanten.WartezeitLogik;
+         delay ZeitKonstanten.WartezeitLogik;
          
       end loop FensterVorhandenSchleife;
       

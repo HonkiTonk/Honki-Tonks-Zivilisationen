@@ -200,4 +200,9 @@ package KartenRecords is
             
    end record;
    
+   
+   
+   type EffekteArray is array (KartengrundDatentypen.Effekt_Vorhanden_Enum'Range) of Boolean;
+   type FeldeffektArray is array (KartengrundDatentypen.Effekt_Kartenfeld_Enum'Range) of Boolean;
+   
 end KartenRecords;

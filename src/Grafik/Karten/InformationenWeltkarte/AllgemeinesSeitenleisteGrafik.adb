@@ -1,5 +1,3 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
@@ -7,6 +5,7 @@ with Meldungstexte;
 with TextnummernKonstanten;
 with KartengrundDatentypen;
 with ViewKonstanten;
+with TextKonstanten;
 
 with LeseWeltkarte;
 with LeseCursor;
@@ -32,7 +31,6 @@ package body AllgemeinesSeitenleisteGrafik is
       Textbreite := 0.00;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      RealeYPosition := Textposition.y;
       
       AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten);
@@ -120,6 +118,50 @@ package body AllgemeinesSeitenleisteGrafik is
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (5),
                                                str  => KartenbeschreibungenGrafik.KurzbeschreibungFluss (KartenFlussExtern => KartenFluss));
       end case;
+      
+      
+      
+      TextAnzeigen (6) := False;
+      
+      Text := TextKonstanten.LeerUnboundedString;
+      
+      FeldeffekteSchleife:
+      for FeldeffektSchleifenwert in KartengrundDatentypen.Effekt_Kartenfeld_Enum'Range loop
+      
+         case
+           LeseWeltkarte.Effekt (KoordinatenExtern   => AktuelleKoordinaten,
+                                 WelcherEffektExtern => FeldeffektSchleifenwert)
+         is
+            when True =>
+               TextAnzeigen (6) := True;
+               
+               if
+                 Text = TextKonstanten.LeerUnboundedString
+               then
+                  Text := To_Unbounded_Wide_Wide_String (Source => KartenbeschreibungenGrafik.KurzbeschreibungFeldeffekte (FeldeffekteExtern => FeldeffektSchleifenwert));
+                  
+               else
+                  Text := Text & TextKonstanten.Trennzeichen & KartenbeschreibungenGrafik.KurzbeschreibungFeldeffekte (FeldeffekteExtern => FeldeffektSchleifenwert);
+               end if;
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop FeldeffekteSchleife;
+      
+      case
+        TextAnzeigen (6)
+      is
+         when True =>
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (6),
+                                               str  => To_Wide_Wide_String (Source => Text));
+            
+         when False =>
+            null;
+      end case;
+      
+      
                
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
@@ -129,22 +171,17 @@ package body AllgemeinesSeitenleisteGrafik is
          is
             when True =>
                TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                                   PositionExtern   => (Textposition.x, RealeYPosition));
-               
-               RealeYPosition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => RealeYPosition,
-                                                                               TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                   PositionExtern   => Textposition);
                
                Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
                                                                                    TextbreiteExtern => Textbreite);
+               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                               TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
+                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
             when False =>
                null;
          end case;
-                  
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
       end loop TextSchleife;
             

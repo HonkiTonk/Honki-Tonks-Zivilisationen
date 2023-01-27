@@ -36,4 +36,12 @@ package KartenbeschreibungenGrafik is
      (KartenRessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
       return Wide_Wide_String;
 
+   function KurzbeschreibungFeldeffekte
+     (FeldeffekteExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
+      return Wide_Wide_String;
+
+   function LangbeschreibungFeldeffekte
+     (FeldeffekteExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
+      return Wide_Wide_String;
+
 end KartenbeschreibungenGrafik;

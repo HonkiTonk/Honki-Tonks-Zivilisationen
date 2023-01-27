@@ -4,14 +4,10 @@ with ProduktionDatentypen;
 with StadtRecords;
 with ForschungenDatentypen;
 with KampfDatentypen;
-with KartengrundDatentypen;
 with KartenRecords;
 
 package EinheitendatenbankRecord is
    pragma Preelaborate;
-
-   --  Man könnte auch den Leerwert einbauen und wenn der True ist alle anderen Werte ignorieren. Wäre das sinnvoll? äöü
-   type EinheiteneffektArray is array (KartengrundDatentypen.Effekt_Vorhanden_Enum'Range) of Boolean;
    
    type EinheitenlisteRecord is record
       
@@ -37,7 +33,7 @@ package EinheitendatenbankRecord is
       KannTransportiertWerden : EinheitenDatentypen.Transport_Enum;
       Transportkapazität : EinheitenDatentypen.Transportplätze;
       
-      Zusatzeffekt : EinheiteneffektArray;
+      Zusatzeffekt : KartenRecords.EffekteArray;
       Effektreichweite : KartenRecords.EffektbereichRecord;
       
    end record;

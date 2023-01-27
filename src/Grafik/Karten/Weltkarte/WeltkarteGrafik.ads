@@ -49,5 +49,22 @@ private
                and
                  PositionExtern.y >= 0.00
               );
+   
+   procedure EbeneZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      TransparentsExtern : in Sf.sfUint8;
+      EbeneExtern : in KartenDatentypen.EbeneVorhanden)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+              );
 
 end WeltkarteGrafik;

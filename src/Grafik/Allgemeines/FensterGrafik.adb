@@ -41,10 +41,17 @@ package body FensterGrafik is
    procedure FensterErzeugenErweitert
    is begin
       
+      -- FensterVollbild:
+      -- No border / title bar = 0
+      -- Title bar + fixed border = 1
+      -- Titlebar + resizable border + maximize button = 2
+      -- Titlebar + close button = 4
+      -- Fullscreen mode = 8
+      -- Default window style = 7
       case
         EinstellungenGrafik.FensterEinstellungen.FensterVollbild
       is
-         when 7 =>
+         when 0 | 1 | 2 | 4 | 7 =>
             EinstellungenGrafik.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (EinstellungenGrafik.FensterEinstellungen.FensterBreite,
                                                                                                    EinstellungenGrafik.FensterEinstellungen.FensterHöhe,
                                                                                                    EinstellungenGrafik.FensterEinstellungen.Farbtiefe),

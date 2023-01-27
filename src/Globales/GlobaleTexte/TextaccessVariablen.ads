@@ -119,7 +119,7 @@ package TextaccessVariablen is
    
    
    -- KarteAllgemeines
-   KarteAllgemeinesAccess : constant TextaccessArray (1 .. 5) := (others => Sf.Graphics.Text.create);
+   KarteAllgemeinesAccess : constant TextaccessArray (1 .. 6) := (others => Sf.Graphics.Text.create);
    -- KarteAllgemeines
    
    

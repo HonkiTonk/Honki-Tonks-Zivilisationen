@@ -1,7 +1,6 @@
 with Ada.Task_Identification; use Ada.Task_Identification;
 with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Text_IO; use Ada.Text_IO;
-with Ada.Real_Time; use Ada.Real_Time;
 
 with ZeitKonstanten;
 
@@ -141,7 +140,7 @@ begin
          exit TaskIDsBelegenLassenSchleife;
 
       else
-         delay until Clock + ZeitKonstanten.WartezeitStart;
+         delay ZeitKonstanten.WartezeitStart;
       end if;
 
    end loop TaskIDsBelegenLassenSchleife;
@@ -161,14 +160,13 @@ begin
             exit SpielLäuftSchleife;
 
          when False =>
-            delay until Clock + ZeitKonstanten.WartezeitStart;
+            delay ZeitKonstanten.WartezeitStart;
       end case;
 
       case
         NachGrafiktask.FensterGeschlossen
       is
          when True =>
-            -- Hier nicht mehr direkt die Schleife verlassen, da sonst die erfolgreiche Endmeldung nicht mehr geschrieben wird.
             Abort_Task (T => TaskID (Task_Logik_Enum));
             Abort_Task (T => TaskID (Task_Musik_Enum));
             Abort_Task (T => TaskID (Task_Sound_Enum));

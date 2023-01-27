@@ -60,7 +60,8 @@ pragma Restrictions (No_Dependence => Ada.Execution_Time.Group_Budget);
 pragma Restrictions (No_Dependence => Ada.Execution_Time.Timers);
 pragma Restrictions (No_Dependence => Ada.Task_Attributes);
 pragma Restrictions (No_Dependence => Ada.System.Multiprocessors.Dispatching_Domains);
-pragma Restrictions (No_Relative_Delay);
+
+-- pragma Restrictions (No_Relative_Delay); -- Die notwendige Verwendung von delay until verhinderte scheinbar den korrekten Abbruch von Tasks.
 
 -- pragma Restrictions (No_Default_Stream_Attributes);
 -- pragma Restrictions (No_Abort_Statements);

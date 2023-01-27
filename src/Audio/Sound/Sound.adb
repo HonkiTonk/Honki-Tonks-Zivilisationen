@@ -1,5 +1,3 @@
-with Ada.Real_Time; use Ada.Real_Time;
-
 with TonDatentypen;
 with ZeitKonstanten;
 
@@ -15,7 +13,7 @@ package body Sound is
       EinlesenAbwartenSchleife:
       while LogiktaskAnAlle.EinlesenAbgeschlossen = False loop
          
-         delay until Clock + ZeitKonstanten.WartezeitSound;
+         delay ZeitKonstanten.WartezeitSound;
          
       end loop EinlesenAbwartenSchleife;
       
@@ -29,7 +27,7 @@ package body Sound is
            NachSoundtask.AktuellerSound
          is
             when TonDatentypen.Sound_Pause_Enum =>
-               delay until Clock + ZeitKonstanten.WartezeitSound;
+               delay ZeitKonstanten.WartezeitSound;
                
             when TonDatentypen.Sound_Ende_Enum =>
                exit SoundSchleife;

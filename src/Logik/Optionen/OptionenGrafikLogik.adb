@@ -1,4 +1,4 @@
-with Ada.Real_Time; use Ada.Real_Time;
+
 
 with GrafikDatentypen;
 with TextnummernKonstanten;
@@ -95,7 +95,7 @@ package body OptionenGrafikLogik is
       ErzeugungNeuesFensterAbwartenSchleife:
       while NachLogiktask.Warten loop
          
-         delay until Clock + ZeitKonstanten.WartezeitLogik;
+         delay ZeitKonstanten.WartezeitLogik;
          
       end loop ErzeugungNeuesFensterAbwartenSchleife;
             
@@ -125,7 +125,7 @@ package body OptionenGrafikLogik is
       NeueBildrateAbwartenSchleife:
       while NachGrafiktask.FensterVerändert = GrafikDatentypen.Bildrate_Ändern_Enum loop
          
-         delay until Clock + ZeitKonstanten.WartezeitLogik;
+         delay ZeitKonstanten.WartezeitLogik;
          
       end loop NeueBildrateAbwartenSchleife;
       
@@ -156,7 +156,7 @@ package body OptionenGrafikLogik is
       ErzeugungNeuesFensterAbwartenSchleife:
       while NachGrafiktask.FensterVerändert = GrafikDatentypen.Modus_Verändert_Enum loop
          
-         delay until Clock + ZeitKonstanten.WartezeitLogik;
+         delay ZeitKonstanten.WartezeitLogik;
          
       end loop ErzeugungNeuesFensterAbwartenSchleife;
       

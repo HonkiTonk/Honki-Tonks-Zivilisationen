@@ -19,6 +19,8 @@ with TextaccessverwaltungssystemGrafik;
 with StadtSuchenLogik;
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
+with ObjekteZeichnenGrafik;
+with SichtweitenGrafik;
 
 package body WeltkartZusatzZeichnenGrafik is
 

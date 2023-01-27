@@ -61,7 +61,7 @@ package body EinheitenbewegungLogik is
          
       else
          StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                                    KoordinatenExtern => KoordinatenExtern);
+                                                                                      KoordinatenExtern => KoordinatenExtern);
       end if;
          
       if

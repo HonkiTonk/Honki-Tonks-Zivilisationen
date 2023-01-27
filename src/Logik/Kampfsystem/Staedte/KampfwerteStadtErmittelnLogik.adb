@@ -17,10 +17,10 @@ package body KampfwerteStadtErmittelnLogik is
    begin
       
       VerteidigungWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                                                         SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+                                                                         SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                          WelcherWertExtern  => KartenKonstanten.KampfVerteidigung)
         + KartenfelderwerteLogik.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                                   SpeziesExtern       => StadtSpeziesNummerExtern.Spezies);
+                                                   SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop

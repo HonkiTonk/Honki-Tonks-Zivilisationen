@@ -1,5 +1,29 @@
 3 =>
   (
+   Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
+   PreisGeld               => 25,
+   Produktionskosten       => 20,
+   PermanenteKosten        => (others => 0),
+   Anforderungen           => 1,
+   Passierbarkeit          => (EinheitenDatentypen.Boden_Enum => True,
+                               others                         => False),
+   MaximaleLebenspunkte    => 5,
+   MaximaleBewegungspunkte => 10,
+   VerbesserungZu          => 8,
+   Beförderungsgrenze      => 30,
+   MaximalerRang           => 3,
+   Reichweite              => 2,
+   Angriff                 => 3,
+   Verteidigung            => 1,
+   KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
+   KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+   Transportkapazität      => 0,
+   Zusatzeffekt            => (others => False),
+   Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+  ),
+
+  3 =>
+  (
    Einheitenart            => EinheitenDatentypen.Einmalig_Enum,
    PreisGeld               => 25,
    Produktionskosten       => 20,

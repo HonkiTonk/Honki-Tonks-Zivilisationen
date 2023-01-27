@@ -32,7 +32,7 @@ package body Grafik is
       GrafikStartenSchleife:
       while NachGrafiktask.ErzeugeFenster = False loop
 
-         delay until Clock + ZeitKonstanten.WartezeitGrafik;
+         delay ZeitKonstanten.WartezeitGrafik;
          
       end loop GrafikStartenSchleife;
       
@@ -171,7 +171,7 @@ package body Grafik is
             end if;
             
          when GrafikDatentypen.Grafik_Pause_Enum =>
-            delay until Clock + ZeitKonstanten.WartezeitGrafik;
+            delay ZeitKonstanten.WartezeitGrafik;
             
          when GrafikDatentypen.Ladezeiten_Enum'Range =>
             LadezeitenGrafik.Ladezeiten (WelcheLadeanzeigeExtern => NachGrafiktask.AktuelleDarstellung,
