@@ -232,16 +232,6 @@ package body EingabenanzeigeGrafik is
          then
             Text := LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
-            case
-              To_Wide_Wide_String (Source => Text)'Length
-            is
-               when 0 =>
-                  Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugStadt);
-                  
-               when others =>
-                  null;
-            end case;
-            
          else
             Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung
                                                    (IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert))),
@@ -259,6 +249,28 @@ package body EingabenanzeigeGrafik is
                                                          FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Natural (AuswahlSchleifenwert),
                                                                                                                     AuswahlExtern    => AktuelleAuswahlExtern));
             
+            Textbox := Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
+            
+            if
+              Textbox.width <= 0.00
+              or
+                Textbox.height <= 0.00
+            then
+               if
+                 AuswahlSchleifenwert = WelcheAuswahl.MöglicheAuswahlen'First
+               then
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                                     str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugStadt)));
+                  
+               else
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+                                                     str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinheit)));
+               end if;
+               
+            else
+               null;
+            end if;
+                        
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                                                                   ViewbreiteExtern => Viewfläche.x);
             

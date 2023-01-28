@@ -59,6 +59,16 @@ package LeseWeltkarte is
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
+   function Feldeffekte
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return KartenRecords.FeldeffektArray
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
    function Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)

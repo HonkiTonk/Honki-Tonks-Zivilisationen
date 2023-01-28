@@ -10,14 +10,14 @@
 --                  Baut Städte auf anderen Ebenen. Modernisiert jetzt Einheiten die nicht die Städte bewachen. Modernisiert jetzt Einheiten die die Städte bewachen. Wegfindung verbesssert.
 --
 
--- Einfache Musik/Sounds einbauen: Einlesesystem für Sound und Speziesspezifische Musik eingebaut.
+-- Einfache Musik/Sounds einbauen: Einlesesystem für Sound und speziesspezifische Musik eingebaut.
 
 -- Forschungen/Einheiten/Gebäude für zweite Spezies einbauen: Erste rudimentäre Version des Forschungs-, Einheiten- und Gebäudebaums der Tesorahn eingebaut.
 
 -- Sonstiges: Planetenzerstörerbombe inklusive Zusammenbruchszeit eingebaut. Sichtbarkeitsberechnungssystem ist nun ebenenübergreifend. Koordinatenberechnunssystem funktioniert jetzt mit allen Kartenformen ohne abzustürzen.
 --            Steuerungsauswahl mit verschiedenen Kategorien eingebaut. Zusatzgrund kann sich jetzt auch grafisch über mehrere Felder erstrecken.
 --            Vor dem Laden erfolgt jetzt immer eine Prüfung ob der Spielstand auch alle Daten in der richtigen Reihenfolge enthält. Es ist jetzt möglich Einheiten über mehrere Felder zu bewegen.
---            Bei ausgewählten Einheiten wird jetzt angezeigt auf welche Felder sich die Einheit aktuell bewegen kann.
+--            Bei ausgewählten Einheiten wird jetzt angezeigt auf welche Felder sich die Einheit aktuell bewegen kann. Feldeffekte eingebaut.
 --
 
 

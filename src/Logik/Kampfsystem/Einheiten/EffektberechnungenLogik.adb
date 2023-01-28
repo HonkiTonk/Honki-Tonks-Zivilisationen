@@ -10,8 +10,9 @@ with ChemischeWaffeEingesetztLogik;
 with EinheitenErzeugenEntfernenLogik;
 with VerschmutzendeWaffeEingesetztLogik;
 
--- Eventuell muss im Kampsystem noch ein paar Anpassungen vorgenommen werden, damit mit dem neuen System alles richtig funktioniert und gesetzt wird. äöü
 -- Sollten Einmalwaffen Städte direkt zerstören oder wäre ein eigenes System dafür besser? äöü
+-- Die Meinungsänderung der Anderen wird in den einzelnen Unterprozeduren geregelt, aber es muss eventuell noch eine Anpassung am Zustand irgendwo rein, am besten hier? äöü
+-- Die Meinungsänderung später noch Effekt- und Speziesspezifisch gestalten. äöü
 package body EffektberechnungenLogik is
 
    procedure Effektberechnungen

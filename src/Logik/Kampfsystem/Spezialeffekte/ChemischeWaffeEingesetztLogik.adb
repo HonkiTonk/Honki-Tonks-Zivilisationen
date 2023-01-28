@@ -1,11 +1,13 @@
 with KartenKonstanten;
 with KartengrundDatentypen;
 with KartenextraDatentypen;
+with DiplomatieDatentypen;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 with SchreibeWeltkarte;
 with LeseWeltkarte;
+with SchreibeDiplomatie;
 
 with KartenkoordinatenberechnungssystemLogik;
 
@@ -13,7 +15,9 @@ package body ChemischeWaffeEingesetztLogik is
 
    procedure ChemischeWaffeEingesetzt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-   is begin
+   is
+      use type SpeziesDatentypen.Spezies_Enum;
+   begin
       
       Gefahrenbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                   IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
@@ -46,6 +50,25 @@ package body ChemischeWaffeEingesetztLogik is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
       end loop EAchseSchleife;
+      
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+         
+         if
+           SpeziesSchleifenwert = EinheitSpeziesNummerExtern.Spezies
+           or
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
+         then
+            null;
+            
+         else
+            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => EinheitSpeziesNummerExtern.Spezies,
+                                                  SpeziesZweiExtern   => SpeziesSchleifenwert,
+                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KartengrundDatentypen.Chemisch_Enum, EinheitSpeziesNummerExtern.Spezies),
+                                                  RechnenSetzenExtern => True);
+         end if;
+         
+      end loop SpeziesSchleife;
       
    end ChemischeWaffeEingesetzt;
    

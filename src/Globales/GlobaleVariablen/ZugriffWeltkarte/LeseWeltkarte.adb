@@ -79,10 +79,29 @@ package body LeseWeltkarte is
             return False;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekt (WelcherEffektExtern);
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekte (WelcherEffektExtern);
       end case;
       
    end Effekt;
+   
+   
+   
+   function Feldeffekte
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return KartenRecords.FeldeffektArray
+   is begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return (False, False, False, False);
+            
+         when others =>
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekte;
+      end case;
+      
+   end Feldeffekte;
      
    
       

@@ -54,6 +54,7 @@ private
    Skalierung : Sf.System.Vector2.sfVector2f;
    
    Anzeigebereich : Sf.Graphics.Rect.sfFloatRect;
+   Textbox : Sf.Graphics.Rect.sfFloatRect;
 
    procedure AnzeigeGanzeZahl;
    procedure AnzeigeText;

@@ -60,6 +60,7 @@ package TextnummernKonstanten is
    ZeugGigantisch : constant Positive := 53;
    
    ZeugStadt : constant Positive := 54;
+   ZeugEinheit : constant Positive := 55;
    
    
    

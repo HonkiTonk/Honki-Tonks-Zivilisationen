@@ -90,4 +90,12 @@ package KartenfelderwerteLogik is
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
+private
+   
+   type FeldeffektteilerArray is array (Boolean'Range) of ProduktionDatentypen.Feldproduktion;
+   Feldeffektteiler : constant FeldeffektteilerArray := (
+                                                         True  => 2,
+                                                         False => 1
+                                                        );
+   
 end KartenfelderwerteLogik;

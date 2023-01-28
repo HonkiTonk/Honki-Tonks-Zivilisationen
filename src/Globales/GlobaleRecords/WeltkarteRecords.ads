@@ -14,7 +14,7 @@ package WeltkarteRecords is
    type WeltkarteRecord is record
 
       Grund : KartenRecords.KartengrundRecord;
-      Effekt : KartengrundDatentypen.EffekteArray;
+      Effekte : KartenRecords.FeldeffektArray;
       Sichtbar : KartenRecords.SichtbarkeitArray;
       
       Fluss : KartenextraDatentypen.Fluss_Enum;
@@ -33,7 +33,7 @@ package WeltkarteRecords is
    
    LeerWeltkarte : constant WeltkarteRecord := (
                                                 Grund         => (KartengrundDatentypen.Leer_Basisgrund_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum),
-                                                Effekt        => (others => False),
+                                                Effekte       => (others => False),
                                                 Sichtbar      => (others => KartenKonstanten.LeerSichtbar),
                                                 Fluss         => KartenextraDatentypen.Leer_Fluss_Enum,
                                                 Ressource     => KartenextraDatentypen.Leer_Ressource_Enum,

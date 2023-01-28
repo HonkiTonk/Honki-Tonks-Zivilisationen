@@ -61,8 +61,8 @@ package body StadtwachstumLogik is
    begin
       
       SchreibeStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                          NahrungsmittelExtern   => LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                          ÄndernSetzenExtern     => True);
+                                          NahrungsmittelExtern     => LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
+                                          ÄndernSetzenExtern       => True);
       
       VorhandeneNahrung := LeseStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 

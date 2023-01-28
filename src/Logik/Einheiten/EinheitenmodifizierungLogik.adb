@@ -10,6 +10,7 @@ with PassierbarkeitspruefungLogik;
 with StadtproduktionLogik;
 with ForschungstestsLogik;
 with DebugobjekteLogik;
+with KartenfeldereffekteLogik;
 
 package body EinheitenmodifizierungLogik is
 
@@ -61,25 +62,7 @@ package body EinheitenmodifizierungLogik is
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       KIBeschäftigung := LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-      Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-      Feldeffekt := False;
-      
-      FeldeffekteSchleife:
-      for FeldeffekteSchleifenwert in KartenRecords.FeldeffektArray'Range loop
-         
-         case
-           LeseWeltkarte.Effekt (KoordinatenExtern   => Koordinaten,
-                                 WelcherEffektExtern => FeldeffekteSchleifenwert)
-         is
-            when True =>
-               Feldeffekt := True;
-               exit FeldeffekteSchleife;
-               
-            when False =>
-               null;
-         end case;
-         
-      end loop FeldeffekteSchleife;
+      Feldeffekt := KartenfeldereffekteLogik.FeldeffektVorhanden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
 
       if
         Feldeffekt = False

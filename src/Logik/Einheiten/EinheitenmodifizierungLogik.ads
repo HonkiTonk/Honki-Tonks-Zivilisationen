@@ -8,7 +8,6 @@ with EinheitenKonstanten;
 
 private with StadtDatentypen;
 private with AufgabenDatentypen;
-private with KartenRecords;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -72,8 +71,6 @@ private
    NeueHeimatstadt : StadtRecords.SpeziesStadtnummerRecord;
    
    EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   
-   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    procedure HeilungBewegungspunkteNeueRundeSetzen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

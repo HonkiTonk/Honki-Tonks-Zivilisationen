@@ -20,6 +20,7 @@ private
    VorhandeneEinwohner : ProduktionDatentypen.Einwohner;
    
    VorhandeneNahrung : ProduktionDatentypen.Stadtproduktion;
+   ProduzierteNahrung : ProduktionDatentypen.Stadtproduktion;
    
    Bauprojekt : StadtRecords.BauprojektRecord;
    

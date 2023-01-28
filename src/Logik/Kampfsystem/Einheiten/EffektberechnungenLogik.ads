@@ -22,8 +22,6 @@ package EffektberechnungenLogik is
    
 private
    
-   Leerwert : Boolean;
-   
    EinheitID : EinheitenDatentypen.EinheitenID;
 
 end EffektberechnungenLogik;

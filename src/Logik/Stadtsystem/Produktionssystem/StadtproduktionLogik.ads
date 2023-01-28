@@ -25,6 +25,8 @@ package StadtproduktionLogik is
 
 private
 
+   Feldeffekt : Boolean;
+   
    VorhandeneEinwohner : ProduktionDatentypen.Einwohner;
    
    NutzbarerBereich : KartenDatentypen.Kartenfeld;

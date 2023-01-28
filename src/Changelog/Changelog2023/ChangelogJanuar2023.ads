@@ -14,17 +14,19 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (29.01.2023):
+   -- Version 0.04.6860 => 0.04. (29.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.6805 => 0.04. (28.01.2023):
+   -- Version 0.04.6805 => 0.04.6860 (28.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert, welcher dazu führte das bei Texten mit der Höhe oder Länge von 0.00 keine Stadt/Einheitenauswahl möglich war.
+   -- Feldeffekte haben jetzt Auswirkung auf die Produktion einer Stadt.
+   -- Feldeffekte die durch Kämpfe und dem Einsatz von Einmalwaffen erzeugt werden haben jetzt eine negative Auswirkung auf die Meinung der anderen Spezien.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/zusammengefasst.
    
    
 

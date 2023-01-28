@@ -80,7 +80,7 @@ package body SchreibeWeltkarte is
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Effekt: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekt (EffektExtern) := True;
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekte (EffektExtern) := True;
       end case;
       
    end Effekt;

@@ -3,12 +3,14 @@ with KartengrundDatentypen;
 with KartenverbesserungDatentypen;
 with StadtKonstanten;
 with KartenextraDatentypen;
+with DiplomatieDatentypen;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 with SchreibeWeltkarte;
 with SchreibeAllgemeines;
 with LeseAllgemeines;
+with SchreibeDiplomatie;
 
 with EinheitenErzeugenEntfernenLogik;
 with KartenkoordinatenberechnungssystemLogik;
@@ -20,7 +22,9 @@ package body PZBEingesetztLogik is
 
    procedure PZBEingesetzt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-   is begin
+   is
+      use type SpeziesDatentypen.Spezies_Enum;
+   begin
       
       SchreibeAllgemeines.AnzahlEingesetzterPZB;
       SchreibeAllgemeines.PlanetVernichtet (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
@@ -68,6 +72,25 @@ package body PZBEingesetztLogik is
          
       PlanetenVernichten (KoordinatenExtern         => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                           VernichtungsbereichExtern => Vernichtungsbereich);
+      
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+         
+         if
+           SpeziesSchleifenwert = EinheitSpeziesNummerExtern.Spezies
+           or
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
+         then
+            null;
+            
+         else
+            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => EinheitSpeziesNummerExtern.Spezies,
+                                                  SpeziesZweiExtern   => SpeziesSchleifenwert,
+                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KartengrundDatentypen.Vernichtet_Enum, EinheitSpeziesNummerExtern.Spezies),
+                                                  RechnenSetzenExtern => False);
+         end if;
+         
+      end loop SpeziesSchleife;
       
    end PZBEingesetzt;
    
