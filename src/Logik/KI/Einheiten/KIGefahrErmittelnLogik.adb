@@ -70,17 +70,17 @@ package body KIGefahrErmittelnLogik is
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                              SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
+                                              SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
             then
                null;
                   
             else
                EinheitUnzugeordnet := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenWert,
-                                                                                            LogikGrafikExtern => True);
+                                                                                              LogikGrafikExtern => True);
                   
                case
                  ReaktionErfoderlich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                      AndereEinheitExtern      => EinheitUnzugeordnet)
+                                      AndereEinheitExtern        => EinheitUnzugeordnet)
                is
                   when False =>
                      null;
@@ -132,7 +132,7 @@ package body KIGefahrErmittelnLogik is
       
       case
         LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => AndereEinheitExtern.Spezies,
-                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => AndereEinheitExtern))
+                                             IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => AndereEinheitExtern))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             return False;

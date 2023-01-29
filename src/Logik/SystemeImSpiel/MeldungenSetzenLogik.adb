@@ -56,8 +56,8 @@ package body MeldungenSetzenLogik is
       end case;
       
       SchreibeStadtGebaut.Meldungen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                     WelcheMeldungExtern    => StadtMeldung,
-                                     MeldungExtern          => EreignisExtern);
+                                     WelcheMeldungExtern      => StadtMeldung,
+                                     MeldungExtern            => EreignisExtern);
       
    end StadtmeldungSetzen;
    
@@ -79,8 +79,8 @@ package body MeldungenSetzenLogik is
       end case;
       
       SchreibeEinheitenGebaut.Meldungen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                         MeldungExtern            => EreignisExtern,
-                                         WelcheMeldungExtern      => EinheitMeldung);
+                                         MeldungExtern              => EreignisExtern,
+                                         WelcheMeldungExtern        => EinheitMeldung);
       
    end EinheitmeldungSetzen;
 

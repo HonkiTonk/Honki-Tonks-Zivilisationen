@@ -37,7 +37,7 @@ package WichtigesRecordKonstanten is
                                                                  -- Das auslagern damit man es nicht immer neu setzen muss? äöü
                                                                  Schwierigkeitsgrad    => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
                                                                  Rundenanzahl          => Positive'First,
-                                                                  -- Das auslagern damit man es nicht immer neu setzen muss? äöü
+                                                                 -- Das auslagern damit man es nicht immer neu setzen muss? äöü
                                                                  Rundengrenze          => Natural'First,
                                                                  IronmanName           => TextKonstanten.LeerUnboundedString,
                                                                  PlanetVernichtet      => SpeziesKonstanten.LeerSpezies,
@@ -68,26 +68,26 @@ package WichtigesRecordKonstanten is
                                                                );
    
    LeerSpeziesbelegung : constant SpielRecords.SpeziesRecords := (
-                                                                Belegung => SpeziesDatentypen.Leer_Spieler_Enum,
-                                                                Besiegt  => False
-                                                               );
+                                                                  Belegung => SpeziesDatentypen.Leer_Spieler_Enum,
+                                                                  Besiegt  => False
+                                                                 );
    
    -- Wird noch nicht verwendet. Wird das jemals sinnvoll sein? äöü
    LeerSpeziesListe : constant DatenbankRecords.SpezieslisteRecord := (
-                                                                     Aggressivität       => 0,
-                                                                     Expansion           => 0,
-                                                                     Wissenschaft        => 0,
-                                                                     Produktion          => 0,
-                                                                     Wirtschaft          => 0,
-                                                                     Bewirtschaftung     => 0,
-                                                                     Staatsformen        =>
-                                                                       (
-                                                                        SpeziesDatentypen.Anarchie_Enum,
-                                                                        SpeziesDatentypen.Anarchie_Enum,
-                                                                        SpeziesDatentypen.Anarchie_Enum,
-                                                                        SpeziesDatentypen.Anarchie_Enum,
-                                                                        SpeziesDatentypen.Anarchie_Enum
-                                                                       )
-                                                                    );
+                                                                       Aggressivität       => 0,
+                                                                       Expansion           => 0,
+                                                                       Wissenschaft        => 0,
+                                                                       Produktion          => 0,
+                                                                       Wirtschaft          => 0,
+                                                                       Bewirtschaftung     => 0,
+                                                                       Staatsformen        =>
+                                                                         (
+                                                                          SpeziesDatentypen.Anarchie_Enum,
+                                                                          SpeziesDatentypen.Anarchie_Enum,
+                                                                          SpeziesDatentypen.Anarchie_Enum,
+                                                                          SpeziesDatentypen.Anarchie_Enum,
+                                                                          SpeziesDatentypen.Anarchie_Enum
+                                                                         )
+                                                                      );
    
 end WichtigesRecordKonstanten;

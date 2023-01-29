@@ -38,8 +38,8 @@ package body DoppelmenueGrafik is
         WelchesMenüExtern
       is
          when MenueDatentypen.Spezies_Menü_Enum =>
-            Viewfläche (Auswahlbereich) := TextpositionFestlegen (WelchesMenüExtern    => WelchesMenüExtern,
-                                                                   ViewflächeExtern     => Viewfläche (Auswahlbereich),
+            Viewfläche (Auswahlbereich) := TextpositionFestlegen (WelchesMenüExtern     => WelchesMenüExtern,
+                                                                   ViewflächeExtern      => Viewfläche (Auswahlbereich),
                                                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Kartenform_Menü_Enum =>
@@ -64,8 +64,8 @@ package body DoppelmenueGrafik is
                                      AbmessungenExtern => Viewfläche (Zusatzbereich));
 
       Viewfläche (Zusatzbereich) := ZusatztextaufteilungGrafik.ZusatztextDoppelmenü (WelchesMenüExtern     => WelchesMenüExtern,
-                                                                                     AktuelleAuswahlExtern => AktuelleAuswahlExtern,
-                                                                                     ViewflächeExtern      => Viewfläche (Zusatzbereich));
+                                                                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern,
+                                                                                       ViewflächeExtern      => Viewfläche (Zusatzbereich));
       
       Viewfläche (Zusatzbereich).y := Viewfläche (Zusatzbereich).y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       

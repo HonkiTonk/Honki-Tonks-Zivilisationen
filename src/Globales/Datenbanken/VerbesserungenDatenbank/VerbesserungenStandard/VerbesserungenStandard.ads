@@ -9,16 +9,16 @@ package VerbesserungenStandard is
    Stadtliste : constant StadtlisteArray := (
                                              KartenverbesserungDatentypen.Hauptstadt_Enum =>
                                                (
-                                                Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                                Wirtschaft         => (others => (others => 1)),
-                                                Kampf              => (others => (others => 1))
+                                                Bewertung  => (others => BewertungDatentypen.Bewertung_Eins_Enum),
+                                                Wirtschaft => (others => (others => 1)),
+                                                Kampf      => (others => (others => 1))
                                                ),
                                                   
                                              KartenverbesserungDatentypen.Stadt_Enum =>
                                                (
-                                                Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                                Wirtschaft         => (others => (others => 1)),
-                                                Kampf              => (others => (others => 1))
+                                                Bewertung  => (others => BewertungDatentypen.Bewertung_Eins_Enum),
+                                                Wirtschaft => (others => (others => 1)),
+                                                Kampf      => (others => (others => 1))
                                                )
                                             );
    
@@ -28,23 +28,23 @@ package VerbesserungenStandard is
    Gebildeliste : constant GebildelisteArray := (
                                                  KartenverbesserungDatentypen.Farm_Enum =>
                                                    (
-                                                    Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                                    Wirtschaft         => (others => (others => 1)),
-                                                    Kampf              => (others => (others => 1))
+                                                    Bewertung  => (others => BewertungDatentypen.Bewertung_Eins_Enum),
+                                                    Wirtschaft => (others => (others => 1)),
+                                                    Kampf      => (others => (others => 1))
                                                    ),
                                                   
                                                  KartenverbesserungDatentypen.Mine_Enum =>
                                                    (
-                                                    Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                                    Wirtschaft         => (others => (others => 1)),
-                                                    Kampf              => (others => (others => 1))
+                                                    Bewertung  => (others => BewertungDatentypen.Bewertung_Eins_Enum),
+                                                    Wirtschaft => (others => (others => 1)),
+                                                    Kampf      => (others => (others => 1))
                                                    ),
                                                   
                                                  KartenverbesserungDatentypen.Festung_Enum =>
                                                    (
-                                                    Bewertung          => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                                    Wirtschaft         => (others => (others => 1)),
-                                                    Kampf              => (others => (others => 1))
+                                                    Bewertung  => (others => BewertungDatentypen.Bewertung_Eins_Enum),
+                                                    Wirtschaft => (others => (others => 1)),
+                                                    Kampf      => (others => (others => 1))
                                                    )
                                                 );
 

@@ -10,6 +10,6 @@ package SpeziesKonstanten is
    Speziesanfang : constant Positive := SpeziesDatentypen.SpeziesnummernVorhanden'First;
    Speziesende : constant Positive := SpeziesDatentypen.SpeziesnummernVorhanden'Last;
    
-   -- Die Rassen auch mal in einzelne Konstanten packen? äöü
+   -- Die Spezien auch mal in einzelne Konstanten packen? äöü
 
 end SpeziesKonstanten;

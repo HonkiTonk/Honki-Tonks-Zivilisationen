@@ -53,7 +53,7 @@ package body StadtEntfernenLogik is
                                       VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       SchreibeStadtGebaut.Nullsetzung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       GlobalesWachstumLogik.WachstumWichtiges (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
-      SchreibeWichtiges.AnzahlStädte (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+      SchreibeWichtiges.AnzahlStädte (SpeziesExtern   => StadtSpeziesNummerExtern.Spezies,
                                        PlusMinusExtern => False);
       SpeziesEntfernenLogik.SpeziesExistenzPrüfen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       
@@ -74,7 +74,7 @@ package body StadtEntfernenLogik is
            LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerSchleifenwert)) = StadtSpeziesNummerExtern.Nummer
          then
             SchreibeEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerSchleifenwert),
-                                                 HeimatstadtExtern        => EinheitenKonstanten.LeerHeimatstadt);
+                                                 HeimatstadtExtern          => EinheitenKonstanten.LeerHeimatstadt);
             
          else
             null;
@@ -115,7 +115,7 @@ package body StadtEntfernenLogik is
             
          else
             SchreibeStadtGebaut.ID (StadtSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, StadtSchleifenwert),
-                                    IDExtern               => KartenverbesserungDatentypen.Hauptstadt_Enum);
+                                    IDExtern                 => KartenverbesserungDatentypen.Hauptstadt_Enum);
             return;
          end if;
          

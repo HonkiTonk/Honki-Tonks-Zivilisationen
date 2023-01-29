@@ -88,7 +88,7 @@ package body NaechsteStadtLogik is
                
                   if
                     StadtDatentypen.Leer_Stadt_Meldung_Enum = LeseStadtGebaut.Meldungen (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadtMeldung (SpeziesExtern)),
-                                                                                         WelcheMeldungExtern    => MeldungSchleifenwert)
+                                                                                         WelcheMeldungExtern      => MeldungSchleifenwert)
                   then
                      null;
                      

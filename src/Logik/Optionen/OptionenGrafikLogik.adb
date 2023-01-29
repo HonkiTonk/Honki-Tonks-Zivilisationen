@@ -60,8 +60,8 @@ package body OptionenGrafikLogik is
    is begin
       
       EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 320,
-                                                             ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
-                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungsbreite);
+                                                            ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
+                                                            WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungsbreite);
       
       if
         EingabeAuflösung.ErfolgreichAbbruch

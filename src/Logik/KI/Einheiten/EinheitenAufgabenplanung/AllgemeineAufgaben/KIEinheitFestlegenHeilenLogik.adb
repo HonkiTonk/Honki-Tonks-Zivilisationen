@@ -21,10 +21,10 @@ package body KIEinheitFestlegenHeilenLogik is
       if
         LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
         < LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
+                                                       IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
       then
          SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                 AufgabeExtern            => KIDatentypen.Einheit_Heilen_Enum);
+                                                 AufgabeExtern              => KIDatentypen.Einheit_Heilen_Enum);
          
          return True;
          

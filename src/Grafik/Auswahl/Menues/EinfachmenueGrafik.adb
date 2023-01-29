@@ -41,10 +41,10 @@ package body EinfachmenueGrafik is
         WelchesMenüExtern
       is
          when MenueDatentypen.Menü_Zusatztext_Einfach_Enum'Range =>
-            Viewfläche := ZusatztextaufteilungGrafik.Zusatztextaufteilung (WelchesMenüExtern          => WelchesMenüExtern,
-                                                                            AktuelleAuswahlExtern      => AktuelleAuswahlExtern,
-                                                                            ViewflächeExtern           => Viewfläche,
-                                                                            RealeViewbreiteExtern      => Viewbreite);
+            Viewfläche := ZusatztextaufteilungGrafik.Zusatztextaufteilung (WelchesMenüExtern     => WelchesMenüExtern,
+                                                                            AktuelleAuswahlExtern => AktuelleAuswahlExtern,
+                                                                            ViewflächeExtern      => Viewfläche,
+                                                                            RealeViewbreiteExtern => Viewbreite);
             
          when others =>
             null;

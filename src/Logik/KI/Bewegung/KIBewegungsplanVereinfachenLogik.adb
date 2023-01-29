@@ -21,13 +21,13 @@ package body KIBewegungsplanVereinfachenLogik is
             
          if
            KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                       PlanschrittExtern        => PlanschrittSchleifenwert)
+                                                                                       PlanschrittExtern          => PlanschrittSchleifenwert)
          then
             return;
                
          else
             PlanvereinfachungPrüfen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                      PlanschrittExtern        => PlanschrittSchleifenwert);
+                                      PlanschrittExtern          => PlanschrittSchleifenwert);
          end if;
          
       end loop PlanschrittSchleife;
@@ -44,7 +44,7 @@ package body KIBewegungsplanVereinfachenLogik is
    begin
       
       AktuellePlankoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                      PlanschrittExtern        => PlanschrittExtern);
+                                                                     PlanschrittExtern          => PlanschrittExtern);
       
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
@@ -64,8 +64,8 @@ package body KIBewegungsplanVereinfachenLogik is
                      
                elsif
                  True = Verschieben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                     PlanschrittExtern        => PlanschrittExtern,
-                                     KoordinatenExtern        => KartenwertVereinfachung)
+                                     PlanschrittExtern          => PlanschrittExtern,
+                                     KoordinatenExtern          => KartenwertVereinfachung)
                then
                   return;
                   
@@ -98,7 +98,7 @@ package body KIBewegungsplanVereinfachenLogik is
                         
          if
            KoordinatenExtern = LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                   PlanschrittExtern        => BewegungsplanSchleifenwert)
+                                                                   PlanschrittExtern          => BewegungsplanSchleifenwert)
          then
             Planschritt := BewegungsplanSchleifenwert;
             
@@ -124,9 +124,9 @@ package body KIBewegungsplanVereinfachenLogik is
       for VerschiebungSchleifenwert in Planschritt .. EinheitenRecords.KIBewegungPlanArray'Last loop
                   
          SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                 KoordinatenExtern        => LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                                                 PlanschrittExtern        => VerschiebungSchleifenwert),
-                                                 PlanplatzExtern          => PlanschrittExtern + Zusatzschritt);
+                                                 KoordinatenExtern          => LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                                                                   PlanschrittExtern          => VerschiebungSchleifenwert),
+                                                 PlanplatzExtern            => PlanschrittExtern + Zusatzschritt);
             
          Zusatzschritt := Zusatzschritt + 1;
                
@@ -135,9 +135,9 @@ package body KIBewegungsplanVereinfachenLogik is
       LöschenSchleife:
       for LöschenSchleifenwert in PlanschrittExtern + Zusatzschritt .. EinheitenRecords.KIBewegungPlanArray'Last loop
          
-        SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate,
-                                                PlanplatzExtern          => LöschenSchleifenwert);
+         SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                 KoordinatenExtern          => KartenRecordKonstanten.LeerKoordinate,
+                                                 PlanplatzExtern            => LöschenSchleifenwert);
          
       end loop LöschenSchleife;
             
@@ -157,15 +157,15 @@ package body KIBewegungsplanVereinfachenLogik is
       for PositionSchleifenwert in EinheitenRecords.KIBewegungPlanArray'First + 1 .. EinheitenRecords.KIBewegungPlanArray'Last loop
          
          SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                 KoordinatenExtern        => LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                                                 PlanschrittExtern        => PositionSchleifenwert),
-                                                 PlanplatzExtern          => (PositionSchleifenwert - 1));
+                                                 KoordinatenExtern          => LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                                                                   PlanschrittExtern          => PositionSchleifenwert),
+                                                 PlanplatzExtern            => (PositionSchleifenwert - 1));
          
       end loop BewegungPlanVerschiebenSchleife;
             
       SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                              KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate,
-                                              PlanplatzExtern          => EinheitenRecords.KIBewegungPlanArray'Last);
+                                              KoordinatenExtern          => KartenRecordKonstanten.LeerKoordinate,
+                                              PlanplatzExtern            => EinheitenRecords.KIBewegungPlanArray'Last);
       
    end BewegungsplanVerschieben;
 

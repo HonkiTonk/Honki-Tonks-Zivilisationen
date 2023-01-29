@@ -24,9 +24,9 @@ package KartenRecordKonstanten is
                                                                      );
    
    LeerDurchStadtBelegterGrund : constant StadtRecords.SpeziesStadtnummerRecord := (
-                                                                                  Spezies => SpeziesKonstanten.LeerSpezies,
-                                                                                  Nummer  => StadtDatentypen.MaximaleStädteMitNullWert'First
-                                                                                 );
+                                                                                    Spezies => SpeziesKonstanten.LeerSpezies,
+                                                                                    Nummer  => StadtDatentypen.MaximaleStädteMitNullWert'First
+                                                                                   );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (
                                                                     EAchseOben   => KartenartDatentypen.Karte_E_Kein_Übergang_Enum,

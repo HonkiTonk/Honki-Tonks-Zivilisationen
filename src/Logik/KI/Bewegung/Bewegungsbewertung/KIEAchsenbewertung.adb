@@ -28,8 +28,8 @@ package body KIEAchsenbewertung is
             Felderanzahl (2) := KartenDatentypen.KartenfeldPositiv'Last;
             
          when KartenartDatentypen.Karte_E_Übergang_Enum =>
-            Felderanzahl (2) := StandardübergangOben (ZielebeneExtern     => ZielebeneExtern,
-                                                 NeueEbeneExtern     => NeueEbeneExtern);
+            Felderanzahl (2) := StandardübergangOben (ZielebeneExtern => ZielebeneExtern,
+                                                       NeueEbeneExtern => NeueEbeneExtern);
       end case;
       
       case
@@ -39,8 +39,8 @@ package body KIEAchsenbewertung is
             Felderanzahl (3) := KartenDatentypen.KartenfeldPositiv'Last;
             
          when KartenartDatentypen.Karte_E_Übergang_Enum =>
-            Felderanzahl (3) := StandardübergangUnten (ZielebeneExtern     => ZielebeneExtern,
-                                                  NeueEbeneExtern     => NeueEbeneExtern);
+            Felderanzahl (3) := StandardübergangUnten (ZielebeneExtern => ZielebeneExtern,
+                                                        NeueEbeneExtern => NeueEbeneExtern);
       end case;
       
       WelcheFelderanzahl := 1;

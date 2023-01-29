@@ -43,8 +43,8 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                
             elsif
               True = AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                  BefehlExtern             => BefehleDatentypen.Mine_Bauen_Enum,
-                                                  KoordinatenExtern        => EinheitKoordinaten)
+                                                  BefehlExtern               => BefehleDatentypen.Mine_Bauen_Enum,
+                                                  KoordinatenExtern          => EinheitKoordinaten)
             then
                null;
                
@@ -62,8 +62,8 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                
             elsif
               True = AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                  BefehlExtern             => BefehleDatentypen.Farm_Bauen_Enum,
-                                                  KoordinatenExtern        => EinheitKoordinaten)
+                                                  BefehlExtern               => BefehleDatentypen.Farm_Bauen_Enum,
+                                                  KoordinatenExtern          => EinheitKoordinaten)
             then
                null;
                
@@ -81,8 +81,8 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                
             elsif
               True = AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                  BefehlExtern             => BefehleDatentypen.Festung_Bauen_Enum,
-                                                  KoordinatenExtern        => EinheitKoordinaten)
+                                                  BefehlExtern               => BefehleDatentypen.Festung_Bauen_Enum,
+                                                  KoordinatenExtern          => EinheitKoordinaten)
             then
                null;
                
@@ -95,8 +95,8 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
             
             if
               True = AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                  BefehlExtern             => BefehleDatentypen.Straße_Bauen_Enum,
-                                                  KoordinatenExtern        => EinheitKoordinaten)
+                                                  BefehlExtern               => BefehleDatentypen.Straße_Bauen_Enum,
+                                                  KoordinatenExtern          => EinheitKoordinaten)
             then
                null;
                
@@ -110,8 +110,8 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
       end case;
       
       return AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                    BefehlExtern             => Befehl,
-                                    KoordinatenExtern        => EinheitKoordinaten);
+                                    BefehlExtern               => Befehl,
+                                    KoordinatenExtern          => EinheitKoordinaten);
       
    end WelcheVerbesserungAnlegen;
 

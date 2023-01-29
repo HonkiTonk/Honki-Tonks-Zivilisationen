@@ -54,7 +54,7 @@ package body StadtBauenLogik is
                   
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
             StadtName := TexteingabeLogik.StadtName (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummer),
-                                                     BauenExtern            => True);
+                                                     BauenExtern              => True);
             
             if
               StadtName.ErfolgreichAbbruch = False
@@ -71,9 +71,9 @@ package body StadtBauenLogik is
             
       -- Immer daran denken dass die Stadt bei StadtEintragen auf Leer gesetzt wird und deswegen der Name danach eingetragen werden muss.
       StadtEintragen (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummer),
-                      KoordinatenExtern      => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                      KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       SchreibeStadtGebaut.Name (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummer),
-                                NameExtern             => StadtName.EingegebenerText);
+                                NameExtern               => StadtName.EingegebenerText);
       EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       return True;
@@ -173,17 +173,17 @@ package body StadtBauenLogik is
       
       SchreibeStadtGebaut.Nullsetzung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      SchreibeWichtiges.AnzahlStädte (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+      SchreibeWichtiges.AnzahlStädte (SpeziesExtern   => StadtSpeziesNummerExtern.Spezies,
                                        PlusMinusExtern => True);
       
       Stadtart := HauptstadtPrüfen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       SchreibeStadtGebaut.ID (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                              IDExtern               => Stadtart);
+                              IDExtern                 => Stadtart);
       SchreibeStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                       KoordinatenExtern      => KoordinatenExtern);
-      SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                             EinwohnerArbeiterExtern => True,
-                                             WachsenSchrumpfenExtern => True);
+                                       KoordinatenExtern        => KoordinatenExtern);
+      SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                             EinwohnerArbeiterExtern  => True,
+                                             WachsenSchrumpfenExtern  => True);
       
       WegAnlegen (KoordinatenExtern => KoordinatenExtern);
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,

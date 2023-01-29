@@ -29,11 +29,11 @@ package body BefehlspruefungenLogik is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
-      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
-                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
-                                                                            LogikGrafikExtern => True);
-      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
-                                                                      KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
+      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
+                                                                              KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
+                                                                              LogikGrafikExtern => True);
+      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
+                                                                        KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
       
       if
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
@@ -42,7 +42,7 @@ package body BefehlspruefungenLogik is
       then
          -- Transporter sollten in der Stadt nicht beladen sein, deswegen es hier keine Prüfung auf Transporter braucht.
          case
-           AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern         => SpeziesExtern,
+           AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => SpeziesExtern,
                                                          StadtNummerExtern   => StadtNummer,
                                                          EinheitNummerExtern => EinheitNummer)
          is
@@ -50,8 +50,8 @@ package body BefehlspruefungenLogik is
                LeerRückgabewert := StadtEntfernenLogik.StadtAbreißen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummer));
                
             when 1 =>
-               EinheitBefehle (SpeziesExtern  => SpeziesExtern,
-                               BefehlExtern => BefehleDatentypen.Auflösen_Enum);
+               EinheitBefehle (SpeziesExtern => SpeziesExtern,
+                               BefehlExtern  => BefehleDatentypen.Auflösen_Enum);
                
             when others =>
                null;
@@ -65,8 +65,8 @@ package body BefehlspruefungenLogik is
       elsif
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
       then
-         EinheitBefehle (SpeziesExtern  => SpeziesExtern,
-                         BefehlExtern => BefehleDatentypen.Auflösen_Enum);
+         EinheitBefehle (SpeziesExtern => SpeziesExtern,
+                         BefehlExtern  => BefehleDatentypen.Auflösen_Enum);
                
       else
          null;
@@ -83,12 +83,12 @@ package body BefehlspruefungenLogik is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
-      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
-                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
-                                                                            LogikGrafikExtern => True);
+      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
+                                                                              KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
+                                                                              LogikGrafikExtern => True);
       
-      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
-                                                                      KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
+      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
+                                                                        KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
 
       if
         EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
@@ -96,7 +96,7 @@ package body BefehlspruefungenLogik is
           StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
          -- Transporter sollten in der Stadt nicht beladen sein, deswegen es hier keine Prüfung auf Transporter braucht.
-         EinheitOderStadt (SpeziesExtern         => SpeziesExtern,
+         EinheitOderStadt (SpeziesExtern       => SpeziesExtern,
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);
          
@@ -138,13 +138,13 @@ package body BefehlspruefungenLogik is
         LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= EinheitenKonstanten.LeerWirdTransportiert
       then
          TransporterNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-         AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
+         AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                                                               StadtNummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
                                                                               EinheitNummerExtern => TransporterNummer);
 
       else
          TransporterNummer := EinheitSpeziesNummerExtern.Nummer;
-         AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
+         AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                                                               StadtNummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
                                                                               EinheitNummerExtern => TransporterNummer);
       end if;
@@ -157,7 +157,7 @@ package body BefehlspruefungenLogik is
             
          when Positive (EinheitenRecords.TransporterArray'First) .. Positive (EinheitenRecords.TransporterArray'Last) =>
             EinheitSteuern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, TransporterNummer),
-                                                                                                                            PlatzExtern              => EinheitenDatentypen.Transportplätze (AusgewählteEinheit))));
+                                                                                                                                  PlatzExtern                => EinheitenDatentypen.Transportplätze (AusgewählteEinheit))));
             
          when others =>
             null;
@@ -174,7 +174,7 @@ package body BefehlspruefungenLogik is
    is begin
       
       case
-        AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern         => SpeziesExtern,
+        AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => SpeziesExtern,
                                                       StadtNummerExtern   => StadtNummerExtern,
                                                       EinheitNummerExtern => EinheitNummerExtern)
       is
@@ -245,9 +245,9 @@ package body BefehlspruefungenLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
-                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
-                                                                            LogikGrafikExtern => True);
+      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
+                                                                              KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
+                                                                              LogikGrafikExtern => True);
       case
         EinheitNummer
       is
@@ -277,9 +277,9 @@ package body BefehlspruefungenLogik is
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Klein_Enum)
    is begin
                      
-      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
-                                                                            KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
-                                                                            LogikGrafikExtern => True);
+      EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
+                                                                              KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
+                                                                              LogikGrafikExtern => True);
       
       case
         EinheitNummer
@@ -311,8 +311,8 @@ package body BefehlspruefungenLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
-                                                                      KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
+      StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
+                                                                        KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
       
       case
         StadtNummer

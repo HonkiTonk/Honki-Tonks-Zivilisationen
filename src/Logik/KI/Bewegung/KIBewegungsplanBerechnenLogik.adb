@@ -44,12 +44,12 @@ package body KIBewegungsplanBerechnenLogik is
             
          when False =>
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
+                                                       KoordinatenExtern          => KartenRecordKonstanten.LeerKoordinate);
             SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
+                                                    AufgabeExtern              => KIDatentypen.Leer_Aufgabe_Enum);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
+                                                    BeschäftigungExtern        => EinheitenKonstanten.LeerBeschäftigung);
       end case;
       
       return PlanungErfolgreich;
@@ -65,14 +65,14 @@ package body KIBewegungsplanBerechnenLogik is
       return Boolean
    is begin
       
-      Felderbewertung (EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern,
-                       AktuelleKoordinatenExtern => AktuelleKoordinatenExtern);
+      Felderbewertung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                       AktuelleKoordinatenExtern  => AktuelleKoordinatenExtern);
       
       DurchlaufSchleife:
       for DurchlaufSchleifenwert in BewertungArray'Range loop
          
          case
-           PlanschrittFestlegen (EinheitSpeziesNummerExtern   => EinheitSpeziesNummerExtern,
+           PlanschrittFestlegen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                  DurchlaufExtern            => DurchlaufSchleifenwert,
                                  AktuellePlanpositionExtern => AktuellePlanpositionExtern)
          is
@@ -81,8 +81,8 @@ package body KIBewegungsplanBerechnenLogik is
                
             when False =>
                SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate,
-                                                       PlanplatzExtern          => AktuellePlanpositionExtern);
+                                                       KoordinatenExtern          => KartenRecordKonstanten.LeerKoordinate,
+                                                       PlanplatzExtern            => AktuellePlanpositionExtern);
          end case;
          
       end loop DurchlaufSchleife;
@@ -110,14 +110,14 @@ package body KIBewegungsplanBerechnenLogik is
                
          when KartenDatentypen.KartenfeldNatural'First =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    KoordinatenExtern        => Bewertung (DurchlaufExtern).Koordinaten,
-                                                    PlanplatzExtern          => AktuellePlanpositionExtern);
+                                                    KoordinatenExtern          => Bewertung (DurchlaufExtern).Koordinaten,
+                                                    PlanplatzExtern            => AktuellePlanpositionExtern);
             return True;
                
          when others =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    KoordinatenExtern        => Bewertung (DurchlaufExtern).Koordinaten,
-                                                    PlanplatzExtern          => AktuellePlanpositionExtern);
+                                                    KoordinatenExtern          => Bewertung (DurchlaufExtern).Koordinaten,
+                                                    PlanplatzExtern            => AktuellePlanpositionExtern);
             
             if
               AktuellePlanpositionExtern = EinheitenRecords.KIBewegungPlanArray'Last
@@ -125,7 +125,7 @@ package body KIBewegungsplanBerechnenLogik is
                return True;
          
             else
-               return PlanenRekursiv (EinheitSpeziesNummerExtern   => EinheitSpeziesNummerExtern,
+               return PlanenRekursiv (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                       AktuelleKoordinatenExtern  => Bewertung (DurchlaufExtern).Koordinaten,
                                       AktuellePlanpositionExtern => AktuellePlanpositionExtern + 1);
             end if;
@@ -165,8 +165,8 @@ package body KIBewegungsplanBerechnenLogik is
                   Bewertung (BewertungPosition).Bewertung := KartenDatentypen.KartenfeldPositiv'Last;
             
                else
-                  Bewertung (BewertungPosition).Bewertung := BewertungFeldposition (EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern,
-                                                                                    NeueKoordinatenExtern     => KartenWert);
+                  Bewertung (BewertungPosition).Bewertung := BewertungFeldposition (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                                    NeueKoordinatenExtern      => KartenWert);
                end if;
                
                BewertungPosition := BewertungPosition + 1;
@@ -206,7 +206,7 @@ package body KIBewegungsplanBerechnenLogik is
             
       if
         True = FeldBereitsBetreten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                    KoordinatenExtern        => NeueKoordinatenExtern)
+                                    KoordinatenExtern          => NeueKoordinatenExtern)
       then
          return KartenDatentypen.KartenfeldPositiv'Last;
          
@@ -216,7 +216,7 @@ package body KIBewegungsplanBerechnenLogik is
                   
       case
         PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                  NeueKoordinatenExtern    => NeueKoordinatenExtern)
+                                                                  NeueKoordinatenExtern      => NeueKoordinatenExtern)
       is
          when True =>
             null;
@@ -224,7 +224,7 @@ package body KIBewegungsplanBerechnenLogik is
          when False =>
             if
               True = TransporterNutzen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                        KoordinatenExtern        => NeueKoordinatenExtern)
+                                        KoordinatenExtern          => NeueKoordinatenExtern)
             then
                null;
                
@@ -234,12 +234,12 @@ package body KIBewegungsplanBerechnenLogik is
       end case;
       
       case
-        KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern    => NeueKoordinatenExtern,
+        KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern      => NeueKoordinatenExtern,
                                                EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when KIKonstanten.BewegungAngriff | KIKonstanten.BewegungNormal =>
-            return KIBewegungsbewertungLogik.Positionsbewertung (EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern,
-                                                                 NeueKoordinatenExtern     => NeueKoordinatenExtern);
+            return KIBewegungsbewertungLogik.Positionsbewertung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                 NeueKoordinatenExtern      => NeueKoordinatenExtern);
             
             -- Hier später noch einmal anpassen. äöü
          when KIKonstanten.Tauschbewegung =>
@@ -266,7 +266,7 @@ package body KIBewegungsplanBerechnenLogik is
          
          if
            KoordinatenExtern = LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                   PlanschrittExtern        => FelderSchleifenwert)
+                                                                   PlanschrittExtern          => FelderSchleifenwert)
          then
             return True;
             
@@ -305,8 +305,8 @@ package body KIBewegungsplanBerechnenLogik is
            True = EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => EinheitSpeziesNummerExtern,
                                                                      TransporterExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitSchleifenwert))
            and
-             True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern    => (EinheitSpeziesNummerExtern.Spezies, EinheitSchleifenwert),
-                                                                              NeueKoordinatenExtern       => KoordinatenExtern)
+             True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitSchleifenwert),
+                                                                              NeueKoordinatenExtern      => KoordinatenExtern)
          then
             -- Hier später True zurückgeben äöü
             -- return True;

@@ -39,7 +39,7 @@ package body SpielstandmenueGrafik is
                                      AbmessungenExtern => Viewfläche);
       
       Viewfläche := Textanzeige (ViewflächeExtern => Viewfläche,
-                                  AuswahlExtern    => AuswahlExtern);
+                                 AuswahlExtern    => AuswahlExtern);
       
    end Spielstandmenü;
    

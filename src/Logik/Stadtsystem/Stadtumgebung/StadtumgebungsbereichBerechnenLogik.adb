@@ -35,8 +35,8 @@ package body StadtumgebungsbereichBerechnenLogik is
       use type ProduktionDatentypen.Einwohner;
    begin
       
-      Einwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                                      EinwohnerArbeiterExtern => True);
+      Einwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                      EinwohnerArbeiterExtern  => True);
       
       if
         Einwohner = StadtKonstanten.LeerEinwohner
@@ -44,18 +44,18 @@ package body StadtumgebungsbereichBerechnenLogik is
          Umgebung := 0;
       
       elsif
-        True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
+        True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
                                                           TechnologieExtern => LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Endwert_Enum,
-                                                                                                                  SpeziesExtern      => StadtSpeziesNummerExtern.Spezies))
+                                                                                                                  SpeziesExtern    => StadtSpeziesNummerExtern.Spezies))
         and
           Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtSpeziesNummerExtern.Spezies)
       then
          Umgebung := 3;
          
       elsif
-        True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
+        True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
                                                           TechnologieExtern => LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Anfangswert_Enum,
-                                                                                                                  SpeziesExtern      => StadtSpeziesNummerExtern.Spezies))
+                                                                                                                  SpeziesExtern    => StadtSpeziesNummerExtern.Spezies))
         and
           Einwohner >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtSpeziesNummerExtern.Spezies)
       then

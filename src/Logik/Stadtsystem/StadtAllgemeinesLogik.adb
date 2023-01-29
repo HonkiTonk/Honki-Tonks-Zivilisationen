@@ -9,14 +9,14 @@ package body StadtAllgemeinesLogik is
    is begin
       
       NeuerName := TexteingabeLogik.StadtName (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                               BauenExtern            => False);
+                                               BauenExtern              => False);
                
       case
         NeuerName.ErfolgreichAbbruch
       is
          when True =>
             SchreibeStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                      NameExtern             => NeuerName.EingegebenerText);
+                                      NameExtern               => NeuerName.EingegebenerText);
             
          when False =>
             null;

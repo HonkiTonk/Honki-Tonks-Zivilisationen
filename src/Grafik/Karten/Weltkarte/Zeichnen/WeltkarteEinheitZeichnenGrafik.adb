@@ -51,9 +51,9 @@ package body WeltkarteEinheitZeichnenGrafik is
                null;
                
             when True =>
-               Einheitenmarkierung (KoordinatenExtern        => KoordinatenExtern,
+               Einheitenmarkierung (KoordinatenExtern          => KoordinatenExtern,
                                     EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                    PositionExtern           => PositionExtern);
+                                    PositionExtern             => PositionExtern);
          end case;
          
          return;
@@ -69,7 +69,6 @@ package body WeltkarteEinheitZeichnenGrafik is
          FeldeinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
          
          KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummer.Spezies, FeldeinheitID),
-                                                         
                                                          PositionExtern         => PositionExtern,
                                                          DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
          return;

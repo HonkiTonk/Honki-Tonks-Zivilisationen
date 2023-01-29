@@ -23,7 +23,7 @@ package LadezeitenGrafik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
      with
        Pre => (
-               if SpeziesExtern /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 if SpeziesExtern /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 private
@@ -60,49 +60,49 @@ private
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
      with
-         Pre => (
-                   ViewflächeExtern.x >= 0.00
-                 and
-                   ViewflächeExtern.y >= 0.00
-                ),
+       Pre => (
+                 ViewflächeExtern.x >= 0.00
+               and
+                 ViewflächeExtern.y >= 0.00
+              ),
            
-         Post => (
-                    Rundenende'Result.x >= 0.00
-                  and
-                    Rundenende'Result.y >= 0.00
-                 );
+       Post => (
+                  Rundenende'Result.x >= 0.00
+                and
+                  Rundenende'Result.y >= 0.00
+               );
    
    function SpeichernLaden
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
      with
-         Pre => (
-                   ViewflächeExtern.x >= 0.00
-                 and
-                   ViewflächeExtern.y >= 0.00
-                ),
+       Pre => (
+                 ViewflächeExtern.x >= 0.00
+               and
+                 ViewflächeExtern.y >= 0.00
+              ),
            
-         Post => (
-                    SpeichernLaden'Result.x >= 0.00
-                  and
-                    SpeichernLaden'Result.y >= 0.00
-                 );
+       Post => (
+                  SpeichernLaden'Result.x >= 0.00
+                and
+                  SpeichernLaden'Result.y >= 0.00
+               );
    
    function KIRechnet
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
      with
-         Pre => (
-                   ViewflächeExtern.x >= 0.00
-                 and
-                   ViewflächeExtern.y >= 0.00
-                ),
+       Pre => (
+                 ViewflächeExtern.x >= 0.00
+               and
+                 ViewflächeExtern.y >= 0.00
+              ),
            
-         Post => (
-                    KIRechnet'Result.x >= 0.00
-                  and
-                    KIRechnet'Result.y >= 0.00
-                 );
+       Post => (
+                  KIRechnet'Result.x >= 0.00
+                and
+                  KIRechnet'Result.y >= 0.00
+               );
    
    function ZahlAlsStringLadefortschritt is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => SystemDatentypen.NullBisHundert);
 

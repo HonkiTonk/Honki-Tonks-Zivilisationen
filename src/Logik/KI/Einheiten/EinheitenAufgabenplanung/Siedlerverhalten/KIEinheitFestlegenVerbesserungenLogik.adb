@@ -36,9 +36,9 @@ package body KIEinheitFestlegenVerbesserungenLogik is
             
          when False =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Verbesserung_Anlegen_Enum);
+                                                    AufgabeExtern              => KIDatentypen.Verbesserung_Anlegen_Enum);
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => ZielVerbesserungKoordinaten);
+                                                       KoordinatenExtern          => ZielVerbesserungKoordinaten);
             return True;
       end case;
       
@@ -74,7 +74,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                
             when others =>
                VerbesserungAnlegen := StadtumgebungErmitteln (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert),
-                                                              EinheitNummerExtern    => EinheitSpeziesNummerExtern.Nummer);
+                                                              EinheitNummerExtern      => EinheitSpeziesNummerExtern.Nummer);
          end case;
          
          case
@@ -123,7 +123,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                      
                   when others =>
                      if
-                       True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern        => VerbesserungKoordinaten,
+                       True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern          => VerbesserungKoordinaten,
                                                                   EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
                      then
                         return VerbesserungKoordinaten;
@@ -177,7 +177,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                   
                   when others =>
                      if
-                       True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern        => VerbesserungKoordinaten,
+                       True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern          => VerbesserungKoordinaten,
                                                                   EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern))
                      then
                         return VerbesserungKoordinaten;
@@ -213,21 +213,21 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                
       elsif
         True = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen_Enum,
-                                                           SpeziesExtern           => EinheitSpeziesNummerExtern.Spezies,
+                                                           SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
                                                            ZielKoordinatenExtern => VerbesserungKoordinaten)
       then
          return False;
             
       elsif
         False = KIEinheitAllgemeinePruefungenLogik.KartenfeldPrüfen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                      KoordinatenExtern        => KoordinatenExtern)
+                                                                      KoordinatenExtern          => KoordinatenExtern)
       then
          return False;
          
       elsif
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
       then
-         WelcheVerbesserung := VerbesserungAnlegbar (KoordinatenExtern        => KoordinatenExtern,
+         WelcheVerbesserung := VerbesserungAnlegbar (KoordinatenExtern          => KoordinatenExtern,
                                                      EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
       else
@@ -241,7 +241,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
             return WelcheVerbesserung;
             
          when False =>
-            return WegAnlegbar (KoordinatenExtern        => KoordinatenExtern,
+            return WegAnlegbar (KoordinatenExtern          => KoordinatenExtern,
                                 EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
@@ -272,8 +272,8 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       
       case
         AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                     BefehlExtern             => BefehleDatentypen.Mine_Bauen_Enum,
-                                     KoordinatenExtern        => KoordinatenExtern)
+                                     BefehlExtern               => BefehleDatentypen.Mine_Bauen_Enum,
+                                     KoordinatenExtern          => KoordinatenExtern)
       is
          when True =>
             if
@@ -288,7 +288,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                       Ressourcen = KartenextraDatentypen.Gold_Enum
             then
                SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       BeschäftigungExtern      => AufgabenDatentypen.Mine_Bauen_Enum);
+                                                       BeschäftigungExtern        => AufgabenDatentypen.Mine_Bauen_Enum);
                return True;
                
             else
@@ -301,15 +301,15 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       
       case
         AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                     BefehlExtern             => BefehleDatentypen.Festung_Bauen_Enum,
-                                     KoordinatenExtern        => KoordinatenExtern)
+                                     BefehlExtern               => BefehleDatentypen.Festung_Bauen_Enum,
+                                     KoordinatenExtern          => KoordinatenExtern)
       is
          when True =>
             if
               Basisgrund = KartengrundDatentypen.Eis_Enum
             then
                SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       BeschäftigungExtern      => AufgabenDatentypen.Festung_Bauen_Enum);
+                                                       BeschäftigungExtern        => AufgabenDatentypen.Festung_Bauen_Enum);
                return True;
                
             else
@@ -322,12 +322,12 @@ package body KIEinheitFestlegenVerbesserungenLogik is
          
       case
         AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                     BefehlExtern             => BefehleDatentypen.Farm_Bauen_Enum,
-                                     KoordinatenExtern        => KoordinatenExtern)
+                                     BefehlExtern               => BefehleDatentypen.Farm_Bauen_Enum,
+                                     KoordinatenExtern          => KoordinatenExtern)
       is
          when True =>
             SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern      => AufgabenDatentypen.Farm_Bauen_Enum);
+                                                    BeschäftigungExtern        => AufgabenDatentypen.Farm_Bauen_Enum);
             return True;
             
          when False =>

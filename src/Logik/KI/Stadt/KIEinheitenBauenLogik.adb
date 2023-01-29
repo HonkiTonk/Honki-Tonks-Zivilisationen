@@ -57,11 +57,11 @@ package body KIEinheitenBauenLogik is
          
          case
            EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                     IDExtern               => EinheitenSchleifenwert)
+                                                                     IDExtern                 => EinheitenSchleifenwert)
          is
             when True =>
                Einheitwertung := EinheitBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                  IDExtern               => EinheitenSchleifenwert);
+                                                  IDExtern                 => EinheitenSchleifenwert);
                
                if
                  Einheitwertung <= KIKonstanten.LeerBewertung
@@ -99,8 +99,8 @@ package body KIEinheitenBauenLogik is
       
       case
         EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                  IDExtern               => LeseEinheitenDatenbank.VerbesserungZu (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                                                                   IDExtern    => IDExtern))
+                                                                  IDExtern                 => LeseEinheitenDatenbank.VerbesserungZu (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
+                                                                                                                                     IDExtern      => IDExtern))
       is
          when True =>
             return KIDatentypen.BauenBewertung'First;
@@ -112,18 +112,18 @@ package body KIEinheitenBauenLogik is
       Gesamtwertung := KIKonstanten.LeerBewertung;
       
       Gesamtwertung := Gesamtwertung + HerstellungskostenBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                   EinheitenIDExtern      => IDExtern);
+                                                                   EinheitenIDExtern        => IDExtern);
       Gesamtwertung := Gesamtwertung + GeldKostenBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                           EinheitenIDExtern      => IDExtern);
+                                                           EinheitenIDExtern        => IDExtern);
       Gesamtwertung := Gesamtwertung + NahrungKostenBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                              EinheitenIDExtern      => IDExtern);
+                                                              EinheitenIDExtern        => IDExtern);
       Gesamtwertung := Gesamtwertung + RessourcenKostenBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                 EinheitenIDExtern      => IDExtern);
+                                                                 EinheitenIDExtern        => IDExtern);
       Gesamtwertung := Gesamtwertung + SpezielleEinheitBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                 IDExtern               => IDExtern);
+                                                                 IDExtern                 => IDExtern);
             
       Gesamtwertung := Gesamtwertung + KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                                          IDExtern    => IDExtern));
+                                                                                                          IDExtern      => IDExtern));
       
       AnzahlPassierbarkeiten := 0;
       
@@ -131,7 +131,7 @@ package body KIEinheitenBauenLogik is
       for PassierbarkeitSchleifenwert in EinheitenDatentypen.Passierbarkeit_Enum'Range loop
          
          case
-           LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => StadtSpeziesNummerExtern.Spezies,
+           LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
                                                   IDExtern             => IDExtern,
                                                   WelcheUmgebungExtern => PassierbarkeitSchleifenwert)
          is
@@ -174,19 +174,19 @@ package body KIEinheitenBauenLogik is
       
       case
         LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                             IDExtern    => IDExtern)
+                                             IDExtern      => IDExtern)
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             return ArbeiterBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                     EinheitenIDExtern      => IDExtern);
+                                     EinheitenIDExtern        => IDExtern);
             
          when EinheitenDatentypen.Nahkämpfer_Enum =>
             return Gesamtwertung + NahkämpferBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                        EinheitenIDExtern      => IDExtern);
+                                                        EinheitenIDExtern        => IDExtern);
             
          when EinheitenDatentypen.Fernkämpfer_Enum =>
             return Gesamtwertung + FernkämpferBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                         EinheitenIDExtern      => IDExtern);
+                                                         EinheitenIDExtern        => IDExtern);
             
          when EinheitenDatentypen.Beides_Enum =>
             null;
@@ -218,7 +218,7 @@ package body KIEinheitenBauenLogik is
       
       MengeVorhanden := LeseWichtiges.AnzahlArbeiter (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       MengeImBau := KIStadtLaufendeBauprojekteLogik.GleicheEinheitArtBauprojekte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                                  EinheitArtExtern       => EinheitenDatentypen.Arbeiter_Enum);
+                                                                                  EinheitArtExtern         => EinheitenDatentypen.Arbeiter_Enum);
       
       if
         MengeVorhanden = MinimaleSiedlerMenge
@@ -254,7 +254,7 @@ package body KIEinheitenBauenLogik is
       
       MengeVorhanden := LeseWichtiges.AnzahlKämpfer (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       MengeImBau := KIStadtLaufendeBauprojekteLogik.GleicheEinheitArtBauprojekte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                                  EinheitArtExtern       => EinheitenDatentypen.Nahkämpfer_Enum);
+                                                                                  EinheitArtExtern         => EinheitenDatentypen.Nahkämpfer_Enum);
         
       case
         KIKriegErmittelnLogik.IstImKrieg (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -327,7 +327,7 @@ package body KIEinheitenBauenLogik is
       
       MengeVorhanden := LeseWichtiges.AnzahlKämpfer (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       MengeImBau := KIStadtLaufendeBauprojekteLogik.GleicheEinheitArtBauprojekte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                                  EinheitArtExtern       => EinheitenDatentypen.Fernkämpfer_Enum);
+                                                                                  EinheitArtExtern         => EinheitenDatentypen.Fernkämpfer_Enum);
         
       case
         KIKriegErmittelnLogik.IstImKrieg (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -420,14 +420,14 @@ package body KIEinheitenBauenLogik is
    begin
       
       if
-        WichtigesKonstanten.LeerGeldZugewinnProRunde = LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+        WichtigesKonstanten.LeerGeldZugewinnProRunde = LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                                 IDExtern           => EinheitenIDExtern,
                                                                                                 WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
       then
          return 5;
          
       elsif
-        LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) - LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+        LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) - LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                                                                           IDExtern           => EinheitenIDExtern,
                                                                                                                                           WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
         < WichtigesKonstanten.LeerGeldZugewinnProRunde
@@ -452,14 +452,14 @@ package body KIEinheitenBauenLogik is
    begin
       
       if
-        StadtKonstanten.LeerNahrungsproduktion = LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+        StadtKonstanten.LeerNahrungsproduktion = LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                           IDExtern           => EinheitenIDExtern,
                                                                                           WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
       then
          return 5;
          
       elsif
-        LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) - LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+        LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) - LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                                                                              IDExtern           => EinheitenIDExtern,
                                                                                                                                              WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
         < StadtKonstanten.LeerNahrungsproduktion
@@ -484,14 +484,14 @@ package body KIEinheitenBauenLogik is
    begin
       
       if
-        StadtKonstanten.LeerProduktionrate = LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+        StadtKonstanten.LeerProduktionrate = LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                       IDExtern           => EinheitenIDExtern,
                                                                                       WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
       then
          return 5;
          
       elsif
-        LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) - LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+        LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) - LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                                                                          IDExtern           => EinheitenIDExtern,
                                                                                                                                          WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
         < StadtKonstanten.LeerProduktionrate

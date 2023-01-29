@@ -24,8 +24,8 @@ package body KIXAchsenbewertung is
             Felderanzahl (2) := KartenDatentypen.KartenfeldPositiv'Last;
             
          when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            Felderanzahl (2) := StandardübergangWesten (ZielpunktExtern      => ZielpunktExtern,
-                                                         NeuerPunktExtern     => NeuerPunktExtern);
+            Felderanzahl (2) := StandardübergangWesten (ZielpunktExtern  => ZielpunktExtern,
+                                                         NeuerPunktExtern => NeuerPunktExtern);
             
          when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
             Felderanzahl (2) := KartenDatentypen.KartenfeldPositiv'Last;
@@ -38,8 +38,8 @@ package body KIXAchsenbewertung is
             Felderanzahl (3) := KartenDatentypen.KartenfeldPositiv'Last;
             
          when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            Felderanzahl (3) := StandardübergangOsten (ZielpunktExtern      => ZielpunktExtern,
-                                                        NeuerPunktExtern     => NeuerPunktExtern);
+            Felderanzahl (3) := StandardübergangOsten (ZielpunktExtern  => ZielpunktExtern,
+                                                        NeuerPunktExtern => NeuerPunktExtern);
             
          when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
             Felderanzahl (3) := KartenDatentypen.KartenfeldPositiv'Last;

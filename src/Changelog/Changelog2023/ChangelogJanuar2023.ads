@@ -16,8 +16,9 @@ package ChangelogVorlage is
 
    -- Version 0.04.6860 => 0.04. (29.01.2023):
    
+   -- Formatierung leicht überarbeitet.
    -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

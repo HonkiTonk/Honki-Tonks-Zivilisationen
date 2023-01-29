@@ -43,14 +43,14 @@ package body KIEinheitSuchenLogik is
                
                elsif
                  False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                                 SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
+                                                 SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
                then
                   null;
                   
                else
-                  FeindlicheEinheit := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => FeindExtern,
-                                                                                            KoordinatenExtern => KartenWert,
-                                                                                            LogikGrafikExtern => True);
+                  FeindlicheEinheit := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => FeindExtern,
+                                                                                              KoordinatenExtern => KartenWert,
+                                                                                              LogikGrafikExtern => True);
                   case
                     FeindlicheEinheit
                   is

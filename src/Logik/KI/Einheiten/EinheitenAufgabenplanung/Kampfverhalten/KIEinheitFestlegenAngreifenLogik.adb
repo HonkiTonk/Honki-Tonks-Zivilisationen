@@ -28,7 +28,7 @@ package body KIEinheitFestlegenAngreifenLogik is
             
          when others =>
             KoordinatenFeind := KIEinheitSuchenLogik.FeindlicheEinheitInUmgebungSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                        FeindExtern              => WenAngreifen);
+                                                                                        FeindExtern                => WenAngreifen);
       end case;
             
       case
@@ -39,14 +39,14 @@ package body KIEinheitFestlegenAngreifenLogik is
             
          when others =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Angreifen_Enum);
+                                                   AufgabeExtern              => KIDatentypen.Angreifen_Enum);
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => KoordinatenFeind);
+                                                       KoordinatenExtern          => KoordinatenFeind);
             return True;
       end case;
       
-      KoordinatenFeind := KIStadtSuchenLogik.NähesteFeindlicheStadtSuchen (SpeziesExtern             => WenAngreifen,
-                                                                            AnfangKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+      KoordinatenFeind := KIStadtSuchenLogik.NähesteFeindlicheStadtSuchen (SpeziesExtern           => WenAngreifen,
+                                                                           AnfangKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       case
         KoordinatenFeind.XAchse
@@ -56,9 +56,9 @@ package body KIEinheitFestlegenAngreifenLogik is
             
          when others =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Angreifen_Enum);
+                                                   AufgabeExtern              => KIDatentypen.Angreifen_Enum);
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => KoordinatenFeind);
+                                                       KoordinatenExtern          => KoordinatenFeind);
             return True;
       end case;
    end Angreifen;

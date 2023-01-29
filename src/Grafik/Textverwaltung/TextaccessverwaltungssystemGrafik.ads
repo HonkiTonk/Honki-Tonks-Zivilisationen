@@ -87,10 +87,10 @@ package TextaccessverwaltungssystemGrafik is
      with
        Pre => (
                  TextaccessExtern /= null
-              -- and
-              --   SkalierungExtern.x >= 0.00
-              -- and
-              --   SkalierungExtern.y >= 0.00
+                 -- and
+               --   SkalierungExtern.x >= 0.00
+               -- and
+               --   SkalierungExtern.y >= 0.00
               );
    
    procedure TextPositionSkalierenZeichnen

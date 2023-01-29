@@ -24,7 +24,7 @@ package body SichtbarkeitsberechnungssystemLogik is
       is
          when KartenDatentypen.Sichtweite'First =>
             SichtbarkeitsprüfungOhneBlockade (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                               SichtweiteExtern         => SichtweiteObjekt);
+                                               SichtweiteExtern           => SichtweiteObjekt);
             return;
             
          when 3 =>
@@ -33,16 +33,16 @@ package body SichtbarkeitsberechnungssystemLogik is
             if
               LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern).EAchse >= KartenKonstanten.OberflächeKonstante
               and
-                (True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies,
+                (True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                                IDExtern             => EinheitID,
                                                                WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
                  or
-                   True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies,
+                   True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                                  IDExtern             => EinheitID,
                                                                  WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum))
             then
                SichtbarkeitsprüfungOhneBlockade (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                  SichtweiteExtern         => SichtweiteObjekt);
+                                                  SichtweiteExtern           => SichtweiteObjekt);
                return;
                
             else
@@ -53,7 +53,7 @@ package body SichtbarkeitsberechnungssystemLogik is
             null;
       end case;
 
-      QuadrantenberechnungenLogik.QuadrantenDurchlaufen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+      QuadrantenberechnungenLogik.QuadrantenDurchlaufen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                                          SichtweiteExtern  => SichtweiteObjekt,
                                                          KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
@@ -86,7 +86,7 @@ package body SichtbarkeitsberechnungssystemLogik is
                   null;
                   
                when others =>
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                                               KoordinatenExtern => KartenWert);
             end case;
                
@@ -122,7 +122,7 @@ package body SichtbarkeitsberechnungssystemLogik is
                   null;
                   
                when others =>
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
                                                               KoordinatenExtern => KartenWert);
             end case;
                         

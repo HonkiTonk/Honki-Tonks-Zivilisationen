@@ -46,29 +46,29 @@ private
                                                                            KartenverbesserungDatentypen.Mine_Enum    => BefehleDatentypen.Mine_Bauen_Enum,
                                                                            KartenverbesserungDatentypen.Farm_Enum    => BefehleDatentypen.Farm_Bauen_Enum,
                                                                            KartenverbesserungDatentypen.Festung_Enum => BefehleDatentypen.Festung_Bauen_Enum
-                                                                                        );
+                                                                          );
    
    type RückgabeSpeziesArray is array (RueckgabeDatentypen.Spezies_Verwendet_Enum'Range) of SpeziesDatentypen.Spezies_Verwendet_Enum;
    RückgabeSpezies : constant RückgabeSpeziesArray := (
-                                                     RueckgabeDatentypen.Auswahl_Eins_Enum     => SpeziesDatentypen.Menschen_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Zwei_Enum     => SpeziesDatentypen.Kasrodiah_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Drei_Enum     => SpeziesDatentypen.Lasupin_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Vier_Enum     => SpeziesDatentypen.Lamustra_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Fünf_Enum     => SpeziesDatentypen.Manuky_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Sechs_Enum    => SpeziesDatentypen.Suroka_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Sieben_Enum   => SpeziesDatentypen.Pryolon_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Acht_Enum     => SpeziesDatentypen.Moru_Phisihl_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Neun_Enum     => SpeziesDatentypen.Larinos_Lotaris_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Zehn_Enum     => SpeziesDatentypen.Carupex_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Elf_Enum      => SpeziesDatentypen.Alary_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Zwölf_Enum    => SpeziesDatentypen.Natries_Zermanis_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Dreizehn_Enum => SpeziesDatentypen.Tridatus_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Vierzehn_Enum => SpeziesDatentypen.Senelari_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Fünfzehn_Enum => SpeziesDatentypen.Aspari_2_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Sechzehn_Enum => SpeziesDatentypen.Ekropa_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Siebzehn_Enum => SpeziesDatentypen.Tesorahn_Enum,
-                                                     RueckgabeDatentypen.Auswahl_Achtzehn_Enum => SpeziesDatentypen.Talbidahr_Enum
-                                                    );
+                                                         RueckgabeDatentypen.Auswahl_Eins_Enum     => SpeziesDatentypen.Menschen_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Zwei_Enum     => SpeziesDatentypen.Kasrodiah_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Drei_Enum     => SpeziesDatentypen.Lasupin_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Vier_Enum     => SpeziesDatentypen.Lamustra_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Fünf_Enum     => SpeziesDatentypen.Manuky_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Sechs_Enum    => SpeziesDatentypen.Suroka_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Sieben_Enum   => SpeziesDatentypen.Pryolon_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Acht_Enum     => SpeziesDatentypen.Moru_Phisihl_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Neun_Enum     => SpeziesDatentypen.Larinos_Lotaris_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Zehn_Enum     => SpeziesDatentypen.Carupex_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Elf_Enum      => SpeziesDatentypen.Alary_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Zwölf_Enum    => SpeziesDatentypen.Natries_Zermanis_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Dreizehn_Enum => SpeziesDatentypen.Tridatus_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Vierzehn_Enum => SpeziesDatentypen.Senelari_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Fünfzehn_Enum => SpeziesDatentypen.Aspari_2_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Sechzehn_Enum => SpeziesDatentypen.Ekropa_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Siebzehn_Enum => SpeziesDatentypen.Tesorahn_Enum,
+                                                         RueckgabeDatentypen.Auswahl_Achtzehn_Enum => SpeziesDatentypen.Talbidahr_Enum
+                                                        );
    
    type KartentemperaturrückgabeKartentemperaturArray is array (RueckgabeDatentypen.Kartentemperatur_Enum'Range) of KartenartDatentypen.Kartentemperatur_Enum;
    KartentemperaturrückgabeKartentemperatur : constant KartentemperaturrückgabeKartentemperaturArray := (

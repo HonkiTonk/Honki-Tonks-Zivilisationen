@@ -61,7 +61,7 @@ package body ZusatztextaufteilungGrafik is
               AktuelleAuswahlExtern in SpeziesDatentypen.SpeziesnummernVorhanden'Range
             then
                return ZusatztextSpeziesmenueGrafik.ZusatztextSpeziesmenü (AktuelleAuswahlExtern => AktuelleAuswahlExtern,
-                                                                        ViewflächeExtern      => ViewflächeExtern);
+                                                                           ViewflächeExtern      => ViewflächeExtern);
                
             else
                null;

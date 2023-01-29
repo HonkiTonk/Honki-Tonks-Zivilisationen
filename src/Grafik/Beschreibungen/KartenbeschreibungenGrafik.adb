@@ -99,7 +99,7 @@ package body KartenbeschreibungenGrafik is
       return Wide_Wide_String
    is begin
       
-     return To_Wide_Wide_String (Source => Kartentexte.Feldeffekte (2 * KartengrundDatentypen.Effekt_Kartenfeld_Enum'Pos (FeldeffekteExtern) - 1));
+      return To_Wide_Wide_String (Source => Kartentexte.Feldeffekte (2 * KartengrundDatentypen.Effekt_Kartenfeld_Enum'Pos (FeldeffekteExtern) - 1));
       
    end KurzbeschreibungFeldeffekte;
    

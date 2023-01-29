@@ -35,7 +35,7 @@ package body KIEinheitenAufgabenplanungLogik is
          
       case
         LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                             IDExtern    => EinheitID)
+                                             IDExtern      => EinheitID)
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             KISiedleraufgabenLogik.Siedleraufgaben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

@@ -207,7 +207,7 @@ package body SchreibenDatenbankenLogik is
               Name => VerzeichnisKonstanten.SpeziesDatenbank);
       
       SpeziesDatenbank.SpezieslisteArray'Write (Stream (File => DatenbankSpeichern),
-                                              SpeziesDatenbank.Speziesliste);
+                                                SpeziesDatenbank.Speziesliste);
       
       Close (File => DatenbankSpeichern);
       

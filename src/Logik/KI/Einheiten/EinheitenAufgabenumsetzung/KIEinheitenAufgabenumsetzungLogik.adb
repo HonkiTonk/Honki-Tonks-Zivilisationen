@@ -118,11 +118,11 @@ package body KIEinheitenAufgabenumsetzungLogik is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
+                                                    BeschäftigungExtern        => EinheitenKonstanten.LeerBeschäftigung);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
+                                                    AufgabeExtern              => KIDatentypen.Leer_Aufgabe_Enum);
             SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern      => AufgabenDatentypen.Leer_Aufgabe_Enum);
+                                                    BeschäftigungExtern        => AufgabenDatentypen.Leer_Aufgabe_Enum);
       end case;
             
       return KIEinheitHandlungstestsLogik.HandlungBeendet (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

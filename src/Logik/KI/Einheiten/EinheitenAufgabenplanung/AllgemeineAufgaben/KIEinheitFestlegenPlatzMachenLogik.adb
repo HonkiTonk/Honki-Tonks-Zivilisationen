@@ -66,13 +66,13 @@ package body KIEinheitFestlegenPlatzMachenLogik is
                   
                elsif
                  True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                  NeueKoordinatenExtern    => Kartenwert)
+                                                                                  NeueKoordinatenExtern      => Kartenwert)
                  and
-                   False = KIAufgabenVerteiltLogik.EinheitZiel (SpeziesExtern           => EinheitSpeziesNummerExtern.Spezies,
+                   False = KIAufgabenVerteiltLogik.EinheitZiel (SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
                                                                 ZielKoordinatenExtern => Kartenwert)
                then
                   SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                             KoordinatenExtern        => Kartenwert);
+                                                             KoordinatenExtern          => Kartenwert);
                   return True;
                  
                else

@@ -24,7 +24,7 @@ package body KIEinheitFestlegenAufloesenLogik is
       is
          when True =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Einheit_Auflösen_Enum);
+                                                    AufgabeExtern              => KIDatentypen.Einheit_Auflösen_Enum);
             return True;
             
          when False =>
@@ -93,7 +93,7 @@ package body KIEinheitFestlegenAufloesenLogik is
       if
         LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Heimatstadt)) < 0
         and
-          LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
+          LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
                                                    IDExtern           => EinheitID,
                                                    WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
         > 0
@@ -103,7 +103,7 @@ package body KIEinheitFestlegenAufloesenLogik is
       elsif
         LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Heimatstadt)) < 0
         and
-          LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
+          LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
                                                    IDExtern           => EinheitID,
                                                    WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
         > 0
@@ -136,7 +136,7 @@ package body KIEinheitFestlegenAufloesenLogik is
       end case;
          
       if
-        LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
+        LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
                                                  IDExtern           => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                                                  WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
         > 0

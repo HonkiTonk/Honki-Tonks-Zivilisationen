@@ -30,13 +30,13 @@ package body KIEinheitFestlegenBewachenLogik is
                
          elsif
            False = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen_Enum,
-                                                               SpeziesExtern           => EinheitSpeziesNummerExtern.Spezies,
+                                                               SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
                                                                ZielKoordinatenExtern => Stadtkoordinaten)
          then
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => Stadtkoordinaten);
+                                                       KoordinatenExtern          => Stadtkoordinaten);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Stadt_Bewachen_Enum);
+                                                    AufgabeExtern              => KIDatentypen.Stadt_Bewachen_Enum);
             return True;
                
          else

@@ -50,11 +50,11 @@ package body WeltkarteGrafik is
                
             elsif
               True = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                             SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
+                                             SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
             then
-               IstSichtbar (KoordinatenExtern        => KartenWert,
+               IstSichtbar (KoordinatenExtern          => KartenWert,
                             EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                            PositionExtern           => Feldposition);
+                            PositionExtern             => Feldposition);
                
             else
                null;
@@ -188,8 +188,8 @@ package body WeltkarteGrafik is
         and
           EinheitSpeziesNummerExtern.Nummer /= EinheitenKonstanten.LeerNummer
       then
-         WeltkarteEinheitZeichnenGrafik.AnzeigeBewegungsfeld (KoordinatenExtern        => KoordinatenExtern,
-                                                              PositionExtern           => PositionExtern);
+         WeltkarteEinheitZeichnenGrafik.AnzeigeBewegungsfeld (KoordinatenExtern => KoordinatenExtern,
+                                                              PositionExtern    => PositionExtern);
          
       else
          null;

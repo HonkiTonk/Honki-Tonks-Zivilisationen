@@ -33,13 +33,13 @@ package body SeitenleisteGrafik is
          return;
             
       else
-         WichtigesSeitenleisteGrafik.WichtigesInformationen (SpeziesExtern       => SpeziesExtern,
+         WichtigesSeitenleisteGrafik.WichtigesInformationen (SpeziesExtern     => SpeziesExtern,
                                                              KoordinatenExtern => AktuelleKoordinaten);
       end if;
       
       case
         LeseWeltkarte.Sichtbar (KoordinatenExtern => AktuelleKoordinaten,
-                                SpeziesExtern       => SpeziesExtern)
+                                SpeziesExtern     => SpeziesExtern)
       is
          when True =>
             AllgemeinesSeitenleisteGrafik.AllgemeineInformationen (SpeziesExtern => SpeziesExtern);
@@ -58,13 +58,13 @@ package body SeitenleisteGrafik is
                when others =>
                   StadtseitenleisteGrafik.Stadt (SpeziesExtern            => SpeziesExtern,
                                                  StadtSpeziesNummerExtern => StadtSpeziesNummer,
-                                                 AnzeigebereichExtern   => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt),
-                                                 ViewExtern             => Views.WeltkarteAccess (ViewKonstanten.WeltStadt));
+                                                 AnzeigebereichExtern     => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt),
+                                                 ViewExtern               => Views.WeltkarteAccess (ViewKonstanten.WeltStadt));
                   StadtVorhanden := True;
             end case;
             
             EinheitSpeziesNummer := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => AktuelleKoordinaten,
-                                                                                        LogikGrafikExtern => False);
+                                                                                            LogikGrafikExtern => False);
       
             case
               EinheitSpeziesNummer.Nummer
@@ -76,7 +76,7 @@ package body SeitenleisteGrafik is
                when others =>
                   EinheitenseitenleisteGrafik.Einheiten (SpeziesExtern              => SpeziesExtern,
                                                          EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
-                                                         StadtVorhandenExtern     => StadtVorhanden);
+                                                         StadtVorhandenExtern       => StadtVorhanden);
             end case;
             
          when False =>

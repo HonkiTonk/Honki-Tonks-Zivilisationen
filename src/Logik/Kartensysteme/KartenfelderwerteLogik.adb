@@ -12,15 +12,15 @@ package body KartenfelderwerteLogik is
    begin
       
       return (KartenAllgemeinesLogik.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                   SpeziesExtern       => SpeziesExtern)
+                                                   SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.RessourceNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                         SpeziesExtern       => SpeziesExtern)
+                                                         SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.WegNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                   SpeziesExtern       => SpeziesExtern)
+                                                   SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.VerbesserungNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                            SpeziesExtern       => SpeziesExtern)
+                                                            SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.FlussNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                     SpeziesExtern       => SpeziesExtern))
+                                                     SpeziesExtern     => SpeziesExtern))
         / Feldeffektteiler (KartenfeldereffekteLogik.FeldeffektVorhanden (KoordinatenExtern => KoordinatenExtern));
       
    end FeldNahrung;
@@ -36,15 +36,15 @@ package body KartenfelderwerteLogik is
    begin
       
       return (KartenAllgemeinesLogik.GrundProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                      SpeziesExtern       => SpeziesExtern)
+                                                      SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.RessourceProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                            SpeziesExtern       => SpeziesExtern)
+                                                            SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.WegProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                      SpeziesExtern       => SpeziesExtern)
+                                                      SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.VerbesserungProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                               SpeziesExtern       => SpeziesExtern)
+                                                               SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.FlussProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                        SpeziesExtern       => SpeziesExtern))
+                                                        SpeziesExtern     => SpeziesExtern))
         / Feldeffektteiler (KartenfeldereffekteLogik.FeldeffektVorhanden (KoordinatenExtern => KoordinatenExtern));
       
    end FeldProduktion;
@@ -60,15 +60,15 @@ package body KartenfelderwerteLogik is
    begin
       
       return (KartenAllgemeinesLogik.GrundGeld (KoordinatenExtern => KoordinatenExtern,
-                                                SpeziesExtern       => SpeziesExtern)
+                                                SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.RessourceGeld (KoordinatenExtern => KoordinatenExtern,
-                                                      SpeziesExtern       => SpeziesExtern)
+                                                      SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.WegGeld (KoordinatenExtern => KoordinatenExtern,
-                                                SpeziesExtern       => SpeziesExtern)
+                                                SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.VerbesserungGeld (KoordinatenExtern => KoordinatenExtern,
-                                                         SpeziesExtern       => SpeziesExtern)
+                                                         SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.FlussGeld (KoordinatenExtern => KoordinatenExtern,
-                                                  SpeziesExtern       => SpeziesExtern))
+                                                  SpeziesExtern     => SpeziesExtern))
         / Feldeffektteiler (KartenfeldereffekteLogik.FeldeffektVorhanden (KoordinatenExtern => KoordinatenExtern));
       
    end FeldGeld;
@@ -84,15 +84,15 @@ package body KartenfelderwerteLogik is
    begin
       
       return KartenAllgemeinesLogik.GrundWissen (KoordinatenExtern => KoordinatenExtern,
-                                                 SpeziesExtern       => SpeziesExtern)
+                                                 SpeziesExtern     => SpeziesExtern)
         + KartenAllgemeinesLogik.RessourceWissen (KoordinatenExtern => KoordinatenExtern,
-                                                  SpeziesExtern       => SpeziesExtern)
+                                                  SpeziesExtern     => SpeziesExtern)
         + KartenAllgemeinesLogik.WegWissen (KoordinatenExtern => KoordinatenExtern,
-                                            SpeziesExtern       => SpeziesExtern)
+                                            SpeziesExtern     => SpeziesExtern)
         + KartenAllgemeinesLogik.VerbesserungWissen (KoordinatenExtern => KoordinatenExtern,
-                                                     SpeziesExtern       => SpeziesExtern)
+                                                     SpeziesExtern     => SpeziesExtern)
         + KartenAllgemeinesLogik.FlussWissen (KoordinatenExtern => KoordinatenExtern,
-                                              SpeziesExtern       => SpeziesExtern);
+                                              SpeziesExtern     => SpeziesExtern);
       
    end FeldWissen;
      
@@ -107,15 +107,15 @@ package body KartenfelderwerteLogik is
    begin
       
       return (KartenAllgemeinesLogik.GrundVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                        SpeziesExtern       => SpeziesExtern)
+                                                        SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.RessourceVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                              SpeziesExtern       => SpeziesExtern)
+                                                              SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.WegVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                        SpeziesExtern       => SpeziesExtern)
+                                                        SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.VerbesserungVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                                 SpeziesExtern       => SpeziesExtern)
+                                                                 SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.FlussVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                          SpeziesExtern       => SpeziesExtern))
+                                                          SpeziesExtern     => SpeziesExtern))
         / KampfDatentypen.KampfwerteAllgemein (Feldeffektteiler (KartenfeldereffekteLogik.FeldeffektVorhanden (KoordinatenExtern => KoordinatenExtern)));
       
    end FeldVerteidigung;
@@ -131,15 +131,15 @@ package body KartenfelderwerteLogik is
    begin
       
       return (KartenAllgemeinesLogik.GrundAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                   SpeziesExtern       => SpeziesExtern)
+                                                   SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.RessourceAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                         SpeziesExtern       => SpeziesExtern)
+                                                         SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.WegAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                   SpeziesExtern       => SpeziesExtern)
+                                                   SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.VerbesserungAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                            SpeziesExtern       => SpeziesExtern)
+                                                            SpeziesExtern     => SpeziesExtern)
               + KartenAllgemeinesLogik.FlussAngriff (KoordinatenExtern => KoordinatenExtern,
-                                                     SpeziesExtern       => SpeziesExtern))
+                                                     SpeziesExtern     => SpeziesExtern))
         / KampfDatentypen.KampfwerteAllgemein (Feldeffektteiler (KartenfeldereffekteLogik.FeldeffektVorhanden (KoordinatenExtern => KoordinatenExtern)));
       
    end FeldAngriff;

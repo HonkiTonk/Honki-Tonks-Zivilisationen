@@ -43,8 +43,8 @@ package body EinwohnersystemLogik is
             
          when others =>
             EinwohnerBelegungÄndern (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                      YAchseExtern           => Stadtfeld.YAchse,
-                                      XAchseExtern           => Stadtfeld.XAchse);
+                                      YAchseExtern             => Stadtfeld.YAchse,
+                                      XAchseExtern             => Stadtfeld.XAchse);
             return True;
       end case;
       
@@ -60,18 +60,18 @@ package body EinwohnersystemLogik is
       
       case
         LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                 YKoordinateExtern      => YAchseExtern,
-                                                 XKoordinateExtern      => XAchseExtern)
+                                                 YKoordinateExtern        => YAchseExtern,
+                                                 XKoordinateExtern        => XAchseExtern)
       is
          when True =>
             EinwohnerEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                YAchseExtern           => YAchseExtern,
-                                XAchseExtern           => XAchseExtern);
+                                YAchseExtern             => YAchseExtern,
+                                XAchseExtern             => XAchseExtern);
                         
          when False =>
             EinwohnerZuweisen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                               YAchseExtern           => YAchseExtern,
-                               XAchseExtern           => XAchseExtern);
+                               YAchseExtern             => YAchseExtern,
+                               XAchseExtern             => XAchseExtern);
       end case;
       
    end EinwohnerBelegungÄndern;
@@ -85,13 +85,13 @@ package body EinwohnersystemLogik is
    is begin
       
       SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                   YKoordinateExtern      => YAchseExtern,
-                                                   XKoordinateExtern      => XAchseExtern,
-                                                   BelegenEntfernenExtern => False);
+                                                   YKoordinateExtern        => YAchseExtern,
+                                                   XKoordinateExtern        => XAchseExtern,
+                                                   BelegenEntfernenExtern   => False);
       
-      SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                             EinwohnerArbeiterExtern => False,
-                                             WachsenSchrumpfenExtern => False);
+      SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                             EinwohnerArbeiterExtern  => False,
+                                             WachsenSchrumpfenExtern  => False);
       
       StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
@@ -108,22 +108,22 @@ package body EinwohnersystemLogik is
    begin
       
       if
-        LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                           EinwohnerArbeiterExtern => False)
-        < LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                             EinwohnerArbeiterExtern => True)
+        LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                           EinwohnerArbeiterExtern  => False)
+        < LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                             EinwohnerArbeiterExtern  => True)
         and
           True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                          KoordinatenExtern      => Kartenwert)
+                                                          KoordinatenExtern        => Kartenwert)
       then
          SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                      YKoordinateExtern      => YAchseExtern,
-                                                      XKoordinateExtern      => XAchseExtern,
-                                                      BelegenEntfernenExtern => True);
+                                                      YKoordinateExtern        => YAchseExtern,
+                                                      XKoordinateExtern        => XAchseExtern,
+                                                      BelegenEntfernenExtern   => True);
          
-         SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                                EinwohnerArbeiterExtern => False,
-                                                WachsenSchrumpfenExtern => True);
+         SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                EinwohnerArbeiterExtern  => False,
+                                                WachsenSchrumpfenExtern  => True);
          
          StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
          

@@ -69,8 +69,8 @@ package body StadtseitenleisteGrafik is
    begin
                         
       Viewfläche := Leer (AnzeigebereichExtern => AnzeigebereichExtern,
-                          ViewExtern           => ViewExtern,
-                          ViewflächeExtern     => Viewfläche);
+                           ViewExtern           => ViewExtern,
+                           ViewflächeExtern     => Viewfläche);
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
@@ -125,8 +125,8 @@ package body StadtseitenleisteGrafik is
             
          else
             TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
-                                                              TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
-                                                              PositionExtern   => Textposition);
+                                                                    TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
+                                                                    PositionExtern   => Textposition);
       
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                             TextAccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
@@ -162,7 +162,7 @@ package body StadtseitenleisteGrafik is
         Nahrungsproduktion > 0
       then
          return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
-         & "+" & ZahlAlsStringProduktion (ZahlExtern => Nahrungsproduktion);
+           & "+" & ZahlAlsStringProduktion (ZahlExtern => Nahrungsproduktion);
          
       else
          return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand

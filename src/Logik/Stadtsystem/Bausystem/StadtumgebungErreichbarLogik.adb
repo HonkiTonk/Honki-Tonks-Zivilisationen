@@ -48,19 +48,19 @@ package body StadtumgebungErreichbarLogik is
                   null;
                   
                elsif
-                 True = LeseWeltkarte.BelegterGrund (SpeziesExtern       => SpeziesExtern,
+                 True = LeseWeltkarte.BelegterGrund (SpeziesExtern     => SpeziesExtern,
                                                      KoordinatenExtern => KartenWert)
                  and
                    EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenWert,
-                                                                                                          LogikGrafikExtern => True).Nummer
+                                                                                                            LogikGrafikExtern => True).Nummer
                  and
-                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern                => SpeziesExtern,
+                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern              => SpeziesExtern,
                                                                                 IDExtern                   => IDExtern,
                                                                                 NeueKoordinatenExtern      => KartenWert,
                                                                                 StadtBerücksichtigenExtern => True)
                  and
                    True = NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
-                                          SpeziesExtern               => SpeziesExtern,
+                                          SpeziesExtern             => SpeziesExtern,
                                           IDExtern                  => IDExtern)
                  and
                    GefundeneFelder < NotwendigeFelderExtern
@@ -68,19 +68,19 @@ package body StadtumgebungErreichbarLogik is
                   GefundeneFelder := GefundeneFelder + 1;
                   
                elsif
-                 True = LeseWeltkarte.BelegterGrund (SpeziesExtern       => SpeziesExtern,
+                 True = LeseWeltkarte.BelegterGrund (SpeziesExtern     => SpeziesExtern,
                                                      KoordinatenExtern => KartenWert)
                  and
                    EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenWert,
-                                                                                                          LogikGrafikExtern => True).Nummer
+                                                                                                            LogikGrafikExtern => True).Nummer
                  and
-                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern                => SpeziesExtern,
+                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern              => SpeziesExtern,
                                                                                 IDExtern                   => IDExtern,
                                                                                 NeueKoordinatenExtern      => KartenWert,
                                                                                 StadtBerücksichtigenExtern => True)
                  and
                    True = NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
-                                          SpeziesExtern               => SpeziesExtern,
+                                          SpeziesExtern             => SpeziesExtern,
                                           IDExtern                  => IDExtern)
                then
                   return KartenWert;
@@ -139,10 +139,10 @@ package body StadtumgebungErreichbarLogik is
                null;
                
             elsif
-              True = LeseWeltkarte.BelegterGrund (SpeziesExtern       => SpeziesExtern,
+              True = LeseWeltkarte.BelegterGrund (SpeziesExtern     => SpeziesExtern,
                                                   KoordinatenExtern => KartenWertZwei)
               and
-                True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern                => SpeziesExtern,
+                True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern              => SpeziesExtern,
                                                                              IDExtern                   => IDExtern,
                                                                              NeueKoordinatenExtern      => KartenWertZwei,
                                                                              StadtBerücksichtigenExtern => True)

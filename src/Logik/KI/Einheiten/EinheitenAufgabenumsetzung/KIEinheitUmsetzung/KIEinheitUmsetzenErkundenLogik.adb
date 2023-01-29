@@ -36,9 +36,9 @@ package body KIEinheitUmsetzenErkundenLogik is
          return False;
          
       elsif
-       -- LeseAllgemeines.Rundenanzahl mod 20 = 0
-       -- and
-          EinheitVerbessernLogik.EinheitVerbesserbar (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= EinheitenKonstanten.LeerID
+        -- LeseAllgemeines.Rundenanzahl mod 20 = 0
+        -- and
+        EinheitVerbessernLogik.EinheitVerbesserbar (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= EinheitenKonstanten.LeerID
       then
          return False;
          

@@ -42,12 +42,12 @@ package body ForschungsauswahlGrafik is
       AktuelleAuswahl := ForschungenDatentypen.ForschungIDMitNullWert (AktuelleAuswahlExtern);
       
       Auswahlmöglichkeiten (AuswahlExtern => AktuelleAuswahl,
-                             SpeziesExtern   => SpeziesExtern);
+                             SpeziesExtern => SpeziesExtern);
       
       Ermöglicht (ZusatztextExtern => AktuelleAuswahl,
-                   SpeziesExtern      => SpeziesExtern);
+                   SpeziesExtern    => SpeziesExtern);
       Beschreibung (ZusatztextExtern => AktuelleAuswahl,
-                    SpeziesExtern      => SpeziesExtern);
+                    SpeziesExtern    => SpeziesExtern);
       
       Aktuell (SpeziesExtern => SpeziesExtern);
       
@@ -156,7 +156,7 @@ package body ForschungsauswahlGrafik is
          TechnologienSchleife:
          for TechnologieSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
             
-            Forschungswert := LeseForschungenDatenbank.AnforderungForschung (SpeziesExtern             => SpeziesExtern,
+            Forschungswert := LeseForschungenDatenbank.AnforderungForschung (SpeziesExtern           => SpeziesExtern,
                                                                              IDExtern                => TechnologieSchleifenwert,
                                                                              WelcheAnforderungExtern => NeueForschungSchleifenwert);
             
@@ -188,7 +188,7 @@ package body ForschungsauswahlGrafik is
             
          if
            ZusatztextExtern = LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => SpeziesExtern,
-                                                                    IDExtern    => EinheitenSchleifenwert)
+                                                                    IDExtern      => EinheitenSchleifenwert)
          then
             TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                     TextExtern       => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => EinheitenSchleifenwert,

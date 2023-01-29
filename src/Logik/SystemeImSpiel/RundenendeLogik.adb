@@ -165,12 +165,12 @@ package body RundenendeLogik is
          null;
                   
       else
-         SchreibeWichtiges.Geldmenge (SpeziesExtern         => SpeziesExtern,
+         SchreibeWichtiges.Geldmenge (SpeziesExtern       => SpeziesExtern,
                                       GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => SpeziesExtern)),
                                       RechnenSetzenExtern => True);
       end if;
                
-      SchreibeWichtiges.Forschungsmenge (SpeziesExtern             => SpeziesExtern,
+      SchreibeWichtiges.Forschungsmenge (SpeziesExtern           => SpeziesExtern,
                                          ForschungZugewinnExtern => LeseWichtiges.GesamteForschungsrate (SpeziesExtern => SpeziesExtern),
                                          RechnenSetzenExtern     => True);
       
@@ -202,12 +202,12 @@ package body RundenendeLogik is
             null;
                   
          else
-            SchreibeDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern     => SpeziesExtern,
-                                                  SpeziesZweiExtern     => SpeziesSchleifenwert,
-                                                  ÄnderungExtern     => 1,
+            SchreibeDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern    => SpeziesExtern,
+                                                  SpeziesZweiExtern   => SpeziesSchleifenwert,
+                                                  ÄnderungExtern      => 1,
                                                   RechnenSetzenExtern => True);
-            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern     => SpeziesExtern,
-                                                  SpeziesZweiExtern     => SpeziesSchleifenwert,
+            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => SpeziesExtern,
+                                                  SpeziesZweiExtern   => SpeziesSchleifenwert,
                                                   SympathieExtern     => 1,
                                                   RechnenSetzenExtern => True);
          end if;

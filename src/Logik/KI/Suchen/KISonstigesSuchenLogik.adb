@@ -15,7 +15,7 @@ package body KISonstigesSuchenLogik is
    is begin
       
       case
-        LeseWeltkarte.BelegterGrund (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+        LeseWeltkarte.BelegterGrund (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                      KoordinatenExtern => AktuelleKoordinatenExtern)
       is
          when True =>
@@ -30,9 +30,9 @@ package body KISonstigesSuchenLogik is
       FeldSuchenSchleife:
       loop
          
-         Ziel := ZielSuchen (AktuelleKoordinatenExtern => AktuelleKoordinatenExtern,
-                             EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern,
-                             BereichExtern             => Bereich);
+         Ziel := ZielSuchen (AktuelleKoordinatenExtern  => AktuelleKoordinatenExtern,
+                             EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                             BereichExtern              => Bereich);
          
          if
            Ziel.XAchse /= KartenKonstanten.LeerXAchse
@@ -76,11 +76,11 @@ package body KISonstigesSuchenLogik is
                null;
                
             elsif
-              True = LeseWeltkarte.BelegterGrund (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+              True = LeseWeltkarte.BelegterGrund (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                                   KoordinatenExtern => KartenWert)
               and
                 True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                 NeueKoordinatenExtern    => KartenWert)
+                                                                                 NeueKoordinatenExtern      => KartenWert)
             then
                return KartenWert;
                      

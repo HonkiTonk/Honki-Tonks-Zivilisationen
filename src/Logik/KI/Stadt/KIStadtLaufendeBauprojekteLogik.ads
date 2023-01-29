@@ -59,9 +59,9 @@ package KIStadtLaufendeBauprojekteLogik is
    
    -- Sollte so eine Post Bedingung nicht auf <= MaximaleStädte eingeschränkt sein? äöü
    -- Einen subtype für MaximaleEinheiten erstellen der nur bis MaximalStädte geht? äöü
-       Post => (
-                  EinheitenInProduktion'Result <= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
-               );
+     Post => (
+                EinheitenInProduktion'Result <= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
+             );
    
 private
    

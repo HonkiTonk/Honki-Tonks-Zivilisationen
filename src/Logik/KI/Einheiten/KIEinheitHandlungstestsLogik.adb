@@ -66,7 +66,7 @@ package body KIEinheitHandlungstestsLogik is
    
    function Unbewegbar
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-     return Boolean
+      return Boolean
    is
       use type EinheitenDatentypen.Bewegungspunkte;
       use type EinheitenDatentypen.EinheitenIDMitNullWert;

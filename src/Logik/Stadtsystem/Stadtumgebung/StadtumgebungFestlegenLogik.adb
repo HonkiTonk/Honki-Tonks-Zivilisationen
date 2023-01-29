@@ -65,7 +65,7 @@ package body StadtumgebungFestlegenLogik is
                
             elsif
               True = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                              KoordinatenExtern      => KartenWert)
+                                                              KoordinatenExtern        => KartenWert)
               and
                 ((abs (YAchseSchleifenwert) > GrößeNeu
                   or
@@ -82,17 +82,17 @@ package body StadtumgebungFestlegenLogik is
                
                case
                  LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                          YKoordinateExtern      => YAchseSchleifenwert,
-                                                          XKoordinateExtern      => XAchseSchleifenwert)
+                                                          YKoordinateExtern        => YAchseSchleifenwert,
+                                                          XKoordinateExtern        => XAchseSchleifenwert)
                is
                   when True =>
-                     SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                                            EinwohnerArbeiterExtern => False,
-                                                            WachsenSchrumpfenExtern => False);
+                     SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                            EinwohnerArbeiterExtern  => False,
+                                                            WachsenSchrumpfenExtern  => False);
                      SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                  YKoordinateExtern      => YAchseSchleifenwert,
-                                                                  XKoordinateExtern      => XAchseSchleifenwert,
-                                                                  BelegenEntfernenExtern => False);
+                                                                  YKoordinateExtern        => YAchseSchleifenwert,
+                                                                  XKoordinateExtern        => XAchseSchleifenwert,
+                                                                  BelegenEntfernenExtern   => False);
                      
                   when False =>
                      null;
@@ -109,7 +109,7 @@ package body StadtumgebungFestlegenLogik is
               LeseWeltkarte.UnbelegterGrund (KoordinatenExtern => KartenWert) = True
             then
                GrundBelegen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                             KoordinatenExtern      => KartenWert);
+                             KoordinatenExtern        => KartenWert);
                
             else
                null;
@@ -122,11 +122,11 @@ package body StadtumgebungFestlegenLogik is
         GrößeNeu > GrößeAlt
       then
          ArbeiterSchleife:
-         for ArbeiterSchleifenwert in 1 .. LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                                                              EinwohnerArbeiterExtern => True) - LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                                                                                                                                    EinwohnerArbeiterExtern => False) loop
+         for ArbeiterSchleifenwert in 1 .. LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                                              EinwohnerArbeiterExtern  => True) - LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                                                                                                                     EinwohnerArbeiterExtern  => False) loop
             
-            FelderbewirtschaftungLogik.BewirtschaftbareFelderBelegen (ZuwachsSchwundExtern   => True,
+            FelderbewirtschaftungLogik.BewirtschaftbareFelderBelegen (ZuwachsSchwundExtern     => True,
                                                                       StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
          end loop ArbeiterSchleife;
@@ -175,8 +175,8 @@ package body StadtumgebungFestlegenLogik is
                elsif
                  StadtSpeziesNummerExtern.Spezies = LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => BelegungKartenwert)
                  or
-                   StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
-                                                                                                  KoordinatenExtern => BelegungKartenwert)
+                   StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+                                                                                                    KoordinatenExtern => BelegungKartenwert)
                then
                   GrundBelegbar := True;
                   exit EAchseSchleife;

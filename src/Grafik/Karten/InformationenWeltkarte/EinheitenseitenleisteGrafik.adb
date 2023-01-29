@@ -66,11 +66,11 @@ package body EinheitenseitenleisteGrafik is
             return;
             
          when others =>
-            FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => IDEinheit,
+            FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => IDEinheit,
                                                                                                                                SpeziesExtern => EinheitSpeziesNummer.Spezies));
             FestzulegenderText (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image
               & TextKonstanten.Trennzeichen & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => EinheitSpeziesNummer.Spezies,
-                                                                                                                                    IDExtern    => IDEinheit));
+                                                                                                                                    IDExtern      => IDEinheit));
       end case;
       
       if
@@ -83,7 +83,7 @@ package body EinheitenseitenleisteGrafik is
                                                                                                                                        IDExtern      => IDEinheit));
          FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugErfahrungspunkte) & LeseEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image
            & TextKonstanten.Trennzeichen & ZahlAlsStringErfahrungspunkte (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => EinheitSpeziesNummer.Spezies,
-                                                                                                                                    IDExtern     => IDEinheit));
+                                                                                                                                    IDExtern      => IDEinheit));
          FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRang) & LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image & TextKonstanten.Trennzeichen
            & ZahlAlsStringRang (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (SpeziesExtern => EinheitSpeziesNummer.Spezies,
                                                                                     IDExtern      => IDEinheit));
@@ -221,7 +221,7 @@ package body EinheitenseitenleisteGrafik is
       
       case
         LeseEinheitenDatenbank.KannTransportieren (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                   IDExtern    => IDExtern)
+                                                   IDExtern      => IDExtern)
       is
          when EinheitenKonstanten.LeerKannTransportieren =>
             return TextKonstanten.LeerUnboundedString;
@@ -236,14 +236,14 @@ package body EinheitenseitenleisteGrafik is
                                                                                                                         IDExtern    => IDExtern) loop
          
          Ladungsnummer := LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                             PlatzExtern              => LadungSchleifenwert);
+                                                             PlatzExtern                => LadungSchleifenwert);
          
          if
            Ladungsnummer /= EinheitenKonstanten.LeerTransportiert
          then
             Beladen := True;
             Ladungstext := Ladungstext & TextKonstanten.UmbruchAbstand
-              & EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Ladungsnummer)),
+              & EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Ladungsnummer)),
                                                                 SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
             
          else
@@ -289,10 +289,10 @@ package body EinheitenseitenleisteGrafik is
             Koordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
             TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
-                                                              TextExtern       => ("Nr:" & EinheitSpeziesNummerExtern.Nummer'Wide_Wide_Image & " Z:" & Koordinaten.EAchse'Wide_Wide_Image & ","
-                                                                                   & Koordinaten.YAchse'Wide_Wide_Image & "," & Koordinaten.XAchse'Wide_Wide_Image & " Au:"
-                                                                                   & LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image),
-                                                              PositionExtern   => TextpositionDebug);
+                                                                    TextExtern       => ("Nr:" & EinheitSpeziesNummerExtern.Nummer'Wide_Wide_Image & " Z:" & Koordinaten.EAchse'Wide_Wide_Image & ","
+                                                                                         & Koordinaten.YAchse'Wide_Wide_Image & "," & Koordinaten.XAchse'Wide_Wide_Image & " Au:"
+                                                                                         & LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image),
+                                                                    PositionExtern   => TextpositionDebug);
             
             TextbreiteDebug := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                                      TextbreiteExtern => TextbreiteDebug);
@@ -315,7 +315,7 @@ package body EinheitenseitenleisteGrafik is
          end case;
          
          Koordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                            PlanschrittExtern        => PlanSchleifenwert);
+                                                            PlanschrittExtern          => PlanSchleifenwert);
          
          TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                                  TextExtern       => PlanSchleifenwert'Wide_Wide_Image & ":" & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & ","

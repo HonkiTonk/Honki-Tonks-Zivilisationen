@@ -13,6 +13,6 @@ private
    Rückgabewert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    function AutomatischeEinstellungen
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 end SpieleinstellungenLogik;

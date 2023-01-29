@@ -108,7 +108,7 @@ package body LadenLogik is
       
       case
         SpezieswerteLaden (LadenPrüfenExtern => False,
-                          DateiLadenExtern  => DateiLadenExtern)
+                           DateiLadenExtern  => DateiLadenExtern)
       is
          when False =>
             return False;
@@ -212,7 +212,7 @@ package body LadenLogik is
                                            Allgemeines);
       
       SpielRecords.SpeziesbelegungArray'Read (Stream (File => DateiLadenExtern),
-                                             Speziesbelegung);
+                                              Speziesbelegung);
       
       case
         LadenPrüfenExtern
@@ -310,7 +310,7 @@ package body LadenLogik is
          is
             when True =>
                SchreibeStadtGebaut.GanzerEintrag (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert),
-                                                  EintragExtern          => Stadt);
+                                                  EintragExtern            => Stadt);
             
             when False =>
                null;
@@ -338,7 +338,7 @@ package body LadenLogik is
                when True =>
                   SchreibeDiplomatie.GanzerEintrag (SpeziesEinsExtern => SpeziesExtern,
                                                     SpeziesZweiExtern => SpeziesDiplomatieSchleifenwert,
-                                                    EintragExtern   => Diplomatie);
+                                                    EintragExtern     => Diplomatie);
             
                when False =>
                   null;
@@ -358,11 +358,11 @@ package body LadenLogik is
         LadenPrüfenExtern
       is
          when True =>
-            SchreibeWichtiges.GanzerEintrag (SpeziesExtern   => SpeziesExtern,
+            SchreibeWichtiges.GanzerEintrag (SpeziesExtern => SpeziesExtern,
                                              EintragExtern => Wichtiges);
-            SchreibeGrenzen.GanzerEintrag (SpeziesExtern   => SpeziesExtern,
+            SchreibeGrenzen.GanzerEintrag (SpeziesExtern => SpeziesExtern,
                                            EintragExtern => Grenzen);
-            SchreibeCursor.GanzerEintrag (SpeziesExtern   => SpeziesExtern,
+            SchreibeCursor.GanzerEintrag (SpeziesExtern => SpeziesExtern,
                                           EintragExtern => Cursor);
             
          when False =>

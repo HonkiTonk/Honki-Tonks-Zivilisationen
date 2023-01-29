@@ -100,7 +100,7 @@ package body StadtmenueLogik is
             
          when others =>
             return Mausbefehle (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                AuswahlExtern          => Befehlsauswahl);
+                                AuswahlExtern            => Befehlsauswahl);
       end case;
                   
    end WasIstAusgewählt;

@@ -70,7 +70,7 @@ package body KIKriegErmittelnLogik is
             
          else
             SpeziesGewählt := StärkeVerhältnisErmitteln (EigeneSpeziesExtern => SpeziesExtern,
-                                                          FremdeSpeziesExtern => SpeziesSchleifenwert);
+                                                            FremdeSpeziesExtern => SpeziesSchleifenwert);
          end if;
          
       end loop SpeziesSchleife;

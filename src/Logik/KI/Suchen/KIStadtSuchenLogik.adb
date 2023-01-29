@@ -15,7 +15,7 @@ package body KIStadtSuchenLogik is
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
    
-      GefundeneStadt := StadtSuchen (SpeziesExtern             => SpeziesExtern,
+      GefundeneStadt := StadtSuchen (SpeziesExtern           => SpeziesExtern,
                                      AnfangKoordinatenExtern => AnfangKoordinatenExtern);
          
       case
@@ -103,9 +103,9 @@ package body KIStadtSuchenLogik is
             Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (FeindlicheSpeziesExtern, StadtNummerSchleifenwert));
                                                              
             case
-              EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => FeindlicheSpeziesExtern,
-                                                                   KoordinatenExtern => Stadtkoordinaten,
-                                                                   LogikGrafikExtern => True)
+              EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => FeindlicheSpeziesExtern,
+                                                                     KoordinatenExtern => Stadtkoordinaten,
+                                                                     LogikGrafikExtern => True)
             is
                when EinheitenKonstanten.LeerNummer =>
                   return Stadtkoordinaten;

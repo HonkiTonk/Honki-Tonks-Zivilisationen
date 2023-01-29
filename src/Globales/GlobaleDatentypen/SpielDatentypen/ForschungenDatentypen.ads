@@ -7,8 +7,8 @@ package ForschungenDatentypen is
    subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
    
    type Forschung_Anforderung_Enum is (
-                                         Anforderung_Eins_Enum, Anforderung_Zwei_Enum, Anforderung_Drei_Enum, Anforderung_Vier_Enum
-                                        );
+                                       Anforderung_Eins_Enum, Anforderung_Zwei_Enum, Anforderung_Drei_Enum, Anforderung_Vier_Enum
+                                      );
 
    type AnforderungForschungArray is array (Forschung_Anforderung_Enum'Range) of ForschungIDNichtMöglich;
    type ErforschtArray is array (ForschungID'Range) of Boolean;

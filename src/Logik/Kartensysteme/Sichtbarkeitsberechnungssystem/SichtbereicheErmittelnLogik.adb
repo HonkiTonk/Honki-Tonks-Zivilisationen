@@ -23,11 +23,11 @@ package body SichtbereicheErmittelnLogik is
       if
         KoordinatenEinheit.EAchse >= KartenKonstanten.OberflächeKonstante
         and
-          (True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies,
+          (True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                          IDExtern             => EinheitID,
                                                          WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
            or
-             True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies,
+             True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                            IDExtern             => EinheitID,
                                                            WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum))
       then

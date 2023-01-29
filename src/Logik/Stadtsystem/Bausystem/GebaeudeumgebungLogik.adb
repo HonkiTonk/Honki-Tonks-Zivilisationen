@@ -22,23 +22,23 @@ package body GebaeudeumgebungLogik is
       
       case
         LeseGebaeudeDatenbank.FalscheEbene (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                            IDExtern    => GebäudeIDExtern,
-                                            EbeneExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).EAchse)
+                                            IDExtern      => GebäudeIDExtern,
+                                            EbeneExtern   => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).EAchse)
       is
          when True =>
             return False;
             
          when False =>
             Anforderungen.NotwendigFluss := LeseGebaeudeDatenbank.FlussBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                  IDExtern    => GebäudeIDExtern);
+                                                                                  IDExtern      => GebäudeIDExtern);
             Anforderungen.NotwendigerGrund := LeseGebaeudeDatenbank.BasisgrundBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                    IDExtern    => GebäudeIDExtern);
+                                                                                         IDExtern      => GebäudeIDExtern);
             Anforderungen.NotwendigeRessource := LeseGebaeudeDatenbank.RessourceBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                           IDExtern    => GebäudeIDExtern);
+                                                                                           IDExtern      => GebäudeIDExtern);
             Anforderungen.NotwendigeVerbesserung := LeseGebaeudeDatenbank.VerbesserungBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                                 IDExtern    => GebäudeIDExtern);
+                                                                                                 IDExtern      => GebäudeIDExtern);
             Anforderungen.NotwendigesGebäude := LeseGebaeudeDatenbank.GebäudeBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                          IDExtern    => GebäudeIDExtern);
+                                                                                          IDExtern      => GebäudeIDExtern);
       end case;
             
       if
@@ -56,7 +56,7 @@ package body GebaeudeumgebungLogik is
                
       else
          return UmgebungPrüfen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                 AnforderungenExtern    => Anforderungen);
+                                 AnforderungenExtern      => Anforderungen);
       end if;
             
    end RichtigeUmgebungVorhanden;
@@ -89,14 +89,14 @@ package body GebaeudeumgebungLogik is
                         
             elsif
               False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                               KoordinatenExtern      => KartenWert)
+                                                               KoordinatenExtern        => KartenWert)
             then
                null;
                
             else
                Ergebnis := Detailprüfung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                           KoordinatenExtern      => KartenWert,
-                                           AnforderungenExtern    => AnforderungenExtern);
+                                           KoordinatenExtern        => KartenWert,
+                                           AnforderungenExtern      => AnforderungenExtern);
             end if;
             
             case
@@ -194,7 +194,7 @@ package body GebaeudeumgebungLogik is
          
       elsif
         True = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                 WelchesGebäudeExtern   => AnforderungenExtern.NotwendigesGebäude)
+                                                  WelchesGebäudeExtern     => AnforderungenExtern.NotwendigesGebäude)
       then
          null;
          

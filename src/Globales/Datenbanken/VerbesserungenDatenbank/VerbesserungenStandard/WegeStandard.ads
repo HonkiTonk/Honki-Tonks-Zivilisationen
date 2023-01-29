@@ -13,9 +13,9 @@ package WegeStandard is
                                            others =>
                                              (
                                               Passierbarkeit => (EinheitenDatentypen.Boden_Enum    => True,
-                                                                     EinheitenDatentypen.Luft_Enum     => True,
-                                                                     EinheitenDatentypen.Weltraum_Enum => True,
-                                                                     others                            => False),
+                                                                 EinheitenDatentypen.Luft_Enum     => True,
+                                                                 EinheitenDatentypen.Weltraum_Enum => True,
+                                                                 others                            => False),
                                               Bewertung      => (others => BewertungDatentypen.Bewertung_Eins_Enum),
                                               Wirtschaft     => (others => (others => 1)),
                                               Kampf          => (others => (others => 1)),
@@ -30,11 +30,11 @@ package WegeStandard is
                                                    others =>
                                                      (
                                                       Passierbarkeit => (
-                                                                             EinheitenDatentypen.Boden_Enum    => True,
-                                                                             EinheitenDatentypen.Luft_Enum     => True,
-                                                                             EinheitenDatentypen.Weltraum_Enum => True,
-                                                                             others                            => False
-                                                                            ),
+                                                                         EinheitenDatentypen.Boden_Enum    => True,
+                                                                         EinheitenDatentypen.Luft_Enum     => True,
+                                                                         EinheitenDatentypen.Weltraum_Enum => True,
+                                                                         others                            => False
+                                                                        ),
                                                       Bewertung      => (others => BewertungDatentypen.Bewertung_Eins_Enum),
                                                       Wirtschaft     => (others => (others => 1)),
                                                       Kampf          => (others => (others => 1)),
@@ -49,9 +49,9 @@ package WegeStandard is
                                                others =>
                                                  (
                                                   Passierbarkeit => (
-                                                                         EinheitenDatentypen.Unterirdisch_Enum => True,
-                                                                         others                                => False
-                                                                        ),
+                                                                     EinheitenDatentypen.Unterirdisch_Enum => True,
+                                                                     others                                => False
+                                                                    ),
                                                   Bewertung      => (others => BewertungDatentypen.Bewertung_Eins_Enum),
                                                   Wirtschaft     => (others => (others => 1)),
                                                   Kampf          => (others => (others => 1)),

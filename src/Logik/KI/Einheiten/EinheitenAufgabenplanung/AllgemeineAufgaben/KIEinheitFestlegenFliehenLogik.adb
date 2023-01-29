@@ -21,9 +21,9 @@ package body KIEinheitFestlegenFliehenLogik is
          when False =>
             -- Hier muss noch ein Ziel hinzugefügt werden. äöü
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Flucht_Enum);
+                                                    AufgabeExtern              => KIDatentypen.Flucht_Enum);
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => ZielKoordinate);
+                                                       KoordinatenExtern          => ZielKoordinate);
             return True;
             
          when True =>

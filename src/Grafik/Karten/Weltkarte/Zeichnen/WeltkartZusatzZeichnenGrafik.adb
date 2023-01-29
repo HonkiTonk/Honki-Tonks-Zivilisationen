@@ -102,7 +102,7 @@ package body WeltkartZusatzZeichnenGrafik is
          when others =>
             RahmenBesetztesFeld (KoordinatenExtern => KoordinatenExtern,
                                  PositionExtern    => PositionExtern,
-                                 SpeziesExtern       => AktuelleSpezies);
+                                 SpeziesExtern     => AktuelleSpezies);
       end case;
             
    end AnzeigeFeldbesitzer;
@@ -133,14 +133,14 @@ package body WeltkartZusatzZeichnenGrafik is
          then
             RahmenZeichnen (WelcheRichtungExtern => UmgebungSchleifenwert,
                             PositionExtern       => PositionExtern,
-                            SpeziesExtern          => SpeziesExtern);
+                            SpeziesExtern        => SpeziesExtern);
                      
          elsif
            SpeziesExtern /= LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => KartenWertRahmen)
          then
             RahmenZeichnen (WelcheRichtungExtern => UmgebungSchleifenwert,
                             PositionExtern       => PositionExtern,
-                            SpeziesExtern          => SpeziesExtern);
+                            SpeziesExtern        => SpeziesExtern);
 
          else
             null;

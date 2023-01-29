@@ -47,7 +47,7 @@ package body KIForschungLogik is
       for ForschungSchleifenwert in ForschungenDatenbank.ForschungslisteArray'Range (2) loop
          
          case
-           ForschungstestsLogik.ForschungAnforderungErfüllt (SpeziesExtern       => SpeziesExtern,
+           ForschungstestsLogik.ForschungAnforderungErfüllt (SpeziesExtern     => SpeziesExtern,
                                                               ForschungIDExtern => ForschungSchleifenwert)
          is
             when True =>
@@ -58,9 +58,9 @@ package body KIForschungLogik is
                   
                elsif
                  LeseForschungenDatenbank.Kosten (SpeziesExtern => SpeziesExtern,
-                                                          IDExtern    => WelchesProjekt)
+                                                  IDExtern      => WelchesProjekt)
                  > LeseForschungenDatenbank.Kosten (SpeziesExtern => SpeziesExtern,
-                                                            IDExtern    => ForschungSchleifenwert)
+                                                    IDExtern      => ForschungSchleifenwert)
                then
                   WelchesProjekt := ForschungSchleifenwert;
                   
@@ -92,7 +92,7 @@ package body KIForschungLogik is
             null;
             
          when others =>
-            SchreibeWichtiges.Forschungsprojekt (SpeziesExtern       => SpeziesExtern,
+            SchreibeWichtiges.Forschungsprojekt (SpeziesExtern     => SpeziesExtern,
                                                  ForschungIDExtern => WelchesProjekt);
       end case;
       

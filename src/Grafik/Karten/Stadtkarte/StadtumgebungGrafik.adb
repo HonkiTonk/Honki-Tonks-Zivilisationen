@@ -57,15 +57,15 @@ package body StadtumgebungGrafik is
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                              SpeziesExtern       => StadtSpeziesNummerExtern.Spezies)
+                                              SpeziesExtern     => StadtSpeziesNummerExtern.Spezies)
             then
                null;
                
             else
                case
                  LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                          YKoordinateExtern      => YAchseSchleifenwert,
-                                                          XKoordinateExtern      => XAchseSchleifenwert)
+                                                          YKoordinateExtern        => YAchseSchleifenwert,
+                                                          XKoordinateExtern        => XAchseSchleifenwert)
                is
                   when True =>
                      FeldBewirtschaftet := True;

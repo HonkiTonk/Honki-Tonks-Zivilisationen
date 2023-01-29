@@ -57,10 +57,10 @@ package body SpeziesEntfernenLogik is
          else
             SchreibeDiplomatie.GanzerEintrag (SpeziesEinsExtern => SpeziesExtern,
                                               SpeziesZweiExtern => DiplomatieSchleifenwert,
-                                              EintragExtern   => WichtigesRecordKonstanten.LeerDiplomatie);
+                                              EintragExtern     => WichtigesRecordKonstanten.LeerDiplomatie);
             SchreibeDiplomatie.GanzerEintrag (SpeziesEinsExtern => DiplomatieSchleifenwert,
                                               SpeziesZweiExtern => SpeziesExtern,
-                                              EintragExtern   => WichtigesRecordKonstanten.LeerDiplomatie);
+                                              EintragExtern     => WichtigesRecordKonstanten.LeerDiplomatie);
          end if;
          
       end loop DiplomatieSchleife;
@@ -74,7 +74,7 @@ package body SpeziesEntfernenLogik is
          null;
       end if;
       
-      SchreibeCursor.GanzerEintrag (SpeziesExtern   => SpeziesExtern,
+      SchreibeCursor.GanzerEintrag (SpeziesExtern => SpeziesExtern,
                                     EintragExtern => WichtigesRecordKonstanten.LeerCursor);
       SchreibeWichtiges.LeerEintrag (SpeziesExtern => SpeziesExtern);
       
@@ -128,8 +128,8 @@ package body SpeziesEntfernenLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesExtern,
-                                       BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
+      SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesExtern,
+                                        BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
       LadezeitenLogik.SpielweltNullsetzen;
       
    end SpeziesAufKISetzen;

@@ -24,8 +24,8 @@ package body KIYAchsenbewertung is
             Felderanzahl (2) := KartenDatentypen.KartenfeldPositiv'Last;
             
          when KartenartDatentypen.Karte_Y_Übergang_Enum | KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
-            Felderanzahl (2) := StandardübergangNorden (ZielpunktExtern      => ZielpunktExtern,
-                                                   NeuerPunktExtern     => NeuerPunktExtern);
+            Felderanzahl (2) := StandardübergangNorden (ZielpunktExtern  => ZielpunktExtern,
+                                                         NeuerPunktExtern => NeuerPunktExtern);
             
          when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
             Felderanzahl (2) := KartenDatentypen.KartenfeldPositiv'Last;
@@ -38,8 +38,8 @@ package body KIYAchsenbewertung is
             Felderanzahl (3) := KartenDatentypen.KartenfeldPositiv'Last;
             
          when KartenartDatentypen.Karte_Y_Übergang_Enum | KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
-            Felderanzahl (3) := StandardübergangSüden (ZielpunktExtern      => ZielpunktExtern,
-                                                   NeuerPunktExtern     => NeuerPunktExtern);
+            Felderanzahl (3) := StandardübergangSüden (ZielpunktExtern  => ZielpunktExtern,
+                                                         NeuerPunktExtern => NeuerPunktExtern);
             
          when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
             Felderanzahl (3) := KartenDatentypen.KartenfeldPositiv'Last;

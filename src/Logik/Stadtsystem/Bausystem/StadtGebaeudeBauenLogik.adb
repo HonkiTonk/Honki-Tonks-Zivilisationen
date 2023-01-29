@@ -14,17 +14,17 @@ package body StadtGebaeudeBauenLogik is
    is begin
       
       GebaeudeAllgemeinLogik.GebäudeProduktionBeenden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                        IDExtern               => StadtDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Gebäude));
-            
+                                                        IDExtern                 => StadtDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Gebäude));
+      
       if
         LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Mensch_Spieler_Enum
       then
          SchreibeStadtGebaut.KIBeschäftigung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                               BeschäftigungExtern   => KIDatentypen.Keine_Aufgabe_Enum);
+                                               BeschäftigungExtern      => KIDatentypen.Keine_Aufgabe_Enum);
                
       else
          -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => Meldungstexte.Zeug,
-         --                                      TextZeileExtern => 29);
+         --                                       TextZeileExtern => 29);
          null;
       end if;
       

@@ -34,8 +34,8 @@ package body KIEinheitFestlegenModernisierenLogik is
             return False;
               
          when others =>
-            PlatzGefunden := KISonstigesSuchenLogik.EigenesFeldSuchen (AktuelleKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                       EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern);
+            PlatzGefunden := KISonstigesSuchenLogik.EigenesFeldSuchen (AktuelleKoordinatenExtern  => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                                                       EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
             
       case
@@ -46,9 +46,9 @@ package body KIEinheitFestlegenModernisierenLogik is
             
          when others =>
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => PlatzGefunden);
+                                                       KoordinatenExtern          => PlatzGefunden);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Einheit_Verbessern_Enum);
+                                                    AufgabeExtern              => KIDatentypen.Einheit_Verbessern_Enum);
             return True;
       end case;
       
@@ -63,7 +63,7 @@ package body KIEinheitFestlegenModernisierenLogik is
                
             when others =>
                PlatzGefunden := EinheitVerbessernPlatz (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtSchleifenwert),
-                                                        EinheitNummerExtern    => EinheitSpeziesNummerExtern.Nummer);
+                                                        EinheitNummerExtern      => EinheitSpeziesNummerExtern.Nummer);
                
                if
                  PlatzGefunden.XAchse = KartenKonstanten.LeerXAchse
@@ -85,9 +85,9 @@ package body KIEinheitFestlegenModernisierenLogik is
             
          when others =>
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => PlatzGefunden);
+                                                       KoordinatenExtern          => PlatzGefunden);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Einheit_Verbessern_Enum);
+                                                    AufgabeExtern              => KIDatentypen.Einheit_Verbessern_Enum);
             return True;
       end case;
       
@@ -123,12 +123,12 @@ package body KIEinheitFestlegenModernisierenLogik is
                
             elsif
               False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern),
-                                                                                NeueKoordinatenExtern    => KartenWert)
+                                                                                NeueKoordinatenExtern      => KartenWert)
             then
                null;
                
             elsif
-              KIKonstanten.BewegungNormal /= KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern    => KartenWert,
+              KIKonstanten.BewegungNormal /= KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern      => KartenWert,
                                                                                     EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern))
             then
                null;

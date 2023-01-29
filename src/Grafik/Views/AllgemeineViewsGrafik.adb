@@ -28,8 +28,7 @@ package body AllgemeineViewsGrafik is
             
          when False =>
             Viewfläche (Überschrift_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Überschrift_Enum),
-                                                                                                  VerhältnisExtern => (GrafikRecordKonstanten.Überschriftbereich.width,
-                                                                                                                        GrafikRecordKonstanten.Überschriftbereich.height));
+                                                                                                  VerhältnisExtern => (GrafikRecordKonstanten.Überschriftbereich.width, GrafikRecordKonstanten.Überschriftbereich.height));
       end case;
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ÜberschriftviewAccess,

@@ -41,30 +41,30 @@ package body BauauswahlEinheitenGrafik is
                                      AbmessungenExtern => ViewflächeInformationen);
       
       Einheitentexte (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseEinheitenDatenbank.Produktionskosten (SpeziesExtern => SpeziesExtern,
-                                                                                                                               IDExtern    => AuswahlExtern)'Wide_Wide_Image;
-      Einheitentexte (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteNahrungskosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => SpeziesExtern,
+                                                                                                                                 IDExtern      => AuswahlExtern)'Wide_Wide_Image;
+      Einheitentexte (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteNahrungskosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
                                                                                                                                                IDExtern           => AuswahlExtern,
                                                                                                                                                WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
-      Einheitentexte (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteGeldkosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => SpeziesExtern,
+      Einheitentexte (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteGeldkosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
                                                                                                                                            IDExtern           => AuswahlExtern,
                                                                                                                                            WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
-      Einheitentexte (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteProduktionskosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => SpeziesExtern,
+      Einheitentexte (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteProduktionskosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
                                                                                                                                                   IDExtern           => AuswahlExtern,
                                                                                                                                                   WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)'Wide_Wide_Image;
       Einheitentexte (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => SpeziesExtern,
-                                                                                                                                       IDExtern    => AuswahlExtern)'Wide_Wide_Image;
+                                                                                                                                       IDExtern      => AuswahlExtern)'Wide_Wide_Image;
       Einheitentexte (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => SpeziesExtern,
-                                                                                                                                             IDExtern    => AuswahlExtern)'Wide_Wide_Image;
+                                                                                                                                             IDExtern      => AuswahlExtern)'Wide_Wide_Image;
       Einheitentexte (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAngriff) & LeseEinheitenDatenbank.Angriff (SpeziesExtern => SpeziesExtern,
-                                                                                                                     IDExtern    => AuswahlExtern)'Wide_Wide_Image;
+                                                                                                                     IDExtern      => AuswahlExtern)'Wide_Wide_Image;
       Einheitentexte (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerteidigung) & LeseEinheitenDatenbank.Verteidigung (SpeziesExtern => SpeziesExtern,
-                                                                                                                               IDExtern    => AuswahlExtern)'Wide_Wide_Image;
+                                                                                                                               IDExtern      => AuswahlExtern)'Wide_Wide_Image;
       
       Transportgröße := LeseEinheitenDatenbank.KannTransportieren (SpeziesExtern => SpeziesExtern,
-                                                                     IDExtern    => AuswahlExtern);
+                                                                     IDExtern      => AuswahlExtern);
       
       Transportkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => SpeziesExtern,
-                                                                         IDExtern    => AuswahlExtern);
+                                                                         IDExtern      => AuswahlExtern);
       
       if
         Transportgröße = EinheitenKonstanten.LeerKannTransportieren
@@ -81,7 +81,7 @@ package body BauauswahlEinheitenGrafik is
       end if;
       
       Transportgröße := LeseEinheitenDatenbank.KannTransportiertWerden (SpeziesExtern => SpeziesExtern,
-                                                                          IDExtern    => AuswahlExtern);
+                                                                          IDExtern      => AuswahlExtern);
       
       case
         Transportgröße
@@ -144,11 +144,12 @@ package body BauauswahlEinheitenGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                                        TextExtern       => 
-                                                          ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
-                                                                                                                                                                                         SpeziesExtern => SpeziesExtern),
-                                                                                                                 TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x),
-                                                        PositionExtern   => Textposition);
+                                                              TextExtern       => 
+                                                                ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung
+                                                                                                                       (IDExtern      => AuswahlExtern,
+                                                                                                                        SpeziesExtern => SpeziesExtern),
+                                                                                                                       TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x),
+                                                              PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),

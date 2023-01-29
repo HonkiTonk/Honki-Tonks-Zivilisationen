@@ -17,7 +17,7 @@ package body QuadrantenberechnungenLogik is
          XQuadrantSchleife:
          for XQuadrantSchleifenwert in 0 .. SichtweiteExtern loop
             
-            QuadrantEins (SpeziesExtern               => SpeziesExtern,
+            QuadrantEins (SpeziesExtern             => SpeziesExtern,
                           SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
                           SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
                           SichtweiteExtern          => SichtweiteExtern,
@@ -30,7 +30,7 @@ package body QuadrantenberechnungenLogik is
                   null;
                   
                when others =>
-                  QuadrantZwei (SpeziesExtern               => SpeziesExtern,
+                  QuadrantZwei (SpeziesExtern             => SpeziesExtern,
                                 SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
                                 SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
                                 SichtweiteExtern          => SichtweiteExtern,
@@ -44,7 +44,7 @@ package body QuadrantenberechnungenLogik is
                   null;
                   
                when others =>
-                  QuadrantDrei (SpeziesExtern               => SpeziesExtern,
+                  QuadrantDrei (SpeziesExtern             => SpeziesExtern,
                                 SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
                                 SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
                                 SichtweiteExtern          => SichtweiteExtern,
@@ -59,7 +59,7 @@ package body QuadrantenberechnungenLogik is
                null;
                
             else
-               QuadrantVier (SpeziesExtern               => SpeziesExtern,
+               QuadrantVier (SpeziesExtern             => SpeziesExtern,
                              SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
                              SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
                              SichtweiteExtern          => SichtweiteExtern,
@@ -103,7 +103,7 @@ package body QuadrantenberechnungenLogik is
         and
           SichtweiteXRichtungExtern <= 1
       then
-         SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+         SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                      KoordinatenExtern => KartenQuadrantWert);
                
       elsif
@@ -129,7 +129,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -162,7 +162,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -191,7 +191,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -235,7 +235,7 @@ package body QuadrantenberechnungenLogik is
         and
           SichtweiteXRichtungExtern <= 1
       then
-         SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+         SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                      KoordinatenExtern => KartenQuadrantWert);
                
       elsif
@@ -261,7 +261,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -294,7 +294,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -323,7 +323,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -367,7 +367,7 @@ package body QuadrantenberechnungenLogik is
         and
           SichtweiteXRichtungExtern <= 1
       then
-         SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+         SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                      KoordinatenExtern => KartenQuadrantWert);
          
       elsif
@@ -393,7 +393,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -426,7 +426,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -455,7 +455,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -499,7 +499,7 @@ package body QuadrantenberechnungenLogik is
         and
           SichtweiteXRichtungExtern <= 1
       then
-         SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+         SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                      KoordinatenExtern => KartenQuadrantWert);
                
       elsif
@@ -525,7 +525,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -558,7 +558,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else
@@ -587,7 +587,7 @@ package body QuadrantenberechnungenLogik is
                  and
                    XÄnderungSchleifenwert = SichtweiteXRichtungExtern
                then
-                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern       => SpeziesExtern,
+                  SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
                         
                else

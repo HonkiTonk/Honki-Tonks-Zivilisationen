@@ -67,7 +67,7 @@ package body KISiedleraufgabenLogik is
         (VorhandeneStädte < LeseGrenzen.Städtegrenzen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
          and
            1 > KIAufgabenVerteiltLogik.AufgabenVerteilt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                         AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum))
+                                                         AufgabeExtern              => KIDatentypen.Stadt_Bauen_Enum))
         and then
           KIEinheitFestlegenSiedelnLogik.StadtBauen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
       then

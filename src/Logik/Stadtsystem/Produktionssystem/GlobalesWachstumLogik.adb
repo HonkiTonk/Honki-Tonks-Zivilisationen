@@ -53,12 +53,12 @@ package body GlobalesWachstumLogik is
             null;
             
          when others =>
-            SchreibeWichtiges.GeldZugewinnProRunde (SpeziesExtern         => SpeziesExtern,
+            SchreibeWichtiges.GeldZugewinnProRunde (SpeziesExtern       => SpeziesExtern,
                                                     GeldZugewinnExtern  => WichtigesKonstanten.LeerGeldZugewinnProRunde,
                                                     RechnenSetzenExtern => False);
       end case;
       
-      SchreibeWichtiges.GesamteForschungsrate (SpeziesExtern                  => SpeziesExtern,
+      SchreibeWichtiges.GesamteForschungsrate (SpeziesExtern                => SpeziesExtern,
                                                ForschungsrateZugewinnExtern => WichtigesKonstanten.LeerGesamteForschungsrate,
                                                RechnenSetzenExtern          => False);
       
@@ -78,12 +78,12 @@ package body GlobalesWachstumLogik is
                   null;
                   
                else
-                  SchreibeWichtiges.GeldZugewinnProRunde (SpeziesExtern         => SpeziesExtern,
+                  SchreibeWichtiges.GeldZugewinnProRunde (SpeziesExtern       => SpeziesExtern,
                                                           GeldZugewinnExtern  => LeseStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)),
                                                           RechnenSetzenExtern => True);
                end if;
                
-               SchreibeWichtiges.GesamteForschungsrate (SpeziesExtern                  => SpeziesExtern,
+               SchreibeWichtiges.GesamteForschungsrate (SpeziesExtern                => SpeziesExtern,
                                                         ForschungsrateZugewinnExtern => LeseStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)),
                                                         RechnenSetzenExtern          => True);
          end case;

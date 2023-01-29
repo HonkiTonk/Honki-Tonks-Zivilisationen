@@ -19,7 +19,7 @@ package EingeleseneTexturenGrafik is
    type BilderAccessArray is array (1 .. 1) of Sf.Graphics.sfTexture_Ptr;
    BilderAccess : BilderAccessArray := (others => null);
 
-     -- System hier mal in Kartenirgendwas umbenennen. äöü
+   -- System hier mal in Kartenirgendwas umbenennen. äöü
    type SystemAccessArray is array (BefehleDatentypen.Befehlsknöpfe_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    SystemAccess : SystemAccessArray := (others => null);
 

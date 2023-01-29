@@ -24,7 +24,7 @@ package body KIEinheitAufgabenabbruchLogik is
             
       else
          SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                 AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
+                                                 AufgabeExtern              => KIDatentypen.Leer_Aufgabe_Enum);
       end if;
       
    end Friedenshandlung;

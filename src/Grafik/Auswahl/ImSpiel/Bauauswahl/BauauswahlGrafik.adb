@@ -39,8 +39,8 @@ package body BauauswahlGrafik is
         AktuelleAuswahlExtern.Gebäude
       is
          when StadtKonstanten.LeerGebäudeID =>
-            Einheiten (AuswahlExtern    => AktuelleAuswahlExtern.Einheit,
-                       SpeziesExtern      => StadtSpeziesNummerExtern.Spezies);
+            Einheiten (AuswahlExtern => AktuelleAuswahlExtern.Einheit,
+                       SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
             
          when others =>
             BauauswahlGebaeudeGrafik.Gebäudeinformationen (AuswahlExtern     => AktuelleAuswahlExtern.Gebäude,
@@ -52,12 +52,12 @@ package body BauauswahlGrafik is
         AktuelleAuswahlExtern.Einheit
       is
          when EinheitenKonstanten.LeerID =>
-            Gebäude (AuswahlExtern    => AktuelleAuswahlExtern.Gebäude,
-                      SpeziesExtern      => StadtSpeziesNummerExtern.Spezies);
+            Gebäude (AuswahlExtern => AktuelleAuswahlExtern.Gebäude,
+                      SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
             
          when others =>
-            BauauswahlEinheitenGrafik.Einheiteninformationen (AuswahlExtern    => AktuelleAuswahlExtern.Einheit,
-                                                              SpeziesExtern      => StadtSpeziesNummerExtern.Spezies);
+            BauauswahlEinheitenGrafik.Einheiteninformationen (AuswahlExtern => AktuelleAuswahlExtern.Einheit,
+                                                              SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       end case;
       
       Aktuell (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);

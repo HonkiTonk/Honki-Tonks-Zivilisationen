@@ -10,12 +10,12 @@ package body KIEinheitFestlegenNichtsLogik is
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                              AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
+                                              AufgabeExtern              => KIDatentypen.Leer_Aufgabe_Enum);
       SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                              BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
+                                              BeschäftigungExtern        => EinheitenKonstanten.LeerBeschäftigung);
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                               BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                               RechnenSetzenExtern      => False);
+                                               BewegungspunkteExtern      => EinheitenKonstanten.LeerBewegungspunkte,
+                                               RechnenSetzenExtern        => False);
       
    end NichtsTun;
 

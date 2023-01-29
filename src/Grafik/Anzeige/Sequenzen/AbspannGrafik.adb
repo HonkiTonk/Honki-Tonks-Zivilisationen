@@ -33,7 +33,7 @@ package body AbspannGrafik is
             Viewfläche := PlanetVernichtet (ViewflächeExtern => Viewfläche);
             
          when GrafikDatentypen.Gewonnen_Enum | GrafikDatentypen.Verloren_Enum =>
-            HintergrundGrafik.Spezieshintergrund (SpeziesExtern       => SpeziesExtern,
+            HintergrundGrafik.Spezieshintergrund (SpeziesExtern     => SpeziesExtern,
                                                   HintergrundExtern => AbspannExtern,
                                                   AbmessungenExtern => Viewfläche);
             

@@ -43,9 +43,9 @@ package body SchreibenEinstellungenLogik is
                                                TexteinstellungenGrafik.Schriftfarben);
       
       SpezieseinstellungenGrafik.SpeziesFarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
-                                                         SpezieseinstellungenGrafik.Speziesfarben);
+                                                           SpezieseinstellungenGrafik.Speziesfarben);
       SpezieseinstellungenGrafik.SpeziesFarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
-                                                         SpezieseinstellungenGrafik.SpeziesfarbenRahmen);
+                                                           SpezieseinstellungenGrafik.SpeziesfarbenRahmen);
       
       Close (File => DateiGrafikeinstellungen);
       

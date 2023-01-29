@@ -31,7 +31,7 @@ package body CursorplatzierungGrafik is
             Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
             
          when others =>
-            SchreibeCursor.KoordinatenAktuell (SpeziesExtern       => SpeziesExtern,
+            SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
                                                KoordinatenExtern => NachGrafiktask.GeheZu);
             return;
       end case;
@@ -73,7 +73,7 @@ package body CursorplatzierungGrafik is
             null;
                      
          when others =>
-            SchreibeCursor.KoordinatenAktuell (SpeziesExtern       => SpeziesExtern,
+            SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
                                                KoordinatenExtern => KartenWert);
       end case;
                            

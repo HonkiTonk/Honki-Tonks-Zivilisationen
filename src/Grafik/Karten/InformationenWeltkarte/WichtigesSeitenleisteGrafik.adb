@@ -51,8 +51,8 @@ package body WichtigesSeitenleisteGrafik is
       for TextSchleifenwert in TextaccessVariablen.KarteWichtigesAccess'Range loop
          
          TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
-                                                           TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
-                                                           PositionExtern   => Textposition);
+                                                                 TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
+                                                                 PositionExtern   => Textposition);
                   
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);

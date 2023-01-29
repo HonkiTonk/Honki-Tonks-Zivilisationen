@@ -20,15 +20,15 @@ package body FelderbewirtschaftungLogik is
         ZuwachsSchwundExtern
       is
          when False =>
-            SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                                   EinwohnerArbeiterExtern => True,
-                                                   WachsenSchrumpfenExtern => False);
+            SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                   EinwohnerArbeiterExtern  => True,
+                                                   WachsenSchrumpfenExtern  => False);
             
             if
-              LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                                 EinwohnerArbeiterExtern => True)
-              >= LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                                    EinwohnerArbeiterExtern => False)
+              LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                 EinwohnerArbeiterExtern  => True)
+              >= LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                    EinwohnerArbeiterExtern  => False)
             then
                return;
                
@@ -40,11 +40,11 @@ package body FelderbewirtschaftungLogik is
             null;
       end case;
       
-      ArbeiterBelegenEntfernen (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                BelegenEntfernenExtern  => ZuwachsSchwundExtern,
-                                WachsenSchrumpfenExtern => ZuwachsSchwundExtern,
-                                FeldExtern              => OptimalesFeldErmitteln (ZuwachsSchwundExtern   => ZuwachsSchwundExtern,
-                                                                                   StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
+      ArbeiterBelegenEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                BelegenEntfernenExtern   => ZuwachsSchwundExtern,
+                                WachsenSchrumpfenExtern  => ZuwachsSchwundExtern,
+                                FeldExtern               => OptimalesFeldErmitteln (ZuwachsSchwundExtern     => ZuwachsSchwundExtern,
+                                                                                    StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
       
    end BewirtschaftbareFelderBelegen;
    
@@ -82,21 +82,21 @@ package body FelderbewirtschaftungLogik is
                
             elsif
               False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                               KoordinatenExtern      => Kartenwert)
+                                                               KoordinatenExtern        => Kartenwert)
             then
                null;
               
             elsif
               ZuwachsSchwundExtern = LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                              YKoordinateExtern      => YAchseSchleifenwert,
-                                                                              XKoordinateExtern      => XAchseSchleifenwert)
+                                                                              YKoordinateExtern        => YAchseSchleifenwert,
+                                                                              XKoordinateExtern        => XAchseSchleifenwert)
             then
                null;
                
             else
                Bewertung := StadtfeldBewertenLogik.FeldBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                 KoordinatenExtern      => Kartenwert,
-                                                                 BelegenEntfernenExtern => ZuwachsSchwundExtern);
+                                                                 KoordinatenExtern        => Kartenwert,
+                                                                 BelegenEntfernenExtern   => ZuwachsSchwundExtern);
             end if;
             
             if
@@ -132,12 +132,12 @@ package body FelderbewirtschaftungLogik is
             
          when others =>
             SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                         YKoordinateExtern      => FeldExtern.YKoordinate,
-                                                         XKoordinateExtern      => FeldExtern.XKoordinate,
-                                                         BelegenEntfernenExtern => BelegenEntfernenExtern);
-            SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                                   EinwohnerArbeiterExtern => False,
-                                                   WachsenSchrumpfenExtern => WachsenSchrumpfenExtern);
+                                                         YKoordinateExtern        => FeldExtern.YKoordinate,
+                                                         XKoordinateExtern        => FeldExtern.XKoordinate,
+                                                         BelegenEntfernenExtern   => BelegenEntfernenExtern);
+            SchreibeStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                   EinwohnerArbeiterExtern  => False,
+                                                   WachsenSchrumpfenExtern  => WachsenSchrumpfenExtern);
       end case;
       
    end ArbeiterBelegenEntfernen;

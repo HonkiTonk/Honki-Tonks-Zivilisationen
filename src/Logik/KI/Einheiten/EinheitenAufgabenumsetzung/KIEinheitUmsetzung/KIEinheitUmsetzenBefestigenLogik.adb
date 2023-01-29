@@ -12,8 +12,8 @@ package body KIEinheitUmsetzenBefestigenLogik is
    is begin
       
       return AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                    BefehlExtern             => BefehleDatentypen.Verschanzen_Enum,
-                                    KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                                    BefehlExtern               => BefehleDatentypen.Verschanzen_Enum,
+                                    KoordinatenExtern          => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
    end Befestigen;
 

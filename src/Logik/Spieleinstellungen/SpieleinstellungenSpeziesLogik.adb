@@ -62,15 +62,15 @@ package body SpieleinstellungenSpeziesLogik is
         LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
       is
          when SpeziesDatentypen.Leer_Spieler_Enum =>
-            SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesExtern,
+            SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesExtern,
                                               BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
                   
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesExtern,
+            SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesExtern,
                                               BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
                   
          when SpeziesDatentypen.KI_Spieler_Enum =>
-            SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesExtern,
+            SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesExtern,
                                               BelegungExtern => SpeziesDatentypen.Leer_Spieler_Enum);
       end case;
       
@@ -106,7 +106,7 @@ package body SpieleinstellungenSpeziesLogik is
    procedure SpeziesAutomatischBelegen
    is begin
       
-      SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpezies,
+      SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpezies,
                                         BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
       
    end SpeziesAutomatischBelegen;
@@ -120,7 +120,7 @@ package body SpieleinstellungenSpeziesLogik is
       
       SpeziesMenschSchnellstart := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpezies;
       
-      SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesMenschSchnellstart,
+      SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesMenschSchnellstart,
                                         BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
       
       KIBelegenSchleife:
@@ -134,7 +134,7 @@ package body SpieleinstellungenSpeziesLogik is
             null;
             
          else
-            SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesKISchnellstart,
+            SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesKISchnellstart,
                                               BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
             exit KIBelegenSchleife;
          end if;
@@ -164,8 +164,8 @@ package body SpieleinstellungenSpeziesLogik is
                for NotAusSchleifenwert in ZahlenDatentypen.NotAus'Range loop
                                     
                   case
-                    StartpunktPrüfen (SpeziesExtern  => SpeziesSchleifenwert,
-                                       NotAusExtern => NotAusSchleifenwert)
+                    StartpunktPrüfen (SpeziesExtern => SpeziesSchleifenwert,
+                                       NotAusExtern  => NotAusSchleifenwert)
                   is
                      when True =>
                         exit StartwerteFestlegenSchleife;
@@ -179,7 +179,7 @@ package body SpieleinstellungenSpeziesLogik is
                   is
                      when ZahlenDatentypen.NotAus'Last =>
                         -- Hier wieder eine Meldung einbauen für den Fall dass die Spezies nicht platziert werden konnte? äöü
-                        SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => SpeziesSchleifenwert,
+                        SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesSchleifenwert,
                                                           BelegungExtern => SpeziesDatentypen.Leer_Spieler_Enum);
                         
                      when others =>
@@ -215,7 +215,7 @@ package body SpieleinstellungenSpeziesLogik is
             
          when others =>
             if
-              True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern                => SpeziesExtern,
+              True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern              => SpeziesExtern,
                                                                            IDExtern                   => 1,
                                                                            NeueKoordinatenExtern      => GezogeneKoordinate,
                                                                            StadtBerücksichtigenExtern => False)
@@ -234,7 +234,7 @@ package body SpieleinstellungenSpeziesLogik is
          when EinheitenKonstanten.LeerNummer =>
             StartKoordinaten (1) := GezogeneKoordinate;
             StartKoordinaten (2) := ZusatzfeldBestimmen (KoordinatenExtern => GezogeneKoordinate,
-                                                         SpeziesExtern       => SpeziesExtern,
+                                                         SpeziesExtern     => SpeziesExtern,
                                                          NotAusExtern      => NotAusExtern);
             
          when others =>
@@ -248,7 +248,7 @@ package body SpieleinstellungenSpeziesLogik is
             return False;
             
          when others =>
-            StartpunktFestlegen (SpeziesExtern               => SpeziesExtern,
+            StartpunktFestlegen (SpeziesExtern             => SpeziesExtern,
                                  StartkoordinateEinsExtern => StartKoordinaten (1),
                                  StartkoordinateZweiExtern => StartKoordinaten (2));
             return True;
@@ -299,7 +299,7 @@ package body SpieleinstellungenSpeziesLogik is
                null;
                                     
             elsif
-              False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern                => SpeziesExtern,
+              False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern              => SpeziesExtern,
                                                                             IDExtern                   => 2,
                                                                             NeueKoordinatenExtern      => KartenWert,
                                                                             StadtBerücksichtigenExtern => False)
@@ -363,23 +363,23 @@ package body SpieleinstellungenSpeziesLogik is
       StartkoordinateZweiExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
 
-      EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern      => StartkoordinateEinsExtern,
-                                                       EinheitNummerExtern    => 1,
-                                                       IDExtern               => 1,
+      EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern        => StartkoordinateEinsExtern,
+                                                       EinheitNummerExtern      => 1,
+                                                       IDExtern                 => 1,
                                                        StadtSpeziesNummerExtern => (SpeziesExtern, 0));
       
-      EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern      => StartkoordinateZweiExtern,
-                                                       EinheitNummerExtern    => 2,
-                                                       IDExtern               => 2,
+      EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern        => StartkoordinateZweiExtern,
+                                                       EinheitNummerExtern      => 2,
+                                                       IDExtern                 => 2,
                                                        StadtSpeziesNummerExtern => (SpeziesExtern, 0));
       
       case
         LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
       is
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            SchreibeCursor.KoordinatenAktuell (SpeziesExtern       => SpeziesExtern,
+            SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
                                                KoordinatenExtern => StartkoordinateEinsExtern);
-            SchreibeCursor.KoordinatenAlt (SpeziesExtern       => SpeziesExtern,
+            SchreibeCursor.KoordinatenAlt (SpeziesExtern     => SpeziesExtern,
                                            KoordinatenExtern => StartkoordinateEinsExtern);
             
          when others =>

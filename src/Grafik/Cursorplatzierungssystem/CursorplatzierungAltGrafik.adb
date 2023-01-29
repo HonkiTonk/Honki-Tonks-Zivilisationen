@@ -77,8 +77,8 @@ package body CursorplatzierungAltGrafik is
                                                                  point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
                                                                  view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
       
-      SchreibeCursor.EAchseAlt (SpeziesExtern  => EinheitSpeziesNummerExtern.Spezies,
-                                EAchseExtern => LeseCursor.EAchseAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
+      SchreibeCursor.EAchseAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                EAchseExtern  => LeseCursor.EAchseAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
       
       case
         EinheitSpeziesNummerExtern.Nummer
@@ -117,7 +117,7 @@ package body CursorplatzierungAltGrafik is
          null;
                   
       else
-         SchreibeCursor.KoordinatenAlt (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+         SchreibeCursor.KoordinatenAlt (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                         KoordinatenExtern => Kartenwert);
       end if;
       

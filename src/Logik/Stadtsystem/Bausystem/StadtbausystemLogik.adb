@@ -33,10 +33,10 @@ package body StadtbausystemLogik is
             
       else
          SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                         BauprojektExtern       => NeuesBauprojekt);
+                                         BauprojektExtern         => NeuesBauprojekt);
          SchreibeStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                         RessourcenExtern       => StadtKonstanten.LeerRessourcen,
-                                         ÄndernSetzenExtern     => False);
+                                         RessourcenExtern         => StadtKonstanten.LeerRessourcen,
+                                         ÄndernSetzenExtern       => False);
       end if;
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;
@@ -79,7 +79,7 @@ package body StadtbausystemLogik is
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
          InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := GebaeudeAllgemeinLogik.GebäudeAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                                                                               IDExtern               => GebäudeSchleifenwert);
+                                                                                                                               IDExtern                 => GebäudeSchleifenwert);
          
          if
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) = True
@@ -113,7 +113,7 @@ package body StadtbausystemLogik is
          
          if
            True = EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                            IDExtern               => EinheitSchleifenwert)
+                                                                            IDExtern                 => EinheitSchleifenwert)
          then
             InteraktionAuswahl.MöglicheEinheiten (EinheitSchleifenwert) := True;
             

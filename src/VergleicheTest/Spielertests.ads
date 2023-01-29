@@ -5,7 +5,7 @@ package Spielertests is
    
    function BeliebigeSpielerart
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
-   return Boolean;
+      return Boolean;
 
    function MenschlicheSpieler
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)

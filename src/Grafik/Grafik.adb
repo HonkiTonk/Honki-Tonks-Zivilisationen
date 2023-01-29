@@ -175,13 +175,13 @@ package body Grafik is
             
          when GrafikDatentypen.Ladezeiten_Enum'Range =>
             LadezeitenGrafik.Ladezeiten (WelcheLadeanzeigeExtern => NachGrafiktask.AktuelleDarstellung,
-                                         SpeziesExtern             => NachGrafiktask.KIRechnet);
+                                         SpeziesExtern           => NachGrafiktask.KIRechnet);
             -- Diese Prüfung kann nicht rausgezogen werden, da er mit dem aktuellen System sonst Tasteneingaben nicht mehr korrekt erkennt.
             TasteneingabeGrafik.FensterAnpassen;
          
          when GrafikDatentypen.Grafik_Menüs_Enum =>
             MenueaufteilungGrafik.Menüaufteilung (WelchesMenüExtern     => NachGrafiktask.AktuellesMenü,
-                                                   AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl);
+                                                  AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl);
                
          when GrafikDatentypen.Grafik_Editoren_Enum =>
             EditorenGrafik.Editoren (WelcherEditorExtern => NachGrafiktask.WelcherEditor);
@@ -193,19 +193,19 @@ package body Grafik is
             KartenaufteilungGrafik.Stadtkarte (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt));
                
          when GrafikDatentypen.Grafik_Forschung_Enum =>
-            ForschungsauswahlGrafik.ForschungAnzeige (SpeziesExtern           => NachGrafiktask.AktuelleSpezies,
+            ForschungsauswahlGrafik.ForschungAnzeige (SpeziesExtern         => NachGrafiktask.AktuelleSpezies,
                                                       AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
          when GrafikDatentypen.Grafik_Forschung_Erfolgreich_Enum =>
-            ForschungserfolgGrafik.Forschungserfolg (SpeziesExtern   => NachGrafiktask.AktuelleSpezies,
+            ForschungserfolgGrafik.Forschungserfolg (SpeziesExtern => NachGrafiktask.AktuelleSpezies,
                                                      AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
          when GrafikDatentypen.Grafik_Bauen_Enum =>
             BauauswahlGrafik.Bauauswahl (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt),
-                                         AktuelleAuswahlExtern  => NachGrafiktask.AktuelleBauauswahl);
+                                         AktuelleAuswahlExtern    => NachGrafiktask.AktuelleBauauswahl);
             
          when GrafikDatentypen.Grafik_Verkaufen_Enum =>
-            VerkaufsauswahlGrafik.Verkaufsauswahl (SpeziesExtern           => NachGrafiktask.AktuelleSpezies,
+            VerkaufsauswahlGrafik.Verkaufsauswahl (SpeziesExtern         => NachGrafiktask.AktuelleSpezies,
                                                    AktuelleAuswahlExtern => NachGrafiktask.AktuelleBauauswahl.Gebäude);
             
          when GrafikDatentypen.Grafik_Diplomatie_Enum =>
@@ -213,7 +213,7 @@ package body Grafik is
             
          when GrafikDatentypen.Grafik_Abspann_Enum =>
             AbspannGrafik.Abspann (AbspannExtern => NachGrafiktask.Abspannart,
-                                   SpeziesExtern   => NachGrafiktask.AktuelleSpezies);
+                                   SpeziesExtern => NachGrafiktask.AktuelleSpezies);
             
          when GrafikDatentypen.Grafik_Ende_Enum =>
             return False;
@@ -267,7 +267,7 @@ package body Grafik is
             
          when GrafikDatentypen.Einheit_Auswahl_Enum =>
             EingabenanzeigeGrafik.AnzeigeEinheitenStadt (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt),
-                                                         AktuelleAuswahlExtern  => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
+                                                         AktuelleAuswahlExtern    => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
             -- Wenn ich das Baumenü/Forschungsmenü hierher verschiebe, dann könnte ich das Neusetzen vermeiden und diese Setzsachen in eine Prozedur auslagern. äöü
             -- Dann könnte ich auch ein durchsichtiges Fenster für die Menüs erstellen. äöü

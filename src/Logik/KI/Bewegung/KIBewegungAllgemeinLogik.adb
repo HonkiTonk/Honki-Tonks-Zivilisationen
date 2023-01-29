@@ -25,7 +25,7 @@ package body KIBewegungAllgemeinLogik is
    begin
       
       BlockierendeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => FeldKoordinatenExtern,
-                                                                                   LogikGrafikExtern => True);
+                                                                                     LogikGrafikExtern => True);
       BlockierendeStadt := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => FeldKoordinatenExtern).Spezies;
       
       if
@@ -69,13 +69,13 @@ package body KIBewegungAllgemeinLogik is
       
       case
         LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
+                                             IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             return KIKonstanten.KeineBewegung;
             
          when others =>
-            return FeldAngreifen (EigeneEinheitExtern          => EinheitSpeziesNummerExtern,
+            return FeldAngreifen (EigeneEinheitExtern            => EinheitSpeziesNummerExtern,
                                   FeindlicheSpeziesEinheitExtern => BlockierendeEinheit.Spezies,
                                   FeindlicheSpeziesStadtExtern   => BlockierendeStadt);
       end case;

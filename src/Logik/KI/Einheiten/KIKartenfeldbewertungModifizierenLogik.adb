@@ -39,7 +39,7 @@ package body KIKartenfeldbewertungModifizierenLogik is
       is
          when True =>
             return GutGenug (KoordinatenExtern => KoordinatenExtern,
-                             SpeziesExtern       => SpeziesExtern);
+                             SpeziesExtern     => SpeziesExtern);
             
          when False =>
             return False;
@@ -111,11 +111,11 @@ package body KIKartenfeldbewertungModifizierenLogik is
                      
             else
                if
-                 LeseKartenDatenbanken.BewertungBasisgrund (GrundExtern => LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern),
+                 LeseKartenDatenbanken.BewertungBasisgrund (GrundExtern   => LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern),
                                                             SpeziesExtern => SpeziesExtern)
                in BewertungDatentypen.Fehlschlag
                  and
-                   LeseKartenDatenbanken.BewertungZusatzgrund (GrundExtern => LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern),
+                   LeseKartenDatenbanken.BewertungZusatzgrund (GrundExtern   => LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern),
                                                                SpeziesExtern => SpeziesExtern)
                in BewertungDatentypen.Fehlschlag
                then

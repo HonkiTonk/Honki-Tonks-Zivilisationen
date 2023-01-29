@@ -56,16 +56,16 @@ package GrafikDatentypen is
    
    -- Bei Änderungen hier muss auch immer die Reihenfolge der 0-Dateien in den Spezieshintergründen angepasst werden!
    type Spezieshintergrund_Enum is (
-                                   Leer_Hintergrund_Enum,
+                                    Leer_Hintergrund_Enum,
                                    
-                                   Forschungserfolg_Enum,
+                                    Forschungserfolg_Enum,
                                    
-                                   -- Abspann
-                                   Gewonnen_Enum,
-                                   Verloren_Enum,
+                                    -- Abspann
+                                    Gewonnen_Enum,
+                                    Verloren_Enum,
                                    
-                                   Planet_Vernichtet_Enum
-                                  );
+                                    Planet_Vernichtet_Enum
+                                   );
    
    subtype Spezieshintergrund_Vorhanden_Enum is Spezieshintergrund_Enum range Spezieshintergrund_Enum'Succ (Spezieshintergrund_Enum'First) .. Spezieshintergrund_Enum'Last;
    

@@ -14,16 +14,16 @@ package body StadtfeldBewertenLogik is
    begin
       
       return NahrungBewertung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                               KoordinatenExtern      => KoordinatenExtern,
+                               KoordinatenExtern        => KoordinatenExtern,
                                BelegenEntfernenExtern   => BelegenEntfernenExtern)
         + ProduktionBewertung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                               KoordinatenExtern      => KoordinatenExtern,
+                               KoordinatenExtern        => KoordinatenExtern,
                                BelegenEntfernenExtern   => BelegenEntfernenExtern)
         + GeldBewertung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                         KoordinatenExtern      => KoordinatenExtern,
+                         KoordinatenExtern        => KoordinatenExtern,
                          BelegenEntfernenExtern   => BelegenEntfernenExtern)
         + WissenBewertung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                           KoordinatenExtern      => KoordinatenExtern,
+                           KoordinatenExtern        => KoordinatenExtern,
                            BelegenEntfernenExtern   => BelegenEntfernenExtern);
       
    end FeldBewerten;
@@ -40,7 +40,7 @@ package body StadtfeldBewertenLogik is
    begin
       
       NahrungGesamt := KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                           SpeziesExtern       => StadtSpeziesNummerExtern.Spezies);
+                                                           SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
       
       if
         LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) <= 1
@@ -83,7 +83,7 @@ package body StadtfeldBewertenLogik is
    begin
       
       RessourcenGesamt := KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                                 SpeziesExtern       => StadtSpeziesNummerExtern.Spezies);
+                                                                 SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
       
       if
         LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) <= 0
@@ -126,7 +126,7 @@ package body StadtfeldBewertenLogik is
    begin
       
       GeldGesamt := KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KoordinatenExtern,
-                                                     SpeziesExtern       => StadtSpeziesNummerExtern.Spezies);
+                                                     SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
 
       if
         LeseStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) <= 0
@@ -169,7 +169,7 @@ package body StadtfeldBewertenLogik is
    begin
 
       WissenGesamt := KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KoordinatenExtern,
-                                                         SpeziesExtern       => StadtSpeziesNummerExtern.Spezies);
+                                                         SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
       
       if
         LeseStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) = 0

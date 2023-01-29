@@ -21,7 +21,7 @@ package body WeltkartenbefehleGrafik is
    is begin
       
       Einheitart := LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                         IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                                                         IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       case
         Einheitart
@@ -51,7 +51,7 @@ package body WeltkartenbefehleGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (WelcherViewbereich));
       
       EinheitenViewfläche := Einheitenbefehlsknöpfe (EinheitenArtExtern => Einheitart,
-                                                       WelcheTexturExtern => WelcherKnopf);
+                                                     WelcheTexturExtern => WelcherKnopf);
       
    end Einheitenbefehle;
    

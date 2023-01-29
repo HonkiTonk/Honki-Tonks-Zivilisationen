@@ -25,7 +25,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
    begin
       
       EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
-                                                                              LogikGrafikExtern => True);
+                                                                                LogikGrafikExtern => True);
       
       if
         EinheitAufFeld.Nummer /= EinheitenKonstanten.LeerNummer
@@ -36,19 +36,19 @@ package body KIEinheitAllgemeinePruefungenLogik is
       
       elsif
         False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                          NeueKoordinatenExtern    => KoordinatenExtern)
+                                                                          NeueKoordinatenExtern      => KoordinatenExtern)
       then
          return False;
          
       elsif
-        True = AktuellUnpassierbar (KoordinatenExtern        => KoordinatenExtern,
+        True = AktuellUnpassierbar (KoordinatenExtern          => KoordinatenExtern,
                                     EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       then
          return False;
                   
       elsif
         False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern,
-                                        SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
+                                        SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
       then
          return False;
          
@@ -75,7 +75,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
                
                case
                  PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                           NeueKoordinatenExtern    => KoordinatenExtern)
+                                                                           NeueKoordinatenExtern      => KoordinatenExtern)
                is
                   when False =>
                      null;
@@ -136,7 +136,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
                         BlockierteFelder := BlockierteFelder + 1;
                   
                      when others =>
-                        BlockierteFelder := BlockierteFelder + FeldUnpassierbar (KoordinatenExtern        => Kartenwert,
+                        BlockierteFelder := BlockierteFelder + FeldUnpassierbar (KoordinatenExtern          => Kartenwert,
                                                                                  EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                         
                   end case;
@@ -185,7 +185,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
       end loop PassierbareUmgebungSchleife;
       
       TransportMöglich := LeseEinheitenDatenbank.KannTransportiertWerden (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                                                                           IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       case
         TransportMöglich
@@ -204,12 +204,12 @@ package body KIEinheitAllgemeinePruefungenLogik is
          
          if
            TransportMöglich >= LeseEinheitenDatenbank.KannTransportieren (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                           IDExtern    => EinheitenartSchleifenwert)
+                                                                           IDExtern      => EinheitenartSchleifenwert)
          then
             case
-              ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+              ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                                          TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                                                                    IDExtern    => EinheitenartSchleifenwert))
+                                                                                                                    IDExtern      => EinheitenartSchleifenwert))
             is
                when True =>
                   -- Hier auch prüfen ob ein Transporter dieser Art existiert und wenn nicht weitersuchen. äöü
@@ -240,7 +240,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
       
       case
         PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                  NeueKoordinatenExtern    => KoordinatenExtern)
+                                                                  NeueKoordinatenExtern      => KoordinatenExtern)
       is
          when True =>
             return 0;

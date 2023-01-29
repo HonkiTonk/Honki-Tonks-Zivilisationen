@@ -100,8 +100,8 @@ package body ZufallsgeneratorenKartenLogik is
       ZufälligeLandgrößen.Reset (Gen => ZufälligeLandgrößeGewählt);
       
       return ZufälligeLandgrößen.Random (Gen   => ZufälligeLandgrößeGewählt,
-                                            First => MinimalerWert,
-                                            Last  => MaximalerWert);
+                                         First => MinimalerWert,
+                                         Last  => MaximalerWert);
       
    end KartengeneratorLandgrößen;
 

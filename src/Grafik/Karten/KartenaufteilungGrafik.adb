@@ -38,7 +38,7 @@ package body KartenaufteilungGrafik is
             
          when others =>
             Position := KoordinatenPositionUmwandlungen.KoordinatenZuKartenposition (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                                     SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies);
+                                                                                     SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies);
             Viewgröße := Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
             
             if
@@ -53,7 +53,7 @@ package body KartenaufteilungGrafik is
             end if;
             
             WeltkartenbefehleGrafik.Einheitenbefehle (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                      RechtsLinksExtern        => RechtsLinksBefehlsanzeige);
+                                                      RechtsLinksExtern          => RechtsLinksBefehlsanzeige);
       end case;
          
       SeitenleisteGrafik.SeitenleisteGrafik (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);

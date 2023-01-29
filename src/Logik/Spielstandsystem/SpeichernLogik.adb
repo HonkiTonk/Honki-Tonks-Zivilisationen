@@ -154,7 +154,7 @@ package body SpeichernLogik is
                                             LeseAllgemeines.GanzerEintrag);
             
       SpielRecords.SpeziesbelegungArray'Write (Stream (File => DateiSpeichernExtern),
-                                              LeseSpeziesbelegung.GanzesArray);
+                                               LeseSpeziesbelegung.GanzesArray);
       
    end Allgemeines;
    
@@ -174,8 +174,8 @@ package body SpeichernLogik is
                null;
                
             when others =>
-               Spezieswerte (SpeziesExtern          => SpeziesSchleifenwert,
-                            DateiSpeichernExtern => DateiSpeichernExtern);
+               Spezieswerte (SpeziesExtern        => SpeziesSchleifenwert,
+                             DateiSpeichernExtern => DateiSpeichernExtern);
          end case;
          
       end loop SpeziesSchleife;

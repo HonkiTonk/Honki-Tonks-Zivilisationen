@@ -43,7 +43,7 @@ package body LadezeitenGrafik is
                                           SpielenamenExtern => False);
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Ladebereich.width, GrafikRecordKonstanten.Ladebereich.height));
+                                                                      VerhältnisExtern => (GrafikRecordKonstanten.Ladebereich.width, GrafikRecordKonstanten.Ladebereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.LadeviewAccess,
                                             GrößeExtern          => Viewfläche,
@@ -100,7 +100,7 @@ package body LadezeitenGrafik is
                                                                              TextbreiteExtern => Textbreite);
          
          TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                       PositionExtern   => Textposition);
+                                                             PositionExtern   => Textposition);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
@@ -144,7 +144,7 @@ package body LadezeitenGrafik is
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
             
          TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                       PositionExtern   => Textposition);
+                                                             PositionExtern   => Textposition);
          
          WelcheZeit := WelcheZeit + 1;
          
@@ -172,7 +172,7 @@ package body LadezeitenGrafik is
                                                                           TextbreiteExtern => 0.00);
             
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.RundenendeAccess (1),
-                                                    PositionExtern   => Textposition);
+                                                          PositionExtern   => Textposition);
                
       return (Textbreite, Textposition.y);
       
@@ -196,7 +196,7 @@ package body LadezeitenGrafik is
                                                                           TextbreiteExtern => 0.00);
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
-                                                    PositionExtern   => Textposition);
+                                                          PositionExtern   => Textposition);
       
       return (Textbreite, Textposition.y);
       

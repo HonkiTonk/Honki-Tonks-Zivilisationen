@@ -25,7 +25,7 @@ package body KIEinheitFestlegenErkundenLogik is
       EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
-        KIEinheitAllgemeinePruefungenLogik.DirekteUmgebung (KoordinatenExtern        => EinheitKoordinaten,
+        KIEinheitAllgemeinePruefungenLogik.DirekteUmgebung (KoordinatenExtern          => EinheitKoordinaten,
                                                             EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when False =>
@@ -41,9 +41,9 @@ package body KIEinheitFestlegenErkundenLogik is
          
          case
            ZielSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                       KoordinatenExtern        => EinheitKoordinaten,
-                       KartenreichweiteExtern   => UmgebungPrüfen,
-                       GeprüftExtern            => BereitsGeprüft)
+                       KoordinatenExtern          => EinheitKoordinaten,
+                       KartenreichweiteExtern     => UmgebungPrüfen,
+                       GeprüftExtern              => BereitsGeprüft)
          is
             when True =>
                return True;
@@ -103,21 +103,21 @@ package body KIEinheitFestlegenErkundenLogik is
                         
                   elsif
                     False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                                    SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
+                                                    SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
                     and
                       True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                       NeueKoordinatenExtern    => KartenWert)
+                                                                                       NeueKoordinatenExtern      => KartenWert)
                     and
-                      False = KIAufgabenVerteiltLogik.EinheitZiel (SpeziesExtern           => EinheitSpeziesNummerExtern.Spezies,
+                      False = KIAufgabenVerteiltLogik.EinheitZiel (SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
                                                                    ZielKoordinatenExtern => KartenWert)
                     -- and
-                    --   False = KIEinheitAllgemeinePruefungenLogik.AktuellUnpassierbar (KoordinatenExtern        => KartenWert,
+                    --   False = KIEinheitAllgemeinePruefungenLogik.AktuellUnpassierbar (KoordinatenExtern          => KartenWert,
                     --                                                                   EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
                   then
                      SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                KoordinatenExtern        => KartenWert);
+                                                                KoordinatenExtern          => KartenWert);
                      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                             AufgabeExtern            => KIDatentypen.Erkunden_Enum);
+                                                             AufgabeExtern              => KIDatentypen.Erkunden_Enum);
                      return True;
                      
                   else

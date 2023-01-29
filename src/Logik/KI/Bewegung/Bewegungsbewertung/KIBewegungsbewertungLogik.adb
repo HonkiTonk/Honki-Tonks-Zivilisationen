@@ -14,14 +14,14 @@ package body KIBewegungsbewertungLogik is
       
       Zielkoordinate := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      BewertungEAchse := KIEAchsenbewertung.EAchseBewerten (ZielebeneExtern     => Zielkoordinate.EAchse,
-                                                            NeueEbeneExtern     => NeueKoordinatenExtern.EAchse);
+      BewertungEAchse := KIEAchsenbewertung.EAchseBewerten (ZielebeneExtern => Zielkoordinate.EAchse,
+                                                            NeueEbeneExtern => NeueKoordinatenExtern.EAchse);
             
-      BewertungYAchse := KIYAchsenbewertung.YAchseBewerten (ZielpunktExtern      => Zielkoordinate.YAchse,
-                                                            NeuerPunktExtern     => NeueKoordinatenExtern.YAchse);
+      BewertungYAchse := KIYAchsenbewertung.YAchseBewerten (ZielpunktExtern  => Zielkoordinate.YAchse,
+                                                            NeuerPunktExtern => NeueKoordinatenExtern.YAchse);
             
-      BewertungXAchse := KIXAchsenbewertung.XAchseBewerten (ZielpunktExtern      => Zielkoordinate.XAchse,
-                                                            NeuerPunktExtern     => NeueKoordinatenExtern.XAchse);
+      BewertungXAchse := KIXAchsenbewertung.XAchseBewerten (ZielpunktExtern  => Zielkoordinate.XAchse,
+                                                            NeuerPunktExtern => NeueKoordinatenExtern.XAchse);
       
       if
         Natural (BewertungEAchse) + Natural (BewertungYAchse) + Natural (BewertungXAchse) >= Natural (KartenDatentypen.KartenfeldPositiv'Last)

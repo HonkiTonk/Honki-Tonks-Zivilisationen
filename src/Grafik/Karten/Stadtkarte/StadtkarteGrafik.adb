@@ -47,7 +47,7 @@ package body StadtkarteGrafik is
                      
             case
               LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                 WelchesGebäudeExtern  => GebäudeID)
+                                                WelchesGebäudeExtern     => GebäudeID)
             is
                when False =>
                   null;

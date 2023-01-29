@@ -26,7 +26,7 @@ package body ForschungserfolgGrafik is
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüErfolg));
       
-      HintergrundGrafik.Spezieshintergrund (SpeziesExtern       => SpeziesExtern,
+      HintergrundGrafik.Spezieshintergrund (SpeziesExtern     => SpeziesExtern,
                                             HintergrundExtern => GrafikDatentypen.Forschungserfolg_Enum,
                                             AbmessungenExtern => Viewfläche);
       
@@ -36,14 +36,14 @@ package body ForschungserfolgGrafik is
         AuswahlExtern
       is
          when 1 =>
-            Viewfläche := Forschung (SpeziesExtern       => SpeziesExtern,
-                                      TechnologieExtern => Forschungprojekt,
-                                      ViewbreiteExtern  => Viewfläche.x);
-            
-         when 2 =>
-            Viewfläche := Infotext (SpeziesExtern       => SpeziesExtern,
+            Viewfläche := Forschung (SpeziesExtern     => SpeziesExtern,
                                      TechnologieExtern => Forschungprojekt,
                                      ViewbreiteExtern  => Viewfläche.x);
+            
+         when 2 =>
+            Viewfläche := Infotext (SpeziesExtern     => SpeziesExtern,
+                                    TechnologieExtern => Forschungprojekt,
+                                    ViewbreiteExtern  => Viewfläche.x);
             
          when others =>
             Fehlermeldungssystem.Grafik (FehlermeldungExtern => "ForschungserfolgGrafik.Forschungserfolg: Auswahlbereich: " & AuswahlExtern'Wide_Wide_Image);

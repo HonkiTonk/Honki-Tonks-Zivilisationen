@@ -45,9 +45,9 @@ package body StadtEinheitenBauenLogik is
         and
           LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
       then
-         SchreibeCursor.KoordinatenAktuell (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
+         SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
                                             KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
-         SchreibeCursor.KoordinatenAlt (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
+         SchreibeCursor.KoordinatenAlt (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
                                         KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
          
       elsif
@@ -71,7 +71,7 @@ package body StadtEinheitenBauenLogik is
       
       if
         EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                                                                               LogikGrafikExtern => True).Nummer
+                                                                                                 LogikGrafikExtern => True).Nummer
       then
          KartenWert := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
          
@@ -88,11 +88,11 @@ package body StadtEinheitenBauenLogik is
       is
          when KartenKonstanten.LeerXAchse =>
             MeldungenSetzenLogik.StadtmeldungSetzen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                             EreignisExtern         => StadtDatentypen.Einheit_Unplatzierbar_Enum);
+                                                     EreignisExtern           => StadtDatentypen.Einheit_Unplatzierbar_Enum);
             
          when others =>
             EinheitPlatzieren (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                               KoordinatenExtern      => KartenWert);
+                               KoordinatenExtern        => KartenWert);
       end case;
       
    end PlatzErmitteln;
@@ -104,26 +104,26 @@ package body StadtEinheitenBauenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
-      EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern      => KoordinatenExtern,
-                                                       EinheitNummerExtern    => EinheitNummer,
-                                                       IDExtern               =>  EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit),
+      EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern        => KoordinatenExtern,
+                                                       EinheitNummerExtern      => EinheitNummer,
+                                                       IDExtern                 =>  EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit),
                                                        StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       SchreibeStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                      RessourcenExtern       => StadtKonstanten.LeerRessourcen,
-                                      ÄndernSetzenExtern     => False);
+                                      RessourcenExtern         => StadtKonstanten.LeerRessourcen,
+                                      ÄndernSetzenExtern       => False);
       SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                      BauprojektExtern       => StadtKonstanten.LeerBauprojekt);
+                                      BauprojektExtern         => StadtKonstanten.LeerBauprojekt);
             
       case
         LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
       is
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
             MeldungenSetzenLogik.StadtmeldungSetzen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                             EreignisExtern         => StadtDatentypen.Produktion_Abgeschlossen_Enum);
+                                                     EreignisExtern           => StadtDatentypen.Produktion_Abgeschlossen_Enum);
          
          when others =>
             SchreibeStadtGebaut.KIBeschäftigung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                  BeschäftigungExtern    => KIDatentypen.Keine_Aufgabe_Enum);
+                                                  BeschäftigungExtern      => KIDatentypen.Keine_Aufgabe_Enum);
       end case;
       
    end EinheitPlatzieren;

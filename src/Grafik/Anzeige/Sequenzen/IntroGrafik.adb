@@ -34,10 +34,10 @@ package body IntroGrafik is
       for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop
          
          TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
-                                                           TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
-                                                             (TextExtern           => To_Wide_Wide_String (Source => Spieltexte.Intro (IntroSchleifenwert)),
-                                                              TextfeldbreiteExtern => (Viewfläche.x / 2.00 - Textposition.x)),
-                                                           PositionExtern   => Textposition);
+                                                                 TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
+                                                                   (TextExtern           => To_Wide_Wide_String (Source => Spieltexte.Intro (IntroSchleifenwert)),
+                                                                    TextfeldbreiteExtern => (Viewfläche.x / 2.00 - Textposition.x)),
+                                                                 PositionExtern   => Textposition);
       
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.IntroAccess (IntroSchleifenwert),

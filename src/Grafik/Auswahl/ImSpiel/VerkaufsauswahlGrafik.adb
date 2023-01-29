@@ -31,7 +31,7 @@ package body VerkaufsauswahlGrafik is
                                           SpielenamenExtern => False);
       
       Gebäude (AuswahlExtern => AktuelleAuswahlExtern,
-               SpeziesExtern => SpeziesExtern);
+                SpeziesExtern => SpeziesExtern);
       
       BauauswahlGebaeudeGrafik.Gebäudeinformationen (AuswahlExtern     => AktuelleAuswahlExtern,
                                                      SpeziesExtern     => SpeziesExtern,

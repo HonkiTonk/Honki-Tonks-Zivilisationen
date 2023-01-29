@@ -36,9 +36,9 @@ package body KIEinheitFestlegenSiedelnLogik is
             
          when False =>
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => NeueStadtKoordinaten);
+                                                       KoordinatenExtern          => NeueStadtKoordinaten);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum);
+                                                    AufgabeExtern              => KIDatentypen.Stadt_Bauen_Enum);
             return True;
       end case;
       
@@ -59,8 +59,8 @@ package body KIEinheitFestlegenSiedelnLogik is
       while UmgebungPrüfen <= KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
          
          MöglichesFeld := NeuesStadtfeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                           UmgebungExtern           => UmgebungPrüfen,
-                                           GeprüftExtern            => BereitsGeprüft);
+                                           UmgebungExtern             => UmgebungPrüfen,
+                                           GeprüftExtern              => BereitsGeprüft);
          
          case
            MöglichesFeld.XAchse
@@ -122,7 +122,7 @@ package body KIEinheitFestlegenSiedelnLogik is
 
                   else
                      FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                  KoordinatenExtern        => MöglichesStadtfeld);
+                                                                  KoordinatenExtern          => MöglichesStadtfeld);
                   end if;
                end if;
 
@@ -133,7 +133,7 @@ package body KIEinheitFestlegenSiedelnLogik is
 
                elsif
                  False = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen_Enum,
-                                                                     SpeziesExtern           => EinheitSpeziesNummerExtern.Spezies,
+                                                                     SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
                                                                      ZielKoordinatenExtern => MöglichesStadtfeld)
                then
                   return MöglichesStadtfeld;
@@ -162,7 +162,7 @@ package body KIEinheitFestlegenSiedelnLogik is
       
       case
         KIEinheitAllgemeinePruefungenLogik.KartenfeldPrüfen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                              KoordinatenExtern        => KoordinatenExtern)
+                                                              KoordinatenExtern          => KoordinatenExtern)
       is
          when False =>
             return False;
@@ -179,7 +179,7 @@ package body KIEinheitFestlegenSiedelnLogik is
          
       elsif
         False = KIKartenfeldbewertungModifizierenLogik.BewertungStadtBauen (KoordinatenExtern => KoordinatenExtern,
-                                                                            SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
+                                                                            SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
       then
          return False;
          

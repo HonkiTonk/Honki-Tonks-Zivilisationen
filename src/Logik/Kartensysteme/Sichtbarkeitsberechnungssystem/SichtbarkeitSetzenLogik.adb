@@ -65,7 +65,7 @@ package body SichtbarkeitSetzenLogik is
       EAchse:
       for EAchseSchleifenwert in EAchseAnfang .. EAchseEnde loop
          
-         SichtbarkeitSetzen (SpeziesExtern       => SpeziesExtern,
+         SichtbarkeitSetzen (SpeziesExtern     => SpeziesExtern,
                              KoordinatenExtern => (EAchseSchleifenwert, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse));
          
       end loop EAchse;
@@ -85,18 +85,18 @@ package body SichtbarkeitSetzenLogik is
             
       case
         LeseWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern,
-                                SpeziesExtern       => SpeziesExtern)
+                                SpeziesExtern     => SpeziesExtern)
       is
          when True =>
             return;
             
          when False =>
             SchreibeWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern,
-                                        SpeziesExtern       => SpeziesExtern,
+                                        SpeziesExtern     => SpeziesExtern,
                                         SichtbarExtern    => True);
       end case;
       
-      FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
+      FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
                                                                                         KoordinatenExtern => KoordinatenExtern,
                                                                                         LogikGrafikExtern => True);
       

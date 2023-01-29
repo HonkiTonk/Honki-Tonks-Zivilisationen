@@ -47,7 +47,7 @@ package body KIEinheitenbewegungLogik is
                  LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = Zielkoordinaten
                then
                   SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                             KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
+                                                             KoordinatenExtern          => KartenRecordKonstanten.LeerKoordinate);
                   SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                   
                else
@@ -66,25 +66,25 @@ package body KIEinheitenbewegungLogik is
              Zielkoordinaten = KartenRecordKonstanten.LeerKoordinate
          then
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
+                                                       KoordinatenExtern          => KartenRecordKonstanten.LeerKoordinate);
             SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             exit BewegungSchleife;
             
          elsif
            True = LeseWeltkarte.Sichtbar (KoordinatenExtern => Zielkoordinaten,
-                                          SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies)
+                                          SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
            and
              False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                               NeueKoordinatenExtern    => Zielkoordinaten)
+                                                                               NeueKoordinatenExtern      => Zielkoordinaten)
          then
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate);
+                                                       KoordinatenExtern          => KartenRecordKonstanten.LeerKoordinate);
             SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             exit BewegungSchleife;
             
          elsif
            KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                       PlanschrittExtern        => 1)
+                                                                                       PlanschrittExtern          => 1)
          then
             case
               KIBewegungsplanBerechnenLogik.BewegungPlanen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
@@ -113,10 +113,10 @@ package body KIEinheitenbewegungLogik is
    is begin
       
       NeueKoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                             PlanschrittExtern        => 1);
+                                                             PlanschrittExtern          => 1);
       
       case
-        KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern    => NeueKoordinaten,
+        KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern      => NeueKoordinaten,
                                                EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when KIKonstanten.BewegungNormal =>
@@ -126,7 +126,7 @@ package body KIEinheitenbewegungLogik is
             -- SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             -- Hier noch einmal genauer nachprüfen ob es auch wirklich funktioniert. äöü
             EinheitTauschen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                             NeueKoordinatenExtern    => NeueKoordinaten);
+                             NeueKoordinatenExtern      => NeueKoordinaten);
             
          when KIKonstanten.KeineBewegung =>
             SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -146,9 +146,9 @@ package body KIEinheitenbewegungLogik is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
             
-      Tauscheinheit := (EinheitSpeziesNummerExtern.Spezies, EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                                                             KoordinatenExtern => NeueKoordinatenExtern,
-                                                                                                             LogikGrafikExtern => True));
+      Tauscheinheit := (EinheitSpeziesNummerExtern.Spezies, EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+                                                                                                                   KoordinatenExtern => NeueKoordinatenExtern,
+                                                                                                                   LogikGrafikExtern => True));
       
       if
         Tauscheinheit.Nummer = EinheitSpeziesNummerExtern.Nummer
@@ -184,21 +184,21 @@ package body KIEinheitenbewegungLogik is
    begin
       
       Bewegungsschritt := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                              PlanschrittExtern        => 1);
+                                                              PlanschrittExtern          => 1);
       
       case
-        BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern    => Bewegungsschritt,
+        BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern      => Bewegungsschritt,
                                                        EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when EinheitenKonstanten.LeerBewegungspunkte =>
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                     BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                                     RechnenSetzenExtern      => False);
+                                                     BewegungspunkteExtern      => EinheitenKonstanten.LeerBewegungspunkte,
+                                                     RechnenSetzenExtern        => False);
          
          when others =>
             BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                   NeueKoordinatenExtern    => Bewegungsschritt,
-                                                                   EinheitentauschExtern    => False);
+                                                                   NeueKoordinatenExtern      => Bewegungsschritt,
+                                                                   EinheitentauschExtern      => False);
       
             KIBewegungsplanVereinfachenLogik.BewegungsplanVerschieben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
@@ -214,7 +214,7 @@ package body KIEinheitenbewegungLogik is
    begin
       
       FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinaten,
-                                                                             LogikGrafikExtern => True);
+                                                                               LogikGrafikExtern => True);
       FremdeStadt := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinaten);
       
       if
