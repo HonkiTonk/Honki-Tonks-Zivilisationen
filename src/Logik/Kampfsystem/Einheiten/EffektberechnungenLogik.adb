@@ -15,9 +15,13 @@ with VerschmutzendeWaffeEingesetztLogik;
 -- Die Meinungsänderung später noch Effekt- und Speziesspezifisch gestalten. äöü
 package body EffektberechnungenLogik is
 
+   -- Aktuell kann eine Einheit mehrere Effekte aber nur eine Reichweite haben, das später mal erweitern. äöü
    procedure Effektberechnungen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-   is begin
+   is
+      use type EinheitenDatentypen.Einheitart_Enum;
+      use type EinheitenDatentypen.Lebenspunkte;
+   begin
       
       EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
@@ -55,16 +59,17 @@ package body EffektberechnungenLogik is
          
       end loop EffekteSchleife;
       
-      case
-        LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                             IDExtern      => EinheitID)
-      is
-         when EinheitenDatentypen.Einmalig_Enum =>
-            EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-            
-         when others =>
-            null;
-      end case;
+      if
+        EinheitenDatentypen.Einmalig_Enum = LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                 IDExtern      => EinheitID)
+        and
+          LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) > EinheitenKonstanten.LeerLebenspunkte
+      then
+         EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+         
+      else
+         null;
+      end if;
       
    end Effektberechnungen;
 

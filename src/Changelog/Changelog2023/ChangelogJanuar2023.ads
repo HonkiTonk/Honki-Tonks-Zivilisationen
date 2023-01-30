@@ -7,18 +7,24 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (30.01.2023):
+   -- Version 0.04.6960 => 0.04. (30.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.6860 => 0.04. (29.01.2023):
+   -- Version 0.04.6860 => 0.04.6960 (29.01.2023):
    
    -- Formatierung leicht überarbeitet.
-   -- 
-   -- Kommentare und Kleinigkeiten korrigiert.
+   -- Zusatzgrund wird Unterwasser jetzt auch auf Küstengrund platziert.
+   -- Die Geschwindigkeit der Meinungsverbesserungen ist jetzt vom Schwierigkeitsgrad abhängig.
+   -- Wenn Effektwaffen eingesetzt werden und der Effekt sich auf die Gebiete oder Einheiten anderer Spezies auswirkt, dann führt das zu einer sofortigen Kriegserklärung.
+   -- Einsatz von PZB führt jetzt immer zu einer sofortigen Kriegserklärung.
+   -- Die Effekthöhe wird jetzt Ebenen- und Effektabhängig ermittelt und ist nicht mehr fest vorgegeben.
+   -- Effektausweitung berücksichtigt jetzt rudimentär den vorhandenen Basisgrund.
+   -- Angefangen Einmalwaffen in die vorhandenen Einheitenbäume einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/erweitert.
    
    
 

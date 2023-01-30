@@ -26,7 +26,10 @@ package ChemischeWaffeEingesetztLogik is
 private
    use type KartenDatentypen.Kartenfeld;
 
+   Spezies : SpeziesDatentypen.Spezies_Enum;
+
    Gefahrenbereich : KartenRecords.EffektbereichRecord;
+   Gefahrenhöhe : KartenRecords.EffekthöheRecord;
 
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenwertFluss : KartenRecords.AchsenKartenfeldNaturalRecord;

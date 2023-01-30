@@ -23,6 +23,7 @@ package VerschmutzendeWaffeEingesetztLogik is
 private
 
    Verschmutzungsbereich : KartenRecords.EffektbereichRecord;
+   Verschmutzungshöhe : KartenRecords.EffekthöheRecord;
 
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;

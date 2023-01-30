@@ -22,7 +22,10 @@ package StrahlungswaffeEingesetztLogik is
 
 private
 
+   Spezies : SpeziesDatentypen.Spezies_Enum;
+
    Strahlungsbereich : KartenRecords.EffektbereichRecord;
+   Strahlungshöhe : KartenRecords.EffekthöheRecord;
 
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;

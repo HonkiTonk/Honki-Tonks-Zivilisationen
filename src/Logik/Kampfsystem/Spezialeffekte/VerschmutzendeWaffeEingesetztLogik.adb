@@ -22,15 +22,27 @@ package body VerschmutzendeWaffeEingesetztLogik is
       
       Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
+      case
+        Koordinaten.EAchse
+      is
+         when KartenKonstanten.HimmelKonstante =>
+            Verschmutzungshöhe.EAchseAnfang := KartenKonstanten.OberflächeKonstante;
+            Verschmutzungshöhe.EAchseEnde := KartenKonstanten.HimmelKonstante;
+
+         when others =>
+            Verschmutzungshöhe.EAchseAnfang := Koordinaten.EAchse;
+            Verschmutzungshöhe.EAchseEnde := Koordinaten.EAchse;
+      end case;
+      
       EAchseSchleife:
-      for EAchseSchleifenwert in Verschmutzungsbereich.EAchseAnfang .. Verschmutzungsbereich.EAchseEnde loop
+      for EAchseSchleifenwert in Verschmutzungshöhe.EAchseAnfang .. Verschmutzungshöhe.EAchseEnde loop
          YAchseSchleife:
          for YAchseSchleifenwert in Verschmutzungsbereich.YAchseAnfang .. Verschmutzungsbereich.YAchseEnde loop
             XAchseSchleife:
             for XAchseSchleifenwert in Verschmutzungsbereich.XAchseAnfang .. Verschmutzungsbereich.XAchseEnde loop
 
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Koordinaten,
-                                                                                                         ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, Koordinaten.YAchse, Koordinaten.XAchse),
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                          LogikGrafikExtern => True);
                
                case

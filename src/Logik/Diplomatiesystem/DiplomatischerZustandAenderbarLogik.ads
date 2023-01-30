@@ -11,7 +11,8 @@ package DiplomatischerZustandAenderbarLogik is
    procedure StatusÄnderbarkeitPrüfen
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
+      NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum;
+      ZeitbegrenzungBerücksichtigenExtern : in Boolean)
      with
        Pre => (
                  SpeziesEinsExtern /= SpeziesZweiExtern
@@ -43,7 +44,8 @@ private
       return Boolean;
    
    function KriegMöglich
-     (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
+     (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum;
+      ZeitbegrenzungBerücksichtigenExtern : in Boolean)
       return Boolean;
 
 end DiplomatischerZustandAenderbarLogik;

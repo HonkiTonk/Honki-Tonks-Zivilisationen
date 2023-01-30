@@ -1,4 +1,3 @@
-with DiplomatieDatentypen;
 with SystemDatentypen;
 with StadtKonstanten;
 with TextnummernKonstanten;
@@ -200,7 +199,7 @@ package body RundenendeLogik is
                                                                                   SpeziesZweiExtern => SpeziesSchleifenwert)
          then
             null;
-                  
+            
          else
             SchreibeDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern    => SpeziesExtern,
                                                   SpeziesZweiExtern   => SpeziesSchleifenwert,
@@ -208,7 +207,7 @@ package body RundenendeLogik is
                                                   RechnenSetzenExtern => True);
             SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => SpeziesExtern,
                                                   SpeziesZweiExtern   => SpeziesSchleifenwert,
-                                                  SympathieExtern     => 1,
+                                                  SympathieExtern     => SchwierigkeitsgradMeinungsverbesserung (LeseAllgemeines.Schwierigkeitsgrad),
                                                   RechnenSetzenExtern => True);
          end if;
          

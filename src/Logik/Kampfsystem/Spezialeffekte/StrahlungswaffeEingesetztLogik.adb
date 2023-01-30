@@ -1,13 +1,17 @@
 with KartenKonstanten;
 with KartengrundDatentypen;
 with DiplomatieDatentypen;
+with SpeziesKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 with SchreibeWeltkarte;
 with SchreibeDiplomatie;
+with LeseWeltkarte;
 
 with KartenkoordinatenberechnungssystemLogik;
+with DiplomatischerZustandAenderbarLogik;
+with EinheitSuchenLogik;
 
 package body StrahlungswaffeEingesetztLogik is
 
@@ -22,15 +26,27 @@ package body StrahlungswaffeEingesetztLogik is
       
       Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
+      case
+        Koordinaten.EAchse
+      is
+         when KartenKonstanten.HimmelKonstante =>
+            Strahlungshöhe.EAchseAnfang := KartenKonstanten.OberflächeKonstante;
+            Strahlungshöhe.EAchseEnde := KartenKonstanten.HimmelKonstante;
+
+         when others =>
+            Strahlungshöhe.EAchseAnfang := Koordinaten.EAchse;
+            Strahlungshöhe.EAchseEnde := Koordinaten.EAchse;
+      end case;
+      
       EAchseSchleife:
-      for EAchseSchleifenwert in Strahlungsbereich.EAchseAnfang .. Strahlungsbereich.EAchseEnde loop
+      for EAchseSchleifenwert in Strahlungshöhe.EAchseAnfang .. Strahlungshöhe.EAchseEnde loop
          YAchseSchleife:
          for YAchseSchleifenwert in Strahlungsbereich.YAchseAnfang .. Strahlungsbereich.YAchseEnde loop
             XAchseSchleife:
             for XAchseSchleifenwert in Strahlungsbereich.XAchseAnfang .. Strahlungsbereich.XAchseEnde loop
 
-               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Koordinaten,
-                                                                                                         ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+               Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, Koordinaten.YAchse, Koordinaten.XAchse),
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                          LogikGrafikExtern => True);
                
                case
@@ -42,6 +58,38 @@ package body StrahlungswaffeEingesetztLogik is
                   when others =>
                      SchreibeWeltkarte.Effekt (KoordinatenExtern => Kartenwert,
                                                EffektExtern      => KartengrundDatentypen.Strahlung_Enum);
+                     Spezies := LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => Kartenwert);
+                     
+                     if
+                       Spezies = EinheitSpeziesNummerExtern.Spezies
+                       or
+                         Spezies = SpeziesKonstanten.LeerSpezies
+                     then
+                        null;
+                        
+                     else
+                        DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern                   => EinheitSpeziesNummerExtern.Spezies,
+                                                                                        SpeziesZweiExtern                   => Spezies,
+                                                                                        NeuerStatusExtern                   => DiplomatieDatentypen.Krieg_Enum,
+                                                                                        ZeitbegrenzungBerücksichtigenExtern => False);
+                     end if;
+                     
+                     Spezies := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => Kartenwert,
+                                                                                        LogikGrafikExtern => True).Spezies;
+                     
+                     if
+                       Spezies = EinheitSpeziesNummerExtern.Spezies
+                       or
+                         Spezies = SpeziesKonstanten.LeerSpezies
+                     then
+                        null;
+                        
+                     else
+                        DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern                   => EinheitSpeziesNummerExtern.Spezies,
+                                                                                        SpeziesZweiExtern                   => Spezies,
+                                                                                        NeuerStatusExtern                   => DiplomatieDatentypen.Krieg_Enum,
+                                                                                        ZeitbegrenzungBerücksichtigenExtern => False);
+                     end if;
                end case;
 
             end loop XAchseSchleife;

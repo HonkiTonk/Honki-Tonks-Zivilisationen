@@ -1,15 +1,16 @@
 package KartenverbesserungDatentypen is
    pragma Pure;
 
+   -- Das hier auch mal teilweise erweitern, so dass die Grafiken dann über verschiedene Felder hinweg möglich sind? äöü
    type Karten_Verbesserung_Enum is (
                                      Leer_Verbesserung_Enum,
                                      
                                      -- Städte
                                      Hauptstadt_Enum, Stadt_Enum,
                                      
-                                     -- Gebilde
                                      -- Friedlich
                                      Farm_Enum, Mine_Enum,
+                                     
                                      -- Krieg
                                      Festung_Enum
                                     );

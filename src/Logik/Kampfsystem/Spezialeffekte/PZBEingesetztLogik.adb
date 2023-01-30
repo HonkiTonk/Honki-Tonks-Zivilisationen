@@ -17,6 +17,7 @@ with KartenkoordinatenberechnungssystemLogik;
 with StadtEntfernenLogik;
 with StadtSuchenLogik;
 with EinheitSuchenLogik;
+with DiplomatischerZustandAenderbarLogik;
 
 package body PZBEingesetztLogik is
 
@@ -73,6 +74,16 @@ package body PZBEingesetztLogik is
       PlanetenVernichten (KoordinatenExtern         => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                           VernichtungsbereichExtern => Vernichtungsbereich);
       
+      case
+        LeseSpeziesbelegung.Besiegt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+      is
+         when True =>
+            return;
+            
+         when False =>
+            null;
+      end case;
+      
       SpeziesSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
@@ -80,10 +91,16 @@ package body PZBEingesetztLogik is
            SpeziesSchleifenwert = EinheitSpeziesNummerExtern.Spezies
            or
              LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
+           or
+             LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesSchleifenwert) = True
          then
             null;
             
          else
+            DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern                   => EinheitSpeziesNummerExtern.Spezies,
+                                                                            SpeziesZweiExtern                   => SpeziesSchleifenwert,
+                                                                            NeuerStatusExtern                   => DiplomatieDatentypen.Krieg_Enum,
+                                                                            ZeitbegrenzungBerücksichtigenExtern => False);
             SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => EinheitSpeziesNummerExtern.Spezies,
                                                   SpeziesZweiExtern   => SpeziesSchleifenwert,
                                                   SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KartengrundDatentypen.Vernichtet_Enum, EinheitSpeziesNummerExtern.Spezies),
@@ -104,7 +121,7 @@ package body PZBEingesetztLogik is
    begin
       
       EAchseSchleife:
-      for EAchseSchleifenwert in VernichtungsbereichExtern.EAchseAnfang .. VernichtungsbereichExtern.EAchseEnde loop
+      for EAchseSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
          YAchseSchleife:
          for YAchseSchleifenwert in VernichtungsbereichExtern.YAchseAnfang .. VernichtungsbereichExtern.YAchseEnde loop
             XAchseSchleife:

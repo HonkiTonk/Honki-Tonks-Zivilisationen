@@ -15,8 +15,6 @@ package KartenRecordKonstanten is
                                                                             );
    
    LeerEffektbereich : constant KartenRecords.EffektbereichRecord := (
-                                                                      EAchseAnfang => 0,
-                                                                      EAchseEnde   => 0,
                                                                       YAchseAnfang => 0,
                                                                       YAchseEnde   => 0,
                                                                       XAchseAnfang => 0,

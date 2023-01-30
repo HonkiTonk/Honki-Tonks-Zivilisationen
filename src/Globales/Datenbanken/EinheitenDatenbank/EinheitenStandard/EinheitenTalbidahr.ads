@@ -600,7 +600,7 @@ package EinheitenTalbidahr is
                                                                                          -- Atombombe
                                                                                        24 =>
                                                                                          (
-                                                                                          Einheitenart            => EinheitenDatentypen.Fernkämpfer_Enum,
+                                                                                          Einheitenart            => EinheitenDatentypen.Einmalig_Enum,
                                                                                           PreisGeld               => 25,
                                                                                           Produktionskosten       => 20,
                                                                                           PermanenteKosten        => (others => 0),
@@ -618,8 +618,12 @@ package EinheitenTalbidahr is
                                                                                           KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                           KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                           Transportkapazität      => 0,
-                                                                                          Zusatzeffekt            => (others => False),
-                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                          Zusatzeffekt            => (KartengrundDatentypen.Strahlung_Enum => True,
+                                                                                                                      others                               => False),
+                                                                                          Effektreichweite        => (YAchseAnfang => -2,
+                                                                                                                      YAchseEnde   => 2,
+                                                                                                                      XAchseAnfang => -2,
+                                                                                                                      XAchseEnde   => 2)
                                                                                          ),
                                                
                                                                                          -- Drohne
@@ -780,8 +784,6 @@ package EinheitenTalbidahr is
                                                                                           Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => True,
                                                                                                                       others                                => False),
                                                                                           Effektreichweite        => (
-                                                                                                                      EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
-                                                                                                                      EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
                                                                                                                       YAchseAnfang => -100,
                                                                                                                       YAchseEnde   => 100,
                                                                                                                       XAchseAnfang => -100,
@@ -813,8 +815,6 @@ package EinheitenTalbidahr is
                                                                                           Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => True,
                                                                                                                       others                                => False),
                                                                                           Effektreichweite        => (
-                                                                                                                      EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
-                                                                                                                      EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
                                                                                                                       YAchseAnfang => -200,
                                                                                                                       YAchseEnde   => 200,
                                                                                                                       XAchseAnfang => -200,
@@ -846,8 +846,6 @@ package EinheitenTalbidahr is
                                                                                           Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => True,
                                                                                                                       others                                => False),
                                                                                           Effektreichweite        => (
-                                                                                                                      EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
-                                                                                                                      EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
                                                                                                                       YAchseAnfang => KartenDatentypen.Kartenfeld'First,
                                                                                                                       YAchseEnde   => KartenDatentypen.Kartenfeld'Last,
                                                                                                                       XAchseAnfang => KartenDatentypen.Kartenfeld'First,

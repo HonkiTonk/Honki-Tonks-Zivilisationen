@@ -398,7 +398,7 @@ package EinheitenTesorahn is
                                                                                         -- Atombombe
                                                                                       15 =>
                                                                                         (
-                                                                                         Einheitenart            => EinheitenDatentypen.Nahkämpfer_Enum,
+                                                                                         Einheitenart            => EinheitenDatentypen.Einmalig_Enum,
                                                                                          PreisGeld               => 25,
                                                                                          Produktionskosten       => 20,
                                                                                          PermanenteKosten        => (others => 0),
@@ -420,8 +420,12 @@ package EinheitenTesorahn is
                                                                                          KannTransportieren      => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                          KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                          Transportkapazität      => 4,
-                                                                                         Zusatzeffekt            => (others => False),
-                                                                                         Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                         Zusatzeffekt            => (KartengrundDatentypen.Strahlung_Enum => True,
+                                                                                                                     others                               => False),
+                                                                                         Effektreichweite        => (YAchseAnfang => -2,
+                                                                                                                     YAchseEnde   => 2,
+                                                                                                                     XAchseAnfang => -2,
+                                                                                                                     XAchseEnde   => 2)
                                                                                         ),
                                                
                                                                                         -- Kernsiedler
@@ -514,8 +518,6 @@ package EinheitenTesorahn is
                                                                                          Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => True,
                                                                                                                      others                                => False),
                                                                                          Effektreichweite        => (
-                                                                                                                     EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
-                                                                                                                     EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
                                                                                                                      YAchseAnfang => -100,
                                                                                                                      YAchseEnde   => 100,
                                                                                                                      XAchseAnfang => -100,
@@ -551,8 +553,6 @@ package EinheitenTesorahn is
                                                                                          Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => True,
                                                                                                                      others                                => False),
                                                                                          Effektreichweite        => (
-                                                                                                                     EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
-                                                                                                                     EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
                                                                                                                      YAchseAnfang => -200,
                                                                                                                      YAchseEnde   => 200,
                                                                                                                      XAchseAnfang => -200,
@@ -588,8 +588,6 @@ package EinheitenTesorahn is
                                                                                          Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => True,
                                                                                                                      others                                => False),
                                                                                          Effektreichweite        => (
-                                                                                                                     EAchseAnfang => KartenDatentypen.EbeneVorhanden'First,
-                                                                                                                     EAchseEnde   => KartenDatentypen.EbeneVorhanden'Last,
                                                                                                                      YAchseAnfang => KartenDatentypen.Kartenfeld'First,
                                                                                                                      YAchseEnde   => KartenDatentypen.Kartenfeld'Last,
                                                                                                                      XAchseAnfang => KartenDatentypen.Kartenfeld'First,

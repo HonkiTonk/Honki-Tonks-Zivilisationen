@@ -22,7 +22,10 @@ package BiologischeWaffeEingesetztLogik is
 
 private
 
+   Spezies : SpeziesDatentypen.Spezies_Enum;
+
    Krankheitsbereich : KartenRecords.EffektbereichRecord;
+   Krankheitshöhe : KartenRecords.EffekthöheRecord;
 
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;

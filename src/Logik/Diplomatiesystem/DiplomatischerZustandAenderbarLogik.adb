@@ -11,7 +11,8 @@ package body DiplomatischerZustandAenderbarLogik is
    procedure StatusÄnderbarkeitPrüfen
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       SpeziesZweiExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
+      NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum;
+      ZeitbegrenzungBerücksichtigenExtern : in Boolean)
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
@@ -45,7 +46,8 @@ package body DiplomatischerZustandAenderbarLogik is
             ÄnderungMöglich := NichtangriffspaktMöglich (AktuellerStatusExtern => AktuellerStatus);
                         
          when DiplomatieDatentypen.Krieg_Enum =>
-            ÄnderungMöglich := KriegMöglich (AktuellerStatusExtern => AktuellerStatus);
+            ÄnderungMöglich := KriegMöglich (AktuellerStatusExtern               => AktuellerStatus,
+                                                ZeitbegrenzungBerücksichtigenExtern => ZeitbegrenzungBerücksichtigenExtern);
       end case;
       
       case
@@ -125,15 +127,20 @@ package body DiplomatischerZustandAenderbarLogik is
    
    
    
+   -- ZeitbegrenzungBerücksichtigenExtern wird aktuelle verwendet um die ZeitSeitÄnderung UND den Nichtangriffspakt zu ignorieren.
+   -- Bei eventuell kommenden Erweiterungen am Diplomatiesystem das entsprechend berücksichtigen.
    function KriegMöglich
-     (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum)
+     (AktuellerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Bekannt_Enum;
+      ZeitbegrenzungBerücksichtigenExtern : in Boolean)
       return Boolean
    is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
-      if        
+      if
         AktuellerStatusExtern = DiplomatieDatentypen.Nichtangriffspakt_Enum
+        and
+          ZeitbegrenzungBerücksichtigenExtern
       then
          MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungNichtangriffspakt);
          return False;
@@ -145,6 +152,13 @@ package body DiplomatischerZustandAenderbarLogik is
       then
          return True;
          
+      elsif
+        AktuellerStatusExtern /= DiplomatieDatentypen.Krieg_Enum
+        and
+          ZeitbegrenzungBerücksichtigenExtern = False
+      then
+         return True;
+                 
       else
          return False;
       end if;

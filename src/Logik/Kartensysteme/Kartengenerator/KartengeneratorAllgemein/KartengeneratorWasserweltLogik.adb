@@ -1,7 +1,11 @@
+with KartenKonstanten;
+
 with SchreibeWeltkarte;
+with LeseWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
 with Zusatzgrundplatzierungssystem;
+with Fehlermeldungssystem;
 
 package body KartengeneratorWasserweltLogik is
 
@@ -21,8 +25,21 @@ package body KartengeneratorWasserweltLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
    is begin
       
-      SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                    GrundExtern       => KartengrundDatentypen.Meeresgrund_Enum);
+      case
+        LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse))
+      is
+         when KartengrundDatentypen.Küstengewässer_Enum =>
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                          GrundExtern       => KartengrundDatentypen.Küstengrund_Enum);
+      
+            
+         when KartengrundDatentypen.Wasser_Enum =>
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                          GrundExtern       => KartengrundDatentypen.Meeresgrund_Enum);
+            
+         when others =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KartengeneratorWasserweltLogik.BasisgrundBestimmen: Weder Küstengewässer noch Wasser");
+      end case;
       
    end BasisgrundBestimmen;
    

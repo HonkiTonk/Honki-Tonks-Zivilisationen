@@ -3,7 +3,6 @@ with LadezeitenDatentypen;
 with KartenKonstanten;
 
 with LeseWeltkarte;
-with SchreibeWeltkarte;
 
 with KartengeneratorVariablenLogik;
 with KartengeneratorErdweltLogik;
@@ -28,11 +27,7 @@ package body KartengeneratorUnterflaecheLogik is
             case
               LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert))
             is
-               when KartengrundDatentypen.Küstengewässer_Enum =>
-                  SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                GrundExtern       => KartengrundDatentypen.Küstengrund_Enum);
-                  
-               when KartengrundDatentypen.Wasser_Enum =>
+               when KartengrundDatentypen.Küstengewässer_Enum | KartengrundDatentypen.Wasser_Enum =>
                   KartengeneratorWasserweltLogik.KartengeneratorWasserwelt (KoordinatenExtern => (KartenKonstanten.UnterflächeKonstante, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>

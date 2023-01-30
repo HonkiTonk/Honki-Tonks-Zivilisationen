@@ -67,12 +67,19 @@ package KartenRecords is
    
    type EffektbereichRecord is record
       
-      EAchseAnfang : KartenDatentypen.EbeneVorhanden;
-      EAchseEnde : KartenDatentypen.EbeneOberfläche;
       YAchseAnfang : KartenDatentypen.Kartenfeld;
       YAchseEnde : KartenDatentypen.KartenfeldNatural;
       XAchseAnfang : KartenDatentypen.Kartenfeld;
       XAchseEnde : KartenDatentypen.KartenfeldNatural;
+      
+   end record;
+   
+   
+   
+   type EffekthöheRecord is record
+      
+      EAchseAnfang : KartenDatentypen.EbeneVorhanden;
+      EAchseEnde : KartenDatentypen.EbeneVorhanden;
       
    end record;
    

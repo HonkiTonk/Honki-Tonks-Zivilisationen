@@ -34,7 +34,7 @@ package Diagnoseinformationen is
      (BoxExtern : in Sf.Graphics.Rect.sfFloatRect);
    
 private
-      
+   
    ByteTeiler : constant Positive := System.Storage_Unit;
    KilobyteTeiler : constant Positive := ByteTeiler * 1_024;
    MegabyteTeiler : constant Positive := KilobyteTeiler * 1_024;
