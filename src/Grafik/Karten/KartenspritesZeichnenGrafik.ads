@@ -21,7 +21,8 @@ package KartenspritesZeichnenGrafik is
 
    procedure StadtbewirtschaftungZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      GrößeExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
                  PositionExtern.x >= 0.00
@@ -86,18 +87,18 @@ private
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       SkalierungExtern : in Sf.System.Vector2.sfVector2f;
-      DurchsichtigkeitExtern : in Sf.sfUint8)
-     with
-       Pre => (
-                 SpriteAccessExtern /= null
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-               and
-                 SkalierungExtern.x > 0.00
-               and
-                 SkalierungExtern.y > 0.00
-              );
+      DurchsichtigkeitExtern : in Sf.sfUint8);
+   --  with
+     --  Pre => (
+            --     SpriteAccessExtern /= null
+            --   and
+            --     PositionExtern.x >= 0.00
+            --   and
+            --     PositionExtern.y >= 0.00
+            --   and
+            --     SkalierungExtern.x > 0.00
+            --   and
+            --     SkalierungExtern.y > 0.00
+         --     );
 
 end KartenspritesZeichnenGrafik;

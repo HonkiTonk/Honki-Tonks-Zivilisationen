@@ -8,21 +8,19 @@ with TextaccessVariablen;
 with Meldungstexte;
 with SpeziesKonstanten;
 with TextnummernKonstanten;
-with GrafikRecordKonstanten;
 
 with LeseStadtGebaut;
 with LeseWeltkarte;
 
 with KartenkoordinatenberechnungssystemLogik;
 with ViewsEinstellenGrafik;
-with SichtweitenGrafik;
+-- with SichtweitenGrafik;
 with ObjekteZeichnenGrafik;
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
 with KartenfelderwerteLogik;
 with TexteinstellungenGrafik;
 with TextaccessverwaltungssystemGrafik;
-
 with Diagnoseinformationen;
 
 package body StadtumgebungGrafik is
@@ -32,12 +30,21 @@ package body StadtumgebungGrafik is
    is
       use type KartenDatentypen.Ebene;
    begin
+            
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtUmgebung).width,
+                                                                                              GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtUmgebung).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung),
-                                            GrößeExtern          => (7.00 * SichtweitenGrafik.KartenfelderAbmessung.x, 7.00 * SichtweitenGrafik.KartenfelderAbmessung.y),
+                                            GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtUmgebung));
             
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      
+      Feldgröße.x := Viewfläche.x / 7.00;
+      Feldgröße.y := Viewfläche.y / 7.00;
+      
+      Diagnoseinformationen.Positionsinformationen (PositionExtern => Feldgröße);
       
       AktuellePosition := (0.00, 0.00);
       
@@ -53,9 +60,11 @@ package body StadtumgebungGrafik is
             if
               KartenWert.EAchse = KartenKonstanten.LeerEAchse
             then
-               ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => SichtweitenGrafik.KartenfelderAbmessung,
-                                                       PositionExtern  => AktuellePosition,
-                                                       FarbeExtern     => Sf.Graphics.Color.sfBlack);
+               null;
+               -- Muss mein für Schwarz überhaupt was zeichnen oder kann man das problemlos leer lassen? äöü
+               -- ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => Feldgröße,
+               --                                         PositionExtern  => AktuellePosition,
+               --                                         FarbeExtern     => Sf.Graphics.Color.sfBlack);
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
@@ -82,11 +91,11 @@ package body StadtumgebungGrafik is
                                     BewirtschaftetExtern     => FeldBewirtschaftet);
             end if;
             
-            AktuellePosition.x := AktuellePosition.x + SichtweitenGrafik.KartenfelderAbmessung.x;
+            AktuellePosition.x := AktuellePosition.x + Feldgröße.x;
             
          end loop XAchseSchleife;
          
-         AktuellePosition := (0.00, AktuellePosition.y + SichtweitenGrafik.KartenfelderAbmessung.y);
+         AktuellePosition := (0.00, AktuellePosition.y + Feldgröße.y);
          
       end loop YAchseSchleife;
       
@@ -108,7 +117,7 @@ package body StadtumgebungGrafik is
                          PositionExtern    => PositionExtern);
       
       Grundbelegung := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KarteKoordinatenExtern);
-      Rahmendicke := (SichtweitenGrafik.KartenfelderAbmessung.y / 20.00 + SichtweitenGrafik.KartenfelderAbmessung.x / 20.00) / 2.00;
+      Rahmendicke := (Feldgröße.y / 20.00 + Feldgröße.x / 20.00) / 2.00;
       
       if
         Grundbelegung.Spezies = SpeziesKonstanten.LeerSpezies
@@ -142,24 +151,23 @@ package body StadtumgebungGrafik is
             
       ObjekteZeichnenGrafik.RahmenZeichnen (PositionExtern    => (PositionExtern.x + Rahmendicke, PositionExtern.y + Rahmendicke),
                                             FarbeExtern       => Farbe,
-                                            GrößeExtern       => (SichtweitenGrafik.KartenfelderAbmessung.x - 2.00 * Rahmendicke, SichtweitenGrafik.KartenfelderAbmessung.y - 2.00 * Rahmendicke),
+                                            GrößeExtern       => (Feldgröße.x - 2.00 * Rahmendicke, Feldgröße.y - 2.00 * Rahmendicke),
                                             RahmendickeExtern => Rahmendicke);
       
    end DarstellungUmgebung;
    
    
    
-   -- Die YSkalierung ist hier bei hohem Zoom falsch für die ersten beiden Texte. äöü
+   -- Skalierungskonstante einbauen. äöü
+   -- Nicht nur hier sondern auch allgemein. äöü
    procedure Wirtschaftsinformationen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      TextaccessverwaltungssystemGrafik.SkalierenFarbe (TextaccessExtern => TextaccessVariablen.TextAccess,
-                                                        -- Skalierungskonstante einbauen. äöü
-                                                        SkalierungExtern => (1.00, 1.00),
-                                                        FarbeExtern      => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+      TextaccessverwaltungssystemGrafik.Farbe (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                               FarbeExtern      => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
         
       ProduktionSchleife:
       for ProduktionSchleifenwert in 1 .. 4 loop
@@ -186,30 +194,28 @@ package body StadtumgebungGrafik is
          
          TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                          TextExtern       => To_Wide_Wide_String (Source => Text),
-                                                         PositionExtern   => (PositionExtern.x, (SichtweitenGrafik.KartenfelderAbmessung.y / 5.00) * Float (ProduktionSchleifenwert - 1) + PositionExtern.y));
+                                                         PositionExtern   => (PositionExtern.x, (Feldgröße.y / 5.00) * Float (ProduktionSchleifenwert - 1) + PositionExtern.y));
          
          Textfläche := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height);
          
          if
-           Textfläche.x >= SichtweitenGrafik.KartenfelderAbmessung.x - 3.00 * Rahmendicke
+           Textfläche.x >= Feldgröße.x - 3.00 * Rahmendicke
          then
-            Skalierung.x := (SichtweitenGrafik.KartenfelderAbmessung.x - 3.00 * Rahmendicke) / Textfläche.x;
+            Skalierung.x := (Feldgröße.x - 3.00 * Rahmendicke) / Textfläche.x;
             
          else
-            Skalierung.x := Textfläche.x / (SichtweitenGrafik.KartenfelderAbmessung.x - 3.00 * Rahmendicke);
+            Skalierung.x := Textfläche.x / (Feldgröße.x - 3.00 * Rahmendicke);
          end if;
          
          if
-           Textfläche.y >= (SichtweitenGrafik.KartenfelderAbmessung.y - Rahmendicke) / 5.00
+           Textfläche.y >= (Feldgröße.y - Rahmendicke) / 5.00
          then
-            Skalierung.y := (SichtweitenGrafik.KartenfelderAbmessung.y - Rahmendicke) / 5.00 / Textfläche.y;
+            Skalierung.y := (Feldgröße.y - Rahmendicke) / 5.00 / Textfläche.y;
             
          else
-            Skalierung.y := Textfläche.y / (SichtweitenGrafik.KartenfelderAbmessung.y - Rahmendicke);
+            Skalierung.y := Textfläche.y / (Feldgröße.y - Rahmendicke);
          end if;
-         
-         Diagnoseinformationen.Positionsinformationen (PositionExtern => Skalierung);
-         
+                  
          TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                               SkalierungExtern => Skalierung);
          
@@ -257,7 +263,8 @@ package body StadtumgebungGrafik is
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => KoordinatenExtern);
       
       KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.BasisgrundAccess (Gesamtgrund.Basisgrund),
-                                                                PositionExtern     => PositionExtern);
+                                                                PositionExtern     => PositionExtern,
+                                                                GrößeExtern        => Feldgröße);
         
       case
         Gesamtgrund.Zusatzgrund
@@ -267,7 +274,8 @@ package body StadtumgebungGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.ZusatzgrundAccess (Gesamtgrund.Zusatzgrund),
-                                                                      PositionExtern     => PositionExtern);
+                                                                      PositionExtern     => PositionExtern,
+                                                                      GrößeExtern        => Feldgröße);
       end case;
       
    end KartenfeldZeichnen;
@@ -289,7 +297,8 @@ package body StadtumgebungGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.KartenflussAccess (KartenfeldFluss),
-                                                                      PositionExtern     => PositionExtern);
+                                                                      PositionExtern     => PositionExtern,
+                                                                      GrößeExtern        => Feldgröße);
       end case;
       
    end FlussZeichnen;
@@ -311,7 +320,8 @@ package body StadtumgebungGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.KartenressourceAccess (KartenfeldRessource),
-                                                                      PositionExtern     => PositionExtern);
+                                                                      PositionExtern     => PositionExtern,
+                                                                      GrößeExtern        => Feldgröße);
       end case;
       
    end RessourceZeichnen;
@@ -333,7 +343,8 @@ package body StadtumgebungGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.WegeAccess (Wegfeld),
-                                                                      PositionExtern     => PositionExtern);
+                                                                      PositionExtern     => PositionExtern,
+                                                                      GrößeExtern        => Feldgröße);
       end case;
       
    end WegZeichnen;
@@ -355,7 +366,8 @@ package body StadtumgebungGrafik is
             
          when others =>
             KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.VerbesserungenAccess (Verbesserungsfeld),
-                                                                      PositionExtern     => PositionExtern);
+                                                                      PositionExtern     => PositionExtern,
+                                                                      GrößeExtern        => Feldgröße);
       end case;
       
    end VerbesserungZeichnen;
@@ -376,7 +388,8 @@ package body StadtumgebungGrafik is
          is
             when True =>
                KartenspritesZeichnenGrafik.StadtbewirtschaftungZeichnen (TexturAccessExtern => EingeleseneTexturenGrafik.FeldeffekteAccess (EffektSchleifenwert),
-                                                                         PositionExtern     => PositionExtern);
+                                                                         PositionExtern     => PositionExtern,
+                                                                         GrößeExtern        => Feldgröße);
                
             when False =>
                null;

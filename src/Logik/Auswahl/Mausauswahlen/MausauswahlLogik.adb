@@ -347,7 +347,7 @@ package body MausauswahlLogik is
       
       case
         Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    TextboxExtern      => SichtweitenGrafik.FensterKarte)
+                                    TextboxExtern      => SichtweitenGrafik.Kartenfläche)
       is
          when True =>
             return BefehleDatentypen.Auswählen_Enum;

@@ -153,6 +153,14 @@ package TextaccessverwaltungssystemGrafik is
                  SkalierungExtern.y >= 0.00
               );
    
+   procedure Farbe
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+              );
+   
    procedure Zeichnen
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr)
      with

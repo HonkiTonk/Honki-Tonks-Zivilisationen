@@ -17,6 +17,7 @@ package body TasteneingabeGrafik is
    is
       use type Sf.sfBool;
       use type KartenDatentypen.Kartenfeld;
+      use type GrafikDatentypen.Grafik_Aktuelle_Darstellung_Enum;
    begin
       
       -- Kann man sfMouseButtonCount einfach so als Leerwert nehmen? Scheint zu funktionieren.
@@ -63,6 +64,11 @@ package body TasteneingabeGrafik is
                   
             when Sf.Window.Event.sfEvtMouseWheelScrolled =>
                if
+                 NachGrafiktask.AktuelleDarstellung = GrafikDatentypen.Grafik_Stadtkarte_Enum
+               then
+                  null;
+                  
+               elsif
                  Nutzereingabe.mouseWheelScroll.eventDelta < 0.00
                then
                   SichtweitenGrafik.ZoomstufeÄndern (ÄnderungExtern => 1);
@@ -73,7 +79,7 @@ package body TasteneingabeGrafik is
                   
             when Sf.Window.Event.sfEvtMouseButtonPressed =>
                NachLogiktask.MausTaste := Nutzereingabe.mouseButton.button;
-                  
+               
             when others =>
                null;
          end case;

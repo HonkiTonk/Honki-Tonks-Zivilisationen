@@ -15,9 +15,8 @@ package SichtweitenGrafik is
    -- Das hier über eine Funktion abrufen? äöü
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
    
-   FensterKarte : Sf.Graphics.Rect.sfFloatRect;
-   
    procedure KartenfelderAbmessungBerechnen;
+   procedure StadtumgebungAbmessungBerechnen;
    procedure StandardSichtweiten;
    
    procedure ZoomstufeÄndern
@@ -37,6 +36,37 @@ package SichtweitenGrafik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean;
    
+   function Kartenfeldfläche
+     return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  Kartenfeldfläche'Result.x >= 0.00
+                and
+                  Kartenfeldfläche'Result.y >= 0.00
+               );
+     
+   function Stadtumgebungsfläche
+     return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  Stadtumgebungsfläche'Result.x >= 0.00
+                and
+                  Stadtumgebungsfläche'Result.y >= 0.00
+               );
+   
+   function Kartenfläche
+     return Sf.Graphics.Rect.sfFloatRect
+     with
+       Post => (
+                  Kartenfläche'Result.left >= 0.00
+                and
+                  Kartenfläche'Result.top >= 0.00
+                and
+                  Kartenfläche'Result.width >= 0.00
+                and
+                  Kartenfläche'Result.height >= 0.00
+               );
+   
 private
    
    WelcheZoomanpassung : TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
@@ -46,6 +76,10 @@ private
    MinimaleZoomstufe : KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv'First;
    AktuelleZoomstufe : KartenDatentypen.KartenfeldPositiv := StandardZoomstufe;
    
+   StadtumgebungAbmessung : Sf.System.Vector2.sfVector2f;
+   
    Cursor : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   FensterKarte : Sf.Graphics.Rect.sfFloatRect;
 
 end SichtweitenGrafik;

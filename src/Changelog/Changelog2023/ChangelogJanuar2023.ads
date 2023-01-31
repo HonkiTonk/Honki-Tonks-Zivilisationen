@@ -1,9 +1,11 @@
 package ChangelogVorlage is
    
-   -- Version 0.04.7075 => 0.04. (31.01.2023):
+   -- Version 0.04.7075 => 0.04.7110 (31.01.2023):
    
+   -- Fehler korrigiert welcher es ermöglichte die Karte zu zoomen während man in einer Stadt war.
+   -- Anzeigesystem der Stadtumgebung überarbeitet.
    -- 
-   -- Kleinigkeiten korrigiert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 
@@ -14,7 +16,7 @@ package ChangelogVorlage is
    -- Zusätzliche Testgrafiken für Einheiten angelegt und eingebaut.
    -- Feldeffekte können jetzt durch Siedler entfernt werden.
    -- Farbfehler im Steuerungsmenü korrigiert und die Festlegung der Textparameter in eine Schleife gepackt.
-   -- Die Entfernung von Feldeffekte ist jetzt rudimentär von dern Technologien abhängig.
+   -- Die Entfernung von Feldeffekte ist jetzt rudimentär von den Technologien abhängig.
    -- Diverse Zahlen durch benannte Konstanten ersetzt.
    -- Code besser aufgeteilt.
    -- Textarrays leicht verbessert.

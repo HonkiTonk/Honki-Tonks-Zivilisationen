@@ -96,6 +96,7 @@ package body Grafik is
          when GrafikDatentypen.Fenster_Wurde_Verändert_Enum'Range =>
             FensterGrafik.FensterAnpassen;
             SichtweitenGrafik.KartenfelderAbmessungBerechnen;
+            SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
             NachGrafiktask.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
             NachLogiktask.Warten := False;
             

@@ -110,5 +110,46 @@ package body SichtweitenGrafik is
       KartenfelderAbmessung.y := FensterKarte.height / Float (2 * SichtweiteLesen + 1);
       
    end KartenfelderAbmessungBerechnen;
+   
+   
+   
+   procedure StadtumgebungAbmessungBerechnen
+   is begin
+      
+      -- Für die Werte hier und auch in der Stadtumgebung mal Konstante anlegen. äöü
+      StadtumgebungAbmessung.x := FensterKarte.width / 7.00;
+      StadtumgebungAbmessung.y := FensterKarte.height / 7.00;
+      
+   end StadtumgebungAbmessungBerechnen;
+   
+   
+   
+   function Kartenfeldfläche
+     return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      return KartenfelderAbmessung;
+      
+   end Kartenfeldfläche;
+   
+   
+   
+   function Stadtumgebungsfläche
+     return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      return StadtumgebungAbmessung;
+      
+   end Stadtumgebungsfläche;
+   
+   
+   
+   function Kartenfläche
+     return Sf.Graphics.Rect.sfFloatRect
+   is begin
+      
+      return FensterKarte;
+      
+   end Kartenfläche;
 
 end SichtweitenGrafik;

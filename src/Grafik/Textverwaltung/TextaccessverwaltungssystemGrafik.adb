@@ -176,6 +176,18 @@ package body TextaccessverwaltungssystemGrafik is
    
    
    
+   procedure Farbe
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+   is begin
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessExtern,
+                                 color => FarbeExtern);
+      
+   end Farbe;
+   
+   
+   
    procedure Zeichnen
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr)
    is begin

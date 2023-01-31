@@ -64,6 +64,7 @@ package body StandardSpielwerteSetzenLogik is
    is begin
       
       SichtweitenGrafik.StandardSichtweiten;
+      SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
       
    end StandardspielwerteGrafik;
 

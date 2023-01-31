@@ -11,6 +11,7 @@ private with KartenverbesserungDatentypen;
 private with KartenRecords;
 private with KartenKonstanten;
 private with KartenextraDatentypen;
+private with GrafikRecordKonstanten;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -54,6 +55,8 @@ private
    AktuellePosition : Sf.System.Vector2.sfVector2f;
    Textfläche : Sf.System.Vector2.sfVector2f;
    Skalierung : Sf.System.Vector2.sfVector2f;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.LeerView;
+   Feldgröße : Sf.System.Vector2.sfVector2f;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;

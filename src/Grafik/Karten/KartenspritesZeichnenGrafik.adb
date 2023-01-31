@@ -33,7 +33,8 @@ package body KartenspritesZeichnenGrafik is
    
    procedure StadtbewirtschaftungZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      GrößeExtern : in Sf.System.Vector2.sfVector2f)
    is
       use type Sf.Graphics.sfTexture_Ptr;
    begin
@@ -47,7 +48,8 @@ package body KartenspritesZeichnenGrafik is
          DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
                                        PositionExtern         => PositionExtern,
                                        SkalierungExtern       => TexturenSetzenSkalierenGrafik.TexturenSetzenSkalierenStadtbewirtschaftung (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                            TextureAccessExtern => TexturAccessExtern),
+                                                                                                                                            TextureAccessExtern => TexturAccessExtern,
+                                                                                                                                            GrößeExtern         => GrößeExtern),
                                        DurchsichtigkeitExtern => Sf.sfUint8'Last);
       end if;
       

@@ -39,7 +39,8 @@ package TexturenSetzenSkalierenGrafik is
 
    function TexturenSetzenSkalierenStadtbewirtschaftung
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      GrößeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (

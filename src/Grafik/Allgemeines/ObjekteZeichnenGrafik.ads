@@ -10,17 +10,17 @@ package ObjekteZeichnenGrafik is
    procedure RechteckZeichnen
      (AbmessungExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      FarbeExtern : in Sf.Graphics.Color.sfColor)
-     with
-       Pre => (
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-               and
-                 AbmessungExtern.x /= 0.00
-               and
-                 AbmessungExtern.y /= 0.00
-              );
+      FarbeExtern : in Sf.Graphics.Color.sfColor);
+   --  with
+   -- Pre => (
+   --   PositionExtern.x >= 0.00
+   -- and
+   --   PositionExtern.y >= 0.00
+   --  and
+   --   AbmessungExtern.x /= 0.00
+   --  and
+   --    AbmessungExtern.y /= 0.00
+   --  );
    
    procedure KreisZeichnen
      (RadiusExtern : in Float;
