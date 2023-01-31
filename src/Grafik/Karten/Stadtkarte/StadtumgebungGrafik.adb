@@ -23,6 +23,8 @@ with KartenfelderwerteLogik;
 with TexteinstellungenGrafik;
 with TextaccessverwaltungssystemGrafik;
 
+with Diagnoseinformationen;
+
 package body StadtumgebungGrafik is
 
    procedure Stadtumgebung
@@ -147,14 +149,17 @@ package body StadtumgebungGrafik is
    
    
    
+   -- Die YSkalierung ist hier bei hohem Zoom falsch für die ersten beiden Texte. äöü
    procedure Wirtschaftsinformationen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TextAccess,
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+      TextaccessverwaltungssystemGrafik.SkalierenFarbe (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                        -- Skalierungskonstante einbauen. äöü
+                                                        SkalierungExtern => (1.00, 1.00),
+                                                        FarbeExtern      => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
         
       ProduktionSchleife:
       for ProduktionSchleifenwert in 1 .. 4 loop
@@ -202,6 +207,8 @@ package body StadtumgebungGrafik is
          else
             Skalierung.y := Textfläche.y / (SichtweitenGrafik.KartenfelderAbmessung.y - Rahmendicke);
          end if;
+         
+         Diagnoseinformationen.Positionsinformationen (PositionExtern => Skalierung);
          
          TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                               SkalierungExtern => Skalierung);

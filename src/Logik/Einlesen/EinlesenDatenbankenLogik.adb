@@ -7,8 +7,8 @@ with ForschungenDatenbank;
 with GebaeudeDatenbank;
 with KartenDatenbank;
 with SpeziesDatenbank;
-with ForschungKonstanten;
 with VerbesserungenDatenbank;
+with ForschungRecordKonstanten;
 
 with StandardVerbesserungenDatenbank;
 with StandardSpeziesDatenbank;
@@ -71,14 +71,14 @@ package body EinlesenDatenbankenLogik is
             ForschungenDatenbank.ForschungslisteArray'Read (Stream (File => DatenbankEinlesen),
                                                             ForschungenDatenbank.Forschungsliste);
       
-            ForschungKonstanten.TechnologieVerbesserungenArray'Read (Stream (File => DatenbankEinlesen),
-                                                                     ForschungenDatenbank.TechnologieVerbesserungen);
+            ForschungRecordKonstanten.TechnologieVerbesserungenArray'Read (Stream (File => DatenbankEinlesen),
+                                                                           ForschungenDatenbank.TechnologieVerbesserungen);
       
-            ForschungKonstanten.TechnologieWegeArray'Read (Stream (File => DatenbankEinlesen),
-                                                           ForschungenDatenbank.TechnologieWege);
+            ForschungRecordKonstanten.TechnologieWegeArray'Read (Stream (File => DatenbankEinlesen),
+                                                                 ForschungenDatenbank.TechnologieWege);
       
-            ForschungKonstanten.TechnologieUmgebungsgrößeArray'Read (Stream (File => DatenbankEinlesen),
-                                                                       ForschungenDatenbank.TechnologieUmgebungsgröße);
+            ForschungRecordKonstanten.TechnologieUmgebungsgrößeArray'Read (Stream (File => DatenbankEinlesen),
+                                                                             ForschungenDatenbank.TechnologieUmgebungsgröße);
       
             Close (File => DatenbankEinlesen);
 

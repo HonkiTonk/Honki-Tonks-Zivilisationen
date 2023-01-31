@@ -5,7 +5,7 @@ with KartenDatenbank;
 with VerbesserungenDatenbank;
 with SpeziesDatenbank;
 with VerzeichnisKonstanten;
-with ForschungKonstanten;
+with ForschungRecordKonstanten;
 
 package body SchreibenDatenbankenLogik is
    
@@ -50,14 +50,14 @@ package body SchreibenDatenbankenLogik is
       ForschungenDatenbank.ForschungslisteArray'Write (Stream (File => DatenbankSpeichern),
                                                        ForschungenDatenbank.Forschungsliste);
       
-      ForschungKonstanten.TechnologieVerbesserungenArray'Write (Stream (File => DatenbankSpeichern),
-                                                                ForschungenDatenbank.TechnologieVerbesserungen);
+      ForschungRecordKonstanten.TechnologieVerbesserungenArray'Write (Stream (File => DatenbankSpeichern),
+                                                                      ForschungenDatenbank.TechnologieVerbesserungen);
       
-      ForschungKonstanten.TechnologieWegeArray'Write (Stream (File => DatenbankSpeichern),
-                                                      ForschungenDatenbank.TechnologieWege);
+      ForschungRecordKonstanten.TechnologieWegeArray'Write (Stream (File => DatenbankSpeichern),
+                                                            ForschungenDatenbank.TechnologieWege);
       
-      ForschungKonstanten.TechnologieUmgebungsgrößeArray'Write (Stream (File => DatenbankSpeichern),
-                                                                  ForschungenDatenbank.TechnologieUmgebungsgröße);
+      ForschungRecordKonstanten.TechnologieUmgebungsgrößeArray'Write (Stream (File => DatenbankSpeichern),
+                                                                        ForschungenDatenbank.TechnologieUmgebungsgröße);
       
       Close (File => DatenbankSpeichern);
       

@@ -68,22 +68,41 @@ package body SchreibeWeltkarte is
    
    
    
-   procedure Effekt
+   procedure Feldeffekt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EffektExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
+      FeldeffektExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
    is begin
       
       case
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Effekt: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Feldeffekt: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekte (EffektExtern) := True;
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekte (FeldeffektExtern) := True;
       end case;
       
-   end Effekt;
+   end Feldeffekt;
+   
+   
+   
+   procedure AlleFeldeffekte
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      FeldeffekteExtern : in Boolean)
+   is begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.AlleFeldeffekte: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekte := (others => FeldeffekteExtern);
+      end case;
+      
+   end AlleFeldeffekte;
    
    
    

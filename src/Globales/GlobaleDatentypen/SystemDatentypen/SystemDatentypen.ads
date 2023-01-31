@@ -1,3 +1,5 @@
+with TextnummernKonstanten;
+
 package SystemDatentypen is
    pragma Pure;
 
@@ -21,14 +23,14 @@ package SystemDatentypen is
    
    
    
-   subtype Zeug is Natural range 0 .. 55;
-   subtype ZeugVorhanden is Zeug range 1 .. Zeug'Last;
+   subtype Zeug is Natural range 0 .. TextnummernKonstanten.EndeZeug;
+   subtype ZeugVorhanden is Zeug range TextnummernKonstanten.AnfangZeug .. Zeug'Last;
    
-   subtype Fragen is Natural range 0 .. 34;
-   subtype FragenVorhanden is Fragen range 1 .. Fragen'Last;
+   subtype Fragen is Natural range 0 .. TextnummernKonstanten.EndeFrage;
+   subtype FragenVorhanden is Fragen range TextnummernKonstanten.AnfangFrage .. Fragen'Last;
      
-   subtype Spielmeldungen is Natural range 0 .. 11;
-   subtype SpielmeldungenVorhanden is Spielmeldungen range 1 .. Spielmeldungen'Last;
+   subtype Spielmeldungen is Natural range 0 .. TextnummernKonstanten.EndeMeldung;
+   subtype SpielmeldungenVorhanden is Spielmeldungen range TextnummernKonstanten.AnfangMeldung .. Spielmeldungen'Last;
    
    
    

@@ -1,4 +1,4 @@
-with ForschungKonstanten;
+with ForschungRecordKonstanten;
 with ForschungenDatentypen;
 with ForschungsdatenbankRecord;
 
@@ -854,7 +854,7 @@ package ForschungenEkropa is
                                                                                             )
                                                                                          ),
 
-                                                                                       others => ForschungKonstanten.LeerForschungsliste
+                                                                                       others => ForschungRecordKonstanten.LeerForschungsliste
                                                                                       );
 
 end ForschungenEkropa;

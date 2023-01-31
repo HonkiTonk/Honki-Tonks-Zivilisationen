@@ -52,8 +52,8 @@ package body VerschmutzendeWaffeEingesetztLogik is
                      null;
                      
                   when others =>
-                     SchreibeWeltkarte.Effekt (KoordinatenExtern => Kartenwert,
-                                               EffektExtern      => KartengrundDatentypen.Verschmutzt_Enum);
+                     SchreibeWeltkarte.Feldeffekt (KoordinatenExtern => Kartenwert,
+                                                   FeldeffektExtern  => KartengrundDatentypen.Verschmutzt_Enum);
                end case;
 
             end loop XAchseSchleife;

@@ -1,6 +1,6 @@
 with ForschungenDatentypen;
 with SpeziesDatentypen;
-with ForschungKonstanten;
+with ForschungRecordKonstanten;
 with ForschungsdatenbankRecord;
 
 package ForschungenDatenbank is
@@ -9,10 +9,10 @@ package ForschungenDatenbank is
    type ForschungslisteArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, ForschungenDatentypen.ForschungID'Range) of ForschungsdatenbankRecord.ForschungslisteRecord;
    Forschungsliste : ForschungslisteArray;
 
-   TechnologieVerbesserungen : ForschungKonstanten.TechnologieVerbesserungenArray;
+   TechnologieVerbesserungen : ForschungRecordKonstanten.TechnologieVerbesserungenArray;
 
-   TechnologieWege : ForschungKonstanten.TechnologieWegeArray;
+   TechnologieWege : ForschungRecordKonstanten.TechnologieWegeArray;
 
-   TechnologieUmgebungsgröße : ForschungKonstanten.TechnologieUmgebungsgrößeArray;
+   TechnologieUmgebungsgröße : ForschungRecordKonstanten.TechnologieUmgebungsgrößeArray;
 
 end ForschungenDatenbank;

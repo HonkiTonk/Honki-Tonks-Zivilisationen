@@ -12,6 +12,7 @@ with WegeplatzierungssystemLogik;
 with WaldAnlegenLogik;
 with RodenAnlegenLogik;
 with VerbesserungAnlegenLogik;
+with FeldeffektEntfernenLogik;
 
 package body VerbesserungFertiggestelltLogik is
 
@@ -136,6 +137,10 @@ package body VerbesserungFertiggestelltLogik is
               
          when AufgabenDatentypen.Roden_Trockenlegen_Enum =>
             RodenAnlegenLogik.RodenAnlegen (KoordinatenExtern => Koordinaten);
+            
+         when AufgabenDatentypen.Feldeffekt_Entfernen_Enum =>
+            FeldeffektEntfernenLogik.FeldeffektEntfernen (KoordinatenExtern => Koordinaten,
+                                                          FeldeffektExtern  => WelcheAufgabe);
       end case;
       
    end VerbesserungAngelegt;

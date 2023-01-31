@@ -29,7 +29,9 @@ package BefehleDatentypen is
                                    Straße_Bauen_Enum,
                                    Mine_Bauen_Enum, Farm_Bauen_Enum, Festung_Bauen_Enum,
                                    Wald_Aufforsten_Enum, Roden_Trockenlegen_Enum,
-                                   Effekte_Entfernen_Enum,
+                                   
+                                   Feldeffekte_Entfernen_Enum,
+                                   -- Strahlung_Entfernen_Enum, Biologisch_Entfernen_Enum, Chemisch_Entfernen_Enum, Verschmutzung_Entfernen_Enum,
                                 
                                    -- Einheitenbefehle Allgemein
                                    Heilen_Enum, Verschanzen_Enum, Plündern_Enum, Auflösen_Enum, Einheit_Verbessern_Enum,
@@ -49,9 +51,10 @@ package BefehleDatentypen is
    subtype Einheiten_Aufgaben_Baulos_Enum is Einheiten_Aufgaben_Enum range Straße_Bauen_Enum .. Einheit_Verbessern_Enum;
    subtype Einheiten_Allgemeine_Befehle_Enum is Einheiten_Aufgaben_Baulos_Enum range Heilen_Enum .. Einheit_Verbessern_Enum;
    
-   subtype Siedler_Aufgaben_Enum is Belegung_Auswählen_Enum range Bauen_Enum .. Effekte_Entfernen_Enum;
+   subtype Siedler_Aufgaben_Enum is Belegung_Auswählen_Enum range Bauen_Enum .. Feldeffekte_Entfernen_Enum;
    subtype Siedler_Verbesserung_Enum is Siedler_Aufgaben_Enum range Straße_Bauen_Enum .. Roden_Trockenlegen_Enum;
    subtype Siedler_Konstruktionen_Enum is Siedler_Verbesserung_Enum range Mine_Bauen_Enum .. Festung_Bauen_Enum;
+   subtype Siedler_Feldeffekte_Enum is Siedler_Aufgaben_Enum range Feldeffekte_Entfernen_Enum .. Feldeffekte_Entfernen_Enum;
    
    subtype Kampf_Aufgaben_Enum is Belegung_Auswählen_Enum range Plündern_Enum .. Plündern_Enum;
    

@@ -56,8 +56,8 @@ package body BiologischeWaffeEingesetztLogik is
                      null;
                      
                   when others =>
-                     SchreibeWeltkarte.Effekt (KoordinatenExtern => Kartenwert,
-                                               EffektExtern      => KartengrundDatentypen.Biologisch_Enum);
+                     SchreibeWeltkarte.Feldeffekt (KoordinatenExtern => Kartenwert,
+                                                   FeldeffektExtern  => KartengrundDatentypen.Biologisch_Enum);
                      Spezies := LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => Kartenwert);
                      
                      if

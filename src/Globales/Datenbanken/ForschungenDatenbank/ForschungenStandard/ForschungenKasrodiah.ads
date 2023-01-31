@@ -1,6 +1,7 @@
 with ForschungKonstanten;
 with ForschungenDatentypen;
 with ForschungsdatenbankRecord;
+with ForschungRecordKonstanten;
 
 package ForschungenKasrodiah is
    pragma Elaborate_Body;
@@ -12,7 +13,7 @@ package ForschungenKasrodiah is
                                                                                              Kosten      => 100,
                                                                                              Anforderung =>
                                                                                                (
-                                                                                                others => 0
+                                                                                                others => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -22,7 +23,7 @@ package ForschungenKasrodiah is
                                                                                              Kosten      => 100,
                                                                                              Anforderung =>
                                                                                                (
-                                                                                                others => 0
+                                                                                                others => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -32,7 +33,7 @@ package ForschungenKasrodiah is
                                                                                              Kosten      => 100,
                                                                                              Anforderung =>
                                                                                                (
-                                                                                                others => 0
+                                                                                                others => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -42,7 +43,7 @@ package ForschungenKasrodiah is
                                                                                              Kosten      => 100,
                                                                                              Anforderung =>
                                                                                                (
-                                                                                                others => 0
+                                                                                                others => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -53,7 +54,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 1,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -64,7 +65,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 1,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -76,7 +77,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 1,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 3,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -87,7 +88,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 4,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -98,7 +99,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 4,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -110,7 +111,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 6,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 3,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -122,7 +123,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 10,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 8,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -134,7 +135,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 11,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 9,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -145,7 +146,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 10,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -157,7 +158,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 7,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 11,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -169,7 +170,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 11,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 5,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -181,7 +182,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 11,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 2,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -193,7 +194,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 12,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 13,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -204,7 +205,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 11,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -216,7 +217,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 16,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 15,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -227,7 +228,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 19,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -239,7 +240,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 20,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 9,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -251,7 +252,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 17,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 18,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -263,7 +264,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 22,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 14,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -274,7 +275,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 19,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -285,7 +286,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 22,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -297,7 +298,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 25,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 20,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -309,7 +310,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 25,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 21,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -320,7 +321,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 26,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -331,7 +332,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 27,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -342,7 +343,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 29,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -354,7 +355,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 30,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 23,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -366,7 +367,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 30,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 20,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -377,7 +378,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 20,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -389,7 +390,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 33,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 28,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -400,7 +401,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 30,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -411,7 +412,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 27,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -437,7 +438,7 @@ package ForschungenKasrodiah is
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 37,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 31,
                                                                                                 ForschungenDatentypen.Anforderung_Drei_Enum => 34,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -448,7 +449,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 38,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -459,7 +460,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 37,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -470,7 +471,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 37,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -482,7 +483,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 40,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 34,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -494,7 +495,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 32,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 24,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -518,7 +519,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 44,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -529,7 +530,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 44,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -540,7 +541,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 44,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -551,7 +552,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 47,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -562,7 +563,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 48,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -573,7 +574,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 46,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -584,7 +585,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 46,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -595,7 +596,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 43,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -606,7 +607,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 44,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -631,7 +632,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 49,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 45,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -643,7 +644,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 52,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 49,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -655,7 +656,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 55,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 56,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -667,7 +668,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 55,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 54,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -678,7 +679,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 55,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -689,7 +690,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 58,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -700,7 +701,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 60,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -711,7 +712,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 58,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -723,7 +724,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 61,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 59,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -735,7 +736,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 63,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 62,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -746,7 +747,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 64,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -757,7 +758,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 63,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -769,7 +770,7 @@ package ForschungenKasrodiah is
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 66,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 64,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -780,7 +781,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 67,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -791,7 +792,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 67,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -802,7 +803,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 66,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -813,7 +814,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 67,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -824,7 +825,7 @@ package ForschungenKasrodiah is
                                                                                              Anforderung =>
                                                                                                (
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 71,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -837,7 +838,7 @@ package ForschungenKasrodiah is
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 69,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 70,
                                                                                                 ForschungenDatentypen.Anforderung_Drei_Enum => 71,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
@@ -850,11 +851,11 @@ package ForschungenKasrodiah is
                                                                                                 ForschungenDatentypen.Anforderung_Eins_Enum => 71,
                                                                                                 ForschungenDatentypen.Anforderung_Zwei_Enum => 68,
                                                                                                 ForschungenDatentypen.Anforderung_Drei_Enum => 69,
-                                                                                                others                                      => 0
+                                                                                                others                                      => ForschungKonstanten.LeerAnforderung
                                                                                                )
                                                                                             ),
 
-                                                                                          others => ForschungKonstanten.LeerForschungsliste
+                                                                                          others => ForschungRecordKonstanten.LeerForschungsliste
                                                                                          );
 
 end ForschungenKasrodiah;

@@ -2,9 +2,7 @@ with Sf.Graphics.Text;
 
 with Views;
 with GrafikDatentypen;
-with SystemKonstanten;
 with TextaccessVariablen;
-with InteraktionAuswahl;
 with TastenbelegungDatentypen;
 with TextKonstanten;
 with TastenbelegungKonstanten;
@@ -64,7 +62,6 @@ package body SteuerungsmenueGrafik is
    
    
    
-   -- Das hier später noch in einer Schleife zusammenfassen. äöü
    function Steuerungsaufteilung
      (AuswahlExtern : in Integer;
       WelcheSteuerungExtern : in SteuerungsauswahlLogik.Tastenbelegungskategorie_Enum)
@@ -77,74 +74,49 @@ package body SteuerungsmenueGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
       Textbreite := 0.00;
       
-      if
-        AuswahlExtern = -1
-      then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+      AufteilungSchleife:
+      for AufteilungSchleifenwert in AufteilungArray'Range loop
          
-      elsif
-        WelcheSteuerungExtern = SteuerungsauswahlLogik.Allgemeine_Belegung_Enum
-      then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
+         if
+           AuswahlExtern = -AufteilungSchleifenwert
+         then
+            Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+         
+         elsif
+           WelcheSteuerungExtern = SteuerungsauswahlLogik.Allgemeine_Belegung_Enum
+           and
+             AufteilungSchleifenwert = 1
+         then
+            Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
+            
+         elsif
+           WelcheSteuerungExtern = SteuerungsauswahlLogik.Einheitenbelegung_Enum
+           and
+             AufteilungSchleifenwert = 2
+         then
+            Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
+            
+         elsif
+           WelcheSteuerungExtern = SteuerungsauswahlLogik.Stadtbelegung_Enum
+           and
+             AufteilungSchleifenwert = 3
+         then
+            Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
            
-      else
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
-      end if;
-      
-      TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung),
-                                                               PositionExtern   => Textposition,
-                                                               FarbeExtern      => Farbe);
-      
-      InteraktionAuswahl.PositionenSteuerungsaufteilung (1) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung));
-      
-      Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.AllgemeineSteuerung)).width
-        + 2.00 * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
-      
-      if
-        AuswahlExtern = -2
-      then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+         else
+            Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
+         end if;
          
-      elsif
-        WelcheSteuerungExtern = SteuerungsauswahlLogik.Einheitenbelegung_Enum
-      then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
-           
-      else
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
-      end if;
+         TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert)),
+                                                                  PositionExtern   => Textposition,
+                                                                  FarbeExtern      => Farbe);
       
-      TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung),
-                                                               PositionExtern   => Textposition,
-                                                               FarbeExtern      => Farbe);
+         InteraktionAuswahl.PositionenSteuerungsaufteilung (AufteilungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert)));
       
-      InteraktionAuswahl.PositionenSteuerungsaufteilung (2) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung));
-      
-      Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Einheitensteuerung)).width
-        + 2.00 * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
-      
-      if
-        AuswahlExtern = -3
-      then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+         Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert))).width
+           + 2.00 * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
          
-      elsif
-        WelcheSteuerungExtern = SteuerungsauswahlLogik.Stadtbelegung_Enum
-      then
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
-         
-      else
-         Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
-      end if;
-      
-      TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung),
-                                                               PositionExtern   => Textposition,
-                                                               FarbeExtern      => Farbe);
-      
-      InteraktionAuswahl.PositionenSteuerungsaufteilung (3) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung));
-      
-      Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung)).width
-        + 2.00 * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
+      end loop AufteilungSchleife;
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung),

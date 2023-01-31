@@ -5,6 +5,8 @@ private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
 
 private with GrafikRecordKonstanten;
+private with InteraktionAuswahl;
+private with SystemKonstanten;
 
 private with SteuerungsauswahlLogik;
 
@@ -30,6 +32,13 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
    
    Farbe : Sf.Graphics.Color.sfColor;
+   
+   type AufteilungArray is array (InteraktionAuswahl.PositionenSteuerungsaufteilung'Range) of Positive;
+   Aufteilung : constant AufteilungArray := (
+                                             1 => SystemKonstanten.AllgemeineSteuerung,
+                                             2 => SystemKonstanten.Einheitensteuerung,
+                                             3 => SystemKonstanten.Stadtsteuerung
+                                            );
    
    
    

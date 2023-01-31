@@ -87,7 +87,7 @@ package body EinheitenkontrollsystemLogik is
             EinheitentransporterLogik.TransporterEntladen (TransporterExtern => EinheitSpeziesNummerExtern);
             return True;
                
-         when BefehleDatentypen.Siedler_Verbesserung_Enum'Range | BefehleDatentypen.Einheiten_Allgemeine_Befehle_Enum'Range =>
+         when BefehleDatentypen.Siedler_Verbesserung_Enum'Range | BefehleDatentypen.Einheiten_Allgemeine_Befehle_Enum'Range | BefehleDatentypen.Feldeffekte_Entfernen_Enum =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichen Aufgabenanfang keine Bewegung mehr möglich ist und umgekehrt.
             return not AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                               BefehlExtern             => BefehlExtern,

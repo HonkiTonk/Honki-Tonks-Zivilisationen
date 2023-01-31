@@ -17,7 +17,7 @@ package body ForschungstestsLogik is
          when ForschungKonstanten.ForschungUnmöglich =>
             return False;
             
-         when ForschungKonstanten.LeerForschungsanforderung =>
+         when ForschungKonstanten.LeerAnforderung =>
             return True;
             
          when others =>

@@ -777,6 +777,118 @@ package EinheitenTesorahn is
                                                                                          Zusatzeffekt            => (others => False),
                                                                                          Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
                                                                                         ),
+                                               
+                                                                                        -- Biowaffe
+                                                                                      28 =>
+                                                                                        (
+                                                                                         Einheitenart            => EinheitenDatentypen.Einmalig_Enum,
+                                                                                         PreisGeld               => 25,
+                                                                                         Produktionskosten       => 20,
+                                                                                         PermanenteKosten        => (others => 0),
+                                                                                         Anforderungen           => 52,
+                                                                                         Passierbarkeit          => (others => True),
+                                                                                         MaximaleLebenspunkte    => 5,
+                                                                                         MaximaleBewegungspunkte => 10,
+                                                                                         VerbesserungZu          => 26,
+                                                                                         Beförderungsgrenze      => 30,
+                                                                                         MaximalerRang           => 3,
+                                                                                         Reichweite              => 2,
+                                                                                         Angriff                 => 3,
+                                                                                         Verteidigung            => 1,
+                                                                                         KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
+                                                                                         KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => (KartengrundDatentypen.Biologisch_Enum => True,
+                                                                                                                     others                                => False),
+                                                                                         Effektreichweite        => (YAchseAnfang => -2,
+                                                                                                                     YAchseEnde   => 2,
+                                                                                                                     XAchseAnfang => -2,
+                                                                                                                     XAchseEnde   => 2)
+                                                                                        ),
+                                               
+                                                                                        -- Chemische Waffe
+                                                                                      29 =>
+                                                                                        (
+                                                                                         Einheitenart            => EinheitenDatentypen.Einmalig_Enum,
+                                                                                         PreisGeld               => 25,
+                                                                                         Produktionskosten       => 20,
+                                                                                         PermanenteKosten        => (others => 0),
+                                                                                         Anforderungen           => 20,
+                                                                                         Passierbarkeit          => (others => True),
+                                                                                         MaximaleLebenspunkte    => 5,
+                                                                                         MaximaleBewegungspunkte => 10,
+                                                                                         VerbesserungZu          => 26,
+                                                                                         Beförderungsgrenze      => 30,
+                                                                                         MaximalerRang           => 3,
+                                                                                         Reichweite              => 2,
+                                                                                         Angriff                 => 3,
+                                                                                         Verteidigung            => 1,
+                                                                                         KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
+                                                                                         KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => (KartengrundDatentypen.Chemisch_Enum => True,
+                                                                                                                     others                              => False),
+                                                                                         Effektreichweite        => (YAchseAnfang => -2,
+                                                                                                                     YAchseEnde   => 2,
+                                                                                                                     XAchseAnfang => -2,
+                                                                                                                     XAchseEnde   => 2)
+                                                                                        ),
+                                               
+                                                                                        -- Verschmutzende Waffe
+                                                                                      30 =>
+                                                                                        (
+                                                                                         Einheitenart            => EinheitenDatentypen.Einmalig_Enum,
+                                                                                         PreisGeld               => 25,
+                                                                                         Produktionskosten       => 20,
+                                                                                         PermanenteKosten        => (others => 0),
+                                                                                         Anforderungen           => 20,
+                                                                                         Passierbarkeit          => (others => True),
+                                                                                         MaximaleLebenspunkte    => 5,
+                                                                                         MaximaleBewegungspunkte => 10,
+                                                                                         VerbesserungZu          => 26,
+                                                                                         Beförderungsgrenze      => 30,
+                                                                                         MaximalerRang           => 3,
+                                                                                         Reichweite              => 2,
+                                                                                         Angriff                 => 3,
+                                                                                         Verteidigung            => 1,
+                                                                                         KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
+                                                                                         KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => (KartengrundDatentypen.Verschmutzt_Enum => True,
+                                                                                                                     others                                 => False),
+                                                                                         Effektreichweite        => (YAchseAnfang => -2,
+                                                                                                                     YAchseEnde   => 2,
+                                                                                                                     XAchseAnfang => -2,
+                                                                                                                     XAchseEnde   => 2)
+                                                                                        ),
+                                               
+                                                                                        -- Einmal alle Feldeffekte
+                                                                                      31 =>
+                                                                                        (
+                                                                                         Einheitenart            => EinheitenDatentypen.Einmalig_Enum,
+                                                                                         PreisGeld               => 25,
+                                                                                         Produktionskosten       => 20,
+                                                                                         PermanenteKosten        => (others => 0),
+                                                                                         Anforderungen           => 0,
+                                                                                         Passierbarkeit          => (others => True),
+                                                                                         MaximaleLebenspunkte    => 5,
+                                                                                         MaximaleBewegungspunkte => 10,
+                                                                                         VerbesserungZu          => 26,
+                                                                                         Beförderungsgrenze      => 30,
+                                                                                         MaximalerRang           => 3,
+                                                                                         Reichweite              => 2,
+                                                                                         Angriff                 => 3,
+                                                                                         Verteidigung            => 1,
+                                                                                         KannTransportieren      => EinheitenDatentypen.Kein_Transport_Enum,
+                                                                                         KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
+                                                                                         Transportkapazität      => 0,
+                                                                                         Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => False,
+                                                                                                                     others                                => True),
+                                                                                         Effektreichweite        => (YAchseAnfang => -2,
+                                                                                                                     YAchseEnde   => 2,
+                                                                                                                     XAchseAnfang => -2,
+                                                                                                                     XAchseEnde   => 2)
+                                                                                        ),
                                                                               
                                                                                       EinheitendatenbankRecord.EinheitenlisteArray'Last => DebugobjekteLogik.Alleskönner,
                                                                

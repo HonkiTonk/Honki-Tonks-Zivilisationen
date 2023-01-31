@@ -25,7 +25,7 @@ with UmwandlungenVerschiedeneDatentypen;
 with JaNeinLogik;
 with MeldungFestlegenLogik;
 with NachGrafiktask;
-with EffekteEntfernenLogik;
+with FeldeffektErmittelnLogik;
 
 package body AufgabenLogik is
    
@@ -124,9 +124,11 @@ package body AufgabenLogik is
    begin
       
       if
-        BefehlExtern in BefehleDatentypen.Siedler_Verbesserung_Enum'Range
+        EinheitartExtern /= EinheitenDatentypen.Arbeiter_Enum
         and
-          EinheitartExtern /= EinheitenDatentypen.Arbeiter_Enum
+          (BefehlExtern in BefehleDatentypen.Siedler_Verbesserung_Enum'Range
+           or
+             BefehlExtern = BefehleDatentypen.Feldeffekte_Entfernen_Enum)
       then
          MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungBefehl,
                                                         SpeziesExtern   => SpeziesExtern);
@@ -224,7 +226,7 @@ package body AufgabenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
-      
+            
       AufgabenAllgemeinLogik.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
@@ -260,10 +262,10 @@ package body AufgabenLogik is
                                                        AnlegenTestenExtern      => AnlegenTestenExtern,
                                                        KoordinatenExtern        => KoordinatenExtern);
             
-         when BefehleDatentypen.Effekte_Entfernen_Enum =>
-            return EffekteEntfernenLogik.EffekteEntfernen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                           AnlegenTestenExtern        => AnlegenTestenExtern,
-                                                           KoordinatenExtern          => KoordinatenExtern);
+         when BefehleDatentypen.Feldeffekte_Entfernen_Enum =>
+            return FeldeffektErmittelnLogik.FeldeffektErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                 AnlegenTestenExtern        => AnlegenTestenExtern,
+                                                                 KoordinatenExtern          => KoordinatenExtern);
             
          when BefehleDatentypen.Heilen_Enum =>
             return EinheitHeilenLogik.EinheitHeilen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,

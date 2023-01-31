@@ -1,16 +1,24 @@
 package ChangelogVorlage is
    
-   -- Version 0.04. => 0.04. (31.01.2023):
+   -- Version 0.04.7075 => 0.04. (31.01.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.6960 => 0.04. (30.01.2023):
+   -- Version 0.04.6960 => 0.04.7075 (30.01.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Forschungsbäume nummeriert und zu GitHub hinzugefügt.
+   -- Einheitenbäume erweitert um Einheiten zu haben mit denen die Feldeffekte getestet werden können.
+   -- Zusätzliche Testgrafiken für Einheiten angelegt und eingebaut.
+   -- Feldeffekte können jetzt durch Siedler entfernt werden.
+   -- Farbfehler im Steuerungsmenü korrigiert und die Festlegung der Textparameter in eine Schleife gepackt.
+   -- Die Entfernung von Feldeffekte ist jetzt rudimentär von dern Technologien abhängig.
+   -- Diverse Zahlen durch benannte Konstanten ersetzt.
+   -- Code besser aufgeteilt.
+   -- Textarrays leicht verbessert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/entfernt/angepasst/überarbeitet.
    
    
 

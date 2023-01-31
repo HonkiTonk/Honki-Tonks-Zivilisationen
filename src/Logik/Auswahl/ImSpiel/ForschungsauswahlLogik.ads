@@ -25,7 +25,7 @@ package ForschungsauswahlLogik is
    
 private
    
-   AktuelleAuswahl : ForschungenDatentypen.ForschungIDMitNullWert := ForschungKonstanten.LeerForschungsanforderung;
+   AktuelleAuswahl : ForschungenDatentypen.ForschungIDMitNullWert := ForschungKonstanten.LeerAnforderung;
    WasErforschtWerdenSoll : ForschungenDatentypen.ForschungIDMitNullWert;
    AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
    GewählteForschung : ForschungenDatentypen.ForschungIDMitNullWert;

@@ -1,5 +1,5 @@
 with ForschungenDatenbank;
-with ForschungKonstanten;
+with ForschungRecordKonstanten;
 
 with ForschungenMenschen;
 with ForschungenKasrodiah;
@@ -103,27 +103,27 @@ package body StandardForschungenDatenbank is
    is begin
       
       VerbesserungenSchleife:
-      for VerbesserungSchleifenwert in ForschungKonstanten.TechnologieVerbesserungenArray'Range (1) loop
+      for VerbesserungSchleifenwert in ForschungRecordKonstanten.TechnologieVerbesserungenArray'Range (1) loop
          
-         ForschungenDatenbank.TechnologieVerbesserungen (VerbesserungSchleifenwert, SpeziesExtern) := ForschungKonstanten.StandardtechnologieVerbesserungen (VerbesserungSchleifenwert, SpeziesExtern);
+         ForschungenDatenbank.TechnologieVerbesserungen (VerbesserungSchleifenwert, SpeziesExtern) := ForschungRecordKonstanten.StandardtechnologieVerbesserungen (VerbesserungSchleifenwert, SpeziesExtern);
          
       end loop VerbesserungenSchleife;
       
       
       
       WegeSchleife:
-      for WegSchleifenwert in ForschungKonstanten.TechnologieWegeArray'Range (1) loop
+      for WegSchleifenwert in ForschungRecordKonstanten.TechnologieWegeArray'Range (1) loop
          
-         ForschungenDatenbank.TechnologieWege (WegSchleifenwert, SpeziesExtern) := ForschungKonstanten.StandardtechnologieWege (WegSchleifenwert, SpeziesExtern);
+         ForschungenDatenbank.TechnologieWege (WegSchleifenwert, SpeziesExtern) := ForschungRecordKonstanten.StandardtechnologieWege (WegSchleifenwert, SpeziesExtern);
          
       end loop WegeSchleife;
       
       
       
       UmgebungSchleife:
-      for UmgebungSchleifenwert in ForschungKonstanten.TechnologieUmgebungsgrößeArray'Range (1) loop
+      for UmgebungSchleifenwert in ForschungRecordKonstanten.TechnologieUmgebungsgrößeArray'Range (1) loop
          
-         ForschungenDatenbank.TechnologieUmgebungsgröße (UmgebungSchleifenwert, SpeziesExtern) := ForschungKonstanten.StandardtechnologieUmgebungsgröße (UmgebungSchleifenwert, SpeziesExtern);
+         ForschungenDatenbank.TechnologieUmgebungsgröße (UmgebungSchleifenwert, SpeziesExtern) := ForschungRecordKonstanten.StandardtechnologieUmgebungsgröße (UmgebungSchleifenwert, SpeziesExtern);
          
       end loop UmgebungSchleife;
       

@@ -56,8 +56,8 @@ package body StrahlungswaffeEingesetztLogik is
                      null;
                      
                   when others =>
-                     SchreibeWeltkarte.Effekt (KoordinatenExtern => Kartenwert,
-                                               EffektExtern      => KartengrundDatentypen.Strahlung_Enum);
+                     SchreibeWeltkarte.Feldeffekt (KoordinatenExtern => Kartenwert,
+                                                   FeldeffektExtern  => KartengrundDatentypen.Strahlung_Enum);
                      Spezies := LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => Kartenwert);
                      
                      if

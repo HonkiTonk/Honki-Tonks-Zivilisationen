@@ -49,41 +49,43 @@ package TastenbelegungStandard is
    
    
    EinheitenbelegungStandard : constant TastenbelegungDatenbank.EinheitenbelegungArray := (
-                                                                                           BefehleDatentypen.Auswählen_Enum          => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                                           BefehleDatentypen.Auswählen_Enum             => Sf.Window.Keyboard.sfKeyUnknown,
                                 
                                                                                            -- Bewegung
-                                                                                           BefehleDatentypen.Oben_Enum               => Sf.Window.Keyboard.sfKeyNumpad8,
-                                                                                           BefehleDatentypen.Links_Enum              => Sf.Window.Keyboard.sfKeyNumpad4,
-                                                                                           BefehleDatentypen.Unten_Enum              => Sf.Window.Keyboard.sfKeyNumpad2,
-                                                                                           BefehleDatentypen.Rechts_Enum             => Sf.Window.Keyboard.sfKeyNumpad6,
-                                                                                           BefehleDatentypen.Links_Oben_Enum         => Sf.Window.Keyboard.sfKeyNumpad7,
-                                                                                           BefehleDatentypen.Rechts_Oben_Enum        => Sf.Window.Keyboard.sfKeyNumpad9,
-                                                                                           BefehleDatentypen.Links_Unten_Enum        => Sf.Window.Keyboard.sfKeyNumpad1,
-                                                                                           BefehleDatentypen.Rechts_Unten_Enum       => Sf.Window.Keyboard.sfKeyNumpad3,
-                                                                                           BefehleDatentypen.Ebene_Hoch_Enum         => Sf.Window.Keyboard.sfKeyAdd,
-                                                                                           BefehleDatentypen.Ebene_Runter_Enum       => Sf.Window.Keyboard.sfKeySubtract,
+                                                                                           BefehleDatentypen.Oben_Enum                  => Sf.Window.Keyboard.sfKeyNumpad8,
+                                                                                           BefehleDatentypen.Links_Enum                 => Sf.Window.Keyboard.sfKeyNumpad4,
+                                                                                           BefehleDatentypen.Unten_Enum                 => Sf.Window.Keyboard.sfKeyNumpad2,
+                                                                                           BefehleDatentypen.Rechts_Enum                => Sf.Window.Keyboard.sfKeyNumpad6,
+                                                                                           BefehleDatentypen.Links_Oben_Enum            => Sf.Window.Keyboard.sfKeyNumpad7,
+                                                                                           BefehleDatentypen.Rechts_Oben_Enum           => Sf.Window.Keyboard.sfKeyNumpad9,
+                                                                                           BefehleDatentypen.Links_Unten_Enum           => Sf.Window.Keyboard.sfKeyNumpad1,
+                                                                                           BefehleDatentypen.Rechts_Unten_Enum          => Sf.Window.Keyboard.sfKeyNumpad3,
+                                                                                           BefehleDatentypen.Ebene_Hoch_Enum            => Sf.Window.Keyboard.sfKeyAdd,
+                                                                                           BefehleDatentypen.Ebene_Runter_Enum          => Sf.Window.Keyboard.sfKeySubtract,
                                 
                                                                                            -- Einheitenbefehle Verbesserungen
-                                                                                           BefehleDatentypen.Bauen_Enum              => Sf.Window.Keyboard.sfKeyB,
+                                                                                           BefehleDatentypen.Bauen_Enum                 => Sf.Window.Keyboard.sfKeyB,
                                                                 
-                                                                                           BefehleDatentypen.Straße_Bauen_Enum       => Sf.Window.Keyboard.sfKeyL,
-                                                                                           BefehleDatentypen.Mine_Bauen_Enum         => Sf.Window.Keyboard.sfKeyM,
-                                                                                           BefehleDatentypen.Farm_Bauen_Enum         => Sf.Window.Keyboard.sfKeyF,
-                                                                                           BefehleDatentypen.Festung_Bauen_Enum      => Sf.Window.Keyboard.sfKeyS,
-                                                                                           BefehleDatentypen.Wald_Aufforsten_Enum    => Sf.Window.Keyboard.sfKeyW,
-                                                                                           BefehleDatentypen.Roden_Trockenlegen_Enum => Sf.Window.Keyboard.sfKeyR,
-                                                                                           BefehleDatentypen.Effekte_Entfernen_Enum  => Sf.Window.Keyboard.sfKeyT,
+                                                                                           BefehleDatentypen.Straße_Bauen_Enum          => Sf.Window.Keyboard.sfKeyL,
+                                                                                           BefehleDatentypen.Mine_Bauen_Enum            => Sf.Window.Keyboard.sfKeyM,
+                                                                                           BefehleDatentypen.Farm_Bauen_Enum            => Sf.Window.Keyboard.sfKeyF,
+                                                                                           BefehleDatentypen.Festung_Bauen_Enum         => Sf.Window.Keyboard.sfKeyS,
+                                                                                           BefehleDatentypen.Wald_Aufforsten_Enum       => Sf.Window.Keyboard.sfKeyW,
+                                                                                           BefehleDatentypen.Roden_Trockenlegen_Enum    => Sf.Window.Keyboard.sfKeyR,
+                                                                                           
+                                                                                           BefehleDatentypen.Feldeffekte_Entfernen_Enum => Sf.Window.Keyboard.sfKeyT,
+                                                                                           -- Strahlung_Entfernen_Enum, Biologisch_Entfernen_Enum, Chemisch_Entfernen_Enum, Verschmutzung_Entfernen_Enum,
                                                                    
                                                                                            -- Einheitenbefehle Allgemein
-                                                                                           BefehleDatentypen.Heilen_Enum             => Sf.Window.Keyboard.sfKeyH,
-                                                                                           BefehleDatentypen.Verschanzen_Enum        => Sf.Window.Keyboard.sfKeyV,
-                                                                                           BefehleDatentypen.Plündern_Enum           => Sf.Window.Keyboard.sfKeyP,
-                                                                                           BefehleDatentypen.Auflösen_Enum           => Sf.Window.Keyboard.sfKeyA,
-                                                                                           BefehleDatentypen.Einheit_Verbessern_Enum => Sf.Window.Keyboard.sfKeyU,
-                                                                                           BefehleDatentypen.Heimatstadt_Ändern_Enum => Sf.Window.Keyboard.sfKeyC,
-                                                                                           BefehleDatentypen.Entladen_Enum           => Sf.Window.Keyboard.sfKeyE,
+                                                                                           BefehleDatentypen.Heilen_Enum                => Sf.Window.Keyboard.sfKeyH,
+                                                                                           BefehleDatentypen.Verschanzen_Enum           => Sf.Window.Keyboard.sfKeyV,
+                                                                                           BefehleDatentypen.Plündern_Enum              => Sf.Window.Keyboard.sfKeyP,
+                                                                                           BefehleDatentypen.Auflösen_Enum              => Sf.Window.Keyboard.sfKeyA,
+                                                                                           BefehleDatentypen.Einheit_Verbessern_Enum    => Sf.Window.Keyboard.sfKeyU,
+                                                                                           BefehleDatentypen.Heimatstadt_Ändern_Enum    => Sf.Window.Keyboard.sfKeyC,
+                                                                                           BefehleDatentypen.Entladen_Enum              => Sf.Window.Keyboard.sfKeyE,
                                    
-                                                                                           BefehleDatentypen.Abwählen_Enum           => Sf.Window.Keyboard.sfKeyEscape
+                                                                                           BefehleDatentypen.Abwählen_Enum              => Sf.Window.Keyboard.sfKeyEscape
                                                                                           );
    
    

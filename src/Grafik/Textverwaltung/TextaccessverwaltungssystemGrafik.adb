@@ -148,6 +148,22 @@ package body TextaccessverwaltungssystemGrafik is
    
    
    
+   procedure SkalierenFarbe
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+   is begin
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessExtern,
+                                 color => FarbeExtern);
+      
+      Skalieren (TextaccessExtern => TextaccessExtern,
+                 SkalierungExtern => SkalierungExtern);
+      
+   end SkalierenFarbe;
+   
+   
+   
    procedure Skalieren
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
       SkalierungExtern : in Sf.System.Vector2.sfVector2f)

@@ -46,9 +46,19 @@ package SchreibeWeltkarte is
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
-   procedure Effekt
+   procedure Feldeffekt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EffektExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
+      FeldeffektExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
+   procedure AlleFeldeffekte
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      FeldeffekteExtern : in Boolean)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

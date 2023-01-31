@@ -8,12 +8,12 @@ with LeseWeltkarteneinstellungen;
 with LeseSpeziesbelegung;
 with LeseGrenzen;
 
-package EffekteEntfernenLogik is
+package FeldeffektErmittelnLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
 
-   function EffekteEntfernen
+   function FeldeffektErmitteln
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -29,4 +29,4 @@ package EffekteEntfernenLogik is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
-end EffekteEntfernenLogik;
+end FeldeffektErmittelnLogik;

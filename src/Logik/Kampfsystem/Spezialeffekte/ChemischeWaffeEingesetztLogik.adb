@@ -57,8 +57,8 @@ package body ChemischeWaffeEingesetztLogik is
                      null;
                      
                   when others =>
-                     SchreibeWeltkarte.Effekt (KoordinatenExtern => Kartenwert,
-                                               EffektExtern      => KartengrundDatentypen.Chemisch_Enum);
+                     SchreibeWeltkarte.Feldeffekt (KoordinatenExtern => Kartenwert,
+                                                   FeldeffektExtern  => KartengrundDatentypen.Chemisch_Enum);
                      Wasserverschmutzung (KoordinatenExtern => Kartenwert);
                      
                      Spezies := LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => Kartenwert);
@@ -169,12 +169,12 @@ package body ChemischeWaffeEingesetztLogik is
             elsif
               LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenwertFluss) = KartengrundDatentypen.Küstengewässer_Enum
             then
-               SchreibeWeltkarte.Effekt (KoordinatenExtern => KartenwertFluss,
-                                         EffektExtern      => KartengrundDatentypen.Chemisch_Enum);
+               SchreibeWeltkarte.Feldeffekt (KoordinatenExtern => KartenwertFluss,
+                                             FeldeffektExtern  => KartengrundDatentypen.Chemisch_Enum);
                      
             else
-               SchreibeWeltkarte.Effekt (KoordinatenExtern => KartenwertFluss,
-                                         EffektExtern      => KartengrundDatentypen.Chemisch_Enum);
+               SchreibeWeltkarte.Feldeffekt (KoordinatenExtern => KartenwertFluss,
+                                             FeldeffektExtern  => KartengrundDatentypen.Chemisch_Enum);
                Wasserverschmutzung (KoordinatenExtern => KartenwertFluss);
             end if;
 
