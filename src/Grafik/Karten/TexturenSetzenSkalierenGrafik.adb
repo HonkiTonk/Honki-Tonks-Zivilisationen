@@ -4,8 +4,6 @@ with Sf.Graphics.Sprite;
 with EinstellungenGrafik;
 with SichtweitenGrafik;
 
-with Diagnoseinformationen;
-
 -- Sollte ich hier überall auch statt globale lieber lokale Grenzen verwenden? äöü
 package body TexturenSetzenSkalierenGrafik is
    
@@ -43,9 +41,6 @@ package body TexturenSetzenSkalierenGrafik is
                                      resetRect => Sf.sfTrue);
       
       Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern);
-      
-      Diagnoseinformationen.Positionsinformationen (PositionExtern => GrößeExtern);
-      Diagnoseinformationen.Positionsinformationen (PositionExtern => (Rechteck.width, Rechteck.height));
       
       SkalierungKartenfeld.x := GrößeExtern.x / Rechteck.width;
       SkalierungKartenfeld.y := GrößeExtern.y / Rechteck.height;

@@ -7,6 +7,7 @@ with ViewKonstanten;
 with TextaccessVariablen;
 with Meldungstexte;
 with SpeziesKonstanten;
+with GrafikKonstanten;
 with TextnummernKonstanten;
 
 with LeseStadtGebaut;
@@ -14,14 +15,12 @@ with LeseWeltkarte;
 
 with KartenkoordinatenberechnungssystemLogik;
 with ViewsEinstellenGrafik;
--- with SichtweitenGrafik;
 with ObjekteZeichnenGrafik;
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
 with KartenfelderwerteLogik;
 with TexteinstellungenGrafik;
 with TextaccessverwaltungssystemGrafik;
-with Diagnoseinformationen;
 
 package body StadtumgebungGrafik is
 
@@ -41,10 +40,8 @@ package body StadtumgebungGrafik is
             
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-      Feldgröße.x := Viewfläche.x / 7.00;
-      Feldgröße.y := Viewfläche.y / 7.00;
-      
-      Diagnoseinformationen.Positionsinformationen (PositionExtern => Feldgröße);
+      Feldgröße.x := Viewfläche.x / GrafikKonstanten.AnzahlStadtumgebungsfelder;
+      Feldgröße.y := Viewfläche.y / GrafikKonstanten.AnzahlStadtumgebungsfelder;
       
       AktuellePosition := (0.00, 0.00);
       
@@ -62,6 +59,7 @@ package body StadtumgebungGrafik is
             then
                null;
                -- Muss mein für Schwarz überhaupt was zeichnen oder kann man das problemlos leer lassen? äöü
+               -- Leer lassen scheint zu gehen. äöü
                -- ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => Feldgröße,
                --                                         PositionExtern  => AktuellePosition,
                --                                         FarbeExtern     => Sf.Graphics.Color.sfBlack);

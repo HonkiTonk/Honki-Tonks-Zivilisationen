@@ -29,6 +29,7 @@ private
    Stadtfeld : KartenRecords.YXAchsenKartenfeldRecord;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
+   Test : Sf.System.Vector2.sfVector2f;
    
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    

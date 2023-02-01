@@ -12,5 +12,7 @@ package GrafikKonstanten is
    VerschiedenerGrundtransparents : constant Sf.sfUint8 := 180;
    Bewegungsfeldtransparents : constant Sf.sfUint8 := 120;
    Feldeffekttransparents : constant Sf.sfUint8 := 100;
+   
+   AnzahlStadtumgebungsfelder : constant Float := 7.00;
 
 end GrafikKonstanten;

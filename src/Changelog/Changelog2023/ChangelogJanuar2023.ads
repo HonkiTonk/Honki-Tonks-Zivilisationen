@@ -1,10 +1,10 @@
 package ChangelogVorlage is
    
-   -- Version 0.04.7075 => 0.04.7110 (31.01.2023):
+   -- Version 0.04.7075 => 0.04.7120 (31.01.2023):
    
    -- Fehler korrigiert welcher es ermöglichte die Karte zu zoomen während man in einer Stadt war.
    -- Anzeigesystem der Stadtumgebung überarbeitet.
-   -- 
+   -- Angefangen das Arbeiterplatzierungssystem zu überarbeiten.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    

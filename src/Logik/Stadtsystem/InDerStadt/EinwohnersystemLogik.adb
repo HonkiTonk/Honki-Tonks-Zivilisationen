@@ -1,5 +1,10 @@
+with Sf.Graphics.View;
+
 with ProduktionDatentypen;
 with KartenKonstanten;
+with GrafikKonstanten;
+with Views;
+with ViewKonstanten;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -7,8 +12,9 @@ with SchreibeStadtGebaut;
 
 with KartenkoordinatenberechnungssystemLogik;
 with MausauswahlLogik;
-with SichtweitenGrafik;
 with StadtproduktionLogik;
+
+-- with Diagnoseinformationen;
 
 package body EinwohnersystemLogik is
 
@@ -25,15 +31,56 @@ package body EinwohnersystemLogik is
         Mausposition.x < 0.00
       then
          return False;
-               
+         
       else
-         Stadtfeld.YAchse := KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.y / SichtweitenGrafik.KartenfelderAbmessung.y)) - 3;
-         Stadtfeld.XAchse := KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / SichtweitenGrafik.KartenfelderAbmessung.x)) - 3;
+         Test.x := Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung)).x / GrafikKonstanten.AnzahlStadtumgebungsfelder;
+         Test.y := Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung)).y / GrafikKonstanten.AnzahlStadtumgebungsfelder;
+         Stadtfeld := (-4, -4);
+         
+         
+         YAchseSchleife:
+         for YAchseSchleifenwert in 0 .. Positive (GrafikKonstanten.AnzahlStadtumgebungsfelder) - 1 loop
+            
+            if
+              Mausposition.y in Float (YAchseSchleifenwert) * Test.y .. Float (YAchseSchleifenwert + 1) * Test.y
+            then
+               Stadtfeld.YAchse := KartenDatentypen.Kartenfeld (YAchseSchleifenwert) - 3;
+               exit YAchseSchleife;
+               
+            else
+               null;
+            end if;
+               
+         end loop YAchseSchleife;
+         
+         XAchseSchleife:
+         for XAchseSchleifenwert in 0 .. Positive (GrafikKonstanten.AnzahlStadtumgebungsfelder) - 1 loop
+            
+            if
+              Mausposition.y in Float (XAchseSchleifenwert) * Test.x .. Float (XAchseSchleifenwert + 1) * Test.x
+            then
+               Stadtfeld.XAchse := KartenDatentypen.Kartenfeld (XAchseSchleifenwert) - 3;
+               exit XAchseSchleife;
+               
+            else
+               null;
+            end if;
+            
+         end loop XAchseSchleife;
       end if;
       
-      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Stadtfeld.YAchse, Stadtfeld.XAchse),
-                                                                                                LogikGrafikExtern => True);
+      if
+        Stadtfeld.YAchse = -4
+        or
+          Stadtfeld.YAchse = -4
+      then
+         return False;
+            
+      else
+         Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
+                                                                                                   ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Stadtfeld.YAchse, Stadtfeld.XAchse),
+                                                                                                   LogikGrafikExtern => True);
+      end if;
       
       case
         Kartenwert.EAchse

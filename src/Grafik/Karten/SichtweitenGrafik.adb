@@ -1,3 +1,5 @@
+with GrafikKonstanten;
+
 with LeseWeltkarteneinstellungen;
 with LeseCursor;
 
@@ -117,8 +119,8 @@ package body SichtweitenGrafik is
    is begin
       
       -- Für die Werte hier und auch in der Stadtumgebung mal Konstante anlegen. äöü
-      StadtumgebungAbmessung.x := FensterKarte.width / 7.00;
-      StadtumgebungAbmessung.y := FensterKarte.height / 7.00;
+      StadtumgebungAbmessung.x := FensterKarte.width / GrafikKonstanten.AnzahlStadtumgebungsfelder;
+      StadtumgebungAbmessung.y := FensterKarte.height / GrafikKonstanten.AnzahlStadtumgebungsfelder;
       
    end StadtumgebungAbmessungBerechnen;
    
