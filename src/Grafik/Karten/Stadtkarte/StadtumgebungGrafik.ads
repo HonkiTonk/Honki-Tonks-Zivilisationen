@@ -53,9 +53,7 @@ private
    Gesamtgrund : KartenRecords.KartengrundRecord;
    
    AktuellePosition : Sf.System.Vector2.sfVector2f;
-   Textfläche : Sf.System.Vector2.sfVector2f;
-   Skalierung : Sf.System.Vector2.sfVector2f;
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.LeerView;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Feldgröße : Sf.System.Vector2.sfVector2f;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -66,6 +64,7 @@ private
    procedure DarstellungUmgebung
      (KarteKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       BewirtschaftetExtern : in Boolean)
      with
@@ -81,81 +80,121 @@ private
                  PositionExtern.x >= 0.00
                and
                  PositionExtern.y >= 0.00
+               and
+                 FeldgrößeExtern.x >= 0.00
+               and
+                 FeldgrößeExtern.y >= 0.00
               );
 
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
                  KoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
+               and
+                 FeldgrößeExtern.x >= 0.00
+               and
+                 FeldgrößeExtern.y >= 0.00
               );
 
    procedure KartenfeldZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
                  KoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
+               and
+                 FeldgrößeExtern.x >= 0.00
+               and
+                 FeldgrößeExtern.y >= 0.00
               );
 
    procedure FlussZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
                  KoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
+               and
+                 FeldgrößeExtern.x >= 0.00
+               and
+                 FeldgrößeExtern.y >= 0.00
               );
 
    procedure RessourceZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
                  KoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
+               and
+                 FeldgrößeExtern.x >= 0.00
+               and
+                 FeldgrößeExtern.y >= 0.00
               );
 
    procedure WegZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
                  KoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
+               and
+                 FeldgrößeExtern.x >= 0.00
+               and
+                 FeldgrößeExtern.y >= 0.00
               );
 
    procedure VerbesserungZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
                  KoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
+               and
+                 FeldgrößeExtern.x >= 0.00
+               and
+                 FeldgrößeExtern.y >= 0.00
               );
    
    procedure FeldeffektZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
                  KoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
+               and
+                 FeldgrößeExtern.x >= 0.00
+               and
+                 FeldgrößeExtern.y >= 0.00
               );
    
    procedure Wirtschaftsinformationen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FeldgrößeExtern : in Sf.System.Vector2.sfVector2f;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
@@ -168,6 +207,10 @@ private
                  PositionExtern.x >= 0.00
                and
                  PositionExtern.y >= 0.00
+               and
+                 FeldgrößeExtern.x >= 0.00
+               and
+                 FeldgrößeExtern.y >= 0.00
               );
 
 end StadtumgebungGrafik;

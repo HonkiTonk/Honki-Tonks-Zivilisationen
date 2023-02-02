@@ -31,7 +31,7 @@ package DebugobjekteLogik is
                                                                              KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                              Transportkapazität      => EinheitenRecords.TransporterArray'Last,
                                                                              Zusatzeffekt            => (others => False),
-                                                                             Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                             Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                             );
 
 end DebugobjekteLogik;

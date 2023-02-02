@@ -7,8 +7,12 @@ with ViewKonstanten;
 package GrafikRecordKonstanten is
    pragma Elaborate_Body;
 
-   LeerView : constant Sf.System.Vector2.sfVector2f := (0.00, 0.00);
-   StartgrößeView : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
+   StartView : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
+   
+   Nullposition : constant Sf.System.Vector2.sfVector2f := (0.00, 0.00);
+   FalschePosition : constant Sf.System.Vector2.sfVector2f := (-1.00, -1.00);
+   
+   Standardskalierung : constant Sf.System.Vector2.sfVector2f := (1.00, 1.00);
    
    
    
@@ -37,11 +41,6 @@ package GrafikRecordKonstanten is
    Einheitauswahlbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.25, 0.35, 0.50, 0.30);
    
    type BereicheArray is array (Positive range <>) of Sf.Graphics.Rect.sfFloatRect;
-   
-   -- Menübereich : constant BereicheArray (1 .. ) := (
-   -- 
-   -- );
-   
    MenüDoppelbereich : constant BereicheArray (1 .. 2) := (
                                                             1 => (0.00, Überschriftbereich.height, 0.25, 1.00 - Überschriftbereich.height),
                                                             2 => (0.25, Überschriftbereich.height, 0.75, 1.00 - Überschriftbereich.height)

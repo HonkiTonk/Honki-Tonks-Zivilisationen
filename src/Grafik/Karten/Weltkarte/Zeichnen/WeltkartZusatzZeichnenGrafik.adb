@@ -7,6 +7,7 @@ with SpeziesKonstanten;
 with KartenKonstanten;
 with TextaccessVariablen;
 with GrafikKonstanten;
+with GrafikRecordKonstanten;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -216,7 +217,7 @@ package body WeltkartZusatzZeichnenGrafik is
          Skalierung := (5.00 * SichtweitenGrafik.KartenfelderAbmessung.x / Textbreite, 0.70);
          
       else
-         Skalierung := (1.00, 0.70);
+         Skalierung := (GrafikRecordKonstanten.Standardskalierung.x, 0.70);
       end if;
       
       TextaccessverwaltungssystemGrafik.Skalieren (TextaccessExtern => TextaccessVariablen.KarteAccess,

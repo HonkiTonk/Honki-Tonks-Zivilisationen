@@ -10,6 +10,8 @@ private with KartenDatentypen;
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 
+private with Vergleiche;
+
 package EinwohnersystemLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
@@ -29,7 +31,7 @@ private
    Stadtfeld : KartenRecords.YXAchsenKartenfeldRecord;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
-   Test : Sf.System.Vector2.sfVector2f;
+   Feldfläche : Sf.System.Vector2.sfVector2f;
    
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
@@ -65,5 +67,9 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
+   
+   
+   
+   function MausfeldPrüfen is new Vergleiche.Achsenauswahlposition (GanzeZahl => KartenDatentypen.Kartenfeld);
 
 end EinwohnersystemLogik;

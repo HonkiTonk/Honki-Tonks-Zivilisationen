@@ -38,7 +38,7 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
    
    type ViewflächenArray is array (GrafikRecordKonstanten.Forschungsbereich'Range) of Sf.System.Vector2.sfVector2f;
-   Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartgrößeView);
+   Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartView);
    
    procedure Auswahlmöglichkeiten
      (AuswahlExtern : in ForschungenDatentypen.ForschungIDMitNullWert;

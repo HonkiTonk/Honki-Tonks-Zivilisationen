@@ -45,7 +45,7 @@ package EinheitenRecordKonstanten is
                                                                                  KannTransportiertWerden => EinheitenKonstanten.LeerKannTransportiertWerden,
                                                                                  Transportkapazität      => EinheitenKonstanten.LeerTransportkapazität,
                                                                                  Zusatzeffekt            => (others => False),
-                                                                                 Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                 Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                 );
    
    KeineArbeit : constant EinheitenRecords.ArbeitRecord := (

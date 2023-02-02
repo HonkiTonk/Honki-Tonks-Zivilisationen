@@ -26,7 +26,7 @@ package body KartengrundEditorGrafik is
       Feldgröße.x := Viewfläche.x / 6.00;
       Feldgröße.y := Viewfläche.y / 5.00;
       
-      Grafikposition := (0.00, 0.00);
+      Grafikposition := GrafikRecordKonstanten.Nullposition;
       
       KartengrundSchleife:
       for KartengrundSchleifenwert in InteraktionAuswahl.PositionenBasisgrundeditorArray'Range loop
@@ -41,7 +41,7 @@ package body KartengrundEditorGrafik is
            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (KartengrundSchleifenwert) mod 6
          is
             when 0 =>
-               Grafikposition.x := 0.00;
+               Grafikposition.x := GrafikRecordKonstanten.Nullposition.x;
                Grafikposition.y := Grafikposition.y + Feldgröße.y;
                
             when others =>

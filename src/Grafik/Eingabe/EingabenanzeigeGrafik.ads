@@ -49,7 +49,7 @@ private
    
    EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
    Skalierung : Sf.System.Vector2.sfVector2f;
    

@@ -1,11 +1,10 @@
 with Sf.Graphics.Texture;
-with Sf.Graphics.RenderWindow;
 
 with KartenartDatentypen;
 
 with KartengeneratorVariablenLogik;
 with EingeleseneTexturenGrafik;
-with EinstellungenGrafik;
+with SpritesverwaltungssystemGrafik;
 
 package body ZusatztextKartenformGrafik is
 
@@ -140,18 +139,10 @@ package body ZusatztextKartenformGrafik is
             return;
       end case;
       
-      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccess,
-                                     texture   => EingeleseneTexturenGrafik.BilderAccess (1),
-                                     resetRect => Sf.sfTrue);
-      
-      Sf.Graphics.Sprite.setTextureRect (sprite    => SpriteAccess,
-                                         rectangle => (Integer (Texturanfang.x), Integer (Texturanfang.y), Integer (Texturfläche.x / 4.00), Integer (Texturfläche.y / 5.00)));
-            
-      Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
-                                   scale  => (ViewflächeExtern.x / (Texturfläche.x / 4.00), ViewflächeExtern.y / (Texturfläche.y / 5.00)));
-      
-      Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
-                                           object       => SpriteAccess);
+      SpritesverwaltungssystemGrafik.SetzenBereichSkalierenZeichnen (SpriteAccessExtern => SpriteAccess,
+                                                                     TexturExtern       => EingeleseneTexturenGrafik.BilderAccess (1),
+                                                                     BereichExtern      => (Integer (Texturanfang.x), Integer (Texturanfang.y), Integer (Texturfläche.x / 4.00), Integer (Texturfläche.y / 5.00)),
+                                                                     SkalierungExtern   => (ViewflächeExtern.x / (Texturfläche.x / 4.00), ViewflächeExtern.y / (Texturfläche.y / 5.00)));
       
    end ZusatztextKartenform;
 

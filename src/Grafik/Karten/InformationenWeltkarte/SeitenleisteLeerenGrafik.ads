@@ -24,6 +24,6 @@ package SeitenleisteLeerenGrafik is
    
 private
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
 
 end SeitenleisteLeerenGrafik;

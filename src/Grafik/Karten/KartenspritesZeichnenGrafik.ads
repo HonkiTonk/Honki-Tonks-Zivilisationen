@@ -33,18 +33,6 @@ package KartenspritesZeichnenGrafik is
    procedure StadtkarteZeichnen
      (TexturAccessExtern : in Sf.Graphics.sfTexture_Ptr);
 
-   procedure BefehlsknöpfespriteZeichnen
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 SpriteAccessExtern /= null
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
-
    procedure SpriteZeichnenVariabel
      (PositionExtern : in Sf.System.Vector2.sfVector2f;
       GrößeExtern : in Sf.System.Vector2.sfVector2f;
@@ -65,23 +53,6 @@ private
    Farbe : Sf.Graphics.Color.sfColor;
 
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
-
-   procedure SpriteZeichnen
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      SkalierungExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 SpriteAccessExtern /= null
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-               and
-                 SkalierungExtern.x > 0.00
-               and
-                 SkalierungExtern.y > 0.00
-              );
 
    procedure DurchsichtigesSpriteZeichnen
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;

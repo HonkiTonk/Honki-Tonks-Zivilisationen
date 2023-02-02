@@ -32,7 +32,7 @@ package body WeltkarteGrafik is
       Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
       
       CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
-      Feldposition := (0.00, 0.00);
+      Feldposition := GrafikRecordKonstanten.Nullposition;
             
       YAchseSchleife:
       for YAchseSchleifenwert in -Sichtbereich .. Sichtbereich loop

@@ -416,7 +416,8 @@ package body LeseEinheitenDatenbank is
    
    function Effektreichweite
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      EffektExtern : in KartengrundDatentypen.Effekt_Vorhanden_Enum)
       return KartenRecords.EffektbereichRecord
    is begin
             
@@ -427,7 +428,7 @@ package body LeseEinheitenDatenbank is
             return KartenRecordKonstanten.LeerEffektbereich;
             
          when others =>
-            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Effektreichweite;
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).Effektreichweite (EffektExtern);
       end case;
       
    end Effektreichweite;

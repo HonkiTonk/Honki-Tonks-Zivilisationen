@@ -31,7 +31,8 @@ package body PZBEingesetztLogik is
       SchreibeAllgemeines.PlanetVernichtet (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
       Zusammenbruchszeit := LeseAllgemeines.Zusammenbruchszeit;
       Vernichtungsbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                      IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                                                                      IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                                                      EffektExtern  => KartengrundDatentypen.Vernichtet_Enum);
       
       case
         Zusammenbruchszeit

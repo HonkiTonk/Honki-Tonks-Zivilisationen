@@ -1,5 +1,6 @@
 with KartenKonstanten;
 with KartenRecordKonstanten;
+with GrafikRecordKonstanten;
 
 with LeseCursor;
 
@@ -19,7 +20,7 @@ package body KoordinatenPositionUmwandlungen is
       
       Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
       CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
-      Feldposition := (0.00, 0.00);
+      Feldposition := GrafikRecordKonstanten.Nullposition;
             
       YAchseSchleife:
       for YAchseSchleifenwert in -Sichtbereich .. Sichtbereich loop
@@ -48,11 +49,11 @@ package body KoordinatenPositionUmwandlungen is
                           
          end loop XAchseSchleife;
          
-         Feldposition := (0.00, Feldposition.y + SichtweitenGrafik.KartenfelderAbmessung.y);
+         Feldposition := (GrafikRecordKonstanten.Nullposition.x, Feldposition.y + SichtweitenGrafik.KartenfelderAbmessung.y);
          
       end loop YAchseSchleife;
       
-      return (-1.00, -1.00);
+      return GrafikRecordKonstanten.FalschePosition;
       
    end KoordinatenZuKartenposition;
    
@@ -67,7 +68,7 @@ package body KoordinatenPositionUmwandlungen is
       
       Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
       CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
-      Feldposition := (0.00, 0.00);
+      Feldposition := GrafikRecordKonstanten.Nullposition;
             
       YAchseSchleife:
       for YAchseSchleifenwert in -Sichtbereich .. Sichtbereich loop
@@ -98,7 +99,7 @@ package body KoordinatenPositionUmwandlungen is
                           
          end loop XAchseSchleife;
          
-         Feldposition := (0.00, Feldposition.y + SichtweitenGrafik.KartenfelderAbmessung.y);
+         Feldposition := (GrafikRecordKonstanten.Nullposition.x, Feldposition.y + SichtweitenGrafik.KartenfelderAbmessung.y);
          
       end loop YAchseSchleife;
       

@@ -9,6 +9,7 @@ with ForschungKonstanten;
 with StadtKonstanten;
 with EinheitenKonstanten;
 with ViewKonstanten;
+with GrafikRecordKonstanten;
 
 with NachLogiktask;
 with Vergleiche;
@@ -374,7 +375,7 @@ package body MausauswahlLogik is
                                                            Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung)).y))
       is
          when False =>
-            return (-1.00, -1.00);
+            return GrafikRecordKonstanten.FalschePosition;
             
          when True =>
             return Mausposition;

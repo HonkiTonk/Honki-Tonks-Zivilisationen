@@ -40,7 +40,7 @@ private
 
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
    
    type TextAnzeigenArray is array (TextaccessVariablen.KarteAllgemeinesAccess'Range) of Boolean;

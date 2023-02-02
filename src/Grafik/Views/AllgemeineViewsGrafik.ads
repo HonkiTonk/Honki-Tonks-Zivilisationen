@@ -30,7 +30,7 @@ private
    Textbreite : Float;
    
    type ViewflächenArray is array (Flächen_Enum'Range) of Sf.System.Vector2.sfVector2f;
-   Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartgrößeView);
+   Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartView);
    
    Textposition : Sf.System.Vector2.sfVector2f;
 

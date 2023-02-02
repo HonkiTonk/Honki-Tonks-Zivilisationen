@@ -1,26 +1,5 @@
 package ChangelogVorlage is
-   
-   -- Version 0.0. => 0.0. (31..2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (30..2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.0. => 0.0. (29..2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
+  
    -- Version 0.0. => 0.0. (28..2023):
    
    -- 
@@ -203,16 +182,24 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.0. => 0.0. (02..2023):
+   -- Version 0.04.7230 => 0.0. (02..2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (01..2023):
+   -- Version 0.04.7120 => 0.04.7230 (01.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Arbeiterplatzierungssystem überarbeitet.
+   -- Anzeigesystem der Stadtumgebung überarbeitet.
+   -- Fehler korrigiert der zu einer falschen Skalierung der Feldproduktionstexte führen konnte.
+   -- Spritesverwaltungssystem eingebaut um ähnlich dem Textaccessverwaltungssystem eine bessere Zusammenführung gleicher Tätigkeiten zu erreichen.
+   -- Tests für ein besseres Speicehrsystem durchgeführt.
+   -- Kartengrößen sind jetzt Brüche der maximal möglichen Kartengröße.
+   -- Einheiten können jetzt nicht nur verschiedene Effekte erzeugen, es ist jetzt auch möglich verschiedene Bereiche für die jeweiligen Effekte festzulegen.
+   -- Effektbereiche der PZB sind jetzt Bruchteile der maximalen Kartengröße anstatt von festgelegten zahlenwerten.
+   -- Diverse Zahlen durch benannte Konstante ersetzt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
 
 end ChangelogVorlage;

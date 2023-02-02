@@ -25,7 +25,7 @@ private
    AktuelleTextbreite : Float;
    NeueTextbreite : Float;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
       
    PfeilAccess : constant Sf.Graphics.sfConvexShape_Ptr := Sf.Graphics.ConvexShape.create;

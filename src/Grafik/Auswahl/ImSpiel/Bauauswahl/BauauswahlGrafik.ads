@@ -41,9 +41,9 @@ private
 
    AktuellesBauprojekt : StadtRecords.BauprojektRecord;
 
-   ViewflächeGebäude : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
-   ViewflächeEinheiten : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
-   ViewflächeAktuell : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   ViewflächeGebäude : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   ViewflächeEinheiten : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   ViewflächeAktuell : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
 
    procedure Gebäude

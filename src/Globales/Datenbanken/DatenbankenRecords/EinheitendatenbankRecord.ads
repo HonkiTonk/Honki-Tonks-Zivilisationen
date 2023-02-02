@@ -34,7 +34,7 @@ package EinheitendatenbankRecord is
       Transportkapazität : EinheitenDatentypen.Transportplätze;
       
       Zusatzeffekt : KartenRecords.EffekteArray;
-      Effektreichweite : KartenRecords.EffektbereichRecord;
+      Effektreichweite : KartenRecords.EffektbereichArray;
       
    end record;
    

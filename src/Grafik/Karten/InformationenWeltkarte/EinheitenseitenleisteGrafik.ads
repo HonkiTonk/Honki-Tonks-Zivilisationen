@@ -63,7 +63,7 @@ private
       
    EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Leerwert : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
    TextpositionDebug : Sf.System.Vector2.sfVector2f;

@@ -23,7 +23,7 @@ private
 
    Textbreite : Float;
 
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    NeueViewfläche : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
 

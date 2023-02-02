@@ -9,6 +9,7 @@ with BewertungDatentypen;
 package KartenKonstanten is
    pragma Pure;
    use type KartenDatentypen.Ebene;
+   use type KartenDatentypen.Kartenfeld;
    
    LeerEAchse : constant KartenDatentypen.Ebene := KartenDatentypen.Ebene'First;
    LeerYAchse : constant KartenDatentypen.KartenfeldNatural := KartenDatentypen.KartenfeldNatural'First;
@@ -50,14 +51,15 @@ package KartenKonstanten is
    
    type StandardKartengrößenArray is array (RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
    StandardKartengrößen : constant StandardKartengrößenArray := (
-                                                                     RueckgabeDatentypen.Auswahl_Eins_Enum   => (20, 20),
-                                                                     RueckgabeDatentypen.Auswahl_Zwei_Enum   => (40, 40),
-                                                                     RueckgabeDatentypen.Auswahl_Drei_Enum   => (80, 80),
-                                                                     RueckgabeDatentypen.Auswahl_Vier_Enum   => (120, 80),
-                                                                     RueckgabeDatentypen.Auswahl_Fünf_Enum   => (120, 160),
-                                                                     RueckgabeDatentypen.Auswahl_Sechs_Enum  => (160, 160),
-                                                                     RueckgabeDatentypen.Auswahl_Sieben_Enum => (240, 240),
-                                                                     RueckgabeDatentypen.Auswahl_Acht_Enum   => (320, 320),
+                                                                     -- (20, 20), (40, 40), (80, 80), (120, 80), (120, 160), (160, 160), (240, 240), (320, 320), (Last, Last)
+                                                                     RueckgabeDatentypen.Auswahl_Eins_Enum   => (KartenDatentypen.KartenfeldPositiv'Last / 50, KartenDatentypen.KartenfeldPositiv'Last / 50),
+                                                                     RueckgabeDatentypen.Auswahl_Zwei_Enum   => (KartenDatentypen.KartenfeldPositiv'Last / 25, KartenDatentypen.KartenfeldPositiv'Last / 25),
+                                                                     RueckgabeDatentypen.Auswahl_Drei_Enum   => (KartenDatentypen.KartenfeldPositiv'Last / 12, KartenDatentypen.KartenfeldPositiv'Last / 12),
+                                                                     RueckgabeDatentypen.Auswahl_Vier_Enum   => (KartenDatentypen.KartenfeldPositiv'Last / 8, KartenDatentypen.KartenfeldPositiv'Last / 12),
+                                                                     RueckgabeDatentypen.Auswahl_Fünf_Enum   => (KartenDatentypen.KartenfeldPositiv'Last / 8, KartenDatentypen.KartenfeldPositiv'Last / 6),
+                                                                     RueckgabeDatentypen.Auswahl_Sechs_Enum  => (KartenDatentypen.KartenfeldPositiv'Last / 6, KartenDatentypen.KartenfeldPositiv'Last / 6),
+                                                                     RueckgabeDatentypen.Auswahl_Sieben_Enum => (KartenDatentypen.KartenfeldPositiv'Last / 4, KartenDatentypen.KartenfeldPositiv'Last / 4),
+                                                                     RueckgabeDatentypen.Auswahl_Acht_Enum   => (KartenDatentypen.KartenfeldPositiv'Last / 3, KartenDatentypen.KartenfeldPositiv'Last / 3),
                                                                      RueckgabeDatentypen.Auswahl_Neun_Enum   => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last)
                                                                     );
    

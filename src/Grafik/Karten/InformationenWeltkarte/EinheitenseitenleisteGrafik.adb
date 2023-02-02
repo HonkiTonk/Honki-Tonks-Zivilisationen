@@ -120,11 +120,11 @@ package body EinheitenseitenleisteGrafik is
             if
               Textbreite > MaximaleTextbreite
             then
-               Skalierung := (MaximaleTextbreite / Textbreite, 1.00);
+               Skalierung := (MaximaleTextbreite / Textbreite, GrafikRecordKonstanten.Standardskalierung.y);
                Textbreite := MaximaleTextbreite;
             
             else
-               Skalierung := (1.00, 1.00);
+               Skalierung := GrafikRecordKonstanten.Standardskalierung;
             end if;
             
             TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),

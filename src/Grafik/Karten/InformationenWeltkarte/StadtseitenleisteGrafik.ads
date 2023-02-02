@@ -83,7 +83,7 @@ private
    
    Bauprojekt : StadtRecords.BauprojektRecord;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Zwischenfläche : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
    Mausposition : Sf.System.Vector2.sfVector2f;

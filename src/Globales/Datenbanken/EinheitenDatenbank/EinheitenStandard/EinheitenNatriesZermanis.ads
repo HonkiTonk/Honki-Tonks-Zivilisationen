@@ -35,7 +35,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Steinzeitkämpfer
@@ -60,7 +60,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Bogenschütze
@@ -85,7 +85,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
       
                                                                                                -- Erstes Schiff
@@ -110,7 +110,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                                 Transportkapazität      => 1,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Bronzekämpfer
@@ -135,7 +135,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Eisenkämpfer
@@ -160,7 +160,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Streitwagen
@@ -185,7 +185,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Katapult
@@ -210,7 +210,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Balliste
@@ -235,7 +235,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Segelschiff
@@ -261,7 +261,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                                 Transportkapazität      => 2,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Großes Segelschiff
@@ -287,7 +287,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                                 Transportkapazität      => 4,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Gewehrkämpfer
@@ -312,7 +312,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Kanone
@@ -337,7 +337,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Dampfschiff
@@ -363,7 +363,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                                 Transportkapazität      => 4,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Motorschiff
@@ -389,7 +389,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Gigantisch_Transport_Enum,
                                                                                                 Transportkapazität      => 4,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- U-Boot
@@ -417,7 +417,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                                 Transportkapazität      => 2,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Gepanzerter Wagen
@@ -442,7 +442,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Panzer
@@ -467,7 +467,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Jäger
@@ -492,7 +492,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Bomber
@@ -517,7 +517,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Rakete
@@ -543,7 +543,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Düsenjäger
@@ -568,7 +568,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Düsenbomber
@@ -593,7 +593,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Atombombe
@@ -618,10 +618,11 @@ package EinheitenNatriesZermanis is
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (KartengrundDatentypen.Strahlung_Enum => True,
                                                                                                                             others                               => False),
-                                                                                                Effektreichweite        => (YAchseAnfang => -2,
-                                                                                                                            YAchseEnde   => 2,
-                                                                                                                            XAchseAnfang => -2,
-                                                                                                                            XAchseEnde   => 2)
+                                                                                                Effektreichweite        => (KartengrundDatentypen.Strahlung_Enum => (YAchseAnfang => -2,
+                                                                                                                                                                     YAchseEnde   => 2,
+                                                                                                                                                                     XAchseAnfang => -2,
+                                                                                                                                                                     XAchseEnde   => 2),
+                                                                                                                            others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Drohne
@@ -646,7 +647,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Gensoldat
@@ -671,7 +672,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Wassersiedler
@@ -698,7 +699,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Cyborg
@@ -723,7 +724,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Unterwasser/Unterirdischer Siedler
@@ -753,7 +754,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- PZB200
@@ -779,12 +780,11 @@ package EinheitenNatriesZermanis is
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => True,
                                                                                                                             others                                => False),
-                                                                                                Effektreichweite        => (
-                                                                                                                            YAchseAnfang => -100,
-                                                                                                                            YAchseEnde   => 100,
-                                                                                                                            XAchseAnfang => -100,
-                                                                                                                            XAchseEnde   => 100
-                                                                                                                           )
+                                                                                                Effektreichweite        => (KartengrundDatentypen.Vernichtet_Enum => (YAchseAnfang => KartenDatentypen.Kartenfeld'First / 10,
+                                                                                                                                                                      YAchseEnde   => KartenDatentypen.Kartenfeld'Last / 10,
+                                                                                                                                                                      XAchseAnfang => KartenDatentypen.Kartenfeld'First / 10,
+                                                                                                                                                                      XAchseEnde   => KartenDatentypen.Kartenfeld'Last / 10),
+                                                                                                                            others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- PZB400
@@ -810,12 +810,11 @@ package EinheitenNatriesZermanis is
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => True,
                                                                                                                             others                                => False),
-                                                                                                Effektreichweite        => (
-                                                                                                                            YAchseAnfang => -200,
-                                                                                                                            YAchseEnde   => 200,
-                                                                                                                            XAchseAnfang => -200,
-                                                                                                                            XAchseEnde   => 200
-                                                                                                                           )
+                                                                                                Effektreichweite        => (KartengrundDatentypen.Vernichtet_Enum => (YAchseAnfang => KartenDatentypen.Kartenfeld'First / 5,
+                                                                                                                                                                      YAchseEnde   => KartenDatentypen.Kartenfeld'Last / 5,
+                                                                                                                                                                      XAchseAnfang => KartenDatentypen.Kartenfeld'First / 5,
+                                                                                                                                                                      XAchseEnde   => KartenDatentypen.Kartenfeld'Last / 5),
+                                                                                                                            others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- PZB1000
@@ -841,12 +840,11 @@ package EinheitenNatriesZermanis is
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => True,
                                                                                                                             others                                => False),
-                                                                                                Effektreichweite        => (
-                                                                                                                            YAchseAnfang => KartenDatentypen.Kartenfeld'First,
-                                                                                                                            YAchseEnde   => KartenDatentypen.Kartenfeld'Last,
-                                                                                                                            XAchseAnfang => KartenDatentypen.Kartenfeld'First,
-                                                                                                                            XAchseEnde   => KartenDatentypen.Kartenfeld'Last
-                                                                                                                           )
+                                                                                                Effektreichweite        => (KartengrundDatentypen.Vernichtet_Enum => (YAchseAnfang => KartenDatentypen.Kartenfeld'First,
+                                                                                                                                                                      YAchseEnde   => KartenDatentypen.Kartenfeld'Last,
+                                                                                                                                                                      XAchseAnfang => KartenDatentypen.Kartenfeld'First,
+                                                                                                                                                                      XAchseEnde   => KartenDatentypen.Kartenfeld'Last),
+                                                                                                                            others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Gaußkämpfer
@@ -871,7 +869,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Magnetkämpfer
@@ -896,7 +894,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Schwebepanzer
@@ -923,7 +921,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Planetenkernsiedler
@@ -955,7 +953,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Himmel/Orbitalsiedler
@@ -984,7 +982,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Atmosphärenjäger
@@ -1010,7 +1008,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Atmosphärenbomber
@@ -1036,7 +1034,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Groß_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Artillerie
@@ -1061,7 +1059,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Stellare Artillerie
@@ -1088,7 +1086,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Mittel_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Gräberschiff
@@ -1118,7 +1116,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                                 Transportkapazität      => 4,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Kerngräber
@@ -1150,7 +1148,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Kein_Transport_Enum,
                                                                                                 Transportkapazität      => 1,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Moderne Infanterie
@@ -1175,7 +1173,7 @@ package EinheitenNatriesZermanis is
                                                                                                 KannTransportiertWerden => EinheitenDatentypen.Klein_Transport_Enum,
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (others => False),
-                                                                                                Effektreichweite        => KartenRecordKonstanten.LeerEffektbereich
+                                                                                                Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Biowaffe
@@ -1200,12 +1198,13 @@ package EinheitenNatriesZermanis is
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (KartengrundDatentypen.Biologisch_Enum => True,
                                                                                                                             others                                => False),
-                                                                                                Effektreichweite        => (YAchseAnfang => -2,
-                                                                                                                            YAchseEnde   => 2,
-                                                                                                                            XAchseAnfang => -2,
-                                                                                                                            XAchseEnde   => 2)
+                                                                                                Effektreichweite        => (KartengrundDatentypen.Biologisch_Enum => (YAchseAnfang => -2,
+                                                                                                                                                                      YAchseEnde   => 2,
+                                                                                                                                                                      XAchseAnfang => -2,
+                                                                                                                                                                      XAchseEnde   => 2),
+                                                                                                                            others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
-                                               
+                                                                                      
                                                                                                -- Chemische Waffe
                                                                                              46 =>
                                                                                                (
@@ -1228,10 +1227,11 @@ package EinheitenNatriesZermanis is
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (KartengrundDatentypen.Chemisch_Enum => True,
                                                                                                                             others                              => False),
-                                                                                                Effektreichweite        => (YAchseAnfang => -2,
-                                                                                                                            YAchseEnde   => 2,
-                                                                                                                            XAchseAnfang => -2,
-                                                                                                                            XAchseEnde   => 2)
+                                                                                                Effektreichweite        => (KartengrundDatentypen.Chemisch_Enum => (YAchseAnfang => -2,
+                                                                                                                                                                    YAchseEnde   => 2,
+                                                                                                                                                                    XAchseAnfang => -2,
+                                                                                                                                                                    XAchseEnde   => 2),
+                                                                                                                            others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Verschmutzende Waffe
@@ -1256,10 +1256,11 @@ package EinheitenNatriesZermanis is
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (KartengrundDatentypen.Verschmutzt_Enum => True,
                                                                                                                             others                                 => False),
-                                                                                                Effektreichweite        => (YAchseAnfang => -2,
-                                                                                                                            YAchseEnde   => 2,
-                                                                                                                            XAchseAnfang => -2,
-                                                                                                                            XAchseEnde   => 2)
+                                                                                                Effektreichweite        => (KartengrundDatentypen.Verschmutzt_Enum => (YAchseAnfang => -2,
+                                                                                                                                                                       YAchseEnde   => 2,
+                                                                                                                                                                       XAchseAnfang => -2,
+                                                                                                                                                                       XAchseEnde   => 2),
+                                                                                                                            others => KartenRecordKonstanten.LeerEffektbereich)
                                                                                                ),
                                                
                                                                                                -- Einmal alle Feldeffekte
@@ -1284,12 +1285,13 @@ package EinheitenNatriesZermanis is
                                                                                                 Transportkapazität      => 0,
                                                                                                 Zusatzeffekt            => (KartengrundDatentypen.Vernichtet_Enum => False,
                                                                                                                             others                                => True),
-                                                                                                Effektreichweite        => (YAchseAnfang => -2,
-                                                                                                                            YAchseEnde   => 2,
-                                                                                                                            XAchseAnfang => -2,
-                                                                                                                            XAchseEnde   => 2)
+                                                                                                Effektreichweite        => (KartengrundDatentypen.Vernichtet_Enum => KartenRecordKonstanten.LeerEffektbereich,
+                                                                                                                            others => (YAchseAnfang => -2,
+                                                                                                                                       YAchseEnde   => 2,
+                                                                                                                                       XAchseAnfang => -2,
+                                                                                                                                       XAchseEnde   => 2))
                                                                                                ),
-                                                                              
+                                                                                      
                                                                                              EinheitendatenbankRecord.EinheitenlisteArray'Last => DebugobjekteLogik.Alleskönner,
                                                                
                                                                                              others => EinheitenRecordKonstanten.LeerEinheitListe

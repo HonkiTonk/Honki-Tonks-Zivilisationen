@@ -104,7 +104,7 @@ package body SprachauswahlGrafik is
                                                    count => 7);
             Sf.Graphics.ConvexShape.setPoint (shape => PfeilAccess,
                                               index => 0,
-                                              point => (0.00, 0.00));
+                                              point => GrafikRecordKonstanten.Nullposition);
             Sf.Graphics.ConvexShape.setPoint (shape => PfeilAccess,
                                               index => 1,
                                               point => (40.00, 0.00));

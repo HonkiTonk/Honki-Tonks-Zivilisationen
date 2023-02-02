@@ -14,8 +14,6 @@ with KartenkoordinatenberechnungssystemLogik;
 with MausauswahlLogik;
 with StadtproduktionLogik;
 
--- with Diagnoseinformationen;
-
 package body EinwohnersystemLogik is
 
    function EinwohnerZuweisenEntfernen
@@ -28,59 +26,46 @@ package body EinwohnersystemLogik is
       Mausposition := MausauswahlLogik.Stadtumgebung;
       
       if
-        Mausposition.x < 0.00
+        Mausposition.x < GrafikKonstanten.Nullposition
       then
          return False;
          
       else
-         Test.x := Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung)).x / GrafikKonstanten.AnzahlStadtumgebungsfelder;
-         Test.y := Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung)).y / GrafikKonstanten.AnzahlStadtumgebungsfelder;
-         Stadtfeld := (-4, -4);
-         
-         
-         YAchseSchleife:
-         for YAchseSchleifenwert in 0 .. Positive (GrafikKonstanten.AnzahlStadtumgebungsfelder) - 1 loop
-            
-            if
-              Mausposition.y in Float (YAchseSchleifenwert) * Test.y .. Float (YAchseSchleifenwert + 1) * Test.y
-            then
-               Stadtfeld.YAchse := KartenDatentypen.Kartenfeld (YAchseSchleifenwert) - 3;
-               exit YAchseSchleife;
-               
-            else
-               null;
-            end if;
-               
-         end loop YAchseSchleife;
-         
-         XAchseSchleife:
-         for XAchseSchleifenwert in 0 .. Positive (GrafikKonstanten.AnzahlStadtumgebungsfelder) - 1 loop
-            
-            if
-              Mausposition.y in Float (XAchseSchleifenwert) * Test.x .. Float (XAchseSchleifenwert + 1) * Test.x
-            then
-               Stadtfeld.XAchse := KartenDatentypen.Kartenfeld (XAchseSchleifenwert) - 3;
-               exit XAchseSchleife;
-               
-            else
-               null;
-            end if;
-            
-         end loop XAchseSchleife;
+         Feldfläche := Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung));
+         Feldfläche.x := Feldfläche.x / GrafikKonstanten.AnzahlStadtumgebungsfelder;
+         Feldfläche.y := Feldfläche.y / GrafikKonstanten.AnzahlStadtumgebungsfelder;
+         Stadtfeld.YAchse := MausfeldPrüfen (MausachseExtern   => Mausposition.y,
+                                              BasiswertExtern   => Feldfläche.y,
+                                              AnfangswertExtern => 0,
+                                              EndwertExtern     => KartenDatentypen.Kartenfeld (Positive (GrafikKonstanten.AnzahlStadtumgebungsfelder) - 1));
       end if;
       
-      if
-        Stadtfeld.YAchse = -4
-        or
-          Stadtfeld.YAchse = -4
-      then
-         return False;
+      case
+        Stadtfeld.YAchse
+      is
+         when KartenDatentypen.Kartenfeld'First =>
+            return False;
             
-      else
-         Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                                                                                   ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Stadtfeld.YAchse, Stadtfeld.XAchse),
-                                                                                                   LogikGrafikExtern => True);
-      end if;
+         when others =>
+            Stadtfeld.YAchse := Stadtfeld.YAchse - 3;
+            Stadtfeld.XAchse := MausfeldPrüfen (MausachseExtern   => Mausposition.x,
+                                                 BasiswertExtern   => Feldfläche.x,
+                                                 AnfangswertExtern => 0,
+                                                 EndwertExtern     => KartenDatentypen.Kartenfeld (Positive (GrafikKonstanten.AnzahlStadtumgebungsfelder) - 1));
+      end case;
+      
+      case
+        Stadtfeld.XAchse
+      is
+         when KartenDatentypen.Kartenfeld'First =>
+            return False;
+            
+         when others =>
+            Stadtfeld.XAchse := Stadtfeld.XAchse - 3;
+            Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Stadtfeld.YAchse, Stadtfeld.XAchse),
+                                                                                                      LogikGrafikExtern => True);
+      end case;
       
       case
         Kartenwert.EAchse

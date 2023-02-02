@@ -5,6 +5,7 @@ with Sf.Window.Keyboard;
 
 with KartenDatentypen;
 with GrafikDatentypen;
+with GrafikRecordKonstanten;
 
 with NachLogiktask;
 with NachGrafiktask;
@@ -41,7 +42,7 @@ package body TasteneingabeGrafik is
                NachGrafiktask.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
                
             when Sf.Window.Event.sfEvtMouseLeft =>
-               NachLogiktask.Mausposition := (-1.00, -1.00);
+               NachLogiktask.Mausposition := GrafikRecordKonstanten.FalschePosition;
                
             when Sf.Window.Event.sfEvtMouseEntered =>
                NachLogiktask.Mausposition := (Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => EinstellungenGrafik.FensterAccess).x),

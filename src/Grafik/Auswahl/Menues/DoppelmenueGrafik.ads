@@ -22,7 +22,7 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
    
    type ViewflächenArray is array (GrafikRecordKonstanten.MenüDoppelbereich'Range) of Sf.System.Vector2.sfVector2f;
-   Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartgrößeView);
+   Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartView);
    
    Farbe : Sf.Graphics.Color.sfColor;
    

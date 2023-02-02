@@ -18,5 +18,33 @@ package body Vergleiche is
       end if;
       
    end Auswahlposition;
+   
+   
+   
+   function Achsenauswahlposition
+     (MausachseExtern : in Float;
+      BasiswertExtern : in Float;
+      AnfangswertExtern : in GanzeZahl;
+      EndwertExtern : in GanzeZahl)
+      return GanzeZahl
+   is begin
+      
+      AchseSchleife:
+      for AchseSchleifenwert in AnfangswertExtern .. EndwertExtern loop
+            
+         if
+           MausachseExtern in Float (AchseSchleifenwert) * BasiswertExtern .. Float (AchseSchleifenwert + 1) * BasiswertExtern
+         then
+            return AchseSchleifenwert;
+               
+         else
+            null;
+         end if;
+               
+      end loop AchseSchleife;
+      
+      return GanzeZahl'First;
+      
+   end Achsenauswahlposition;
 
 end Vergleiche;

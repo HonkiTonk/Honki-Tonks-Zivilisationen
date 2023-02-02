@@ -1,12 +1,11 @@
-with Sf.Graphics.RenderWindow;
-
 with GrafikKonstanten;
+with GrafikRecordKonstanten;
 
 with EingeleseneTexturenGrafik;
 with TexturenSetzenSkalierenGrafik;
-with EinstellungenGrafik;
 with Fehlermeldungssystem;
 with ObjekteZeichnenGrafik;
+with SpritesverwaltungssystemGrafik;
 
 package body HintergrundGrafik is
    
@@ -37,20 +36,17 @@ package body HintergrundGrafik is
                Farbe.a := GrafikKonstanten.Undurchsichtig;
                
             when GrafikDatentypen.Hintergrund_Durchsichtig_Enum =>
-               Farbe.a := 200;
+               Farbe.a := GrafikKonstanten.Hintergrundtransparents;
          end case;
          
-         Sf.Graphics.Sprite.setColor (sprite => HintergrundSpriteAccess,
-                                      color  => Farbe);
-                        
-         Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
-                                              object       => HintergrundSpriteAccess);
+         SpritesverwaltungssystemGrafik.FarbeZeichnen (SpriteAccessExtern => HintergrundSpriteAccess,
+                                                       FarbeExtern        => Farbe);
          
          return;
       end if;
       
       ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
-                                              PositionExtern  => (0.00, 0.00),
+                                              PositionExtern  => GrafikRecordKonstanten.Nullposition,
                                               FarbeExtern     => Sf.Graphics.Color.sfBlack);
       
    end Hintergrund;
@@ -76,29 +72,26 @@ package body HintergrundGrafik is
                                                                                                       TextureAccessExtern => EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, HintergrundExtern),
                                                                                                       GrößeExtern         => AbmessungenExtern));
          
-         -- Farbe := Sf.Graphics.Sprite.getColor (sprite => SpezieshintergrundSpriteAccess);
+         Farbe := Sf.Graphics.Sprite.getColor (sprite => SpezieshintergrundSpriteAccess);
          
-         -- case
-         --   HintergrundExtern
-         -- is
-         --   when GrafikDatentypen.Hintergrund_Undurchsichtig_Enum =>
-         --      Farbe.a := GrafikKonstanten.Undurchsichtig;
+        -- case
+        --   HintergrundExtern
+        -- is
+        --    when GrafikDatentypen.Hintergrund_Undurchsichtig_Enum =>
+               Farbe.a := GrafikKonstanten.Undurchsichtig;
                
-         --   when GrafikDatentypen.Hintergrund_Durchsichtig_Enum =>
-         --     Farbe.a := 150;
-         -- end case;
-         
-         --  Sf.Graphics.Sprite.setColor (sprite => SpezieshintergrundSpriteAccess,
-         --                               color  => Farbe);
-                        
-         Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
-                                              object       => SpezieshintergrundSpriteAccess);
+        --    when GrafikDatentypen.Hintergrund_Durchsichtig_Enum =>
+        --       Farbe.a := 150;
+        -- end case;
+        
+         SpritesverwaltungssystemGrafik.FarbeZeichnen (SpriteAccessExtern => SpezieshintergrundSpriteAccess,
+                                                       FarbeExtern        => Farbe);
          
          return;
       end if;
       
       ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
-                                              PositionExtern  => (0.00, 0.00),
+                                              PositionExtern  => GrafikRecordKonstanten.Nullposition,
                                               FarbeExtern     => Sf.Graphics.Color.sfBlack);
       
    end Spezieshintergrund;

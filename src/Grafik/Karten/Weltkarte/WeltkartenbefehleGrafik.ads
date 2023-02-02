@@ -34,8 +34,8 @@ private
    Textbreite : Float;
    Multiplikator : Float;
    
-   EinheitenViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
-   KartenbefehleViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   EinheitenViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   KartenbefehleViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
    Knopfposition : Sf.System.Vector2.sfVector2f;
    Spritegröße : Sf.System.Vector2.sfVector2f;

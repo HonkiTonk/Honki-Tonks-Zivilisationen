@@ -9,9 +9,9 @@ with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
 with ViewsEinstellenGrafik;
-with KartenspritesZeichnenGrafik;
 with TexturenSetzenSkalierenGrafik;
 with EingeleseneTexturenGrafik;
+with SpritesverwaltungssystemGrafik;
 
 package body WeltkartenbefehleGrafik is
    
@@ -69,8 +69,8 @@ package body WeltkartenbefehleGrafik is
       
       TexturenSetzenSkalierenGrafik.Textursetzung (SpriteAccessExtern  => SpriteAccess,
                                                    TextureAccessExtern => EingeleseneTexturenGrafik.SystemAccess (WelcheTexturExtern));
-      KartenspritesZeichnenGrafik.BefehlsknöpfespriteZeichnen (SpriteAccessExtern => SpriteAccess,
-                                                                PositionExtern     => (0.00, 0.00));
+      SpritesverwaltungssystemGrafik.PositionZeichnen (SpriteAccessExtern => SpriteAccess,
+                                                       PositionExtern     => GrafikRecordKonstanten.Nullposition);
       
       Teiler := 1;
       Textbox.width := Texturgröße.x / 3.00;
@@ -163,8 +163,8 @@ package body WeltkartenbefehleGrafik is
       
       TexturenSetzenSkalierenGrafik.Textursetzung (SpriteAccessExtern  => SpriteAccess,
                                                    TextureAccessExtern => EingeleseneTexturenGrafik.SystemAccess (BefehleDatentypen.Kartenknöpfe_Enum));
-      KartenspritesZeichnenGrafik.BefehlsknöpfespriteZeichnen (SpriteAccessExtern => SpriteAccess,
-                                                                PositionExtern     => (0.00, 0.00));
+      SpritesverwaltungssystemGrafik.PositionZeichnen (SpriteAccessExtern => SpriteAccess,
+                                                       PositionExtern     => GrafikRecordKonstanten.Nullposition);
       
       Teiler := 1;
       Multiplikator := 0.00;

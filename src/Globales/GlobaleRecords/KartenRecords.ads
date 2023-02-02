@@ -85,6 +85,12 @@ package KartenRecords is
    
    
    
+   type EffekteArray is array (KartengrundDatentypen.Effekt_Vorhanden_Enum'Range) of Boolean;
+   type EffektbereichArray is array (EffekteArray'Range) of EffektbereichRecord;
+   type FeldeffektArray is array (KartengrundDatentypen.Effekt_Kartenfeld_Enum'Range) of Boolean;
+   
+   
+   
    type FelderwertungArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
    type SichtbarkeitArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Boolean;
    
@@ -206,10 +212,5 @@ package KartenRecords is
       Links_Enum : Boolean;
             
    end record;
-   
-   
-   
-   type EffekteArray is array (KartengrundDatentypen.Effekt_Vorhanden_Enum'Range) of Boolean;
-   type FeldeffektArray is array (KartengrundDatentypen.Effekt_Kartenfeld_Enum'Range) of Boolean;
    
 end KartenRecords;

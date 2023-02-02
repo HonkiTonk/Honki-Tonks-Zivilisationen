@@ -9,7 +9,7 @@ package KartengrundEditorGrafik is
 
 private
 
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartgrößeView;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Grafikposition : Sf.System.Vector2.sfVector2f;
    Feldgröße : Sf.System.Vector2.sfVector2f;
 
