@@ -54,8 +54,8 @@ package body DiplomatischerZustandAenderbarLogik is
         ÄnderungMöglich
       is
          when True =>
-            DiplomatischerZustandLogik.DiplomatischenStatusÄndern (SpeziesEinsExtern   => SpeziesEinsExtern,
-                                                                    SpeziesZweiExtern   => SpeziesZweiExtern,
+            DiplomatischerZustandLogik.DiplomatischenStatusÄndern (SpeziesEinsExtern => SpeziesEinsExtern,
+                                                                    SpeziesZweiExtern => SpeziesZweiExtern,
                                                                     NeuerStatusExtern => NeuerStatusExtern);
             
          when False =>

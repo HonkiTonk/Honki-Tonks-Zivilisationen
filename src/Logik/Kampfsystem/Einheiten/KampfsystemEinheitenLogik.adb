@@ -77,15 +77,15 @@ package body KampfsystemEinheitenLogik is
            Kampfergebnis < 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
-                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
-                                                  RechnenSetzenExtern      => True);
+                                                  LebenspunkteExtern         => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  RechnenSetzenExtern        => True);
             
          elsif
            Kampfergebnis > 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern,
-                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
-                                                  RechnenSetzenExtern      => True);
+                                                  LebenspunkteExtern         => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
+                                                  RechnenSetzenExtern        => True);
             
          else
             null;
@@ -95,9 +95,9 @@ package body KampfsystemEinheitenLogik is
            LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
-                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => AngreiferExtern.Spezies,
-                                                                                                                              IDExtern     => IDAngreifer),
-                                                      AddierenSetzenExtern     => True);
+                                                      ErfahrungspunkteExtern     => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => AngreiferExtern.Spezies,
+                                                                                                                                IDExtern      => IDAngreifer),
+                                                      AddierenSetzenExtern       => True);
             
             EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => VerteidigerExtern);
             EffektberechnungenLogik.Effektberechnungen (EinheitSpeziesNummerExtern => AngreiferExtern);
@@ -108,9 +108,9 @@ package body KampfsystemEinheitenLogik is
            LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreiferExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern,
-                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => VerteidigerExtern.Spezies,
-                                                                                                                              IDExtern     => IDVerteidiger),
-                                                      AddierenSetzenExtern     => True);
+                                                      ErfahrungspunkteExtern     => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => VerteidigerExtern.Spezies,
+                                                                                                                                IDExtern      => IDVerteidiger),
+                                                      AddierenSetzenExtern       => True);
             
             EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => AngreiferExtern);
             EffektberechnungenLogik.Effektberechnungen (EinheitSpeziesNummerExtern => VerteidigerExtern);
@@ -128,15 +128,15 @@ package body KampfsystemEinheitenLogik is
            Kampfergebnis < 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern,
-                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
-                                                  RechnenSetzenExtern      => True);
+                                                  LebenspunkteExtern         => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  RechnenSetzenExtern        => True);
             
          elsif
            Kampfergebnis > 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
-                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
-                                                  RechnenSetzenExtern      => True);
+                                                  LebenspunkteExtern         => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
+                                                  RechnenSetzenExtern        => True);
             
          else
             null;
@@ -146,9 +146,9 @@ package body KampfsystemEinheitenLogik is
            LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
-                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => AngreiferExtern.Spezies,
-                                                                                                                              IDExtern    => IDAngreifer),
-                                                      AddierenSetzenExtern     => True);
+                                                      ErfahrungspunkteExtern     => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => AngreiferExtern.Spezies,
+                                                                                                                                IDExtern      => IDAngreifer),
+                                                      AddierenSetzenExtern       => True);
             
             EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => VerteidigerExtern);
             return True;
@@ -157,9 +157,9 @@ package body KampfsystemEinheitenLogik is
            LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreiferExtern) <= EinheitenKonstanten.LeerLebenspunkte
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern,
-                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => VerteidigerExtern.Spezies,
-                                                                                                                              IDExtern    => IDVerteidiger),
-                                                      AddierenSetzenExtern     => True);
+                                                      ErfahrungspunkteExtern     => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => VerteidigerExtern.Spezies,
+                                                                                                                                IDExtern      => IDVerteidiger),
+                                                      AddierenSetzenExtern       => True);
             EinheitenErzeugenEntfernenLogik.EinheitEntfernen (EinheitSpeziesNummerExtern => AngreiferExtern);
             return False;
             

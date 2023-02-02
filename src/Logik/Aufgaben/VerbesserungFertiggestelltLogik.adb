@@ -65,15 +65,15 @@ package body VerbesserungFertiggestelltLogik is
                
          when others =>
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                         ZeitExtern               => -1,
-                                                         RechnenSetzenExtern      => True);
+                                                         ZeitExtern                 => -1,
+                                                         RechnenSetzenExtern        => True);
       end case;
       
       if
         LeseEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerBeschäftigungszeit
       then
          MeldungenSetzenLogik.EinheitmeldungSetzen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                EreignisExtern           => EinheitenDatentypen.Aufgabe_Abgeschlossen_Enum);
+                                                    EreignisExtern             => EinheitenDatentypen.Aufgabe_Abgeschlossen_Enum);
          VerbesserungAngelegt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          AufgabeNachfolgerVerschieben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          
@@ -94,20 +94,20 @@ package body VerbesserungFertiggestelltLogik is
       is
          when EinheitenKonstanten.LeerBeschäftigung =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Leer_Aufgabe_Enum);
+                                                    AufgabeExtern             => KIDatentypen.Leer_Aufgabe_Enum);
             AufgabenAllgemeinLogik.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
 
          when others =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern     => LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                                                    BeschäftigungExtern        => LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                         ZeitExtern               => LeseEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                         RechnenSetzenExtern      => False);
+                                                         ZeitExtern                 => LeseEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                                         RechnenSetzenExtern        => False);
             SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                              BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
+                                                              BeschäftigungExtern        => EinheitenKonstanten.LeerBeschäftigung);
             SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                   ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
-                                                                   RechnenSetzenExtern      => False);
+                                                                   ZeitExtern                 => EinheitenKonstanten.LeerBeschäftigungszeit,
+                                                                   RechnenSetzenExtern        => False);
       end case;
       
    end AufgabeNachfolgerVerschieben;

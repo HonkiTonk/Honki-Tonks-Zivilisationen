@@ -122,21 +122,21 @@ package body DiplomatieLogik is
                                                                    KontaktierteSpeziesExtern => KontaktierteSpezies);
                   
                when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-                  DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern   => SpeziesExtern,
-                                                                                  SpeziesZweiExtern   => KontaktierteSpezies,
-                                                                                  NeuerStatusExtern => DiplomatieDatentypen.Nichtangriffspakt_Enum,
+                  DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern                   => SpeziesExtern,
+                                                                                  SpeziesZweiExtern                   => KontaktierteSpezies,
+                                                                                  NeuerStatusExtern                   => DiplomatieDatentypen.Nichtangriffspakt_Enum,
                                                                                   ZeitbegrenzungBerücksichtigenExtern => True);
                   
                when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-                  DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern   => SpeziesExtern,
-                                                                                  SpeziesZweiExtern   => KontaktierteSpezies,
-                                                                                  NeuerStatusExtern => DiplomatieDatentypen.Neutral_Enum,
+                  DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern                   => SpeziesExtern,
+                                                                                  SpeziesZweiExtern                   => KontaktierteSpezies,
+                                                                                  NeuerStatusExtern                   => DiplomatieDatentypen.Neutral_Enum,
                                                                                   ZeitbegrenzungBerücksichtigenExtern => True);
                   
                when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
-                  DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern   => SpeziesExtern,
-                                                                                  SpeziesZweiExtern   => KontaktierteSpezies,
-                                                                                  NeuerStatusExtern => DiplomatieDatentypen.Krieg_Enum,
+                  DiplomatischerZustandAenderbarLogik.StatusÄnderbarkeitPrüfen (SpeziesEinsExtern                   => SpeziesExtern,
+                                                                                  SpeziesZweiExtern                   => KontaktierteSpezies,
+                                                                                  NeuerStatusExtern                   => DiplomatieDatentypen.Krieg_Enum,
                                                                                   ZeitbegrenzungBerücksichtigenExtern => True);
                   
                when RueckgabeDatentypen.Hauptmenü_Enum | RueckgabeDatentypen.Zurück_Enum =>

@@ -38,7 +38,7 @@ package body AuswahlStadtEinheitLogik is
          for WirdTransportiertSchleifenwert in EinheitenRecords.TransporterArray'Range loop
             
             WelcheAuswahl.MöglicheAuswahlen (WirdTransportiertSchleifenwert) := LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerExtern),
-                                                                                                                    PlatzExtern              => WirdTransportiertSchleifenwert);
+                                                                                                                    PlatzExtern                => WirdTransportiertSchleifenwert);
             
          end loop TransporterSchleife;
       end if;

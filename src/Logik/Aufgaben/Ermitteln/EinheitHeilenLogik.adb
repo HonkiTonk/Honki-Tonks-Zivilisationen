@@ -18,7 +18,7 @@ package body EinheitHeilenLogik is
       if
         LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
         >= LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
+                                                        IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
       then
          return False;
          
@@ -31,7 +31,7 @@ package body EinheitHeilenLogik is
       is
          when True =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern     => AufgabenDatentypen.Heilen_Enum);
+                                                    BeschäftigungExtern        => AufgabenDatentypen.Heilen_Enum);
             
          when False =>
             null;

@@ -67,10 +67,10 @@ package body FeldeffektErmittelnLogik is
       is
          when True =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern     => AufgabenDatentypen.Feldeffekt_Entfernen_Enum);
+                                                    BeschäftigungExtern        => AufgabenDatentypen.Feldeffekt_Entfernen_Enum);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                         ZeitExtern               => 5,
-                                                         RechnenSetzenExtern      => False);
+                                                         ZeitExtern                 => 5,
+                                                         RechnenSetzenExtern        => False);
             
          when False =>
             null;

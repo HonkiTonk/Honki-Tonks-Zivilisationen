@@ -83,19 +83,19 @@ package body EinlesenSpeziestexteLogik is
          
                Close (File => DateiUnternull);
          
-               NameBeschreibung (SpeziesExtern     => SpeziesSchleifenwert,
+               NameBeschreibung (SpeziesExtern   => SpeziesSchleifenwert,
                                  DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (1)));
                
-               Städtenamen (SpeziesExtern     => SpeziesSchleifenwert,
+               Städtenamen (SpeziesExtern   => SpeziesSchleifenwert,
                              DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (2)));
                
-               Forschungen (SpeziesExtern     => SpeziesSchleifenwert,
+               Forschungen (SpeziesExtern   => SpeziesSchleifenwert,
                             DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (3)));
                
-               Einheiten (SpeziesExtern     => SpeziesSchleifenwert,
+               Einheiten (SpeziesExtern   => SpeziesSchleifenwert,
                           DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (4)));
                
-               Gebäude (SpeziesExtern     => SpeziesSchleifenwert,
+               Gebäude (SpeziesExtern   => SpeziesSchleifenwert,
                          DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (5)));
          end case;
          

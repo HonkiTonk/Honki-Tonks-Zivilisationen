@@ -61,9 +61,9 @@ package body KampfsystemStadtLogik is
       end if;
       
       return Kampf (AngreifendeEinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                    KampfwerteAngreiferExtern           => KampfwerteAngreifer,
+                    KampfwerteAngreiferExtern             => KampfwerteAngreifer,
                     VerteidigendeStadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
-                    KampfwerteVerteidigerExtern         => KampfwerteVerteidiger);
+                    KampfwerteVerteidigerExtern           => KampfwerteVerteidiger);
       
    end KampfsystemStadt;
    
@@ -105,17 +105,17 @@ package body KampfsystemStadtLogik is
          return True;
          
       else
-         FelderbewirtschaftungLogik.BewirtschaftbareFelderBelegen (ZuwachsSchwundExtern   => False,
+         FelderbewirtschaftungLogik.BewirtschaftbareFelderBelegen (ZuwachsSchwundExtern     => False,
                                                                    StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
          MeldungenSetzenLogik.StadtmeldungSetzen (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
-                                                  EreignisExtern         => StadtDatentypen.Einwohner_Reduktion_Enum);
+                                                  EreignisExtern           => StadtDatentypen.Einwohner_Reduktion_Enum);
          if
-           LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => VerteidigendeStadtSpeziesNummerExtern,
-                                              EinwohnerArbeiterExtern => True)
+           LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
+                                              EinwohnerArbeiterExtern  => True)
            = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, VerteidigendeStadtSpeziesNummerExtern.Spezies) - 1
            or
-             LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => VerteidigendeStadtSpeziesNummerExtern,
-                                                EinwohnerArbeiterExtern => True)
+             LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
+                                                EinwohnerArbeiterExtern  => True)
            = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, VerteidigendeStadtSpeziesNummerExtern.Spezies) - 1
          then
             StadtumgebungFestlegenLogik.StadtumgebungFestlegen (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
@@ -145,8 +145,8 @@ package body KampfsystemStadtLogik is
       use type EinheitenDatentypen.Lebenspunkte;
    begin
       
-      GesundheitStadt := Positive (LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => VerteidigendeStadtSpeziesNummerExtern,
-                                                                      EinwohnerArbeiterExtern => True));
+      GesundheitStadt := Positive (LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
+                                                                      EinwohnerArbeiterExtern  => True));
       
       IDAngreifer := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern);
       
@@ -160,8 +160,8 @@ package body KampfsystemStadtLogik is
            Kampfergebnis < 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
-                                                  RechnenSetzenExtern      => True);
+                                                  LebenspunkteExtern         => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  RechnenSetzenExtern        => True);
             
          elsif
            Kampfergebnis > 0
@@ -201,8 +201,8 @@ package body KampfsystemStadtLogik is
            Kampfergebnis < 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                  LebenspunkteExtern       => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
-                                                  RechnenSetzenExtern      => True);
+                                                  LebenspunkteExtern         => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  RechnenSetzenExtern        => True);
             
          elsif
            Kampfergebnis > 0
@@ -217,9 +217,9 @@ package body KampfsystemStadtLogik is
            GesundheitStadt <= 0
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies,
-                                                                                                                              IDExtern    => IDAngreifer),
-                                                      AddierenSetzenExtern     => True);
+                                                      ErfahrungspunkteExtern     => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies,
+                                                                                                                                IDExtern      => IDAngreifer),
+                                                      AddierenSetzenExtern       => True);
             return True;
             
          elsif

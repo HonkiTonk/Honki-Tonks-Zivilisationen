@@ -16,7 +16,7 @@ package body TransporterLadungsverschiebungLogik is
       for TransporterUmladenSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
          
          Ladungsnummer := LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                             PlatzExtern              => TransporterUmladenSchleifenwert);
+                                                             PlatzExtern                => TransporterUmladenSchleifenwert);
          
          case
            Ladungsnummer
@@ -26,12 +26,12 @@ package body TransporterLadungsverschiebungLogik is
                      
             when others =>
                SchreibeEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Ladungsnummer),
-                                                    KoordinatenExtern        => NeueKoordinatenExtern,
-                                                    EinheitentauschExtern    => False);
+                                                    KoordinatenExtern          => NeueKoordinatenExtern,
+                                                    EinheitentauschExtern      => False);
                
                -- Ruft sich hier selbst auf um Ladungen von Transportern die gerade transportiert werden ebenfalls zu verschieben.
                LadungVerschieben (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Ladungsnummer),
-                                  NeueKoordinatenExtern    => NeueKoordinatenExtern);
+                                  NeueKoordinatenExtern      => NeueKoordinatenExtern);
          end case;
          
       end loop TransporterUmladenSchleife;

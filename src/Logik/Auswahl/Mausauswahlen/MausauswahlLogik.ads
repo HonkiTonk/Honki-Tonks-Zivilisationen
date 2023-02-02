@@ -49,7 +49,7 @@ package MausauswahlLogik is
      return TastenbelegungDatentypen.Weltkartenbefehle_Enum;
    
    function Einheitenbefehle
-      return BefehleDatentypen.Einheitenbelegung_Enum;
+     return BefehleDatentypen.Einheitenbelegung_Enum;
    
    function Stadtumgebung
      return Sf.System.Vector2.sfVector2f;

@@ -39,21 +39,21 @@ package body TransporterBeladenEntladenLogik is
       end case;
             
       SchreibeEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
-                                             LadungExtern             => LadungExtern,
-                                             LadungsplatzExtern       => FreierPlatzNummer);
+                                             LadungExtern               => LadungExtern,
+                                             LadungsplatzExtern         => FreierPlatzNummer);
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern),
-                                               BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                               RechnenSetzenExtern      => False);
+                                               BewegungspunkteExtern      => EinheitenKonstanten.LeerBewegungspunkte,
+                                               RechnenSetzenExtern        => False);
       SchreibeEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern),
-                                                 TransporterExtern        => TransporterExtern.Nummer);
+                                                 TransporterExtern          => TransporterExtern.Nummer);
             
       NeueKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => TransporterExtern);
       SchreibeEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern),
-                                           KoordinatenExtern        => NeueKoordinaten,
-                                           EinheitentauschExtern    => False);
+                                           KoordinatenExtern          => NeueKoordinaten,
+                                           EinheitentauschExtern      => False);
             
       TransporterLadungsverschiebungLogik.LadungVerschieben (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern),
-                                                             NeueKoordinatenExtern    => NeueKoordinaten);
+                                                             NeueKoordinatenExtern      => NeueKoordinaten);
       
       return True;
       
@@ -69,20 +69,20 @@ package body TransporterBeladenEntladenLogik is
    begin
       
       Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
-                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern));
+                                                                           IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern));
       
       TransporterLeerenSchleife:
       for TransporterLeerenSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
 
          if
            LadungExtern = LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
-                                                             PlatzExtern              => TransporterLeerenSchleifenwert)
+                                                             PlatzExtern                => TransporterLeerenSchleifenwert)
          then
             SchreibeEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
-                                                   LadungExtern             => EinheitenKonstanten.LeerTransportiert,
-                                                   LadungsplatzExtern       => TransporterLeerenSchleifenwert);
+                                                   LadungExtern               => EinheitenKonstanten.LeerTransportiert,
+                                                   LadungsplatzExtern         => TransporterLeerenSchleifenwert);
             SchreibeEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern),
-                                                       TransporterExtern        => EinheitenKonstanten.LeerWirdTransportiert);
+                                                       TransporterExtern          => EinheitenKonstanten.LeerWirdTransportiert);
             exit TransporterLeerenSchleife;
             
          else

@@ -99,7 +99,7 @@ package body NaechsteEinheitLogik is
                
                case
                  LeseEinheitenGebaut.Meldungen (EinheitSpeziesNummerExtern => (SpeziesExtern, AktuelleEinheitMeldung (SpeziesExtern)),
-                                                WelcheMeldungExtern      => MeldungSchleifenwert)
+                                                WelcheMeldungExtern        => MeldungSchleifenwert)
                is
                   when EinheitenDatentypen.Leer_Einheit_Meldung_Enum =>
                      null;

@@ -37,7 +37,7 @@ package body EinheitenbewegungsbereichLogik is
                then
                   BewegungsbereichErmitteln (BewegungsfeldExtern             => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                              KoordinatenExtern               => AktuelleKoordinaten,
-                                             EinheitSpeziesNummerExtern        => EinheitSpeziesNummerExtern,
+                                             EinheitSpeziesNummerExtern      => EinheitSpeziesNummerExtern,
                                              NotwendigeBewegungspunkteExtern => 0,
                                              VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkte);
                
@@ -69,7 +69,7 @@ package body EinheitenbewegungsbereichLogik is
 
       case
         FeldPrüfen (NeueKoordinatenExtern           => Kartenwert,
-                     EinheitSpeziesNummerExtern        => EinheitSpeziesNummerExtern,
+                     EinheitSpeziesNummerExtern      => EinheitSpeziesNummerExtern,
                      NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern,
                      VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern)
       is
@@ -83,7 +83,7 @@ package body EinheitenbewegungsbereichLogik is
             Bewegungsbereich (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse) := True;
       end case;
 
-      ZusätzlicheBewegungspunkte := Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => Kartenwert,
+      ZusätzlicheBewegungspunkte := Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern      => Kartenwert,
                                                                                                         EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
@@ -153,7 +153,7 @@ package body EinheitenbewegungsbereichLogik is
                                                                                  BewegungsfeldExtern.YAchse + YAchseSchleifenwert,
                                                                                  BewegungsfeldExtern.XAchse + XAchseSchleifenwert),
                                              KoordinatenExtern               => KoordinatenExtern,
-                                             EinheitSpeziesNummerExtern        => EinheitSpeziesNummerExtern,
+                                             EinheitSpeziesNummerExtern      => EinheitSpeziesNummerExtern,
                                              NotwendigeBewegungspunkteExtern => NotwendigeBewegungspunkteExtern + ZusätzlicheBewegungspunkte,
                                              VorhandeneBewegungspunkteExtern => VorhandeneBewegungspunkteExtern);
                end if;
@@ -185,14 +185,14 @@ package body EinheitenbewegungsbereichLogik is
          
       elsif
         False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                          NeueKoordinatenExtern    => NeueKoordinatenExtern)
+                                                                          NeueKoordinatenExtern      => NeueKoordinatenExtern)
       then
          return SystemDatentypen.False_Enum;
          
       elsif
         Bewegungsbereich (NeueKoordinatenExtern.EAchse, NeueKoordinatenExtern.YAchse, NeueKoordinatenExtern.XAchse) = False
       then
-         ZwischenrechnungBewegungspunkte := NotwendigeBewegungspunkteExtern + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => NeueKoordinatenExtern,
+         ZwischenrechnungBewegungspunkte := NotwendigeBewegungspunkteExtern + Positive (BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern      => NeueKoordinatenExtern,
                                                                                                                                                  EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
          
       else
@@ -212,10 +212,10 @@ package body EinheitenbewegungsbereichLogik is
          return SystemDatentypen.False_Enum;
          
       else
-         Stadt := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                             KoordinatenExtern => NeueKoordinatenExtern);
+         Stadt := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+                                                                               KoordinatenExtern => NeueKoordinatenExtern);
          Einheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinatenExtern,
-                                                                          LogikGrafikExtern => True);
+                                                                            LogikGrafikExtern => True);
       end if;
       
       if

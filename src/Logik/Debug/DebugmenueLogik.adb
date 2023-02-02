@@ -75,16 +75,16 @@ package body DebugmenueLogik is
             null;
             
          when SpeziesDatentypen.KI_Spieler_Enum =>
-            SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => Wechsel (TasteExtern),
+            SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => Wechsel (TasteExtern),
                                               BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
             
-            SchreibeCursor.KoordinatenAktuell (SpeziesExtern       => Wechsel (TasteExtern),
+            SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => Wechsel (TasteExtern),
                                                KoordinatenExtern => (0, 1, 1));
-            SchreibeCursor.KoordinatenAlt (SpeziesExtern       => Wechsel (TasteExtern),
+            SchreibeCursor.KoordinatenAlt (SpeziesExtern     => Wechsel (TasteExtern),
                                            KoordinatenExtern => (0, 1, 1));
                                              
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            SchreibeSpeziesbelegung.Belegung (SpeziesExtern    => Wechsel (TasteExtern),
+            SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => Wechsel (TasteExtern),
                                               BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
       end case;
                                              
@@ -105,7 +105,7 @@ package body DebugmenueLogik is
             for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
             
                SchreibeWeltkarte.Sichtbar (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                           SpeziesExtern       => SpeziesExtern,
+                                           SpeziesExtern     => SpeziesExtern,
                                            SichtbarExtern    => True);
                
             end loop XAchseSchleife;
@@ -141,7 +141,7 @@ package body DebugmenueLogik is
             else
                SchreibeDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesEinsSchleifenwert,
                                                     SpeziesZweiExtern => SpeziesZweiSchleifenwert,
-                                                    ZustandExtern   => NeuerStatusExtern);
+                                                    ZustandExtern     => NeuerStatusExtern);
             end if;
             
          end loop SpeziesZweiteSchleife;

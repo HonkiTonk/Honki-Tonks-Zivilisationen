@@ -62,7 +62,7 @@ package body VerbesserungPluendernLogik is
          when others =>
             SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                             VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
-            SchreibeWichtiges.Geldmenge (SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
+            SchreibeWichtiges.Geldmenge (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                          GeldZugewinnExtern  => 10,
                                          RechnenSetzenExtern => True);
       end case;
@@ -75,7 +75,7 @@ package body VerbesserungPluendernLogik is
             
          when others =>
             WegeplatzierungssystemLogik.Wegentfernung (KoordinatenExtern => KoordinatenExtern);
-            SchreibeWichtiges.Geldmenge (SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
+            SchreibeWichtiges.Geldmenge (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
                                          GeldZugewinnExtern  => 5,
                                          RechnenSetzenExtern => True);
       end case;

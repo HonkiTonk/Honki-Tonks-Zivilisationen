@@ -15,7 +15,7 @@ package body BewegungspunkteBerechnenLogik is
       
       AktuelleBewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      BenötigteBewegungspunkte := NotwendigeBewegungspunkte (NeueKoordinatenExtern    => NeueKoordinatenExtern,
+      BenötigteBewegungspunkte := NotwendigeBewegungspunkte (NeueKoordinatenExtern      => NeueKoordinatenExtern,
                                                               EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       if
@@ -40,7 +40,7 @@ package body BewegungspunkteBerechnenLogik is
    is begin
             
       BewegungspunkteNotwendig := NotwendigeBewegungspunkteErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                      NeueKoordinatenExtern    => NeueKoordinatenExtern);
+                                                                      NeueKoordinatenExtern      => NeueKoordinatenExtern);
       
       if
         BewegungspunkteNotwendig < EinheitenKonstanten.MinimalerBewegungspunkt
@@ -70,11 +70,11 @@ package body BewegungspunkteBerechnenLogik is
             EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
 
             if
-              True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies,
+              True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                             IDExtern             => EinheitID,
                                                             WelcheUmgebungExtern => EinheitenDatentypen.Luft_Enum)
               or
-                True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => EinheitSpeziesNummerExtern.Spezies,
+                True = LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
                                                               IDExtern             => EinheitID,
                                                               WelcheUmgebungExtern => EinheitenDatentypen.Weltraum_Enum)
             then
@@ -90,11 +90,11 @@ package body BewegungspunkteBerechnenLogik is
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => NeueKoordinatenExtern);
       
-      BewegungspunkteGesamt := Positive (LeseKartenDatenbanken.BewegungBasisgrund (GrundExtern => Gesamtgrund.Basisgrund,
+      BewegungspunkteGesamt := Positive (LeseKartenDatenbanken.BewegungBasisgrund (GrundExtern   => Gesamtgrund.Basisgrund,
                                                                                    SpeziesExtern => EinheitSpeziesNummerExtern.Spezies))
-        + Natural (LeseKartenDatenbanken.BewegungZusatzgrund (GrundExtern => Gesamtgrund.Zusatzgrund,
+        + Natural (LeseKartenDatenbanken.BewegungZusatzgrund (GrundExtern   => Gesamtgrund.Zusatzgrund,
                                                               SpeziesExtern => EinheitSpeziesNummerExtern.Spezies))
-        + Integer (LeseVerbesserungenDatenbank.BewegungWeg (WegExtern   => LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern),
+        + Integer (LeseVerbesserungenDatenbank.BewegungWeg (WegExtern     => LeseWeltkarte.Weg (KoordinatenExtern => NeueKoordinatenExtern),
                                                             SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
       
       if

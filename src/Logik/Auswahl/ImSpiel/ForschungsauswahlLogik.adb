@@ -30,7 +30,7 @@ package body ForschungsauswahlLogik is
          null;
                
       else
-         SchreibeWichtiges.Forschungsprojekt (SpeziesExtern       => SpeziesExtern,
+         SchreibeWichtiges.Forschungsprojekt (SpeziesExtern     => SpeziesExtern,
                                               ForschungIDExtern => WasErforschtWerdenSoll);
       end if;
       
@@ -46,7 +46,7 @@ package body ForschungsauswahlLogik is
       ForschungSchleife:
       for ForschungenSchleifenwert in ForschungenDatentypen.ForschungID loop
          
-         InteraktionAuswahl.MöglicheForschungen (ForschungenSchleifenwert) := ForschungstestsLogik.ForschungAnforderungErfüllt (SpeziesExtern       => SpeziesExtern,
+         InteraktionAuswahl.MöglicheForschungen (ForschungenSchleifenwert) := ForschungstestsLogik.ForschungAnforderungErfüllt (SpeziesExtern     => SpeziesExtern,
                                                                                                                                   ForschungIDExtern => ForschungenSchleifenwert);
          
       end loop ForschungSchleife;
@@ -146,9 +146,9 @@ package body ForschungsauswahlLogik is
       end loop ErfolgSchleife;
       
       -- Das Setzen auf Leer ist nötig damit die Grafik nicht die alte Forschung anzeigt, wenn man eine neue Forschung auswählt.
-      SchreibeWichtiges.Forschungsprojekt (SpeziesExtern       => SpeziesExtern,
+      SchreibeWichtiges.Forschungsprojekt (SpeziesExtern     => SpeziesExtern,
                                            ForschungIDExtern => ForschungKonstanten.LeerForschung);
-      SchreibeWichtiges.Forschungsprojekt (SpeziesExtern       => SpeziesExtern,
+      SchreibeWichtiges.Forschungsprojekt (SpeziesExtern     => SpeziesExtern,
                                            ForschungIDExtern => Forschungsmöglichkeiten (SpeziesExtern => SpeziesExtern));
       
       NachGrafiktask.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;

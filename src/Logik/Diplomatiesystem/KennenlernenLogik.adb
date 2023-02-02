@@ -18,8 +18,8 @@ package body KennenlernenLogik is
                                          SpeziesZweiExtern => FremdeSpeziesExtern)
       is
          when DiplomatieDatentypen.Unbekannt_Enum =>
-            DiplomatischerZustandLogik.DiplomatischenStatusÄndern (SpeziesEinsExtern   => EigeneSpeziesExtern,
-                                                                    SpeziesZweiExtern   => FremdeSpeziesExtern,
+            DiplomatischerZustandLogik.DiplomatischenStatusÄndern (SpeziesEinsExtern => EigeneSpeziesExtern,
+                                                                    SpeziesZweiExtern => FremdeSpeziesExtern,
                                                                     NeuerStatusExtern => DiplomatieDatentypen.Neutral_Enum);
                
          when others =>

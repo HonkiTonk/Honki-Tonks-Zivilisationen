@@ -18,19 +18,19 @@ package body DiplomatischerZustandLogik is
       
       SchreibeDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesEinsExtern,
                                            SpeziesZweiExtern => SpeziesZweiExtern,
-                                           ZustandExtern   => NeuerStatusExtern);
+                                           ZustandExtern     => NeuerStatusExtern);
       
       SchreibeDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesZweiExtern,
                                            SpeziesZweiExtern => SpeziesEinsExtern,
-                                           ZustandExtern   => NeuerStatusExtern);
+                                           ZustandExtern     => NeuerStatusExtern);
       
-      SchreibeDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern     => SpeziesEinsExtern,
-                                           SpeziesZweiExtern     => SpeziesZweiExtern,
-                                           ÄnderungExtern      => 0,
+      SchreibeDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern   => SpeziesEinsExtern,
+                                            SpeziesZweiExtern   => SpeziesZweiExtern,
+                                            ÄnderungExtern      => 0,
                                             RechnenSetzenExtern => False);
       
-      SchreibeDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern     => SpeziesZweiExtern,
-                                            SpeziesZweiExtern     => SpeziesEinsExtern,
+      SchreibeDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern   => SpeziesZweiExtern,
+                                            SpeziesZweiExtern   => SpeziesEinsExtern,
                                             ÄnderungExtern      => 0,
                                             RechnenSetzenExtern => False);
             
@@ -38,13 +38,13 @@ package body DiplomatischerZustandLogik is
         NeuerStatusExtern
       is
          when DiplomatieDatentypen.Krieg_Enum =>
-            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern     => SpeziesEinsExtern,
-                                                  SpeziesZweiExtern     => SpeziesZweiExtern,
+            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => SpeziesEinsExtern,
+                                                  SpeziesZweiExtern   => SpeziesZweiExtern,
                                                   SympathieExtern     => -30,
                                                   RechnenSetzenExtern => False);
             
-            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern     => SpeziesZweiExtern,
-                                                  SpeziesZweiExtern     => SpeziesEinsExtern,
+            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => SpeziesZweiExtern,
+                                                  SpeziesZweiExtern   => SpeziesEinsExtern,
                                                   SympathieExtern     => -30,
                                                   RechnenSetzenExtern => False);
             
@@ -76,8 +76,8 @@ package body DiplomatischerZustandLogik is
             elsif
               JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageKriegErklären) = True
             then
-               DiplomatischenStatusÄndern (SpeziesEinsExtern   => EigeneSpeziesExtern,
-                                            SpeziesZweiExtern   => GegnerischeSpeziesExtern,
+               DiplomatischenStatusÄndern (SpeziesEinsExtern => EigeneSpeziesExtern,
+                                            SpeziesZweiExtern => GegnerischeSpeziesExtern,
                                             NeuerStatusExtern => DiplomatieDatentypen.Krieg_Enum);
                return True;
                   

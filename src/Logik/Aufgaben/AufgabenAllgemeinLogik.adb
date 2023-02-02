@@ -7,16 +7,16 @@ package body AufgabenAllgemeinLogik is
    is begin
       
       SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                              BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
+                                              BeschäftigungExtern       => EinheitenKonstanten.LeerBeschäftigung);
       SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                   ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
-                                                   RechnenSetzenExtern      => False);
+                                                   ZeitExtern                 => EinheitenKonstanten.LeerBeschäftigungszeit,
+                                                   RechnenSetzenExtern        => False);
       
       SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                        BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
+                                                        BeschäftigungExtern        => EinheitenKonstanten.LeerBeschäftigung);
       SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                             ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
-                                                             RechnenSetzenExtern      => False);
+                                                             ZeitExtern                 => EinheitenKonstanten.LeerBeschäftigungszeit,
+                                                             RechnenSetzenExtern        => False);
       
    end Nullsetzung;
 

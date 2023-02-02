@@ -30,7 +30,7 @@ package body PassierbarkeitspruefungLogik is
             return False;
             
          when others =>
-            return PassierbarkeitPrüfenID (SpeziesExtern                => EinheitSpeziesNummerExtern.Spezies,
+            return PassierbarkeitPrüfenID (SpeziesExtern              => EinheitSpeziesNummerExtern.Spezies,
                                             IDExtern                   => IDEinheit,
                                             NeueKoordinatenExtern      => NeueKoordinatenExtern,
                                             StadtBerücksichtigenExtern => True);
@@ -54,7 +54,7 @@ package body PassierbarkeitspruefungLogik is
       for PassierbarkeitSchleifenwert in EinheitenDatentypen.Passierbarkeit_Enum'Range loop
          
          case
-           LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern          => SpeziesExtern,
+           LeseEinheitenDatenbank.Passierbarkeit (SpeziesExtern        => SpeziesExtern,
                                                   IDExtern             => IDExtern,
                                                   WelcheUmgebungExtern => PassierbarkeitSchleifenwert)
          is
@@ -62,7 +62,7 @@ package body PassierbarkeitspruefungLogik is
                Passierbar := False;
                
             when True =>
-               Passierbar := IstPassierbar (SpeziesExtern                => SpeziesExtern,
+               Passierbar := IstPassierbar (SpeziesExtern              => SpeziesExtern,
                                             UmgebungExtern             => PassierbarkeitSchleifenwert,
                                             NeueKoordinatenExtern      => NeueKoordinatenExtern,
                                             StadtBerücksichtigenExtern => StadtBerücksichtigenExtern);
@@ -110,7 +110,7 @@ package body PassierbarkeitspruefungLogik is
         StadtBerücksichtigenExtern
       is
          when True =>
-            StadtVorhanden := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
+            StadtVorhanden := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
                                                                                  KoordinatenExtern => NeueKoordinatenExtern);
             
          when False =>
@@ -121,7 +121,7 @@ package body PassierbarkeitspruefungLogik is
         StadtVorhanden
       is
          when StadtKonstanten.LeerNummer =>
-            return IstNichtPassierbar (SpeziesExtern           => SpeziesExtern,
+            return IstNichtPassierbar (SpeziesExtern         => SpeziesExtern,
                                        UmgebungExtern        => UmgebungExtern,
                                        NeueKoordinatenExtern => NeueKoordinatenExtern);
             
@@ -236,12 +236,12 @@ package body PassierbarkeitspruefungLogik is
                
             elsif
               False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                               KoordinatenExtern      => KartenWert)
+                                                               KoordinatenExtern        => KartenWert)
             then
                null;
             
             elsif
-              False = PassierbarkeitPrüfenID (SpeziesExtern                => StadtSpeziesNummerExtern.Spezies,
+              False = PassierbarkeitPrüfenID (SpeziesExtern              => StadtSpeziesNummerExtern.Spezies,
                                                IDExtern                   => EinheitenIDExtern,
                                                NeueKoordinatenExtern      => KartenWert,
                                                StadtBerücksichtigenExtern => False)

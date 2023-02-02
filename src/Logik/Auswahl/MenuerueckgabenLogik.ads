@@ -50,7 +50,7 @@ private
                                   MenueDatentypen.Kartenressourcen_Menü_Enum   => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenressourcen_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Kartentemperatur_Menü_Enum   => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartentemperatur_Menü_Enum) - AbzugFertig,
-                                  MenueDatentypen.Spezies_Menü_Enum             => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Spezies_Menü_Enum) - AbzugFertig,
+                                  MenueDatentypen.Spezies_Menü_Enum            => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Spezies_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Kartenpole_Menü_Enum         => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenpole_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Kartenform_Menü_Enum         => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenform_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Kartengröße_Menü_Enum        => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartengröße_Menü_Enum) - AbzugFertig,

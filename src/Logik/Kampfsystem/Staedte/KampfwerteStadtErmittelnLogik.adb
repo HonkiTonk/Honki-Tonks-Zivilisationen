@@ -27,12 +27,12 @@ package body KampfwerteStadtErmittelnLogik is
          
          if
            False = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                      WelchesGebäudeExtern   => GebäudeSchleifenwert)
+                                                      WelchesGebäudeExtern     => GebäudeSchleifenwert)
          then
             null;
             
          else
-            VerteidigungWert := VerteidigungWert + LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
+            VerteidigungWert := VerteidigungWert + LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => StadtSpeziesNummerExtern.Spezies,
                                                                                      IDExtern         => GebäudeSchleifenwert,
                                                                                      KampfBonusExtern => KartenKonstanten.KampfVerteidigung);
          end if;
@@ -53,22 +53,22 @@ package body KampfwerteStadtErmittelnLogik is
    begin
       
       AngriffWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                                                    SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+                                                                    SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                     WelcherWertExtern  => KartenKonstanten.KampfAngriff)
         + KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                              SpeziesExtern       => StadtSpeziesNummerExtern.Spezies);
+                                              SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
          if
            False = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                      WelchesGebäudeExtern   => GebäudeSchleifenwert)
+                                                      WelchesGebäudeExtern     => GebäudeSchleifenwert)
          then
             null;
             
          else
-            AngriffWert := AngriffWert + LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
+            AngriffWert := AngriffWert + LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => StadtSpeziesNummerExtern.Spezies,
                                                                            IDExtern         => GebäudeSchleifenwert,
                                                                            KampfBonusExtern => KartenKonstanten.KampfAngriff);
          end if;

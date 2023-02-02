@@ -21,7 +21,7 @@ package body ForschungstestsLogik is
             return True;
             
          when others =>
-            return LeseWichtiges.Erforscht (SpeziesExtern             => SpeziesExtern,
+            return LeseWichtiges.Erforscht (SpeziesExtern           => SpeziesExtern,
                                             WelcheTechnologieExtern => TechnologieExtern);
       end case;
             
@@ -36,7 +36,7 @@ package body ForschungstestsLogik is
    is begin
    
       case
-        LeseWichtiges.Erforscht (SpeziesExtern             => SpeziesExtern,
+        LeseWichtiges.Erforscht (SpeziesExtern           => SpeziesExtern,
                                  WelcheTechnologieExtern => ForschungIDExtern)
       is
          when True =>
@@ -49,12 +49,12 @@ package body ForschungstestsLogik is
       AnforderungSchleife:
       for AnforderungSchleifenwert in ForschungenDatentypen.AnforderungForschungArray'Range loop
             
-         Forschungsanforderungen := LeseForschungenDatenbank.AnforderungForschung (SpeziesExtern             => SpeziesExtern,
+         Forschungsanforderungen := LeseForschungenDatenbank.AnforderungForschung (SpeziesExtern           => SpeziesExtern,
                                                                                    IDExtern                => ForschungIDExtern,
                                                                                    WelcheAnforderungExtern => AnforderungSchleifenwert);
          
          case
-           TechnologieVorhanden (SpeziesExtern       => SpeziesExtern,
+           TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
                                  TechnologieExtern => Forschungsanforderungen)
          is
             when True =>

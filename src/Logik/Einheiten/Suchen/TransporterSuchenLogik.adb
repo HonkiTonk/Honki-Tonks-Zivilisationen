@@ -23,7 +23,7 @@ package body TransporterSuchenLogik is
             
          elsif
            EinheitenKonstanten.LeerKannTransportieren = LeseEinheitenDatenbank.KannTransportieren (SpeziesExtern => SpeziesExtern,
-                                                                                                   IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert)))
+                                                                                                   IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert)))
          then
             null;
             
@@ -46,14 +46,14 @@ package body TransporterSuchenLogik is
    is begin
       
       Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
-                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern));
+                                                                           IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern));
 
       TransporterSchleife:
       for TransporterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
          
          if
            LadungExtern = LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
-                                                             PlatzExtern              => TransporterPlatzSchleifenwert)
+                                                             PlatzExtern                => TransporterPlatzSchleifenwert)
          then
             return TransporterPlatzSchleifenwert;
             
@@ -82,7 +82,7 @@ package body TransporterSuchenLogik is
          
          if
            EinheitenKonstanten.LeerTransportiert /= LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                       PlatzExtern              => TransporterPlatzSchleifenwert)
+                                                                                       PlatzExtern                => TransporterPlatzSchleifenwert)
          then
             return True;
             
@@ -104,14 +104,14 @@ package body TransporterSuchenLogik is
    is begin
       
       Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
-                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern));
+                                                                           IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern));
       
       TransporterSchleife:
       for FreierPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
         
          case
            LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
-                                              PlatzExtern              => FreierPlatzSchleifenwert)
+                                              PlatzExtern                => FreierPlatzSchleifenwert)
          is
             when EinheitenKonstanten.LeerTransportiert =>
                return FreierPlatzSchleifenwert;

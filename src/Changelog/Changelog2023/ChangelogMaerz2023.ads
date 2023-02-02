@@ -1,216 +1,216 @@
 package ChangelogVorlage is
    
-   -- Version 0.0. => 0.0. (31..2023):
+   -- Version 0.0. => 0.0. (31.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (30..2023):
+   -- Version 0.0. => 0.0. (30.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29..2023):
+   -- Version 0.0. => 0.0. (29.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28..2023):
+   -- Version 0.0. => 0.0. (28.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27..2023):
+   -- Version 0.0. => 0.0. (27.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26..2023):
+   -- Version 0.0. => 0.0. (26.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25..2023):
+   -- Version 0.0. => 0.0. (25.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24..2023):
+   -- Version 0.0. => 0.0. (24.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23..2023):
+   -- Version 0.0. => 0.0. (23.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22..2023):
+   -- Version 0.0. => 0.0. (22.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21..2023):
+   -- Version 0.0. => 0.0. (21.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20..2023):
+   -- Version 0.0. => 0.0. (20.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (19..2023):
+   -- Version 0.0. => 0.0. (19.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18..2023):
+   -- Version 0.0. => 0.0. (18.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17..2023):
+   -- Version 0.0. => 0.0. (17.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (16..2023):
+   -- Version 0.0. => 0.0. (16.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (15..2023):
+   -- Version 0.0. => 0.0. (15.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (14..2023):
+   -- Version 0.0. => 0.0. (14.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (13..2023):
+   -- Version 0.0. => 0.0. (13.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (12..2023):
+   -- Version 0.0. => 0.0. (12.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (11..2023):
+   -- Version 0.0. => 0.0. (11.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (10..2023):
+   -- Version 0.0. => 0.0. (10.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (09..2023):
+   -- Version 0.0. => 0.0. (09.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (08..2023):
+   -- Version 0.0. => 0.0. (08.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (07..2023):
+   -- Version 0.0. => 0.0. (07.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (06..2023):
+   -- Version 0.0. => 0.0. (06.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (05..2023):
+   -- Version 0.0. => 0.0. (05.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (04..2023):
+   -- Version 0.0. => 0.0. (04.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (03..2023):
+   -- Version 0.0. => 0.0. (03.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (02..2023):
+   -- Version 0.0. => 0.0. (02.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (01..2023):
+   -- Version 0.0. => 0.0. (01.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.

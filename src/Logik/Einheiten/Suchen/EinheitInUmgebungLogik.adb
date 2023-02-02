@@ -57,10 +57,10 @@ package body EinheitInUmgebungLogik is
                if
                  True = EinheitFinden (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)),
                                        UmgebungExtern    => LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) + 1,
-                                       SpeziesExtern       => SpeziesExtern)
+                                       SpeziesExtern     => SpeziesExtern)
                then
                   MeldungenSetzenLogik.StadtmeldungSetzen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert),
-                                                           EreignisExtern         => StadtDatentypen.Fremde_Einheit_Nahe_Stadt_Enum);
+                                                           EreignisExtern           => StadtDatentypen.Fremde_Einheit_Nahe_Stadt_Enum);
                            
                else
                   null;
@@ -90,10 +90,10 @@ package body EinheitInUmgebungLogik is
                if
                  True = EinheitFinden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)),
                                        UmgebungExtern    => 3,
-                                       SpeziesExtern       => SpeziesExtern)
+                                       SpeziesExtern     => SpeziesExtern)
                then
                   MeldungenSetzenLogik.EinheitmeldungSetzen (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert),
-                                                             EreignisExtern           => EinheitenDatentypen.Fremde_Einheit_Nahe_Enum);
+                                                             EreignisExtern             => EinheitenDatentypen.Fremde_Einheit_Nahe_Enum);
                            
                else
                   null;
@@ -132,14 +132,14 @@ package body EinheitInUmgebungLogik is
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                              SpeziesExtern       => SpeziesExtern)
+                                              SpeziesExtern     => SpeziesExtern)
             then
                null;
                
             else
-               AndereEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleSpeziesSuchen (SpeziesExtern       => SpeziesExtern,
-                                                                                               KoordinatenExtern => KartenWert,
-                                                                                               LogikGrafikExtern => True);
+               AndereEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
+                                                                                                 KoordinatenExtern => KartenWert,
+                                                                                                 LogikGrafikExtern => True);
                
                if
                  AndereEinheit.Nummer = EinheitenKonstanten.LeerNummer

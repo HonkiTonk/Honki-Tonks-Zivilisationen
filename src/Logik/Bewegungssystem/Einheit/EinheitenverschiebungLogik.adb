@@ -74,15 +74,15 @@ package body EinheitenverschiebungLogik is
                null;
                
             elsif
-              False = LeseWeltkarte.BelegterGrund (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
-                                                KoordinatenExtern => Kartenwert)
+              False = LeseWeltkarte.BelegterGrund (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+                                                   KoordinatenExtern => Kartenwert)
             then
                null;
                                                                                                  
             else
-               EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern       => KontaktierteSpeziesExtern,
-                                                                                     KoordinatenExtern => Kartenwert,
-                                                                                     LogikGrafikExtern => True);
+               EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => KontaktierteSpeziesExtern,
+                                                                                       KoordinatenExtern => Kartenwert,
+                                                                                       LogikGrafikExtern => True);
             end if;
                
             case
@@ -139,18 +139,18 @@ package body EinheitenverschiebungLogik is
                   null;
             
                elsif
-                 False = LeseWeltkarte.BelegterGrund (SpeziesExtern       => SpeziesLandExtern,
-                                                   KoordinatenExtern => KartenwertVerschieben)
+                 False = LeseWeltkarte.BelegterGrund (SpeziesExtern     => SpeziesLandExtern,
+                                                      KoordinatenExtern => KartenwertVerschieben)
                  and
                    True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                    NeueKoordinatenExtern    => KartenwertVerschieben)
+                                                                                    NeueKoordinatenExtern      => KartenwertVerschieben)
                  and
                    EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenwertVerschieben,
-                                                                                                          LogikGrafikExtern => True).Nummer
+                                                                                                            LogikGrafikExtern => True).Nummer
                then
                   SchreibeEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => KartenwertVerschieben,
-                                                       EinheitentauschExtern    => False);
+                                                       KoordinatenExtern          => KartenwertVerschieben,
+                                                       EinheitentauschExtern      => False);
                   return;
                   
                else

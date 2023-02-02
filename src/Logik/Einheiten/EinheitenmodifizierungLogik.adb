@@ -72,8 +72,8 @@ package body EinheitenmodifizierungLogik is
              AktuelleBeschäftigung = AufgabenDatentypen.Verschanzen_Enum)
       then
          SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                               LebenspunkteExtern       => Heilungsrate,
-                                               RechnenSetzenExtern      => True);
+                                               LebenspunkteExtern         => Heilungsrate,
+                                               RechnenSetzenExtern        => True);
          
       elsif
         Feldeffekt = False
@@ -84,8 +84,8 @@ package body EinheitenmodifizierungLogik is
                                                                                                                                                              IDExtern    => EinheitID)
       then
          SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                               LebenspunkteExtern       => Heilungsrate / 2,
-                                               RechnenSetzenExtern      => True);
+                                               LebenspunkteExtern         => Heilungsrate / 2,
+                                               RechnenSetzenExtern        => True);
          
       else
          null;
@@ -144,7 +144,7 @@ package body EinheitenmodifizierungLogik is
       for PermanenteKostenSchleifenwert in StadtRecords.PermanenteKostenArray'Range loop
          
          if
-           0 > LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
+           0 > LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
                                                         IDExtern           => AktuelleID,
                                                         WelcheKostenExtern => PermanenteKostenSchleifenwert)
          then
@@ -152,8 +152,8 @@ package body EinheitenmodifizierungLogik is
             
          else
             SchreibeStadtGebaut.PermanenteKostenPosten (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Heimatstadt),
-                                                        WelcherPostenExtern    => PermanenteKostenSchleifenwert,
-                                                        KostenExtern           =>
+                                                        WelcherPostenExtern      => PermanenteKostenSchleifenwert,
+                                                        KostenExtern             =>
                                                           ProduktionDatentypen.Stadtproduktion (VorzeichenWechselExtern) * LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
                                                                                                                                                                     IDExtern           => AktuelleID,
                                                                                                                                                                     WelcheKostenExtern => PermanenteKostenSchleifenwert),
@@ -185,7 +185,7 @@ package body EinheitenmodifizierungLogik is
           EinheitSpeziesNummerExtern.Spezies /= NeueHeimatstadt.Spezies
       then
          PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
-                                  VorzeichenWechselExtern  => -1);
+                                  VorzeichenWechselExtern    => -1);
       
          SchreibeEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
                                               HeimatstadtExtern          => StadtKonstanten.LeerNummer);
@@ -198,13 +198,13 @@ package body EinheitenmodifizierungLogik is
          
       else
          PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
-                                  VorzeichenWechselExtern  => -1);
+                                  VorzeichenWechselExtern    => -1);
       
          SchreibeEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
                                               HeimatstadtExtern          => NeueHeimatstadt.Nummer);
       
          PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
-                                  VorzeichenWechselExtern  => 1);
+                                  VorzeichenWechselExtern    => 1);
       end if;
       
    end HeimatstadtÄndern;
@@ -227,20 +227,20 @@ package body EinheitenmodifizierungLogik is
          
       elsif
         EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                              IDExtern    => IDExtern)
+                                                                              IDExtern      => IDExtern)
       then
          return DebugobjekteLogik.Debug.VolleInformation;
          
       elsif
         False = PassierbarkeitspruefungLogik.RichtigeUmgebungVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                        EinheitenIDExtern      => IDExtern)
+                                                                        EinheitenIDExtern        => IDExtern)
       then
          return False;
          
       else
-         return ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => StadtSpeziesNummerExtern.Spezies,
+         return ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
                                                            TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                                                      IDExtern    => IDExtern));
+                                                                                                                      IDExtern      => IDExtern));
       end if;
       
    end EinheitAnforderungenErfüllt;

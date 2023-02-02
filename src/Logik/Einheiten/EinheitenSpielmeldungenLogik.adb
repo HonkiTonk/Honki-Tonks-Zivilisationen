@@ -36,7 +36,7 @@ package body EinheitenSpielmeldungenLogik is
       
       case
         LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
+                                             IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
             return True;

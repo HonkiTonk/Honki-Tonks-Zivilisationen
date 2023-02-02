@@ -77,7 +77,7 @@ package body EinheitenkontrollsystemLogik is
          when BefehleDatentypen.Einheiten_Bewegung_Enum'Range =>
             NachGrafiktask.EinheitBewegt := True;
             return BewegungsplanLogik.Einzelschritt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                     ÄnderungExtern           =>  Richtung (BefehlExtern));
+                                                     ÄnderungExtern             =>  Richtung (BefehlExtern));
             
          when BefehleDatentypen.Heimatstadt_Ändern_Enum =>
             EinheitenmodifizierungLogik.HeimatstadtÄndern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -90,8 +90,8 @@ package body EinheitenkontrollsystemLogik is
          when BefehleDatentypen.Siedler_Verbesserung_Enum'Range | BefehleDatentypen.Einheiten_Allgemeine_Befehle_Enum'Range | BefehleDatentypen.Feldeffekte_Entfernen_Enum =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichen Aufgabenanfang keine Bewegung mehr möglich ist und umgekehrt.
             return not AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                              BefehlExtern             => BefehlExtern,
-                                              KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                                              BefehlExtern               => BefehlExtern,
+                                              KoordinatenExtern          => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
                
          when BefehleDatentypen.Bauen_Enum =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichem Städtebau keine Bewegung mehr möglich ist und umgekehrt.
@@ -123,7 +123,7 @@ package body EinheitenkontrollsystemLogik is
       is
          when BefehleDatentypen.Einheiten_Bewegung_Enum'Range =>
             return BewegungsplanLogik.Einzelschritt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                     ÄnderungExtern           =>  Richtung (Mausbefehl));
+                                                     ÄnderungExtern             =>  Richtung (Mausbefehl));
             
          when BefehleDatentypen.Einheiten_Aufgaben_Enum'Range =>
             if
@@ -140,7 +140,7 @@ package body EinheitenkontrollsystemLogik is
             
          when BefehleDatentypen.Auswählen_Enum =>
             return BewegungsplanLogik.BewegungPlanen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                      ZielkoordinatenExtern    => LeseCursor.KoordinatenAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
+                                                      ZielkoordinatenExtern      => LeseCursor.KoordinatenAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
             
          when others =>
             return False;

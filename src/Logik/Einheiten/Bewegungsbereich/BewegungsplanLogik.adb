@@ -48,7 +48,7 @@ package body BewegungsplanLogik is
             
          when others =>
             return BewegungPlanen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                   ZielkoordinatenExtern    => EinzelbewegungKartenwert);
+                                   ZielkoordinatenExtern      => EinzelbewegungKartenwert);
       end case;
       
    end Einzelschritt;
@@ -76,31 +76,31 @@ package body BewegungsplanLogik is
          
       elsif
         False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                          NeueKoordinatenExtern    => ZielkoordinatenExtern)
+                                                                          NeueKoordinatenExtern      => ZielkoordinatenExtern)
         and
           EinheitSpeziesNummerExtern.Spezies /= EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                                  LogikGrafikExtern => True).Spezies
+                                                                                                        LogikGrafikExtern => True).Spezies
       then
          return True;
          
       elsif
         EinheitSpeziesNummerExtern.Spezies = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                               LogikGrafikExtern => True).Spezies
+                                                                                                     LogikGrafikExtern => True).Spezies
         and then
           False = EinheitenbewegungLogik.EinheitentauschPrüfung (BewegendeEinheitExtern => EinheitSpeziesNummerExtern,
                                                                   StehendeEinheitExtern  => EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                                                                                  LogikGrafikExtern => True))
+                                                                                                                                                    LogikGrafikExtern => True))
       then
          return True;
         
       else
          SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    KoordinatenExtern        => ZielkoordinatenExtern);
+                                                    KoordinatenExtern          => ZielkoordinatenExtern);
       end if;
       
       case
-        PlanenRekursiv (EinheitSpeziesNummerExtern   => EinheitSpeziesNummerExtern,
+        PlanenRekursiv (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                         AktuelleKoordinatenExtern  => EinheitenKoordinaten,
                         AktuellePlanpositionExtern => 1)
       is
@@ -122,11 +122,11 @@ package body BewegungsplanLogik is
                         
                else
                   NeueKoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                         PlanschrittExtern        => 1);
+                                                                         PlanschrittExtern          => 1);
                   AndereEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinaten,
-                                                                                         LogikGrafikExtern => True);
-                  StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                                             KoordinatenExtern => NeueKoordinaten);
+                                                                                           LogikGrafikExtern => True);
+                  StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+                                                                                               KoordinatenExtern => NeueKoordinaten);
                end if;
                
                if
@@ -141,21 +141,21 @@ package body BewegungsplanLogik is
                     EinheitSpeziesNummerExtern.Spezies = AndereEinheit.Spezies
                   then
                      BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                                                                                              LogikGrafikExtern => True),
-                                                                            NeueKoordinatenExtern    => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                            EinheitentauschExtern    => True);
+                                                                                                                                                                  LogikGrafikExtern => True),
+                                                                            NeueKoordinatenExtern      => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                                                            EinheitentauschExtern      => True);
                      
                      BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                            NeueKoordinatenExtern    => ZielkoordinatenExtern,
-                                                                            EinheitentauschExtern    => False);
-                  
+                                                                            NeueKoordinatenExtern      => ZielkoordinatenExtern,
+                                                                            EinheitentauschExtern      => False);
+                     
                   elsif
                     EinheitSpeziesNummerExtern.Spezies /= AndereEinheit.Spezies
                     and
                       SpeziesKonstanten.LeerSpezies /= AndereEinheit.Spezies
                       and
-                        StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                                                                 KoordinatenExtern => ZielkoordinatenExtern).Nummer
+                        StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+                                                                                                                   KoordinatenExtern => ZielkoordinatenExtern).Nummer
                   then
                      case
                        EinheitenbewegungLogik.FremderAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -166,7 +166,7 @@ package body BewegungsplanLogik is
                            
                         when True =>
                            BewegungDurchführen := EinheitenbewegungLogik.FremdeStadtAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                              FremdeStadtExtern        => StadtAufFeld);
+                                                                                              FremdeStadtExtern          => StadtAufFeld);
                      end case;
                      
                      case 
@@ -177,8 +177,8 @@ package body BewegungsplanLogik is
                            
                         when True =>
                            BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                  NeueKoordinatenExtern    => NeueKoordinaten,
-                                                                                  EinheitentauschExtern    => False);
+                                                                                  NeueKoordinatenExtern      => NeueKoordinaten,
+                                                                                  EinheitentauschExtern      => False);
                      end case;
                      
                   elsif
@@ -188,15 +188,15 @@ package body BewegungsplanLogik is
                   then
                      case
                        EinheitenbewegungLogik.FremderAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                              FremdeEinheitExtern      => AndereEinheit)
+                                                              FremdeEinheitExtern        => AndereEinheit)
                      is
                         when False =>
                            null;
                            
                         when True =>
                            BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                  NeueKoordinatenExtern    => NeueKoordinaten,
-                                                                                  EinheitentauschExtern    => False);
+                                                                                  NeueKoordinatenExtern      => NeueKoordinaten,
+                                                                                  EinheitentauschExtern      => False);
                      end case;
                   
                   elsif
@@ -206,27 +206,27 @@ package body BewegungsplanLogik is
                   then
                      case
                        EinheitenbewegungLogik.FremdeStadtAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                  FremdeStadtExtern        => StadtAufFeld)
+                                                                  FremdeStadtExtern          => StadtAufFeld)
                      is
                         when False =>
                            null;
                            
                         when True =>
                            BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                  NeueKoordinatenExtern    => NeueKoordinaten,
-                                                                                  EinheitentauschExtern    => False);
+                                                                                  NeueKoordinatenExtern      => NeueKoordinaten,
+                                                                                  EinheitentauschExtern      => False);
                      end case;
                      
                   else
                      BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                            NeueKoordinatenExtern    => NeueKoordinaten,
-                                                                            EinheitentauschExtern    => False);
+                                                                            NeueKoordinatenExtern      => NeueKoordinaten,
+                                                                            EinheitentauschExtern      => False);
                   end if;
                   
                else
                   BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                         NeueKoordinatenExtern    => NeueKoordinaten,
-                                                                         EinheitentauschExtern    => False);
+                                                                         NeueKoordinatenExtern      => NeueKoordinaten,
+                                                                         EinheitentauschExtern      => False);
                   
                   if
                     KartenRecordKonstanten.LeerKoordinate = LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -268,7 +268,7 @@ package body BewegungsplanLogik is
       for DurchlaufSchleifenwert in BewertungArray'Range loop
          
          case
-           PlanschrittFestlegen (EinheitSpeziesNummerExtern   => EinheitSpeziesNummerExtern,
+           PlanschrittFestlegen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                  DurchlaufExtern            => DurchlaufSchleifenwert,
                                  AktuellePlanpositionExtern => AktuellePlanpositionExtern)
          is
@@ -277,8 +277,8 @@ package body BewegungsplanLogik is
                
             when False =>
                SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern        => KartenRecordKonstanten.LeerKoordinate,
-                                                       PlanplatzExtern          => AktuellePlanpositionExtern);
+                                                       KoordinatenExtern          => KartenRecordKonstanten.LeerKoordinate,
+                                                       PlanplatzExtern            => AktuellePlanpositionExtern);
          end case;
          
       end loop DurchlaufSchleife;
@@ -306,14 +306,14 @@ package body BewegungsplanLogik is
                
          when KartenDatentypen.KartenfeldNatural'First =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    KoordinatenExtern        => Bewertung (DurchlaufExtern).Koordinaten,
-                                                    PlanplatzExtern          => AktuellePlanpositionExtern);
+                                                    KoordinatenExtern          => Bewertung (DurchlaufExtern).Koordinaten,
+                                                    PlanplatzExtern            => AktuellePlanpositionExtern);
             return True;
                
          when others =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    KoordinatenExtern        => Bewertung (DurchlaufExtern).Koordinaten,
-                                                    PlanplatzExtern          => AktuellePlanpositionExtern);
+                                                    KoordinatenExtern          => Bewertung (DurchlaufExtern).Koordinaten,
+                                                    PlanplatzExtern            => AktuellePlanpositionExtern);
             
             if
               AktuellePlanpositionExtern = EinheitenRecords.KIBewegungPlanArray'Last
@@ -321,7 +321,7 @@ package body BewegungsplanLogik is
                return True;
          
             else
-               return PlanenRekursiv (EinheitSpeziesNummerExtern   => EinheitSpeziesNummerExtern,
+               return PlanenRekursiv (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                       AktuelleKoordinatenExtern  => Bewertung (DurchlaufExtern).Koordinaten,
                                       AktuellePlanpositionExtern => AktuellePlanpositionExtern + 1);
             end if;
@@ -361,8 +361,8 @@ package body BewegungsplanLogik is
                   Bewertung (BewertungPosition).Bewertung := KartenDatentypen.KartenfeldPositiv'Last;
             
                else
-                  Bewertung (BewertungPosition).Bewertung := BewertungFeldposition (EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern,
-                                                                                    NeueKoordinatenExtern     => KartenWert);
+                  Bewertung (BewertungPosition).Bewertung := BewertungFeldposition (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                                    NeueKoordinatenExtern      => KartenWert);
                end if;
                
                BewertungPosition := BewertungPosition + 1;
@@ -402,19 +402,19 @@ package body BewegungsplanLogik is
             
       if
         True = FeldBereitsBetreten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                    KoordinatenExtern        => NeueKoordinatenExtern)
+                                    KoordinatenExtern          => NeueKoordinatenExtern)
       then
          return KartenDatentypen.KartenfeldPositiv'Last;
          
       elsif
         False = EinheitenbewegungLogik.BewegungPrüfen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                        KoordinatenExtern        => NeueKoordinatenExtern)
+                                                        KoordinatenExtern          => NeueKoordinatenExtern)
       then
          return KartenDatentypen.KartenfeldPositiv'Last;
           
       else
-         return KIBewegungsbewertungLogik.Positionsbewertung (EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern,
-                                                              NeueKoordinatenExtern     => NeueKoordinatenExtern);
+         return KIBewegungsbewertungLogik.Positionsbewertung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                              NeueKoordinatenExtern      => NeueKoordinatenExtern);
       end if;
       
    end BewertungFeldposition;
@@ -434,7 +434,7 @@ package body BewegungsplanLogik is
          
          if
            KoordinatenExtern = LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                   PlanschrittExtern        => FelderSchleifenwert)
+                                                                   PlanschrittExtern          => FelderSchleifenwert)
          then
             return True;
             

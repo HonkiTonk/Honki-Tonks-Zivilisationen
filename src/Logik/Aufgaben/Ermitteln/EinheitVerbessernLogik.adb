@@ -27,7 +27,7 @@ package body EinheitVerbessernLogik is
          return False;
            
       elsif
-        False = LeseWeltkarte.BelegterGrund (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+        False = LeseWeltkarte.BelegterGrund (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                              KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
       then
          return False;
@@ -41,17 +41,17 @@ package body EinheitVerbessernLogik is
       is
          when True =>
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                     BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                                     RechnenSetzenExtern      => False);
+                                                     BewegungspunkteExtern      => EinheitenKonstanten.LeerBewegungspunkte,
+                                                     RechnenSetzenExtern        => False);
       
             EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                 VorzeichenWechselExtern  => -1);
+                                                                 VorzeichenWechselExtern    => -1);
       
             SchreibeEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                        IDExtern                 => NeueEinheitenID);
+                                        IDExtern                   => NeueEinheitenID);
       
             EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                 VorzeichenWechselExtern  => 1);
+                                                                 VorzeichenWechselExtern    => 1);
                                     
          when False =>
             null;
@@ -69,7 +69,7 @@ package body EinheitVerbessernLogik is
    is begin
    
       NeueEinheitenID := LeseEinheitenDatenbank.VerbesserungZu (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                                                                IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       case
         NeueEinheitenID
@@ -82,9 +82,9 @@ package body EinheitVerbessernLogik is
       end case;
       
       case
-        ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+        ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                                    TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                                                              IDExtern    => NeueEinheitenID))
+                                                                                                              IDExtern      => NeueEinheitenID))
       is
          when True =>
             return NeueEinheitenID;

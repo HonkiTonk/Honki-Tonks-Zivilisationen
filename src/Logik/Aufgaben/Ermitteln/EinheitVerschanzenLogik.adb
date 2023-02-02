@@ -10,7 +10,7 @@ package body EinheitVerschanzenLogik is
    is begin
       
       SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                              BeschäftigungExtern     => AufgabenDatentypen.Verschanzen_Enum);
+                                              BeschäftigungExtern        => AufgabenDatentypen.Verschanzen_Enum);
       
       return True;
       

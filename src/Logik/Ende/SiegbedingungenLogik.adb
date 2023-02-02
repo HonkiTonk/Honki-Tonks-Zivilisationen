@@ -88,8 +88,8 @@ package body SiegbedingungenLogik is
            LeseSpeziesbelegung.Besiegt (SpeziesExtern => SpeziesSchleifenwert)
          is
             when True =>
-               SchreibeSpeziesbelegung.GanzerEintrag (SpeziesExtern   => SpeziesSchleifenwert,
-                                                     EintragExtern => WichtigesRecordKonstanten.LeerSpeziesbelegung);
+               SchreibeSpeziesbelegung.GanzerEintrag (SpeziesExtern => SpeziesSchleifenwert,
+                                                      EintragExtern => WichtigesRecordKonstanten.LeerSpeziesbelegung);
                
                if
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -122,7 +122,7 @@ package body SiegbedingungenLogik is
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
          case
-          LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
          is
             when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;

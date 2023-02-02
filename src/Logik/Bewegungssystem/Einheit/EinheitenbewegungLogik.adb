@@ -26,9 +26,9 @@ package body EinheitenbewegungLogik is
    begin
             
       FeldPassierbar := PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                  NeueKoordinatenExtern    => KoordinatenExtern);
+                                                                                  NeueKoordinatenExtern      => KoordinatenExtern);
       EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
-                                                                              LogikGrafikExtern => True);
+                                                                                LogikGrafikExtern => True);
       
       Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
@@ -60,7 +60,7 @@ package body EinheitenbewegungLogik is
          return False;
          
       else
-         StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+         StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                                                                       KoordinatenExtern => KoordinatenExtern);
       end if;
          
@@ -106,7 +106,7 @@ package body EinheitenbewegungLogik is
             return False;
             
          when True =>
-            return KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern    => EinheitSpeziesNummerExtern,
+            return KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern   => EinheitSpeziesNummerExtern,
                                                                   VerteidigerExtern => FremdeEinheitExtern);
       end case;
       
@@ -182,19 +182,19 @@ package body EinheitenbewegungLogik is
    
       if
         False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => StehendeEinheitExtern,
-                                                                          NeueKoordinatenExtern    => BewegendeKoordinaten)
+                                                                          NeueKoordinatenExtern      => BewegendeKoordinaten)
         or
           False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => BewegendeEinheitExtern,
-                                                                            NeueKoordinatenExtern    => StehendeKoordinaten)
+                                                                            NeueKoordinatenExtern      => StehendeKoordinaten)
       then
          return False;
          
       elsif
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => StehendeEinheitExtern) < BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => BewegendeKoordinaten,
-                                                                                                                                                           EinheitSpeziesNummerExtern => StehendeEinheitExtern)
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => StehendeEinheitExtern) < BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern      => BewegendeKoordinaten,
+                                                                                                                                                             EinheitSpeziesNummerExtern => StehendeEinheitExtern)
         or
-          LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => BewegendeEinheitExtern) < BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern    => StehendeKoordinaten,
-                                                                                                                                                              EinheitSpeziesNummerExtern => BewegendeEinheitExtern)
+          LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => BewegendeEinheitExtern) < BewegungspunkteBerechnenLogik.NotwendigeBewegungspunkte (NeueKoordinatenExtern      => StehendeKoordinaten,
+                                                                                                                                                                EinheitSpeziesNummerExtern => BewegendeEinheitExtern)
       then
          return False;
          

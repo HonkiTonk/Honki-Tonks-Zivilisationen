@@ -25,8 +25,8 @@ private
    type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. KartenKonstanten.OberflächeKonstante) of KartenextraDatentypen.Fluss_Vorhanden_Enum;
    StandardFluss : constant StandardFlussArray := (
                                                    KartenKonstanten.PlaneteninneresKonstante => KartenextraDatentypen.Lavasee_Enum,
-                                                   KartenKonstanten.UnterflächeKonstante => KartenextraDatentypen.Unterirdischer_See_Enum,
-                                                   KartenKonstanten.OberflächeKonstante  => KartenextraDatentypen.See_Enum
+                                                   KartenKonstanten.UnterflächeKonstante     => KartenextraDatentypen.Unterirdischer_See_Enum,
+                                                   KartenKonstanten.OberflächeKonstante      => KartenextraDatentypen.See_Enum
                                                   );
    
    type WelcherFlussArray is array (StandardFlussArray'Range) of KartenextraDatentypen.Fluss_Enum;

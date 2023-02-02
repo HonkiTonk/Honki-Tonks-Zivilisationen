@@ -582,13 +582,13 @@ package body EinlesenTexturenLogik is
          end loop EinzelpfadeEinlesenSchleife;
          
          EinlesenSpezieshintergrund (DateipfadExtern => To_Wide_Wide_String (Source => Speziesverzeichnisse (1)),
-                                     SpeziesExtern     => SpeziesSchleifenwert);
+                                     SpeziesExtern   => SpeziesSchleifenwert);
          
          EinlesenEinheiten (DateipfadExtern => To_Wide_Wide_String (Source => Speziesverzeichnisse (2)),
-                            SpeziesExtern     => SpeziesSchleifenwert);
+                            SpeziesExtern   => SpeziesSchleifenwert);
          
          EinlesenGebäude (DateipfadExtern => To_Wide_Wide_String (Source => Speziesverzeichnisse (3)),
-                           SpeziesExtern     => SpeziesSchleifenwert);
+                           SpeziesExtern   => SpeziesSchleifenwert);
          
       end loop SpeziesschleifeSchleife;
       

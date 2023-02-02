@@ -36,7 +36,7 @@ package body EinheitSuchenLogik is
             
       else
          return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern),
-                                                      LogikGrafikExtern        => LogikGrafikExtern).Nummer;
+                                                      LogikGrafikExtern          => LogikGrafikExtern).Nummer;
       end if;
       
    end KoordinatenEinheitMitSpeziesSuchen;
@@ -69,7 +69,7 @@ package body EinheitSuchenLogik is
             
       else
          return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern),
-                                                      LogikGrafikExtern        => LogikGrafikExtern);
+                                                      LogikGrafikExtern          => LogikGrafikExtern);
       end if;
       
    end KoordinatenEinheitOhneSpeziesSuchen;
@@ -105,7 +105,7 @@ package body EinheitSuchenLogik is
             
       else
          return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern),
-                                                      LogikGrafikExtern        => LogikGrafikExtern);
+                                                      LogikGrafikExtern          => LogikGrafikExtern);
       end if;
       
    end KoordinatenEinheitOhneSpezielleSpeziesSuchen;
@@ -128,7 +128,7 @@ package body EinheitSuchenLogik is
                   
          when others =>
             return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Transporternummer (LogikGrafikExtern)),
-                                                         LogikGrafikExtern        => LogikGrafikExtern);
+                                                         LogikGrafikExtern          => LogikGrafikExtern);
       end case;
       
    end TransporterverschachtelungDurchgehen;
@@ -156,7 +156,7 @@ package body EinheitSuchenLogik is
          
       else
          Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
-                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern));
+                                                                              IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern));
       end if;
             
       TransporterSchleife:
@@ -164,7 +164,7 @@ package body EinheitSuchenLogik is
          
          if
            LadungsnummerExtern = LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
-                                                                    PlatzExtern              => TransporterSchleifenwert)
+                                                                    PlatzExtern                => TransporterSchleifenwert)
          then
             return True;
                

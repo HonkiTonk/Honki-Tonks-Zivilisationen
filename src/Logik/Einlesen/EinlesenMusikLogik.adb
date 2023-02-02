@@ -53,7 +53,7 @@ package body EinlesenMusikLogik is
                
             when False =>
                EinlesenLieder (DateipfadExtern => Get_Line (File => DateiVerzeichnisse),
-                               SpeziesExtern     => VerzeichnisSchleifenwert);
+                               SpeziesExtern   => VerzeichnisSchleifenwert);
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          

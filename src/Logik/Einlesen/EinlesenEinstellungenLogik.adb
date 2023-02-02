@@ -70,9 +70,9 @@ package body EinlesenEinstellungenLogik is
                                                     TexteinstellungenGrafik.Schriftfarben);
       
             SpezieseinstellungenGrafik.SpeziesFarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
-                                                              SpezieseinstellungenGrafik.Speziesfarben);
+                                                                SpezieseinstellungenGrafik.Speziesfarben);
             SpezieseinstellungenGrafik.SpeziesFarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
-                                                              SpezieseinstellungenGrafik.SpeziesfarbenRahmen);
+                                                                SpezieseinstellungenGrafik.SpeziesfarbenRahmen);
       
             Close (File => DateiGrafikeinstellungen);
 

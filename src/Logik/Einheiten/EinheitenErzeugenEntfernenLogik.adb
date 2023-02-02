@@ -17,29 +17,29 @@ package body EinheitenErzeugenEntfernenLogik is
    is begin
       
       SchreibeEinheitenGebaut.Standardwerte (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern),
-                                             IDExtern                 => IDExtern,
-                                             KoordinatenExtern        => KoordinatenExtern,
-                                             StadtNummerExtern        => StadtSpeziesNummerExtern.Nummer);
+                                             IDExtern                   => IDExtern,
+                                             KoordinatenExtern          => KoordinatenExtern,
+                                             StadtNummerExtern          => StadtSpeziesNummerExtern.Nummer);
       
       case
         LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                             IDExtern    => IDExtern)
+                                             IDExtern      => IDExtern)
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
-            SchreibeWichtiges.AnzahlArbeiter (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+            SchreibeWichtiges.AnzahlArbeiter (SpeziesExtern   => StadtSpeziesNummerExtern.Spezies,
                                               PlusMinusExtern => True);
             
          when EinheitenDatentypen.Einheitenart_Kampf_Enum'Range =>
-            SchreibeWichtiges.AnzahlKämpfer (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+            SchreibeWichtiges.AnzahlKämpfer (SpeziesExtern   => StadtSpeziesNummerExtern.Spezies,
                                               PlusMinusExtern => True);
             
          when others =>
-            SchreibeWichtiges.AnzahlSonstiges (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+            SchreibeWichtiges.AnzahlSonstiges (SpeziesExtern   => StadtSpeziesNummerExtern.Spezies,
                                                PlusMinusExtern => True);
       end case;
       
       EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern),
-                                                           VorzeichenWechselExtern  => 1);
+                                                           VorzeichenWechselExtern    => 1);
       
       SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürEinheit (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern));
       
@@ -74,7 +74,7 @@ package body EinheitenErzeugenEntfernenLogik is
       for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
         
          EinheitNummer := LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                             PlatzExtern              => LadungSchleifenwert);
+                                                             PlatzExtern                => LadungSchleifenwert);
          
          if
            EinheitNummer = EinheitenKonstanten.LeerNummer
@@ -96,22 +96,22 @@ package body EinheitenErzeugenEntfernenLogik is
    is begin
       
       EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                           VorzeichenWechselExtern  => -1);
+                                                           VorzeichenWechselExtern    => -1);
       
       case
         LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
+                                             IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
       is
          when EinheitenDatentypen.Arbeiter_Enum =>
-            SchreibeWichtiges.AnzahlArbeiter (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+            SchreibeWichtiges.AnzahlArbeiter (SpeziesExtern   => EinheitSpeziesNummerExtern.Spezies,
                                               PlusMinusExtern => False);
             
          when EinheitenDatentypen.Einheitenart_Kampf_Enum'Range =>
-            SchreibeWichtiges.AnzahlKämpfer (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+            SchreibeWichtiges.AnzahlKämpfer (SpeziesExtern   => EinheitSpeziesNummerExtern.Spezies,
                                               PlusMinusExtern => False);
             
          when others =>
-            SchreibeWichtiges.AnzahlSonstiges (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+            SchreibeWichtiges.AnzahlSonstiges (SpeziesExtern   => EinheitSpeziesNummerExtern.Spezies,
                                                PlusMinusExtern => False);
       end case;
 

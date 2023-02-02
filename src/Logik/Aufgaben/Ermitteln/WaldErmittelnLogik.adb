@@ -59,15 +59,15 @@ package body WaldErmittelnLogik is
       is
          when KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                             GrundExtern              => Gesamtgrund,
-                                             AnlegenTestenExtern      => AnlegenTestenExtern,
-                                             KoordinatenExtern        => KoordinatenExtern);
+                                             GrundExtern                => Gesamtgrund,
+                                             AnlegenTestenExtern        => AnlegenTestenExtern,
+                                             KoordinatenExtern          => KoordinatenExtern);
             
          when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                GrundExtern              => Gesamtgrund,
-                                                AnlegenTestenExtern      => AnlegenTestenExtern,
-                                                KoordinatenExtern        => KoordinatenExtern);
+                                                GrundExtern                => Gesamtgrund,
+                                                AnlegenTestenExtern        => AnlegenTestenExtern,
+                                                KoordinatenExtern          => KoordinatenExtern);
             
          when others =>
             return False;
@@ -94,17 +94,17 @@ package body WaldErmittelnLogik is
               Arbeitswerte.Vorarbeit
             then
                SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                 BeschäftigungExtern     => Arbeitswerte.Aufgabe);
+                                                                 BeschäftigungExtern        => Arbeitswerte.Aufgabe);
                SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                      ZeitExtern               => Arbeitswerte.Arbeitszeit,
-                                                                      RechnenSetzenExtern      => False);
+                                                                      ZeitExtern                 => Arbeitswerte.Arbeitszeit,
+                                                                      RechnenSetzenExtern        => False);
                
             else
                SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       BeschäftigungExtern     => Arbeitswerte.Aufgabe);
+                                                       BeschäftigungExtern        => Arbeitswerte.Aufgabe);
                SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                            ZeitExtern               => Arbeitswerte.Arbeitszeit,
-                                                            RechnenSetzenExtern      => False);
+                                                            ZeitExtern                 => Arbeitswerte.Arbeitszeit,
+                                                            RechnenSetzenExtern        => False);
             end if;
             
          when False =>
@@ -137,8 +137,8 @@ package body WaldErmittelnLogik is
          
       elsif
         True = RodenErmittelnLogik.RodenErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                   AnlegenTestenExtern      => AnlegenTestenExtern,
-                                                   KoordinatenExtern        => KoordinatenExtern)
+                                                   AnlegenTestenExtern        => AnlegenTestenExtern,
+                                                   KoordinatenExtern          => KoordinatenExtern)
       then
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
                                                      ÄnderungExtern      => ArbeitszeitWaldLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));
@@ -178,8 +178,8 @@ package body WaldErmittelnLogik is
          
       elsif
         True = RodenErmittelnLogik.RodenErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                   AnlegenTestenExtern      => AnlegenTestenExtern,
-                                                   KoordinatenExtern        => KoordinatenExtern)
+                                                   AnlegenTestenExtern        => AnlegenTestenExtern,
+                                                   KoordinatenExtern          => KoordinatenExtern)
       then
          Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
                                                      ÄnderungExtern      => ArbeitszeitWaldLogik.Zusatzzeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Zusatzgrund));

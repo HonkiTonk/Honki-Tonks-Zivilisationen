@@ -31,15 +31,15 @@ package body FestungErmittelnLogik is
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Basisgrund_Oberfläche_Land_Enum'Range =>
             Arbeitswerte := OberflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                             GrundExtern => Gesamtgrund);
+                                             GrundExtern   => Gesamtgrund);
             
          when KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
             Arbeitswerte := UnterflächeWasser (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                GrundExtern => Gesamtgrund);
+                                                GrundExtern   => Gesamtgrund);
             
          when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Basisgrund_Unterfläche_Land_Enum'Range =>
             Arbeitswerte := UnterflächeLand (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                              GrundExtern => Gesamtgrund);
+                                              GrundExtern   => Gesamtgrund);
             
          when others =>
             return False;
@@ -63,10 +63,10 @@ package body FestungErmittelnLogik is
       is
          when True =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern     => Arbeitswerte.Aufgabe);
+                                                    BeschäftigungExtern        => Arbeitswerte.Aufgabe);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                         ZeitExtern               => Arbeitswerte.Arbeitszeit,
-                                                         RechnenSetzenExtern      => False);
+                                                         ZeitExtern                 => Arbeitswerte.Arbeitszeit,
+                                                         RechnenSetzenExtern        => False);
             
          when False =>
             null;

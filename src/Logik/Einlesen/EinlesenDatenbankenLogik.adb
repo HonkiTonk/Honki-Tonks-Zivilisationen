@@ -242,7 +242,7 @@ package body EinlesenDatenbankenLogik is
                   Name => VerzeichnisKonstanten.SpeziesDatenbank);
       
             SpeziesDatenbank.SpezieslisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                   SpeziesDatenbank.Speziesliste);
+                                                     SpeziesDatenbank.Speziesliste);
       
             Close (File => DatenbankEinlesen);
 

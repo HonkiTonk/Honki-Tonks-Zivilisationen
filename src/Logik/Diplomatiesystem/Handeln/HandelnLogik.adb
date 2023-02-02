@@ -114,25 +114,25 @@ package body HandelnLogik is
          --                                      ZahlenMinimumExtern => 0,
          --                                      ZahlenMaximumExtern => LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern));
                
-         SchreibeWichtiges.Geldmenge (SpeziesExtern         => SpeziesExtern,
+         SchreibeWichtiges.Geldmenge (SpeziesExtern       => SpeziesExtern,
                                       GeldZugewinnExtern  => -Geldmenge,
                                       RechnenSetzenExtern => True);
                
-         SchreibeWichtiges.Geldmenge (SpeziesExtern         => KontaktierteSpeziesExtern,
+         SchreibeWichtiges.Geldmenge (SpeziesExtern       => KontaktierteSpeziesExtern,
                                       GeldZugewinnExtern  => Geldmenge,
                                       RechnenSetzenExtern => True);
                   
          -- if
          --    Geldmenge / 25 > Integer (ProduktionDatentypen.Feldproduktion'Last)
          --  then
-         SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern     => KontaktierteSpeziesExtern,
-                                               SpeziesZweiExtern     => SpeziesExtern,
+         SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => KontaktierteSpeziesExtern,
+                                               SpeziesZweiExtern   => SpeziesExtern,
                                                SympathieExtern     => DiplomatieDatentypen.Meinung'Last,
                                                RechnenSetzenExtern => False);
                      
          --  else
-         SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern     => KontaktierteSpeziesExtern,
-                                               SpeziesZweiExtern     => SpeziesExtern,
+         SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => KontaktierteSpeziesExtern,
+                                               SpeziesZweiExtern   => SpeziesExtern,
                                                SympathieExtern     => DiplomatieDatentypen.Meinung (Geldmenge / 25),
                                                RechnenSetzenExtern => True);
          --   end if;
@@ -158,11 +158,11 @@ package body HandelnLogik is
          --                                  ZahlenMinimumExtern => 0,
          --                                  ZahlenMaximumExtern => LeseWichtiges.Geldmenge (SpeziesExtern => KontaktierteSpeziesExtern));
                
-         SchreibeWichtiges.Geldmenge (SpeziesExtern         => SpeziesExtern,
+         SchreibeWichtiges.Geldmenge (SpeziesExtern       => SpeziesExtern,
                                       GeldZugewinnExtern  => Geldmenge,
                                       RechnenSetzenExtern => True);
                
-         SchreibeWichtiges.Geldmenge (SpeziesExtern         => KontaktierteSpeziesExtern,
+         SchreibeWichtiges.Geldmenge (SpeziesExtern       => KontaktierteSpeziesExtern,
                                       GeldZugewinnExtern  => -Geldmenge,
                                       RechnenSetzenExtern => True);
                   
@@ -235,7 +235,7 @@ package body HandelnLogik is
                
          if
            SpeziesSchleifenwert = SpeziesExtern
-            or
+           or
              SpeziesSchleifenwert = KontaktierteSpeziesExtern
          then
             null;
@@ -288,12 +288,12 @@ package body HandelnLogik is
 
                if
                  False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                                 SpeziesExtern       => SpeziesEinsExtern)
+                                                 SpeziesExtern     => SpeziesEinsExtern)
                  and
                    True = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                                  SpeziesExtern       => SpeziesZweiExtern)
+                                                  SpeziesExtern     => SpeziesZweiExtern)
                then
-                  SichtbarkeitSetzenLogik.SichtbarkeitSetzen (SpeziesExtern       => SpeziesEinsExtern,
+                  SichtbarkeitSetzenLogik.SichtbarkeitSetzen (SpeziesExtern     => SpeziesEinsExtern,
                                                               KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert));
                         
                else
@@ -322,12 +322,12 @@ package body HandelnLogik is
 
                if
                  False = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                                 SpeziesExtern       => SpeziesZweiExtern)
+                                                 SpeziesExtern     => SpeziesZweiExtern)
                  and
                    True = LeseWeltkarte.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                                  SpeziesExtern       => SpeziesEinsExtern)
+                                                  SpeziesExtern     => SpeziesEinsExtern)
                then
-                  SichtbarkeitSetzenLogik.SichtbarkeitSetzen (SpeziesExtern       => SpeziesZweiExtern,
+                  SichtbarkeitSetzenLogik.SichtbarkeitSetzen (SpeziesExtern     => SpeziesZweiExtern,
                                                               KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert));
                         
                else

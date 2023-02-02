@@ -19,7 +19,7 @@ package body BewegungsberechnungEinheitenLogik is
       use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
-      BewegungspunkteAbzug := BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern    => NeueKoordinatenExtern,
+      BewegungspunkteAbzug := BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern      => NeueKoordinatenExtern,
                                                                              EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       -- Hier noch eine Erschöpfung einbauen? äöü
@@ -27,14 +27,14 @@ package body BewegungsberechnungEinheitenLogik is
         BewegungspunkteAbzug = EinheitenKonstanten.LeerBewegungspunkte
       then
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                  BewegungspunkteExtern    => EinheitenKonstanten.LeerBewegungspunkte,
-                                                  RechnenSetzenExtern      => False);
+                                                  BewegungspunkteExtern      => EinheitenKonstanten.LeerBewegungspunkte,
+                                                  RechnenSetzenExtern        => False);
          return;
          
       else
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                  BewegungspunkteExtern    => -BewegungspunkteAbzug,
-                                                  RechnenSetzenExtern      => True);
+                                                  BewegungspunkteExtern      => -BewegungspunkteAbzug,
+                                                  RechnenSetzenExtern        => True);
          
          IstLadung := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end if;
@@ -43,8 +43,8 @@ package body BewegungsberechnungEinheitenLogik is
         LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
       is
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            SchreibeCursor.EAchseAktuell (SpeziesExtern  => EinheitSpeziesNummerExtern.Spezies,
-                                          EAchseExtern => NeueKoordinatenExtern.EAchse);
+            SchreibeCursor.EAchseAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                          EAchseExtern  => NeueKoordinatenExtern.EAchse);
             
          when others =>
             null;
@@ -62,13 +62,13 @@ package body BewegungsberechnungEinheitenLogik is
       end case;
       
       SchreibeEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                           KoordinatenExtern        => NeueKoordinatenExtern,
-                                           EinheitentauschExtern    => EinheitentauschExtern);
+                                           KoordinatenExtern          => NeueKoordinatenExtern,
+                                           EinheitentauschExtern      => EinheitentauschExtern);
       
       TransporterLadungsverschiebungLogik.LadungVerschieben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                             NeueKoordinatenExtern    => NeueKoordinatenExtern);
+                                                             NeueKoordinatenExtern      => NeueKoordinatenExtern);
       
-      NachBewegung (NeueKoordinatenExtern    => NeueKoordinatenExtern,
+      NachBewegung (NeueKoordinatenExtern      => NeueKoordinatenExtern,
                     EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
    end Bewegungsberechnung;
@@ -98,7 +98,7 @@ package body BewegungsberechnungEinheitenLogik is
             
          elsif
            True = LeseWeltkarte.Sichtbar (KoordinatenExtern => NeueKoordinatenExtern,
-                                          SpeziesExtern       => FremdeSichtbarkeitSchleifenwert)
+                                          SpeziesExtern     => FremdeSichtbarkeitSchleifenwert)
          then
             KennenlernenLogik.Erstkontakt (EigeneSpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                            FremdeSpeziesExtern => FremdeSichtbarkeitSchleifenwert);

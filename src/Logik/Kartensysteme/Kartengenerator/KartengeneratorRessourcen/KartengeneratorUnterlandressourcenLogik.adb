@@ -58,7 +58,7 @@ package body KartengeneratorUnterlandressourcenLogik is
       is
          when KartenextraDatentypen.Ressourcen_Unterfläche_Land_Enum'Range =>
             SchreibeWeltkarte.Ressource (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
-                                      RessourceExtern   => WelcheRessource);
+                                         RessourceExtern   => WelcheRessource);
             
          when others =>
             null;

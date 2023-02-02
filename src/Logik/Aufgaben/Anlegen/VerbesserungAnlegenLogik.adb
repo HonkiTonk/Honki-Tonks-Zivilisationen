@@ -21,7 +21,7 @@ package body VerbesserungAnlegenLogik is
       end case;
       
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
-                                   VerbesserungExtern => WelcheVerbesserung);
+                                      VerbesserungExtern => WelcheVerbesserung);
       
    end VerbesserungAnlegen;
 

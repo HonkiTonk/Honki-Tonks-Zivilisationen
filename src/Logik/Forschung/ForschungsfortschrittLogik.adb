@@ -54,16 +54,16 @@ package body ForschungsfortschrittLogik is
          
       if
         LeseWichtiges.Forschungsmenge (SpeziesExtern => SpeziesExtern) >= LeseForschungenDatenbank.Kosten (SpeziesExtern => SpeziesExtern,
-                                                                                                       IDExtern    => AktuellesForschungsprojekt)
+                                                                                                           IDExtern      => AktuellesForschungsprojekt)
       then
          SchreibeWichtiges.Erforscht (SpeziesExtern => SpeziesExtern);
          
          if
            AktuellesForschungsprojekt = LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Anfangswert_Enum,
-                                                                           SpeziesExtern      => SpeziesExtern)
+                                                                           SpeziesExtern    => SpeziesExtern)
            or
              AktuellesForschungsprojekt = LeseForschungenDatenbank.Umgebung (AnfangEndeExtern => SystemDatentypen.Endwert_Enum,
-                                                                             SpeziesExtern      => SpeziesExtern)
+                                                                             SpeziesExtern    => SpeziesExtern)
          then
             StadtumgebungFestlegenLogik.StadtumgebungFestlegenTechnologie (SpeziesExtern => SpeziesExtern);
 
@@ -78,7 +78,7 @@ package body ForschungsfortschrittLogik is
                ForschungsauswahlLogik.Forschungserfolg (SpeziesExtern => SpeziesExtern);
                
             when others =>
-               SchreibeWichtiges.Forschungsprojekt (SpeziesExtern       => SpeziesExtern,
+               SchreibeWichtiges.Forschungsprojekt (SpeziesExtern     => SpeziesExtern,
                                                     ForschungIDExtern => ForschungKonstanten.LeerForschung);
          end case;
          

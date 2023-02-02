@@ -21,9 +21,9 @@ package KampfsystemEinheitenLogik is
        Pre => (
                  AngreiferExtern.Spezies /= VerteidigerExtern.Spezies
                and
-                LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreiferExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreiferExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  VerteidigerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => VerteidigerExtern.Spezies)
                and
@@ -52,7 +52,7 @@ private
        Pre => (
                  AngreiferExtern.Spezies /= VerteidigerExtern.Spezies
                and
-                LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreiferExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreiferExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
