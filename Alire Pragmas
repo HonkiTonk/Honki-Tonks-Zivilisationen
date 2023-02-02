@@ -1,0 +1,70 @@
+pragma Warnings (Off, "*array aggregate*");
+
+pragma License (GPL);
+
+pragma Elaboration_Checks (Static);
+
+pragma Detect_Blocking;
+
+pragma Task_Dispatching_Policy (FIFO_Within_Priorities);
+
+pragma Locking_Policy (Ceiling_Locking);
+
+pragma Restrictions (Simple_Barriers);
+pragma Restrictions (Pure_Barriers);
+pragma Restrictions (No_Access_Parameter_Allocators);
+pragma Restrictions (No_Asynchronous_Control);
+pragma Restrictions (No_Coextensions);
+pragma Restrictions (No_Dynamic_Attachment);
+pragma Restrictions (No_Dynamic_Priorities);
+pragma Restrictions (No_Entry_Calls_In_Elaboration_Code);
+pragma Restrictions (No_Entry_Queue);
+pragma Restrictions (No_Exception_Registration);
+pragma Restrictions (No_Fixed_Io);
+pragma Restrictions (No_Implicit_Heap_Allocations);
+pragma Restrictions (No_Implicit_Task_Allocations);
+pragma Restrictions (No_Implicit_Protected_Object_Allocations);
+pragma Restrictions (No_Initialize_Scalars);
+pragma Restrictions (No_Local_Timing_Events);
+pragma Restrictions (No_Local_Protected_Objects);
+pragma Restrictions (No_Protected_Type_Allocators);
+pragma Restrictions (No_Protected_Types);
+pragma Restrictions (No_Requeue_Statements);
+pragma Restrictions (No_Select_Statements);
+pragma Restrictions (No_Specific_Termination_Handlers);
+pragma Restrictions (No_Stream_Optimizations);
+pragma Restrictions (No_Task_Allocators);
+pragma Restrictions (No_Task_Attributes_Package);
+pragma Restrictions (No_Task_At_Interrupt_Priority);
+pragma Restrictions (No_Task_Termination);
+pragma Restrictions (No_Terminate_Alternatives);
+pragma Restrictions (Static_Priorities);
+pragma Restrictions (Static_Storage_Size);
+pragma Restrictions (Immediate_Reclamation);
+pragma Restrictions (No_Implementation_Identifiers);
+pragma Restrictions (Static_Dispatch_Tables);
+pragma Restrictions (Max_Protected_Entries => 0);
+pragma Restrictions (Max_Select_Alternatives => 0);
+pragma Restrictions (Max_Task_Entries => 0);
+pragma Restrictions (Max_Asynchronous_Select_Nesting => 0);
+pragma Restrictions (Max_Entry_Queue_Length => 0);
+pragma Restrictions (No_Unchecked_Conversion);
+pragma Restrictions (No_Unchecked_Deallocation);
+pragma Restrictions (No_Dependence => Ada.Asynchronous_Task_Control);
+pragma Restrictions (No_Dependence => Ada.Execution_Time.Group_Budget);
+pragma Restrictions (No_Dependence => Ada.Execution_Time.Timers);
+pragma Restrictions (No_Dependence => Ada.Task_Attributes);
+pragma Restrictions (No_Dependence => Ada.System.Multiprocessors.Dispatching_Domains);
+
+-- pragma Restrictions (No_Relative_Delay); -- Die notwendige Verwendung von delay until verhinderte scheinbar den korrekten Abbruch von Tasks.
+
+-- pragma Restrictions (No_Default_Stream_Attributes);
+-- pragma Restrictions (No_Abort_Statements);
+-- pragma Restrictions (No_Finalization); -- Verursacht Probleme, vermutlich weil pragma Restrictions (No_Abort_Statements); nicht aktiv ist.
+-- pragma Restrictions (No_Task_Hierarchy);
+-- pragma Restrictions (No_Implementation_Units);
+-- pragma Restrictions (No_Multiple_Elaboration);
+
+-- Werde ich vermutlich nicht einbauen können, da Real_Time keine Datumsfunktion hat. Gibt es dazu eine alternative Lösung?
+-- pragma Restrictions (No_Dependence => Ada.Calendar);
+-- pragma Restrictions (No_Calendar); -- Ist das nicht identisch mit dem Oberen?
