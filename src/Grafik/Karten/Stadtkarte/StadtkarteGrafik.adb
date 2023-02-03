@@ -12,6 +12,10 @@ with EinstellungenGrafik;
 with EingeleseneTexturenGrafik;
 with KartenspritesZeichnenGrafik;
 with ViewsEinstellenGrafik;
+with Vergleiche;
+with NachLogiktask;
+
+with Diagnoseinformationen;
 
 package body StadtkarteGrafik is
 
@@ -27,6 +31,7 @@ package body StadtkarteGrafik is
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
       GrafischeDarstellung (GrundExtern => Gesamtgrund);
+      GebäudeZusatzinformationen := StadtKonstanten.LeerGebäudeID;
       
       Stadtgröße := KartenDatentypen.KartenfeldPositiv (Float'Ceiling (Sqrt (X => Float (StadtDatentypen.GebäudeID'Last))));
       Grafikgröße := (EinstellungenGrafik.AktuelleFensterAuflösung.x / Float (Stadtgröße), EinstellungenGrafik.AktuelleFensterAuflösung.y / Float (Stadtgröße));
@@ -47,7 +52,7 @@ package body StadtkarteGrafik is
                      
             case
               LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                WelchesGebäudeExtern     => GebäudeID)
+                                                 WelchesGebäudeExtern     => GebäudeID)
             is
                when False =>
                   null;
@@ -56,10 +61,30 @@ package body StadtkarteGrafik is
                   KartenspritesZeichnenGrafik.SpriteZeichnenVariabel (PositionExtern     => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y),
                                                                       GrößeExtern        => Grafikgröße,
                                                                       TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtSpeziesNummerExtern.Spezies, GebäudeID));
+                  
+                  if
+                    True = Vergleiche.Auswahlposition (MauspositionExtern => NachLogiktask.Mausposition,
+                                                       TextboxExtern      => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y, Grafikgröße.x, Grafikgröße.y))
+                  then
+                     GebäudeZusatzinformationen := GebäudeID;
+                     
+                  else
+                     null;
+                  end if;
             end case;
          
          end loop XAchseSchleife;
       end loop YAchseSchleife;
+      
+      case
+        GebäudeZusatzinformationen
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            null;
+         
+         when others =>
+            Zusatzinformationen (GebäudeIDExtern => GebäudeZusatzinformationen);
+      end case;
       
    end Stadtkarte;
    
@@ -82,5 +107,15 @@ package body StadtkarteGrafik is
       end case;
             
    end GrafischeDarstellung;
+   
+   
+   
+   procedure Zusatzinformationen
+     (GebäudeIDExtern : in StadtDatentypen.GebäudeID)
+   is begin
+      
+      Diagnoseinformationen.Zahl (ZahlExtern => Positive (GebäudeIDExtern));
+      
+   end Zusatzinformationen;
 
 end StadtkarteGrafik;

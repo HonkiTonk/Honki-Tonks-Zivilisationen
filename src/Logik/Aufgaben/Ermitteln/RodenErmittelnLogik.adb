@@ -1,12 +1,12 @@
 with TextnummernKonstanten;
 
-with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
   
 with Fehlermeldungssystem;
 with ArbeitszeitRodenLogik;
 with Grenzpruefungen;
 with MeldungFestlegenLogik;
+with AufgabeFestlegenLogik;
 
 package body RodenErmittelnLogik is
 
@@ -70,11 +70,8 @@ package body RodenErmittelnLogik is
         AnlegenTestenExtern
       is
          when True =>
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern        => Arbeitswerte.Aufgabe);
-            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                         ZeitExtern                 => Arbeitswerte.Arbeitszeit,
-                                                         RechnenSetzenExtern        => False);
+            AufgabeFestlegenLogik.AufgabeFestlegen (ArbeitExtern               => (Arbeitswerte.Aufgabe, Arbeitswerte.Arbeitszeit, False),
+                                                    EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>
             null;

@@ -17,6 +17,7 @@ package body KIEinheitUmsetzenModernisierenLogik is
       
       NullWert := AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                          BefehlExtern               => BefehleDatentypen.Einheit_Verbessern_Enum,
+                                         AnlegenTestenExtern        => True,
                                          KoordinatenExtern          => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       case

@@ -1,7 +1,6 @@
 with EinheitenRecordKonstanten;
 with TextnummernKonstanten;
 
-with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 
 with RodenErmittelnLogik;
@@ -9,6 +8,7 @@ with Fehlermeldungssystem;
 with JaNeinLogik;
 with ArbeitszeitWaldLogik;
 with Grenzpruefungen;
+with AufgabeFestlegenLogik;
 
 package body WaldErmittelnLogik is
 
@@ -90,22 +90,8 @@ package body WaldErmittelnLogik is
         AnlegenTestenExtern
       is
          when True =>
-            if
-              Arbeitswerte.Vorarbeit
-            then
-               SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                 BeschäftigungExtern        => Arbeitswerte.Aufgabe);
-               SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                      ZeitExtern                 => Arbeitswerte.Arbeitszeit,
-                                                                      RechnenSetzenExtern        => False);
-               
-            else
-               SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       BeschäftigungExtern        => Arbeitswerte.Aufgabe);
-               SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                            ZeitExtern                 => Arbeitswerte.Arbeitszeit,
-                                                            RechnenSetzenExtern        => False);
-            end if;
+            AufgabeFestlegenLogik.AufgabeFestlegen (ArbeitExtern               => Arbeitswerte,
+                                                    EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>
             null;

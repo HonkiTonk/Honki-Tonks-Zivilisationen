@@ -1,6 +1,5 @@
 with EinheitenRecordKonstanten;
 
-with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 with LeseForschungenDatenbank;
 
@@ -8,6 +7,7 @@ with Fehlermeldungssystem;
 with Grenzpruefungen;
 with ForschungstestsLogik;
 with ArbeitszeitWegLogik;
+with AufgabeFestlegenLogik;
 
 package body WegErmittelnLogik is
    
@@ -74,11 +74,8 @@ package body WegErmittelnLogik is
         AnlegenTestenExtern
       is
          when True =>
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern        => Arbeitswerte.Aufgabe);
-            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                         ZeitExtern                 => Arbeitswerte.Arbeitszeit,
-                                                         RechnenSetzenExtern        => False);
+            AufgabeFestlegenLogik.AufgabeFestlegen (ArbeitExtern               => (Arbeitswerte.Aufgabe, Arbeitswerte.Arbeitszeit, False),
+                                                    EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>
             null;

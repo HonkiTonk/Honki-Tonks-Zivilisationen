@@ -13,6 +13,7 @@ package body KIEinheitUmsetzenPluendernLogik is
       
       return AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                     BefehlExtern               => BefehleDatentypen.Plündern_Enum,
+                                    AnlegenTestenExtern        => True,
                                     KoordinatenExtern          => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
    end StadtumgebungZerstören;

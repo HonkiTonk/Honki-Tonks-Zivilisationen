@@ -1,9 +1,9 @@
-with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 
 with Fehlermeldungssystem;
 with ArbeitszeitFestungLogik;
 with Grenzpruefungen;
+with AufgabeFestlegenLogik;
 
 package body FestungErmittelnLogik is
 
@@ -62,11 +62,8 @@ package body FestungErmittelnLogik is
         AnlegenTestenExtern
       is
          when True =>
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern        => Arbeitswerte.Aufgabe);
-            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                         ZeitExtern                 => Arbeitswerte.Arbeitszeit,
-                                                         RechnenSetzenExtern        => False);
+            AufgabeFestlegenLogik.AufgabeFestlegen (ArbeitExtern               => (Arbeitswerte.Aufgabe, Arbeitswerte.Arbeitszeit, False),
+                                                    EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>
             null;

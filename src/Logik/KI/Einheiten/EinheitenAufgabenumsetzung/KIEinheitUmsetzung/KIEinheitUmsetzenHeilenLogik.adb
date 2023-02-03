@@ -12,8 +12,9 @@ package body KIEinheitUmsetzenHeilenLogik is
    is begin
       
       return AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                    BefehlExtern             => BefehleDatentypen.Heilen_Enum,
-                                    KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                                    BefehlExtern               => BefehleDatentypen.Heilen_Enum,
+                                    AnlegenTestenExtern        => True,
+                                    KoordinatenExtern          => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
    end Heilen;
 

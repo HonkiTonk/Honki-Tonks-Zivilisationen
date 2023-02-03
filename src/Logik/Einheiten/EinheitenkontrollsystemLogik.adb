@@ -91,6 +91,7 @@ package body EinheitenkontrollsystemLogik is
             -- Das Umgekehrte zurückgeben da bei erfolgreichen Aufgabenanfang keine Bewegung mehr möglich ist und umgekehrt.
             return not AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                               BefehlExtern               => BefehlExtern,
+                                              AnlegenTestenExtern        => True,
                                               KoordinatenExtern          => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
                
          when BefehleDatentypen.Bauen_Enum =>

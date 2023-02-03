@@ -42,9 +42,10 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                return False;
                
             elsif
-              True = AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                  BefehlExtern               => BefehleDatentypen.Mine_Bauen_Enum,
-                                                  KoordinatenExtern          => EinheitKoordinaten)
+              True = AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                            BefehlExtern               => BefehleDatentypen.Mine_Bauen_Enum,
+                                            AnlegenTestenExtern        => False,
+                                            KoordinatenExtern          => EinheitKoordinaten)
             then
                null;
                
@@ -61,9 +62,10 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                return False;
                
             elsif
-              True = AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                  BefehlExtern               => BefehleDatentypen.Farm_Bauen_Enum,
-                                                  KoordinatenExtern          => EinheitKoordinaten)
+              True = AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                            BefehlExtern               => BefehleDatentypen.Farm_Bauen_Enum,
+                                            AnlegenTestenExtern        => False,
+                                            KoordinatenExtern          => EinheitKoordinaten)
             then
                null;
                
@@ -80,9 +82,10 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                return False;
                
             elsif
-              True = AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                  BefehlExtern               => BefehleDatentypen.Festung_Bauen_Enum,
-                                                  KoordinatenExtern          => EinheitKoordinaten)
+              True = AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                            BefehlExtern               => BefehleDatentypen.Festung_Bauen_Enum,
+                                            AnlegenTestenExtern        => False,
+                                            KoordinatenExtern          => EinheitKoordinaten)
             then
                null;
                
@@ -94,9 +97,10 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
             Befehl := BefehleDatentypen.Straße_Bauen_Enum;
             
             if
-              True = AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                  BefehlExtern               => BefehleDatentypen.Straße_Bauen_Enum,
-                                                  KoordinatenExtern          => EinheitKoordinaten)
+              True = AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                            BefehlExtern               => BefehleDatentypen.Straße_Bauen_Enum,
+                                            AnlegenTestenExtern        => False,
+                                            KoordinatenExtern          => EinheitKoordinaten)
             then
                null;
                
@@ -111,6 +115,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
       
       return AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                     BefehlExtern               => Befehl,
+                                    AnlegenTestenExtern        => True,
                                     KoordinatenExtern          => EinheitKoordinaten);
       
    end WelcheVerbesserungAnlegen;

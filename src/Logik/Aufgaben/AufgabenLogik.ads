@@ -17,25 +17,10 @@ package AufgabenLogik is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
    
-   function AufgabeTesten
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   
    function Aufgabe
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
+      AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with

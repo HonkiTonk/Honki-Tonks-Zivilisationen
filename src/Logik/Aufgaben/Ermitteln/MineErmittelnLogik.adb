@@ -1,12 +1,12 @@
 with EinheitenRecordKonstanten;
 
-with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 
 with RodenErmittelnLogik;
 with Fehlermeldungssystem;
 with ArbeitszeitMineLogik;
 with Grenzpruefungen;
+with AufgabeFestlegenLogik;
 
 package body MineErmittelnLogik is
 
@@ -69,22 +69,8 @@ package body MineErmittelnLogik is
         AnlegenTestenExtern
       is
          when True =>
-            if
-              Arbeitswerte.Vorarbeit
-            then
-               SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                 BeschäftigungExtern        => Arbeitswerte.Aufgabe);
-               SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                      ZeitExtern                 => Arbeitswerte.Arbeitszeit,
-                                                                      RechnenSetzenExtern        => False);
-               
-            else
-               SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       BeschäftigungExtern        => Arbeitswerte.Aufgabe);
-               SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                            ZeitExtern                 => Arbeitswerte.Arbeitszeit,
-                                                            RechnenSetzenExtern        => False);
-            end if;
+            AufgabeFestlegenLogik.AufgabeFestlegen (ArbeitExtern               => Arbeitswerte,
+                                                    EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>
             null;

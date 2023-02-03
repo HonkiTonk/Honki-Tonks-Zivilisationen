@@ -27,6 +27,7 @@ package StadtkarteGrafik is
 private
 
    GebäudeID : StadtDatentypen.GebäudeID;
+   GebäudeZusatzinformationen : StadtDatentypen.GebäudeIDMitNullwert;
 
    Stadtgröße : KartenDatentypen.KartenfeldPositiv;
 
@@ -39,5 +40,8 @@ private
 
    procedure GrafischeDarstellung
      (GrundExtern : in KartenRecords.KartengrundRecord);
+
+   procedure Zusatzinformationen
+     (GebäudeIDExtern : in StadtDatentypen.GebäudeID);
 
 end StadtkarteGrafik;

@@ -7,7 +7,7 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
 with MeldungenSetzenLogik;
-with AufgabenAllgemeinLogik;
+with AufgabeFestlegenLogik;
 with WegeplatzierungssystemLogik;
 with WaldAnlegenLogik;
 with RodenAnlegenLogik;
@@ -95,7 +95,7 @@ package body VerbesserungFertiggestelltLogik is
          when EinheitenKonstanten.LeerBeschäftigung =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                     AufgabeExtern             => KIDatentypen.Leer_Aufgabe_Enum);
-            AufgabenAllgemeinLogik.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+            AufgabeFestlegenLogik.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
 
          when others =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,

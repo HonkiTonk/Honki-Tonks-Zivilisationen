@@ -3,9 +3,10 @@ with ForschungRecordKonstanten;
 with ForschungenDatentypen;
 with ForschungKonstanten;
 
-with SchreibeEinheitenGebaut;
 with LeseWeltkarte;
 with LeseWichtiges;
+
+with AufgabeFestlegenLogik;
 
 package body FeldeffektErmittelnLogik is
 
@@ -66,11 +67,8 @@ package body FeldeffektErmittelnLogik is
         AnlegenTestenExtern
       is
          when True =>
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern        => AufgabenDatentypen.Feldeffekt_Entfernen_Enum);
-            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                         ZeitExtern                 => 5,
-                                                         RechnenSetzenExtern        => False);
+            AufgabeFestlegenLogik.AufgabeFestlegen (ArbeitExtern               => (AufgabenDatentypen.Feldeffekt_Entfernen_Enum, 5, False),
+                                                    EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>
             null;

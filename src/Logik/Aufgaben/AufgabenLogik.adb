@@ -1,6 +1,3 @@
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
-with AufgabenDatentypen;
 with TextnummernKonstanten;
 
 with LeseEinheitenGebaut;
@@ -9,7 +6,7 @@ with LeseWeltkarte;
 with LeseForschungenDatenbank;
 
 with ForschungstestsLogik;
-with AufgabenAllgemeinLogik;
+with AufgabeFestlegenLogik;
 with WegErmittelnLogik;
 with MineErmittelnLogik;
 with RodenErmittelnLogik;
@@ -24,14 +21,14 @@ with EinheitAufloesenLogik;
 with UmwandlungenVerschiedeneDatentypen;
 with JaNeinLogik;
 with MeldungFestlegenLogik;
-with NachGrafiktask;
 with FeldeffektErmittelnLogik;
 
 package body AufgabenLogik is
    
-   function AufgabeTesten
+   function Aufgabe
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
+      AnlegenTestenExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is begin
@@ -46,67 +43,13 @@ package body AufgabenLogik is
          when True =>
             return AufgabeFestlegen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                      BefehlExtern               => BefehlExtern,
-                                     AnlegenTestenExtern        => False,
+                                     AnlegenTestenExtern        => AnlegenTestenExtern,
                                      KoordinatenExtern          => KoordinatenExtern);
             
          when False =>
             return False;
       end case;
       
-   end AufgabeTesten;
-   
-   
-   
-   function Aufgabe
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-   is
-      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
-   begin
-      
-      case
-        Anfangstest (SpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
-                     EinheitartExtern   => LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                                IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)),
-                     BefehlExtern       => BefehlExtern,
-                     VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern))
-      is
-         when True =>
-            null;
-            
-         when False =>
-            return False;
-      end case;
-     
-      -- Kann dieser Fall so noch auftreten? äöü
-      if
-        LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
-        and
-          LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.KI_Spieler_Enum
-      then
-         case
-           JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen)
-         is
-            when True =>
-               null;
-               
-            when False =>
-               Put_Line ("Prüfung ob das hier jemals aufgerufen wird oder entfernt werden kann.");
-               NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
-               return False;
-         end case;
-         
-      else
-         null;
-      end if;
-      
-      return AufgabeFestlegen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                               BefehlExtern               => BefehlExtern,
-                               AnlegenTestenExtern        => True,
-                               KoordinatenExtern          => KoordinatenExtern);
-   
    end Aufgabe;
    
    
@@ -227,7 +170,7 @@ package body AufgabenLogik is
       return Boolean
    is begin
             
-      AufgabenAllgemeinLogik.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      AufgabeFestlegenLogik.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
         BefehlExtern

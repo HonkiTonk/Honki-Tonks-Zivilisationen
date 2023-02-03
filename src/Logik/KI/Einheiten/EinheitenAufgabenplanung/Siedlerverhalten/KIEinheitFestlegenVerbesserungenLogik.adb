@@ -271,9 +271,10 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       end case;
       
       case
-        AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                     BefehlExtern               => BefehleDatentypen.Mine_Bauen_Enum,
-                                     KoordinatenExtern          => KoordinatenExtern)
+        AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                               BefehlExtern               => BefehleDatentypen.Mine_Bauen_Enum,
+                               AnlegenTestenExtern        => False,
+                               KoordinatenExtern          => KoordinatenExtern)
       is
          when True =>
             if
@@ -300,9 +301,10 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       end case;
       
       case
-        AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                     BefehlExtern               => BefehleDatentypen.Festung_Bauen_Enum,
-                                     KoordinatenExtern          => KoordinatenExtern)
+        AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                               BefehlExtern               => BefehleDatentypen.Festung_Bauen_Enum,
+                               AnlegenTestenExtern        => False,
+                               KoordinatenExtern          => KoordinatenExtern)
       is
          when True =>
             if
@@ -321,9 +323,10 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       end case;
          
       case
-        AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                     BefehlExtern               => BefehleDatentypen.Farm_Bauen_Enum,
-                                     KoordinatenExtern          => KoordinatenExtern)
+        AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                               BefehlExtern               => BefehleDatentypen.Farm_Bauen_Enum,
+                               AnlegenTestenExtern        => False,
+                               KoordinatenExtern          => KoordinatenExtern)
       is
          when True =>
             SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -357,9 +360,10 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    is begin
       
       case
-        AufgabenLogik.AufgabeTesten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                     BefehlExtern             => BefehleDatentypen.Straße_Bauen_Enum,
-                                     KoordinatenExtern        => KoordinatenExtern)
+        AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                               BefehlExtern               => BefehleDatentypen.Straße_Bauen_Enum,
+                               AnlegenTestenExtern        => False,
+                               KoordinatenExtern          => KoordinatenExtern)
       is
          when True =>
             SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,

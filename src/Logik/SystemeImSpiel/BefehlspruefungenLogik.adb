@@ -11,7 +11,7 @@ with EinheitSuchenLogik;
 with StadtSuchenLogik;
 with StadtEntfernenLogik;
 with TransporterSuchenLogik;
-with AufgabenAllgemeinLogik;
+with AufgabeFestlegenLogik;
 with EinheitenkontrollsystemLogik;
 with AuswahlStadtEinheitLogik;
 with NachGrafiktask;
@@ -219,7 +219,7 @@ package body BefehlspruefungenLogik is
            JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBeschäftigungAbbrechen)
          is
             when True =>
-               AufgabenAllgemeinLogik.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+               AufgabeFestlegenLogik.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                
                if
                  LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
@@ -296,8 +296,9 @@ package body BefehlspruefungenLogik is
       is
          when True =>
             LeerRückgabewert := AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummer),
-                                                        BefehlExtern             => BefehlExtern,
-                                                        KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummer)));
+                                                        BefehlExtern               => BefehlExtern,
+                                                        AnlegenTestenExtern        => True,
+                                                        KoordinatenExtern          => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummer)));
             
          when False =>
             null;

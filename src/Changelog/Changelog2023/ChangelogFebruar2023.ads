@@ -168,17 +168,19 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (04.02.2023):
+   -- Version 0.04.7320 => 0.04. (04.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.7275 => 0.04. (03.02.2023):
+   -- Version 0.04.7275 => 0.04.7320 (03.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Feldeffekte haben jetzt auch Auswirkungen auf die Arbeitszeit von Siedlern.
+   -- Code zusammengeführt.
+   -- Angefangen Zusatzinformationen für die Stadtkarte einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
@@ -187,7 +189,6 @@ package ChangelogVorlage is
    -- Codeformatierung leicht überarbeitet.
    -- Neue Versionen für GitHub erstellt.
    -- Neue Version bei Alire hinzugefügt.
-   -- 
    -- Kleinigkeiten korrigiert.
    
    
