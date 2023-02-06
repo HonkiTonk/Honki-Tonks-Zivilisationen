@@ -1,8 +1,9 @@
+with GrafikRecordKonstanten;
+with Views;
+-- with ViewKonstanten;
+
 package GrafikVariablen is
 
-   -- Alle Textbereiche in ein Enum eintragen, dann hier ein Array anlegen und nachprüfen lassen ob der jeweilige Bereich schon True/False ist? äöü
-   -- Hätte so seine Probleme, aber es wäre einfach nachprüfbar und zurücksetzen wäre auch leichter. äöü
-   -- Oder aufgeteilt lassen? äöü
-   -- Eventuell auch TextAllgemeinSFML.TextAccessEinstellen entsprechend umbauen. äöü
+   InformationsfeldBereiche : GrafikRecordKonstanten.BereicheArray (Views.InformationsfeldAccesse'Range) := (others => (0.00, 0.00, 0.25, 0.25));
 
 end GrafikVariablen;

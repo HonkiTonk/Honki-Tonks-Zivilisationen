@@ -1,9 +1,12 @@
 with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
 
 with Views;
-with GrafikRecordKonstanten;
 with KartengrundDatentypen;
 with ViewKonstanten;
+with ZeitKonstanten;
+with GrafikDatentypen;
+with GrafikVariablen;
+with TextaccessVariablen;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -13,9 +16,13 @@ with EingeleseneTexturenGrafik;
 with KartenspritesZeichnenGrafik;
 with ViewsEinstellenGrafik;
 with Vergleiche;
-with NachLogiktask;
-
-with Diagnoseinformationen;
+with InteraktionAllgemein;
+with ViewbereicheBerechnenGrafik;
+with HintergrundGrafik;
+with TextberechnungenBreiteGrafik;
+with TextberechnungenHoeheGrafik;
+with TextaccessverwaltungssystemGrafik;
+with GebaeudebeschreibungenGrafik;
 
 package body StadtkarteGrafik is
 
@@ -63,7 +70,7 @@ package body StadtkarteGrafik is
                                                                       TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtSpeziesNummerExtern.Spezies, GebäudeID));
                   
                   if
-                    True = Vergleiche.Auswahlposition (MauspositionExtern => NachLogiktask.Mausposition,
+                    True = Vergleiche.Auswahlposition (MauspositionExtern => InteraktionAllgemein.Mausposition,
                                                        TextboxExtern      => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y, Grafikgröße.x, Grafikgröße.y))
                   then
                      GebäudeZusatzinformationen := GebäudeID;
@@ -76,15 +83,8 @@ package body StadtkarteGrafik is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      case
-        GebäudeZusatzinformationen
-      is
-         when StadtKonstanten.LeerGebäudeID =>
-            null;
-         
-         when others =>
-            Zusatzinformationen (GebäudeIDExtern => GebäudeZusatzinformationen);
-      end case;
+      Zusatzinformationen (GebäudeIDExtern => GebäudeZusatzinformationen,
+                           SpeziesExtern   => StadtSpeziesNummerExtern.Spezies);
       
    end Stadtkarte;
    
@@ -111,11 +111,68 @@ package body StadtkarteGrafik is
    
    
    procedure Zusatzinformationen
-     (GebäudeIDExtern : in StadtDatentypen.GebäudeID)
+     (GebäudeIDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+   is
+      use type StadtDatentypen.GebäudeIDMitNullwert;
+   begin
+      
+      if
+        GebäudeIDExtern = StadtKonstanten.LeerGebäudeID
+        or
+          GebäudeIDExtern /= AlteID
+      then
+         Anzeigezeit := Clock;
+         AlteID := GebäudeIDExtern;
+         
+      elsif
+        Anzeigezeit + ZeitKonstanten.AnzeigeInformationen < Clock
+        and
+          GebäudeIDExtern = AlteID
+      then
+         GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.GebäudeHinweis)
+           := ViewbereicheBerechnenGrafik.ViewbereichBreiteHöheBerechnen (BereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.GebäudeHinweis));
+         
+         Informationsfeld (GebäudeIDExtern => GebäudeIDExtern,
+                           SpeziesExtern   => SpeziesExtern);
+         
+      else
+         null;
+      end if;
+            
+   end Zusatzinformationen;
+   
+   
+   
+   procedure Informationsfeld
+     (GebäudeIDExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      Diagnoseinformationen.Zahl (ZahlExtern => Positive (GebäudeIDExtern));
+      GrafikVariablen.InformationsfeldBereiche (ViewKonstanten.InformationsfeldStadtkarte)
+        := ViewbereicheBerechnenGrafik.ViewbereichBreiteHöheBerechnen (BereichExtern => GrafikVariablen.InformationsfeldBereiche (ViewKonstanten.InformationsfeldStadtkarte));
+                                                                        
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
+                                                                        VerhältnisExtern => (GrafikVariablen.InformationsfeldBereiche (ViewKonstanten.InformationsfeldStadtkarte).width,
+                                                                                              GrafikVariablen.InformationsfeldBereiche (ViewKonstanten.InformationsfeldStadtkarte).height));
       
-   end Zusatzinformationen;
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.InformationsfeldAccesse (ViewKonstanten.InformationsfeldStadtkarte),
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => GrafikVariablen.InformationsfeldBereiche (ViewKonstanten.InformationsfeldStadtkarte));
+      
+      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
+                                     AbmessungenExtern => Viewfläche);
+           
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      
+      TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                              TextExtern       => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => GebäudeIDExtern,
+                                                                                                                                 SpeziesExtern => SpeziesExtern),
+                                                              PositionExtern   => Textposition);
+      
+      Viewfläche := (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      
+   end Informationsfeld;
 
 end StadtkarteGrafik;

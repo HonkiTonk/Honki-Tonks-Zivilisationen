@@ -7,7 +7,7 @@ with ViewKonstanten;
 with LeseCursor;
 with SchreibeCursor;
 
-with NachLogiktask;
+with InteraktionAllgemein;
 with KartenkoordinatenberechnungssystemLogik;
 with EinstellungenGrafik;
 with NachGrafiktask;
@@ -26,7 +26,7 @@ package body CursorplatzierungGrafik is
       is
          when KartenKonstanten.LeerEAchse =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                       point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                       point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                        view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
             Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
             

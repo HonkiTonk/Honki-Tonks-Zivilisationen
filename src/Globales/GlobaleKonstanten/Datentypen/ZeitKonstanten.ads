@@ -15,6 +15,7 @@ package ZeitKonstanten is
    Blinkintervall : constant Duration := 0.500;
    
    -- Das hier vom Nutzer einstellbar machen. äöü
+   AnzeigeInformationen : constant Duration := 0.500;
    AnzeigezeitSpielmeldungen : constant Duration := 2.000;
    
    -- Das hier vom Nutzer einstellbar machen. äöü

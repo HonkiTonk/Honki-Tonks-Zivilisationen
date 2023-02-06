@@ -6,6 +6,7 @@ with TextaccessVariablen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with StadtKonstanten;
+with ViewKonstanten;
 
 with LeseGebaeudeDatenbank;
 
@@ -104,9 +105,17 @@ package body BauauswahlGebaeudeGrafik is
       
       ViewflächeInformationen := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-      Gebäudebeschreibung (AuswahlExtern     => AuswahlExtern,
-                            SpeziesExtern     => SpeziesExtern,
-                            ViewbereichExtern => ViewbereichExtern + 1);
+      case
+        ViewbereichExtern
+      is
+         when ViewKonstanten.GebäudeHinweis =>
+            null;
+            
+         when others =>
+            Gebäudebeschreibung (AuswahlExtern     => AuswahlExtern,
+                                  SpeziesExtern     => SpeziesExtern,
+                                  ViewbereichExtern => ViewbereichExtern + 1);
+      end case;
             
    end Gebäudeinformationen;
    

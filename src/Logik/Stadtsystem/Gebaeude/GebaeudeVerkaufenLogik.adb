@@ -1,3 +1,5 @@
+with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
+
 with InteraktionAuswahl;
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
@@ -11,6 +13,8 @@ with TasteneingabeLogik;
 with GebaeudeAllgemeinLogik;
 with StadtproduktionLogik;
 with JaNeinLogik;
+with EinstellungenGrafik;
+with InteraktionAllgemein;
 
 package body GebaeudeVerkaufenLogik is
    
@@ -122,5 +126,47 @@ package body GebaeudeVerkaufenLogik is
       end loop AuswahlSchleife;
       
    end GebäudeVerkaufen;
+   
+   
+   
+   procedure StadtkarteVerkaufen
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+   is begin
+      
+      Stadtgröße := KartenDatentypen.KartenfeldPositiv (Float'Ceiling (Sqrt (X => Float (StadtDatentypen.GebäudeID'Last))));
+      Grafikgröße := (EinstellungenGrafik.AktuelleFensterAuflösung.x / Float (Stadtgröße), EinstellungenGrafik.AktuelleFensterAuflösung.y / Float (Stadtgröße));
+      Mausposition := InteraktionAllgemein.Mausposition;
+      
+      Auswahl := Natural (Float'Floor (Mausposition.y / Grafikgröße.y)) * Positive (Stadtgröße);
+      Auswahl := Auswahl + Natural (Float'Ceiling (Mausposition.x / Grafikgröße.x));
+      
+      if
+        Auswahl not in 1 .. Positive (StadtDatentypen.GebäudeID'Last)
+      then
+         return;
+         
+      elsif
+        False = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                   WelchesGebäudeExtern    => StadtDatentypen.GebäudeID (Auswahl))
+      then
+         return;
+         
+      else
+         null;
+      end if;
+      
+      case
+        JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageGebäudeAbreißen)
+      is
+         when False =>
+            null;
+                        
+         when True =>
+            GebaeudeAllgemeinLogik.GebäudeEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                     WelchesGebäudeExtern     => StadtDatentypen.GebäudeID (Auswahl));
+            StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      end case;
+      
+   end StadtkarteVerkaufen;
 
 end GebaeudeVerkaufenLogik;

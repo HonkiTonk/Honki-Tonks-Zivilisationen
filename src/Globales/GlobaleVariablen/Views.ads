@@ -17,7 +17,6 @@ package Views is
 
    MeldungssviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
-
    KartenbefehlsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
    EinheitenbefehlsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
@@ -34,8 +33,10 @@ package Views is
    StadtviewAccesse : constant ViewsArray (ViewKonstanten.StadtUmgebung .. ViewKonstanten.StadtKarte) := (others => Sf.Graphics.View.create);
 
    ForschungsviewAccesse : constant ViewsArray (ViewKonstanten.ForschungsmenüForschungsliste .. ViewKonstanten.ForschungsmenüErfolg) := (others => Sf.Graphics.View.create);
-   BauviewAccesse : constant ViewsArray (ViewKonstanten.BaumenüGebäudeliste .. ViewKonstanten.BaumenüGebäudebeschreibungVerkaufen) := (others => Sf.Graphics.View.create);
+   BauviewAccesse : constant ViewsArray (ViewKonstanten.BaumenüGebäudeliste .. ViewKonstanten.GebäudeHinweis) := (others => Sf.Graphics.View.create);
 
    EditorenviewAccesse : constant ViewsArray (1 .. 2) := (others => Sf.Graphics.View.create);
+
+   InformationsfeldAccesse : constant ViewsArray (ViewKonstanten.InformationsfeldStadtkarte .. ViewKonstanten.InformationsfeldStadtkarte) := (others => Sf.Graphics.View.create);
 
 end Views;

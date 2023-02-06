@@ -1,3 +1,5 @@
+with Ada.Calendar; use Ada.Calendar;
+
 private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
@@ -7,6 +9,7 @@ with StadtKonstanten;
 private with StadtDatentypen;
 private with KartenDatentypen;
 private with KartenRecords;
+private with GrafikRecordKonstanten;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -27,21 +30,40 @@ package StadtkarteGrafik is
 private
 
    GebäudeID : StadtDatentypen.GebäudeID;
+
+   AlteID : StadtDatentypen.GebäudeIDMitNullwert := StadtKonstanten.LeerGebäudeID;
    GebäudeZusatzinformationen : StadtDatentypen.GebäudeIDMitNullwert;
 
    Stadtgröße : KartenDatentypen.KartenfeldPositiv;
+
+   Anzeigezeit : Time := Clock;
 
    YMultiplikator : Float;
    XMultiplikator : Float;
 
    Gesamtgrund : KartenRecords.KartengrundRecord;
 
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Grafikgröße : Sf.System.Vector2.sfVector2f;
+   Textposition : Sf.System.Vector2.sfVector2f;
 
    procedure GrafischeDarstellung
      (GrundExtern : in KartenRecords.KartengrundRecord);
 
    procedure Zusatzinformationen
-     (GebäudeIDExtern : in StadtDatentypen.GebäudeID);
+     (GebäudeIDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
+
+   procedure Informationsfeld
+     (GebäudeIDExtern : in StadtDatentypen.GebäudeID;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
 
 end StadtkarteGrafik;

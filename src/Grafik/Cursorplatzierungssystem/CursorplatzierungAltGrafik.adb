@@ -16,7 +16,7 @@ with KartenkoordinatenberechnungssystemLogik;
 with SichtweitenGrafik;
 with NachGrafiktask;
 with EinstellungenGrafik;
-with NachLogiktask;
+with InteraktionAllgemein;
 with Vergleiche;
 with GeheZuGrafik;
 
@@ -74,7 +74,7 @@ package body CursorplatzierungAltGrafik is
    begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                 point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                 point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
       
       SchreibeCursor.EAchseAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
@@ -183,9 +183,9 @@ package body CursorplatzierungAltGrafik is
    is begin
             
       if
-        NachLogiktask.Mausposition.x < 0.00
+        InteraktionAllgemein.Mausposition.x < 0.00
         or
-          NachLogiktask.Mausposition.y < 0.00
+          InteraktionAllgemein.Mausposition.y < 0.00
       then
          null;
          
@@ -194,7 +194,7 @@ package body CursorplatzierungAltGrafik is
          Viewzentrum := Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess);
          
          Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                    point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                    point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                     view         => Views.KartenbefehlsviewAccess);
       
          case
@@ -215,9 +215,9 @@ package body CursorplatzierungAltGrafik is
          null;
          
       elsif
-        NachLogiktask.Mausposition.x <= 0.00
+        InteraktionAllgemein.Mausposition.x <= 0.00
         or
-          NachLogiktask.Mausposition.y <= 0.00
+          InteraktionAllgemein.Mausposition.y <= 0.00
       then
          null;
          
@@ -226,7 +226,7 @@ package body CursorplatzierungAltGrafik is
          Viewzentrum := Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess);
          
          Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                                    point        => (Sf.sfInt32 (NachLogiktask.Mausposition.x), Sf.sfInt32 (NachLogiktask.Mausposition.y)),
+                                                                    point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                     view         => Views.EinheitenbefehlsviewAccess);
             
          case

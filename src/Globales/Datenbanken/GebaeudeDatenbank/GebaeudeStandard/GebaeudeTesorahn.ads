@@ -12,13 +12,13 @@ package GebaeudeTesorahn is
                                                                                    1 =>
                                                                                      (
                                                                                       PreisGeld                   => 100,
-                                                                                      Produktionskosten           => 100,
+                                                                                      Produktionskosten           => 101,
                                                                                       PermanenteKosten            => (others => 0),
                                                                                       Anforderungen               => 0,
                                                                                       BonusWirtschaft             => (ProduktionDatentypen.Nahrung_Enum => 10,
                                                                                                                       others                            => 0),
                                                                                       BonusKampf                  => (others => 10),
-                                                                                      BasisgrundBenötigt         => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
                                                                                       FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                                       RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
                                                                                       VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
@@ -31,7 +31,7 @@ package GebaeudeTesorahn is
                                                                                    2 =>
                                                                                      (
                                                                                       PreisGeld                   => 100,
-                                                                                      Produktionskosten           => 100,
+                                                                                      Produktionskosten           => 102,
                                                                                       PermanenteKosten            => (others => 0),
                                                                                       Anforderungen               => 2,
                                                                                       BonusWirtschaft             => (others => 0),
@@ -44,14 +44,104 @@ package GebaeudeTesorahn is
                                                                                       EbeneBenötigt               => (others => False),
                                                                                       SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
                                                                                      ),
-      
-                                                                                     -- Bibliothek
+                                             
+                                                                                     -- Holzpalisade
                                                                                    3 =>
                                                                                      (
-                                                                                      PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
+                                                                                      PreisGeld                   => 150,
+                                                                                      Produktionskosten           => 103,
                                                                                       PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 7,
+                                                                                      Anforderungen               => 1,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Schmiede
+                                                                                   4 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 104,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 10,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+      
+                                                                                     -- Bibliothek
+                                                                                   5 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 105,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 9,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Steinmauer
+                                                                                   6 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 106,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 11,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Bücherei
+                                                                                   7 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 107,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 21,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Bewässerungssystem
+                                                                                   8 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 108,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 16,
                                                                                       BonusWirtschaft             => (others => 0),
                                                                                       BonusKampf                  => (others => 0),
                                                                                       BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
@@ -64,102 +154,12 @@ package GebaeudeTesorahn is
                                                                                      ),
                                              
                                                                                      -- Kaserne
-                                                                                   4 =>
-                                                                                     (
-                                                                                      PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
-                                                                                      PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 4,
-                                                                                      BonusWirtschaft             => (others => 0),
-                                                                                      BonusKampf                  => (others => 0),
-                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
-                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
-                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
-                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
-                                                                                      EbeneBenötigt               => (others => False),
-                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
-                                                                                     ),
-                                             
-                                                                                     -- Seehafen
-                                                                                   5 =>
-                                                                                     (
-                                                                                      PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
-                                                                                      PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 12,
-                                                                                      BonusWirtschaft             => (others => 0),
-                                                                                      BonusKampf                  => (others => 0),
-                                                                                      BasisgrundBenötigt          => KartengrundDatentypen.Küstengewässer_Enum,
-                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
-                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
-                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
-                                                                                      EbeneBenötigt               => (others => False),
-                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
-                                                                                     ),
-                                             
-                                                                                     -- Universität
-                                                                                   6 =>
-                                                                                     (
-                                                                                      PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
-                                                                                      PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 27,
-                                                                                      BonusWirtschaft             => (others => 0),
-                                                                                      BonusKampf                  => (others => 0),
-                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
-                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
-                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
-                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
-                                                                                      EbeneBenötigt               => (others => False),
-                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
-                                                                                     ),
-                                             
-                                                                                     -- Kohlekraftwerk
-                                                                                   7 =>
-                                                                                     (
-                                                                                      PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
-                                                                                      PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 29,
-                                                                                      BonusWirtschaft             => (others => 0),
-                                                                                      BonusKampf                  => (others => 0),
-                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
-                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
-                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
-                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
-                                                                                      EbeneBenötigt               => (others => False),
-                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
-                                                                                     ),
-                                             
-                                                                                     -- Apotheke
-                                                                                   8 =>
-                                                                                     (
-                                                                                      PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
-                                                                                      PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 19,
-                                                                                      BonusWirtschaft             => (others => 0),
-                                                                                      BonusKampf                  => (others => 0),
-                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
-                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
-                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
-                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
-                                                                                      EbeneBenötigt               => (others => False),
-                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
-                                                                                     ),
-                                             
-                                                                                     -- Krankenhaus
                                                                                    9 =>
                                                                                      (
                                                                                       PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
+                                                                                      Produktionskosten           => 109,
                                                                                       PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 35,
+                                                                                      Anforderungen               => 13,
                                                                                       BonusWirtschaft             => (others => 0),
                                                                                       BonusKampf                  => (others => 0),
                                                                                       BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
@@ -171,65 +171,11 @@ package GebaeudeTesorahn is
                                                                                       SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
                                                                                      ),
                                              
-                                                                                     -- Genetikhaus
+                                                                                     -- Wassermühle
                                                                                    10 =>
                                                                                      (
                                                                                       PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
-                                                                                      PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 44,
-                                                                                      BonusWirtschaft             => (others => 0),
-                                                                                      BonusKampf                  => (others => 0),
-                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
-                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
-                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
-                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
-                                                                                      EbeneBenötigt               => (others => False),
-                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
-                                                                                     ),
-                                             
-                                                                                     -- Atomkraftwerk
-                                                                                   11 =>
-                                                                                     (
-                                                                                      PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
-                                                                                      PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 46,
-                                                                                      BonusWirtschaft             => (others => 0),
-                                                                                      BonusKampf                  => (others => 0),
-                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
-                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
-                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
-                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
-                                                                                      EbeneBenötigt               => (others => False),
-                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
-                                                                                     ),
-                                             
-                                                                                     -- Gezeitenkraftwerk
-                                                                                   12 =>
-                                                                                     (
-                                                                                      PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
-                                                                                      PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 43,
-                                                                                      BonusWirtschaft             => (others => 0),
-                                                                                      BonusKampf                  => (others => 0),
-                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
-                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
-                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
-                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
-                                                                                      EbeneBenötigt               => (others => False),
-                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
-                                                                                     ),
-                                             
-                                                                                     -- Handelshaus
-                                                                                   13 =>
-                                                                                     (
-                                                                                      PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
+                                                                                      Produktionskosten           => 110,
                                                                                       PermanenteKosten            => (others => 0),
                                                                                       Anforderungen               => 15,
                                                                                       BonusWirtschaft             => (others => 0),
@@ -243,13 +189,13 @@ package GebaeudeTesorahn is
                                                                                       SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
                                                                                      ),
                                              
-                                                                                     -- Marktplatz
-                                                                                   14 =>
+                                                                                     -- Windmühle
+                                                                                   11 =>
                                                                                      (
                                                                                       PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
+                                                                                      Produktionskosten           => 111,
                                                                                       PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 8,
+                                                                                      Anforderungen               => 15,
                                                                                       BonusWirtschaft             => (others => 0),
                                                                                       BonusKampf                  => (others => 0),
                                                                                       BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
@@ -261,13 +207,31 @@ package GebaeudeTesorahn is
                                                                                       SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
                                                                                      ),
                                              
-                                                                                     -- Kunstplatz
-                                                                                   15 =>
+                                                                                     -- Seehafen
+                                                                                   12 =>
                                                                                      (
                                                                                       PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
+                                                                                      Produktionskosten           => 112,
                                                                                       PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 16,
+                                                                                      Anforderungen               => 14,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => KartengrundDatentypen.Küstengewässer_Enum,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Hochofen
+                                                                                   13 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 113,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 33,
                                                                                       BonusWirtschaft             => (others => 0),
                                                                                       BonusKampf                  => (others => 0),
                                                                                       BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
@@ -278,12 +242,102 @@ package GebaeudeTesorahn is
                                                                                       EbeneBenötigt               => (others => False),
                                                                                       SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
                                                                                      ),
-                                                                            
-                                                                                     -- Unionshaus
+                                             
+                                                                                     -- Universität
+                                                                                   14 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 114,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 27,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Burg
+                                                                                   15 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 115,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 22,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Schwere Burg
                                                                                    16 =>
                                                                                      (
                                                                                       PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
+                                                                                      Produktionskosten           => 116,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 25,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Festungen
+                                                                                   17 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 117,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 34,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Kohlekraftwerk
+                                                                                   18 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 118,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 37,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Fabrik
+                                                                                   19 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 119,
                                                                                       PermanenteKosten            => (others => 0),
                                                                                       Anforderungen               => 30,
                                                                                       BonusWirtschaft             => (others => 0),
@@ -296,14 +350,122 @@ package GebaeudeTesorahn is
                                                                                       EbeneBenötigt               => (others => False),
                                                                                       SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
                                                                                      ),
-                                                                            
-                                                                                     -- NAMR Kraftwerk
-                                                                                   17 =>
+                                             
+                                                                                     -- Krankenhaus
+                                                                                   20 =>
                                                                                      (
                                                                                       PreisGeld                   => 1000,
-                                                                                      Produktionskosten           => 100,
+                                                                                      Produktionskosten           => 120,
                                                                                       PermanenteKosten            => (others => 0),
-                                                                                      Anforderungen               => 50,
+                                                                                      Anforderungen               => 43,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Flughafen
+                                                                                   21 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 121,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 41,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Atomkraftwerk
+                                                                                   22 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 122,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 45,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Regenerative Kraftwerke (aufteilen oder zusammenlassen?)
+                                                                                   23 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 123,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 53,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Genklinik
+                                                                                   24 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 124,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 56,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- Fusionskraftwerk
+                                                                                   25 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 125,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 60,
+                                                                                      BonusWirtschaft             => (others => 0),
+                                                                                      BonusKampf                  => (others => 0),
+                                                                                      BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
+                                                                                      FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                                      RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                                      VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
+                                                                                      GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                      EbeneBenötigt               => (others => False),
+                                                                                      SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                     ),
+                                             
+                                                                                     -- NAMR Kraftwerk
+                                                                                   26 =>
+                                                                                     (
+                                                                                      PreisGeld                   => 1000,
+                                                                                      Produktionskosten           => 126,
+                                                                                      PermanenteKosten            => (others => 0),
+                                                                                      Anforderungen               => 63,
                                                                                       BonusWirtschaft             => (others => 0),
                                                                                       BonusKampf                  => (others => 0),
                                                                                       BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,

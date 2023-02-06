@@ -24,7 +24,14 @@ private
 
    Befehlsauswahl : BefehleDatentypen.Stadtbefehle_Enum;
 
-   procedure Stadtkarte;
+   procedure Stadtkarte
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
 
 
 

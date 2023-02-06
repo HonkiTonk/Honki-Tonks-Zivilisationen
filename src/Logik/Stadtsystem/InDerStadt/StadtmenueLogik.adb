@@ -36,7 +36,7 @@ package body StadtmenueLogik is
                end if;
                
             when BefehleDatentypen.Stadtkarte_Enum =>
-               Stadtkarte;
+               Stadtkarte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
                
             when BefehleDatentypen.Bauen_Enum =>
                StadtbausystemLogik.Bauen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
@@ -95,7 +95,7 @@ package body StadtmenueLogik is
             return False;
             
          when BefehleDatentypen.Stadtkarte_Enum =>
-            Stadtkarte;
+            Stadtkarte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             return False;
             
          when others =>
@@ -139,6 +139,7 @@ package body StadtmenueLogik is
    
    
    procedure Stadtkarte
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
       NachGrafiktask.Stadtkarte := True;
@@ -151,6 +152,9 @@ package body StadtmenueLogik is
          is
             when TastenbelegungDatentypen.Leer_Allgemeine_Belegung_Enum =>
                null;
+               
+            when TastenbelegungDatentypen.Auswählen_Enum =>
+               GebaeudeVerkaufenLogik.StadtkarteVerkaufen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
                
             when others =>
                exit StadtkarteSchleife;

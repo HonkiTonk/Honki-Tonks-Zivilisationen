@@ -154,24 +154,26 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (06.02.2023):
+   -- Version 0.04.7380 => 0.04. (06.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (05.02.2023):
+   -- Version 0.04.7320 => 0.04.7380 (05.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Informationsfeld für die Stadtkarte eingebaut.
+   -- Allgemeine Berechnung für Viewbereiche eingebaut.
+   -- Angefangen das Stadtkarteninformationsfeld zu erweitern.
+   -- Es ist jetzt auch möglich Gebäude über die Stadtkarte zu verkaufen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/erweitert/angepasst.
    
    
 
-   -- Version 0.04.7320 => 0.04. (04.02.2023):
+   -- Version 0.04.7320 => 0.04.7320 (04.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

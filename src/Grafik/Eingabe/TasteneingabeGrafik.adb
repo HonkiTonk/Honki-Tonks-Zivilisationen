@@ -11,6 +11,7 @@ with NachLogiktask;
 with NachGrafiktask;
 with EinstellungenGrafik;
 with SichtweitenGrafik;
+with InteraktionAllgemein;
 
 package body TasteneingabeGrafik is
 
@@ -42,14 +43,14 @@ package body TasteneingabeGrafik is
                NachGrafiktask.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
                
             when Sf.Window.Event.sfEvtMouseLeft =>
-               NachLogiktask.Mausposition := GrafikRecordKonstanten.FalschePosition;
+               InteraktionAllgemein.Mausposition := GrafikRecordKonstanten.FalschePosition;
                
             when Sf.Window.Event.sfEvtMouseEntered =>
-               NachLogiktask.Mausposition := (Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => EinstellungenGrafik.FensterAccess).x),
+               InteraktionAllgemein.Mausposition := (Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => EinstellungenGrafik.FensterAccess).x),
                                               Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => EinstellungenGrafik.FensterAccess).y));
                   
             when Sf.Window.Event.sfEvtMouseMoved =>
-               NachLogiktask.Mausposition := (Float (Nutzereingabe.mouseMove.x), Float (Nutzereingabe.mouseMove.y));
+               InteraktionAllgemein.Mausposition := (Float (Nutzereingabe.mouseMove.x), Float (Nutzereingabe.mouseMove.y));
                
             when others =>
                null;

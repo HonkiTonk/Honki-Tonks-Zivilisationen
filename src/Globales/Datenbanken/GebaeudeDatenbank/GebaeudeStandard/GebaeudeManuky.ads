@@ -10,7 +10,7 @@ package GebaeudeManuky is
                                                                                  1 =>
                                                                                    (
                                                                                     PreisGeld                   => 100,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 101,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 0,
                                                                                     BonusWirtschaft             => (ProduktionDatentypen.Nahrung_Enum => 10,
@@ -29,7 +29,7 @@ package GebaeudeManuky is
                                                                                  2 =>
                                                                                    (
                                                                                     PreisGeld                   => 100,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 102,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 2,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -47,7 +47,7 @@ package GebaeudeManuky is
                                                                                  3 =>
                                                                                    (
                                                                                     PreisGeld                   => 150,
-                                                                                    Produktionskosten           => 50,
+                                                                                    Produktionskosten           => 103,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 1,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -65,7 +65,7 @@ package GebaeudeManuky is
                                                                                  4 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 104,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 10,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -83,7 +83,7 @@ package GebaeudeManuky is
                                                                                  5 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 105,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 9,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -101,7 +101,7 @@ package GebaeudeManuky is
                                                                                  6 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 106,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 11,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -119,7 +119,7 @@ package GebaeudeManuky is
                                                                                  7 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 107,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 21,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -137,7 +137,7 @@ package GebaeudeManuky is
                                                                                  8 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 108,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 16,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -155,7 +155,7 @@ package GebaeudeManuky is
                                                                                  9 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 109,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 13,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -173,7 +173,7 @@ package GebaeudeManuky is
                                                                                  10 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 110,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 15,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -191,7 +191,7 @@ package GebaeudeManuky is
                                                                                  11 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 111,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 15,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -209,7 +209,7 @@ package GebaeudeManuky is
                                                                                  12 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 112,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 14,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -227,7 +227,7 @@ package GebaeudeManuky is
                                                                                  13 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 113,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 33,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -245,7 +245,7 @@ package GebaeudeManuky is
                                                                                  14 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 114,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 27,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -263,7 +263,7 @@ package GebaeudeManuky is
                                                                                  15 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 115,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 22,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -281,7 +281,7 @@ package GebaeudeManuky is
                                                                                  16 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 116,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 25,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -299,7 +299,7 @@ package GebaeudeManuky is
                                                                                  17 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 117,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 34,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -317,7 +317,7 @@ package GebaeudeManuky is
                                                                                  18 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 118,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 37,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -335,7 +335,7 @@ package GebaeudeManuky is
                                                                                  19 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 119,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 30,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -353,7 +353,7 @@ package GebaeudeManuky is
                                                                                  20 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 120,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 43,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -371,7 +371,7 @@ package GebaeudeManuky is
                                                                                  21 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 121,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 41,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -389,7 +389,7 @@ package GebaeudeManuky is
                                                                                  22 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 122,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 45,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -407,7 +407,7 @@ package GebaeudeManuky is
                                                                                  23 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 123,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 53,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -425,7 +425,7 @@ package GebaeudeManuky is
                                                                                  24 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 124,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 56,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -443,7 +443,7 @@ package GebaeudeManuky is
                                                                                  25 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 125,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 60,
                                                                                     BonusWirtschaft             => (others => 0),
@@ -461,7 +461,7 @@ package GebaeudeManuky is
                                                                                  26 =>
                                                                                    (
                                                                                     PreisGeld                   => 1000,
-                                                                                    Produktionskosten           => 100,
+                                                                                    Produktionskosten           => 126,
                                                                                     PermanenteKosten            => (others => 0),
                                                                                     Anforderungen               => 63,
                                                                                     BonusWirtschaft             => (others => 0),
