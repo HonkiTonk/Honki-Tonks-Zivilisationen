@@ -31,5 +31,5 @@ package MenueDatentypen is
    subtype Menü_Steuerung_Enum is Welches_Menü_Vorhanden_Enum range Steuerung_Menü_Enum .. Steuerung_Menü_Enum;
    
    subtype Menü_Ohne_Überschrift_Enum is Menü_Einfach_Enum range Haupt_Menü_Enum .. Spiel_Menü_Enum;
-
+   
 end MenueDatentypen;

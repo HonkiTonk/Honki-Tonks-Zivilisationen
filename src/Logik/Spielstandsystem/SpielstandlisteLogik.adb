@@ -1,4 +1,5 @@
 with Ada.Characters.Conversions; use Ada.Characters.Conversions;
+with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with VerzeichnisKonstanten;
 with TastenbelegungDatentypen;
@@ -49,6 +50,37 @@ package body SpielstandlisteLogik is
                   Spielstand := (others => TextKonstanten.LeerUnboundedString);
                   Spielstand (SpielstandArray'First) := Zwischenspeicher;
             end case;
+            
+            AktuellerSpielstand := Schleifenanfang;
+            
+            Test:
+            loop
+               
+               case
+                 More_Entries (Search => Suche)
+               is
+                  when False =>
+                     exit Test;
+                     
+                  when True =>
+                     Get_Next_Entry (Search          => Suche,
+                                     Directory_Entry => Spielstanddatei);
+               end case;
+               
+               Spielstand (AktuellerSpielstand) := To_Unbounded_Wide_Wide_String (Source => To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Spielstanddatei)));
+               
+               case
+                 AktuellerSpielstand
+               is
+                  when SpielstandArray'Last =>
+                     NachGrafiktask.MehrereSeiten := True;
+                     exit Test;
+                     
+                  when others =>
+                     AktuellerSpielstand := AktuellerSpielstand + 1;
+               end case;
+               
+            end loop Test;
             
             SpeicherdateiSchleife:
             for SpeicherdateiSchleifenwert in Schleifenanfang .. SpielstandArray'Last loop
@@ -257,5 +289,31 @@ package body SpielstandlisteLogik is
       return Spielstandname;
       
    end NameNutzer;
+   
+   
+   
+   function NamePrüfen
+     (NameExtern : in Wide_Wide_String)
+      return Boolean
+   is begin
+      
+      PrüfenSchleife:
+      for PrüfenSchleifenwert in NameExtern'Range loop
+         
+         case
+           NameExtern (PrüfenSchleifenwert)
+         is
+            when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | Space | Hyphen | Low_Line =>
+               null;
+               
+            when others =>
+               return False;
+         end case;
+         
+      end loop PrüfenSchleife;
+      
+      return True;
+      
+   end NamePrüfen;
 
 end SpielstandlisteLogik;

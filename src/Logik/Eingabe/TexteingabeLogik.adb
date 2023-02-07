@@ -63,7 +63,7 @@ package body TexteingabeLogik is
         To_Wide_Wide_String (Source => Name.EingegebenerText)'Length
       is
          when 0 =>
-            return (True, To_Unbounded_Wide_Wide_String (Source => "Kein Name"));
+            return (True, TextKonstanten.LeerzeichenUnboundedString);
               
          when others =>
             return Name;

@@ -133,6 +133,7 @@ package body GebaeudeVerkaufenLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
+      -- Das hier irgendwie mit dem Graikfteil verschmelzen? äöü
       Stadtgröße := KartenDatentypen.KartenfeldPositiv (Float'Ceiling (Sqrt (X => Float (StadtDatentypen.GebäudeID'Last))));
       Grafikgröße := (EinstellungenGrafik.AktuelleFensterAuflösung.x / Float (Stadtgröße), EinstellungenGrafik.AktuelleFensterAuflösung.y / Float (Stadtgröße));
       Mausposition := InteraktionAllgemein.Mausposition;
