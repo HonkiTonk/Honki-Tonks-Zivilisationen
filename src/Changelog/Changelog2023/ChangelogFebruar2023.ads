@@ -133,24 +133,22 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (09.02.2023):
+   -- Version 0.04.7415 => 0.04. (09.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.7405 => 0.04. (08.02.2023):
+   -- Version 0.04.7405 => 0.04.7415 (08.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kompilerfehler? gesucht und gefunden?
    
    
 
    -- Version 0.04.7380 => 0.04.7405 (07.02.2023):
    
    -- Zusätzliche Prüfungen für Spielstandnamen eingebaut.
-   -- 
    -- Kommentare und Kleinigkeiten korrigiert.
    
    
