@@ -160,8 +160,6 @@ package body AllgemeinesSeitenleisteGrafik is
          when False =>
             null;
       end case;
-      
-      
                
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop

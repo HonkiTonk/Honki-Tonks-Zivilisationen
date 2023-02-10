@@ -3,7 +3,7 @@ with Sf.Graphics.Text;
 with Views;
 with GrafikDatentypen;
 with TextaccessVariablen;
-with SystemKonstanten;
+with MenueKonstanten;
 with InteraktionAuswahl;
 
 with ViewsEinstellenGrafik;
@@ -84,7 +84,7 @@ package body DoppelmenueGrafik is
       Textbreite := 0.00;
 
       PositionenSchleife:
-      for PositionSchleifenwert in SystemKonstanten.StandardArrayanpassung .. SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
+      for PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
          TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                       TextExtern       => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,

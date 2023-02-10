@@ -45,6 +45,9 @@ package body TextaccesseSchriftartGrafik is
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.TextAccess,
                                 font => TexteinstellungenGrafik.SchriftartAccess);
       
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.TexthöheAccess,
+                                font => TexteinstellungenGrafik.SchriftartAccess);
+      
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.Spielmeldung,
                                 font => TexteinstellungenGrafik.SchriftartAccess);
       

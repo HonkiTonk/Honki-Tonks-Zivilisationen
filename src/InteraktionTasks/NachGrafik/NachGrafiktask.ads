@@ -9,7 +9,7 @@ with StadtKonstanten;
 with StadtDatentypen;
 with ZahlenDatentypen;
 with SystemDatentypen;
-with SystemKonstanten;
+with MenueKonstanten;
 with StadtRecords;
 with SystemRecords;
 with EinheitenRecords;
@@ -71,7 +71,7 @@ package NachGrafiktask is
    EinheitBewegungsbereich : Boolean := False;
    
    -- AktuelleAuswahl.AuswahlZwei wird auch bei JaNein verwendet, damit es sonst zu falschen Farbanzeigen kommen kann, wenn AuswahlEins bereits von einem Menü belegt wird, beispielsweise Speichern.
-   AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord := (SystemKonstanten.LeerAuswahl, SystemKonstanten.LeerAuswahl);
+   AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord := (MenueKonstanten.LeerAuswahl, MenueKonstanten.LeerAuswahl);
    SpeichernLaden : Boolean;
    
    WelcheAuswahl : EinheitenRecords.AuswahlRecord := (False, (others => 0));

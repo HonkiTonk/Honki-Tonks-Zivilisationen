@@ -109,5 +109,5 @@ package body ObjekteZeichnenGrafik is
                                                    object       => RahmenteilAccess);
       
    end RahmenteilZeichnen;
-
+   
 end ObjekteZeichnenGrafik;

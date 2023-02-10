@@ -51,7 +51,9 @@ package body KartenkoordinateXAchseBerechnenLogik is
             return KartenKonstanten.LeerXAchse;
             
          when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Kartenart (LogikGrafikExtern);
+            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (LogikGrafikExtern   => LogikGrafikExtern,
+                                                                     ArrayPositionExtern => ArrayPositionExtern,
+                                                                     ÜbergangExtern      => Kartenart (LogikGrafikExtern));
             
             return ÜbergangWestenNormal (XAchseExtern         => XAchseExtern,
                                           ÄnderungXAchseExtern => ÄnderungXAchseExtern,
@@ -59,7 +61,9 @@ package body KartenkoordinateXAchseBerechnenLogik is
                                           LogikGrafikExtern    => LogikGrafikExtern);
             
          when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Kartenart (LogikGrafikExtern);
+            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (LogikGrafikExtern   => LogikGrafikExtern,
+                                                                     ArrayPositionExtern => ArrayPositionExtern,
+                                                                     ÜbergangExtern      => Kartenart (LogikGrafikExtern));
       
             return ÜbergangWestenRückwärts (XAchseExtern         => XAchseExtern,
                                                ÄnderungXAchseExtern => ÄnderungXAchseExtern);
@@ -128,7 +132,9 @@ package body KartenkoordinateXAchseBerechnenLogik is
             return KartenKonstanten.LeerXAchse;
             
          when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Kartenart (LogikGrafikExtern);
+            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (LogikGrafikExtern   => LogikGrafikExtern,
+                                                                     ArrayPositionExtern => ArrayPositionExtern,
+                                                                     ÜbergangExtern      => Kartenart (LogikGrafikExtern));
             
             return ÜbergangOstenNormal (XAchseExtern         => XAchseExtern,
                                          ÄnderungXAchseExtern => ÄnderungXAchseExtern,
@@ -136,7 +142,9 @@ package body KartenkoordinateXAchseBerechnenLogik is
                                          LogikGrafikExtern    => LogikGrafikExtern);
             
          when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Kartenart (LogikGrafikExtern);
+            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (LogikGrafikExtern   => LogikGrafikExtern,
+                                                                     ArrayPositionExtern => ArrayPositionExtern,
+                                                                     ÜbergangExtern      => Kartenart (LogikGrafikExtern));
       
             return ÜbergangOstenRückwärts (XAchseExtern         => XAchseExtern,
                                               ÄnderungXAchseExtern => ÄnderungXAchseExtern);

@@ -119,7 +119,7 @@ package body SteuerungsmenueGrafik is
       end loop AufteilungSchleife;
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.SteuerungAccess (SystemKonstanten.Stadtsteuerung),
+                                                                      TextAccessExtern => TextaccessVariablen.SteuerungAccess (MenueKonstanten.Stadtsteuerung),
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
       return (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
@@ -138,16 +138,16 @@ package body SteuerungsmenueGrafik is
         WelcheSteuerungExtern
       is
          when SteuerungsauswahlLogik.Allgemeine_Belegung_Enum =>
-            ArrayAnfang := SystemKonstanten.AllgemeineSteuerung + 1;
-            ArrayEnde := SystemKonstanten.Einheitensteuerung - 1;
+            ArrayAnfang := MenueKonstanten.AllgemeineSteuerung + 1;
+            ArrayEnde := MenueKonstanten.Einheitensteuerung - 1;
             
          when SteuerungsauswahlLogik.Einheitenbelegung_Enum =>
-            ArrayAnfang := SystemKonstanten.Einheitensteuerung + 1;
-            ArrayEnde := SystemKonstanten.Stadtsteuerung - 1;
+            ArrayAnfang := MenueKonstanten.Einheitensteuerung + 1;
+            ArrayEnde := MenueKonstanten.Stadtsteuerung - 1;
             
          when SteuerungsauswahlLogik.Stadtbelegung_Enum =>
-            ArrayAnfang := SystemKonstanten.Stadtsteuerung + 1;
-            ArrayEnde := SystemKonstanten.SonstigesSteuerung - 1;
+            ArrayAnfang := MenueKonstanten.Stadtsteuerung + 1;
+            ArrayEnde := MenueKonstanten.SonstigesSteuerung - 1;
       end case;
       
       Textposition.x := TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
@@ -160,7 +160,7 @@ package body SteuerungsmenueGrafik is
          if
            TextSchleifenwert in ArrayAnfang .. ArrayEnde
            or
-             TextSchleifenwert >= SystemKonstanten.SonstigesSteuerung
+             TextSchleifenwert >= MenueKonstanten.SonstigesSteuerung
          then
             TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SteuerungAccess (TextSchleifenwert),
                                                                          TextExtern       => TextFestlegen (WelcheSteuerungExtern => WelcheSteuerungExtern,
@@ -179,7 +179,7 @@ package body SteuerungsmenueGrafik is
             InteraktionAuswahl.PositionenSteuerung (TextSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (TextSchleifenwert));
             
          elsif
-           TextSchleifenwert = SystemKonstanten.Einheitensteuerung
+           TextSchleifenwert = MenueKonstanten.Einheitensteuerung
          then
             null;
             
@@ -202,7 +202,7 @@ package body SteuerungsmenueGrafik is
    is begin
       
       if
-        WelcheZeileExtern >= SystemKonstanten.SonstigesSteuerung
+        WelcheZeileExtern >= MenueKonstanten.SonstigesSteuerung
       then
          return To_Wide_Wide_String (Source => Menuetexte.Steuerungmenü (WelcheZeileExtern));
            
@@ -215,13 +215,13 @@ package body SteuerungsmenueGrafik is
       is
          when SteuerungsauswahlLogik.Allgemeine_Belegung_Enum =>
             AktuelleBelegung
-              := LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Val (WelcheZeileExtern - SystemKonstanten.AllgemeineSteuerungEnumausgleich));
+              := LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Allgemeine_Belegung_Vorhanden_Enum'Val (WelcheZeileExtern - MenueKonstanten.AllgemeineSteuerungEnumausgleich));
             
          when SteuerungsauswahlLogik.Einheitenbelegung_Enum =>
-            AktuelleBelegung := LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Einheiten_Bewegung_Enum'Val (WelcheZeileExtern - SystemKonstanten.EinheitensteuerungEnumausgleich));
+            AktuelleBelegung := LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Einheiten_Bewegung_Enum'Val (WelcheZeileExtern - MenueKonstanten.EinheitensteuerungEnumausgleich));
             
          when SteuerungsauswahlLogik.Stadtbelegung_Enum =>
-            AktuelleBelegung := LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => BefehleDatentypen.Stadtbefehle_Vorhanden_Enum'Val (WelcheZeileExtern - SystemKonstanten.StadtsteuerungEnumausgleich));
+            AktuelleBelegung := LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => BefehleDatentypen.Stadtbefehle_Vorhanden_Enum'Val (WelcheZeileExtern - MenueKonstanten.StadtsteuerungEnumausgleich));
       end case;
       
       case

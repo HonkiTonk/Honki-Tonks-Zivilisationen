@@ -6,7 +6,7 @@ private with Sf.Graphics.Color;
 
 private with GrafikRecordKonstanten;
 private with InteraktionAuswahl;
-private with SystemKonstanten;
+private with MenueKonstanten;
 
 private with SteuerungsauswahlLogik;
 
@@ -35,9 +35,9 @@ private
    
    type AufteilungArray is array (InteraktionAuswahl.PositionenSteuerungsaufteilung'Range) of Positive;
    Aufteilung : constant AufteilungArray := (
-                                             1 => SystemKonstanten.AllgemeineSteuerung,
-                                             2 => SystemKonstanten.Einheitensteuerung,
-                                             3 => SystemKonstanten.Stadtsteuerung
+                                             1 => MenueKonstanten.AllgemeineSteuerung,
+                                             2 => MenueKonstanten.Einheitensteuerung,
+                                             3 => MenueKonstanten.Stadtsteuerung
                                             );
    
    

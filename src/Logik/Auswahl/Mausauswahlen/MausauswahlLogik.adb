@@ -3,7 +3,7 @@ with Sf.Graphics.View;
 
 with Views;
 with InteraktionAuswahl;
-with SystemKonstanten;
+with MenueKonstanten;
 with SpeziesDatentypen;
 with ForschungKonstanten;
 with StadtKonstanten;
@@ -50,7 +50,7 @@ package body MausauswahlLogik is
          
       end loop MauszeigerSchleife;
       
-      return SystemKonstanten.LeerAuswahl;
+      return MenueKonstanten.LeerAuswahl;
       
    end SpeziesauswahlDiplomatie;
    
@@ -184,7 +184,7 @@ package body MausauswahlLogik is
          
       end loop PositionSchleife;
       
-      return SystemKonstanten.LeerAuswahl;
+      return MenueKonstanten.LeerAuswahl;
       
    end Menüs;
    
@@ -214,7 +214,7 @@ package body MausauswahlLogik is
          
       end loop PositionSchleife;
       
-      return SystemKonstanten.LeerAuswahl;
+      return MenueKonstanten.LeerAuswahl;
       
    end JaNein;
    
@@ -266,7 +266,7 @@ package body MausauswahlLogik is
          
       end loop SteuerungSchleife;
       
-      return SystemKonstanten.LeerAuswahl;
+      return MenueKonstanten.LeerAuswahl;
       
    end Steuerung;
    
@@ -477,7 +477,7 @@ package body MausauswahlLogik is
          
       end loop PositionSchleife;
       
-      return SystemKonstanten.LeerAuswahl;
+      return MenueKonstanten.LeerAuswahl;
       
    end SpeichernLaden;
    
@@ -541,7 +541,7 @@ package body MausauswahlLogik is
          
       end loop MausZeigerSchleife;
       
-      return SystemKonstanten.LeerAuswahl;
+      return MenueKonstanten.LeerAuswahl;
       
    end Sprachenauswahl;
    

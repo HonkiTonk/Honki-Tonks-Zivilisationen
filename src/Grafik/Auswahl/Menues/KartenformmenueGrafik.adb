@@ -2,7 +2,7 @@ with Sf;
 with Sf.Graphics.Text;
 
 with KartenartDatentypen;
-with SystemKonstanten;
+with MenueKonstanten;
 with TextaccessVariablen;
 with InteraktionAuswahl;
 with Menuetexte;
@@ -27,7 +27,7 @@ package body KartenformmenueGrafik is
       Textbreite := 0.00;
       
       PositionenSchleife:
-      for PositionSchleifenwert in SystemKonstanten.StandardArrayanpassung .. SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
+      for PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
          TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Kartenform_Menü_Enum, PositionSchleifenwert),
                                                       TextExtern       => TextEinlesen (SchleifenwertExtern => PositionSchleifenwert),

@@ -5,7 +5,7 @@ with SpeziesDatentypen;
 with EinheitenDatentypen;
 with StadtDatentypen;
 with ForschungenDatentypen;
-with SystemKonstanten;
+with MenueKonstanten;
 with MenueDatentypen;
 with Spieltexte;
 
@@ -23,6 +23,7 @@ package TextaccessVariablen is
    VersionsnummerAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   TexthöheAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    ZeilenumbruchAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
@@ -38,7 +39,7 @@ package TextaccessVariablen is
    type MenüsAccessArray is array (InteraktionAuswahl.PositionenMenüeinträgeArray'Range (1), InteraktionAuswahl.PositionenMenüeinträgeArray'Range (2)) of Sf.Graphics.sfText_Ptr;
    MenüsAccess : constant MenüsAccessArray := (others => (others => Sf.Graphics.Text.create));
    
-   SteuerungAccess : constant TextaccessArray (1 .. SystemKonstanten.LängstesMenü) := (others => Sf.Graphics.Text.create);
+   SteuerungAccess : constant TextaccessArray (1 .. MenueKonstanten.LängstesMenü) := (others => Sf.Graphics.Text.create);
    
    SpielstandAccess : constant TextaccessArray (InteraktionAuswahl.PositionenSpielstand'Range) := (others => Sf.Graphics.Text.create);
    -- Menüs
@@ -95,7 +96,7 @@ package TextaccessVariablen is
    
    
    -- Kartenformauswahl
-   KartenformauswahlAccess : constant TextaccessArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenform_Menü_Enum)) := (others => Sf.Graphics.Text.create);
+   KartenformauswahlAccess : constant TextaccessArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartenform_Menü_Enum)) := (others => Sf.Graphics.Text.create);
    -- Kartenformauswahl
 
    

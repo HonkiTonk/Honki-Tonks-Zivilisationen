@@ -8,7 +8,7 @@ with Sf.Graphics.Text;
 with Views;
 with GrafikDatentypen;
 with TextaccessVariablen;
-with SystemKonstanten;
+with MenueKonstanten;
 with InteraktionAuswahl;
 with MenueDatentypen;
 with TextKonstanten;
@@ -59,7 +59,7 @@ package body SpielstandmenueGrafik is
       Spielstand := SpielstandlisteLogik.Spielstand;
       
       TextSchleife:
-      for TextSchleifenwert in SystemKonstanten.StandardArrayanpassung .. SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) loop
+      for TextSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) loop
          
          if
            SpeichernLaden = False
@@ -81,7 +81,7 @@ package body SpielstandmenueGrafik is
             is
                when SpielstandlisteAnfang .. SpielstandlisteEnde =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                                     str  => TextSetzen (TextExtern => To_Wide_Wide_String (Spielstand (TextSchleifenwert - SystemKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition))));
+                                                     str  => TextSetzen (TextExtern => To_Wide_Wide_String (Spielstand (TextSchleifenwert - MenueKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition))));
                   
                when others =>
                   null;
@@ -91,14 +91,14 @@ package body SpielstandmenueGrafik is
                                                                                     ViewbreiteExtern => ViewflächeExtern.x);
             
             if
-              TextSchleifenwert = SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) - 1
+              TextSchleifenwert = MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) - 1
               and
                 NachGrafiktask.LöschenAusgewählt
             then
                Farbe := Sf.Graphics.Color.sfRed;
                
             else
-               Farbe := TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert - SystemKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition,
+               Farbe := TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert - MenueKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition,
                                                                AuswahlExtern    => AuswahlExtern);
             end if;
             
@@ -106,16 +106,15 @@ package body SpielstandmenueGrafik is
                                                                      PositionExtern   => Textposition,
                                                                      FarbeExtern      => Farbe);
             
-            InteraktionAuswahl.PositionenSpielstand (TextSchleifenwert - SystemKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition)
+            InteraktionAuswahl.PositionenSpielstand (TextSchleifenwert - MenueKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition)
               := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
          
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
                                                                                 TextbreiteExtern => Textbreite);
          end if;
          
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+         Textposition.y := TextberechnungenHoeheGrafik.KonstanteTextposition (PositionExtern   => Textposition.y,
+                                                                              ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
       end loop TextSchleife;
       
@@ -141,8 +140,8 @@ package body SpielstandmenueGrafik is
          return TextExtern;
          
       else
-         return (TextExtern & TextKonstanten.LangerAbstand & Decode (Item => Local_Image (Date                  => Modification_Time (Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => TextExtern))),
-                                                                                          Include_Time_Fraction => False)));
+         return (TextExtern & TextKonstanten.StandardAbstand & Decode (Item => Local_Image (Date                  => Modification_Time (Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => TextExtern))),
+                                                                                            Include_Time_Fraction => False)));
       end if;
       
    end TextSetzen;

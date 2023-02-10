@@ -47,6 +47,9 @@ package body TextaccesseTextGrafik is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.VersionsnummerAccess,
                                          str  => "Version: " & SonstigesKonstanten.Versionsnummer);
       
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TexthöheAccess,
+                                         str  => "abcdefghijklmnopqrstuvwxyzäöüß   ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ   0123456789   ?!§$%&/()=:;.,<>|'*+#");
+      
       
       
       IntroSchleife:

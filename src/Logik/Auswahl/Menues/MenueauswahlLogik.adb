@@ -12,7 +12,7 @@ package body MenueauswahlLogik is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      Ende := SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) - 1;
+      Ende := MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) - 1;
       
       Ausgewählt := Auswahl (WelchesMenüExtern => WelchesMenüExtern,
                               EndeExtern        => Ende);
@@ -52,12 +52,12 @@ package body MenueauswahlLogik is
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl = SystemKonstanten.LeerAuswahl
+                 AktuelleAuswahl = MenueKonstanten.LeerAuswahl
                then
                   null;
                   
                else
-                  NachGrafiktask.AktuelleAuswahl.AuswahlEins := SystemKonstanten.LeerAuswahl;
+                  NachGrafiktask.AktuelleAuswahl.AuswahlEins := MenueKonstanten.LeerAuswahl;
                   return AktuelleAuswahl;
                end if;
                

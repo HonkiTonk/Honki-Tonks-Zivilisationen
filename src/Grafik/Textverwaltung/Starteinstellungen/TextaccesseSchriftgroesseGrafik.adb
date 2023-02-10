@@ -44,6 +44,9 @@ package body TextaccesseSchriftgroesseGrafik is
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TextAccess,
                                          size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
       
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TexthöheAccess,
+                                         size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
+      
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.Spielmeldung,
                                          size => TexteinstellungenGrafik.Schriftgrößen.SchriftgrößeStandard);
       

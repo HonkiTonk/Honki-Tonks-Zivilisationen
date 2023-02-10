@@ -1,7 +1,7 @@
 with MenueDatentypen;
 with RueckgabeDatentypen;
 
-private with SystemKonstanten;
+private with MenueKonstanten;
 
 package MenuerueckgabenLogik is
    pragma Elaborate_Body;
@@ -41,22 +41,22 @@ private
    
    type MenüendeArray is array (MenueDatentypen.Menü_Ohne_Steuerung_Enum'Range) of Positive;
    Menüende : MenüendeArray := (
-                                  MenueDatentypen.Optionen_Menü_Enum           => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Optionen_Menü_Enum) - AbzugZHB,
-                                  MenueDatentypen.Grafik_Menü_Enum             => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Grafik_Menü_Enum) - AbzugZHB,
-                                  MenueDatentypen.Editoren_Menü_Enum           => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Editoren_Menü_Enum) - AbzugZHB,
-                                  MenueDatentypen.Sonstiges_Menü_Enum          => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Sonstiges_Menü_Enum) - AbzugZHB,
-                                  MenueDatentypen.Debug_Menü_Enum              => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Debug_Menü_Enum) - AbzugFertig,
-                                  MenueDatentypen.Kartenart_Menü_Enum          => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenart_Menü_Enum) - AbzugFertig,
-                                  MenueDatentypen.Kartenressourcen_Menü_Enum   => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenressourcen_Menü_Enum) - AbzugFertig,
-                                  MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum) - AbzugFertig,
-                                  MenueDatentypen.Kartentemperatur_Menü_Enum   => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartentemperatur_Menü_Enum) - AbzugFertig,
-                                  MenueDatentypen.Spezies_Menü_Enum            => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Spezies_Menü_Enum) - AbzugFertig,
-                                  MenueDatentypen.Kartenpole_Menü_Enum         => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenpole_Menü_Enum) - AbzugFertig,
-                                  MenueDatentypen.Kartenform_Menü_Enum         => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenform_Menü_Enum) - AbzugFertig,
-                                  MenueDatentypen.Kartengröße_Menü_Enum        => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartengröße_Menü_Enum) - AbzugFertig,
+                                  MenueDatentypen.Optionen_Menü_Enum           => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Optionen_Menü_Enum) - AbzugZHB,
+                                  MenueDatentypen.Grafik_Menü_Enum             => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Grafik_Menü_Enum) - AbzugZHB,
+                                  MenueDatentypen.Editoren_Menü_Enum           => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Editoren_Menü_Enum) - AbzugZHB,
+                                  MenueDatentypen.Sonstiges_Menü_Enum          => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Sonstiges_Menü_Enum) - AbzugZHB,
+                                  MenueDatentypen.Debug_Menü_Enum              => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Debug_Menü_Enum) - AbzugFertig,
+                                  MenueDatentypen.Kartenart_Menü_Enum          => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenart_Menü_Enum) - AbzugFertig,
+                                  MenueDatentypen.Kartenressourcen_Menü_Enum   => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenressourcen_Menü_Enum) - AbzugFertig,
+                                  MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum) - AbzugFertig,
+                                  MenueDatentypen.Kartentemperatur_Menü_Enum   => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartentemperatur_Menü_Enum) - AbzugFertig,
+                                  MenueDatentypen.Spezies_Menü_Enum            => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spezies_Menü_Enum) - AbzugFertig,
+                                  MenueDatentypen.Kartenpole_Menü_Enum         => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenpole_Menü_Enum) - AbzugFertig,
+                                  MenueDatentypen.Kartenform_Menü_Enum         => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenform_Menü_Enum) - AbzugFertig,
+                                  MenueDatentypen.Kartengröße_Menü_Enum        => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartengröße_Menü_Enum) - AbzugFertig,
                                   
                                   -- Aufgrund der Beschaffenheit dieser Menüs sind die Abzüge hier nicht dem Standard entsprechend, auch wenn die Abzüge eventuell identisch mit einem der Standards sind!
-                                  MenueDatentypen.Diplomatie_Menü_Enum         => SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Diplomatie_Menü_Enum) - 3,
+                                  MenueDatentypen.Diplomatie_Menü_Enum         => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Diplomatie_Menü_Enum) - 3,
                                   
                                   -- Das hier sind Spezialmenüs die nicht so einfach in das aktuelle System integriert werden können.
                                   -- Oder wie beispielsweise das Soundmenü noch unvollständig sind.

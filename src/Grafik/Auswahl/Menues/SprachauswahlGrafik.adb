@@ -55,7 +55,7 @@ package body SprachauswahlGrafik is
       
       -- Dann einfach von 1 bis 11 loopen und entsprechend leer lassen, sollte hinhauen. äöü
       AnzeigeSchleife:
-      for ZeileSchleifenwert in AktuelleSprachen'First .. Ende loop
+      for ZeileSchleifenwert in AktuelleSprachen'Range loop
          
          if
            AktuelleAuswahl = ZeileSchleifenwert
@@ -87,10 +87,6 @@ package body SprachauswahlGrafik is
                                                                                     TextbreiteExtern => 0.00);
             
             InteraktionAuswahl.PositionenSprachauswahl (ZeileSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SprachauswahlAccess);
-                        
-            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
-                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
                         
          elsif
            MehrereSeiten
@@ -139,8 +135,6 @@ package body SprachauswahlGrafik is
             Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => EinstellungenGrafik.FensterAccess,
                                                       object       => PfeilAccess);
             
-            Textposition.y := Textposition.y + Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).height + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-            
          else
             NeueTextbreite := 0.00;
          end if;
@@ -153,6 +147,9 @@ package body SprachauswahlGrafik is
          else
             null;
          end if;
+                 
+         Textposition.y := TextberechnungenHoeheGrafik.KonstanteTextposition (PositionExtern   => Textposition.y,
+                                                                              ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
       end loop AnzeigeSchleife;
             

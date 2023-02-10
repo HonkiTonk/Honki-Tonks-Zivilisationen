@@ -1,7 +1,7 @@
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
-with SystemKonstanten;
+with MenueKonstanten;
 with MenueDatentypen;
 with Meldungstexte;
 with TextnummernKonstanten;
@@ -28,7 +28,7 @@ package body ZusatztextDiplomatieGrafik is
       Textposition.y := ViewflächeExtern.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
       TextSchleife:
-      for TextSchleifenwert in SystemKonstanten.EndeAbzugGrafik (MenueDatentypen.Diplomatie_Menü_Enum) + 1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum) loop
+      for TextSchleifenwert in MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Diplomatie_Menü_Enum) + 1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum) loop
          
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                                                                  ViewbreiteExtern => RealeViewbreiteExtern);
@@ -60,7 +60,7 @@ package body ZusatztextDiplomatieGrafik is
    is begin
       
       if
-        TextnummerExtern = SystemKonstanten.EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum)
+        TextnummerExtern = MenueKonstanten.EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum)
       then
          case
            LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => NachGrafiktask.AktuelleSpezies,

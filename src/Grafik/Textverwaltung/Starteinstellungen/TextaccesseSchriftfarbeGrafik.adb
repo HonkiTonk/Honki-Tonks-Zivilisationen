@@ -44,6 +44,9 @@ package body TextaccesseSchriftfarbeGrafik is
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TextAccess,
                                  color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
       
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TexthöheAccess,
+                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+      
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.Spielmeldung,
                                  color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
       

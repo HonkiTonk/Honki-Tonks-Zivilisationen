@@ -1,5 +1,7 @@
 with Sf.Graphics.Text;
 
+with TextaccessVariablen;
+
 with EinstellungenGrafik;
 
 package body TextberechnungenHoeheGrafik is
@@ -34,5 +36,17 @@ package body TextberechnungenHoeheGrafik is
       return PositionExtern + ZusatzwertExtern + Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).height;
       
    end NeueTextposition;
+   
+   
+   
+   function KonstanteTextposition
+     (PositionExtern : in Float;
+      ZusatzwertExtern : in Float)
+      return Float
+   is begin
+      
+      return PositionExtern + ZusatzwertExtern + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TexthöheAccess).height;
+      
+   end KonstanteTextposition;
    
 end TextberechnungenHoeheGrafik;

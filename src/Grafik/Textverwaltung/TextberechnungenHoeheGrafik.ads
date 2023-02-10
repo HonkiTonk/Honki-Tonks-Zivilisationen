@@ -35,5 +35,20 @@ package TextberechnungenHoeheGrafik is
        Post => (
                   NeueTextposition'Result > 0.00
                );
+   
+   function KonstanteTextposition
+     (PositionExtern : in Float;
+      ZusatzwertExtern : in Float)
+      return Float
+     with
+       Pre => (
+                 PositionExtern >= 0.00
+               and
+                 ZusatzwertExtern >= 0.00
+              ),
+         
+       Post => (
+                  KonstanteTextposition'Result > 0.00
+               );
 
 end TextberechnungenHoeheGrafik;

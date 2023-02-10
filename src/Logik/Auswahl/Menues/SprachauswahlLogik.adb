@@ -1,7 +1,7 @@
 with GlobaleTexte;
 with TextKonstanten;
 with GrafikDatentypen;
-with SystemKonstanten;
+with MenueKonstanten;
 with TastenbelegungDatentypen;
 
 with TasteneingabeLogik;
@@ -133,7 +133,7 @@ package body SprachauswahlLogik is
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl = SystemKonstanten.LeerAuswahl
+                 AktuelleAuswahl = MenueKonstanten.LeerAuswahl
                then
                   null;
                   

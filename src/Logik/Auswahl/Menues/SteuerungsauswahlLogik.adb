@@ -1,7 +1,7 @@
 with TastenbelegungDatentypen;
 with BefehleDatentypen;
 with InteraktionAuswahl;
-with SystemKonstanten;
+with MenueKonstanten;
 with GrafikDatentypen;
 with TextnummernKonstanten;
 
@@ -30,20 +30,20 @@ package body SteuerungsauswahlLogik is
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl < SystemKonstanten.LeerAuswahl
+                 AktuelleAuswahl < MenueKonstanten.LeerAuswahl
                then
                   WelcheSteuerung := NummerZuKategorie (AktuelleAuswahl);
                   
                elsif
-                 AktuelleAuswahl in SystemKonstanten.AllgemeineSteuerung .. SystemKonstanten.SonstigesSteuerung - 1
+                 AktuelleAuswahl in MenueKonstanten.AllgemeineSteuerung .. MenueKonstanten.SonstigesSteuerung - 1
                then
                   TasteBelegen (AuswahlExtern         => AktuelleAuswahl,
                                 WelcheSteuerungExtern => WelcheSteuerung);
                   
                elsif
-                 AktuelleAuswahl >= SystemKonstanten.SonstigesSteuerung
+                 AktuelleAuswahl >= MenueKonstanten.SonstigesSteuerung
                then
-                  return MenuerueckgabenLogik.SteuerungMenü (AnfangExtern          => SystemKonstanten.SonstigesSteuerung,
+                  return MenuerueckgabenLogik.SteuerungMenü (AnfangExtern          => MenueKonstanten.SonstigesSteuerung,
                                                               EndeExtern            => InteraktionAuswahl.PositionenSteuerung'Last,
                                                               AktuelleAuswahlExtern => AktuelleAuswahl);
                   
@@ -90,15 +90,15 @@ package body SteuerungsauswahlLogik is
         WelcheSteuerungExtern
       is
          when Allgemeine_Belegung_Enum =>
-            AllgemeineBelegung (AuswahlExtern => AuswahlExtern - SystemKonstanten.AllgemeineSteuerungEnumausgleich,
+            AllgemeineBelegung (AuswahlExtern => AuswahlExtern - MenueKonstanten.AllgemeineSteuerungEnumausgleich,
                                 TasteExtern   => NeueTaste);
             
          when Einheitenbelegung_Enum =>
-            Einheitenbelegung (AuswahlExtern => AuswahlExtern - SystemKonstanten.EinheitensteuerungEnumausgleich,
+            Einheitenbelegung (AuswahlExtern => AuswahlExtern - MenueKonstanten.EinheitensteuerungEnumausgleich,
                                TasteExtern   => NeueTaste);
             
          when Stadtbelegung_Enum =>
-            Stadtbelegung (AuswahlExtern => AuswahlExtern - SystemKonstanten.StadtsteuerungEnumausgleich,
+            Stadtbelegung (AuswahlExtern => AuswahlExtern - MenueKonstanten.StadtsteuerungEnumausgleich,
                            TasteExtern   => NeueTaste);
       end case;
       

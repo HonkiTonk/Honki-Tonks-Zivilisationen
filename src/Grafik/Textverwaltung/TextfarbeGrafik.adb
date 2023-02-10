@@ -1,5 +1,5 @@
 with KartenartDatentypen;
-with SystemKonstanten;
+with MenueKonstanten;
 with SpielDatentypen;
 with SpeziesKonstanten;
 with SpeziesDatentypen;
@@ -52,16 +52,16 @@ package body TextfarbeGrafik is
         WelchesMenüExtern
       is
          when MenueDatentypen.Kartenart_Menü_Enum =>
-            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenart_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenart);
+            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenart_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenart);
             
          when MenueDatentypen.Kartentemperatur_Menü_Enum =>
-            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartentemperatur_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur);
+            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartentemperatur_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur);
             
          when MenueDatentypen.Kartenressourcen_Menü_Enum =>
-            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenressourcenmenge_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen);
+            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + KartenartDatentypen.Kartenressourcenmenge_Enum'Pos (KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen);
             
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
-            AktuelleEinstellung := SystemKonstanten.StandardArrayanpassung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (LeseAllgemeines.Schwierigkeitsgrad);
+            AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (LeseAllgemeines.Schwierigkeitsgrad);
             
          when others =>
             AktuelleEinstellung := 0;

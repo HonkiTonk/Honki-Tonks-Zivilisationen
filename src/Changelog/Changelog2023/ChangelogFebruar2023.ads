@@ -119,24 +119,26 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (11.02.2023):
+   -- Version 0.04.7475 => 0.04. (11.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (10.02.2023):
+   -- Version 0.04.7415 => 0.04.7475 (10.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Berechnung der Kartenkoordinaten überarbeitet.
+   -- Es werden jetzt keine Spielstände mehr angezeigt die einen ungültigen Namen haben.
+   -- Fehler korrigiert wodurch es möglich war zu lange Spielstandsnamen einzugeben.
+   -- Texte können jetzt variable aber konstante Abstände zwischen den Zeilen haben.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/erweitert/zusammengeführt.
    
    
 
-   -- Version 0.04.7415 => 0.04. (09.02.2023):
+   -- Version 0.04.7415 => 0.04.7415 (09.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

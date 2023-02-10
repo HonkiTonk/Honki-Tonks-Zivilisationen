@@ -215,7 +215,7 @@ package ChangelogFebruar2022 is
 
    -- Version 0.00.9870 => 0.00.9885 (02.02.2022):
    
-   -- Vorerst für alle stabileren Teile von SystemDatentypen auch SystemKonstanten angelegt.
+   -- Vorerst für alle stabileren Teile von SystemDatentypen auch MenueKonstanten angelegt.
    -- Grundgerüst für Stadtzufriedenheit eingebaut.
    -- Namensgebung verbessert.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/verbessert.

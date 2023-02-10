@@ -1,7 +1,7 @@
 with Sf.Graphics.Rect;
 
 with MenueDatentypen;
-with SystemKonstanten;
+with MenueKonstanten;
 with EinheitenDatentypen;
 with StadtDatentypen;
 with ForschungenDatentypen;
@@ -16,7 +16,7 @@ with KartengrundDatentypen;
 package InteraktionAuswahl is
    pragma Elaborate_Body;
 
-   type PositionenMenüeinträgeArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range, 1 .. SystemKonstanten.ZweitlängstesMenü) of Sf.Graphics.Rect.sfFloatRect;
+   type PositionenMenüeinträgeArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range, 1 .. MenueKonstanten.ZweitlängstesMenü) of Sf.Graphics.Rect.sfFloatRect;
    PositionenMenüeinträge : PositionenMenüeinträgeArray := (others => (others => GrafikRecordKonstanten.Leerbereich));
 
    type PositionenArray is array (Positive range <>) of Sf.Graphics.Rect.sfFloatRect;
@@ -24,9 +24,9 @@ package InteraktionAuswahl is
 
 
    PositionenSteuerungsaufteilung : PositionenArray (1 .. 3) := (others => GrafikRecordKonstanten.Leerbereich);
-   PositionenSteuerung : PositionenArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum)) := (others => GrafikRecordKonstanten.Leerbereich);
+   PositionenSteuerung : PositionenArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum)) := (others => GrafikRecordKonstanten.Leerbereich);
 
-   PositionenSpielstand : PositionenArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Spielstand_Menü_Enum)) := (others => GrafikRecordKonstanten.Leerbereich);
+   PositionenSpielstand : PositionenArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Spielstand_Menü_Enum)) := (others => GrafikRecordKonstanten.Leerbereich);
 
 
 

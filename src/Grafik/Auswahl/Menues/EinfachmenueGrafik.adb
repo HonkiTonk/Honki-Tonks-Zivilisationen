@@ -1,7 +1,7 @@
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
-with SystemKonstanten;
+with MenueKonstanten;
 with InteraktionAuswahl;
 with Views;
 with GrafikDatentypen;
@@ -67,7 +67,7 @@ package body EinfachmenueGrafik is
       Textbreite := 0.00;
 
       PositionenSchleife:
-      for PositionSchleifenwert in SystemKonstanten.StandardArrayanpassung .. SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
+      for PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop
       
          TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                       TextExtern       => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,

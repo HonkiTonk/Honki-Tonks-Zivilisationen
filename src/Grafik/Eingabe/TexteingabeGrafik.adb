@@ -7,10 +7,12 @@ with Sf.Window.Mouse;
 with Sf.Graphics.RenderWindow;
 
 with SystemRecordKonstanten;
+with SystemKonstanten;
 
 with EinstellungenGrafik;
 with NachGrafiktask;
 with NachLogiktask;
+with SpielstandlisteLogik;
 
 package body TexteingabeGrafik is
 
@@ -94,40 +96,30 @@ package body TexteingabeGrafik is
      (EingegebenesZeichenExtern : in Wide_Wide_Character)
    is begin
       
+      CharacterZuText (1) := EingegebenesZeichenExtern;
+      
       case
         NachGrafiktask.NameSpielstand
       is
-         when False =>
-            null;
-            
          when True =>
             if
-              EingegebenesZeichenExtern not in 'a' .. 'z'
-              and
-                EingegebenesZeichenExtern not in 'A' .. 'Z'
-                and
-                  EingegebenesZeichenExtern not in '0' .. '9'
-                  and
-                    EingegebenesZeichenExtern /= Space
-                    and
-                      EingegebenesZeichenExtern /= Hyphen
-                      and
-                        EingegebenesZeichenExtern /= Low_Line
+              To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length >= SystemKonstanten.MaximaleZeichenlängeDateisystem
             then
                return;
-              
+               
             elsif
-              To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length > MaximaleZeichenlängeDateisystem
+              SpielstandlisteLogik.NamePrüfen (NameExtern => CharacterZuText) = False
             then
                return;
                
             else
                null;
             end if;
+            
+         when False =>
+            null;
       end case;
-      
-      CharacterZuText (1) := EingegebenesZeichenExtern;
-      
+            
       NachLogiktask.EingegebenerText.EingegebenerText := NachLogiktask.EingegebenerText.EingegebenerText & CharacterZuText;
       
    end ZeichenHinzufügen;

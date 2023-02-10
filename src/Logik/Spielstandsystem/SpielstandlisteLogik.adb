@@ -3,7 +3,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with VerzeichnisKonstanten;
 with TastenbelegungDatentypen;
-with SystemKonstanten;
+with MenueKonstanten;
 with MenueDatentypen;
 with GrafikDatentypen;
 with TextnummernKonstanten;
@@ -53,37 +53,8 @@ package body SpielstandlisteLogik is
             
             AktuellerSpielstand := Schleifenanfang;
             
-            Test:
-            loop
-               
-               case
-                 More_Entries (Search => Suche)
-               is
-                  when False =>
-                     exit Test;
-                     
-                  when True =>
-                     Get_Next_Entry (Search          => Suche,
-                                     Directory_Entry => Spielstanddatei);
-               end case;
-               
-               Spielstand (AktuellerSpielstand) := To_Unbounded_Wide_Wide_String (Source => To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Spielstanddatei)));
-               
-               case
-                 AktuellerSpielstand
-               is
-                  when SpielstandArray'Last =>
-                     NachGrafiktask.MehrereSeiten := True;
-                     exit Test;
-                     
-                  when others =>
-                     AktuellerSpielstand := AktuellerSpielstand + 1;
-               end case;
-               
-            end loop Test;
-            
             SpeicherdateiSchleife:
-            for SpeicherdateiSchleifenwert in Schleifenanfang .. SpielstandArray'Last loop
+            loop
                
                case
                  More_Entries (Search => Suche)
@@ -96,20 +67,25 @@ package body SpielstandlisteLogik is
                                      Directory_Entry => Spielstanddatei);
                end case;
                
-               Spielstand (SpeicherdateiSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Spielstanddatei)));
+               Spielstand (AktuellerSpielstand) := To_Unbounded_Wide_Wide_String (Source => To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Spielstanddatei)));
                
-               case
-                 SpeicherdateiSchleifenwert
-               is
-                  when SpielstandArray'Last =>
-                     NachGrafiktask.MehrereSeiten := True;
+               if
+                 NamePrüfen (NameExtern => To_Wide_Wide_String (Source => Spielstand (AktuellerSpielstand))) = False
+               then
+                  null;
                      
-                  when others =>
-                     null;
-               end case;
-                        
+               elsif
+                 AktuellerSpielstand = SpielstandArray'Last
+               then
+                  NachGrafiktask.MehrereSeiten := True;
+                  exit SpeicherdateiSchleife;
+                     
+               else
+                  AktuellerSpielstand := AktuellerSpielstand + 1;
+               end if;
+               
             end loop SpeicherdateiSchleife;
-            
+                                    
             AuswahlSchleife:
             loop
                
@@ -118,7 +94,7 @@ package body SpielstandlisteLogik is
                case
                  Ausgewählt
                is
-                  when SystemKonstanten.LeerAuswahl | Zurück =>
+                  when MenueKonstanten.LeerAuswahl | Zurück =>
                      RückgabeWert := TextKonstanten.LeerUnboundedString;
                      exit SpielstandSchleife;
                   
@@ -134,12 +110,6 @@ package body SpielstandlisteLogik is
                      end if;
                   
                   when NeuerSpielstand =>
-                     -- Theoretisch sollte man das niemals bei Laden aufrufen können, da die Grafik keine Position setzt. äöü
-                     -- Trotzdem eine Prüfung dafür einbauen? äöü
-                     -- Dann muss da aber was umgebaut werden, sonst überschreite ich die Verschachtelungstiefe. äöü
-                     -- if
-                     --    SpeichernLadenExtern
-                     --  then
                      RückgabeWert := NameNutzer;
                      
                      if
@@ -150,10 +120,6 @@ package body SpielstandlisteLogik is
                      else
                         exit SpielstandSchleife;
                      end if;
-                     
-                     --  else
-                     --     null;
-                     --  end if;
                      
                   when Löschen =>
                      NachGrafiktask.LöschenAusgewählt := True;
@@ -225,19 +191,19 @@ package body SpielstandlisteLogik is
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl = SystemKonstanten.LeerAuswahl
+                 AktuelleAuswahl = MenueKonstanten.LeerAuswahl
                then
                   null;
                   
                else
-                  NachGrafiktask.AktuelleAuswahl.AuswahlEins := SystemKonstanten.LeerAuswahl;
+                  NachGrafiktask.AktuelleAuswahl.AuswahlEins := MenueKonstanten.LeerAuswahl;
                   NachGrafiktask.LöschenAusgewählt := False;
                   return AktuelleAuswahl;
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
                NachGrafiktask.LöschenAusgewählt := False;
-               return SystemKonstanten.LeerAuswahl;
+               return MenueKonstanten.LeerAuswahl;
                
             when others =>
                null;
@@ -303,7 +269,7 @@ package body SpielstandlisteLogik is
          case
            NameExtern (PrüfenSchleifenwert)
          is
-            when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | Space | Hyphen | Low_Line =>
+            when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | Space | Hyphen | Low_Line | Full_Stop =>
                null;
                
             when others =>

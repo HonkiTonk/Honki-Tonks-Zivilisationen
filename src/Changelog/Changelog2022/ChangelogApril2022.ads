@@ -218,7 +218,7 @@ package ChangelogApril2022 is
    
    -- Angefangen das Menüsystem in verschiedene Varianten aufzuteilen um so unterschiedliche Einstellmöglichkeiten einfacher zu ermöglichen.
    -- Texte gekürzt und unnötigen Zeilen gelöscht.
-   -- Informationen aufgelöst und den Spielenamen und die Versionsnummer nach SystemKonstanten verschoben.
+   -- Informationen aufgelöst und den Spielenamen und die Versionsnummer nach MenueKonstanten verschoben.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    

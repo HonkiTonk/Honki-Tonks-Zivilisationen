@@ -51,7 +51,9 @@ package body KartenkoordinatenberechnungssystemLogik is
             end if;
       end case;
       
-      KartenkoordinatenWerteLogik.VerschiebungYAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenartDatentypen.Karte_Y_Kein_Übergang_Enum;
+      KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (LogikGrafikExtern   => LogikGrafikExtern,
+                                                               ArrayPositionExtern => KoordinatenExtern.EAchse,
+                                                               ÜbergangExtern      => KartenartDatentypen.Karte_Y_Kein_Übergang_Enum);
       
       case
         ÄnderungExtern.YAchse
@@ -75,7 +77,9 @@ package body KartenkoordinatenberechnungssystemLogik is
             end if;
       end case;
       
-      KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartenartDatentypen.Karte_X_Kein_Übergang_Enum;
+      KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (LogikGrafikExtern   => LogikGrafikExtern,
+                                                               ArrayPositionExtern => KoordinatenExtern.EAchse,
+                                                               ÜbergangExtern      => KartenartDatentypen.Karte_X_Kein_Übergang_Enum);
             
       case
         ÄnderungExtern.XAchse
@@ -100,7 +104,8 @@ package body KartenkoordinatenberechnungssystemLogik is
       end case;
       
       case
-        KartenkoordinatenWerteLogik.VerschiebungYAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
+        KartenkoordinatenWerteLogik.YAchseVerschiebungLesen (LogikGrafikExtern   => LogikGrafikExtern,
+                                                             ArrayPositionExtern => KoordinatenExtern.EAchse)
       is
          when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum | KartenartDatentypen.Karte_Y_Übergang_Enum =>
             null;
@@ -111,7 +116,8 @@ package body KartenkoordinatenberechnungssystemLogik is
       end case;
       
       case
-        KartenkoordinatenWerteLogik.VerschiebungXAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
+        KartenkoordinatenWerteLogik.XAchseVerschiebungLesen (LogikGrafikExtern   => LogikGrafikExtern,
+                                                             ArrayPositionExtern => KoordinatenExtern.EAchse)
       is
          when KartenartDatentypen.Karte_X_Kein_Übergang_Enum | KartenartDatentypen.Karte_X_Übergang_Enum =>
             null;

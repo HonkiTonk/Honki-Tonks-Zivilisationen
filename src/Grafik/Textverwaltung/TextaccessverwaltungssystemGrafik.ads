@@ -13,8 +13,8 @@ package TextaccessverwaltungssystemGrafik is
      with
        Pre => (
                  TextaccessExtern /= null
-               and
-                 PositionExtern.x >= 0.00
+                 --   and
+               --     PositionExtern.x >= 0.00
                and
                  PositionExtern.y >= 0.00
               );
