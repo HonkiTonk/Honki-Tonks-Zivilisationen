@@ -13,7 +13,6 @@ package SichtweitenGrafik is
    pragma Elaborate_Body;
    
    -- Das hier über eine Funktion abrufen? äöü
-   KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
    
    procedure KartenfelderAbmessungBerechnen;
    procedure StadtumgebungAbmessungBerechnen;
@@ -77,6 +76,7 @@ private
    AktuelleZoomstufe : KartenDatentypen.KartenfeldPositiv := StandardZoomstufe;
    
    StadtumgebungAbmessung : Sf.System.Vector2.sfVector2f;
+   KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
    
    Cursor : KartenRecords.AchsenKartenfeldNaturalRecord;
    

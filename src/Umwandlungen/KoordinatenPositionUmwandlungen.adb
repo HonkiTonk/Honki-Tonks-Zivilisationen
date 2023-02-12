@@ -45,11 +45,11 @@ package body KoordinatenPositionUmwandlungen is
                null;
             end if;
             
-            Feldposition.x := Feldposition.x + SichtweitenGrafik.KartenfelderAbmessung.x;
+            Feldposition.x := Feldposition.x + SichtweitenGrafik.Kartenfeldfläche.x;
                           
          end loop XAchseSchleife;
          
-         Feldposition := (GrafikRecordKonstanten.Nullposition.x, Feldposition.y + SichtweitenGrafik.KartenfelderAbmessung.y);
+         Feldposition := (GrafikRecordKonstanten.Nullposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
          
       end loop YAchseSchleife;
       
@@ -87,7 +87,7 @@ package body KoordinatenPositionUmwandlungen is
             elsif
               True = Vergleiche.Auswahlposition (MauspositionExtern => PositionExtern,
                                                  TextboxExtern      => (Feldposition.x, Feldposition.y,
-                                                                        Feldposition.x + SichtweitenGrafik.KartenfelderAbmessung.x, Feldposition.y + SichtweitenGrafik.KartenfelderAbmessung.y))
+                                                                        Feldposition.x + SichtweitenGrafik.Kartenfeldfläche.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y))
             then
                return KartenWert;
                
@@ -95,11 +95,11 @@ package body KoordinatenPositionUmwandlungen is
                null;
             end if;
             
-            Feldposition.x := Feldposition.x + SichtweitenGrafik.KartenfelderAbmessung.x;
+            Feldposition.x := Feldposition.x + SichtweitenGrafik.Kartenfeldfläche.x;
                           
          end loop XAchseSchleife;
          
-         Feldposition := (GrafikRecordKonstanten.Nullposition.x, Feldposition.y + SichtweitenGrafik.KartenfelderAbmessung.y);
+         Feldposition := (GrafikRecordKonstanten.Nullposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
          
       end loop YAchseSchleife;
       

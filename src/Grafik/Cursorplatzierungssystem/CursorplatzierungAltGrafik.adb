@@ -264,7 +264,7 @@ package body CursorplatzierungAltGrafik is
          return 0;
       
       elsif
-        MauspositionExtern.y in 0.00 .. SichtweitenGrafik.KartenfelderAbmessung.y / 2.00
+        MauspositionExtern.y in 0.00 .. SichtweitenGrafik.Kartenfeldfläche.y / 2.00
       then
          if
            YAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangYAchse
@@ -285,7 +285,7 @@ package body CursorplatzierungAltGrafik is
          end if;
          
       elsif
-        MauspositionExtern.y in Achsenviewfläche.y - SichtweitenGrafik.KartenfelderAbmessung.y / 2.00 .. Achsenviewfläche.y
+        MauspositionExtern.y in Achsenviewfläche.y - SichtweitenGrafik.Kartenfeldfläche.y / 2.00 .. Achsenviewfläche.y
       then
          if
            YAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.YAchse
@@ -326,7 +326,7 @@ package body CursorplatzierungAltGrafik is
       XAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformXAchse;
       
       if
-        MausachseExtern in 0.00 .. SichtweitenGrafik.KartenfelderAbmessung.x / 2.00
+        MausachseExtern in 0.00 .. SichtweitenGrafik.Kartenfeldfläche.x / 2.00
       then
          if
            XAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangXAchse
@@ -347,7 +347,7 @@ package body CursorplatzierungAltGrafik is
          end if;
          
       elsif
-        MausachseExtern in XAchsenbereich - SichtweitenGrafik.KartenfelderAbmessung.x / 2.00 .. XAchsenbereich
+        MausachseExtern in XAchsenbereich - SichtweitenGrafik.Kartenfeldfläche.x / 2.00 .. XAchsenbereich
       then
          if
            XAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.XAchse

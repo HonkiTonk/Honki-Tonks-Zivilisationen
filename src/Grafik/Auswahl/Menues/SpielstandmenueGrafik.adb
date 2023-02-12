@@ -1,7 +1,7 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Calendar.Formatting; use Ada.Calendar.Formatting;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.Text;
 
@@ -56,7 +56,7 @@ package body SpielstandmenueGrafik is
       
       MehrereSeiten := NachGrafiktask.MehrereSeiten;
       SpeichernLaden := NachGrafiktask.SpeichernLaden;
-      Spielstand := SpielstandlisteLogik.Spielstand;
+      Spielstand := SpielstandVariablen.GanzeSpielstandliste;
       
       TextSchleife:
       for TextSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) loop
@@ -86,7 +86,7 @@ package body SpielstandmenueGrafik is
                when others =>
                   null;
             end case;
-         
+            
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
                                                                                     ViewbreiteExtern => ViewflächeExtern.x);
             

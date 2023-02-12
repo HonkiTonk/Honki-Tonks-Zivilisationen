@@ -37,29 +37,29 @@ package body CursorplatzierungGrafik is
       end case;
       
       if
-        SichtweitenGrafik.KartenfelderAbmessung.y = 0.00
+        SichtweitenGrafik.Kartenfeldfläche.y = 0.00
         or
-          Float'Floor (Mausposition.y / SichtweitenGrafik.KartenfelderAbmessung.y) > Float (KartenDatentypen.Kartenfeld'Last)
+          Float'Floor (Mausposition.y / SichtweitenGrafik.Kartenfeldfläche.y) > Float (KartenDatentypen.Kartenfeld'Last)
         or
-          Float'Floor (Mausposition.y / SichtweitenGrafik.KartenfelderAbmessung.y) < Float (KartenDatentypen.Kartenfeld'First)
+          Float'Floor (Mausposition.y / SichtweitenGrafik.Kartenfeldfläche.y) < Float (KartenDatentypen.Kartenfeld'First)
       then
          Kartenänderung.YAchse := -Sichtbereich;
          
       else
-         Kartenänderung.YAchse := -Sichtbereich + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.y / SichtweitenGrafik.KartenfelderAbmessung.y));
+         Kartenänderung.YAchse := -Sichtbereich + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.y / SichtweitenGrafik.Kartenfeldfläche.y));
       end if;
       
       if
-        SichtweitenGrafik.KartenfelderAbmessung.x = 0.00
+        SichtweitenGrafik.Kartenfeldfläche.x = 0.00
         or
-          Float'Floor (Mausposition.x / SichtweitenGrafik.KartenfelderAbmessung.x) > Float (KartenDatentypen.Kartenfeld'Last)
+          Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x) > Float (KartenDatentypen.Kartenfeld'Last)
         or
-          Float'Floor (Mausposition.x / SichtweitenGrafik.KartenfelderAbmessung.x) < Float (KartenDatentypen.Kartenfeld'First)
+          Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x) < Float (KartenDatentypen.Kartenfeld'First)
       then
          Kartenänderung.XAchse := -Sichtbereich;
          
       else
-         Kartenänderung.XAchse := -Sichtbereich + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / SichtweitenGrafik.KartenfelderAbmessung.x));
+         Kartenänderung.XAchse := -Sichtbereich + KartenDatentypen.Kartenfeld (Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x));
       end if;
       
       KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern),

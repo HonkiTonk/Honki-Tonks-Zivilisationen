@@ -202,7 +202,7 @@ package body WeltkarteEinheitZeichnenGrafik is
             null;
             
          when True =>
-            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => SichtweitenGrafik.KartenfelderAbmessung,
+            ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => SichtweitenGrafik.Kartenfeldfläche,
                                                     PositionExtern  => PositionExtern,
                                                     FarbeExtern     => (255, 255, 255, GrafikKonstanten.Bewegungsfeldtransparents));
       end case;

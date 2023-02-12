@@ -1,4 +1,5 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
 
 with SystemDatentypen;
 with ForschungKonstanten;
@@ -48,6 +49,8 @@ package StadtKonstanten is
    LeerUmgebungGröße : constant KartenDatentypen.UmgebungsbereichDrei := 0;
    LeerMeldung : constant StadtDatentypen.Stadt_Meldung_Enum := StadtDatentypen.Leer_Stadt_Meldung_Enum;
    LeerKIBeschäftigung : constant KIDatentypen.Stadt_Aufgabe_Enum := KIDatentypen.Keine_Aufgabe_Enum;
+   
+   Stadtkartengröße : constant KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv (Float'Ceiling (Sqrt (X => Float (StadtDatentypen.GebäudeID'Last))));
    
    
 

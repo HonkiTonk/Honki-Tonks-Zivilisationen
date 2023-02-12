@@ -1,6 +1,5 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Text;
 
 with GrafikDatentypen;
@@ -8,7 +7,6 @@ with InteraktionAuswahl;
 with TextaccessVariablen;
 with Views;
 
-with EinstellungenGrafik;
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 with TexteinstellungenGrafik;
@@ -16,6 +14,7 @@ with NachGrafiktask;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextaccessverwaltungssystemGrafik;
+with KonvexverwaltungssystemGrafik;
 
 package body SprachauswahlGrafik is
    
@@ -53,7 +52,6 @@ package body SprachauswahlGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       AktuelleTextbreite := 0.00;
       
-      -- Dann einfach von 1 bis 11 loopen und entsprechend leer lassen, sollte hinhauen. äöü
       AnzeigeSchleife:
       for ZeileSchleifenwert in AktuelleSprachen'Range loop
          
@@ -91,49 +89,30 @@ package body SprachauswahlGrafik is
          elsif
            MehrereSeiten
            and
-             ZeileSchleifenwert = Ende
+             ZeileSchleifenwert = AktuelleSprachen'Last
          then
-            -- Das später wie bei der Versionsnummer regeln? Dafür dann auch mal eine universellere Lösung finden. äöü
             Textposition.y := Textposition.y + 3.00 * TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
             
-            Sf.Graphics.ConvexShape.setPointCount (shape => PfeilAccess,
-                                                   count => 7);
-            Sf.Graphics.ConvexShape.setPoint (shape => PfeilAccess,
-                                              index => 0,
-                                              point => GrafikRecordKonstanten.Nullposition);
-            Sf.Graphics.ConvexShape.setPoint (shape => PfeilAccess,
-                                              index => 1,
-                                              point => (40.00, 0.00));
-            Sf.Graphics.ConvexShape.setPoint (shape => PfeilAccess,
-                                              index => 2,
-                                              point => (40.00, -15.00));
-            Sf.Graphics.ConvexShape.setPoint (shape => PfeilAccess,
-                                              index => 3,
-                                              point => (70.00, 10.00));
-            Sf.Graphics.ConvexShape.setPoint (shape => PfeilAccess,
-                                              index => 4,
-                                              point => (40.00, 35.00));
-            Sf.Graphics.ConvexShape.setPoint (shape => PfeilAccess,
-                                              index => 5,
-                                              point => (40.00, 20.00));
-            Sf.Graphics.ConvexShape.setPoint (shape => PfeilAccess,
-                                              index => 6,
-                                              point => (0.00, 20.00));
-            
-            Sf.Graphics.ConvexShape.setFillColor (shape => PfeilAccess,
-                                                  color => AktuelleTextFarbe);
+            KonvexverwaltungssystemGrafik.PfeilErstellen (PfeilaccessExtern => PfeilAccess);
             
             Textposition.x := Viewfläche.x / 2.00 - 0.50 * Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
             
-            Sf.Graphics.ConvexShape.setPosition (shape    => PfeilAccess,
-                                                 position => Textposition);
+            if
+              AktuelleAuswahl = Ende
+            then
+               AktuelleTextFarbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+                  
+            else
+               AktuelleTextFarbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
+            end if;
             
-            InteraktionAuswahl.PositionenSprachauswahl (ZeileSchleifenwert) := Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess);
+            KonvexverwaltungssystemGrafik.PositionFarbeZeichnen (KonvexaccessExtern => PfeilAccess,
+                                                                 PositionExtern     => Textposition,
+                                                                 FarbeExtern        => AktuelleTextFarbe);
+            
+            InteraktionAuswahl.PositionenSprachauswahl (Ende) := Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess);
             
             NeueTextbreite := TextberechnungenBreiteGrafik.SpaltenabstandVariabel + Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
-            
-            Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                      object       => PfeilAccess);
             
          else
             NeueTextbreite := 0.00;

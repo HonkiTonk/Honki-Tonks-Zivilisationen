@@ -120,7 +120,7 @@ package body WeltkartZusatzZeichnenGrafik is
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => PositionExtern,
                                                 FarbeExtern    => SpezieseinstellungenGrafik.Speziesfarben (SpeziesExtern),
-                                                GrößeExtern    => SichtweitenGrafik.KartenfelderAbmessung);
+                                                GrößeExtern    => SichtweitenGrafik.Kartenfeldfläche);
       
       UmgebungSchleife:
       for UmgebungSchleifenwert in UmgebungArray'Range loop
@@ -163,20 +163,20 @@ package body WeltkartZusatzZeichnenGrafik is
         WelcheRichtungExtern
       is
          when KartenartDatentypen.Norden_Enum =>
-            Rahmengröße := (SichtweitenGrafik.KartenfelderAbmessung.x, DickeRahmen);
+            Rahmengröße := (SichtweitenGrafik.Kartenfeldfläche.x, DickeRahmen);
             Rahmenposition := PositionExtern;
          
          when KartenartDatentypen.Westen_Enum =>
-            Rahmengröße := (DickeRahmen, SichtweitenGrafik.KartenfelderAbmessung.y);
+            Rahmengröße := (DickeRahmen, SichtweitenGrafik.Kartenfeldfläche.y);
             Rahmenposition := PositionExtern;
          
          when KartenartDatentypen.Osten_Enum =>
-            Rahmengröße := (DickeRahmen, SichtweitenGrafik.KartenfelderAbmessung.y);
-            Rahmenposition := (PositionExtern.x + SichtweitenGrafik.KartenfelderAbmessung.x - DickeRahmen, PositionExtern.y);
+            Rahmengröße := (DickeRahmen, SichtweitenGrafik.Kartenfeldfläche.y);
+            Rahmenposition := (PositionExtern.x + SichtweitenGrafik.Kartenfeldfläche.x - DickeRahmen, PositionExtern.y);
          
          when KartenartDatentypen.Süden_Enum =>
-            Rahmengröße := (SichtweitenGrafik.KartenfelderAbmessung.x, DickeRahmen);
-            Rahmenposition := (PositionExtern.x, PositionExtern.y + SichtweitenGrafik.KartenfelderAbmessung.y - DickeRahmen);
+            Rahmengröße := (SichtweitenGrafik.Kartenfeldfläche.x, DickeRahmen);
+            Rahmenposition := (PositionExtern.x, PositionExtern.y + SichtweitenGrafik.Kartenfeldfläche.y - DickeRahmen);
       end case;
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => Rahmenposition,
@@ -212,9 +212,9 @@ package body WeltkartZusatzZeichnenGrafik is
       Textbreite := Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).width;
       
       if
-        Textbreite > 5.00 * SichtweitenGrafik.KartenfelderAbmessung.x
+        Textbreite > 5.00 * SichtweitenGrafik.Kartenfeldfläche.x
       then
-         Skalierung := (5.00 * SichtweitenGrafik.KartenfelderAbmessung.x / Textbreite, 0.70);
+         Skalierung := (5.00 * SichtweitenGrafik.Kartenfeldfläche.x / Textbreite, 0.70);
          
       else
          Skalierung := (GrafikRecordKonstanten.Standardskalierung.x, 0.70);
@@ -223,7 +223,7 @@ package body WeltkartZusatzZeichnenGrafik is
       TextaccessverwaltungssystemGrafik.Skalieren (TextaccessExtern => TextaccessVariablen.KarteAccess,
                                                    SkalierungExtern => Skalierung);
       
-      Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * SichtweitenGrafik.KartenfelderAbmessung.x;
+      Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * SichtweitenGrafik.Kartenfeldfläche.x;
       Textposition.y := PositionExtern.y - TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteAccess,

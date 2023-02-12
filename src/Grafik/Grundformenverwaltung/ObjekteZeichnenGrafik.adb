@@ -24,49 +24,6 @@ package body ObjekteZeichnenGrafik is
    
    
    
-   procedure KreisZeichnen
-     (RadiusExtern : in Float;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      FarbeExtern : in Sf.Graphics.Color.sfColor)
-   is begin
-            
-      Sf.Graphics.CircleShape.setRadius (shape  => KreisAccess,
-                                         radius => RadiusExtern);
-      Sf.Graphics.CircleShape.setPosition (shape    => KreisAccess,
-                                           position => PositionExtern);
-      Sf.Graphics.CircleShape.setFillColor (shape => KreisAccess,
-                                            color => FarbeExtern);
-         
-      Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                object       => KreisAccess);
-      
-   end KreisZeichnen;
-   
-   
-   
-   procedure PolygonZeichnen
-     (RadiusExtern : in Float;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      AnzahlEckenExtern : in Sf.sfSize_t;
-      FarbeExtern : in Sf.Graphics.Color.sfColor)
-   is begin
-            
-      Sf.Graphics.CircleShape.setRadius (shape  => PolygonAccess,
-                                         radius => RadiusExtern);
-      Sf.Graphics.CircleShape.setPointCount (shape => PolygonAccess,
-                                             count => AnzahlEckenExtern);
-      Sf.Graphics.CircleShape.setPosition (shape    => PolygonAccess,
-                                           position => PositionExtern);
-      Sf.Graphics.CircleShape.setFillColor (shape => PolygonAccess,
-                                            color => FarbeExtern);
-         
-      Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => EinstellungenGrafik.FensterAccess,
-                                                object       => PolygonAccess);
-      
-   end PolygonZeichnen;
-   
-   
-   
    procedure RahmenZeichnen
      (PositionExtern : in Sf.System.Vector2.sfVector2f;
       FarbeExtern : in Sf.Graphics.Color.sfColor;
@@ -109,5 +66,49 @@ package body ObjekteZeichnenGrafik is
                                                    object       => RahmenteilAccess);
       
    end RahmenteilZeichnen;
+   
+   
+   
+   -- Wird aktuell nicht mehr benötigt, sollte sich das in der Zukunft nicht ändern kann es theoretisch raus. äöü
+   procedure KreisZeichnen
+     (RadiusExtern : in Float;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+   is begin
+            
+      Sf.Graphics.CircleShape.setRadius (shape  => KreisAccess,
+                                         radius => RadiusExtern);
+      Sf.Graphics.CircleShape.setPosition (shape    => KreisAccess,
+                                           position => PositionExtern);
+      Sf.Graphics.CircleShape.setFillColor (shape => KreisAccess,
+                                            color => FarbeExtern);
+         
+      Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                object       => KreisAccess);
+      
+   end KreisZeichnen;
+   
+   
+   
+   procedure PolygonZeichnen
+     (RadiusExtern : in Float;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      AnzahlEckenExtern : in Sf.sfSize_t;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+   is begin
+            
+      Sf.Graphics.CircleShape.setRadius (shape  => PolygonAccess,
+                                         radius => RadiusExtern);
+      Sf.Graphics.CircleShape.setPointCount (shape => PolygonAccess,
+                                             count => AnzahlEckenExtern);
+      Sf.Graphics.CircleShape.setPosition (shape    => PolygonAccess,
+                                           position => PositionExtern);
+      Sf.Graphics.CircleShape.setFillColor (shape => PolygonAccess,
+                                            color => FarbeExtern);
+         
+      Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => EinstellungenGrafik.FensterAccess,
+                                                object       => PolygonAccess);
+      
+   end PolygonZeichnen;
    
 end ObjekteZeichnenGrafik;

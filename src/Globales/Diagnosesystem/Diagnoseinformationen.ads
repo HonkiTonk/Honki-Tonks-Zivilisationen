@@ -14,6 +14,9 @@ package Diagnoseinformationen is
    
    procedure Zahl
      (ZahlExtern : in Integer);
+   
+   procedure Kommazahl
+     (ZahlExtern : in Float);
 
    procedure Koordinateninformationen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord);

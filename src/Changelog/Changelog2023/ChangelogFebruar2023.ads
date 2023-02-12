@@ -105,24 +105,26 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (13.02.2023):
+   -- Version 0.04.7540 => 0.04. (13.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (12.02.2023):
+   -- Version 0.04.7475 => 0.04.7540 (12.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Interne Struktur der Spielstandliste überarbeitet.
+   -- Sprachenauswahl überarbeitet.
+   -- Konvexverwaltungssystem eingebaut.
+   -- Stadtkartenanzeigesystem überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/getestet/angepasst.
    
    
 
-   -- Version 0.04.7475 => 0.04. (11.02.2023):
+   -- Version 0.04.7475 => 0.04.7475 (11.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

@@ -7,6 +7,7 @@ with MenueKonstanten;
 with MenueDatentypen;
 with GrafikDatentypen;
 with TextnummernKonstanten;
+with TextKonstanten;
 
 with LeseAllgemeines;
 
@@ -16,6 +17,7 @@ with NachGrafiktask;
 with SpielstandAllgemeinesLogik;
 with JaNeinLogik;
 with SpielstandEntfernenLogik;
+with SpielstandVariablen;
 
 package body SpielstandlisteLogik is
 
@@ -27,7 +29,7 @@ package body SpielstandlisteLogik is
       SpielstandSchleife:
       loop
          
-         Schleifenanfang := SpielstandArray'First;
+         Schleifenanfang := SpielstandVariablen.SpielstandArray'First;
          NachGrafiktask.MehrereSeiten := False;
          
          Start_Search (Search    => Suche,
@@ -42,13 +44,14 @@ package body SpielstandlisteLogik is
             case
               Schleifenanfang
             is
-               when SpielstandArray'First =>
-                  Spielstand := (others => TextKonstanten.LeerUnboundedString);
+               when SpielstandVariablen.SpielstandArray'First =>
+                  SpielstandVariablen.Nullsetzung;
                   
                when others =>
-                  Zwischenspeicher := Spielstand (SpielstandArray'Last);
-                  Spielstand := (others => TextKonstanten.LeerUnboundedString);
-                  Spielstand (SpielstandArray'First) := Zwischenspeicher;
+                  Zwischenspeicher := SpielstandVariablen.SpielstandnameLesen (NummerExtern => SpielstandVariablen.SpielstandArray'Last);
+                  SpielstandVariablen.Nullsetzung;
+                  SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => Zwischenspeicher,
+                                                               NummerExtern => SpielstandVariablen.SpielstandArray'First);
             end case;
             
             AktuellerSpielstand := Schleifenanfang;
@@ -67,15 +70,16 @@ package body SpielstandlisteLogik is
                                      Directory_Entry => Spielstanddatei);
                end case;
                
-               Spielstand (AktuellerSpielstand) := To_Unbounded_Wide_Wide_String (Source => To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Spielstanddatei)));
+               SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => To_Unbounded_Wide_Wide_String (Source => To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Spielstanddatei))),
+                                                            NummerExtern => AktuellerSpielstand);
                
                if
-                 NamePrüfen (NameExtern => To_Wide_Wide_String (Source => Spielstand (AktuellerSpielstand))) = False
+                 NamePrüfen (NameExtern => To_Wide_Wide_String (Source => SpielstandVariablen.SpielstandnameLesen (NummerExtern => AktuellerSpielstand))) = False
                then
                   null;
                      
                elsif
-                 AktuellerSpielstand = SpielstandArray'Last
+                 AktuellerSpielstand = SpielstandVariablen.SpielstandArray'Last
                then
                   NachGrafiktask.MehrereSeiten := True;
                   exit SpeicherdateiSchleife;
@@ -100,12 +104,13 @@ package body SpielstandlisteLogik is
                   
                   when MehrAnzeigen =>
                      if
-                       Spielstand (Ausgewählt) = TextKonstanten.LeerUnboundedString
+                       SpielstandVariablen.SpielstandnameLesen (NummerExtern => Ausgewählt) = TextKonstanten.LeerUnboundedString
                      then
                         exit MittelSchleife;
                      
                      else
-                        Schleifenanfang := 2;
+                        -- Schleifenanfang muss hier auf einen Wert ungleich SpielstandVariablen.SpielstandArray'First gesetzt werden, damit bei mehreren Seiten es korrekt weitergeht.
+                        Schleifenanfang := SpielstandVariablen.SpielstandArray'First + 1;
                         exit AuswahlSchleife;
                      end if;
                   
@@ -128,7 +133,7 @@ package body SpielstandlisteLogik is
                      if
                        Ausgewählt in SpielstandlisteAnfang .. SpielstandlisteEnde
                      then
-                        SpielstandEntfernenLogik.SpielstandEntfernen (SpielstandnameExtern => To_Wide_Wide_String (Source => Spielstand (Ausgewählt)));
+                        SpielstandEntfernenLogik.SpielstandEntfernen (SpielstandnameExtern => To_Wide_Wide_String (Source => SpielstandVariablen.SpielstandnameLesen (NummerExtern => Ausgewählt)));
                         exit MittelSchleife;
                         
                      elsif
@@ -147,13 +152,13 @@ package body SpielstandlisteLogik is
                        and then
                          JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageSpielstandÜberschreiben) = True
                      then
-                        RückgabeWert := Spielstand (Ausgewählt);
+                        RückgabeWert := SpielstandVariablen.SpielstandnameLesen (NummerExtern => Ausgewählt);
                         exit SpielstandSchleife;
                         
                      elsif
                        SpeichernLadenExtern = False
                      then
-                        RückgabeWert := Spielstand (Ausgewählt);
+                        RückgabeWert := SpielstandVariablen.SpielstandnameLesen (NummerExtern => Ausgewählt);
                         exit SpielstandSchleife;
                         
                      else

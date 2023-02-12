@@ -34,8 +34,8 @@ package body VerkaufsauswahlGrafik is
                 SpeziesExtern => SpeziesExtern);
       
       BauauswahlGebaeudeGrafik.Gebäudeinformationen (AuswahlExtern     => AktuelleAuswahlExtern,
-                                                     SpeziesExtern     => SpeziesExtern,
-                                                     ViewbereichExtern => ViewKonstanten.BaumenüGebäudeinformationenVerkaufen);
+                                                      SpeziesExtern     => SpeziesExtern,
+                                                      ViewbereichExtern => ViewKonstanten.BaumenüGebäudeinformationenVerkaufen);
       
    end Verkaufsauswahl;
    

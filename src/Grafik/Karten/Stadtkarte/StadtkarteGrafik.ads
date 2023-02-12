@@ -7,7 +7,6 @@ with StadtRecords;
 with StadtKonstanten;
 
 private with StadtDatentypen;
-private with KartenDatentypen;
 private with KartenRecords;
 private with GrafikRecordKonstanten;
 
@@ -33,8 +32,6 @@ private
 
    AlteID : StadtDatentypen.GebäudeIDMitNullwert := StadtKonstanten.LeerGebäudeID;
    GebäudeZusatzinformationen : StadtDatentypen.GebäudeIDMitNullwert;
-
-   Stadtgröße : KartenDatentypen.KartenfeldPositiv;
 
    Anzeigezeit : Time := Clock;
 

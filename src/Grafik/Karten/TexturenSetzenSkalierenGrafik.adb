@@ -18,7 +18,7 @@ package body TexturenSetzenSkalierenGrafik is
                                      resetRect => Sf.sfTrue);
       
       Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
-      KartenfelderAbmessung := SichtweitenGrafik.KartenfelderAbmessung;
+      KartenfelderAbmessung := SichtweitenGrafik.Kartenfeldfläche;
       
       SkalierungKartenfeld.x := KartenfelderAbmessung.x / Rechteck.width;
       SkalierungKartenfeld.y := KartenfelderAbmessung.y / Rechteck.height;

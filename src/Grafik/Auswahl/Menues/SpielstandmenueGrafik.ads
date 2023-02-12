@@ -5,7 +5,7 @@ private with Sf.Graphics.Color;
 
 private with GrafikRecordKonstanten;
 
-private with SpielstandlisteLogik;
+private with SpielstandVariablen;
 
 package SpielstandmenueGrafik is
    pragma Elaborate_Body;
@@ -30,7 +30,7 @@ private
 
    Farbe : Sf.Graphics.Color.sfColor;
       
-   Spielstand : SpielstandlisteLogik.SpielstandArray;
+   Spielstand : SpielstandVariablen.SpielstandArray;
    
    Erstellungszeit : Time;
    

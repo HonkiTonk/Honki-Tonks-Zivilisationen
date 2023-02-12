@@ -1,5 +1,3 @@
-with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
-
 with InteraktionAuswahl;
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
@@ -13,7 +11,7 @@ with TasteneingabeLogik;
 with GebaeudeAllgemeinLogik;
 with StadtproduktionLogik;
 with JaNeinLogik;
-with EinstellungenGrafik;
+with SichtweitenGrafik;
 with InteraktionAllgemein;
 
 package body GebaeudeVerkaufenLogik is
@@ -133,12 +131,10 @@ package body GebaeudeVerkaufenLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      -- Das hier irgendwie mit dem Graikfteil verschmelzen? äöü
-      Stadtgröße := KartenDatentypen.KartenfeldPositiv (Float'Ceiling (Sqrt (X => Float (StadtDatentypen.GebäudeID'Last))));
-      Grafikgröße := (EinstellungenGrafik.AktuelleFensterAuflösung.x / Float (Stadtgröße), EinstellungenGrafik.AktuelleFensterAuflösung.y / Float (Stadtgröße));
+      Grafikgröße := SichtweitenGrafik.Stadtumgebungsfläche;
       Mausposition := InteraktionAllgemein.Mausposition;
       
-      Auswahl := Natural (Float'Floor (Mausposition.y / Grafikgröße.y)) * Positive (Stadtgröße);
+      Auswahl := Natural (Float'Floor (Mausposition.y / Grafikgröße.y)) * Positive (StadtKonstanten.Stadtkartengröße);
       Auswahl := Auswahl + Natural (Float'Ceiling (Mausposition.x / Grafikgröße.x));
       
       if

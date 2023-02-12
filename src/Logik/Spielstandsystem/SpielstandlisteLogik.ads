@@ -1,16 +1,8 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Directories; use Ada.Directories;
 
-with TextKonstanten;
-
 package SpielstandlisteLogik is
    pragma Elaborate_Body;
-
-   -- Das auch mal in irgendwas Globales verschieben? äöü
-   type SpielstandArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
-   Spielstand : SpielstandArray := (others => TextKonstanten.LeerUnboundedString);
-
-
 
    function Spielstandliste
      (SpeichernLadenExtern : in Boolean)

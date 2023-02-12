@@ -60,11 +60,11 @@ package body WeltkarteGrafik is
                null;
             end if;
             
-            Feldposition.x := Feldposition.x + SichtweitenGrafik.KartenfelderAbmessung.x;
+            Feldposition.x := Feldposition.x + SichtweitenGrafik.Kartenfeldfläche.x;
                           
          end loop XAchseSchleife;
          
-         Feldposition := (0.00, Feldposition.y + SichtweitenGrafik.KartenfelderAbmessung.y);
+         Feldposition := (0.00, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
          
       end loop YAchseSchleife;
             

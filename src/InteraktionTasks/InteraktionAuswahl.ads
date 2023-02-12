@@ -32,6 +32,8 @@ package InteraktionAuswahl is
 
    PositionenSprachauswahl : PositionenArray (1 .. 11) := (others => GrafikRecordKonstanten.Leerbereich);
 
+   PositionenJaNein : PositionenArray (1 .. 2) := (others => GrafikRecordKonstanten.Leerbereich);
+
 
 
    type PositionenForschungArray is array (ForschungenDatentypen.ForschungID'Range) of Sf.Graphics.Rect.sfFloatRect;
@@ -54,12 +56,8 @@ package InteraktionAuswahl is
    type MöglicheEinheitenArray is array (PositionenEinheitenBauenArray'Range) of Boolean;
    MöglicheEinheiten : MöglicheEinheitenArray := (others => False);
 
-
-
    type PositionenEinheitStadtArray is array (EinheitenDatentypen.Transportplätze'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenEinheitStadt : PositionenEinheitStadtArray := (others => GrafikRecordKonstanten.Leerbereich);
-
-   PositionenJaNein : PositionenArray (1 .. 2) := (others => GrafikRecordKonstanten.Leerbereich);
 
 
 

@@ -5,7 +5,6 @@ with StadtRecords;
 with StadtKonstanten;
 
 private with StadtDatentypen;
-private with KartenDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -37,8 +36,6 @@ private
    VerkaufenMöglich : Boolean;
 
    AktuelleAuswahl : StadtDatentypen.GebäudeIDMitNullwert;
-
-   Stadtgröße : KartenDatentypen.KartenfeldPositiv;
 
    Auswahl : Natural;
 

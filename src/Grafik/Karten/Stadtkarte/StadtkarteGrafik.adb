@@ -1,5 +1,3 @@
-with Ada.Numerics.Elementary_Functions; use Ada.Numerics.Elementary_Functions;
-
 with Views;
 with KartengrundDatentypen;
 with ViewKonstanten;
@@ -7,6 +5,7 @@ with ZeitKonstanten;
 with GrafikDatentypen;
 with GrafikVariablen;
 with TextaccessVariablen;
+with KartenDatentypen;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -23,6 +22,7 @@ with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 with TextaccessverwaltungssystemGrafik;
 with GebaeudebeschreibungenGrafik;
+with SichtweitenGrafik;
 
 package body StadtkarteGrafik is
 
@@ -40,21 +40,20 @@ package body StadtkarteGrafik is
       GrafischeDarstellung (GrundExtern => Gesamtgrund);
       GebäudeZusatzinformationen := StadtKonstanten.LeerGebäudeID;
       
-      Stadtgröße := KartenDatentypen.KartenfeldPositiv (Float'Ceiling (Sqrt (X => Float (StadtDatentypen.GebäudeID'Last))));
-      Grafikgröße := (EinstellungenGrafik.AktuelleFensterAuflösung.x / Float (Stadtgröße), EinstellungenGrafik.AktuelleFensterAuflösung.y / Float (Stadtgröße));
+      Grafikgröße := SichtweitenGrafik.Stadtumgebungsfläche;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in 1 .. Stadtgröße loop
+      for YAchseSchleifenwert in 1 .. StadtKonstanten.Stadtkartengröße loop
          XAchseSchleife:
-         for XAchseSchleifenwert in 1 .. Stadtgröße loop
+         for XAchseSchleifenwert in 1 .. StadtKonstanten.Stadtkartengröße loop
             
             if
-              (YAchseSchleifenwert - 1) * Stadtgröße + XAchseSchleifenwert > KartenDatentypen.KartenfeldPositiv (StadtDatentypen.GebäudeID'Last)
+              (YAchseSchleifenwert - 1) * StadtKonstanten.Stadtkartengröße + XAchseSchleifenwert > KartenDatentypen.KartenfeldPositiv (StadtDatentypen.GebäudeID'Last)
             then
                exit YAchseSchleife;
                
             else
-               GebäudeID := StadtDatentypen.GebäudeID ((YAchseSchleifenwert - 1) * Stadtgröße + XAchseSchleifenwert);
+               GebäudeID := StadtDatentypen.GebäudeID ((YAchseSchleifenwert - 1) * StadtKonstanten.Stadtkartengröße + XAchseSchleifenwert);
             end if;
                      
             case
@@ -130,9 +129,6 @@ package body StadtkarteGrafik is
         and
           GebäudeIDExtern = AlteID
       then
-         GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.GebäudeHinweis)
-           := ViewbereicheBerechnenGrafik.ViewbereichBreiteHöheBerechnen (BereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.GebäudeHinweis));
-         
          Informationsfeld (GebäudeIDExtern => GebäudeIDExtern,
                            SpeziesExtern   => SpeziesExtern);
          

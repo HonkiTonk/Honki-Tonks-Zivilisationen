@@ -26,6 +26,19 @@ package body Diagnoseinformationen is
    end Zahl;
    
    
+   
+   procedure Kommazahl
+     (ZahlExtern : in Float)
+   is begin
+      
+      Ada.Float_Text_IO.Put (Item => ZahlExtern,
+                             Exp  => 0);
+      
+      New_Line;
+      
+   end Kommazahl;
+   
+   
 
    procedure Koordinateninformationen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

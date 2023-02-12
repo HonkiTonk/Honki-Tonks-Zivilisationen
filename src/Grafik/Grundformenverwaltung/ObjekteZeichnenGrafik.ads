@@ -22,33 +22,6 @@ package ObjekteZeichnenGrafik is
                  AbmessungExtern.y /= 0.00
               );
    
-   procedure KreisZeichnen
-     (RadiusExtern : in Float;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      FarbeExtern : in Sf.Graphics.Color.sfColor)
-     with
-       Pre => (
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-               and
-                 RadiusExtern /= 0.00
-              );
-
-   procedure PolygonZeichnen
-     (RadiusExtern : in Float;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      AnzahlEckenExtern : in Sf.sfSize_t;
-      FarbeExtern : in Sf.Graphics.Color.sfColor)
-     with
-       Pre => (
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-               and
-                 RadiusExtern /= 0.00
-              );
-   
    procedure RahmenZeichnen
      (PositionExtern : in Sf.System.Vector2.sfVector2f;
       FarbeExtern : in Sf.Graphics.Color.sfColor;
@@ -83,6 +56,33 @@ package ObjekteZeichnenGrafik is
                  GrößeExtern.x >= 0.00
                and
                  GrößeExtern.y >= 0.00
+              );
+   
+   procedure KreisZeichnen
+     (RadiusExtern : in Float;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+     with
+       Pre => (
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+               and
+                 RadiusExtern /= 0.00
+              );
+
+   procedure PolygonZeichnen
+     (RadiusExtern : in Float;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      AnzahlEckenExtern : in Sf.sfSize_t;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+     with
+       Pre => (
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+               and
+                 RadiusExtern /= 0.00
               );
    
 private

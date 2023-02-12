@@ -26,7 +26,6 @@ package ViewKonstanten is
    BaumenüGebäudelisteVerkaufen : constant Positive := 8;
    BaumenüGebäudeinformationenVerkaufen : constant Positive := 9;
    BaumenüGebäudebeschreibungVerkaufen : constant Positive := 10;
-   GebäudeHinweis : constant Positive := 11;
    
    ForschungsmenüForschungsliste : constant Positive := 1;
    ForschungsmenüErmöglicht : constant Positive := 2;
