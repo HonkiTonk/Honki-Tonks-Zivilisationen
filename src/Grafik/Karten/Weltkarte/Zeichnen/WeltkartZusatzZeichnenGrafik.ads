@@ -106,6 +106,21 @@ package WeltkartZusatzZeichnenGrafik is
                  PositionExtern.y >= 0.00
               );
    
+   procedure StadtnameAnzeigen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      ObenUntenExtern : in Boolean)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+              );
+   
 private
    
    AktuelleSpezies : SpeziesDatentypen.Spezies_Enum;
@@ -115,7 +130,6 @@ private
    Verbesserungsfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
    
    DickeRahmen : constant Float := 5.00;
-   Textbreite : Float;
          
    StadtSpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
    
@@ -123,6 +137,7 @@ private
    Rahmengröße : Sf.System.Vector2.sfVector2f;
    Skalierung : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
+   Textgröße : Sf.System.Vector2.sfVector2f;
    
    KartenWertRahmen : KartenRecords.AchsenKartenfeldNaturalRecord;
    
@@ -135,19 +150,5 @@ private
                                          KartenartDatentypen.Osten_Enum  => (0, 0, 1),
                                          KartenartDatentypen.Süden_Enum  => (0, 1, 0)
                                         );
-   
-   procedure StadtnameAnzeigen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 PositionExtern.x >= 0.00
-               and
-                 PositionExtern.y >= 0.00
-              );
 
 end WeltkartZusatzZeichnenGrafik;

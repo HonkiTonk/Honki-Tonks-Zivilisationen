@@ -21,6 +21,7 @@ with NachGrafiktask;
 with AllgemeineViewsGrafik;
 with TextfarbeGrafik;
 with TextaccessverwaltungssystemGrafik;
+with TextskalierungGrafik;
 
 package body EingabenanzeigeGrafik is
    
@@ -277,14 +278,17 @@ package body EingabenanzeigeGrafik is
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                                                 TextbreiteExtern => Textbreite);
       
+            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
+                                                                    ErlaubteBreiteExtern => MaximaleTextbreite);
+            Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
+            
             if
               Textbreite > MaximaleTextbreite
             then
-               Skalierung := (MaximaleTextbreite / Textbreite, GrafikRecordKonstanten.Standardskalierung.y);
                Textbreite := MaximaleTextbreite;
                
             else
-               Skalierung := GrafikRecordKonstanten.Standardskalierung;
+               null;
             end if;
             
             TextaccessverwaltungssystemGrafik.PositionSkalierenZeichnen (TextaccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),

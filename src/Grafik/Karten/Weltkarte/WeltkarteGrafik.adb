@@ -6,6 +6,8 @@ with GrafikKonstanten;
 with ViewKonstanten;
 with EinheitenDatentypen;
 with EinheitenKonstanten;
+with KartenartDatentypen;
+with KartenverbesserungDatentypen;
 
 with LeseWeltkarte;
 with LeseCursor;
@@ -67,6 +69,61 @@ package body WeltkarteGrafik is
          Feldposition := (0.00, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
          
       end loop YAchseSchleife;
+      
+      case
+        LeseWeltkarteneinstellungen.YAchseNorden
+      is
+         when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
+            null;
+            
+         when others =>
+            return;
+      end case;
+      
+      YAchseNamenSchleife:
+      for YAchseNamenSchleifenwert in -Sichtbereich .. Sichtbereich loop
+         XAchseNamenSchleife:
+         for XAchseNamenSchleifenwert in -Sichtbereich .. Sichtbereich loop
+            
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseNamenSchleifenwert, XAchseNamenSchleifenwert),
+                                                                                                      LogikGrafikExtern => False);
+            
+            if
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+            then
+               null;    
+               
+            elsif
+              KartenWert.YAchse > KartenDatentypen.KartenfeldPositiv'First
+            then
+               exit YAchseNamenSchleife;
+               
+            elsif
+              False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
+                                              SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
+            then
+               null;
+               
+            else
+               case
+                 LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert)
+               is
+                  when KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum =>
+                     null;
+                     
+                  when others =>
+                     null;
+               end case;
+            end if;
+            
+            Feldposition.x := Feldposition.x + SichtweitenGrafik.Kartenfeldfläche.x;
+            
+         end loop XAchseNamenSchleife;
+         
+         Feldposition := (0.00, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
+         
+      end loop YAchseNamenSchleife;
             
    end WeltkarteAnzeigen;
    

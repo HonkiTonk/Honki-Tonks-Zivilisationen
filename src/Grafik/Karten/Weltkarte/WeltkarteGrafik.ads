@@ -24,7 +24,7 @@ package WeltkarteGrafik is
    
 private
    use type KartenDatentypen.Kartenfeld;
-   
+      
    Transparents : Sf.sfUint8;
    
    Sichtbereich : KartenDatentypen.KartenfeldPositiv;

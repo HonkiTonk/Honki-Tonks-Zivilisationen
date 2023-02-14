@@ -139,6 +139,7 @@ package body ZusatztextKartenformGrafik is
             return;
       end case;
       
+      -- Für solche Skalierungen auch mal ein eigenes System bauen. äöü
       SpritesverwaltungssystemGrafik.SetzenBereichSkalierenZeichnen (SpriteAccessExtern => SpriteAccess,
                                                                      TexturExtern       => EingeleseneTexturenGrafik.BilderAccess (1),
                                                                      BereichExtern      => (Integer (Texturanfang.x), Integer (Texturanfang.y), Integer (Texturfläche.x / 4.00), Integer (Texturfläche.y / 5.00)),

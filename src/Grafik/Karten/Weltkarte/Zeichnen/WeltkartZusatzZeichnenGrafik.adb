@@ -7,14 +7,12 @@ with SpeziesKonstanten;
 with KartenKonstanten;
 with TextaccessVariablen;
 with GrafikKonstanten;
-with GrafikRecordKonstanten;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
 
 with TextberechnungenBreiteGrafik;
 with SpezieseinstellungenGrafik;
-with TextberechnungenHoeheGrafik;
 with KartenkoordinatenberechnungssystemLogik;
 with TextaccessverwaltungssystemGrafik;
 with StadtSuchenLogik;
@@ -22,6 +20,7 @@ with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
 with ObjekteZeichnenGrafik;
 with SichtweitenGrafik;
+with TextskalierungGrafik;
 
 package body WeltkartZusatzZeichnenGrafik is
 
@@ -69,7 +68,8 @@ package body WeltkartZusatzZeichnenGrafik is
               KoordinatenExtern.EAchse = EbeneExtern
             then
                StadtnameAnzeigen (KoordinatenExtern => KoordinatenExtern,
-                                  PositionExtern    => PositionExtern);
+                                  PositionExtern    => PositionExtern,
+                                  ObenUntenExtern   => True);
                
             else
                null;
@@ -190,7 +190,8 @@ package body WeltkartZusatzZeichnenGrafik is
    -- Später noch einen Rahmen um den Namen bauen? äöü
    procedure StadtnameAnzeigen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      PositionExtern : in Sf.System.Vector2.sfVector2f)
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      ObenUntenExtern : in Boolean)
    is begin
             
       StadtSpeziesNummer := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern);
@@ -209,22 +210,25 @@ package body WeltkartZusatzZeichnenGrafik is
                                                    TextExtern       => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummer)),
                                                    FarbeExtern      => Farbe);
       
-      Textbreite := Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).width;
-      
-      if
-        Textbreite > 5.00 * SichtweitenGrafik.Kartenfeldfläche.x
-      then
-         Skalierung := (5.00 * SichtweitenGrafik.Kartenfeldfläche.x / Textbreite, 0.70);
-         
-      else
-         Skalierung := (GrafikRecordKonstanten.Standardskalierung.x, 0.70);
-      end if;
+      Textgröße := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).height);
+      Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textgröße.x,
+                                                              ErlaubteBreiteExtern => 5.00 * SichtweitenGrafik.Kartenfeldfläche.x);
+      Skalierung.y := 0.70;
       
       TextaccessverwaltungssystemGrafik.Skalieren (TextaccessExtern => TextaccessVariablen.KarteAccess,
                                                    SkalierungExtern => Skalierung);
       
       Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * SichtweitenGrafik.Kartenfeldfläche.x;
-      Textposition.y := PositionExtern.y - TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+            
+      case
+        ObenUntenExtern
+      is
+         when True =>
+            Textposition.y := PositionExtern.y - Textgröße.y;
+            
+         when False =>
+            Textposition.y := PositionExtern.y + Textgröße.y;
+      end case;
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteAccess,
                                                           PositionExtern   => Textposition);

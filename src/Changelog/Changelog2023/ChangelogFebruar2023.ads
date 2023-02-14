@@ -91,24 +91,25 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (15.02.2023):
+   -- Version 0.04.7585 => 0.04. (15.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (14.02.2023):
+   -- Version 0.04.7540 => 0.04.7585 (14.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einfaches Textskalierungssystem eingebaut.
+   -- Anzeige der Städtenamen auf der Weltkarte überarbeitet.
+   -- Code zusammengeführt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.04.7540 => 0.04. (13.02.2023):
+   -- Version 0.04.7540 => 0.04.7540 (13.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

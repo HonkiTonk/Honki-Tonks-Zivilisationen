@@ -53,6 +53,3 @@ then
 else
    Skalierung := (1.00, 1.00);
 end if;
-
-TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                     SkalierungExtern => Skalierung);
