@@ -17,7 +17,7 @@ with EinstellungenGrafik;
 with ViewsEinstellenGrafik;
 with SichtweitenGrafik;
 with WeltkarteFeldZeichnenGrafik;
-with WeltkartZusatzZeichnenGrafik;
+with WeltkarteZusatzZeichnenGrafik;
 with WeltkarteEinheitZeichnenGrafik;
 with NachGrafiktask;
 
@@ -74,7 +74,7 @@ package body WeltkarteGrafik is
         LeseWeltkarteneinstellungen.YAchseNorden
       is
          when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
-            null;
+            Feldposition := GrafikRecordKonstanten.Nullposition;
             
          when others =>
             return;
@@ -110,7 +110,9 @@ package body WeltkarteGrafik is
                  LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert)
                is
                   when KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum =>
-                     null;
+                     WeltkarteZusatzZeichnenGrafik.StadtnameAnzeigen (KoordinatenExtern => KartenWert,
+                                                                      PositionExtern    => (Feldposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y),
+                                                                      ObenUntenExtern   => False);
                      
                   when others =>
                      null;
@@ -219,18 +221,18 @@ package body WeltkarteGrafik is
       
       
       
-      WeltkartZusatzZeichnenGrafik.WegZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                PositionExtern    => PositionExtern);
+      WeltkarteZusatzZeichnenGrafik.WegZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                 PositionExtern    => PositionExtern);
       
-      WeltkartZusatzZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
-                                                         EbeneExtern       => EbeneExtern,
+      WeltkarteZusatzZeichnenGrafik.VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
+                                                          EbeneExtern       => EbeneExtern,
+                                                          PositionExtern    => PositionExtern);
+      
+      WeltkarteZusatzZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
                                                          PositionExtern    => PositionExtern);
       
-      WeltkartZusatzZeichnenGrafik.AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
-                                                        PositionExtern    => PositionExtern);
-      
-      WeltkartZusatzZeichnenGrafik.AnzeigeFeldeffekt (KoordinatenExtern => KoordinatenExtern,
-                                                      PositionExtern    => PositionExtern);
+      WeltkarteZusatzZeichnenGrafik.AnzeigeFeldeffekt (KoordinatenExtern => KoordinatenExtern,
+                                                       PositionExtern    => PositionExtern);
       
       
       

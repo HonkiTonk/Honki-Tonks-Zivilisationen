@@ -14,7 +14,7 @@ private with StadtRecords;
 with LeseSpeziesbelegung;
 with LeseWeltkarteneinstellungen;
 
-package WeltkartZusatzZeichnenGrafik is
+package WeltkarteZusatzZeichnenGrafik is
    pragma Elaborate_Body;
    use type KartenDatentypen.Kartenfeld;
    use type SpeziesDatentypen.Spieler_Enum;
@@ -151,4 +151,4 @@ private
                                          KartenartDatentypen.Süden_Enum  => (0, 1, 0)
                                         );
 
-end WeltkartZusatzZeichnenGrafik;
+end WeltkarteZusatzZeichnenGrafik;

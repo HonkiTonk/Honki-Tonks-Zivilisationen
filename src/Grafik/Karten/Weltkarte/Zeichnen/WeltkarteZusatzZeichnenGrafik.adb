@@ -2,11 +2,11 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.Text;
 
-with KartengrundDatentypen;
 with SpeziesKonstanten;
 with KartenKonstanten;
 with TextaccessVariablen;
 with GrafikKonstanten;
+with KartengrundDatentypen;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -22,7 +22,7 @@ with ObjekteZeichnenGrafik;
 with SichtweitenGrafik;
 with TextskalierungGrafik;
 
-package body WeltkartZusatzZeichnenGrafik is
+package body WeltkarteZusatzZeichnenGrafik is
 
    procedure WegZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -192,10 +192,24 @@ package body WeltkartZusatzZeichnenGrafik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       ObenUntenExtern : in Boolean)
-   is begin
-            
-      StadtSpeziesNummer := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern);
+   is
+      use type KartenartDatentypen.Kartenform_Enum;
+   begin
       
+      if
+        KoordinatenExtern.YAchse = KartenDatentypen.KartenfeldPositiv'First
+        and
+          ObenUntenExtern
+          and
+            LeseWeltkarteneinstellungen.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+      then
+         return;
+         
+      else
+         StadtSpeziesNummer := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern);
+      end if;
+      
+      -- Diese Prüfung noch erweitern um zu sehen was für ein Grund das ist und entsprechend die Farbe so wählen dass man die auch lesen kann? äöü
       case
         KoordinatenExtern.EAchse
       is
@@ -219,6 +233,20 @@ package body WeltkartZusatzZeichnenGrafik is
                                                    SkalierungExtern => Skalierung);
       
       Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * SichtweitenGrafik.Kartenfeldfläche.x;
+      
+      if
+        Textposition.x < 0.00
+      then
+         Textposition.x := 0.00;
+         
+      elsif
+        Textposition.x > SichtweitenGrafik.Kartenfläche.width - Textgröße.x
+      then
+         Textposition.x := SichtweitenGrafik.Kartenfläche.width - Textgröße.x;
+         
+      else
+         null;
+      end if;
             
       case
         ObenUntenExtern
@@ -227,7 +255,7 @@ package body WeltkartZusatzZeichnenGrafik is
             Textposition.y := PositionExtern.y - Textgröße.y;
             
          when False =>
-            Textposition.y := PositionExtern.y + Textgröße.y;
+            Textposition.y := PositionExtern.y;
       end case;
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteAccess,
@@ -263,4 +291,4 @@ package body WeltkartZusatzZeichnenGrafik is
       
    end AnzeigeFeldeffekt;
 
-end WeltkartZusatzZeichnenGrafik;
+end WeltkarteZusatzZeichnenGrafik;

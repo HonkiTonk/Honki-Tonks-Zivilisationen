@@ -84,17 +84,17 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (16.02.2023):
+   -- Version 0.04.7610 => 0.04. (16.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.7585 => 0.04. (15.02.2023):
+   -- Version 0.04.7585 => 0.04.7610 (15.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Städtenamen sollten jetzt immer korrekt über oder unter einer Stadt angezeigt werden.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

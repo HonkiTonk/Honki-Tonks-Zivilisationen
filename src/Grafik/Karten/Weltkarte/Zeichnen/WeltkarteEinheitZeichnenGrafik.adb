@@ -11,7 +11,7 @@ with EingeleseneTexturenGrafik;
 with KartenspritesZeichnenGrafik;
 with SichtweitenGrafik;
 with EinheitenbewegungsbereichLogik;
-with WeltkartZusatzZeichnenGrafik;
+with WeltkarteZusatzZeichnenGrafik;
 with NachGrafiktask;
 
 package body WeltkarteEinheitZeichnenGrafik is
@@ -176,9 +176,9 @@ package body WeltkarteEinheitZeichnenGrafik is
          RahmenSchleife:
          for RahmenSchleifenwert in UmgebungArray'Range loop
             
-            WeltkartZusatzZeichnenGrafik.RahmenZeichnen (WelcheRichtungExtern => RahmenSchleifenwert,
-                                                         PositionExtern       => PositionExtern,
-                                                         SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies);
+            WeltkarteZusatzZeichnenGrafik.RahmenZeichnen (WelcheRichtungExtern => RahmenSchleifenwert,
+                                                          PositionExtern       => PositionExtern,
+                                                          SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies);
             
          end loop RahmenSchleife;
          

@@ -11,9 +11,7 @@ private with KartenRecords;
 -- Um ein im Kreis linken zu verhindern erst einmal die KartenberechnungenGrafik hier mit rein geschoben. äöü
 package SichtweitenGrafik is
    pragma Elaborate_Body;
-   
-   -- Das hier über eine Funktion abrufen? äöü
-   
+      
    procedure KartenfelderAbmessungBerechnen;
    procedure StadtumgebungAbmessungBerechnen;
    procedure StandardSichtweiten;
@@ -22,8 +20,7 @@ package SichtweitenGrafik is
      (ÄnderungExtern : in KartenDatentypen.Kartenfeld);
    
    
-   
-   
+      
    function SichtweiteLesen
      return KartenDatentypen.KartenfeldPositiv;
    
