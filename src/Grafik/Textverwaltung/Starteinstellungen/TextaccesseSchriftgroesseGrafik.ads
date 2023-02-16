@@ -1,9 +1,15 @@
+with Sf;
+
 package TextaccesseSchriftgroesseGrafik is
    pragma Elaborate_Body;
 
    procedure SchriftgrößeSetzen;
 
 private
+
+   Überschrift : Sf.sfUint32;
+   Normal : Sf.sfUint32;
+   Klein : Sf.sfUint32;
 
    procedure Allgemeines;
    procedure Menüs;

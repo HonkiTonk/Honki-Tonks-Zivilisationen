@@ -34,22 +34,22 @@ package body TextaccesseSchriftartGrafik is
    is begin
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.ÜberschriftAccess,
-                                font => TexteinstellungenGrafik.SchriftartAccess);
+                                font => TexteinstellungenGrafik.SchriftartLesen);
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.VersionsnummerAccess,
-                                font => TexteinstellungenGrafik.SchriftartAccess);
+                                font => TexteinstellungenGrafik.SchriftartLesen);
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.ZeilenumbruchAccess,
-                                font => TexteinstellungenGrafik.SchriftartAccess);
+                                font => TexteinstellungenGrafik.SchriftartLesen);
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.TextAccess,
-                                font => TexteinstellungenGrafik.SchriftartAccess);
+                                font => TexteinstellungenGrafik.SchriftartLesen);
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.TexthöheAccess,
-                                font => TexteinstellungenGrafik.SchriftartAccess);
+                                font => TexteinstellungenGrafik.SchriftartLesen);
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.Spielmeldung,
-                                font => TexteinstellungenGrafik.SchriftartAccess);
+                                font => TexteinstellungenGrafik.SchriftartLesen);
       
       
       
@@ -57,7 +57,7 @@ package body TextaccesseSchriftartGrafik is
       for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
       end loop IntroSchleife;
       
@@ -67,7 +67,7 @@ package body TextaccesseSchriftartGrafik is
       for OutroSchleifenwert in TextaccessVariablen.OutroAccess'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.OutroAccess (OutroSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
       end loop OutroSchleife;
       
@@ -84,7 +84,7 @@ package body TextaccesseSchriftartGrafik is
          for InnenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (2) loop
             
             Sf.Graphics.Text.setFont (text => TextaccessVariablen.MenüsAccess (AußenSchleifenwert, InnenSchleifenwert),
-                                      font => TexteinstellungenGrafik.SchriftartAccess);
+                                      font => TexteinstellungenGrafik.SchriftartLesen);
             
          end loop MenüsInnenSchleife;
       end loop MenüsAußenSchleife;
@@ -95,7 +95,7 @@ package body TextaccesseSchriftartGrafik is
       for SteuerungSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.SteuerungAccess (SteuerungSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
       end loop SteuerungSchleife;
       
@@ -105,7 +105,7 @@ package body TextaccesseSchriftartGrafik is
       for SpielstandSchleifenwert in TextaccessVariablen.SpielstandAccess'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.SpielstandAccess (SpielstandSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
       end loop SpielstandSchleife;
       
@@ -120,10 +120,10 @@ package body TextaccesseSchriftartGrafik is
       for SpeziesSchleifenwert in TextaccessVariablen.SpeziesnamenAccess'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.SpeziesnamenAccess (SpeziesSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
          
          
@@ -131,7 +131,7 @@ package body TextaccesseSchriftartGrafik is
          for GebäudetextSchleifenwert in TextaccessVariablen.GebäudetextAccess'Range (2) loop
             
             Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
-                                      font => TexteinstellungenGrafik.SchriftartAccess);
+                                      font => TexteinstellungenGrafik.SchriftartLesen);
          
             case
               GebäudetextSchleifenwert
@@ -141,7 +141,7 @@ package body TextaccesseSchriftartGrafik is
                
                when others =>
                   Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudezusatztextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
-                                            font => TexteinstellungenGrafik.SchriftartAccess);
+                                            font => TexteinstellungenGrafik.SchriftartLesen);
             end case;
             
          end loop GebäudetextSchleife;
@@ -152,7 +152,7 @@ package body TextaccesseSchriftartGrafik is
          for EinheitentextSchleifenwert in TextaccessVariablen.EinheitentextAccess'Range (2) loop
             
             Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
-                                      font => TexteinstellungenGrafik.SchriftartAccess);
+                                      font => TexteinstellungenGrafik.SchriftartLesen);
          
             case
               EinheitentextSchleifenwert
@@ -162,7 +162,7 @@ package body TextaccesseSchriftartGrafik is
                
                when others =>
                   Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
-                                            font => TexteinstellungenGrafik.SchriftartAccess);
+                                            font => TexteinstellungenGrafik.SchriftartLesen);
             end case;
             
          end loop EinheitentextSchleife;
@@ -173,17 +173,17 @@ package body TextaccesseSchriftartGrafik is
          for ForschungSchleifenwert in TextaccessVariablen.ForschungsmenüAccess'Range (2) loop
          
             Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
-                                      font => TexteinstellungenGrafik.SchriftartAccess);
+                                      font => TexteinstellungenGrafik.SchriftartLesen);
             
             Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
-                                      font => TexteinstellungenGrafik.SchriftartAccess);
+                                      font => TexteinstellungenGrafik.SchriftartLesen);
          
          end loop ForschungenSchleife;
          
       end loop SpeziesSchleife;
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                font => TexteinstellungenGrafik.SchriftartAccess);
+                                font => TexteinstellungenGrafik.SchriftartLesen);
       
    end Spezies;
       
@@ -196,7 +196,7 @@ package body TextaccesseSchriftartGrafik is
       for ZusatztextSchleifenwert in TextaccessVariablen.ZusatztextKartengrößeAccess'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.ZusatztextKartengrößeAccess (ZusatztextSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
       end loop ZusatztextKartengrößeSchleife;
       
@@ -208,7 +208,7 @@ package body TextaccesseSchriftartGrafik is
    is begin
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.SprachauswahlAccess,
-                                font => TexteinstellungenGrafik.SchriftartAccess);
+                                font => TexteinstellungenGrafik.SchriftartLesen);
       
    end Sprachauswahl;
    
@@ -221,7 +221,7 @@ package body TextaccesseSchriftartGrafik is
       for KartenformauswahlSchleifenwert in TextaccessVariablen.KartenformauswahlAccess'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.KartenformauswahlAccess (KartenformauswahlSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
             
       end loop KartenformauswahlSchleife;
       
@@ -236,7 +236,7 @@ package body TextaccesseSchriftartGrafik is
       for StadtInformationenSchleifenwert in TextaccessVariablen.StadtInformationenAccess'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.StadtInformationenAccess (StadtInformationenSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
             
       end loop StadtInformationenSchleife;
       
@@ -251,7 +251,7 @@ package body TextaccesseSchriftartGrafik is
       for EinheitenInformationenSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitenInformationenAccess (EinheitenInformationenSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
             
       end loop EinheitenInformationenSchleife;
       
@@ -266,7 +266,7 @@ package body TextaccesseSchriftartGrafik is
       for KarteWichtigesSchleifenwert in TextaccessVariablen.KarteWichtigesAccess'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.KarteWichtigesAccess (KarteWichtigesSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
             
       end loop KarteWichtigesSchleife;
       
@@ -281,7 +281,7 @@ package body TextaccesseSchriftartGrafik is
       for KarteAllgemeinesSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
             
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.KarteAllgemeinesAccess (KarteAllgemeinesSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
             
       end loop KarteAllgemeinesSchleife;
       
@@ -293,7 +293,7 @@ package body TextaccesseSchriftartGrafik is
    is begin
       
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.KarteAccess,
-                                font => TexteinstellungenGrafik.SchriftartAccess);
+                                font => TexteinstellungenGrafik.SchriftartLesen);
       
    end Karte;
       
@@ -306,7 +306,7 @@ package body TextaccesseSchriftartGrafik is
       for EinheitStadtSchleifenwert in TextaccessVariablen.AnzeigeEinheitStadtAccessArray'Range loop
       
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (EinheitStadtSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
       end loop EinheitStadtSchleife;
       
@@ -321,7 +321,7 @@ package body TextaccesseSchriftartGrafik is
       for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
       end loop AnzeigeEingabeSchleife;
          
@@ -336,7 +336,7 @@ package body TextaccesseSchriftartGrafik is
       for LadezeitenSpielweltSchleifenwert in TextaccessVariablen.LadezeitenAccess'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.LadezeitenAccess (LadezeitenSpielweltSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
       end loop LadezeitenSpielweltSchleife;
       
@@ -346,7 +346,7 @@ package body TextaccesseSchriftartGrafik is
       for KIZeitenSchleifenwert in TextaccessVariablen.KIZeitenAccess'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.KIZeitenAccess (KIZeitenSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
       end loop KIZeitenSchleife;
       
@@ -356,7 +356,7 @@ package body TextaccesseSchriftartGrafik is
       for RundenendeSchleifenwert in TextaccessVariablen.RundenendeAccess'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.RundenendeAccess (RundenendeSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
       end loop RundenendeSchleife;
       
@@ -366,7 +366,7 @@ package body TextaccesseSchriftartGrafik is
       for SpeichernLadenSchleifenwert in TextaccessVariablen.SpeichernLadenAccess'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.SpeichernLadenAccess (SpeichernLadenSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
       end loop SpeichernLadenSchleife;
       
@@ -381,7 +381,7 @@ package body TextaccesseSchriftartGrafik is
       for StadtbefehleSchleifenwert in TextaccessVariablen.StadtbefehleAccessArray'Range loop
          
          Sf.Graphics.Text.setFont (text => TextaccessVariablen.StadtbefehleAccess (StadtbefehleSchleifenwert),
-                                   font => TexteinstellungenGrafik.SchriftartAccess);
+                                   font => TexteinstellungenGrafik.SchriftartLesen);
          
       end loop StadtbefehleSchleife;
       

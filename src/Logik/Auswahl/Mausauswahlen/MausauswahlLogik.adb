@@ -13,8 +13,8 @@ with GrafikRecordKonstanten;
 
 with InteraktionAllgemein;
 with Vergleiche;
-with EinstellungenGrafik;
 with SichtweitenGrafik;
+with FensterGrafik;
 
 -- Thematisch aufteilen? äöü
 package body MausauswahlLogik is
@@ -23,7 +23,7 @@ package body MausauswahlLogik is
      return Natural
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.MenüviewAccess);
             
@@ -60,7 +60,7 @@ package body MausauswahlLogik is
      return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.ForschungsviewAccesse (ViewKonstanten.ForschungsmenüForschungsliste));
             
@@ -97,7 +97,7 @@ package body MausauswahlLogik is
      return StadtRecords.BauprojektRecord
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeliste));
       
@@ -124,7 +124,7 @@ package body MausauswahlLogik is
          
       end loop GebäudeSchleife;
             
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenliste));
       
@@ -164,7 +164,7 @@ package body MausauswahlLogik is
       return Natural
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.MenüviewAccess);
       
@@ -194,7 +194,7 @@ package body MausauswahlLogik is
      return Natural
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.FragenviewAccesse (ViewKonstanten.Antwort));
       
@@ -224,7 +224,7 @@ package body MausauswahlLogik is
      return Integer
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungKategorie));
       
@@ -246,7 +246,7 @@ package body MausauswahlLogik is
       
       
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungAuswahl));
       
@@ -276,7 +276,7 @@ package body MausauswahlLogik is
      return TastenbelegungDatentypen.Weltkartenbefehle_Enum
    is begin
             
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.KartenbefehlsviewAccess);
       
@@ -298,7 +298,7 @@ package body MausauswahlLogik is
       
       
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
       
@@ -322,7 +322,7 @@ package body MausauswahlLogik is
      return BefehleDatentypen.Einheitenbelegung_Enum
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.EinheitenbefehlsviewAccess);
       
@@ -342,7 +342,7 @@ package body MausauswahlLogik is
          
       end loop BefehleSchleife;
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
       
@@ -365,7 +365,7 @@ package body MausauswahlLogik is
      return Sf.System.Vector2.sfVector2f
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung));
       
@@ -390,7 +390,7 @@ package body MausauswahlLogik is
      return BefehleDatentypen.Stadtbefehle_Enum
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.StadtviewAccesse (ViewKonstanten.StadtBefehle));
       
@@ -420,7 +420,7 @@ package body MausauswahlLogik is
      return StadtDatentypen.GebäudeIDMitNullwert
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudelisteVerkaufen));
       
@@ -457,7 +457,7 @@ package body MausauswahlLogik is
      return Natural
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.MenüviewAccess);
       
@@ -489,7 +489,7 @@ package body MausauswahlLogik is
       return Integer
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.StadtEinheitviewAccess);
       
@@ -521,7 +521,7 @@ package body MausauswahlLogik is
       return Natural
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.MenüviewAccess);
       

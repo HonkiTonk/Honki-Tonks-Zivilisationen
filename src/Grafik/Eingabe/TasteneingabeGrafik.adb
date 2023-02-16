@@ -9,9 +9,9 @@ with GrafikRecordKonstanten;
 
 with NachLogiktask;
 with NachGrafiktask;
-with EinstellungenGrafik;
 with SichtweitenGrafik;
 with InteraktionAllgemein;
+with FensterGrafik;
 
 package body TasteneingabeGrafik is
 
@@ -28,7 +28,7 @@ package body TasteneingabeGrafik is
       
       TasteSchleife:
       while
-        Sf.sfTrue = Sf.Graphics.RenderWindow.pollEvent (renderWindow => EinstellungenGrafik.FensterAccess,
+        Sf.sfTrue = Sf.Graphics.RenderWindow.pollEvent (renderWindow => FensterGrafik.FensterLesen,
                                                         event        => Nutzereingabe)
       loop
          
@@ -46,8 +46,8 @@ package body TasteneingabeGrafik is
                InteraktionAllgemein.Mausposition := GrafikRecordKonstanten.FalschePosition;
                
             when Sf.Window.Event.sfEvtMouseEntered =>
-               InteraktionAllgemein.Mausposition := (Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => EinstellungenGrafik.FensterAccess).x),
-                                              Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => EinstellungenGrafik.FensterAccess).y));
+               InteraktionAllgemein.Mausposition := (Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => FensterGrafik.FensterLesen).x),
+                                              Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => FensterGrafik.FensterLesen).y));
                   
             when Sf.Window.Event.sfEvtMouseMoved =>
                InteraktionAllgemein.Mausposition := (Float (Nutzereingabe.mouseMove.x), Float (Nutzereingabe.mouseMove.y));
@@ -101,7 +101,7 @@ package body TasteneingabeGrafik is
    begin
       
       if
-        Sf.sfTrue = Sf.Graphics.RenderWindow.pollEvent (renderWindow => EinstellungenGrafik.FensterAccess,
+        Sf.sfTrue = Sf.Graphics.RenderWindow.pollEvent (renderWindow => FensterGrafik.FensterLesen,
                                                         event        => Fensteranpassung)
       then
          case

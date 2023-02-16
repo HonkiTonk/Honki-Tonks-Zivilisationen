@@ -13,7 +13,7 @@ package body MausauswahlEditorLogik is
      return KartengrundDatentypen.Kartengrund_Enum
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.EditorenviewAccesse (1));
       

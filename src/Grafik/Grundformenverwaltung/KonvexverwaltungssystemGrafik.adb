@@ -1,7 +1,7 @@
 with Sf.Graphics.ConvexShape;
 with Sf.Graphics.RenderWindow;
 
-with EinstellungenGrafik;
+with FensterGrafik;
 
 package body KonvexverwaltungssystemGrafik is
 
@@ -17,7 +17,7 @@ package body KonvexverwaltungssystemGrafik is
       Sf.Graphics.ConvexShape.setPosition (shape    => KonvexaccessExtern,
                                            position => PositionExtern);
             
-      Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => FensterGrafik.FensterLesen,
                                                 object       => KonvexaccessExtern);
       
    end PositionFarbeZeichnen;

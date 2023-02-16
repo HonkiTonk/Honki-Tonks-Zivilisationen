@@ -13,6 +13,7 @@ with NachGrafiktask;
 with FehlermeldungSchreiben;
 with StartEndeSound;
 with StartEndeMusik;
+with DebugobjekteLogik;
 
 procedure Start
 is
@@ -47,8 +48,17 @@ is
 
    exception
       when StandardAdaFehler : others =>
-         Put_Line (Item => "Logiktask wurde abgebrochen.");
-         Put_Line (Item => Exception_Information (StandardAdaFehler));
+         case
+           DebugobjekteLogik.Debug.FehlerWarnung
+         is
+            when True =>
+               Put_Line (Item => "Logiktask wurde abgebrochen.");
+               Put_Line (Item => Exception_Information (StandardAdaFehler));
+
+            when False =>
+               null;
+         end case;
+
          FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Logiktask wurde abgebrochen.");
          FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
@@ -68,8 +78,17 @@ is
 
    exception
       when StandardAdaFehler : others =>
-         Put_Line (Item => "Grafiktask wurde abgebrochen.");
-         Put_Line (Item => Exception_Information (StandardAdaFehler));
+         case
+           DebugobjekteLogik.Debug.FehlerWarnung
+         is
+            when True =>
+               Put_Line (Item => "Grafiktask wurde abgebrochen.");
+               Put_Line (Item => Exception_Information (StandardAdaFehler));
+
+            when False =>
+               null;
+         end case;
+
          FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Grafiktask wurde abgebrochen.");
          FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
@@ -89,8 +108,17 @@ is
 
    exception
       when StandardAdaFehler : others =>
-         Put_Line (Item => "Musiktask wurde abgebrochen.");
-         Put_Line (Item => Exception_Information (StandardAdaFehler));
+         case
+           DebugobjekteLogik.Debug.FehlerWarnung
+         is
+            when True =>
+               Put_Line (Item => "Musiktask wurde abgebrochen.");
+               Put_Line (Item => Exception_Information (StandardAdaFehler));
+
+            when False =>
+               null;
+         end case;
+
          FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Musiktask wurde abgebrochen.");
          FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
@@ -110,8 +138,17 @@ is
 
    exception
       when StandardAdaFehler : others =>
-         Put_Line (Item => "Soundtask wurde abgebrochen.");
-         Put_Line (Item => Exception_Information (StandardAdaFehler));
+         case
+           DebugobjekteLogik.Debug.FehlerWarnung
+         is
+            when True =>
+               Put_Line (Item => "Soundtask wurde abgebrochen.");
+               Put_Line (Item => Exception_Information (StandardAdaFehler));
+
+            when False =>
+               null;
+         end case;
+
          FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Soundtask wurde abgebrochen.");
          FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;

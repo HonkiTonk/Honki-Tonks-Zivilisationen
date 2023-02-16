@@ -15,7 +15,7 @@ with SchreibeCursor;
 with KartenkoordinatenberechnungssystemLogik;
 with SichtweitenGrafik;
 with NachGrafiktask;
-with EinstellungenGrafik;
+with FensterGrafik;
 with InteraktionAllgemein;
 with Vergleiche;
 with GeheZuGrafik;
@@ -73,7 +73,7 @@ package body CursorplatzierungAltGrafik is
       use type KartenDatentypen.Ebene;
    begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
       
@@ -193,7 +193,7 @@ package body CursorplatzierungAltGrafik is
          Viewfläche := Sf.Graphics.View.getSize (view => Views.KartenbefehlsviewAccess);
          Viewzentrum := Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess);
          
-         Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+         Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                     point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                     view         => Views.KartenbefehlsviewAccess);
       
@@ -225,7 +225,7 @@ package body CursorplatzierungAltGrafik is
          Viewfläche := Sf.Graphics.View.getSize (view => Views.EinheitenbefehlsviewAccess);
          Viewzentrum := Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess);
          
-         Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+         Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                     point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                     view         => Views.EinheitenbefehlsviewAccess);
             

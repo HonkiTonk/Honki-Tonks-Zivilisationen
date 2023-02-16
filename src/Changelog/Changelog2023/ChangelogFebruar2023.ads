@@ -77,17 +77,27 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (17.02.2023):
+   -- Version 0.04.7745 => 0.04. (17.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.7610 => 0.04. (16.02.2023):
+   -- Version 0.04.7610 => 0.04.7745 (16.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weitere Zugriffsdateien erstellt, um den Zugriff auf diverse Variablen durch diese zu beschränken.
+   -- Einlesen der Nutzereinstellungen überarbeitet, so dass veraltete/fehlerhafte Werte nicht mehr eingelesen werden und zu einem Programmstopp führen, sondern einfach die Standardwerte verwendet werden.
+   -- Fehlermeldungen werden jetzt nur noch im Terminal ausgegeben wenn die Debugveriable FehlerWarnung auf True steht.
+   -- Einlesen aller gespeicherten Einstellungen überarbeitet, so dass veraltete/fehlerhafte Werte nicht mehr eingelesen werden und zu einem Programmstopp führen, sondern einfach die Standardwerte verwendet werden.
+   -- Direkten Variablenzugriff durch die Zugriffsdateien ausgetauscht.
+   -- Bereiche sinnvoller aufgeteilt.
+   -- Hintergund mit beliebiger Anzeigeposition eingebaut.
+   -- Alle Stadtnamen werden jetzt auf einen durchsichtigen Hintergrund geschrieben und sollte so unabhängig vom Grund lesebar sein.
+   -- Fehler korrigiert wodurch man von der maximale erlaubten Zahleneingabe auf die Null springen konnte.
+   -- Code zusammengefasst.
+   -- Sinnvolle Grenzwerte für die Auflösung und Bildrate eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/zusammengefasst.
    
    
 

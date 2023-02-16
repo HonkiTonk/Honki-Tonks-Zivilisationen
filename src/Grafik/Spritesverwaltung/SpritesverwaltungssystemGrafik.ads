@@ -58,6 +58,15 @@ package SpritesverwaltungssystemGrafik is
                  SkalierungExtern.y > 0.00
               );
    
+   procedure PositionFarbeZeichnen
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+     with
+       Pre => (
+                 SpriteAccessExtern /= null
+              );
+   
    procedure PositionZeichnen
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f)

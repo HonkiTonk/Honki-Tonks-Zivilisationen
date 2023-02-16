@@ -1,6 +1,6 @@
 with Sf.Graphics.RenderWindow;
 
-with EinstellungenGrafik;
+with FensterGrafik;
 
 package body ObjekteZeichnenGrafik is
 
@@ -17,7 +17,7 @@ package body ObjekteZeichnenGrafik is
       Sf.Graphics.RectangleShape.setFillColor (shape => RechteckAccess,
                                                color => FarbeExtern);
          
-      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => FensterGrafik.FensterLesen,
                                                    object       => RechteckAccess);
       
    end RechteckZeichnen;
@@ -42,7 +42,7 @@ package body ObjekteZeichnenGrafik is
       Sf.Graphics.RectangleShape.setOutlineThickness (shape     => RahmenAccess,
                                                       thickness => RahmendickeExtern);
             
-      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => FensterGrafik.FensterLesen,
                                                    object       => RahmenAccess);
       
    end RahmenZeichnen;
@@ -62,7 +62,7 @@ package body ObjekteZeichnenGrafik is
       Sf.Graphics.RectangleShape.setPosition (shape    => RahmenteilAccess,
                                               position => PositionExtern);
             
-      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => FensterGrafik.FensterLesen,
                                                    object       => RahmenteilAccess);
       
    end RahmenteilZeichnen;
@@ -83,7 +83,7 @@ package body ObjekteZeichnenGrafik is
       Sf.Graphics.CircleShape.setFillColor (shape => KreisAccess,
                                             color => FarbeExtern);
          
-      Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => FensterGrafik.FensterLesen,
                                                 object       => KreisAccess);
       
    end KreisZeichnen;
@@ -106,7 +106,7 @@ package body ObjekteZeichnenGrafik is
       Sf.Graphics.CircleShape.setFillColor (shape => PolygonAccess,
                                             color => FarbeExtern);
          
-      Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => FensterGrafik.FensterLesen,
                                                 object       => PolygonAccess);
       
    end PolygonZeichnen;

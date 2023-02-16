@@ -4,7 +4,6 @@ with KartenRecords;
 with StadtRecords;
 with SpielRecords;
 with TextKonstanten;
-with OptionenVariablen;
 with EinheitenRecords;
 with GrafikDatentypen;
 with WeltkarteRecords;
@@ -23,6 +22,7 @@ with LeseDiplomatie;
 with LeseCursor;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
+with LeseOptionen;
 
 with LadezeitenLogik;
 with NachGrafiktask;
@@ -251,12 +251,12 @@ package body SpeichernLogik is
          Autospeichernname := To_Unbounded_Wide_Wide_String (Source => "Auto" & AutospeichernWert'Wide_Wide_Image);
          
          if
-           OptionenVariablen.NutzerEinstellungen.AnzahlAutosave = 1
+           LeseOptionen.AnzahlAutospeichern = 1
          then
             null;
 
          elsif
-           AutospeichernWert <= OptionenVariablen.NutzerEinstellungen.AnzahlAutosave - 1
+           AutospeichernWert <= LeseOptionen.AnzahlAutospeichern - 1
          then
             AutospeichernWert := AutospeichernWert + 1;
                   
@@ -275,7 +275,7 @@ package body SpeichernLogik is
    is begin
       
       case
-        OptionenVariablen.NutzerEinstellungen.AnzahlAutosave
+        LeseOptionen.AnzahlAutospeichern
       is
          when Natural'First =>
             return;
@@ -285,7 +285,7 @@ package body SpeichernLogik is
       end case;
       
       case
-        LeseAllgemeines.Rundenanzahl mod OptionenVariablen.NutzerEinstellungen.RundenBisAutosave
+        LeseAllgemeines.Rundenanzahl mod LeseOptionen.RundenAutospeichern
       is
          when 0 =>
             Speichern (AutospeichernExtern => True);

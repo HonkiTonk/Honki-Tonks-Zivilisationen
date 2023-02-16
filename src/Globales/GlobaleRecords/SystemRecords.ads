@@ -9,8 +9,8 @@ package SystemRecords is
       
       Sprache : Unbounded_Wide_Wide_String;
       
-      AnzahlAutosave : ZahlenDatentypen.EigenesNatural;
-      RundenBisAutosave : ZahlenDatentypen.EigenesPositive;
+      AnzahlAutospeichern : ZahlenDatentypen.EigenesNatural;
+      RundenAutospeichern : ZahlenDatentypen.EigenesPositive;
       
    end record;
    

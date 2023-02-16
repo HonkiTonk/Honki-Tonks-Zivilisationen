@@ -11,6 +11,7 @@ with TextnummernKonstanten;
 with Menuetexte;
 with BefehleDatentypen;
 with ViewKonstanten;
+with TextDatentypen;
 
 with LeseTastenbelegungDatenbank;
 
@@ -80,31 +81,31 @@ package body SteuerungsmenueGrafik is
          if
            AuswahlExtern = -AufteilungSchleifenwert
          then
-            Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Ausgewählt_Enum);
          
          elsif
            WelcheSteuerungExtern = SteuerungsauswahlLogik.Allgemeine_Belegung_Enum
            and
              AufteilungSchleifenwert = 1
          then
-            Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Mensch_Enum);
             
          elsif
            WelcheSteuerungExtern = SteuerungsauswahlLogik.Einheitenbelegung_Enum
            and
              AufteilungSchleifenwert = 2
          then
-            Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Mensch_Enum);
             
          elsif
            WelcheSteuerungExtern = SteuerungsauswahlLogik.Stadtbelegung_Enum
            and
              AufteilungSchleifenwert = 3
          then
-            Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Mensch_Enum);
            
          else
-            Farbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
+            Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
          end if;
          
          TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert)),

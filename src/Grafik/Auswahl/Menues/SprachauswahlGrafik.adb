@@ -6,6 +6,7 @@ with GrafikDatentypen;
 with InteraktionAuswahl;
 with TextaccessVariablen;
 with Views;
+with TextDatentypen;
 
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
@@ -15,6 +16,7 @@ with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextaccessverwaltungssystemGrafik;
 with KonvexverwaltungssystemGrafik;
+with TextfarbeGrafik;
 
 package body SprachauswahlGrafik is
    
@@ -35,7 +37,7 @@ package body SprachauswahlGrafik is
       is
          when True =>
             Sf.Graphics.Text.setFont (text => TextaccessVariablen.SprachauswahlAccess,
-                                      font => TexteinstellungenGrafik.SchriftartAccess);
+                                      font => TexteinstellungenGrafik.SchriftartLesen);
             Erstaufruf := False;
             
          when False =>
@@ -55,14 +57,8 @@ package body SprachauswahlGrafik is
       AnzeigeSchleife:
       for ZeileSchleifenwert in AktuelleSprachen'Range loop
          
-         if
-           AktuelleAuswahl = ZeileSchleifenwert
-         then
-            AktuelleTextFarbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
-            
-         else
-            AktuelleTextFarbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
-         end if;
+         AktuelleTextFarbe := TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => ZeileSchleifenwert,
+                                                                     AuswahlExtern    => AktuelleAuswahl);
          
          if
            MehrereSeiten = False
@@ -97,13 +93,14 @@ package body SprachauswahlGrafik is
             
             Textposition.x := Viewfläche.x / 2.00 - 0.50 * Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
             
+            -- Das auch nach TestfarbeGrafik? äöü
             if
               AktuelleAuswahl = Ende
             then
-               AktuelleTextFarbe := TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+               AktuelleTextFarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Ausgewählt_Enum);
                   
             else
-               AktuelleTextFarbe := TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
+               AktuelleTextFarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
             end if;
             
             KonvexverwaltungssystemGrafik.PositionFarbeZeichnen (KonvexaccessExtern => PfeilAccess,

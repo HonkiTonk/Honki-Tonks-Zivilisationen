@@ -1,12 +1,12 @@
 with TextKonstanten;
 with MenueDatentypen;
-with OptionenVariablen;
 with TextnummernKonstanten;
 
 with SchreibenEinstellungenLogik;
 with EinlesenSpracheLogik;
 with EinlesenTextLogik;
 with EinlesenSpeziestexteLogik;
+with SchreibeOptionen;
 
 with SprachauswahlLogik;
 with ZahleneingabeLogik;
@@ -61,7 +61,7 @@ package body OptionenSonstigesLogik is
         EingegebeneZahl.ErfolgreichAbbruch
       is
          when True =>
-            OptionenVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
+            SchreibeOptionen.AnzahlAutospeichern (AutospeicheranzahlExtern => EingegebeneZahl.EingegebeneZahl);
             
          when False =>
             null;
@@ -85,10 +85,10 @@ package body OptionenSonstigesLogik is
             if
               EingegebeneZahl.EingegebeneZahl > 0
             then
-               OptionenVariablen.NutzerEinstellungen.RundenBisAutosave := EingegebeneZahl.EingegebeneZahl;
+              SchreibeOptionen.RundenAutospeichern (RundenanzahlExtern => EingegebeneZahl.EingegebeneZahl);
                
             else
-               OptionenVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
+               SchreibeOptionen.AnzahlAutospeichern (AutospeicheranzahlExtern => EingegebeneZahl.EingegebeneZahl);
             end if;
             
          when False =>
@@ -115,7 +115,7 @@ package body OptionenSonstigesLogik is
                null;
                
             else
-               OptionenVariablen.NutzerEinstellungen.Sprache := GewählteSprache;
+               SchreibeOptionen.Sprache (SpracheExtern => GewählteSprache);
                EinlesenTextLogik.EinlesenDateien;
                EinlesenSpeziestexteLogik.SpeziestexteEinlesen;
                NachGrafiktask.AccesseSetzen := True;

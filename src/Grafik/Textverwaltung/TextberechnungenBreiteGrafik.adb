@@ -1,6 +1,6 @@
 with Sf.Graphics.Text;
 
-with EinstellungenGrafik;
+with FensterGrafik;
 
 package body TextberechnungenBreiteGrafik is
    
@@ -8,7 +8,7 @@ package body TextberechnungenBreiteGrafik is
      return Float
    is begin
       
-      return 1.50 * EinstellungenGrafik.AktuelleFensterAuflösung.x / 100.00;
+      return 1.50 * FensterGrafik.AktuelleAuflösung.x / 100.00;
       
    end KleinerSpaltenabstandVariabel;
    
@@ -18,7 +18,7 @@ package body TextberechnungenBreiteGrafik is
      return Float
    is begin
       
-      return 3.50 * EinstellungenGrafik.AktuelleFensterAuflösung.x / 100.00;
+      return 3.50 * FensterGrafik.AktuelleAuflösung.x / 100.00;
       
    end SpaltenabstandVariabel;
       

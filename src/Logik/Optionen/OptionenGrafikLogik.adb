@@ -1,10 +1,8 @@
-
-
 with GrafikDatentypen;
 with TextnummernKonstanten;
-with ZahlenDatentypen;
 with MenueDatentypen;
 with ZeitKonstanten;
+with GrafikKonstanten;
 
 with NachGrafiktask;
 with NachLogiktask;
@@ -59,8 +57,8 @@ package body OptionenGrafikLogik is
    procedure AuflösungÄndern
    is begin
       
-      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 320,
-                                                            ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
+      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => GrafikKonstanten.MinimaleAuflösungsbreite,
+                                                            ZahlenMaximumExtern => GrafikKonstanten.MaximaleAuflösungsbreite,
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungsbreite);
       
       if
@@ -72,8 +70,8 @@ package body OptionenGrafikLogik is
          return;
       end if;
       
-      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 240,
-                                                             ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
+      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => GrafikKonstanten.MinimaleAuflösunghöhe,
+                                                             ZahlenMaximumExtern => GrafikKonstanten.MaximaleAuflösungshöhe,
                                                              WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungshöhe);
       
       if
@@ -108,8 +106,8 @@ package body OptionenGrafikLogik is
       use type GrafikDatentypen.Fenster_Ändern_Enum;
    begin
       
-      EingabeBildrate := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
-                                                           ZahlenMaximumExtern => ZahlenDatentypen.EigenerInteger'Last,
+      EingabeBildrate := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => GrafikKonstanten.MinimaleBildrate,
+                                                           ZahlenMaximumExtern => GrafikKonstanten.MaximaleBildrate,
                                                            WelcheFrageExtern   => TextnummernKonstanten.FrageBildrate);
       
       if

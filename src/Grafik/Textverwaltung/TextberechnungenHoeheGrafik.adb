@@ -2,7 +2,7 @@ with Sf.Graphics.Text;
 
 with TextaccessVariablen;
 
-with EinstellungenGrafik;
+with FensterGrafik;
 
 package body TextberechnungenHoeheGrafik is
    
@@ -10,7 +10,7 @@ package body TextberechnungenHoeheGrafik is
      return Float
    is begin
       
-      return 1.50 * EinstellungenGrafik.AktuelleFensterAuflösung.y / 100.00;
+      return 1.50 * FensterGrafik.AktuelleAuflösung.y / 100.00;
       
    end KleinerZeilenabstandVariabel;
    
@@ -20,7 +20,7 @@ package body TextberechnungenHoeheGrafik is
      return Float
    is begin
       
-      return 3.50 * EinstellungenGrafik.AktuelleFensterAuflösung.y / 100.00;
+      return 3.50 * FensterGrafik.AktuelleAuflösung.y / 100.00;
       
    end ZeilenabstandVariabel;
    

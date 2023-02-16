@@ -5,7 +5,8 @@ with Speziestexte;
 with TextKonstanten;
 with VerzeichnisKonstanten;
 
-with OptionenVariablen;
+with LeseOptionen;
+
 with EinlesenAllgemeinesLogik;
 with Fehlermeldungssystem;
 
@@ -14,8 +15,10 @@ package body EinlesenSpeziestexteLogik is
    procedure SpeziestexteEinlesen
    is begin
       
+      Sprache := LeseOptionen.Sprache;
+      
       case
-        Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & VerzeichnisKonstanten.Spezies
+        Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.Spezies
                 & VerzeichnisKonstanten.NullDatei)
       is
          when True =>
@@ -23,12 +26,12 @@ package body EinlesenSpeziestexteLogik is
             
             Open (File => DateiNull,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & VerzeichnisKonstanten.Spezies
+                  Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.Spezies
                   & VerzeichnisKonstanten.NullDatei);
 
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
-                                        & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
+                                        & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
             return;
       end case;
       
@@ -41,7 +44,7 @@ package body EinlesenSpeziestexteLogik is
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
-                                           & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
+                                           & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
                
             when False =>
                Hauptdatei (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNull));

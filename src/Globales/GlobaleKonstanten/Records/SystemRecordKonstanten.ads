@@ -14,4 +14,10 @@ package SystemRecordKonstanten is
                                                                       EingegebeneZahl    => 0
                                                                      );
 
+   StandardNutzereinstellungen : constant SystemRecords.NutzerEinstellungenRecord := (
+                                                                                      Sprache             => TextKonstanten.LeerUnboundedString,
+                                                                                      AnzahlAutospeichern => 10,
+                                                                                      RundenAutospeichern => 10
+                                                                                     );
+
 end SystemRecordKonstanten;

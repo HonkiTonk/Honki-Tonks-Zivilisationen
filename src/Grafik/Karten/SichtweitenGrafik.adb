@@ -5,7 +5,7 @@ with LeseCursor;
 
 with CursorbewegungLogik;
 with NachGrafiktask;
-with EinstellungenGrafik;
+with FensterGrafik;
 
 package body SichtweitenGrafik is
    
@@ -106,7 +106,7 @@ package body SichtweitenGrafik is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      FensterKarte := (0.00, 0.00, EinstellungenGrafik.AktuelleFensterAuflösung.x, EinstellungenGrafik.AktuelleFensterAuflösung.y);
+      FensterKarte := (0.00, 0.00, FensterGrafik.AktuelleAuflösung.x, FensterGrafik.AktuelleAuflösung.y);
       
       KartenfelderAbmessung.x := FensterKarte.width / Float (2 * SichtweiteLesen + 1);
       KartenfelderAbmessung.y := FensterKarte.height / Float (2 * SichtweiteLesen + 1);
@@ -119,8 +119,8 @@ package body SichtweitenGrafik is
    is begin
       
       -- Für die Werte hier und auch in der Stadtumgebung mal Konstante anlegen. äöü
-      StadtumgebungAbmessung.x := EinstellungenGrafik.AktuelleFensterAuflösung.x / Float (StadtKonstanten.Stadtkartengröße);
-      StadtumgebungAbmessung.y := EinstellungenGrafik.AktuelleFensterAuflösung.y / Float (StadtKonstanten.Stadtkartengröße);
+      StadtumgebungAbmessung.x := FensterGrafik.AktuelleAuflösung.x / Float (StadtKonstanten.Stadtkartengröße);
+      StadtumgebungAbmessung.y := FensterGrafik.AktuelleAuflösung.y / Float (StadtKonstanten.Stadtkartengröße);
       
    end StadtumgebungAbmessungBerechnen;
    

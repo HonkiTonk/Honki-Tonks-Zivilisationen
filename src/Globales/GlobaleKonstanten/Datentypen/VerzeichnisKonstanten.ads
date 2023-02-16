@@ -22,7 +22,7 @@ package VerzeichnisKonstanten is
    Tastenbelegung : constant String (1 .. 14) := "Tastenbelegung";
    Sprachen : constant String (1 .. 8) := "Sprachen";
    SprachenStrich : constant String (1 .. 9) := Sprachen & "/";
-   Schriftart : constant String (1 .. 10) := "Schriftart";
+   Schriftart : constant String (1 .. 21) := SprachenStrich & "FreeSans.otf";
    
    NullDatei : constant String (1 .. 2) := "/0";
    Grafik : constant String (1 .. 6) := "Grafik";

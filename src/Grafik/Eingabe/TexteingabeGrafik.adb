@@ -9,10 +9,10 @@ with Sf.Graphics.RenderWindow;
 with SystemRecordKonstanten;
 with SystemKonstanten;
 
-with EinstellungenGrafik;
 with NachGrafiktask;
 with NachLogiktask;
 with SpielstandlisteLogik;
+with FensterGrafik;
 
 package body TexteingabeGrafik is
 
@@ -25,7 +25,7 @@ package body TexteingabeGrafik is
       
       TextSchleife:
       while
-        Sf.sfTrue = Sf.Graphics.RenderWindow.pollEvent (renderWindow => EinstellungenGrafik.FensterAccess,
+        Sf.sfTrue = Sf.Graphics.RenderWindow.pollEvent (renderWindow => FensterGrafik.FensterLesen,
                                                         event        => TextEingegeben)
       loop
          

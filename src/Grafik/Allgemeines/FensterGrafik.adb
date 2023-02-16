@@ -1,4 +1,3 @@
-with Sf.Graphics;
 with Sf;
 with Sf.Graphics.RenderWindow;
 with Sf.Window.Cursor;
@@ -16,14 +15,12 @@ with TexteinstellungenGrafik;
 package body FensterGrafik is
    
    procedure FensterErzeugen
-   is
-      use type Sf.Graphics.sfRenderWindow_Ptr;
-   begin
+   is begin
       
       FensterErzeugenErweitert;
 
       if
-        EinstellungenGrafik.FensterAccess = null
+        FensterAccess = null
       then
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "FensterGrafik.FensterErzeugen: FensterAccess: null");
 
@@ -52,19 +49,19 @@ package body FensterGrafik is
         EinstellungenGrafik.FensterEinstellungen.FensterVollbild
       is
          when 0 | 1 | 2 | 4 | 7 =>
-            EinstellungenGrafik.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (EinstellungenGrafik.FensterEinstellungen.FensterBreite,
-                                                                                                   EinstellungenGrafik.FensterEinstellungen.FensterHöhe,
-                                                                                                   EinstellungenGrafik.FensterEinstellungen.Farbtiefe),
-                                                                                         title => SonstigesKonstanten.Spielname,
-                                                                                         style => EinstellungenGrafik.FensterEinstellungen.FensterVollbild);
+            FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (EinstellungenGrafik.FensterEinstellungen.FensterBreite,
+                                                                               EinstellungenGrafik.FensterEinstellungen.FensterHöhe,
+                                                                               EinstellungenGrafik.FensterEinstellungen.Farbtiefe),
+                                                                     title => SonstigesKonstanten.Spielname,
+                                                                     style => EinstellungenGrafik.FensterEinstellungen.FensterVollbild);
             
             -- Die Vollbildauflösung noch seperat speichern? äöü
          when 8 =>
-            EinstellungenGrafik.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (Sf.Window.VideoMode.getDesktopMode.width,
-                                                                                                   Sf.Window.VideoMode.getDesktopMode.height,
-                                                                                                   EinstellungenGrafik.FensterEinstellungen.Farbtiefe),
-                                                                                         title => SonstigesKonstanten.Spielname,
-                                                                                         style => EinstellungenGrafik.FensterEinstellungen.FensterVollbild);
+            FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (Sf.Window.VideoMode.getDesktopMode.width,
+                                                                               Sf.Window.VideoMode.getDesktopMode.height,
+                                                                               EinstellungenGrafik.FensterEinstellungen.Farbtiefe),
+                                                                     title => SonstigesKonstanten.Spielname,
+                                                                     style => EinstellungenGrafik.FensterEinstellungen.FensterVollbild);
             
          when others =>
             Fehlermeldungssystem.Grafik (FehlermeldungExtern => "FensterGrafik.FensterErzeugenErweitert: Unbekannter Fenstermodus: " & EinstellungenGrafik.FensterEinstellungen.FensterVollbild'Wide_Wide_Image);
@@ -97,7 +94,7 @@ package body FensterGrafik is
    procedure FensterLeeren
    is begin
       
-      Sf.Graphics.RenderWindow.clear (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.clear (renderWindow => FensterAccess,
                                       color        => Sf.Graphics.Color.sfBlack);
       
    end FensterLeeren;
@@ -107,7 +104,7 @@ package body FensterGrafik is
    procedure FensterAnzeigen
    is begin
       
-      Sf.Graphics.RenderWindow.display (renderWindow => EinstellungenGrafik.FensterAccess);
+      Sf.Graphics.RenderWindow.display (renderWindow => FensterAccess);
       
    end FensterAnzeigen;
    
@@ -116,7 +113,7 @@ package body FensterGrafik is
    procedure FensterEntfernen
    is begin
       
-      Sf.Graphics.RenderWindow.destroy (renderWindow => EinstellungenGrafik.FensterAccess);
+      Sf.Graphics.RenderWindow.destroy (renderWindow => FensterAccess);
       
    end FensterEntfernen;
    
@@ -124,9 +121,10 @@ package body FensterGrafik is
    
    procedure AktuelleAuflösungFestlegen
    is begin
+      
+      Auflösung := Sf.Graphics.RenderWindow.getSize (renderWindow => FensterAccess);
             
-      EinstellungenGrafik.AktuelleFensterAuflösung.x := Float (Sf.Graphics.RenderWindow.getSize (renderWindow => EinstellungenGrafik.FensterAccess).x);
-      EinstellungenGrafik.AktuelleFensterAuflösung.y := Float (Sf.Graphics.RenderWindow.getSize (renderWindow => EinstellungenGrafik.FensterAccess).y);
+      AktuelleFensterAuflösung := (Float (Auflösung.x), Float (Auflösung.y));
       
    end AktuelleAuflösungFestlegen;
    
@@ -135,7 +133,7 @@ package body FensterGrafik is
    procedure BildrateÄndern
    is begin
       
-      Sf.Graphics.RenderWindow.setFramerateLimit (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.setFramerateLimit (renderWindow => FensterAccess,
                                                   limit        => EinstellungenGrafik.FensterEinstellungen.Bildrate);
       
    end BildrateÄndern;
@@ -145,10 +143,30 @@ package body FensterGrafik is
    procedure MauszeigerFestlegen
    is begin
       
-      EinstellungenGrafik.MausAccess := Sf.Window.Cursor.createFromSystem (cursorType => EinstellungenGrafik.FensterEinstellungen.MausZeiger);
-      Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => EinstellungenGrafik.FensterAccess,
-                                               cursor       => EinstellungenGrafik.MausAccess);
+      MausAccess := Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorCross);
+      Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => FensterAccess,
+                                               cursor       => MausAccess);
       
    end MauszeigerFestlegen;
+   
+   
+   
+   function FensterLesen
+     return Sf.Graphics.sfRenderWindow_Ptr
+   is begin
+      
+      return FensterAccess;
+      
+   end FensterLesen;
+   
+   
+   
+   function AktuelleAuflösung
+     return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      return AktuelleFensterAuflösung;
+      
+   end AktuelleAuflösung;
 
 end FensterGrafik;

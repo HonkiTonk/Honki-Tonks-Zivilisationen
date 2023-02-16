@@ -1,5 +1,4 @@
 with TextKonstanten;
-with OptionenVariablen;
 
 with EinlesenSpracheLogik;
 with EinlesenTextLogik;
@@ -12,6 +11,8 @@ with Fehlermeldungssystem;
 with EinlesenMusikLogik;
 with EinlesenSoundsLogik;
 with EinlesenSpeziestexteLogik;
+with SchreibeOptionen;
+with LeseOptionen;
 
 package body EinlesenLogik is
 
@@ -32,7 +33,7 @@ package body EinlesenLogik is
    is begin
       
       if
-        OptionenVariablen.NutzerEinstellungen.Sprache = TextKonstanten.LeerUnboundedString
+        LeseOptionen.Sprache = TextKonstanten.LeerUnboundedString
       then
          case
            EinlesenSpracheLogik.EinlesenSprache
@@ -54,7 +55,7 @@ package body EinlesenLogik is
                   
                end loop SpracheAuswählenSchleife;
                   
-               OptionenVariablen.NutzerEinstellungen.Sprache := GewählteSprache;
+               SchreibeOptionen.Sprache (SpracheExtern => GewählteSprache);
                SchreibenEinstellungenLogik.Nutzereinstellungen;
                   
             when False =>

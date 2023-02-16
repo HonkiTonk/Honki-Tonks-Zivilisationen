@@ -1,5 +1,11 @@
+with Sf.Graphics;
+with Sf.System.Vector2;
+
+private with Sf.Window;
+
 package FensterGrafik is
    pragma Elaborate_Body;
+   use type Sf.Graphics.sfRenderWindow_Ptr;
 
    procedure FensterAnpassen;
    procedure BildrateÄndern;
@@ -7,8 +13,34 @@ package FensterGrafik is
    procedure FensterEntfernen;
    procedure FensterLeeren;
    procedure FensterAnzeigen;
+   
+   
+   
+   function FensterLesen
+     return Sf.Graphics.sfRenderWindow_Ptr
+     with
+       Post => (
+                  FensterLesen'Result /= null
+               );
+   
+   function AktuelleAuflösung
+     return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  AktuelleAuflösung'Result.x > 0.00
+                and
+                  AktuelleAuflösung'Result.y > 0.00
+               );
 
 private
+   
+   MausAccess : Sf.Window.sfCursor_Ptr;
+   
+   FensterAccess : Sf.Graphics.sfRenderWindow_Ptr;
+   
+   Auflösung : Sf.System.Vector2.sfVector2u;
+      
+   AktuelleFensterAuflösung : Sf.System.Vector2.sfVector2f;
    
    procedure FensterErzeugenErweitert;
    procedure AktuelleAuflösungFestlegen;

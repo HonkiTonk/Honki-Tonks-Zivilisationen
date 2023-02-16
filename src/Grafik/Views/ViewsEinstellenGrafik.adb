@@ -1,7 +1,7 @@
 with Sf.Graphics.View;
 with Sf.Graphics.RenderWindow;
 
-with EinstellungenGrafik;
+with FensterGrafik;
 
 package body ViewsEinstellenGrafik is
    
@@ -18,7 +18,7 @@ package body ViewsEinstellenGrafik is
       Sf.Graphics.View.setViewport (view     => ViewExtern,
                                     viewport => AnzeigebereichExtern);
       
-      Sf.Graphics.RenderWindow.setView (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.setView (renderWindow => FensterGrafik.FensterLesen,
                                         view         => ViewExtern);
       
    end ViewEinstellen;
@@ -31,18 +31,18 @@ package body ViewsEinstellenGrafik is
    is begin
       
       if
-        ViewflächeExtern.x < EinstellungenGrafik.AktuelleFensterAuflösung.x
+        ViewflächeExtern.x < FensterGrafik.AktuelleAuflösung.x
       then
-         Viewfläche.x := EinstellungenGrafik.AktuelleFensterAuflösung.x;
+         Viewfläche.x := FensterGrafik.AktuelleAuflösung.x;
          
       else
          Viewfläche.x := ViewflächeExtern.x;
       end if;
       
       if
-        ViewflächeExtern.y < EinstellungenGrafik.AktuelleFensterAuflösung.y
+        ViewflächeExtern.y < FensterGrafik.AktuelleAuflösung.y
       then
-         Viewfläche.y := EinstellungenGrafik.AktuelleFensterAuflösung.y;
+         Viewfläche.y := FensterGrafik.AktuelleAuflösung.y;
          
       else
          Viewfläche.y := ViewflächeExtern.y;
@@ -61,18 +61,18 @@ package body ViewsEinstellenGrafik is
    is begin
       
       if
-        ViewflächeExtern.x < EinstellungenGrafik.AktuelleFensterAuflösung.x * VerhältnisExtern.x
+        ViewflächeExtern.x < FensterGrafik.AktuelleAuflösung.x * VerhältnisExtern.x
       then
-         ViewflächeVariabel.x := EinstellungenGrafik.AktuelleFensterAuflösung.x * VerhältnisExtern.x;
+         ViewflächeVariabel.x := FensterGrafik.AktuelleAuflösung.x * VerhältnisExtern.x;
          
       else
          ViewflächeVariabel.x := ViewflächeExtern.x;
       end if;
       
       if
-        ViewflächeExtern.y < EinstellungenGrafik.AktuelleFensterAuflösung.y * VerhältnisExtern.y
+        ViewflächeExtern.y < FensterGrafik.AktuelleAuflösung.y * VerhältnisExtern.y
       then
-         ViewflächeVariabel.y := EinstellungenGrafik.AktuelleFensterAuflösung.y * VerhältnisExtern.y;
+         ViewflächeVariabel.y := FensterGrafik.AktuelleAuflösung.y * VerhältnisExtern.y;
          
       else
          ViewflächeVariabel.y := ViewflächeExtern.y;

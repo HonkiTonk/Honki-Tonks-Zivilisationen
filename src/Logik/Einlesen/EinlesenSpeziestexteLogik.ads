@@ -20,6 +20,8 @@ private
    DateiEinheiten : File_Type;
    DateiGebäude : File_Type;
 
+   Sprache : Unbounded_Wide_Wide_String;
+
    type HauptdateiArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Unbounded_Wide_Wide_String;
    Hauptdatei : HauptdateiArray;
 

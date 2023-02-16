@@ -10,7 +10,7 @@ with KartenDatentypen;
 with LeseWeltkarte;
 with LeseStadtGebaut;
 
-with EinstellungenGrafik;
+with FensterGrafik;
 with EingeleseneTexturenGrafik;
 with KartenspritesZeichnenGrafik;
 with ViewsEinstellenGrafik;
@@ -33,7 +33,7 @@ package body StadtkarteGrafik is
    begin
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtKarte),
-                                            GrößeExtern          => EinstellungenGrafik.AktuelleFensterAuflösung,
+                                            GrößeExtern          => FensterGrafik.AktuelleAuflösung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtKarte));
       
       Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));

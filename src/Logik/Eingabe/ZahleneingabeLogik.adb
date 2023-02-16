@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Fixed;
+with Ada.Strings.Wide_Wide_Fixed; use Ada.Strings.Wide_Wide_Fixed;
 
 with Sf;
 
@@ -23,8 +23,10 @@ package body ZahleneingabeLogik is
       WelchesVorzeichen := VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
                                                ZahlenMaximumExtern => ZahlenMaximumExtern,
                                                PlusMinusExtern     => True);
-      LeerWert := MinimumMaximumSetzen (ZahlenMinimumExtern => ZahlenMinimumExtern,
-                                        ZahlenMaximumExtern => ZahlenMaximumExtern);
+      
+      -- Hier Sonderwerte setzen und in der Grafik das dann beim Text zusätzlich anzeigen? Oder neben der eingegebenen Zahl? Oder einfach gar nicht? äöü
+      -- LeerWert := MinimumMaximumSetzen (ZahlenMinimumExtern => ZahlenMinimumExtern,
+      --                                  ZahlenMaximumExtern => ZahlenMaximumExtern);
       
       NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
       NachGrafiktask.EingegebeneZahl := EingegebeneZahl.EingegebeneZahl;
@@ -189,6 +191,16 @@ package body ZahleneingabeLogik is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
       
+      if
+        ZahlenString = Trim (Source => ZahlenMaximumExtern'Wide_Wide_Image,
+                             Side   => Ada.Strings.Left)
+      then
+         return;
+         
+      else
+         null;
+      end if;
+      
       ZahlenNachLinksVerschiebenSchleife:
       for PositionSchleifenwert in ZahlenString'First + 1 .. ZahlenString'Last loop
                   
@@ -210,9 +222,9 @@ package body ZahleneingabeLogik is
       if
         ZahlenString (1) /= '0'
       then
-         ZahlenString := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenDatentypen.EigenerInteger'Last'Wide_Wide_Image,
-                                                           Side   => Ada.Strings.Left);
-           
+         ZahlenString := Trim (Source => ZahlenDatentypen.EigenesPositive'Last'Wide_Wide_Image,
+                               Side   => Ada.Strings.Left);
+         
       else
          ZahlBeschränken (ZahlenMinimumExtern => ZahlenMinimumExtern,
                            ZahlenMaximumExtern => ZahlenMaximumExtern);
@@ -295,13 +307,7 @@ package body ZahleneingabeLogik is
               and
                 ZahlenMaximumExtern > 0
             then
-               AktuelleZahl := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMaximumExtern'Wide_Wide_Image,
-                                                                 Side   => Ada.Strings.Left)'Length;
-               ZahlenString := ZahlenStringLeer;
-         
-               ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMaximumExtern'Wide_Wide_Image,
-                                                                                                                             Side   => Ada.Strings.Left);
-               return False;
+               return ZahlenstringLimitieren (ZahlExtern => ZahlenMaximumExtern);
                
             elsif
               StringNachZahl < -ZahlenMaximumExtern
@@ -310,27 +316,14 @@ package body ZahleneingabeLogik is
             then
                WelchesVorzeichen := not WelchesVorzeichen;
                
-               AktuelleZahl := Ada.Strings.Wide_Wide_Fixed.Trim (Source => Natural'Wide_Wide_Image (-ZahlenMaximumExtern),
-                                                                 Side   => Ada.Strings.Left)'Length;
-               ZahlenString := ZahlenStringLeer;
-         
-               ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Ada.Strings.Wide_Wide_Fixed.Trim (Source => Natural'Wide_Wide_Image (-ZahlenMaximumExtern),
-                                                                                                                             Side   => Ada.Strings.Left);
-               return False;
+               return ZahlenstringLimitieren (ZahlExtern => -ZahlenMaximumExtern);
                
             elsif
               StringNachZahl < ZahlenMinimumExtern
               and
                 ZahlenMinimumExtern > 0
             then
-               AktuelleZahl := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMinimumExtern'Wide_Wide_Image,
-                                                                 Side   => Ada.Strings.Left)'Length;
-         
-               ZahlenString := ZahlenStringLeer;
-         
-               ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMinimumExtern'Wide_Wide_Image,
-                                                                                                                             Side   => Ada.Strings.Left);
-               return False;
+               return ZahlenstringLimitieren (ZahlExtern => ZahlenMinimumExtern);
                
             elsif
               StringNachZahl > -ZahlenMinimumExtern
@@ -339,14 +332,7 @@ package body ZahleneingabeLogik is
             then
                WelchesVorzeichen := not WelchesVorzeichen;
                
-               AktuelleZahl := Ada.Strings.Wide_Wide_Fixed.Trim (Source => Natural'Wide_Wide_Image (-ZahlenMinimumExtern),
-                                                                 Side   => Ada.Strings.Left)'Length;
-         
-               ZahlenString := ZahlenStringLeer;
-         
-               ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Ada.Strings.Wide_Wide_Fixed.Trim (Source => Natural'Wide_Wide_Image (-ZahlenMinimumExtern),
-                                                                                                                             Side   => Ada.Strings.Left);
-               return False;
+               return ZahlenstringLimitieren (ZahlExtern => -ZahlenMinimumExtern);
                
             else
                null;
@@ -365,26 +351,14 @@ package body ZahleneingabeLogik is
             then
                WelchesVorzeichen := not WelchesVorzeichen;
                
-               AktuelleZahl := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMaximumExtern'Wide_Wide_Image,
-                                                                 Side   => Ada.Strings.Left)'Length;
-               ZahlenString := ZahlenStringLeer;
-         
-               ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMaximumExtern'Wide_Wide_Image,
-                                                                                                                             Side   => Ada.Strings.Left);
-               return False;
+               return ZahlenstringLimitieren (ZahlExtern => ZahlenMaximumExtern);
                
             elsif
               StringNachZahl > -ZahlenMaximumExtern
               and
                 ZahlenMaximumExtern < 0
             then
-               AktuelleZahl := Ada.Strings.Wide_Wide_Fixed.Trim (Source => Natural'Wide_Wide_Image (-ZahlenMaximumExtern),
-                                                                 Side   => Ada.Strings.Left)'Length;
-               ZahlenString := ZahlenStringLeer;
-         
-               ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Ada.Strings.Wide_Wide_Fixed.Trim (Source => Natural'Wide_Wide_Image (-ZahlenMaximumExtern),
-                                                                                                                             Side   => Ada.Strings.Left);
-               return False;
+               return ZahlenstringLimitieren (ZahlExtern => -ZahlenMaximumExtern);
                
             elsif
               StringNachZahl < ZahlenMinimumExtern
@@ -393,28 +367,14 @@ package body ZahleneingabeLogik is
             then
                WelchesVorzeichen := not WelchesVorzeichen;
                
-               AktuelleZahl := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMinimumExtern'Wide_Wide_Image,
-                                                                 Side   => Ada.Strings.Left)'Length;
-         
-               ZahlenString := ZahlenStringLeer;
-         
-               ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMinimumExtern'Wide_Wide_Image,
-                                                                                                                             Side   => Ada.Strings.Left);
-               return False;
+               return ZahlenstringLimitieren (ZahlExtern => ZahlenMinimumExtern);
                
             elsif
               StringNachZahl > -ZahlenMinimumExtern
               and
                 ZahlenMinimumExtern < 0
             then
-               AktuelleZahl := Ada.Strings.Wide_Wide_Fixed.Trim (Source => Natural'Wide_Wide_Image (-ZahlenMinimumExtern),
-                                                                 Side   => Ada.Strings.Left)'Length;
-         
-               ZahlenString := ZahlenStringLeer;
-         
-               ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Ada.Strings.Wide_Wide_Fixed.Trim (Source => Natural'Wide_Wide_Image (-ZahlenMinimumExtern),
-                                                                                                                             Side   => Ada.Strings.Left);
-               return False;
+               return ZahlenstringLimitieren (ZahlExtern => -ZahlenMinimumExtern);
                
             else
                null;
@@ -424,5 +384,24 @@ package body ZahleneingabeLogik is
       return True;
       
    end MinimumMaximumSetzen;
+   
+   
+   
+   function ZahlenstringLimitieren
+     (ZahlExtern : in ZahlenDatentypen.EigenerInteger)
+      return Boolean
+   is begin
+      
+      AktuelleZahl := Trim (Source => ZahlenDatentypen.EigenerInteger'Wide_Wide_Image (ZahlExtern),
+                            Side   => Ada.Strings.Left)'Length;
+         
+      ZahlenString := ZahlenStringLeer;
+         
+      ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Trim (Source => ZahlenDatentypen.EigenerInteger'Wide_Wide_Image (ZahlExtern),
+                                                                                        Side   => Ada.Strings.Left);
+      
+      return False;
+      
+   end ZahlenstringLimitieren;
    
 end ZahleneingabeLogik;

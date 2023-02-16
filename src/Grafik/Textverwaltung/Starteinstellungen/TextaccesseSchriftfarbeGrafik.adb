@@ -1,6 +1,7 @@
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
+with TextDatentypen;
 
 with TexteinstellungenGrafik;
 
@@ -31,24 +32,28 @@ package body TextaccesseSchriftfarbeGrafik is
    
    procedure Allgemeines
    is begin
+      
+      Überschriftfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Überschrift_Enum);
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      SonstigeFarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Sonstiges_Enum);
         
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ÜberschriftAccess,
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeÜberschrift);
+                                 color => Überschriftfarbe);
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.VersionsnummerAccess,
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeSonstigerText);
+                                 color => SonstigeFarbe);
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ZeilenumbruchAccess,
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeSonstigerText);
+                                 color => SonstigeFarbe);
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TextAccess,
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                 color => Standardfarbe);
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TexthöheAccess,
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                 color => Standardfarbe);
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.Spielmeldung,
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                 color => Standardfarbe);
       
       
       
@@ -56,7 +61,7 @@ package body TextaccesseSchriftfarbeGrafik is
       for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop IntroSchleife;
       
@@ -66,7 +71,7 @@ package body TextaccesseSchriftfarbeGrafik is
       for OutroSchleifenwert in TextaccessVariablen.OutroAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.OutroAccess (OutroSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop OutroSchleife;
       
@@ -77,13 +82,15 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure Menüs
    is begin
       
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      
       MenüsEinfachAußenSchleife:
       for AußenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (1) loop
          MenüsEinfachInnenSchleife:
          for InnenSchleifenwert in TextaccessVariablen.MenüsAccessArray'Range (2) loop
       
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsAccess (AußenSchleifenwert, InnenSchleifenwert),
-                                       color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                       color => Standardfarbe);
             
          end loop MenüsEinfachInnenSchleife;
       end loop MenüsEinfachAußenSchleife;
@@ -94,7 +101,7 @@ package body TextaccesseSchriftfarbeGrafik is
       for SteuerungSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SteuerungAccess (SteuerungSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop SteuerungSchleife;
       
@@ -104,7 +111,7 @@ package body TextaccesseSchriftfarbeGrafik is
       for SpielstandSchleifenwert in TextaccessVariablen.SpielstandAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpielstandAccess (SpielstandSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop SpielstandSchleife;
       
@@ -115,14 +122,17 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure Spezies
    is begin
       
+      Überschriftfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Überschrift_Enum);
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      
       SpeziesSchleife:
       for SpeziesSchleifenwert in TextaccessVariablen.SpeziesnamenAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpeziesnamenAccess (SpeziesSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
          
          
@@ -134,14 +144,14 @@ package body TextaccesseSchriftfarbeGrafik is
             is
             when TextaccessVariablen.GebäudetextAccessArray'First (2) =>
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
-                                          color => TexteinstellungenGrafik.Schriftfarben.FarbeÜberschrift);
+                                          color => Überschriftfarbe);
                
             when others =>
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
-                                          color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                          color => Standardfarbe);
                
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudezusatztextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
-                                          color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                          color => Standardfarbe);
             end case;
             
          end loop GebäudetextSchleife;
@@ -156,14 +166,14 @@ package body TextaccesseSchriftfarbeGrafik is
             is
             when TextaccessVariablen.EinheitentextAccessArray'First (2) =>
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
-                                          color => TexteinstellungenGrafik.Schriftfarben.FarbeÜberschrift);
+                                          color => Überschriftfarbe);
                
             when others =>
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
-                                          color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                          color => Standardfarbe);
                
                Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
-                                          color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                          color => Standardfarbe);
             end case;
          
          end loop EinheitentextSchleife;
@@ -174,17 +184,17 @@ package body TextaccesseSchriftfarbeGrafik is
          for ForschungSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range (2) loop
          
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
-                                       color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                       color => Standardfarbe);
          
             Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
-                                       color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                       color => Standardfarbe);
          
          end loop ForschungenSchleife;
          
       end loop SpeziesSchleife;
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                 color => Standardfarbe);
       
    end Spezies;
       
@@ -193,11 +203,13 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure ZusatztextKartengröße
    is begin
       
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      
       ZusatztextKartengrößeSchleife:
       for ZusatztextSchleifenwert in TextaccessVariablen.ZusatztextKartengrößeAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ZusatztextKartengrößeAccess (ZusatztextSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop ZusatztextKartengrößeSchleife;
       
@@ -208,8 +220,10 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure Sprachauswahl
    is begin
       
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SprachauswahlAccess,
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                 color => Standardfarbe);
       
    end Sprachauswahl;
    
@@ -218,28 +232,19 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure Kartenformauswahl
    is begin
       
+      Überschriftfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Überschrift_Enum);
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccess'First),
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeÜberschrift);
+                                 color => Überschriftfarbe);
       
       SchriftfarbeSchleife:
-      for SchriftfarbeSchleifenwert in TextaccessVariablen.KartenformauswahlAccess'First + 1 .. TextaccessVariablen.KartenformauswahlAccess'Last - 1 loop
+      for SchriftfarbeSchleifenwert in TextaccessVariablen.KartenformauswahlAccess'First + 1 .. TextaccessVariablen.KartenformauswahlAccess'Last loop
          
-         case
-           SchriftfarbeSchleifenwert
-         is
-            when 10 .. 30 =>
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (SchriftfarbeSchleifenwert),
-                                          color => TexteinstellungenGrafik.Schriftfarben.FarbeMenschText);
-               
-            when others =>
-               Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (SchriftfarbeSchleifenwert),
-                                          color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
-         end case;
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (SchriftfarbeSchleifenwert),
+                                    color => Standardfarbe);
          
       end loop SchriftfarbeSchleife;
-      
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KartenformauswahlAccess (TextaccessVariablen.KartenformauswahlAccess'Last),
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeSonstigerText);
       
    end Kartenformauswahl;
    
@@ -248,11 +253,13 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure StadtInformationen
    is begin
       
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      
       StadtInformationenSchleife:
       for StadtInformationenSchleifenwert in TextaccessVariablen.StadtInformationenAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.StadtInformationenAccess (StadtInformationenSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop StadtInformationenSchleife;
       
@@ -263,11 +270,13 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure EinheitenInformationen
    is begin
       
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      
       EinheitenInformationenSchleife:
       for EinheitenInformationenSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitenInformationenAccess (EinheitenInformationenSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop EinheitenInformationenSchleife;
       
@@ -278,11 +287,13 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure KarteWichtiges
    is begin
       
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      
       KarteWichtigesSchleife:
       for KarteWichtigesSchleifenwert in TextaccessVariablen.KarteWichtigesAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KarteWichtigesAccess (KarteWichtigesSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop KarteWichtigesSchleife;
       
@@ -293,11 +304,13 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure KarteAllgemeines
    is begin
       
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      
       KarteAllgemeinesSchleife:
       for KarteAllgemeinesSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KarteAllgemeinesAccess (KarteAllgemeinesSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop KarteAllgemeinesSchleife;
       
@@ -308,8 +321,10 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure Karte
    is begin
       
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KarteAccess,
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                 color => Standardfarbe);
       
    end Karte;
    
@@ -318,11 +333,13 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure EinheitStadtAuswahl
    is begin
       
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      
       EinheitStadtSchleife:
       for EinheitStadtSchleifenwert in TextaccessVariablen.AnzeigeEinheitStadtAccessArray'Range loop
       
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.AnzeigeEinheitStadtAccess (EinheitStadtSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop EinheitStadtSchleife;
       
@@ -332,12 +349,14 @@ package body TextaccesseSchriftfarbeGrafik is
    
    procedure AnzeigeEingabe
    is begin
+      
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
             
       AnzeigeEingabeSchleife:
       for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop AnzeigeEingabeSchleife;
          
@@ -347,12 +366,14 @@ package body TextaccesseSchriftfarbeGrafik is
    
    procedure Ladezeiten
    is begin
+      
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
             
       LadezeitenSpielweltSchleife:
       for LadezeitenSpielweltSchleifenwert in TextaccessVariablen.LadezeitenAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.LadezeitenAccess (LadezeitenSpielweltSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop LadezeitenSpielweltSchleife;
       
@@ -362,19 +383,19 @@ package body TextaccesseSchriftfarbeGrafik is
       for KIZeitenSchleifenwert in TextaccessVariablen.KIZeitenAccess'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.KIZeitenAccess (KIZeitenSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop KIZeitenSchleife;
       
       
                
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.RundenendeAccess (1),
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                 color => Standardfarbe);
       
       
                
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.SpeichernLadenAccess (1),
-                                 color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                 color => Standardfarbe);
       
    end Ladezeiten;
    
@@ -383,11 +404,13 @@ package body TextaccesseSchriftfarbeGrafik is
    procedure Befehle
    is begin
       
+      Standardfarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
+      
       StadtbefehleSchleife:
       for StadtbefehleSchleifenwert in TextaccessVariablen.StadtbefehleAccessArray'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextaccessVariablen.StadtbefehleAccess (StadtbefehleSchleifenwert),
-                                    color => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                    color => Standardfarbe);
          
       end loop StadtbefehleSchleife;
       

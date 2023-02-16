@@ -3,6 +3,7 @@ with MenueKonstanten;
 with SpielDatentypen;
 with SpeziesKonstanten;
 with SpeziesDatentypen;
+with TextDatentypen;
 
 with LeseAllgemeines;
 with LeseSpeziesbelegung;
@@ -21,7 +22,7 @@ package body TextfarbeGrafik is
       if
         AuswahlExtern = TextnummerExtern
       then
-         return TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+         return TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Ausgewählt_Enum);
             
       else
          return Standardfarbe;
@@ -35,7 +36,7 @@ package body TextfarbeGrafik is
      return Sf.Graphics.Color.sfColor
    is begin
       
-      return TexteinstellungenGrafik.Schriftfarben.FarbeStandardText;
+      return TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
       
    end Standardfarbe;
    
@@ -70,12 +71,12 @@ package body TextfarbeGrafik is
       if
         AktuellerTextExtern = AktuelleAuswahlExtern
       then
-         return TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+         return TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Ausgewählt_Enum);
          
       elsif
         AktuelleEinstellung = AktuellerTextExtern
       then
-         return TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
+         return TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Mensch_Enum);
       
       else
          return Standardfarbe;
@@ -94,7 +95,7 @@ package body TextfarbeGrafik is
       if
         AktuelleAuswahlExtern = AktuellerTextExtern
       then
-         return TexteinstellungenGrafik.Schriftfarben.FarbeAusgewähltText;
+         return TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Ausgewählt_Enum);
          
       elsif
         AktuellerTextExtern - 1 in SpeziesKonstanten.Speziesanfang .. SpeziesKonstanten.Speziesende
@@ -103,10 +104,10 @@ package body TextfarbeGrafik is
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesDatentypen.Spezies_Verwendet_Enum'Val (AktuellerTextExtern - 1))
          is
             when SpeziesDatentypen.Mensch_Spieler_Enum =>
-               return TexteinstellungenGrafik.Schriftfarben.FarbeMenschText;
+               return TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Mensch_Enum);
                
             when SpeziesDatentypen.KI_Spieler_Enum =>
-               return TexteinstellungenGrafik.Schriftfarben.FarbeKIText;
+               return TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.KI_Enum);
                
             when others =>
                null;

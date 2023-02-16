@@ -5,14 +5,38 @@ with SpeziesDatentypen;
 package SpezieseinstellungenGrafik is
    pragma Elaborate_Body;
    
+   -- Das hier in Records verschieben? äöü
    type SpeziesFarbenArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Sf.Graphics.Color.sfColor;
-   Speziesfarben : SpeziesFarbenArray;
-   SpeziesfarbenRahmen : SpeziesFarbenArray;
    
    procedure StandardLaden;
    
+   procedure FarbenarraySchreiben
+     (FarbenExtern : in SpeziesFarbenArray);
+      
+   procedure RahmenarraySchreiben
+     (FarbenExtern : in SpeziesFarbenArray);
+   
+   
+   
+   function SpeziesfarbeLesen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return Sf.Graphics.Color.sfColor;
+   
+   function RahmenfarbeLesen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return Sf.Graphics.Color.sfColor;
+   
+   function FarbenarrayLesen
+     return SpeziesFarbenArray;
+   
+   function RahmenarrayLesen
+     return SpeziesFarbenArray;
+   
 private
    
+   Speziesfarben : SpeziesFarbenArray;
+   SpeziesfarbenRahmen : SpeziesFarbenArray;
+      
    SpeziesfarbenStandard : constant SpeziesFarbenArray := (
                                                            SpeziesDatentypen.Menschen_Enum         => (255, 230, 200, 75),
                                                            SpeziesDatentypen.Kasrodiah_Enum        => (255, 100, 40, 75),

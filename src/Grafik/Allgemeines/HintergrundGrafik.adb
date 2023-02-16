@@ -12,6 +12,22 @@ package body HintergrundGrafik is
    procedure Hintergrund
      (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
       AbmessungenExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      HintergrundPositionierbar (HintergrundExtern      => HintergrundExtern,
+                                 AbmessungenExtern      => AbmessungenExtern,
+                                 PositionExtern         => GrafikRecordKonstanten.Nullposition,
+                                 DurchsichtigkeitExtern => GrafikKonstanten.Hintergrundtransparents);
+      
+   end Hintergrund;
+   
+   
+   
+   procedure HintergrundPositionierbar
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
+      AbmessungenExtern : in Sf.System.Vector2.sfVector2f;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigkeitExtern : in Sf.sfUint8)
    is
       use type Sf.Graphics.sfTexture_Ptr;
    begin
@@ -22,12 +38,12 @@ package body HintergrundGrafik is
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "HintergrundGrafik.Hintergrund: Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
          
       else
-         Sf.Graphics.Sprite.scale (sprite  => HintergrundSpriteAccess,
-                                   factors => TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => HintergrundSpriteAccess,
+         Sf.Graphics.Sprite.scale (sprite  => HintergrundSpritePositionierbarAccess,
+                                   factors => TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => HintergrundSpritePositionierbarAccess,
                                                                                                       TextureAccessExtern => EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern),
                                                                                                       GrößeExtern         => AbmessungenExtern));
          
-         Farbe := Sf.Graphics.Sprite.getColor (sprite => HintergrundSpriteAccess);
+         Farbe := Sf.Graphics.Sprite.getColor (sprite => HintergrundSpritePositionierbarAccess);
          
          case
            HintergrundExtern
@@ -36,20 +52,21 @@ package body HintergrundGrafik is
                Farbe.a := GrafikKonstanten.Undurchsichtig;
                
             when GrafikDatentypen.Hintergrund_Durchsichtig_Enum =>
-               Farbe.a := GrafikKonstanten.Hintergrundtransparents;
+               Farbe.a := DurchsichtigkeitExtern;
          end case;
          
-         SpritesverwaltungssystemGrafik.FarbeZeichnen (SpriteAccessExtern => HintergrundSpriteAccess,
-                                                       FarbeExtern        => Farbe);
+         SpritesverwaltungssystemGrafik.PositionFarbeZeichnen (SpriteAccessExtern => HintergrundSpritePositionierbarAccess,
+                                                               PositionExtern     => PositionExtern,
+                                                               FarbeExtern        => Farbe);
          
          return;
       end if;
       
       ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
-                                              PositionExtern  => GrafikRecordKonstanten.Nullposition,
+                                              PositionExtern  => PositionExtern,
                                               FarbeExtern     => Sf.Graphics.Color.sfBlack);
       
-   end Hintergrund;
+   end HintergrundPositionierbar;
    
    
    

@@ -7,6 +7,7 @@ with Meldungstexte;
 with SpeziesKonstanten;
 with GrafikKonstanten;
 with TextnummernKonstanten;
+with TextDatentypen;
 
 with LeseStadtGebaut;
 with LeseWeltkarte;
@@ -161,7 +162,7 @@ package body StadtumgebungGrafik is
    is begin
       
       TextaccessverwaltungssystemGrafik.Farbe (TextaccessExtern => TextaccessVariablen.TextAccess,
-                                               FarbeExtern      => TexteinstellungenGrafik.Schriftfarben.FarbeStandardText);
+                                               FarbeExtern      => TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum));
         
       ProduktionSchleife:
       for ProduktionSchleifenwert in 1 .. 4 loop

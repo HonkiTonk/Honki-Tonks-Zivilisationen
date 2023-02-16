@@ -104,4 +104,8 @@ private
                  ZahlenMinimumExtern <= ZahlenMaximumExtern
               );
 
+   function ZahlenstringLimitieren
+     (ZahlExtern : in ZahlenDatentypen.EigenerInteger)
+      return Boolean;
+
 end ZahleneingabeLogik;

@@ -7,6 +7,7 @@ with KartenKonstanten;
 with TextaccessVariablen;
 with GrafikKonstanten;
 with KartengrundDatentypen;
+with GrafikDatentypen;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -21,6 +22,7 @@ with EingeleseneTexturenGrafik;
 with ObjekteZeichnenGrafik;
 with SichtweitenGrafik;
 with TextskalierungGrafik;
+with HintergrundGrafik;
 
 package body WeltkarteZusatzZeichnenGrafik is
 
@@ -119,7 +121,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    begin
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => PositionExtern,
-                                                FarbeExtern    => SpezieseinstellungenGrafik.Speziesfarben (SpeziesExtern),
+                                                FarbeExtern    => SpezieseinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesExtern),
                                                 GrößeExtern    => SichtweitenGrafik.Kartenfeldfläche);
       
       UmgebungSchleife:
@@ -180,14 +182,13 @@ package body WeltkarteZusatzZeichnenGrafik is
       end case;
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => Rahmenposition,
-                                                FarbeExtern    => SpezieseinstellungenGrafik.SpeziesfarbenRahmen (SpeziesExtern),
+                                                FarbeExtern    => SpezieseinstellungenGrafik.RahmenfarbeLesen (SpeziesExtern => SpeziesExtern),
                                                 GrößeExtern    => Rahmengröße);
       
    end RahmenZeichnen;
    
    
    
-   -- Später noch einen Rahmen um den Namen bauen? äöü
    procedure StadtnameAnzeigen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -209,23 +210,12 @@ package body WeltkarteZusatzZeichnenGrafik is
          StadtSpeziesNummer := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern);
       end if;
       
-      -- Diese Prüfung noch erweitern um zu sehen was für ein Grund das ist und entsprechend die Farbe so wählen dass man die auch lesen kann? äöü
-      case
-        KoordinatenExtern.EAchse
-      is
-         when KartenKonstanten.HimmelKonstante =>
-            Farbe := Sf.Graphics.Color.sfBlack;
-            
-         when others =>
-            Farbe := Sf.Graphics.Color.sfWhite;
-      end case;
-      
-      TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.KarteAccess,
-                                                   TextExtern       => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummer)),
-                                                   FarbeExtern      => Farbe);
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
+                                         str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummer)));
       
       Textgröße := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).height);
       Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textgröße.x,
+                                                              -- Die erlaubte Breite unabhängig/unabhängiger von der Kartfenfeldgröße gestalten. äöü
                                                               ErlaubteBreiteExtern => 5.00 * SichtweitenGrafik.Kartenfeldfläche.x);
       Skalierung.y := 0.70;
       
@@ -257,6 +247,11 @@ package body WeltkarteZusatzZeichnenGrafik is
          when False =>
             Textposition.y := PositionExtern.y;
       end case;
+      
+      HintergrundGrafik.HintergrundPositionierbar (HintergrundExtern      => GrafikDatentypen.Auswahl_Hintergrund_Enum,
+                                                   AbmessungenExtern      => (Textgröße.x * Skalierung.x * 1.02, Textgröße.y),
+                                                   PositionExtern         => Textposition,
+                                                   DurchsichtigkeitExtern => GrafikKonstanten.Bewegungsfeldtransparents);
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteAccess,
                                                           PositionExtern   => Textposition);

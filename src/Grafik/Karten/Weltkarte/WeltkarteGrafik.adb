@@ -20,6 +20,7 @@ with WeltkarteFeldZeichnenGrafik;
 with WeltkarteZusatzZeichnenGrafik;
 with WeltkarteEinheitZeichnenGrafik;
 with NachGrafiktask;
+with FensterGrafik;
 
 package body WeltkarteGrafik is
    
@@ -28,7 +29,7 @@ package body WeltkarteGrafik is
    is begin
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccess (ViewKonstanten.WeltKarte),
-                                            GrößeExtern          => EinstellungenGrafik.AktuelleFensterAuflösung,
+                                            GrößeExtern          => FensterGrafik.AktuelleAuflösung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte));
       
       Sichtbereich := SichtweitenGrafik.SichtweiteLesen;

@@ -9,7 +9,7 @@ with SchreibeCursor;
 
 with InteraktionAllgemein;
 with KartenkoordinatenberechnungssystemLogik;
-with EinstellungenGrafik;
+with FensterGrafik;
 with NachGrafiktask;
 with SichtweitenGrafik;
 
@@ -25,7 +25,7 @@ package body CursorplatzierungGrafik is
         NachGrafiktask.GeheZu.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => EinstellungenGrafik.FensterAccess,
+            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                        point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                        view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
             Sichtbereich := SichtweitenGrafik.SichtweiteLesen;

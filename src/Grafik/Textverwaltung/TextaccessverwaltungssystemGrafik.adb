@@ -1,7 +1,7 @@
 with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 
-with EinstellungenGrafik;
+with FensterGrafik;
 
 package body TextaccessverwaltungssystemGrafik is
    
@@ -192,7 +192,7 @@ package body TextaccessverwaltungssystemGrafik is
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr)
    is begin
       
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => FensterGrafik.FensterLesen,
                                          text         => TextaccessExtern);
       
    end Zeichnen;

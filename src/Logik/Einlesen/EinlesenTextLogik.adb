@@ -1,7 +1,6 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Directories; use Ada.Directories;
 
-with OptionenVariablen;
 with VerzeichnisKonstanten;
 with Menuetexte;
 with Kartentexte;
@@ -10,6 +9,8 @@ with Meldungstexte;
 with Befehlstexte;
 with Spieltexte;
 
+with LeseOptionen;
+
 with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 
@@ -17,18 +18,20 @@ package body EinlesenTextLogik is
 
    procedure EinlesenDateien
    is begin
+      
+      Sprache := LeseOptionen.Sprache;
             
       case
-        Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & VerzeichnisKonstanten.NullDatei)
+        Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.NullDatei)
       is
          when True =>
             Open (File => DateiVerzeichnisse,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.NullDatei);
 
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenDateien: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
-                                        & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.NullDatei));
+                                        & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.NullDatei));
             return;
       end case;
       
@@ -41,7 +44,7 @@ package body EinlesenTextLogik is
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenDateien: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
-                                           & To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache) & Decode (Item => VerzeichnisKonstanten.NullDatei));
+                                           & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.NullDatei));
                
             when False =>
                EinlesenAufteilen (WelcheDateiExtern => WelcheDateienSchleifenwert,

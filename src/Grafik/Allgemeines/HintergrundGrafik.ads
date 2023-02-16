@@ -1,3 +1,4 @@
+with Sf;
 with Sf.Graphics;
 with Sf.System.Vector2;
 
@@ -20,6 +21,18 @@ package HintergrundGrafik is
                  AbmessungenExtern.y >= 0.00
               );
 
+   procedure HintergrundPositionierbar
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
+      AbmessungenExtern : in Sf.System.Vector2.sfVector2f;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      DurchsichtigkeitExtern : in Sf.sfUint8)
+     with
+       Pre => (
+                 AbmessungenExtern.x >= 0.00
+               and
+                 AbmessungenExtern.y >= 0.00
+              );
+
    -- Spezies kann hier nicht geprrüft werden da der Abspann eventuell ohne belegte Spezies ankommt!
    procedure Spezieshintergrund
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
@@ -34,7 +47,7 @@ package HintergrundGrafik is
 
 private
 
-   HintergrundSpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
+   HintergrundSpritePositionierbarAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
    SpezieshintergrundSpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
    Farbe : Sf.Graphics.Color.sfColor;

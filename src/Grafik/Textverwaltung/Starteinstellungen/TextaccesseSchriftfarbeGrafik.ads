@@ -1,9 +1,15 @@
+with Sf.Graphics.Color;
+
 package TextaccesseSchriftfarbeGrafik is
    pragma Elaborate_Body;
 
    procedure SchriftfarbeSetzen;
 
 private
+
+   Überschriftfarbe : Sf.Graphics.Color.sfColor;
+   Standardfarbe : Sf.Graphics.Color.sfColor;
+   SonstigeFarbe : Sf.Graphics.Color.sfColor;
 
    procedure Allgemeines;
    procedure Menüs;

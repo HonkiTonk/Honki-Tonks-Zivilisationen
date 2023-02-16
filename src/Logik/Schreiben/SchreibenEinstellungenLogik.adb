@@ -1,7 +1,8 @@
-with OptionenVariablen;
 with SystemRecords;
 with VerzeichnisKonstanten;
 with GrafikRecords;
+
+with LeseOptionen;
 
 with EinstellungenGrafik;
 with TexteinstellungenGrafik;
@@ -17,7 +18,7 @@ package body SchreibenEinstellungenLogik is
               Name => VerzeichnisKonstanten.Nutzereinstellungen);
       
       SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiNutzereinstellungen),
-                                                     OptionenVariablen.NutzerEinstellungen);
+                                                     LeseOptionen.GanzerEintrag);
       
       Close (File => DateiNutzereinstellungen);
       
@@ -33,19 +34,19 @@ package body SchreibenEinstellungenLogik is
               Name => VerzeichnisKonstanten.Grafikeinstellungen);
             
       GrafikRecords.FensterRecord'Write (Stream (File => DateiGrafikeinstellungen),
-                                         EinstellungenGrafik.FensterEinstellungen);
+                                         EinstellungenGrafik.FenstereinstellungenLesen);
       GrafikRecords.GrafikeinstellungenRecord'Write (Stream (File => DateiGrafikeinstellungen),
-                                                     EinstellungenGrafik.Grafikeinstellungen);
+                                                     EinstellungenGrafik.GrafikeinstellungenLesen);
       
-      GrafikRecords.SchriftgrößenRecord'Write (Stream (File => DateiGrafikeinstellungen),
-                                                 TexteinstellungenGrafik.Schriftgrößen);
-      GrafikRecords.SchriftfarbenRecord'Write (Stream (File => DateiGrafikeinstellungen),
-                                               TexteinstellungenGrafik.Schriftfarben);
+      TexteinstellungenGrafik.SchriftgrößenArray'Write (Stream (File => DateiGrafikeinstellungen),
+                                                          TexteinstellungenGrafik.SchriftgrößeneintragLesen);
+      TexteinstellungenGrafik.SchriftfarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
+                                                        TexteinstellungenGrafik.SchriftfarbeneintragLesen);
       
       SpezieseinstellungenGrafik.SpeziesFarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
-                                                           SpezieseinstellungenGrafik.Speziesfarben);
+                                                           SpezieseinstellungenGrafik.FarbenarrayLesen);
       SpezieseinstellungenGrafik.SpeziesFarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
-                                                           SpezieseinstellungenGrafik.SpeziesfarbenRahmen);
+                                                           SpezieseinstellungenGrafik.RahmenarrayLesen);
       
       Close (File => DateiGrafikeinstellungen);
       

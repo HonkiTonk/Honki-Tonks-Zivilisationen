@@ -1,14 +1,11 @@
 with SystemRecords;
-with TextKonstanten;
 
--- Hier auch noch Prozeduren/Funktionen für den Zugriff erstellen. äöü
+-- Das hier später woanders mit einbauen? Vielleicht Spielvariablen? äöü
 package OptionenVariablen is
    pragma Elaborate_Body;
 
-   NutzerEinstellungen : SystemRecords.NutzerEinstellungenRecord := (
-                                                                     Sprache           => TextKonstanten.LeerUnboundedString,
-                                                                     AnzahlAutosave    => 10,
-                                                                     RundenBisAutosave => 10
-                                                                    );
+   NutzerEinstellungen : SystemRecords.NutzerEinstellungenRecord;
+
+   procedure StandardeinstellungenLaden;
 
 end OptionenVariablen;

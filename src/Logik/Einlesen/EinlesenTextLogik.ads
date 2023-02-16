@@ -12,6 +12,7 @@ private
    DateiText : File_Type;
    
    Verzeichnisse : Unbounded_Wide_Wide_String;
+   Sprache : Unbounded_Wide_Wide_String;
       
    type TextdateienEinlesenArray is array (1 .. 40) of Unbounded_Wide_Wide_String;
    TextdateienEinlesen : TextdateienEinlesenArray;

@@ -1,7 +1,7 @@
 with Sf.Graphics.Sprite;
 with Sf.Graphics.RenderWindow;
 
-with EinstellungenGrafik;
+with FensterGrafik;
 
 package body SpritesverwaltungssystemGrafik is
    
@@ -22,7 +22,7 @@ package body SpritesverwaltungssystemGrafik is
       Sf.Graphics.Sprite.setScale (sprite => SpriteAccessExtern,
                                    scale  => SkalierungExtern);
       
-      Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.drawSprite (renderWindow => FensterGrafik.FensterLesen,
                                            object       => SpriteAccessExtern);
       
    end SetzenBereichSkalierenZeichnen;
@@ -40,7 +40,7 @@ package body SpritesverwaltungssystemGrafik is
       Sf.Graphics.Sprite.scale (sprite  => SpriteAccessExtern,
                                 factors => SkalierungExtern);
       
-      Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.drawSprite (renderWindow => FensterGrafik.FensterLesen,
                                            object       => SpriteAccessExtern);
       
    end PositionSkalierungZeichnen;
@@ -70,10 +70,26 @@ package body SpritesverwaltungssystemGrafik is
       Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccessExtern,
                                       position => PositionExtern);
       
-      Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.drawSprite (renderWindow => FensterGrafik.FensterLesen,
                                            object       => SpriteAccessExtern);
       
    end PositionZeichnen;
+   
+   
+   
+   procedure PositionFarbeZeichnen
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+   is begin
+      
+      Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccessExtern,
+                                      position => PositionExtern);
+      
+      FarbeZeichnen (SpriteAccessExtern => SpriteAccessExtern,
+                     FarbeExtern        => FarbeExtern);
+      
+   end PositionFarbeZeichnen;
    
    
 
@@ -85,7 +101,7 @@ package body SpritesverwaltungssystemGrafik is
       Sf.Graphics.Sprite.setColor (sprite => SpriteAccessExtern,
                                    color  => FarbeExtern);
       
-      Sf.Graphics.RenderWindow.drawSprite (renderWindow => EinstellungenGrafik.FensterAccess,
+      Sf.Graphics.RenderWindow.drawSprite (renderWindow => FensterGrafik.FensterLesen,
                                            object       => SpriteAccessExtern);
       
    end FarbeZeichnen;

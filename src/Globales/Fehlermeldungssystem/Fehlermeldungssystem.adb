@@ -9,13 +9,13 @@ package body Fehlermeldungssystem is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (Item => "Logikfehler: " & FehlermeldungExtern);
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Logikfehler: " & FehlermeldungExtern);
       
       case
         DebugobjekteLogik.Debug.FehlerWarnung
       is
          when True =>
+            Put_Line (Item => "Logikfehler: " & FehlermeldungExtern);
             raise LogikStopp;
             
          when False =>
@@ -30,13 +30,13 @@ package body Fehlermeldungssystem is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
          
-      Put_Line (Item => "Grafikfehler: " & FehlermeldungExtern);
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Grafikfehler: " & FehlermeldungExtern);
       
       case
         DebugobjekteLogik.Debug.FehlerWarnung
       is
          when True =>
+            Put_Line (Item => "Grafikfehler: " & FehlermeldungExtern);
             raise GrafikStopp;
             
          when False =>
@@ -51,13 +51,13 @@ package body Fehlermeldungssystem is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (Item => "Musikfehler: " & FehlermeldungExtern);
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Musikfehler: " & FehlermeldungExtern);
       
       case
         DebugobjekteLogik.Debug.FehlerWarnung
       is
          when True =>
+            Put_Line (Item => "Musikfehler: " & FehlermeldungExtern);
             raise MusikStopp;
             
          when False =>
@@ -72,13 +72,13 @@ package body Fehlermeldungssystem is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (Item => "Soundfehler: " & FehlermeldungExtern);
       FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Soundfehler: " & FehlermeldungExtern);
       
       case
         DebugobjekteLogik.Debug.FehlerWarnung
       is
          when True =>
+            Put_Line (Item => "Soundfehler: " & FehlermeldungExtern);
             raise SoundStopp;
             
          when False =>
