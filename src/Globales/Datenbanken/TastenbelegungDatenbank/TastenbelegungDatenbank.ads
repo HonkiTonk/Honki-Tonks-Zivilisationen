@@ -3,6 +3,7 @@ with Sf.Window.Keyboard;
 with TastenbelegungDatentypen;
 with BefehleDatentypen;
 
+-- Für die Datenbanken mal überall Zugriffdateien anlegen. äöü
 package TastenbelegungDatenbank is
    pragma Elaborate_Body;
 

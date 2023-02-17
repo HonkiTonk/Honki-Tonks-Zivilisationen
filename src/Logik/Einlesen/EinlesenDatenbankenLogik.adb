@@ -2,13 +2,8 @@ with Ada.Directories; use Ada.Directories;
 
 with VerzeichnisKonstanten;
 
-with EinheitenDatenbank;
-with ForschungenDatenbank;
-with GebaeudeDatenbank;
 with KartenDatenbank;
-with SpeziesDatenbank;
 with VerbesserungenDatenbank;
-with ForschungRecordKonstanten;
 
 with StandardVerbesserungenDatenbank;
 with StandardSpeziesDatenbank;
@@ -17,104 +12,240 @@ with StandardGebaeudeDatenbank;
 with StandardForschungenDatenbank;
 with StandardEinheitenDatenbank;
 
+-- Alle Datenbanken müssen vor dem Einlesen ebenfalls geprüft werden. äöü
 package body EinlesenDatenbankenLogik is
    
-   procedure EinlesenAlleDatenbanken
+   procedure AlleDatenbanken
    is begin
       
-      EinlesenEinheitenDatenbank;
-      EinlesenForschungenDatenbank;
-      EinlesenGebäudeDatenbank;
-      EinlesenKartengrundDatenbank;
-      EinlesenVerbesserungenDatenbank;
-      EinlesenSpeziesDatenbank;
+      Einheiten;
+      Forschungen;
+      Gebäude;
+      Kartengrund;
+      Verbesserungen;
+      Spezies;
       
-   end EinlesenAlleDatenbanken;
+   end AlleDatenbanken;
    
    
 
-   procedure EinlesenEinheitenDatenbank
+   procedure Einheiten
    is begin
       
       case
         Exists (Name => VerzeichnisKonstanten.EinheitenDatenbank)
       is
+         when False =>
+            StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
+            return;
+            
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.EinheitenDatenbank);
-      
-            EinheitenDatenbank.EinheitenlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                         EinheitenDatenbank.Einheitenliste);
+            
+            PrüfungErfolgreich := EinheitenDurchgehen (LadenPrüfenExtern => False);
       
             Close (File => DatenbankEinlesen);
-
+      end case;
+      
+      case
+        PrüfungErfolgreich
+      is
+         when True =>
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => VerzeichnisKonstanten.EinheitenDatenbank);
+            
+            Nullwert := EinheitenDurchgehen (LadenPrüfenExtern => True);
+      
+            Close (File => DatenbankEinlesen);
+            
          when False =>
             StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
       end case;
       
-   end EinlesenEinheitenDatenbank;
+   end Einheiten;
    
    
    
-   procedure EinlesenForschungenDatenbank
+   function EinheitenDurchgehen
+     (LadenPrüfenExtern : in Boolean)
+      return Boolean
+   is begin
+      
+      EinheitenDatenbank.EinheitenlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                   Einheitenliste);
+      
+      case
+        LadenPrüfenExtern
+      is
+         when False =>
+            null;
+            
+         when True =>
+            EinheitenDatenbank.Einheitenliste := Einheitenliste;
+      end case;
+      
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error =>
+         return False;
+         
+   end EinheitenDurchgehen;
+   
+   
+   
+   procedure Forschungen
    is begin
       
       case
         Exists (Name => VerzeichnisKonstanten.ForschungenDatenbank)
       is
+         when False =>
+            StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
+            return;
+            
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.ForschungenDatenbank);
       
-            ForschungenDatenbank.ForschungslisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                            ForschungenDatenbank.Forschungsliste);
-      
-            ForschungRecordKonstanten.TechnologieVerbesserungenArray'Read (Stream (File => DatenbankEinlesen),
-                                                                           ForschungenDatenbank.TechnologieVerbesserungen);
-      
-            ForschungRecordKonstanten.TechnologieWegeArray'Read (Stream (File => DatenbankEinlesen),
-                                                                 ForschungenDatenbank.TechnologieWege);
-      
-            ForschungRecordKonstanten.TechnologieUmgebungsgrößeArray'Read (Stream (File => DatenbankEinlesen),
-                                                                             ForschungenDatenbank.TechnologieUmgebungsgröße);
+            PrüfungErfolgreich := ForschungenDurchgehen (LadenPrüfenExtern => False);
       
             Close (File => DatenbankEinlesen);
-
+      end case;
+      
+      case
+        PrüfungErfolgreich
+      is
+         when True =>
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => VerzeichnisKonstanten.ForschungenDatenbank);
+            
+            Nullwert := ForschungenDurchgehen (LadenPrüfenExtern => True);
+      
+            Close (File => DatenbankEinlesen);
+            
          when False =>
             StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
       end case;
       
-   end EinlesenForschungenDatenbank;
+   end Forschungen;
    
    
    
-   procedure EinlesenGebäudeDatenbank
+   function ForschungenDurchgehen
+     (LadenPrüfenExtern : in Boolean)
+      return Boolean
+   is begin
+   
+      ForschungenDatenbank.ForschungslisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                      Forschungsliste);
+      
+      ForschungRecordKonstanten.TechnologieVerbesserungenArray'Read (Stream (File => DatenbankEinlesen),
+                                                                     Verbesserungsforschung);
+      
+      ForschungRecordKonstanten.TechnologieWegeArray'Read (Stream (File => DatenbankEinlesen),
+                                                           Wegeforschung);
+      
+      ForschungRecordKonstanten.TechnologieUmgebungsgrößeArray'Read (Stream (File => DatenbankEinlesen),
+                                                                       Umgebungsforschung);
+      
+      case
+        LadenPrüfenExtern
+      is
+         when False =>
+            null;
+            
+         when True =>
+            ForschungenDatenbank.Forschungsliste := Forschungsliste;
+            ForschungenDatenbank.TechnologieVerbesserungen := Verbesserungsforschung;
+            ForschungenDatenbank.TechnologieWege := Wegeforschung;
+            ForschungenDatenbank.TechnologieUmgebungsgröße := Umgebungsforschung;
+      end case;
+      
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error =>
+         return False;
+         
+   end ForschungenDurchgehen;
+   
+   
+   
+   procedure Gebäude
    is begin
       
       case
         Exists (Name => VerzeichnisKonstanten.GebaeudeDatenbank)
       is
+         when False =>
+            StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
+            return;
+            
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.GebaeudeDatenbank);
-      
-            GebaeudeDatenbank.GebäudelisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                       GebaeudeDatenbank.Gebäudeliste);
+            
+            PrüfungErfolgreich := GebäudeDurchgehen (LadenPrüfenExtern => False);
       
             Close (File => DatenbankEinlesen);
-
+      end case;
+      
+      case
+        PrüfungErfolgreich
+      is
+         when True =>
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => VerzeichnisKonstanten.GebaeudeDatenbank);
+            
+            Nullwert := GebäudeDurchgehen (LadenPrüfenExtern => True);
+      
+            Close (File => DatenbankEinlesen);
+            
          when False =>
             StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
       end case;
       
-   end EinlesenGebäudeDatenbank;
+   end Gebäude;
    
    
    
-   procedure EinlesenKartengrundDatenbank
+   function GebäudeDurchgehen
+     (LadenPrüfenExtern : in Boolean)
+      return Boolean
+   is begin
+      
+      GebaeudeDatenbank.GebäudelisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                 Gebäudeliste);
+   
+      case
+        LadenPrüfenExtern
+      is
+         when False =>
+            null;
+            
+         when True =>
+            GebaeudeDatenbank.Gebäudeliste := Gebäudeliste;
+      end case;
+      
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error =>
+         return False;
+         
+   end GebäudeDurchgehen;
+
+
+   
+   procedure Kartengrund
    is begin
       
       case
@@ -185,11 +316,11 @@ package body EinlesenDatenbankenLogik is
             StandardKartenDatenbank.StandardKartenressourcenDatenbankLaden;
       end case;
       
-   end EinlesenKartengrundDatenbank;
+   end Kartengrund;
    
    
    
-   procedure EinlesenVerbesserungenDatenbank
+   procedure Verbesserungen
    is begin
       
       case
@@ -226,30 +357,74 @@ package body EinlesenDatenbankenLogik is
             StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
       end case;
       
-   end EinlesenVerbesserungenDatenbank;
+   end Verbesserungen;
    
    
    
-   procedure EinlesenSpeziesDatenbank
+   procedure Spezies
    is begin
       
       case
         Exists (Name => VerzeichnisKonstanten.SpeziesDatenbank)
+      is
+         when False =>
+            StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
+            return;
+            
+         when True =>
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => VerzeichnisKonstanten.SpeziesDatenbank);
+      
+            PrüfungErfolgreich := SpeziesDurchgehen (LadenPrüfenExtern => False);
+      
+            Close (File => DatenbankEinlesen);
+      end case;
+      
+      case
+        PrüfungErfolgreich
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.SpeziesDatenbank);
       
-            SpeziesDatenbank.SpezieslisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                     SpeziesDatenbank.Speziesliste);
+            Nullwert := SpeziesDurchgehen (LadenPrüfenExtern => True);
       
             Close (File => DatenbankEinlesen);
-
+            
          when False =>
             StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
       end case;
       
-   end EinlesenSpeziesDatenbank;
+   end Spezies;
+      
+   
+   
+   function SpeziesDurchgehen
+     (LadenPrüfenExtern : in Boolean)
+      return Boolean
+   is begin
+      
+      SpeziesDatenbank.SpezieslisteArray'Read (Stream (File => DatenbankEinlesen),
+                                               Speziesliste);
+   
+      case
+        LadenPrüfenExtern
+      is
+         when False =>
+            null;
+            
+         when True =>
+            SpeziesDatenbank.Speziesliste := Speziesliste;
+      end case;
+      
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error =>
+         return False;
+         
+   end SpeziesDurchgehen;
 
 end EinlesenDatenbankenLogik;

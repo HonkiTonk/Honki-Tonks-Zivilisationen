@@ -1,7 +1,5 @@
 with Sf;
 
-with ZahlenDatentypen;
-
 package GrafikKonstanten is
    pragma Elaborate_Body;
 
@@ -16,13 +14,13 @@ package GrafikKonstanten is
    Bewegungsfeldtransparents : constant Sf.sfUint8 := 120;
    Feldeffekttransparents : constant Sf.sfUint8 := 100;
    
-   MinimaleAuflösungsbreite : constant ZahlenDatentypen.EigenesPositive := 320;
-   MaximaleAuflösungsbreite : constant ZahlenDatentypen.EigenesPositive := 4_096;
-   MinimaleAuflösunghöhe : constant ZahlenDatentypen.EigenesPositive := 240;
-   MaximaleAuflösungshöhe : constant ZahlenDatentypen.EigenesPositive := 3_072;
+   MinimaleAuflösungsbreite : constant Sf.sfUint32 := 320;
+   MaximaleAuflösungsbreite : constant Sf.sfUint32 := 4_096;
+   MinimaleAuflösunghöhe : constant Sf.sfUint32 := 240;
+   MaximaleAuflösungshöhe : constant Sf.sfUint32 := 3_072;
    
-   MinimaleBildrate : constant ZahlenDatentypen.EigenesPositive := 1;
-   MaximaleBildrate : constant ZahlenDatentypen.EigenesPositive := 1_000;
+   MinimaleBildrate : constant Sf.sfUint32 := 1;
+   MaximaleBildrate : constant Sf.sfUint32 := 1_000;
    
    AnzahlStadtumgebungsfelder : constant Float := 7.00;
    Nullposition : constant Float := 0.00;

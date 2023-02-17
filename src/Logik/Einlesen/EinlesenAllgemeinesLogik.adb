@@ -20,7 +20,6 @@ package body EinlesenAllgemeinesLogik is
             return False;
       end case;
       
-      -- Geht das auch ohne exception? äöü
    exception
       when End_Error =>
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenAllgemeinesLogik.VorzeitigesZeilenende: Zu wenig Zeilen");

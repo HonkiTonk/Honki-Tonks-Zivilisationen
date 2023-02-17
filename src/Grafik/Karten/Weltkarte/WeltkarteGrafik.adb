@@ -11,9 +11,9 @@ with KartenverbesserungDatentypen;
 
 with LeseWeltkarte;
 with LeseCursor;
+with LeseEinstellungenGrafik;
 
 with KartenkoordinatenberechnungssystemLogik;
-with EinstellungenGrafik;
 with ViewsEinstellenGrafik;
 with SichtweitenGrafik;
 with WeltkarteFeldZeichnenGrafik;
@@ -106,18 +106,15 @@ package body WeltkarteGrafik is
             then
                null;
                
+            elsif
+              LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert) in KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range
+            then
+               WeltkarteZusatzZeichnenGrafik.StadtnameAnzeigen (KoordinatenExtern => KartenWert,
+                                                                PositionExtern    => (Feldposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y),
+                                                                ObenUntenExtern   => False);
+               
             else
-               case
-                 LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert)
-               is
-                  when KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum =>
-                     WeltkarteZusatzZeichnenGrafik.StadtnameAnzeigen (KoordinatenExtern => KartenWert,
-                                                                      PositionExtern    => (Feldposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y),
-                                                                      ObenUntenExtern   => False);
-                     
-                  when others =>
-                     null;
-               end case;
+               null;
             end if;
             
             Feldposition.x := Feldposition.x + SichtweitenGrafik.Kartenfeldfläche.x;
@@ -141,7 +138,7 @@ package body WeltkarteGrafik is
    begin
       
       if
-        EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar
+        LeseEinstellungenGrafik.EbenenUnterhalbSichtbar = True
       then
          case
            KoordinatenExtern.EAchse

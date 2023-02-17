@@ -4,9 +4,9 @@ with GrafikRecords;
 
 with LeseOptionen;
 
-with EinstellungenGrafik;
 with TexteinstellungenGrafik;
 with SpezieseinstellungenGrafik;
+with LeseEinstellungenGrafik;
 
 package body SchreibenEinstellungenLogik is
    
@@ -34,9 +34,9 @@ package body SchreibenEinstellungenLogik is
               Name => VerzeichnisKonstanten.Grafikeinstellungen);
             
       GrafikRecords.FensterRecord'Write (Stream (File => DateiGrafikeinstellungen),
-                                         EinstellungenGrafik.FenstereinstellungenLesen);
+                                         LeseEinstellungenGrafik.Fenstereinstellungen);
       GrafikRecords.GrafikeinstellungenRecord'Write (Stream (File => DateiGrafikeinstellungen),
-                                                     EinstellungenGrafik.GrafikeinstellungenLesen);
+                                                     LeseEinstellungenGrafik.Grafikeinstellungen);
       
       TexteinstellungenGrafik.SchriftgrößenArray'Write (Stream (File => DateiGrafikeinstellungen),
                                                           TexteinstellungenGrafik.SchriftgrößeneintragLesen);

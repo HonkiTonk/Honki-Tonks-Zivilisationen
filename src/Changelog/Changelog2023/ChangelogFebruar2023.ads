@@ -70,17 +70,21 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (18.02.2023):
+   -- Version 0.04.7815 => 0.04. (18.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.7745 => 0.04. (17.02.2023):
+   -- Version 0.04.7745 => 0.04.7815 (17.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der zu einem Stopp führen konnte wenn man das Mausrad außerhalb der Weltkarte drehte.
+   -- Weitere Zugriffsdateien erstellt, um den Zugriff auf diverse Variablen durch diese zu beschränken.
+   -- Direkten Variablenzugriff durch die Zugriffsdateien ausgetauscht.
+   -- Einlesen der Tastenbelegung überarbeitet, so dass veraltete/fehlerhafte Werte nicht mehr eingelesen werden und zu einem Programmstopp führen, sondern einfach die Standardwerte verwendet werden.
+   -- Angefangen das Einlesen der Datenbanken zu überarbeiten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
@@ -88,7 +92,7 @@ package ChangelogVorlage is
    
    -- Weitere Zugriffsdateien erstellt, um den Zugriff auf diverse Variablen durch diese zu beschränken.
    -- Einlesen der Nutzereinstellungen überarbeitet, so dass veraltete/fehlerhafte Werte nicht mehr eingelesen werden und zu einem Programmstopp führen, sondern einfach die Standardwerte verwendet werden.
-   -- Fehlermeldungen werden jetzt nur noch im Terminal ausgegeben wenn die Debugveriable FehlerWarnung auf True steht.
+   -- Fehlermeldungen werden jetzt nur noch im Terminal ausgegeben wenn die Debugvariable FehlerWarnung auf True steht.
    -- Einlesen aller gespeicherten Einstellungen überarbeitet, so dass veraltete/fehlerhafte Werte nicht mehr eingelesen werden und zu einem Programmstopp führen, sondern einfach die Standardwerte verwendet werden.
    -- Direkten Variablenzugriff durch die Zugriffsdateien ausgetauscht.
    -- Bereiche sinnvoller aufgeteilt.

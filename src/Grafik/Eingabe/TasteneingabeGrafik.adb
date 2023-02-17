@@ -66,7 +66,7 @@ package body TasteneingabeGrafik is
                   
             when Sf.Window.Event.sfEvtMouseWheelScrolled =>
                if
-                 NachGrafiktask.AktuelleDarstellung = GrafikDatentypen.Grafik_Stadtkarte_Enum
+                 NachGrafiktask.AktuelleDarstellung /= GrafikDatentypen.Grafik_Weltkarte_Enum
                then
                   null;
                   

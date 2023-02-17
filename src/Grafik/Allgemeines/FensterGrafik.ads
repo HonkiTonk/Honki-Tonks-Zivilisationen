@@ -2,6 +2,7 @@ with Sf.Graphics;
 with Sf.System.Vector2;
 
 private with Sf.Window;
+private with Sf.Window.Window;
 
 package FensterGrafik is
    pragma Elaborate_Body;
@@ -34,10 +35,13 @@ package FensterGrafik is
 
 private
    
+   Fenstermodus : Sf.Window.Window.sfWindowStyle;
+   
    MausAccess : Sf.Window.sfCursor_Ptr;
    
    FensterAccess : Sf.Graphics.sfRenderWindow_Ptr;
    
+   Startauflösung : Sf.System.Vector2.sfVector2u;
    Auflösung : Sf.System.Vector2.sfVector2u;
       
    AktuelleFensterAuflösung : Sf.System.Vector2.sfVector2f;

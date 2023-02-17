@@ -8,6 +8,7 @@ with SchreibeOptionen;
 with EinstellungenGrafik;
 with EinstellungenMusik;
 with EinstellungenSound;
+with SchreibeEinstellungenGrafik;
 
 -- Das eventuell nach Bereichen aufteilen? äöü
 package body EinlesenEinstellungenLogik is
@@ -158,8 +159,8 @@ package body EinlesenEinstellungenLogik is
             null;
             
          when True =>
-            EinstellungenGrafik.FenstereinstellungenSchreiben (EintragExtern => Fenstereinstellungen);
-            EinstellungenGrafik.GrafikeinstellungenSchreiben (EintragExtern => ZwischenspeicherGrafikeinstellungen);
+            SchreibeEinstellungenGrafik.Fenstereinstellungen (EintragExtern => Fenstereinstellungen);
+            SchreibeEinstellungenGrafik.Grafikeinstellungen (EintragExtern => ZwischenspeicherGrafikeinstellungen);
             
             TexteinstellungenGrafik.SchriftgrößeneintragSchreiben (EintragExtern => Schriftgrößen);
             TexteinstellungenGrafik.SchriftfarbeneintragSchreiben (EintragExtern => Schriftfarben);

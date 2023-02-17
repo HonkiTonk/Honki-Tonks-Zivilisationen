@@ -19,8 +19,8 @@ package body EinlesenLogik is
    procedure EinlesenOhneAnzeige
    is begin
       
-      EinlesenDatenbankenLogik.EinlesenAlleDatenbanken;
-      EinlesenTastaturLogik.EinlesenTastaturbelegung;
+      EinlesenDatenbankenLogik.AlleDatenbanken;
+      EinlesenTastaturLogik.Tastaturbelegung;
       EinlesenTexturenLogik.EinlesenTexturen;
       EinlesenMusikLogik.EinlesenMusik;
       EinlesenSoundsLogik.EinlesenSounds;

@@ -3,12 +3,15 @@ with TextnummernKonstanten;
 with MenueDatentypen;
 with ZeitKonstanten;
 with GrafikKonstanten;
+with ZahlenDatentypen;
+
+with SchreibeEinstellungenGrafik;
+with LeseEinstellungenGrafik;
 
 with NachGrafiktask;
 with NachLogiktask;
 with AuswahlaufteilungLogik;
 with ZahleneingabeLogik;
-with EinstellungenGrafik;
 with SchreibenEinstellungenLogik;
 with Fehlermeldungssystem;
 
@@ -36,7 +39,7 @@ package body OptionenGrafikLogik is
                BildrateÄndern;
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar := not EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar;
+               SchreibeEinstellungenGrafik.EbenenUnterhalbSichtbar;
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
                SchreibenEinstellungenLogik.Grafikeinstellungen;
@@ -57,8 +60,8 @@ package body OptionenGrafikLogik is
    procedure AuflösungÄndern
    is begin
       
-      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => GrafikKonstanten.MinimaleAuflösungsbreite,
-                                                            ZahlenMaximumExtern => GrafikKonstanten.MaximaleAuflösungsbreite,
+      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MinimaleAuflösungsbreite),
+                                                            ZahlenMaximumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MaximaleAuflösungsbreite),
                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungsbreite);
       
       if
@@ -70,8 +73,8 @@ package body OptionenGrafikLogik is
          return;
       end if;
       
-      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => GrafikKonstanten.MinimaleAuflösunghöhe,
-                                                             ZahlenMaximumExtern => GrafikKonstanten.MaximaleAuflösungshöhe,
+      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MinimaleAuflösunghöhe),
+                                                             ZahlenMaximumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MaximaleAuflösungshöhe),
                                                              WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungshöhe);
       
       if
@@ -84,8 +87,7 @@ package body OptionenGrafikLogik is
          return;
       end if;
       
-      EinstellungenGrafik.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
-      EinstellungenGrafik.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
+      SchreibeEinstellungenGrafik.Auflösung (AuflösungExtern => NeueAuflösung);
       
       NachLogiktask.Warten := True;
       NachGrafiktask.FensterVerändert := GrafikDatentypen.Auflösung_Verändert_Enum;
@@ -106,8 +108,8 @@ package body OptionenGrafikLogik is
       use type GrafikDatentypen.Fenster_Ändern_Enum;
    begin
       
-      EingabeBildrate := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => GrafikKonstanten.MinimaleBildrate,
-                                                           ZahlenMaximumExtern => GrafikKonstanten.MaximaleBildrate,
+      EingabeBildrate := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MinimaleBildrate),
+                                                           ZahlenMaximumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MaximaleBildrate),
                                                            WelcheFrageExtern   => TextnummernKonstanten.FrageBildrate);
       
       if
@@ -116,7 +118,7 @@ package body OptionenGrafikLogik is
          return;
          
       else
-         EinstellungenGrafik.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
+         SchreibeEinstellungenGrafik.Bildrate (BildrateExtern => Sf.sfUint32 (EingabeBildrate.EingegebeneZahl));
          NachGrafiktask.FensterVerändert := GrafikDatentypen.Bildrate_Ändern_Enum;
       end if;
             
@@ -136,17 +138,18 @@ package body OptionenGrafikLogik is
       use type GrafikDatentypen.Fenster_Ändern_Enum;
    begin
       
+      -- Wenn ich weitere Fenstermodis einbauen will muss ich das hier umbauen. äöü
       case
-        EinstellungenGrafik.FensterEinstellungen.FensterVollbild
+        LeseEinstellungenGrafik.Fenstermodus
       is
          when 7 =>
-            EinstellungenGrafik.FensterEinstellungen.FensterVollbild := 8;
+            SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => 8);
             
          when 8 =>
-            EinstellungenGrafik.FensterEinstellungen.FensterVollbild := 7;
+            SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => 7);
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenGrafikLogik.VollbildFenster: Unbekannter Fenstermodus: " & EinstellungenGrafik.FensterEinstellungen.FensterVollbild'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenGrafikLogik.VollbildFenster: Unbekannter Fenstermodus: " & LeseEinstellungenGrafik.Fenstermodus'Wide_Wide_Image);
       end case;
       
       NachGrafiktask.FensterVerändert := GrafikDatentypen.Modus_Verändert_Enum;

@@ -7,7 +7,8 @@ with Sf.Graphics.Color;
 with GrafikDatentypen;
 with SonstigesKonstanten;
 
-with EinstellungenGrafik;
+with LeseEinstellungenGrafik;
+
 with NachGrafiktask;
 with Fehlermeldungssystem;
 with TexteinstellungenGrafik;
@@ -45,27 +46,27 @@ package body FensterGrafik is
       -- Titlebar + close button = 4
       -- Fullscreen mode = 8
       -- Default window style = 7
+      Fenstermodus := LeseEinstellungenGrafik.Fenstermodus;
+      
       case
-        EinstellungenGrafik.FensterEinstellungen.FensterVollbild
+        Fenstermodus
       is
          when 0 | 1 | 2 | 4 | 7 =>
-            FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (EinstellungenGrafik.FensterEinstellungen.FensterBreite,
-                                                                               EinstellungenGrafik.FensterEinstellungen.FensterHöhe,
-                                                                               EinstellungenGrafik.FensterEinstellungen.Farbtiefe),
-                                                                     title => SonstigesKonstanten.Spielname,
-                                                                     style => EinstellungenGrafik.FensterEinstellungen.FensterVollbild);
+            Startauflösung := LeseEinstellungenGrafik.Auflösung;
             
             -- Die Vollbildauflösung noch seperat speichern? äöü
          when 8 =>
-            FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (Sf.Window.VideoMode.getDesktopMode.width,
-                                                                               Sf.Window.VideoMode.getDesktopMode.height,
-                                                                               EinstellungenGrafik.FensterEinstellungen.Farbtiefe),
-                                                                     title => SonstigesKonstanten.Spielname,
-                                                                     style => EinstellungenGrafik.FensterEinstellungen.FensterVollbild);
+            Startauflösung := (Sf.Window.VideoMode.getDesktopMode.width, Sf.Window.VideoMode.getDesktopMode.height);
             
          when others =>
-            Fehlermeldungssystem.Grafik (FehlermeldungExtern => "FensterGrafik.FensterErzeugenErweitert: Unbekannter Fenstermodus: " & EinstellungenGrafik.FensterEinstellungen.FensterVollbild'Wide_Wide_Image);
+            Fehlermeldungssystem.Grafik (FehlermeldungExtern => "FensterGrafik.FensterErzeugenErweitert: Unbekannter Fenstermodus: " & Fenstermodus'Wide_Wide_Image);
       end case;
+            
+      FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (Startauflösung.x,
+                                                                         Startauflösung.y,
+                                                                         LeseEinstellungenGrafik.Farbtiefe),
+                                                               title => SonstigesKonstanten.Spielname,
+                                                               style => Fenstermodus);
             
    end FensterErzeugenErweitert;
    
@@ -134,7 +135,7 @@ package body FensterGrafik is
    is begin
       
       Sf.Graphics.RenderWindow.setFramerateLimit (renderWindow => FensterAccess,
-                                                  limit        => EinstellungenGrafik.FensterEinstellungen.Bildrate);
+                                                  limit        => LeseEinstellungenGrafik.Bildrate);
       
    end BildrateÄndern;
    
