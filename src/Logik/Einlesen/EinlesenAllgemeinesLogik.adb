@@ -22,7 +22,7 @@ package body EinlesenAllgemeinesLogik is
       
    exception
       when End_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenAllgemeinesLogik.VorzeitigesZeilenende: Zu wenig Zeilen");
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenAllgemeinesLogik.VorzeitigesZeilenende: Zu wenig Zeilen, aktuelle Zeile: " & AktuelleZeileExtern'Wide_Wide_Image);
          return True;
       
    end VorzeitigesZeilenende;

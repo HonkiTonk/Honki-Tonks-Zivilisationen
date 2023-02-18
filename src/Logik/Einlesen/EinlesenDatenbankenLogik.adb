@@ -2,9 +2,6 @@ with Ada.Directories; use Ada.Directories;
 
 with VerzeichnisKonstanten;
 
-with KartenDatenbank;
-with VerbesserungenDatenbank;
-
 with StandardVerbesserungenDatenbank;
 with StandardSpeziesDatenbank;
 with StandardKartenDatenbank;
@@ -12,7 +9,6 @@ with StandardGebaeudeDatenbank;
 with StandardForschungenDatenbank;
 with StandardEinheitenDatenbank;
 
--- Alle Datenbanken müssen vor dem Einlesen ebenfalls geprüft werden. äöü
 package body EinlesenDatenbankenLogik is
    
    procedure AlleDatenbanken
@@ -21,7 +17,7 @@ package body EinlesenDatenbankenLogik is
       Einheiten;
       Forschungen;
       Gebäude;
-      Kartengrund;
+      Karten;
       Verbesserungen;
       Spezies;
       
@@ -245,78 +241,89 @@ package body EinlesenDatenbankenLogik is
 
 
    
-   procedure Kartengrund
+   procedure Karten
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.BasisgrundDatenbank)
+        Exists (Name => VerzeichnisKonstanten.KartenDatenbank)
       is
-         when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.BasisgrundDatenbank);
-      
-            KartenDatenbank.BasisgrundlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                       KartenDatenbank.Basisgrundliste);
-      
-            Close (File => DatenbankEinlesen);
-
          when False =>
             StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
-      end case;
-      
-      case
-        Exists (Name => VerzeichnisKonstanten.ZusatzgrundDatenbank)
-      is
-         when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.ZusatzgrundDatenbank);
-      
-            KartenDatenbank.ZusatzgrundlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                        KartenDatenbank.Zusatzgrundliste);
-      
-            Close (File => DatenbankEinlesen);
-
-         when False =>
             StandardKartenDatenbank.StandardZusatzgrundDatenbankLaden;
-      end case;
-      
-      case
-        Exists (Name => VerzeichnisKonstanten.KartenFlussDatenbank)
-      is
+            StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
+            StandardKartenDatenbank.StandardKartenressourcenDatenbankLaden;
+            return;
+            
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.KartenFlussDatenbank);
-      
-            KartenDatenbank.KartenflusslisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                        KartenDatenbank.Kartenflussliste);
+                  Name => VerzeichnisKonstanten.KartenDatenbank);
+            
+            PrüfungErfolgreich := KartenDurchgehen (LadenPrüfenExtern => False);
       
             Close (File => DatenbankEinlesen);
-
-         when False =>
-            StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
       end case;
       
       case
-        Exists (Name => VerzeichnisKonstanten.KartenDatenbank)
+        PrüfungErfolgreich
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.KartenDatenbank);
-      
-            KartenDatenbank.KartenressourcenlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                             KartenDatenbank.Kartenressourcenliste);
+            
+            Nullwert := KartenDurchgehen (LadenPrüfenExtern => True);
       
             Close (File => DatenbankEinlesen);
-
+            
          when False =>
+            StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
+            StandardKartenDatenbank.StandardZusatzgrundDatenbankLaden;
+            StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
             StandardKartenDatenbank.StandardKartenressourcenDatenbankLaden;
       end case;
       
-   end Kartengrund;
+   end Karten;
+   
+   
+   
+   function KartenDurchgehen
+     (LadenPrüfenExtern : in Boolean)
+      return Boolean
+   is begin
+      
+      KartenDatenbank.BasisgrundlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                 Basisgrund);
+      
+      KartenDatenbank.ZusatzgrundlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                  Zusatzgrund);
+      
+      KartenDatenbank.KartenflusslisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                  Flüsse);
+      
+      KartenDatenbank.KartenressourcenlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                       Ressourcen);
+      
+      case
+        LadenPrüfenExtern
+      is
+         when False =>
+            null;
+            
+         when True =>
+            KartenDatenbank.Basisgrundliste := Basisgrund;
+            KartenDatenbank.Zusatzgrundliste := Zusatzgrund;
+            KartenDatenbank.Kartenflussliste := Flüsse;
+            KartenDatenbank.Kartenressourcenliste := Ressourcen;
+      end case;
+   
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error =>
+         return False;
+         
+   end KartenDurchgehen;
    
    
    
@@ -326,38 +333,72 @@ package body EinlesenDatenbankenLogik is
       case
         Exists (Name => VerzeichnisKonstanten.VerbesserungenDatenbank)
       is
+         when False =>
+            StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
+            StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
+            return;
+            
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.VerbesserungenDatenbank);
-      
-            VerbesserungenDatenbank.VerbesserungenlisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                                   VerbesserungenDatenbank.Verbesserungenliste);
+            
+            PrüfungErfolgreich := VerbesserungenDurchgehen (LadenPrüfenExtern => False);
       
             Close (File => DatenbankEinlesen);
 
-         when False =>
-            StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
       end case;
       
       case
-        Exists (Name => VerzeichnisKonstanten.WegeDatenbank)
+        PrüfungErfolgreich
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.WegeDatenbank);
-      
-            VerbesserungenDatenbank.WegelisteArray'Read (Stream (File => DatenbankEinlesen),
-                                                         VerbesserungenDatenbank.Wegeliste);
+                  Name => VerzeichnisKonstanten.VerbesserungenDatenbank);
+            
+            Nullwert := VerbesserungenDurchgehen (LadenPrüfenExtern => True);
       
             Close (File => DatenbankEinlesen);
-
+            
          when False =>
+            StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
             StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
       end case;
       
    end Verbesserungen;
+   
+   
+   
+   function VerbesserungenDurchgehen
+     (LadenPrüfenExtern : in Boolean)
+      return Boolean
+   is begin
+      
+      VerbesserungenDatenbank.VerbesserungenlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                             Verbesserung);
+      
+      VerbesserungenDatenbank.WegelisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                   Wege);
+      
+      case
+        LadenPrüfenExtern
+      is
+         when False =>
+            null;
+            
+         when True =>
+            VerbesserungenDatenbank.Verbesserungenliste := Verbesserung;
+            VerbesserungenDatenbank.Wegeliste := Wege;
+      end case;
+      
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error =>
+         return False;
+      
+   end VerbesserungenDurchgehen;
    
    
    

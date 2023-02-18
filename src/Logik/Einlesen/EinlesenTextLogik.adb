@@ -44,7 +44,7 @@ package body EinlesenTextLogik is
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenDateien: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
-                                           & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.NullDatei));
+                                           & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & WelcheDateienSchleifenwert'Wide_Wide_Image);
                
             when False =>
                EinlesenAufteilen (WelcheDateiExtern => WelcheDateienSchleifenwert,
@@ -221,7 +221,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Hauptmenü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Hauptmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -245,7 +245,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Spielmenü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Spielmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -269,7 +269,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Optionsmenü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Optionsmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -293,7 +293,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Grafikmenü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Grafikmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -317,7 +317,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Soundmenü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Soundmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -341,7 +341,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Steuerungmenü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Steuerungmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -365,7 +365,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Sonstigesmenü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Sonstigesmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -389,7 +389,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartengröße: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartengröße: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -413,7 +413,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenart: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenart: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -437,7 +437,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartentemperatur: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartentemperatur: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -461,7 +461,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Speziesauswahl: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Speziesauswahl: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -485,7 +485,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Schwierigkeitsgrad: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Schwierigkeitsgrad: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -509,7 +509,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenform: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenform: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -533,7 +533,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Ressourcenmenge: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Ressourcenmenge: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -557,7 +557,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Basisgrund: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Basisgrund: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -581,7 +581,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Verbesserungen: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Verbesserungen: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -605,7 +605,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Beschäftigungen: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Beschäftigungen: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -629,7 +629,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Debugmenü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Debugmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -653,7 +653,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Würdigung: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Würdigung: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -677,7 +677,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Diplomatiemenü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Diplomatiemenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -701,7 +701,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.DiplomatieKI: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.DiplomatieKI: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -725,7 +725,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Handelsmenü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Handelsmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -749,7 +749,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.DiplomatieStatus: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.DiplomatieStatus: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -773,7 +773,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Spielmenü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Spielmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -797,7 +797,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Fehlermeldung: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Fehlermeldung: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -821,7 +821,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Ladezeit: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Ladezeit: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -845,7 +845,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Frage: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Frage: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -869,7 +869,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.ZeugSachen: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.ZeugSachen: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -893,7 +893,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Editoren: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Editoren: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -917,7 +917,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Wege: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Wege: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -941,7 +941,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenflüsse: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenflüsse: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -965,7 +965,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenressourcen: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenressourcen: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -989,7 +989,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Einstellungen: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Einstellungen: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -1013,7 +1013,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenpole: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenpole: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -1037,7 +1037,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Stadtbefehle: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Stadtbefehle: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -1061,7 +1061,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Spielstandmenü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Spielstandmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -1085,7 +1085,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Intro: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Intro: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -1109,7 +1109,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Outro: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Outro: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -1133,7 +1133,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Zusatzgrund: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Zusatzgrund: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
@@ -1157,7 +1157,7 @@ package body EinlesenTextLogik is
                                                            AktuelleZeileExtern => ZeileSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Feldeffekte: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Feldeffekte: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>

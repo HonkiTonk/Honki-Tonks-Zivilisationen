@@ -84,90 +84,29 @@ package body SchreibenDatenbankenLogik is
    procedure SchreibenKartenDatenbanken
    is begin
       
-      SchreibeBasisgrund;
-      SchreibeZusatzgrund;
-      SchreibeFluss;
-      SchreibeRessourcen;
-      
-   end SchreibenKartenDatenbanken;
-   
-   
-   
-   procedure SchreibeBasisgrund
-   is begin
-      
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.BasisgrundDatenbank);
-      
+              Name => VerzeichnisKonstanten.KartenDatenbank);
+            
       KartenDatenbank.BasisgrundlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                   KartenDatenbank.Basisgrundliste);
-      
-      Close (File => DatenbankSpeichern);
-      
-   end SchreibeBasisgrund;
-   
-      
-   
-   procedure SchreibeZusatzgrund
-   is begin
-      
-      Create (File => DatenbankSpeichern,
-              Mode => Out_File,
-              Name => VerzeichnisKonstanten.ZusatzgrundDatenbank);
       
       KartenDatenbank.ZusatzgrundlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                    KartenDatenbank.Zusatzgrundliste);
       
-      Close (File => DatenbankSpeichern);
-      
-   end SchreibeZusatzgrund;
-   
-   
-   
-   procedure SchreibeFluss
-   is begin
-      
-      Create (File => DatenbankSpeichern,
-              Mode => Out_File,
-              Name => VerzeichnisKonstanten.KartenFlussDatenbank);
-      
       KartenDatenbank.KartenflusslisteArray'Write (Stream (File => DatenbankSpeichern),
                                                    KartenDatenbank.Kartenflussliste);
-      
-      Close (File => DatenbankSpeichern);
-      
-   end SchreibeFluss;
-   
-   
-   
-   procedure SchreibeRessourcen
-   is begin
-      
-      Create (File => DatenbankSpeichern,
-              Mode => Out_File,
-              Name => VerzeichnisKonstanten.KartenDatenbank);
       
       KartenDatenbank.KartenressourcenlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                         KartenDatenbank.Kartenressourcenliste);
       
       Close (File => DatenbankSpeichern);
       
-   end SchreibeRessourcen;
+   end SchreibenKartenDatenbanken;
    
-      
-      
+   
+   
    procedure SchreibenVerbesserungenDatenbank
-   is begin
-      
-      SchreibeVerbesserungen;
-      SchreibeWege;
-      
-   end SchreibenVerbesserungenDatenbank;
-   
-   
-   
-   procedure SchreibeVerbesserungen
    is begin
       
       Create (File => DatenbankSpeichern,
@@ -177,25 +116,12 @@ package body SchreibenDatenbankenLogik is
       VerbesserungenDatenbank.VerbesserungenlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                               VerbesserungenDatenbank.Verbesserungenliste);
       
-      Close (File => DatenbankSpeichern);
-      
-   end SchreibeVerbesserungen;
-   
-   
-      
-   procedure SchreibeWege
-   is begin
-         
-      Create (File => DatenbankSpeichern,
-              Mode => Out_File,
-              Name => VerzeichnisKonstanten.WegeDatenbank);
-      
       VerbesserungenDatenbank.WegelisteArray'Write (Stream (File => DatenbankSpeichern),
                                                     VerbesserungenDatenbank.Wegeliste);
       
       Close (File => DatenbankSpeichern);
       
-   end SchreibeWege;
+   end SchreibenVerbesserungenDatenbank;
       
          
    

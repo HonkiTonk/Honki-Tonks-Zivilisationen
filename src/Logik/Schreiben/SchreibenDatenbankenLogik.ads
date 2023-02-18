@@ -11,14 +11,6 @@ package SchreibenDatenbankenLogik is
    procedure SchreibenVerbesserungenDatenbank;
    procedure SchreibenSpeziesDatenbank;
 
-   procedure SchreibeBasisgrund;
-   procedure SchreibeZusatzgrund;
-   procedure SchreibeFluss;
-   procedure SchreibeRessourcen;
-
-   procedure SchreibeVerbesserungen;
-   procedure SchreibeWege;
-
 private
 
    DatenbankSpeichern : File_Type;

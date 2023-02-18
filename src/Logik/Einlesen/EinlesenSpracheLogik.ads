@@ -1,6 +1,8 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Directories; use Ada.Directories;
 
+private with VerzeichnisKonstanten;
+
 package EinlesenSpracheLogik is
    pragma Elaborate_Body;
    
@@ -15,8 +17,22 @@ private
    
    Suche : Search_Type;
    
+   Prüfungssuche : Search_Type;
+   
    Verzeichnis : Directory_Entry_Type;
    
+   Verzeichnisprüfung : Directory_Entry_Type;
+   
    procedure SprachenSortieren;
+   
+   
+   
+   function LeeresVerzeichnis
+     (VerzeichnisExtern : in String)
+      return Boolean
+     with
+       Pre => (
+                 VerzeichnisExtern'Length > VerzeichnisKonstanten.SprachenStrich'Length
+              );
 
 end EinlesenSpracheLogik;

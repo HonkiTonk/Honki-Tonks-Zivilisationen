@@ -21,6 +21,11 @@ package body EinlesenSpeziestexteLogik is
         Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.Spezies
                 & VerzeichnisKonstanten.NullDatei)
       is
+         when False =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
+                                        & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
+            return;
+            
          when True =>
             Hauptdatei := (others => TextKonstanten.LeerUnboundedString);
             
@@ -28,11 +33,6 @@ package body EinlesenSpeziestexteLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.Spezies
                   & VerzeichnisKonstanten.NullDatei);
-
-         when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
-                                        & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
-            return;
       end case;
       
       EinlesenSchleife:
@@ -44,7 +44,8 @@ package body EinlesenSpeziestexteLogik is
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
-                                           & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei));
+                                           & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: "
+                                           & WelcheDateienSchleifenwert'Wide_Wide_Image);
                
             when False =>
                Hauptdatei (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNull));
@@ -76,7 +77,8 @@ package body EinlesenSpeziestexteLogik is
                                                                     AktuelleZeileExtern => UnterdateiSchleifenwert)
                   is
                      when True =>
-                        Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesenZwei: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Hauptdatei (SpeziesSchleifenwert)));
+                        Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesenZwei: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Hauptdatei (SpeziesSchleifenwert))
+                                                   & ", aktuelle Zeile: " & UnterdateiSchleifenwert'Wide_Wide_Image);
                
                      when False =>
                         Speziesdateien (UnterdateiSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiUnternull));
@@ -134,7 +136,7 @@ package body EinlesenSpeziestexteLogik is
                                                            AktuelleZeileExtern => Positive (NameBeschreibungSchleifenwert))
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.NameBeschreibung: Fehlende Zeilen: " & DateinameExtern);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.NameBeschreibung: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & NameBeschreibungSchleifenwert'Wide_Wide_Image);
                exit NameBeschreibungSchleife;
                
             when False =>
@@ -175,7 +177,7 @@ package body EinlesenSpeziestexteLogik is
                                                            AktuelleZeileExtern => Positive (StädtenamenSchleifenwert))
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Städtenamen: Fehlende Zeilen: " & DateinameExtern);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Städtenamen: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & StädtenamenSchleifenwert'Wide_Wide_Image);
                exit StädtenamenSchleife;
                
             when False =>
@@ -220,7 +222,7 @@ package body EinlesenSpeziestexteLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Forschungen: Fehlende Zeilen: " & DateinameExtern);
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Forschungen: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                   exit ForschungenSchleife;
                
                when False =>
@@ -268,7 +270,7 @@ package body EinlesenSpeziestexteLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Einheiten: Fehlende Zeilen: " & DateinameExtern);
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Einheiten: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                   exit EinheitenSchleife;
                
                when False =>
@@ -316,7 +318,7 @@ package body EinlesenSpeziestexteLogik is
                                                               AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Gebäude: Fehlende Zeilen: " & DateinameExtern);
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Gebäude: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                   exit GebäudeSchleife;
                
                when False =>

@@ -5,6 +5,8 @@ with ForschungenDatenbank;
 with ForschungRecordKonstanten;
 with GebaeudeDatenbank;
 with SpeziesDatenbank;
+with VerbesserungenDatenbank;
+with KartenDatenbank;
 
 package EinlesenDatenbankenLogik is
    pragma Elaborate_Body;
@@ -13,7 +15,7 @@ package EinlesenDatenbankenLogik is
    procedure Einheiten;
    procedure Forschungen;
    procedure Gebäude;
-   procedure Kartengrund;
+   procedure Karten;
    procedure Verbesserungen;
    procedure Spezies;
    
@@ -36,6 +38,18 @@ private
    
    Gebäudeliste : GebaeudeDatenbank.GebäudelisteArray;
    
+   Basisgrund : KartenDatenbank.BasisgrundlisteArray;
+   
+   Zusatzgrund : KartenDatenbank.ZusatzgrundlisteArray;
+   
+   Flüsse : KartenDatenbank.KartenflusslisteArray;
+   
+   Ressourcen : KartenDatenbank.KartenressourcenlisteArray;
+   
+   Verbesserung : VerbesserungenDatenbank.VerbesserungenlisteArray;
+   
+   Wege : VerbesserungenDatenbank.WegelisteArray;
+   
    Speziesliste : SpeziesDatenbank.SpezieslisteArray;
    
    
@@ -49,6 +63,14 @@ private
       return Boolean;
    
    function GebäudeDurchgehen
+     (LadenPrüfenExtern : in Boolean)
+      return Boolean;
+   
+   function KartenDurchgehen
+     (LadenPrüfenExtern : in Boolean)
+      return Boolean;
+   
+   function VerbesserungenDurchgehen
      (LadenPrüfenExtern : in Boolean)
       return Boolean;
    

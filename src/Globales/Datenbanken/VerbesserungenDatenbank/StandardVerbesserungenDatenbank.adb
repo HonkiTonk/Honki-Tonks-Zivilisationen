@@ -6,6 +6,8 @@ with VerbesserungenStandard;
 
 package body StandardVerbesserungenDatenbank is
 
+   -- Man kann immer noch die Sachen einzeln zurücksetzen, aber sie dennoch gemeinsam speichern. äöü
+   -- Relevant wenn ich irgendwann einmal die Editoren einbaue. äöü
    procedure StandardVerbesserungenDatenbankLaden
    is begin
             

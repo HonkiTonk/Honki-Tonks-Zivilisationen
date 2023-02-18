@@ -63,17 +63,22 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (19.02.2023):
+   -- Version 0.04.7890 => 0.04. (19.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.7815 => 0.04. (18.02.2023):
+   -- Version 0.04.7815 => 0.04.7890 (18.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einlesen der Datenbanken überarbeitet, so dass veraltete/fehlerhafte Werte nicht mehr eingelesen werden und zu einem Programmstopp führen, sondern einfach die Standardwerte verwendet werden.
+   -- Fehler in den Verzeichnispfaden korrigiert, welcher zum falschen Überschreiben von Daten führen konnte.
+   -- Schreiben der Datenbanken an das Einlesen angepasst.
+   -- Fehlermeldungen erweitert.
+   -- Fehler beim Einlesen der Musik korrigiert.
+   -- Bei der Auswahl der Sprachen werden jetzt keine leeren Verzeichnisse mehr angezeigt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 

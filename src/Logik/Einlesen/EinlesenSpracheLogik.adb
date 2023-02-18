@@ -2,7 +2,6 @@ with Ada.Characters.Conversions; use Ada.Characters.Conversions;
 
 with GlobaleTexte;
 with TextKonstanten;
-with VerzeichnisKonstanten;
 
 package body EinlesenSpracheLogik is
 
@@ -28,6 +27,11 @@ package body EinlesenSpracheLogik is
            Simple_Name (Directory_Entry => Verzeichnis) = "."
            or
              Simple_Name (Directory_Entry => Verzeichnis) = ".."
+         then
+            null;
+            
+         elsif
+           LeeresVerzeichnis (VerzeichnisExtern => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis)) = True
          then
             null;
                   
@@ -60,6 +64,44 @@ package body EinlesenSpracheLogik is
       end if;
       
    end EinlesenSprache;
+
+
+
+   -- Später eventuell noch um weitere Prüfungen erweitern. äöü
+   -- Das eventuell auch an anderen Stellen verwenden. äöü
+   -- Eventuell bei Speicherdateien? Da dann vielleicht eher die Dateigröße prüfen? äöü
+   function LeeresVerzeichnis
+     (VerzeichnisExtern : in String)
+      return Boolean
+   is begin
+      
+      Start_Search (Search    => Prüfungssuche,
+                    Directory => VerzeichnisExtern,
+                    Pattern   => "",
+                    Filter    => (others => True));
+      
+      PrüfenSchleife:
+      while More_Entries (Search => Prüfungssuche) = True loop
+
+         Get_Next_Entry (Search          => Prüfungssuche,
+                         Directory_Entry => Verzeichnisprüfung);
+         
+         if
+           Simple_Name (Directory_Entry => Verzeichnisprüfung) = "."
+           or
+             Simple_Name (Directory_Entry => Verzeichnisprüfung) = ".."
+         then
+            null;
+            
+         else
+            return False;
+         end if;
+            
+      end loop PrüfenSchleife;
+         
+      return True;
+      
+   end LeeresVerzeichnis;
    
    
    
