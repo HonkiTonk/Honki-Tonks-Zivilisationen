@@ -21,6 +21,7 @@ with TextberechnungenBreiteGrafik;
 with NachGrafiktask;
 with TextfarbeGrafik;
 with TextaccessverwaltungssystemGrafik;
+with TextskalierungGrafik;
 
 package body SpielstandmenueGrafik is
 
@@ -39,7 +40,7 @@ package body SpielstandmenueGrafik is
                                      AbmessungenExtern => Viewfläche);
       
       Viewfläche := Textanzeige (ViewflächeExtern => Viewfläche,
-                                 AuswahlExtern    => AuswahlExtern);
+                                  AuswahlExtern    => AuswahlExtern);
       
    end Spielstandmenü;
    
@@ -52,7 +53,7 @@ package body SpielstandmenueGrafik is
    is begin
       
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      Textbreite := 0.00;
+      NeueTextbreite := 0.00;
       
       MehrereSeiten := NachGrafiktask.MehrereSeiten;
       SpeichernLaden := NachGrafiktask.SpeichernLaden;
@@ -87,8 +88,8 @@ package body SpielstandmenueGrafik is
                   null;
             end case;
             
-            Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                                                                    ViewbreiteExtern => ViewflächeExtern.x);
+            Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
+                                                                                                  ViewbreiteExtern => ViewflächeExtern.x);
             
             if
               TextSchleifenwert = MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) - 1
@@ -101,16 +102,22 @@ package body SpielstandmenueGrafik is
                Farbe := TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert - MenueKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition,
                                                                AuswahlExtern    => AuswahlExtern);
             end if;
+         
+            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
+                                                                                TextbreiteExtern => 0.00);
+            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
+                                                                    ErlaubteBreiteExtern => ViewflächeExtern.x);
+            Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
             
-            TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                                                     PositionExtern   => Textposition,
-                                                                     FarbeExtern      => Farbe);
+            NeueTextbreite := Textbreite;
+            
+            TextaccessverwaltungssystemGrafik.PositionSkalierenFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
+                                                                              PositionExtern   => Textposition,
+                                                                              SkalierungExtern => Skalierung,
+                                                                              FarbeExtern      => Farbe);
             
             InteraktionAuswahl.PositionenSpielstand (TextSchleifenwert - MenueKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition)
               := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
-         
-            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                                                                TextbreiteExtern => Textbreite);
          end if;
          
          Textposition.y := TextberechnungenHoeheGrafik.KonstanteTextposition (PositionExtern   => Textposition.y,
@@ -118,7 +125,7 @@ package body SpielstandmenueGrafik is
          
       end loop TextSchleife;
       
-      return (Textbreite, Textposition.y);
+      return (NeueTextbreite, Textposition.y);
       
    end Textanzeige;
    

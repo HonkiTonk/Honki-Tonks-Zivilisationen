@@ -39,6 +39,26 @@ package body Diagnoseinformationen is
    end Kommazahl;
    
    
+   
+   procedure Text
+     (TextExtern : in Wide_Wide_String)
+   is begin
+      
+      Put_Line (Item => TextExtern);
+      
+   end Text;
+   
+   
+   
+   procedure UngebundenerText
+     (TextExtern : in Unbounded_Wide_Wide_String)
+   is begin
+      
+      Put_Line (Item => To_Wide_Wide_String (Source => TextExtern));
+      
+   end UngebundenerText;
+   
+   
 
    procedure Koordinateninformationen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

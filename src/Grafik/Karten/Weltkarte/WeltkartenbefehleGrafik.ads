@@ -1,5 +1,4 @@
 private with Sf.System.Vector2;
-private with Sf.Graphics.Rect;
 private with Sf.Graphics;
 private with Sf.Graphics.Sprite;
 
@@ -28,21 +27,19 @@ private
    AnfangEinheitenbefehle : constant Positive := 2;
    AnfangKartenbefehle : constant Positive := 15;
    AktuellerBefehl : Positive;
-   Teiler : Positive;
    WelcherViewbereich : Positive;
 
    Textbreite : Float;
-   Multiplikator : Float;
+   Teiler : Float;
    
    EinheitenViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    KartenbefehleViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
-   Knopfposition : Sf.System.Vector2.sfVector2f;
    Spritegröße : Sf.System.Vector2.sfVector2f;
    GesamteSpritegröße : Sf.System.Vector2.sfVector2f;
    Texturgröße : Sf.System.Vector2.sfVector2f;
-   
-   Textbox : Sf.Graphics.Rect.sfFloatRect;
+   Knopfposition : Sf.System.Vector2.sfVector2f;
+   Knopffläche : Sf.System.Vector2.sfVector2f;
 
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
    

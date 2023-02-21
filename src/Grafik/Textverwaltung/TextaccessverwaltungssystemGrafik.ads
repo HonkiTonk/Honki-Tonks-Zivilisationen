@@ -6,7 +6,38 @@ package TextaccessverwaltungssystemGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfText_Ptr;
    
+   procedure PositionSkalierenFarbeZeichnen
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+                 --   and
+               --     PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+                 -- and
+               --   SkalierungExtern.x >= 0.00
+               -- and
+               --   SkalierungExtern.y >= 0.00
+              );
+   
    procedure PositionFarbeZeichnen
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+                 --   and
+               --     PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+              );
+   
+   procedure PositionFarbe
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       FarbeExtern : in Sf.Graphics.Color.sfColor)

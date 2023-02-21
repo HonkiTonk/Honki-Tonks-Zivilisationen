@@ -1,3 +1,5 @@
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 private with System;
 
 with Sf.System.Vector2;
@@ -17,6 +19,20 @@ package Diagnoseinformationen is
    
    procedure Kommazahl
      (ZahlExtern : in Float);
+   
+   procedure Text
+     (TextExtern : in Wide_Wide_String)
+     with
+       Pre => (
+                 TextExtern'Length > 0
+              );
+   
+   procedure UngebundenerText
+     (TextExtern : in Unbounded_Wide_Wide_String)
+     with
+       Pre => (
+                 To_Wide_Wide_String (Source => TextExtern)'Length > 0
+              );
 
    procedure Koordinateninformationen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord);

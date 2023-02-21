@@ -49,24 +49,31 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (21.02.2023):
+   -- Version 0.04.8005 => 0.04. (21.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (20.02.2023):
+   -- Version 0.04.7890 => 0.04.8005 (20.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Bei der Sprachauswahl werden jetzt keine Verzeichnisse mehr angezeigt bei denen die 0-Datei fehlt.
+   -- Fehlermeldungen erweitert.
+   -- Diagnosesystem erweitert.
+   -- Dateien die kleiner sind als die kleinstmögliche Speicherdatei werden jetzt nicht mehr als ladbarere Spielstände angezeigt.
+   -- Dateien die größer sind als die größtmögliche Speicherdatei werden jetzt nicht mehr als ladbarere Spielstände angezeigt.
+   -- Variable Berechnung für die Ermittlung eines bestimmten Bereiches einer Textur eingebaut.
+   -- Konstante Berechnung für die Ermittlung eines bestimmten Bereiches einer Textur, welche aus 32x32 großen Feldern besteht, eingebaut.
+   -- Diverse Texturberechnung eingebaut.
+   -- Die Anzeige der vorhandenen Spielstandliste skaliert die Namen der Spielstände jetzt einzeln anstatt alle auf einmal.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/verschoben.
    
    
 
-   -- Version 0.04.7890 => 0.04. (19.02.2023):
+   -- Version 0.04.7890 => 0.04.7890 (19.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

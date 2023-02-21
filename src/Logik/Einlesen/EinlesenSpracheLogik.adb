@@ -2,6 +2,9 @@ with Ada.Characters.Conversions; use Ada.Characters.Conversions;
 
 with GlobaleTexte;
 with TextKonstanten;
+with VerzeichnisKonstanten;
+
+with EinlesenAllgemeinesLogik;
 
 package body EinlesenSpracheLogik is
 
@@ -30,11 +33,18 @@ package body EinlesenSpracheLogik is
          then
             null;
             
+            -- Gibt immer 0 zurück, später mal nachprüfen warum. äöü
+            -- Mach er nur bei Verzeichnissen, nicht bei einzelnen Dateien. äöü
+            -- elsif
+            --   Size (Directory_Entry => Verzeichnis) <= 10
+            --  then
+            --    null;
+            
          elsif
-           LeeresVerzeichnis (VerzeichnisExtern => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis)) = True
+           EinlesenAllgemeinesLogik.LeeresVerzeichnis (VerzeichnisExtern => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis)) = True
          then
             null;
-                  
+            
          else
             VerzeichnisInnenSchleife:
             for SpracheSchleifenwert in GlobaleTexte.SprachenEinlesen'Range loop
@@ -64,44 +74,6 @@ package body EinlesenSpracheLogik is
       end if;
       
    end EinlesenSprache;
-
-
-
-   -- Später eventuell noch um weitere Prüfungen erweitern. äöü
-   -- Das eventuell auch an anderen Stellen verwenden. äöü
-   -- Eventuell bei Speicherdateien? Da dann vielleicht eher die Dateigröße prüfen? äöü
-   function LeeresVerzeichnis
-     (VerzeichnisExtern : in String)
-      return Boolean
-   is begin
-      
-      Start_Search (Search    => Prüfungssuche,
-                    Directory => VerzeichnisExtern,
-                    Pattern   => "",
-                    Filter    => (others => True));
-      
-      PrüfenSchleife:
-      while More_Entries (Search => Prüfungssuche) = True loop
-
-         Get_Next_Entry (Search          => Prüfungssuche,
-                         Directory_Entry => Verzeichnisprüfung);
-         
-         if
-           Simple_Name (Directory_Entry => Verzeichnisprüfung) = "."
-           or
-             Simple_Name (Directory_Entry => Verzeichnisprüfung) = ".."
-         then
-            null;
-            
-         else
-            return False;
-         end if;
-            
-      end loop PrüfenSchleife;
-         
-      return True;
-      
-   end LeeresVerzeichnis;
    
    
    

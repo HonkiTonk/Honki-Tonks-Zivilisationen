@@ -12,6 +12,7 @@ with ViewsEinstellenGrafik;
 with TexturenSetzenSkalierenGrafik;
 with EingeleseneTexturenGrafik;
 with SpritesverwaltungssystemGrafik;
+with Texturenberechnungen;
 
 package body WeltkartenbefehleGrafik is
    
@@ -51,13 +52,13 @@ package body WeltkartenbefehleGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (WelcherViewbereich));
       
       EinheitenViewfläche := Einheitenbefehlsknöpfe (EinheitenArtExtern => Einheitart,
-                                                     WelcheTexturExtern => WelcherKnopf);
+                                                       WelcheTexturExtern => WelcherKnopf);
       
    end Einheitenbefehle;
    
    
    
-   -- Für alle Einheittypen eine spezifische Anzeige einbinden? äöü
+   -- Für alle Einheittypen eine spezifische Anzeige einbauen? äöü
    function Einheitenbefehlsknöpfe
      (EinheitenArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
       WelcheTexturExtern : in BefehleDatentypen.Befehlsknöpfe_Enum)
@@ -71,56 +72,30 @@ package body WeltkartenbefehleGrafik is
                                                    TextureAccessExtern => EingeleseneTexturenGrafik.SystemAccess (WelcheTexturExtern));
       SpritesverwaltungssystemGrafik.PositionZeichnen (SpriteAccessExtern => SpriteAccess,
                                                        PositionExtern     => GrafikRecordKonstanten.Nullposition);
-      
-      Teiler := 1;
-      Textbox.width := Texturgröße.x / 3.00;
-      Textbox.height := Texturgröße.y / 5.00;
-      Multiplikator := 0.00;
+         
+      case
+        EinheitenArtExtern
+      is
+         when EinheitenDatentypen.Einmalig_Enum =>
+            InteraktionAuswahl.PositionenEinheitenbefehle := (others => (0.00, 0.00, Texturgröße.x, Texturgröße.y));
+            return Texturgröße;
+            
+         when others =>
+            Teiler := 1.00;
+            Knopffläche := Texturenberechnungen.Texturenfeld (TexturengrößeExtern => Texturgröße,
+                                                               TeilerExtern        => (3.00, 5.00));
+      end case;
       
       PositionenSchleife:
       for PositionSchleifenwert in InteraktionAuswahl.PositionenEinheitenbefehleArray'Range loop
+            
+         Knopfposition := Texturenberechnungen.TexturenbereichVariabel (TexturengrößeExtern => Texturgröße,
+                                                                        TeilerExtern        => (3.00, 5.00),
+                                                                        BereichnummerExtern => Teiler);
+            
+         InteraktionAuswahl.PositionenEinheitenbefehle (PositionSchleifenwert) := (Knopfposition.x, Knopfposition.y, Knopffläche.x, Knopffläche.y);
          
-         case
-           EinheitenArtExtern
-         is
-            when EinheitenDatentypen.Einmalig_Enum =>
-               InteraktionAuswahl.PositionenEinheitenbefehle := (others => (0.00, 0.00, Texturgröße.x, Texturgröße.y));
-               exit PositionenSchleife;
-            
-            when others =>
-               if
-                 Teiler mod 2 = 0
-               then
-                  Knopfposition.x := Textbox.width;
-                  Knopfposition.y := Textbox.height * Multiplikator;
-               
-               elsif
-                 Teiler mod 3 = 0
-               then
-                  Knopfposition.x := 2.00 * Textbox.width;
-                  Knopfposition.y := Textbox.height * Multiplikator;
-                  
-               else
-                  Knopfposition.x := 0.00;
-                  Knopfposition.y := Textbox.height * Multiplikator;
-               end if;
-            
-               Textbox.left := Knopfposition.x;
-               Textbox.top := Knopfposition.y;
-            
-               InteraktionAuswahl.PositionenEinheitenbefehle (PositionSchleifenwert) := Textbox;
-         end case;
-         
-         case
-           Teiler
-         is
-            when 1 .. 2 =>
-               Teiler := Teiler + 1;
-               
-            when others =>
-               Teiler := 1;
-               Multiplikator := Multiplikator + 1.00;
-         end case;
+         Teiler := Teiler + 1.00;
          
       end loop PositionenSchleife;
 
@@ -166,46 +141,20 @@ package body WeltkartenbefehleGrafik is
       SpritesverwaltungssystemGrafik.PositionZeichnen (SpriteAccessExtern => SpriteAccess,
                                                        PositionExtern     => GrafikRecordKonstanten.Nullposition);
       
-      Teiler := 1;
-      Multiplikator := 0.00;
-      Textbox.width := Texturgröße.x / 3.00;
-      Textbox.height := Texturgröße.y / 4.00;
+      Teiler := 1.00;
+      Knopffläche := Texturenberechnungen.Texturenfeld (TexturengrößeExtern => Texturgröße,
+                                                         TeilerExtern        => (3.00, 4.00));
       
       PositionenSchleife:
       for PositionSchleifenwert in InteraktionAuswahl.PositionenKartenbefehleArray'Range loop
          
-         if
-           Teiler mod 2 = 0
-         then
-            Knopfposition.x := Textbox.width;
-            Knopfposition.y := Textbox.height * Multiplikator;
-               
-         elsif
-           Teiler mod 3 = 0
-         then
-            Knopfposition.x := 2.00 * Textbox.width;
-            Knopfposition.y := Textbox.height * Multiplikator;
-                  
-         else
-            Knopfposition.x := 0.00;
-            Knopfposition.y := Textbox.height * Multiplikator;
-         end if;
+         Knopfposition := Texturenberechnungen.TexturenbereichVariabel (TexturengrößeExtern => Texturgröße,
+                                                                        TeilerExtern        => (3.00, 4.00),
+                                                                        BereichnummerExtern => Teiler);
             
-         Textbox.left := Knopfposition.x;
-         Textbox.top := Knopfposition.y;
-            
-         InteraktionAuswahl.PositionenKartenbefehle (PositionSchleifenwert) := Textbox;
+         InteraktionAuswahl.PositionenKartenbefehle (PositionSchleifenwert) := (Knopfposition.x, Knopfposition.y, Knopffläche.x, Knopffläche.y);
          
-         case
-           Teiler
-         is
-            when 1 .. 2 =>
-               Teiler := Teiler + 1;
-               
-            when others =>
-               Teiler := 1;
-               Multiplikator := Multiplikator + 1.00;
-         end case;
+         Teiler := Teiler + 1.00;
          
       end loop PositionenSchleife;
       

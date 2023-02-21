@@ -20,7 +20,7 @@ package TexturenSetzenSkalierenGrafik is
    
    
 
-   function TexturenSetzenSkalierenWeltkarte
+   function Weltkarte
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
@@ -32,12 +32,12 @@ package TexturenSetzenSkalierenGrafik is
               ),
          
        Post => (
-                  TexturenSetzenSkalierenWeltkarte'Result.x >= 0.00
+                  Weltkarte'Result.x >= 0.00
                 and
-                  TexturenSetzenSkalierenWeltkarte'Result.y >= 0.00
+                  Weltkarte'Result.y >= 0.00
                );
 
-   function TexturenSetzenSkalierenStadtbewirtschaftung
+   function Stadtbewirtschaftung
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       GrößeExtern : in Sf.System.Vector2.sfVector2f)
@@ -50,9 +50,9 @@ package TexturenSetzenSkalierenGrafik is
               ),
          
        Post => (
-                  TexturenSetzenSkalierenStadtbewirtschaftung'Result.x >= 0.00
+                  Stadtbewirtschaftung'Result.x >= 0.00
                 and
-                  TexturenSetzenSkalierenStadtbewirtschaftung'Result.y >= 0.00
+                  Stadtbewirtschaftung'Result.y >= 0.00
                );
    
    function Stadtkarte

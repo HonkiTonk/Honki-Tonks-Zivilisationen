@@ -7,7 +7,7 @@ with SichtweitenGrafik;
 -- Sollte ich hier überall auch statt globale lieber lokale Grenzen verwenden? äöü
 package body TexturenSetzenSkalierenGrafik is
    
-   function TexturenSetzenSkalierenWeltkarte
+   function Weltkarte
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
@@ -25,11 +25,11 @@ package body TexturenSetzenSkalierenGrafik is
       
       return SkalierungKartenfeld;
       
-   end TexturenSetzenSkalierenWeltkarte;
+   end Weltkarte;
    
    
    
-   function TexturenSetzenSkalierenStadtbewirtschaftung
+   function Stadtbewirtschaftung
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
       TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;
       GrößeExtern : in Sf.System.Vector2.sfVector2f)
@@ -47,7 +47,7 @@ package body TexturenSetzenSkalierenGrafik is
       
       return SkalierungKartenfeld;
       
-   end TexturenSetzenSkalierenStadtbewirtschaftung;
+   end Stadtbewirtschaftung;
    
    
    

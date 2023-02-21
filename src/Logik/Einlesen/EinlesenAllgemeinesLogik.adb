@@ -26,5 +26,50 @@ package body EinlesenAllgemeinesLogik is
          return True;
       
    end VorzeitigesZeilenende;
+
+
+
+   -- Später eventuell noch um weitere Prüfungen erweitern? äöü
+   -- Eventuell eine bestimmte Menge an Dateien die vorhanden sein müssen mit übergeben und die dann durchgehen? äöü
+   function LeeresVerzeichnis
+     (VerzeichnisExtern : in String)
+      return Boolean
+   is begin
+      
+      NulldateiVorhanden := False;
+      
+      Start_Search (Search    => Prüfungssuche,
+                    Directory => VerzeichnisExtern,
+                    Pattern   => "",
+                    Filter    => (others => True));
+      
+      PrüfenSchleife:
+      while More_Entries (Search => Prüfungssuche) = True loop
+
+         Get_Next_Entry (Search          => Prüfungssuche,
+                         Directory_Entry => Verzeichnisprüfung);
+         
+         if
+           Simple_Name (Directory_Entry => Verzeichnisprüfung) = "."
+           or
+             Simple_Name (Directory_Entry => Verzeichnisprüfung) = ".."
+         then
+            null;
+            
+         elsif
+           Exists (Name => VerzeichnisExtern & "/0")
+         then
+            NulldateiVorhanden := True;
+            exit PrüfenSchleife;
+            
+         else
+            null;
+         end if;
+            
+      end loop PrüfenSchleife;
+         
+      return not NulldateiVorhanden;
+      
+   end LeeresVerzeichnis;
    
 end EinlesenAllgemeinesLogik;

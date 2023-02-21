@@ -44,7 +44,6 @@ package body EinheitenseitenleisteGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textbreite := 0.00;
-      MaximaleTextbreite := Viewfläche.x;
       -- Diese Zuweisung ist wichtig weil die gefundene Einheit eventuell auf einem Transporter ist.
       EinheitSpeziesNummer.Nummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
@@ -119,13 +118,13 @@ package body EinheitenseitenleisteGrafik is
                                                                                 TextbreiteExtern => Textbreite);
             
             Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
-                                                                    ErlaubteBreiteExtern => MaximaleTextbreite);
+                                                                    ErlaubteBreiteExtern => Viewfläche.x);
             Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
             
             if
-              Textbreite > MaximaleTextbreite
+              Textbreite > Viewfläche.x
             then
-               Textbreite := MaximaleTextbreite;
+               Textbreite := Viewfläche.x;
             
             else
                null;

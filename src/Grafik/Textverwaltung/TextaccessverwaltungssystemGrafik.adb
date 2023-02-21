@@ -5,6 +5,24 @@ with FensterGrafik;
 
 package body TextaccessverwaltungssystemGrafik is
    
+   procedure PositionSkalierenFarbeZeichnen
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      SkalierungExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+   is begin
+      
+      SkalierenFarbe (TextaccessExtern => TextaccessExtern,
+                      SkalierungExtern => SkalierungExtern,
+                      FarbeExtern      => FarbeExtern);
+      
+      PositionZeichnen (TextaccessExtern => TextaccessExtern,
+                        PositionExtern   => PositionExtern);
+      
+   end PositionSkalierenFarbeZeichnen;
+   
+   
+   
    procedure PositionFarbeZeichnen
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -18,6 +36,23 @@ package body TextaccessverwaltungssystemGrafik is
                         PositionExtern   => PositionExtern);
       
    end PositionFarbeZeichnen;
+   
+   
+   
+   procedure PositionFarbe
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+   is begin
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessExtern,
+                                 color => FarbeExtern);
+      
+      Sf.Graphics.Text.setPosition (text     => TextaccessExtern,
+                                    position => PositionExtern);
+      
+   end PositionFarbe;
+   
      
    
    procedure TextFarbe

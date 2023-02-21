@@ -76,8 +76,15 @@ package body SpielstandlisteLogik is
                if
                  NamePrüfen (NameExtern => To_Wide_Wide_String (Source => SpielstandVariablen.SpielstandnameLesen (NummerExtern => AktuellerSpielstand))) = False
                then
-                  null;
-                     
+                  SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => TextKonstanten.LeerUnboundedString,
+                                                               NummerExtern => AktuellerSpielstand);
+                  
+               elsif
+                 Size (Name => VerzeichnisKonstanten.SpielstandStrich & Simple_Name (Directory_Entry => Spielstanddatei)) not in KleinsteSpeicherdateigröße .. GrößteSpeicherdateigröße
+               then
+                  SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => TextKonstanten.LeerUnboundedString,
+                                                               NummerExtern => AktuellerSpielstand);
+                  
                elsif
                  AktuellerSpielstand = SpielstandVariablen.SpielstandArray'Last
                then

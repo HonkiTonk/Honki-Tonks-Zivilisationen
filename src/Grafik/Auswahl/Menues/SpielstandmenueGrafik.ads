@@ -24,9 +24,11 @@ private
    NeuerSpielstand : constant Positive := 13;
    
    Textbreite : Float;
+   NeueTextbreite : Float;
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
+   Skalierung : Sf.System.Vector2.sfVector2f;
 
    Farbe : Sf.Graphics.Color.sfColor;
       
@@ -46,13 +48,13 @@ private
                and
                  ViewflächeExtern.y >= 0.00
               ),
-      
+         
        Post => (
                   Textanzeige'Result.x >= 0.00
                 and
                   Textanzeige'Result.y >= 0.00
                );
-   
+      
    function TextSetzen
      (TextExtern : in Wide_Wide_String)
       return Wide_Wide_String;
