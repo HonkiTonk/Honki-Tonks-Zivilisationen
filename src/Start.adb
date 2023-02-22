@@ -12,7 +12,7 @@ with Sound;
 with NachGrafiktask;
 with FehlermeldungSchreiben;
 with StartEndeSound;
-with StartEndeMusik;
+-- with StartEndeMusik;
 with DebugobjekteLogik;
 
 procedure Start
@@ -207,10 +207,11 @@ begin
             Abort_Task (T => TaskID (Task_Logik_Enum));
             Abort_Task (T => TaskID (Task_Musik_Enum));
             Abort_Task (T => TaskID (Task_Sound_Enum));
-            StartEndeSound.Stoppen;
+            -- StartEndeSound.Stoppen;
             StartEndeSound.Entfernen;
-            StartEndeMusik.Stoppen;
-            StartEndeMusik.Entfernen;
+            -- StartEndeMusik.Stoppen;
+            -- Sollte das nicht auch nötig sein? äöü
+            -- StartEndeMusik.Entfernen;
             TasksLaufen := (others => False);
 
          when False =>

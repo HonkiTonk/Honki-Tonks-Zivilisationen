@@ -42,17 +42,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (22.02.2023):
+   -- Version 0.04.8040 => 0.04. (22.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.8005 => 0.04. (21.02.2023):
+   -- Version 0.04.8005 => 0.04.8040 (21.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Soundsystem erweitert um endlich Sounds verwenden zu können.
+   -- Das festlegen der Sounds und Soundaccesse überarbeitet und erweitert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
@@ -65,7 +66,7 @@ package ChangelogVorlage is
    -- Dateien die größer sind als die größtmögliche Speicherdatei werden jetzt nicht mehr als ladbarere Spielstände angezeigt.
    -- Variable Berechnung für die Ermittlung eines bestimmten Bereiches einer Textur eingebaut.
    -- Konstante Berechnung für die Ermittlung eines bestimmten Bereiches einer Textur, welche aus 32x32 großen Feldern besteht, eingebaut.
-   -- Diverse Texturberechnung eingebaut.
+   -- Diverse weitere Texturberechnung eingebaut.
    -- Die Anzeige der vorhandenen Spielstandliste skaliert die Namen der Spielstände jetzt einzeln anstatt alle auf einmal.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/verschoben.
    

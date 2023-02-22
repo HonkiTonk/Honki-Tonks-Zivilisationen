@@ -3,6 +3,7 @@ with KartenRecordKonstanten;
 with StadtKonstanten;
 with StadtDatentypen;
 with SpeziesKonstanten;
+with TonDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -14,6 +15,7 @@ with PassierbarkeitspruefungLogik;
 with EinheitSuchenLogik;
 with StadtSuchenLogik;
 with NachGrafiktask;
+with NachSoundtask;
 
 with KIBewegungsplanVereinfachenLogik;
 with KIBewegungsbewertungLogik;
@@ -106,6 +108,7 @@ package body BewegungsplanLogik is
       is
          when True =>
             NachGrafiktask.Einheitenbewegung := True;
+            NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Einheitenbewegung_Enum;
             
             DurchführungSchleife:
             loop
@@ -117,6 +120,7 @@ package body BewegungsplanLogik is
                  or
                    EinheitenKonstanten.LeerLebenspunkte = LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
                then
+                  NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Pause_Enum;
                   NachGrafiktask.Einheitenbewegung := False;
                   return False;
                         
@@ -247,6 +251,7 @@ package body BewegungsplanLogik is
             null;
       end case;
       
+      NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Pause_Enum;
       NachGrafiktask.Einheitenbewegung := False;
       return True;
       

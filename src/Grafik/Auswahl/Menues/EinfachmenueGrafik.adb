@@ -24,7 +24,6 @@ package body EinfachmenueGrafik is
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.MenüEinfachbereich.width, GrafikRecordKonstanten.MenüEinfachbereich.height));
-      Viewbreite := Viewfläche.x;
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
                                             GrößeExtern          => Viewfläche,
@@ -32,6 +31,8 @@ package body EinfachmenueGrafik is
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
+      
+      Viewbreite := Viewfläche.x;
                   
       Viewfläche := Textdarstellung (WelchesMenüExtern     => WelchesMenüExtern,
                                       ViewflächeExtern      => Viewfläche,

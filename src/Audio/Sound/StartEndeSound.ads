@@ -1,15 +1,14 @@
-private with Sf.Audio;
-private with Sf.Audio.Sound;
+with TonDatentypen;
 
 package StartEndeSound is
    pragma Elaborate_Body;
 
-   procedure Abspielen;
-   procedure Stoppen;
+   procedure Abspielen
+     (SoundExtern : in TonDatentypen.Sound_Vorhanden_Enum);
+
+   procedure Stoppen
+     (SoundExtern : in TonDatentypen.Sound_Vorhanden_Enum);
+
    procedure Entfernen;
-
-private
-
-   SoundTest : constant Sf.Audio.sfSound_Ptr := Sf.Audio.Sound.create;
 
 end StartEndeSound;

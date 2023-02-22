@@ -75,7 +75,7 @@ package body AllgemeineViewsGrafik is
             
          when others =>
             Überschrift (ÜberschriftExtern => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => 1,
-                                                                                             WelchesMenüExtern => WelchesMenüExtern),
+                                                                                          WelchesMenüExtern => WelchesMenüExtern),
                           HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                           SpielenamenExtern => False);
       end case;
@@ -118,6 +118,7 @@ package body AllgemeineViewsGrafik is
    
    
    
+   -- Das hier vielleicht nach EingabeanzeigeGrafik schieben? Wird aktuell ja nur dort benötigt. äöü
    procedure Frage
      (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
       FrageExtern : in Wide_Wide_String)

@@ -103,7 +103,7 @@ package body HauptmenueLogik is
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Ende_Enum;
       NachMusiktask.AktuelleMusik := TonDatentypen.Musik_Ende_Enum;
-      NachSoundtask.AktuellerSound := TonDatentypen.Sound_Ende_Enum;
+      NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Ende_Enum;
       
    end Hauptmenü;
 

@@ -69,6 +69,8 @@ package body EinlesenSoundsLogik is
       
       Close (File => DateiSounds);
       
+      EingeleseneSounds.SoundsFestlegen;
+      
    end EinlesenSounds;
 
 end EinlesenSoundsLogik;
