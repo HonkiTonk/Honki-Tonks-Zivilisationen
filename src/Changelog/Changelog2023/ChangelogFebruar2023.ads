@@ -52,7 +52,7 @@ package ChangelogVorlage is
    -- Version 0.04.8005 => 0.04.8040 (21.02.2023):
    
    -- Soundsystem erweitert um endlich Sounds verwenden zu können.
-   -- Das festlegen der Sounds und Soundaccesse überarbeitet und erweitert.
+   -- Das Festlegen der Sounds und Soundaccesse überarbeitet und erweitert.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
