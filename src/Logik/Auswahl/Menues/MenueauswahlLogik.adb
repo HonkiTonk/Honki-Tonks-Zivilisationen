@@ -1,9 +1,11 @@
 with TastenbelegungDatentypen;
+with TonDatentypen;
 
 with TasteneingabeLogik;
 with MenuerueckgabenLogik;
 with NachGrafiktask;
 with MausauswahlLogik;
+with NachSoundtask;
 
 package body MenueauswahlLogik is
 
@@ -57,6 +59,7 @@ package body MenueauswahlLogik is
                   null;
                   
                else
+                  NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Klick_Enum;
                   NachGrafiktask.AktuelleAuswahl.AuswahlEins := MenueKonstanten.LeerAuswahl;
                   return AktuelleAuswahl;
                end if;

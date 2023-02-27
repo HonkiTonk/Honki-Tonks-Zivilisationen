@@ -124,8 +124,11 @@ package body SprachauswahlGrafik is
             null;
          end if;
                  
-         Textposition.y := TextberechnungenHoeheGrafik.KonstanteTextposition (PositionExtern   => Textposition.y,
-                                                                              ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+         -- .KonstanteTextposition (PositionExtern   => Textposition.y,
+         --                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
       end loop AnzeigeSchleife;
             

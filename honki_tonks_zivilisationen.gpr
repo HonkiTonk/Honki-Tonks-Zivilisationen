@@ -6,7 +6,7 @@ project Honki_Tonks_Zivilisationen is
    for Object_Dir use "obj_alire/" & Honki_Tonks_Zivilisationen_Config.Build_Profile;
    for Create_Missing_Dirs use "True";
    for Exec_Dir use "Honki Tonks Zivilisationen";
-   for Main use ("Start.adb");
+   for Main use ("HonkiTonksZivilisationen.adb");
 
    package Compiler is
       for Default_Switches ("ada") use ("-gnatW8", "-Og", "-ffunction-sections", "-fdata-sections", "-g", "-gnatVa", "-gnatwa.X", "-gnatyaA-defhiknOprSxM222lCL8s");

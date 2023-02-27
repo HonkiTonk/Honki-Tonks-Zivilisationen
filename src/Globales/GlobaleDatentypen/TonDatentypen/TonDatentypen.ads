@@ -21,7 +21,7 @@ package TonDatentypen is
    type Sound_Aktuelle_Auswahl_Enum is (
                                         Sound_Pause_Enum,
                                         
-                                        Sound_Einheitenbewegung_Enum,
+                                        Sound_Klick_Enum, Sound_Einheitenbewegung_Enum,
                                         
                                         Sound_Ende_Enum
                                        );

@@ -15,7 +15,7 @@ with StartEndeSound;
 -- with StartEndeMusik;
 with DebugobjekteLogik;
 
-procedure Start
+procedure HonkiTonksZivilisationen
 is
 
    UnerwarteterFehler : Boolean := False;
@@ -252,4 +252,4 @@ begin
 
    end loop SpielLäuftSchleife;
 
-end Start;
+end HonkiTonksZivilisationen;

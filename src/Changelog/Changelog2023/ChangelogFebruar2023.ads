@@ -1,50 +1,46 @@
 package ChangelogVorlage is
   
-   -- Version 0.04. => 0.0. (28.02.2023):
+   -- Version 0.04.8090 => 0.0. (28.02.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (27.02.2023):
+   -- Version 0.04.8065 => 0.04.8090 (27.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (26.02.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der zu überlappenden Text bei der Sprachauswahl führte.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.04. => 0.04. (25.02.2023):
+   -- Version 0.04.8065 => 0.04.8065 (26.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (24.02.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.04. => 0.04. (23.02.2023):
+   -- Version 0.04.8065 => 0.04.8065 (25.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.04.8040 => 0.04. (22.02.2023):
+   -- Version 0.04.8065 => 0.04.8065 (24.02.2023):
    
-   -- 
+   -- null.
+   
+   
+
+   -- Version 0.04.8065 => 0.04.8065 (23.02.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.04.8040 => 0.04.8065 (22.02.2023):
+   
+   -- Soundordner hinzugefügt.
    -- Kleinigkeiten korrigiert.
    
    
