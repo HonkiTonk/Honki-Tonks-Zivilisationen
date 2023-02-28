@@ -9,6 +9,7 @@ package StartEndeSound is
    procedure Stoppen
      (SoundExtern : in TonDatentypen.Sound_Vorhanden_Enum);
 
+   procedure TaskStoppen;
    procedure Entfernen;
 
 end StartEndeSound;

@@ -92,7 +92,7 @@ package body TexteingabeLogik is
       
       NachGrafiktask.Eingabe := GrafikDatentypen.Text_Eingabe_Enum;
       
-      NachLogiktask.Warten := True;
+      NachLogiktask.GrafikWarten := True;
       NachGrafiktask.TextEingabe := True;
       
       EingabeAllgemeinLogik.EingabeAbwarten;

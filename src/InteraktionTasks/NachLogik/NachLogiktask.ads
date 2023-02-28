@@ -6,7 +6,9 @@ with SystemRecords;
 package NachLogiktask is
    pragma Elaborate_Body;
    
-   Warten : Boolean := True;
+   SoundWarten : Boolean := True;
+   MusikWarten : Boolean := True;
+   GrafikWarten : Boolean := True;
    IntroAbwarten : Boolean := True;
 
    -- Eingabesystemwerte

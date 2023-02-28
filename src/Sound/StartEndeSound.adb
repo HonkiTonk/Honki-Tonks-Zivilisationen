@@ -2,6 +2,7 @@ with Sf.Audio.SoundStatus;
 with Sf.Audio.Sound;
 with Sf.Audio.SoundBuffer;
 
+with NachSoundtask;
 with EingeleseneSounds;
 
 package body StartEndeSound is
@@ -43,6 +44,7 @@ package body StartEndeSound is
    is
       use type Sf.Audio.sfSoundBuffer_Ptr;
       use type Sf.Audio.sfSound_Ptr;
+      use type Sf.Audio.SoundStatus.sfSoundStatus;
    begin
       
       if
@@ -55,23 +57,37 @@ package body StartEndeSound is
       then
          null;
          
-      else
+      elsif
+        Sf.Audio.Sound.getStatus (sound => EingeleseneSounds.Soundaccesse (SoundExtern)) = Sf.Audio.SoundStatus.sfPlaying
+      then
          Sf.Audio.Sound.stop (sound => EingeleseneSounds.Soundaccesse (SoundExtern));
+         
+      else
+         null;
       end if;
       
    end Stoppen;
    
    
    
-   procedure Entfernen
+   procedure TaskStoppen
    is begin
       
+      NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Ende_Enum;
+      NachSoundtask.SoundStoppen := TonDatentypen.Sound_Ende_Enum;
       
+   end TaskStoppen;
+   
+   
+   
+   procedure Entfernen
+   is begin
+            
       SoundSchleife:
       for SoundSchleifenwert in EingeleseneSounds.SoundaccesseArray'Range loop
          
+         -- Das hier ist notwendig um die Fehlermeldung "AL lib: (EE) alc_cleanup: 1 device not closed" beim Beenden des Programms zu verhindern.
          Sf.Audio.SoundBuffer.destroy (soundBuffer => EingeleseneSounds.Sound (SoundSchleifenwert));
-         -- Das hier ist auf jeden Fall notwendig um die Fehlermeldung "AL lib: (EE) alc_cleanup: 1 device not closed" beim Beenden des Programms zu verhindern. Da oben drüber auch? äöü
          Sf.Audio.Sound.destroy (sound => EingeleseneSounds.Soundaccesse (SoundSchleifenwert));
          
       end loop SoundSchleife;

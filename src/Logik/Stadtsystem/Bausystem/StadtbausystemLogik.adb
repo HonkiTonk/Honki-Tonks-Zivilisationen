@@ -10,6 +10,7 @@ with EinheitenmodifizierungLogik;
 with NachGrafiktask;
 with InteraktionAuswahl;
 with MausauswahlLogik;
+with OftVerwendetSound;
 
 package body StadtbausystemLogik is
 
@@ -163,21 +164,18 @@ package body StadtbausystemLogik is
                   null;
                   
                else
-                  GewähltesBauprojekt := AktuelleAuswahl;
-                  exit AuswahlSchleife;
+                  OftVerwendetSound.Klick;
+                  return AktuelleAuswahl;
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
-               GewähltesBauprojekt := StadtKonstanten.LeerBauprojekt;
-               exit AuswahlSchleife;
+               return StadtKonstanten.LeerBauprojekt;
                
             when others =>
                null;
          end case;
          
       end loop AuswahlSchleife;
-      
-      return GewähltesBauprojekt;
       
    end AuswahlBauprojektSFML;
 

@@ -1,5 +1,7 @@
 with RueckgabeDatentypen;
 
+private with SystemRecords;
+
 package OptionenSoundLogik is
    pragma Elaborate_Body;
 
@@ -9,5 +11,10 @@ package OptionenSoundLogik is
 private
 
    AuswahlWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
+
+   NeueLaustärke : SystemRecords.ZahlenEingabeRecord;
+
+   procedure Soundlautstärke;
+   procedure Musiklautstärke;
 
 end OptionenSoundLogik;

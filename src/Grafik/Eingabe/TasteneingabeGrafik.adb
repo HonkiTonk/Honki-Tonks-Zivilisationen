@@ -89,7 +89,7 @@ package body TasteneingabeGrafik is
       end loop TasteSchleife;
       
       NachGrafiktask.TastenEingabe := False;
-      NachLogiktask.Warten := False;
+      NachLogiktask.GrafikWarten := False;
       
    end Tasteneingabe;
    

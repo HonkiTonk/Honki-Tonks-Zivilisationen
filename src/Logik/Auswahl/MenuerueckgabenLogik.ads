@@ -43,6 +43,7 @@ private
    Menüende : MenüendeArray := (
                                   MenueDatentypen.Optionen_Menü_Enum           => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Optionen_Menü_Enum) - AbzugZHB,
                                   MenueDatentypen.Grafik_Menü_Enum             => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Grafik_Menü_Enum) - AbzugZHB,
+                                  MenueDatentypen.Sound_Menü_Enum              => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Sound_Menü_Enum) - AbzugZHB,
                                   MenueDatentypen.Editoren_Menü_Enum           => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Editoren_Menü_Enum) - AbzugZHB,
                                   MenueDatentypen.Sonstiges_Menü_Enum          => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Sonstiges_Menü_Enum) - AbzugZHB,
                                   MenueDatentypen.Debug_Menü_Enum              => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Debug_Menü_Enum) - AbzugFertig,
@@ -58,14 +59,14 @@ private
                                   -- Aufgrund der Beschaffenheit dieser Menüs sind die Abzüge hier nicht dem Standard entsprechend, auch wenn die Abzüge eventuell identisch mit einem der Standards sind!
                                   MenueDatentypen.Diplomatie_Menü_Enum         => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Diplomatie_Menü_Enum) - 3,
                                   
-                                  -- Das hier sind Spezialmenüs die nicht so einfach in das aktuelle System integriert werden können.
-                                  -- Oder wie beispielsweise das Soundmenü noch unvollständig sind.
-                                  MenueDatentypen.Sound_Menü_Enum              => 1,
+                                  -- Das hier sind Spezialmenüs die nicht so einfach in das aktuelle System integriert werden können oder noch unvollständig sind.
                                   MenueDatentypen.Einstellungen_Menü_Enum      => 1,
                                   MenueDatentypen.Haupt_Menü_Enum              => 1,
                                   MenueDatentypen.Spiel_Menü_Enum              => 1
                                  );
 
+   
+   
    function Hauptmenü
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
@@ -85,15 +86,6 @@ private
               );
    
    function SpieleinstellungenMenü
-     (EndeExtern : in Positive;
-      AktuelleAuswahlExtern : in Positive)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-     with
-       Pre => (
-                 AktuelleAuswahlExtern <= EndeExtern
-              );
-            
-   function SoundMenü
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum

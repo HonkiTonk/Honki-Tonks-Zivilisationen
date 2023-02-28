@@ -13,15 +13,6 @@ package body EinlesenSoundsLogik is
 
    procedure EinlesenSounds
    is begin
-      
-      if
-        Platzhalter
-      then
-         return;
-         
-      else
-         null;
-      end if;
             
       case
         Exists (Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei)
@@ -64,6 +55,8 @@ package body EinlesenSoundsLogik is
             when True =>
                EingeleseneSounds.Sound (SoundSchleifenwert) := Sf.Audio.SoundBuffer.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => Sound)));
          end case;
+         
+         AktuelleZeile := AktuelleZeile + 1;
          
       end loop SoundsSchleife;
       

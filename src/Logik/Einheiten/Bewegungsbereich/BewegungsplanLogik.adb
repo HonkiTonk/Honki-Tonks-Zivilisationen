@@ -108,7 +108,6 @@ package body BewegungsplanLogik is
       is
          when True =>
             NachGrafiktask.Einheitenbewegung := True;
-            NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Einheitenbewegung_Enum;
             
             DurchführungSchleife:
             loop
@@ -120,7 +119,7 @@ package body BewegungsplanLogik is
                  or
                    EinheitenKonstanten.LeerLebenspunkte = LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
                then
-                  NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Pause_Enum;
+                  NachSoundtask.SoundStoppen := TonDatentypen.Sound_Einheitenbewegung_Enum;
                   NachGrafiktask.Einheitenbewegung := False;
                   return False;
                         
@@ -132,6 +131,8 @@ package body BewegungsplanLogik is
                   StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                                                                                KoordinatenExtern => NeueKoordinaten);
                end if;
+               
+               NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Einheitenbewegung_Enum;
                
                if
                  KartenRecordKonstanten.LeerKoordinate = NeueKoordinaten
@@ -247,11 +248,12 @@ package body BewegungsplanLogik is
                   
             end loop DurchführungSchleife;
             
+            NachSoundtask.SoundStoppen := TonDatentypen.Sound_Einheitenbewegung_Enum;
+            
          when False =>
             null;
       end case;
       
-      NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Pause_Enum;
       NachGrafiktask.Einheitenbewegung := False;
       return True;
       

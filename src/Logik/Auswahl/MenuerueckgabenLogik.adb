@@ -1,4 +1,5 @@
 with Fehlermeldungssystem;
+with OftVerwendetSound;
 
 package body MenuerueckgabenLogik is
    
@@ -9,6 +10,8 @@ package body MenuerueckgabenLogik is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
+      OftVerwendetSound.Klick;
+      
       case
         WelchesMenüExtern
       is
@@ -18,10 +21,6 @@ package body MenuerueckgabenLogik is
             
          when MenueDatentypen.Spiel_Menü_Enum =>
             return Spielmenü (EndeExtern            => EndeExtern,
-                               AktuelleAuswahlExtern => AktuelleAuswahlExtern);
-            
-         when MenueDatentypen.Sound_Menü_Enum =>
-            return SoundMenü (EndeExtern            => EndeExtern,
                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when MenueDatentypen.Einstellungen_Menü_Enum =>
@@ -225,29 +224,6 @@ package body MenuerueckgabenLogik is
       end if;
       
    end SpieleinstellungenMenü;
-   
-   
-      
-   function SoundMenü
-     (EndeExtern : in Positive;
-      AktuelleAuswahlExtern : in Positive)
-      return RueckgabeDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahlExtern = Anfang
-      then
-         null;
-         
-      else
-         null;
-      end if;
-      
-      return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern,
-                                    FertigExtern          => False);
-      
-   end SoundMenü;
    
    
    

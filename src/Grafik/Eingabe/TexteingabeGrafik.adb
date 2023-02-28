@@ -57,14 +57,14 @@ package body TexteingabeGrafik is
                then
                   NachLogiktask.EingegebenerText.ErfolgreichAbbruch := True;
                   NachGrafiktask.TextEingabe := False;
-                  NachLogiktask.Warten := False;
+                  NachLogiktask.GrafikWarten := False;
                      
                elsif
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
                then
                   NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
                   NachGrafiktask.TextEingabe := False;
-                  NachLogiktask.Warten := False;
+                  NachLogiktask.GrafikWarten := False;
                   
                else
                   null;
@@ -76,7 +76,7 @@ package body TexteingabeGrafik is
                then
                   NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
                   NachGrafiktask.TextEingabe := False;
-                  NachLogiktask.Warten := False;
+                  NachLogiktask.GrafikWarten := False;
                   
                else
                   null;

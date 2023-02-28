@@ -98,7 +98,7 @@ package body Grafik is
             SichtweitenGrafik.KartenfelderAbmessungBerechnen;
             SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
             NachGrafiktask.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
-            NachLogiktask.Warten := False;
+            NachLogiktask.GrafikWarten := False;
             
          when GrafikDatentypen.Bildrate_Ändern_Enum =>
             FensterGrafik.BildrateÄndern;
@@ -148,7 +148,7 @@ package body Grafik is
       is
          when GrafikDatentypen.Grafik_Start_Enum =>
             NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
-            NachLogiktask.Warten := False;
+            NachLogiktask.GrafikWarten := False;
             
             -- Wenn ich diese schreckliche Introlösung ersetze, dann die Sprachauswahl auch in die Menüs verschieben? äöü
          when GrafikDatentypen.Grafik_Sprache_Enum =>

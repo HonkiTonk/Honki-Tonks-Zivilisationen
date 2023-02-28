@@ -7,7 +7,7 @@ package body EingabeAllgemeinLogik is
    procedure EingabeAbwarten
    is begin
               
-      while NachLogiktask.Warten loop
+      while NachLogiktask.GrafikWarten loop
          
          delay ZeitKonstanten.WartezeitEingabe;
          

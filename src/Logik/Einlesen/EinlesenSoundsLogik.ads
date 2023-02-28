@@ -8,8 +8,6 @@ package EinlesenSoundsLogik is
 
 private
 
-   Platzhalter : Boolean := True;
-
    AktuelleZeile : Positive;
 
    Sound : Unbounded_Wide_Wide_String;

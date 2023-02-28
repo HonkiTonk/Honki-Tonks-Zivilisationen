@@ -61,39 +61,40 @@ package body OptionenGrafikLogik is
    is begin
       
       EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MinimaleAuflösungsbreite),
-                                                            ZahlenMaximumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MaximaleAuflösungsbreite),
-                                                            WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungsbreite);
+                                                             ZahlenMaximumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MaximaleAuflösungsbreite),
+                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungsbreite);
       
-      if
+      case
         EingabeAuflösung.ErfolgreichAbbruch
-      then
-         NeueAuflösung.x := Sf.sfUint32 (EingabeAuflösung.EingegebeneZahl);
-           
-      else
-         return;
-      end if;
+      is
+         when False =>
+            return;
+            
+         when True =>
+            NeueAuflösung.x := Sf.sfUint32 (EingabeAuflösung.EingegebeneZahl);
       
-      EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MinimaleAuflösunghöhe),
-                                                             ZahlenMaximumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MaximaleAuflösungshöhe),
-                                                             WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungshöhe);
+            EingabeAuflösung := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MinimaleAuflösunghöhe),
+                                                                   ZahlenMaximumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MaximaleAuflösungshöhe),
+                                                                   WelcheFrageExtern   => TextnummernKonstanten.FrageAuflösungshöhe);
+      end case;
       
-      if
+      case
         EingabeAuflösung.ErfolgreichAbbruch
-      then
-         NeueAuflösung.y := Sf.sfUint32 (EingabeAuflösung.EingegebeneZahl);
-           
-      else
-         NeueAuflösung.x := 0;
-         return;
-      end if;
+      is
+         when False =>
+            return;
+            
+         when True =>
+            NeueAuflösung.y := Sf.sfUint32 (EingabeAuflösung.EingegebeneZahl);
       
-      SchreibeEinstellungenGrafik.Auflösung (AuflösungExtern => NeueAuflösung);
+            SchreibeEinstellungenGrafik.Auflösung (AuflösungExtern => NeueAuflösung);
       
-      NachLogiktask.Warten := True;
-      NachGrafiktask.FensterVerändert := GrafikDatentypen.Auflösung_Verändert_Enum;
+            NachLogiktask.GrafikWarten := True;
+            NachGrafiktask.FensterVerändert := GrafikDatentypen.Auflösung_Verändert_Enum;
+      end case;
       
       ErzeugungNeuesFensterAbwartenSchleife:
-      while NachLogiktask.Warten loop
+      while NachLogiktask.GrafikWarten loop
          
          delay ZeitKonstanten.WartezeitLogik;
          
@@ -112,16 +113,17 @@ package body OptionenGrafikLogik is
                                                            ZahlenMaximumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MaximaleBildrate),
                                                            WelcheFrageExtern   => TextnummernKonstanten.FrageBildrate);
       
-      if
+      case
         EingabeBildrate.ErfolgreichAbbruch
-      then
-         return;
-         
-      else
-         SchreibeEinstellungenGrafik.Bildrate (BildrateExtern => Sf.sfUint32 (EingabeBildrate.EingegebeneZahl));
-         NachGrafiktask.FensterVerändert := GrafikDatentypen.Bildrate_Ändern_Enum;
-      end if;
+      is
+         when False =>
+            return;
             
+         when True =>
+            SchreibeEinstellungenGrafik.Bildrate (BildrateExtern => Sf.sfUint32 (EingabeBildrate.EingegebeneZahl));
+            NachGrafiktask.FensterVerändert := GrafikDatentypen.Bildrate_Ändern_Enum;
+      end case;
+      
       NeueBildrateAbwartenSchleife:
       while NachGrafiktask.FensterVerändert = GrafikDatentypen.Bildrate_Ändern_Enum loop
          

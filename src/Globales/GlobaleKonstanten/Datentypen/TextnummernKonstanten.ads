@@ -101,9 +101,11 @@ package TextnummernKonstanten is
    FrageGebäudeverkauf : constant Positive := 32;
    FrageSpielstandLöschen : constant Positive := 33;
    FrageStadtSuchen : constant Positive := 34;
+   FrageSoundlautstärke : constant Positive := 35;
+   FrageMusiklautstärke : constant Positive := 36;
    
    AnfangFrage : constant Positive := 1;
-   EndeFrage : constant Positive := 34;
+   EndeFrage : constant Positive := 36;
    
    
    

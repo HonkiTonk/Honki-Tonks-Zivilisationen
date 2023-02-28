@@ -1,9 +1,16 @@
 package ChangelogVorlage is
   
-   -- Version 0.04.8090 => 0.0. (28.02.2023):
+   -- Version 0.04.8090 => 0.04.8190 (28.02.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einfache Menüklicksound eingebaut.
+   -- Soundsystem erweitert um die Wiedergabe von Sounds besser zu koordinieren und zu verwalten.
+   -- Einfachen Bewegungssound eingebaut.
+   -- Starteinstellungen für Sound und Musik eingebaut.
+   -- Die Einstellungen für den Sound und die Musik werden jetzt erst vorgenommen nachdem alle Dateien entsprechend eingelesen wurden.
+   -- Angefangen das Optionsmenü für die Toneinstellungen zu erweitern.
+   -- Fehler im Grafikmenü korrigiert, welcher die Änderung der Bildrate unmöglich machte.
+   -- Es ist jetzt möglich die Sound- und Musiklautstärke im Menü zu ändern.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 

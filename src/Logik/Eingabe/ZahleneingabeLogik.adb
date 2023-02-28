@@ -48,7 +48,7 @@ package body ZahleneingabeLogik is
       ZahlenSchleife:
       loop
          
-         NachLogiktask.Warten := True;
+         NachLogiktask.GrafikWarten := True;
          NachGrafiktask.TastenEingabe := True;
          EingabeAllgemeinLogik.EingabeAbwarten;
          Zahlen := NachLogiktask.TastaturTaste;

@@ -192,7 +192,11 @@ begin
             Abort_Task (T => TaskID (Task_Logik_Enum));
             Abort_Task (T => TaskID (Task_Grafik_Enum));
             Abort_Task (T => TaskID (Task_Musik_Enum));
+
+            -- Wird benötigt damit nicht zusätzlich die Fehlermeldung "AL lib: (EE) alc_cleanup: 1 device not closed" noch mit angezeigt wird.
+            StartEndeSound.Entfernen;
             Abort_Task (T => TaskID (Task_Sound_Enum));
+
             FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Unerwartet beendet.");
             exit SpielLäuftSchleife;
 
@@ -204,11 +208,14 @@ begin
         NachGrafiktask.FensterGeschlossen
       is
          when True =>
+            StartEndeSound.TaskStoppen;
+
             Abort_Task (T => TaskID (Task_Logik_Enum));
             Abort_Task (T => TaskID (Task_Musik_Enum));
-            Abort_Task (T => TaskID (Task_Sound_Enum));
-            -- StartEndeSound.Stoppen;
-            StartEndeSound.Entfernen;
+            -- Den Soundtask abzubrechen sollte nicht mehr nötig sein, da durch den Aufruf von StartEndeSound.AllesStoppen der Soundtask bereits beendet wird.
+            -- Könnte es da Problemfälle geben? äöü
+            -- Abort_Task (T => TaskID (Task_Sound_Enum));
+
             -- StartEndeMusik.Stoppen;
             -- Sollte das nicht auch nötig sein? äöü
             -- StartEndeMusik.Entfernen;

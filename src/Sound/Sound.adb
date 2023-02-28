@@ -1,9 +1,10 @@
-with TonDatentypen;
 with ZeitKonstanten;
 
 with NachSoundtask;
 with StartEndeSound;
 with LogiktaskAnAlle;
+with StarteinstellungenSound;
+with NachLogiktask;
 
 package body Sound is
 
@@ -17,6 +18,9 @@ package body Sound is
          delay ZeitKonstanten.WartezeitSound;
          
       end loop EinlesenAbwartenSchleife;
+      
+      StarteinstellungenSound.Lautstärke;
+      NachLogiktask.SoundWarten := False;
             
       SoundSchleife:
       loop
@@ -32,6 +36,7 @@ package body Sound is
                exit SoundSchleife;
                
             when others =>
+               WiedergegebeneSounds (NachSoundtask.SoundAbspielen) := True;
                StartEndeSound.Abspielen (SoundExtern => NachSoundtask.SoundAbspielen);
          end case;
          
@@ -39,7 +44,15 @@ package body Sound is
            NachSoundtask.SoundStoppen
          is
             when TonDatentypen.Sound_Pause_Enum =>
-               null;
+               if
+                 WiedergegebeneSounds (NachSoundtask.SoundAbspielen) = True
+               then
+                  WiedergegebeneSounds (NachSoundtask.SoundAbspielen) := False;
+                  NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Pause_Enum;
+                  
+               else
+                  null;
+               end if;
                
             when TonDatentypen.Sound_Ende_Enum =>
                exit SoundSchleife;
@@ -51,7 +64,6 @@ package body Sound is
          
       end loop SoundSchleife;
       
-      -- StartEndeSound.Stoppen;
       StartEndeSound.Entfernen;
       
    end Sound;

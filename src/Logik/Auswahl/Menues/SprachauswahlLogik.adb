@@ -8,6 +8,7 @@ with TasteneingabeLogik;
 with Fehlermeldungssystem;
 with NachGrafiktask;
 with MausauswahlLogik;
+with OftVerwendetSound;
 
 package body SprachauswahlLogik is
 
@@ -142,9 +143,11 @@ package body SprachauswahlLogik is
                  and
                    MehrereSeiten
                then
+                  OftVerwendetSound.Klick;
                   SprachenListeFestlegen;
                   
                else
+                  OftVerwendetSound.Klick;
                   return AktuelleSprachen (AktuelleAuswahl);
                end if;
                

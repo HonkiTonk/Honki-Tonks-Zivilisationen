@@ -5,6 +5,8 @@ with NachMusiktask;
 with IntroMusik;
 with StartEndeMusik;
 with LogiktaskAnAlle;
+with StarteinstellungenMusik;
+with NachLogiktask;
 
 package body Musik is
 
@@ -17,11 +19,14 @@ package body Musik is
          delay ZeitKonstanten.WartezeitMusik;
          
       end loop EinlesenAbwartenSchleife;
+      
+      StarteinstellungenMusik.Lautstärke;
+      NachLogiktask.MusikWarten := False;
          
       -- Musik wird direkt parallel aufgerufen. Steht auch im SFML Tutorial, allerdings unter Sound, und der Beschreibung der ASFML.
       -- Beim Abspielen von Musik einfach immer eine Sekunde delayen bevor geprüft wird ob die Musik noch spielt?
       StartEndeMusik.Abspielen;
-      
+            
       MusikSchleife:
       loop
          

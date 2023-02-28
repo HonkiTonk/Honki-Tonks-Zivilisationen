@@ -13,7 +13,7 @@ package body TasteneingabeLogik is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
       
-      NachLogiktask.Warten := True;
+      NachLogiktask.GrafikWarten := True;
       NachGrafiktask.TastenEingabe := True;
       
       EingabeAllgemeinLogik.EingabeAbwarten;
@@ -53,7 +53,7 @@ package body TasteneingabeLogik is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
       
-      NachLogiktask.Warten := True;
+      NachLogiktask.GrafikWarten := True;
       NachGrafiktask.TastenEingabe := True;
       
       EingabeAllgemeinLogik.EingabeAbwarten;
@@ -107,7 +107,7 @@ package body TasteneingabeLogik is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
       
-      NachLogiktask.Warten := True;
+      NachLogiktask.GrafikWarten := True;
       NachGrafiktask.TastenEingabe := True;
       
       EingabeAllgemeinLogik.EingabeAbwarten;
@@ -161,7 +161,7 @@ package body TasteneingabeLogik is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
       
-      NachLogiktask.Warten := True;
+      NachLogiktask.GrafikWarten := True;
       NachGrafiktask.TastenEingabe := True;
       
       EingabeAllgemeinLogik.EingabeAbwarten;
@@ -215,7 +215,7 @@ package body TasteneingabeLogik is
       TasteneingabeSchleife:
       loop
          
-         NachLogiktask.Warten := True;
+         NachLogiktask.GrafikWarten := True;
          NachGrafiktask.TastenEingabe := True;
          
          EingabeAllgemeinLogik.EingabeAbwarten;

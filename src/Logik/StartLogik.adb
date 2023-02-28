@@ -20,11 +20,29 @@ package body StartLogik is
       EinlesenEinstellungenLogik.EinlesenEinstellungen;
       
       EinlesenLogik.EinlesenOhneAnzeige;
+      LogiktaskAnAlle.EinlesenAbgeschlossen := True;
+      
+      TonSchleife:
+      loop
+         
+         if
+           NachLogiktask.SoundWarten
+           or
+             NachLogiktask.MusikWarten
+         then
+            delay ZeitKonstanten.WartezeitLogik;
+            
+         else
+            exit TonSchleife;
+         end if;
+         
+      end loop TonSchleife;
       
       NachGrafiktask.ErzeugeFenster := True;
       
+      -- Solche Warteschleifen mal alle in einer Datei sammeln und entsprechend aufrufen? äöü
       FensterVorhandenSchleife:
-      while NachLogiktask.Warten loop
+      while NachLogiktask.GrafikWarten loop
          
          delay ZeitKonstanten.WartezeitLogik;
          
@@ -33,7 +51,6 @@ package body StartLogik is
       EinlesenLogik.EinlesenMitAnzeige;
       NachGrafiktask.AccesseSetzen := True;
       
-      LogiktaskAnAlle.EinlesenAbgeschlossen := True;
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Intro_Enum;
       
       IntroSchleife:

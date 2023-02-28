@@ -1,12 +1,16 @@
 with SystemRecords;
 with VerzeichnisKonstanten;
 with GrafikRecords;
+with TonRecords;
 
 with LeseOptionen;
 
 with TexteinstellungenGrafik;
 with SpezieseinstellungenGrafik;
 with LeseEinstellungenGrafik;
+
+with EinstellungenSound;
+with EinstellungenMusik;
 
 package body SchreibenEinstellungenLogik is
    
@@ -61,7 +65,11 @@ package body SchreibenEinstellungenLogik is
               Mode => Out_File,
               Name => VerzeichnisKonstanten.Soundeinstelllungen);
       
+      TonRecords.SoundeinstellungenRecord'Write (Stream (File => DateiSoundeinstellungen),
+                                                 EinstellungenSound.Soundeinstellungen);
       
+      TonRecords.MusikeinstellungenRecord'Write (Stream (File => DateiSoundeinstellungen),
+                                                 EinstellungenMusik.Musikeinstellungen);
       
       Close (File => DateiSoundeinstellungen);
             
