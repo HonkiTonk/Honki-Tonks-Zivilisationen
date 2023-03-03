@@ -2,7 +2,7 @@ package ChangelogVorlage is
   
    -- Version 0.04.8090 => 0.04.8190 (28.02.2023):
    
-   -- Einfache Menüklicksound eingebaut.
+   -- Einfachen Menüklicksound eingebaut.
    -- Soundsystem erweitert um die Wiedergabe von Sounds besser zu koordinieren und zu verwalten.
    -- Einfachen Bewegungssound eingebaut.
    -- Starteinstellungen für Sound und Musik eingebaut.
