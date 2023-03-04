@@ -22,6 +22,7 @@ with ForschungserfolgGrafik;
 with TasteneingabeGrafik;
 with AbspannGrafik;
 with VerkaufsauswahlGrafik;
+with UebergabeRecordErmittelnGrafik;
 -- with Diagnoseinformationen;
 
 package body Grafik is
@@ -202,8 +203,8 @@ package body Grafik is
                                                      AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
          when GrafikDatentypen.Grafik_Bauen_Enum =>
-            BauauswahlGrafik.Bauauswahl (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt),
-                                         AktuelleAuswahlExtern    => NachGrafiktask.AktuelleBauauswahl);
+            BauauswahlGrafik.Bauauswahl (BauauswahlExtern      => UebergabeRecordErmittelnGrafik.Bauauswahl (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt)),
+                                         AktuelleAuswahlExtern => NachGrafiktask.AktuelleBauauswahl);
             
          when GrafikDatentypen.Grafik_Verkaufen_Enum =>
             VerkaufsauswahlGrafik.Verkaufsauswahl (SpeziesExtern         => NachGrafiktask.AktuelleSpezies,

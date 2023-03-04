@@ -4,13 +4,14 @@ with VerzeichnisKonstanten;
 with OptionenVariablen;
 
 with SchreibeOptionen;
+with SchreibeEinstellungenSound;
+with SchreibeEinstellungenMusik;
+with SchreibeEinstellungenGrafik;
 
 with EinstellungenGrafik;
 with EinstellungenMusik;
 with EinstellungenSound;
-with SchreibeEinstellungenGrafik;
 
--- Das eventuell nach Bereichen aufteilen? äöü
 package body EinlesenEinstellungenLogik is
 
    procedure EinlesenEinstellungen
@@ -18,7 +19,7 @@ package body EinlesenEinstellungenLogik is
       
       Nutzereinstellungen;
       Grafikeinstellungen;
-      Soundeinstelllungen;
+      Toneinstelllungen;
       
    end EinlesenEinstellungen;
    
@@ -179,11 +180,11 @@ package body EinlesenEinstellungenLogik is
    
    
    
-   procedure Soundeinstelllungen
+   procedure Toneinstelllungen
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.Soundeinstelllungen)
+        Exists (Name => VerzeichnisKonstanten.Toneinstellungen)
       is
          when False =>
             EinstellungenMusik.StandardeinstellungenLaden;
@@ -193,9 +194,9 @@ package body EinlesenEinstellungenLogik is
          when True =>
             Open (File => DateiSoundeinstellungen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Soundeinstelllungen);
+                  Name => VerzeichnisKonstanten.Toneinstellungen);
             
-            PrüfungErfolgreich := SoundeinstellungenDurchgehen (LadenPrüfenExtern => False);
+            PrüfungErfolgreich := ToneinstellungenDurchgehen (LadenPrüfenExtern => False);
       
             Close (File => DateiSoundeinstellungen);
       end case;
@@ -206,9 +207,9 @@ package body EinlesenEinstellungenLogik is
          when True =>
             Open (File => DateiSoundeinstellungen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Soundeinstelllungen);
+                  Name => VerzeichnisKonstanten.Toneinstellungen);
             
-            Nullwert := SoundeinstellungenDurchgehen (LadenPrüfenExtern => True);
+            Nullwert := ToneinstellungenDurchgehen (LadenPrüfenExtern => True);
       
             Close (File => DateiSoundeinstellungen);
             
@@ -217,16 +218,20 @@ package body EinlesenEinstellungenLogik is
             EinstellungenSound.StandardeinstellungenLaden;
       end case;
       
-   end Soundeinstelllungen;
+   end Toneinstelllungen;
    
    
    
-   function SoundeinstellungenDurchgehen
+   function ToneinstellungenDurchgehen
      (LadenPrüfenExtern : in Boolean)
       return Boolean
    is begin
       
+      TonRecords.SoundeinstellungenRecord'Read (Stream (File => DateiSoundeinstellungen),
+                                                Soundeinstellungen);
       
+      TonRecords.MusikeinstellungenRecord'Read (Stream (File => DateiSoundeinstellungen),
+                                                Musikeinstellungen);
       
       case
         LadenPrüfenExtern
@@ -235,7 +240,8 @@ package body EinlesenEinstellungenLogik is
             null;
             
          when True =>
-            null;
+            SchreibeEinstellungenSound.GanzerEintrag (EintragExtern => Soundeinstellungen);
+            SchreibeEinstellungenMusik.GanzerEintrag (EintrageExtern => Musikeinstellungen);
       end case;
       
       return True;
@@ -244,6 +250,6 @@ package body EinlesenEinstellungenLogik is
       when Constraint_Error | End_Error =>
          return False;
          
-   end SoundeinstellungenDurchgehen;
+   end ToneinstellungenDurchgehen;
 
 end EinlesenEinstellungenLogik;

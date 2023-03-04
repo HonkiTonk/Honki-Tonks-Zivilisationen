@@ -81,5 +81,27 @@ package StadtRecords is
       KIBeschäftigung : KIDatentypen.Stadt_Aufgabe_Enum;
       
    end record;
+   
+   
+   
+   type StadtGrafikRecord is record
+      
+      Spezies : SpeziesDatentypen.Spezies_Enum;
+      
+      Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+      GebäudeVorhanden : GebäudeVorhandenArray;
+      
+   end record;
+   
+   
+   
+   type BaumenüGrafikRecord is record
+      
+      Spezies : SpeziesDatentypen.Spezies_Enum;
+      
+      Bauprojekt : BauprojektRecord;
+      Bauzeit : ProduktionDatentypen.Produktion;
+      
+   end record;
 
 end StadtRecords;

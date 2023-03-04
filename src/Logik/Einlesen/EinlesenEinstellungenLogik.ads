@@ -4,6 +4,7 @@ private with SpezieseinstellungenGrafik;
 private with SystemRecords;
 private with TexteinstellungenGrafik;
 private with GrafikRecords;
+private with TonRecords;
 
 package EinlesenEinstellungenLogik is
    pragma Elaborate_Body;
@@ -32,9 +33,13 @@ private
    Speziesfarben : SpezieseinstellungenGrafik.SpeziesFarbenArray;
    Rahmenfarben : SpezieseinstellungenGrafik.SpeziesFarbenArray;
    
+   Soundeinstellungen : TonRecords.SoundeinstellungenRecord;
+   
+   Musikeinstellungen : TonRecords.MusikeinstellungenRecord;
+   
    procedure Nutzereinstellungen;
    procedure Grafikeinstellungen;
-   procedure Soundeinstelllungen;
+   procedure Toneinstelllungen;
    
    
    
@@ -46,7 +51,7 @@ private
      (LadenPrüfenExtern : in Boolean)
       return Boolean;
    
-   function SoundeinstellungenDurchgehen
+   function ToneinstellungenDurchgehen
      (LadenPrüfenExtern : in Boolean)
       return Boolean;
 

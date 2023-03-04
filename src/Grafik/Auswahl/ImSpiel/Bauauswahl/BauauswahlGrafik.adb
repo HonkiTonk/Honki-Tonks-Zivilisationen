@@ -7,8 +7,7 @@ with TextaccessVariablen;
 with Views;
 with EinheitenKonstanten;
 with ViewKonstanten;
-
-with LeseStadtGebaut;
+with StadtKonstanten;
 
 with TextberechnungenBreiteGrafik;
 with InteraktionAuswahl;
@@ -27,7 +26,7 @@ with TextaccessverwaltungssystemGrafik;
 package body BauauswahlGrafik is
 
    procedure Bauauswahl
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+     (BauauswahlExtern : in StadtRecords.BaumenüGrafikRecord;
       AktuelleAuswahlExtern : in StadtRecords.BauprojektRecord)
    is begin
       
@@ -40,11 +39,11 @@ package body BauauswahlGrafik is
       is
          when StadtKonstanten.LeerGebäudeID =>
             Einheiten (AuswahlExtern => AktuelleAuswahlExtern.Einheit,
-                       SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+                       SpeziesExtern => BauauswahlExtern.Spezies);
             
          when others =>
             BauauswahlGebaeudeGrafik.Gebäudeinformationen (AuswahlExtern     => AktuelleAuswahlExtern.Gebäude,
-                                                            SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+                                                            SpeziesExtern     => BauauswahlExtern.Spezies,
                                                             ViewbereichExtern => ViewKonstanten.BaumenüGebäudeinformationen);
       end case;
       
@@ -53,14 +52,14 @@ package body BauauswahlGrafik is
       is
          when EinheitenKonstanten.LeerID =>
             Gebäude (AuswahlExtern => AktuelleAuswahlExtern.Gebäude,
-                      SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+                      SpeziesExtern => BauauswahlExtern.Spezies);
             
          when others =>
             BauauswahlEinheitenGrafik.Einheiteninformationen (AuswahlExtern => AktuelleAuswahlExtern.Einheit,
-                                                              SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+                                                              SpeziesExtern => BauauswahlExtern.Spezies);
       end case;
       
-      Aktuell (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      Aktuell (BauauswahlExtern => BauauswahlExtern);
       
    end Bauauswahl;
    
@@ -177,7 +176,7 @@ package body BauauswahlGrafik is
    
    
    procedure Aktuell
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (BauauswahlExtern : in StadtRecords.BaumenüGrafikRecord)
    is begin
       
       ViewflächeAktuell := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeAktuell,
@@ -191,26 +190,24 @@ package body BauauswahlGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeAktuell);
       
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
-      
-      AktuellesBauprojekt := LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-      
       if
-        AktuellesBauprojekt.Gebäude /= 0
+        BauauswahlExtern.Bauprojekt.Gebäude /= 0
       then
-         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern    => AktuellesBauprojekt.Gebäude,
-                                                                                                                                  SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauauswahlExtern.Bauprojekt.Gebäude,
+                                                                                                                                  SpeziesExtern => BauauswahlExtern.Spezies);
          
       elsif
-        AktuellesBauprojekt.Einheit /= 0
+        BauauswahlExtern.Bauprojekt.Einheit /= 0
       then
-         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => AktuellesBauprojekt.Einheit,
-                                                                                                                                   SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauauswahlExtern.Bauprojekt.Einheit,
+                                                                                                                                   SpeziesExtern => BauauswahlExtern.Spezies);
                      
       else
          return;
       end if;
+      
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textbreite := 0.00;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          str  => To_Wide_Wide_String (Source => Text));
@@ -228,7 +225,7 @@ package body BauauswahlGrafik is
                                                                       TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-      Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & LeseStadtGebaut.Bauzeit (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image;
+      Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & BauauswahlExtern.Bauzeit'Wide_Wide_Image;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          str  => To_Wide_Wide_String (Source => Text));

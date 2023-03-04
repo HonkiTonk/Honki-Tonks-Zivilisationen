@@ -14,7 +14,7 @@ package VerzeichnisKonstanten is
    
    Nutzereinstellungen : constant String (1 .. 19) := "Nutzereinstellungen";
    Grafikeinstellungen : constant String (1 .. 19) := "Grafikeinstellungen";
-   Soundeinstelllungen : constant String (1 .. 18) := "Soundeinstellungen";
+   Toneinstellungen : constant String (1 .. 16) := "Toneinstellungen";
    Tastenbelegung : constant String (1 .. 14) := "Tastenbelegung";
    Sprachen : constant String (1 .. 8) := "Sprachen";
    SprachenStrich : constant String (1 .. 9) := Sprachen & "/";

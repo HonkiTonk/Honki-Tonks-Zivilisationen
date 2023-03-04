@@ -189,17 +189,19 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (04.03.2023):
+   -- Version 0.04.8250 => 0.04. (04.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.8200 => 0.04. (03.03.2023):
+   -- Version 0.04.8200 => 0.04.8250 (03.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Zugriffsdateien für die Toneinstellungen eingebaut.
+   -- Toneinstellungen werden jetzt genau wie alle anderen Einstellungen geschrieben/eingelesen.
+   -- Angefangen die Ermittlung von relevaten Einheiten/Stadtwerten am Anfang der Grafikberechnungen durchzuführen, damit spätere Änderungen durch den Logiktask weniger/keine Probleme erzeugen.
+   -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst/erweitert.
    
    
 

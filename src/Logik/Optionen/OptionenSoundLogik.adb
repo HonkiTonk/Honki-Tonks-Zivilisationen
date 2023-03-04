@@ -1,14 +1,16 @@
 with MenueDatentypen;
 with TextnummernKonstanten;
+with TonKonstanten;
+
+with SchreibeEinstellungenSound;
+with SchreibeEinstellungenMusik;
+with SchreibenEinstellungenLogik;
 
 with AuswahlaufteilungLogik;
 with Fehlermeldungssystem;
 with ZahleneingabeLogik;
-with EinstellungenSound;
-with EinstellungenMusik;
 with StarteinstellungenSound;
 with StarteinstellungenMusik;
-with SchreibenEinstellungenLogik;
 
 package body OptionenSoundLogik is
 
@@ -47,8 +49,8 @@ package body OptionenSoundLogik is
    procedure Soundlautstärke
    is begin
       
-      NeueLaustärke := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Natural'First,
-                                                          ZahlenMaximumExtern => 100,
+      NeueLaustärke := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Natural (TonKonstanten.MinimaleLautstärke),
+                                                          ZahlenMaximumExtern => Positive (TonKonstanten.MaximaleLautstärke),
                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageSoundlautstärke);
       
       case
@@ -58,7 +60,7 @@ package body OptionenSoundLogik is
             null;
             
          when True =>
-            EinstellungenSound.Lautstärke := Float (NeueLaustärke.EingegebeneZahl);
+            SchreibeEinstellungenSound.Lautstärke (LautstärkeExtern => Float (NeueLaustärke.EingegebeneZahl));
             StarteinstellungenSound.Lautstärke;
       end case;
       
@@ -69,8 +71,8 @@ package body OptionenSoundLogik is
    procedure Musiklautstärke
    is begin
       
-      NeueLaustärke := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Natural'First,
-                                                          ZahlenMaximumExtern => 100,
+      NeueLaustärke := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Natural (TonKonstanten.MinimaleLautstärke),
+                                                          ZahlenMaximumExtern => Positive (TonKonstanten.MaximaleLautstärke),
                                                           WelcheFrageExtern   => TextnummernKonstanten.FrageMusiklautstärke);
       
       case
@@ -80,7 +82,7 @@ package body OptionenSoundLogik is
             null;
             
          when True =>
-            EinstellungenMusik.Lautstärke := Float (NeueLaustärke.EingegebeneZahl);
+            SchreibeEinstellungenMusik.Lautstärke (LautstärkeExtern => Float (NeueLaustärke.EingegebeneZahl));
             StarteinstellungenMusik.Lautstärke;
       end case;
       

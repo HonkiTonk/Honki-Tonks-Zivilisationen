@@ -22,6 +22,8 @@ with NachGrafiktask;
 package body KartenaufteilungGrafik is
    
    procedure Weltkarte
+    -- (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
+    --  EinheitExtern : in EinheitenRecords.EinheitenGebautRecord)
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       

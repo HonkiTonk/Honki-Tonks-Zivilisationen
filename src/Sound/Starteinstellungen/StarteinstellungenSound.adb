@@ -1,6 +1,7 @@
 with Sf.Audio.Sound;
 
-with EinstellungenSound;
+with LeseEinstellungenSound;
+
 with EingeleseneSounds;
 
 package body StarteinstellungenSound is
@@ -20,7 +21,7 @@ package body StarteinstellungenSound is
             
          else
             Sf.Audio.Sound.setVolume (sound  => EingeleseneSounds.Soundaccesse (SoundSchleifenwert),
-                                      volume => EinstellungenSound.Lautstärke);
+                                      volume => LeseEinstellungenSound.Lautstärke);
          end if;
          
       end loop SoundSchleife;

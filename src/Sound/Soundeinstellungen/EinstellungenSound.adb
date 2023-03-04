@@ -3,7 +3,7 @@ package body EinstellungenSound is
    procedure StandardeinstellungenLaden
    is begin
       
-      Lautstärke := Standardlautstärke;
+      Soundeinstellungen := SoundeinstellungenStandard;
       
    end StandardeinstellungenLaden;
 

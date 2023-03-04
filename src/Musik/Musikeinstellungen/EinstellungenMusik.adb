@@ -3,7 +3,7 @@ package body EinstellungenMusik is
    procedure StandardeinstellungenLaden
    is begin
       
-      Lautstärke := Standardlautstärke;
+      Musikeinstellungen := MusikeinstellungenStandard;
       
    end StandardeinstellungenLaden;
 
