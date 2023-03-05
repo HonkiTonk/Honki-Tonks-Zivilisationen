@@ -2,8 +2,8 @@ private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
 with EinheitenDatentypen;
-with EinheitenRecords;
-with StadtRecords;
+with StadtGrafikRecords;
+with EinheitenGrafikRecords;
 with StadtKonstanten;
 
 with LeseGrenzen;
@@ -15,21 +15,21 @@ package KartenaufteilungGrafik is
    use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    procedure Weltkarte
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord)
      with
        Pre => (
-                 EinheitSpeziesNummerExtern.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+                 EinheitenauswahlExtern.SpeziesNummer.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies)
                and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
    procedure Stadtkarte
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
      with
        Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+                 StadtauswahlExtern.SpeziesNummer.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies)
               );
    
 private

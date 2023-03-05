@@ -1,34 +1,35 @@
 with SpeziesDatentypen;
 with KampfDatentypen;
 with StadtRecords;
-with StadtKonstanten;
+with KartenverbesserungDatentypen;
+with KartenRecords;
 
-with LeseGrenzen;
 with LeseSpeziesbelegung;
 
 package KampfwerteStadtErmittelnLogik is
    pragma Elaborate_Body;
-   use type SpeziesDatentypen.Spezies_Enum;
    use type SpeziesDatentypen.Spieler_Enum;
 
    function AktuelleVerteidigungStadt
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (IDExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      GebäudeExtern : in StadtRecords.GebäudeVorhandenArray)
       return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-               and
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    function AktuellerAngriffStadt
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (IDExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      GebäudeExtern : in StadtRecords.GebäudeVorhandenArray)
       return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-               and
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
 private

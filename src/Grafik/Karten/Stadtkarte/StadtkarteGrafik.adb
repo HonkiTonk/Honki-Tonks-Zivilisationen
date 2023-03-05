@@ -8,7 +8,6 @@ with TextaccessVariablen;
 with KartenDatentypen;
 
 with LeseWeltkarte;
-with LeseStadtGebaut;
 
 with FensterGrafik;
 with EingeleseneTexturenGrafik;
@@ -27,7 +26,7 @@ with SichtweitenGrafik;
 package body StadtkarteGrafik is
 
    procedure Stadtkarte
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (StadtauswahlExtern : in StadtGrafikRecords.StadtkarteGrafikRecord)
    is
       use type KartenDatentypen.Kartenfeld;
    begin
@@ -36,7 +35,7 @@ package body StadtkarteGrafik is
                                             GrößeExtern          => FensterGrafik.AktuelleAuflösung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtKarte));
       
-      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
+      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => StadtauswahlExtern.Koordinaten);
       GrafischeDarstellung (GrundExtern => Gesamtgrund);
       GebäudeZusatzinformationen := StadtKonstanten.LeerGebäudeID;
       
@@ -57,8 +56,7 @@ package body StadtkarteGrafik is
             end if;
                      
             case
-              LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                 WelchesGebäudeExtern     => GebäudeID)
+              StadtauswahlExtern.GebäudeVorhanden (GebäudeID)
             is
                when False =>
                   null;
@@ -66,7 +64,7 @@ package body StadtkarteGrafik is
                when True =>
                   KartenspritesZeichnenGrafik.SpriteZeichnenVariabel (PositionExtern     => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y),
                                                                       GrößeExtern        => Grafikgröße,
-                                                                      TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtSpeziesNummerExtern.Spezies, GebäudeID));
+                                                                      TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies, GebäudeID));
                   
                   if
                     True = Vergleiche.Auswahlposition (MauspositionExtern => InteraktionAllgemein.Mausposition,
@@ -83,7 +81,7 @@ package body StadtkarteGrafik is
       end loop YAchseSchleife;
       
       Zusatzinformationen (GebäudeIDExtern => GebäudeZusatzinformationen,
-                           SpeziesExtern   => StadtSpeziesNummerExtern.Spezies);
+                           SpeziesExtern   => StadtauswahlExtern.Spezies);
       
    end Stadtkarte;
    

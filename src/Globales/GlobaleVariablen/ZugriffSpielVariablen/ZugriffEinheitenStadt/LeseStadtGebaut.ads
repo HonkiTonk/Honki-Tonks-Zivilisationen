@@ -206,6 +206,16 @@ package LeseStadtGebaut is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
+   function AlleGebäude
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+      return StadtRecords.GebäudeVorhandenArray
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
    function Name
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Unbounded_Wide_Wide_String
@@ -221,6 +231,16 @@ package LeseStadtGebaut is
       YKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
       XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei)
       return Boolean
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   function GesamteBewirtschaftung
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+      return StadtRecords.UmgebungBewirtschaftungArray
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

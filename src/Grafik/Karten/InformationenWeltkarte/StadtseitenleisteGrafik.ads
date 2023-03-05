@@ -7,6 +7,7 @@ with Sf.System.Vector2;
 with SpeziesDatentypen;
 with StadtRecords;
 with StadtKonstanten;
+with StadtGrafikRecords;
 
 private with GrafikRecordKonstanten;
 private with ProduktionDatentypen;
@@ -23,12 +24,12 @@ package StadtseitenleisteGrafik is
    use type Sf.Graphics.sfView_Ptr;
    
    procedure Stadtinformationen
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
      with
        Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+                 StadtauswahlExtern.SpeziesNummer.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies)
               );
    
    function Leer
@@ -53,16 +54,16 @@ package StadtseitenleisteGrafik is
      
    procedure Stadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
       AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
       ViewExtern : in Sf.Graphics.sfView_Ptr)
      with
        Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+                 StadtauswahlExtern.SpeziesNummer.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies)
                and
                  ViewExtern /= null
               );
@@ -72,16 +73,10 @@ private
    VolleInformation : Boolean;
    MausInformationen : Boolean;
    
-   Nahrungsproduktion : ProduktionDatentypen.Stadtproduktion;
-   
-   Bauzeit : ProduktionDatentypen.Produktion;
-   
    Textbreite : Float;
    Textskalierung : Float;
          
    Text : Unbounded_Wide_Wide_String;
-   
-   Bauprojekt : StadtRecords.BauprojektRecord;
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Zwischenfläche : Sf.System.Vector2.sfVector2f;
@@ -94,27 +89,22 @@ private
    
    
    function Nahrung
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (ProduktionExtern : in ProduktionDatentypen.Stadtproduktion;
+      VorhandenExtern : in ProduktionDatentypen.Stadtproduktion)
       return Unbounded_Wide_Wide_String
      with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              ),
-         
        Post => (
                   To_Wide_Wide_String (Source => Nahrung'Result)'Length > 0 
                );
    
    function Kampfwerte
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
       return Unbounded_Wide_Wide_String
      with
        Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 StadtauswahlExtern.SpeziesNummer.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies)
               ),
          
        Post => (
@@ -122,13 +112,13 @@ private
                );
 
    function AktuellesBauprojekt
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      BauprojektExtern : in StadtRecords.BauprojektRecord;
+      BauzeitExtern : in ProduktionDatentypen.Produktion)
       return Unbounded_Wide_Wide_String
      with
        Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
       
    function ZahlAlsStringProduktion is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Produktion);

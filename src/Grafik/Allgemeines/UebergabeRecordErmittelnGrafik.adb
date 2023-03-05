@@ -1,25 +1,28 @@
 with EinheitenKonstanten;
+with KartenRecordKonstanten;
 
--- with LeseEinheitenGebaut;
+with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
 package body UebergabeRecordErmittelnGrafik is
 
    function Einheit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenRecords.EinheitGrafikRecord
+      return EinheitenGrafikRecords.EinheitGrafikRecord
    is begin
       
-      ZwischenspeicherEinheit.Spezies := EinheitSpeziesNummerExtern.Spezies;
+      ZwischenspeicherEinheit.SpeziesNummer := EinheitSpeziesNummerExtern;
       
       case
         EinheitSpeziesNummerExtern.Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
-            null;
+            ZwischenspeicherEinheit.ID := EinheitenKonstanten.LeerID;
+            ZwischenspeicherEinheit.Koordinaten := KartenRecordKonstanten.LeerKoordinate;
             
          when others =>
-            null;
+            ZwischenspeicherEinheit.ID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+            ZwischenspeicherEinheit.Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
       return ZwischenspeicherEinheit;
@@ -28,21 +31,50 @@ package body UebergabeRecordErmittelnGrafik is
    
    
    
+   -- Hier noch weitere Prüfungen einbauen, für den Fall das beim Lesen der Stadt die Stadt entfernt wird? äöü
+   -- Eventuell dann einen leeren Wert zurückgeben, bei Grafik prüfen und gegebenenfalls gar nicht erst die Stadt anzeigen? äöü
    function Stadt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtRecords.StadtGrafikRecord
+      return StadtGrafikRecords.StadtGrafikRecord
    is begin
       
-      ZwischenspeicherStadt.Spezies := StadtSpeziesNummerExtern.Spezies;
+      ZwischenspeicherStadt.SpeziesNummer := StadtSpeziesNummerExtern;
       
       case
         StadtSpeziesNummerExtern.Nummer
       is
          when StadtKonstanten.LeerNummer =>
-            null;
+            ZwischenspeicherStadt.ID := StadtKonstanten.LeerID;
+            ZwischenspeicherStadt.Koordinaten := KartenRecordKonstanten.LeerKoordinate;
+            ZwischenspeicherStadt.EinwohnerArbeiter := (others => StadtKonstanten.LeerEinwohner);
+            ZwischenspeicherStadt.Nahrungsmittel := StadtKonstanten.LeerNahrungsmittel;
+            ZwischenspeicherStadt.Nahrungsproduktion := StadtKonstanten.LeerNahrungsproduktion;
+            ZwischenspeicherStadt.Produktionrate := StadtKonstanten.LeerProduktionrate;
+            ZwischenspeicherStadt.Geldgewinnung := StadtKonstanten.LeerGeldgewinnung;
+            ZwischenspeicherStadt.Forschungsrate := StadtKonstanten.LeerForschungsrate;
+            ZwischenspeicherStadt.Bauprojekt := StadtKonstanten.LeerBauprojekt;
+            ZwischenspeicherStadt.Bauzeit := StadtKonstanten.LeerBauzeit;
+            ZwischenspeicherStadt.Korruption := StadtKonstanten.LeerKorruption;
+            ZwischenspeicherStadt.GebäudeVorhanden := (others => StadtKonstanten.LeerGebäude);
+            ZwischenspeicherStadt.UmgebungBewirtschaftung := (others => (others => StadtKonstanten.LeerUmgebungBewirtschaftet));
             
          when others =>
-            null;
+            ZwischenspeicherStadt.ID := LeseStadtGebaut.ID (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            ZwischenspeicherStadt.Koordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            ZwischenspeicherStadt.EinwohnerArbeiter := (LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                                                           EinwohnerArbeiterExtern  => True),
+                                                        LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                                                           EinwohnerArbeiterExtern  => False));
+            ZwischenspeicherStadt.Nahrungsmittel := LeseStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            ZwischenspeicherStadt.Nahrungsproduktion := LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            ZwischenspeicherStadt.Produktionrate := LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            ZwischenspeicherStadt.Geldgewinnung := LeseStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            ZwischenspeicherStadt.Forschungsrate := LeseStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            ZwischenspeicherStadt.Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            ZwischenspeicherStadt.Bauzeit := LeseStadtGebaut.Bauzeit (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            ZwischenspeicherStadt.Korruption := LeseStadtGebaut.Korruption (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            ZwischenspeicherStadt.GebäudeVorhanden := LeseStadtGebaut.AlleGebäude (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            ZwischenspeicherStadt.UmgebungBewirtschaftung := LeseStadtGebaut.GesamteBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end case;
       
       return ZwischenspeicherStadt;
@@ -53,7 +85,7 @@ package body UebergabeRecordErmittelnGrafik is
    
    function Bauauswahl
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtRecords.BaumenüGrafikRecord
+      return StadtGrafikRecords.BaumenüGrafikRecord
    is begin
       
       ZwischenspeicherBauauswahl.Spezies := StadtSpeziesNummerExtern.Spezies;

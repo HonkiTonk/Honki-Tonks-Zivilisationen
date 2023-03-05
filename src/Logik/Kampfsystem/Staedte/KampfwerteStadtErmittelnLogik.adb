@@ -1,7 +1,6 @@
 with StadtDatentypen;
 with KartenKonstanten;
 
-with LeseStadtGebaut;
 with LeseGebaeudeDatenbank;
 with LeseVerbesserungenDatenbank;
 
@@ -10,32 +9,35 @@ with KartenfelderwerteLogik;
 package body KampfwerteStadtErmittelnLogik is
 
    function AktuelleVerteidigungStadt
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (IDExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      GebäudeExtern : in StadtRecords.GebäudeVorhandenArray)
       return KampfDatentypen.KampfwerteGroß
    is
       use type KampfDatentypen.KampfwerteGroß;
    begin
       
-      VerteidigungWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                                                         SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
+      VerteidigungWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => IDExtern,
+                                                                         SpeziesExtern      => SpeziesExtern,
                                                                          WelcherWertExtern  => KartenKonstanten.KampfVerteidigung)
-        + KartenfelderwerteLogik.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                                   SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
+        + KartenfelderwerteLogik.FeldVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                   SpeziesExtern     => SpeziesExtern);
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
-         if
-           False = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                      WelchesGebäudeExtern     => GebäudeSchleifenwert)
-         then
-            null;
-            
-         else
-            VerteidigungWert := VerteidigungWert + LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => StadtSpeziesNummerExtern.Spezies,
-                                                                                     IDExtern         => GebäudeSchleifenwert,
-                                                                                     KampfBonusExtern => KartenKonstanten.KampfVerteidigung);
-         end if;
+         case
+           GebäudeExtern (GebäudeSchleifenwert)
+         is
+            when True =>
+               VerteidigungWert := VerteidigungWert + LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
+                                                                                        IDExtern         => GebäudeSchleifenwert,
+                                                                                        KampfBonusExtern => KartenKonstanten.KampfVerteidigung);
+
+            when False =>
+               null;
+         end case;
          
       end loop GebäudeSchleife;
       
@@ -46,32 +48,35 @@ package body KampfwerteStadtErmittelnLogik is
    
    
    function AktuellerAngriffStadt
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (IDExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      GebäudeExtern : in StadtRecords.GebäudeVorhandenArray)
       return KampfDatentypen.KampfwerteGroß
    is
       use type KampfDatentypen.KampfwerteGroß;
    begin
       
-      AngriffWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                                                    SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
+      AngriffWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => IDExtern,
+                                                                    SpeziesExtern      => SpeziesExtern,
                                                                     WelcherWertExtern  => KartenKonstanten.KampfAngriff)
-        + KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                              SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
+        + KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => KoordinatenExtern,
+                                              SpeziesExtern     => SpeziesExtern);
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
-         if
-           False = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                      WelchesGebäudeExtern     => GebäudeSchleifenwert)
-         then
-            null;
-            
-         else
-            AngriffWert := AngriffWert + LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => StadtSpeziesNummerExtern.Spezies,
-                                                                           IDExtern         => GebäudeSchleifenwert,
-                                                                           KampfBonusExtern => KartenKonstanten.KampfAngriff);
-         end if;
+         case
+           GebäudeExtern (GebäudeSchleifenwert)
+         is
+            when True =>
+               AngriffWert := AngriffWert + LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
+                                                                              IDExtern         => GebäudeSchleifenwert,
+                                                                              KampfBonusExtern => KartenKonstanten.KampfAngriff);
+
+            when False =>
+               null;
+         end case;
          
       end loop GebäudeSchleife;
       

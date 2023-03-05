@@ -5,8 +5,8 @@ private with Sf.System.Vector2;
 with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenDatentypen;
+with KartenRecords;
 
-private with KartenRecords;
 private with KartenDatentypen;
 
 with LeseGrenzen;
@@ -19,8 +19,10 @@ package CursorplatzierungAltGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
    use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
+   -- Hier und wieter unten noch Contracts einbauen. äöü
    procedure CursorplatzierungAlt
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -47,13 +49,13 @@ private
    Achsenviewfläche : Sf.System.Vector2.sfVector2f;
    
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    AlteCursorkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    Koordinatenänderung : KartenRecords.AchsenKartenfeldRecord;
    
    procedure Platzierung
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -74,7 +76,8 @@ private
               );
    
    function Einheitenbereich
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (

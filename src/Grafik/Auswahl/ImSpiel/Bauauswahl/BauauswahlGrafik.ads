@@ -6,6 +6,7 @@ with SpeziesDatentypen;
 with StadtDatentypen;
 with EinheitenDatentypen;
 with StadtRecords;
+with StadtGrafikRecords;
 
 private with GrafikRecordKonstanten;
 
@@ -18,7 +19,7 @@ package BauauswahlGrafik is
    use type StadtDatentypen.GebäudeIDMitNullwert;
 
    procedure Bauauswahl
-     (BauauswahlExtern : in StadtRecords.BaumenüGrafikRecord;
+     (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord;
       AktuelleAuswahlExtern : in StadtRecords.BauprojektRecord)
      with
        Pre => (
@@ -57,7 +58,7 @@ private
               );
 
    procedure Aktuell
-     (BauauswahlExtern : in StadtRecords.BaumenüGrafikRecord)
+     (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => BauauswahlExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum

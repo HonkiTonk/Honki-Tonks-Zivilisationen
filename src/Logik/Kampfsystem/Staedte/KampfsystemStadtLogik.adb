@@ -35,8 +35,14 @@ package body KampfsystemStadtLogik is
          return False;
          
       else
-         KampfwerteVerteidiger.Verteidigung := KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
-         KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
+         KampfwerteVerteidiger.Verteidigung := KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (IDExtern          => LeseStadtGebaut.ID (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
+                                                                                                        KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
+                                                                                                        SpeziesExtern     => VerteidigendeStadtSpeziesNummerExtern.Spezies,
+                                                                                                        GebäudeExtern     => LeseStadtGebaut.AlleGebäude (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern));
+         KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (IDExtern          => LeseStadtGebaut.ID (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
+                                                                                               KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
+                                                                                               SpeziesExtern     => VerteidigendeStadtSpeziesNummerExtern.Spezies,
+                                                                                               GebäudeExtern     => LeseStadtGebaut.AlleGebäude (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern));
       
          KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
                                                                                                  LogikGrafikExtern          => True);

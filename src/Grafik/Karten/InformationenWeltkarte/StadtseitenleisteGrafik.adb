@@ -4,11 +4,8 @@ with Meldungstexte;
 with TextnummernKonstanten;
 with TextKonstanten;
 with Views;
-with KartenverbesserungDatentypen;
 with GrafikDatentypen;
 with ViewKonstanten;
-
-with LeseStadtGebaut;
 
 with KampfwerteStadtErmittelnLogik;
 with TextberechnungenHoeheGrafik;
@@ -19,17 +16,18 @@ with EinheitenbeschreibungenGrafik;
 with TextberechnungenBreiteGrafik;
 with DebugobjekteLogik;
 with TextaccessverwaltungssystemGrafik;
+with AllgemeineBerechnungen;
 
 package body StadtseitenleisteGrafik is
    
    procedure Stadtinformationen
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
    is begin
       
-      Stadt (SpeziesExtern            => StadtSpeziesNummerExtern.Spezies,
-             StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-             AnzeigebereichExtern     => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen),
-             ViewExtern               => Views.StadtviewAccesse (ViewKonstanten.StadtInformationen));
+      Stadt (SpeziesExtern        => StadtauswahlExtern.SpeziesNummer.Spezies,
+             StadtauswahlExtern   => StadtauswahlExtern,
+             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen),
+             ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtInformationen));
       
    end Stadtinformationen;
    
@@ -61,7 +59,7 @@ package body StadtseitenleisteGrafik is
 
    procedure Stadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
       AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
       ViewExtern : in Sf.Graphics.sfView_Ptr)
    is
@@ -75,37 +73,28 @@ package body StadtseitenleisteGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      -- Die Anzeige des Stadtnamens mal noch nicht entfernen, eventuell will ich das später wieder einbauen?
-      -- Stadtname (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       Textbreite := 0.00;
       
-      case
-        LeseStadtGebaut.ID (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
-      is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return;
-            
-         when others =>
-            FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                                                                                                                    EinwohnerArbeiterExtern => True)'Wide_Wide_Image;
-      end case;
+      FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & StadtauswahlExtern.EinwohnerArbeiter (1)'Wide_Wide_Image;
       
       -- Volle Stadtinformationen, nur sichtbar wenn eigene Stadt oder durch Debug.
       if
-        StadtSpeziesNummerExtern.Spezies = SpeziesExtern
+        StadtauswahlExtern.SpeziesNummer.Spezies = SpeziesExtern
         or
           DebugobjekteLogik.Debug.VolleInformation
       then
-         FestzulegenderText (2) := Nahrung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-         FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " "
-           & ZahlAlsStringProduktion (ZahlExtern => LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
-         FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " &
-           ZahlAlsStringProduktion (ZahlExtern => LeseStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
-         FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & LeseStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (6) := Kampfwerte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-         FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKorruption) & LeseStadtGebaut.Korruption (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & LeseStadtGebaut.Arbeitslose (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image;
-         FestzulegenderText (9) := AktuellesBauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+         FestzulegenderText (2) := Nahrung (ProduktionExtern => StadtauswahlExtern.Nahrungsproduktion,
+                                            VorhandenExtern  => StadtauswahlExtern.Nahrungsmittel);
+         FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " " & ZahlAlsStringProduktion (ZahlExtern => StadtauswahlExtern.Produktionrate);
+         FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " & ZahlAlsStringProduktion (ZahlExtern => StadtauswahlExtern.Geldgewinnung);
+         FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & StadtauswahlExtern.Forschungsrate'Wide_Wide_Image;
+         FestzulegenderText (6) := Kampfwerte (StadtauswahlExtern => StadtauswahlExtern);
+         FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKorruption) & StadtauswahlExtern.Korruption'Wide_Wide_Image;
+         FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & AllgemeineBerechnungen.FreieEinwohner (EinwohnerExtern => StadtauswahlExtern.EinwohnerArbeiter (1),
+                                                                                                                                               ArbeiterExtern  => StadtauswahlExtern.EinwohnerArbeiter (2))'Wide_Wide_Image;
+         FestzulegenderText (9) := AktuellesBauprojekt (SpeziesExtern    => StadtauswahlExtern.SpeziesNummer.Spezies,
+                                                        BauprojektExtern => StadtauswahlExtern.Bauprojekt,
+                                                        BauzeitExtern    => StadtauswahlExtern.Bauzeit);
                                  
          VolleInformation := True;
 
@@ -145,28 +134,25 @@ package body StadtseitenleisteGrafik is
    
    
    function Nahrung
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (ProduktionExtern : in ProduktionDatentypen.Stadtproduktion;
+      VorhandenExtern : in ProduktionDatentypen.Stadtproduktion)
       return Unbounded_Wide_Wide_String
    is
       use type ProduktionDatentypen.Produktion;
    begin
-      
-      Nahrungsproduktion := LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-      
+            
       if
-        Nahrungsproduktion = 0
+        ProduktionExtern = 0
       then
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image;
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image;
          
       elsif
-        Nahrungsproduktion > 0
+        ProduktionExtern > 0
       then
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
-           & "+" & ZahlAlsStringProduktion (ZahlExtern => Nahrungsproduktion);
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image & TextKonstanten.StandardAbstand & "+" & ZahlAlsStringProduktion (ZahlExtern => ProduktionExtern);
          
       else
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & LeseStadtGebaut.Nahrungsmittel (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
-           & ZahlAlsStringProduktion (ZahlExtern => Nahrungsproduktion);
+         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image & TextKonstanten.StandardAbstand & ZahlAlsStringProduktion (ZahlExtern => ProduktionExtern);
       end if;
       
    end Nahrung;
@@ -174,53 +160,57 @@ package body StadtseitenleisteGrafik is
    
    
    function Kampfwerte
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
       return Unbounded_Wide_Wide_String
    is begin
-            
-      return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image
-        & " " & TextKonstanten.TrennzeichenUnterschiedlich & KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)'Wide_Wide_Image;
+               
+      return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (IDExtern          => StadtauswahlExtern.ID,
+                                                                                                                              KoordinatenExtern => StadtauswahlExtern.Koordinaten,
+                                                                                                                              SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,
+                                                                                                                              GebäudeExtern    => StadtauswahlExtern.GebäudeVorhanden)'Wide_Wide_Image
+        & " " & TextKonstanten.TrennzeichenUnterschiedlich & KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (IDExtern          => StadtauswahlExtern.ID,
+                                                                                                                      KoordinatenExtern => StadtauswahlExtern.Koordinaten,
+                                                                                                                      SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,
+                                                                                                                      GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden)'Wide_Wide_Image;
       
    end Kampfwerte;
    
    
    
    function AktuellesBauprojekt
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      BauprojektExtern : in StadtRecords.BauprojektRecord;
+      BauzeitExtern : in ProduktionDatentypen.Produktion)
       return Unbounded_Wide_Wide_String
    is
       use type StadtDatentypen.GebäudeIDMitNullwert;
       use type EinheitenDatentypen.EinheitenIDMitNullWert;
    begin
-            
-      Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       if
-        Bauprojekt.Gebäude /= 0
+        BauprojektExtern.Gebäude /= 0
       then
-         Text := To_Unbounded_Wide_Wide_String (Source => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Bauprojekt.Gebäude,
-                                                                                                         SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
+         Text := To_Unbounded_Wide_Wide_String (Source => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauprojektExtern.Gebäude,
+                                                                                                         SpeziesExtern => SpeziesExtern));
       
       elsif
-        Bauprojekt.Einheit /= 0
+        BauprojektExtern.Einheit /= 0
       then
-         Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Bauprojekt.Einheit,
-                                                                                                          SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
+         Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauprojektExtern.Einheit,
+                                                                                                          SpeziesExtern => SpeziesExtern));
       
       else
          return TextKonstanten.LeerUnboundedString;
       end if;
       
-      Bauzeit := LeseStadtGebaut.Bauzeit (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-      
       case
-        Bauzeit
+        BauzeitExtern
       is
          when ProduktionDatentypen.Produktion'Last =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & " (∞)";
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & TextKonstanten.Unendlich;
             
          when others =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & " (" & ZahlAlsStringProduktion (ZahlExtern => Bauzeit) & ")";
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & " (" & ZahlAlsStringProduktion (ZahlExtern => BauzeitExtern) & ")";
       end case;
             
    end AktuellesBauprojekt;

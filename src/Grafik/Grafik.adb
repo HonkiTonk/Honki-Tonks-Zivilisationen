@@ -189,10 +189,10 @@ package body Grafik is
             EditorenGrafik.Editoren (WelcherEditorExtern => NachGrafiktask.WelcherEditor);
                
          when GrafikDatentypen.Grafik_Weltkarte_Enum =>
-            KartenaufteilungGrafik.Weltkarte (EinheitSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleEinheit));
+            KartenaufteilungGrafik.Weltkarte (EinheitenauswahlExtern => UebergabeRecordErmittelnGrafik.Einheit (EinheitSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleEinheit)));
             
          when GrafikDatentypen.Grafik_Stadtkarte_Enum =>
-            KartenaufteilungGrafik.Stadtkarte (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt));
+            KartenaufteilungGrafik.Stadtkarte (StadtauswahlExtern => UebergabeRecordErmittelnGrafik.Stadt (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt)));
                
          when GrafikDatentypen.Grafik_Forschung_Enum =>
             ForschungsauswahlGrafik.ForschungAnzeige (SpeziesExtern         => NachGrafiktask.AktuelleSpezies,

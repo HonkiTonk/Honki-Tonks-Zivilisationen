@@ -23,7 +23,7 @@ package StadtRecordKonstanten is
                                                            Zufriedenheit           => StadtKonstanten.LeerZufriedenheit,
                                                            GebäudeVorhanden        => (others => StadtKonstanten.LeerGebäude),
                                                            Name                    => StadtKonstanten.LeerName,
-                                                           UmgebungBewirtschaftung => (others => (others => StadtKonstanten.LeerUmgebungBewitschaftet)),
+                                                           UmgebungBewirtschaftung => (others => (others => StadtKonstanten.LeerUmgebungBewirtschaftet)),
                                                            UmgebungGröße           => StadtKonstanten.LeerUmgebungGröße,
                                                            Meldungen               => (others => StadtKonstanten.LeerMeldung),
                                                            KIBeschäftigung         => StadtKonstanten.LeerKIBeschäftigung

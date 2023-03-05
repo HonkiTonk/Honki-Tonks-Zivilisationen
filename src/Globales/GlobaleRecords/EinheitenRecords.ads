@@ -82,16 +82,6 @@ package EinheitenRecords is
    
    
    
-   type EinheitGrafikRecord is record
-      
-      Spezies : SpeziesDatentypen.Spezies_Enum;
-      
-      
-      
-   end record;
-   
-   
-   
    type MöglicheAuswahlenArray is array (0 .. TransporterArray'Last) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    type AuswahlRecord is record

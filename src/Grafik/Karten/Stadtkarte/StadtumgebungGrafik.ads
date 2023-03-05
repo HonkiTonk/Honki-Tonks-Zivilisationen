@@ -4,14 +4,15 @@ private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
 
 with SpeziesDatentypen;
-with StadtRecords;
 with StadtKonstanten;
+with StadtGrafikRecords;
 
 private with KartenverbesserungDatentypen;
 private with KartenRecords;
 private with KartenKonstanten;
 private with KartenextraDatentypen;
 private with GrafikRecordKonstanten;
+private with StadtRecords;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -23,12 +24,12 @@ package StadtumgebungGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure Stadtumgebung
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (StadtauswahlExtern : in StadtGrafikRecords.StadtumgebungGrafikRecord)
      with
        Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+                 StadtauswahlExtern.SpeziesNummer.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies)
                and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
 private
@@ -57,7 +58,6 @@ private
    Feldgröße : Sf.System.Vector2.sfVector2f;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
-   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
    Farbe : Sf.Graphics.Color.sfColor;
    

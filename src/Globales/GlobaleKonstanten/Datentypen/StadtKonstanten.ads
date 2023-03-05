@@ -45,7 +45,7 @@ package StadtKonstanten is
    LeerZufriedenheit : constant ProduktionDatentypen.Feldproduktion := 0;
    LeerGebäude : constant Boolean := False;
    LeerName : constant Unbounded_Wide_Wide_String := TextKonstanten.LeerUnboundedString;
-   LeerUmgebungBewitschaftet : constant Boolean := False;
+   LeerUmgebungBewirtschaftet : constant Boolean := False;
    LeerUmgebungGröße : constant KartenDatentypen.UmgebungsbereichDrei := 0;
    LeerMeldung : constant StadtDatentypen.Stadt_Meldung_Enum := StadtDatentypen.Leer_Stadt_Meldung_Enum;
    LeerKIBeschäftigung : constant KIDatentypen.Stadt_Aufgabe_Enum := KIDatentypen.Keine_Aufgabe_Enum;

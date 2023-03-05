@@ -4,8 +4,6 @@ with EinheitenKonstanten;
 with Views;
 with ViewKonstanten;
 
-with LeseEinheitenGebaut;
-
 with CursorplatzierungGrafik;
 with CursorplatzierungAltGrafik;
 with WeltkarteGrafik;
@@ -22,25 +20,24 @@ with NachGrafiktask;
 package body KartenaufteilungGrafik is
    
    procedure Weltkarte
-    -- (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
-    --  EinheitExtern : in EinheitenRecords.EinheitenGebautRecord)
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord)
    is begin
       
-      CursorplatzierungGrafik.Weltkarte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
-      CursorplatzierungAltGrafik.CursorplatzierungAlt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      CursorplatzierungGrafik.Weltkarte (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
+      CursorplatzierungAltGrafik.CursorplatzierungAlt (EinheitSpeziesNummerExtern => EinheitenauswahlExtern.SpeziesNummer,
+                                                       EinheitenkoordinatenExtern => EinheitenauswahlExtern.Koordinaten);
       
-      WeltkarteGrafik.WeltkarteAnzeigen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      WeltkarteGrafik.WeltkarteAnzeigen (EinheitSpeziesNummerExtern => EinheitenauswahlExtern.SpeziesNummer);
       
       case
-        EinheitSpeziesNummerExtern.Nummer
+        EinheitenauswahlExtern.SpeziesNummer.Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
-            RechtsLinksBefehlsanzeige := SichtweitenGrafik.UntenRechts (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
+            RechtsLinksBefehlsanzeige := SichtweitenGrafik.UntenRechts (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
             
          when others =>
-            Position := KoordinatenPositionUmwandlungen.KoordinatenZuKartenposition (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                                     SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies);
+            Position := KoordinatenPositionUmwandlungen.KoordinatenZuKartenposition (KoordinatenExtern => EinheitenauswahlExtern.Koordinaten,
+                                                                                     SpeziesExtern     => EinheitenauswahlExtern.SpeziesNummer.Spezies);
             Viewgröße := Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
             
             if
@@ -54,11 +51,13 @@ package body KartenaufteilungGrafik is
                RechtsLinksBefehlsanzeige := True;
             end if;
             
-            WeltkartenbefehleGrafik.Einheitenbefehle (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                      RechtsLinksExtern          => RechtsLinksBefehlsanzeige);
+            -- Hier eventuell direkt die Einheitenart übergeben? äöü
+            WeltkartenbefehleGrafik.Einheitenbefehle (SpeziesExtern     => EinheitenauswahlExtern.SpeziesNummer.Spezies,
+                                                      IDExtern          => EinheitenauswahlExtern.ID,
+                                                      RechtsLinksExtern => RechtsLinksBefehlsanzeige);
       end case;
          
-      SeitenleisteGrafik.SeitenleisteGrafik (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
+      SeitenleisteGrafik.SeitenleisteGrafik (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
       
       WeltkartenbefehleGrafik.Kartenbefehle (RechtsLinksExtern => RechtsLinksBefehlsanzeige);
       
@@ -67,18 +66,18 @@ package body KartenaufteilungGrafik is
    
 
    procedure Stadtkarte
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
    is begin
       
       case
         NachGrafiktask.Stadtkarte
       is
          when True =>
-            StadtkarteGrafik.Stadtkarte (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            StadtkarteGrafik.Stadtkarte (StadtauswahlExtern => (StadtauswahlExtern.SpeziesNummer.Spezies, StadtauswahlExtern.Koordinaten, StadtauswahlExtern.GebäudeVorhanden));
       
          when False =>
-            StadtumgebungGrafik.Stadtumgebung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-            StadtseitenleisteGrafik.Stadtinformationen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            StadtumgebungGrafik.Stadtumgebung (StadtauswahlExtern => (StadtauswahlExtern.SpeziesNummer, StadtauswahlExtern.Koordinaten, StadtauswahlExtern.UmgebungBewirtschaftung));
+            StadtseitenleisteGrafik.Stadtinformationen (StadtauswahlExtern => StadtauswahlExtern);
             StadtbefehleGrafik.Stadtbefehle;
       end case;
       

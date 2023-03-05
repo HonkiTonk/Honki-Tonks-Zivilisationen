@@ -15,6 +15,7 @@ with EinheitenseitenleisteGrafik;
 with WichtigesSeitenleisteGrafik;
 with AllgemeinesSeitenleisteGrafik;
 with SeitenleisteLeerenGrafik;
+with UebergabeRecordErmittelnGrafik;
 
 package body SeitenleisteGrafik is
 
@@ -56,10 +57,10 @@ package body SeitenleisteGrafik is
                   StadtVorhanden := False;
             
                when others =>
-                  StadtseitenleisteGrafik.Stadt (SpeziesExtern            => SpeziesExtern,
-                                                 StadtSpeziesNummerExtern => StadtSpeziesNummer,
-                                                 AnzeigebereichExtern     => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt),
-                                                 ViewExtern               => Views.WeltkarteAccess (ViewKonstanten.WeltStadt));
+                  StadtseitenleisteGrafik.Stadt (SpeziesExtern        => SpeziesExtern,
+                                                 StadtauswahlExtern   => UebergabeRecordErmittelnGrafik.Stadt (StadtSpeziesNummerExtern => StadtSpeziesNummer),
+                                                 AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt),
+                                                 ViewExtern           => Views.WeltkarteAccess (ViewKonstanten.WeltStadt));
                   StadtVorhanden := True;
             end case;
             

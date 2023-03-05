@@ -8,7 +8,6 @@ with Views;
 with EinheitenKonstanten;
 with ViewKonstanten;
 
-with LeseEinheitenGebaut;
 with LeseCursor;
 with SchreibeCursor;
 
@@ -23,7 +22,8 @@ with GeheZuGrafik;
 package body CursorplatzierungAltGrafik is
 
    procedure CursorplatzierungAlt
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
       case
@@ -56,7 +56,8 @@ package body CursorplatzierungAltGrafik is
                return;
                   
             else
-               Platzierung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+               Platzierung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                            EinheitenkoordinatenExtern => EinheitenkoordinatenExtern);
             end if;
                   
          when others =>
@@ -68,7 +69,8 @@ package body CursorplatzierungAltGrafik is
    
    
    procedure Platzierung
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
       use type KartenDatentypen.Ebene;
    begin
@@ -87,14 +89,15 @@ package body CursorplatzierungAltGrafik is
             EinheitFolgen := True;
             
          when others =>
-            EinheitFolgen := Einheitenbereich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+            EinheitFolgen := Einheitenbereich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                               EinheitenkoordinatenExtern => EinheitenkoordinatenExtern);
       end case;
       
       case
         EinheitFolgen
       is
          when False =>
-            NachGrafiktask.GeheZu := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+            NachGrafiktask.GeheZu := EinheitenkoordinatenExtern;
             return;
             
          when True =>
@@ -126,7 +129,8 @@ package body CursorplatzierungAltGrafik is
    
    
    function Einheitenbereich
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -142,7 +146,6 @@ package body CursorplatzierungAltGrafik is
             NachGrafiktask.EinheitBewegt := False;
       end case;
       
-      Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       AlteCursorkoordinaten := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
       
       YAchseSchleife:
@@ -160,7 +163,7 @@ package body CursorplatzierungAltGrafik is
                null;
                
             elsif
-              Einheitenkoordinaten = Kartenwert
+              EinheitenkoordinatenExtern = Kartenwert
             then
                return True;
                

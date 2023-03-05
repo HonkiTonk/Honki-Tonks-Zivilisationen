@@ -26,7 +26,7 @@ with TextaccessverwaltungssystemGrafik;
 package body BauauswahlGrafik is
 
    procedure Bauauswahl
-     (BauauswahlExtern : in StadtRecords.BaumenüGrafikRecord;
+     (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord;
       AktuelleAuswahlExtern : in StadtRecords.BauprojektRecord)
    is begin
       
@@ -176,7 +176,7 @@ package body BauauswahlGrafik is
    
    
    procedure Aktuell
-     (BauauswahlExtern : in StadtRecords.BaumenüGrafikRecord)
+     (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord)
    is begin
       
       ViewflächeAktuell := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeAktuell,

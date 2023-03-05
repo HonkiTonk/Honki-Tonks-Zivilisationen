@@ -196,6 +196,17 @@ package body LeseStadtGebaut is
    
    
    
+   function AlleGebäude
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+      return StadtRecords.GebäudeVorhandenArray
+   is begin
+      
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).GebäudeVorhanden;
+      
+   end AlleGebäude;
+   
+   
+   
    function Name
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Unbounded_Wide_Wide_String
@@ -229,6 +240,17 @@ package body LeseStadtGebaut is
       return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungBewirtschaftung (YKoordinateExtern, XKoordinateExtern);
       
    end UmgebungBewirtschaftung;
+   
+   
+   
+   function GesamteBewirtschaftung
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+      return StadtRecords.UmgebungBewirtschaftungArray
+   is begin
+      
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).UmgebungBewirtschaftung;
+      
+   end GesamteBewirtschaftung;
    
    
    

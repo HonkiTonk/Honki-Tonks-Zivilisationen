@@ -9,7 +9,6 @@ with GrafikKonstanten;
 with TextnummernKonstanten;
 with TextDatentypen;
 
-with LeseStadtGebaut;
 with LeseWeltkarte;
 
 with KartenkoordinatenberechnungssystemLogik;
@@ -24,7 +23,7 @@ with TextaccessverwaltungssystemGrafik;
 package body StadtumgebungGrafik is
 
    procedure Stadtumgebung
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (StadtauswahlExtern : in StadtGrafikRecords.StadtumgebungGrafikRecord)
    is
       use type KartenDatentypen.Ebene;
    begin
@@ -36,8 +35,6 @@ package body StadtumgebungGrafik is
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtUmgebung));
-            
-      Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       Feldgröße.x := Viewfläche.x / GrafikKonstanten.AnzahlStadtumgebungsfelder;
       Feldgröße.y := Viewfläche.y / GrafikKonstanten.AnzahlStadtumgebungsfelder;
@@ -49,7 +46,7 @@ package body StadtumgebungGrafik is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
-            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
+            KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                       LogikGrafikExtern => False);
             
@@ -60,15 +57,13 @@ package body StadtumgebungGrafik is
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                              SpeziesExtern     => StadtSpeziesNummerExtern.Spezies)
+                                              SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies)
             then
                null;
                
             else
                case
-                 LeseStadtGebaut.UmgebungBewirtschaftung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                          YKoordinateExtern        => YAchseSchleifenwert,
-                                                          XKoordinateExtern        => XAchseSchleifenwert)
+                 StadtauswahlExtern.UmgebungBewirtschaftung (YAchseSchleifenwert, XAchseSchleifenwert)
                is
                   when True =>
                      FeldBewirtschaftet := True;
@@ -80,7 +75,7 @@ package body StadtumgebungGrafik is
                DarstellungUmgebung (KarteKoordinatenExtern   => KartenWert,
                                     PositionExtern           => AktuellePosition,
                                     FeldgrößeExtern          => Feldgröße,
-                                    StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                    StadtSpeziesNummerExtern => StadtauswahlExtern.SpeziesNummer,
                                     BewirtschaftetExtern     => FeldBewirtschaftet);
             end if;
             

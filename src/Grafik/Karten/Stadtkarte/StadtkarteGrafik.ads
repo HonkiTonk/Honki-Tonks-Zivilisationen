@@ -3,14 +3,13 @@ with Ada.Calendar; use Ada.Calendar;
 private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
-with StadtRecords;
 with StadtKonstanten;
+with StadtGrafikRecords;
 
 private with StadtDatentypen;
 private with KartenRecords;
 private with GrafikRecordKonstanten;
 
-with LeseGrenzen;
 with LeseSpeziesbelegung;
 
 package StadtkarteGrafik is
@@ -18,12 +17,10 @@ package StadtkarteGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure Stadtkarte
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (StadtauswahlExtern : in StadtGrafikRecords.StadtkarteGrafikRecord)
      with
        Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
 private

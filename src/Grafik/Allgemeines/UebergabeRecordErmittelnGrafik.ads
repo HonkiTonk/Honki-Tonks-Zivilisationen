@@ -3,6 +3,8 @@ with StadtRecords;
 with SpeziesDatentypen;
 with EinheitenDatentypen;
 with StadtKonstanten;
+with StadtGrafikRecords;
+with EinheitenGrafikRecords;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -14,7 +16,7 @@ package UebergabeRecordErmittelnGrafik is
 
    function Einheit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenRecords.EinheitGrafikRecord
+      return EinheitenGrafikRecords.EinheitGrafikRecord
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -25,7 +27,7 @@ package UebergabeRecordErmittelnGrafik is
    -- Die Contracts hier und bei der Bauauswahl auf <= anstellte von in ändern. äöü
    function Stadt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtRecords.StadtGrafikRecord
+      return StadtGrafikRecords.StadtGrafikRecord
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -35,7 +37,7 @@ package UebergabeRecordErmittelnGrafik is
    
    function Bauauswahl
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtRecords.BaumenüGrafikRecord
+      return StadtGrafikRecords.BaumenüGrafikRecord
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -45,10 +47,10 @@ package UebergabeRecordErmittelnGrafik is
    
 private
    
-   ZwischenspeicherEinheit : EinheitenRecords.EinheitGrafikRecord;
+   ZwischenspeicherEinheit : EinheitenGrafikRecords.EinheitGrafikRecord;
    
-   ZwischenspeicherStadt : StadtRecords.StadtGrafikRecord;
+   ZwischenspeicherStadt : StadtGrafikRecords.StadtGrafikRecord;
    
-   ZwischenspeicherBauauswahl : StadtRecords.BaumenüGrafikRecord;
+   ZwischenspeicherBauauswahl : StadtGrafikRecords.BaumenüGrafikRecord;
 
 end UebergabeRecordErmittelnGrafik;

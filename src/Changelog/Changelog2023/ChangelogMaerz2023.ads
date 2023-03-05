@@ -175,24 +175,26 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (06.03.2023):
+   -- Version 0.04.8310 => 0.04. (06.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (05.03.2023):
+   -- Version 0.04.8250 => 0.04.8310 (05.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Testweite einige 'pragma Inline' eingebaut.
+   -- Mehr relevante Berechnungen für die Grafik an den Grafikanfang verschoben.
+   -- Die Grafik übergibt jetzt mehr Daten an die Unterbereiche anstelle sie an den entsprechenden Orten erst zu berechnen.
+   -- Diverse Anpassungen vorgenommen dass die Datenübergabe überall funktioniert/verwendet werden kann.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.04.8250 => 0.04. (04.03.2023):
+   -- Version 0.04.8250 => 0.04.8250 (04.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
