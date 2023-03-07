@@ -25,6 +25,8 @@ package UebergabeRecordErmittelnGrafik is
               );
    
    -- Die Contracts hier und bei der Bauauswahl auf <= anstellte von in ändern. äöü
+   -- Wobei das ja nur aufgerufen werden sollte wenn da auch eine Stadt ist, oder? äöü
+   -- Dann könnten die Contracts so bleiben, scheint bisher auch so zu funktionieren. äöü
    function Stadt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return StadtGrafikRecords.StadtGrafikRecord
@@ -32,7 +34,7 @@ package UebergabeRecordErmittelnGrafik is
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
    function Bauauswahl

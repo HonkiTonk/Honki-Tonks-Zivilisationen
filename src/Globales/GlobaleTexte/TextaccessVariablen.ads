@@ -76,6 +76,8 @@ package TextaccessVariablen is
    type EinheitenzusatztextAccessArray is array (SpeziesnamenAccess'Range, EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.sfText_Ptr;
    EinheitenzusatztextAccess : constant EinheitenzusatztextAccessArray := (others => (others => Sf.Graphics.Text.create));
    
+   AktuellesBauprojekt : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   
    
    
    type ForschungsmenüAccessArray is array (SpeziesnamenAccess'Range, ForschungenDatentypen.ForschungID'Range) of Sf.Graphics.sfText_Ptr;
@@ -85,6 +87,7 @@ package TextaccessVariablen is
    ForschungsmenüZusatztextAccess : constant ForschungsmenüZusatztextAccessArray := (others => (others => Sf.Graphics.Text.create));
    
    ForschungsmenüErmöglichtAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   AktuellesForschungsprojekt : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    -- Forschungsmenü
    
    

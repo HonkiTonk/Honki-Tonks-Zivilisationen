@@ -4,7 +4,6 @@ with Views;
 with KartengrundDatentypen;
 with GrafikKonstanten;
 with ViewKonstanten;
-with EinheitenDatentypen;
 with EinheitenKonstanten;
 with KartenartDatentypen;
 with KartenverbesserungDatentypen;
@@ -25,7 +24,7 @@ with FensterGrafik;
 package body WeltkarteGrafik is
    
    procedure WeltkarteAnzeigen
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord)
    is begin
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccess (ViewKonstanten.WeltKarte),
@@ -34,7 +33,7 @@ package body WeltkarteGrafik is
       
       Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
       
-      CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
+      CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
       Feldposition := GrafikRecordKonstanten.Nullposition;
             
       YAchseSchleife:
@@ -53,11 +52,11 @@ package body WeltkarteGrafik is
                
             elsif
               True = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                             SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
+                                             SpeziesExtern     => EinheitenauswahlExtern.SpeziesNummer.Spezies)
             then
-               IstSichtbar (KoordinatenExtern          => KartenWert,
-                            EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                            PositionExtern             => Feldposition);
+               IstSichtbar (KoordinatenExtern      => KartenWert,
+                            EinheitenauswahlExtern => EinheitenauswahlExtern,
+                            PositionExtern         => Feldposition);
                
             else
                null;
@@ -102,7 +101,7 @@ package body WeltkarteGrafik is
                
             elsif
               False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KartenWert,
-                                              SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
+                                              SpeziesExtern     => EinheitenauswahlExtern.SpeziesNummer.Spezies)
             then
                null;
                
@@ -131,7 +130,7 @@ package body WeltkarteGrafik is
    
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
       use type KartenDatentypen.Ebene;
@@ -174,11 +173,11 @@ package body WeltkarteGrafik is
          Transparents := GrafikKonstanten.Undurchsichtig;
       end if;
       
-      EbeneZeichnen (KoordinatenExtern          => AktuelleKoordinaten,
-                     EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                     PositionExtern             => PositionExtern,
-                     TransparentsExtern         => GrafikKonstanten.Undurchsichtig,
-                     EbeneExtern                => KoordinatenExtern.EAchse);
+      EbeneZeichnen (KoordinatenExtern      => AktuelleKoordinaten,
+                     EinheitenauswahlExtern => EinheitenauswahlExtern,
+                     PositionExtern         => PositionExtern,
+                     TransparentsExtern     => GrafikKonstanten.Undurchsichtig,
+                     EbeneExtern            => KoordinatenExtern.EAchse);
       
       if
         KoordinatenExtern.EAchse = AktuelleKoordinaten.EAchse
@@ -186,11 +185,11 @@ package body WeltkarteGrafik is
          null;
             
       else
-         EbeneZeichnen (KoordinatenExtern          => KoordinatenExtern,
-                        EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                        PositionExtern             => PositionExtern,
-                        TransparentsExtern         => Transparents,
-                        EbeneExtern                => KoordinatenExtern.EAchse);
+         EbeneZeichnen (KoordinatenExtern      => KoordinatenExtern,
+                        EinheitenauswahlExtern => EinheitenauswahlExtern,
+                        PositionExtern         => PositionExtern,
+                        TransparentsExtern     => Transparents,
+                        EbeneExtern            => KoordinatenExtern.EAchse);
       end if;
       
    end IstSichtbar;
@@ -199,13 +198,11 @@ package body WeltkarteGrafik is
    
    procedure EbeneZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       TransparentsExtern : in Sf.sfUint8;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
-   is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   begin
+   is begin
       
       WeltkarteFeldZeichnenGrafik.KartenfeldZeichnen (KoordinatenExtern      => KoordinatenExtern,
                                                       PositionExtern         => PositionExtern,
@@ -234,16 +231,16 @@ package body WeltkarteGrafik is
       
       
       
-      WeltkarteEinheitZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern          => KoordinatenExtern,
-                                                     EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                     PositionExtern             => PositionExtern);
+      WeltkarteEinheitZeichnenGrafik.AnzeigeEinheit (KoordinatenExtern      => KoordinatenExtern,
+                                                     EinheitenauswahlExtern => EinheitenauswahlExtern,
+                                                     PositionExtern         => PositionExtern);
       
       if
         NachGrafiktask.EinheitBewegungsbereich
         and
           (NachGrafiktask.Einheitenbewegung = False)
         and
-          EinheitSpeziesNummerExtern.Nummer /= EinheitenKonstanten.LeerNummer
+          EinheitenauswahlExtern.SpeziesNummer.Nummer /= EinheitenKonstanten.LeerNummer
       then
          WeltkarteEinheitZeichnenGrafik.AnzeigeBewegungsfeld (KoordinatenExtern => KoordinatenExtern,
                                                               PositionExtern    => PositionExtern);

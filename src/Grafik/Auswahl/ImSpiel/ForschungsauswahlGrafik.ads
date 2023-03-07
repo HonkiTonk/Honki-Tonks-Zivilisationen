@@ -41,7 +41,7 @@ private
    Viewfläche : ViewflächenArray := (others => GrafikRecordKonstanten.StartView);
    
    procedure Auswahlmöglichkeiten
-     (AuswahlExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
+     (AuswahlExtern : in Natural;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (

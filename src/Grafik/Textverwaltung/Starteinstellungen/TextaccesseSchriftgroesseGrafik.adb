@@ -193,6 +193,12 @@ package body TextaccesseSchriftgroesseGrafik is
          
       end loop SpeziesSchleife;
       
+      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.AktuellesBauprojekt,
+                                         size => Normal);
+      
+      Sf.Graphics.Text.setCharacterSize (text  => TextaccessVariablen.AktuellesForschungsprojekt,
+                                         size => Normal);
+      
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                          size => Normal);
       

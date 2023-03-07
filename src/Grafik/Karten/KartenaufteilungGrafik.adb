@@ -27,7 +27,7 @@ package body KartenaufteilungGrafik is
       CursorplatzierungAltGrafik.CursorplatzierungAlt (EinheitSpeziesNummerExtern => EinheitenauswahlExtern.SpeziesNummer,
                                                        EinheitenkoordinatenExtern => EinheitenauswahlExtern.Koordinaten);
       
-      WeltkarteGrafik.WeltkarteAnzeigen (EinheitSpeziesNummerExtern => EinheitenauswahlExtern.SpeziesNummer);
+      WeltkarteGrafik.WeltkarteAnzeigen (EinheitenauswahlExtern => EinheitenauswahlExtern);
       
       case
         EinheitenauswahlExtern.SpeziesNummer.Nummer

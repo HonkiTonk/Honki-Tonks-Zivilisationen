@@ -161,24 +161,28 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (08.03.2023):
+   -- Version 0.04.8390 => 0.04. (08.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (07.03.2023):
+   -- Version 0.04.8310 => 0.04.8390 (07.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Grafik übergibt jetzt mehr Daten an die Unterbereiche anstelle sie an den entsprechenden Orten erst zu berechnen.
+   -- Diverse Anpassungen vorgenommen dass die Datenübergabe überall funktioniert/verwendet werden kann.
+   -- Code vereinfacht.
+   -- Fehler korrigiert der dazu führen konnte dass das Fenster bei Änderungen nicht sofort neu skaliert wurde oder beim Schließen nicht sofort geschlossen wurde.
+   -- Zugriff auf den falschen Access bei den Ladezeiten korrigiert.
+   -- Diverse Mehrfachnutzung von Textaccesse entfernt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 
-   -- Version 0.04.8310 => 0.04. (06.03.2023):
+   -- Version 0.04.8310 => 0.04.8310 (06.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

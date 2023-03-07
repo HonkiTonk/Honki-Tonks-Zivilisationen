@@ -21,7 +21,7 @@ package body LadezeitenGrafik is
      (WelcheLadeanzeigeExtern : in GrafikDatentypen.Ladezeiten_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
    is begin
-            
+      
       case
         WelcheLadeanzeigeExtern
       is
@@ -192,7 +192,7 @@ package body LadezeitenGrafik is
                                                  
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
                                                                               ViewbreiteExtern => ViewflächeExtern.x);
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
+      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
                                                                           TextbreiteExtern => 0.00);
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),

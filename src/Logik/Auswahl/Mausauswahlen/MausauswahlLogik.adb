@@ -18,6 +18,18 @@ with FensterGrafik;
 
 -- Thematisch aufteilen? äöü
 package body MausauswahlLogik is
+   
+   -- Das hier überall bei den Berechnung zu aktuellen Mausposition einbauen? äöü
+   -- if
+   --   InteraktionAllgemein.Mausposition.x < 0.00
+   --   or
+   --     InteraktionAllgemein.Mausposition.y < 0.00
+   -- then
+   --    return ForschungKonstanten.LeerAnforderung;
+         
+   -- else
+   --    null;
+   -- end if;
 
    function SpeziesauswahlDiplomatie
      return Natural
@@ -27,7 +39,7 @@ package body MausauswahlLogik is
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.MenüviewAccess);
             
-      MauszeigerSchleife:
+      DiplomatieSchleife:
       for SpeziesSchleifenwert in InteraktionAuswahl.SpeziesMöglicheArray'Range loop
          
          case
@@ -48,7 +60,7 @@ package body MausauswahlLogik is
                null;
          end case;
          
-      end loop MauszeigerSchleife;
+      end loop DiplomatieSchleife;
       
       return MenueKonstanten.LeerAuswahl;
       
@@ -63,8 +75,8 @@ package body MausauswahlLogik is
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.ForschungsviewAccesse (ViewKonstanten.ForschungsmenüForschungsliste));
-            
-      MausZeigerSchleife:
+                  
+      ForschungSchleife:
       for ForschungSchleifenwert in InteraktionAuswahl.MöglicheForschungenArray'Range loop
          
          case
@@ -85,7 +97,7 @@ package body MausauswahlLogik is
                null;
          end case;
          
-      end loop MausZeigerSchleife;
+      end loop ForschungSchleife;
       
       return ForschungKonstanten.LeerAnforderung;
       

@@ -100,15 +100,18 @@ package body TasteneingabeGrafik is
       use type Sf.sfBool;
    begin
       
-      if
+      AnpassenSchleife:
+      while
         Sf.sfTrue = Sf.Graphics.RenderWindow.pollEvent (renderWindow => FensterGrafik.FensterLesen,
                                                         event        => Fensteranpassung)
-      then
+      loop
+         
          case
            Fensteranpassung.eventType
          is
             when Sf.Window.Event.sfEvtClosed =>
                NachGrafiktask.FensterGeschlossen := True;
+               return;
                   
             when Sf.Window.Event.sfEvtResized =>
                NachGrafiktask.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
@@ -116,10 +119,8 @@ package body TasteneingabeGrafik is
             when others =>
                null;
          end case;
-            
-      else
-         null;
-      end if;
+         
+      end loop AnpassenSchleife;
       
    end FensterAnpassen;
 

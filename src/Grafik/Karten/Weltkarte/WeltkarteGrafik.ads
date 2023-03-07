@@ -2,28 +2,36 @@ private with Sf;
 private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
-with EinheitenRecords;
+with EinheitenGrafikRecords;
+with KartenDatentypen;
+with EinheitenDatentypen;
 
 private with KartenRecords;
-private with KartenDatentypen;
 
 with LeseSpeziesbelegung;
-
-private with LeseWeltkarteneinstellungen;
+with LeseGrenzen;
+with LeseWeltkarteneinstellungen;
 
 package WeltkarteGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
+   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    procedure WeltkarteAnzeigen
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord)
      with
        Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+                 EinheitenauswahlExtern.SpeziesNummer.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+               and
+                 EinheitenauswahlExtern.Koordinaten.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 EinheitenauswahlExtern.Koordinaten.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
 private
-   use type KartenDatentypen.Kartenfeld;
       
    Transparents : Sf.sfUint8;
    
@@ -37,10 +45,18 @@ private
          
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
      with
        Pre => (
+                 EinheitenauswahlExtern.SpeziesNummer.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+               and
+                 EinheitenauswahlExtern.Koordinaten.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 EinheitenauswahlExtern.Koordinaten.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
@@ -52,12 +68,20 @@ private
    
    procedure EbeneZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       TransparentsExtern : in Sf.sfUint8;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
      with
        Pre => (
+                 EinheitenauswahlExtern.SpeziesNummer.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+               and
+                 EinheitenauswahlExtern.Koordinaten.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 EinheitenauswahlExtern.Koordinaten.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse

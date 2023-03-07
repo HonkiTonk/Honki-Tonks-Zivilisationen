@@ -1,7 +1,7 @@
 with ZeitKonstanten;
 with GrafikKonstanten;
 with EinheitenKonstanten;
-with SpeziesDatentypen;
+with KartenartDatentypen;
 
 with LeseEinheitenGebaut;
 
@@ -16,14 +16,14 @@ with NachGrafiktask;
 
 package body WeltkarteEinheitZeichnenGrafik is
 
-   -- Das hier noch einmal überarbeiten. äöü
+   -- Das hier noch einmal überarbeiten? äöü
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
       use type SpeziesDatentypen.Spezies_Enum;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
    begin
       
       EinheitSpeziesNummer := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
@@ -32,18 +32,8 @@ package body WeltkarteEinheitZeichnenGrafik is
       if
         EinheitSpeziesNummer.Nummer = EinheitenKonstanten.LeerNummer
         and
-          EinheitSpeziesNummerExtern.Nummer /= EinheitenKonstanten.LeerNummer
+          EinheitenauswahlExtern.SpeziesNummer.Nummer /= EinheitenKonstanten.LeerNummer
       then
-         if
-           Clock - StartzeitBlinkintervall > ZeitKonstanten.Blinkintervall
-         then
-            AusgewählteEinheitAnzeigen := not AusgewählteEinheitAnzeigen;
-            StartzeitBlinkintervall := Clock;
-            
-         else
-            null;
-         end if;
-         
          case
            AusgewählteEinheitAnzeigen
          is
@@ -51,9 +41,9 @@ package body WeltkarteEinheitZeichnenGrafik is
                null;
                
             when True =>
-               Einheitenmarkierung (KoordinatenExtern          => KoordinatenExtern,
-                                    EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                    PositionExtern             => PositionExtern);
+               Einheitenmarkierung (KoordinatenExtern      => KoordinatenExtern,
+                                    EinheitenauswahlExtern => EinheitenauswahlExtern,
+                                    PositionExtern         => PositionExtern);
          end case;
          
          return;
@@ -64,7 +54,7 @@ package body WeltkarteEinheitZeichnenGrafik is
          return;
          
       elsif
-        EinheitSpeziesNummerExtern.Spezies /= EinheitSpeziesNummer.Spezies
+        EinheitenauswahlExtern.SpeziesNummer.Spezies /= EinheitSpeziesNummer.Spezies
       then
          FeldeinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
          
@@ -73,32 +63,10 @@ package body WeltkarteEinheitZeichnenGrafik is
                                                          DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
          return;
          
-      else
-         null;
-      end if;
-      
-      if
-        EinheitSpeziesNummer.Nummer = EinheitSpeziesNummerExtern.Nummer
-      then
-         null;
-         
       elsif
-        True = EinheitSuchenLogik.TransporterladungSuchen (TransporterExtern   => EinheitSpeziesNummer,
-                                                           LadungsnummerExtern => EinheitSpeziesNummerExtern.Nummer)
+        EinheitSpeziesNummer.Nummer = EinheitenauswahlExtern.SpeziesNummer.Nummer
       then
-         FeldeinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
-      
-         case
-           FeldeinheitID
-         is
-            when EinheitenKonstanten.LeerID =>
-               null;
-            
-            when others =>
-               KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummer.Spezies, FeldeinheitID),
-                                                               PositionExtern         => PositionExtern,
-                                                               DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
-         end case;
+         null;
          
       else
          FeldeinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
@@ -115,7 +83,16 @@ package body WeltkarteEinheitZeichnenGrafik is
                                                                DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
          end case;
          
-         return;
+         case
+           EinheitSuchenLogik.TransporterladungSuchen (TransporterExtern   => EinheitSpeziesNummer,
+                                                       LadungsnummerExtern => EinheitenauswahlExtern.SpeziesNummer.Nummer)
+         is
+            when False =>
+               return;
+               
+            when True =>
+               null;
+         end case;
       end if;
       
       if
@@ -133,24 +110,19 @@ package body WeltkarteEinheitZeichnenGrafik is
         and
           NachGrafiktask.Einheitenbewegung = False
       then
-         return;
-               
+         null;
+         
+      elsif
+        EinheitenauswahlExtern.ID = EinheitenKonstanten.LeerID
+      then
+         null;
+         
       else
-         AusgewählteEinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+         KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitenauswahlExtern.SpeziesNummer.Spezies, EinheitenauswahlExtern.ID),
+                                                         PositionExtern         => PositionExtern,
+                                                         DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end if;
       
-      case
-        AusgewählteEinheitID
-      is
-         when EinheitenKonstanten.LeerID =>
-            return;
-            
-         when others =>
-            KartenspritesZeichnenGrafik.KartenfeldZeichnen (TexturAccessExtern     => EingeleseneTexturenGrafik.EinheitenAccess (EinheitSpeziesNummerExtern.Spezies, AusgewählteEinheitID),
-                                                            PositionExtern         => PositionExtern,
-                                                            DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
-      end case;
-            
    end AnzeigeEinheit;
    
    
@@ -158,27 +130,25 @@ package body WeltkarteEinheitZeichnenGrafik is
    -- Anstelle des Rahmens später vielleicht eine bessere Markierung ausdenken? äöü
    procedure Einheitenmarkierung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is
       use type KartenDatentypen.EbeneVorhanden;
    begin
       
-      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-      
       if
-        KoordinatenExtern.EAchse /= EinheitKoordinaten.EAchse
+        KoordinatenExtern.EAchse /= EinheitenauswahlExtern.Koordinaten.EAchse
         and
-          KoordinatenExtern.YAchse = EinheitKoordinaten.YAchse
+          KoordinatenExtern.YAchse = EinheitenauswahlExtern.Koordinaten.YAchse
           and
-            KoordinatenExtern.XAchse = EinheitKoordinaten.XAchse
+            KoordinatenExtern.XAchse = EinheitenauswahlExtern.Koordinaten.XAchse
       then
          RahmenSchleife:
-         for RahmenSchleifenwert in UmgebungArray'Range loop
+         for RahmenSchleifenwert in KartenartDatentypen.Himmelsrichtungen_Enum'Range loop
             
             WeltkarteZusatzZeichnenGrafik.RahmenZeichnen (WelcheRichtungExtern => RahmenSchleifenwert,
                                                           PositionExtern       => PositionExtern,
-                                                          SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies);
+                                                          SpeziesExtern        => EinheitenauswahlExtern.SpeziesNummer.Spezies);
             
          end loop RahmenSchleife;
          
