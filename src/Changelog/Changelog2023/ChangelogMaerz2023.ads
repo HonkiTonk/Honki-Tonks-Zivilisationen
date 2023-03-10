@@ -140,31 +140,29 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (11.03.2023):
+   -- Version 0.04.8415 => 0.04. (11.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (10.03.2023):
+   -- Version 0.04.8390 => 0.04.8415 (10.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (09.03.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der bei zu kleiner Fenstergröße zu einem Programmstopp führen konnte.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.8390 => 0.04. (08.03.2023):
+   -- Version 0.04.8390 => 0.04.8390 (09.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.04.8390 => 0.04.8390 (08.03.2023):
+   
+   -- null.
    
    
 

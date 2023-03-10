@@ -26,7 +26,6 @@ package body Diagnoseinformationen is
    end Zahl;
    
    
-   
    procedure Kommazahl
      (ZahlExtern : in Float)
    is begin

@@ -88,5 +88,5 @@ package MausauswahlLogik is
 private
    
    Mausposition : Sf.System.Vector2.sfVector2f;
-
+   
 end MausauswahlLogik;

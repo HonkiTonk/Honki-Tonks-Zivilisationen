@@ -20,10 +20,11 @@ with FensterGrafik;
 package body MausauswahlLogik is
    
    -- Das hier überall bei den Berechnung zu aktuellen Mausposition einbauen? äöü
+   -- Würde dann die Schleifen nicht zwingend durchlaufen müssen. äöü
    -- if
-   --   InteraktionAllgemein.Mausposition.x < 0.00
+   --   InteraktionAllgemein.Mausposition.x not in 0.00 .. Fensterbreite
    --   or
-   --     InteraktionAllgemein.Mausposition.y < 0.00
+   --     InteraktionAllgemein.Mausposition.y not in 0.00 .. Fensterhöhe
    -- then
    --    return ForschungKonstanten.LeerAnforderung;
          
@@ -75,7 +76,7 @@ package body MausauswahlLogik is
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.ForschungsviewAccesse (ViewKonstanten.ForschungsmenüForschungsliste));
-                  
+      
       ForschungSchleife:
       for ForschungSchleifenwert in InteraktionAuswahl.MöglicheForschungenArray'Range loop
          

@@ -149,11 +149,11 @@ package body TextaccesseTextGrafik is
                
                when others =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
-                                                     str  => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => EinheitentextSchleifenwert,
+                                                     str  => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => EinheitentextSchleifenwert,
                                                                                                              SpeziesExtern => SpeziesSchleifenwert));
          
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
-                                                     str  => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern    => EinheitentextSchleifenwert,
+                                                     str  => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern      => EinheitentextSchleifenwert,
                                                                                                              SpeziesExtern => SpeziesSchleifenwert));
             end case;
          
@@ -165,11 +165,11 @@ package body TextaccesseTextGrafik is
          for ForschungSchleifenwert in TextaccessVariablen.ForschungsmenüAccessArray'Range (2) loop
          
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
-                                               str  => ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => ForschungSchleifenwert,
+                                               str  => ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => ForschungSchleifenwert,
                                                                                                         SpeziesExtern => SpeziesSchleifenwert));
          
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesSchleifenwert, ForschungSchleifenwert),
-                                               str  => ForschungsbeschreibungenGrafik.Langbeschreibung (IDExtern    => ForschungSchleifenwert,
+                                               str  => ForschungsbeschreibungenGrafik.Langbeschreibung (IDExtern      => ForschungSchleifenwert,
                                                                                                         SpeziesExtern => SpeziesSchleifenwert));
          
          end loop ForschungenSchleife;

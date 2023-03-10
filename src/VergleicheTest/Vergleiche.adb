@@ -5,8 +5,18 @@ package body Vergleiche is
       TextboxExtern : in Sf.Graphics.Rect.sfFloatRect)
       return Boolean
    is begin
-            
+      
+      -- Die Prüfung auf Valid muss hier drin sein, da bei der Mausauswahl die mapPixelToCoords scheinbar zu nicht validen Werten führen kann. äöü
+      -- Später noch einmal genauer prüfen warum das so ist. Funktioniert beispielsweise im Baumenü auch ohne Valid, im Forschungsmenü allerdings nicht. äöü
+      -- Oder liegt das einfach daran dass das durch die Logik und Grafik aufgerufen wird? Aber müsste es dann nicht auch beim Förschungsmenü Probleme bereiten? äöü
       if
+        MauspositionExtern.x'Valid = False
+        or
+          MauspositionExtern.y'Valid = False
+      then
+         return False;
+            
+      elsif
         MauspositionExtern.x in TextboxExtern.left .. TextboxExtern.left + TextboxExtern.width
         and
           MauspositionExtern.y in TextboxExtern.top .. TextboxExtern.top + TextboxExtern.height
