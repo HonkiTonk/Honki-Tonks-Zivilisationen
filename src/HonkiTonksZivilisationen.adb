@@ -161,13 +161,13 @@ begin
    loop
 
       if
-        TasksLaufen (Task_Logik_Enum) = True
+        TasksLaufen (Task_Logik_Enum)
         and
-          TasksLaufen (Task_Grafik_Enum) = True
+          TasksLaufen (Task_Grafik_Enum)
         and
-          TasksLaufen (Task_Musik_Enum) = True
+          TasksLaufen (Task_Musik_Enum)
         and
-          TasksLaufen (Task_Sound_Enum) = True
+          TasksLaufen (Task_Sound_Enum)
       then
          exit TaskIDsBelegenLassenSchleife;
 
@@ -226,13 +226,13 @@ begin
       end case;
 
       if
-        TasksLaufen (Task_Logik_Enum) = False
+        not TasksLaufen (Task_Logik_Enum)
         and
-          TasksLaufen (Task_Grafik_Enum) = False
+          not TasksLaufen (Task_Grafik_Enum)
         and
-          TasksLaufen (Task_Musik_Enum) = False
+          not TasksLaufen (Task_Musik_Enum)
         and
-          TasksLaufen (Task_Sound_Enum) = False
+          not TasksLaufen (Task_Sound_Enum)
       then
          exit SpielLäuftSchleife;
 
