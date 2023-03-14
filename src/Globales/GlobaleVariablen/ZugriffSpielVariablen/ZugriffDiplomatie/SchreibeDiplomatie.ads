@@ -24,6 +24,7 @@ package SchreibeDiplomatie is
                and
                  SpeziesEinsExtern /= SpeziesZweiExtern
               );
+   pragma Inline (AktuellerZustand);
    
    procedure AktuelleSympathie
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
@@ -54,6 +55,7 @@ package SchreibeDiplomatie is
               );
    
    procedure Standardeinstellungen;
+   pragma Inline (Standardeinstellungen);
    
    procedure GanzerEintrag
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
@@ -63,6 +65,7 @@ package SchreibeDiplomatie is
        Pre => (
                  SpeziesEinsExtern /= SpeziesZweiExtern
               );
+   pragma Inline (GanzerEintrag);
    
 private
    

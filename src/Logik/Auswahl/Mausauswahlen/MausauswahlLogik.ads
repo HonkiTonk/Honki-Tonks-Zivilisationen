@@ -52,7 +52,13 @@ package MausauswahlLogik is
      return BefehleDatentypen.Einheitenbelegung_Enum;
    
    function Stadtumgebung
-     return Sf.System.Vector2.sfVector2f;
+     return Sf.System.Vector2.sfVector2f
+     with
+       Post => (
+                  Stadtumgebung'Result.x >= -1.00
+                and
+                  Stadtumgebung'Result.y >= -1.00
+               );
    
    function Stadtbefehle
      return BefehleDatentypen.Stadtbefehle_Enum;
@@ -86,6 +92,8 @@ package MausauswahlLogik is
               );
    
 private
+   
+   Auflösung : Sf.System.Vector2.sfVector2u;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
    

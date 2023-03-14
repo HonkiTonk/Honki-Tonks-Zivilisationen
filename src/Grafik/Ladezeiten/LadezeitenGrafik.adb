@@ -4,6 +4,7 @@ with GlobaleTexte;
 with TextKonstanten;
 with Views;
 with LadezeitenDatentypen;
+with TextnummernKonstanten;
 
 with HintergrundGrafik;
 with TextberechnungenHoeheGrafik;
@@ -26,16 +27,16 @@ package body LadezeitenGrafik is
         WelcheLadeanzeigeExtern
       is
          when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
-            Text := GlobaleTexte.Ladezeit (1);
+            Text := GlobaleTexte.Ladezeit (TextnummernKonstanten.LadezeitSpielwelt);
             
          when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
-            Text := SpeziesbeschreibungenGrafik.Kurzbeschreibung (SpeziesExtern => SpeziesExtern) & " " & GlobaleTexte.Ladezeit (9);
+            Text := SpeziesbeschreibungenGrafik.Kurzbeschreibung (SpeziesExtern => SpeziesExtern) & " " & GlobaleTexte.Ladezeit (TextnummernKonstanten.LadezeitRechnet);
             
          when GrafikDatentypen.Grafik_Rundenende_Enum =>
-            Text := GlobaleTexte.Ladezeit (14);
+            Text := GlobaleTexte.Ladezeit (TextnummernKonstanten.LadezeitRundenwechsel);
             
          when GrafikDatentypen.Grafik_Speichern_Laden_Enum =>
-            Text := GlobaleTexte.Ladezeit (15);
+            Text := GlobaleTexte.Ladezeit (TextnummernKonstanten.LadezeitSpielstand);
       end case;
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Text),
@@ -89,7 +90,7 @@ package body LadezeitenGrafik is
       for SpielweltErstellenSchleifenwert in LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range loop
                 
          Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))
-           & TextKonstanten.Trennzeichen & "100";
+           & TextKonstanten.Trennzeichen & MaximalerLadefortschritt;
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                             str  => To_Wide_Wide_String (Text));
@@ -129,7 +130,7 @@ package body LadezeitenGrafik is
       for KIRechnetSchleifenwert in LadezeitenDatentypen.KI_Rechnet_Enum'Range loop
                   
          Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittKI (KIRechnetSchleifenwert))
-           & TextKonstanten.Trennzeichen & "100";
+           & TextKonstanten.Trennzeichen & MaximalerLadefortschritt;
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
                                             str  => To_Wide_Wide_String (Source => Text));
@@ -164,7 +165,7 @@ package body LadezeitenGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RundenendeAccess (1),
-                                         str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittRundenende)) & TextKonstanten.Trennzeichen & "100");
+                                         str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittRundenende)) & TextKonstanten.Trennzeichen & MaximalerLadefortschritt);
                                                  
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
                                                                               ViewbreiteExtern => ViewflächeExtern.x);
@@ -188,7 +189,8 @@ package body LadezeitenGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpeichernLadenAccess (1),
-                                         str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden)) & TextKonstanten.Trennzeichen & "100");
+                                         str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden)) & TextKonstanten.Trennzeichen
+                                         & MaximalerLadefortschritt);
                                                  
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
                                                                               ViewbreiteExtern => ViewflächeExtern.x);

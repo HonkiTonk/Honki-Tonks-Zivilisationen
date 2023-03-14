@@ -23,14 +23,17 @@ package SystemDatentypen is
    
    
    
-   subtype Zeug is Natural range 0 .. TextnummernKonstanten.EndeZeug;
-   subtype ZeugVorhanden is Zeug range TextnummernKonstanten.AnfangZeug .. Zeug'Last;
+   -- Das hier mal in einen eigenen Bereich oder in die TextnummernKonstanten verschieben. äöü
+   -- subtype Zeug is Natural range 0 .. TextnummernKonstanten.EndeZeug;
+   subtype ZeugVorhanden is Positive range TextnummernKonstanten.AnfangZeug .. TextnummernKonstanten.EndeZeug;
    
-   subtype Fragen is Natural range 0 .. TextnummernKonstanten.EndeFrage;
-   subtype FragenVorhanden is Fragen range TextnummernKonstanten.AnfangFrage .. Fragen'Last;
+   -- subtype Fragen is Natural range 0 .. TextnummernKonstanten.EndeFrage;
+   subtype FragenVorhanden is Positive range TextnummernKonstanten.AnfangFrage .. TextnummernKonstanten.EndeFrage;
      
    subtype Spielmeldungen is Natural range 0 .. TextnummernKonstanten.EndeMeldung;
-   subtype SpielmeldungenVorhanden is Spielmeldungen range TextnummernKonstanten.AnfangMeldung .. Spielmeldungen'Last;
+   subtype SpielmeldungenVorhanden is Positive range TextnummernKonstanten.AnfangMeldung .. Spielmeldungen'Last;
+   
+   subtype LadezeitVorhanden is Positive range TextnummernKonstanten.AnfangLadezeit .. TextnummernKonstanten.EndeLadezeit;
    
    
    

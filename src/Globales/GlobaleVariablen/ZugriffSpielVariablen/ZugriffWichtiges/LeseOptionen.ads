@@ -8,14 +8,18 @@ package LeseOptionen is
    
    function Sprache
      return Unbounded_Wide_Wide_String;
+   pragma Inline (Sprache);
    
    function AnzahlAutospeichern
      return ZahlenDatentypen.EigenesNatural;
+   pragma Inline (AnzahlAutospeichern);
    
    function RundenAutospeichern
      return ZahlenDatentypen.EigenesPositive;
+   pragma Inline (RundenAutospeichern);
 
    function GanzerEintrag
      return SystemRecords.NutzerEinstellungenRecord;
+   pragma Inline (GanzerEintrag);
 
 end LeseOptionen;

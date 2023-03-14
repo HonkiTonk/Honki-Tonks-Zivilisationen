@@ -112,38 +112,37 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (15.03.2023):
+   -- Version 0.04.8465 => 0.04. (15.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (14.03.2023):
+   -- Version 0.04.8415 => 0.04.8465 (14.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (13.03.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Mausauswahl bearbeitet.
+   -- Diverse Zahlen in benannte Konstante geändert.
+   -- Alle einzeiligen Lesefunktionen/Schreibeprozeduren mit 'pragma Inline' versehen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.04. => 0.04. (12.03.2023):
+   -- Version 0.04.8415 => 0.04.8415 (13.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.04.8415 => 0.04. (11.03.2023):
+   -- Version 0.04.8415 => 0.04.8415 (12.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.04.8415 => 0.04.8415 (11.03.2023):
+   
+   -- null.
    
    
 

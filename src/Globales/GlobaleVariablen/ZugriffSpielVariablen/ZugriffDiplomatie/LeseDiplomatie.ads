@@ -22,6 +22,7 @@ package LeseDiplomatie is
                and
                  SpeziesEinsExtern /= SpeziesZweiExtern
               );
+   pragma Inline (AktuellerZustand);
    
    function AktuelleSympathie
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
@@ -35,6 +36,7 @@ package LeseDiplomatie is
                and
                  SpeziesEinsExtern /= SpeziesZweiExtern
               );
+   pragma Inline (AktuelleSympathie);
    
    function ZeitSeitÄnderung
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
@@ -48,6 +50,7 @@ package LeseDiplomatie is
                and
                  SpeziesEinsExtern /= SpeziesZweiExtern
               );
+   pragma Inline (ZeitSeitÄnderung);
    
    function GanzerEintrag
      (SpeziesEinsExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
@@ -57,5 +60,6 @@ package LeseDiplomatie is
        Pre => (
                  SpeziesEinsExtern /= SpeziesZweiExtern
               );
+   pragma Inline (GanzerEintrag);
 
 end LeseDiplomatie;

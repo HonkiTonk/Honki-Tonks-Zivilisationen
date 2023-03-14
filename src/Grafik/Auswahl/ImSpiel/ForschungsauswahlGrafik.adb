@@ -28,7 +28,6 @@ with ZeilenumbruchberechnungGrafik;
 with TextfarbeGrafik;
 with TextaccessverwaltungssystemGrafik;
 
--- Verursacht Probleme bei sehr kleinem Fenster und wenn noch Technologien zum erforschen vorhanden sind. äöü
 package body ForschungsauswahlGrafik is
 
    procedure ForschungAnzeige

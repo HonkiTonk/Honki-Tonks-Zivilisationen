@@ -11,6 +11,8 @@ with EinheitenKonstanten;
 with ViewKonstanten;
 with GrafikRecordKonstanten;
 
+with LeseEinstellungenGrafik;
+
 with InteraktionAllgemein;
 with Vergleiche;
 with SichtweitenGrafik;
@@ -18,19 +20,6 @@ with FensterGrafik;
 
 -- Thematisch aufteilen? äöü
 package body MausauswahlLogik is
-   
-   -- Das hier überall bei den Berechnung zu aktuellen Mausposition einbauen? äöü
-   -- Würde dann die Schleifen nicht zwingend durchlaufen müssen. äöü
-   -- if
-   --   InteraktionAllgemein.Mausposition.x not in 0.00 .. Fensterbreite
-   --   or
-   --     InteraktionAllgemein.Mausposition.y not in 0.00 .. Fensterhöhe
-   -- then
-   --    return ForschungKonstanten.LeerAnforderung;
-         
-   -- else
-   --    null;
-   -- end if;
 
    function SpeziesauswahlDiplomatie
      return Natural
@@ -73,9 +62,24 @@ package body MausauswahlLogik is
      return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
       
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                 point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
-                                                                 view         => Views.ForschungsviewAccesse (ViewKonstanten.ForschungsmenüForschungsliste));
+      -- Das hier überall bei den Berechnung zu aktuellen Mausposition einbauen? äöü
+      -- Würde dann die Schleifen nicht zwingend durchlaufen müssen. äöü
+      -- Ist aber vermutlich nur im Fenstermodus relevant. äöü
+      -- Oder auch im Vollbild wenn man raustabt? äöü
+      Auflösung := LeseEinstellungenGrafik.Auflösung;
+      
+      case
+        Vergleiche.Auswahlposition (MauspositionExtern => InteraktionAllgemein.Mausposition,
+                                    TextboxExtern      => (0.00, 0.00, Float (Auflösung.x), Float (Auflösung.y)))
+      is
+         when False =>
+            return ForschungKonstanten.LeerAnforderung;
+
+         when True =>
+            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
+                                                                       point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
+                                                                       view         => Views.ForschungsviewAccesse (ViewKonstanten.ForschungsmenüForschungsliste));
+      end case;
       
       ForschungSchleife:
       for ForschungSchleifenwert in InteraktionAuswahl.MöglicheForschungenArray'Range loop
@@ -398,7 +402,6 @@ package body MausauswahlLogik is
    
    
    
-   -- Hier und bei weiteren Befehle erst einmal prüfen ob der Mauszeiger sich überhaupt im Befehlsbereich befindet? äöü
    function Stadtbefehle
      return BefehleDatentypen.Stadtbefehle_Enum
    is begin

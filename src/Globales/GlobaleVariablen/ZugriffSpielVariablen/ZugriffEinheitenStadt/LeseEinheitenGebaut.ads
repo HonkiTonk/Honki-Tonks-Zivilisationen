@@ -53,6 +53,7 @@ package LeseEinheitenGebaut is
                 and
                   (if Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse then Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse)
                );
+   pragma Inline (Koordinaten);
    
    function Heimatstadt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -63,6 +64,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Heimatstadt);
       
    function Lebenspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -83,6 +85,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Bewegungspunkte);
    
    function Erfahrungspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -113,6 +116,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Beschäftigung);
    
    function BeschäftigungNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -123,6 +127,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (BeschäftigungNachfolger);
       
    function Beschäftigungszeit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -133,6 +138,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Beschäftigungszeit);
    
    function BeschäftigungszeitNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -143,6 +149,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (BeschäftigungszeitNachfolger);
       
    -- Die KIZugriffe müssen auch für menschliche Spieler lesbar sein wegen dem Debugsystem.
    function KIZielKoordinaten
@@ -166,6 +173,7 @@ package LeseEinheitenGebaut is
                 and
                   (if KIZielKoordinaten'Result.EAchse = KartenKonstanten.LeerEAchse then KIZielKoordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and KIZielKoordinaten'Result.XAchse = KartenKonstanten.LeerXAchse)
                );
+   pragma Inline (KIZielKoordinaten);
    
    function KIBeschäftigt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -176,6 +184,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (KIBeschäftigt);
    
    function KIZielKoordinatenNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -201,6 +210,7 @@ package LeseEinheitenGebaut is
                   (if KIZielKoordinatenNachfolger'Result.EAchse = KartenKonstanten.LeerEAchse
                          then KIZielKoordinatenNachfolger'Result.YAchse = KartenKonstanten.LeerYAchse and KIZielKoordinatenNachfolger'Result.XAchse = KartenKonstanten.LeerXAchse)
                );
+   pragma Inline (KIZielKoordinatenNachfolger);
      
    function KIBeschäftigtNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -211,6 +221,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (KIBeschäftigtNachfolger);
    
    function KIVerbesserung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -221,6 +232,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (KIVerbesserung);
    
    function KIBewegungPlan
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -244,6 +256,7 @@ package LeseEinheitenGebaut is
                 and
                   (if KIBewegungPlan'Result.EAchse = KartenKonstanten.LeerEAchse then KIBewegungPlan'Result.YAchse = KartenKonstanten.LeerYAchse and KIBewegungPlan'Result.XAchse = KartenKonstanten.LeerXAchse)
                );
+   pragma Inline (KIBewegungPlan);
       
    function Transportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -255,6 +268,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Transportiert);
    
    function WirdTransportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -265,6 +279,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (WirdTransportiert);
       
    function Meldungen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -276,6 +291,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Meldungen);
    
    function GanzerEintrag
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -286,6 +302,7 @@ package LeseEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (GanzerEintrag);
    
 private
    

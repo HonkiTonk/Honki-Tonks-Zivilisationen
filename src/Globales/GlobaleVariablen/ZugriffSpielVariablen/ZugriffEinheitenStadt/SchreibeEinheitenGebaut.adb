@@ -424,7 +424,7 @@ package body SchreibeEinheitenGebaut is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
               
-      SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+      SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern          => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                                           EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                                            
       GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer) := EinheitenRecordKonstanten.LeerEinheit;

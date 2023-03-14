@@ -125,11 +125,11 @@ package body TextaccesseTextGrafik is
                
                when others =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
-                                                     str  => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern    => GebäudetextSchleifenwert,
+                                                     str  => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => GebäudetextSchleifenwert,
                                                                                                             SpeziesExtern => SpeziesSchleifenwert));
          
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudezusatztextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
-                                                     str  => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => GebäudetextSchleifenwert,
+                                                     str  => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern      => GebäudetextSchleifenwert,
                                                                                                             SpeziesExtern => SpeziesSchleifenwert));
             end case;
             

@@ -10,8 +10,10 @@ package LeseEinstellungenMusik is
        Post => (
                   Lautstärke'Result in TonKonstanten.MinimaleLautstärke .. TonKonstanten.MaximaleLautstärke
                );
+   pragma Inline (Lautstärke);
    
    function GanzerEintrag
      return TonRecords.MusikeinstellungenRecord;
+   pragma Inline (GanzerEintrag);
 
 end LeseEinstellungenMusik;

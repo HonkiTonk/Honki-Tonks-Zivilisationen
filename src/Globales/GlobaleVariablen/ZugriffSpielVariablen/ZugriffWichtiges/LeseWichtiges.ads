@@ -21,6 +21,7 @@ package LeseWichtiges is
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Geldmenge);
    
    function GeldZugewinnProRunde
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -29,6 +30,7 @@ package LeseWichtiges is
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (GeldZugewinnProRunde);
 
    function GesamteForschungsrate
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -37,6 +39,7 @@ package LeseWichtiges is
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (GesamteForschungsrate);
    
    function Forschungsmenge
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -45,6 +48,7 @@ package LeseWichtiges is
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Forschungsmenge);
    
    function VerbleibendeForschungszeit
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -53,6 +57,7 @@ package LeseWichtiges is
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (VerbleibendeForschungszeit);
    
    function Forschungsprojekt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -61,6 +66,7 @@ package LeseWichtiges is
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Forschungsprojekt);
 
    function Erforscht
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
@@ -70,6 +76,7 @@ package LeseWichtiges is
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Erforscht);
    
    function AnzahlStädte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -82,6 +89,7 @@ package LeseWichtiges is
        Post => (
                   AnzahlStädte'Result <= LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)
                );
+   pragma Inline (AnzahlStädte);
    
    function AnzahlEinheiten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -94,6 +102,7 @@ package LeseWichtiges is
        Post => (
                   AnzahlEinheiten'Result <= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
                );
+   pragma Inline (AnzahlEinheiten);
    
    function AnzahlArbeiter
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -106,6 +115,7 @@ package LeseWichtiges is
        Post => (
                   AnzahlArbeiter'Result <= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
                );
+   pragma Inline (AnzahlArbeiter);
      
    function AnzahlKämpfer
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -118,6 +128,7 @@ package LeseWichtiges is
        Post => (
                   AnzahlKämpfer'Result <= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
                );
+   pragma Inline (AnzahlKämpfer);
      
    function AnzahlSonstiges
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -130,6 +141,7 @@ package LeseWichtiges is
        Post => (
                   AnzahlSonstiges'Result <= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
                );
+   pragma Inline (AnzahlSonstiges);
    
    function GanzerEintrag
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -138,5 +150,6 @@ package LeseWichtiges is
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (GanzerEintrag);
 
 end LeseWichtiges;

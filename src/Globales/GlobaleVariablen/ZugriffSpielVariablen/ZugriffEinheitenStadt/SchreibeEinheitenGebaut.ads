@@ -31,6 +31,7 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (ID);
    
    procedure Koordinaten
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -62,6 +63,7 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Heimatstadt);
    
    procedure Lebenspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -114,6 +116,7 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Beschäftigung);
    
    procedure BeschäftigungNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -124,6 +127,7 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (BeschäftigungNachfolger);
    
    procedure Beschäftigungszeit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -166,6 +170,7 @@ package SchreibeEinheitenGebaut is
                and
                  (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
               );
+   pragma Inline (KIZielKoordinaten);
    
    procedure KIBeschäftigt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -178,6 +183,7 @@ package SchreibeEinheitenGebaut is
                -- Später mal anpassen? äöü
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (KIBeschäftigt);
    
    procedure KIZielKoordinatenNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -198,6 +204,7 @@ package SchreibeEinheitenGebaut is
                and
                  (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
               );
+   pragma Inline (KIZielKoordinatenNachfolger);
      
    procedure KIBeschäftigtNachfolger
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -208,6 +215,7 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               );
+   pragma Inline (KIBeschäftigtNachfolger);
      
    procedure KIVerbesserung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -218,6 +226,7 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               );
+   pragma Inline (KIVerbesserung);
    
    procedure KIBewegungPlan
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -239,6 +248,7 @@ package SchreibeEinheitenGebaut is
                and
                  (if KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse then KoordinatenExtern.YAchse = KartenKonstanten.LeerYAchse and KoordinatenExtern.XAchse = KartenKonstanten.LeerXAchse)
               );
+   pragma Inline (KIBewegungPlan);
    
    procedure KIBewegungsplanLeeren
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -248,6 +258,7 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (KIBewegungsplanLeeren);
       
    procedure Transportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -259,6 +270,7 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Transportiert);
    
    procedure WirdTransportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -269,6 +281,7 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (WirdTransportiert);
       
    procedure Meldungen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -280,6 +293,7 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Meldungen);
    
    procedure LeerMeldungen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -289,6 +303,7 @@ package SchreibeEinheitenGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (LeerMeldungen);
    
    procedure Nullsetzung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -332,7 +347,10 @@ package SchreibeEinheitenGebaut is
               );
    
    procedure Standardeinstellungen;
+   pragma Inline (Standardeinstellungen);
+   
    procedure Standardbewegungsplan;
+   pragma Inline (Standardbewegungsplan);
    
 private
    

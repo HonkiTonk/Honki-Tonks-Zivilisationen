@@ -10,8 +10,10 @@ package SchreibeEinstellungenMusik is
        Pre => (
                  LautstärkeExtern in TonKonstanten.MinimaleLautstärke .. TonKonstanten.MaximaleLautstärke
               );
+   pragma Inline (Lautstärke);
    
    procedure GanzerEintrag
      (EintrageExtern : in TonRecords.MusikeinstellungenRecord);
+   pragma Inline (GanzerEintrag);
 
 end SchreibeEinstellungenMusik;

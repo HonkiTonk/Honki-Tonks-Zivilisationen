@@ -17,6 +17,7 @@ package SchreibeEinstellungenGrafik is
        Pre => (
                  FenstermodusExtern <= 8
               );
+   pragma Inline (Fenstermodus);
    
    procedure Auflösung
      (AuflösungExtern : in Sf.System.Vector2.sfVector2u)
@@ -26,6 +27,7 @@ package SchreibeEinstellungenGrafik is
                and
                  AuflösungExtern.y in GrafikKonstanten.MinimaleAuflösunghöhe .. GrafikKonstanten.MaximaleAuflösungshöhe
               );
+   pragma Inline (Auflösung);
    
    procedure Farbtiefe
      (FarbtiefeExtern : in Sf.sfUint32)
@@ -33,6 +35,7 @@ package SchreibeEinstellungenGrafik is
        Pre => (
                  FarbtiefeExtern > 0
               );
+   pragma Inline (Farbtiefe);
    
    procedure Bildrate
      (BildrateExtern : in Sf.sfUint32)
@@ -40,20 +43,24 @@ package SchreibeEinstellungenGrafik is
        Pre => (
                  BildrateExtern in GrafikKonstanten.MinimaleBildrate .. GrafikKonstanten.MaximaleBildrate
               );
+   pragma Inline (Bildrate);
    -- Fenstereinstellungen
    
    
    
    -- Grafikeinstellungen
    procedure EbenenUnterhalbSichtbar;
+   pragma Inline (EbenenUnterhalbSichtbar);
    -- Grafikeinstellungen
    
    
 
    procedure Fenstereinstellungen
      (EintragExtern : in GrafikRecords.FensterRecord);
+   pragma Inline (Fenstereinstellungen);
    
    procedure Grafikeinstellungen
      (EintragExtern : in GrafikRecords.GrafikeinstellungenRecord);
+   pragma Inline (Grafikeinstellungen);
 
 end SchreibeEinstellungenGrafik;

@@ -34,6 +34,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (ID);
    
    function Koordinaten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -56,6 +57,7 @@ package LeseStadtGebaut is
                 and
                   (if Koordinaten'Result.EAchse = KartenKonstanten.LeerEAchse then Koordinaten'Result.YAchse = KartenKonstanten.LeerYAchse and Koordinaten'Result.XAchse = KartenKonstanten.LeerXAchse)
                );
+   pragma Inline (Koordinaten);
    
    function EinwohnerArbeiter
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -87,6 +89,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Nahrungsmittel);
    
    function Nahrungsproduktion
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -97,6 +100,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Nahrungsproduktion);
    
    function Ressourcen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -107,6 +111,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Ressourcen);
    
    function Produktionrate
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -117,6 +122,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Produktionrate);
    
    function Geldgewinnung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -127,6 +133,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Geldgewinnung);
    
    function PermanenteKostenPosten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -138,6 +145,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (PermanenteKostenPosten);
       
    function Forschungsrate
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -148,6 +156,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Forschungsrate);
    
    function Bauprojekt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -164,6 +173,7 @@ package LeseStadtGebaut is
                 and
                   (if Bauprojekt'Result.Einheit /= 0 then Bauprojekt'Result.Gebäude = 0)
                );
+   pragma Inline (Bauprojekt);
    
    function Bauzeit
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -174,6 +184,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Bauzeit);
 
    function Korruption
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -184,6 +195,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Korruption);
    
    function Zufriedenheit
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -194,6 +206,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Zufriedenheit);
    
    function GebäudeVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -205,6 +218,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (GebäudeVorhanden);
    
    function AlleGebäude
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -215,6 +229,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (AlleGebäude);
    
    function Name
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -237,6 +252,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (UmgebungBewirtschaftung);
    
    function GesamteBewirtschaftung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -247,6 +263,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (GesamteBewirtschaftung);
    
    function UmgebungGröße
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -261,6 +278,7 @@ package LeseStadtGebaut is
        Post => (
                   UmgebungGröße'Result >= 0
                );
+   pragma Inline (UmgebungGröße);
       
    function Meldungen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -272,6 +290,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Meldungen);
       
    function KIBeschäftigung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -282,6 +301,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (KIBeschäftigung);
    
    function GanzerEintrag
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -292,5 +312,6 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (GanzerEintrag);
 
 end LeseStadtGebaut;

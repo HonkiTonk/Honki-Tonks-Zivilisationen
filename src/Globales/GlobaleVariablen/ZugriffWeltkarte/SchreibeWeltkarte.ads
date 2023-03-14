@@ -153,7 +153,9 @@ package SchreibeWeltkarte is
    procedure GanzerEintrag
      (EintrageExtern : in WeltkarteRecords.WeltkarteRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord);
+   pragma Inline (GanzerEintrag);
    
    procedure Standardeinstellungen;
+   pragma Inline (Standardeinstellungen);
    
 end SchreibeWeltkarte;

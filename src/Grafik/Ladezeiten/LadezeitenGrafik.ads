@@ -33,6 +33,8 @@ private
    
    Textbreite : Float;
    
+   MaximalerLadefortschritt : constant Wide_Wide_String (1 .. 3) := "100";
+   
    Text : Unbounded_Wide_Wide_String;
          
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;

@@ -198,5 +198,6 @@ package LeseWeltkarte is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
+   pragma Inline (GanzerEintrag);
 
 end LeseWeltkarte;

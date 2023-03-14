@@ -108,6 +108,7 @@ package SchreibeWichtiges is
               );
    
    procedure Standardeinstellungen;
+   pragma Inline (Standardeinstellungen);
    
    procedure LeerEintrag
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -115,9 +116,11 @@ package SchreibeWichtiges is
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (LeerEintrag);
    
    procedure GanzerEintrag
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       EintragExtern : in SpielRecords.WichtigesRecord);
+   pragma Inline (GanzerEintrag);
 
 end SchreibeWichtiges;

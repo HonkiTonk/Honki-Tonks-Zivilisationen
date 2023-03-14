@@ -34,6 +34,7 @@ package SchreibeStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (ID);
    
    procedure Koordinaten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -199,6 +200,7 @@ package SchreibeStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (GebäudeVorhanden);
    
    procedure Name
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -209,6 +211,7 @@ package SchreibeStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Name);
    
    procedure UmgebungBewirtschaftung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -221,6 +224,7 @@ package SchreibeStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (UmgebungBewirtschaftung);
    
    procedure UmgebungGröße
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -243,6 +247,7 @@ package SchreibeStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Meldungen);
    
    procedure LeerMeldungen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -252,6 +257,7 @@ package SchreibeStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (LeerMeldungen);
       
    procedure KIBeschäftigung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -262,6 +268,7 @@ package SchreibeStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (KIBeschäftigung);
    
    procedure Bewohnerentfernung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -271,6 +278,7 @@ package SchreibeStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (Bewohnerentfernung);
    
    procedure Nullsetzung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -290,8 +298,10 @@ package SchreibeStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   pragma Inline (GanzerEintrag);
    
    procedure Standardeinstellungen;
+   pragma Inline (Standardeinstellungen);
    
 private
    

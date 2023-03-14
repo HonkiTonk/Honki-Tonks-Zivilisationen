@@ -1,6 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with TextKonstanten;
+with SystemDatentypen;
 
 package GlobaleTexte is
    pragma Elaborate_Body;
@@ -17,6 +18,6 @@ package GlobaleTexte is
    Handelsmenü : TexteArray (1 .. 10) := (others => TextKonstanten.FehlenderText);
    DiplomatieStatus : TexteArray (1 .. 4) := (others => TextKonstanten.FehlenderText);
    Angebot : TexteArray (1 .. 2) := (others => TextKonstanten.FehlenderText);
-   Ladezeit : TexteArray (1 .. 15) := (others => TextKonstanten.FehlenderText);
+   Ladezeit : TexteArray (SystemDatentypen.LadezeitVorhanden'Range) := (others => TextKonstanten.FehlenderText);
    
 end GlobaleTexte;

@@ -123,5 +123,26 @@ package TextnummernKonstanten is
    
    AnfangMeldung : constant Positive := 1;
    EndeMeldung : constant Positive := 11;
+   
+   
+   
+   LadezeitSpielwelt : constant Positive := 1;
+   LadezeitAllgemeines : constant Positive := 2;
+   LadezeitKüstenwasser : constant Positive := 3;
+   LadezeitLandschaft : constant Positive := 4;
+   LadezeitUnterfläche : constant Positive := 5;
+   LadezeitFlüsse : constant Positive := 6;
+   LadezeitRessourcen : constant Positive := 7;
+   LadezeitSpezies : constant Positive := 8;
+   LadezeitRechnet : constant Positive := 9;
+   LadezeitEinheiten : constant Positive := 10;
+   LadezeitStädte : constant Positive := 11;
+   LadezeitForschung : constant Positive := 12;
+   LadezeitDiplomatie : constant Positive := 13;
+   LadezeitRundenwechsel : constant Positive := 14;
+   LadezeitSpielstand : constant Positive := 15;
+   
+   AnfangLadezeit : constant Positive := 1;
+   EndeLadezeit : constant Positive := 15;
 
 end TextnummernKonstanten;

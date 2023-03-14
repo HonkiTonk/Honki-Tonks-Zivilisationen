@@ -28,6 +28,7 @@ package TextaccessVariablen is
    ZeilenumbruchAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    -- Für alle Varianten undefinierte Arrays anlegen? äöü
+   -- Für die Arrays hier (und eventuell auch bei anderen Dingen) auch noch Konstante anlegen, damit ich die dann einfacher verwenden kann, wo beispielsweise keine Schleife möglich ist? äöü
    type TextaccessArray is array (Positive range <>) of Sf.Graphics.sfText_Ptr;
    
    IntroAccess : constant TextaccessArray (Positive'First .. Spieltexte.IntroEnde) := (others => Sf.Graphics.Text.create);
