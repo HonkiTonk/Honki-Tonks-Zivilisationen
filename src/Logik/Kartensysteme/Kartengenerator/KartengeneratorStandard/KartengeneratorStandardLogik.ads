@@ -43,8 +43,10 @@ private
    
    -- Später Nutzereinstellbar machen. äöü
    WahrscheinlichkeitLandmasse : constant WahrscheinlichkeitenRecord := (20, 80);
-   WahrscheinlichkeitLandInLandmasse : constant WahrscheinlichkeitenRecord := (0, 90);
-   WahrscheinlichkeitWasser : constant WahrscheinlichkeitenRecord := (0, 90);
+   WahrscheinlichkeitInnereLandmasse : constant WahrscheinlichkeitenRecord := (0, 95);
+   WahrscheinlichkeitMittlereLandmasse : constant WahrscheinlichkeitenRecord := (0, 80);
+   WahrscheinlichkeitÄußereLandmasse : constant WahrscheinlichkeitenRecord := (0, 65);
+   WahrscheinlichkeitWasser : constant WahrscheinlichkeitenRecord := (0, 95);
 
    procedure LandVorhanden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -66,10 +68,39 @@ private
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               );
 
-   procedure GrundSchreiben
+   procedure WasserGrund
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      MasseAbstandExtern : in Boolean)
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     with
+       Pre => (
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
+   procedure InnererGrund
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     with
+       Pre => (
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
+   procedure MittlererGrund
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     with
+       Pre => (
+                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
+   procedure ÄußererGrund
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse

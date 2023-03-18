@@ -6,6 +6,7 @@ with LeseWeltkarte;
 with ZufallsgeneratorenKartenLogik;
 with Zusatzgrundplatzierungssystem;
 with Fehlermeldungssystem;
+with ZufallegeneratorenAllgemein;
 
 package body KartengeneratorWasserweltLogik is
 
@@ -69,7 +70,7 @@ package body KartengeneratorWasserweltLogik is
          elsif
            (GezogeneZahl = Zahlenspeicher
             and
-              ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True)
+              ZufallegeneratorenAllgemein.Münzwurf = True)
            or
              GezogeneZahl > Zahlenspeicher
          then

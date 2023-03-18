@@ -4,6 +4,7 @@ with KartengrundDatentypen;
 
 with ZufallsgeneratorenKartenLogik;
 with KartengeneratorVariablenLogik;
+with ZufallegeneratorenAllgemein;
 
 package body KartengeneratorUnterwasserressourcenLogik is
 
@@ -31,7 +32,7 @@ package body KartengeneratorUnterwasserressourcenLogik is
          elsif
            (GezogeneZahl = Zahlenspeicher
             and
-              ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True)
+              ZufallegeneratorenAllgemein.Münzwurf = True)
            or
              GezogeneZahl > Zahlenspeicher
          then

@@ -1,4 +1,4 @@
-with ZufallsgeneratorenKILogik;
+with ZufallegeneratorenAllgemein;
 
 package body KIAchsenzufallLogik is
 
@@ -10,7 +10,7 @@ package body KIAchsenzufallLogik is
    begin
       
       case
-        ZufallsgeneratorenKILogik.Münzwurf
+        ZufallegeneratorenAllgemein.Münzwurf
       is
          when True =>
             AlleAchsenZufall.EAchse := 1;
@@ -20,7 +20,7 @@ package body KIAchsenzufallLogik is
       end case;
       
       case
-        ZufallsgeneratorenKILogik.Münzwurf
+        ZufallegeneratorenAllgemein.Münzwurf
       is
          when True =>
             AlleAchsenZufall.YAchse := 1;
@@ -30,7 +30,7 @@ package body KIAchsenzufallLogik is
       end case;
       
       case
-        ZufallsgeneratorenKILogik.Münzwurf
+        ZufallegeneratorenAllgemein.Münzwurf
       is
          when True =>
             AlleAchsenZufall.XAchse := 1;
@@ -52,7 +52,7 @@ package body KIAchsenzufallLogik is
    begin
       
       case
-        ZufallsgeneratorenKILogik.Münzwurf
+        ZufallegeneratorenAllgemein.Münzwurf
       is
          when True =>
             YXAchsenZufall.YAchse := 1;
@@ -62,7 +62,7 @@ package body KIAchsenzufallLogik is
       end case;
       
       case
-        ZufallsgeneratorenKILogik.Münzwurf
+        ZufallegeneratorenAllgemein.Münzwurf
       is
          when True =>
             YXAchsenZufall.XAchse := 1;
@@ -84,7 +84,7 @@ package body KIAchsenzufallLogik is
    begin
       
       case
-        ZufallsgeneratorenKILogik.Münzwurf
+        ZufallegeneratorenAllgemein.Münzwurf
       is
          when True =>
             return 1;
@@ -104,7 +104,7 @@ package body KIAchsenzufallLogik is
    begin
       
       case
-        ZufallsgeneratorenKILogik.Münzwurf
+        ZufallegeneratorenAllgemein.Münzwurf
       is
          when True =>
             return 1;

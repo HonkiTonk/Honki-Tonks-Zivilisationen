@@ -8,6 +8,7 @@ with KartenkoordinatenberechnungssystemLogik;
 with KartengeneratorVariablenLogik;
 with LadezeitenLogik;
 with Zusatzgrundplatzierungssystem;
+with ZufallegeneratorenAllgemein;
 with Basisgrundplatzierungssystem;
 
 package body KartengeneratorLandschaftLogik is
@@ -86,7 +87,7 @@ package body KartengeneratorLandschaftLogik is
             elsif
               (GezogeneZahl = Zahlenspeicher
                and
-                 ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True)
+                 ZufallegeneratorenAllgemein.Münzwurf = True)
               or
                 GezogeneZahl > Zahlenspeicher
             then
@@ -145,7 +146,7 @@ package body KartengeneratorLandschaftLogik is
          elsif
            (GezogeneZahl = Zahlenspeicher
             and
-              ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True)
+              ZufallegeneratorenAllgemein.Münzwurf = True)
            or
              GezogeneZahl > Zahlenspeicher
          then

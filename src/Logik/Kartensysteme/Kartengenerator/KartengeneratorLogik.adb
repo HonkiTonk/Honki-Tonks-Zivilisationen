@@ -37,6 +37,8 @@ package body KartengeneratorLogik is
    
    
    
+   -- Das hier ist vermutlich noch nicht fertig gebaut? äöü
+   -- Ergibt was auch immer ich hier machen wollte überhaupt noch Sinn? äöü
    procedure PrüfeEinstellungen
    is begin
       

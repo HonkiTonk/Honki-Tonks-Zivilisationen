@@ -15,17 +15,6 @@ package body ZufallsgeneratorenKartenLogik is
    
    
    
-   function KartengeneratorBoolean
-     return Boolean
-   is begin
-      
-      ZufälligerBoolean.Reset (Gen => ZufälligerBooleanGewählt);
-      return ZufälligerBoolean.Random (Gen => ZufälligerBooleanGewählt);
-      
-   end KartengeneratorBoolean;
-   
-   
-   
    function KartengeneratorLandgrößen
      (YAchseXAchseExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv

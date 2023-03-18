@@ -84,38 +84,36 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (19.03.2023):
+   -- Version 0.04.8500 => 0.04. (19.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (18.03.2023):
+   -- Version 0.04.8465 => 0.04.8500 (18.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (17.03.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kartengenerator überarbeitet.
+   -- Zufallsgeneratoren angepasst.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (16.03.2023):
+   -- Version 0.04.8465 => 0.04.8465 (17.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.04.8465 => 0.04. (15.03.2023):
+   -- Version 0.04.8465 => 0.04.8465 (16.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.04.8465 => 0.04.8465 (15.03.2023):
+   
+   -- null.
    
    
 

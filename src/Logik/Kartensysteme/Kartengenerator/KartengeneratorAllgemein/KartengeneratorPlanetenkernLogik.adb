@@ -5,6 +5,7 @@ with SchreibeWeltkarte;
 
 with ZufallsgeneratorenKartenLogik;
 with LadezeitenLogik;
+with ZufallegeneratorenAllgemein;
 
 package body KartengeneratorPlanetenkernLogik is
 
@@ -85,7 +86,7 @@ package body KartengeneratorPlanetenkernLogik is
          elsif
            (GezogeneZahl = Zahlenspeicher
             and
-              ZufallsgeneratorenKartenLogik.KartengeneratorBoolean = True)
+              ZufallegeneratorenAllgemein.Münzwurf = True)
            or
              GezogeneZahl > Zahlenspeicher
          then
