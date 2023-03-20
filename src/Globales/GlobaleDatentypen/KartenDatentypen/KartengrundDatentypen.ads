@@ -4,6 +4,7 @@ package KartengrundDatentypen is
    -- Es sind immer 16 Elemente bei den Mehrfachmöglichkeiten.
   
    -- Alle nötigen Möglichkeiten ergeben 29 Elemente, sollte ich diese auch einbauen? äöü
+   -- Bräuchte dann auch noch Extrabasisgrund für den Übergangsbereich zu allen anderen Gründen, inklusive Wasser. äöü
    
    type Basisgrund_Enum is (
                             Leer_Basisgrund_Enum,

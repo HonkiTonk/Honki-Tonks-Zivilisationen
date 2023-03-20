@@ -5,7 +5,7 @@ private with KartenartDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
-package KartengeneratorStandardLogik is
+package KartengeneratorStandardLogikNeu is
    pragma Elaborate_Body;
 
    procedure OberflächeGenerieren;
@@ -67,46 +67,6 @@ private
                and
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               );
-
-   procedure WasserGrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-     with
-       Pre => (
-                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
-              );
-   
-   procedure InnererGrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-     with
-       Pre => (
-                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
-              );
-   
-   procedure MittlererGrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-     with
-       Pre => (
-                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
-              );
-   
-   procedure ÄußererGrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-     with
-       Pre => (
-                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
-              );
    
    
    
@@ -130,4 +90,4 @@ private
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               );
 
-end KartengeneratorStandardLogik;
+end KartengeneratorStandardLogikNeu;
