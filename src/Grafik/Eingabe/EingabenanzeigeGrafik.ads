@@ -8,10 +8,11 @@ with GrafikDatentypen;
 with StadtRecords;
 with SpeziesDatentypen;
 with SpeziesKonstanten;
+with EinheitenRecords;
+with EinheitenGrafikRecords;
 
 with LeseSpeziesbelegung;
 
-private with EinheitenRecords;
 private with GrafikRecordKonstanten;
 
 private with UmwandlungenAdaNachEigenes;
@@ -26,11 +27,12 @@ package EingabenanzeigeGrafik is
       EingabeExtern : in GrafikDatentypen.Eingaben_Fragen_Enum);
    
    procedure AnzeigeEinheitenStadt
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+     (SpeziesStadtnameExtern : in EinheitenGrafikRecords.SpeziesStadtnameGrafikRecord;
+      WelcheAuswahlExtern : in EinheitenRecords.AuswahlRecord;
       AktuelleAuswahlExtern : in Integer)
      with
        Pre => (
-                 if StadtSpeziesNummerExtern.Spezies /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+                 if SpeziesStadtnameExtern.Spezies /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesStadtnameExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
 private
@@ -42,8 +44,6 @@ private
    Test : Float;
    
    Text : Unbounded_Wide_Wide_String;
-   
-   WelcheAuswahl : EinheitenRecords.AuswahlRecord;
    
    StadtSpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
    

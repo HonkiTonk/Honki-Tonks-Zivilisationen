@@ -81,8 +81,8 @@ package body KartengeneratorStandardLogik is
         LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern))
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            ÄußererGrund (YAchseExtern => YAchseExtern,
-                            XAchseExtern => XAchseExtern);
+            Landgrund (YAchseExtern => YAchseExtern,
+                       XAchseExtern => XAchseExtern);
             
          when others =>
             null;
@@ -96,7 +96,9 @@ package body KartengeneratorStandardLogik is
    procedure LandmasseAbstandGenerieren
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-   is begin
+   is
+      use type SystemDatentypen.NullBisHundert;
+   begin
       
       LandmassenSchleife:
       for LandmassenSchleifenwert in LandmassenArray'Range loop
@@ -132,71 +134,106 @@ package body KartengeneratorStandardLogik is
                                          AnfangExtern => Landmassen (3),
                                          EndeExtern   => Landmassen (4));
       
+      QuadrantenSchleife:
+      for QuadrantenSchleifenwert in QuadrantenArray'Range loop
       
-      -- Hier noch einen Würfelwurf einbauen und dementsprechend die Wahrscheinlichkeiten für mehrere Quadranten festlegen lassen? äöü
+         Quadrantenwert := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
+         
+         case
+           QuadrantenSchleifenwert
+         is
+            when 1 | 6 | 11 | 16 | 21 =>
+               YAchseAnfang := -Landmassen (1);
+               YAchseEnde := -Landmassen (1) * 2 / 3;
+               
+            when 2 | 7 | 12 | 17 | 22 =>
+               YAchseAnfang := -Landmassen (1) * 2 / 3;
+               YAchseEnde := -Landmassen (1) / 3;
+               
+            when 3 | 8 | 13 | 18 | 23 =>
+               YAchseAnfang := -Landmassen (1) / 3;
+               YAchseEnde := Landmassen (2) / 3;
+               
+            when 4 | 9 | 14 | 19 | 24 =>
+               YAchseAnfang := Landmassen (2) / 3;
+               YAchseEnde := Landmassen (2) * 2 / 3;
+               
+            when 5 | 10 | 15 | 20 | 25 =>
+               YAchseAnfang := Landmassen (2) * 2 / 3;
+               YAchseEnde := Landmassen (2);
+         end case;
+         
+         case
+           QuadrantenSchleifenwert
+         is
+            when 1 .. 5 =>
+               XAchseAnfang := -Landmassen (3);
+               XAchseEnde := -Landmassen (3) * 2 / 3;
+               
+            when 6 .. 10 =>
+               XAchseAnfang := -Landmassen (3) * 2 / 3;
+               XAchseEnde := -Landmassen (3) / 3;
+               
+            when 11 .. 15 =>
+               XAchseAnfang := -Landmassen (3) / 3;
+               XAchseEnde := Landmassen (4) / 3;
+               
+            when 16 .. 20 =>
+               XAchseAnfang := Landmassen (4) / 3;
+               XAchseEnde := Landmassen (4) * 2 / 3;
+               
+            when 21 .. 25 =>
+               XAchseAnfang := Landmassen (4) * 2 / 3;
+               XAchseEnde := Landmassen (4);
+         end case;
+         
+         YAchseSchleife:
+         for YAchseSchleifenwert in YAchseAnfang .. YAchseEnde loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in XAchseAnfang .. XAchseEnde loop
+            
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseZwischenwert, XAchseZwischenwert),
+                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                         LogikGrafikExtern => True);
+            
+               if
+                 Quadrantenwert <= Quadranten (QuadrantenSchleifenwert)
+               then
+                  Landgrund (YAchseExtern => KartenWert.YAchse,
+                             XAchseExtern => KartenWert.XAchse);
+                  
+               else
+                  Wassergrund (YAchseExtern => KartenWert.YAchse,
+                               XAchseExtern => KartenWert.XAchse);
+               end if;
+                  
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop QuadrantenSchleife;
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in -Landabstand (1) .. Landabstand (2) loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -Landabstand (3) .. Landabstand (4) loop
+      YAchsenabstandSchleife:
+      for YAchsenabstandSchleifenwert in -Landabstand (1) .. Landabstand (2) loop
+         XAchsenabstandSchleife:
+         for XAchsenabstandSchleifenwert in -Landabstand (3) .. Landabstand (4) loop
                            
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseZwischenwert, XAchseZwischenwert),
-                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchsenabstandSchleifenwert, XAchsenabstandSchleifenwert),
                                                                                                       LogikGrafikExtern => True);
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              YAchsenabstandSchleifenwert in -Landmassen (1) .. Landmassen (2)
+              and
+                XAchsenabstandSchleifenwert in -Landmassen (3) .. Landmassen (4)
             then
                null;
-               
-            elsif
-              KartenWert.YAchse < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse
-              or
-                KartenWert.XAchse < KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse
-            then
-               null;
-                  
-            elsif
-              KartenWert.YAchse > KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse
-            then
-               exit YAchseSchleife;
-               
-            elsif
-              KartenWert.XAchse > KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse
-            then
-               exit XAchseSchleife;
-               
-            elsif
-              YAchseSchleifenwert in -Landmassen (1) / 3 .. Landmassen (2) / 3
-              and
-                XAchseSchleifenwert in -Landmassen (3) / 3 .. Landmassen (4) / 3
-            then
-               InnererGrund (YAchseExtern => KartenWert.YAchse,
-                             XAchseExtern => KartenWert.XAchse);
-               
-            elsif
-              YAchseSchleifenwert in -Landmassen (1) * 2 / 3 .. Landmassen (2) * 2 / 3
-              and
-                XAchseSchleifenwert in -Landmassen (3) * 2 / 3 .. Landmassen (4) * 2 / 3
-            then
-               MittlererGrund (YAchseExtern => KartenWert.YAchse,
-                               XAchseExtern => KartenWert.XAchse);
-                  
-            elsif
-              YAchseSchleifenwert in -Landmassen (1) .. Landmassen (2)
-              and
-                XAchseSchleifenwert in -Landmassen (3) .. Landmassen (4)
-            then
-               ÄußererGrund (YAchseExtern => KartenWert.YAchse,
-                             XAchseExtern => KartenWert.XAchse);
                
             else
-               WasserGrund (YAchseExtern => KartenWert.YAchse,
+               Wassergrund (YAchseExtern => KartenWert.YAchse,
                             XAchseExtern => KartenWert.XAchse);
             end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+         end loop XAchsenabstandSchleife;
+      end loop YAchsenabstandSchleife;
       
    end LandmasseAbstandGenerieren;
    
@@ -333,75 +370,28 @@ package body KartengeneratorStandardLogik is
    
    
    
-   procedure InnererGrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+   procedure Landgrund
+     (YAchseExtern : in KartenDatentypen.KartenfeldNatural;
+      XAchseExtern : in KartenDatentypen.KartenfeldNatural)
    is
       use type KartengrundDatentypen.Basisgrund_Enum;
    begin
-                         
+      
+      -- Wird die erste Abfrag überhaupt benötigt wenn ich darunter prüfe ob es im gültigen Kartenbereich ist? äöü
       if
-        ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte in WahrscheinlichkeitInnereLandmasse.Anfangswert .. WahrscheinlichkeitInnereLandmasse.Endwert
+        XAchseExtern = KartenKonstanten.LeerXAchse
       then
-         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
-                                       GrundExtern       => KartengrundDatentypen.Flachland_Enum);
+         null;
                
-      else
-         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
-                                       GrundExtern       => KartengrundDatentypen.Wasser_Enum);
-      end if;
-      
-   end InnererGrund;
-   
-   
-   
-   procedure MittlererGrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-   is
-      use type KartengrundDatentypen.Basisgrund_Enum;
-   begin
-                         
-      if
-        ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte in WahrscheinlichkeitMittlereLandmasse.Anfangswert .. WahrscheinlichkeitMittlereLandmasse.Endwert
-      then
-         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
-                                       GrundExtern       => KartengrundDatentypen.Flachland_Enum);
-               
-      else
-         SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
-                                       GrundExtern       => KartengrundDatentypen.Wasser_Enum);
-      end if;
-      
-   end MittlererGrund;
-   
-   
-   
-   procedure ÄußererGrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-   is
-      use type KartengrundDatentypen.Basisgrund_Enum;
-      use type SystemDatentypen.NullBisHundert;
-   begin
-      
-      BeliebigerLandwert := ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte;
-      
-      if
-        LeseWeltkarte.Basisgrund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern)) = KartengrundDatentypen.Wasser_Enum
-      then
-         if
-           BeliebigerLandwert in WahrscheinlichkeitÄußereLandmasse.Anfangswert .. 3 * (WahrscheinlichkeitÄußereLandmasse.Endwert / 4)
-         then
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
-                                          GrundExtern       => KartengrundDatentypen.Flachland_Enum);
-                  
-         else
-            null;
-         end if;
-                   
       elsif
-        BeliebigerLandwert in WahrscheinlichkeitÄußereLandmasse.Anfangswert .. WahrscheinlichkeitÄußereLandmasse.Endwert
+        YAchseExtern not in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse
+        or
+          XAchseExtern not in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse
+      then
+         null;
+      
+      elsif
+        ZufallsgeneratorenKartenLogik.KartengeneratorZufallswerte in WahrscheinlichkeitLand.Anfangswert .. WahrscheinlichkeitLand.Endwert
       then
          SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern),
                                        GrundExtern       => KartengrundDatentypen.Flachland_Enum);
@@ -411,18 +401,30 @@ package body KartengeneratorStandardLogik is
                                        GrundExtern       => KartengrundDatentypen.Wasser_Enum);
       end if;
       
-   end ÄußererGrund;
+   end Landgrund;
    
    
    
-   procedure WasserGrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+   procedure Wassergrund
+     (YAchseExtern : in KartenDatentypen.KartenfeldNatural;
+      XAchseExtern : in KartenDatentypen.KartenfeldNatural)
    is
       use type KartengrundDatentypen.Basisgrund_Enum;
    begin
       
       if
+        XAchseExtern = KartenKonstanten.LeerXAchse
+      then
+         null;
+               
+      elsif
+        YAchseExtern not in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse
+        or
+          XAchseExtern not in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.XAchse
+      then
+         null;
+         
+      elsif
         LeseWeltkarte.Basisgrund (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseExtern, XAchseExtern)) /= KartengrundDatentypen.Leer_Basisgrund_Enum
       then
          null;
@@ -438,6 +440,6 @@ package body KartengeneratorStandardLogik is
                                        GrundExtern       => KartengrundDatentypen.Flachland_Enum);
       end if;
       
-   end WasserGrund;
+   end Wassergrund;
 
 end KartengeneratorStandardLogik;

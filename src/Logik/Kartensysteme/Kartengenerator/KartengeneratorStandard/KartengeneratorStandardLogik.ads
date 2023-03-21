@@ -25,12 +25,18 @@ private
    XAchseZwischenwert : KartenDatentypen.KartenfeldPositiv;
    
    Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
+   
+   YAchseAnfang : KartenDatentypen.Kartenfeld;
+   YAchseEnde : KartenDatentypen.Kartenfeld;
+   XAchseAnfang : KartenDatentypen.Kartenfeld;
+   XAchseEnde : KartenDatentypen.Kartenfeld;
       
    type LandmassenArray is array (1 .. 4) of KartenDatentypen.KartenfeldPositiv;
    Landmassen : LandmassenArray;
    Landabstand : LandmassenArray;
    
    BeliebigerLandwert : SystemDatentypen.NullBisHundert;
+   Quadrantenwert : SystemDatentypen.NullBisHundert;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
@@ -43,10 +49,21 @@ private
    
    -- Später Nutzereinstellbar machen. äöü
    WahrscheinlichkeitLandmasse : constant WahrscheinlichkeitenRecord := (20, 80);
-   WahrscheinlichkeitInnereLandmasse : constant WahrscheinlichkeitenRecord := (0, 95);
-   WahrscheinlichkeitMittlereLandmasse : constant WahrscheinlichkeitenRecord := (0, 85);
-   WahrscheinlichkeitÄußereLandmasse : constant WahrscheinlichkeitenRecord := (0, 66);
+   
+   WahrscheinlichkeitLand : constant WahrscheinlichkeitenRecord := (0, 95);
    WahrscheinlichkeitWasser : constant WahrscheinlichkeitenRecord := (0, 95);
+   
+   type QuadrantenArray is array (1 .. 25) of SystemDatentypen.NullBisHundert;
+   Quadranten : constant QuadrantenArray := (13 => 100,
+                                             7  => 50,
+                                             8  => 50,
+                                             9  => 50,
+                                             12 => 50,
+                                             14 => 50,
+                                             17 => 50,
+                                             18 => 50,
+                                             19 => 50,
+                                             others => 25);
 
    procedure LandVorhanden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -68,9 +85,9 @@ private
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               );
 
-   procedure WasserGrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+   procedure Wassergrund
+     (YAchseExtern : in KartenDatentypen.KartenfeldNatural;
+      XAchseExtern : in KartenDatentypen.KartenfeldNatural)
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
@@ -78,29 +95,9 @@ private
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               );
    
-   procedure InnererGrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-     with
-       Pre => (
-                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
-              );
-   
-   procedure MittlererGrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-     with
-       Pre => (
-                 YAchseExtern <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
-              );
-   
-   procedure ÄußererGrund
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+   procedure Landgrund
+     (YAchseExtern : in KartenDatentypen.KartenfeldNatural;
+      XAchseExtern : in KartenDatentypen.KartenfeldNatural)
      with
        Pre => (
                  YAchseExtern <= LeseWeltkarteneinstellungen.YAchse

@@ -208,21 +208,23 @@ package body WeltkarteZusatzZeichnenGrafik is
          
       else
          StadtSpeziesNummer := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern);
+      
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
+                                            -- Der Zugriff auf LeseStadtGebaut kann hier nur schwer vermieden werden im aktuellen System. äöü
+                                            -- Erst einmal drin lassen und eventuell bei späteren Änderungen am System dann auch hier anpassen. äöü
+                                            str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummer)));
+      
+         Textgröße := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).height);
+         Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textgröße.x,
+                                                                 -- Die erlaubte Breite unabhängig/unabhängiger von der Kartfenfeldgröße gestalten. äöü
+                                                                 ErlaubteBreiteExtern => 5.00 * SichtweitenGrafik.Kartenfeldfläche.x);
+         Skalierung.y := 0.70;
+      
+         TextaccessverwaltungssystemGrafik.Skalieren (TextaccessExtern => TextaccessVariablen.KarteAccess,
+                                                      SkalierungExtern => Skalierung);
+      
+         Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * SichtweitenGrafik.Kartenfeldfläche.x;
       end if;
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
-                                         str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummer)));
-      
-      Textgröße := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).height);
-      Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textgröße.x,
-                                                              -- Die erlaubte Breite unabhängig/unabhängiger von der Kartfenfeldgröße gestalten. äöü
-                                                              ErlaubteBreiteExtern => 5.00 * SichtweitenGrafik.Kartenfeldfläche.x);
-      Skalierung.y := 0.70;
-      
-      TextaccessverwaltungssystemGrafik.Skalieren (TextaccessExtern => TextaccessVariablen.KarteAccess,
-                                                   SkalierungExtern => Skalierung);
-      
-      Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * SichtweitenGrafik.Kartenfeldfläche.x;
       
       if
         Textposition.x < 0.00
@@ -230,9 +232,9 @@ package body WeltkarteZusatzZeichnenGrafik is
          Textposition.x := 0.00;
          
       elsif
-        Textposition.x > SichtweitenGrafik.Kartenfläche.width - Textgröße.x
+        Textposition.x > SichtweitenGrafik.Kartenfläche.width - Textgröße.x * Skalierung.x
       then
-         Textposition.x := SichtweitenGrafik.Kartenfläche.width - Textgröße.x;
+         Textposition.x := SichtweitenGrafik.Kartenfläche.width - Textgröße.x * Skalierung.x;
          
       else
          null;

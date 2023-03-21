@@ -63,17 +63,22 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (22.03.2023):
+   -- Version 0.04.8610 => 0.04. (22.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.8525 => 0.04. (21.03.2023):
+   -- Version 0.04.8525 => 0.04.8610 (21.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Am Kartengenerator verzweifelt.
+   -- LeseStadtGebaut soweit möglich an den Anfang des Grafiktasks geschoben und die Werte nur noch weitergegeben, um so Fehler bei Änderungen durch den Logiktask zu verhindern.
+   -- Fehler korrigiert, der dazu führen konnte dass die Stadtnamenanzeige auf der Weltkarte sich nicht mehr an der Stadt befand.
+   -- LeseEinheitGebaut soweit möglich an den Anfang des Grafiktasks geschoben und die Werte nur noch weitergegeben, um so Fehler bei Änderungen durch den Logiktask zu verhindern.
+   -- Der Kartengenerator erzeugt jetzt Karten bei denen die Landmassen weniger rechtige sind.
+   -- Der Kartengenerator erzeugt jetzt deutlich hübschere Karten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 

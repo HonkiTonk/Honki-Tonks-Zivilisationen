@@ -268,8 +268,10 @@ package body Grafik is
                                                     EingabeExtern => NachGrafiktask.Eingabe);
             
          when GrafikDatentypen.Einheit_Auswahl_Enum =>
-            EingabenanzeigeGrafik.AnzeigeEinheitenStadt (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt),
-                                                         AktuelleAuswahlExtern    => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
+            EingabenanzeigeGrafik.AnzeigeEinheitenStadt (SpeziesStadtnameExtern =>
+                                                            UebergabeRecordErmittelnGrafik.SpeziesStadtname (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt)),
+                                                         WelcheAuswahlExtern    => NachGrafiktask.WelcheAuswahl,
+                                                         AktuelleAuswahlExtern  => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
             -- Wenn ich das Baumenü/Forschungsmenü hierher verschiebe, dann könnte ich das Neusetzen vermeiden und diese Setzsachen in eine Prozedur auslagern. äöü
             -- Dann könnte ich auch ein durchsichtiges Fenster für die Menüs erstellen. äöü

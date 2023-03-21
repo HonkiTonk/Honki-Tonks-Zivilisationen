@@ -6,8 +6,8 @@ with Views;
 with TextaccessVariablen;
 with ViewKonstanten;
 with TextnummernKonstanten;
+with EinheitenKonstanten;
 
-with LeseStadtGebaut;
 with LeseEinheitenGebaut;
 
 with EinheitenbeschreibungenGrafik;
@@ -184,18 +184,20 @@ package body EingabenanzeigeGrafik is
    
    
    
+   -- Möglicherweise würde das funktionieren, wenn ich die IDs auch schon außerhalb festlege? äöü
    procedure AnzeigeEinheitenStadt
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+     (SpeziesStadtnameExtern : in EinheitenGrafikRecords.SpeziesStadtnameGrafikRecord;
+      WelcheAuswahlExtern : in EinheitenRecords.AuswahlRecord;
       AktuelleAuswahlExtern : in Integer)
    is
       use type EinheitenDatentypen.Transportplätze;
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
       
-      WelcheAuswahl := NachGrafiktask.WelcheAuswahl;
-      
+      -- Das hier dynamisch an die Auswahlmöglichkeiten anpassen? äöü
+      -- Ähnliches System wie für die Tippsfläche bauen? äöü
       case
-        WelcheAuswahl.StadtEinheit
+        WelcheAuswahlExtern.StadtEinheit
       is
          when True =>
             Anzeigebereich := GrafikRecordKonstanten.Stadtauswahlbereich;
@@ -219,28 +221,28 @@ package body EingabenanzeigeGrafik is
       MaximaleTextbreite := Viewfläche.x;
       
       AuswahlSchleife:
-      for AuswahlSchleifenwert in WelcheAuswahl.MöglicheAuswahlen'Range loop
+      for AuswahlSchleifenwert in WelcheAuswahlExtern.MöglicheAuswahlen'Range loop
          
          if
-           WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
+           WelcheAuswahlExtern.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitenKonstanten.LeerNummer
          then
             null;
             
          elsif
-           AuswahlSchleifenwert = WelcheAuswahl.MöglicheAuswahlen'First
+           AuswahlSchleifenwert = WelcheAuswahlExtern.MöglicheAuswahlen'First
            and
-             WelcheAuswahl.StadtEinheit = True
+             WelcheAuswahlExtern.StadtEinheit = True
          then
-            Text := LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+            Text := SpeziesStadtnameExtern.Stadtname;
             
          else
             Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung
-                                                   (IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert))),
-                                                    SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
+                                                   (IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesStadtnameExtern.Spezies, WelcheAuswahlExtern.MöglicheAuswahlen (AuswahlSchleifenwert))),
+                                                    SpeziesExtern => SpeziesStadtnameExtern.Spezies));
          end if;
          
          if
-           WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
+           WelcheAuswahlExtern.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitenKonstanten.LeerNummer
          then
             null;
             
@@ -258,7 +260,7 @@ package body EingabenanzeigeGrafik is
                 Textbox.height <= 0.00
             then
                if
-                 AuswahlSchleifenwert = WelcheAuswahl.MöglicheAuswahlen'First
+                 AuswahlSchleifenwert = WelcheAuswahlExtern.MöglicheAuswahlen'First
                then
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                      str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugStadt)));

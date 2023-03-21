@@ -1,5 +1,6 @@
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
+with TextKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
@@ -105,5 +106,28 @@ package body UebergabeRecordErmittelnGrafik is
       return ZwischenspeicherBauauswahl;
       
    end Bauauswahl;
-
+   
+   
+   
+   function SpeziesStadtname
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+      return EinheitenGrafikRecords.SpeziesStadtnameGrafikRecord
+   is begin
+      
+      ZwischenspeicherSpeziesStadtname.Spezies := StadtSpeziesNummerExtern.Spezies;
+      
+      case
+        StadtSpeziesNummerExtern.Nummer
+      is
+         when StadtKonstanten.LeerNummer =>
+            ZwischenspeicherSpeziesStadtname.Stadtname := TextKonstanten.LeerUnboundedString;
+                        
+         when others =>
+            ZwischenspeicherSpeziesStadtname.Stadtname := LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      end case;
+      
+      return ZwischenspeicherSpeziesStadtname;
+      
+   end SpeziesStadtname;
+     
 end UebergabeRecordErmittelnGrafik;

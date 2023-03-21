@@ -47,6 +47,14 @@ package UebergabeRecordErmittelnGrafik is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
+   function SpeziesStadtname
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+      return EinheitenGrafikRecords.SpeziesStadtnameGrafikRecord
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
+   
 private
    
    ZwischenspeicherEinheit : EinheitenGrafikRecords.EinheitGrafikRecord;
@@ -54,5 +62,7 @@ private
    ZwischenspeicherStadt : StadtGrafikRecords.StadtGrafikRecord;
    
    ZwischenspeicherBauauswahl : StadtGrafikRecords.BaumenüGrafikRecord;
+   
+   ZwischenspeicherSpeziesStadtname : EinheitenGrafikRecords.SpeziesStadtnameGrafikRecord;
 
 end UebergabeRecordErmittelnGrafik;
