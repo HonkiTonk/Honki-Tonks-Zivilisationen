@@ -46,6 +46,9 @@ package body KartengeneratorLandressourcenLogik is
          
       end loop ZufallszahlenSchleife;
       
+      -- Sollte bei den Ressourcen nicht eher eine erneute Prüfung erfolgen wenn keine Ressource gewählt wurde? äöü
+      -- Eventuell wenn bereits eine Ressource sich um dieses Feld herumbefindet? äöü
+      -- Oder bei einem bestimmten Grund, bezihungsweise dessen Häufigkeit um die Ressource herum? äöü
       case
         WelcheRessource
       is

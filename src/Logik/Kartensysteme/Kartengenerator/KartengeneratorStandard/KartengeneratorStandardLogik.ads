@@ -48,22 +48,27 @@ private
    end record;
    
    -- Später Nutzereinstellbar machen. äöü
+   -- Alles oder nur Teile davon? äöü
    WahrscheinlichkeitLandmasse : constant WahrscheinlichkeitenRecord := (20, 80);
    
    WahrscheinlichkeitLand : constant WahrscheinlichkeitenRecord := (0, 95);
    WahrscheinlichkeitWasser : constant WahrscheinlichkeitenRecord := (0, 95);
    
+   ZentrumWahrscheinlichkeit : constant SystemDatentypen.NullBisHundert := 100;
+   MitteWahrscheinlichkeit : constant SystemDatentypen.NullBisHundert := 55;
+   RandWahrscheinlichkeit : constant SystemDatentypen.NullBisHundert := 25;
+   
    type QuadrantenArray is array (1 .. 25) of SystemDatentypen.NullBisHundert;
-   Quadranten : constant QuadrantenArray := (13 => 100,
-                                             7  => 50,
-                                             8  => 50,
-                                             9  => 50,
-                                             12 => 50,
-                                             14 => 50,
-                                             17 => 50,
-                                             18 => 50,
-                                             19 => 50,
-                                             others => 25);
+   Quadranten : constant QuadrantenArray := (13     => ZentrumWahrscheinlichkeit,
+                                             7      => MitteWahrscheinlichkeit,
+                                             8      => MitteWahrscheinlichkeit,
+                                             9      => MitteWahrscheinlichkeit,
+                                             12     => MitteWahrscheinlichkeit,
+                                             14     => MitteWahrscheinlichkeit,
+                                             17     => MitteWahrscheinlichkeit,
+                                             18     => MitteWahrscheinlichkeit,
+                                             19     => MitteWahrscheinlichkeit,
+                                             others => RandWahrscheinlichkeit);
 
    procedure LandVorhanden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;

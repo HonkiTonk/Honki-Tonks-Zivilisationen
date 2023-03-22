@@ -35,7 +35,7 @@ package body WeltkarteEinheitZeichnenGrafik is
           EinheitenauswahlExtern.SpeziesNummer.Nummer /= EinheitenKonstanten.LeerNummer
       then
          case
-           AusgewählteEinheitAnzeigen
+           EinheitAnzeigen
          is
             when False =>
                null;
@@ -96,17 +96,7 @@ package body WeltkarteEinheitZeichnenGrafik is
       end if;
       
       if
-        Clock - StartzeitBlinkintervall > ZeitKonstanten.Blinkintervall
-      then
-         AusgewählteEinheitAnzeigen := not AusgewählteEinheitAnzeigen;
-         StartzeitBlinkintervall := Clock;
-            
-      else
-         null;
-      end if;
-      
-      if
-        AusgewählteEinheitAnzeigen = False
+        EinheitAnzeigen = False
         and
           NachGrafiktask.Einheitenbewegung = False
       then
@@ -157,6 +147,26 @@ package body WeltkarteEinheitZeichnenGrafik is
       end if;
       
    end Einheitenmarkierung;
+   
+   
+   
+   function EinheitAnzeigen
+     return Boolean
+   is begin
+      
+      if
+        Clock - StartzeitBlinkintervall > ZeitKonstanten.Blinkintervall
+      then
+         AusgewählteEinheitAnzeigen := not AusgewählteEinheitAnzeigen;
+         StartzeitBlinkintervall := Clock;
+            
+      else
+         null;
+      end if;
+      
+      return AusgewählteEinheitAnzeigen;
+      
+   end EinheitAnzeigen;
    
    
    

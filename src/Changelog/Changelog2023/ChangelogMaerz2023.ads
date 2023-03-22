@@ -56,35 +56,36 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (23.03.2023):
+   -- Version 0.04.8645 => 0.04. (23.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.8610 => 0.04. (22.03.2023):
+   -- Version 0.04.8610 => 0.04.8645 (22.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Landflächenkartengenerator überarbeitet.
+   -- Fehler korrigiert der dazu führte dass die Position der ausgewählten Einheit nicht immer auf den anderen Kartenebenen angezeigt wurde.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
    -- Version 0.04.8525 => 0.04.8610 (21.03.2023):
    
-   -- Am Kartengenerator verzweifelt.
+   -- Am Landflächenkartengenerator verzweifelt.
    -- LeseStadtGebaut soweit möglich an den Anfang des Grafiktasks geschoben und die Werte nur noch weitergegeben, um so Fehler bei Änderungen durch den Logiktask zu verhindern.
    -- Fehler korrigiert, der dazu führen konnte dass die Stadtnamenanzeige auf der Weltkarte sich nicht mehr an der Stadt befand.
    -- LeseEinheitGebaut soweit möglich an den Anfang des Grafiktasks geschoben und die Werte nur noch weitergegeben, um so Fehler bei Änderungen durch den Logiktask zu verhindern.
-   -- Der Kartengenerator erzeugt jetzt Karten bei denen die Landmassen weniger rechtige sind.
-   -- Der Kartengenerator erzeugt jetzt deutlich hübschere Karten.
+   -- Der Landflächenkartengenerator erzeugt jetzt Karten bei denen die Landmassen weniger rechteckig sind.
+   -- Der Landflächenkartengenerator erzeugt jetzt deutlich hübschere Karten.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 
    -- Version 0.04.8500 => 0.04.8525 (20.03.2023):
    
-   -- Kartengenerator überarbeitet.
+   -- Landflächenkartengenerator überarbeitet.
    -- Kommentare und Kleinigkeiten korrigiert.
    
    
@@ -97,7 +98,7 @@ package ChangelogVorlage is
 
    -- Version 0.04.8465 => 0.04.8500 (18.03.2023):
    
-   -- Kartengenerator überarbeitet.
+   -- Landflächenkartengenerator überarbeitet.
    -- Zufallsgeneratoren angepasst.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    

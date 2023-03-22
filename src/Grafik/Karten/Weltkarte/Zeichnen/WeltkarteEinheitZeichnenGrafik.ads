@@ -88,5 +88,10 @@ private
                and
                  PositionExtern.y >= 0.00
               );
+   
+   
+   
+   function EinheitAnzeigen
+     return Boolean;
 
 end WeltkarteEinheitZeichnenGrafik;

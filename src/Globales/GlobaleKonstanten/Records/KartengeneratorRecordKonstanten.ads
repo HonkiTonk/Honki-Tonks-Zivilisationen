@@ -4,6 +4,7 @@ with KartenartDatentypen;
 
 package KartengeneratorRecordKonstanten is
    pragma Pure;
+   use type KartenDatentypen.Kartenfeld;
    
    type PolregionenArray is array (KartenartDatentypen.Himmelsrichtungen_Enum'Range) of KartenDatentypen.KartenfeldNatural;
    Eisrand : constant PolregionenArray := (
@@ -33,10 +34,10 @@ package KartengeneratorRecordKonstanten is
                                                            
                                                            KartenartDatentypen.Kartenart_Pangäa_Enum =>
                                                              (
-                                                              MinimaleYAchse => KartenDatentypen.KartenfeldPositiv'Last,
-                                                              MaximaleYAchse => KartenDatentypen.KartenfeldPositiv'Last,
-                                                              MinimaleXAchse => KartenDatentypen.KartenfeldPositiv'Last,
-                                                              MaximaleXAchse => KartenDatentypen.KartenfeldPositiv'Last
+                                                              MinimaleYAchse => KartenDatentypen.KartenfeldPositiv'Last / 3,
+                                                              MaximaleYAchse => KartenDatentypen.KartenfeldPositiv'Last / 3,
+                                                              MinimaleXAchse => KartenDatentypen.KartenfeldPositiv'Last / 3,
+                                                              MaximaleXAchse => KartenDatentypen.KartenfeldPositiv'Last / 3
                                                              )
                                                           );
 

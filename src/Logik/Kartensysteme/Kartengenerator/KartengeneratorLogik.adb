@@ -15,6 +15,8 @@ package body KartengeneratorLogik is
    is begin
       
       KartengeneratorAllgemeinesLogik.GenerierungAllgemeines;
+      -- Wenn ich die Einstellungen hier noch einmal auf Korrketheit prüfen will, sollte dann die Prüfung nicht am Anfang kommen? äöü
+      -- Setzt im Moment nur die Ressourcen und kann deswegen nicht entfernt werden, später mal erweitern. äöü
       PrüfeEinstellungen;
       LadezeitenLogik.FortschrittSpielweltMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
       

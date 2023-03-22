@@ -196,6 +196,7 @@ package body KartengeneratorStandardLogik is
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                          LogikGrafikExtern => True);
             
+               -- Hier zusätzlich noch zum Quadrantengebiet (Zentrum, Mitte, Rand) jeweils eine eigene Landerzeugunswahrscheinlichkeit hinzufügen? äöü
                if
                  Quadrantenwert <= Quadranten (QuadrantenSchleifenwert)
                then
