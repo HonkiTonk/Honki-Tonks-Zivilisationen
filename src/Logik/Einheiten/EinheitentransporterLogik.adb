@@ -10,15 +10,42 @@ with PassierbarkeitspruefungLogik;
 with BewegungspunkteBerechnenLogik;
 with BewegungsberechnungEinheitenLogik;
 
-package body EinheitentransporterLogik is   
+package body EinheitentransporterLogik is
+   
+   -- Eventuell für Ladung und Transporter die Spezies übergeben und dann eine Sicherheitsprüfung einbauen ob es die gleiche Spezies ist und wenn nicht einen Fehler ausgeben? äöü
+   function TransporterGroßGenug
+     (LadungExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      TransporterExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return Boolean
+   is
+      use type EinheitenDatentypen.Transport_Enum;
+   begin
+      
+      if
+        EinheitenKonstanten.LeerKannTransportiertWerden = LeseEinheitenDatenbank.KannTransportiertWerden (SpeziesExtern => SpeziesExtern,
+                                                                                                          IDExtern      => LadungExtern)
+        or
+          LeseEinheitenDatenbank.KannTransportieren (SpeziesExtern => SpeziesExtern,
+                                                     IDExtern      => TransporterExtern)
+        < LeseEinheitenDatenbank.KannTransportiertWerden (SpeziesExtern => SpeziesExtern,
+                                                          IDExtern      => LadungExtern)
+      then
+         return False;
+         
+      else
+         return True;
+      end if;
+      
+   end TransporterGroßGenug;
+   
+   
    
    function KannTransportiertWerden
      (LadungExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
-   is
-      use type EinheitenDatentypen.Transport_Enum;
-   begin
+   is begin
       
       TransporterID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern);
       
@@ -31,21 +58,18 @@ package body EinheitentransporterLogik is
          when others =>
             LadungID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => LadungExtern);
       end case;
+        
+      case
+        TransporterGroßGenug (LadungExtern      => LadungID,
+                               TransporterExtern => TransporterID,
+                               SpeziesExtern     => LadungExtern.Spezies)
+      is
+         when False =>
+            return False;
             
-      if
-        EinheitenKonstanten.LeerKannTransportiertWerden = LeseEinheitenDatenbank.KannTransportiertWerden (SpeziesExtern => LadungExtern.Spezies,
-                                                                                                          IDExtern      => LadungID)
-        or
-          LeseEinheitenDatenbank.KannTransportieren (SpeziesExtern => TransporterExtern.Spezies,
-                                                     IDExtern      => TransporterID)
-        < LeseEinheitenDatenbank.KannTransportiertWerden (SpeziesExtern => LadungExtern.Spezies,
-                                                          IDExtern      => LadungID)
-      then
-         return False;
-         
-      else
-         null;
-      end if;
+         when True =>
+            null;
+      end case;
       
       case
         TransporterSuchenLogik.FreierPlatz (TransporterExtern => TransporterExtern)
@@ -184,5 +208,37 @@ package body EinheitentransporterLogik is
       end if;
       
    end Entladung;
+   
+   
+   
+   function BelegtePlätze
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      TransportkapazitätExtern : in EinheitenDatentypen.Transportplätze)
+      return EinheitenDatentypen.Transportplätze
+   is
+      use type EinheitenDatentypen.Transportplätze;
+   begin
+      
+      AktuelleLadungsmenge := EinheitenKonstanten.LeerTransportkapazität;
+      
+      BelegtePlätzeSchleife:
+      for BelegtePlätzeSchleifenwert in EinheitenRecords.TransporterArray'First .. TransportkapazitätExtern loop
+         
+         case
+           LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                              PlatzExtern                => BelegtePlätzeSchleifenwert)
+         is
+            when EinheitenKonstanten.LeerNummer =>
+               null;
+               
+            when others =>
+               AktuelleLadungsmenge := AktuelleLadungsmenge + 1;
+         end case;
+         
+      end loop BelegtePlätzeSchleife;
+      
+      return AktuelleLadungsmenge;
+      
+   end BelegtePlätze;
 
 end EinheitentransporterLogik;

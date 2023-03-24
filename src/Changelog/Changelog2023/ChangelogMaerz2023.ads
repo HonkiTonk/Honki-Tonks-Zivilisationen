@@ -42,24 +42,24 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (25.03.2023):
+   -- Version 0.04.8680 => 0.04. (25.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (24.03.2023):
+   -- Version 0.04.8645 => 0.04.8680 (24.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einheiten in Transporter können jetzt nicht mehr verbessert werden, wenn die verbesserte Variante zu groß für den Transporter ist.
+   -- Transporter können jetzt nicht mehr verbessert werden, wenn die neue Ladekapazität kleiner ist als die aktuelle Ladungsmenge.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.8645 => 0.04. (23.03.2023):
+   -- Version 0.04.8645 => 0.04.8645 (23.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

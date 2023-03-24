@@ -32,7 +32,37 @@ package EinheitVerbessernLogik is
               );
    
 private
-      
+   
+   AktuelleTransporterkapazität : EinheitenDatentypen.Transportplätze;
+   NeueTransporterkapazität : EinheitenDatentypen.Transportplätze;
+   
    NeueEinheitenID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   TransporterID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   
+   Transporternummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   
+   
+   
+   function WeiterhinTransportierbar
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      NeueIDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      return Boolean
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   function LaderaumAusreichend
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      NeueIDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      return Boolean
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
 
 end EinheitVerbessernLogik;
