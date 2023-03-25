@@ -1,5 +1,7 @@
 with GrafikRecordKonstanten;
 
+with PruefungenGrafik;
+
 package body TextskalierungGrafik is
 
    function Breitenskalierung
@@ -11,7 +13,7 @@ package body TextskalierungGrafik is
       if
         AktuelleBreiteExtern > ErlaubteBreiteExtern
       then
-         return ErlaubteBreiteExtern / AktuelleBreiteExtern;
+         return ErlaubteBreiteExtern / PruefungenGrafik.NullprüfungKommazahl (KommazahlExtern => AktuelleBreiteExtern);
          
       else
          return GrafikRecordKonstanten.Standardskalierung.x;
@@ -30,7 +32,7 @@ package body TextskalierungGrafik is
       if
         AktuelleHöheExtern > ErlaubteHöheExtern
       then
-         return ErlaubteHöheExtern / AktuelleHöheExtern;
+         return ErlaubteHöheExtern / PruefungenGrafik.NullprüfungKommazahl (KommazahlExtern => AktuelleHöheExtern);
          
       else
          return GrafikRecordKonstanten.Standardskalierung.y;

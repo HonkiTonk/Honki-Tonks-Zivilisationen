@@ -199,9 +199,9 @@ package body EinheitenbewegungLogik is
          return False;
          
       else
-         return True;
+        return True;
       end if;
       
    end EinheitentauschPrüfung;
-
+     
 end EinheitenbewegungLogik;

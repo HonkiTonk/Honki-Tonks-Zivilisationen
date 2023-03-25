@@ -37,7 +37,7 @@ private
    NeueTransporterkapazität : EinheitenDatentypen.Transportplätze;
    
    NeueEinheitenID : EinheitenDatentypen.EinheitenIDMitNullWert;
-   TransporterID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   EinheitenIDVerbesserbar : EinheitenDatentypen.EinheitenIDMitNullWert;
    
    Transporternummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    

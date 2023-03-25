@@ -35,17 +35,20 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (26.03.2023):
+   -- Version 0.04.8740 => 0.04. (26.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.8680 => 0.04. (25.03.2023):
+   -- Version 0.04.8680 => 0.04.8740 (25.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Zusätzliche Spielmeldungen für das Verbessern von Einheiten hinzugefügt.
+   -- Fehler korrigiert der bei Transporter nicht alle Laderäume durchging.
+   -- Angefangen zusätzliche Nullprüfungen für Teiler einzubauen.
+   -- Unnötigen Code gelöscht.
+   -- Contracts, Komemntare und Kleinigkeiten korrigiert/angepasst.
    
    
 

@@ -1,8 +1,6 @@
 with Sf.Graphics;
 with Sf.System.Vector2;
 
-private with Sf.Graphics.Rect;
-
 package TexturenSetzenSkalierenGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfSprite_Ptr;
@@ -96,7 +94,6 @@ private
    SkalierungBild : Sf.System.Vector2.sfVector2f;
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;
    Kartenabmessung : Sf.System.Vector2.sfVector2f;
-   
-   Rechteck : Sf.Graphics.Rect.sfFloatRect;
+   Rechteck : Sf.System.Vector2.sfVector2f;
 
 end TexturenSetzenSkalierenGrafik;

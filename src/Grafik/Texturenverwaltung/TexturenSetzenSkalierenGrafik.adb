@@ -3,8 +3,8 @@ with Sf.Graphics.Sprite;
 
 with FensterGrafik;
 with SichtweitenGrafik;
+with PruefungenGrafik;
 
--- Sollte ich hier überall auch statt globale lieber lokale Grenzen verwenden? äöü
 package body TexturenSetzenSkalierenGrafik is
    
    function Weltkarte
@@ -17,11 +17,12 @@ package body TexturenSetzenSkalierenGrafik is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
+      Rechteck := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
       KartenfelderAbmessung := SichtweitenGrafik.Kartenfeldfläche;
       
-      SkalierungKartenfeld.x := KartenfelderAbmessung.x / Rechteck.width;
-      SkalierungKartenfeld.y := KartenfelderAbmessung.y / Rechteck.height;
+      SkalierungKartenfeld.x := KartenfelderAbmessung.x / Rechteck.x;
+      SkalierungKartenfeld.y := KartenfelderAbmessung.y / Rechteck.y;
       
       return SkalierungKartenfeld;
       
@@ -40,10 +41,11 @@ package body TexturenSetzenSkalierenGrafik is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern);
+      Rechteck := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
       
-      SkalierungKartenfeld.x := GrößeExtern.x / Rechteck.width;
-      SkalierungKartenfeld.y := GrößeExtern.y / Rechteck.height;
+      SkalierungKartenfeld.x := GrößeExtern.x / Rechteck.x;
+      SkalierungKartenfeld.y := GrößeExtern.y / Rechteck.y;
       
       return SkalierungKartenfeld;
       
@@ -61,11 +63,12 @@ package body TexturenSetzenSkalierenGrafik is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
+      Rechteck := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
       Kartenabmessung := FensterGrafik.AktuelleAuflösung;
       
-      SkalierungKartenfeld.x := Kartenabmessung.x / Rechteck.width;
-      SkalierungKartenfeld.y := Kartenabmessung.y / Rechteck.height;
+      SkalierungKartenfeld.x := Kartenabmessung.x / Rechteck.x;
+      SkalierungKartenfeld.y := Kartenabmessung.y / Rechteck.y;
       
       return SkalierungKartenfeld;
       
@@ -84,10 +87,11 @@ package body TexturenSetzenSkalierenGrafik is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      Rechteck := Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern); 
+      Rechteck := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
       
-      SkalierungBild.x := GrößeExtern.x / Rechteck.width;
-      SkalierungBild.y := GrößeExtern.y / Rechteck.height;
+      SkalierungBild.x := GrößeExtern.x / Rechteck.x;
+      SkalierungBild.y := GrößeExtern.y / Rechteck.y;
       
       return SkalierungBild;
       

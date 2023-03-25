@@ -1,4 +1,5 @@
 with KartenDatentypen;
+with TextnummernKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseWeltkarte;
@@ -8,6 +9,7 @@ with LeseEinheitenDatenbank;
 with EinheitenmodifizierungLogik;
 with ForschungstestsLogik;
 with EinheitentransporterLogik;
+with MeldungFestlegenLogik;
 
 package body EinheitVerbessernLogik is
 
@@ -31,6 +33,8 @@ package body EinheitVerbessernLogik is
         False = LeseWeltkarte.BelegterGrund (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                              KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
       then
+         MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungNichtEigenesGebiet,
+                                                        SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
          return False;
          
       else
@@ -71,35 +75,43 @@ package body EinheitVerbessernLogik is
       use type EinheitenDatentypen.EinheitenIDMitNullWert;
    begin
    
-      NeueEinheitenID := LeseEinheitenDatenbank.VerbesserungZu (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+      EinheitenIDVerbesserbar := LeseEinheitenDatenbank.VerbesserungZu (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                        IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       if
-        NeueEinheitenID = EinheitenKonstanten.LeerID
+        EinheitenIDVerbesserbar = EinheitenKonstanten.LeerID
       then
+         MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungUnverbesserbar,
+                                                        SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
          return EinheitenKonstanten.LeerID;
          
       elsif
         False = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                                            TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                                                                      IDExtern      => NeueEinheitenID))
+                                                                                                                      IDExtern      => EinheitenIDVerbesserbar))
       then
+         MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserungTechnologie,
+                                                        SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
          return EinheitenKonstanten.LeerID;
          
       elsif
         False = WeiterhinTransportierbar (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                          NeueIDExtern               => NeueEinheitenID)
+                                          NeueIDExtern               => EinheitenIDVerbesserbar)
       then
+         MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbessertZuGroß,
+                                                        SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
          return EinheitenKonstanten.LeerID;
          
       elsif
         False = LaderaumAusreichend (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                     NeueIDExtern               => NeueEinheitenID)
+                                     NeueIDExtern               => EinheitenIDVerbesserbar)
       then
+         MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungFehlenderLaderaum,
+                                                        SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
          return EinheitenKonstanten.LeerID;
          
       else
-         return NeueEinheitenID;
+         return EinheitenIDVerbesserbar;
       end if;
             
    end EinheitVerbesserbar;
@@ -110,9 +122,7 @@ package body EinheitVerbessernLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueIDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return Boolean
-   is
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
-   begin
+   is begin
             
       Transporternummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
@@ -123,28 +133,30 @@ package body EinheitVerbessernLogik is
             return True;
             
          when others =>
-            TransporterID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Transporternummer));
+            return EinheitentransporterLogik.TransporterGroßGenug (LadungExtern      => NeueIDExtern,
+                                                                    TransporterExtern => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Transporternummer)),
+                                                                    SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies);
       end case;
       
       -- Wenn die Nummer ungleich Null ist, dann sollte die ID auch immer ungleich Null sein, kann die erste Prüfung dann nicht raus? äöü
       -- Dann könnte ich auch einfach return TransporterGroßGenug machen. äöü
-      if
-        TransporterID = EinheitenKonstanten.LeerID
-      then
-         null;
+      -- if
+      --   TransporterID = EinheitenKonstanten.LeerID
+      --  then
+      --    null;
          
-      elsif
-        False = EinheitentransporterLogik.TransporterGroßGenug (LadungExtern      => NeueIDExtern,
-                                                                 TransporterExtern => TransporterID,
-                                                                 SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
-      then
-         return False;
+      -- elsif
+      -- False = EinheitentransporterLogik.TransporterGroßGenug (LadungExtern      => NeueIDExtern,
+      --                                                          TransporterExtern => TransporterID,
+      --                                                           SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
+      -- then
+      --    return False;
          
-      else
-         null;
-      end if;
+      -- else
+      --    null;
+      -- end if;
       
-      return True;
+    --  return True;
       
    end WeiterhinTransportierbar;
    
@@ -159,6 +171,7 @@ package body EinheitVerbessernLogik is
    begin
       
       -- Hier muss die aktuelle ID geprüft werden um die aktuelle Transportkapazität zu bekommen, auf keinen Fall die Neue einsetzen!
+      -- Gilt auch bei der Prüfung auf belegte Plätze weiter unten!
       AktuelleTransporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                    IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
@@ -169,7 +182,7 @@ package body EinheitVerbessernLogik is
         NeueTransporterkapazität >= AktuelleTransporterkapazität
         or
           NeueTransporterkapazität >= EinheitentransporterLogik.BelegtePlätze (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                 TransportkapazitätExtern  => NeueTransporterkapazität)
+                                                                                 TransportkapazitätExtern  => AktuelleTransporterkapazität)
       then
          return True;
             

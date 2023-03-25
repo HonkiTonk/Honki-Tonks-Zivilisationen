@@ -120,9 +120,13 @@ package TextnummernKonstanten is
    MeldungNichtangriffspakt : constant Positive := 9;
    MeldungBelegt : constant Positive := 10;
    MeldungUnladbar : constant Positive := 11;
+   MeldungUnverbesserbar : constant Positive := 12;
+   MeldungNichtEigenesGebiet : constant Positive := 13;
+   MeldungVerbessertZuGroß : constant Positive := 14;
+   MeldungFehlenderLaderaum : constant Positive := 15;
    
    AnfangMeldung : constant Positive := 1;
-   EndeMeldung : constant Positive := 11;
+   EndeMeldung : constant Positive := 15;
    
    
    

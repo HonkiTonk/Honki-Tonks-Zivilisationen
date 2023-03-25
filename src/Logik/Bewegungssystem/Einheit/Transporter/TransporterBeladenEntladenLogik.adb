@@ -12,6 +12,7 @@ package body TransporterBeladenEntladenLogik is
    function TransporterBeladen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
+     -- PrüfenLadenExtern : in Boolean)
       return Boolean
    is begin
       
@@ -26,6 +27,8 @@ package body TransporterBeladenEntladenLogik is
          when others =>
             AlterTransporter := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern));
       end case;
+      
+      
             
       case
         AlterTransporter
