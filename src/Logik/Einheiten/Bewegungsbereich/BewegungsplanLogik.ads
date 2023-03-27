@@ -90,6 +90,22 @@ private
                  AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
+   procedure NeuGleichZiel
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      AndereEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 ZielkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 ZielkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
    
    
    function PlanenRekursiv
@@ -148,6 +164,26 @@ private
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   function PlanungUnnötig
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 ZielkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 ZielkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 EinheitenkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 EinheitenkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
 
 end BewegungsplanLogik;

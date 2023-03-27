@@ -11,6 +11,16 @@ with LeseSpeziesbelegung;
 package TransporterBeladenEntladenLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
+   
+   function IstTransporterBeladbar
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return Boolean
+     with
+       Pre => (
+                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => TransporterExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
 
    function TransporterBeladen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;

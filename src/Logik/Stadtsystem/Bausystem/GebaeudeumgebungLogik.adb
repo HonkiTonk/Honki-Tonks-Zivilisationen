@@ -6,7 +6,7 @@ with LeseGebaeudeDatenbank;
 
 with KartenkoordinatenberechnungssystemLogik;
 
--- Um das theoretisch neue Zeug alles da rein zu basteln müsste man aber hier noch einmal deutlich überarbeiten. äöü
+-- Um da UND und ODER ein die Anforderungen zu bekommen müsste man hier alles noch einmal deutlich überarbeiten. äöü
 package body GebaeudeumgebungLogik is
 
    function RichtigeUmgebungVorhanden
@@ -93,21 +93,16 @@ package body GebaeudeumgebungLogik is
             then
                null;
                
+            elsif
+              False = Detailprüfung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                      KoordinatenExtern        => KartenWert,
+                                      AnforderungenExtern      => AnforderungenExtern)
+            then
+               null;
+               
             else
-               Ergebnis := Detailprüfung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                           KoordinatenExtern        => KartenWert,
-                                           AnforderungenExtern      => AnforderungenExtern);
+               return True;
             end if;
-            
-            case
-              Ergebnis
-            is
-               when True =>
-                  return True;
-                  
-               when False =>
-                  null;
-            end case;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;

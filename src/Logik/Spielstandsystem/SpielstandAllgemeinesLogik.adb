@@ -21,6 +21,7 @@ package body SpielstandAllgemeinesLogik is
       is
          when True =>
             -- Es wird hier keine Prüfung benötigt ob die Namenslänge > 0 ist, da dies schon in TexteingabeLogik.SpielstandName geprüft wird.
+            -- Die Prüfung ob der Name kurz genug für das Dateisystem ist erfolgt in TexteingabeGrafik.
             return SpielstandName.EingegebenerText;
             
          when False =>

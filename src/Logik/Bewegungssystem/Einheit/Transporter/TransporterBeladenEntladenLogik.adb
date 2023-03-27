@@ -8,11 +8,29 @@ with TransporterLadungsverschiebungLogik;
 -- Das Verschachteln mehrerer Transporter ineinander sollte keine Probleme mit regulären Einheiten machen.
 -- Es muss nur darauf geachtet werden dass in der EinheitenDatenbank das KannTransportieren immer kleiner ist als KannTransportiertWerden.
 package body TransporterBeladenEntladenLogik is
+   
+   function IstTransporterBeladbar
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return Boolean
+   is begin
+      
+      case
+        TransporterSuchenLogik.FreierPlatz (TransporterExtern => TransporterExtern)
+      is
+         when EinheitenDatentypen.Transportplätze'First =>
+            return False;
+            
+         when others =>
+            return True;
+      end case;
+      
+   end IstTransporterBeladbar;
+   
+   
 
    function TransporterBeladen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
-     -- PrüfenLadenExtern : in Boolean)
       return Boolean
    is begin
       
@@ -27,8 +45,6 @@ package body TransporterBeladenEntladenLogik is
          when others =>
             AlterTransporter := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungExtern));
       end case;
-      
-      
             
       case
         AlterTransporter

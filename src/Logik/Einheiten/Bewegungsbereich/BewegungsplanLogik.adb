@@ -16,6 +16,7 @@ with EinheitSuchenLogik;
 with StadtSuchenLogik;
 with NachGrafiktask;
 with NachSoundtask;
+with TransporterBeladenEntladenLogik;
 
 with KIBewegungsplanVereinfachenLogik;
 with KIBewegungsbewertungLogik;
@@ -65,41 +66,24 @@ package body BewegungsplanLogik is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
       use type EinheitenDatentypen.Bewegungspunkte;
       use type SpeziesDatentypen.Spezies_Enum;
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
       use type EinheitenDatentypen.Lebenspunkte;
    begin
       
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      if
-        EinheitenKoordinaten = ZielkoordinatenExtern
-      then
-         return True;
-         
-      elsif
-        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                          NeueKoordinatenExtern      => ZielkoordinatenExtern)
-        and
-          EinheitSpeziesNummerExtern.Spezies /= EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                                        LogikGrafikExtern => True).Spezies
-      then
-         return True;
-         
-      elsif
-        EinheitSpeziesNummerExtern.Spezies = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                                     LogikGrafikExtern => True).Spezies
-        and then
-          False = EinheitenbewegungLogik.EinheitentauschPrüfung (BewegendeEinheitExtern => EinheitSpeziesNummerExtern,
-                                                                  StehendeEinheitExtern  => EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                                                                                    LogikGrafikExtern => True))
-      then
-         return True;
-        
-      else
-         SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-         SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    KoordinatenExtern          => ZielkoordinatenExtern);
-      end if;
+      case
+        PlanungUnnötig (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                         ZielkoordinatenExtern      => ZielkoordinatenExtern,
+                         EinheitenkoordinatenExtern => EinheitenKoordinaten)
+      is
+         when True =>
+            return True;
+            
+         when False =>
+            SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                       KoordinatenExtern          => ZielkoordinatenExtern);
+      end case;
       
       case
         PlanenRekursiv (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -132,6 +116,7 @@ package body BewegungsplanLogik is
                                                                                                KoordinatenExtern => NeueKoordinaten);
                end if;
                
+               -- Sollte die Länge der Bewegungsverzögerung und des Bewegungssounds identisch sein? äöü
                NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Einheitenbewegung_Enum;
                
                if
@@ -142,91 +127,10 @@ package body BewegungsplanLogik is
                elsif
                  ZielkoordinatenExtern = NeueKoordinaten
                then
-                  if
-                    EinheitSpeziesNummerExtern.Spezies = AndereEinheit.Spezies
-                  then
-                     BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                                                                                                  LogikGrafikExtern => True),
-                                                                            NeueKoordinatenExtern      => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                            EinheitentauschExtern      => True);
-                     
-                     BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                            NeueKoordinatenExtern      => ZielkoordinatenExtern,
-                                                                            EinheitentauschExtern      => False);
-                     
-                  elsif
-                    EinheitSpeziesNummerExtern.Spezies /= AndereEinheit.Spezies
-                    and
-                      SpeziesKonstanten.LeerSpezies /= AndereEinheit.Spezies
-                      and
-                        StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
-                                                                                                                   KoordinatenExtern => ZielkoordinatenExtern).Nummer
-                  then
-                     case
-                       EinheitenbewegungLogik.FremderAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                              FremdeEinheitExtern        => AndereEinheit)
-                     is
-                        when False =>
-                           null;
-                           
-                        when True =>
-                           BewegungDurchführen := EinheitenbewegungLogik.FremdeStadtAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                              FremdeStadtExtern          => StadtAufFeld);
-                     end case;
-                     
-                     case 
-                       BewegungDurchführen
-                     is
-                        when False =>
-                           null;
-                           
-                        when True =>
-                           BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                  NeueKoordinatenExtern      => NeueKoordinaten,
-                                                                                  EinheitentauschExtern      => False);
-                     end case;
-                     
-                  elsif
-                    AndereEinheit.Spezies /= EinheitSpeziesNummerExtern.Spezies
-                    and
-                      AndereEinheit.Spezies /= SpeziesKonstanten.LeerSpezies
-                  then
-                     case
-                       EinheitenbewegungLogik.FremderAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                              FremdeEinheitExtern        => AndereEinheit)
-                     is
-                        when False =>
-                           null;
-                           
-                        when True =>
-                           BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                  NeueKoordinatenExtern      => NeueKoordinaten,
-                                                                                  EinheitentauschExtern      => False);
-                     end case;
-                  
-                  elsif
-                    StadtAufFeld.Spezies /= SpeziesKonstanten.LeerSpezies
-                    and
-                      StadtAufFeld.Spezies /= EinheitSpeziesNummerExtern.Spezies
-                  then
-                     case
-                       EinheitenbewegungLogik.FremdeStadtAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                  FremdeStadtExtern          => StadtAufFeld)
-                     is
-                        when False =>
-                           null;
-                           
-                        when True =>
-                           BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                  NeueKoordinatenExtern      => NeueKoordinaten,
-                                                                                  EinheitentauschExtern      => False);
-                     end case;
-                     
-                  else
-                     BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                            NeueKoordinatenExtern      => NeueKoordinaten,
-                                                                            EinheitentauschExtern      => False);
-                  end if;
+                  NeuGleichZiel (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                 AndereEinheitExtern        => AndereEinheit,
+                                 ZielkoordinatenExtern      => ZielkoordinatenExtern,
+                                 StadtSpeziesNummerExtern   => StadtAufFeld);
                   
                else
                   BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -240,6 +144,7 @@ package body BewegungsplanLogik is
                      null;
                      
                   else
+                     -- Sollte die Länge der Bewegungsverzögerung und des Bewegungssounds identisch sein? äöü
                      delay Bewegungsverzögerung;
                   end if;
                end if;
@@ -258,6 +163,142 @@ package body BewegungsplanLogik is
       return True;
       
    end BewegungPlanen;
+   
+   
+   
+   function PlanungUnnötig
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
+   is
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type SpeziesDatentypen.Spezies_Enum;
+   begin
+      
+      if
+        EinheitenkoordinatenExtern = ZielkoordinatenExtern
+      then
+         return True;
+         
+      elsif
+        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                          NeueKoordinatenExtern      => ZielkoordinatenExtern)
+        and
+          EinheitSpeziesNummerExtern.Spezies /= EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
+                                                                                                        LogikGrafikExtern => True).Spezies
+      then
+         return True;
+         
+      elsif
+        EinheitSpeziesNummerExtern.Spezies = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
+                                                                                                     LogikGrafikExtern => True).Spezies
+        and then
+          False = EinheitenbewegungLogik.EinheitentauschPrüfung (BewegendeEinheitExtern => EinheitSpeziesNummerExtern,
+                                                                  StehendeEinheitExtern  => EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
+                                                                                                                                                    LogikGrafikExtern => True))
+      then
+         return True;
+        
+      else
+         return False;
+      end if;
+      
+   end PlanungUnnötig;
+   
+   
+   
+   procedure NeuGleichZiel
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      AndereEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+   is
+      use type SpeziesDatentypen.Spezies_Enum;
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+   begin
+      
+      if
+        EinheitSpeziesNummerExtern.Spezies = AndereEinheitExtern.Spezies
+      then
+         case
+           TransporterBeladenEntladenLogik.TransporterBeladen (TransporterExtern => AndereEinheitExtern,
+                                                               LadungExtern      => EinheitSpeziesNummerExtern.Nummer)
+         is
+            when True =>
+               null;
+                           
+            when False =>
+               BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => AndereEinheitExtern,
+                                                                      NeueKoordinatenExtern      => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                                                      EinheitentauschExtern      => True);
+                     
+               BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                      NeueKoordinatenExtern      => ZielkoordinatenExtern,
+                                                                      EinheitentauschExtern      => False);
+         end case;
+         
+         return;
+                     
+      elsif
+        EinheitSpeziesNummerExtern.Spezies /= AndereEinheit.Spezies
+        and
+          SpeziesKonstanten.LeerSpezies /= AndereEinheit.Spezies
+          and
+            StadtKonstanten.LeerNummer /= StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+                                                                                                       KoordinatenExtern => ZielkoordinatenExtern).Nummer
+      then
+         case
+           EinheitenbewegungLogik.FremderAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                  FremdeEinheitExtern        => AndereEinheitExtern)
+         is
+            when False =>
+               BewegungDurchführen := False;
+                           
+            when True =>
+               BewegungDurchführen := EinheitenbewegungLogik.FremdeStadtAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                                  FremdeStadtExtern          => StadtSpeziesNummerExtern);
+         end case;
+         
+         case
+           BewegungDurchführen
+         is
+            when False =>
+               return;
+                           
+            when True =>
+               null;
+         end case;
+                     
+      elsif
+        (AndereEinheitExtern.Spezies /= EinheitSpeziesNummerExtern.Spezies
+         and
+           AndereEinheitExtern.Spezies /= SpeziesKonstanten.LeerSpezies)
+        and then
+          False = EinheitenbewegungLogik.FremderAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                         FremdeEinheitExtern        => AndereEinheitExtern)
+      then
+         return;
+         
+      elsif
+        (StadtSpeziesNummerExtern.Spezies /= SpeziesKonstanten.LeerSpezies
+         and
+           StadtSpeziesNummerExtern.Spezies /= EinheitSpeziesNummerExtern.Spezies)
+        and then
+          False = EinheitenbewegungLogik.FremdeStadtAufFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                             FremdeStadtExtern          => StadtSpeziesNummerExtern)
+      then
+         return;
+         
+      else
+         null;
+      end if;
+      
+      BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                             NeueKoordinatenExtern      => NeueKoordinaten,
+                                                             EinheitentauschExtern      => False);
+      
+   end NeuGleichZiel;
    
    
    

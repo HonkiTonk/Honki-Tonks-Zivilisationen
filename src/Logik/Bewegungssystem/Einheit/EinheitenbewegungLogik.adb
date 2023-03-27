@@ -146,10 +146,9 @@ package body EinheitenbewegungLogik is
         True = EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => BewegendeEinheitExtern,
                                                                   TransporterExtern => StehendeEinheitExtern)
         and then
-          True = TransporterBeladenEntladenLogik.TransporterBeladen (TransporterExtern => StehendeEinheitExtern,
-                                                                     LadungExtern      => BewegendeEinheitExtern.Nummer)
+          True = TransporterBeladenEntladenLogik.IstTransporterBeladbar (TransporterExtern => StehendeEinheitExtern)
       then
-         return False;
+         return True;
          
       else
          return EinheitentauschPrüfung (BewegendeEinheitExtern => BewegendeEinheitExtern,

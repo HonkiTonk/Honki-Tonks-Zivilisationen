@@ -28,17 +28,19 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (27.03.2023):
+   -- Version 0.04.8790 => 0.04. (27.03.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.8740 => 0.04. (26.03.2023):
+   -- Version 0.04.8740 => 0.04.8790 (26.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert, welcher es ermöglichte Einheiten über beliebige Entfernungen in Transporter zu laden.
+   -- Menschliche Bewegungsplanung in kleinere Teile aufgeteilt und überarbeitet.
+   -- Fehler korrigiert, welcher untern Umständen zu einem Programmstopp führen konnte wenn man die Bewegung auf ein von einer anderen Spezies belegten Feld abbrach.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

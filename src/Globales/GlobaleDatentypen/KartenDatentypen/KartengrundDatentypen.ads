@@ -83,6 +83,7 @@ package KartengrundDatentypen is
    
    
    
+   -- Man könnte bei der Oberfläche Riffe mit einbauen, aber wie ist das dann Unterwasser? Sollte die da nicht auch vorhanden sein? äöü
    type Zusatzgrund_Enum is (
                              Leer_Zusatzgrund_Enum,
                              

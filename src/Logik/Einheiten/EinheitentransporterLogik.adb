@@ -142,20 +142,17 @@ package body EinheitentransporterLogik is
             then
                null;
                
+            elsif
+              False = Entladung (KoordinatenExtern => KartenWert,
+                                 LadungExtern      => LadungExtern)
+            then
+               null;
+               
             else
-               case
-                 Entladung (KoordinatenExtern => KartenWert,
-                            LadungExtern      => LadungExtern)
-               is
-                  when True =>
-                     BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => LadungExtern,
-                                                                            NeueKoordinatenExtern      => KartenWert,
-                                                                            EinheitentauschExtern      => False);
-                     return;
-                     
-                  when False =>
-                     null;
-               end case;
+               BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => LadungExtern,
+                                                                      NeueKoordinatenExtern      => KartenWert,
+                                                                      EinheitentauschExtern      => False);
+               return;
             end if;
             
          end loop XAchseSchleife;
@@ -186,18 +183,13 @@ package body EinheitentransporterLogik is
             return False;
       end case;
       
-      case
-        PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => LadungExtern,
-                                                                  NeueKoordinatenExtern      => KoordinatenExtern)
-      is
-         when False =>
-            return False;
-            
-         when True =>
-            null;
-      end case;
-      
       if
+        False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => LadungExtern,
+                                                                          NeueKoordinatenExtern      => KoordinatenExtern)
+      then
+         return False;
+         
+      elsif
         LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => LadungExtern) < BewegungspunkteBerechnenLogik.Bewegungspunkte (NeueKoordinatenExtern      => KoordinatenExtern,
                                                                                                                                           EinheitSpeziesNummerExtern => LadungExtern)
       then
