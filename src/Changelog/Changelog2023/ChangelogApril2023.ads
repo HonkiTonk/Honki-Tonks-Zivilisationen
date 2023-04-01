@@ -196,16 +196,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.0. => 0.0. (02.04.2023):
+   -- Version 0.04.8835 => 0.0. (02.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (01.04.2023):
+   -- Version 0.04.8790 => 0.04.8835 (01.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weitere Fehlermeldungen eingebaut.
+   -- KI überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
+   -- Versehentlich das src Verzeichnis gelöscht und damit auch alle Änderungen.
 
 end ChangelogVorlage;

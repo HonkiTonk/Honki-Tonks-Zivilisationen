@@ -1,37 +1,32 @@
 package ChangelogVorlage is
    
-   -- Version 0.04. => 0.04. (31.03.2023):
+   -- Version 0.04.8790 => 0.04.8790 (31.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (30.03.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.04. => 0.04. (29.03.2023):
+   -- Version 0.04.8790 => 0.04.8790 (30.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (28.03.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.04.8790 => 0.04. (27.03.2023):
+   -- Version 0.04.8790 => 0.04.8790 (29.03.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.04.8790 => 0.04.8790 (28.03.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.04.8790 => 0.04.8790 (27.03.2023):
+   
+   -- null.
    
    
 
