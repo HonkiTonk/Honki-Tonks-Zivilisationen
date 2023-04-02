@@ -1,4 +1,3 @@
-with KartenDatentypen;
 with KampfDatentypen;
 with StadtDatentypen;
 with DiplomatieDatentypen;
@@ -169,11 +168,12 @@ package body KIStadtLogik is
    begin
       
       StadtKoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      Umgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) loop
+      for YAchseSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) loop
+         for XAchseSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

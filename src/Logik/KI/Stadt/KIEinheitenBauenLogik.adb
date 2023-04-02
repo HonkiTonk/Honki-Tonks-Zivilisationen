@@ -198,7 +198,8 @@ package body KIEinheitenBauenLogik is
             return KIDatentypen.BauenBewertung'First;
             
          when EinheitenDatentypen.Leer_Einheitart_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitenBauenLogik.SpezielleEinheitBewerten: Leere Einheitart");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitenBauenLogik.SpezielleEinheitBewerten: Leere Einheitart, ID: "
+                                        & IDExtern'Wide_Wide_Image & " Spezies: " & StadtSpeziesNummerExtern.Spezies'Wide_Wide_Image);
       end case;
       
       return KIKonstanten.LeerBewertung;

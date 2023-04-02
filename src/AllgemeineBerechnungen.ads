@@ -1,5 +1,7 @@
 with ProduktionDatentypen;
 
+-- Soll das hier sein weil ich das auch in anderen Bereichen als in grafik verwenden wollte? äöü
+-- Oder ist das einfach nur falsch eingeordnet? äöü
 package AllgemeineBerechnungen is
    pragma Preelaborate;
    use type ProduktionDatentypen.Einwohner;

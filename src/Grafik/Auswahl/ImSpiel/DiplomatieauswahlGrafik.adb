@@ -64,51 +64,50 @@ package body DiplomatieauswahlGrafik is
       PositionenSchleife:
       for PositionSchleifenwert in SpeziesDatentypen.Spezies_Enum'Pos (SpeziesDatentypen.Spezies_Verwendet_Enum'First) .. SpeziesDatentypen.Spezies_Enum'Pos (SpeziesDatentypen.Spezies_Enum'Last) loop
       
-         case
-           InteraktionAuswahl.SpeziesMöglich (SpeziesDatentypen.Spezies_Enum'Val (PositionSchleifenwert))
-         is
-            when True =>
-               Text := To_Unbounded_Wide_Wide_String (Source => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert + 1,
-                                                                                                             WelchesMenüExtern => MenueDatentypen.Spezies_Menü_Enum))
-                 & TextKonstanten.StandardAbstand;
+         if
+           True = InteraktionAuswahl.SpeziesMöglich (SpeziesDatentypen.Spezies_Enum'Val (PositionSchleifenwert))
+         then
+            Text := To_Unbounded_Wide_Wide_String (Source => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert + 1,
+                                                                                                          WelchesMenüExtern => MenueDatentypen.Spezies_Menü_Enum))
+              & TextKonstanten.StandardAbstand;
                
-               case
-                 LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => NachGrafiktask.AktuelleSpezies,
-                                                  SpeziesZweiExtern => SpeziesDatentypen.Spezies_Enum'Val (PositionSchleifenwert))
-               is
-                  when DiplomatieDatentypen.Neutral_Enum =>
-                     Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugFrieden);
+            case
+              LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => NachGrafiktask.AktuelleSpezies,
+                                               SpeziesZweiExtern => SpeziesDatentypen.Spezies_Enum'Val (PositionSchleifenwert))
+            is
+               when DiplomatieDatentypen.Neutral_Enum =>
+                  Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugFrieden);
                      
-                  when DiplomatieDatentypen.Nichtangriffspakt_Enum =>
-                     Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugNichtangriffspakt);
+               when DiplomatieDatentypen.Nichtangriffspakt_Enum =>
+                  Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugNichtangriffspakt);
                
-                  when DiplomatieDatentypen.Krieg_Enum =>
-                     Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKrieg);
+               when DiplomatieDatentypen.Krieg_Enum =>
+                  Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKrieg);
                
-                  when DiplomatieDatentypen.Unbekannt_Enum =>
-                     Fehlermeldungssystem.Grafik (FehlermeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung: Unbekannter Kontakt");
-                     Text := TextKonstanten.LeerUnboundedString;
-               end case;
+               when DiplomatieDatentypen.Unbekannt_Enum =>
+                  Fehlermeldungssystem.Grafik (FehlermeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung: Unbekannter Kontakt");
+                  Text := TextKonstanten.LeerUnboundedString;
+            end case;
                
-               TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.TextAccess,
-                                                            TextExtern       => To_Wide_Wide_String (Source => Text),
-                                                            FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
-                                                                                                                       AuswahlExtern    => AuswahlExtern));
+            TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                         TextExtern       => To_Wide_Wide_String (Source => Text),
+                                                         FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
+                                                                                                                    AuswahlExtern    => AuswahlExtern));
                
-               Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                                       ViewbreiteExtern => ViewflächeExtern.x);
+            Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                                    ViewbreiteExtern => ViewflächeExtern.x);
                
-               TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
-                                                                   PositionExtern   => Textposition);
+            TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                                PositionExtern   => Textposition);
                
-               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                                   TextbreiteExtern => Textbreite);
+            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                                TextbreiteExtern => Textbreite);
                
-               InteraktionAuswahl.PositionenDiplomatieSpezies (SpeziesDatentypen.Spezies_Enum'Val (PositionSchleifenwert)) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.TextAccess);
+            InteraktionAuswahl.PositionenDiplomatieSpezies (SpeziesDatentypen.Spezies_Enum'Val (PositionSchleifenwert)) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.TextAccess);
                
-            when False =>
-               null;
-         end case;
+         else
+            null;
+         end if;
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.TextAccess,

@@ -175,31 +175,32 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.0. => 0.0. (05.04.2023):
+   -- Version 0.04. => 0.04. (05.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (04.04.2023):
+   -- Version 0.04. => 0.04. (04.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (03.04.2023):
+   -- Version 0.04.8870 => 0.04. (03.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.8835 => 0.0. (02.04.2023):
+   -- Version 0.04.8835 => 0.04.8870 (02.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehlermeldungen wieder eingebaut.
+   -- Verlorene Teile teilweise wieder hinzugefügt.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

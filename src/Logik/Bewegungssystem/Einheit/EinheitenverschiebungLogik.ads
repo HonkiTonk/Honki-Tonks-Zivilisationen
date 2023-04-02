@@ -39,6 +39,8 @@ package EinheitenverschiebungLogik is
    
 private
    
+   Umgebungsgröße : KartenDatentypen.UmgebungsbereichDrei;
+   
    UmgebungPrüfen : KartenDatentypen.Sichtweite;
    BereitsGeprüft : KartenDatentypen.SichtweiteNatural;
    

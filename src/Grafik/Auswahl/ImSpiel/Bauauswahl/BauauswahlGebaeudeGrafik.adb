@@ -132,7 +132,7 @@ package body BauauswahlGebaeudeGrafik is
         AuswahlExtern
       is
          when StadtKonstanten.LeerGebäudeID =>
-            return;
+            null;
          
          when others =>
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
