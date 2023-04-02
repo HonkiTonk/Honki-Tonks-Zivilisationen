@@ -199,7 +199,7 @@ package ChangelogVorlage is
    -- Version 0.04.8835 => 0.04.8870 (02.04.2023):
    
    -- Fehlermeldungen wieder eingebaut.
-   -- Verlorene Teile teilweise wieder hinzugefügt.
+   -- Verlorene Teile größtenteils wieder hinzugefügt.
    -- Kommentare und Kleinigkeiten korrigiert.
    
    
