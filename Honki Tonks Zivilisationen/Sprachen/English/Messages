@@ -1,5 +1,5 @@
-Improvement cannot be built here.
-Unit cannot execute this command.
+Improvement not buildable here.
+Unit cannot execute command.
 Improvement already exists.
 City maximum reached, no further cities can be built.
 Unit has no more movement points.
@@ -11,5 +11,5 @@ Already occupied by a city.
 Save file is corrupted or not compatible with this version of the game.
 Unit cannot be upgraded.
 Unit is not on own territory.
-Upgraded unit would be too big for transporter.
+Upgraded unit would be too big for the transporter.
 Upgraded unit would not have enough cargo space.

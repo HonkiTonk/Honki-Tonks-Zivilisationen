@@ -4,8 +4,8 @@ Scroll north
 Scroll west
 Scroll south
 Scroll east
-Scroll Northwest
-Scroll Northeast
+Scroll northwest
+Scroll northeast
 Scroll southwest
 Scroll southeast
 Scroll level up
@@ -27,17 +27,17 @@ Move north
 Move west
 Move south
 Move East
-Move Northwest
-Move Northeast
-Move Southwest
-Move Southeast
+Move northwest
+Move northeast
+Move southwest
+Move southeast
 Move level up
 Move level down
 Build city
 Build/improve road
-Build/upgrade mine
-Build/upgrade farm
-Build/Upgrade fortress
+Build/improve mine
+Build/improve farm
+Build/improve fortress
 Reforestation
 Clearing/draining
 Remove effect
@@ -46,8 +46,8 @@ Entrench
 Plunder
 Dissolve
 Enhance
-Change Home City
-Unloading
+Change hometown
+Unload
 Deselect
 City
 City map

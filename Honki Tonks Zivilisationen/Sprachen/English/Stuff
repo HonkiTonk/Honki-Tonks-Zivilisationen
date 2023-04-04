@@ -11,7 +11,7 @@ Movement Points:
 Experience:
 Occupation:
 Attack:
-Defense:
+Defence:
 Rank:
 None
 Round:
@@ -20,17 +20,17 @@ Research time:
 Research project:
 Available workers:
 Is required for:
-Building-costs:
-Charge:
+Building costs:
+Cargo:
 Home:
 Permanent food cost:
-Permanent cost of money:
+Permanent money cost:
 Permanent production costs:
-Coordinate:
+Coordinates:
 Permanent food bonus:
 Permanent produktion bonus:
 Permanent money bonus:
-Permanent research bonus:
+Permanent knowledge bonus:
 Permanent defence bonus:
 Permanent attack bonus:
 Buildings:
@@ -40,7 +40,7 @@ Yes
 No
 with
 Peace
-Non-aggression pact
+Nonaggression pact
 War
 Combat stats:
 Transport capacity:
@@ -48,7 +48,7 @@ Transporter size:
 Can be loaded on:
 Small transporter
 Middle transporter
-Big transporter
+Large transporter
 Huge transporter
 Gigantic transporter
 City

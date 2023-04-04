@@ -1,174 +1,174 @@
 package ChangelogVorlage is
    
-   -- Version 0.0. => 0.0. (30.04.2023):
+   -- Version 0.04. => 0.04. (30.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (29.04.2023):
+   -- Version 0.04. => 0.04. (29.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (28.04.2023):
+   -- Version 0.04. => 0.04. (28.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.04.2023):
+   -- Version 0.04. => 0.04. (27.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.04.2023):
+   -- Version 0.04. => 0.04. (26.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.04.2023):
+   -- Version 0.04. => 0.04. (25.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24.04.2023):
+   -- Version 0.04. => 0.04. (24.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.04.2023):
+   -- Version 0.04. => 0.04. (23.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.04.2023):
+   -- Version 0.04. => 0.04. (22.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21.04.2023):
+   -- Version 0.04. => 0.04. (21.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20.04.2023):
+   -- Version 0.04. => 0.04. (20.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (19.04.2023):
+   -- Version 0.04. => 0.04. (19.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18.04.2023):
+   -- Version 0.04. => 0.04. (18.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17.04.2023):
+   -- Version 0.04. => 0.04. (17.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (16.04.2023):
+   -- Version 0.04. => 0.04. (16.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (15.04.2023):
+   -- Version 0.04. => 0.04. (15.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (14.04.2023):
+   -- Version 0.04. => 0.04. (14.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (13.04.2023):
+   -- Version 0.04. => 0.04. (13.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (12.04.2023):
+   -- Version 0.04. => 0.04. (12.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (11.04.2023):
+   -- Version 0.04. => 0.04. (11.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (10.04.2023):
+   -- Version 0.04. => 0.04. (10.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (09.04.2023):
+   -- Version 0.04. => 0.04. (09.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (08.04.2023):
+   -- Version 0.04. => 0.04. (08.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (07.04.2023):
+   -- Version 0.04. => 0.04. (07.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (06.04.2023):
+   -- Version 0.04. => 0.04. (06.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
@@ -182,16 +182,17 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (04.04.2023):
+   -- Version 0.04.8905 => 0.04. (04.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.8870 => 0.04. (03.04.2023):
+   -- Version 0.04.8870 => 0.04.8905 (03.04.2023):
    
-   -- 
+   -- Rechtschreibugn überarbeitet.
+   -- Übersetzung überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    
