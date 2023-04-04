@@ -34,10 +34,10 @@ package KartenRecords is
    
    
    
-   type AchseAnfangEndePositivRecord is record
+   type AchseAnfangEndeRecord is record
       
-      YAchse : KartenDatentypen.KartenfeldPositiv;
-      XAchse : KartenDatentypen.KartenfeldPositiv;
+      Anfang : KartenDatentypen.Kartenfeld;
+      Ende : KartenDatentypen.Kartenfeld;
       
    end record;
    

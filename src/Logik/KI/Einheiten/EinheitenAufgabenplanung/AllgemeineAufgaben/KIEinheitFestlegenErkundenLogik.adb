@@ -7,13 +7,13 @@ with LeseAllgemeines;
 
 with PassierbarkeitspruefungLogik;
 with KartenkoordinatenberechnungssystemLogik;
+with ZufallegeneratorenAllgemein;
+with Fehlermeldungssystem;
 
 with KIDatentypen;
 with KIKonstanten;
 
 with KIAufgabenVerteiltLogik;
-with KIEinheitAllgemeinePruefungenLogik;
-with KIAchsenzufallLogik;
 
 package body KIEinheitFestlegenErkundenLogik is
 
@@ -24,76 +24,87 @@ package body KIEinheitFestlegenErkundenLogik is
       
       EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      case
-        KIEinheitAllgemeinePruefungenLogik.DirekteUmgebung (KoordinatenExtern          => EinheitKoordinaten,
-                                                            EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
-      is
-         when False =>
-            return False;
-            
-         when True =>
-            UmgebungPrüfen := 2;
-            BereitsGeprüft := UmgebungPrüfen - 1;
-      end case;
-      
-      UnbekanntesFeldSuchenSchleife:
-      while UmgebungPrüfen <= KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad) loop
-         
-         case
-           ZielSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                       KoordinatenExtern          => EinheitKoordinaten,
-                       KartenreichweiteExtern     => UmgebungPrüfen,
-                       GeprüftExtern              => BereitsGeprüft)
-         is
-            when True =>
-               return True;
-               
-            when False =>
-               UmgebungPrüfen := UmgebungPrüfen + 1;
-               BereitsGeprüft := UmgebungPrüfen - 1;
-         end case;
-         
-      end loop UnbekanntesFeldSuchenSchleife;
-      
-      return False;
+      return ZielSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                         KoordinatenExtern          => EinheitKoordinaten);
       
    end Erkunden;
    
    
    
-   -- Warum wird bei all diesen Dinger hier immer nur eine Achse geprüft und nicht alle? äöü
-   -- Oder ein sich vergrößernder Bereich. äöü
+   -- Kann ich das hier noch an anderen Stellen verwenden? äöü
    function ZielSuchen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      KartenreichweiteExtern : in KartenDatentypen.KartenfeldNatural;
-      GeprüftExtern : in KartenDatentypen.KartenfeldNatural)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is
-      use type KartenDatentypen.Ebene;
-   begin
+   is begin
       
-      Zufallsmultiplikator := KIAchsenzufallLogik.AlleAchsen;
-      
+      -- Hier noch eine Überprüfung einbauen ob die Ebenenänderung überhaupt möglich ist? äöü
+      -- Dann müsste ich nicht immer alles durchgehen. äöü
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenenbereichEins'Range loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in -KartenreichweiteExtern .. KartenreichweiteExtern loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in -KartenreichweiteExtern .. KartenreichweiteExtern loop
+         
+         QuadrantenDurchgegangen := (others => False);
+         
+         QuadrantenSchleife:
+         for QuadrantenSchleifenwert in QuadrantenDurchgegangenArray'Range loop
+            QuadrantenauswahlSchleife:
+            loop
             
-               if
-                 GeprüftExtern > abs (YAchseSchleifenwert)
-                 and
-                   GeprüftExtern > abs (XAchseSchleifenwert)
-               then
-                  null;
+               WelcherQuadrant := ZufallegeneratorenAllgemein.VorgegebenerZahlenbereich (AnfangExtern => QuadrantenDurchgegangenArray'First,
+                                                                                         EndeExtern   => QuadrantenDurchgegangenArray'Last);
+            
+               case
+                 QuadrantenDurchgegangen (WelcherQuadrant)
+               is
+                  when False =>
+                     QuadrantenDurchgegangen (WelcherQuadrant) := True;
+                     exit QuadrantenauswahlSchleife;
                   
-               else
+                  when True =>
+                     null;
+               end case;
+            
+            end loop QuadrantenauswahlSchleife;
+         
+            case
+              WelcherQuadrant
+            is
+               when 1 =>
+                  -- Y geht hier von 0 bis -Reichweite, deswegen den Multiplikator auf -1 setzen.
+                  YQuadrantenbereich := (0, KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad));
+                  XQuadrantenbereich := (0, KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad));
+                  Multiplikator := (-1, 1);
+                  
+               when 2 =>
+                  YQuadrantenbereich := (1, KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad));
+                  XQuadrantenbereich := (0, KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad));
+                  Multiplikator := (1, 1);
+               
+               when 3 =>
+                  YQuadrantenbereich := (0, KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad));
+                  -- X geht hier von -1 bis -Reichweite, deswegen den Multiplikator auf -1 setzen.
+                  XQuadrantenbereich := (1, KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad));
+                  Multiplikator := (1, -1);
+               
+               when 4 =>
+                  -- Hier geht beides von -1 bis -Reichweite, deswegen den Multiplikator auf -1 setzen.
+                  YQuadrantenbereich := (1, KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad));
+                  XQuadrantenbereich := (1, KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad));
+                  Multiplikator := (-1, -1);
+               
+               when others =>
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitFestlegenErkundenLogik.ZielSuchen - Ungültiger Quadrant");
+            end case;
+         
+            YAchseSchleife:
+            for YAchseSchleifenwert in YQuadrantenbereich.Anfang .. YQuadrantenbereich.Ende loop
+               XAchseSchleife:
+               for XAchseSchleifenwert in XQuadrantenbereich.Anfang .. XQuadrantenbereich.Ende loop
+            
                   KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                            ÄnderungExtern    => (Zufallsmultiplikator.EAchse * EAchseSchleifenwert,
-                                                                                                                                   Zufallsmultiplikator.YAchse * YAchseSchleifenwert,
-                                                                                                                                   Zufallsmultiplikator.XAchse * XAchseSchleifenwert),
+                                                                                                            ÄnderungExtern    => (EAchseSchleifenwert,
+                                                                                                                                   Multiplikator.YAchse * YAchseSchleifenwert,
+                                                                                                                                   Multiplikator.XAchse * XAchseSchleifenwert),
                                                                                                             LogikGrafikExtern => True);
                   
                   if
@@ -123,10 +134,10 @@ package body KIEinheitFestlegenErkundenLogik is
                   else
                      null;
                   end if;
-               end if;
-            
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
+               
+               end loop XAchseSchleife;
+            end loop YAchseSchleife;
+         end loop QuadrantenSchleife;
       end loop EAchseSchleife;
       
       return False;

@@ -27,21 +27,24 @@ package KIEinheitFestlegenErkundenLogik is
 private
    use type KartenDatentypen.Kartenfeld;
    
-   UmgebungPrüfen : KartenDatentypen.KartenfeldNatural;
-   BereitsGeprüft : KartenDatentypen.KartenfeldNatural;
+   WelcherQuadrant : Positive;
+   
+   YQuadrantenbereich : KartenRecords.AchseAnfangEndeRecord;
+   XQuadrantenbereich : KartenRecords.AchseAnfangEndeRecord;
    
    EinheitKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-   Zufallsmultiplikator : KartenRecords.AchsenKartenfeldRecord;
+   Multiplikator : KartenRecords.YXAchsenKartenfeldRecord;
+   
+   type QuadrantenDurchgegangenArray is array (1 .. 4) of Boolean;
+   QuadrantenDurchgegangen : QuadrantenDurchgegangenArray;
    
    
    
    function ZielSuchen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      KartenreichweiteExtern : in KartenDatentypen.KartenfeldNatural;
-      GeprüftExtern : in KartenDatentypen.KartenfeldNatural)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (

@@ -175,17 +175,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (05.04.2023):
+   -- Version 0.04.8940 => 0.04. (05.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.8905 => 0.04. (04.04.2023):
+   -- Version 0.04.8905 => 0.04.8940 (04.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- KI überarbeitet.
+   -- Zielfindung bei der Aufgabe 'Karte erkunden' verbessert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 
