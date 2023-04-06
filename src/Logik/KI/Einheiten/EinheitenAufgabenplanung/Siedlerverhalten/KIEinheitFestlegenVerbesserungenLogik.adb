@@ -16,6 +16,7 @@ with KIDatentypen;
 
 with KIAufgabenVerteiltLogik;
 with KIEinheitAllgemeinePruefungenLogik;
+with KIVerbesserungAnlegbarLogik;
 
 package body KIEinheitFestlegenVerbesserungenLogik is
 
@@ -115,23 +116,20 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                                                                                                                       ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                                       LogikGrafikExtern => True);
                
-               case
-                 VerbesserungKoordinaten.XAchse
-               is
-                  when KartenKonstanten.LeerXAchse =>
-                     null;
+               if
+                 VerbesserungKoordinaten.XAchse = KartenKonstanten.LeerXAchse
+               then
+                  null;
                      
-                  when others =>
-                     if
-                       True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern          => VerbesserungKoordinaten,
-                                                                  EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
-                     then
-                        return VerbesserungKoordinaten;
+               elsif
+                 True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern          => VerbesserungKoordinaten,
+                                                            EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
+               then
+                  return VerbesserungKoordinaten;
                   
-                     else
-                        null;
-                     end if;
-               end case;
+               else
+                  null;
+               end if;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -169,23 +167,20 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                                       LogikGrafikExtern => True);
             
-               case
-                 VerbesserungKoordinaten.XAchse
-               is
-                  when KartenKonstanten.LeerXAchse =>
-                     null;
+               if
+                 VerbesserungKoordinaten.XAchse = KartenKonstanten.LeerXAchse
+               then
+                  null;
                   
-                  when others =>
-                     if
-                       True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern          => VerbesserungKoordinaten,
-                                                                  EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern))
-                     then
-                        return VerbesserungKoordinaten;
+               elsif
+                 True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern          => VerbesserungKoordinaten,
+                                                            EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern))
+               then
+                  return VerbesserungKoordinaten;
                   
-                     else
-                        null;
-                     end if;
-               end case;
+               else
+                  null;
+               end if;
             end if;
                      
          end loop XAchseSchleife;
@@ -210,7 +205,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
         LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => VerbesserungKoordinaten) /= EinheitSpeziesNummerExtern.Spezies
       then
          return False;
-               
+         
       elsif
         True = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen_Enum,
                                                            SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
@@ -227,8 +222,8 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       elsif
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
       then
-         WelcheVerbesserung := VerbesserungAnlegbar (KoordinatenExtern          => KoordinatenExtern,
-                                                     EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+         WelcheVerbesserung := KIVerbesserungAnlegbarLogik.VerbesserungAnlegbar (KoordinatenExtern          => KoordinatenExtern,
+                                                                                 EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
       else
          WelcheVerbesserung := VerbesserungErsetzen;
@@ -247,100 +242,6 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       
    end AllgemeineVerbesserungenPrüfungen;
    
-   
-   
-   function VerbesserungAnlegbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return Boolean
-   is
-      use type KartengrundDatentypen.Basisgrund_Enum;
-      use type KartenextraDatentypen.Ressourcen_Enum;
-   begin
-      
-      Ressourcen := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        Ressourcen
-      is
-         when KartenextraDatentypen.Hochwertiges_Holz_Enum =>
-            return False;
-            
-         when others =>
-            Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
-      end case;
-      
-      case
-        AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                               BefehlExtern               => BefehleDatentypen.Mine_Bauen_Enum,
-                               AnlegenTestenExtern        => False,
-                               KoordinatenExtern          => KoordinatenExtern)
-      is
-         when True =>
-            if
-              Basisgrund = KartengrundDatentypen.Hügel_Enum
-              or
-                Basisgrund = KartengrundDatentypen.Gebirge_Enum
-                or
-                  Ressourcen = KartenextraDatentypen.Kohle_Enum
-                  or
-                    Ressourcen = KartenextraDatentypen.Eisen_Enum
-                    or
-                      Ressourcen = KartenextraDatentypen.Gold_Enum
-            then
-               SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       BeschäftigungExtern        => AufgabenDatentypen.Mine_Bauen_Enum);
-               return True;
-               
-            else
-               null;
-            end if;
-            
-         when False =>
-            null;
-      end case;
-      
-      case
-        AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                               BefehlExtern               => BefehleDatentypen.Festung_Bauen_Enum,
-                               AnlegenTestenExtern        => False,
-                               KoordinatenExtern          => KoordinatenExtern)
-      is
-         when True =>
-            if
-              Basisgrund = KartengrundDatentypen.Eis_Enum
-            then
-               SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       BeschäftigungExtern        => AufgabenDatentypen.Festung_Bauen_Enum);
-               return True;
-               
-            else
-               null;
-            end if;
-               
-         when False =>
-            null;
-      end case;
-         
-      case
-        AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                               BefehlExtern               => BefehleDatentypen.Farm_Bauen_Enum,
-                               AnlegenTestenExtern        => False,
-                               KoordinatenExtern          => KoordinatenExtern)
-      is
-         when True =>
-            SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern        => AufgabenDatentypen.Farm_Bauen_Enum);
-            return True;
-            
-         when False =>
-            null;
-      end case;
-      
-      return False;
-      
-   end VerbesserungAnlegbar;
-
 
 
    function VerbesserungErsetzen
@@ -353,6 +254,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    
    
    
+   -- Wäre es sinnvoll das auszulagern wie das Bauen von Verbesserungen? Oder gibt es niemals einen Grund Straßen nicht zu bauen? äöü
    function WegAnlegbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -367,7 +269,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       is
          when True =>
             SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern      => AufgabenDatentypen.Straße_Bauen_Enum);
+                                                    BeschäftigungExtern        => AufgabenDatentypen.Straße_Bauen_Enum);
             return True;
             
          when False =>

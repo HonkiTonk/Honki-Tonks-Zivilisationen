@@ -5,10 +5,8 @@ with EinheitenKonstanten;
 private with KartenRecords;
 private with StadtRecords;
 private with EinheitenDatentypen;
-private with KartengrundDatentypen;
 private with KartenDatentypen;
 private with StadtKonstanten;
-private with KartenextraDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -36,10 +34,6 @@ private
    WelcheVerbesserung : Boolean;
 
    Stadtumgebung : KartenDatentypen.UmgebungsbereichDrei;
-
-   Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
-
-   Ressourcen : KartenextraDatentypen.Ressourcen_Enum;
 
    EinheitAufFeld : EinheitenRecords.SpeziesEinheitnummerRecord;
 
@@ -101,21 +95,6 @@ private
                );
 
    function AllgemeineVerbesserungenPrüfungen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return Boolean
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
-              );
-
-   function VerbesserungAnlegbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean

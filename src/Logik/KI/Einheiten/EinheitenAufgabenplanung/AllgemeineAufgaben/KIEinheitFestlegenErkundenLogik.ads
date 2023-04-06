@@ -27,7 +27,7 @@ package KIEinheitFestlegenErkundenLogik is
 private
    use type KartenDatentypen.Kartenfeld;
    
-   WelcherQuadrant : Positive;
+   WelcherQuadrant : KartenDatentypen.StandardQuadranten;
    
    YQuadrantenbereich : KartenRecords.AchseAnfangEndeRecord;
    XQuadrantenbereich : KartenRecords.AchseAnfangEndeRecord;
@@ -37,7 +37,7 @@ private
 
    Multiplikator : KartenRecords.YXAchsenKartenfeldRecord;
    
-   type QuadrantenDurchgegangenArray is array (1 .. 4) of Boolean;
+   type QuadrantenDurchgegangenArray is array (KartenDatentypen.StandardQuadranten'Range) of Boolean;
    QuadrantenDurchgegangen : QuadrantenDurchgegangenArray;
    
    

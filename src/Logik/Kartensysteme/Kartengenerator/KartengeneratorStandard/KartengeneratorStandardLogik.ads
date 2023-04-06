@@ -58,7 +58,7 @@ private
    MitteWahrscheinlichkeit : constant SystemDatentypen.NullBisHundert := 55;
    RandWahrscheinlichkeit : constant SystemDatentypen.NullBisHundert := 25;
    
-   type QuadrantenArray is array (1 .. 25) of SystemDatentypen.NullBisHundert;
+   type QuadrantenArray is array (KartenDatentypen.KartengeneratorQuadranten'Range) of SystemDatentypen.NullBisHundert;
    Quadranten : constant QuadrantenArray := (13     => ZentrumWahrscheinlichkeit,
                                              7      => MitteWahrscheinlichkeit,
                                              8      => MitteWahrscheinlichkeit,

@@ -6,6 +6,9 @@ with KartenkoordinateYAchseBerechnenLogik;
 with KartenkoordinateXAchseBerechnenLogik;
 with KartenkoordinatenWerteLogik;
 
+-- Mal Prüfungen für einzelne Achsen einbauen. äöü
+-- Geht das überhaupt bei allen Achsen? äöü
+-- Sollte bei der EAchse problemlos gehen, aber bei den anderen wird es eventuell kompiliziert. äöü
 package body KartenkoordinatenberechnungssystemLogik is
 
    -- Wenn man das in einen Grafik- und einen Logikteil aufteilt, könnte man dann Zufallsübergänge berechnen? äöü

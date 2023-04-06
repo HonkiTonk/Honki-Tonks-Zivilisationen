@@ -2,8 +2,6 @@ with SpeziesDatentypen;
 with EinheitenKonstanten;
 with EinheitenRecords;
 
-private with StadtDatentypen;
-
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 
@@ -22,8 +20,6 @@ package KISiedleraufgabenLogik is
               );
 
 private
-
-   VorhandeneStädte : StadtDatentypen.MaximaleStädteMitNullWert;
 
    procedure NormaleAufgaben
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

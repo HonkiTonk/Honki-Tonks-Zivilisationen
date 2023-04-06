@@ -8,7 +8,6 @@ with LeseAllgemeines;
 with PassierbarkeitspruefungLogik;
 with KartenkoordinatenberechnungssystemLogik;
 with ZufallegeneratorenAllgemein;
-with Fehlermeldungssystem;
 
 with KIDatentypen;
 with KIKonstanten;
@@ -50,8 +49,8 @@ package body KIEinheitFestlegenErkundenLogik is
             QuadrantenauswahlSchleife:
             loop
             
-               WelcherQuadrant := ZufallegeneratorenAllgemein.VorgegebenerZahlenbereich (AnfangExtern => QuadrantenDurchgegangenArray'First,
-                                                                                         EndeExtern   => QuadrantenDurchgegangenArray'Last);
+               WelcherQuadrant := KartenDatentypen.StandardQuadranten (ZufallegeneratorenAllgemein.VorgegebenerZahlenbereich (AnfangExtern => Positive (QuadrantenDurchgegangenArray'First),
+                                                                                                                              EndeExtern   => Positive (QuadrantenDurchgegangenArray'Last)));
             
                case
                  QuadrantenDurchgegangen (WelcherQuadrant)
@@ -91,9 +90,6 @@ package body KIEinheitFestlegenErkundenLogik is
                   YQuadrantenbereich := (1, KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad));
                   XQuadrantenbereich := (1, KIKonstanten.Felderreichweite (LeseAllgemeines.Schwierigkeitsgrad));
                   Multiplikator := (-1, -1);
-               
-               when others =>
-                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitFestlegenErkundenLogik.ZielSuchen - Ungültiger Quadrant");
             end case;
          
             YAchseSchleife:

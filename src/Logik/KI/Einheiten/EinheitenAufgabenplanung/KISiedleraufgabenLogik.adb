@@ -1,4 +1,5 @@
 with StadtKonstanten;
+with StadtDatentypen;
 
 with LeseWichtiges;
 
@@ -23,11 +24,9 @@ package body KISiedleraufgabenLogik is
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
-      
-      VorhandeneStädte := LeseWichtiges.AnzahlStädte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
-      
+            
       if
-        VorhandeneStädte = StadtKonstanten.LeerNummer
+        LeseWichtiges.AnzahlStädte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = StadtKonstanten.LeerNummer
         and then
           KIEinheitFestlegenSiedelnLogik.StadtBauen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
       then
@@ -64,7 +63,7 @@ package body KISiedleraufgabenLogik is
          null;
          
       elsif
-        (VorhandeneStädte < LeseGrenzen.Städtegrenzen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+        (LeseWichtiges.AnzahlStädte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) < LeseGrenzen.Städtegrenzen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
          and
            1 > KIAufgabenVerteiltLogik.AufgabenVerteilt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                          AufgabeExtern              => KIDatentypen.Stadt_Bauen_Enum))
@@ -83,7 +82,7 @@ package body KISiedleraufgabenLogik is
       then
          null;
          
-         -- Hier noch eine Prüfung einbauen ob eine andere Einheit auf das Feld dieser Einheit will und dann aus dem Weg gehen? äöü
+         -- Hier noch eine Prüfung einbauen ob eine andere Einheit auf das Feld dieser Einheit will und dann aus dem Weg gehen. äöü
       else
          KIEinheitFestlegenNichtsLogik.NichtsTun (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end if;

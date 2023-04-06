@@ -34,10 +34,16 @@ package KIDatentypen is
 
 
 
+   type Ziel_Suchen_Enum is (
+                             Siedeln_Enum, Fliehen_Enum
+                            );
+
+
+
    -- Größe später besser anpassen. äöü
    type BauenBewertung is range -500 .. 500;
    subtype BewegungBewertung is BauenBewertung range 0 .. 30;
-   -- Diese Arte der Bereichseinteilung auch anderswo verwenden? äöü
+   -- Diese Art der Bereichseinteilung auch anderswo verwenden? äöü
    subtype Achsenbewertung is BewegungBewertung range 0 .. BewegungBewertung'Last / 3;
 
 

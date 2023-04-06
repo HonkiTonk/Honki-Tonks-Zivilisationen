@@ -161,31 +161,36 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (07.04.2023):
+   -- Version 0.04.9035 => 0.04. (07.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (06.04.2023):
+   -- Version 0.04.8940 => 0.04.9035 (06.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- KI überarbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Zielfindung der KI bei der Aufgabe 'Stadt bauen' verbessert.
+   -- Eine allgemeine Version der KIQuadrantenprüfungen eingebaut.
+   -- Eine einfache Version der Aufgabe 'Fliehen' für die KI eingebaut.
+   -- Eine einfache Zielfindung für die KI bei der Aufgabe 'Fliehen' eingebaut.
+   -- Code zusammengeführt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/erweitert/überarbeitet/angepasst.
    
    
 
-   -- Version 0.04.8940 => 0.04. (05.04.2023):
+   -- Version 0.04.8940 => 0.04.8940 (05.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
    -- Version 0.04.8905 => 0.04.8940 (04.04.2023):
    
    -- KI überarbeitet.
-   -- Zielfindung bei der Aufgabe 'Karte erkunden' verbessert.
+   -- Zielfindung der KI bei der Aufgabe 'Karte erkunden' verbessert.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    

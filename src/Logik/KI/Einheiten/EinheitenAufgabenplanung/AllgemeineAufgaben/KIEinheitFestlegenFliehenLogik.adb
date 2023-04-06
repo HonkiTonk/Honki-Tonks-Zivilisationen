@@ -1,8 +1,11 @@
 with KartenRecordKonstanten;
+with KartenKonstanten;
 
 with SchreibeEinheitenGebaut;
 
 with KIDatentypen;
+
+with KIZielSuchenLogik;
 
 package body KIEinheitFestlegenFliehenLogik is
 
@@ -40,19 +43,22 @@ package body KIEinheitFestlegenFliehenLogik is
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
-      -- Platzhalter
+      MöglicheKoordinate := KIZielSuchenLogik.ZielSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                           ZielartExtern              => KIDatentypen.Fliehen_Enum);
+      
       case
-        EinheitSpeziesNummerExtern.Spezies
+        MöglicheKoordinate.XAchse
       is
-         when SpeziesDatentypen.Ekropa_Enum =>
-            null;
+         when KartenKonstanten.LeerXAchse =>
+            -- Hier dann einfach die Städteliste durchgehen oder Leer zurückgeben und die Einheit lieber befestigen? äöü
+            -- Bei der Städteliste könnte die KI die Einheit immer zurückziehen/wegbewegen. äöü
+            -- Bei Befestigen wäre die Einheit befestige und würde nicht sinnlos um die Welt herumziehen. äöü
+            return KartenRecordKonstanten.LeerKoordinate;
             
          when others =>
-            null;
+            return MöglicheKoordinate;
       end case;
-      
-      return KartenRecordKonstanten.LeerKoordinate;
-      
+            
    end Ziel;
 
 end KIEinheitFestlegenFliehenLogik;

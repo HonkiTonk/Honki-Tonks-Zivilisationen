@@ -45,6 +45,7 @@ package body KIGefahrErmittelnLogik is
    
    
    
+   -- Den Bereich eventuell vergrößern? Gibt später ja auch Einheiten mit größerem Bewegungsradius. äöü
    function GefahrSuchen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return EinheitenRecords.SpeziesEinheitnummerRecord

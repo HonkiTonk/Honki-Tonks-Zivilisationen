@@ -28,6 +28,9 @@ private
    use type KartenDatentypen.Kartenfeld;
 
    ZielKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
+   MöglicheKoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
+
+
 
    function Ziel
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

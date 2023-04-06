@@ -26,5 +26,11 @@ package KartenDatentypen is
    subtype EbeneOberfläche is EbeneVorhanden range 0 .. EbeneVorhanden'Last;
    subtype EbeneLuft is EbeneOberfläche range 1 .. EbeneVorhanden'Last;
    subtype EbenenbereichEins is EbeneVorhanden range EbeneVorhanden (UmgebungsbereichEins'First) .. EbeneVorhanden (UmgebungsbereichEins'Last);
+   
+   
+   
+   -- Bräuchte ich hier auch noch einen 7x7 Quadranten für die maximale Stadtumgebung oder kann ich das sparen? äöü
+   type KartengeneratorQuadranten is range 1 .. 25;
+   subtype StandardQuadranten is KartengeneratorQuadranten range 1 .. 4;
 
 end KartenDatentypen;
