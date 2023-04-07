@@ -53,7 +53,7 @@ package KartenkoordinatenberechnungssystemLogik is
    
 private
    
-   type NeueKoordinateArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
+   type NeueKoordinateArray is array (Boolean'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
    NeueKoordinate : NeueKoordinateArray;
    
 end KartenkoordinatenberechnungssystemLogik;

@@ -22,18 +22,18 @@ package FlussplatzierungssystemLogik is
 private
    use type KartenDatentypen.Ebene;
    
-   type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. KartenKonstanten.OberflächeKonstante) of KartenextraDatentypen.Fluss_Vorhanden_Enum;
+   WelcherFluss : KartenextraDatentypen.Fluss_Enum;
+   
+   Flussseite : KartenRecords.Umgebungskreuz;
+   
+   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
+   type StandardFlussArray is array (KartenDatentypen.EbenePlanet'Range) of KartenextraDatentypen.Fluss_Vorhanden_Enum;
    StandardFluss : constant StandardFlussArray := (
                                                    KartenKonstanten.PlaneteninneresKonstante => KartenextraDatentypen.Lavasee_Enum,
                                                    KartenKonstanten.UnterflächeKonstante     => KartenextraDatentypen.Unterirdischer_See_Enum,
                                                    KartenKonstanten.OberflächeKonstante      => KartenextraDatentypen.See_Enum
                                                   );
-   
-   type WelcherFlussArray is array (StandardFlussArray'Range) of KartenextraDatentypen.Fluss_Enum;
-   WelcherFluss : WelcherFlussArray;
-   
-   type KartenWertArray is array (StandardFlussArray'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
-   KartenWert : KartenWertArray;
    
    type FlusstypArray is array (StandardFlussArray'Range) of Natural;
    Flusstyp : constant FlusstypArray := (
@@ -47,9 +47,6 @@ private
                                          
                                          KartenKonstanten.OberflächeKonstante  => 0
                                         );
-   
-   type FlussseiteArray is array (StandardFlussArray'Range) of KartenRecords.Umgebungskreuz;
-   Flussseite : FlussseiteArray;
    
    type FlusswertArray is array (Boolean'Range, Boolean'Range, Boolean'Range, Boolean'Range) of Positive;
    Flusswert : constant FlusswertArray := (
@@ -130,7 +127,7 @@ private
                                                 KartenextraDatentypen.Flussendstück_Unten_Enum      => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Oben_Rechts_Enum),
                                                 KartenextraDatentypen.Flussendstück_Oben_Enum       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Rechts_Enum),
                                                 KartenextraDatentypen.See_Enum                      => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussendstück_Links_Enum),
-                                                others => 0
+                                                others                                              => 0
                                                );
    
    FlüsseRechts : constant FlussSeitenArray := (
@@ -142,7 +139,7 @@ private
                                                  KartenextraDatentypen.Flussendstück_Unten_Enum       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Oben_Links_Enum),
                                                  KartenextraDatentypen.Flussendstück_Oben_Enum        => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Links_Enum),
                                                  KartenextraDatentypen.See_Enum                       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussendstück_Rechts_Enum),
-                                                 others => 0
+                                                 others                                               => 0
                                                 );
    
    FlüsseOben : constant FlussSeitenArray := (
@@ -154,7 +151,7 @@ private
                                                KartenextraDatentypen.Flussendstück_Rechts_Enum    => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Links_Enum),
                                                KartenextraDatentypen.Flussendstück_Unten_Enum     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Fluss_Senkrecht_Enum),
                                                KartenextraDatentypen.See_Enum                     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussendstück_Oben_Enum),
-                                               others => 0
+                                               others                                             => 0
                                               );
    
    FlüsseUnten : constant FlussSeitenArray := (
@@ -166,7 +163,7 @@ private
                                                 KartenextraDatentypen.Flussendstück_Rechts_Enum     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Oben_Links_Enum),
                                                 KartenextraDatentypen.Flussendstück_Oben_Enum       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Fluss_Senkrecht_Enum),
                                                 KartenextraDatentypen.See_Enum                      => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussendstück_Unten_Enum),
-                                                others => 0
+                                                others                                              => 0
                                                );
    
    

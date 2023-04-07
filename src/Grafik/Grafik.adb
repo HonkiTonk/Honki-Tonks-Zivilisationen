@@ -40,6 +40,8 @@ package body Grafik is
       -- Das Setzen der Schriftart kann scheinbar erst nach dem Erzeugen eines Fensters stattfinden.
       -- Oder habe ich zu dem Zeitpunkt den Font noch nicht eingelesen? Mal nachprüfen. äöü
       FensterGrafik.FensterErzeugen;
+      SichtweitenGrafik.KartenfelderAbmessungBerechnen;
+      SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
       
       -- Diagnoseinformationen.Größenprüfung;
       Startzeit := Clock;

@@ -23,7 +23,7 @@ package body KartenspritesZeichnenGrafik is
          DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
                                        PositionExtern         => PositionExtern,
                                        SkalierungExtern       => TexturenSetzenSkalierenGrafik.Weltkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                 TextureAccessExtern => TexturAccessExtern),
+                                                                                                          TextureAccessExtern => TexturAccessExtern),
                                        DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       end if;
       
@@ -48,8 +48,8 @@ package body KartenspritesZeichnenGrafik is
          DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
                                        PositionExtern         => PositionExtern,
                                        SkalierungExtern       => TexturenSetzenSkalierenGrafik.Stadtbewirtschaftung (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                            TextureAccessExtern => TexturAccessExtern,
-                                                                                                                                            GrößeExtern         => GrößeExtern),
+                                                                                                                     TextureAccessExtern => TexturAccessExtern,
+                                                                                                                     GrößeExtern         => GrößeExtern),
                                        DurchsichtigkeitExtern => Sf.sfUint8'Last);
       end if;
       

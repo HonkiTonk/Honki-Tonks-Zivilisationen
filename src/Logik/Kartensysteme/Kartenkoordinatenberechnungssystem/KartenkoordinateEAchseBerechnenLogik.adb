@@ -50,27 +50,27 @@ package body KartenkoordinateEAchseBerechnenLogik is
             return KartenKonstanten.LeerEAchse;
             
          when others =>
-            ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) := abs (Integer (ÄnderungEAchseExtern));
-            ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Integer (EAchseExtern);
+            ZwischenwertEAchse (LogikGrafikExtern) := abs (Integer (ÄnderungEAchseExtern));
+            ÜberhangEAchse (LogikGrafikExtern) := Integer (EAchseExtern);
       end case;
       
       EAchseKleinerSchleife:
-      while ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) > 0 loop
+      while ZwischenwertEAchse (LogikGrafikExtern) > 0 loop
             
          if
-           ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) - 1 < Integer (KartenKonstanten.AnfangEAchse)
+           ÜberhangEAchse (LogikGrafikExtern) - 1 < Integer (KartenKonstanten.AnfangEAchse)
          then
-            ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Positive (KartenKonstanten.EndeEAchse);
+            ÜberhangEAchse (LogikGrafikExtern) := Positive (KartenKonstanten.EndeEAchse);
                
          else
-            ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) - 1;
+            ÜberhangEAchse (LogikGrafikExtern) := ÜberhangEAchse (LogikGrafikExtern) - 1;
          end if;
             
-         ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) := ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) - 1;
+         ZwischenwertEAchse (LogikGrafikExtern) := ZwischenwertEAchse (LogikGrafikExtern) - 1;
             
       end loop EAchseKleinerSchleife;
          
-      return KartenDatentypen.EbeneVorhanden (ÜberhangEAchse (LogikGrafikExtern, EAchseExtern));
+      return KartenDatentypen.EbeneVorhanden (ÜberhangEAchse (LogikGrafikExtern));
       
    end KartenkoordinateEAchseÜbergangUnten;
    
@@ -90,27 +90,27 @@ package body KartenkoordinateEAchseBerechnenLogik is
             return KartenKonstanten.LeerEAchse;
             
          when others =>
-            ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) := (Positive (ÄnderungEAchseExtern));
-            ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Integer (EAchseExtern);
+            ZwischenwertEAchse (LogikGrafikExtern) := (Positive (ÄnderungEAchseExtern));
+            ÜberhangEAchse (LogikGrafikExtern) := Integer (EAchseExtern);
       end case;
                
       EAchseGrößerSchleife:
-      while ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) > 0 loop
+      while ZwischenwertEAchse (LogikGrafikExtern) > 0 loop
             
          if
-           ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) + 1 > Positive (KartenKonstanten.EndeEAchse)
+           ÜberhangEAchse (LogikGrafikExtern) + 1 > Positive (KartenKonstanten.EndeEAchse)
          then
-            ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := Integer (KartenKonstanten.AnfangEAchse);
+            ÜberhangEAchse (LogikGrafikExtern) := Integer (KartenKonstanten.AnfangEAchse);
                
          else
-            ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) := ÜberhangEAchse (LogikGrafikExtern, EAchseExtern) + 1;
+            ÜberhangEAchse (LogikGrafikExtern) := ÜberhangEAchse (LogikGrafikExtern) + 1;
          end if;
             
-         ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) := ZwischenwertEAchse (LogikGrafikExtern, EAchseExtern) - 1;
+         ZwischenwertEAchse (LogikGrafikExtern) := ZwischenwertEAchse (LogikGrafikExtern) - 1;
             
       end loop EAchseGrößerSchleife;
          
-      return KartenDatentypen.EbeneVorhanden (ÜberhangEAchse (LogikGrafikExtern, EAchseExtern));
+      return KartenDatentypen.EbeneVorhanden (ÜberhangEAchse (LogikGrafikExtern));
       
    end KartenkoordinateEAchseÜbergangOben;
 

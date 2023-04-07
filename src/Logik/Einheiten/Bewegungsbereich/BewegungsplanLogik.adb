@@ -84,7 +84,7 @@ package body BewegungsplanLogik is
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern          => ZielkoordinatenExtern);
       end case;
-      
+            
       case
         PlanenRekursiv (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                         AktuelleKoordinatenExtern  => EinheitenKoordinaten,
@@ -309,8 +309,8 @@ package body BewegungsplanLogik is
       return Boolean
    is begin
       
-      Felderbewertung (EinheitSpeziesNummerExtern  => EinheitSpeziesNummerExtern,
-                       AktuelleKoordinatenExtern => AktuelleKoordinatenExtern);
+      Felderbewertung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                       AktuelleKoordinatenExtern  => AktuelleKoordinatenExtern);
       
       DurchlaufSchleife:
       for DurchlaufSchleifenwert in BewertungArray'Range loop
@@ -345,6 +345,11 @@ package body BewegungsplanLogik is
    is
       use type EinheitenDatentypen.BewegungsplanVorhanden;
    begin
+      
+      -- Muss hier für Windows zwischengespeichert werden, da sonst Bewertung (DurchlaufExtern).Koordinaten in PlanenRekursiv überschrieben wird und als neue AktuelleKoordinatenExtern in der Schleife verwendet wird.
+      -- Gilt auch für KIBewegungsplanBerechnenLogik.
+      -- Passiert nicht unter Linux, eventuell ein Kompilerfehler? Später, erst nach der Veröffentlichung von GNAT 13, mal nachprüfen.
+      KoordinatenzwischenspeicherWindows := Bewertung (DurchlaufExtern).Koordinaten;
             
       case
         Bewertung (DurchlaufExtern).Bewertung
@@ -354,13 +359,13 @@ package body BewegungsplanLogik is
                
          when KartenDatentypen.KartenfeldNatural'First =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    KoordinatenExtern          => Bewertung (DurchlaufExtern).Koordinaten,
+                                                    KoordinatenExtern          => KoordinatenzwischenspeicherWindows,
                                                     PlanplatzExtern            => AktuellePlanpositionExtern);
             return True;
                
          when others =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    KoordinatenExtern          => Bewertung (DurchlaufExtern).Koordinaten,
+                                                    KoordinatenExtern          => KoordinatenzwischenspeicherWindows,
                                                     PlanplatzExtern            => AktuellePlanpositionExtern);
             
             if
@@ -370,7 +375,7 @@ package body BewegungsplanLogik is
          
             else
                return PlanenRekursiv (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                      AktuelleKoordinatenExtern  => Bewertung (DurchlaufExtern).Koordinaten,
+                                      AktuelleKoordinatenExtern  => KoordinatenzwischenspeicherWindows,
                                       AktuellePlanpositionExtern => AktuellePlanpositionExtern + 1);
             end if;
       end case;
@@ -385,7 +390,7 @@ package body BewegungsplanLogik is
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
-      
+            
       BewertungPosition := BewertungArray'First;
       
       EAchseSchleife:
@@ -447,7 +452,7 @@ package body BewegungsplanLogik is
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenDatentypen.KartenfeldNatural
    is begin
-            
+      
       if
         True = FeldBereitsBetreten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                     KoordinatenExtern          => NeueKoordinatenExtern)

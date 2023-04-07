@@ -26,10 +26,10 @@ package NachGrafiktask is
    IntroAnzeigen : Boolean := True;
    
    -- Sprache
-   MehrereSeiten : Boolean;
+   MehrereSeiten : Boolean := False;
    LöschenAusgewählt : Boolean := False;
    
-   Endauswahl : Natural;
+   Endauswahl : Natural := 0;
    -- Wird für Spielstart benötigt.
    
    AktuelleDarstellung : GrafikDatentypen.Grafik_Aktuelle_Darstellung_Enum := GrafikDatentypen.Grafik_Start_Enum;
@@ -48,12 +48,12 @@ package NachGrafiktask is
    AktuelleStadt : StadtDatentypen.MaximaleStädteMitNullWert := StadtKonstanten.LeerNummer;
    Stadtkarte : Boolean := False;
    
-   FensterVerändert : GrafikDatentypen.Fenster_Ändern_Enum;
+   FensterVerändert : GrafikDatentypen.Fenster_Ändern_Enum := GrafikDatentypen.Keine_Änderung_Enum;
    
    -- Später erweitern mit nur Schriftgröße setzen, nur Schriftfarbe setzen, usw.. äöü
    AccesseSetzen : Boolean := False;
    
-   Spielmeldung : SystemDatentypen.Spielmeldungen;
+   Spielmeldung : SystemDatentypen.Spielmeldungen := 0;
    StartzeitSpielmeldung : Time;
 
    TastenEingabe : Boolean := False;
@@ -72,7 +72,7 @@ package NachGrafiktask is
    
    -- AktuelleAuswahl.AuswahlZwei wird auch bei JaNein verwendet, damit es sonst zu falschen Farbanzeigen kommen kann, wenn AuswahlEins bereits von einem Menü belegt wird, beispielsweise Speichern.
    AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord := (MenueKonstanten.LeerAuswahl, MenueKonstanten.LeerAuswahl);
-   SpeichernLaden : Boolean;
+   SpeichernLaden : Boolean := False;
    
    WelcheAuswahl : EinheitenRecords.AuswahlRecord := (False, (others => 0));
    

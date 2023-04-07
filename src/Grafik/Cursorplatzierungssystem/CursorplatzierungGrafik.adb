@@ -38,10 +38,10 @@ package body CursorplatzierungGrafik is
       
       if
         SichtweitenGrafik.Kartenfeldfläche.y = 0.00
-        or
-          Float'Floor (Mausposition.y / SichtweitenGrafik.Kartenfeldfläche.y) > Float (KartenDatentypen.Kartenfeld'Last)
-        or
-          Float'Floor (Mausposition.y / SichtweitenGrafik.Kartenfeldfläche.y) < Float (KartenDatentypen.Kartenfeld'First)
+        or else
+          (Float'Floor (Mausposition.y / SichtweitenGrafik.Kartenfeldfläche.y) > Float (KartenDatentypen.Kartenfeld'Last)
+           or
+             Float'Floor (Mausposition.y / SichtweitenGrafik.Kartenfeldfläche.y) < Float (KartenDatentypen.Kartenfeld'First))
       then
          Kartenänderung.YAchse := -Sichtbereich;
          
@@ -51,10 +51,10 @@ package body CursorplatzierungGrafik is
       
       if
         SichtweitenGrafik.Kartenfeldfläche.x = 0.00
-        or
-          Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x) > Float (KartenDatentypen.Kartenfeld'Last)
-        or
-          Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x) < Float (KartenDatentypen.Kartenfeld'First)
+        or else
+          (Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x) > Float (KartenDatentypen.Kartenfeld'Last)
+           or
+             Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x) < Float (KartenDatentypen.Kartenfeld'First))
       then
          Kartenänderung.XAchse := -Sichtbereich;
          

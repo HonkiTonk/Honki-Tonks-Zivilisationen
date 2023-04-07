@@ -154,17 +154,25 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (08.04.2023):
+   -- Version 0.04.9150 => 0.04. (08.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9035 => 0.04. (07.04.2023):
+   -- Version 0.04.9035 => 0.04.9150 (07.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- An der Windowsversion gearbeitet, da diese Probleme erzeugt die die Linuxversion nicht hat.
+   -- Fehler korrigiert welcher durch Null teilte und unter Windows zu Programmstopps führte.
+   -- Fehler korrigiert bei dem ungültige Werte übergeben werden konnten und nur unter Windows zu Programmstopps führte.
+   -- Kartenkoordinatenberechnungssystem vereinfacht und alles antsprechend daran angepasst.
+   -- Flussberechnungssystem vereinfacht.
+   -- Kartenfeldergrößen werden jetzt immer einmal beim Starten berechnet um einer falschen Anzeige unter Windows vorzubeugen.
+   -- Fehler korrigiert welcher unter Windows dazu führte das bestimmte Einheitenbewegungen nicht möglich waren.
+   -- Mehr gpr Dateien angelegt um möglichst alle sinnvollen Kompiliereinstellungen schnell verfügbar zu haben.
+   -- Neue Version veröffentlicht.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überabeitet/verbessert.
    
    
 

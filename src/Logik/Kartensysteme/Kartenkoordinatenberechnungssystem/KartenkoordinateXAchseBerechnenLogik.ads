@@ -13,7 +13,6 @@ package KartenkoordinateXAchseBerechnenLogik is
    function KartenkoordinateXAchseBerechnen
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldNatural
      with
@@ -49,7 +48,6 @@ private
    function ÜbergangWesten
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldNatural
      with
@@ -64,7 +62,6 @@ private
    function ÜbergangWestenNormal
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
      with
@@ -92,7 +89,6 @@ private
    function ÜbergangOsten
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldNatural
      with
@@ -107,7 +103,6 @@ private
    function ÜbergangOstenNormal
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv
      with

@@ -33,6 +33,7 @@ private
    BewertungPosition : Positive;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KoordinatenzwischenspeicherWindows : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    type BewertungRecord is record
             

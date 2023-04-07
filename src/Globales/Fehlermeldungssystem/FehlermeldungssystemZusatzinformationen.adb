@@ -20,5 +20,16 @@ package body FehlermeldungssystemZusatzinformationen is
       return ("Spezies: " & SpeziesExtern'Wide_Wide_Image & ", ID: " & IDExtern'Wide_Wide_Image);
       
    end SpeziesID;
+   
+   
+   
+   function Floatvektor
+     (VektorExtern : in Sf.System.Vector2.sfVector2f)
+      return Wide_Wide_String
+   is begin
+      
+      return ("X: " & VektorExtern.x'Wide_Wide_Image & ", Y: " & VektorExtern.y'Wide_Wide_Image);
+      
+   end Floatvektor;
 
 end FehlermeldungssystemZusatzinformationen;

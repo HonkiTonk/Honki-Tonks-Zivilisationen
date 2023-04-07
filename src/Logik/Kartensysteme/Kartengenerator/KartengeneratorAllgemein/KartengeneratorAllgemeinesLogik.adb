@@ -47,6 +47,8 @@ package body KartengeneratorAllgemeinesLogik is
       task body Planeteninneres
       is begin
          
+         -- Sollte ich in dieser Prozedur später weitere Berechnungen durchführen die Zugriff auf die Kartenkoordinatenberechnung vornehmen,
+         -- dann muss ich das hier wegverschieben da der Zugriff ebenfall in KartengeneratorStandardLogik.OberflächeGenerieren erfolgt. äöü
          KartengeneratorPlanetenkernLogik.Planetenkern;
          
       end Planeteninneres;

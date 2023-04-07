@@ -60,6 +60,7 @@ private
    EinzelbewegungKartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    EinheitenKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   KoordinatenzwischenspeicherWindows : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
    

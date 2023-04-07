@@ -101,6 +101,11 @@ package body KIBewegungsplanBerechnenLogik is
    is
       use type EinheitenDatentypen.BewegungsplanVorhanden;
    begin
+      
+      -- Muss hier für Windows zwischengespeichert werden, da sonst Bewertung (DurchlaufExtern).Koordinaten in PlanenRekursiv überschrieben wird und als neue AktuelleKoordinatenExtern in der Schleife verwendet wird.
+      -- Gilt auch für BewegungsplanLogik.
+      -- Passiert nicht unter Linux, eventuell ein Kompilerfehler? Später, erst nach der Veröffentlichung von GNAT 13, mal nachprüfen.
+      KoordinatenzwischenspeicherWindows := Bewertung (DurchlaufExtern).Koordinaten;
             
       case
         Bewertung (DurchlaufExtern).Bewertung
@@ -110,13 +115,13 @@ package body KIBewegungsplanBerechnenLogik is
                
          when KartenDatentypen.KartenfeldNatural'First =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    KoordinatenExtern          => Bewertung (DurchlaufExtern).Koordinaten,
+                                                    KoordinatenExtern          => KoordinatenzwischenspeicherWindows,
                                                     PlanplatzExtern            => AktuellePlanpositionExtern);
             return True;
                
          when others =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    KoordinatenExtern          => Bewertung (DurchlaufExtern).Koordinaten,
+                                                    KoordinatenExtern          => KoordinatenzwischenspeicherWindows,
                                                     PlanplatzExtern            => AktuellePlanpositionExtern);
             
             if
@@ -126,7 +131,7 @@ package body KIBewegungsplanBerechnenLogik is
          
             else
                return PlanenRekursiv (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                      AktuelleKoordinatenExtern  => Bewertung (DurchlaufExtern).Koordinaten,
+                                      AktuelleKoordinatenExtern  => KoordinatenzwischenspeicherWindows,
                                       AktuellePlanpositionExtern => AktuellePlanpositionExtern + 1);
             end if;
       end case;
