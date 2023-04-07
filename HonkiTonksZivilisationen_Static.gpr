@@ -13,7 +13,7 @@ project HonkiTonksZivilisationen_Static is
    end Naming;
 
    package Compiler is
-      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2020", "-fstack-check", "-O3", "-gnatn", "-funroll-loops", "-gnatVacdefimoprst", 
+      for Switches ("ada") use ("-gnatW8", "-gnatf", "-gnat2020", "-fstack-check", "-O3", "-gnatn", "-funroll-loops", "-flto", "-gnatVacdefimoprst", 
          "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdghiklmopqrtuvwxyz_c_re.u_pajf", "-gnatyACOSadefhiklnprsxM222L8");
       for Local_Configuration_Pragmas use "Lokale Pragmas";
    end Compiler;
@@ -35,7 +35,7 @@ project HonkiTonksZivilisationen_Static is
    end Prove;
 
    package Linker is
-      for Switches ("ada") use ("-s", "-Wl,--gc-sections");
+      for Switches ("ada") use ("-s", "-Wl,--gc-sections", "-flto");
       for Linker_Options use ("-static");
    end Linker;
 

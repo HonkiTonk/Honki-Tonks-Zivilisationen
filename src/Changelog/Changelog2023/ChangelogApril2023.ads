@@ -161,7 +161,7 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04.9035 => 0.04.9150 (07.04.2023):
+   -- Version 0.04.9035 => 0.04.9151 (07.04.2023):
    
    -- An der Windowsversion gearbeitet, da diese Probleme erzeugt die die Linuxversion nicht hat.
    -- Fehler korrigiert welcher durch Null teilte und unter Windows zu Programmstopps führte.
