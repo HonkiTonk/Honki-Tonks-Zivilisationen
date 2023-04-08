@@ -1,4 +1,3 @@
-with StadtDatentypen;
 with EinheitenDatentypen;
 with SpeziesDatentypen;
 
@@ -14,12 +13,12 @@ package DatenbankRecords is
    -- Entsprechend auch einen eigenen Datentyp für diese Werte anlegen. äöü
    type SpezieslisteRecord is record
       
-      Aggressivität : StadtDatentypen.MaximaleStädteMitNullWert;
-      Expansion : StadtDatentypen.MaximaleStädteMitNullWert;
-      Wissenschaft : StadtDatentypen.MaximaleStädteMitNullWert;
-      Produktion : StadtDatentypen.MaximaleStädteMitNullWert;
-      Wirtschaft : StadtDatentypen.MaximaleStädteMitNullWert;
-      Bewirtschaftung : StadtDatentypen.MaximaleStädteMitNullWert;
+      Aggressivität : SpeziesDatentypen.Speziesverhalten;
+      Expansion : SpeziesDatentypen.Speziesverhalten;
+      Wissenschaft : SpeziesDatentypen.Speziesverhalten;
+      Produktion : SpeziesDatentypen.Speziesverhalten;
+      Wirtschaft : SpeziesDatentypen.Speziesverhalten;
+      Bewirtschaftung : SpeziesDatentypen.Speziesverhalten;
       
       Staatsformen : SpeziesDatentypen.StaatsformenArray;
       -- Besondere Eigenschaften hinzufügen, als Enum? oder was Anderes?

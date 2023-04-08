@@ -1,8 +1,6 @@
 with KartenverbesserungDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
-with BefehleDatentypen;
-with AufgabenDatentypen;
 
 with LeseStadtGebaut;
 with SchreibeEinheitenGebaut;
@@ -10,13 +8,13 @@ with LeseWeltkarte;
 with LeseEinheitenGebaut;
 
 with KartenkoordinatenberechnungssystemLogik;
-with AufgabenLogik;
 
 with KIDatentypen;
 
 with KIAufgabenVerteiltLogik;
 with KIEinheitAllgemeinePruefungenLogik;
 with KIVerbesserungAnlegbarLogik;
+with KIEinheitFestlegenWegeLogik;
 
 package body KIEinheitFestlegenVerbesserungenLogik is
 
@@ -33,7 +31,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
         ZielVerbesserungKoordinaten = KartenRecordKonstanten.LeerKoordinate
       is
          when True =>
-            return False;
+            return KIEinheitFestlegenWegeLogik.StädteVerbinden (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -155,6 +153,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
          XAchseSchleife:
          for XAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
             
+            -- Da die Stadt selbst als Verebsserung zählt, sollte diese Prüfung problemlos weg können, oder? äöü
             if
               YAchseSchleifenwert = 0
               and
@@ -236,8 +235,8 @@ package body KIEinheitFestlegenVerbesserungenLogik is
             return WelcheVerbesserung;
             
          when False =>
-            return WegAnlegbar (KoordinatenExtern          => KoordinatenExtern,
-                                EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+            return KIEinheitFestlegenWegeLogik.WegAnlegbar (KoordinatenExtern          => KoordinatenExtern,
+                                                            EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
    end AllgemeineVerbesserungenPrüfungen;
@@ -251,31 +250,5 @@ package body KIEinheitFestlegenVerbesserungenLogik is
       return False;
    
    end VerbesserungErsetzen;
-   
-   
-   
-   -- Wäre es sinnvoll das auszulagern wie das Bauen von Verbesserungen? Oder gibt es niemals einen Grund Straßen nicht zu bauen? äöü
-   function WegAnlegbar
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return Boolean
-   is begin
-      
-      case
-        AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                               BefehlExtern               => BefehleDatentypen.Straße_Bauen_Enum,
-                               AnlegenTestenExtern        => False,
-                               KoordinatenExtern          => KoordinatenExtern)
-      is
-         when True =>
-            SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern        => AufgabenDatentypen.Straße_Bauen_Enum);
-            return True;
-            
-         when False =>
-            return False;
-      end case;
-      
-   end WegAnlegbar;
 
 end KIEinheitFestlegenVerbesserungenLogik;

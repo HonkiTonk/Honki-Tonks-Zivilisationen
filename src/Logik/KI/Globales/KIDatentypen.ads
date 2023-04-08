@@ -35,7 +35,7 @@ package KIDatentypen is
 
 
    type Ziel_Suchen_Enum is (
-                             Siedeln_Enum, Fliehen_Enum
+                             Siedeln_Enum, Fliehen_Enum, Erkunden_Enum, Eigenes_Feld_Enum
                             );
 
 

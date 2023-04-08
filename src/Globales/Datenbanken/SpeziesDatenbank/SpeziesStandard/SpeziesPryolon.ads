@@ -5,12 +5,12 @@ package SpeziesPryolon is
    pragma Pure;
 
    SpeziesPryolonListe : constant DatenbankRecords.SpezieslisteRecord := (
-                                                                          Aggressivität       => 0,
+                                                                          Aggressivität       => 1,
                                                                           Expansion           => 20,
-                                                                          Wissenschaft        => 0,
-                                                                          Produktion          => 0,
-                                                                          Wirtschaft          => 0,
-                                                                          Bewirtschaftung     => 0,
+                                                                          Wissenschaft        => 1,
+                                                                          Produktion          => 1,
+                                                                          Wirtschaft          => 1,
+                                                                          Bewirtschaftung     => 1,
                                                                           Staatsformen        =>
                                                                             (
                                                                              SpeziesDatentypen.Anarchie_Enum,

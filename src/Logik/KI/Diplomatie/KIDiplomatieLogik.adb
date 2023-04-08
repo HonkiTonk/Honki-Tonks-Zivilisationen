@@ -13,7 +13,7 @@ package body KIDiplomatieLogik is
    is begin
       
       SchreibeKIVariablen.Kriegszustand (ZustandExtern => KIKriegErmittelnLogik.IstImKrieg (SpeziesExtern => SpeziesExtern));
-      
+            
       case
         SpeziesExtern
       is

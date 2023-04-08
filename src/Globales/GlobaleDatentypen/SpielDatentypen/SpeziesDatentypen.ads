@@ -20,6 +20,8 @@ package SpeziesDatentypen is
    subtype Speziesnummern is Natural range Spezies_Enum'Pos (Spezies_Enum'First) .. Spezies_Enum'Pos (Spezies_Enum'Last);
    subtype SpeziesnummernVorhanden is Speziesnummern range Spezies_Enum'Pos (Spezies_Verwendet_Enum'First) .. Speziesnummern'Last;
 
+   
+   
    -- Das hier mal woanders hinschieben? Hat ja nicht wirklich was mit den Spezies zu tun. äöü
    type Spieler_Enum is (
                          Leer_Spieler_Enum,
@@ -30,6 +32,10 @@ package SpeziesDatentypen is
    pragma Ordered (Spieler_Enum);
    
    subtype Spieler_Belegt_Enum is Spieler_Enum range Spieler_Enum'Succ (Spieler_Enum'First) .. Spieler_Enum'Last;
+   
+   
+   
+   type Speziesverhalten is range 1 .. 1_000;
    
    -- Soll ich das so überhaupt einbauen? Oder mir was besseres überlegen? äöü
    type Staatsform_Enum is (

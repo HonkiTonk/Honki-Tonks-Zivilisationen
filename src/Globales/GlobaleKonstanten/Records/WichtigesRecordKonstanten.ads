@@ -74,12 +74,12 @@ package WichtigesRecordKonstanten is
    
    -- Wird noch nicht verwendet. Wird das jemals sinnvoll sein? äöü
    LeerSpeziesListe : constant DatenbankRecords.SpezieslisteRecord := (
-                                                                       Aggressivität       => 0,
-                                                                       Expansion           => 0,
-                                                                       Wissenschaft        => 0,
-                                                                       Produktion          => 0,
-                                                                       Wirtschaft          => 0,
-                                                                       Bewirtschaftung     => 0,
+                                                                       Aggressivität       => 1,
+                                                                       Expansion           => 1,
+                                                                       Wissenschaft        => 1,
+                                                                       Produktion          => 1,
+                                                                       Wirtschaft          => 1,
+                                                                       Bewirtschaftung     => 1,
                                                                        Staatsformen        =>
                                                                          (
                                                                           SpeziesDatentypen.Anarchie_Enum,

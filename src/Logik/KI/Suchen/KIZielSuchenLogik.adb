@@ -8,6 +8,7 @@ with LeseAllgemeines;
 
 with ZufallegeneratorenAllgemein;
 with KartenkoordinatenberechnungssystemLogik;
+with PassierbarkeitspruefungLogik;
 
 with KIKonstanten;
 
@@ -21,9 +22,7 @@ package body KIZielSuchenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       ZielartExtern : in KIDatentypen.Ziel_Suchen_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
-   is
-      use type KIDatentypen.Ziel_Suchen_Enum;
-   begin
+   is begin
       
       EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       Schwierigkeitsgrad := LeseAllgemeines.Schwierigkeitsgrad;
@@ -63,6 +62,7 @@ package body KIZielSuchenLogik is
                   -- Y geht hier von 0 bis -Reichweite, deswegen den Multiplikator auf -1 setzen.
                   YQuadrantenbereich := (0, KIKonstanten.Felderreichweite (Schwierigkeitsgrad));
                   XQuadrantenbereich := (0, KIKonstanten.Felderreichweite (Schwierigkeitsgrad));
+                  -- Man könnte die Mutliplikatoren in einem konstanten Array speichern und dann einfach zuweisen. äöü
                   Multiplikator := (-1, 1);
                   
                when 2 =>
@@ -93,28 +93,20 @@ package body KIZielSuchenLogik is
                                                                                                                                    Multiplikator.YAchse * YAchseSchleifenwert,
                                                                                                                                    Multiplikator.XAchse * XAchseSchleifenwert),
                                                                                                             LogikGrafikExtern => True);
-
-                  if
-                    Kartenwert.XAchse = KartenKonstanten.LeerXAchse
-                  then
-                     ZielGefunden := False;
-                     
-                  elsif
-                    ZielartExtern = KIDatentypen.Fliehen_Enum
-                  then
-                     ZielGefunden := Fliehen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
-                                              KoordinatenExtern => Kartenwert);
-                     
-                  elsif
-                    ZielartExtern = KIDatentypen.Siedeln_Enum
-                  then
-                     ZielGefunden := Siedeln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                              KoordinatenExtern          => Kartenwert);
-                    
-                  else
-                     ZielGefunden := False;
-                  end if;
                   
+                  -- Könnte man ZielGefunden nicht vor der Schleife auf False setze und sich hier das Neusetzen bei LeerAchse sparen? äöü
+                  case
+                    Kartenwert.XAchse
+                  is
+                     when KartenKonstanten.LeerXAchse =>
+                        ZielGefunden := False;
+                        
+                     when others =>
+                        ZielGefunden := Aufteilung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                    KoordinatenExtern          => Kartenwert,
+                                                    ZielartExtern              => ZielartExtern);
+                  end case;
+                                    
                   case
                     ZielGefunden
                   is
@@ -133,6 +125,37 @@ package body KIZielSuchenLogik is
       return KartenRecordKonstanten.LeerKoordinate;
       
    end ZielSuchen;
+   
+   
+   
+   function Aufteilung
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      ZielartExtern : in KIDatentypen.Ziel_Suchen_Enum)
+      return Boolean
+   is begin
+      
+      case
+        ZielartExtern
+      is
+         when KIDatentypen.Fliehen_Enum =>
+            return Fliehen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+                            KoordinatenExtern => KoordinatenExtern);
+                     
+         when KIDatentypen.Siedeln_Enum =>
+            return Siedeln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                            KoordinatenExtern          => KoordinatenExtern);
+                     
+         when KIDatentypen.Erkunden_Enum =>
+            return Erkunden (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                             KoordinatenExtern          => KoordinatenExtern);
+                     
+         when KIDatentypen.Eigenes_Feld_Enum =>
+            return EigenesFeld (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                KoordinatenExtern          => KoordinatenExtern);
+      end case;
+      
+   end Aufteilung;
    
    
    
@@ -202,5 +225,57 @@ package body KIZielSuchenLogik is
       return False;
       
    end Siedeln;
+   
+   
+   
+   function Erkunden
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
+   is begin
+      
+      if
+        False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenExtern,
+                                        SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
+        and
+          True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                           NeueKoordinatenExtern      => KoordinatenExtern)
+        and
+          False = KIAufgabenVerteiltLogik.EinheitZiel (SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
+                                                       ZielKoordinatenExtern => KoordinatenExtern)
+        -- and
+        --   False = KIEinheitAllgemeinePruefungenLogik.AktuellUnpassierbar (KoordinatenExtern          => KoordinatenExtern,
+        --                                                                   EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
+      then
+         return True;
+                     
+      else
+         return False;
+      end if;
+      
+   end Erkunden;
+   
+   
+   
+   function EigenesFeld
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     return Boolean
+   is begin
+      
+      if
+        True = LeseWeltkarte.BelegterGrund (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+                                            KoordinatenExtern => KoordinatenExtern)
+        and
+          True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                           NeueKoordinatenExtern      => KoordinatenExtern)
+      then
+         return True;
+         
+      else
+         return False;
+      end if;
+      
+   end EigenesFeld;
 
 end KIZielSuchenLogik;

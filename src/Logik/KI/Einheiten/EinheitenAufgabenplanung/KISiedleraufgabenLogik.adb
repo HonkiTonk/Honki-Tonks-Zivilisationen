@@ -3,11 +3,8 @@ with StadtDatentypen;
 
 with LeseWichtiges;
 
-with KIDatentypen;
-
 with LeseKIVariablen;
 
-with KIAufgabenVerteiltLogik;
 with KIEinheitFestlegenSiedelnLogik;
 with KIEinheitFestlegenVerbesserungenLogik;
 with KIEinheitFestlegenHeilenLogik;
@@ -21,20 +18,7 @@ package body KISiedleraufgabenLogik is
 
    procedure Siedleraufgaben
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-   is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
-   begin
-            
-      if
-        LeseWichtiges.AnzahlStädte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = StadtKonstanten.LeerNummer
-        and then
-          KIEinheitFestlegenSiedelnLogik.StadtBauen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
-      then
-         return;
-         
-      else
-         null;
-      end if;
+   is begin
       
       case
         LeseKIVariablen.Kriegszustand
@@ -53,22 +37,15 @@ package body KISiedleraufgabenLogik is
    -- Siedler auch Verbessern? äöü
    procedure NormaleAufgaben
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-   is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
-   begin
+   is begin
       
       if
-        KIEinheitFestlegenVerbesserungenLogik.StadtumgebungVerbessern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
+        KIEinheitFestlegenSiedelnLogik.StadtBauen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
       then
          null;
          
       elsif
-        (LeseWichtiges.AnzahlStädte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) < LeseGrenzen.Städtegrenzen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
-         and
-           1 > KIAufgabenVerteiltLogik.AufgabenVerteilt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                         AufgabeExtern              => KIDatentypen.Stadt_Bauen_Enum))
-        and then
-          KIEinheitFestlegenSiedelnLogik.StadtBauen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
+        KIEinheitFestlegenVerbesserungenLogik.StadtumgebungVerbessern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
       then
          null;
          
@@ -93,7 +70,21 @@ package body KISiedleraufgabenLogik is
    
    procedure Kriegsaufgaben
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-   is begin
+   is
+      use type StadtDatentypen.MaximaleStädteMitNullWert;
+   begin
+      
+      -- Hier später noch weitere Prüfungen einbauen, beispielsweise den Stadtplatz mit maximalster Entfernung zum Feind. äöü
+      if
+        LeseWichtiges.AnzahlStädte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = StadtKonstanten.LeerNummer
+        and then
+          KIEinheitFestlegenSiedelnLogik.StadtBauen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
+      then
+         return;
+         
+      else
+         null;
+      end if;
       
       case
         KIGefahrErmittelnLogik.GefahrSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern).Nummer

@@ -147,17 +147,21 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (09.04.2023):
+   -- Version 0.04.9220 => 0.04. (09.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9150 => 0.04. (08.04.2023):
+   -- Version 0.04.9150 => 0.04.9220 (08.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- KI überarbeitet.
+   -- Logik nach der die KI bestimmt ob eine neue Stadt gebaut werden soll erweitert.
+   -- Angefangen ein System einzubauen dass der KI es ermöglicht Städte mit Wegen zu verbinden.
+   -- Code zusammengefasst.
+   -- Fehler korrigiert der es der KI ermöglichte Städte als Angriffsziel zu setzen die sie gar nicht sieht.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
@@ -205,7 +209,7 @@ package ChangelogVorlage is
 
    -- Version 0.04.8870 => 0.04.8905 (03.04.2023):
    
-   -- Rechtschreibugn überarbeitet.
+   -- Rechtschreibung überarbeitet.
    -- Übersetzung überarbeitet.
    -- Kleinigkeiten korrigiert.
    

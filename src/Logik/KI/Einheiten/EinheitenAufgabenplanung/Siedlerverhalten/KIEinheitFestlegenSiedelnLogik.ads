@@ -3,6 +3,7 @@ with EinheitenKonstanten;
 with EinheitenRecords;
 
 private with KartenRecords;
+private with StadtDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -22,6 +23,8 @@ package KIEinheitFestlegenSiedelnLogik is
               );
 
 private
+
+   AnzahlStädte : StadtDatentypen.MaximaleStädteMitNullWert;
 
    NeueStadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 

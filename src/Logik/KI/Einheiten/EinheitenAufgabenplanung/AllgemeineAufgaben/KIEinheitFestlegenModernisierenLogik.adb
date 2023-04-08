@@ -3,7 +3,6 @@ with KartenRecordKonstanten;
 with StadtDatentypen;
 
 with LeseStadtGebaut;
-with LeseEinheitenGebaut;
 with SchreibeEinheitenGebaut;
 
 with PassierbarkeitspruefungLogik;
@@ -13,7 +12,7 @@ with EinheitVerbessernLogik;
 with KIDatentypen;
 with KIKonstanten;
 
-with KISonstigesSuchenLogik;
+with KIZielSuchenLogik;
 with KIBewegungAllgemeinLogik;
 
 package body KIEinheitFestlegenModernisierenLogik is
@@ -34,8 +33,8 @@ package body KIEinheitFestlegenModernisierenLogik is
             return False;
               
          when others =>
-            PlatzGefunden := KISonstigesSuchenLogik.EigenesFeldSuchen (AktuelleKoordinatenExtern  => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                       EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+            PlatzGefunden := KIZielSuchenLogik.ZielSuchen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                           ZielartExtern              => KIDatentypen.Eigenes_Feld_Enum);
       end case;
             
       case
@@ -95,6 +94,7 @@ package body KIEinheitFestlegenModernisierenLogik is
    
    
    
+   -- Solche Stadtumgebungen auch mal in einer Funktion unterbringen oder soweit es möglich/sinnvoll ist? äöü
    function EinheitVerbessernPlatz
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)

@@ -7,6 +7,7 @@ with LeseStadtGebaut;
 
 with EinheitSuchenLogik;
 
+-- Wird hier irgendwo mal geprüft ob die Stadt sichtbar ist? äöü
 package body KIStadtSuchenLogik is
    
    function NähesteFeindlicheStadtSuchen

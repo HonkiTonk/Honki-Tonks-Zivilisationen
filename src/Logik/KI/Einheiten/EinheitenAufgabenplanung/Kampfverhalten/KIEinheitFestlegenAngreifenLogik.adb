@@ -1,10 +1,12 @@
 with DiplomatieDatentypen;
 with KartenKonstanten;
 with SpeziesKonstanten;
+with KartenDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with LeseDiplomatie;
+with LeseWeltkarte;
 
 with KIDatentypen;
 
@@ -16,7 +18,9 @@ package body KIEinheitFestlegenAngreifenLogik is
    function Angreifen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
       WenAngreifen := ZielErmitteln (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
       
@@ -39,28 +43,34 @@ package body KIEinheitFestlegenAngreifenLogik is
             
          when others =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                   AufgabeExtern              => KIDatentypen.Angreifen_Enum);
+                                                    AufgabeExtern              => KIDatentypen.Angreifen_Enum);
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern          => KoordinatenFeind);
             return True;
       end case;
       
       KoordinatenFeind := KIStadtSuchenLogik.NähesteFeindlicheStadtSuchen (SpeziesExtern           => WenAngreifen,
-                                                                           AnfangKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                                                                            AnfangKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
-      case
-        KoordinatenFeind.XAchse
-      is
-         when KartenKonstanten.LeerXAchse =>
-            return False;
+      if
+        KoordinatenFeind.XAchse = KartenKonstanten.LeerXAchse
+      then
+         return False;
+         
+      elsif
+        False = LeseWeltkarte.Sichtbar (KoordinatenExtern => KoordinatenFeind,
+                                        SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
+      then
+         return False;
             
-         when others =>
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                   AufgabeExtern              => KIDatentypen.Angreifen_Enum);
-            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                       KoordinatenExtern          => KoordinatenFeind);
-            return True;
-      end case;
+      else
+         SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                 AufgabeExtern              => KIDatentypen.Angreifen_Enum);
+         SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                    KoordinatenExtern          => KoordinatenFeind);
+         return True;
+      end if;
+      
    end Angreifen;
    
    

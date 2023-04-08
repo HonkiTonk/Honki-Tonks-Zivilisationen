@@ -4,7 +4,7 @@ package body LeseSpeziesDatenbank is
 
    function SpeziesAggressivität
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return SpeziesDatentypen.Speziesverhalten
    is begin
       
       return SpeziesDatenbank.Speziesliste (SpeziesExtern).Aggressivität;
@@ -15,7 +15,7 @@ package body LeseSpeziesDatenbank is
    
    function SpeziesExpansion
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return SpeziesDatentypen.Speziesverhalten
    is begin
       
       return SpeziesDatenbank.Speziesliste (SpeziesExtern).Expansion;
@@ -26,7 +26,7 @@ package body LeseSpeziesDatenbank is
    
    function SpeziesWissenschaft
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return SpeziesDatentypen.Speziesverhalten
    is begin
       
       return SpeziesDatenbank.Speziesliste (SpeziesExtern).Wissenschaft;
@@ -37,7 +37,7 @@ package body LeseSpeziesDatenbank is
    
    function SpeziesProduktion
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return SpeziesDatentypen.Speziesverhalten
    is begin
       
       return SpeziesDatenbank.Speziesliste (SpeziesExtern).Produktion;
@@ -48,7 +48,7 @@ package body LeseSpeziesDatenbank is
    
    function SpeziesWirtschaft
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return SpeziesDatentypen.Speziesverhalten
    is begin
       
       return SpeziesDatenbank.Speziesliste (SpeziesExtern).Wirtschaft;
@@ -59,7 +59,7 @@ package body LeseSpeziesDatenbank is
    
    function SpeziesBewirtschaftung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return SpeziesDatentypen.Speziesverhalten
    is begin
       
       return SpeziesDatenbank.Speziesliste (SpeziesExtern).Bewirtschaftung;
@@ -72,7 +72,9 @@ package body LeseSpeziesDatenbank is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       StaatsformExtern : SpeziesDatentypen.Staatsform_Enum)
       return Boolean
-   is begin
+   is
+      use type SpeziesDatentypen.Staatsform_Enum;
+   begin
             
       StaatsformenSchleife:
       for StaatsformSchleifenwert in SpeziesDatentypen.StaatsformenArray'Range loop

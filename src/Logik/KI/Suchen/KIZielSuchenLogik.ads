@@ -55,6 +55,22 @@ private
    
    
    
+   function Aufteilung
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      ZielartExtern : in KIDatentypen.Ziel_Suchen_Enum)
+      return Boolean
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
+              );
+   
    function Fliehen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -69,6 +85,36 @@ private
               );
    
    function Siedeln
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
+              );
+   
+   function Erkunden
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
+              );
+   
+   function EigenesFeld
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
