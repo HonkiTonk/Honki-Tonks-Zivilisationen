@@ -24,7 +24,7 @@ private
    
    WelcherFluss : KartenextraDatentypen.Fluss_Enum;
    
-   Flussseite : KartenRecords.Umgebungskreuz;
+   Flussseite : KartenRecords.UmgebungskreuzRecord;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    

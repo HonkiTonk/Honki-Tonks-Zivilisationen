@@ -31,7 +31,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
         ZielVerbesserungKoordinaten = KartenRecordKonstanten.LeerKoordinate
       is
          when True =>
-            return KIEinheitFestlegenWegeLogik.StädteVerbinden (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+            return False;
             
          when False =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -56,8 +56,18 @@ package body KIEinheitFestlegenVerbesserungenLogik is
         VerbesserungAnlegen.XAchse
       is
          when KartenKonstanten.LeerXAchse =>
-            VerbesserungAnlegen := KartenRecordKonstanten.LeerKoordinate;
+            VerbesserungAnlegen := KIEinheitFestlegenWegeLogik.StädteVerbinden (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                
+         when others =>
+            return VerbesserungAnlegen;
+      end case;
+      
+      case
+        VerbesserungAnlegen.XAchse
+      is
+         when KartenKonstanten.LeerXAchse =>
+            VerbesserungAnlegen := KartenRecordKonstanten.LeerKoordinate;
+            
          when others =>
             return VerbesserungAnlegen;
       end case;
@@ -88,7 +98,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
          
       end loop StadtSchleife;
       
-      return VerbesserungAnlegen;
+      return KartenRecordKonstanten.LeerKoordinate;
       
    end StädteDurchgehen;
    
@@ -108,8 +118,6 @@ package body KIEinheitFestlegenVerbesserungenLogik is
             XAchseSchleife:
             for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
-               -- Den Schleifenbereich verschieben, ist ja in beiden Schleifen gleich. äöü
-               -- Dann per Münzwurf auf die jeweilige Schleife verweisen? äöü
                VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitKoordinaten,
                                                                                                                       ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                                       LogikGrafikExtern => True);
@@ -244,6 +252,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
 
 
    function VerbesserungErsetzen
+   -- (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      return Boolean
    is begin
    

@@ -155,6 +155,7 @@ package body SpielLogik is
                
             when SpeziesDatentypen.Leer_Spieler_Enum =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpielLogik.SpeziesDurchgehen: Keine Spezies");
+               return RueckgabeDatentypen.Runde_Beenden_Enum;
          end case;
 
       else

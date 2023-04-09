@@ -52,6 +52,30 @@ package body SichtweitenGrafik is
    end ZoomstufeÄndern;
    
    
+   
+   function SichthöheLesen
+     return KartenDatentypen.KartenfeldPositiv
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
+      
+      return AktuelleZoomstufe * 2;
+      
+   end SichthöheLesen;
+   
+   
+   
+   function SichtbreiteLesen
+     return KartenDatentypen.KartenfeldPositiv
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
+      
+      return AktuelleZoomstufe * 2;
+      
+   end SichtbreiteLesen;
+   
+   
 
    function SichtweiteLesen
      return KartenDatentypen.KartenfeldPositiv
@@ -62,6 +86,30 @@ package body SichtweitenGrafik is
       return AktuelleZoomstufe * 2;
             
    end SichtweiteLesen;
+   
+   
+   
+   function BewegungshöheLesen
+     return KartenDatentypen.KartenfeldPositiv
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
+      
+      return SichthöheLesen -1;
+      
+   end BewegungshöheLesen;
+   
+   
+   
+   function BewegungsbreiteLesen
+     return KartenDatentypen.KartenfeldPositiv
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
+      
+      return SichtbreiteLesen -1;
+      
+   end BewegungsbreiteLesen;
    
    
 
@@ -126,7 +174,7 @@ package body SichtweitenGrafik is
    
    
    
-   -- Das noch einmal suchen gehen und entsprechend ein wenig besser aufrufen lassen, ist nur schnell eingebaut worden. äöü
+   -- Das noch einmal suchen gehen und entsprechend ein wenig besser aufrufen lassen, ist nur schnell eingebaut worden. äöü ???
    function Kartenfeldfläche
      return Sf.System.Vector2.sfVector2f
    is begin

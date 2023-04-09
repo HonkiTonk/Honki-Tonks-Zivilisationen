@@ -83,10 +83,8 @@ package body EinheitenbewegungLogik is
          end if;
          
       else
-         BewegungDurchführen := True;
+         return True;
       end if;
-      
-      return BewegungDurchführen;
       
    end BewegungPrüfen;
    

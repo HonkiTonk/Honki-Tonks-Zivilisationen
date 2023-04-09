@@ -13,7 +13,7 @@ package KIBewegungsbewertungLogik is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
 
-   function Positionsbewertung
+   function PositionsbewertungEinheit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenDatentypen.KartenfeldNatural
@@ -28,12 +28,25 @@ package KIBewegungsbewertungLogik is
                  NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
+   function PositionsbewertungKoordinaten
+     (ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return KartenDatentypen.KartenfeldNatural
+     with
+       Pre => (
+                 ZielkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 ZielkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
 private
    
    BewertungEAchse : KartenDatentypen.KartenfeldNatural;
    BewertungYAchse : KartenDatentypen.KartenfeldNatural;
    BewertungXAchse : KartenDatentypen.KartenfeldNatural;
-   
-   Zielkoordinate : KartenRecords.AchsenKartenfeldNaturalRecord;
    
 end KIBewegungsbewertungLogik;

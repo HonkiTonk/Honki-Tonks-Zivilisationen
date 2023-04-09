@@ -150,6 +150,7 @@ package body KIEinheitenBauenLogik is
          when 0 =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitenBauenLogik.EinheitBewerten: Einheit: "
                                         & StadtSpeziesNummerExtern.Spezies'Wide_Wide_Image & " " & IDExtern'Wide_Wide_Image & " hat keine Passierbarkeit");
+            Gesamtwertung := KIDatentypen.BauenBewertung'First;
             
          when 1 =>
             null;
@@ -237,7 +238,7 @@ package body KIEinheitenBauenLogik is
          
       else
          -- Auf die maximale Größe der ID und des KIDatentypen.BauenBewertung Datentyps achten. äöü
-         return 20 + KIDatentypen.BauenBewertung (EinheitenIDExtern);
+         return 220 + KIDatentypen.BauenBewertung (EinheitenIDExtern);
       end if;
       
    end ArbeiterBewerten;

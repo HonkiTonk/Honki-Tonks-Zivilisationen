@@ -93,14 +93,11 @@ package EinheitenbewegungLogik is
 private
    
    FeldPassierbar : Boolean;
-   BewegungDurchführen : Boolean;
    
    StadtAufFeld : StadtRecords.SpeziesStadtnummerRecord;
       
    EinheitAufFeld : EinheitenRecords.SpeziesEinheitnummerRecord;
 
-   KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
-   NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    BewegendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    StehendeKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;

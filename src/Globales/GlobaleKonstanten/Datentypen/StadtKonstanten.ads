@@ -76,7 +76,7 @@ package StadtKonstanten is
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
                                                                    SystemDatentypen.Anfangswert_Enum =>
                                                                      (
-                                                                      SpeziesDatentypen.Menschen_Enum         => 10,
+                                                                      SpeziesDatentypen.Menschen_Enum         => 100,
                                                                       SpeziesDatentypen.Kasrodiah_Enum        => 10,
                                                                       SpeziesDatentypen.Lasupin_Enum          => 10,
                                                                       SpeziesDatentypen.Lamustra_Enum         => 10,
@@ -98,7 +98,7 @@ package StadtKonstanten is
 
                                                                    SystemDatentypen.Endwert_Enum =>
                                                                      (
-                                                                      SpeziesDatentypen.Menschen_Enum         => 20,
+                                                                      SpeziesDatentypen.Menschen_Enum         => 100,
                                                                       SpeziesDatentypen.Kasrodiah_Enum        => 20,
                                                                       SpeziesDatentypen.Lasupin_Enum          => 20,
                                                                       SpeziesDatentypen.Lamustra_Enum         => 20,

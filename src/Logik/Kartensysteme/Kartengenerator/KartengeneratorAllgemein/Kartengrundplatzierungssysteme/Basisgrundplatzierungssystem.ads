@@ -27,7 +27,7 @@ private
 
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-   Grundumgebung : KartenRecords.Umgebungskreuz;
+   Grundumgebung : KartenRecords.UmgebungskreuzRecord;
 
    -- Das hier später anpassen, wenn ich tatsächliche alle Basisgründe so erweitere. äöü
    type GrundZuNummerArray is array (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Positive;

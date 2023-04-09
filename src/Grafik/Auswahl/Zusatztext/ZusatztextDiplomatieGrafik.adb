@@ -77,6 +77,7 @@ package body ZusatztextDiplomatieGrafik is
                
             when DiplomatieDatentypen.Unbekannt_Enum =>
                Fehlermeldungssystem.Grafik (FehlermeldungExtern => "ZusatztextDiplomatieGrafik.TextSetzen: Unbekannter Kontakt");
+               return "";
          end case;
          
          Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & Meldungstexte.Zeug (Zustandnummer);

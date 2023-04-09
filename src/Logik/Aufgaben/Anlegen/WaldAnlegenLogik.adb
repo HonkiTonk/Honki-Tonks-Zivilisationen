@@ -25,6 +25,7 @@ package body WaldAnlegenLogik is
             
          when others =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "WaldAnlegenLogik.WaldAnlegen: Falsche Ebene");
+            return;
       end case;
       
       Zusatzgrundplatzierungssystem.Zusatzgrundplatzierung (KoordinatenExtern => KoordinatenExtern,

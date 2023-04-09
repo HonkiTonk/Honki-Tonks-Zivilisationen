@@ -6,21 +6,32 @@ with KIXAchsenbewertung;
 
 package body KIBewegungsbewertungLogik is
 
-   function Positionsbewertung
+   function PositionsbewertungEinheit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenDatentypen.KartenfeldNatural
    is begin
       
-      Zielkoordinate := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      return PositionsbewertungKoordinaten (ZielkoordinatenExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                            NeueKoordinatenExtern => NeueKoordinatenExtern);
       
-      BewertungEAchse := KIEAchsenbewertung.EAchseBewerten (ZielebeneExtern => Zielkoordinate.EAchse,
+   end PositionsbewertungEinheit;
+   
+   
+   
+   function PositionsbewertungKoordinaten
+     (ZielkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return KartenDatentypen.KartenfeldNatural
+   is begin
+      
+      BewertungEAchse := KIEAchsenbewertung.EAchseBewerten (ZielebeneExtern => ZielkoordinatenExtern.EAchse,
                                                             NeueEbeneExtern => NeueKoordinatenExtern.EAchse);
             
-      BewertungYAchse := KIYAchsenbewertung.YAchseBewerten (ZielpunktExtern  => Zielkoordinate.YAchse,
+      BewertungYAchse := KIYAchsenbewertung.YAchseBewerten (ZielpunktExtern  => ZielkoordinatenExtern.YAchse,
                                                             NeuerPunktExtern => NeueKoordinatenExtern.YAchse);
             
-      BewertungXAchse := KIXAchsenbewertung.XAchseBewerten (ZielpunktExtern  => Zielkoordinate.XAchse,
+      BewertungXAchse := KIXAchsenbewertung.XAchseBewerten (ZielpunktExtern  => ZielkoordinatenExtern.XAchse,
                                                             NeuerPunktExtern => NeueKoordinatenExtern.XAchse);
       
       if
@@ -32,6 +43,6 @@ package body KIBewegungsbewertungLogik is
          return BewertungEAchse + BewertungYAchse + BewertungXAchse;
       end if;
       
-   end Positionsbewertung;
+   end PositionsbewertungKoordinaten;
 
 end KIBewegungsbewertungLogik;

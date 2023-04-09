@@ -41,7 +41,7 @@ private
    FortschrittSchritte : constant FortschrittSchritteArray := (
                                                                1 => 1,
                                                                2 => 1,
-                                                               3 => 10,
+                                                               3 => 9,
                                                                4 => 14,
                                                                5 => 7
                                                               );

@@ -48,9 +48,10 @@ package body KIEinheitenAufgabenplanungLogik is
                            
          when EinheitenDatentypen.Leer_Einheitart_Enum =>
             Fehlermeldungssystem.Logik
-              (FehlermeldungExtern => "KIEinheitenAufgabenplanungLogik.Aufgabenplanung: KI nutzt leere Einheitenart: " & EinheitSpeziesNummerExtern.Spezies'Wide_Wide_Image & " " & EinheitID'Wide_Wide_Image);
+              (FehlermeldungExtern => "KIEinheitenAufgabenplanungLogik.Aufgabenplanung: Leere Einheitenart: " & EinheitSpeziesNummerExtern.Spezies'Wide_Wide_Image & " " & EinheitID'Wide_Wide_Image);
+            return False;
       end case;
-         
+      
       return KIEinheitHandlungstestsLogik.HandlungBeendet (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
    end Aufgabenplanung;

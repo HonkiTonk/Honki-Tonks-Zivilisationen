@@ -1,11 +1,18 @@
 with BefehleDatentypen;
 with AufgabenDatentypen;
-with KartenverbesserungDatentypen;
+with KartenKonstanten;
+with EinheitenDatentypen;
+with KartenRecordKonstanten;
 
 with SchreibeEinheitenGebaut;
-with LeseStadtGebaut;
 
 with AufgabenLogik;
+
+with KIDatentypen;
+with KIVariablen;
+
+with KIAufgabenVerteiltLogik;
+with KIStaedteverbindungssystemLogik;
 
 package body KIEinheitFestlegenWegeLogik is
 
@@ -34,80 +41,62 @@ package body KIEinheitFestlegenWegeLogik is
    
    
    
-   -- Eventuell sollte ich speichern welche Städte miteinander verbunden sind, damit diese Prüfungen hier nicht immer wieder durchlaufen müssen. äöü
    function StädteVerbinden
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return Boolean
+      return KartenRecords.AchsenKartenfeldNaturalRecord
    is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
-
-      Stadtgrenze := LeseGrenzen.Städtegrenzen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
-      WegGefunden := False;
       
-      AnfangsstadtSchleife:
-      for AnfangsstadtSchleifenwert in StadtKonstanten.AnfangNummer .. Stadtgrenze loop
-         EndstadtSchleife:
-         for EndstadtSchleifenwert in StadtKonstanten.AnfangNummer + 1 .. Stadtgrenze loop
+      case
+        KIVariablen.Stadtverbindung (EinheitSpeziesNummerExtern.Spezies, 0).XAchse
+      is
+         when KartenKonstanten.LeerXAchse =>
+            return KartenRecordKonstanten.LeerKoordinate;
             
-            if
-              LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, AnfangsstadtSchleifenwert)) = StadtKonstanten.LeerID
-            then
-               exit EndstadtSchleife;
-               
-            elsif
-              LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EndstadtSchleifenwert)) = StadtKonstanten.LeerID
-            then
-               null;
-               
-            elsif
-              True = VerbindungMöglich (AnfangsstadtExtern         => (EinheitSpeziesNummerExtern.Spezies, AnfangsstadtSchleifenwert),
-                                         EndstadtExtern             => (EinheitSpeziesNummerExtern.Spezies, EndstadtSchleifenwert),
-                                         EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
-            then
-               WegGefunden := True;
-               exit AnfangsstadtSchleife;
-              
-            else
-               null;
-            end if;
-
-         end loop EndstadtSchleife;
-      end loop AnfangsstadtSchleife;
+         when others =>
+            null;
+      end case;
       
-      return WegGefunden;
+      VerbindungSchleife:
+      for VerbindungSchleifenwert in EinheitenDatentypen.BewegungsplanVorhanden'Range loop
+         
+         Koordinaten := KIVariablen.Stadtverbindung (EinheitSpeziesNummerExtern.Spezies, VerbindungSchleifenwert);
+         
+         if
+           Koordinaten = KartenRecordKonstanten.LeerKoordinate
+         then
+            null;
+            
+         elsif
+           True = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen_Enum,
+                                                              SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
+                                                              ZielKoordinatenExtern => Koordinaten)
+         then
+            null;
+            
+         elsif
+           True = AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                         BefehlExtern               => BefehleDatentypen.Straße_Bauen_Enum,
+                                         AnlegenTestenExtern        => False,
+                                         KoordinatenExtern          => Koordinaten)
+         then
+            KIStaedteverbindungssystemLogik.ElementEntfernen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                              ElementExtern => VerbindungSchleifenwert);
+            
+            SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                    BeschäftigungExtern        => AufgabenDatentypen.Straße_Bauen_Enum);
+               
+            return Koordinaten;
+            
+         else
+            null;
+         end if;
+         
+      end loop VerbindungSchleife;
+      
+      return KartenRecordKonstanten.LeerKoordinate;
       
    end StädteVerbinden;
-   
-   
-   
-   function VerbindungMöglich
-     (AnfangsstadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EndstadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return Boolean
-   is
-      use type KartenDatentypen.Ebene;
-   begin
-            
-      KoordinatenAnfangsstadt := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => AnfangsstadtExtern);
-      KoordinatenEndstadt := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => EndstadtExtern);
-               
-      if
-        KoordinatenAnfangsstadt.EAchse = KoordinatenEndstadt.EAchse
-      then
-         SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    KoordinatenExtern          => KoordinatenEndstadt);
-                  
-      else
-         return False;
-      end if;
-      
-      
-      
-      return False;
-      
-   end VerbindungMöglich;
 
 end KIEinheitFestlegenWegeLogik;

@@ -47,8 +47,8 @@ package body LadezeitenLogik is
       if
         FortschrittSpielwelt (WelcheBerechnungenExtern) + FortschrittSchritte (1) > SystemDatentypen.NullBisHundert'Last
       then
-         FortschrittSpielwelt (WelcheBerechnungenExtern) := SystemDatentypen.NullBisHundert'Last;
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadezeitenLogik.FortschrittSpielweltSchreiben: " & WelcheBerechnungenExtern'Wide_Wide_Image & " > 100%");
+         FortschrittSpielwelt (WelcheBerechnungenExtern) := SystemDatentypen.NullBisHundert'Last;
          
       else
          FortschrittSpielwelt (WelcheBerechnungenExtern) := FortschrittSpielwelt (WelcheBerechnungenExtern) + FortschrittSchritte (1);
@@ -77,8 +77,8 @@ package body LadezeitenLogik is
       if
         FortschrittKI (WelcheBerechnungenExtern) + FortschrittSchritte (2) > SystemDatentypen.NullBisHundert'Last
       then
-         FortschrittKI (WelcheBerechnungenExtern) := SystemDatentypen.NullBisHundert'Last;
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadezeitenLogik.FortschrittKISchreiben: " & WelcheBerechnungenExtern'Wide_Wide_Image & " > 100%");
+         FortschrittKI (WelcheBerechnungenExtern) := SystemDatentypen.NullBisHundert'Last;
          
       else
          FortschrittKI (WelcheBerechnungenExtern) := FortschrittKI (WelcheBerechnungenExtern) + FortschrittSchritte (2);
@@ -107,8 +107,8 @@ package body LadezeitenLogik is
       if
         FortschrittRundenende + FortschrittSchritte (3) > SystemDatentypen.NullBisHundert'Last
       then
-         FortschrittRundenende := SystemDatentypen.NullBisHundert'Last;
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadezeitenLogik.RundenendeSchreiben: Fortschritt > 100%");
+         FortschrittRundenende := SystemDatentypen.NullBisHundert'Last;
          
       else
          FortschrittRundenende := FortschrittRundenende + FortschrittSchritte (3);
@@ -140,8 +140,8 @@ package body LadezeitenLogik is
             if
               FortschrittSpeichernLaden + FortschrittSchritte (4) > SystemDatentypen.NullBisHundert'Last
             then
-               FortschrittSpeichernLaden := SystemDatentypen.NullBisHundert'Last;
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadezeitenLogik.SpeichernSchreiben: Fortschritt > 100%");
+               FortschrittSpeichernLaden := SystemDatentypen.NullBisHundert'Last;
          
             else
                FortschrittSpeichernLaden := FortschrittSpeichernLaden + FortschrittSchritte (4);
@@ -151,8 +151,8 @@ package body LadezeitenLogik is
             if
               FortschrittSpeichernLaden + FortschrittSchritte (5) > SystemDatentypen.NullBisHundert'Last
             then
-               FortschrittSpeichernLaden := SystemDatentypen.NullBisHundert'Last;
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadezeitenLogik.LadenSchreiben: Fortschritt > 100%");
+               FortschrittSpeichernLaden := SystemDatentypen.NullBisHundert'Last;
          
             else
                FortschrittSpeichernLaden := FortschrittSpeichernLaden + FortschrittSchritte (5);

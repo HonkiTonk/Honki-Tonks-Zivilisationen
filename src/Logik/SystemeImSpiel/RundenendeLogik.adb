@@ -24,6 +24,8 @@ with NachGrafiktask;
 with JaNeinLogik;
 with AbspannLogik;
 
+with KIRundenende;
+
 package body RundenendeLogik is
 
    function BerechnungenRundenende
@@ -42,6 +44,9 @@ package body RundenendeLogik is
       end case;
       
       -- Später in verschiedene Teilbereiche aufteilen und nicht nur einen einzelnen Berechnungsfortschritt anzeigen? äöü
+      -- Außerdem mal in eine übergeordnete Speziesschleife zusammenfassen, damit nicht jede einzelne Berechnung ihre eigene hat. äöü
+      -- In der Schleife dann zwischen Dinge unterscheiden die nur für Menschen, nur für die KI und für Beide relevant sind. äöü
+      -- Aktuell sollte auch Beide und nur KI reichen. äöü
       MeldungenSetzenLogik.MeldungenRundenende;
       LadezeitenLogik.RundenendeSchreiben;
       
@@ -64,6 +69,9 @@ package body RundenendeLogik is
       LadezeitenLogik.RundenendeSchreiben;
       
       GeldForschungDiplomatieÄndern;
+      LadezeitenLogik.RundenendeSchreiben;
+      
+      KIRundenende.Rundenende;
       LadezeitenLogik.RundenendeSchreiben;
             
       SchreibeAllgemeines.Rundenanzahl;

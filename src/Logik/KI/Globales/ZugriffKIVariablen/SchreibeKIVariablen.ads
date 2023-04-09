@@ -1,5 +1,5 @@
 package SchreibeKIVariablen is
-   pragma Preelaborate;
+   pragma Elaborate_Body;
 
    procedure Kriegszustand
      (ZustandExtern : in Boolean);

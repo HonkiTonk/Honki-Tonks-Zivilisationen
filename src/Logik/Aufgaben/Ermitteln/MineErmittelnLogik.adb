@@ -63,6 +63,7 @@ package body MineErmittelnLogik is
             
          when others =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "MineErmittelnLogik.MineErmitteln: Falsche Aufgabe:" & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            return False;
       end case;
       
       case

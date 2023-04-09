@@ -60,6 +60,7 @@ package body SichtbarkeitSetzenLogik is
             
          when others =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SichtbarkeitSetzenLogik.EbenenBerechnungen: Ungültige Ebene: " & KoordinatenExtern.EAchse'Wide_Wide_Image);
+            return;
       end case;
       
       EAchse:

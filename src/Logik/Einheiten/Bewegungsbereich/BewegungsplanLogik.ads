@@ -50,7 +50,8 @@ private
    
    BewertungPosition : Positive;
    
-   Bewegungsverzögerung : constant Duration := 0.200;
+   BewegungsverzögerungMinimal : constant Duration := 0.200;
+   Bewegungsverzögerung : Duration := BewegungsverzögerungMinimal;
    
    StadtAufFeld : StadtRecords.SpeziesStadtnummerRecord;
    
@@ -62,19 +63,9 @@ private
    NeueKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    KoordinatenzwischenspeicherWindows : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
+   Sortieren : KartenRecords.BewegungsbewertungRecord;
    
-   type BewertungRecord is record
-            
-      Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-      
-      Bewertung : KartenDatentypen.KartenfeldNatural;
-      
-   end record;
-   
-   Sortieren : BewertungRecord;
-   
-   type BewertungArray is array (1 .. 27) of BewertungRecord;
+   type BewertungArray is array (1 .. 27) of KartenRecords.BewegungsbewertungRecord;
    Bewertung : BewertungArray;
    
    procedure Felderbewertung
@@ -138,21 +129,6 @@ private
                  NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
-   
-   function FeldBereitsBetreten
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-     with
-       Pre => (
-                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
          
    function PlanschrittFestlegen

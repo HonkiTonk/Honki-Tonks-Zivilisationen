@@ -198,7 +198,7 @@ package KartenRecords is
    
    
    
-   type Umgebungskreuz is record
+   type UmgebungskreuzRecord is record
       
       Links : Boolean;
       Rechts : Boolean;
@@ -209,7 +209,7 @@ package KartenRecords is
    
    
    
-   type Umgebungsstern is record
+   type UmgebungssternRecord is record
       
       Links_Oben_Enum : Boolean;
       Oben_Enum : Boolean;
@@ -219,6 +219,16 @@ package KartenRecords is
       Unten_Enum : Boolean;
       Links_Unten_Enum : Boolean;
       Links_Enum : Boolean;
+            
+   end record;
+   
+   
+   
+   type BewegungsbewertungRecord is record
+            
+      Koordinaten : AchsenKartenfeldNaturalRecord;
+      
+      Bewertung : KartenDatentypen.KartenfeldNatural;
             
    end record;
    

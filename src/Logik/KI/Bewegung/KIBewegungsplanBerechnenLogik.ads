@@ -1,19 +1,19 @@
 with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
+with KartenRecords;
+with KartenDatentypen;
 
-private with KartenRecords;
 private with EinheitenDatentypen;
-private with KartenDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
-
-private with LeseWeltkarteneinstellungen;
+with LeseWeltkarteneinstellungen;
 
 package KIBewegungsplanBerechnenLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
+   use type KartenDatentypen.Kartenfeld;
    
    function BewegungPlanen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -25,8 +25,22 @@ package KIBewegungsplanBerechnenLogik is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               );
    
+   function FeldBereitsBetreten
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Boolean
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
 private
-   use type KartenDatentypen.Kartenfeld;
    
    PlanungErfolgreich : Boolean;
    
@@ -35,17 +49,9 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KoordinatenzwischenspeicherWindows : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   type BewertungRecord is record
-            
-      Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-      
-      Bewertung : KartenDatentypen.KartenfeldNatural;
-      
-   end record;
+   Sortieren : KartenRecords.BewegungsbewertungRecord;
    
-   Sortieren : BewertungRecord;
-   
-   type BewertungArray is array (1 .. 27) of BewertungRecord;
+   type BewertungArray is array (1 .. 27) of KartenRecords.BewegungsbewertungRecord;
    Bewertung : BewertungArray;
    
    procedure Felderbewertung
@@ -93,21 +99,6 @@ private
                  NeueKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  NeueKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
-   
-   function FeldBereitsBetreten
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-     with
-       Pre => (
-                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    function TransporterNutzen

@@ -20,6 +20,7 @@ with TransporterBeladenEntladenLogik;
 
 with KIBewegungsplanVereinfachenLogik;
 with KIBewegungsbewertungLogik;
+with KIBewegungsplanBerechnenLogik;
 
 package body BewegungsplanLogik is
    
@@ -32,7 +33,7 @@ package body BewegungsplanLogik is
    begin
       
       if
-        ÄnderungExtern = KeineÄnderung
+        ÄnderungExtern = KartenRecordKonstanten.LeerKoordinatenänderung
       then
          return True;
             
@@ -91,6 +92,7 @@ package body BewegungsplanLogik is
                         AktuellePlanpositionExtern => 1)
       is
          when True =>
+            
             NachGrafiktask.Einheitenbewegung := True;
             
             DurchführungSchleife:
@@ -302,6 +304,7 @@ package body BewegungsplanLogik is
    
    
    
+   -- Den Teil hier mit KIBewegunsplanBerechnenLogik verschmelzen? äöü
    function PlanenRekursiv
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -347,7 +350,7 @@ package body BewegungsplanLogik is
    begin
       
       -- Muss hier für Windows zwischengespeichert werden, da sonst Bewertung (DurchlaufExtern).Koordinaten in PlanenRekursiv überschrieben wird und als neue AktuelleKoordinatenExtern in der Schleife verwendet wird.
-      -- Gilt auch für KIBewegungsplanBerechnenLogik.
+      -- Gilt auch für KIBewegungsplanBerechnenLogik und KIStaedteverbindungssystemLogik.
       -- Passiert nicht unter Linux, eventuell ein Kompilerfehler? Später, erst nach der Veröffentlichung von GNAT 13, mal nachprüfen.
       KoordinatenzwischenspeicherWindows := Bewertung (DurchlaufExtern).Koordinaten;
             
@@ -454,8 +457,8 @@ package body BewegungsplanLogik is
    is begin
       
       if
-        True = FeldBereitsBetreten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                    KoordinatenExtern          => NeueKoordinatenExtern)
+        True = KIBewegungsplanBerechnenLogik.FeldBereitsBetreten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                  KoordinatenExtern          => NeueKoordinatenExtern)
       then
          return KartenDatentypen.KartenfeldPositiv'Last;
          
@@ -466,39 +469,10 @@ package body BewegungsplanLogik is
          return KartenDatentypen.KartenfeldPositiv'Last;
           
       else
-         return KIBewegungsbewertungLogik.Positionsbewertung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                              NeueKoordinatenExtern      => NeueKoordinatenExtern);
+         return KIBewegungsbewertungLogik.PositionsbewertungEinheit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                     NeueKoordinatenExtern      => NeueKoordinatenExtern);
       end if;
       
    end BewertungFeldposition;
-   
-   
-   
-   function FeldBereitsBetreten
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Boolean
-   is
-      use type KartenRecords.AchsenKartenfeldNaturalRecord;
-   begin
-      
-      FelderSchleife:
-      for FelderSchleifenwert in EinheitenRecords.KIBewegungPlanArray'Range loop
-         
-         if
-           KoordinatenExtern = LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                   PlanschrittExtern          => FelderSchleifenwert)
-         then
-            return True;
-            
-         else
-            null;
-         end if;
-         
-      end loop FelderSchleife;
-      
-      return False;
-      
-   end FeldBereitsBetreten;
 
 end BewegungsplanLogik;

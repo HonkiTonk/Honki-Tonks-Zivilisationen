@@ -58,6 +58,7 @@ package body KIBewegungsplanBerechnenLogik is
    
    
    
+   -- Den Teil hier mit BewegungsplanLogik verschmelzen? äöü
    function PlanenRekursiv
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -103,7 +104,7 @@ package body KIBewegungsplanBerechnenLogik is
    begin
       
       -- Muss hier für Windows zwischengespeichert werden, da sonst Bewertung (DurchlaufExtern).Koordinaten in PlanenRekursiv überschrieben wird und als neue AktuelleKoordinatenExtern in der Schleife verwendet wird.
-      -- Gilt auch für BewegungsplanLogik.
+      -- Gilt auch für BewegungsplanLogik und KIStaedteverbindungssystemLogik.
       -- Passiert nicht unter Linux, eventuell ein Kompilerfehler? Später, erst nach der Veröffentlichung von GNAT 13, mal nachprüfen.
       KoordinatenzwischenspeicherWindows := Bewertung (DurchlaufExtern).Koordinaten;
             
@@ -243,8 +244,8 @@ package body KIBewegungsplanBerechnenLogik is
                                                EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when KIKonstanten.BewegungAngriff | KIKonstanten.BewegungNormal =>
-            return KIBewegungsbewertungLogik.Positionsbewertung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                 NeueKoordinatenExtern      => NeueKoordinatenExtern);
+            return KIBewegungsbewertungLogik.PositionsbewertungEinheit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                        NeueKoordinatenExtern      => NeueKoordinatenExtern);
             
             -- Hier später noch einmal anpassen. äöü
          when KIKonstanten.Tauschbewegung =>

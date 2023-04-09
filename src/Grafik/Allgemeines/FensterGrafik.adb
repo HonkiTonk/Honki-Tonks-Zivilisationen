@@ -24,6 +24,7 @@ package body FensterGrafik is
         FensterAccess = null
       then
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "FensterGrafik.FensterErzeugen: FensterAccess: null");
+         raise FensterNichtErzeugbar;
 
       else
          MauszeigerFestlegen;
@@ -60,6 +61,8 @@ package body FensterGrafik is
             
          when others =>
             Fehlermeldungssystem.Grafik (FehlermeldungExtern => "FensterGrafik.FensterErzeugenErweitert: Unbekannter Fenstermodus: " & Fenstermodus'Wide_Wide_Image);
+            Fenstermodus := 2;
+            Startauflösung := (640, 480);
       end case;
             
       FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (Startauflösung.x,

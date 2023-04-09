@@ -12,15 +12,17 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
    is
       use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
       use type SpeziesDatentypen.Spezies_Enum;
+      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    begin
       
       EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       WelcheVerbesserung := LeseEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       VorhandeneVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => EinheitKoordinaten);
       
-      -- Verhindert das Verbinden von Städten mit Straßen und weiteres. Später eine bessere Lösung bauen. äöü
       if
         LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => EinheitKoordinaten) /= EinheitSpeziesNummerExtern.Spezies
+        and
+          WelcheVerbesserung /= AufgabenDatentypen.Straße_Bauen_Enum
       then
          return False;
          
@@ -41,16 +43,8 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
             then
                return False;
                
-            elsif
-              True = AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                            BefehlExtern               => BefehleDatentypen.Mine_Bauen_Enum,
-                                            AnlegenTestenExtern        => False,
-                                            KoordinatenExtern          => EinheitKoordinaten)
-            then
-               null;
-               
             else
-               return False;
+               null;
             end if;
             
          when AufgabenDatentypen.Farm_Bauen_Enum =>
@@ -61,16 +55,8 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
             then
                return False;
                
-            elsif
-              True = AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                            BefehlExtern               => BefehleDatentypen.Farm_Bauen_Enum,
-                                            AnlegenTestenExtern        => False,
-                                            KoordinatenExtern          => EinheitKoordinaten)
-            then
-               null;
-               
             else
-               return False;
+               null;
             end if;
             
          when AufgabenDatentypen.Festung_Bauen_Enum =>
@@ -81,43 +67,34 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
             then
                return False;
                
-            elsif
-              True = AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                            BefehlExtern               => BefehleDatentypen.Festung_Bauen_Enum,
-                                            AnlegenTestenExtern        => False,
-                                            KoordinatenExtern          => EinheitKoordinaten)
-            then
-               null;
-               
             else
-               return False;
+               null;
             end if;
             
          when AufgabenDatentypen.Straße_Bauen_Enum =>
             Befehl := BefehleDatentypen.Straße_Bauen_Enum;
-            
-            if
-              True = AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                            BefehlExtern               => BefehleDatentypen.Straße_Bauen_Enum,
-                                            AnlegenTestenExtern        => False,
-                                            KoordinatenExtern          => EinheitKoordinaten)
-            then
-               null;
-               
-            else
-               return False;
-            end if;
             
          when others =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitUmsetzenVerbesserungenLogik.WelcheVerbesserungAnlegen: Falsche Verbesserung: " & WelcheVerbesserung'Wide_Wide_Image);
             return False;
       end case;
       
-      return AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                    BefehlExtern               => Befehl,
-                                    AnlegenTestenExtern        => True,
-                                    KoordinatenExtern          => EinheitKoordinaten);
-      
+      case
+        AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                               BefehlExtern               => Befehl,
+                               AnlegenTestenExtern        => False,
+                               KoordinatenExtern          => EinheitKoordinaten)
+      is
+         when True =>
+            return AufgabenLogik.Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                          BefehlExtern               => Befehl,
+                                          AnlegenTestenExtern        => True,
+                                          KoordinatenExtern          => EinheitKoordinaten);
+               
+         when False =>
+            return False;
+      end case;
+            
    end WelcheVerbesserungAnlegen;
 
 end KIEinheitUmsetzenVerbesserungenLogik;

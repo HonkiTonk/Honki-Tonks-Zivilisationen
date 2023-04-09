@@ -216,6 +216,7 @@ package body LeseWeltkarte is
          when KartenKonstanten.LeerEAchse =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.BelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern)
                                         & "Spezies: " & SpeziesExtern'Wide_Wide_Image);
+            return False;
             
          when others =>
             null;
@@ -249,6 +250,7 @@ package body LeseWeltkarte is
       is
          when KartenKonstanten.LeerEAchse =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.UnbelegterGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            return True;
             
          when others =>
             null;
@@ -289,6 +291,7 @@ package body LeseWeltkarte is
       is
          when KartenKonstanten.LeerEAchse =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.StadtbelegungGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            return StadtKonstanten.LeerStadt;
             
          when others =>
             null;
@@ -314,6 +317,7 @@ package body LeseWeltkarte is
       is
          when KartenKonstanten.LeerEAchse =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.BestimmteStadtBelegtGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            return False;
             
          when others =>
             null;
@@ -344,6 +348,7 @@ package body LeseWeltkarte is
       is
          when KartenKonstanten.LeerEAchse =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.SpeziesBelegtGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            return SpeziesDatentypen.Leer_Spezies_Enum;
             
          when others =>
             null;
@@ -364,6 +369,7 @@ package body LeseWeltkarte is
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseWeltkarte.EinheitenbelegungGrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             return EinheitenKonstanten.LeerEinheit;
             
          when others =>

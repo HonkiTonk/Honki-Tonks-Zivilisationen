@@ -4,10 +4,6 @@ with EinheitenKonstanten;
 with SpeziesDatentypen;
 with KartenDatentypen;
 
-private with StadtRecords;
-private with StadtDatentypen;
-private with StadtKonstanten;
-
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 with LeseWeltkarteneinstellungen;
@@ -34,43 +30,22 @@ package KIEinheitFestlegenWegeLogik is
    
    function StädteVerbinden
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return Boolean
+      return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
-              );
+              ),
+         
+       Post => (
+                  StädteVerbinden'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                and
+                  StädteVerbinden'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               );
    
 private
    
-   WegGefunden : Boolean;
-   
-   Stadtgrenze : StadtDatentypen.MaximaleStädteMitNullWert;
-   
-   KoordinatenAnfangsstadt : KartenRecords.AchsenKartenfeldNaturalRecord;
-   KoordinatenEndstadt : KartenRecords.AchsenKartenfeldNaturalRecord;
-   
-   
-   
-   function VerbindungMöglich
-     (AnfangsstadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EndstadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return Boolean
-     with
-       Pre => (
-                 AnfangsstadtExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => AnfangsstadtExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => AnfangsstadtExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
-               and
-                 EndstadtExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => EndstadtExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EndstadtExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
-               and
-                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
-              );
+   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end KIEinheitFestlegenWegeLogik;

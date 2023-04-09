@@ -36,6 +36,11 @@ package body HintergrundGrafik is
         EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern) = null
       then
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "HintergrundGrafik.Hintergrund: Hintergrund fehlt: " & HintergrundExtern'Wide_Wide_Image);
+      
+         -- Muss ich bei sowas überhaupt was zeichnen? Sollte nach dem Leeren des Fensters doch eh immer schwarz sein, oder? äöü
+         ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
+                                                 PositionExtern  => PositionExtern,
+                                                 FarbeExtern     => Sf.Graphics.Color.sfBlack);
          
       else
          Sf.Graphics.Sprite.scale (sprite  => HintergrundSpritePositionierbarAccess,
@@ -58,13 +63,7 @@ package body HintergrundGrafik is
          SpritesverwaltungssystemGrafik.PositionFarbeZeichnen (SpriteAccessExtern => HintergrundSpritePositionierbarAccess,
                                                                PositionExtern     => PositionExtern,
                                                                FarbeExtern        => Farbe);
-         
-         return;
       end if;
-      
-      ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
-                                              PositionExtern  => PositionExtern,
-                                              FarbeExtern     => Sf.Graphics.Color.sfBlack);
       
    end HintergrundPositionierbar;
    
@@ -82,6 +81,10 @@ package body HintergrundGrafik is
         EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, HintergrundExtern) = null
       then
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "HintergrundGrafik.Spezieshintergrund: Hintergrund fehlt: " & SpeziesExtern'Wide_Wide_Image & " " & HintergrundExtern'Wide_Wide_Image);
+      
+         ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
+                                                 PositionExtern  => GrafikRecordKonstanten.Nullposition,
+                                                 FarbeExtern     => Sf.Graphics.Color.sfBlack);
          
       else
          Sf.Graphics.Sprite.scale (sprite  => SpezieshintergrundSpriteAccess,
@@ -91,25 +94,19 @@ package body HintergrundGrafik is
          
          Farbe := Sf.Graphics.Sprite.getColor (sprite => SpezieshintergrundSpriteAccess);
          
-        -- case
-        --   HintergrundExtern
-        -- is
-        --    when GrafikDatentypen.Hintergrund_Undurchsichtig_Enum =>
-               Farbe.a := GrafikKonstanten.Undurchsichtig;
+         -- case
+         --   HintergrundExtern
+         -- is
+         --    when GrafikDatentypen.Hintergrund_Undurchsichtig_Enum =>
+         Farbe.a := GrafikKonstanten.Undurchsichtig;
                
-        --    when GrafikDatentypen.Hintergrund_Durchsichtig_Enum =>
-        --       Farbe.a := 150;
-        -- end case;
+         --    when GrafikDatentypen.Hintergrund_Durchsichtig_Enum =>
+         --       Farbe.a := 150;
+         -- end case;
         
          SpritesverwaltungssystemGrafik.FarbeZeichnen (SpriteAccessExtern => SpezieshintergrundSpriteAccess,
                                                        FarbeExtern        => Farbe);
-         
-         return;
       end if;
-      
-      ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
-                                              PositionExtern  => GrafikRecordKonstanten.Nullposition,
-                                              FarbeExtern     => Sf.Graphics.Color.sfBlack);
       
    end Spezieshintergrund;
 

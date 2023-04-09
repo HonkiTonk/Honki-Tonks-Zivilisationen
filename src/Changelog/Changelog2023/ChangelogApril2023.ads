@@ -140,17 +140,23 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (10.04.2023):
+   -- Version 0.04.9315 => 0.04. (10.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9220 => 0.04. (09.04.2023):
+   -- Version 0.04.9220 => 0.04.9315 (09.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- KI überarbeitet.
+   -- Code zusammengeführt.
+   -- Weiter am Städteverbindungssystem gearbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Die KI ist jetzt in der Lage Städte miteinander zu verbinden.
+   -- Zahlreiche sichere Rückgabewerte und Returnbedingungen eingebaut, um beim Auftreten eines Laufzeitfehlers möglichst fehlerfrei weiterspielen zu können.
+   -- Angefangen die Sichtweiten zu überarbeiten, um später alle Feldtexturen/grafiken im Verhältnis 1x1 anzeigen zu können.
+   -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 

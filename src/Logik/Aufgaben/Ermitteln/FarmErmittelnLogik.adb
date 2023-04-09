@@ -72,6 +72,7 @@ package body FarmErmittelnLogik is
             
          when others =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "FarmErmittelnLogik.FarmErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            return False;
       end case;
       
       case

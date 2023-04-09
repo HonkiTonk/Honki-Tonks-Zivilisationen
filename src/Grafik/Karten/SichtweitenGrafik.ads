@@ -20,6 +20,18 @@ package SichtweitenGrafik is
      (ÄnderungExtern : in KartenDatentypen.Kartenfeld);
    
    
+   
+   function SichthöheLesen
+     return KartenDatentypen.KartenfeldPositiv;
+   
+   function SichtbreiteLesen
+     return KartenDatentypen.KartenfeldPositiv;
+   
+   function BewegungshöheLesen
+     return KartenDatentypen.KartenfeldPositiv;
+   
+   function BewegungsbreiteLesen
+     return KartenDatentypen.KartenfeldPositiv;
       
    function SichtweiteLesen
      return KartenDatentypen.KartenfeldPositiv;

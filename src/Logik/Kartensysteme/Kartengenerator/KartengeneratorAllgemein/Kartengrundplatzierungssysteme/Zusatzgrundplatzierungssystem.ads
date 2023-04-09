@@ -39,7 +39,7 @@ private
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Entfernungskartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-   Grundumgebung : KartenRecords.Umgebungskreuz;
+   Grundumgebung : KartenRecords.UmgebungskreuzRecord;
 
    type GrundZuNummerArray is array (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range) of Positive;
    GrundZuNummer : constant GrundZuNummerArray := (

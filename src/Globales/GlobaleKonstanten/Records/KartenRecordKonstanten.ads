@@ -14,6 +14,8 @@ package KartenRecordKonstanten is
                                                                              XAchse => KartenKonstanten.LeerXAchse
                                                                             );
    
+   LeerKoordinatenänderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
+   
    LeerEffektbereich : constant KartenRecords.EffektbereichRecord := (
                                                                       YAchseAnfang => 0,
                                                                       YAchseEnde   => 0,

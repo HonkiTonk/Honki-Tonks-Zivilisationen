@@ -84,6 +84,7 @@ package body WaldErmittelnLogik is
             
          when others =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "WaldErmittelnLogik.WaldErmitteln: Falsche Aufgabe: " & Arbeitswerte.Aufgabe'Wide_Wide_Image);
+            return False;
       end case;
       
       case

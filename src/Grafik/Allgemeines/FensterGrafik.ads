@@ -46,6 +46,8 @@ private
       
    AktuelleFensterAuflösung : Sf.System.Vector2.sfVector2f;
    
+   FensterNichtErzeugbar : exception;
+   
    procedure FensterErzeugenErweitert;
    procedure AktuelleAuflösungFestlegen;
    procedure MauszeigerFestlegen;

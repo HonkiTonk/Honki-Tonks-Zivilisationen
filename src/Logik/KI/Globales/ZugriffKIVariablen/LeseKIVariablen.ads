@@ -1,5 +1,5 @@
 package LeseKIVariablen is
-   pragma Preelaborate;
+   pragma Elaborate_Body;
 
    function Kriegszustand
      return Boolean;

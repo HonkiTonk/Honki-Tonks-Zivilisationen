@@ -39,7 +39,7 @@ private
    Entfernungskartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   Wegumgebung : KartenRecords.Umgebungskreuz;
+   Wegumgebung : KartenRecords.UmgebungskreuzRecord;
    
    type StandardWegArray is array (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
    StandardWeg : constant StandardWegArray := (
