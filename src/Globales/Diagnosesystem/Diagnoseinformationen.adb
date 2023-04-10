@@ -17,6 +17,15 @@ package body Diagnoseinformationen is
    
    
    
+   procedure Zeilenabstand
+   is begin
+      
+      New_Line;
+      
+   end Zeilenabstand;
+   
+   
+   
    procedure Zahl
      (ZahlExtern : in Integer)
    is begin

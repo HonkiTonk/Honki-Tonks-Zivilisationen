@@ -4,6 +4,7 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
 with Fehlermeldungssystem;
+with FehlermeldungssystemZusatzinformationen;
 
 with KIDatentypen;
 
@@ -47,8 +48,9 @@ package body KIEinheitenAufgabenplanungLogik is
             KIPZBAufgabenLogik.PZBAufgaben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
                            
          when EinheitenDatentypen.Leer_Einheitart_Enum =>
-            Fehlermeldungssystem.Logik
-              (FehlermeldungExtern => "KIEinheitenAufgabenplanungLogik.Aufgabenplanung: Leere Einheitenart: " & EinheitSpeziesNummerExtern.Spezies'Wide_Wide_Image & " " & EinheitID'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "KIEinheitenAufgabenplanungLogik.Aufgabenplanung: Leere Einheitenart: "
+                                        & FehlermeldungssystemZusatzinformationen.SpeziesID (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                             IDExtern      => EinheitID));
             return False;
       end case;
       

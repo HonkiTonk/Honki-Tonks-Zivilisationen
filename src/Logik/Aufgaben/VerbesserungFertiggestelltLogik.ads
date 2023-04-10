@@ -1,20 +1,27 @@
-private with SpeziesDatentypen;
+with SpeziesDatentypen;
+
 private with EinheitenRecords;
 private with AufgabenDatentypen;
 private with KartenverbesserungDatentypen;
 private with KartenRecords;
 private with EinheitenKonstanten;
 
+with LeseSpeziesbelegung;
+
 private with LeseGrenzen;
-private with LeseSpeziesbelegung;
 
 package VerbesserungFertiggestelltLogik is
    pragma Elaborate_Body;
+   use type SpeziesDatentypen.Spieler_Enum;
 
-   procedure VerbesserungFertiggestellt;
+   procedure VerbesserungFertiggestellt
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
    
 private
-   use type SpeziesDatentypen.Spieler_Enum;
    
    WelcheAufgabe : AufgabenDatentypen.Einheitenbefehle_Verbesserungen_Enum;
    

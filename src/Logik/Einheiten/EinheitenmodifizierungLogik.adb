@@ -17,35 +17,23 @@ package body EinheitenmodifizierungLogik is
    -- Wäre es sinnvoll sowas zu parallelisieren? äöü
    -- Könnte was bringen bei vielen Einheiten? äöü
    procedure HeilungBewegungspunkteNeueRundeErmitteln
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
-         
-         case
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
-         is
-            when SpeziesDatentypen.Leer_Spieler_Enum =>
-               null;
-           
-            when others =>
-               EinheitenSchleife:
-               for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesSchleifenwert) loop
+      EinheitenSchleife:
+      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
                               
-                  case
-                    LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesSchleifenwert, EinheitNummerSchleifenwert))
-                  is
-                     when EinheitenKonstanten.LeerID =>
-                        null;
+         case
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert))
+         is
+            when EinheitenKonstanten.LeerID =>
+               null;
                   
-                     when others =>
-                        HeilungBewegungspunkteNeueRundeSetzen (EinheitSpeziesNummerExtern => (SpeziesSchleifenwert, EinheitNummerSchleifenwert));
-                  end case;
-            
-               end loop EinheitenSchleife;
+            when others =>
+               HeilungBewegungspunkteNeueRundeSetzen (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert));
          end case;
-         
-      end loop SpeziesSchleife;
+            
+      end loop EinheitenSchleife;
       
    end HeilungBewegungspunkteNeueRundeErmitteln;
 

@@ -6,7 +6,7 @@ package SpeziesMenschen is
 
    SpeziesMenschenListe : constant DatenbankRecords.SpezieslisteRecord := (
                                                                            Aggressivität       => 1,
-                                                                           Expansion           => 1000,
+                                                                           Expansion           => 20,
                                                                            Wissenschaft        => 1,
                                                                            Produktion          => 1,
                                                                            Wirtschaft          => 1,

@@ -1,4 +1,6 @@
 with LeseAllgemeines;
+with LeseEinheitenGebaut;
+with SchreibeEinheitenGebaut;
 
 with KIDatentypen;
 with KIKonstanten;
@@ -16,7 +18,18 @@ package body KIEinheitLogik is
    procedure Einheit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
+      
+      case
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
+      is
+         when KIDatentypen.Platz_Machen_Enum =>
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                    AufgabeExtern              => KIDatentypen.Leer_Aufgabe_Enum);
             
+         when others =>
+            null;
+      end case;
+      
       case
         LeseKIVariablen.Kriegszustand
       is

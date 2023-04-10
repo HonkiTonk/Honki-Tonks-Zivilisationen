@@ -2,13 +2,11 @@ with KartenDatentypen;
 with SpeziesDatentypen;
 with EinheitenRecords;
 with KartenRecords;
-
-private with EinheitenKonstanten;
+with EinheitenKonstanten;
 
 with LeseWeltkarteneinstellungen;
 with LeseSpeziesbelegung;
-
-private with LeseGrenzen;
+with LeseGrenzen;
 
 with KIDatentypen;
 
@@ -30,11 +28,19 @@ package KIBewegungAllgemeinLogik is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               );
    
+   function EinheitentauschMöglich
+     (BlockierendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return Boolean
+     with
+       Pre => (
+                 BlockierendeEinheitExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => BlockierendeEinheitExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => BlockierendeEinheitExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
+              );
+   
 private
 
    BlockierendeStadt : SpeziesDatentypen.Spezies_Enum;
-   
-   Aufgabe : KIDatentypen.Einheit_Aufgabe_Enum;
    
    BlockierendeEinheit : EinheitenRecords.SpeziesEinheitnummerRecord;
    

@@ -90,6 +90,21 @@ package EinheitenbewegungLogik is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => FremdeStadtExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
+   function NurTauschen
+     (BewegendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      StehendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return Boolean
+     with
+       Pre => (
+                 BewegendeEinheitExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => BewegendeEinheitExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => BewegendeEinheitExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 StehendeEinheitExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => StehendeEinheitExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StehendeEinheitExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
 private
    
    FeldPassierbar : Boolean;

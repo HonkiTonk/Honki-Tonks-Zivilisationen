@@ -229,7 +229,7 @@ package body SchreibeWeltkarte is
       use type KartenDatentypen.Ebene;
       use type EinheitenRecords.SpeziesEinheitnummerRecord;
    begin
-      
+            
       if
         KoordinatenExtern.EAchse = KartenKonstanten.LeerEAchse
       then

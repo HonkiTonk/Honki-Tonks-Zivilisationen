@@ -4,14 +4,20 @@ private with ProduktionDatentypen;
 private with StadtRecords;
 private with StadtKonstanten;
 
+with LeseSpeziesbelegung;
+
 private with LeseGrenzen;
-private with LeseSpeziesbelegung;
 
 package StadtwachstumLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    
-   procedure StadtWachstum;
+   procedure StadtWachstum
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
       
 private
    

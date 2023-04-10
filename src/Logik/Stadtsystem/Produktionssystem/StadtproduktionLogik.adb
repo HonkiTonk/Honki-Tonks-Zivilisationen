@@ -16,55 +16,35 @@ package body StadtproduktionLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      case
-        StadtSpeziesNummerExtern.Spezies
-      is
-         when SpeziesKonstanten.LeerSpezies =>
-            StadtProduktionAlle;
-            
-         when others =>
-            StadtProduktionBerechnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-            GlobalesWachstumLogik.WachstumWichtiges (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
-      end case;
+      StadtProduktionBerechnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+      GlobalesWachstumLogik.WachstumWichtiges (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       
    end Stadtproduktion;
    
    
    
-   procedure StadtProduktionAlle
+   procedure StadtproduktionRundenende
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
-               
+      StadtSchleife:
+      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
+                  
          case
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummerSchleifenwert))
          is
-            when SpeziesDatentypen.Leer_Spieler_Enum =>
+            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
-                     
+                  
             when others =>
-               StadtSchleife:
-               for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesSchleifenwert) loop
-                  
-                  case
-                    LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtNummerSchleifenwert))
-                  is
-                     when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-                        null;
-                  
-                     when others =>
-                        StadtProduktionBerechnung (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtNummerSchleifenwert));
-                  end case;
-               
-               end loop StadtSchleife;
-               
-               GlobalesWachstumLogik.WachstumWichtiges (SpeziesExtern => SpeziesSchleifenwert);
+               StadtProduktionBerechnung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummerSchleifenwert));
          end case;
                
-      end loop SpeziesSchleife;
+      end loop StadtSchleife;
+               
+      GlobalesWachstumLogik.WachstumWichtiges (SpeziesExtern => SpeziesExtern);
       
-   end StadtProduktionAlle;
+   end StadtproduktionRundenende;
    
 
 

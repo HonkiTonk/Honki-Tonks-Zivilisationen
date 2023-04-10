@@ -243,9 +243,7 @@ package body KIZielSuchenLogik is
         and
           False = KIAufgabenVerteiltLogik.EinheitZiel (SpeziesExtern         => EinheitSpeziesNummerExtern.Spezies,
                                                        ZielKoordinatenExtern => KoordinatenExtern)
-        -- and
-        --   False = KIEinheitAllgemeinePruefungenLogik.AktuellUnpassierbar (KoordinatenExtern          => KoordinatenExtern,
-        --                                                                   EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
+        -- Hier noch einen Weg finden einen Transporter einzubauen. äöü
       then
          return True;
                      
@@ -260,7 +258,7 @@ package body KIZielSuchenLogik is
    function EigenesFeld
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-     return Boolean
+      return Boolean
    is begin
       
       if

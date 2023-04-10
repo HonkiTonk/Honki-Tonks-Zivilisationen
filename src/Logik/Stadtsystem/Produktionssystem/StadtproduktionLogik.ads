@@ -1,15 +1,13 @@
 with SpeziesDatentypen;
 with StadtKonstanten;
 with StadtRecords;
-with SpeziesKonstanten;
 
 private with KartenRecords;
 private with KartenDatentypen;
 private with ProduktionDatentypen;
 
 with LeseSpeziesbelegung;
-
-private with LeseGrenzen;
+with LeseGrenzen;
 
 package StadtproduktionLogik is
    pragma Elaborate_Body;
@@ -20,7 +18,16 @@ package StadtproduktionLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
      with
        Pre => (
-                 if StadtSpeziesNummerExtern.Spezies /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   procedure StadtproduktionRundenende
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 private
@@ -40,9 +47,7 @@ private
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   
-   procedure StadtProduktionAlle;
-   
+      
    procedure FelderProduktionBerechnen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
      with

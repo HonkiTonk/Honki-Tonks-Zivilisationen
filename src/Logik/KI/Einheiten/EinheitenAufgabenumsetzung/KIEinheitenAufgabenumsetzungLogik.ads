@@ -5,6 +5,8 @@ with EinheitenRecords;
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 
+private with KIDatentypen;
+
 package KIEinheitenAufgabenumsetzungLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
@@ -22,5 +24,7 @@ package KIEinheitenAufgabenumsetzungLogik is
 private
       
    AufgabeDurchführen : Boolean;
+   
+   AktuelleBeschäftigung : KIDatentypen.Einheit_Aufgabe_Enum;
 
 end KIEinheitenAufgabenumsetzungLogik;

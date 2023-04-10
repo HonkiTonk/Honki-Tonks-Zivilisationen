@@ -10,6 +10,7 @@ with AufgabenLogik;
 
 with KIDatentypen;
 with KIVariablen;
+with KIKonstanten;
 
 with KIAufgabenVerteiltLogik;
 with KIStaedteverbindungssystemLogik;
@@ -49,7 +50,7 @@ package body KIEinheitFestlegenWegeLogik is
    begin
       
       case
-        KIVariablen.Stadtverbindung (EinheitSpeziesNummerExtern.Spezies, 0).XAchse
+        KIVariablen.Stadtverbindung (EinheitSpeziesNummerExtern.Spezies, KIKonstanten.VerbindungsplanVorhanden).XAchse
       is
          when KartenKonstanten.LeerXAchse =>
             return KartenRecordKonstanten.LeerKoordinate;
@@ -62,7 +63,7 @@ package body KIEinheitFestlegenWegeLogik is
       for VerbindungSchleifenwert in EinheitenDatentypen.BewegungsplanVorhanden'Range loop
          
          Koordinaten := KIVariablen.Stadtverbindung (EinheitSpeziesNummerExtern.Spezies, VerbindungSchleifenwert);
-         
+                  
          if
            Koordinaten = KartenRecordKonstanten.LeerKoordinate
          then
@@ -81,18 +82,17 @@ package body KIEinheitFestlegenWegeLogik is
                                          AnlegenTestenExtern        => False,
                                          KoordinatenExtern          => Koordinaten)
          then
+            SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                    BeschäftigungExtern        => AufgabenDatentypen.Straße_Bauen_Enum);
             KIStaedteverbindungssystemLogik.ElementEntfernen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                               ElementExtern => VerbindungSchleifenwert);
             
-            SchreibeEinheitenGebaut.KIVerbesserung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    BeschäftigungExtern        => AufgabenDatentypen.Straße_Bauen_Enum);
-               
             return Koordinaten;
             
          else
             null;
          end if;
-         
+                  
       end loop VerbindungSchleife;
       
       return KartenRecordKonstanten.LeerKoordinate;

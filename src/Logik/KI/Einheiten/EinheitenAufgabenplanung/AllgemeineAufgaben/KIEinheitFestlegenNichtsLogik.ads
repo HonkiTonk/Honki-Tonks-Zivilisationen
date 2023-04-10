@@ -2,6 +2,8 @@ with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
 
+private with KartenRecords;
+
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 
@@ -17,5 +19,9 @@ package KIEinheitFestlegenNichtsLogik is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               );
+
+private
+
+   Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 end KIEinheitFestlegenNichtsLogik;

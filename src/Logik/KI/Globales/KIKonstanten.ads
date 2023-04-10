@@ -1,5 +1,6 @@
 with SpielDatentypen;
 with KartenDatentypen;
+with EinheitenDatentypen;
 
 with KIDatentypen;
 with KIRecords;
@@ -20,6 +21,8 @@ package KIKonstanten is
 
    BewertungBewegungNullwert : constant KIDatentypen.BewegungBewertung := KIDatentypen.BewegungBewertung'First;
    BewertungBewegungZielpunkt : constant KIDatentypen.BewegungBewertung := KIDatentypen.BewegungBewertung'Last;
+
+   VerbindungsplanVorhanden : constant EinheitenDatentypen.Bewegungsplan := EinheitenDatentypen.Bewegungsplan'First;
 
    -- Ist das überhaupt sinnvoll? äöü
    BewegungAngriff : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Belegt_Angriff_Enum;

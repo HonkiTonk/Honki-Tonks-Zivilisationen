@@ -13,7 +13,12 @@ package MeldungenSetzenLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
 
-   procedure MeldungenRundenende;
+   procedure MeldungenRundenende
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
    
    procedure StadtmeldungSetzen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;

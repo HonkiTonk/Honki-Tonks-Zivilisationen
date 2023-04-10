@@ -18,23 +18,11 @@ with MeldungenSetzenLogik;
 package body EinheitInUmgebungLogik is
 
    procedure EinheitInUmgebung
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
-         
-         case
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
-         is
-            when SpeziesDatentypen.Mensch_Spieler_Enum =>
-               UmgebungStadt (SpeziesExtern => SpeziesSchleifenwert);
-               UmgebungEinheit (SpeziesExtern => SpeziesSchleifenwert);
-               
-            when others =>
-               null;
-         end case;
-         
-      end loop SpeziesSchleife;
+      UmgebungStadt (SpeziesExtern => SpeziesExtern);
+      UmgebungEinheit (SpeziesExtern => SpeziesExtern);
       
    end EinheitInUmgebung;
    

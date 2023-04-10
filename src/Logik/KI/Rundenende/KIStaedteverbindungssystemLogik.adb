@@ -1,23 +1,27 @@
 with StadtKonstanten;
 with KartenKonstanten;
 with KartenRecordKonstanten;
--- with AufgabenDatentypen;
+with AufgabenDatentypen;
 
 with LeseGrenzen;
 with LeseStadtGebaut;
 with LeseWeltkarte;
--- with LeseForschungenDatenbank;
+with LeseForschungenDatenbank;
 
 with KartenkoordinatenberechnungssystemLogik;
--- with ForschungstestsLogik;
+with ForschungstestsLogik;
 
 with KIVariablen;
+with KIKonstanten;
+with KIDatentypen;
 
 with KIBewegungsbewertungLogik;
+with KIAufgabenVerteiltLogik;
 
 package body KIStaedteverbindungssystemLogik is
 
    -- Eventuell sollte ich speichern welche Städte miteinander verbunden sind, damit diese Prüfungen hier nicht immer wieder durchlaufen müssen. äöü
+   -- Wobei natürlich das Problem ist dass die Verbindung ja getrennt werden kann, also müsste ich noch was einbauen dass das dann alle paar Runden prüft. äöü
    procedure Stadtverbindung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
@@ -26,7 +30,8 @@ package body KIStaedteverbindungssystemLogik is
    begin
       
       case
-        KIVariablen.Stadtverbindung (SpeziesExtern, 0).XAchse
+        -- Lese/Schreibezeug dafür anlegen. äöü
+        KIVariablen.Stadtverbindung (SpeziesExtern, KIKonstanten.VerbindungsplanVorhanden).XAchse
       is
          when KartenKonstanten.LeerXAchse =>
             Stadtgrenze := LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern);
@@ -83,7 +88,7 @@ package body KIStaedteverbindungssystemLogik is
    is
       use type KartenDatentypen.Ebene;
       use type KartengrundDatentypen.Basisgrund_Enum;
-      use type SpeziesDatentypen.Spezies_Enum;
+     -- use type SpeziesDatentypen.Spezies_Enum;
    begin
             
       if
@@ -104,11 +109,9 @@ package body KIStaedteverbindungssystemLogik is
       if
         StartkoordinatenExtern.EAchse = KartenKonstanten.OberflächeKonstante
         and
-          ((Startgrund not in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
-            and
-              Zielgrund not in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range)
-           or
-             SpeziesExtern = SpeziesDatentypen.Ekropa_Enum)
+          Startgrund not in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
+          and
+            Zielgrund not in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
       then
          null;
          
@@ -203,7 +206,7 @@ package body KIStaedteverbindungssystemLogik is
             return False;
                
          when KartenDatentypen.KartenfeldNatural'First =>
-            KIVariablen.Stadtverbindung (SpeziesExtern, 0) := ZielkoordinatenExtern;
+            KIVariablen.Stadtverbindung (SpeziesExtern, KIKonstanten.VerbindungsplanVorhanden) := ZielkoordinatenExtern;
             return True;
                
          when others =>
@@ -255,7 +258,7 @@ package body KIStaedteverbindungssystemLogik is
                Bewertung (BewertungPosition).Bewertung := KartenDatentypen.KartenfeldPositiv'Last;
                
             elsif
-              True = FeldBereitsBetreten (SpeziesExtern     => SpeziesExtern,
+              True = FeldUngeeignet (SpeziesExtern     => SpeziesExtern,
                                           KoordinatenExtern => KartenWert)
             then
                Bewertung (BewertungPosition).Bewertung := KartenDatentypen.KartenfeldPositiv'Last;
@@ -293,7 +296,7 @@ package body KIStaedteverbindungssystemLogik is
    
    
    
-   function FeldBereitsBetreten
+   function FeldUngeeignet
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
@@ -315,9 +318,18 @@ package body KIStaedteverbindungssystemLogik is
          
       end loop FelderSchleife;
       
-      return False;
+      -- Später auf Wasserwege erweitern. äöü
+      case
+        LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern)
+      is
+         when KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range | KartengrundDatentypen.Basisgrund_Unterfläche_Wasser_Enum'Range =>
+            return True;
+            
+         when others =>
+            return False;
+      end case;
       
-   end FeldBereitsBetreten;
+   end FeldUngeeignet;
    
    
    
@@ -328,27 +340,43 @@ package body KIStaedteverbindungssystemLogik is
       use type KartenverbesserungDatentypen.Karten_Weg_Enum;
    begin
       
+      TechnologieVorhanden := ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
+                                                                         TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => AufgabenDatentypen.Schiene_Bauen_Enum,
+                                                                                                                             SpeziesExtern => SpeziesExtern));
+      
       VerbindungSchleife:
       for VerbindungSchleifenwert in EinheitenDatentypen.BewegungsplanVorhanden'Range loop
          
-         VorhandenerWeg := LeseWeltkarte.Weg (KoordinatenExtern => KIVariablen.Stadtverbindung (SpeziesExtern, VerbindungSchleifenwert));
-         
          if
-           VorhandenerWeg = KartenverbesserungDatentypen.Leer_Weg_Enum
+           KIVariablen.Stadtverbindung (SpeziesExtern, VerbindungSchleifenwert).XAchse = KartenKonstanten.LeerXAchse
          then
             null;
             
-       --  elsif
-       --    VorhandenerWeg in KartenverbesserungDatentypen.Karten_Straße_Enum'Range
-       --    and
-        --     (True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
-        --                                                        TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => AufgabenDatentypen.Schiene_Bauen_Enum,
-        --                                                                                                            SpeziesExtern => SpeziesExtern)))
-         -- then
-        --    null;
-            
-         else
+         elsif
+           True = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen_Enum,
+                                                              SpeziesExtern         => SpeziesExtern,
+                                                              ZielKoordinatenExtern => KIVariablen.Stadtverbindung (SpeziesExtern, VerbindungSchleifenwert))
+         then
             KIVariablen.Stadtverbindung (SpeziesExtern, VerbindungSchleifenwert) := KartenRecordKonstanten.LeerKoordinate;
+               
+         else
+            VorhandenerWeg := LeseWeltkarte.Weg (KoordinatenExtern => KIVariablen.Stadtverbindung (SpeziesExtern, VerbindungSchleifenwert));
+                             
+            if
+              VorhandenerWeg = KartenverbesserungDatentypen.Leer_Weg_Enum
+            then
+               null;
+         
+            elsif
+              VorhandenerWeg in KartenverbesserungDatentypen.Karten_Straße_Enum'Range
+              and
+                TechnologieVorhanden
+            then
+               null;
+            
+            else
+               KIVariablen.Stadtverbindung (SpeziesExtern, VerbindungSchleifenwert) := KartenRecordKonstanten.LeerKoordinate;
+            end if;
          end if;
          
       end loop VerbindungSchleife;
@@ -393,7 +421,7 @@ package body KIStaedteverbindungssystemLogik is
          
       end loop VerbindungSchleife;
       
-      KIVariablen.Stadtverbindung (SpeziesExtern, 0) := KartenRecordKonstanten.LeerKoordinate;
+      KIVariablen.Stadtverbindung (SpeziesExtern, KIKonstanten.VerbindungsplanVorhanden) := KartenRecordKonstanten.LeerKoordinate;
       
       return False;
       

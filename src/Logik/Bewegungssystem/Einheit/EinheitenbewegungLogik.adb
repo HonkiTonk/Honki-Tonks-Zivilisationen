@@ -161,9 +161,7 @@ package body EinheitenbewegungLogik is
      (BewegendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       StehendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
-   is
-      use type EinheitenDatentypen.Bewegungspunkte;
-   begin
+   is begin
       
       case
         EinheitentransporterLogik.KannTransportiertWerden (LadungExtern      => BewegendeEinheitExtern,
@@ -173,10 +171,25 @@ package body EinheitenbewegungLogik is
             return True;
          
          when False =>
-            BewegendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => BewegendeEinheitExtern);
-            StehendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => StehendeEinheitExtern);
+            return NurTauschen (BewegendeEinheitExtern => BewegendeEinheitExtern,
+                                StehendeEinheitExtern  => StehendeEinheitExtern);
       end case;
+      
+   end EinheitentauschPrüfung;
+      
    
+   
+   function NurTauschen
+     (BewegendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      StehendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return Boolean
+   is
+      use type EinheitenDatentypen.Bewegungspunkte;
+   begin
+      
+      BewegendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => BewegendeEinheitExtern);
+      StehendeKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => StehendeEinheitExtern);
+      
       if
         False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => StehendeEinheitExtern,
                                                                           NeueKoordinatenExtern      => BewegendeKoordinaten)
@@ -196,9 +209,9 @@ package body EinheitenbewegungLogik is
          return False;
          
       else
-        return True;
+         return True;
       end if;
       
-   end EinheitentauschPrüfung;
+   end NurTauschen;
      
 end EinheitenbewegungLogik;

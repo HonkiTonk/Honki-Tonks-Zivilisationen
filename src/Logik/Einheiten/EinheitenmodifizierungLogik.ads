@@ -19,7 +19,12 @@ package EinheitenmodifizierungLogik is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
 
-   procedure HeilungBewegungspunkteNeueRundeErmitteln;
+   procedure HeilungBewegungspunkteNeueRundeErmitteln
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
    
    procedure HeimatstadtÄndern
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

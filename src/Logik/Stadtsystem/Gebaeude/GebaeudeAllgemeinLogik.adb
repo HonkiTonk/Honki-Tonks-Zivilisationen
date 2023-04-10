@@ -69,7 +69,7 @@ package body GebaeudeAllgemeinLogik is
    
    
    
-   procedure GebäudeEntfernen
+   procedure GebäudeVerkaufen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
    is begin
@@ -87,7 +87,7 @@ package body GebaeudeAllgemeinLogik is
                                             IDExtern                => WelchesGebäudeExtern,
                                             VorzeichenWechselExtern => -1);
       
-   end GebäudeEntfernen;
+   end GebäudeVerkaufen;
    
    
 

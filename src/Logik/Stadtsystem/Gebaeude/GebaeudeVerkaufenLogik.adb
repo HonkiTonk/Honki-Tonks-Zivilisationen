@@ -99,7 +99,7 @@ package body GebaeudeVerkaufenLogik is
                         null;
                         
                      when True =>
-                        GebaeudeAllgemeinLogik.GebäudeEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                        GebaeudeAllgemeinLogik.GebäudeVerkaufen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                  WelchesGebäudeExtern     => AktuelleAuswahl);
                         StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
                   
@@ -159,7 +159,7 @@ package body GebaeudeVerkaufenLogik is
             null;
                         
          when True =>
-            GebaeudeAllgemeinLogik.GebäudeEntfernen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+            GebaeudeAllgemeinLogik.GebäudeVerkaufen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                      WelchesGebäudeExtern     => StadtDatentypen.GebäudeID (Auswahl));
             StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end case;

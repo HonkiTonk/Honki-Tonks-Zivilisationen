@@ -10,30 +10,8 @@ with StadtumgebungFestlegenLogik;
 with ForschungsauswahlLogik;
 
 package body ForschungsfortschrittLogik is
-
-   procedure Forschungsfortschritt
-   is begin
-      
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
-         case
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
-         is
-            when SpeziesDatentypen.Leer_Spieler_Enum =>
-               null;
-               
-            when others =>
-               Fortschritt (SpeziesExtern => SpeziesSchleifenwert);
-         end case;
-               
-      end loop SpeziesSchleife;
-      
-   end Forschungsfortschritt;
-   
-   
-   
-   procedure Fortschritt
+   procedure Forschungsfortschritt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
@@ -94,6 +72,6 @@ package body ForschungsfortschrittLogik is
          end case;
       end if;
       
-   end Fortschritt;
+   end Forschungsfortschritt;
 
 end ForschungsfortschrittLogik;

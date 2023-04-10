@@ -2,8 +2,8 @@ with SpeziesDatentypen;
 with EinheitenDatentypen;
 
 private with KartenRecords;
-private with StadtDatentypen;
 private with KartenDatentypen;
+private with StadtDatentypen;
 private with KartengrundDatentypen;
 private with KartenverbesserungDatentypen;
 
@@ -34,7 +34,8 @@ private
    use type KartenDatentypen.Kartenfeld;
    
    Leerwert : Boolean;
-   
+   TechnologieVorhanden : Boolean;
+      
    VorhandenerWeg : KartenverbesserungDatentypen.Karten_Weg_Enum;
 
    Startgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
@@ -125,7 +126,7 @@ private
                  ZielkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
-   function FeldBereitsBetreten
+   function FeldUngeeignet
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean

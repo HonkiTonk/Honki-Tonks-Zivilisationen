@@ -13,6 +13,7 @@ package Diagnoseinformationen is
    pragma Elaborate_Body;
    
    procedure Größenprüfung;
+   procedure Zeilenabstand;
    
    procedure Zahl
      (ZahlExtern : in Integer);

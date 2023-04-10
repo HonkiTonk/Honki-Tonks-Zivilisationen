@@ -133,17 +133,28 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (11.04.2023):
+   -- Version 0.04.9460 => 0.04. (11.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9315 => 0.04. (10.04.2023):
+   -- Version 0.04.9315 => 0.04.9460 (10.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- KI überarbeitet.
+   -- Rundenendenberechnungen überarbeitet und optimiert.
+   -- Städteverbindungssystem weiter verbessert.
+   -- Die KI verbessert die Verbindungsstraßen jetzt zu Schienen, wenn es technologisch möglich ist.
+   -- Wegfindung der KI überarbeitet.
+   -- Die KI sollte jetzt wieder in der Lage sein fehlerfrei Einheiten in der Bewegung zu tauschen.
+   -- Unnötigen Code gelöscht.
+   -- Wenn man Einheiten aus seinem Gebiet wirft, dann wird jetzt ein größerer Bereich zum neuplatzieren verwendet.
+   -- Fehler korrigiert welcher zu einem Programmstopp führte wenn man eine Einheit nur ein Feld weit bewegte.
+   -- Fehler korrigiert bei der die KI versuchte Wege auf unzulässigem Gebiet zu bauen.
+   -- Bewegungsberechnungen der KI verbessert.
+   -- Informationsfeld auf der Stadtkarte um zusätzliche Gebäudeinformationen erweitert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/getestet/erweitert.
    
    
 

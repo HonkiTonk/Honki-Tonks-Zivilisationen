@@ -1,29 +1,13 @@
-with SpeziesDatentypen;
-
-with LeseSpeziesbelegung;
-
 with KIStaedteverbindungssystemLogik;
 
--- Kann nach der Überarbeitung der Rundenendesystems entfernt werden. äöü
+-- Kann das weg oder kommt eventuell später noch mehr dazu? äöü
 package body KIRundenende is
 
    procedure Rundenende
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
-         
-         case
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
-         is
-            when SpeziesDatentypen.KI_Spieler_Enum =>
-               KIStaedteverbindungssystemLogik.Stadtverbindung (SpeziesExtern => SpeziesSchleifenwert);
-               
-            when others =>
-               null;
-         end case;
-         
-      end loop SpeziesSchleife;
+      KIStaedteverbindungssystemLogik.Stadtverbindung (SpeziesExtern => SpeziesExtern);
       
    end Rundenende;
 

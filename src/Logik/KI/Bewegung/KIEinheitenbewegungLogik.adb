@@ -123,7 +123,6 @@ package body KIEinheitenbewegungLogik is
             BewegtSich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when KIKonstanten.Tauschbewegung =>
-            -- SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             -- Hier noch einmal genauer nachprüfen ob es auch wirklich funktioniert. äöü
             EinheitTauschen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                              NeueKoordinatenExtern      => NeueKoordinaten);
@@ -160,13 +159,15 @@ package body KIEinheitenbewegungLogik is
          null;
       end if;
       
-      -- Aufgrund der Änderungen in EinheitenbewegungLogik.Einheitentausch wird das hier nicht mehr funktionieren, später also anpassen. äöü
       case
-        EinheitenbewegungLogik.Einheitentausch (BewegendeEinheitExtern => EinheitSpeziesNummerExtern,
-                                                StehendeEinheitExtern  => Tauscheinheit)
+        EinheitenbewegungLogik.NurTauschen (BewegendeEinheitExtern => EinheitSpeziesNummerExtern,
+                                            StehendeEinheitExtern  => Tauscheinheit)
       is
          when True =>
             SchreibeEinheitenGebaut.KIBewegungsplanLeeren (EinheitSpeziesNummerExtern => Tauscheinheit);
+            BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => Tauscheinheit,
+                                                                   NeueKoordinatenExtern      => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                                                   EinheitentauschExtern      => True);
             BewegtSich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>

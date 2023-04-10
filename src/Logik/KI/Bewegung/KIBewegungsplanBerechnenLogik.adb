@@ -209,7 +209,7 @@ package body KIBewegungsplanBerechnenLogik is
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenDatentypen.KartenfeldNatural
    is begin
-            
+      
       if
         True = FeldBereitsBetreten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                     KoordinatenExtern          => NeueKoordinatenExtern)
@@ -243,13 +243,9 @@ package body KIBewegungsplanBerechnenLogik is
         KIBewegungAllgemeinLogik.FeldBetreten (FeldKoordinatenExtern      => NeueKoordinatenExtern,
                                                EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
-         when KIKonstanten.BewegungAngriff | KIKonstanten.BewegungNormal =>
+         when KIKonstanten.BewegungAngriff | KIKonstanten.BewegungNormal | KIKonstanten.Tauschbewegung =>
             return KIBewegungsbewertungLogik.PositionsbewertungEinheit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                         NeueKoordinatenExtern      => NeueKoordinatenExtern);
-            
-            -- Hier später noch einmal anpassen. äöü
-         when KIKonstanten.Tauschbewegung =>
-            return KartenDatentypen.KartenfeldPositiv'Last;
             
          when KIKonstanten.KeineBewegung =>
             return KartenDatentypen.KartenfeldPositiv'Last;

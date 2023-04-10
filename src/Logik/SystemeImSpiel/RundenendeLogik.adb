@@ -1,5 +1,4 @@
 with SystemDatentypen;
-with StadtKonstanten;
 with TextnummernKonstanten;
 with GrafikDatentypen;
 
@@ -43,44 +42,54 @@ package body RundenendeLogik is
             return False;
       end case;
       
-      -- Später in verschiedene Teilbereiche aufteilen und nicht nur einen einzelnen Berechnungsfortschritt anzeigen? äöü
-      -- Außerdem mal in eine übergeordnete Speziesschleife zusammenfassen, damit nicht jede einzelne Berechnung ihre eigene hat. äöü
-      -- In der Schleife dann zwischen Dinge unterscheiden die nur für Menschen, nur für die KI und für Beide relevant sind. äöü
-      -- Aktuell sollte auch Beide und nur KI reichen. äöü
-      MeldungenSetzenLogik.MeldungenRundenende;
-      LadezeitenLogik.RundenendeSchreiben;
+      -- Hier immer beachten in welcher Reihenfolge was aufgerufen wird, sonst könnte es zu Problemen führen!
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+         
+         Belegung := LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert);
+         
+         case
+           Belegung
+         is
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
+               null;
+               
+            when others =>
+               MeldungenSetzenLogik.MeldungenRundenende (SpeziesExtern => SpeziesSchleifenwert);
+               EinheitenmodifizierungLogik.HeilungBewegungspunkteNeueRundeErmitteln (SpeziesExtern => SpeziesSchleifenwert);
+               VerbesserungFertiggestelltLogik.VerbesserungFertiggestellt (SpeziesExtern => SpeziesSchleifenwert);
+               StadtwachstumLogik.StadtWachstum (SpeziesExtern => SpeziesSchleifenwert);
+               StadtproduktionLogik.StadtproduktionRundenende (SpeziesExtern => SpeziesSchleifenwert);
+               ForschungsfortschrittLogik.Forschungsfortschritt (SpeziesExtern => SpeziesSchleifenwert);
+               GeldForschung (SpeziesExtern => SpeziesSchleifenwert);
+               Diplomatie (SpeziesExtern => SpeziesSchleifenwert);
+         end case;
+         
+         case
+           Belegung
+         is
+            when SpeziesDatentypen.Mensch_Spieler_Enum =>
+               -- Ich schreibe Meldungen nur für Menschen, reicht dann die Leerung auch nicht bei nur Menschen? äöü
+               EinheitInUmgebungLogik.EinheitInUmgebung (SpeziesExtern => SpeziesSchleifenwert);
+               
+            when SpeziesDatentypen.KI_Spieler_Enum =>
+               KIRundenende.Rundenende (SpeziesExtern => SpeziesSchleifenwert);
+               
+            when others =>
+               null;
+         end case;
+         
+         LadezeitenLogik.RundenendeSchreiben;
+         
+      end loop SpeziesSchleife;
       
-      EinheitInUmgebungLogik.EinheitInUmgebung;
-      LadezeitenLogik.RundenendeSchreiben;
-            
-      EinheitenmodifizierungLogik.HeilungBewegungspunkteNeueRundeErmitteln;
-      LadezeitenLogik.RundenendeSchreiben;
-      
-      VerbesserungFertiggestelltLogik.VerbesserungFertiggestellt;
-      LadezeitenLogik.RundenendeSchreiben;
-      
-      StadtwachstumLogik.StadtWachstum;
-      LadezeitenLogik.RundenendeSchreiben;
-      
-      StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtKonstanten.LeerStadt);
-      LadezeitenLogik.RundenendeSchreiben;
-      
-      ForschungsfortschrittLogik.Forschungsfortschritt;
-      LadezeitenLogik.RundenendeSchreiben;
-      
-      GeldForschungDiplomatieÄndern;
-      LadezeitenLogik.RundenendeSchreiben;
-      
-      KIRundenende.Rundenende;
-      LadezeitenLogik.RundenendeSchreiben;
-            
       SchreibeAllgemeines.Rundenanzahl;
       LadezeitenLogik.RundenendeSchreiben;
       
       -- Autospeichern muss immer nach allen Änderungen kommen, sonst werden nicht alle Änderungen gespeichert.
       SpeichernLogik.AutoSpeichern;
       LadezeitenLogik.RundenendeMaximum;
-            
+      
       return True;
       
    end BerechnungenRundenende;
@@ -137,28 +146,6 @@ package body RundenendeLogik is
    end NachSiegWeiterspielen;
    
    
-   procedure GeldForschungDiplomatieÄndern
-   is begin
-      
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
-         
-         case
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
-         is
-            when SpeziesDatentypen.Leer_Spieler_Enum =>
-               null;
-            
-            when others =>
-               GeldForschung (SpeziesExtern => SpeziesSchleifenwert);
-               Diplomatie (SpeziesExtern => SpeziesSchleifenwert);
-         end case;
-         
-      end loop SpeziesSchleife;
-      
-   end GeldForschungDiplomatieÄndern;
-   
-   
    
    procedure GeldForschung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -185,6 +172,7 @@ package body RundenendeLogik is
    
    
    
+   -- Das später nach Diplomatie verschieben. äöü
    procedure Diplomatie
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is

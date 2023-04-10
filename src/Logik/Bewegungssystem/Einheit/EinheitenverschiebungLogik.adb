@@ -6,6 +6,7 @@ with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with LeseWeltkarte;
 with LeseDiplomatie;
+with LeseWeltkarteneinstellungen;
 
 with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
@@ -112,16 +113,16 @@ package body EinheitenverschiebungLogik is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
       
-      UmgebungPrüfen := KartenDatentypen.Sichtweite'First;
-      BereitsGeprüft := UmgebungPrüfen - 1;
+      BereitsGeprüft := (0, 0);
+      UmgebungPrüfen := (1, 1);
       Einheitenkoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       BereichSchleife:
-      while UmgebungPrüfen < KartenDatentypen.Sichtweite'Last loop
+      loop
          YAchseSchleife:
-         for YAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
+         for YAchseSchleifenwert in -UmgebungPrüfen.YAchse .. UmgebungPrüfen.YAchse loop
             XAchseSchleife:
-            for XAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
+            for XAchseSchleifenwert in -UmgebungPrüfen.XAchse .. UmgebungPrüfen.XAchse loop
                      
                KartenwertVerschieben := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
                                                                                                                     ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -133,9 +134,9 @@ package body EinheitenverschiebungLogik is
                   null;
                
                elsif
-                 BereitsGeprüft >= abs (YAchseSchleifenwert)
+                 BereitsGeprüft.YAchse >= abs (YAchseSchleifenwert)
                  and
-                   BereitsGeprüft >= abs (XAchseSchleifenwert)
+                   BereitsGeprüft.XAchse >= abs (XAchseSchleifenwert)
                then
                   null;
             
@@ -161,8 +162,36 @@ package body EinheitenverschiebungLogik is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
          
-         BereitsGeprüft := UmgebungPrüfen;
-         UmgebungPrüfen := UmgebungPrüfen + 1;
+         if
+           UmgebungPrüfen.YAchse = LeseWeltkarteneinstellungen.YAchse
+           and
+             UmgebungPrüfen.XAchse = LeseWeltkarteneinstellungen.XAchse
+         then
+            return;
+            
+         else
+            null;
+         end if;
+         
+         if
+           UmgebungPrüfen.YAchse < LeseWeltkarteneinstellungen.YAchse
+         then
+            UmgebungPrüfen.YAchse := UmgebungPrüfen.YAchse + 1;
+            BereitsGeprüft.YAchse := BereitsGeprüft.YAchse + 1;
+            
+         else
+            null;
+         end if;
+         
+         if
+           UmgebungPrüfen.XAchse < LeseWeltkarteneinstellungen.XAchse
+         then
+            UmgebungPrüfen.XAchse := UmgebungPrüfen.XAchse + 1;
+            BereitsGeprüft.XAchse := BereitsGeprüft.XAchse + 1;
+            
+         else
+            null;
+         end if;
          
       end loop BereichSchleife;
       

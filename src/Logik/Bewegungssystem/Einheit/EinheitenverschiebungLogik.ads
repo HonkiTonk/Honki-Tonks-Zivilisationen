@@ -41,8 +41,8 @@ private
    
    Umgebungsgröße : KartenDatentypen.UmgebungsbereichDrei;
    
-   UmgebungPrüfen : KartenDatentypen.Sichtweite;
-   BereitsGeprüft : KartenDatentypen.SichtweiteNatural;
+   UmgebungPrüfen : KartenRecords.YXAchsenKartenfeldPositivRecord;
+   BereitsGeprüft : KartenRecords.YXAchsenKartenfeldNaturalRecord;
    
    EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    

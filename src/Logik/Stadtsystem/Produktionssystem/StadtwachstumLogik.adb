@@ -19,36 +19,24 @@ with FelderbewirtschaftungLogik;
 package body StadtwachstumLogik is
    
    procedure StadtWachstum
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
-         
+      StadtSchleife:
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
+                  
          case
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
-            when SpeziesDatentypen.Leer_Spieler_Enum =>
+            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>
-               StadtSchleife:
-               for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesSchleifenwert) loop
-                  
-                  case
-                    LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtSchleifenwert))
-                  is
-                     when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-                        null;
-               
-                     when others =>
-                        WachstumEinwohner (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtSchleifenwert));
-                        WachstumProduktion (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtSchleifenwert));
-                  end case;
-            
-               end loop StadtSchleife;
+               WachstumEinwohner (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
+               WachstumProduktion (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
          end case;
-         
-      end loop SpeziesSchleife;
+            
+      end loop StadtSchleife;
       
    end StadtWachstum;
 

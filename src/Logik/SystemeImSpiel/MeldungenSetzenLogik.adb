@@ -4,34 +4,22 @@ with SchreibeStadtGebaut;
 package body MeldungenSetzenLogik is
 
    procedure MeldungenRundenende
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
-         
-         case
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
-         is
-            when SpeziesDatentypen.Leer_Spieler_Enum =>
-               null;
-               
-            when others =>
-               StadtSchleife:
-               for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesSchleifenwert) loop
+      StadtSchleife:
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
                   
-                  SchreibeStadtGebaut.LeerMeldungen (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtSchleifenwert));
+         SchreibeStadtGebaut.LeerMeldungen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
                   
-               end loop StadtSchleife;
+      end loop StadtSchleife;
                                              
-               EinheitenSchleife:
-               for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesSchleifenwert) loop
+      EinheitenSchleife:
+      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
                   
-                  SchreibeEinheitenGebaut.LeerMeldungen (EinheitSpeziesNummerExtern => (SpeziesSchleifenwert, EinheitSchleifenwert));
+         SchreibeEinheitenGebaut.LeerMeldungen (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert));
                   
-               end loop EinheitenSchleife;
-         end case;
-         
-      end loop SpeziesSchleife;
+      end loop EinheitenSchleife;
       
    end MeldungenRundenende;
    

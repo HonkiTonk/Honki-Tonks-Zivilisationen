@@ -1,20 +1,27 @@
-private with SpeziesDatentypen;
+with SpeziesDatentypen;
+
 private with KartenDatentypen;
 private with EinheitenRecords;
 private with KartenRecords;
 
-private with LeseSpeziesbelegung;
+with LeseSpeziesbelegung;
+
 private with LeseWeltkarteneinstellungen;
 
 package EinheitInUmgebungLogik is
    pragma Elaborate_Body;
+   use type SpeziesDatentypen.Spieler_Enum;
 
-   procedure EinheitInUmgebung;
+   procedure EinheitInUmgebung
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
    
 private
    use type SpeziesDatentypen.Spezies_Enum;
    use type KartenDatentypen.Kartenfeld;
-   use type SpeziesDatentypen.Spieler_Enum;
       
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    

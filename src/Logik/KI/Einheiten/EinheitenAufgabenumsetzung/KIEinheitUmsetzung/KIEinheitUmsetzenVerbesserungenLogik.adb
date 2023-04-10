@@ -22,7 +22,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
       if
         LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => EinheitKoordinaten) /= EinheitSpeziesNummerExtern.Spezies
         and
-          WelcheVerbesserung /= AufgabenDatentypen.Straße_Bauen_Enum
+          WelcheVerbesserung not in AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range
       then
          return False;
          
@@ -71,7 +71,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
                null;
             end if;
             
-         when AufgabenDatentypen.Straße_Bauen_Enum =>
+         when AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range =>
             Befehl := BefehleDatentypen.Straße_Bauen_Enum;
             
          when others =>

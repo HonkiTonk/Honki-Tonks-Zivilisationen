@@ -31,7 +31,7 @@ package body BewegungsplanLogik is
    is
       use type KartenRecords.AchsenKartenfeldRecord;
    begin
-      
+            
       if
         ÄnderungExtern = KartenRecordKonstanten.LeerKoordinatenänderung
       then
@@ -85,14 +85,13 @@ package body BewegungsplanLogik is
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern          => ZielkoordinatenExtern);
       end case;
-            
+      
       case
         PlanenRekursiv (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                         AktuelleKoordinatenExtern  => EinheitenKoordinaten,
                         AktuellePlanpositionExtern => 1)
       is
          when True =>
-            
             NachGrafiktask.Einheitenbewegung := True;
             
             DurchführungSchleife:
@@ -133,6 +132,7 @@ package body BewegungsplanLogik is
                                  AndereEinheitExtern        => AndereEinheit,
                                  ZielkoordinatenExtern      => ZielkoordinatenExtern,
                                  StadtSpeziesNummerExtern   => StadtAufFeld);
+                  exit DurchführungSchleife;
                   
                else
                   BewegungsberechnungEinheitenLogik.Bewegungsberechnung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -201,7 +201,7 @@ package body BewegungsplanLogik is
                                                                                                                                                     LogikGrafikExtern => True))
       then
          return True;
-        
+         
       else
          return False;
       end if;

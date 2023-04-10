@@ -1,3 +1,4 @@
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Calendar; use Ada.Calendar;
 
 private with Sf.System.Vector2;
@@ -34,12 +35,16 @@ private
 
    YMultiplikator : Float;
    XMultiplikator : Float;
+   Textbreite : Float;
 
    Gesamtgrund : KartenRecords.KartengrundRecord;
 
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Grafikgröße : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
+
+   type GebäudetexteArray is array (1 .. 10) of Unbounded_Wide_Wide_String;
+   Gebäudetexte : GebäudetexteArray;
 
    procedure GrafischeDarstellung
      (GrundExtern : in KartenRecords.KartengrundRecord);

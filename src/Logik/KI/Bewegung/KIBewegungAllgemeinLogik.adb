@@ -20,8 +20,6 @@ package body KIBewegungAllgemeinLogik is
       return KIDatentypen.Bewegung_Enum
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type KIDatentypen.Einheit_Aufgabe_Enum;
-      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    begin
       
       BlockierendeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => FeldKoordinatenExtern,
@@ -38,25 +36,15 @@ package body KIBewegungAllgemeinLogik is
       elsif
         BlockierendeEinheit.Spezies = EinheitSpeziesNummerExtern.Spezies
       then
-         Aufgabe := LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-         
-         if
-           LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = AufgabenDatentypen.Leer_Aufgabe_Enum
-           and
-             (Aufgabe = KIDatentypen.Leer_Aufgabe_Enum
-              or
-                Aufgabe = KIDatentypen.Platz_Machen_Enum
-              or
-                Aufgabe = KIDatentypen.Einheit_Auflösen_Enum
-              or
-                Aufgabe = KIDatentypen.Erkunden_Enum)
-         then
-            -- return KIKonstanten.Tauschbewegung;
-            return KIKonstanten.KeineBewegung;
-            
-         else
-            return KIKonstanten.KeineBewegung;
-         end if;
+         case
+           EinheitentauschMöglich (BlockierendeEinheitExtern => BlockierendeEinheit)
+         is
+            when True =>
+               return KIKonstanten.Tauschbewegung;
+               
+            when False =>
+               return KIKonstanten.KeineBewegung;
+         end case;
          
       elsif
         BlockierendeStadt = EinheitSpeziesNummerExtern.Spezies
@@ -94,7 +82,7 @@ package body KIBewegungAllgemeinLogik is
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
       use type SpeziesDatentypen.Spezies_Enum;
    begin
-      
+                  
       if
         FeindlicheSpeziesEinheitExtern = SpeziesKonstanten.LeerSpezies
         and then
@@ -126,5 +114,35 @@ package body KIBewegungAllgemeinLogik is
       end case;
       
    end FeldAngreifen;
+   
+   
+   
+   function EinheitentauschMöglich
+     (BlockierendeEinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return Boolean
+   is
+      use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+   begin
+               
+      if
+        LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => BlockierendeEinheitExtern) = AufgabenDatentypen.Leer_Aufgabe_Enum
+      then
+         case
+           LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => BlockierendeEinheitExtern)
+         is
+            when KIDatentypen.Leer_Aufgabe_Enum | KIDatentypen.Platz_Machen_Enum | KIDatentypen.Einheit_Auflösen_Enum | KIDatentypen.Erkunden_Enum =>
+               return True;
+               
+            when others =>
+               null;
+         end case;
+            
+      else
+         null;
+      end if;
+      
+      return False;
+      
+   end EinheitentauschMöglich;
 
 end KIBewegungAllgemeinLogik;

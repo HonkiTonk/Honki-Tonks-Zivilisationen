@@ -5,8 +5,6 @@ with KartenRecords;
 with LeseEinheitenGebaut;
 with SchreibeEinheitenGebaut;
 
-with KIDatentypen;
-
 with KIEinheitUmsetzenVerbesserungenLogik;
 with KIEinheitUmsetzenModernisierenLogik;
 with KIEinheitUmsetzenAngreifenLogik;
@@ -37,8 +35,10 @@ package body KIEinheitenAufgabenumsetzungLogik is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
+      AktuelleBeschäftigung := LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      
       if
-        LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= KIDatentypen.Leer_Aufgabe_Enum
+        AktuelleBeschäftigung /= KIDatentypen.Leer_Aufgabe_Enum
         and
           LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
         and
@@ -51,7 +51,7 @@ package body KIEinheitenAufgabenumsetzungLogik is
       end if;
       
       case
-        LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
+        AktuelleBeschäftigung
       is
          when KIDatentypen.Stadt_Bauen_Enum =>
             AufgabeDurchführen := KIEinheitUmsetzenSiedelnLogik.StadtErrichten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
