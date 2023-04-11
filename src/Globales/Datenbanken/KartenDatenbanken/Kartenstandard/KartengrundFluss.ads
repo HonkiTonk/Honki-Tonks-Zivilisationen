@@ -154,7 +154,7 @@ package KartengrundFluss is
                                                                                    )
                                                                                 );
    
-   type KartenflusslisteKernArray is array (KartenextraDatentypen.Fluss_Kern_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
+   type KartenflusslisteKernArray is array (KartenextraDatentypen.Fluss_Kernfläche_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
    KartenflusslisteKern : constant KartenflusslisteKernArray := (
                                                                  others =>
                                                                    (

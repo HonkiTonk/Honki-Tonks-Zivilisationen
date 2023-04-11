@@ -135,7 +135,7 @@ package body ChemischeWaffeEingesetztLogik is
       case
         LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenextraDatentypen.Leer_Fluss_Enum | KartenextraDatentypen.Fluss_Kern_Enum'Range =>
+         when KartenextraDatentypen.Leer_Fluss_Enum | KartenextraDatentypen.Fluss_Kernfläche_Enum'Range =>
             return;
             
          when others =>

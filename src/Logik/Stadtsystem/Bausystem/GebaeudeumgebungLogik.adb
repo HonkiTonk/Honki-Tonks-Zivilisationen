@@ -7,71 +7,89 @@ with LeseGebaeudeDatenbank;
 with KartenkoordinatenberechnungssystemLogik;
 
 -- Um da UND und ODER ein die Anforderungen zu bekommen müsste man hier alles noch einmal deutlich überarbeiten. äöü
+-- Die Prüfungen können verkürzt werden indem ich nur Bereichsarten durchgehe, beispielsweise statt alle Gebirge nur Gebirge'Range und entsprechend auch alles so prüfe. äöü
 package body GebaeudeumgebungLogik is
 
    function RichtigeUmgebungVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       GebäudeIDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
-   is
-      use type KartengrundDatentypen.Basisgrund_Enum;
-      use type KartenextraDatentypen.Ressourcen_Enum;
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
-      use type StadtDatentypen.GebäudeIDMitNullwert;
-   begin
+   is begin
       
-      case
-        LeseGebaeudeDatenbank.FalscheEbene (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                            IDExtern      => GebäudeIDExtern,
-                                            EbeneExtern   => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).EAchse)
-      is
-         when True =>
-            return False;
-            
-         when False =>
-            Anforderungen.NotwendigFluss := LeseGebaeudeDatenbank.FlussBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                  IDExtern      => GebäudeIDExtern);
-            Anforderungen.NotwendigerGrund := LeseGebaeudeDatenbank.BasisgrundBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                         IDExtern      => GebäudeIDExtern);
-            Anforderungen.NotwendigeRessource := LeseGebaeudeDatenbank.RessourceBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                           IDExtern      => GebäudeIDExtern);
-            Anforderungen.NotwendigeVerbesserung := LeseGebaeudeDatenbank.VerbesserungBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                                 IDExtern      => GebäudeIDExtern);
-            Anforderungen.NotwendigesGebäude := LeseGebaeudeDatenbank.GebäudeBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                          IDExtern      => GebäudeIDExtern);
-      end case;
-            
       if
-        KartengrundDatentypen.Leer_Basisgrund_Enum = Anforderungen.NotwendigerGrund
-        and
-          False = Anforderungen.NotwendigFluss
-          and
-            KartenextraDatentypen.Leer_Ressource_Enum = Anforderungen.NotwendigeRessource
-            and
-              KartenverbesserungDatentypen.Leer_Verbesserung_Enum = Anforderungen.NotwendigeVerbesserung
-              and
-                StadtKonstanten.LeerGebäudeID = Anforderungen.NotwendigesGebäude
+        True = LeseGebaeudeDatenbank.FalscheEbene (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
+                                                   IDExtern      => GebäudeIDExtern,
+                                                   EbeneExtern   => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).EAchse)
       then
-         return True;
-               
+         return False;
+         
+      elsif
+        False = NotwendigeGebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                             GebäudeIDExtern          => GebäudeIDExtern)
+      then
+         return False;
+         
       else
-         return UmgebungPrüfen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                 AnforderungenExtern      => Anforderungen);
+         UmgebungDurchgehen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+         
+         return NotwendigeUmgebung (SpeziesExtern   => StadtSpeziesNummerExtern.Spezies,
+                                    GebäudeIDExtern => GebäudeIDExtern);
+         -- Anforderungen.NotwendigFluss := LeseGebaeudeDatenbank.FlussBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
+         --                                                                       IDExtern      => GebäudeIDExtern);
+         -- Anforderungen.NotwendigeRessource := LeseGebaeudeDatenbank.RessourceBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
+         --                                                                                IDExtern      => GebäudeIDExtern);
+         -- Anforderungen.NotwendigeVerbesserung := LeseGebaeudeDatenbank.VerbesserungBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
+         --                                                                                      IDExtern      => GebäudeIDExtern);
       end if;
             
    end RichtigeUmgebungVorhanden;
    
    
    
-   function UmgebungPrüfen
+   function NotwendigeGebäudeVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      AnforderungenExtern : in AnforderungenRecord)
+      GebäudeIDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
    is begin
       
+      GebäudeSchleife:
+      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+         
+         if
+           False = LeseGebaeudeDatenbank.GebäudeBenötigt (SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+                                                            IDExtern             => GebäudeIDExtern,
+                                                            WelchesGebäudeExtern => GebäudeSchleifenwert)
+         then
+            null;
+            
+         elsif
+           True = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                     WelchesGebäudeExtern     => GebäudeSchleifenwert)
+         then
+            null;
+            
+         else
+            return False;
+         end if;
+         
+      end loop GebäudeSchleife;
+   
+      return True;
+      
+   end NotwendigeGebäudeVorhanden;
+   
+   
+   
+   procedure UmgebungDurchgehen
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
+      
+      Umgebung := (others => (others => LeerUmgebung));
+      
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       Umgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-      Ergebnis := False;
       
       YAchseSchleife:
       for YAchseSchleifenwert in -Umgebungsgröße .. Umgebungsgröße loop
@@ -93,15 +111,177 @@ package body GebaeudeumgebungLogik is
             then
                null;
                
-            elsif
-              False = Detailprüfung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                      KoordinatenExtern        => KartenWert,
-                                      AnforderungenExtern      => AnforderungenExtern)
+            else
+               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert);
+               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Fluss := LeseWeltkarte.Fluss (KoordinatenExtern => KartenWert);
+               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Ressource := LeseWeltkarte.Ressource (KoordinatenExtern => KartenWert);
+               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Verbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert);
+            end if;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+   end UmgebungDurchgehen;
+   
+   
+   
+   -- Man könnte die Grundschleifen auch noch auf Basis der notwendigen Ebenen einschränken. äöü
+   function NotwendigeUmgebung
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      GebäudeIDExtern : in StadtDatentypen.GebäudeID)
+      return Boolean
+   is begin
+      
+      BasisgrundSchleife:
+      for BasisgrundSchleifenwert in KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range loop
+         
+         if
+           False = LeseGebaeudeDatenbank.BasisgrundBenötigt (SpeziesExtern => SpeziesExtern,
+                                                              IDExtern      => GebäudeIDExtern,
+                                                              GrundExtern   => BasisgrundSchleifenwert)
+         then
+            null;
+            
+         elsif
+           True = UmgebungVorhanden (BasisgrundExtern   => BasisgrundSchleifenwert,
+                                     FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
+                                     RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum)
+         then
+            null;
+            
+         else
+            return False;
+         end if;
+         
+      end loop BasisgrundSchleife;
+      
+      FlussSchleife:
+      for FlussSchleifenwert in KartenextraDatentypen.Fluss_Vorhanden_Enum'Range loop
+         
+         if
+           False = LeseGebaeudeDatenbank.FlussBenötigt (SpeziesExtern  => SpeziesExtern,
+                                                         IDExtern       => GebäudeIDExtern,
+                                                         FlussartExtern => FlussSchleifenwert)
+         then
+            null;
+            
+         elsif
+           True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
+                                     FlussExtern        => FlussSchleifenwert,
+                                     RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum)
+         then
+            null;
+            
+         else
+            return False;
+         end if;
+         
+      end loop FlussSchleife;
+      
+      RessourcenSchleife:
+      for RessourcenSchleifenwert in KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range loop
+         
+         if
+           False = LeseGebaeudeDatenbank.RessourceBenötigt (SpeziesExtern   => SpeziesExtern,
+                                                             IDExtern        => GebäudeIDExtern,
+                                                             RessourceExtern => RessourcenSchleifenwert)
+         then
+            null;
+            
+         elsif
+           True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
+                                     FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
+                                     RessourceExtern    => RessourcenSchleifenwert,
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum)
+         then
+            null;
+            
+         else
+            return False;
+         end if;
+         
+      end loop RessourcenSchleife;
+      
+      VerbesserungenSchleife:
+      for VerbesserungenSchleifenwert in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range loop
+         
+         if
+           False = LeseGebaeudeDatenbank.VerbesserungBenötigt (SpeziesExtern      => SpeziesExtern,
+                                                                IDExtern           => GebäudeIDExtern,
+                                                                VerbesserungExtern => VerbesserungenSchleifenwert)
+         then
+            null;
+            
+         elsif
+           True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
+                                     FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
+                                     RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
+                                     VerbesserungExtern => VerbesserungenSchleifenwert)
+         then
+            null;
+            
+         else
+            return False;
+         end if;
+         
+      end loop VerbesserungenSchleife;
+     
+      return True;
+   
+   end NotwendigeUmgebung;
+   
+
+
+   function UmgebungVorhanden
+     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
+      return Boolean
+   is
+      use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartenextraDatentypen.Fluss_Enum;
+      use type KartenextraDatentypen.Ressourcen_Enum;
+      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   begin
+      
+      YAchseSchleife:
+      for YAchseSchleifenwert in UmgebungArray'Range (1) loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in UmgebungArray'Range (2) loop
+            
+            if
+              BasisgrundExtern /= KartengrundDatentypen.Leer_Basisgrund_Enum
+              and then
+                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Basisgrund = BasisgrundExtern
             then
-               null;
+               return True;
+               
+            elsif
+              FlussExtern /= KartenextraDatentypen.Leer_Fluss_Enum
+              and then
+                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Fluss = FlussExtern
+            then
+               return True;
+               
+            elsif
+              RessourceExtern /= KartenextraDatentypen.Leer_Ressource_Enum
+              and then
+                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Ressource = RessourceExtern
+            then
+               return True;
+               
+            elsif
+              VerbesserungExtern /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+              and then
+                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Verbesserung = VerbesserungExtern
+            then
+               return True;
                
             else
-               return True;
+               null;
             end if;
             
          end loop XAchseSchleife;
@@ -109,96 +289,6 @@ package body GebaeudeumgebungLogik is
       
       return False;
       
-   end UmgebungPrüfen;
-   
-   
-   
-   function Detailprüfung
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      AnforderungenExtern : in AnforderungenRecord)
-      return Boolean
-   is
-      use type KartengrundDatentypen.Basisgrund_Enum;
-      use type KartenextraDatentypen.Fluss_Enum;
-      use type KartenextraDatentypen.Ressourcen_Enum;
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
-      use type StadtDatentypen.GebäudeIDMitNullwert;
-   begin
-            
-      if
-        KartengrundDatentypen.Leer_Basisgrund_Enum = AnforderungenExtern.NotwendigerGrund
-      then
-         null;
-         
-      elsif
-        AnforderungenExtern.NotwendigerGrund = LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern)
-      then
-         null;
-         
-      else
-         return False;
-      end if;
-      
-      if
-        False = AnforderungenExtern.NotwendigFluss
-      then
-         null;
-         
-      elsif
-        LeseWeltkarte.Fluss (KoordinatenExtern => KartenWert) /= KartenextraDatentypen.Leer_Fluss_Enum
-      then
-         null;
-         
-      else
-         return False;
-      end if;
-        
-      if
-        AnforderungenExtern.NotwendigeRessource = KartenextraDatentypen.Leer_Ressource_Enum
-      then
-         null;
-         
-      elsif
-        LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern) = AnforderungenExtern.NotwendigeRessource
-      then
-         null;
-         
-      else
-         return False;
-      end if;
-            
-      if
-        AnforderungenExtern.NotwendigeVerbesserung = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
-      then
-         null;
-         
-      elsif
-        AnforderungenExtern.NotwendigeVerbesserung = LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)
-      then
-         null;
-         
-      else
-         return False;
-      end if;
-      
-      if
-        AnforderungenExtern.NotwendigesGebäude = StadtKonstanten.LeerGebäudeID
-      then
-         null;
-         
-      elsif
-        True = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                  WelchesGebäudeExtern     => AnforderungenExtern.NotwendigesGebäude)
-      then
-         null;
-         
-      else
-         return False;
-      end if;
-      
-      return True;
-      
-   end Detailprüfung;
+   end UmgebungVorhanden;
      
 end GebaeudeumgebungLogik;

@@ -137,17 +137,18 @@ package body GebaeudeAllgemeinLogik is
             null;
       end case;
       
+      -- Erst die Technologie prüfen, dann die die Prrüfung auf die richtige Umgebung ist deutlich rechenintensiver.
       case
-        GebaeudeumgebungLogik.RichtigeUmgebungVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                         GebäudeIDExtern          => IDExtern)
+        ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+                                                   TechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
+                                                                                                             IDExtern      => IDExtern))
       is
          when False =>
             return False;
             
          when True =>
-            return ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
-                                                              TechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                                                        IDExtern      => IDExtern));
+            return GebaeudeumgebungLogik.RichtigeUmgebungVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                                    GebäudeIDExtern          => IDExtern);
       end case;
       
    end GebäudeAnforderungenErfüllt;

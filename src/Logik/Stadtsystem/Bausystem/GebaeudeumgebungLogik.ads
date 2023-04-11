@@ -12,8 +12,6 @@ private with KartenextraDatentypen;
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 
-private with LeseWeltkarteneinstellungen;
-
 package GebaeudeumgebungLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
@@ -30,49 +28,54 @@ package GebaeudeumgebungLogik is
               );
    
 private
-   use type KartenDatentypen.Kartenfeld;
-   
-   Ergebnis : Boolean;
    
    Umgebungsgröße : KartenDatentypen.UmgebungsbereichDrei;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   type AnforderungenRecord is record
+   -- Später dann noch um Zusatzgrund und Wege erweitern. äöü
+   type UmgebungRecord is record
       
-      NotwendigFluss : Boolean;
-      
-      NotwendigerGrund : KartengrundDatentypen.Basisgrund_Enum;
-      
-      NotwendigeRessource : KartenextraDatentypen.Ressourcen_Enum;
-   
-      NotwendigeVerbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
-   
-      NotwendigesGebäude : StadtDatentypen.GebäudeIDMitNullwert;
+      Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
+      Fluss : KartenextraDatentypen.Fluss_Enum;
+      Ressource : KartenextraDatentypen.Ressourcen_Enum;
+      Verbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
       
    end record;
    
-   Anforderungen : AnforderungenRecord;
+   LeerUmgebung : constant UmgebungRecord := (
+                                              Basisgrund   => KartengrundDatentypen.Leer_Basisgrund_Enum,
+                                              Fluss        => KartenextraDatentypen.Leer_Fluss_Enum,
+                                              Ressource    => KartenextraDatentypen.Leer_Ressource_Enum,
+                                              Verbesserung => KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+                                             );
    
-   -- Das einzelne Array wäre mit sich selbst dann ein ODER und mit den anderen Arrays ein UND. äöü
-   type ErfülltRecord is record
-      
-      Fluss : Boolean;
-      Grund : Boolean;
-      Ressource : Boolean;
-      Verbesserung : Boolean;
-      Gebäude : Boolean;
-      
-   end record;
+   type UmgebungArray is array (KartenDatentypen.UmgebungsbereichDrei'Range, KartenDatentypen.UmgebungsbereichDrei'Range) of UmgebungRecord;
+   Umgebung : UmgebungArray;
    
-   Erfüllt : ErfülltRecord;
+   -- Kann vermutlich weg, aber eventuell wird das noch woanders nützlich sein, mal nach KartenKonstanten oder so auslagern. äöü
+   type FlussZuFlussartArray is array (KartenextraDatentypen.Fluss_Vorhanden_Enum'Range) of KartenextraDatentypen.Flussarten_Enum;
+   FlussZuFlussart : constant FlussZuFlussartArray := (
+                                                       KartenextraDatentypen.Fluss_Oberfläche_Enum'Range  => KartenextraDatentypen.Oberfläche_Fluss_Enum,
+                                                       KartenextraDatentypen.Fluss_Unterfläche_Enum'Range => KartenextraDatentypen.Unterfläche_Fluss_Enum,
+                                                       KartenextraDatentypen.Fluss_Kernfläche_Enum'Range  => KartenextraDatentypen.Kernfläche_Fluss_Enum
+                                                      );
+   
+   procedure UmgebungDurchgehen
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     with
+       Pre => (
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
    
    
    
-   function UmgebungPrüfen
+   function NotwendigeGebäudeVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      AnforderungenExtern : in AnforderungenRecord)
+      GebäudeIDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
      with
        Pre => (
@@ -81,20 +84,20 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   function Detailprüfung
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      AnforderungenExtern : in AnforderungenRecord)
+   function UmgebungVorhanden
+     (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
+      return Boolean;
+   
+   function NotwendigeUmgebung
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      GebäudeIDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
      with
        Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 end GebaeudeumgebungLogik;

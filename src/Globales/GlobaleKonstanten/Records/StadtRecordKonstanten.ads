@@ -36,11 +36,11 @@ package StadtRecordKonstanten is
                                                                                 Anforderungen               => StadtKonstanten.LeerAnforderungen,
                                                                                 BonusWirtschaft             => (others => StadtKonstanten.LeerBonusWirtschaft),
                                                                                 BonusKampf                  => (others => StadtKonstanten.LeerBonusKampf),
-                                                                                BasisgrundBenötigt          => StadtKonstanten.LeerBasisgrundBenötigt,
-                                                                                FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
-                                                                                RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                                VerbesserungBenötigt        => StadtKonstanten.LeerVerbesserungBenötigt,
-                                                                                GebäudeBenötigt             => StadtKonstanten.LeerGebäudeID,
+                                                                                BasisgrundBenötigt          => (others => StadtKonstanten.LeerBasisgrundBenötigt),
+                                                                                FlussBenötigt               => (others => StadtKonstanten.LeerFlussBenötigt),
+                                                                                RessourceBenötigt           => (others => StadtKonstanten.LeerRessourceBenötigt),
+                                                                                VerbesserungBenötigt        => (others => StadtKonstanten.LeerVerbesserungBenötigt),
+                                                                                GebäudeBenötigt             => (others => StadtKonstanten.LeerGebäudeBenötigt),
                                                                                 EbeneBenötigt               => (others => False),
                                                                                 SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
                                                                                );

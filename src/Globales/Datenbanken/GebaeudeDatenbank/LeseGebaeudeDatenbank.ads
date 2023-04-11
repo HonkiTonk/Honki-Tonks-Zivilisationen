@@ -73,8 +73,9 @@ package LeseGebaeudeDatenbank is
       
    function BasisgrundBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return KartengrundDatentypen.Basisgrund_Enum
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
+      return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -82,7 +83,8 @@ package LeseGebaeudeDatenbank is
       
    function FlussBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      FlussartExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -91,8 +93,9 @@ package LeseGebaeudeDatenbank is
       
    function RessourceBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return KartenextraDatentypen.Ressourcen_Enum
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
+      return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -100,8 +103,9 @@ package LeseGebaeudeDatenbank is
    
    function VerbesserungBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return KartenverbesserungDatentypen.Karten_Verbesserung_Enum
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
+      return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -109,8 +113,9 @@ package LeseGebaeudeDatenbank is
      
    function GebäudeBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return StadtDatentypen.GebäudeIDMitNullwert
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
+      return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

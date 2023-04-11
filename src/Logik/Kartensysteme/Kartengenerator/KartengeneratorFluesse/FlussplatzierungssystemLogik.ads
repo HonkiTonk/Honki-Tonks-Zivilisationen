@@ -38,7 +38,7 @@ private
    type FlusstypArray is array (StandardFlussArray'Range) of Natural;
    Flusstyp : constant FlusstypArray := (
                                          KartenKonstanten.PlaneteninneresKonstante =>
-                                           KartenextraDatentypen.Fluss_Kern_Enum'Pos (KartenextraDatentypen.Lavaflusskreuzung_Vier_Enum)
+                                           KartenextraDatentypen.Fluss_Kernfläche_Enum'Pos (KartenextraDatentypen.Lavaflusskreuzung_Vier_Enum)
                                          - KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Vier_Enum),
                                                        
                                          KartenKonstanten.UnterflächeKonstante =>

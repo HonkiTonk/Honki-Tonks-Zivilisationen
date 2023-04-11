@@ -4,6 +4,7 @@ with ProduktionKonstanten;
 with ForschungKonstanten;
 with KampfKonstanten;
 
+-- Aufgrund der Änderungen in der gebäudedatenbank hier eventuell noch einmal die leeren Rückgabewerte überprüfen. äöü
 package body LeseGebaeudeDatenbank is
 
    function PreisGeld
@@ -131,27 +132,8 @@ package body LeseGebaeudeDatenbank is
       
    function BasisgrundBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return KartengrundDatentypen.Basisgrund_Enum
-   is begin
-      
-      case
-        IDExtern
-      is
-         when StadtKonstanten.LeerGebäudeID =>
-            return KartengrundDatentypen.Leer_Basisgrund_Enum;
-            
-         when others =>
-            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).BasisgrundBenötigt;
-      end case;
-      
-   end BasisgrundBenötigt;
-
-
-
-   function FlussBenötigt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      GrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
       return Boolean
    is begin
       
@@ -162,7 +144,28 @@ package body LeseGebaeudeDatenbank is
             return False;
             
          when others =>
-            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).FlussBenötigt;
+            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).BasisgrundBenötigt (GrundExtern);
+      end case;
+      
+   end BasisgrundBenötigt;
+
+
+
+   function FlussBenötigt
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      FlussartExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
+      return Boolean
+   is begin
+      
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return False;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).FlussBenötigt (FlussartExtern);
       end case;
       
    end FlussBenötigt;
@@ -171,18 +174,19 @@ package body LeseGebaeudeDatenbank is
       
    function RessourceBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return KartenextraDatentypen.Ressourcen_Enum
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
+      return Boolean
    is begin
       
       case
         IDExtern
       is
          when StadtKonstanten.LeerGebäudeID =>
-            return KartenextraDatentypen.Leer_Ressource_Enum;
+            return False;
             
          when others =>
-            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).RessourceBenötigt;
+            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).RessourceBenötigt (RessourceExtern);
       end case;
       
    end RessourceBenötigt;
@@ -191,18 +195,19 @@ package body LeseGebaeudeDatenbank is
    
    function VerbesserungBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return KartenverbesserungDatentypen.Karten_Verbesserung_Enum
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
+      return Boolean
    is begin
       
       case
         IDExtern
       is
          when StadtKonstanten.LeerGebäudeID =>
-            return KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
+            return False;
             
          when others =>
-            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).VerbesserungBenötigt;
+            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).VerbesserungBenötigt (VerbesserungExtern);
       end case;
      
    end VerbesserungBenötigt;
@@ -211,18 +216,19 @@ package body LeseGebaeudeDatenbank is
      
    function GebäudeBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return StadtDatentypen.GebäudeIDMitNullwert
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      WelchesGebäudeExtern : in StadtDatentypen.GebäudeID)
+      return Boolean
    is begin
       
       case
         IDExtern
       is
          when StadtKonstanten.LeerGebäudeID =>
-            return StadtKonstanten.LeerGebäudeID;
+            return False;
             
          when others =>
-            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).GebäudeBenötigt;
+            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).GebäudeBenötigt (WelchesGebäudeExtern);
       end case;
       
    end GebäudeBenötigt;

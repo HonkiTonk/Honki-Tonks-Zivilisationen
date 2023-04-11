@@ -126,17 +126,21 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (12.04.2023):
+   -- Version 0.04.9530 => 0.04. (12.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9460 => 0.04. (11.04.2023):
+   -- Version 0.04.9460 => 0.04.9530 (11.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Prüfung ob ein Gebäude gebaut werden kann überarbeitet.
+   -- Ein Gebäude kann jetzt mehrere Arten von Basisgrund zum Bau benötigen.
+   -- Ein Gebäude kann jetzt mehrere andere Gebäude zum Bau benötigen.
+   -- Ein Gebäude kann jetzt mehrere Ressourcen für den Bau benötigen.
+   -- Ein Gebäude kann jetzt mehrere Umgebungsverbesserungen für den Bau benötigen.
+   -- Contracst, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

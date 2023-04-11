@@ -14,7 +14,6 @@ with ProduktionDatentypen;
 with StadtRecords;
 with KampfDatentypen;
 with SpeziesKonstanten;
-with KartenextraDatentypen;
 
 with KIDatentypen;
 
@@ -57,16 +56,17 @@ package StadtKonstanten is
    MaximaleBauzeit : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
    
    LeerGebäudeID : constant StadtDatentypen.GebäudeIDMitNullwert := 0;
+   LeerGebäudeBenötigt : constant Boolean := False;
    LeerPreisGeld : constant ProduktionDatentypen.Produktion := 0;
    LeerPreisRessourcen : constant ProduktionDatentypen.Produktion := 0;
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerBonusWirtschaft : constant ProduktionDatentypen.Feldproduktion := 0;
    LeerBonusKampf : constant KampfDatentypen.KampfwerteEinheiten := KampfDatentypen.KampfwerteEinheiten'First;
-   LeerBasisgrundBenötigt : constant KartengrundDatentypen.Basisgrund_Enum := KartengrundDatentypen.Leer_Basisgrund_Enum;
+   LeerBasisgrundBenötigt : constant Boolean := False;
    LeerZusatzgrundBenötigt : constant KartengrundDatentypen.Zusatzgrund_Enum := KartengrundDatentypen.Leer_Zusatzgrund_Enum;
    LeerFlussBenötigt : constant Boolean := False;
-   LeerRessourceBenötigt : constant KartenextraDatentypen.Ressourcen_Enum := KartenextraDatentypen.Leer_Ressource_Enum;
-   LeerVerbesserungBenötigt : constant KartenverbesserungDatentypen.Karten_Verbesserung_Enum := KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
+   LeerRessourceBenötigt : constant Boolean := False;
+   LeerVerbesserungBenötigt : constant Boolean := False;
    LeerSpezielleEigenschaft : constant StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := StadtDatentypen.Leer_Gebäude_Spezielle_Egienschaft_Enum;
    
    

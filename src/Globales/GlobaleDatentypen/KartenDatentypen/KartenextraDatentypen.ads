@@ -55,6 +55,8 @@ package KartenextraDatentypen is
    
    subtype Fluss_Oberfläche_Enum is Fluss_Vorhanden_Enum range Flusskreuzung_Vier_Enum .. See_Enum;
    subtype Fluss_Unterfläche_Enum is Fluss_Vorhanden_Enum range Unterirdische_Flusskreuzung_Vier_Enum .. Unterirdischer_See_Enum;
-   subtype Fluss_Kern_Enum is Fluss_Vorhanden_Enum range Lavaflusskreuzung_Vier_Enum .. Lavasee_Enum;
+   subtype Fluss_Kernfläche_Enum is Fluss_Vorhanden_Enum range Lavaflusskreuzung_Vier_Enum .. Lavasee_Enum;
+   
+   type Flussarten_Enum is (Oberfläche_Fluss_Enum, Unterfläche_Fluss_Enum, Kernfläche_Fluss_Enum);
 
 end KartenextraDatentypen;
