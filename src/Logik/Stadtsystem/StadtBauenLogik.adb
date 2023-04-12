@@ -240,7 +240,7 @@ package body StadtBauenLogik is
 
    function HauptstadtPrüfen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum
+      return KartenverbesserungDatentypen.Verbesserung_Städte_Enum
    is begin
       
       HauptsstadtSchleife:

@@ -90,7 +90,7 @@ package body WegErmittelnLogik is
    
    function OberflächeLand
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -98,7 +98,7 @@ package body WegErmittelnLogik is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
                                                                 TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => WelcheWegart (WegExtern),
@@ -136,7 +136,7 @@ package body WegErmittelnLogik is
      
    function OberflächeWasser
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is
@@ -158,7 +158,7 @@ package body WegErmittelnLogik is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
                                                                 TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => WelcheWegart (KartenverbesserungDatentypen.Schiene_Einzeln_Enum),
@@ -196,7 +196,7 @@ package body WegErmittelnLogik is
      
    function UnterflächeLand
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -204,7 +204,7 @@ package body WegErmittelnLogik is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum => -- KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum => -- KartenverbesserungDatentypen.Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
                                                                 TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => WelcheWegart (KartenverbesserungDatentypen.Tunnel_Einzeln_Enum),
@@ -243,7 +243,7 @@ package body WegErmittelnLogik is
    -- Das ist doch ein wenig sinnfrei, oder? äöü
    function UnterflächeWasser
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
    is begin
@@ -251,7 +251,7 @@ package body WegErmittelnLogik is
       case
         WegExtern
       is
-         when KartenverbesserungDatentypen.Karten_Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
+         when KartenverbesserungDatentypen.Straße_Enum'Range | KartenverbesserungDatentypen.Leer_Weg_Enum =>
             if
               True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
                                                                 TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => WelcheWegart (WegExtern),

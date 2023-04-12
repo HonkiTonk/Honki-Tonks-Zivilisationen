@@ -156,6 +156,9 @@ package body SichtweitenGrafik is
       
       FensterKarte := (0.00, 0.00, FensterGrafik.AktuelleAuflösung.x, FensterGrafik.AktuelleAuflösung.y);
       
+      KartenfelderAbmessung.y := FensterKarte.height / Float (2 * SichthöheLesen + 1);
+      KartenfelderAbmessung.x := KartenfelderAbmessung.y;
+      
       KartenfelderAbmessung.x := FensterKarte.width / Float (2 * SichtweiteLesen + 1);
       KartenfelderAbmessung.y := FensterKarte.height / Float (2 * SichtweiteLesen + 1);
             
@@ -166,7 +169,9 @@ package body SichtweitenGrafik is
    procedure StadtumgebungAbmessungBerechnen
    is begin
       
-      -- Für die Werte hier und auch in der Stadtumgebung mal Konstante anlegen. äöü
+      StadtumgebungAbmessung.y := FensterGrafik.AktuelleAuflösung.y / Float (StadtKonstanten.Stadtkartengröße);
+      StadtumgebungAbmessung.x := StadtumgebungAbmessung.y;
+      
       StadtumgebungAbmessung.x := FensterGrafik.AktuelleAuflösung.x / Float (StadtKonstanten.Stadtkartengröße);
       StadtumgebungAbmessung.y := FensterGrafik.AktuelleAuflösung.y / Float (StadtKonstanten.Stadtkartengröße);
       
@@ -174,7 +179,6 @@ package body SichtweitenGrafik is
    
    
    
-   -- Das noch einmal suchen gehen und entsprechend ein wenig besser aufrufen lassen, ist nur schnell eingebaut worden. äöü ???
    function Kartenfeldfläche
      return Sf.System.Vector2.sfVector2f
    is begin

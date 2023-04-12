@@ -58,12 +58,12 @@ package body AufgabenLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       EinheitartExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum;
       BefehlExtern : in BefehleDatentypen.Einheiten_Aufgaben_Baulos_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum)
       return Boolean
    is
       use type EinheitenDatentypen.Einheitart_Enum;
       use type BefehleDatentypen.Einheitenbelegung_Enum;
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
       
       if
@@ -126,7 +126,7 @@ package body AufgabenLogik is
       is
          when BefehleDatentypen.Siedler_Konstruktionen_Enum'Range =>
             if
-              VerbesserungExtern in KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range
+              VerbesserungExtern in KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Range
             then
                MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserung,
                                                               SpeziesExtern => SpeziesExtern);

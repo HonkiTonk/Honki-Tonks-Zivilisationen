@@ -393,8 +393,8 @@ private
 
    KartenFluss : KartenextraDatentypen.Fluss_Enum;
    KartenRessource : KartenextraDatentypen.Ressourcen_Enum;
-   KartenWeg : KartenverbesserungDatentypen.Karten_Weg_Enum;
-   KartenVerbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   KartenWeg : KartenverbesserungDatentypen.Weg_Enum;
+   KartenVerbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
 
    Gesamtgrund : KartenRecords.KartengrundRecord;
 

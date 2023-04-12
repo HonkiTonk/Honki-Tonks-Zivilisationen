@@ -22,7 +22,7 @@ package body StadtSuchenLogik is
       case
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
+         when KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Range =>
             Stadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KoordinatenExtern);
             
          when others =>
@@ -50,7 +50,7 @@ package body StadtSuchenLogik is
       case
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
+         when KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Range =>
             return LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KoordinatenExtern);
             
          when others =>
@@ -72,7 +72,7 @@ package body StadtSuchenLogik is
       case
         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern)
       is
-         when KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range =>
+         when KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Range =>
             Stadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KoordinatenExtern);
             
          when others =>
@@ -94,7 +94,7 @@ package body StadtSuchenLogik is
    
    procedure StadtNachNamenSuchen
    is
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
       
       StadtName := TexteingabeLogik.StadtName (StadtSpeziesNummerExtern => StadtKonstanten.LeerStadt,

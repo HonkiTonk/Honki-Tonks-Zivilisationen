@@ -10,7 +10,7 @@ package body KIEinheitUmsetzenVerbesserungenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
       use type SpeziesDatentypen.Spezies_Enum;
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    begin

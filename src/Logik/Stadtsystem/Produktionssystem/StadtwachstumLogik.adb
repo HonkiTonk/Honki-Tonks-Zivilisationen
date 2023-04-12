@@ -1,6 +1,5 @@
 with EinheitenDatentypen;
 with StadtDatentypen;
-with KartenverbesserungDatentypen;
 with SystemDatentypen;
 
 with SchreibeStadtGebaut;
@@ -18,30 +17,6 @@ with FelderbewirtschaftungLogik;
 
 package body StadtwachstumLogik is
    
-   procedure StadtWachstum
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-   is begin
-      
-      StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
-                  
-         case
-           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
-         is
-            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-               null;
-               
-            when others =>
-               WachstumEinwohner (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
-               WachstumProduktion (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
-         end case;
-            
-      end loop StadtSchleife;
-      
-   end StadtWachstum;
-
-
-
    procedure WachstumEinwohner
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
@@ -86,6 +61,8 @@ package body StadtwachstumLogik is
 
       EinwohnerÄnderung (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                           WachstumSchrumpfungExtern => WachstumSchrumpfung);
+      
+      WachstumProduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
    end WachstumEinwohner;
    

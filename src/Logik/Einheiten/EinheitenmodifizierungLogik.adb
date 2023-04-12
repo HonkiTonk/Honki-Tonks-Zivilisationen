@@ -1,4 +1,5 @@
 with ProduktionDatentypen;
+with StadtKonstanten;
 
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
@@ -6,40 +7,12 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseWeltkarte;
 
-with PassierbarkeitspruefungLogik;
 with StadtproduktionLogik;
-with ForschungstestsLogik;
-with DebugobjekteLogik;
 with KartenfeldereffekteLogik;
 
 package body EinheitenmodifizierungLogik is
 
-   -- Wäre es sinnvoll sowas zu parallelisieren? äöü
-   -- Könnte was bringen bei vielen Einheiten? äöü
-   procedure HeilungBewegungspunkteNeueRundeErmitteln
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-   is begin
-      
-      EinheitenSchleife:
-      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
-                              
-         case
-           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert))
-         is
-            when EinheitenKonstanten.LeerID =>
-               null;
-                  
-            when others =>
-               HeilungBewegungspunkteNeueRundeSetzen (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert));
-         end case;
-            
-      end loop EinheitenSchleife;
-      
-   end HeilungBewegungspunkteNeueRundeErmitteln;
-
-
-
-   procedure HeilungBewegungspunkteNeueRundeSetzen
+   procedure HeilungBewegungspunkteNeueRunde
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
@@ -105,7 +78,7 @@ package body EinheitenmodifizierungLogik is
                                                      RechnenSetzenExtern        => False);
       end case;
       
-   end HeilungBewegungspunkteNeueRundeSetzen;
+   end HeilungBewegungspunkteNeueRunde;
    
       
    
@@ -196,41 +169,5 @@ package body EinheitenmodifizierungLogik is
       end if;
       
    end HeimatstadtÄndern;
-   
-   
-   
-   function EinheitAnforderungenErfüllt
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return Boolean
-   is
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
-      use type EinheitenDatentypen.Einheitart_Enum;
-   begin
-      
-      if
-        IDExtern = EinheitenKonstanten.LeerID
-      then
-         return False;
-         
-      elsif
-        EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                              IDExtern      => IDExtern)
-      then
-         return DebugobjekteLogik.Debug.VolleInformation;
-         
-      elsif
-        False = PassierbarkeitspruefungLogik.RichtigeUmgebungVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                        EinheitenIDExtern        => IDExtern)
-      then
-         return False;
-         
-      else
-         return ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
-                                                           TechnologieExtern => LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                                                      IDExtern      => IDExtern));
-      end if;
-      
-   end EinheitAnforderungenErfüllt;
 
 end EinheitenmodifizierungLogik;

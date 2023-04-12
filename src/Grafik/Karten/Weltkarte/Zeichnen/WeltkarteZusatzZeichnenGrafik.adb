@@ -65,7 +65,7 @@ package body WeltkarteZusatzZeichnenGrafik is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             return;
             
-         when KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum =>
+         when KartenverbesserungDatentypen.Verbesserung_Städte_Enum =>
             if
               KoordinatenExtern.EAchse = EbeneExtern
             then

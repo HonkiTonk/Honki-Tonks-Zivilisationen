@@ -5,9 +5,8 @@ with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 with LeseGebaeudeDatenbank;
 
-with GebaeudeumgebungLogik;
+with GebaeudeanforderungenLogik;
 with StadtproduktionLogik;
-with ForschungstestsLogik;
 
 package body GebaeudeAllgemeinLogik is
 
@@ -47,8 +46,8 @@ package body GebaeudeAllgemeinLogik is
             null;
             
          elsif
-           True = GebaeudeumgebungLogik.RichtigeUmgebungVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                   GebäudeIDExtern          => GebäudeSchleifenwert)
+           True = GebaeudeanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                                    IDExtern                 => GebäudeSchleifenwert)
          then
             null;
             
@@ -116,41 +115,5 @@ package body GebaeudeAllgemeinLogik is
       StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
    end PermanenteKostenDurchGebäudeÄndern;
-   
-   
-   
-   -- Sollte ein Gebäude für eine Spezies nicht existieren dann einfach die Forschugnsanforderungen auf -1 setzen.
-   function GebäudeAnforderungenErfüllt
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in StadtDatentypen.GebäudeID)
-      return Boolean
-   is begin
-            
-      case
-        LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                          WelchesGebäudeExtern     => IDExtern)
-      is
-         when True =>
-            return False;
-            
-         when False =>
-            null;
-      end case;
-      
-      -- Erst die Technologie prüfen, dann die die Prrüfung auf die richtige Umgebung ist deutlich rechenintensiver.
-      case
-        ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
-                                                   TechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                                             IDExtern      => IDExtern))
-      is
-         when False =>
-            return False;
-            
-         when True =>
-            return GebaeudeumgebungLogik.RichtigeUmgebungVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                    GebäudeIDExtern          => IDExtern);
-      end case;
-      
-   end GebäudeAnforderungenErfüllt;
 
 end GebaeudeAllgemeinLogik;

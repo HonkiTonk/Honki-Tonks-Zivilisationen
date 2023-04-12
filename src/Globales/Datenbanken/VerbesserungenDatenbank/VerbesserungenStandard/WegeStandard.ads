@@ -8,7 +8,7 @@ package WegeStandard is
    pragma Pure;
    use type EinheitenDatentypen.Bewegungspunkte;
 
-   type WegelisteArray is array (KartenverbesserungDatentypen.Karten_Straße_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
+   type WegelisteArray is array (KartenverbesserungDatentypen.Straße_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    Wegeliste : constant WegelisteArray := (
                                            others =>
                                              (
@@ -25,7 +25,7 @@ package WegeStandard is
                                            
    
    
-   type SchienenlisteArray is array (KartenverbesserungDatentypen.Karten_Schiene_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
+   type SchienenlisteArray is array (KartenverbesserungDatentypen.Schiene_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    Schienenliste : constant SchienenlisteArray := (
                                                    others =>
                                                      (
@@ -44,7 +44,7 @@ package WegeStandard is
    
    
    
-   type TunnellisteArray is array (KartenverbesserungDatentypen.Karten_Tunnel_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
+   type TunnellisteArray is array (KartenverbesserungDatentypen.Tunnel_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
    Tunnelliste : constant TunnellisteArray := (
                                                others =>
                                                  (

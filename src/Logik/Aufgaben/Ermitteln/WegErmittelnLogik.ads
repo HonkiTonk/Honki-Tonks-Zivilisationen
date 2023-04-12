@@ -37,7 +37,7 @@ package WegErmittelnLogik is
 private
    use type KartengrundDatentypen.Basisgrund_Enum;
 
-   WegVorhanden : KartenverbesserungDatentypen.Karten_Weg_Enum;
+   WegVorhanden : KartenverbesserungDatentypen.Weg_Enum;
 
    WelcherWeg : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
@@ -51,19 +51,19 @@ private
    -- Benutze ich das mehrmals und wenn ja, kann ich es zusammenführen? äöü
    -- Bräuchte ich hier aber in verschiedenen Ausführungen. Vermutlich sinnvoll die alle anzulegen aber wahrscheinlich nicht sie auszulagern. äöü
    -- Benutze aber eine kleine Version davon im Wegeplatzierungssystem, eventuell ist da eine Zusammenführung sinnvoll? äöü
-   type WelcheWegartArray is array (KartenverbesserungDatentypen.Karten_Weg_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
+   type WelcheWegartArray is array (KartenverbesserungDatentypen.Weg_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
    WelcheWegart : constant WelcheWegartArray := (
                                                  KartenverbesserungDatentypen.Leer_Weg_Enum             => AufgabenDatentypen.Straße_Bauen_Enum,
-                                                 KartenverbesserungDatentypen.Karten_Straße_Enum'Range  => AufgabenDatentypen.Schiene_Bauen_Enum,
-                                                 KartenverbesserungDatentypen.Karten_Schiene_Enum'Range => AufgabenDatentypen.Schiene_Bauen_Enum,
-                                                 KartenverbesserungDatentypen.Karten_Tunnel_Enum'Range  => AufgabenDatentypen.Tunnel_Bauen_Enum
+                                                 KartenverbesserungDatentypen.Straße_Enum'Range  => AufgabenDatentypen.Schiene_Bauen_Enum,
+                                                 KartenverbesserungDatentypen.Schiene_Enum'Range => AufgabenDatentypen.Schiene_Bauen_Enum,
+                                                 KartenverbesserungDatentypen.Tunnel_Enum'Range  => AufgabenDatentypen.Tunnel_Bauen_Enum
                                                 );
 
 
 
    function OberflächeLand
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
      with
@@ -77,7 +77,7 @@ private
 
    function OberflächeWasser
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
      with
@@ -89,7 +89,7 @@ private
 
    function UnterflächeLand
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
      with
@@ -103,7 +103,7 @@ private
 
    function UnterflächeWasser
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       GrundExtern : in KartenRecords.KartengrundRecord)
       return EinheitenRecords.ArbeitRecord
      with

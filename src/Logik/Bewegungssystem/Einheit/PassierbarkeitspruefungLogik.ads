@@ -64,7 +64,7 @@ private
    
    Passierbar : Boolean;
    
-   WegVorhanden : KartenverbesserungDatentypen.Karten_Weg_Enum;
+   WegVorhanden : KartenverbesserungDatentypen.Weg_Enum;
       
    IDEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
    

@@ -101,7 +101,7 @@ package SchreibeWeltkarte is
 
    procedure Weg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      WegExtern : in KartenverbesserungDatentypen.Karten_Weg_Enum)
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -111,7 +111,7 @@ package SchreibeWeltkarte is
 
    procedure Verbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

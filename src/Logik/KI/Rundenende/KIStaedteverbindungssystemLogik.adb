@@ -26,7 +26,7 @@ package body KIStaedteverbindungssystemLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
       
       case
@@ -337,7 +337,7 @@ package body KIStaedteverbindungssystemLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean
    is
-      use type KartenverbesserungDatentypen.Karten_Weg_Enum;
+      use type KartenverbesserungDatentypen.Weg_Enum;
    begin
       
       TechnologieVorhanden := ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
@@ -368,7 +368,7 @@ package body KIStaedteverbindungssystemLogik is
                null;
          
             elsif
-              VorhandenerWeg in KartenverbesserungDatentypen.Karten_Straße_Enum'Range
+              VorhandenerWeg in KartenverbesserungDatentypen.Straße_Enum'Range
               and
                 TechnologieVorhanden
             then

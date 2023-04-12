@@ -119,17 +119,24 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (13.04.2023):
+   -- Version 0.04.9630 => 0.04. (13.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9530 => 0.04. (12.04.2023):
+   -- Version 0.04.9530 => 0.04.9630 (12.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Grafiken teilweise auf Größe und Geschwindigkeit optimiert.
+   -- Ein Gebäude kann jetzt mehrere Arten von Zusatzgrund zum Bau benötigen.
+   -- Ein Gebäude kann jetzt mehrere Arten von Wegen zum Bau benötigen.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Einheiten können zum Bau jetzt auch Gebäude benötigen.
+   -- Rundenendenberechnungen überarbeitet und optimiert.
+   -- Angefangen die Kartenfeldgrößenberechnung so anzupassen dass die Kartenfelder immer im Verhältnis 1x1 angezeigt werden.
+   -- Readme überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/erweitert/verbessert.
    
    
 

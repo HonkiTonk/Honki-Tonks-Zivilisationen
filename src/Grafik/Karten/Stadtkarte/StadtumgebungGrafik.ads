@@ -40,10 +40,10 @@ private
    
    KartenfeldFluss : KartenextraDatentypen.Fluss_Enum;
    
-   Wegfeld : KartenverbesserungDatentypen.Karten_Weg_Enum;
+   Wegfeld : KartenverbesserungDatentypen.Weg_Enum;
 
-   Stadtfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
-   Verbesserungsfeld : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   Stadtfeld : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
+   Verbesserungsfeld : KartenverbesserungDatentypen.Verbesserung_Enum;
    
    Rahmendicke : Float;
    

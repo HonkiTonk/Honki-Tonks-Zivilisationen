@@ -81,6 +81,16 @@ package LeseGebaeudeDatenbank is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
       
+   function ZusatzgrundBenötigt
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
+      return Boolean
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+      
    function FlussBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
@@ -94,7 +104,7 @@ package LeseGebaeudeDatenbank is
    function RessourceBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -104,13 +114,23 @@ package LeseGebaeudeDatenbank is
    function VerbesserungBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
-     
+   
+   function WegBenötigt
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
+      return Boolean
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
    function GebäudeBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;

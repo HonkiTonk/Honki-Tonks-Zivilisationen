@@ -106,7 +106,7 @@ package body WeltkarteGrafik is
                null;
                
             elsif
-              LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert) in KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum'Range
+              LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert) in KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Range
             then
                WeltkarteZusatzZeichnenGrafik.StadtnameAnzeigen (KoordinatenExtern => KartenWert,
                                                                 PositionExtern    => (Feldposition.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y),

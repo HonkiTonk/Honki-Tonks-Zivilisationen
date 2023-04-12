@@ -12,13 +12,13 @@ private with KartenextraDatentypen;
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 
-package GebaeudeumgebungLogik is
+package GebaeudeanforderungenLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-
-   function RichtigeUmgebungVorhanden
+   
+   function AnforderungenErfüllt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      GebäudeIDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
      with
        Pre => (
@@ -38,17 +38,21 @@ private
    type UmgebungRecord is record
       
       Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
+      Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
       Fluss : KartenextraDatentypen.Fluss_Enum;
       Ressource : KartenextraDatentypen.Ressourcen_Enum;
-      Verbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      Verbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
+      Weg : KartenverbesserungDatentypen.Weg_Enum;
       
    end record;
    
    LeerUmgebung : constant UmgebungRecord := (
                                               Basisgrund   => KartengrundDatentypen.Leer_Basisgrund_Enum,
+                                              Zusatzgrund  => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
                                               Fluss        => KartenextraDatentypen.Leer_Fluss_Enum,
                                               Ressource    => KartenextraDatentypen.Leer_Ressource_Enum,
-                                              Verbesserung => KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+                                              Verbesserung => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
+                                              Weg          => KartenverbesserungDatentypen.Leer_Weg_Enum
                                              );
    
    type UmgebungArray is array (KartenDatentypen.UmgebungsbereichDrei'Range, KartenDatentypen.UmgebungsbereichDrei'Range) of UmgebungRecord;
@@ -84,11 +88,14 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
+   -- Hier später noch einen Contracs einbauen um zu Prüfen dass immer wenigstens eins nicht Leer ist? äöü
    function UmgebungVorhanden
      (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+      ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
       return Boolean;
    
    function NotwendigeUmgebung
@@ -100,4 +107,4 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
-end GebaeudeumgebungLogik;
+end GebaeudeanforderungenLogik;

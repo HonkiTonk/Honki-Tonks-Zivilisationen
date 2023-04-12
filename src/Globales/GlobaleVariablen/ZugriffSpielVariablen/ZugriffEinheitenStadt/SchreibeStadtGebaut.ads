@@ -27,7 +27,7 @@ package SchreibeStadtGebaut is
 
    procedure ID
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum)
+      IDExtern : in KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum)
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

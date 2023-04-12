@@ -5,7 +5,6 @@ with SystemDatentypen;
 with ForschungKonstanten;
 with StadtDatentypen;
 with KartenDatentypen;
-with KartengrundDatentypen;
 with KartenverbesserungDatentypen;
 with TextKonstanten;
 with SpeziesDatentypen;
@@ -27,7 +26,7 @@ package StadtKonstanten is
    
    AnfangNummer : constant StadtDatentypen.MaximaleStädte := StadtDatentypen.MaximaleStädte'First;
    
-   LeerID : constant KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
+   LeerID : constant KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum := KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
    LeerEinwohner : constant ProduktionDatentypen.Einwohner := 0;
    LeerArbeiter : constant ProduktionDatentypen.Einwohner := 0;
    LeerEinwohnerArbeiter : constant StadtRecords.EinwohnerArbeiterArray := (LeerEinwohner, LeerArbeiter);
@@ -63,10 +62,12 @@ package StadtKonstanten is
    LeerBonusWirtschaft : constant ProduktionDatentypen.Feldproduktion := 0;
    LeerBonusKampf : constant KampfDatentypen.KampfwerteEinheiten := KampfDatentypen.KampfwerteEinheiten'First;
    LeerBasisgrundBenötigt : constant Boolean := False;
-   LeerZusatzgrundBenötigt : constant KartengrundDatentypen.Zusatzgrund_Enum := KartengrundDatentypen.Leer_Zusatzgrund_Enum;
+   LeerZusatzgrundBenötigt : constant Boolean := False;
    LeerFlussBenötigt : constant Boolean := False;
    LeerRessourceBenötigt : constant Boolean := False;
    LeerVerbesserungBenötigt : constant Boolean := False;
+   LeerWegBenötigt : constant Boolean := False;
+   LeerEbeneBenötigt : constant Boolean := False;
    LeerSpezielleEigenschaft : constant StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := StadtDatentypen.Leer_Gebäude_Spezielle_Egienschaft_Enum;
    
    
@@ -76,7 +77,7 @@ package StadtKonstanten is
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
                                                                    SystemDatentypen.Anfangswert_Enum =>
                                                                      (
-                                                                      SpeziesDatentypen.Menschen_Enum         => 100,
+                                                                      SpeziesDatentypen.Menschen_Enum         => 10,
                                                                       SpeziesDatentypen.Kasrodiah_Enum        => 10,
                                                                       SpeziesDatentypen.Lasupin_Enum          => 10,
                                                                       SpeziesDatentypen.Lamustra_Enum         => 10,
@@ -98,7 +99,7 @@ package StadtKonstanten is
 
                                                                    SystemDatentypen.Endwert_Enum =>
                                                                      (
-                                                                      SpeziesDatentypen.Menschen_Enum         => 100,
+                                                                      SpeziesDatentypen.Menschen_Enum         => 20,
                                                                       SpeziesDatentypen.Kasrodiah_Enum        => 20,
                                                                       SpeziesDatentypen.Lasupin_Enum          => 20,
                                                                       SpeziesDatentypen.Lamustra_Enum         => 20,

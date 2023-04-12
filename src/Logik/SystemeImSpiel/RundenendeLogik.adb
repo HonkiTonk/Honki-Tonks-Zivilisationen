@@ -1,6 +1,9 @@
 with SystemDatentypen;
 with TextnummernKonstanten;
 with GrafikDatentypen;
+with EinheitenKonstanten;
+with StadtKonstanten;
+with KartenverbesserungDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -8,6 +11,9 @@ with SchreibeAllgemeines;
 with LeseAllgemeines;
 with LeseDiplomatie;
 with SchreibeDiplomatie;
+with LeseGrenzen;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
 with StadtwachstumLogik;
 with ForschungsfortschrittLogik;
@@ -22,6 +28,7 @@ with VerbesserungFertiggestelltLogik;
 with NachGrafiktask;
 with JaNeinLogik;
 with AbspannLogik;
+with GlobalesWachstumLogik;
 
 with KIRundenende;
 
@@ -56,11 +63,12 @@ package body RundenendeLogik is
                
             when others =>
                MeldungenSetzenLogik.MeldungenRundenende (SpeziesExtern => SpeziesSchleifenwert);
-               EinheitenmodifizierungLogik.HeilungBewegungspunkteNeueRundeErmitteln (SpeziesExtern => SpeziesSchleifenwert);
-               VerbesserungFertiggestelltLogik.VerbesserungFertiggestellt (SpeziesExtern => SpeziesSchleifenwert);
-               StadtwachstumLogik.StadtWachstum (SpeziesExtern => SpeziesSchleifenwert);
-               StadtproduktionLogik.StadtproduktionRundenende (SpeziesExtern => SpeziesSchleifenwert);
+               
+               BerechnungenEinheiten (SpeziesExtern => SpeziesSchleifenwert);
+               BerechnungenStädte (SpeziesExtern => SpeziesSchleifenwert);
+               
                ForschungsfortschrittLogik.Forschungsfortschritt (SpeziesExtern => SpeziesSchleifenwert);
+               -- Sollte die Forschung nicht vor dem Fortschritt hinzugefügt werden? Und sollte das Hinzufügen vielleicht nicht Teil des Fortschritts sein? äöü
                GeldForschung (SpeziesExtern => SpeziesSchleifenwert);
                Diplomatie (SpeziesExtern => SpeziesSchleifenwert);
          end case;
@@ -75,7 +83,7 @@ package body RundenendeLogik is
             when SpeziesDatentypen.KI_Spieler_Enum =>
                KIRundenende.Rundenende (SpeziesExtern => SpeziesSchleifenwert);
                
-            when others =>
+            when SpeziesDatentypen.Leer_Spieler_Enum =>
                null;
          end case;
          
@@ -93,6 +101,56 @@ package body RundenendeLogik is
       return True;
       
    end BerechnungenRundenende;
+   
+   
+   
+   procedure BerechnungenEinheiten
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+   is begin
+      
+      EinheitenSchleife:
+      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
+         
+         case
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert))
+         is
+            when EinheitenKonstanten.LeerID =>
+               null;
+                  
+            when others =>
+               EinheitenmodifizierungLogik.HeilungBewegungspunkteNeueRunde (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert));
+               VerbesserungFertiggestelltLogik.VerbesserungFertiggestellt (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert));
+         end case;
+            
+      end loop EinheitenSchleife;
+      
+   end BerechnungenEinheiten;
+   
+   
+   
+   procedure BerechnungenStädte
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+   is begin
+      
+      StadtSchleife:
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
+                  
+         case
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
+         is
+            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+               null;
+               
+            when others =>
+               StadtwachstumLogik.WachstumEinwohner (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
+               StadtproduktionLogik.StadtProduktionBerechnung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
+         end case;
+            
+      end loop StadtSchleife;
+            
+      GlobalesWachstumLogik.WachstumsratenBerechnen (SpeziesExtern => SpeziesExtern);
+      
+   end BerechnungenStädte;
    
    
    
@@ -149,20 +207,19 @@ package body RundenendeLogik is
    
    procedure GeldForschung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-   is
-      use type SpeziesDatentypen.Spezies_Enum;
-   begin
+   is begin
       
-      if
-        SpeziesExtern = SpeziesDatentypen.Ekropa_Enum
-      then
-         null;
+      case
+        SpeziesExtern
+      is
+         when SpeziesDatentypen.Ekropa_Enum =>
+            null;
                   
-      else
-         SchreibeWichtiges.Geldmenge (SpeziesExtern       => SpeziesExtern,
-                                      GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => SpeziesExtern)),
-                                      RechnenSetzenExtern => True);
-      end if;
+         when others =>
+            SchreibeWichtiges.Geldmenge (SpeziesExtern       => SpeziesExtern,
+                                         GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => SpeziesExtern)),
+                                         RechnenSetzenExtern => True);
+      end case;
                
       SchreibeWichtiges.Forschungsmenge (SpeziesExtern           => SpeziesExtern,
                                          ForschungZugewinnExtern => LeseWichtiges.GesamteForschungsrate (SpeziesExtern => SpeziesExtern),

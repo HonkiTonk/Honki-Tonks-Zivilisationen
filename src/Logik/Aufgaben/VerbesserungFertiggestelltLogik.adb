@@ -17,29 +17,6 @@ with FeldeffektEntfernenLogik;
 package body VerbesserungFertiggestelltLogik is
 
    procedure VerbesserungFertiggestellt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-   is begin
-      
-      EinheitenSchleife:
-      for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
-         
-         case
-           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert))
-         is
-            when EinheitenKonstanten.LeerID =>
-               null;
-
-            when others =>
-               VerbesserungFertiggestelltPrüfen (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert));
-         end case;
-                  
-      end loop EinheitenSchleife;
-      
-   end VerbesserungFertiggestellt;
-
-
-
-   procedure VerbesserungFertiggestelltPrüfen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type ProduktionDatentypen.Arbeitszeit;
@@ -69,7 +46,7 @@ package body VerbesserungFertiggestelltLogik is
          null;
       end if;
       
-   end VerbesserungFertiggestelltPrüfen;
+   end VerbesserungFertiggestellt;
    
    
    

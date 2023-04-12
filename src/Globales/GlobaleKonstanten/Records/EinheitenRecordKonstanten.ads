@@ -32,6 +32,7 @@ package EinheitenRecordKonstanten is
                                                                                  Produktionskosten       => EinheitenKonstanten.LeerPreisRessourcen,
                                                                                  PermanenteKosten        => (others => EinheitenKonstanten.LeerPermanenteKosten),
                                                                                  Anforderungen           => EinheitenKonstanten.LeerAnforderungen,
+                                                                                 NotwendigeGebäude       => (others => EinheitenKonstanten.LeerGebäudeBenötigt),
                                                                                  Passierbarkeit          => (others => EinheitenKonstanten.LeerPassierbarkeit),
                                                                                  MaximaleLebenspunkte    => EinheitenKonstanten.LeerMaximaleLebenspunkte,
                                                                                  MaximaleBewegungspunkte => EinheitenKonstanten.LeerMaximaleBewegungspunkte,

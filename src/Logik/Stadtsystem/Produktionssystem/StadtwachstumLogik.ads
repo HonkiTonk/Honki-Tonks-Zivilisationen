@@ -1,22 +1,23 @@
 with SpeziesDatentypen;
+with StadtRecords;
+with StadtKonstanten;
 
 private with ProduktionDatentypen;
-private with StadtRecords;
-private with StadtKonstanten;
 
 with LeseSpeziesbelegung;
-
-private with LeseGrenzen;
+with LeseGrenzen;
 
 package StadtwachstumLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    
-   procedure StadtWachstum
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+   procedure WachstumEinwohner
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
      with
        Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
       
 private
@@ -72,16 +73,7 @@ private
                                                                         SpeziesDatentypen.Tesorahn_Enum         => 5,
                                                                         SpeziesDatentypen.Talbidahr_Enum        => 5
                                                                        );
-   
-   procedure WachstumEinwohner
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-
+      
    procedure WachstumProduktion
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
      with

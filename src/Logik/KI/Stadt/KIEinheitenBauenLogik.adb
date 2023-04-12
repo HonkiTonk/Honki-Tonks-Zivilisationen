@@ -6,7 +6,7 @@ with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
 with LeseWichtiges;
 
-with EinheitenmodifizierungLogik;
+with EinheitenanforderungenLogik;
 with Fehlermeldungssystem;
 
 with KIKonstanten;
@@ -56,8 +56,8 @@ package body KIEinheitenBauenLogik is
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          case
-           EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                     IDExtern                 => EinheitenSchleifenwert)
+           EinheitenanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                              IDExtern                 => EinheitenSchleifenwert)
          is
             when True =>
                Einheitwertung := EinheitBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
@@ -98,9 +98,9 @@ package body KIEinheitenBauenLogik is
    begin
       
       case
-        EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                  IDExtern                 => LeseEinheitenDatenbank.VerbesserungZu (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                                                                     IDExtern      => IDExtern))
+        EinheitenanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                           IDExtern                 => LeseEinheitenDatenbank.VerbesserungZu (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
+                                                                                                                              IDExtern      => IDExtern))
       is
          when True =>
             return KIDatentypen.BauenBewertung'First;

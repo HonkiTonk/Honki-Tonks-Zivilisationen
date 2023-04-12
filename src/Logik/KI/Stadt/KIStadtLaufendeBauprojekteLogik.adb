@@ -11,7 +11,7 @@ package body KIStadtLaufendeBauprojekteLogik is
       BauprojektExtern : in StadtRecords.BauprojektRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
    is
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
       
       GleichesGebäudeBauprojekt := StadtKonstanten.LeerNummer;
@@ -51,7 +51,7 @@ package body KIStadtLaufendeBauprojekteLogik is
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is
       use type EinheitenDatentypen.Einheitart_Enum;
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
       
       GleichesEinheitenBauprojekt := EinheitenKonstanten.LeerNummer;
@@ -92,7 +92,7 @@ package body KIStadtLaufendeBauprojekteLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
       
       EinheitenImBau := EinheitenKonstanten.LeerNummer;

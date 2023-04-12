@@ -7,7 +7,7 @@ with LeseGebaeudeDatenbank;
 with LeseStadtGebaut;
 with LeseWichtiges;
 
-with GebaeudeAllgemeinLogik;
+with GebaeudeanforderungenLogik;
 with KIKriegErmittelnLogik;
 
 package body KIGebaeudeBauenLogik is
@@ -26,8 +26,8 @@ package body KIGebaeudeBauenLogik is
       for GebäudeSchleifenwert in StadtRecords.GebäudeVorhandenArray'Range loop
          
          case
-           GebaeudeAllgemeinLogik.GebäudeAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                 IDExtern                 => GebäudeSchleifenwert)
+           GebaeudeanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                             IDExtern                 => GebäudeSchleifenwert)
          is
             when True =>
                Gebäudewertung := GebäudeBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,

@@ -6,7 +6,7 @@ package body LeseStadtGebaut is
 
    function ID
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+      return KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum
    is begin
       
       return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).ID;

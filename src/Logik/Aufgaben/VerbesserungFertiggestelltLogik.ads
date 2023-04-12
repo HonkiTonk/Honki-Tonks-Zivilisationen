@@ -1,24 +1,25 @@
 with SpeziesDatentypen;
+with EinheitenRecords;
+with EinheitenKonstanten;
 
-private with EinheitenRecords;
 private with AufgabenDatentypen;
 private with KartenverbesserungDatentypen;
 private with KartenRecords;
-private with EinheitenKonstanten;
 
 with LeseSpeziesbelegung;
-
-private with LeseGrenzen;
+with LeseGrenzen;
 
 package VerbesserungFertiggestelltLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-
+   
    procedure VerbesserungFertiggestellt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      with
        Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
 private
@@ -27,21 +28,12 @@ private
    
    Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   type VerbesserungArray is array (AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum'Range) of KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
+   type VerbesserungArray is array (AufgabenDatentypen.Einheitenbefehle_Gebilde_Enum'Range) of KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum;
    Verbesserung : constant VerbesserungArray := (
                                                  AufgabenDatentypen.Mine_Bauen_Enum    => KartenverbesserungDatentypen.Mine_Enum,
                                                  AufgabenDatentypen.Farm_Bauen_Enum    => KartenverbesserungDatentypen.Farm_Enum,
                                                  AufgabenDatentypen.Festung_Bauen_Enum => KartenverbesserungDatentypen.Festung_Enum
                                                 );
-   
-   procedure VerbesserungFertiggestelltPrüfen
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-     with
-       Pre => (
-                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
    
    procedure VerbesserungAngelegt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

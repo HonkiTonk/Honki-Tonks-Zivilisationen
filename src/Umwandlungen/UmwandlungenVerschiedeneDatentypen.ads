@@ -10,10 +10,10 @@ package UmwandlungenVerschiedeneDatentypen is
 
    function BefehleNachKartenverbesserung
      (TasteExtern : in BefehleDatentypen.Siedler_Konstruktionen_Enum)
-      return KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
+      return KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum;
    
    function KartenverbesserungNachBefehle
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum)
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum)
       return BefehleDatentypen.Siedler_Konstruktionen_Enum;
    
    function RückgabeNachSpezies
@@ -34,14 +34,14 @@ package UmwandlungenVerschiedeneDatentypen is
    
 private
    
-   type BefehleKartenverbesserungArray is array (BefehleDatentypen.Siedler_Konstruktionen_Enum'Range) of KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum;
+   type BefehleKartenverbesserungArray is array (BefehleDatentypen.Siedler_Konstruktionen_Enum'Range) of KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum;
    BefehleKartenverbesserung : constant BefehleKartenverbesserungArray := (
                                                                            BefehleDatentypen.Mine_Bauen_Enum    => KartenverbesserungDatentypen.Mine_Enum,
                                                                            BefehleDatentypen.Farm_Bauen_Enum    => KartenverbesserungDatentypen.Farm_Enum,
                                                                            BefehleDatentypen.Festung_Bauen_Enum => KartenverbesserungDatentypen.Festung_Enum
                                                                           );
    
-   type KartenverbesserungBefehleArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range) of BefehleDatentypen.Siedler_Konstruktionen_Enum;
+   type KartenverbesserungBefehleArray is array (KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum'Range) of BefehleDatentypen.Siedler_Konstruktionen_Enum;
    KartenverbesserungBefehle : constant KartenverbesserungBefehleArray := (
                                                                            KartenverbesserungDatentypen.Mine_Enum    => BefehleDatentypen.Mine_Bauen_Enum,
                                                                            KartenverbesserungDatentypen.Farm_Enum    => BefehleDatentypen.Farm_Bauen_Enum,

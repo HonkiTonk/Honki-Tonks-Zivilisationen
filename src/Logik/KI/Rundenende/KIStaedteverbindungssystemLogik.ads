@@ -36,7 +36,7 @@ private
    Leerwert : Boolean;
    TechnologieVorhanden : Boolean;
       
-   VorhandenerWeg : KartenverbesserungDatentypen.Karten_Weg_Enum;
+   VorhandenerWeg : KartenverbesserungDatentypen.Weg_Enum;
 
    Startgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
    Zielgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;

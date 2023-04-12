@@ -1,9 +1,9 @@
-# Honki Tonk´s Zivilisationen - Version: 0.04.9530
+# Honki Tonk´s Zivilisationen - Version: 0.04.9630
 Der Code meines 4X-Rundenstrategiespiels.
-Geschrieben in Ada mit der Standardbibliothek und [ASFML](https://github.com/mgrojo/ASFML). Nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren.
+Geschrieben in Ada unter Verwendung der Ada Standardbibliothek, der [ASFML](https://github.com/mgrojo/ASFML), der [CSFML 2.5.1](https://github.com/SFML/CSFML) und der [SFML 2.5.1](https://github.com/SFML/SFML). Nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren.
 
 The Code of my 4X turn-based strategy game.
-Written in Ada using the Standard Library and [ASFML](https://github.com/mgrojo/ASFML). Only tested intensively under Linux, but should also work without problems under other operating systems.
+Written in Ada using the Ada Standard Library, the [ASFML](https://github.com/mgrojo/ASFML), the [CSFML 2.5.1](https://github.com/SFML/CSFML) and the [SFML 2.5.1](https://github.com/SFML/SFML). Only tested intensively under Linux, but should also work without problems under other operating systems.
 
 Mich unterstützen/Support me:
 

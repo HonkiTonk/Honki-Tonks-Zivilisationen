@@ -16,8 +16,8 @@ package body VerbesserungPluendernLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
-      use type KartenverbesserungDatentypen.Karten_Weg_Enum;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Weg_Enum;
    begin
             
       if

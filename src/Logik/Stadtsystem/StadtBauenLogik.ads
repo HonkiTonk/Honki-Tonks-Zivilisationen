@@ -31,9 +31,9 @@ package StadtBauenLogik is
               );
 
 private
-   use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+   use type KartenverbesserungDatentypen.Verbesserung_Enum;
 
-   Stadtart : KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum;
+   Stadtart : KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
 
    WelcherWeg : AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
 
@@ -95,7 +95,7 @@ private
 
    function HauptstadtPrüfen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return KartenverbesserungDatentypen.Karten_Verbesserung_Städte_Enum
+      return KartenverbesserungDatentypen.Verbesserung_Städte_Enum
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

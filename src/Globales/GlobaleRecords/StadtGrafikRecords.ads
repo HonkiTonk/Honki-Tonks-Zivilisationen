@@ -11,7 +11,7 @@ package StadtGrafikRecords is
       
       SpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
       
-      ID : KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+      ID : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
       Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
       EinwohnerArbeiter : StadtRecords.EinwohnerArbeiterArray;
       

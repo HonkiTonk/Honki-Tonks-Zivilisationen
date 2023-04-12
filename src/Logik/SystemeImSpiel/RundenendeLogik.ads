@@ -24,6 +24,20 @@ private
                                                                                  SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum => 1
                                                                                 );
 
+   procedure BerechnungenEinheiten
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+
+   procedure BerechnungenStädte
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+
    procedure GeldForschung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with

@@ -5,8 +5,8 @@ with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 
 with TasteneingabeLogik;
-with GebaeudeAllgemeinLogik;
-with EinheitenmodifizierungLogik;
+with GebaeudeanforderungenLogik;
+with EinheitenanforderungenLogik;
 with NachGrafiktask;
 with InteraktionAuswahl;
 with MausauswahlLogik;
@@ -79,8 +79,8 @@ package body StadtbausystemLogik is
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
-         InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := GebaeudeAllgemeinLogik.GebäudeAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                                                                               IDExtern                 => GebäudeSchleifenwert);
+         InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) := GebaeudeanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                                                                                           IDExtern                 => GebäudeSchleifenwert);
          
          if
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert) = True
@@ -113,8 +113,8 @@ package body StadtbausystemLogik is
       for EinheitSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
          if
-           True = EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                            IDExtern                 => EinheitSchleifenwert)
+           True = EinheitenanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                                     IDExtern                 => EinheitSchleifenwert)
          then
             InteraktionAuswahl.MöglicheEinheiten (EinheitSchleifenwert) := True;
             

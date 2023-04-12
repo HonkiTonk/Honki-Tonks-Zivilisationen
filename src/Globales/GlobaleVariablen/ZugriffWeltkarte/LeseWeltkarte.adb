@@ -146,7 +146,7 @@ package body LeseWeltkarte is
    
    function Weg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenverbesserungDatentypen.Karten_Weg_Enum
+      return KartenverbesserungDatentypen.Weg_Enum
    is begin
             
       case
@@ -165,7 +165,7 @@ package body LeseWeltkarte is
    
    function Verbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenverbesserungDatentypen.Karten_Verbesserung_Enum
+      return KartenverbesserungDatentypen.Verbesserung_Enum
    is begin
       
       case

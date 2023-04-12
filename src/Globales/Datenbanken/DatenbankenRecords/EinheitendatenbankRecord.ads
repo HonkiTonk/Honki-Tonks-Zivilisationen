@@ -5,9 +5,13 @@ with StadtRecords;
 with ForschungenDatentypen;
 with KampfDatentypen;
 with KartenRecords;
+with StadtDatentypen;
 
+-- Voraussetzungen wie beim GebäudedatenbankRecord erweitern? äöü
 package EinheitendatenbankRecord is
    pragma Preelaborate;
+   
+   type NotwendigeGebäudeArray is array (StadtDatentypen.GebäudeID'Range) of Boolean;
    
    type EinheitenlisteRecord is record
       
@@ -16,6 +20,7 @@ package EinheitendatenbankRecord is
       Produktionskosten : ProduktionDatentypen.Lagermenge;
       PermanenteKosten : StadtRecords.PermanenteKostenArray;
       Anforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
+      NotwendigeGebäude : NotwendigeGebäudeArray;
 
       Passierbarkeit : DatenbankRecords.PassierbarkeitArray;
       

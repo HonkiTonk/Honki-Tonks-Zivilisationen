@@ -18,6 +18,7 @@ package DebugobjekteLogik is
                                                                              Produktionskosten       => 1,
                                                                              PermanenteKosten        => (others => 0),
                                                                              Anforderungen           => -1,
+                                                                             NotwendigeGebäude       => (others => False),
                                                                              Passierbarkeit          => (others => True),
                                                                              MaximaleLebenspunkte    => EinheitenDatentypen.VorhandeneLebenspunkte'Last,
                                                                              MaximaleBewegungspunkte => EinheitenDatentypen.VorhandeneBewegungspunkte'Last,

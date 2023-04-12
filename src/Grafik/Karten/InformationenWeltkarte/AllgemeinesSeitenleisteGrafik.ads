@@ -29,8 +29,8 @@ private
    
    KartenRessource : KartenextraDatentypen.Ressourcen_Enum;
 
-   KartenVerbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
-   KartenWeg : KartenverbesserungDatentypen.Karten_Weg_Enum;
+   KartenVerbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
+   KartenWeg : KartenverbesserungDatentypen.Weg_Enum;
    
    Textbreite : Float;
    

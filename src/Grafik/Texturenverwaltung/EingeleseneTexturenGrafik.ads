@@ -42,10 +42,10 @@ package EingeleseneTexturenGrafik is
    KartenressourceAccess : KartenressourcenAccessArray := (others => null);
 
    -- Auch auf Spezies erweitern, damit man verschieden aussehende Städte/Verbesserungen hat? äöü
-   type VerbesserungenAccessArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   type VerbesserungenAccessArray is array (KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    VerbesserungenAccess : VerbesserungenAccessArray := (others => null);
 
-   type WegeAccessArray is array (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   type WegeAccessArray is array (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    WegeAccess : WegeAccessArray := (others => null);
 
    type SpezieshintergrundAccessArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;

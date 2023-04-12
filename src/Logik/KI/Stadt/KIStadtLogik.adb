@@ -12,7 +12,7 @@ with LeseDiplomatie;
 
 with EinheitSuchenLogik;
 with KartenkoordinatenberechnungssystemLogik;
-with EinheitenmodifizierungLogik;
+with EinheitenanforderungenLogik;
 
 with KIDatentypen;
 
@@ -243,8 +243,8 @@ package body KIStadtLogik is
             null;
             
          elsif
-           True = EinheitenmodifizierungLogik.EinheitAnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                            IDExtern                 => EinheitenSchleifenwert)
+           True = EinheitenanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                                     IDExtern                 => EinheitenSchleifenwert)
          then
             AktuelleEinheit := NotfalleinheitBauen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                     AktuelleEinheitExtern    => AktuelleEinheit,

@@ -38,7 +38,7 @@ package body KIStadtSuchenLogik is
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtDatentypen.MaximaleStädteMitNullWert
    is
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
       use type KartenDatentypen.Ebene;
    begin
       
@@ -89,7 +89,7 @@ package body KIStadtSuchenLogik is
      (FeindlicheSpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
       
       StadtSchleife:

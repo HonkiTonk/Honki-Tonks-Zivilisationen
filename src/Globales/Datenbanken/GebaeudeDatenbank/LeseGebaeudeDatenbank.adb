@@ -148,6 +148,27 @@ package body LeseGebaeudeDatenbank is
       end case;
       
    end BasisgrundBenötigt;
+   
+   
+   
+   function ZusatzgrundBenötigt
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      GrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
+      return Boolean
+   is begin
+      
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return False;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).ZusatzgrundBenötigt (GrundExtern);
+      end case;
+      
+   end ZusatzgrundBenötigt;
 
 
 
@@ -175,7 +196,7 @@ package body LeseGebaeudeDatenbank is
    function RessourceBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
       return Boolean
    is begin
       
@@ -196,7 +217,7 @@ package body LeseGebaeudeDatenbank is
    function VerbesserungBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
       return Boolean
    is begin
       
@@ -211,6 +232,27 @@ package body LeseGebaeudeDatenbank is
       end case;
      
    end VerbesserungBenötigt;
+   
+   
+   
+   function WegBenötigt
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
+      return Boolean
+   is begin
+      
+      case
+        IDExtern
+      is
+         when StadtKonstanten.LeerGebäudeID =>
+            return False;
+            
+         when others =>
+            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).WegBenötigt (WegExtern);
+      end case;
+      
+   end WegBenötigt;
      
      
      

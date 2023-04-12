@@ -5,27 +5,41 @@ with LeseStadtGebaut;
 with LeseGebaeudeDatenbank;
 
 with KartenkoordinatenberechnungssystemLogik;
+with ForschungstestsLogik;
 
 -- Um da UND und ODER ein die Anforderungen zu bekommen müsste man hier alles noch einmal deutlich überarbeiten. äöü
--- Die Prüfungen können verkürzt werden indem ich nur Bereichsarten durchgehe, beispielsweise statt alle Gebirge nur Gebirge'Range und entsprechend auch alles so prüfe. äöü
-package body GebaeudeumgebungLogik is
-
-   function RichtigeUmgebungVorhanden
+package body GebaeudeanforderungenLogik is
+   
+   -- Sollte ein Gebäude für eine Spezies nicht existieren dann einfach die Forschugnsanforderungen auf -1 setzen.
+   function AnforderungenErfüllt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      GebäudeIDExtern : in StadtDatentypen.GebäudeID)
+      IDExtern : in StadtDatentypen.GebäudeID)
       return Boolean
    is begin
-      
+            
       if
+        True = LeseStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                  WelchesGebäudeExtern     => IDExtern)
+      then
+         return False;
+            
+      elsif
+        False = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
+                                                           TechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
+                                                                                                                     IDExtern      => IDExtern))
+      then
+         return False;
+            
+      elsif
         True = LeseGebaeudeDatenbank.FalscheEbene (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                   IDExtern      => GebäudeIDExtern,
+                                                   IDExtern      => IDExtern,
                                                    EbeneExtern   => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).EAchse)
       then
          return False;
          
       elsif
         False = NotwendigeGebäudeVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                             GebäudeIDExtern          => GebäudeIDExtern)
+                                             GebäudeIDExtern          => IDExtern)
       then
          return False;
          
@@ -33,16 +47,10 @@ package body GebaeudeumgebungLogik is
          UmgebungDurchgehen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
          
          return NotwendigeUmgebung (SpeziesExtern   => StadtSpeziesNummerExtern.Spezies,
-                                    GebäudeIDExtern => GebäudeIDExtern);
-         -- Anforderungen.NotwendigFluss := LeseGebaeudeDatenbank.FlussBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-         --                                                                       IDExtern      => GebäudeIDExtern);
-         -- Anforderungen.NotwendigeRessource := LeseGebaeudeDatenbank.RessourceBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-         --                                                                                IDExtern      => GebäudeIDExtern);
-         -- Anforderungen.NotwendigeVerbesserung := LeseGebaeudeDatenbank.VerbesserungBenötigt (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-         --                                                                                      IDExtern      => GebäudeIDExtern);
+                                    GebäudeIDExtern => IDExtern);
       end if;
-            
-   end RichtigeUmgebungVorhanden;
+      
+   end AnforderungenErfüllt;
    
    
    
@@ -113,9 +121,11 @@ package body GebaeudeumgebungLogik is
                
             else
                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenWert);
+               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KartenWert);
                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Fluss := LeseWeltkarte.Fluss (KoordinatenExtern => KartenWert);
                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Ressource := LeseWeltkarte.Ressource (KoordinatenExtern => KartenWert);
                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Verbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => KartenWert);
+               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Weg := LeseWeltkarte.Weg (KoordinatenExtern => KartenWert);
             end if;
             
          end loop XAchseSchleife;
@@ -144,9 +154,11 @@ package body GebaeudeumgebungLogik is
             
          elsif
            True = UmgebungVorhanden (BasisgrundExtern   => BasisgrundSchleifenwert,
+                                     ZusatzgrundExtern  => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
                                      FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
                                      RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
-                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum)
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
+                                     WegExtern          => KartenverbesserungDatentypen.Leer_Weg_Enum)
          then
             null;
             
@@ -155,6 +167,32 @@ package body GebaeudeumgebungLogik is
          end if;
          
       end loop BasisgrundSchleife;
+      
+      ZusatzgrundSchleife:
+      for ZusatzgrundSchleifenwert in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range loop
+         
+         if
+           False = LeseGebaeudeDatenbank.ZusatzgrundBenötigt (SpeziesExtern => SpeziesExtern,
+                                                               IDExtern      => GebäudeIDExtern,
+                                                               GrundExtern   => ZusatzgrundSchleifenwert)
+         then
+            null;
+            
+         elsif
+           True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
+                                     ZusatzgrundExtern  => ZusatzgrundSchleifenwert,
+                                     FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
+                                     RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
+                                     WegExtern          => KartenverbesserungDatentypen.Leer_Weg_Enum)
+         then
+            null;
+            
+         else
+            return False;
+         end if;
+         
+      end loop ZusatzgrundSchleife;
       
       FlussSchleife:
       for FlussSchleifenwert in KartenextraDatentypen.Fluss_Vorhanden_Enum'Range loop
@@ -168,9 +206,11 @@ package body GebaeudeumgebungLogik is
             
          elsif
            True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
+                                     ZusatzgrundExtern  => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
                                      FlussExtern        => FlussSchleifenwert,
                                      RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
-                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum)
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
+                                     WegExtern          => KartenverbesserungDatentypen.Leer_Weg_Enum)
          then
             null;
             
@@ -192,9 +232,11 @@ package body GebaeudeumgebungLogik is
             
          elsif
            True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
+                                     ZusatzgrundExtern  => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
                                      FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
                                      RessourceExtern    => RessourcenSchleifenwert,
-                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum)
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
+                                     WegExtern          => KartenverbesserungDatentypen.Leer_Weg_Enum)
          then
             null;
             
@@ -205,7 +247,7 @@ package body GebaeudeumgebungLogik is
       end loop RessourcenSchleife;
       
       VerbesserungenSchleife:
-      for VerbesserungenSchleifenwert in KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range loop
+      for VerbesserungenSchleifenwert in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range loop
          
          if
            False = LeseGebaeudeDatenbank.VerbesserungBenötigt (SpeziesExtern      => SpeziesExtern,
@@ -216,9 +258,11 @@ package body GebaeudeumgebungLogik is
             
          elsif
            True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
+                                     ZusatzgrundExtern  => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
                                      FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
                                      RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
-                                     VerbesserungExtern => VerbesserungenSchleifenwert)
+                                     VerbesserungExtern => VerbesserungenSchleifenwert,
+                                     WegExtern          => KartenverbesserungDatentypen.Leer_Weg_Enum)
          then
             null;
             
@@ -227,6 +271,32 @@ package body GebaeudeumgebungLogik is
          end if;
          
       end loop VerbesserungenSchleife;
+      
+      WegeSchleife:
+      for WegeSchleifenwert in KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Range loop
+         
+         if
+           False = LeseGebaeudeDatenbank.WegBenötigt (SpeziesExtern => SpeziesExtern,
+                                                       IDExtern      => GebäudeIDExtern,
+                                                       WegExtern     => WegeSchleifenwert)
+         then
+            null;
+            
+         elsif
+           True = UmgebungVorhanden (BasisgrundExtern   => KartengrundDatentypen.Leer_Basisgrund_Enum,
+                                     ZusatzgrundExtern  => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
+                                     FlussExtern        => KartenextraDatentypen.Leer_Fluss_Enum,
+                                     RessourceExtern    => KartenextraDatentypen.Leer_Ressource_Enum,
+                                     VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum,
+                                     WegExtern          => WegeSchleifenwert)
+         then
+            null;
+            
+         else
+            return False;
+         end if;
+         
+      end loop WegeSchleife;
      
       return True;
    
@@ -236,15 +306,19 @@ package body GebaeudeumgebungLogik is
 
    function UmgebungVorhanden
      (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
+      ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
-      VerbesserungExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
       return Boolean
    is
       use type KartengrundDatentypen.Basisgrund_Enum;
+      use type KartengrundDatentypen.Zusatzgrund_Enum;
       use type KartenextraDatentypen.Fluss_Enum;
       use type KartenextraDatentypen.Ressourcen_Enum;
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Weg_Enum;
    begin
       
       YAchseSchleife:
@@ -256,6 +330,13 @@ package body GebaeudeumgebungLogik is
               BasisgrundExtern /= KartengrundDatentypen.Leer_Basisgrund_Enum
               and then
                 Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Basisgrund = BasisgrundExtern
+            then
+               return True;
+               
+            elsif
+              ZusatzgrundExtern /= KartengrundDatentypen.Leer_Zusatzgrund_Enum
+              and then
+                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Zusatzgrund = ZusatzgrundExtern
             then
                return True;
                
@@ -280,6 +361,13 @@ package body GebaeudeumgebungLogik is
             then
                return True;
                
+            elsif
+              WegExtern /= KartenverbesserungDatentypen.Leer_Weg_Enum
+              and then
+                Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Weg = WegExtern
+            then
+               return True;
+               
             else
                null;
             end if;
@@ -291,4 +379,4 @@ package body GebaeudeumgebungLogik is
       
    end UmgebungVorhanden;
      
-end GebaeudeumgebungLogik;
+end GebaeudeanforderungenLogik;

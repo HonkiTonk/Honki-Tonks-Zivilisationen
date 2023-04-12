@@ -40,6 +40,10 @@ package body Grafik is
       -- Das Setzen der Schriftart kann scheinbar erst nach dem Erzeugen eines Fensters stattfinden.
       -- Oder habe ich zu dem Zeitpunkt den Font noch nicht eingelesen? Mal nachprüfen. äöü
       FensterGrafik.FensterErzeugen;
+      
+      -- Aus irgendeinen Grund scheint das Windows zu brauchen, obwohl diese Werte bereits in StandardSpielwerteSetzenLogik.StandardspielwerteGrafik berechnet werden.
+      -- Später (erst nach der Veröffentlichung von GNAT 13) mal nachprüfen warum. äöü
+      -- Oder liegt das daran dass die Fenstergröße erst jetzt bekannt ist? Mal nachprüfen. äöü
       SichtweitenGrafik.KartenfelderAbmessungBerechnen;
       SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
       

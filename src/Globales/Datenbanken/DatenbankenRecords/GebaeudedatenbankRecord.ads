@@ -8,8 +8,18 @@ with KampfDatentypen;
 with StadtRecords;
 with KartenextraDatentypen;
 
+-- Wenn ich die Array als Record mit zwei Booleans gestalte,
+-- dann könnte ich einen Boolean verwenden um zu Prüfen ob das jeweilige Objekt zum Bau benötigt wird und den zweite Boolean ob es sich um ein UND oder ein ODER handelt. äöü
+-- Alle Objekte mit UND müssen dann vorhanden sein und alle mit ODER müssen nur eines davon da sein. äöü
 package GebaeudedatenbankRecord is
    pragma Preelaborate;
+   
+   type NotwendigkeitRecord is record
+      
+      Notwendig : Boolean;
+      UndOder : Boolean;
+      
+   end record;
 
    -- Die Bonus, Kosten und Kampfbereiche auf ein Enum anstelle eines Arrays umschreiben? äöü
    -- Dann passt das aber auch nicht mehr einfach in eine Schleife. äöü
@@ -26,8 +36,8 @@ package GebaeudedatenbankRecord is
    -- Das erlaubt eine Beschränung auf eine Flussart, aber nicht eine Notwendigkeit für mehrere Flussstück, später mal überarbeiten. äöü
    type FlussArray is array (KartenextraDatentypen.Fluss_Vorhanden_Enum'Range) of Boolean;
    type RessourcenArray is array (KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range) of Boolean;
-   type VerbesserungenArray is array (KartenverbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of Boolean;
-   type WegeArray is array (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of Boolean;
+   type VerbesserungenArray is array (KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range) of Boolean;
+   type WegeArray is array (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Range) of Boolean;
    
    -- Da müsste man dann immer darauf achten dass das Gebäude sich nicht selbst benötigt, oder Gebäude benötigt die dieses Gebäude zum Bau benötigt. äöü
    type GebäudeArray is array (StadtDatentypen.GebäudeID'Range) of Boolean;
@@ -48,17 +58,14 @@ package GebaeudedatenbankRecord is
       
       GebäudeBenötigt : GebäudeArray;
       
-      -- Das hier vielleicht noch einmal umbenennen und auch entsprechend die Funktion in der LeseGebäudedatenbank anpassen? äöü
-      -- Wäre vielleicht eine sinnvollere Benennung. äöü
       EbeneBenötigt : EbenenArray;
       BasisgrundBenötigt : BasisgrundArray;
-      -- ZusatzgrundBenötigt : ZusatzgrundArray;
+      ZusatzgrundBenötigt : ZusatzgrundArray;
       
       FlussBenötigt : FlussArray;
       RessourceBenötigt : RessourcenArray;
       VerbesserungBenötigt : VerbesserungenArray;
-      -- WegeBenötigt : WegeArray;
-      
+      WegBenötigt : WegeArray;
       
       -- Spezielle Eigenschaft durch Koruptionsreduktion ersetzen und spezielle Eigenschaften stattdessen in Speziesspezifische Wunder einbauen? äöü
       SpezielleEigenschaft : StadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;

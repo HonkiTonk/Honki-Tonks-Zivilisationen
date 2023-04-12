@@ -10,7 +10,7 @@ package body WegeplatzierungssystemLogik is
    procedure Wegentfernung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
-      use type KartenverbesserungDatentypen.Karten_Weg_Enum;
+      use type KartenverbesserungDatentypen.Weg_Enum;
    begin
       
       SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
@@ -116,7 +116,7 @@ package body WegeplatzierungssystemLogik is
       end loop YAchseSchleife;
       
       SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                             WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Enum'Val (Wegwert (Wegumgebung.Links, Wegumgebung.Rechts, Wegumgebung.Oben, Wegumgebung.Unten) + Wegtyp (WegartExtern)));
+                             WegExtern         => KartenverbesserungDatentypen.Weg_Enum'Val (Wegwert (Wegumgebung.Links, Wegumgebung.Rechts, Wegumgebung.Oben, Wegumgebung.Unten) + Wegtyp (WegartExtern)));
       
    end Wegplatzierung;
    
@@ -136,9 +136,9 @@ package body WegeplatzierungssystemLogik is
             return False;
             
          when others =>
-            ZwischenWeg := KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
+            ZwischenWeg := KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
             SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                                   WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeLinks (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
+                                   WegExtern         => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (WegeLinks (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
       
@@ -160,9 +160,9 @@ package body WegeplatzierungssystemLogik is
             return False;
             
          when others =>
-            ZwischenWeg := KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
+            ZwischenWeg := KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
             SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                                   WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeRechts (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
+                                   WegExtern         => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (WegeRechts (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
       
@@ -184,9 +184,9 @@ package body WegeplatzierungssystemLogik is
             return False;
             
          when others =>
-            ZwischenWeg := KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
+            ZwischenWeg := KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
             SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                                   WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeOben (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
+                                   WegExtern         => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (WegeOben (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
       
@@ -208,9 +208,9 @@ package body WegeplatzierungssystemLogik is
             return False;
             
          when others =>
-            ZwischenWeg := KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
+            ZwischenWeg := KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (WelcherWeg) - (Wegtyp (StandardWeg (WelcherWeg))));
             SchreibeWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern,
-                                   WegExtern         => KartenverbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Val (WegeUnten (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
+                                   WegExtern         => KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Val (WegeUnten (ZwischenWeg) + Wegtyp (StandardWeg (WelcherWeg))));
             return True;
       end case;
       

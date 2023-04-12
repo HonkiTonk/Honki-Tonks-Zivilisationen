@@ -1,7 +1,6 @@
 with StadtDatentypen;
 with EinheitenDatentypen;
 with KartenKonstanten;
-with KartenverbesserungDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -17,34 +16,9 @@ package body StadtproduktionLogik is
    is begin
       
       StadtProduktionBerechnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-      GlobalesWachstumLogik.WachstumWichtiges (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+      GlobalesWachstumLogik.WachstumsratenBerechnen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       
    end Stadtproduktion;
-   
-   
-   
-   procedure StadtproduktionRundenende
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-   is begin
-      
-      StadtSchleife:
-      for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
-                  
-         case
-           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummerSchleifenwert))
-         is
-            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-               null;
-                  
-            when others =>
-               StadtProduktionBerechnung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummerSchleifenwert));
-         end case;
-               
-      end loop StadtSchleife;
-               
-      GlobalesWachstumLogik.WachstumWichtiges (SpeziesExtern => SpeziesExtern);
-      
-   end StadtproduktionRundenende;
    
 
 
@@ -62,7 +36,6 @@ package body StadtproduktionLogik is
       WeitereProduktionrateÄnderungen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       -- Geldgewinnung muss immer nach der Produktionsrate ausgeführt werden, da bei keinem Bauprojekt sonst die Ressourcenumwandlung nach Geld nicht korrekt ist.
-      -- Aktuell werden Ressourcen nicht in Geld umgewandelt, so lassen oder später wieder ändern? äöü
       case
         StadtSpeziesNummerExtern.Spezies
       is
@@ -196,7 +169,7 @@ package body StadtproduktionLogik is
                                       ÄndernSetzenExtern       => False);
       SchreibeStadtGebaut.Zufriedenheit (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                          ZufriedenheitExtern      => StadtKonstanten.LeerZufriedenheit,
-                                         ÄndernSetzenExtern      => False);
+                                         ÄndernSetzenExtern       => False);
       
    end StadtProduktionNullSetzen;
    
@@ -220,6 +193,9 @@ package body StadtproduktionLogik is
       
       VorhandeneEinwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                 EinwohnerArbeiterExtern  => True);
+      
+      -- Vorhandene Einwohner und die Korruption könnten auch in ein konstantes Array gepackt werden. äöü
+      -- Warum ist das nicht auch einfach Korruption? äöü
       case
         VorhandeneEinwohner
       is

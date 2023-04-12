@@ -30,19 +30,21 @@ package StadtRecordKonstanten is
                                                           );
    
    LeerGebäudeListe : constant GebaeudedatenbankRecord.GebäudelisteRecord := (
-                                                                                PreisGeld                   => StadtKonstanten.LeerPreisGeld,
-                                                                                Produktionskosten           => StadtKonstanten.LeerPreisRessourcen,
-                                                                                PermanenteKosten            => (others => StadtKonstanten.LeerPermanenteKosten),
-                                                                                Anforderungen               => StadtKonstanten.LeerAnforderungen,
-                                                                                BonusWirtschaft             => (others => StadtKonstanten.LeerBonusWirtschaft),
-                                                                                BonusKampf                  => (others => StadtKonstanten.LeerBonusKampf),
-                                                                                BasisgrundBenötigt          => (others => StadtKonstanten.LeerBasisgrundBenötigt),
-                                                                                FlussBenötigt               => (others => StadtKonstanten.LeerFlussBenötigt),
-                                                                                RessourceBenötigt           => (others => StadtKonstanten.LeerRessourceBenötigt),
-                                                                                VerbesserungBenötigt        => (others => StadtKonstanten.LeerVerbesserungBenötigt),
-                                                                                GebäudeBenötigt             => (others => StadtKonstanten.LeerGebäudeBenötigt),
-                                                                                EbeneBenötigt               => (others => False),
-                                                                                SpezielleEigenschaft        => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                                PreisGeld            => StadtKonstanten.LeerPreisGeld,
+                                                                                Produktionskosten    => StadtKonstanten.LeerPreisRessourcen,
+                                                                                PermanenteKosten     => (others => StadtKonstanten.LeerPermanenteKosten),
+                                                                                Anforderungen        => StadtKonstanten.LeerAnforderungen,
+                                                                                BonusWirtschaft      => (others => StadtKonstanten.LeerBonusWirtschaft),
+                                                                                BonusKampf           => (others => StadtKonstanten.LeerBonusKampf),
+                                                                                BasisgrundBenötigt   => (others => StadtKonstanten.LeerBasisgrundBenötigt),
+                                                                                ZusatzgrundBenötigt  => (others => StadtKonstanten.LeerZusatzgrundBenötigt),
+                                                                                FlussBenötigt        => (others => StadtKonstanten.LeerFlussBenötigt),
+                                                                                RessourceBenötigt    => (others => StadtKonstanten.LeerRessourceBenötigt),
+                                                                                VerbesserungBenötigt => (others => StadtKonstanten.LeerVerbesserungBenötigt),
+                                                                                WegBenötigt          => (others => StadtKonstanten.LeerWegBenötigt),
+                                                                                GebäudeBenötigt      => (others => StadtKonstanten.LeerGebäudeBenötigt),
+                                                                                EbeneBenötigt        => (others => StadtKonstanten.LeerEbeneBenötigt),
+                                                                                SpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
                                                                                );
 
 end StadtRecordKonstanten;

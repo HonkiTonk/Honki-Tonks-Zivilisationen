@@ -192,7 +192,7 @@ package body PassierbarkeitspruefungLogik is
                   
                when others =>
                   if
-                    LeseWeltkarte.Weg (KoordinatenExtern => Ekropaumgebung) in KartenverbesserungDatentypen.Karten_Schiene_Enum'Range
+                    LeseWeltkarte.Weg (KoordinatenExtern => Ekropaumgebung) in KartenverbesserungDatentypen.Schiene_Enum'Range
                   then
                      return True;
                      

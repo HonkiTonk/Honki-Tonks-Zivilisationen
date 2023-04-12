@@ -13,7 +13,7 @@ package body SchreibeStadtGebaut is
 
    procedure ID
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum)
+      IDExtern : in KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum)
    is begin
       
       GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).ID := IDExtern;

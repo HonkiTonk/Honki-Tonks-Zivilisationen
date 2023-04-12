@@ -52,7 +52,7 @@ package body StadtEntfernenLogik is
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
                                       VerbesserungExtern => KartenverbesserungDatentypen.Leer_Verbesserung_Enum);
       SchreibeStadtGebaut.Nullsetzung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-      GlobalesWachstumLogik.WachstumWichtiges (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+      GlobalesWachstumLogik.WachstumsratenBerechnen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       SchreibeWichtiges.AnzahlStädte (SpeziesExtern   => StadtSpeziesNummerExtern.Spezies,
                                        PlusMinusExtern => False);
       SpeziesEntfernenLogik.SpeziesExistenzPrüfen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
@@ -90,7 +90,7 @@ package body StadtEntfernenLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
-      use type KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
       
       case

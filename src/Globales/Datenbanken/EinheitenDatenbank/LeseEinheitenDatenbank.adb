@@ -122,6 +122,27 @@ package body LeseEinheitenDatenbank is
    end Anforderungen;
    
    
+   
+   function GebäudeBenötigt
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      GebäudeExtern : in StadtDatentypen.GebäudeID)
+      return Boolean
+   is begin
+            
+      case
+        IDExtern
+      is
+         when EinheitenKonstanten.LeerID =>
+            return False;
+            
+         when others =>
+            return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).NotwendigeGebäude (GebäudeExtern);
+      end case;
+      
+   end GebäudeBenötigt;
+   
+   
 
    function Passierbarkeit
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;

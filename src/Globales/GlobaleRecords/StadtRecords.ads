@@ -54,7 +54,7 @@ package StadtRecords is
 
    type StadtGebautRecord is record
       
-      ID : KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+      ID : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
       KoordinatenAktuell : KartenRecords.AchsenKartenfeldNaturalRecord;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       

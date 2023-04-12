@@ -92,7 +92,7 @@ package LeseWeltkarte is
 
    function Weg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenverbesserungDatentypen.Karten_Weg_Enum
+      return KartenverbesserungDatentypen.Weg_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -102,7 +102,7 @@ package LeseWeltkarte is
 
    function Verbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenverbesserungDatentypen.Karten_Verbesserung_Enum
+      return KartenverbesserungDatentypen.Verbesserung_Enum
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

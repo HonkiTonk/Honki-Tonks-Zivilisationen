@@ -20,8 +20,8 @@ package WeltkarteRecords is
       Fluss : KartenextraDatentypen.Fluss_Enum;
       Ressource : KartenextraDatentypen.Ressourcen_Enum;
       
-      Weg : KartenverbesserungDatentypen.Karten_Weg_Enum;
-      Verbesserung : KartenverbesserungDatentypen.Karten_Verbesserung_Enum;
+      Weg : KartenverbesserungDatentypen.Weg_Enum;
+      Verbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
       
       Einheit : EinheitenRecords.SpeziesEinheitnummerRecord;
       

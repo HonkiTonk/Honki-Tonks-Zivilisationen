@@ -27,7 +27,7 @@ package LeseStadtGebaut is
    
    function ID
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return KartenverbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+      return KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

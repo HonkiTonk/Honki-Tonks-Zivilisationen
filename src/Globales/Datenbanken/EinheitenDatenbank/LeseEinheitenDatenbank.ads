@@ -5,6 +5,7 @@ with ProduktionDatentypen;
 with KampfDatentypen;
 with KartenRecords;
 with KartengrundDatentypen;
+with StadtDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -53,6 +54,16 @@ package LeseEinheitenDatenbank is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return ForschungenDatentypen.ForschungIDNichtMöglich
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
+   function GebäudeBenötigt
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      GebäudeExtern : in StadtDatentypen.GebäudeID)
+      return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
