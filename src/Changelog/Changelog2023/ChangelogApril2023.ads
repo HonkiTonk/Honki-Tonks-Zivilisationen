@@ -112,15 +112,16 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (14.04.2023):
+   -- Version 0.04.9655 => 0.04. (14.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9630 => 0.04. (13.04.2023):
+   -- Version 0.04.9630 => 0.04.9655 (13.04.2023):
    
+   -- Alire aktualisiert.
    -- 
    -- Kleinigkeiten korrigiert.
    
