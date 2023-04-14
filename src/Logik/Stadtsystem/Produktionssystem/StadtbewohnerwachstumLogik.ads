@@ -7,11 +7,11 @@ private with ProduktionDatentypen;
 with LeseSpeziesbelegung;
 with LeseGrenzen;
 
-package StadtwachstumLogik is
+package StadtbewohnerwachstumLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   
-   procedure WachstumEinwohner
+
+   procedure Einwohner
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
      with
        Pre => (
@@ -19,7 +19,7 @@ package StadtwachstumLogik is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
-      
+   
 private
    
    WachstumSchrumpfung : Boolean;
@@ -28,8 +28,6 @@ private
    
    VorhandeneNahrung : ProduktionDatentypen.Stadtproduktion;
    ProduzierteNahrung : ProduktionDatentypen.Stadtproduktion;
-   
-   Bauprojekt : StadtRecords.BauprojektRecord;
    
    type EinwohnerwachstumArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ProduktionDatentypen.Feldproduktion;
    GrundwertEinwohnerwachstum : constant EinwohnerwachstumArray := (
@@ -73,16 +71,7 @@ private
                                                                         SpeziesDatentypen.Tesorahn_Enum         => 5,
                                                                         SpeziesDatentypen.Talbidahr_Enum        => 5
                                                                        );
-      
-   procedure WachstumProduktion
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   
+            
    procedure EinwohnerÄnderung
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       WachstumSchrumpfungExtern : in Boolean)
@@ -113,4 +102,4 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
-end StadtwachstumLogik;
+end StadtbewohnerwachstumLogik;

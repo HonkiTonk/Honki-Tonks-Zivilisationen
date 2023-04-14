@@ -12,7 +12,7 @@ package StadtRecordKonstanten is
                                                            EinwohnerArbeiter       => StadtKonstanten.LeerEinwohnerArbeiter,
                                                            Nahrungsmittel          => StadtKonstanten.LeerNahrungsmittel,
                                                            Nahrungsproduktion      => StadtKonstanten.LeerNahrungsproduktion,
-                                                           Ressourcen              => StadtKonstanten.LeerRessourcen,
+                                                           Material                => StadtKonstanten.LeerMaterial,
                                                            Produktionrate          => StadtKonstanten.LeerProduktionrate,
                                                            Geldgewinnung           => StadtKonstanten.LeerGeldgewinnung,
                                                            PermanenteKostenPosten  => (others => StadtKonstanten.LeerPermanenteKosten),

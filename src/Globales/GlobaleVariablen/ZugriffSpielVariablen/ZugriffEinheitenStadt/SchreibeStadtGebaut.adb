@@ -183,9 +183,9 @@ package body SchreibeStadtGebaut is
    
    
    
-   procedure Ressourcen
+   procedure Material
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      RessourcenExtern : in ProduktionDatentypen.Produktion;
+      MaterialExtern : in ProduktionDatentypen.Produktion;
       ÄndernSetzenExtern : in Boolean)
    is
       use type ProduktionDatentypen.Produktion;
@@ -196,27 +196,27 @@ package body SchreibeStadtGebaut is
       is
          when True =>
             if
-              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Ressourcen + RessourcenExtern >= ProduktionDatentypen.StadtLagermenge'Last
+              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Material + MaterialExtern >= ProduktionDatentypen.StadtLagermenge'Last
             then
-               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Ressourcen := ProduktionDatentypen.StadtLagermenge'Last;
+               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Material := ProduktionDatentypen.StadtLagermenge'Last;
                
             elsif
-              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Ressourcen + RessourcenExtern <= StadtKonstanten.LeerRessourcen
+              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Material + MaterialExtern <= StadtKonstanten.LeerMaterial
             then
-               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Ressourcen := StadtKonstanten.LeerRessourcen;
+               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Material := StadtKonstanten.LeerMaterial;
                
             else
-               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Ressourcen
-                 := GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Ressourcen + RessourcenExtern;
+               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Material
+                 := GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Material + MaterialExtern;
             end if;
             
          when False =>
-            GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Ressourcen := RessourcenExtern;
+            GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Material := MaterialExtern;
       end case;
       
       Bauzeit (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
-   end Ressourcen;
+   end Material;
    
    
    
@@ -397,14 +397,14 @@ package body SchreibeStadtGebaut is
          GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Bauzeit
            := (LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                         IDExtern    => StadtDatentypen.GebäudeID (GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Bauprojekt.Gebäude))
-               - GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Ressourcen)
+               - GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Material)
              / GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Produktionrate;
                   
       else
          GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Bauzeit
            := (LeseEinheitenDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                          IDExtern    => EinheitenDatentypen.EinheitenID (GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Bauprojekt.Einheit))
-               - GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Ressourcen)
+               - GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Material)
              / GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Produktionrate;
       end if;
       

@@ -105,24 +105,28 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (15.04.2023):
+   -- Version 0.04.9730 => 0.04. (15.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9655 => 0.04. (14.04.2023):
+   -- Version 0.04.9665 => 0.04.9730 (14.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Grafiken teilweise auf Größe und Geschwindigkeit optimiert.
+   -- Fehler korrigiert der verhinderte dass die Stadtproduktion zum Baumprojekt der Stadt hinzugefügt wurde.
+   -- Interne Benennung und Struktur überarbeitet, vor allem um altes Zeug besser lesbar und bearbeitbar zu gestalten.
+   -- Alle Werte werden jetzt auch vor dem Laden auf Standard zurückgesetzt.
+   -- Angefangen häufig verwendete Arraytypen in eigene Datein auszulagern, damit sie nur einmal angelegt werden müssen.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.04.9630 => 0.04.9655 (13.04.2023):
+   -- Version 0.04.9630 => 0.04.9665 (13.04.2023):
    
    -- Alire aktualisiert.
-   -- 
+   -- Grafiken teilweise auf Größe und Geschwindigkeit optimiert.
    -- Kleinigkeiten korrigiert.
    
    

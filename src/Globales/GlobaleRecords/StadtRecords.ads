@@ -7,6 +7,7 @@ with ProduktionDatentypen;
 with KartenDatentypen;
 with KartenRecords;
 with KartenverbesserungDatentypen;
+with StadtArrays;
 
 with KIDatentypen;
 
@@ -47,11 +48,12 @@ package StadtRecords is
    -- XXX äöü
    -- Wenn ich ein Record für das Array hier anlege, dann könnten darin die bereits erzeugten Ressourcen gespeichert werden und beim Wechsel des Bauprojekts blieben die angefangenen Gebäude erhalten. äöü
    -- Ginge auch bei Einheiten, ist da aber vielleicht nicht so sinnvoll. äöü
-   type GebäudeVorhandenArray is array (StadtDatentypen.GebäudeID'Range) of Boolean;
    type StadtMeldungenArray is array (StadtDatentypen.Stadt_Meldung_Art_Enum'Range) of StadtDatentypen.Stadt_Meldung_Enum;
    type UmgebungBewirtschaftungArray is array (KartenDatentypen.UmgebungsbereichDrei'Range, KartenDatentypen.UmgebungsbereichDrei'Range) of Boolean;
    type PermanenteKostenArray is array (ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of ProduktionDatentypen.Stadtproduktion;
 
+   -- Es gibt noch keine Werte für Verschmutzung, weil das noch relativ neu ist. äöü
+   -- Sollte man in Städte nur Verschmutzung haben oder sie wie bei den Waffen/Feldeffekten aufteilen? äöü
    type StadtGebautRecord is record
       
       ID : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
@@ -60,7 +62,7 @@ package StadtRecords is
       
       Nahrungsmittel : ProduktionDatentypen.Stadtproduktion;
       Nahrungsproduktion : ProduktionDatentypen.Stadtproduktion;
-      Ressourcen : ProduktionDatentypen.StadtLagermenge;
+      Material : ProduktionDatentypen.StadtLagermenge;
       Produktionrate : ProduktionDatentypen.Stadtproduktion;
       Geldgewinnung : ProduktionDatentypen.Stadtproduktion;
       PermanenteKostenPosten : PermanenteKostenArray;
@@ -71,7 +73,7 @@ package StadtRecords is
 
       Korruption : ProduktionDatentypen.Stadtproduktion;
       Zufriedenheit : ProduktionDatentypen.Feldproduktion;
-      GebäudeVorhanden : GebäudeVorhandenArray;
+      GebäudeVorhanden : StadtArrays.GebäudeArray;
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : UmgebungBewirtschaftungArray;

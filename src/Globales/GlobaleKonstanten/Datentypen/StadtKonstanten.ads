@@ -32,7 +32,7 @@ package StadtKonstanten is
    LeerEinwohnerArbeiter : constant StadtRecords.EinwohnerArbeiterArray := (LeerEinwohner, LeerArbeiter);
    LeerNahrungsmittel : constant ProduktionDatentypen.StadtLagermenge := 0;
    LeerNahrungsproduktion : constant ProduktionDatentypen.Stadtproduktion := 0;
-   LeerRessourcen : constant ProduktionDatentypen.StadtLagermenge := 0;
+   LeerMaterial : constant ProduktionDatentypen.StadtLagermenge := 0;
    LeerProduktionrate : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerGeldgewinnung : constant ProduktionDatentypen.Stadtproduktion := 0;
    LeerPermanenteKosten : constant ProduktionDatentypen.Stadtproduktion := 0;

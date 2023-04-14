@@ -7,6 +7,7 @@ with StadtDatentypen;
 with KampfDatentypen;
 with StadtRecords;
 with KartenextraDatentypen;
+with StadtArrays;
 
 -- Wenn ich die Array als Record mit zwei Booleans gestalte,
 -- dann könnte ich einen Boolean verwenden um zu Prüfen ob das jeweilige Objekt zum Bau benötigt wird und den zweite Boolean ob es sich um ein UND oder ein ODER handelt. äöü
@@ -39,12 +40,12 @@ package GebaeudedatenbankRecord is
    type VerbesserungenArray is array (KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Range) of Boolean;
    type WegeArray is array (KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Range) of Boolean;
    
-   -- Da müsste man dann immer darauf achten dass das Gebäude sich nicht selbst benötigt, oder Gebäude benötigt die dieses Gebäude zum Bau benötigt. äöü
-   type GebäudeArray is array (StadtDatentypen.GebäudeID'Range) of Boolean;
    
    -- Bei der Ebene reicht immer ein ODER, da eine Stadt sich ja niemals auf zwei Ebenen gleichzeitig befinden kann!
    type EbenenArray is array (KartenDatentypen.EbeneVorhanden'Range) of Boolean;
    
+   -- Es gibt auch noch keine Änderungen für Korruption, Zufriedenheit, Verschmutzung, usw.. äöü
+   -- Städte haben generell noch keine Verschmutzungswerte weil Verschmutzung erst relativ neu ist. äöü
    type GebäudelisteRecord is record
       
       PreisGeld : ProduktionDatentypen.Lagermenge;
@@ -56,7 +57,7 @@ package GebaeudedatenbankRecord is
       BonusWirtschaft : BonusWirtschaftArray;
       BonusKampf : BonusKampfArray;
       
-      GebäudeBenötigt : GebäudeArray;
+      GebäudeBenötigt : StadtArrays.GebäudeArray;
       
       EbeneBenötigt : EbenenArray;
       BasisgrundBenötigt : BasisgrundArray;

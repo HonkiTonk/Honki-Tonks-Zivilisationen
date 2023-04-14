@@ -3,6 +3,7 @@ with SpeziesDatentypen;
 with ProduktionDatentypen;
 with KartenRecords;
 with KartenverbesserungDatentypen;
+with StadtArrays;
 
 package StadtGrafikRecords is
    pragma Preelaborate;
@@ -26,7 +27,7 @@ package StadtGrafikRecords is
 
       Korruption : ProduktionDatentypen.Stadtproduktion;
       
-      GebäudeVorhanden : StadtRecords.GebäudeVorhandenArray;
+      GebäudeVorhanden : StadtArrays.GebäudeArray;
       
       UmgebungBewirtschaftung : StadtRecords.UmgebungBewirtschaftungArray;
       
@@ -40,7 +41,7 @@ package StadtGrafikRecords is
       
       Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
       
-      GebäudeVorhanden : StadtRecords.GebäudeVorhandenArray;
+      GebäudeVorhanden : StadtArrays.GebäudeArray;
       
    end record;
    

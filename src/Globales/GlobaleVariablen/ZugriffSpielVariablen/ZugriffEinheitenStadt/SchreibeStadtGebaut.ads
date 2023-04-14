@@ -89,9 +89,9 @@ package SchreibeStadtGebaut is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   procedure Ressourcen
+   procedure Material
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      RessourcenExtern : in ProduktionDatentypen.Produktion;
+      MaterialExtern : in ProduktionDatentypen.Produktion;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre => (

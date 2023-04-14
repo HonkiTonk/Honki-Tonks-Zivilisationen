@@ -23,7 +23,6 @@ with TasteneingabeGrafik;
 with AbspannGrafik;
 with VerkaufsauswahlGrafik;
 with UebergabeRecordErmittelnGrafik;
--- with Diagnoseinformationen;
 
 package body Grafik is
    
@@ -44,10 +43,9 @@ package body Grafik is
       -- Aus irgendeinen Grund scheint das Windows zu brauchen, obwohl diese Werte bereits in StandardSpielwerteSetzenLogik.StandardspielwerteGrafik berechnet werden.
       -- Später (erst nach der Veröffentlichung von GNAT 13) mal nachprüfen warum. äöü
       -- Oder liegt das daran dass die Fenstergröße erst jetzt bekannt ist? Mal nachprüfen. äöü
-      SichtweitenGrafik.KartenfelderAbmessungBerechnen;
-      SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
+      -- SichtweitenGrafik.KartenfelderAbmessungBerechnen;
+      -- SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
       
-      -- Diagnoseinformationen.Größenprüfung;
       Startzeit := Clock;
       
       GrafikSchleife:

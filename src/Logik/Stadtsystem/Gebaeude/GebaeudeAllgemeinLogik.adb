@@ -15,9 +15,9 @@ package body GebaeudeAllgemeinLogik is
       IDExtern : in StadtDatentypen.GebäudeID)
    is begin
       
-      SchreibeStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                      RessourcenExtern         => StadtKonstanten.LeerRessourcen,
-                                      ÄndernSetzenExtern       => False);
+      SchreibeStadtGebaut.Material (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                    MaterialExtern           => StadtKonstanten.LeerMaterial,
+                                    ÄndernSetzenExtern       => False);
       SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                       BauprojektExtern         => StadtKonstanten.LeerBauprojekt);
       SchreibeStadtGebaut.GebäudeVorhanden (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,

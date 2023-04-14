@@ -10,6 +10,7 @@ with KartenverbesserungDatentypen;
 with StadtRecords;
 with KartenKonstanten;
 with StadtKonstanten;
+with StadtArrays;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -102,7 +103,7 @@ package LeseStadtGebaut is
               );
    pragma Inline (Nahrungsproduktion);
    
-   function Ressourcen
+   function Material
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.StadtLagermenge
      with
@@ -111,7 +112,7 @@ package LeseStadtGebaut is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
-   pragma Inline (Ressourcen);
+   pragma Inline (Material);
    
    function Produktionrate
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
@@ -222,7 +223,7 @@ package LeseStadtGebaut is
    
    function AlleGebäude
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtRecords.GebäudeVorhandenArray
+      return StadtArrays.GebäudeArray
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

@@ -23,6 +23,7 @@ with LadezeitenLogik;
 with NachGrafiktask;
 with SpielstandlisteLogik;
 with MeldungFestlegenLogik;
+with StandardSpielwerteSetzenLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenLogik is
@@ -61,6 +62,8 @@ package body LadenLogik is
                MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungUnladbar);
                
             when True =>
+               StandardSpielwerteSetzenLogik.Standardspielwerte (EinstellungenBehaltenExtern => True);
+               
                Open (File => DateiLaden,
                      Mode => In_File,
                      Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)));

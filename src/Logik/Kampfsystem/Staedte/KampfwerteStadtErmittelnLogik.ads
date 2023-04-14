@@ -1,8 +1,8 @@
 with SpeziesDatentypen;
 with KampfDatentypen;
-with StadtRecords;
 with KartenverbesserungDatentypen;
 with KartenRecords;
+with StadtArrays;
 
 with LeseSpeziesbelegung;
 
@@ -14,7 +14,7 @@ package KampfwerteStadtErmittelnLogik is
      (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      GebäudeExtern : in StadtRecords.GebäudeVorhandenArray)
+      GebäudeExtern : in StadtArrays.GebäudeArray)
       return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
@@ -25,7 +25,7 @@ package KampfwerteStadtErmittelnLogik is
      (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      GebäudeExtern : in StadtRecords.GebäudeVorhandenArray)
+      GebäudeExtern : in StadtArrays.GebäudeArray)
       return KampfDatentypen.KampfwerteGroß
      with
        Pre => (

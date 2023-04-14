@@ -15,7 +15,7 @@ with LeseGrenzen;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
-with StadtwachstumLogik;
+with StadtmaterialwachstumLogik;
 with ForschungsfortschrittLogik;
 with StadtproduktionLogik;
 with SiegbedingungenLogik;
@@ -29,6 +29,7 @@ with NachGrafiktask;
 with JaNeinLogik;
 with AbspannLogik;
 with GlobalesWachstumLogik;
+with StadtbewohnerwachstumLogik;
 
 with KIRundenende;
 
@@ -50,6 +51,7 @@ package body RundenendeLogik is
       end case;
       
       -- Hier immer beachten in welcher Reihenfolge was aufgerufen wird, sonst könnte es zu Problemen führen!
+      -- Immer erst die aktuellen Werte hinzufügen und dann für die nächste Runde die neuen Produktionswerte berechnen!
       SpeziesSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
@@ -64,13 +66,14 @@ package body RundenendeLogik is
             when others =>
                MeldungenSetzenLogik.MeldungenRundenende (SpeziesExtern => SpeziesSchleifenwert);
                
+               -- Sollte die Forschung nicht vor dem Fortschritt hinzugefügt werden? Und sollte das Hinzufügen vielleicht nicht Teil des Fortschritts sein? äöü
+               GeldForschung (SpeziesExtern => SpeziesSchleifenwert);
+               Diplomatie (SpeziesExtern => SpeziesSchleifenwert);
+               
                BerechnungenEinheiten (SpeziesExtern => SpeziesSchleifenwert);
                BerechnungenStädte (SpeziesExtern => SpeziesSchleifenwert);
                
                ForschungsfortschrittLogik.Forschungsfortschritt (SpeziesExtern => SpeziesSchleifenwert);
-               -- Sollte die Forschung nicht vor dem Fortschritt hinzugefügt werden? Und sollte das Hinzufügen vielleicht nicht Teil des Fortschritts sein? äöü
-               GeldForschung (SpeziesExtern => SpeziesSchleifenwert);
-               Diplomatie (SpeziesExtern => SpeziesSchleifenwert);
          end case;
          
          case
@@ -142,7 +145,8 @@ package body RundenendeLogik is
                null;
                
             when others =>
-               StadtwachstumLogik.WachstumEinwohner (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
+               StadtmaterialwachstumLogik.Material (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
+               StadtbewohnerwachstumLogik.Einwohner (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
                StadtproduktionLogik.StadtProduktionBerechnung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
          end case;
             

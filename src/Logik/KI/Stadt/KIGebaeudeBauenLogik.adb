@@ -1,5 +1,6 @@
 with WichtigesKonstanten;
 with KartenKonstanten;
+with StadtArrays;
 
 with KIKonstanten;
 
@@ -23,7 +24,7 @@ package body KIGebaeudeBauenLogik is
       GebäudeBewertet := KIKonstanten.LeerGebäudebewertung;
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtRecords.GebäudeVorhandenArray'Range loop
+      for GebäudeSchleifenwert in StadtArrays.GebäudeArray'Range loop
          
          case
            GebaeudeanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,

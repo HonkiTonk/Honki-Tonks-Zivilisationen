@@ -84,14 +84,14 @@ package body LeseStadtGebaut is
    
    
    
-   function Ressourcen
+   function Material
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return ProduktionDatentypen.StadtLagermenge
    is begin
       
-      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Ressourcen;
+      return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Material;
       
-   end Ressourcen;
+   end Material;
    
    
    
@@ -196,9 +196,9 @@ package body LeseStadtGebaut is
    
    
    
-   function AlleGebäude
+    function AlleGebäude
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return StadtRecords.GebäudeVorhandenArray
+      return StadtArrays.GebäudeArray
    is begin
       
       return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).GebäudeVorhanden;

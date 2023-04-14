@@ -35,9 +35,9 @@ package body StadtbausystemLogik is
       else
          SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                          BauprojektExtern         => NeuesBauprojekt);
-         SchreibeStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                         RessourcenExtern         => StadtKonstanten.LeerRessourcen,
-                                         ÄndernSetzenExtern       => False);
+         SchreibeStadtGebaut.Material (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                       MaterialExtern           => StadtKonstanten.LeerMaterial,
+                                       ÄndernSetzenExtern       => False);
       end if;
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;

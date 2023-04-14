@@ -6,13 +6,14 @@ with LeseVerbesserungenDatenbank;
 
 with KartenfelderwerteLogik;
 
+-- Warum übergebe ich hier denn das gesamte Gebäudearray? Das kann man bestimmt auch besser lösen, oder? äöü
 package body KampfwerteStadtErmittelnLogik is
 
    function AktuelleVerteidigungStadt
      (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      GebäudeExtern : in StadtRecords.GebäudeVorhandenArray)
+      GebäudeExtern : in StadtArrays.GebäudeArray)
       return KampfDatentypen.KampfwerteGroß
    is
       use type KampfDatentypen.KampfwerteGroß;
@@ -51,7 +52,7 @@ package body KampfwerteStadtErmittelnLogik is
      (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      GebäudeExtern : in StadtRecords.GebäudeVorhandenArray)
+      GebäudeExtern : in StadtArrays.GebäudeArray)
       return KampfDatentypen.KampfwerteGroß
    is
       use type KampfDatentypen.KampfwerteGroß;

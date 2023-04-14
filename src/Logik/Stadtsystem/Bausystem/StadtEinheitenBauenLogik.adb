@@ -106,11 +106,11 @@ package body StadtEinheitenBauenLogik is
       
       EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern        => KoordinatenExtern,
                                                        EinheitNummerExtern      => EinheitNummer,
-                                                       IDExtern                 =>  EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit),
+                                                       IDExtern                 => EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit),
                                                        StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-      SchreibeStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                      RessourcenExtern         => StadtKonstanten.LeerRessourcen,
-                                      ÄndernSetzenExtern       => False);
+      SchreibeStadtGebaut.Material (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                    MaterialExtern           => StadtKonstanten.LeerMaterial,
+                                    ÄndernSetzenExtern       => False);
       SchreibeStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                       BauprojektExtern         => StadtKonstanten.LeerBauprojekt);
             

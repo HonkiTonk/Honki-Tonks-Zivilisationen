@@ -1,23 +1,18 @@
-with EinheitenDatentypen;
-with StadtDatentypen;
 with SystemDatentypen;
+with StadtDatentypen;
 
 with SchreibeStadtGebaut;
-with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
-with LeseGebaeudeDatenbank;
 
 with StadtumgebungFestlegenLogik;
-with StadtEinheitenBauenLogik;
-with StadtGebaeudeBauenLogik;
 with StadtEntfernenLogik;
 with SichtbarkeitsberechnungssystemLogik;
 with MeldungenSetzenLogik;
 with FelderbewirtschaftungLogik;
 
-package body StadtwachstumLogik is
-   
-   procedure WachstumEinwohner
+package body StadtbewohnerwachstumLogik is
+
+   procedure Einwohner
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type ProduktionDatentypen.Produktion;
@@ -62,9 +57,7 @@ package body StadtwachstumLogik is
       EinwohnerÄnderung (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
                           WachstumSchrumpfungExtern => WachstumSchrumpfung);
       
-      WachstumProduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-      
-   end WachstumEinwohner;
+   end Einwohner;
    
    
    
@@ -149,57 +142,5 @@ package body StadtwachstumLogik is
       end case;
       
    end EinwohnerÄnderung;
-   
-   
-   
-   procedure WachstumProduktion
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-   is
-      use type StadtDatentypen.GebäudeIDMitNullwert;
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
-      use type ProduktionDatentypen.Produktion;
-   begin
-      
-      SchreibeStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                      RessourcenExtern         => LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                      ÄndernSetzenExtern       => True);
-      
-      Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-        
-      if
-        Bauprojekt.Gebäude = 0
-        and
-          Bauprojekt.Einheit = 0
-      then
-         SchreibeStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                         RessourcenExtern         => StadtKonstanten.LeerRessourcen,
-                                         ÄndernSetzenExtern       => False);
-         
-      elsif
-        Bauprojekt.Gebäude /= 0
-      then
-         if
-           LeseStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) >= LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                                                                         IDExtern      => StadtDatentypen.GebäudeID (Bauprojekt.Gebäude))
-         then
-            StadtGebaeudeBauenLogik.GebäudeFertiggestellt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-            
-         else
-            null;
-         end if;
-         
-      else
-         if
-           LeseStadtGebaut.Ressourcen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) >= LeseEinheitenDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                                                                                                          IDExtern      => EinheitenDatentypen.EinheitenID (Bauprojekt.Einheit))
-         then
-            StadtEinheitenBauenLogik.EinheitFertiggestellt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
 
-         else
-            null;
-         end if;
-      end if;
-      
-   end WachstumProduktion;
-
-end StadtwachstumLogik;
+end StadtbewohnerwachstumLogik;
