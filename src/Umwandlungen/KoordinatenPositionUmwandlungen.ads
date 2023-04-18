@@ -52,7 +52,7 @@ package KoordinatenPositionUmwandlungen is
    
 private
    
-   Sichtbereich : KartenDatentypen.KartenfeldPositiv;
+   Sichtbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
    
    Feldposition : Sf.System.Vector2.sfVector2f;
    

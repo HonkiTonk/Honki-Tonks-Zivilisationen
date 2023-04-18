@@ -6,12 +6,8 @@ with NachGrafiktask;
 
 package body TasteneingabeLogik is
    
-   function VereinfachteEingabe
-     return TastenbelegungDatentypen.Allgemeine_Belegung_Enum
-   is
-      use type Sf.Window.Mouse.sfMouseButton;
-      use type Sf.Window.Keyboard.sfKeyCode;
-   begin
+   procedure EingabeanfangSetzen
+   is begin
       
       NachLogiktask.GrafikWarten := True;
       NachGrafiktask.TastenEingabe := True;
@@ -20,6 +16,19 @@ package body TasteneingabeLogik is
       
       Maustaste := NachLogiktask.MausTaste;
       Taste := NachLogiktask.TastaturTaste;
+      
+   end EingabeanfangSetzen;
+   
+   
+   
+   function VereinfachteEingabe
+     return TastenbelegungDatentypen.Allgemeine_Belegung_Enum
+   is
+      use type Sf.Window.Mouse.sfMouseButton;
+      use type Sf.Window.Keyboard.sfKeyCode;
+   begin
+      
+      EingabeanfangSetzen;
       
       if
         Maustaste = Sf.Window.Mouse.sfMouseLeft
@@ -46,6 +55,7 @@ package body TasteneingabeLogik is
    end VereinfachteEingabe;
    
    
+   
    function AllgemeineTaste
      return TastenbelegungDatentypen.Allgemeine_Belegung_Enum
    is
@@ -53,13 +63,7 @@ package body TasteneingabeLogik is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
       
-      NachLogiktask.GrafikWarten := True;
-      NachGrafiktask.TastenEingabe := True;
-      
-      EingabeAllgemeinLogik.EingabeAbwarten;
-      
-      Maustaste := NachLogiktask.MausTaste;
-      Taste := NachLogiktask.TastaturTaste;
+      EingabeanfangSetzen;
       
       if
         Maustaste = Sf.Window.Mouse.sfMouseLeft
@@ -107,13 +111,7 @@ package body TasteneingabeLogik is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
       
-      NachLogiktask.GrafikWarten := True;
-      NachGrafiktask.TastenEingabe := True;
-      
-      EingabeAllgemeinLogik.EingabeAbwarten;
-      
-      Maustaste := NachLogiktask.MausTaste;
-      Taste := NachLogiktask.TastaturTaste;
+      EingabeanfangSetzen;
       
       if
         Maustaste = Sf.Window.Mouse.sfMouseLeft
@@ -161,13 +159,7 @@ package body TasteneingabeLogik is
       use type Sf.Window.Keyboard.sfKeyCode;
    begin
       
-      NachLogiktask.GrafikWarten := True;
-      NachGrafiktask.TastenEingabe := True;
-      
-      EingabeAllgemeinLogik.EingabeAbwarten;
-      
-      Maustaste := NachLogiktask.MausTaste;
-      Taste := NachLogiktask.TastaturTaste;
+      EingabeanfangSetzen;
       
       if
         Maustaste = Sf.Window.Mouse.sfMouseLeft

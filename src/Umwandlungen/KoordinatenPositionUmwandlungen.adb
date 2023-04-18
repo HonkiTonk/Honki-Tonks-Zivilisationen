@@ -18,14 +18,14 @@ package body KoordinatenPositionUmwandlungen is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
-      Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
+      Sichtbereich := SichtweitenGrafik.SichtbereichLesen;
       CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
       Feldposition := GrafikRecordKonstanten.Nullposition;
             
       YAchseSchleife:
-      for YAchseSchleifenwert in -Sichtbereich .. Sichtbereich loop
+      for YAchseSchleifenwert in -Sichtbereich.YAchse .. Sichtbereich.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -Sichtbereich .. Sichtbereich loop
+         for XAchseSchleifenwert in -Sichtbereich.XAchse .. Sichtbereich.XAchse loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -66,14 +66,14 @@ package body KoordinatenPositionUmwandlungen is
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       
-      Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
+      Sichtbereich := SichtweitenGrafik.SichtbereichLesen;
       CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
       Feldposition := GrafikRecordKonstanten.Nullposition;
             
       YAchseSchleife:
-      for YAchseSchleifenwert in -Sichtbereich .. Sichtbereich loop
+      for YAchseSchleifenwert in -Sichtbereich.YAchse .. Sichtbereich.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -Sichtbereich .. Sichtbereich loop
+         for XAchseSchleifenwert in -Sichtbereich.XAchse .. Sichtbereich.XAchse loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),

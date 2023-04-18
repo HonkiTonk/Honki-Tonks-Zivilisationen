@@ -36,12 +36,16 @@ private
    EinheitFolgen : Boolean;
    
    AktuelleSichtweite : KartenDatentypen.KartenfeldPositiv;
+   Sichthöhe : KartenDatentypen.KartenfeldPositiv;
+   Sichtbreite : KartenDatentypen.KartenfeldPositiv;
    
    XAchsenbereich : Float;
          
    Scrollzeit : Time := Clock;
    
+   YAchseÜbergänge : KartenRecords.KartenformYAchseRecord;
    XAchseÜbergänge : KartenRecords.KartenformXAchseRecord;
+   Sichtbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
    
    Mausposition : Sf.System.Vector2.sfVector2f;
    Viewfläche : Sf.System.Vector2.sfVector2f;

@@ -3,9 +3,9 @@ with Sf.Graphics.Rect;
 
 with SpeziesDatentypen;
 with KartenDatentypen;
+with KartenRecords;
 
 private with TastenbelegungDatentypen;
-private with KartenRecords;
 
 -- Das Ganze später besser aufteilen? äöü
 -- Um ein im Kreis linken zu verhindern erst einmal die KartenberechnungenGrafik hier mit rein geschoben. äöü
@@ -27,17 +27,17 @@ package SichtweitenGrafik is
    function SichtbreiteLesen
      return KartenDatentypen.KartenfeldPositiv;
    
+   function SichtbereichLesen
+     return KartenRecords.YXAchsenKartenfeldPositivRecord;
+   
    function BewegungshöheLesen
      return KartenDatentypen.KartenfeldPositiv;
    
    function BewegungsbreiteLesen
      return KartenDatentypen.KartenfeldPositiv;
-      
-   function SichtweiteLesen
-     return KartenDatentypen.KartenfeldPositiv;
    
-   function BewegungsfeldLesen
-     return KartenDatentypen.KartenfeldPositiv;
+   function BewegungsbereichLesen
+     return KartenRecords.YXAchsenKartenfeldPositivRecord;
    
    -- Hier keinen Contract einfügen, da die Grafik möglicherweise noch einmal darauf zugreift nachdem die SpielerSpezies besiegt und entfernt wurde.
    function UntenRechts
@@ -84,6 +84,9 @@ private
    MinimaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv'First;
    StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 4;
    AktuelleZoomstufe : KartenDatentypen.KartenfeldPositiv := StandardZoomstufe;
+   
+   Sichtbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
+   Bewegungsbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
    
    StadtumgebungAbmessung : Sf.System.Vector2.sfVector2f;
    KartenfelderAbmessung : Sf.System.Vector2.sfVector2f;

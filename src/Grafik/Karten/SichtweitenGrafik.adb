@@ -1,4 +1,5 @@
 with StadtKonstanten;
+with GrafikRecordKonstanten;
 
 with LeseWeltkarteneinstellungen;
 with LeseCursor;
@@ -55,11 +56,9 @@ package body SichtweitenGrafik is
    
    function SichthöheLesen
      return KartenDatentypen.KartenfeldPositiv
-   is
-      use type KartenDatentypen.Kartenfeld;
-   begin
+   is begin
       
-      return AktuelleZoomstufe * 2;
+      return Sichtbereich.YAchse;
       
    end SichthöheLesen;
    
@@ -67,35 +66,29 @@ package body SichtweitenGrafik is
    
    function SichtbreiteLesen
      return KartenDatentypen.KartenfeldPositiv
-   is
-      use type KartenDatentypen.Kartenfeld;
-   begin
+   is begin
       
-      return AktuelleZoomstufe * 2;
+      return Sichtbereich.XAchse;
       
    end SichtbreiteLesen;
    
    
-
-   function SichtweiteLesen
-     return KartenDatentypen.KartenfeldPositiv
-   is
-      use type KartenDatentypen.Kartenfeld;
-   begin
+   
+   function SichtbereichLesen
+     return KartenRecords.YXAchsenKartenfeldPositivRecord
+   is begin
       
-      return AktuelleZoomstufe * 2;
-            
-   end SichtweiteLesen;
+      return Sichtbereich;
+      
+   end SichtbereichLesen;
    
    
    
    function BewegungshöheLesen
      return KartenDatentypen.KartenfeldPositiv
-   is
-      use type KartenDatentypen.Kartenfeld;
-   begin
+   is begin
       
-      return SichthöheLesen -1;
+      return Bewegungsbereich.YAchse;
       
    end BewegungshöheLesen;
    
@@ -103,25 +96,21 @@ package body SichtweitenGrafik is
    
    function BewegungsbreiteLesen
      return KartenDatentypen.KartenfeldPositiv
-   is
-      use type KartenDatentypen.Kartenfeld;
-   begin
+   is begin
       
-      return SichtbreiteLesen -1;
+      return Bewegungsbereich.XAchse;
       
    end BewegungsbreiteLesen;
    
    
-
-   function BewegungsfeldLesen
-     return KartenDatentypen.KartenfeldPositiv
-   is
-      use type KartenDatentypen.Kartenfeld;
-   begin
+   
+   function BewegungsbereichLesen
+     return KartenRecords.YXAchsenKartenfeldPositivRecord
+   is begin
       
-      return SichtweiteLesen - 1;
+      return Bewegungsbereich;
       
-   end BewegungsfeldLesen;
+   end BewegungsbereichLesen;
    
    
    
@@ -135,9 +124,9 @@ package body SichtweitenGrafik is
       Cursor := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
       
       if
-        Cursor.YAchse >= LeseWeltkarteneinstellungen.YAchse - SichtweiteLesen
+        Cursor.YAchse >= LeseWeltkarteneinstellungen.YAchse - SichthöheLesen
         and
-          Cursor.XAchse >= LeseWeltkarteneinstellungen.XAchse - SichtweiteLesen
+          Cursor.XAchse >= LeseWeltkarteneinstellungen.XAchse - SichtbreiteLesen
       then
          return False;
                
@@ -155,12 +144,27 @@ package body SichtweitenGrafik is
    begin
       
       FensterKarte := (0.00, 0.00, FensterGrafik.AktuelleAuflösung.x, FensterGrafik.AktuelleAuflösung.y);
+      Sichtbereich.YAchse := AktuelleZoomstufe * 2;
       
-      KartenfelderAbmessung.y := FensterKarte.height / Float (2 * SichthöheLesen + 1);
-      KartenfelderAbmessung.x := KartenfelderAbmessung.y;
+      KartenfelderAbmessung.y := FensterKarte.height / Float (2 * Sichtbereich.YAchse + 1);
+      KartenfelderAbmessung.x := KartenfelderAbmessung.y / GrafikRecordKonstanten.Kartenbereich.width;
       
-      KartenfelderAbmessung.x := FensterKarte.width / Float (2 * SichtweiteLesen + 1);
-      KartenfelderAbmessung.y := FensterKarte.height / Float (2 * SichtweiteLesen + 1);
+      if
+        KartenfelderAbmessung.x = 0.00
+      then
+         Sichtbereich.XAchse := AktuelleZoomstufe * 2;
+         
+      elsif
+        FensterKarte.width / KartenfelderAbmessung.x < 2.00
+      then
+         Sichtbereich.XAchse := AktuelleZoomstufe * 2;
+         
+      else
+         Sichtbereich.XAchse := KartenDatentypen.KartenfeldPositiv (FensterKarte.width / KartenfelderAbmessung.x);
+      end if;
+      
+      Bewegungsbereich.YAchse := Sichtbereich.YAchse - 1;
+      Bewegungsbereich.XAchse := Sichtbereich.XAchse - 1;
             
    end KartenfelderAbmessungBerechnen;
    

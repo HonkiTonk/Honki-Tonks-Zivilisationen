@@ -19,10 +19,11 @@ with NachGrafiktask;
 
 package body KartenaufteilungGrafik is
    
+   -- CursorAlt scheint korrekt zu sein, also muss das Problem woanders liegen. äöü
    procedure Weltkarte
      (EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord)
    is begin
-      
+            
       CursorplatzierungGrafik.Weltkarte (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
       CursorplatzierungAltGrafik.CursorplatzierungAlt (EinheitSpeziesNummerExtern => EinheitenauswahlExtern.SpeziesNummer,
                                                        EinheitenkoordinatenExtern => EinheitenauswahlExtern.Koordinaten);

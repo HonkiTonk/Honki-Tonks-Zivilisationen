@@ -35,7 +35,7 @@ private
       
    Transparents : Sf.sfUint8;
    
-   Sichtbereich : KartenDatentypen.KartenfeldPositiv;
+   Sichtbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
       
    Feldposition : Sf.System.Vector2.sfVector2f;
    

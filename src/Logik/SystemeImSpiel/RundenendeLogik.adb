@@ -9,8 +9,6 @@ with SchreibeWichtiges;
 with LeseWichtiges;
 with SchreibeAllgemeines;
 with LeseAllgemeines;
-with LeseDiplomatie;
-with SchreibeDiplomatie;
 with LeseGrenzen;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
@@ -30,6 +28,7 @@ with JaNeinLogik;
 with AbspannLogik;
 with GlobalesWachstumLogik;
 with StadtbewohnerwachstumLogik;
+with DiplomatieLogik;
 
 with KIRundenende;
 
@@ -68,7 +67,7 @@ package body RundenendeLogik is
                
                -- Sollte die Forschung nicht vor dem Fortschritt hinzugefügt werden? Und sollte das Hinzufügen vielleicht nicht Teil des Fortschritts sein? äöü
                GeldForschung (SpeziesExtern => SpeziesSchleifenwert);
-               Diplomatie (SpeziesExtern => SpeziesSchleifenwert);
+               DiplomatieLogik.DiplomatieRundenende (SpeziesExtern => SpeziesSchleifenwert);
                
                BerechnungenEinheiten (SpeziesExtern => SpeziesSchleifenwert);
                BerechnungenStädte (SpeziesExtern => SpeziesSchleifenwert);
@@ -209,6 +208,7 @@ package body RundenendeLogik is
    
    
    
+   -- Das später auch an eine passendere Stelle schieben/aufteilen. äöü
    procedure GeldForschung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
@@ -230,46 +230,5 @@ package body RundenendeLogik is
                                          RechnenSetzenExtern     => True);
       
    end GeldForschung;
-   
-   
-   
-   -- Das später nach Diplomatie verschieben. äöü
-   procedure Diplomatie
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-   is
-      use type DiplomatieDatentypen.Status_Untereinander_Enum;
-      use type SpeziesDatentypen.Spezies_Enum;
-   begin
-      
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
-            
-         if
-           SpeziesExtern = SpeziesSchleifenwert
-           or
-             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
-         then
-            null;
-            
-         elsif
-           DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesExtern,
-                                                                                  SpeziesZweiExtern => SpeziesSchleifenwert)
-         then
-            null;
-            
-         else
-            SchreibeDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern    => SpeziesExtern,
-                                                  SpeziesZweiExtern   => SpeziesSchleifenwert,
-                                                  ÄnderungExtern      => 1,
-                                                  RechnenSetzenExtern => True);
-            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => SpeziesExtern,
-                                                  SpeziesZweiExtern   => SpeziesSchleifenwert,
-                                                  SympathieExtern     => SchwierigkeitsgradMeinungsverbesserung (LeseAllgemeines.Schwierigkeitsgrad),
-                                                  RechnenSetzenExtern => True);
-         end if;
-         
-      end loop SpeziesSchleife;
-      
-   end Diplomatie;
 
 end RundenendeLogik;

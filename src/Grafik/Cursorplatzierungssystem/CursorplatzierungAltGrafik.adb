@@ -33,14 +33,14 @@ package body CursorplatzierungAltGrafik is
             if
               Clock - Scrollzeit > ZeitKonstanten.ScrollverzögernMinimalzoom
               and
-                SichtweitenGrafik.SichtweiteLesen <= 4
+                SichtweitenGrafik.SichthöheLesen <= 4
             then
                null;
                 
             elsif
               Clock - Scrollzeit > ZeitKonstanten.Scrollverzögerung
               and
-                SichtweitenGrafik.SichtweiteLesen > 4
+                SichtweitenGrafik.SichthöheLesen > 4
             then
                null;
                
@@ -71,9 +71,7 @@ package body CursorplatzierungAltGrafik is
    procedure Platzierung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is
-      use type KartenDatentypen.Ebene;
-   begin
+   is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
@@ -114,15 +112,16 @@ package body CursorplatzierungAltGrafik is
                                                                                                 ÄnderungExtern    => Koordinatenänderung,
                                                                                                 LogikGrafikExtern => False);
       
-      if
-        Kartenwert.EAchse = KartenKonstanten.LeerEAchse
-      then
-         null;
-                  
-      else
-         SchreibeCursor.KoordinatenAlt (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
-                                        KoordinatenExtern => Kartenwert);
-      end if;
+      case
+        Kartenwert.XAchse
+      is
+         when KartenKonstanten.LeerXAchse =>
+            null;
+            
+         when others =>
+            SchreibeCursor.KoordinatenAlt (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+                                           KoordinatenExtern => Kartenwert);
+      end case;
       
    end Platzierung;
    
@@ -147,11 +146,12 @@ package body CursorplatzierungAltGrafik is
       end case;
       
       AlteCursorkoordinaten := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
+      Sichtbereich := SichtweitenGrafik.SichtbereichLesen;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in -SichtweitenGrafik.SichtweiteLesen .. SichtweitenGrafik.SichtweiteLesen loop
+      for YAchseSchleifenwert in -Sichtbereich.YAchse .. Sichtbereich.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -SichtweitenGrafik.SichtweiteLesen .. SichtweitenGrafik.SichtweiteLesen loop
+         for XAchseSchleifenwert in -Sichtbereich.XAchse .. Sichtbereich.XAchse loop
             
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AlteCursorkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -259,7 +259,8 @@ package body CursorplatzierungAltGrafik is
    begin
       
       Achsenviewfläche := Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
-      AktuelleSichtweite := SichtweitenGrafik.SichtweiteLesen;
+      AktuelleSichtweite := SichtweitenGrafik.SichthöheLesen;
+      YAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformYAchse;
       
       if
         MauspositionExtern.x not in 0.00 .. Achsenviewfläche.x
@@ -272,14 +273,14 @@ package body CursorplatzierungAltGrafik is
          if
            YAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangYAchse
            and
-             LeseWeltkarteneinstellungen.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+             YAchseÜbergänge.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
          then
             return 0;
             
          elsif
            YAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangYAchse - 1
            and
-             LeseWeltkarteneinstellungen.YAchseNorden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
+             YAchseÜbergänge.YAchseNorden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
          then
             return 0;
             
@@ -293,14 +294,14 @@ package body CursorplatzierungAltGrafik is
          if
            YAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.YAchse
            and
-             LeseWeltkarteneinstellungen.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
+             YAchseÜbergänge.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
          then
             return 0;
             
          elsif
            YAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.YAchse + 1
            and
-             LeseWeltkarteneinstellungen.YAchseSüden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
+             YAchseÜbergänge.YAchseSüden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
          then
             return 0;
          
@@ -325,7 +326,7 @@ package body CursorplatzierungAltGrafik is
    begin
       
       XAchsenbereich := Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)).x;
-      AktuelleSichtweite := SichtweitenGrafik.SichtweiteLesen;
+      AktuelleSichtweite := SichtweitenGrafik.SichtbreiteLesen;
       XAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformXAchse;
       
       if

@@ -22,12 +22,12 @@ package body BefehlsauswahlLogik is
         Befehl
       is
          when TastenbelegungDatentypen.Auswählen_Enum =>
-            return Tasteneingabe (SpeziesExtern  => SpeziesExtern,
-                                  BefehlExtern => MausauswahlLogik.Weltkartenbefehle);
+            return Tasteneingabe (SpeziesExtern => SpeziesExtern,
+                                  BefehlExtern  => MausauswahlLogik.Weltkartenbefehle);
             
          when others =>
-            return Tasteneingabe (SpeziesExtern  => SpeziesExtern,
-                                  BefehlExtern => Befehl);
+            return Tasteneingabe (SpeziesExtern => SpeziesExtern,
+                                  BefehlExtern  => Befehl);
       end case;
       
    end Befehlsauswahl;

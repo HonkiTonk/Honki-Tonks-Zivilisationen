@@ -31,15 +31,15 @@ package body WeltkarteGrafik is
                                             GrößeExtern          => FensterGrafik.AktuelleAuflösung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte));
       
-      Sichtbereich := SichtweitenGrafik.SichtweiteLesen;
+      Sichtbereich := SichtweitenGrafik.SichtbereichLesen;
       
       CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
       Feldposition := GrafikRecordKonstanten.Nullposition;
             
       YAchseSchleife:
-      for YAchseSchleifenwert in -Sichtbereich .. Sichtbereich loop
+      for YAchseSchleifenwert in -Sichtbereich.YAchse .. Sichtbereich.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -Sichtbereich .. Sichtbereich loop
+         for XAchseSchleifenwert in -Sichtbereich.XAchse .. Sichtbereich.XAchse loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
@@ -81,9 +81,9 @@ package body WeltkarteGrafik is
       end case;
       
       YAchseNamenSchleife:
-      for YAchseNamenSchleifenwert in -Sichtbereich .. Sichtbereich loop
+      for YAchseNamenSchleifenwert in -Sichtbereich.YAchse .. Sichtbereich.YAchse loop
          XAchseNamenSchleife:
-         for XAchseNamenSchleifenwert in -Sichtbereich .. Sichtbereich loop
+         for XAchseNamenSchleifenwert in -Sichtbereich.XAchse .. Sichtbereich.XAchse loop
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseNamenSchleifenwert, XAchseNamenSchleifenwert),

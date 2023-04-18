@@ -29,4 +29,6 @@ private
    
    Taste : Sf.Window.Keyboard.sfKeyCode;
    
+   procedure EingabeanfangSetzen;
+   
 end TasteneingabeLogik;

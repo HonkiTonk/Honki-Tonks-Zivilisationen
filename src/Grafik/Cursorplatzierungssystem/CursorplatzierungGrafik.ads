@@ -2,7 +2,6 @@ private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
 
-private with KartenDatentypen;
 private with KartenRecords;
 
 with LeseSpeziesbelegung;
@@ -20,7 +19,7 @@ package CursorplatzierungGrafik is
    
 private
    
-   Sichtbereich : KartenDatentypen.KartenfeldPositiv;
+   Sichtbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
       
    Kartenänderung : KartenRecords.YXAchsenKartenfeldRecord;
    

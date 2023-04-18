@@ -9,6 +9,8 @@ package TastenbelegungStandard is
 
    AllgemeineBelegungStandard : constant TastenbelegungDatenbank.AllgemeineBelegungArray := (
                                                                                              TastenbelegungDatentypen.Auswählen_Enum                      => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                                             -- Hier noch einen Wert für die rechte Maustaste einbauen und da dann Informationen auf der Karten anzeigen? äöü
+                                                                                             -- Eventuell lassen dafür weitere Nutzungsmöglichkeiten finden? äöü
                                                                      
                                                                                              -- Bewegung
                                                                                              TastenbelegungDatentypen.Oben_Enum                           => Sf.Window.Keyboard.sfKeyNumpad8,

@@ -21,7 +21,7 @@ package GeheZuGrafik is
 private
    use type KartenDatentypen.Kartenfeld;
    
-   AktuelleSichtweite : KartenDatentypen.KartenfeldPositiv;
+   AktuelleSichtweite : KartenRecords.YXAchsenKartenfeldPositivRecord;
    
    YAchseÜbergänge : KartenRecords.KartenformYAchseRecord;
    XAchseÜbergänge : KartenRecords.KartenformXAchseRecord;

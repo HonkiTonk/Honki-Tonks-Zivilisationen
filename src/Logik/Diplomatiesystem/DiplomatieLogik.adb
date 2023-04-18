@@ -1,4 +1,3 @@
-with DiplomatieDatentypen;
 with InteraktionAuswahl;
 with GrafikDatentypen;
 with MenueKonstanten;
@@ -6,6 +5,8 @@ with TastenbelegungDatentypen;
 with MenueDatentypen;
 
 with LeseDiplomatie;
+with SchreibeDiplomatie;
+with LeseAllgemeines;
 
 with NachGrafiktask;
 with TasteneingabeLogik;
@@ -154,5 +155,45 @@ package body DiplomatieLogik is
       end loop DiplomatieSchleife;
       
    end Diplomatie;
+   
+   
+   
+   procedure DiplomatieRundenende
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+   is
+      use type DiplomatieDatentypen.Status_Untereinander_Enum;
+      use type SpeziesDatentypen.Spezies_Enum;
+   begin
+      
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+            
+         if
+           SpeziesExtern = SpeziesSchleifenwert
+           or
+             LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
+         then
+            null;
+            
+         elsif
+           DiplomatieDatentypen.Unbekannt_Enum = LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesExtern,
+                                                                                  SpeziesZweiExtern => SpeziesSchleifenwert)
+         then
+            null;
+            
+         else
+            SchreibeDiplomatie.ZeitSeitÄnderung (SpeziesEinsExtern    => SpeziesExtern,
+                                                  SpeziesZweiExtern   => SpeziesSchleifenwert,
+                                                  ÄnderungExtern      => 1,
+                                                  RechnenSetzenExtern => True);
+            SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => SpeziesExtern,
+                                                  SpeziesZweiExtern   => SpeziesSchleifenwert,
+                                                  SympathieExtern     => SchwierigkeitsgradMeinungsverbesserung (LeseAllgemeines.Schwierigkeitsgrad),
+                                                  RechnenSetzenExtern => True);
+         end if;
+         
+      end loop SpeziesSchleife;
+      
+   end DiplomatieRundenende;
 
 end DiplomatieLogik;

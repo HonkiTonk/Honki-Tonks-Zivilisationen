@@ -77,38 +77,37 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (19.04.2023):
+   -- Version 0.04.9775 => 0.04. (19.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (18.04.2023):
+   -- Version 0.04.9730 => 0.04.9775 (18.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.04. => 0.04. (17.04.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Anpassungen an der Steuerung vorgenommen.
+   -- Weiter an der neuen Weltkartenanzeige gearbeitet.
+   -- Alle Weltkartenfelder und die dazugehörigen Texturen werden jetzt im Verhältnis 1x1 dargestellt und nicht mehr gestreckt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.04. => 0.04. (16.04.2023):
+   -- Version 0.04.9730 => 0.04.9730 (17.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.04.9730 => 0.04. (15.04.2023):
+   -- Version 0.04.9730 => 0.04.9730 (16.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.04.9730 => 0.04.9730 (15.04.2023):
+   
+   -- null.
    
    
 
@@ -117,7 +116,7 @@ package ChangelogVorlage is
    -- Grafiken teilweise auf Größe und Geschwindigkeit optimiert.
    -- Fehler korrigiert der verhinderte dass die Stadtproduktion zum Baumprojekt der Stadt hinzugefügt wurde.
    -- Interne Benennung und Struktur überarbeitet, vor allem um altes Zeug besser lesbar und bearbeitbar zu gestalten.
-   -- Alle Werte werden jetzt auch vor dem Laden auf Standard zurückgesetzt.
+   -- Alle relevanten Werte werden jetzt auch vor dem Laden auf Standard zurückgesetzt.
    -- Angefangen häufig verwendete Arraytypen in eigene Datein auszulagern, damit sie nur einmal angelegt werden müssen.
    -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
