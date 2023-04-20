@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesSenelari is
    pragma Pure;
 
-   SpeziesSenelariListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteSenelari : constant DatenbankRecords.SpezieslisteRecord := (
                                                                            Aggressivität       => 1,
                                                                            Expansion           => 20,
                                                                            Wissenschaft        => 1,

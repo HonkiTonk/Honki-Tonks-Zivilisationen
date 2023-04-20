@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesAspari2 is
    pragma Pure;
 
-   SpeziesAspari2Liste : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteAspari2 : constant DatenbankRecords.SpezieslisteRecord := (
                                                                           Aggressivität       => 1,
                                                                           Expansion           => 20,
                                                                           Wissenschaft        => 1,

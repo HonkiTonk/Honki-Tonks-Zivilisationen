@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesEkropa is
    pragma Pure;
 
-   SpeziesEkropaListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteEkropa : constant DatenbankRecords.SpezieslisteRecord := (
                                                                          Aggressivität       => 1,
                                                                          Expansion           => 20,
                                                                          Wissenschaft        => 1,

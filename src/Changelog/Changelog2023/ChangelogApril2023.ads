@@ -70,17 +70,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (20.04.2023):
+   -- Version 0.04.9810 => 0.04. (20.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9775 => 0.04. (19.04.2023):
+   -- Version 0.04.9775 => 0.04.9810 (19.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Produktionswerte für Kartenfelder vollständig auf Standardwerte gesetzt, für späteres Balancing.
+   -- Bewegungspunkte die nötig sind um sich über ein Feld zu bewegen von others auf Spezienspezifisch gesetzt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesSuroka is
    pragma Pure;
 
-   SpeziesSurokaListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteSuroka : constant DatenbankRecords.SpezieslisteRecord := (
                                                                          Aggressivität       => 1,
                                                                          Expansion           => 20,
                                                                          Wissenschaft        => 1,

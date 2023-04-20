@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesTesorahn is
    pragma Pure;
 
-   SpeziesTesorahnListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteTesorahn : constant DatenbankRecords.SpezieslisteRecord := (
                                                                            Aggressivität       => 1,
                                                                            Expansion           => 20,
                                                                            Wissenschaft        => 1,

@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesNatriesZermanis is
    pragma Pure;
 
-   SpeziesNatriesZermanisListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteNatriesZermanis : constant DatenbankRecords.SpezieslisteRecord := (
                                                                                   Aggressivität       => 1,
                                                                                   Expansion           => 20,
                                                                                   Wissenschaft        => 1,

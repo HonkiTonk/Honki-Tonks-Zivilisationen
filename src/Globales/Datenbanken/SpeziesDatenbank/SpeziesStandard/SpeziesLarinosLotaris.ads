@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesLarinosLotaris is
    pragma Pure;
 
-   SpeziesLarinosLotarisListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteLarinosLotaris : constant DatenbankRecords.SpezieslisteRecord := (
                                                                                  Aggressivität       => 1,
                                                                                  Expansion           => 20,
                                                                                  Wissenschaft        => 1,

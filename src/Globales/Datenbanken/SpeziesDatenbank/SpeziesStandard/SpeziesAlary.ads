@@ -4,8 +4,7 @@ with DatenbankRecords;
 package SpeziesAlary is
    pragma Pure;
 
-   -- Die ganzen Sachen mal nach SpezieslisteSpeziesname umbenennen?. äöü
-   SpeziesAlaryListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteAlary : constant DatenbankRecords.SpezieslisteRecord := (
                                                                         Aggressivität       => 1,
                                                                         Expansion           => 20,
                                                                         Wissenschaft        => 1,

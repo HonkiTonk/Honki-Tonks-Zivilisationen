@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesLamustra is
    pragma Pure;
 
-   SpeziesLamustraListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteLamustra : constant DatenbankRecords.SpezieslisteRecord := (
                                                                            Aggressivität       => 1,
                                                                            Expansion           => 20,
                                                                            Wissenschaft        => 1,

@@ -21,51 +21,50 @@ with SpeziesEkropa;
 
 package body StandardSpeziesDatenbank is
 
-   -- Das hier später auch mal anpassen oder entfernen. äöü
    procedure StandardSpeziesDatenbankLaden
    is begin
       
       SpeziesDatenbank.Speziesliste := (
-                                        SpeziesMenschen.SpeziesMenschenListe,
-                                        SpeziesKasrodiah.SpeziesKasrodiahListe,
-                                        SpeziesLasupin.SpeziesLasupinListe,
-                                        SpeziesLamustra.SpeziesLamustraListe,
-                                        SpeziesManuky.SpeziesManukyListe,
-                                        SpeziesSuroka.SpeziesSurokaListe,
-                                        SpeziesPryolon.SpeziesPryolonListe,
-                                        SpeziesTalbidahr.SpeziesTalbidahrListe,
-                                        SpeziesMoruPhisihl.SpeziesMoruPhisihlListe,
-                                        SpeziesLarinosLotaris.SpeziesLarinosLotarisListe,
-                                        SpeziesCarupex.SpeziesCarupexListe,
-                                        SpeziesAlary.SpeziesAlaryListe,
-                                        SpeziesTesorahn.SpeziesTesorahnListe,
-                                        SpeziesNatriesZermanis.SpeziesNatriesZermanisListe,
-                                        SpeziesTridatus.SpeziesTridatusListe,
-                                        SpeziesSenelari.SpeziesSenelariListe,
-                                        SpeziesAspari2.SpeziesAspari2Liste,
-                                        SpeziesEkropa.SpeziesEkropaListe
+                                        SpeziesMenschen.SpezieslisteMenschen,
+                                        SpeziesKasrodiah.SpezieslisteKasrodiah,
+                                        SpeziesLasupin.SpezieslisteLasupin,
+                                        SpeziesLamustra.SpezieslisteLamustra,
+                                        SpeziesManuky.SpezieslisteManuky,
+                                        SpeziesSuroka.SpezieslisteSuroka,
+                                        SpeziesPryolon.SpezieslistePryolon,
+                                        SpeziesTalbidahr.SpezieslisteTalbidahr,
+                                        SpeziesMoruPhisihl.SpezieslisteMoruPhisihl,
+                                        SpeziesLarinosLotaris.SpezieslisteLarinosLotaris,
+                                        SpeziesCarupex.SpezieslisteCarupex,
+                                        SpeziesAlary.SpezieslisteAlary,
+                                        SpeziesTesorahn.SpezieslisteTesorahn,
+                                        SpeziesNatriesZermanis.SpezieslisteNatriesZermanis,
+                                        SpeziesTridatus.SpezieslisteTridatus,
+                                        SpeziesSenelari.SpezieslisteSenelari,
+                                        SpeziesAspari2.SpezieslisteAspari2,
+                                        SpeziesEkropa.SpezieslisteEkropa
                                        );
       
       -- Kann wegen dam Kompilerfehler mit gnat-wu aktuell nicht verwendet werden. äöü
       -- SpeziesDatenbank.Speziesliste := (
-      --                                 SpeziesDatentypen.Menschen_Enum         => SpeziesMenschen.SpeziesMenschenListe,
-      --                               SpeziesDatentypen.Kasrodiah_Enum        => SpeziesKasrodiah.SpeziesKasrodiahListe,
-      --                             SpeziesDatentypen.Lasupin_Enum          => SpeziesLasupin.SpeziesLasupinListe,
-      --                           SpeziesDatentypen.Lamustra_Enum         => SpeziesLamustra.SpeziesLamustraListe,
-      --                         SpeziesDatentypen.Manuky_Enum           => SpeziesManuky.SpeziesManukyListe,
-      --                       SpeziesDatentypen.Suroka_Enum           => SpeziesSuroka.SpeziesSurokaListe,
-      --                     SpeziesDatentypen.Pryolon_Enum          => SpeziesPryolon.SpeziesPryolonListe,
-      --                   SpeziesDatentypen.Talbidahr_Enum        => SpeziesTalbidahr.SpeziesTalbidahrListe,
-      --                 SpeziesDatentypen.Moru_Phisihl_Enum     => SpeziesMoruPhisihl.SpeziesMoruPhisihlListe,
-      --               SpeziesDatentypen.Larinos_Lotaris_Enum  => SpeziesLarinosLotaris.SpeziesLarinosLotarisListe,
-      --             SpeziesDatentypen.Carupex_Enum          => SpeziesCarupex.SpeziesCarupexListe,
-      --           SpeziesDatentypen.Alary_Enum            => SpeziesAlary.SpeziesAlaryListe,
-      --         SpeziesDatentypen.Tesorahn_Enum         => SpeziesTesorahn.SpeziesTesorahnListe,
-      --       SpeziesDatentypen.Natries_Zermanis_Enum => SpeziesNatriesZermanis.SpeziesNatriesZermanisListe,
-      --     SpeziesDatentypen.Tridatus_Enum         => SpeziesTridatus.SpeziesTridatusListe,
-      --   SpeziesDatentypen.Senelari_Enum         => SpeziesSenelari.SpeziesSenelariListe,
-      -- SpeziesDatentypen.Aspari_2_Enum         => SpeziesAspari2.SpeziesAspari2Liste,
-      -- SpeziesDatentypen.Ekropa_Enum           => SpeziesEkropa.SpeziesEkropaListe
+      --                                 SpeziesDatentypen.Menschen_Enum         => SpeziesMenschen.SpezieslisteMenschen,
+      --                               SpeziesDatentypen.Kasrodiah_Enum        => SpeziesKasrodiah.SpezieslisteKasrodiah,
+      --                             SpeziesDatentypen.Lasupin_Enum          => SpeziesLasupin.SpezieslisteLasupin,
+      --                           SpeziesDatentypen.Lamustra_Enum         => SpeziesLamustra.SpezieslisteLamustra,
+      --                         SpeziesDatentypen.Manuky_Enum           => SpeziesManuky.SpezieslisteManuky,
+      --                       SpeziesDatentypen.Suroka_Enum           => SpeziesSuroka.SpezieslisteSuroka,
+      --                     SpeziesDatentypen.Pryolon_Enum          => SpeziesPryolon.SpezieslistePryolon,
+      --                   SpeziesDatentypen.Talbidahr_Enum        => SpeziesTalbidahr.SpezieslisteTalbidahr,
+      --                 SpeziesDatentypen.Moru_Phisihl_Enum     => SpeziesMoruPhisihl.SpezieslisteMoruPhisihl,
+      --               SpeziesDatentypen.Larinos_Lotaris_Enum  => SpeziesLarinosLotaris.SpezieslisteLarinosLotaris,
+      --             SpeziesDatentypen.Carupex_Enum          => SpeziesCarupex.SpezieslisteCarupex,
+      --           SpeziesDatentypen.Alary_Enum            => SpeziesAlary.SpezieslisteAlary,
+      --         SpeziesDatentypen.Tesorahn_Enum         => SpeziesTesorahn.SpezieslisteTesorahn,
+      --       SpeziesDatentypen.Natries_Zermanis_Enum => SpeziesNatriesZermanis.SpezieslisteNatriesZermanis,
+      --     SpeziesDatentypen.Tridatus_Enum         => SpeziesTridatus.SpezieslisteTridatus,
+      --   SpeziesDatentypen.Senelari_Enum         => SpeziesSenelari.SpezieslisteSenelari,
+      -- SpeziesDatentypen.Aspari_2_Enum         => SpeziesAspari2.SpezieslisteAspari2,
+      -- SpeziesDatentypen.Ekropa_Enum           => SpeziesEkropa.SpezieslisteEkropa
       -- );
       
    end StandardSpeziesDatenbankLaden;

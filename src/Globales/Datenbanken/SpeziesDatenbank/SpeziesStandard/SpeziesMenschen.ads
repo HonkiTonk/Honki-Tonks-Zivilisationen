@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesMenschen is
    pragma Pure;
 
-   SpeziesMenschenListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteMenschen : constant DatenbankRecords.SpezieslisteRecord := (
                                                                            Aggressivität       => 1,
                                                                            Expansion           => 20,
                                                                            Wissenschaft        => 1,

@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesKasrodiah is
    pragma Pure;
 
-   SpeziesKasrodiahListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteKasrodiah : constant DatenbankRecords.SpezieslisteRecord := (
                                                                             Aggressivität       => 1,
                                                                             Expansion           => 20,
                                                                             Wissenschaft        => 1,

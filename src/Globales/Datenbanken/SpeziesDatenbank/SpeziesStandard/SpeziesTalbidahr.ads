@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesTalbidahr is
    pragma Pure;
 
-   SpeziesTalbidahrListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteTalbidahr : constant DatenbankRecords.SpezieslisteRecord := (
                                                                             Aggressivität       => 1,
                                                                             Expansion           => 20,
                                                                             Wissenschaft        => 1,

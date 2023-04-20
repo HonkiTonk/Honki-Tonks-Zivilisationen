@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesManuky is
    pragma Pure;
 
-   SpeziesManukyListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteManuky : constant DatenbankRecords.SpezieslisteRecord := (
                                                                          Aggressivität       => 1,
                                                                          Expansion           => 20,
                                                                          Wissenschaft        => 1,

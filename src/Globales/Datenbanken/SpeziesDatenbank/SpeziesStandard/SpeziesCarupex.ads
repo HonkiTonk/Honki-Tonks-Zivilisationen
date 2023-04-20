@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesCarupex is
    pragma Pure;
 
-   SpeziesCarupexListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteCarupex : constant DatenbankRecords.SpezieslisteRecord := (
                                                                           Aggressivität       => 1,
                                                                           Expansion           => 20,
                                                                           Wissenschaft        => 1,

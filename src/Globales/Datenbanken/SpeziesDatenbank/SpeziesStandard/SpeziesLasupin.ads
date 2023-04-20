@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesLasupin is
    pragma Pure;
 
-   SpeziesLasupinListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteLasupin : constant DatenbankRecords.SpezieslisteRecord := (
                                                                           Aggressivität       => 1,
                                                                           Expansion           => 20,
                                                                           Wissenschaft        => 1,

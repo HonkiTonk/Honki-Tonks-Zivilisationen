@@ -4,7 +4,7 @@ with DatenbankRecords;
 package SpeziesMoruPhisihl is
    pragma Pure;
 
-   SpeziesMoruPhisihlListe : constant DatenbankRecords.SpezieslisteRecord := (
+   SpezieslisteMoruPhisihl : constant DatenbankRecords.SpezieslisteRecord := (
                                                                               Aggressivität       => 1,
                                                                               Expansion           => 20,
                                                                               Wissenschaft        => 1,
