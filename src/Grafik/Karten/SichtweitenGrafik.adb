@@ -56,9 +56,11 @@ package body SichtweitenGrafik is
    
    function SichthöheLesen
      return KartenDatentypen.KartenfeldPositiv
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
-      return Sichtbereich.YAchse;
+      return Sichtbereich.YAchse / 2;
       
    end SichthöheLesen;
    
@@ -66,9 +68,11 @@ package body SichtweitenGrafik is
    
    function SichtbreiteLesen
      return KartenDatentypen.KartenfeldPositiv
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
-      return Sichtbereich.XAchse;
+      return Sichtbereich.XAchse / 2;
       
    end SichtbreiteLesen;
    
@@ -76,9 +80,11 @@ package body SichtweitenGrafik is
    
    function SichtbereichLesen
      return KartenRecords.YXAchsenKartenfeldPositivRecord
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
-      return Sichtbereich;
+      return (Sichtbereich.YAchse / 2, Sichtbereich.XAchse / 2);
       
    end SichtbereichLesen;
    
@@ -86,9 +92,11 @@ package body SichtweitenGrafik is
    
    function BewegungshöheLesen
      return KartenDatentypen.KartenfeldPositiv
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
-      return Bewegungsbereich.YAchse;
+      return Bewegungsbereich.YAchse / 2;
       
    end BewegungshöheLesen;
    
@@ -96,9 +104,11 @@ package body SichtweitenGrafik is
    
    function BewegungsbreiteLesen
      return KartenDatentypen.KartenfeldPositiv
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
-      return Bewegungsbereich.XAchse;
+      return Bewegungsbereich.XAchse / 2;
       
    end BewegungsbreiteLesen;
    
@@ -106,9 +116,11 @@ package body SichtweitenGrafik is
    
    function BewegungsbereichLesen
      return KartenRecords.YXAchsenKartenfeldPositivRecord
-   is begin
+   is
+      use type KartenDatentypen.Kartenfeld;
+   begin
       
-      return Bewegungsbereich;
+      return (Bewegungsbereich.YAchse / 2, Bewegungsbereich.XAchse / 2);
       
    end BewegungsbereichLesen;
    
@@ -138,6 +150,7 @@ package body SichtweitenGrafik is
    
    
    
+   -- Würde es mit X als Vorgeber funktionieren? äöü
    procedure KartenfelderAbmessungBerechnen
    is
       use type KartenDatentypen.Kartenfeld;
@@ -146,7 +159,7 @@ package body SichtweitenGrafik is
       FensterKarte := (0.00, 0.00, FensterGrafik.AktuelleAuflösung.x, FensterGrafik.AktuelleAuflösung.y);
       Sichtbereich.YAchse := AktuelleZoomstufe * 2;
       
-      KartenfelderAbmessung.y := FensterKarte.height / Float (2 * Sichtbereich.YAchse + 1);
+      KartenfelderAbmessung.y := FensterKarte.height / Float (Sichtbereich.YAchse + 1);
       KartenfelderAbmessung.x := KartenfelderAbmessung.y / GrafikRecordKonstanten.Kartenbereich.width;
       
       if

@@ -29,7 +29,7 @@ package VerzeichnisKonstanten is
    
    -- Statt einzelner Teile einfach nur die Gesamtpfade erstellen? äöü
    -- Wäre wahrscheinlich übersichtlicher und weniger Konstanten. äöü
-   -- Oder die Nulldateien in den hauptordner schieben und von da alles einlesen? äöü
+   -- Oder die Nulldateien in den Hauptordner schieben und von da alles einlesen? äöü Das hier dürfte vermutlich das Sinnvollste sein, ähnlich wie bei den Textdateien? äöü
    System : constant String (1 .. 7) := "/System";
    Hintergrund : constant String (1 .. 12) := "/Hintergrund";
    Basisgrund : constant String (1 .. 11) := "/Basisgrund";

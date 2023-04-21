@@ -11,9 +11,11 @@ package EinlesenSpeziestexteLogik is
 private
 
    AktuelleZeile : Positive;
+   Teilerrest : Natural;
 
-   DateiNull : File_Type;
-   DateiUnternull : File_Type;
+   AktuelleSpezies : SpeziesDatentypen.Spezies_Verwendet_Enum;
+
+   DateiEins : File_Type;
    DateiNameBeschreibung : File_Type;
    DateiStädtenamen : File_Type;
    DateiForschungen : File_Type;
@@ -21,12 +23,6 @@ private
    DateiGebäude : File_Type;
 
    Sprache : Unbounded_Wide_Wide_String;
-
-   type HauptdateiArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Unbounded_Wide_Wide_String;
-   Hauptdatei : HauptdateiArray;
-
-   type SpeziesdateienArray is array (1 .. 5) of Unbounded_Wide_Wide_String;
-   Speziesdateien : SpeziesdateienArray;
 
    procedure NameBeschreibung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;

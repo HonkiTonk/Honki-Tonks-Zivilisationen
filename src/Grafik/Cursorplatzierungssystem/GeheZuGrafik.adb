@@ -20,11 +20,11 @@ package body GeheZuGrafik is
         Kartenwert.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            SchreibeCursor.KoordinatenAlt (SpeziesExtern       => SpeziesExtern,
+            SchreibeCursor.KoordinatenAlt (SpeziesExtern     => SpeziesExtern,
                                            KoordinatenExtern => NachGrafiktask.GeheZu);
             
          when others =>
-            SchreibeCursor.KoordinatenAlt (SpeziesExtern       => SpeziesExtern,
+            SchreibeCursor.KoordinatenAlt (SpeziesExtern     => SpeziesExtern,
                                            KoordinatenExtern => Kartenwert);
       end case;
       

@@ -56,23 +56,27 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (22.04.2023):
+   -- Version 0.04.9910 => 0.04. (22.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9845 => 0.04. (21.04.2023):
+   -- Version 0.04.9845 => 0.04.9910 (21.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einlesen der Sprachen überarbeitet.
+   -- Struktur der Sprachdateien überarbeitet.
+   -- Fehler korrigiert der die anzuzeigenden Felder verdoppelte.
+   -- Fehler in der Weltkartenanzeige korrigiert, welcher dazu führte das falsche Bereiche angezeigt wurden.
+   -- Weltkartenanzeige überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
    -- Version 0.04.9810 => 0.04.9845 (20.04.2023):
    
-   -- Angefangn zu Testzwecken automatische Übersetzungen in den Sprachen Dänisch, Spanisch, Französisch, Italienisch, Niederländisch, Polnisch, Portugiesisch, Indonesisch und Norwegisch hinzuzufügen.
+   -- Angefangen zu Testzwecken automatische Übersetzungen in den Sprachen Dänisch, Spanisch, Französisch, Italienisch, Niederländisch, Polnisch, Portugiesisch, Indonesisch und Norwegisch hinzuzufügen.
    -- Verzeichnisstruktur der Sprachenordner überarbeitet.
    -- Kommentare und Kleinigkeiten korrigiert.
    

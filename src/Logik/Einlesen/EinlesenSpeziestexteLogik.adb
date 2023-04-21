@@ -2,7 +2,6 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Ada.Directories; use Ada.Directories;
 
 with Speziestexte;
-with TextKonstanten;
 with VerzeichnisKonstanten;
 
 with LeseOptionen;
@@ -26,88 +25,78 @@ package body EinlesenSpeziestexteLogik is
             return;
             
          when True =>
-            Hauptdatei := (others => TextKonstanten.LeerUnboundedString);
+            AktuelleSpezies := SpeziesDatentypen.Spezies_Verwendet_Enum'First;
             
-            Open (File => DateiNull,
+            Open (File => DateiEins,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.EinsDatei);
       end case;
-      
+            
       EinlesenSchleife:
-      for WelcheDateienSchleifenwert in HauptdateiArray'Range loop
+      for WelcheDateienSchleifenwert in 1 .. 5 * SpeziesDatentypen.SpeziesnummernVorhanden'Last loop
 
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiNull,
-                                                           AktuelleZeileExtern => SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (WelcheDateienSchleifenwert))
+           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiEins,
+                                                           AktuelleZeileExtern => WelcheDateienSchleifenwert)
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Fehlende Zeilen: "
                                            & Decode (Item => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.EinsDatei) & ", aktuelle Zeile: "
                                            & WelcheDateienSchleifenwert'Wide_Wide_Image);
+               exit EinlesenSchleife;
                
             when False =>
-               Hauptdatei (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNull));
+               Teilerrest := WelcheDateienSchleifenwert mod 5;
+               
+               if
+                 Teilerrest = 1
+               then
+                  NameBeschreibung (SpeziesExtern   => AktuelleSpezies,
+                                    DateinameExtern => Get_Line (File => DateiEins));
+                  
+               elsif
+                 Teilerrest = 2
+               then
+                  Städtenamen (SpeziesExtern   => AktuelleSpezies,
+                                DateinameExtern => Get_Line (File => DateiEins));
+                  
+               elsif
+                 Teilerrest = 3
+               then
+                  Forschungen (SpeziesExtern   => AktuelleSpezies,
+                               DateinameExtern => Get_Line (File => DateiEins));
+                  
+               elsif
+                 Teilerrest = 4
+               then
+                  Einheiten (SpeziesExtern   => AktuelleSpezies,
+                             DateinameExtern => Get_Line (File => DateiEins));
+               
+               else
+                  Gebäude (SpeziesExtern   => AktuelleSpezies,
+                            DateinameExtern => Get_Line (File => DateiEins));
+                  
+                  case
+                    AktuelleSpezies
+                  is
+                     when SpeziesDatentypen.Spezies_Verwendet_Enum'Last =>
+                        null;
+                        
+                     when others =>
+                        AktuelleSpezies := SpeziesDatentypen.Spezies_Enum'Succ (AktuelleSpezies);
+                  end case;
+               end if;
          end case;
 
       end loop EinlesenSchleife;
 
-      Close (File => DateiNull);
-      
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
-         
-         case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Hauptdatei (SpeziesSchleifenwert))))
-         is
-            when False =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesenZwei: Es fehlt: " & To_Wide_Wide_String (Source => Hauptdatei (SpeziesSchleifenwert)));
-               
-            when True =>
-               Open (File => DateiUnternull,
-                     Mode => In_File,
-                     Name => Encode (Item => To_Wide_Wide_String (Source => Hauptdatei (SpeziesSchleifenwert))));
-         
-               UnterdateienSchleife:
-               for UnterdateiSchleifenwert in SpeziesdateienArray'Range loop
-            
-                  case
-                    EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiUnternull,
-                                                                    AktuelleZeileExtern => UnterdateiSchleifenwert)
-                  is
-                     when True =>
-                        Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesenZwei: Fehlende Zeilen: " & To_Wide_Wide_String (Source => Hauptdatei (SpeziesSchleifenwert))
-                                                   & ", aktuelle Zeile: " & UnterdateiSchleifenwert'Wide_Wide_Image);
-               
-                     when False =>
-                        Speziesdateien (UnterdateiSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiUnternull));
-                  end case;
-            
-               end loop UnterdateienSchleife;
-         
-               Close (File => DateiUnternull);
-         
-               NameBeschreibung (SpeziesExtern   => SpeziesSchleifenwert,
-                                 DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (1)));
-               
-               Städtenamen (SpeziesExtern   => SpeziesSchleifenwert,
-                             DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (2)));
-               
-               Forschungen (SpeziesExtern   => SpeziesSchleifenwert,
-                            DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (3)));
-               
-               Einheiten (SpeziesExtern   => SpeziesSchleifenwert,
-                          DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (4)));
-               
-               Gebäude (SpeziesExtern   => SpeziesSchleifenwert,
-                         DateinameExtern => To_Wide_Wide_String (Source => Speziesdateien (5)));
-         end case;
-         
-      end loop SpeziesSchleife;
+      Close (File => DateiEins);
       
    end SpeziestexteEinlesen;
    
    
    
+   -- Wäre es nicht immer besser die Rückgabeposition bei True/False cases zuerst zu positionieren? äöü
    procedure NameBeschreibung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateinameExtern : in Wide_Wide_String)
