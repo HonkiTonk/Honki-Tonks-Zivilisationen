@@ -1,11 +1,11 @@
 name = "honki_tonks_zivilisationen"
 description = "The Code of my 4X turn-based strategy game."
-version = "0.04.9810-dev"
+version = "0.04.9845-dev"
 
 long-description = """
-Der Code meines 4X-Rundenstrategiespiels. Geschrieben in Ada unter Verwendung der Ada Standardbibliothek, der ASFML, der CSFML 2.5.1 und der SFML 2.5.1. Nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren.
+Der Code meines 4X-Rundenstrategiespiels. Geschrieben in Ada 2022 unter Verwendung der Ada Standardbibliothek, der ASFML 2.5.3, der CSFML 2.5.1 und der SFML 2.5.1. Nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren.
 
-The Code of my 4X turn-based strategy game. Written in Ada using the Ada standard library, the ASFML, the CSFML 2.5.1 and the SFML 2.5.1. Only intensively tested under Linux, but should also work without problems under other operating systems.
+The Code of my 4X turn-based strategy game. Written in Ada 2022 using the Ada standard library, the ASFML 2.5.3, the CSFML 2.5.1 and the SFML 2.5.1. Only intensively tested under Linux, but should also work without problems under other operating systems.
 """
 
 authors = ["Stefan Hild"]

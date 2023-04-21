@@ -63,17 +63,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (21.04.2023):
+   -- Version 0.04.9845 => 0.04. (21.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9810 => 0.04. (20.04.2023):
+   -- Version 0.04.9810 => 0.04.9845 (20.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangn zu Testzwecken automatische Übersetzungen in den Sprachen Dänisch, Spanisch, Französisch, Italienisch, Niederländisch, Polnisch, Portugiesisch, Indonesisch und Norwegisch hinzuzufügen.
+   -- Verzeichnisstruktur der Sprachenordner überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

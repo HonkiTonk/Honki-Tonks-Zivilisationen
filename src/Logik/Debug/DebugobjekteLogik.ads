@@ -10,7 +10,7 @@ package DebugobjekteLogik is
    pragma Elaborate_Body;
    use type ForschungenDatentypen.ForschungIDNichtMöglich;
 
-   Debug : SystemRecords.DebugRecord := (others => False);
+   Debug : SystemRecords.DebugRecord := (others => True);
 
    Alleskönner : constant EinheitendatenbankRecord.EinheitenlisteRecord := (
                                                                              Einheitenart            => EinheitenDatentypen.Cheat_Enum,

@@ -21,6 +21,7 @@ package VerzeichnisKonstanten is
    Schriftart : constant String (1 .. 21) := SprachenStrich & "FreeSans.otf";
    
    NullDatei : constant String (1 .. 2) := "/0";
+   EinsDatei : constant String (1 .. 2) := "/1";
    Grafik : constant String (1 .. 6) := "Grafik";
    Audio : constant String (1 .. 5) := "Audio";
    Musik : constant String (1 .. 6) := "/Musik";

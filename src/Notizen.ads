@@ -35,11 +35,10 @@ Tridatus => Sümpfe oder Wälder in Fluss- und Küstennähe
 Senelari => gemäßigtem und warmen Klima an Land
 Aspari_2 => Alle Umgebungen auf denen Maschinen existieren können
 Ekropa => bevorzugen bewaldete Flächen in gemäßigtem oder warmen Klima
+
 Tesorahn => bevorzugter Lebensraum sind Salzgewässer in flüssigem Zustand
 Talbidahr => Unterirdisch in gemäßigten Klimazonen
 
-use type SpeziesDatentypen.Spezies_Enum;
-use type SpeziesDatentypen.Spieler_Enum;
 
 
 -- Ist das hier auch an anderen Stellen brauchbar? äöü
