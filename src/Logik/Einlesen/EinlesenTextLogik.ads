@@ -7,15 +7,14 @@ package EinlesenTextLogik is
    procedure EinlesenDateien;
    
 private
+   
+   AnzahlTextdateien : constant Positive := 40;
       
    DateiVerzeichnisse : File_Type;
    DateiText : File_Type;
    
-   Verzeichnisse : Unbounded_Wide_Wide_String;
-   Sprache : Unbounded_Wide_Wide_String;
-      
-   type TextdateienEinlesenArray is array (1 .. 40) of Unbounded_Wide_Wide_String;
-   TextdateienEinlesen : TextdateienEinlesenArray;
+   Nullpfad : Unbounded_Wide_Wide_String;
+   Dateienpfad : Unbounded_Wide_Wide_String;
    
    procedure Hauptmenü;
    procedure Spielmenü;
@@ -63,7 +62,7 @@ private
       VerzeichnisExtern : in Wide_Wide_String)
      with
        Pre => (
-                 WelcheDateiExtern <= TextdateienEinlesen'Last
+                 WelcheDateiExtern <= AnzahlTextdateien
                and
                  VerzeichnisExtern'Length > 0
               );

@@ -43,4 +43,8 @@ package VerzeichnisKonstanten is
    Bauwerke : constant String (1 .. 9) := "/Bauwerke";
    Spezies : constant String (1 .. 8) := "/Spezies";
    
+   
+   
+   Sprachenordner : constant Wide_Wide_String (1 .. 9) := "Sprachen/";
+   
 end VerzeichnisKonstanten;

@@ -25,11 +25,11 @@ package body TexteinstellungenGrafik is
         Exists (Name => VerzeichnisKonstanten.Schriftart)
       is
          when False =>
-            Fehlermeldungssystem.Grafik (FehlermeldungExtern => "Fontdatei ist nicht vorhanden");
+            Fehlermeldungssystem.Grafik (FehlermeldungExtern => "TexteinstellungenGrafik.SchriftartFestlegen: Fontdatei ist nicht vorhanden");
             raise SchriftartFehlt;
             
          when True =>
-            TexteinstellungenGrafik.SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => "Sprachen/FreeSans.otf");
+            TexteinstellungenGrafik.SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => VerzeichnisKonstanten.SprachenStrich & "FreeSans.otf");
       end case;
       
    end SchriftartFestlegen;

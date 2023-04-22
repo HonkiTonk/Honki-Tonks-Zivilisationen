@@ -49,23 +49,25 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04. => 0.04. (23.04.2023):
+   -- Version 0.04.9945 => 0.04. (23.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9910 => 0.04. (22.04.2023):
+   -- Version 0.04.9910 => 0.04.9945 (22.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einlesen der Sprachdateien überarbeitet.
+   -- Fehler korrigiert welcher bei extrem breiten Auflösungsverhältnissen zu Programmstopps führte.
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprachen Spanisch, Französisch, Italienisch, Niederländisch, Polnisch, Portugiesisch, Indonesisch und Norwegisch hinzugefügt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 
    -- Version 0.04.9845 => 0.04.9910 (21.04.2023):
    
-   -- Einlesen der Sprachen überarbeitet.
+   -- Einlesen der Sprachdateien überarbeitet.
    -- Struktur der Sprachdateien überarbeitet.
    -- Fehler korrigiert der die anzuzeigenden Felder verdoppelte.
    -- Fehler in der Weltkartenanzeige korrigiert, welcher dazu führte das falsche Bereiche angezeigt wurden.
@@ -76,7 +78,7 @@ package ChangelogVorlage is
 
    -- Version 0.04.9810 => 0.04.9845 (20.04.2023):
    
-   -- Angefangen zu Testzwecken automatische Übersetzungen in den Sprachen Dänisch, Spanisch, Französisch, Italienisch, Niederländisch, Polnisch, Portugiesisch, Indonesisch und Norwegisch hinzuzufügen.
+   -- Zu Testzwecken eine automatische Übersetzung in der Sprache Dänisch hinzugefügt.
    -- Verzeichnisstruktur der Sprachenordner überarbeitet.
    -- Kommentare und Kleinigkeiten korrigiert.
    

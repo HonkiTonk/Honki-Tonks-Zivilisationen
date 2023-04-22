@@ -21,8 +21,6 @@ with WeltkarteEinheitZeichnenGrafik;
 with NachGrafiktask;
 with FensterGrafik;
 
-with Diagnoseinformationen;
-
 package body WeltkarteGrafik is
    
    procedure WeltkarteAnzeigen
@@ -37,11 +35,6 @@ package body WeltkarteGrafik is
       
       CursorKoordinatenAlt := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
       Feldposition := GrafikRecordKonstanten.Nullposition;
-      
-      Diagnoseinformationen.Koordinateninformationen (KoordinatenExtern => CursorKoordinatenAlt);
-      
-      Diagnoseinformationen.Zahl (ZahlExtern => Positive (Sichtbereich.YAchse));
-      Diagnoseinformationen.Zahl (ZahlExtern => Positive (Sichtbereich.XAchse));
             
       YAchseSchleife:
       for YAchseSchleifenwert in -Sichtbereich.YAchse .. Sichtbereich.YAchse loop

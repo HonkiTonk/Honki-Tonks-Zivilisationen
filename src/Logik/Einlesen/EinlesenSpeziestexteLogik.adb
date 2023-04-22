@@ -14,22 +14,22 @@ package body EinlesenSpeziestexteLogik is
    procedure SpeziestexteEinlesen
    is begin
       
-      Sprache := LeseOptionen.Sprache;
+      Einspfad := VerzeichnisKonstanten.Sprachenordner & LeseOptionen.Sprache & "/1";
       
       case
-        Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.EinsDatei)
+        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Einspfad)))
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
-                                        & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.EinsDatei));
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Es fehlt: " & To_Wide_Wide_String (Source => Einspfad));
             return;
             
          when True =>
             AktuelleSpezies := SpeziesDatentypen.Spezies_Verwendet_Enum'First;
+            Dateienpfad := VerzeichnisKonstanten.Sprachenordner & LeseOptionen.Sprache & "/";
             
             Open (File => DateiEins,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.EinsDatei);
+                  Name => Encode (Item => To_Wide_Wide_String (Source => Einspfad)));
       end case;
             
       EinlesenSchleife:
@@ -40,9 +40,7 @@ package body EinlesenSpeziestexteLogik is
                                                            AktuelleZeileExtern => WelcheDateienSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Fehlende Zeilen: "
-                                           & Decode (Item => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.EinsDatei) & ", aktuelle Zeile: "
-                                           & WelcheDateienSchleifenwert'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Fehlende Zeilen, aktuelle Zeile: " & WelcheDateienSchleifenwert'Wide_Wide_Image);
                exit EinlesenSchleife;
                
             when False =>
@@ -52,29 +50,29 @@ package body EinlesenSpeziestexteLogik is
                  Teilerrest = 1
                then
                   NameBeschreibung (SpeziesExtern   => AktuelleSpezies,
-                                    DateinameExtern => Get_Line (File => DateiEins));
+                                    DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & Get_Line (File => DateiEins));
                   
                elsif
                  Teilerrest = 2
                then
                   Städtenamen (SpeziesExtern   => AktuelleSpezies,
-                                DateinameExtern => Get_Line (File => DateiEins));
+                                DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & Get_Line (File => DateiEins));
                   
                elsif
                  Teilerrest = 3
                then
                   Forschungen (SpeziesExtern   => AktuelleSpezies,
-                               DateinameExtern => Get_Line (File => DateiEins));
+                               DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & Get_Line (File => DateiEins));
                   
                elsif
                  Teilerrest = 4
                then
                   Einheiten (SpeziesExtern   => AktuelleSpezies,
-                             DateinameExtern => Get_Line (File => DateiEins));
+                             DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & Get_Line (File => DateiEins));
                
                else
                   Gebäude (SpeziesExtern   => AktuelleSpezies,
-                            DateinameExtern => Get_Line (File => DateiEins));
+                            DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & Get_Line (File => DateiEins));
                   
                   case
                     AktuelleSpezies
@@ -105,14 +103,14 @@ package body EinlesenSpeziestexteLogik is
       case
         Exists (Name => Encode (Item => DateinameExtern))
       is
+         when False =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.NameBeschreibung: Es fehlt: " & DateinameExtern);
+            return;
+            
          when True =>
             Open (File => DateiNameBeschreibung,
                   Mode => In_File,
                   Name => Encode (Item => DateinameExtern));
-            
-         when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.NameBeschreibung: Es fehlt: " & DateinameExtern);
-            return;
       end case;
       
       NameBeschreibungSchleife:

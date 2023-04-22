@@ -19,37 +19,37 @@ package body EinlesenTextLogik is
    procedure EinlesenDateien
    is begin
       
-      Sprache := LeseOptionen.Sprache;
+      Nullpfad := VerzeichnisKonstanten.Sprachenordner & LeseOptionen.Sprache & "/0";
             
       case
-        Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.NullDatei)
+        Exists (Name => Encode (Item => To_Wide_Wide_String (Source => Nullpfad)))
       is
          when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenDateien: Es fehlt: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
-                                        & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.NullDatei));
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenDateien: Es fehlt: " & To_Wide_Wide_String (Source => Nullpfad));
             return;
             
          when True =>
+            Dateienpfad := VerzeichnisKonstanten.Sprachenordner & LeseOptionen.Sprache & "/";
+            
             Open (File => DateiVerzeichnisse,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => Sprache)) & VerzeichnisKonstanten.NullDatei);
+                  Name => Encode (Item => To_Wide_Wide_String (Source => Nullpfad)));
       end case;
       
       EinlesenSchleife:
-      for WelcheDateienSchleifenwert in TextdateienEinlesen'Range loop
+      for WelcheDateienSchleifenwert in 1 .. AnzahlTextdateien loop
 
          case
            EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiVerzeichnisse,
                                                            AktuelleZeileExtern => WelcheDateienSchleifenwert)
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenDateien: Fehlende Zeilen: " & Decode (Item => VerzeichnisKonstanten.SprachenStrich)
-                                           & To_Wide_Wide_String (Source => Sprache) & Decode (Item => VerzeichnisKonstanten.NullDatei) & ", aktuelle Zeile: " & WelcheDateienSchleifenwert'Wide_Wide_Image);
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenDateien: Fehlende Zeilen, aktuelle Zeile: " & WelcheDateienSchleifenwert'Wide_Wide_Image);
                exit EinlesenSchleife;
                
             when False =>
                EinlesenAufteilen (WelcheDateiExtern => WelcheDateienSchleifenwert,
-                                  VerzeichnisExtern => Get_Line (File => DateiVerzeichnisse));
+                                  VerzeichnisExtern => To_Wide_Wide_String (Source => Dateienpfad) & Get_Line (File => DateiVerzeichnisse));
          end case;
 
       end loop EinlesenSchleife;
@@ -60,6 +60,7 @@ package body EinlesenTextLogik is
    
    
    
+   -- Verzeichnis hier in Datei umbenennen? äöü
    procedure EinlesenAufteilen
      (WelcheDateiExtern : in Positive;
       VerzeichnisExtern : in Wide_Wide_String)

@@ -196,6 +196,7 @@ package body LadenLogik is
       
       return True;
       
+      -- Wären hier weitere exceptions sinnvoll? äöü
    exception
       when Constraint_Error | End_Error =>
          return False;

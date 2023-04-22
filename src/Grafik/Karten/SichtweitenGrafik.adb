@@ -150,7 +150,7 @@ package body SichtweitenGrafik is
    
    
    
-   -- Würde es mit X als Vorgeber funktionieren? äöü
+   -- Wenn ich für X immer abrunde/dafür sorge dass nicht übersteht/immer ein leichter schwarzer Rand rechts bleibt und dann einfach nur die Seitenleiste anpasse, müsste das dann nicht funktionieren? äöü
    procedure KartenfelderAbmessungBerechnen
    is
       use type KartenDatentypen.Kartenfeld;
@@ -171,6 +171,11 @@ package body SichtweitenGrafik is
         FensterKarte.width / KartenfelderAbmessung.x < 2.00
       then
          Sichtbereich.XAchse := AktuelleZoomstufe * 2;
+         
+      elsif
+        Positive (KartenDatentypen.KartenfeldPositiv'Last) < Positive (FensterKarte.width / KartenfelderAbmessung.x)
+      then
+         Sichtbereich.XAchse := KartenDatentypen.KartenfeldPositiv'Last;
          
       else
          Sichtbereich.XAchse := KartenDatentypen.KartenfeldPositiv (FensterKarte.width / KartenfelderAbmessung.x);

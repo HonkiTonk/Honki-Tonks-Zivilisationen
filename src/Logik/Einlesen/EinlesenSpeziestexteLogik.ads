@@ -22,7 +22,8 @@ private
    DateiEinheiten : File_Type;
    DateiGebäude : File_Type;
 
-   Sprache : Unbounded_Wide_Wide_String;
+   Einspfad : Unbounded_Wide_Wide_String;
+   Dateienpfad : Unbounded_Wide_Wide_String;
 
    procedure NameBeschreibung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
