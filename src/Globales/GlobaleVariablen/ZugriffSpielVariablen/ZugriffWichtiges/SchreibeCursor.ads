@@ -45,7 +45,17 @@ package SchreibeCursor is
    
    procedure GanzerEintrag
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      EintragExtern : in KartenRecords.CursorRecord);
+      EintragExtern : in KartenRecords.CursorRecord)
+     with
+       Pre => (
+                 EintragExtern.KoordinatenAktuell.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 EintragExtern.KoordinatenAktuell.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 EintragExtern.KoordinatenAlt.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 EintragExtern.KoordinatenAlt.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
    pragma Inline (GanzerEintrag);
 
 end SchreibeCursor;

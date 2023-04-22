@@ -49,19 +49,21 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.04.9945 => 0.04. (23.04.2023):
+   -- Version 0.04.9980 => 0.04. (23.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9910 => 0.04.9945 (22.04.2023):
+   -- Version 0.04.9910 => 0.04.9980 (22.04.2023):
    
    -- Einlesen der Sprachdateien überarbeitet.
    -- Fehler korrigiert welcher bei extrem breiten Auflösungsverhältnissen zu Programmstopps führte.
-   -- Zu Testzwecken eine automatische Übersetzung für die Sprachen Spanisch, Französisch, Italienisch, Niederländisch, Polnisch, Portugiesisch, Indonesisch und Norwegisch hinzugefügt.
-   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
+   -- Deutsche Texte überarbeitet.
+   -- Dänische Übersetzung überarbeitet.
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Portugiesisch hinzugefügt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
