@@ -51,17 +51,18 @@ package GrafikRecordKonstanten is
                                                                                     ViewKonstanten.SteuerungAuswahl   => (0.00, Überschriftbereich.height + 0.05, 1.00, 1.00 - Überschriftbereich.height - 0.05)
                                                                                    );
    
-   Weltkartenbereich : constant BereicheArray (Views.WeltkarteAccess'Range) := (
-                                                                                ViewKonstanten.WeltKarte                  => Kartenbereich,
-                                                                                ViewKonstanten.WeltBefehleRechts          => (0.59, 0.79, 0.20, 0.20),
-                                                                                ViewKonstanten.WeltBefehleLinks           => (0.01, 0.79, 0.20, 0.20),
-                                                                                ViewKonstanten.WeltEinheitenbefehleRechts => (0.59, 0.59, 0.20, 0.20),
-                                                                                ViewKonstanten.WeltEinheitenbefehleLinks  => (0.01, 0.59, 0.20, 0.20),
-                                                                                ViewKonstanten.WeltWichtiges              => (Leistendicke.x, 0.00, Leistendicke.y, 0.20),
-                                                                                ViewKonstanten.WeltAllgemeines            => (Leistendicke.x, 0.20, Leistendicke.y, 0.10),
-                                                                                ViewKonstanten.WeltStadt                  => (Leistendicke.x, 0.30, Leistendicke.y, 0.35),
-                                                                                ViewKonstanten.WeltEinheit                => (Leistendicke.x, 0.65, Leistendicke.y, 0.35)
-                                                                               );
+   -- Eventuell die Weltkarte und die Seitenleiste in zwei seperate Records aufteilen? Wäre bei dem neuen System vermutlich besser. äöü
+   Weltkartenbereich : BereicheArray (Views.WeltkarteAccess'Range) := (
+                                                                       ViewKonstanten.WeltKarte                  => Kartenbereich,
+                                                                       ViewKonstanten.WeltBefehleRechts          => (0.59, 0.79, 0.20, 0.20),
+                                                                       ViewKonstanten.WeltBefehleLinks           => (0.01, 0.79, 0.20, 0.20),
+                                                                       ViewKonstanten.WeltEinheitenbefehleRechts => (0.59, 0.59, 0.20, 0.20),
+                                                                       ViewKonstanten.WeltEinheitenbefehleLinks  => (0.01, 0.59, 0.20, 0.20),
+                                                                       ViewKonstanten.WeltWichtiges              => (Leistendicke.x, 0.00, Leistendicke.y, 0.20),
+                                                                       ViewKonstanten.WeltAllgemeines            => (Leistendicke.x, 0.20, Leistendicke.y, 0.10),
+                                                                       ViewKonstanten.WeltStadt                  => (Leistendicke.x, 0.30, Leistendicke.y, 0.35),
+                                                                       ViewKonstanten.WeltEinheit                => (Leistendicke.x, 0.65, Leistendicke.y, 0.35)
+                                                                      );
    
    Forschungsbereich : constant BereicheArray (Views.ForschungsviewAccesse'Range) := (
                                                                                       ViewKonstanten.ForschungsmenüForschungsliste => (0.00, 0.10, 0.50, 0.40),

@@ -23,7 +23,7 @@ package body WichtigesSeitenleisteGrafik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
-      
+            
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltWichtiges).width,
                                                                                               GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltWichtiges).height));

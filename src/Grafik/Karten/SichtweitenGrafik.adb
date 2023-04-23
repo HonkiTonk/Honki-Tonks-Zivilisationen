@@ -1,5 +1,6 @@
 with StadtKonstanten;
 with GrafikRecordKonstanten;
+-- with ViewKonstanten;
 
 with LeseWeltkarteneinstellungen;
 with LeseCursor;
@@ -150,7 +151,6 @@ package body SichtweitenGrafik is
    
    
    
-   -- Wenn ich für X immer abrunde/dafür sorge dass nicht übersteht/immer ein leichter schwarzer Rand rechts bleibt und dann einfach nur die Seitenleiste anpasse, müsste das dann nicht funktionieren? äöü
    procedure KartenfelderAbmessungBerechnen
    is
       use type KartenDatentypen.Kartenfeld;
@@ -162,24 +162,43 @@ package body SichtweitenGrafik is
       KartenfelderAbmessung.y := FensterKarte.height / Float (Sichtbereich.YAchse + 1);
       KartenfelderAbmessung.x := KartenfelderAbmessung.y / GrafikRecordKonstanten.Kartenbereich.width;
       
-      if
-        KartenfelderAbmessung.x = 0.00
-      then
-         Sichtbereich.XAchse := AktuelleZoomstufe * 2;
+      Zwischenspeicher := FensterKarte.width * GrafikRecordKonstanten.Kartenbereich.width;
+      
+      Sichtbereich.XAchse := 1;
+      
+      loop
          
-      elsif
-        FensterKarte.width / KartenfelderAbmessung.x < 2.00
-      then
-         Sichtbereich.XAchse := AktuelleZoomstufe * 2;
+         if
+           KartenfelderAbmessung.y * Float (Sichtbereich.XAchse + 1) = Zwischenspeicher
+         then
+            Sichtbereich.XAchse := Sichtbereich.XAchse + 1;
+            exit;
+            
+         elsif
+           KartenfelderAbmessung.y * Float (Sichtbereich.XAchse + 1) > Zwischenspeicher
+         then
+            exit;
+            
+         else
+            Sichtbereich.XAchse := Sichtbereich.XAchse + 1;
+         end if;
          
-      elsif
-        Positive (KartenDatentypen.KartenfeldPositiv'Last) < Positive (FensterKarte.width / KartenfelderAbmessung.x)
-      then
-         Sichtbereich.XAchse := KartenDatentypen.KartenfeldPositiv'Last;
-         
-      else
-         Sichtbereich.XAchse := KartenDatentypen.KartenfeldPositiv (FensterKarte.width / KartenfelderAbmessung.x);
-      end if;
+      end loop;
+      
+      -- KartenfelderAbmessung.x := FensterKarte.width / Float (Sichtbereich.XAchse);
+      
+      --  Sichtbereich.XAchse := KartenDatentypen.KartenfeldPositiv (0.80 * ((FensterKarte.width / FensterKarte.height) * Float (Sichtbereich.YAchse))) + 1;
+      --  GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width := Float (Sichtbereich.XAchse) * KartenfelderAbmessung.x / FensterGrafik.AktuelleAuflösung.x;
+      
+      -- GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltWichtiges).left := GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
+      -- GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltAllgemeines).left := GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
+      -- GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt).left := GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
+      --  GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltEinheit).left := GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
+      
+      -- GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltWichtiges).width := 1.00 - GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
+      --  GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltAllgemeines).width := 1.00 - GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
+      --  GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt).width := 1.00 - GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
+      -- GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltEinheit).width := 1.00 - GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
       
       Bewegungsbereich.YAchse := Sichtbereich.YAchse - 1;
       Bewegungsbereich.XAchse := Sichtbereich.XAchse - 1;
@@ -221,6 +240,7 @@ package body SichtweitenGrafik is
    
    
    
+   -- Warum ist FensterKarte ein Rect und kein Vector? äöü
    function Kartenfläche
      return Sf.Graphics.Rect.sfFloatRect
    is begin
