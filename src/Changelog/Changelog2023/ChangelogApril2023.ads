@@ -1,58 +1,59 @@
 package ChangelogVorlage is
    
-   -- Version 0.04. => 0.04. (30.04.2023):
+   -- Version 0.05. => 0.05. (30.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (29.04.2023):
+   -- Version 0.05. => 0.05. (29.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (28.04.2023):
+   -- Version 0.05. => 0.05. (28.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (27.04.2023):
+   -- Version 0.05. => 0.05. (27.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (26.04.2023):
+   -- Version 0.05. => 0.05. (26.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (25.04.2023):
+   -- Version 0.05. => 0.05. (25.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04. => 0.04. (24.04.2023):
+   -- Version 0.05. => 0.05. (24.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.04.9980 => 0.04. (23.04.2023):
+   -- Version 0.04.9980 => 0.05. (23.04.2023):
    
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Indonesisch hinzugefügt.
    -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
