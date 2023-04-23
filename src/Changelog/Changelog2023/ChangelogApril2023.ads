@@ -52,6 +52,7 @@ package ChangelogVorlage is
    -- Version 0.04.9980 => 0.05. (23.04.2023):
    
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Indonesisch hinzugefügt.
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Spanisch hinzugefügt.
    -- 
    -- Kommentare und Kleinigkeiten korrigiert.
    

@@ -13,7 +13,7 @@ package body EinlesenSpeziestexteLogik is
 
    procedure SpeziestexteEinlesen
    is begin
-      
+            
       Einspfad := VerzeichnisKonstanten.Sprachenordner & LeseOptionen.Sprache & "/1";
       
       case
