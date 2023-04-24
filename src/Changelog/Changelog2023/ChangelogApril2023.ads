@@ -44,6 +44,11 @@ package ChangelogVorlage is
 
    -- Version 0.05.0025 => 0.05. (24.04.2023):
    
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Französisch hinzugefügt.
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Italienisch hinzugefügt.
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Niederländisch hinzugefügt.
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Norwegisch hinzugefügt.
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Polnisch hinzugefügt.
    -- 
    -- Kleinigkeiten korrigiert.
    
