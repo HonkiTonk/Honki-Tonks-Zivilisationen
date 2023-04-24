@@ -31,6 +31,34 @@ package body Vergleiche is
    
    
    
+   function AuswahlpositionVereinfacht
+     (MauspositionExtern : in Sf.System.Vector2.sfVector2f;
+      TextboxExtern : in Sf.System.Vector2.sfVector2f)
+      return Boolean
+   is begin
+      
+      if
+        MauspositionExtern.x'Valid = False
+        or
+          MauspositionExtern.y'Valid = False
+      then
+         return False;
+            
+      elsif
+        MauspositionExtern.x in 0.00 .. TextboxExtern.x
+        and
+          MauspositionExtern.y in 0.00 .. TextboxExtern.y
+      then
+         return True;
+         
+      else
+         return False;
+      end if;
+      
+   end AuswahlpositionVereinfacht;
+   
+   
+   
    function Achsenauswahlposition
      (MausachseExtern : in Float;
       BasiswertExtern : in Float;

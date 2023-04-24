@@ -35,22 +35,24 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (25.04.2023):
+   -- Version 0.05.0120 => 0.05. (25.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.0025 => 0.05. (24.04.2023):
+   -- Version 0.05.0025 => 0.05.0120 (24.04.2023):
    
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Französisch hinzugefügt.
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Italienisch hinzugefügt.
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Niederländisch hinzugefügt.
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Norwegisch hinzugefügt.
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Polnisch hinzugefügt.
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Aufgehört an der Bestimmung der Feldergröße auf der Weltkarte zu arbeiten, dann bleiben die Felder halt rechteckig.
+   -- Änderungen an der Cursorpositionsumrechnung vorgenommen, so dass jetzt keine Feldinformationen über ein Feld außerhalb des Sichtbereichs angezeigt werden.
+   -- Debugmenütext aus den Sprachen entfernet und in den Code gepackt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

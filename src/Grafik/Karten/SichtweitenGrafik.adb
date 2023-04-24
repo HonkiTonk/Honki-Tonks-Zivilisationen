@@ -1,6 +1,4 @@
 with StadtKonstanten;
-with GrafikRecordKonstanten;
--- with ViewKonstanten;
 
 with LeseWeltkarteneinstellungen;
 with LeseCursor;
@@ -8,7 +6,6 @@ with LeseCursor;
 with CursorbewegungLogik;
 with NachGrafiktask;
 with FensterGrafik;
-
 package body SichtweitenGrafik is
    
    procedure StandardSichtweiten
@@ -32,7 +29,7 @@ package body SichtweitenGrafik is
       if
         AktuelleZoomstufe + ÄnderungExtern > MaximaleZoomstufe
       then
-         AktuelleZoomstufe := KartenDatentypen.KartenfeldPositiv'First;
+         AktuelleZoomstufe := MinimaleZoomstufe;
          WelcheZoomanpassung := TastenbelegungDatentypen.Ebene_Hoch_Enum;
          
       elsif
@@ -157,52 +154,15 @@ package body SichtweitenGrafik is
    begin
       
       FensterKarte := (0.00, 0.00, FensterGrafik.AktuelleAuflösung.x, FensterGrafik.AktuelleAuflösung.y);
-      Sichtbereich.YAchse := AktuelleZoomstufe * 2;
+      Sichtbereich.YAchse := AktuelleZoomstufe * 2 + 1;
+      Sichtbereich.XAchse := AktuelleZoomstufe * 2 + 1;
       
-      KartenfelderAbmessung.y := FensterKarte.height / Float (Sichtbereich.YAchse + 1);
-      KartenfelderAbmessung.x := KartenfelderAbmessung.y / GrafikRecordKonstanten.Kartenbereich.width;
-      
-      Zwischenspeicher := FensterKarte.width * GrafikRecordKonstanten.Kartenbereich.width;
-      
-      Sichtbereich.XAchse := 1;
-      
-      loop
-         
-         if
-           KartenfelderAbmessung.y * Float (Sichtbereich.XAchse + 1) = Zwischenspeicher
-         then
-            Sichtbereich.XAchse := Sichtbereich.XAchse + 1;
-            exit;
-            
-         elsif
-           KartenfelderAbmessung.y * Float (Sichtbereich.XAchse + 1) > Zwischenspeicher
-         then
-            exit;
-            
-         else
-            Sichtbereich.XAchse := Sichtbereich.XAchse + 1;
-         end if;
-         
-      end loop;
-      
-      -- KartenfelderAbmessung.x := FensterKarte.width / Float (Sichtbereich.XAchse);
-      
-      --  Sichtbereich.XAchse := KartenDatentypen.KartenfeldPositiv (0.80 * ((FensterKarte.width / FensterKarte.height) * Float (Sichtbereich.YAchse))) + 1;
-      --  GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width := Float (Sichtbereich.XAchse) * KartenfelderAbmessung.x / FensterGrafik.AktuelleAuflösung.x;
-      
-      -- GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltWichtiges).left := GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
-      -- GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltAllgemeines).left := GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
-      -- GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt).left := GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
-      --  GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltEinheit).left := GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
-      
-      -- GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltWichtiges).width := 1.00 - GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
-      --  GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltAllgemeines).width := 1.00 - GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
-      --  GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltStadt).width := 1.00 - GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
-      -- GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltEinheit).width := 1.00 - GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte).width;
+      KartenfelderAbmessung.y := FensterKarte.height / Float (Sichtbereich.YAchse);
+      KartenfelderAbmessung.x := FensterGrafik.AktuelleAuflösung.x / Float (Sichtbereich.XAchse);
       
       Bewegungsbereich.YAchse := Sichtbereich.YAchse - 1;
       Bewegungsbereich.XAchse := Sichtbereich.XAchse - 1;
-            
+      
    end KartenfelderAbmessungBerechnen;
    
    

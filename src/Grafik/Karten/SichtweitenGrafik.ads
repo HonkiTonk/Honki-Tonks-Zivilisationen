@@ -82,11 +82,8 @@ private
    -- Maximale und Minimale Zoomstufe später anpassbar machen? äöü
    MaximaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 10;
    MinimaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv'First;
-   StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 4;
+   StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 5;
    AktuelleZoomstufe : KartenDatentypen.KartenfeldPositiv := StandardZoomstufe;
-   
-   Zwischenspeicher : Float;
-   Zwischenspeicher222 : Float;
    
    Sichtbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;
    Bewegungsbereich : KartenRecords.YXAchsenKartenfeldPositivRecord;

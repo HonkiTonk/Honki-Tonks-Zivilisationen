@@ -56,6 +56,13 @@ package body EinlesenTextLogik is
 
       Close (File => DateiVerzeichnisse);
       
+      Menuetexte.Debugmenü (1) := To_Unbounded_Wide_Wide_String (Source => "Debugmenü");
+      Menuetexte.Debugmenü (2) := To_Unbounded_Wide_Wide_String (Source => "Karte aufdecken");
+      Menuetexte.Debugmenü (3) := To_Unbounded_Wide_Wide_String (Source => "Alle Technologien");
+      Menuetexte.Debugmenü (4) := To_Unbounded_Wide_Wide_String (Source => "Mensch/KI tauschen");
+      Menuetexte.Debugmenü (5) := To_Unbounded_Wide_Wide_String (Source => "Debug");
+      Menuetexte.Debugmenü (6) := To_Unbounded_Wide_Wide_String (Source => "Fertig");
+      
    end EinlesenDateien;
    
    
@@ -134,72 +141,69 @@ package body EinlesenTextLogik is
             Beschäftigungen;
                
          when 18 =>
-            Debugmenü;
-               
-         when 19 =>
             Würdigung;
                
-         when 20 =>
+         when 19 =>
             Diplomatiemenü;
                
-         when 21 =>
+         when 20 =>
             DiplomatieKI;
                
-         when 22 =>
+         when 21 =>
             Handelsmenü;
                
-         when 23 =>
+         when 22 =>
             DiplomatieStatus;
                
-         when 24 =>
+         when 23 =>
             Angebot;
                
-         when 25 =>
+         when 24 =>
             Fehlermeldung;
                
-         when 26 =>
+         when 25 =>
             Ladezeit;
                
-         when 27 =>
+         when 26 =>
             Frage;
                
-         when 28 =>
+         when 27 =>
             ZeugSachen;
                
-         when 29 =>
+         when 28 =>
             Editoren;
                
-         when 30 =>
+         when 29 =>
             Wege;
                
-         when 31 =>
+         when 30 =>
             Kartenflüsse;
                
-         when 32 =>
+         when 31 =>
             Kartenressourcen;
                
-         when 33 =>
+         when 32 =>
             Einstellungen;
                
-         when 34 =>
+         when 33 =>
             Kartenpole;
             
-         when 35 =>
+         when 34 =>
             Stadtbefehle;
             
-         when 36 =>
+         when 35 =>
             Spielstandmenü;
             
-         when 37 =>
+         when 36 =>
             Intro;
             
-         when 38 =>
+         when 37 =>
             Outro;
             
-         when 39 =>
+         when 38 =>
             Zusatzgrund;
             
-         when 40 =>
+         when 39 =>
             Feldeffekte;
             
          when others =>
@@ -617,30 +621,6 @@ package body EinlesenTextLogik is
       end loop BeschäftigungenSchleife;
       
    end Beschäftigungen;
-   
-   
-   
-   procedure Debugmenü
-   is begin
-      
-      DebugmenüSchleife:
-      for ZeileSchleifenwert in Menuetexte.Debugmenü'Range loop
-                  
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiText,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert)
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Debugmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Menuetexte.Debugmenü (ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
-         end case;
-         
-      end loop DebugmenüSchleife;
-      
-   end Debugmenü;
    
    
    

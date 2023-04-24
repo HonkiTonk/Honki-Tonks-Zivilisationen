@@ -1,4 +1,5 @@
 with Sf.Graphics.RenderWindow;
+with Sf.Graphics.View;
 
 with KartenKonstanten;
 with Views;
@@ -13,6 +14,7 @@ with KartenkoordinatenberechnungssystemLogik;
 with FensterGrafik;
 with NachGrafiktask;
 with SichtweitenGrafik;
+with Vergleiche;
 
 package body CursorplatzierungGrafik is
    
@@ -35,6 +37,17 @@ package body CursorplatzierungGrafik is
             SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
                                                KoordinatenExtern => NachGrafiktask.GeheZu);
             return;
+      end case;
+      
+      case
+        Vergleiche.AuswahlpositionVereinfacht (MauspositionExtern => Mausposition,
+                                               TextboxExtern      => Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)))
+      is
+         when False =>
+            return;
+            
+         when True =>
+            null;
       end case;
       
       if

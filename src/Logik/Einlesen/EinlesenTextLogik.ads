@@ -8,7 +8,7 @@ package EinlesenTextLogik is
    
 private
    
-   AnzahlTextdateien : constant Positive := 40;
+   AnzahlTextdateien : constant Positive := 39;
       
    DateiVerzeichnisse : File_Type;
    DateiText : File_Type;
@@ -33,7 +33,6 @@ private
    procedure Basisgrund;
    procedure Verbesserungen;
    procedure Beschäftigungen;
-   procedure Debugmenü;
    procedure Würdigung;
    procedure Diplomatiemenü;
    procedure DiplomatieKI;
