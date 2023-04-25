@@ -26,7 +26,7 @@ package body EinwohnersystemLogik is
       Mausposition := MausauswahlLogik.Stadtumgebung;
       
       if
-        Mausposition.x < GrafikKonstanten.Nullposition
+        Mausposition.x < GrafikKonstanten.Nullwert
       then
          return False;
          

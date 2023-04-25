@@ -30,6 +30,8 @@ package ChangelogVorlage is
 
    -- Version 0.05.0190 => 0.05. (26.04.2023):
    
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Ukrainisch hinzugefügt.
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Griechisch hinzugefügt.
    -- 
    -- Kleinigkeiten korrigiert.
    

@@ -4,6 +4,7 @@ with Views;
 with TextaccessVariablen;
 with GrafikDatentypen;
 with Spieltexte;
+with GrafikKonstanten;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
@@ -28,7 +29,7 @@ package body IntroGrafik is
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       
       IntroSchleife:
       for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop
@@ -36,7 +37,7 @@ package body IntroGrafik is
          TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
                                                                  TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                    (TextExtern           => To_Wide_Wide_String (Source => Spieltexte.Intro (IntroSchleifenwert)),
-                                                                    TextfeldbreiteExtern => (Viewfläche.x / 2.00 - Textposition.x)),
+                                                                    TextfeldbreiteExtern => (Viewfläche.x / GrafikKonstanten.Halbierung - Textposition.x)),
                                                                  PositionExtern   => Textposition);
       
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,

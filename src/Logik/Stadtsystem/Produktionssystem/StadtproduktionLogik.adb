@@ -1,6 +1,7 @@
 with StadtDatentypen;
 with EinheitenDatentypen;
 with KartenKonstanten;
+with ProduktionKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -85,10 +86,10 @@ package body StadtproduktionLogik is
       NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
             
-      Nahrungsgewinnung := 0;
-      Materialgewinnung := 0;
-      Geldgewinnung := 0;
-      Forschungsgewinnung := 0;
+      Nahrungsgewinnung := ProduktionKonstanten.LeerProduktion;
+      Materialgewinnung := ProduktionKonstanten.LeerProduktion;
+      Geldgewinnung := ProduktionKonstanten.LeerProduktion;
+      Forschungsgewinnung := ProduktionKonstanten.LeerProduktion;
       
       YAchseSchleife:
       for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop

@@ -6,6 +6,7 @@ with Sf.Window.Keyboard;
 with KartenDatentypen;
 with GrafikDatentypen;
 with GrafikRecordKonstanten;
+with GrafikKonstanten;
 
 with NachLogiktask;
 with NachGrafiktask;
@@ -71,7 +72,7 @@ package body TasteneingabeGrafik is
                   null;
                   
                elsif
-                 Nutzereingabe.mouseWheelScroll.eventDelta < 0.00
+                 Nutzereingabe.mouseWheelScroll.eventDelta < GrafikKonstanten.Nullwert
                then
                   SichtweitenGrafik.ZoomstufeÄndern (ÄnderungExtern => 1);
                   

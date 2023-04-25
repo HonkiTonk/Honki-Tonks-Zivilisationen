@@ -9,6 +9,7 @@ with StadtDatentypen;
 with TextaccessVariablen;
 with Views;
 with ViewKonstanten;
+with GrafikKonstanten;
 
 with LeseForschungenDatenbank;
 with LeseEinheitenDatenbank;
@@ -74,7 +75,7 @@ package body ForschungsauswahlGrafik is
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      AktuelleTextbreite := 0.00;
+      AktuelleTextbreite := GrafikKonstanten.Nullwert;
             
       AnzeigeSchleife:
       for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
@@ -137,7 +138,7 @@ package body ForschungsauswahlGrafik is
          when others =>
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-            AktuelleTextbreite := 0.00;
+            AktuelleTextbreite := GrafikKonstanten.Nullwert;
             
             TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                     TextExtern       => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugWirdBenötigt)),
@@ -272,7 +273,7 @@ package body ForschungsauswahlGrafik is
                                                                     TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                       (TextExtern           => ForschungsbeschreibungenGrafik.Langbeschreibung (IDExtern      => ZusatztextExtern,
                                                                                                                                                 SpeziesExtern => SpeziesExtern),
-                                                                       TextfeldbreiteExtern => Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung).x / 2.00 - Textposition.x),
+                                                                       TextfeldbreiteExtern => Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung).x / GrafikKonstanten.Halbierung - Textposition.x),
                                                                     PositionExtern   => Textposition);
       
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
@@ -305,7 +306,7 @@ package body ForschungsauswahlGrafik is
                                      AbmessungenExtern => Viewfläche (ViewKonstanten.ForschungsmenüAktuell));
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      AktuelleTextbreite := 0.00;
+      AktuelleTextbreite := GrafikKonstanten.Nullwert;
       
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern);
       

@@ -6,6 +6,7 @@ with MenueKonstanten;
 with TextaccessVariablen;
 with InteraktionAuswahl;
 with Menuetexte;
+with GrafikKonstanten;
 
 with TextberechnungenBreiteGrafik;
 with MenuestringsSetzenGrafik;
@@ -24,7 +25,7 @@ package body KartenformmenueGrafik is
    is begin
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       
       PositionenSchleife:
       for PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop

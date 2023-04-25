@@ -1,5 +1,6 @@
 with KartenKonstanten;
 with BewertungDatentypen;
+with GrafikKonstanten;
 
 with LeseWeltkarte;
 with LeseKartenDatenbanken;
@@ -93,7 +94,7 @@ package body KIKartenfeldbewertungModifizierenLogik is
       return Boolean
    is begin
       
-      GuteFelder := 0.00;
+      GuteFelder := GrafikKonstanten.Nullwert;
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
@@ -133,7 +134,7 @@ package body KIKartenfeldbewertungModifizierenLogik is
                  or
                abs (YAchseSchleifenwert) = 2
                then
-                  GuteFelder := GuteFelder + 1.00 / 2.00;
+                  GuteFelder := GuteFelder + 1.00 / GrafikKonstanten.Halbierung;
                   
                else
                   GuteFelder := GuteFelder + 1.00;

@@ -52,7 +52,7 @@ package body CursorplatzierungGrafik is
       end case;
       
       if
-        SichtweitenGrafik.Kartenfeldfläche.y = GrafikKonstanten.Nullposition
+        SichtweitenGrafik.Kartenfeldfläche.y = GrafikKonstanten.Nullwert
         or else
           (Float'Floor (Mausposition.y / SichtweitenGrafik.Kartenfeldfläche.y) > Float (KartenDatentypen.Kartenfeld'Last)
            or
@@ -65,7 +65,7 @@ package body CursorplatzierungGrafik is
       end if;
       
       if
-        SichtweitenGrafik.Kartenfeldfläche.x = GrafikKonstanten.Nullposition
+        SichtweitenGrafik.Kartenfeldfläche.x = GrafikKonstanten.Nullwert
         or else
           (Float'Floor (Mausposition.x / SichtweitenGrafik.Kartenfeldfläche.x) > Float (KartenDatentypen.Kartenfeld'Last)
            or

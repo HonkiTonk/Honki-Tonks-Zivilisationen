@@ -5,6 +5,7 @@ with GrafikDatentypen;
 with TextKonstanten;
 with ForschungKonstanten;
 with ViewKonstanten;
+with GrafikKonstanten;
 
 with LeseWichtiges;
 with LeseGrenzen;
@@ -35,7 +36,7 @@ package body WichtigesSeitenleisteGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
       
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       

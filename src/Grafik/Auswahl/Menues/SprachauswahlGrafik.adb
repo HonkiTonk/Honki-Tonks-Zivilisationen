@@ -7,6 +7,7 @@ with InteraktionAuswahl;
 with TextaccessVariablen;
 with Views;
 with TextDatentypen;
+with GrafikKonstanten;
 
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
@@ -52,7 +53,7 @@ package body SprachauswahlGrafik is
       AktuelleSprachen := SprachauswahlLogik.AktuelleSprachen;
       
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      AktuelleTextbreite := 0.00;
+      AktuelleTextbreite := GrafikKonstanten.Nullwert;
       
       AnzeigeSchleife:
       for ZeileSchleifenwert in AktuelleSprachen'Range loop
@@ -78,7 +79,7 @@ package body SprachauswahlGrafik is
                                                                 PositionExtern   => Textposition);
             
             NeueTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
-                                                                                    TextbreiteExtern => 0.00);
+                                                                                    TextbreiteExtern => GrafikKonstanten.Nullwert);
             
             InteraktionAuswahl.PositionenSprachauswahl (ZeileSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SprachauswahlAccess);
                         
@@ -91,7 +92,7 @@ package body SprachauswahlGrafik is
             
             KonvexverwaltungssystemGrafik.PfeilErstellen (PfeilaccessExtern => PfeilAccess);
             
-            Textposition.x := Viewfläche.x / 2.00 - 0.50 * Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
+            Textposition.x := Viewfläche.x / GrafikKonstanten.Halbierung - 0.50 * Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
             
             -- Das auch nach TestfarbeGrafik? äöü
             if
@@ -112,7 +113,7 @@ package body SprachauswahlGrafik is
             NeueTextbreite := TextberechnungenBreiteGrafik.SpaltenabstandVariabel + Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
             
          else
-            NeueTextbreite := 0.00;
+            NeueTextbreite := GrafikKonstanten.Nullwert;
          end if;
          
          if

@@ -187,9 +187,9 @@ package body CursorplatzierungAltGrafik is
    is begin
             
       if
-        InteraktionAllgemein.Mausposition.x < GrafikKonstanten.Nullposition
+        InteraktionAllgemein.Mausposition.x < GrafikKonstanten.Nullwert
         or
-          InteraktionAllgemein.Mausposition.y < GrafikKonstanten.Nullposition
+          InteraktionAllgemein.Mausposition.y < GrafikKonstanten.Nullwert
       then
          null;
          
@@ -203,7 +203,7 @@ package body CursorplatzierungAltGrafik is
       
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => (Viewzentrum.x - Viewfläche.x / 2.00, Viewzentrum.y - Viewfläche.y / 2.00, Viewfläche.x, Viewfläche.y))
+                                       TextboxExtern      => (Viewzentrum.x - Viewfläche.x / GrafikKonstanten.Halbierung, Viewzentrum.y - Viewfläche.y / GrafikKonstanten.Halbierung, Viewfläche.x, Viewfläche.y))
          is
             when True =>
                return True;
@@ -219,9 +219,9 @@ package body CursorplatzierungAltGrafik is
          null;
          
       elsif
-        InteraktionAllgemein.Mausposition.x <= GrafikKonstanten.Nullposition
+        InteraktionAllgemein.Mausposition.x <= GrafikKonstanten.Nullwert
         or
-          InteraktionAllgemein.Mausposition.y <= GrafikKonstanten.Nullposition
+          InteraktionAllgemein.Mausposition.y <= GrafikKonstanten.Nullwert
       then
          null;
          
@@ -235,7 +235,7 @@ package body CursorplatzierungAltGrafik is
             
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => (Viewzentrum.x - Viewfläche.x / 2.00, Viewzentrum.y - Viewfläche.y / 2.00, Viewfläche.x, Viewfläche.y))
+                                       TextboxExtern      => (Viewzentrum.x - Viewfläche.x / GrafikKonstanten.Halbierung, Viewzentrum.y - Viewfläche.y / GrafikKonstanten.Halbierung, Viewfläche.x, Viewfläche.y))
          is
             when True =>
                return True;
@@ -264,12 +264,12 @@ package body CursorplatzierungAltGrafik is
       YAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformYAchse;
       
       if
-        MauspositionExtern.x not in GrafikKonstanten.Nullposition .. Achsenviewfläche.x
+        MauspositionExtern.x not in GrafikKonstanten.Nullwert .. Achsenviewfläche.x
       then
          return KeineÄnderung;
       
       elsif
-        MauspositionExtern.y in GrafikKonstanten.Nullposition .. SichtweitenGrafik.Kartenfeldfläche.y / Scrollbereichanteil
+        MauspositionExtern.y in GrafikKonstanten.Nullwert .. SichtweitenGrafik.Kartenfeldfläche.y / Scrollbereichanteil
       then
          if
            YAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangYAchse
@@ -331,7 +331,7 @@ package body CursorplatzierungAltGrafik is
       XAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformXAchse;
       
       if
-        MausachseExtern in GrafikKonstanten.Nullposition .. SichtweitenGrafik.Kartenfeldfläche.x / Scrollbereichanteil
+        MausachseExtern in GrafikKonstanten.Nullwert .. SichtweitenGrafik.Kartenfeldfläche.x / Scrollbereichanteil
       then
          if
            XAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangXAchse

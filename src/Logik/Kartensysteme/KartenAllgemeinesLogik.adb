@@ -1,6 +1,7 @@
 with KartenKonstanten;
 with KampfKonstanten;
 with KartengrundDatentypen;
+with GrafikKonstanten;
 
 with LeseWeltkarte;
 with LeseKartenDatenbanken;
@@ -32,7 +33,7 @@ package body KartenAllgemeinesLogik is
                                                                              SpeziesExtern       => SpeziesExtern,
                                                                              WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
             
-            return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / 2.00 + Float (Zusatzwirtschaft) / 2.00);
+            return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / GrafikKonstanten.Halbierung + Float (Zusatzwirtschaft) / GrafikKonstanten.Halbierung);
       end case;
             
    end GrundNahrung;
@@ -62,7 +63,7 @@ package body KartenAllgemeinesLogik is
                                                                              SpeziesExtern       => SpeziesExtern,
                                                                              WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
             
-            return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / 2.00 + Float (Zusatzwirtschaft) / 2.00);
+            return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / GrafikKonstanten.Halbierung + Float (Zusatzwirtschaft) / GrafikKonstanten.Halbierung);
       end case;
       
    end GrundProduktion;
@@ -92,7 +93,7 @@ package body KartenAllgemeinesLogik is
                                                                              SpeziesExtern       => SpeziesExtern,
                                                                              WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
             
-            return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / 2.00 + Float (Zusatzwirtschaft) / 2.00);
+            return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / GrafikKonstanten.Halbierung + Float (Zusatzwirtschaft) / GrafikKonstanten.Halbierung);
       end case;
       
    end GrundGeld;
@@ -122,7 +123,7 @@ package body KartenAllgemeinesLogik is
                                                                              SpeziesExtern       => SpeziesExtern,
                                                                              WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
             
-            return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / 2.00 + Float (Zusatzwirtschaft) / 2.00);
+            return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / GrafikKonstanten.Halbierung + Float (Zusatzwirtschaft) / GrafikKonstanten.Halbierung);
       end case;
       
    end GrundWissen;
@@ -152,7 +153,7 @@ package body KartenAllgemeinesLogik is
                                                                    SpeziesExtern  => SpeziesExtern,
                                                                    KampfArtExtern => KartenKonstanten.KampfVerteidigung);
             
-            return KampfDatentypen.KampfwerteKarte (Float (Basiskampf) / 2.00 + Float (Zusatzkampf) / 2.00);
+            return KampfDatentypen.KampfwerteKarte (Float (Basiskampf) / GrafikKonstanten.Halbierung + Float (Zusatzkampf) / GrafikKonstanten.Halbierung);
       end case;
       
    end GrundVerteidigung;
@@ -182,7 +183,7 @@ package body KartenAllgemeinesLogik is
                                                                    SpeziesExtern  => SpeziesExtern,
                                                                    KampfArtExtern => KartenKonstanten.KampfAngriff);
             
-            return KampfDatentypen.KampfwerteKarte (Float (Basiskampf) / 2.00 + Float (Zusatzkampf) / 2.00);
+            return KampfDatentypen.KampfwerteKarte (Float (Basiskampf) / GrafikKonstanten.Halbierung + Float (Zusatzkampf) / GrafikKonstanten.Halbierung);
       end case;
       
    end GrundAngriff;

@@ -6,6 +6,7 @@ with TextnummernKonstanten;
 with KartengrundDatentypen;
 with ViewKonstanten;
 with TextKonstanten;
+with GrafikKonstanten;
 
 with LeseWeltkarte;
 with LeseCursor;
@@ -28,7 +29,7 @@ package body AllgemeinesSeitenleisteGrafik is
       Viewfläche := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltAllgemeines,
                                                     ViewflächeExtern     => Viewfläche);
       
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       

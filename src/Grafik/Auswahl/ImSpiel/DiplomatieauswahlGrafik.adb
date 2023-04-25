@@ -10,6 +10,7 @@ with SpeziesDatentypen;
 with MenueDatentypen;
 with DiplomatieDatentypen;
 with TextKonstanten;
+with GrafikKonstanten;
 
 with LeseDiplomatie;
 
@@ -59,7 +60,7 @@ package body DiplomatieauswahlGrafik is
    is begin
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
 
       PositionenSchleife:
       for PositionSchleifenwert in SpeziesDatentypen.Spezies_Enum'Pos (SpeziesDatentypen.Spezies_Verwendet_Enum'First) .. SpeziesDatentypen.Spezies_Enum'Pos (SpeziesDatentypen.Spezies_Enum'Last) loop

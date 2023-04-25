@@ -7,6 +7,7 @@ with Meldungstexte;
 with TextnummernKonstanten;
 with DiplomatieDatentypen;
 with Menuetexte;
+with GrafikKonstanten;
 
 with LeseDiplomatie;
 
@@ -24,7 +25,7 @@ package body ZusatztextDiplomatieGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       Textposition.y := ViewflächeExtern.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
       TextSchleife:

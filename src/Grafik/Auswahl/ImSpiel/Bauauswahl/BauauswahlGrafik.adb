@@ -8,6 +8,7 @@ with Views;
 with EinheitenKonstanten;
 with ViewKonstanten;
 with StadtKonstanten;
+with GrafikKonstanten;
 
 with TextberechnungenBreiteGrafik;
 with InteraktionAuswahl;
@@ -82,7 +83,7 @@ package body BauauswahlGrafik is
                                      AbmessungenExtern => ViewflächeGebäude);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
@@ -137,7 +138,7 @@ package body BauauswahlGrafik is
                                      AbmessungenExtern => ViewflächeEinheiten);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
           
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
@@ -207,7 +208,7 @@ package body BauauswahlGrafik is
       end if;
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AktuellesBauprojekt,
                                          str  => To_Wide_Wide_String (Source => Text));

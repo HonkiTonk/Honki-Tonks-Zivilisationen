@@ -107,7 +107,7 @@ package body StadtumgebungGrafik is
                          PositionExtern    => PositionExtern);
       
       Grundbelegung := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => KarteKoordinatenExtern);
-      Rahmendicke := (FeldgrößeExtern.y / 20.00 + FeldgrößeExtern.x / 20.00) / 2.00;
+      Rahmendicke := (FeldgrößeExtern.y / 20.00 + FeldgrößeExtern.x / 20.00) / GrafikKonstanten.Halbierung;
       
       if
         Grundbelegung.Spezies = SpeziesKonstanten.LeerSpezies

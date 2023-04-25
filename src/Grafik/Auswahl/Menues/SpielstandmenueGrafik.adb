@@ -13,6 +13,7 @@ with InteraktionAuswahl;
 with MenueDatentypen;
 with TextKonstanten;
 with VerzeichnisKonstanten;
+with GrafikKonstanten;
 
 with HintergrundGrafik;
 with ViewsEinstellenGrafik;
@@ -53,7 +54,7 @@ package body SpielstandmenueGrafik is
    is begin
       
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      NeueTextbreite := 0.00;
+      NeueTextbreite := GrafikKonstanten.Nullwert;
       
       MehrereSeiten := NachGrafiktask.MehrereSeiten;
       SpeichernLaden := NachGrafiktask.SpeichernLaden;
@@ -104,7 +105,7 @@ package body SpielstandmenueGrafik is
             end if;
          
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                                                                TextbreiteExtern => 0.00);
+                                                                                TextbreiteExtern => GrafikKonstanten.Nullwert);
             Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
                                                                     ErlaubteBreiteExtern => ViewflächeExtern.x);
             Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;

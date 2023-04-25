@@ -12,6 +12,7 @@ with Menuetexte;
 with BefehleDatentypen;
 with ViewKonstanten;
 with TextDatentypen;
+with GrafikKonstanten;
 
 with LeseTastenbelegungDatenbank;
 
@@ -73,7 +74,7 @@ package body SteuerungsmenueGrafik is
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textposition.x := TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       
       AufteilungSchleife:
       for AufteilungSchleifenwert in AufteilungArray'Range loop
@@ -153,7 +154,7 @@ package body SteuerungsmenueGrafik is
       
       Textposition.x := TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop

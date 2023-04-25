@@ -9,6 +9,7 @@ with Views;
 with TextaccessVariablen;
 with InteraktionAuswahl;
 with ViewKonstanten;
+with GrafikKonstanten;
 
 with AllgemeineViewsGrafik;
 with ViewsEinstellenGrafik;
@@ -58,7 +59,7 @@ package body VerkaufsauswahlGrafik is
                                      AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      AktuelleTextbreite := 0.00;
+      AktuelleTextbreite := GrafikKonstanten.Nullwert;
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop

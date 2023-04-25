@@ -22,7 +22,11 @@ package GrafikKonstanten is
    MinimaleBildrate : constant Sf.sfUint32 := 1;
    MaximaleBildrate : constant Sf.sfUint32 := 1_000;
    
-   Nullposition : constant Float := 0.00;
+   Nullwert : constant Float := 0.00;
+   Einswert : constant Float := 1.00;
+   
+   Halbierung : constant Float := 2.00;
+   
    AnzahlStadtumgebungsfelder : constant Float := 7.00;
    MaximalerViewbereich : constant Float := 1.00;
 

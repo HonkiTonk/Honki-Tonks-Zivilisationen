@@ -1,6 +1,6 @@
 with Sf.System.Vector2;
 
-package Texturenberechnungen is
+package TexturenberechnungenGrafik is
    pragma Elaborate_Body;
    
    function Texturenbereich
@@ -108,4 +108,4 @@ private
    Teiler : Sf.System.Vector2.sfVector2f;
    Zwischenwert : Sf.System.Vector2.sfVector2f;
      
-end Texturenberechnungen;
+end TexturenberechnungenGrafik;

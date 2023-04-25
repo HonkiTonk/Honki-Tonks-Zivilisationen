@@ -5,6 +5,7 @@ with MenueKonstanten;
 with InteraktionAuswahl;
 with Views;
 with GrafikDatentypen;
+with GrafikKonstanten;
 
 with TextberechnungenBreiteGrafik;
 with MenuestringsSetzenGrafik;
@@ -65,7 +66,7 @@ package body EinfachmenueGrafik is
    is begin
       
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
 
       PositionenSchleife:
       for PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop

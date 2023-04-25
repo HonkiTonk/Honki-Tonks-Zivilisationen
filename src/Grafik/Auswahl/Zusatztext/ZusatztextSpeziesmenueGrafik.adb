@@ -1,4 +1,5 @@
 with TextaccessVariablen;
+with GrafikKonstanten;
 
 with ZeilenumbruchberechnungGrafik;
 with SpeziesbeschreibungenGrafik;
@@ -23,7 +24,7 @@ package body ZusatztextSpeziesmenueGrafik is
       TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesAnzeigen),
                                                               TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                 (TextExtern           => SpeziesbeschreibungenGrafik.Langbeschreibung (SpeziesExtern => SpeziesAnzeigen),
-                                                                 TextfeldbreiteExtern => (ViewflächeExtern.x / 2.00 - Textposition.x)),
+                                                                 TextfeldbreiteExtern => (ViewflächeExtern.x / GrafikKonstanten.Halbierung - Textposition.x)),
                                                               PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,

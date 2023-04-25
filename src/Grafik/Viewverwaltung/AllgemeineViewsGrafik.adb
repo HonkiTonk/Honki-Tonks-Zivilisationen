@@ -4,6 +4,7 @@ with TextaccessVariablen;
 with Views;
 with SonstigesKonstanten;
 with ViewKonstanten;
+with GrafikKonstanten;
 
 with TextberechnungenBreiteGrafik;
 with ViewsEinstellenGrafik;
@@ -49,7 +50,7 @@ package body AllgemeineViewsGrafik is
                                                           PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                          TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
@@ -106,7 +107,7 @@ package body AllgemeineViewsGrafik is
                                                           PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,
-                                                                          TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,
@@ -145,7 +146,7 @@ package body AllgemeineViewsGrafik is
                                                           PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                          TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,

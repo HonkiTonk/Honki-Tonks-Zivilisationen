@@ -5,6 +5,7 @@ with GrafikDatentypen;
 with TextaccessVariablen;
 with InteraktionAuswahl;
 with ViewKonstanten;
+with GrafikKonstanten;
 
 with HintergrundGrafik;
 with ViewsEinstellenGrafik;
@@ -29,7 +30,7 @@ package body StadtbefehleGrafik is
                                      AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
 
       PositionenSchleife:
       for PositionSchleifenwert in TextaccessVariablen.StadtbefehleAccessArray'Range loop
@@ -44,7 +45,7 @@ package body StadtbefehleGrafik is
                                                                              TextbreiteExtern => Textbreite);
          
          Textbox := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert));
-         Textbox.left := 0.00;
+         Textbox.left := GrafikKonstanten.Nullwert;
          Textbox.width := Viewfläche.x;
          InteraktionAuswahl.PositionenStadtbefehle (PositionSchleifenwert) := Textbox;
          

@@ -6,6 +6,7 @@ with TextKonstanten;
 with Views;
 with GrafikDatentypen;
 with ViewKonstanten;
+with GrafikKonstanten;
 
 with KampfwerteStadtErmittelnLogik;
 with TextberechnungenHoeheGrafik;
@@ -73,7 +74,7 @@ package body StadtseitenleisteGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       
       FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & StadtauswahlExtern.EinwohnerArbeiter (1)'Wide_Wide_Image;
       

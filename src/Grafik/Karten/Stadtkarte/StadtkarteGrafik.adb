@@ -10,6 +10,7 @@ with Meldungstexte;
 with TextnummernKonstanten;
 with KampfDatentypen;
 with ProduktionDatentypen;
+with GrafikKonstanten;
 
 with LeseWeltkarte;
 with LeseGebaeudeDatenbank;
@@ -165,7 +166,7 @@ package body StadtkarteGrafik is
            
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       
       TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                               TextExtern       => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => GebäudeIDExtern,

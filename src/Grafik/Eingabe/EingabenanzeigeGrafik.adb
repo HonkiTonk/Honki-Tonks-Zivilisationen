@@ -7,6 +7,7 @@ with TextaccessVariablen;
 with ViewKonstanten;
 with TextnummernKonstanten;
 with EinheitenKonstanten;
+with GrafikKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -80,7 +81,7 @@ package body EingabenanzeigeGrafik is
                                          str  => To_Wide_Wide_String (Source => Text));
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                          TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
@@ -119,7 +120,7 @@ package body EingabenanzeigeGrafik is
                                          str  => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText));
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
-                                                                          TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                               ViewbreiteExtern => Viewfläche.x);
@@ -150,7 +151,7 @@ package body EingabenanzeigeGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
             
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       AktuelleAuswahl := NachGrafiktask.AktuelleAuswahl.AuswahlZwei;
@@ -217,7 +218,7 @@ package body EingabenanzeigeGrafik is
                                      AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       MaximaleTextbreite := Viewfläche.x;
       
       AuswahlSchleife:
@@ -255,9 +256,9 @@ package body EingabenanzeigeGrafik is
             Textbox := Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
             
             if
-              Textbox.width <= 0.00
+              Textbox.width <= GrafikKonstanten.Nullwert
               or
-                Textbox.height <= 0.00
+                Textbox.height <= GrafikKonstanten.Nullwert
             then
                if
                  AuswahlSchleifenwert = WelcheAuswahlExtern.MöglicheAuswahlen'First

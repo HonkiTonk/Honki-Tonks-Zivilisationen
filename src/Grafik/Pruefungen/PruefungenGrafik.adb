@@ -1,3 +1,5 @@
+with GrafikKonstanten;
+
 -- In Nullprüfung umbenennen? äöü
 package body PruefungenGrafik is
 
@@ -10,9 +12,9 @@ package body PruefungenGrafik is
    is begin
       
       if
-        KommazahlExtern = 0.00
+        KommazahlExtern = GrafikKonstanten.Nullwert
       then
-         return 1.00;
+         return GrafikKonstanten.Einswert;
          
       else
          return KommazahlExtern;
@@ -28,18 +30,18 @@ package body PruefungenGrafik is
    is begin
       
       if
-        GrößeExtern.x = 0.00
+        GrößeExtern.x = GrafikKonstanten.Nullwert
       then
-         Floatvektor.x := 1.00;
+         Floatvektor.x := GrafikKonstanten.Einswert;
          
       else
          Floatvektor.x := GrößeExtern.x;
       end if;
       
       if
-        GrößeExtern.y = 0.00
+        GrößeExtern.y = GrafikKonstanten.Nullwert
       then
-         Floatvektor.y := 1.00;
+         Floatvektor.y := GrafikKonstanten.Einswert;
          
       else
          Floatvektor.y := GrößeExtern.y;

@@ -2,6 +2,7 @@ with Views;
 with TextaccessVariablen;
 with GrafikDatentypen;
 with ViewKonstanten;
+with GrafikKonstanten;
 
 with LeseWichtiges;
 
@@ -62,7 +63,7 @@ package body ForschungserfolgGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern),
@@ -88,7 +89,7 @@ package body ForschungserfolgGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, TechnologieExtern),

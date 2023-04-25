@@ -6,6 +6,7 @@ with TextaccessVariablen;
 with ProduktionDatentypen;
 with KampfDatentypen;
 with StadtKonstanten;
+with GrafikKonstanten;
 
 with LeseGebaeudeDatenbank;
 
@@ -81,7 +82,7 @@ package body BauauswahlGebaeudeGrafik is
       
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-            Textbreite := 0.00;
+            Textbreite := GrafikKonstanten.Nullwert;
       end case;
       
       InformationenSchleife:
@@ -142,7 +143,7 @@ package body BauauswahlGebaeudeGrafik is
                                                                     TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                       (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
                                                                                                                                               SpeziesExtern => SpeziesExtern),
-                                                                       TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x),
+                                                                       TextfeldbreiteExtern => ViewflächeBeschreibung.x / GrafikKonstanten.Halbierung - Textposition.x),
                                                                     PositionExtern   => Textposition);
             
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,

@@ -1,5 +1,7 @@
 with Sf.Graphics.Text;
 
+with GrafikKonstanten;
+
 with FensterGrafik;
 
 package body TextberechnungenBreiteGrafik is
@@ -30,7 +32,7 @@ package body TextberechnungenBreiteGrafik is
       return Float
    is begin
       
-      return ViewbreiteExtern / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width / 2.00;
+      return ViewbreiteExtern / GrafikKonstanten.Halbierung - Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width / GrafikKonstanten.Halbierung;
       
    end MittelpositionBerechnen;
    
@@ -42,7 +44,7 @@ package body TextberechnungenBreiteGrafik is
       return Float
    is begin
       
-      return ViewbreiteExtern / 2.00 - Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).width / 2.00;
+      return ViewbreiteExtern / GrafikKonstanten.Halbierung - Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).width / GrafikKonstanten.Halbierung;
       
    end MittelpositionBerechnenGlobaleGrenzen;
    
@@ -55,7 +57,7 @@ package body TextberechnungenBreiteGrafik is
       return Float
    is begin
             
-      return Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).width / 2.00;
+      return Sf.Graphics.Text.getGlobalBounds (text => TextAccessExtern).width / GrafikKonstanten.Halbierung;
       
    end HalbeBreiteBerechnenGlobaleGrenzen;
    

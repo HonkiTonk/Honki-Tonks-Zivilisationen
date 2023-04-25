@@ -227,9 +227,9 @@ package body WeltkarteZusatzZeichnenGrafik is
       end if;
       
       if
-        Textposition.x < 0.00
+        Textposition.x < GrafikKonstanten.Nullwert
       then
-         Textposition.x := 0.00;
+         Textposition.x := GrafikKonstanten.Nullwert;
          
       elsif
         Textposition.x > SichtweitenGrafik.Kartenfläche.width - Textgröße.x * Skalierung.x

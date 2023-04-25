@@ -4,6 +4,7 @@ with Views;
 with GrafikDatentypen;
 with TextaccessVariablen;
 with MenueKonstanten;
+with GrafikKonstanten;
 with InteraktionAuswahl;
 
 with ViewsEinstellenGrafik;
@@ -81,7 +82,7 @@ package body DoppelmenueGrafik is
    is begin
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
 
       PositionenSchleife:
       for PositionSchleifenwert in MenueKonstanten.StandardArrayanpassung .. MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) loop

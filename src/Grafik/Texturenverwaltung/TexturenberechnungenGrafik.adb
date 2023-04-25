@@ -1,4 +1,4 @@
-package body Texturenberechnungen is
+package body TexturenberechnungenGrafik is
    
    -- Setzt ganzzahlige BereichnummerExtern voraus.
    function Texturenbereich
@@ -98,4 +98,4 @@ package body Texturenberechnungen is
       
    end Texturenfeld;
 
-end Texturenberechnungen;
+end TexturenberechnungenGrafik;

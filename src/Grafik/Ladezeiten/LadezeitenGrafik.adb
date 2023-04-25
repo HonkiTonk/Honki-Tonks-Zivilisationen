@@ -5,6 +5,7 @@ with TextKonstanten;
 with Views;
 with LadezeitenDatentypen;
 with TextnummernKonstanten;
+with GrafikKonstanten;
 
 with HintergrundGrafik;
 with TextberechnungenHoeheGrafik;
@@ -82,7 +83,7 @@ package body LadezeitenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       WelcheZeit := TextaccessVariablen.LadezeitenAccess'First;
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
                      
@@ -122,7 +123,7 @@ package body LadezeitenGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       WelcheZeit := TextaccessVariablen.KIZeitenAccess'First;
       
@@ -170,7 +171,7 @@ package body LadezeitenGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
                                                                               ViewbreiteExtern => ViewflächeExtern.x);
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
-                                                                          TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => GrafikKonstanten.Nullwert);
             
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.RundenendeAccess (1),
                                                           PositionExtern   => Textposition);
@@ -195,7 +196,7 @@ package body LadezeitenGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
                                                                               ViewbreiteExtern => ViewflächeExtern.x);
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
-                                                                          TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
                                                           PositionExtern   => Textposition);

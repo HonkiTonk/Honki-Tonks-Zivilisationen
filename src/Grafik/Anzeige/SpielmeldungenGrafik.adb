@@ -6,6 +6,7 @@ with Meldungstexte;
 with Views;
 with GrafikDatentypen;
 with TextaccessVariablen;
+with GrafikKonstanten;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
@@ -37,7 +38,7 @@ package body SpielmeldungenGrafik is
                                          str  => To_Wide_Wide_String (Source => Meldungstexte.Meldung (MeldungExtern)));
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.Spielmeldung,
-                                                                          TextbreiteExtern => 0.00);
+                                                                          TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.Spielmeldung,
                                                                               ViewbreiteExtern => Viewfläche.x);

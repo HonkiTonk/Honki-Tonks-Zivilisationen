@@ -7,6 +7,7 @@ with ProduktionDatentypen;
 with EinheitenKonstanten;
 with TextKonstanten;
 with ViewKonstanten;
+with GrafikKonstanten;
 
 with LeseEinheitenDatenbank;
 
@@ -96,7 +97,7 @@ package body BauauswahlEinheitenGrafik is
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       
       InformationenSchleife:
       for InformationSchleifenwert in EinheitentexteArray'Range loop
@@ -148,7 +149,7 @@ package body BauauswahlEinheitenGrafik is
                                                                 ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung
                                                                                                                        (IDExtern      => AuswahlExtern,
                                                                                                                         SpeziesExtern => SpeziesExtern),
-                                                                                                                       TextfeldbreiteExtern => ViewflächeBeschreibung.x / 2.00 - Textposition.x),
+                                                                                                                       TextfeldbreiteExtern => ViewflächeBeschreibung.x / GrafikKonstanten.Halbierung - Textposition.x),
                                                               PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,

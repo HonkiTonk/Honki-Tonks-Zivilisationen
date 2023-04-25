@@ -13,9 +13,9 @@ package body ViewbereicheBerechnenGrafik is
       NeuerBereich := BereichExtern;
       
       if
-        InteraktionAllgemein.Mausposition.x = GrafikKonstanten.Nullposition
+        InteraktionAllgemein.Mausposition.x = GrafikKonstanten.Nullwert
       then
-         NeuerBereich.left := GrafikKonstanten.Nullposition;
+         NeuerBereich.left := GrafikKonstanten.Nullwert;
             
       else
          NeuerBereich.left := InteraktionAllgemein.Mausposition.x / FensterGrafik.AktuelleAuflösung.x;
@@ -31,9 +31,9 @@ package body ViewbereicheBerechnenGrafik is
       end if;
          
       if
-        InteraktionAllgemein.Mausposition.y = GrafikKonstanten.Nullposition
+        InteraktionAllgemein.Mausposition.y = GrafikKonstanten.Nullwert
       then
-         NeuerBereich.top := GrafikKonstanten.Nullposition;
+         NeuerBereich.top := GrafikKonstanten.Nullwert;
             
       else
          NeuerBereich.top := InteraktionAllgemein.Mausposition.y / FensterGrafik.AktuelleAuflösung.y;

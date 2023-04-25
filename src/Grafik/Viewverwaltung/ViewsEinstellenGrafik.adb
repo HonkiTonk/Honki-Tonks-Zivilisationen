@@ -1,6 +1,8 @@
 with Sf.Graphics.View;
 with Sf.Graphics.RenderWindow;
 
+with GrafikKonstanten;
+
 with FensterGrafik;
 
 package body ViewsEinstellenGrafik is
@@ -14,7 +16,7 @@ package body ViewsEinstellenGrafik is
       Sf.Graphics.View.setSize (view => ViewExtern,
                                 size => GrößeExtern);
       Sf.Graphics.View.setCenter (view   => ViewExtern,
-                                  center => (GrößeExtern.x / 2.00, GrößeExtern.y / 2.00));
+                                  center => (GrößeExtern.x / GrafikKonstanten.Halbierung, GrößeExtern.y / GrafikKonstanten.Halbierung));
       Sf.Graphics.View.setViewport (view     => ViewExtern,
                                     viewport => AnzeigebereichExtern);
       

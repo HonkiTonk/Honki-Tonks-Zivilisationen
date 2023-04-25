@@ -2,7 +2,7 @@ with Sf.Graphics.Text;
 
 with Views;
 with TextaccessVariablen;
--- with Spieltexte;
+with GrafikKonstanten;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
@@ -48,7 +48,7 @@ package body AbspannGrafik is
      return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       

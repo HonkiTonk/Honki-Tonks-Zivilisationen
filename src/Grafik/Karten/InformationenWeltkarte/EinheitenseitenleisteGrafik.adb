@@ -3,6 +3,7 @@ with StadtKonstanten;
 with TextnummernKonstanten;
 with TextKonstanten;
 with ViewKonstanten;
+with GrafikKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -43,7 +44,7 @@ package body EinheitenseitenleisteGrafik is
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := 0.00;
+      Textbreite := GrafikKonstanten.Nullwert;
       -- Diese Zuweisung ist wichtig weil die gefundene Einheit eventuell auf einem Transporter ist.
       EinheitSpeziesNummer.Nummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
@@ -308,7 +309,7 @@ package body EinheitenseitenleisteGrafik is
            PlanSchleifenwert mod 2
          is
             when 0 =>
-               TextpositionDebug.x := TextbreiteDebug / 2.00;
+               TextpositionDebug.x := TextbreiteDebug / GrafikKonstanten.Halbierung;
                
             when others =>
                TextpositionDebug.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;

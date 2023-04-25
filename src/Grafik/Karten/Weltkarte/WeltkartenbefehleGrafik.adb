@@ -11,7 +11,7 @@ with ViewsEinstellenGrafik;
 with TexturenSetzenSkalierenGrafik;
 with EingeleseneTexturenGrafik;
 with SpritesverwaltungssystemGrafik;
-with Texturenberechnungen;
+with TexturenberechnungenGrafik;
 
 package body WeltkartenbefehleGrafik is
    
@@ -82,16 +82,16 @@ package body WeltkartenbefehleGrafik is
             
          when others =>
             Teiler := 1.00;
-            Knopffläche := Texturenberechnungen.Texturenfeld (TexturengrößeExtern => Texturgröße,
-                                                               TeilerExtern        => (3.00, 5.00));
+            Knopffläche := TexturenberechnungenGrafik.Texturenfeld (TexturengrößeExtern => Texturgröße,
+                                                                     TeilerExtern        => (3.00, 5.00));
       end case;
       
       PositionenSchleife:
       for PositionSchleifenwert in InteraktionAuswahl.PositionenEinheitenbefehleArray'Range loop
             
-         Knopfposition := Texturenberechnungen.TexturenbereichVariabel (TexturengrößeExtern => Texturgröße,
-                                                                        TeilerExtern        => (3.00, 5.00),
-                                                                        BereichnummerExtern => Teiler);
+         Knopfposition := TexturenberechnungenGrafik.TexturenbereichVariabel (TexturengrößeExtern => Texturgröße,
+                                                                              TeilerExtern        => (3.00, 5.00),
+                                                                              BereichnummerExtern => Teiler);
             
          InteraktionAuswahl.PositionenEinheitenbefehle (PositionSchleifenwert) := (Knopfposition.x, Knopfposition.y, Knopffläche.x, Knopffläche.y);
          
@@ -142,15 +142,15 @@ package body WeltkartenbefehleGrafik is
                                                        PositionExtern     => GrafikRecordKonstanten.Nullposition);
       
       Teiler := 1.00;
-      Knopffläche := Texturenberechnungen.Texturenfeld (TexturengrößeExtern => Texturgröße,
-                                                         TeilerExtern        => (3.00, 4.00));
+      Knopffläche := TexturenberechnungenGrafik.Texturenfeld (TexturengrößeExtern => Texturgröße,
+                                                               TeilerExtern        => (3.00, 4.00));
       
       PositionenSchleife:
       for PositionSchleifenwert in InteraktionAuswahl.PositionenKartenbefehleArray'Range loop
          
-         Knopfposition := Texturenberechnungen.TexturenbereichVariabel (TexturengrößeExtern => Texturgröße,
-                                                                        TeilerExtern        => (3.00, 4.00),
-                                                                        BereichnummerExtern => Teiler);
+         Knopfposition := TexturenberechnungenGrafik.TexturenbereichVariabel (TexturengrößeExtern => Texturgröße,
+                                                                              TeilerExtern        => (3.00, 4.00),
+                                                                              BereichnummerExtern => Teiler);
             
          InteraktionAuswahl.PositionenKartenbefehle (PositionSchleifenwert) := (Knopfposition.x, Knopfposition.y, Knopffläche.x, Knopffläche.y);
          

@@ -3,6 +3,7 @@ with Sf.Graphics.View;
 with EinheitenKonstanten;
 with Views;
 with ViewKonstanten;
+with GrafikKonstanten;
 
 with CursorplatzierungGrafik;
 with CursorplatzierungAltGrafik;
@@ -41,7 +42,7 @@ package body KartenaufteilungGrafik is
             Viewgröße := Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
             
             if
-              Position.y >= Viewgröße.y / 2.00
+              Position.y >= Viewgröße.y / GrafikKonstanten.Halbierung
               and
                 Position.x >= Viewgröße.x / 1.50
             then

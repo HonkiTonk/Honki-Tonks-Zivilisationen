@@ -47,9 +47,9 @@ package body Vergleiche is
          return False;
             
       elsif
-        MauspositionExtern.x in GrafikKonstanten.Nullposition .. TextboxExtern.x
+        MauspositionExtern.x in GrafikKonstanten.Nullwert .. TextboxExtern.x
         and
-          MauspositionExtern.y in GrafikKonstanten.Nullposition .. TextboxExtern.y
+          MauspositionExtern.y in GrafikKonstanten.Nullwert .. TextboxExtern.y
       then
          return True;
          
