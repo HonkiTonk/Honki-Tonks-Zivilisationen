@@ -7,6 +7,7 @@ with ZeitKonstanten;
 with Views;
 with EinheitenKonstanten;
 with ViewKonstanten;
+with GrafikKonstanten;
 
 with LeseCursor;
 with SchreibeCursor;
@@ -186,9 +187,9 @@ package body CursorplatzierungAltGrafik is
    is begin
             
       if
-        InteraktionAllgemein.Mausposition.x < 0.00
+        InteraktionAllgemein.Mausposition.x < GrafikKonstanten.Nullposition
         or
-          InteraktionAllgemein.Mausposition.y < 0.00
+          InteraktionAllgemein.Mausposition.y < GrafikKonstanten.Nullposition
       then
          null;
          
@@ -218,9 +219,9 @@ package body CursorplatzierungAltGrafik is
          null;
          
       elsif
-        InteraktionAllgemein.Mausposition.x <= 0.00
+        InteraktionAllgemein.Mausposition.x <= GrafikKonstanten.Nullposition
         or
-          InteraktionAllgemein.Mausposition.y <= 0.00
+          InteraktionAllgemein.Mausposition.y <= GrafikKonstanten.Nullposition
       then
          null;
          
@@ -263,54 +264,54 @@ package body CursorplatzierungAltGrafik is
       YAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformYAchse;
       
       if
-        MauspositionExtern.x not in 0.00 .. Achsenviewfläche.x
+        MauspositionExtern.x not in GrafikKonstanten.Nullposition .. Achsenviewfläche.x
       then
-         return 0;
+         return KeineÄnderung;
       
       elsif
-        MauspositionExtern.y in 0.00 .. SichtweitenGrafik.Kartenfeldfläche.y / 2.00
+        MauspositionExtern.y in GrafikKonstanten.Nullposition .. SichtweitenGrafik.Kartenfeldfläche.y / Scrollbereichanteil
       then
          if
            YAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangYAchse
            and
              YAchseÜbergänge.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
          then
-            return 0;
+            return KeineÄnderung;
             
          elsif
            YAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangYAchse - 1
            and
              YAchseÜbergänge.YAchseNorden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
          then
-            return 0;
+            return KeineÄnderung;
             
          else
-            return -1;
+            return RichtungNull;
          end if;
          
       elsif
-        MauspositionExtern.y in Achsenviewfläche.y - SichtweitenGrafik.Kartenfeldfläche.y / 2.00 .. Achsenviewfläche.y
+        MauspositionExtern.y in Achsenviewfläche.y - SichtweitenGrafik.Kartenfeldfläche.y / Scrollbereichanteil .. Achsenviewfläche.y
       then
          if
            YAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.YAchse
            and
              YAchseÜbergänge.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
          then
-            return 0;
+            return KeineÄnderung;
             
          elsif
            YAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.YAchse + 1
            and
              YAchseÜbergänge.YAchseSüden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
          then
-            return 0;
+            return KeineÄnderung;
          
          else
-            return 1;
+            return RichtungMaximum;
          end if;
       
       else
-         return 0;
+         return KeineÄnderung;
       end if;
       
    end AlteYAchseFestlegen;
@@ -330,49 +331,49 @@ package body CursorplatzierungAltGrafik is
       XAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformXAchse;
       
       if
-        MausachseExtern in 0.00 .. SichtweitenGrafik.Kartenfeldfläche.x / 2.00
+        MausachseExtern in GrafikKonstanten.Nullposition .. SichtweitenGrafik.Kartenfeldfläche.x / Scrollbereichanteil
       then
          if
            XAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangXAchse
            and
              XAchseÜbergänge.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
          then
-            return 0;
+            return KeineÄnderung;
             
          elsif
            XAchseAltExtern - AktuelleSichtweite <= KartenKonstanten.AnfangXAchse - 1
            and
              XAchseÜbergänge.XAchseWesten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
          then
-            return 0;
+            return KeineÄnderung;
             
          else
-            return -1;
+            return RichtungNull;
          end if;
          
       elsif
-        MausachseExtern in XAchsenbereich - SichtweitenGrafik.Kartenfeldfläche.x / 2.00 .. XAchsenbereich
+        MausachseExtern in XAchsenbereich - SichtweitenGrafik.Kartenfeldfläche.x / Scrollbereichanteil .. XAchsenbereich
       then
          if
            XAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.XAchse
            and
              XAchseÜbergänge.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
          then
-            return 0;
+            return KeineÄnderung;
             
          elsif
            XAchseAltExtern + AktuelleSichtweite >= LeseWeltkarteneinstellungen.XAchse + 1
            and
              XAchseÜbergänge.XAchseOsten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
          then
-            return 0;
+            return KeineÄnderung;
          
          else
-            return 1;
+            return RichtungMaximum;
          end if;
          
       else
-         return 0;
+         return KeineÄnderung;
       end if;
       
    end AlteXAchseFestlegen;

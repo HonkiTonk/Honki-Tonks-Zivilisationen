@@ -1,6 +1,8 @@
 with KartenAllgemeinesLogik;
 with KartenfeldereffekteLogik;
 
+-- Das hier wird von Logik und Grafik aufgerufen, zum Berechnen der Stadtproduktion bei Rundenende und zur Anzeige der aktuellen Produktionswerte eines Feldes.
+-- Sollte aber keine Probleme machen, da man nicht gleichzeitig in der Stadt und im Rundenende sein kann.
 package body KartenfelderwerteLogik is
 
    function FeldNahrung
@@ -25,7 +27,7 @@ package body KartenfelderwerteLogik is
       
    end FeldNahrung;
      
-     
+   
    
    function FeldProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;

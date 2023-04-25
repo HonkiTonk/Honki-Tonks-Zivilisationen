@@ -45,6 +45,11 @@ private
    GeldverbrauchKorruptionMultiplikator : ProduktionDatentypen.Stadtproduktion;
    ForschungsverbrauchKorruptionMultiplikator : ProduktionDatentypen.Stadtproduktion;
    
+   Nahrungsgewinnung : ProduktionDatentypen.Stadtproduktion;
+   Materialgewinnung : ProduktionDatentypen.Stadtproduktion;
+   Geldgewinnung : ProduktionDatentypen.Stadtproduktion;
+   Forschungsgewinnung : ProduktionDatentypen.Stadtproduktion;
+   
    Bauprojekt : StadtRecords.BauprojektRecord;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -69,15 +74,6 @@ private
               );
    
    procedure ZufriedenheitBerechnen
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-     with
-       Pre => (
-                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
-   
-   procedure StadtProduktionNullSetzen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
      with
        Pre => (

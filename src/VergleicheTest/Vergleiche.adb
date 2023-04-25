@@ -1,3 +1,5 @@
+with GrafikKonstanten;
+
 package body Vergleiche is
    
    function Auswahlposition
@@ -45,9 +47,9 @@ package body Vergleiche is
          return False;
             
       elsif
-        MauspositionExtern.x in 0.00 .. TextboxExtern.x
+        MauspositionExtern.x in GrafikKonstanten.Nullposition .. TextboxExtern.x
         and
-          MauspositionExtern.y in 0.00 .. TextboxExtern.y
+          MauspositionExtern.y in GrafikKonstanten.Nullposition .. TextboxExtern.y
       then
          return True;
          

@@ -28,20 +28,21 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (26.04.2023):
+   -- Version 0.05.0190 => 0.05. (26.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.0120 => 0.05. (25.04.2023):
+   -- Version 0.05.0120 => 0.05.0190 (25.04.2023):
    
    -- Die Namen der Sprachdateien können jetzt alle UTF8 Zeichen enthalten.
    -- Fehler korrigiert, welcher unter Windows bei der Verwendung von UTF8 Dateinamen zu Programmstopps führte.
    -- Alle Dateien werden jetzt als UTF8 codierte Dateien erstellt/geöffnet.
-   -- 
-   -- Kommentare und Kleinigkeiten korrigiert.
+   -- Diverse Zahlen durch Konstante ersetzt.
+   -- Produktionswerteberechnungen für Städte überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

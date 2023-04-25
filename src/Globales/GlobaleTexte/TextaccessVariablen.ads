@@ -56,10 +56,9 @@ package TextaccessVariablen is
    
    
    -- Speziestexte
-   type SpeziesArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum range <>) of Sf.Graphics.sfText_Ptr;
-   SpeziesnamenAccess : constant SpeziesArray (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) := (others => Sf.Graphics.Text.create);
-   
-   SpeziesbeschreibungAccess : constant SpeziesArray (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) := (others => Sf.Graphics.Text.create);
+   type SpeziesArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Sf.Graphics.sfText_Ptr;
+   SpeziesnamenAccess : constant SpeziesArray := (others => Sf.Graphics.Text.create);
+   SpeziesbeschreibungAccess : constant SpeziesArray := (others => Sf.Graphics.Text.create);
    
       
       
