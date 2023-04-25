@@ -31,13 +31,12 @@ package body EinlesenAllgemeinesLogik is
 
    -- Später eventuell noch um weitere Prüfungen erweitern? äöü
    -- Eventuell eine bestimmte Menge an Dateien die vorhanden sein müssen mit übergeben und die dann durchgehen? äöü
+   -- Funktioniert nicht unter Windows, wenn man Sonderzeichen verwendet.
    function LeeresVerzeichnis
      (VerzeichnisExtern : in String)
       return Boolean
    is begin
-      
-      NulldateiVorhanden := False;
-      
+            
       Start_Search (Search    => Prüfungssuche,
                     Directory => VerzeichnisExtern,
                     Pattern   => "",
@@ -59,8 +58,7 @@ package body EinlesenAllgemeinesLogik is
          elsif
            Exists (Name => VerzeichnisExtern & "/0")
          then
-            NulldateiVorhanden := True;
-            exit PrüfenSchleife;
+            return False;
             
          else
             null;
@@ -68,7 +66,7 @@ package body EinlesenAllgemeinesLogik is
             
       end loop PrüfenSchleife;
          
-      return not NulldateiVorhanden;
+      return True;
       
    end LeeresVerzeichnis;
    

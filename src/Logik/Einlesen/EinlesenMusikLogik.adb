@@ -36,7 +36,8 @@ package body EinlesenMusikLogik is
             
             Open (File => DateiVerzeichnisse,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Musik & VerzeichnisKonstanten.NullDatei,
+                  Form => "WCEM=8");
       end case;
       
       VerzeichnisseSchleife:
@@ -90,7 +91,8 @@ package body EinlesenMusikLogik is
          when True =>
             Open (File => DateiMusik,
                   Mode => In_File,
-                  Name => Encode (Item => DateipfadExtern));
+                  Name => Encode (Item => DateipfadExtern),
+                  Form => "WCEM=8");
       end case;
                
       MusikSchleife:

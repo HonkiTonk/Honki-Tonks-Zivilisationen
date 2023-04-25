@@ -33,7 +33,8 @@ package body EinlesenTextLogik is
             
             Open (File => DateiVerzeichnisse,
                   Mode => In_File,
-                  Name => Encode (Item => To_Wide_Wide_String (Source => Nullpfad)));
+                  Name => Encode (Item => To_Wide_Wide_String (Source => Nullpfad)),
+                  Form => "WCEM=8");
       end case;
       
       EinlesenSchleife:
@@ -83,7 +84,8 @@ package body EinlesenTextLogik is
          when True =>
             Open (File => DateiText,
                   Mode => In_File,
-                  Name => Encode (Item => VerzeichnisExtern));
+                  Name => Encode (Item => VerzeichnisExtern),
+                  Form => "WCEM=8");
       end case;
       
       case

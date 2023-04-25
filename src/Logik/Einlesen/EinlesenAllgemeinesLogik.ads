@@ -21,8 +21,6 @@ package EinlesenAllgemeinesLogik is
 
 private
 
-   NulldateiVorhanden : Boolean;
-
    Prüfungssuche : Search_Type;
 
    Verzeichnisprüfung : Directory_Entry_Type;

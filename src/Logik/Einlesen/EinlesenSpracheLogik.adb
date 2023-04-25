@@ -4,8 +4,6 @@ with GlobaleTexte;
 with TextKonstanten;
 with VerzeichnisKonstanten;
 
-with EinlesenAllgemeinesLogik;
-
 package body EinlesenSpracheLogik is
 
    function EinlesenSprache
@@ -13,16 +11,17 @@ package body EinlesenSpracheLogik is
    is begin
       
       GlobaleTexte.SprachenEinlesen := (others => TextKonstanten.LeerUnboundedString);
-      
+            
       Start_Search (Search    => Suche,
                     Directory => VerzeichnisKonstanten.Sprachen,
                     Pattern   => "",
                     Filter    => (Directory => True,
                                   others    => False));
-
+      
       VerzeichnisAußenSchleife:
       while More_Entries (Search => Suche) = True loop
 
+      
          Get_Next_Entry (Search          => Suche,
                          Directory_Entry => Verzeichnis);
          
@@ -31,7 +30,7 @@ package body EinlesenSpracheLogik is
            or
              Simple_Name (Directory_Entry => Verzeichnis) = ".."
          then
-            null;
+                  null;
             
             -- Gibt immer 0 zurück, später mal nachprüfen warum. äöü
             -- Mach er nur bei Verzeichnissen, nicht bei einzelnen Dateien. äöü
@@ -41,7 +40,11 @@ package body EinlesenSpracheLogik is
             --    null;
             
          elsif
-           EinlesenAllgemeinesLogik.LeeresVerzeichnis (VerzeichnisExtern => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis)) = True
+           -- Das ausgeklammerte funktioniert unter Windwos nicht, wenn man Sonderzeichen verwendet.
+           -- EinlesenAllgemeinesLogik.LeeresVerzeichnis (VerzeichnisExtern => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis)) = True
+           Exists (Name => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis) & "/0") = False
+           or
+             Exists (Name => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis) & "/1") = False
          then
             null;
             

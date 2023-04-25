@@ -1,5 +1,5 @@
-with Ada.Characters.Conversions; use Ada.Characters.Conversions;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with VerzeichnisKonstanten;
 with TastenbelegungDatentypen;
@@ -58,7 +58,7 @@ package body SpielstandlisteLogik is
             
             SpeicherdateiSchleife:
             loop
-               
+                              
                case
                  More_Entries (Search => Suche)
                is
@@ -70,7 +70,7 @@ package body SpielstandlisteLogik is
                                      Directory_Entry => Spielstanddatei);
                end case;
                
-               SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => To_Unbounded_Wide_Wide_String (Source => To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Spielstanddatei))),
+               SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => To_Unbounded_Wide_Wide_String (Source => Decode (Item => Simple_Name (Directory_Entry => Spielstanddatei))),
                                                             NummerExtern => AktuellerSpielstand);
                
                if

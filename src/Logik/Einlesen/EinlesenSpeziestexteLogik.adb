@@ -29,7 +29,8 @@ package body EinlesenSpeziestexteLogik is
             
             Open (File => DateiEins,
                   Mode => In_File,
-                  Name => Encode (Item => To_Wide_Wide_String (Source => Einspfad)));
+                  Name => Encode (Item => To_Wide_Wide_String (Source => Einspfad)),
+                  Form => "WCEM=8");
       end case;
             
       EinlesenSchleife:
@@ -110,7 +111,8 @@ package body EinlesenSpeziestexteLogik is
          when True =>
             Open (File => DateiNameBeschreibung,
                   Mode => In_File,
-                  Name => Encode (Item => DateinameExtern));
+                  Name => Encode (Item => DateinameExtern),
+                  Form => "WCEM=8");
       end case;
       
       NameBeschreibungSchleife:
@@ -147,7 +149,8 @@ package body EinlesenSpeziestexteLogik is
          when True =>
             Open (File => DateiStädtenamen,
                   Mode => In_File,
-                  Name => Encode (Item => DateinameExtern));
+                  Name => Encode (Item => DateinameExtern),
+                  Form => "WCEM=8");
             
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Städtenamen: Es fehlt: " & DateinameExtern);
@@ -190,7 +193,8 @@ package body EinlesenSpeziestexteLogik is
       
             Open (File => DateiForschungen,
                   Mode => In_File,
-                  Name => Encode (Item => DateinameExtern));
+                  Name => Encode (Item => DateinameExtern),
+                  Form => "WCEM=8");
             
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Forschungen: Es fehlt: " & DateinameExtern);
@@ -238,7 +242,8 @@ package body EinlesenSpeziestexteLogik is
       
             Open (File => DateiEinheiten,
                   Mode => In_File,
-                  Name => Encode (Item => DateinameExtern));
+                  Name => Encode (Item => DateinameExtern),
+                  Form => "WCEM=8");
             
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Einheiten: Es fehlt: " & DateinameExtern);
@@ -286,7 +291,8 @@ package body EinlesenSpeziestexteLogik is
       
             Open (File => DateiGebäude,
                   Mode => In_File,
-                  Name => Encode (Item => DateinameExtern));
+                  Name => Encode (Item => DateinameExtern),
+                  Form => "WCEM=8");
             
          when False =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Gebäude: Es fehlt: " & DateinameExtern);

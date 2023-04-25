@@ -18,7 +18,8 @@ package body SchreibenEinstellungenLogik is
       
       Create (File => DateiNutzereinstellungen,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.Nutzereinstellungen);
+              Name => VerzeichnisKonstanten.Nutzereinstellungen,
+              Form => "WCEM=8");
       
       SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiNutzereinstellungen),
                                                      LeseOptionen.GanzerEintrag);
@@ -34,7 +35,8 @@ package body SchreibenEinstellungenLogik is
       
       Create (File => DateiGrafikeinstellungen,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.Grafikeinstellungen);
+              Name => VerzeichnisKonstanten.Grafikeinstellungen,
+              Form => "WCEM=8");
             
       GrafikRecords.FensterRecord'Write (Stream (File => DateiGrafikeinstellungen),
                                          LeseEinstellungenGrafik.Fenstereinstellungen);
@@ -62,7 +64,8 @@ package body SchreibenEinstellungenLogik is
       
       Create (File => DateiSoundeinstellungen,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.Toneinstellungen);
+              Name => VerzeichnisKonstanten.Toneinstellungen,
+              Form => "WCEM=8");
       
       TonRecords.SoundeinstellungenRecord'Write (Stream (File => DateiSoundeinstellungen),
                                                  LeseEinstellungenSound.GanzerEintrag);

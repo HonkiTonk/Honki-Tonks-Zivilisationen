@@ -38,7 +38,8 @@ package body EinlesenEinstellungenLogik is
          when True =>
             Open (File => DateiNutzereinstellungen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Nutzereinstellungen);
+                  Name => VerzeichnisKonstanten.Nutzereinstellungen,
+                  Form => "WCEM=8");
             
             PrüfungErfolgreich := NutzereinstellungenDurchgehen (LadenPrüfenExtern => False);
 
@@ -54,7 +55,8 @@ package body EinlesenEinstellungenLogik is
          when True =>
             Open (File => DateiNutzereinstellungen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Nutzereinstellungen);
+                  Name => VerzeichnisKonstanten.Nutzereinstellungen,
+                  Form => "WCEM=8");
             
             Nullwert := NutzereinstellungenDurchgehen (LadenPrüfenExtern => True);
 
@@ -106,7 +108,8 @@ package body EinlesenEinstellungenLogik is
          when True =>
             Open (File => DateiGrafikeinstellungen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafikeinstellungen);
+                  Name => VerzeichnisKonstanten.Grafikeinstellungen,
+                  Form => "WCEM=8");
             
             PrüfungErfolgreich := GrafikeinstellungenDurchgehen (LadenPrüfenExtern => False);
                         
@@ -119,7 +122,8 @@ package body EinlesenEinstellungenLogik is
          when True =>
             Open (File => DateiGrafikeinstellungen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafikeinstellungen);
+                  Name => VerzeichnisKonstanten.Grafikeinstellungen,
+                  Form => "WCEM=8");
             
             Nullwert := GrafikeinstellungenDurchgehen (LadenPrüfenExtern => True);
                         
@@ -194,7 +198,8 @@ package body EinlesenEinstellungenLogik is
          when True =>
             Open (File => DateiSoundeinstellungen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Toneinstellungen);
+                  Name => VerzeichnisKonstanten.Toneinstellungen,
+                  Form => "WCEM=8");
             
             PrüfungErfolgreich := ToneinstellungenDurchgehen (LadenPrüfenExtern => False);
       
@@ -207,7 +212,8 @@ package body EinlesenEinstellungenLogik is
          when True =>
             Open (File => DateiSoundeinstellungen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Toneinstellungen);
+                  Name => VerzeichnisKonstanten.Toneinstellungen,
+                  Form => "WCEM=8");
             
             Nullwert := ToneinstellungenDurchgehen (LadenPrüfenExtern => True);
       

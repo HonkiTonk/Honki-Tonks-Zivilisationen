@@ -28,7 +28,8 @@ package body SchreibenDatenbankenLogik is
       
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.EinheitenDatenbank);
+              Name => VerzeichnisKonstanten.EinheitenDatenbank,
+              Form => "WCEM=8");
       
       EinheitenDatenbank.EinheitenlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                     EinheitenDatenbank.Einheitenliste);
@@ -45,7 +46,8 @@ package body SchreibenDatenbankenLogik is
       
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.ForschungenDatenbank);
+              Name => VerzeichnisKonstanten.ForschungenDatenbank,
+              Form => "WCEM=8");
       
       ForschungenDatenbank.ForschungslisteArray'Write (Stream (File => DatenbankSpeichern),
                                                        ForschungenDatenbank.Forschungsliste);
@@ -70,7 +72,8 @@ package body SchreibenDatenbankenLogik is
       
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.GebaeudeDatenbank);
+              Name => VerzeichnisKonstanten.GebaeudeDatenbank,
+              Form => "WCEM=8");
       
       GebaeudeDatenbank.GebäudelisteArray'Write (Stream (File => DatenbankSpeichern),
                                                   GebaeudeDatenbank.Gebäudeliste);
@@ -86,7 +89,8 @@ package body SchreibenDatenbankenLogik is
       
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.KartenDatenbank);
+              Name => VerzeichnisKonstanten.KartenDatenbank,
+              Form => "WCEM=8");
             
       KartenDatenbank.BasisgrundlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                   KartenDatenbank.Basisgrundliste);
@@ -111,7 +115,8 @@ package body SchreibenDatenbankenLogik is
       
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.VerbesserungenDatenbank);
+              Name => VerzeichnisKonstanten.VerbesserungenDatenbank,
+              Form => "WCEM=8");
       
       VerbesserungenDatenbank.VerbesserungenlisteArray'Write (Stream (File => DatenbankSpeichern),
                                                               VerbesserungenDatenbank.Verbesserungenliste);
@@ -130,7 +135,8 @@ package body SchreibenDatenbankenLogik is
       
       Create (File => DatenbankSpeichern,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.SpeziesDatenbank);
+              Name => VerzeichnisKonstanten.SpeziesDatenbank,
+              Form => "WCEM=8");
       
       SpeziesDatenbank.SpezieslisteArray'Write (Stream (File => DatenbankSpeichern),
                                                 SpeziesDatenbank.Speziesliste);

@@ -43,7 +43,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiSystem,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.System & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.System & VerzeichnisKonstanten.NullDatei,
+                  Form => "WCEM=8");
       end case;
       
       TexturenSchleife:
@@ -124,7 +125,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiHintergrund,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Hintergrund & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Hintergrund & VerzeichnisKonstanten.NullDatei,
+                  Form => "WCEM=8");
       end case;
       
       TexturenSchleife:
@@ -180,7 +182,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiKartenfelder,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Basisgrund & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Basisgrund & VerzeichnisKonstanten.NullDatei,
+                  Form => "WCEM=8");
       end case;
       
       BasisgrundSchleife:
@@ -228,7 +231,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiKartenfelder,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Zusatzgrund & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Zusatzgrund & VerzeichnisKonstanten.NullDatei,
+                  Form => "WCEM=8");
       end case;
       
       ZusatzgrundSchleife:
@@ -278,7 +282,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiKartenfelder,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Feldeffekte & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Feldeffekte & VerzeichnisKonstanten.NullDatei,
+                  Form => "WCEM=8");
       end case;
       
       FeldeffekteSchleife:
@@ -333,7 +338,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiKartenflüsse,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfluss & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenfluss & VerzeichnisKonstanten.NullDatei,
+                  Form => "WCEM=8");
       end case;
       
       TexturenSchleife:
@@ -389,7 +395,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiKartenressourcen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenressourcen & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenressourcen & VerzeichnisKonstanten.NullDatei,
+                  Form => "WCEM=8");
       end case;
       
       TexturenSchleife:
@@ -445,7 +452,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiVerbesserungen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenverbesserungen & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenverbesserungen & VerzeichnisKonstanten.NullDatei,
+                  Form => "WCEM=8");
       end case;
       
       TexturenSchleife:
@@ -502,7 +510,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiWege,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenwege & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Kartenwege & VerzeichnisKonstanten.NullDatei,
+                  Form => "WCEM=8");
       end case;
       
       TexturenSchleife:
@@ -558,7 +567,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiSpezies,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Grafik & VerzeichnisKonstanten.Spezies & VerzeichnisKonstanten.NullDatei,
+                  Form => "WCEM=8");
       end case;
       
       SpeziesschleifeSchleife:
@@ -616,7 +626,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiSpezieshintergründe,
                   Mode => In_File,
-                  Name => Encode (Item => DateipfadExtern));
+                  Name => Encode (Item => DateipfadExtern),
+                  Form => "WCEM=8");
       end case;
       
       TexturenSchleife:
@@ -672,7 +683,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiEinheiten,
                   Mode => In_File,
-                  Name => Encode (Item => DateipfadExtern));
+                  Name => Encode (Item => DateipfadExtern),
+                  Form => "WCEM=8");
       end case;
       
       TexturenSchleife:
@@ -728,7 +740,8 @@ package body EinlesenTexturenLogik is
             
             Open (File => DateiGebäude,
                   Mode => In_File,
-                  Name => Encode (Item => DateipfadExtern));
+                  Name => Encode (Item => DateipfadExtern),
+                  Form => "WCEM=8");
       end case;
       
       TexturenSchleife:

@@ -69,7 +69,8 @@ package body SpeichernLogik is
       
          Create (File => DateiSpeichern,
                  Mode => Out_File,
-                 Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => (To_Wide_Wide_String (Source => Spielstandname)))));
+                 Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => (To_Wide_Wide_String (Source => Spielstandname)))),
+                 Form => "WCEM=8");
       
          Karte (DateiSpeichernExtern => DateiSpeichern,
                 AutospeichernExtern  => AutospeichernExtern);

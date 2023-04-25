@@ -18,7 +18,8 @@ package body EinlesenTastaturLogik is
          when True =>
             Open (File => TastenbelegungLaden,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Tastenbelegung);
+                  Name => VerzeichnisKonstanten.Tastenbelegung,
+                  Form => "WCEM=8");
             
             PrüfungErfolgreich := TastaturbelegungDurchgehen (LadenPrüfenExtern => False);
       
@@ -31,7 +32,8 @@ package body EinlesenTastaturLogik is
          when True =>
             Open (File => TastenbelegungLaden,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Tastenbelegung);
+                  Name => VerzeichnisKonstanten.Tastenbelegung,
+                  Form => "WCEM=8");
                         
             Nullwert := TastaturbelegungDurchgehen (LadenPrüfenExtern => True);
       

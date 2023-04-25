@@ -38,7 +38,8 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.EinheitenDatenbank);
+                  Name => VerzeichnisKonstanten.EinheitenDatenbank,
+                  Form => "WCEM=8");
             
             PrüfungErfolgreich := EinheitenDurchgehen (LadenPrüfenExtern => False);
       
@@ -51,7 +52,8 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.EinheitenDatenbank);
+                  Name => VerzeichnisKonstanten.EinheitenDatenbank,
+                  Form => "WCEM=8");
             
             Nullwert := EinheitenDurchgehen (LadenPrüfenExtern => True);
       
@@ -106,7 +108,8 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.ForschungenDatenbank);
+                  Name => VerzeichnisKonstanten.ForschungenDatenbank,
+                  Form => "WCEM=8");
       
             PrüfungErfolgreich := ForschungenDurchgehen (LadenPrüfenExtern => False);
       
@@ -119,7 +122,8 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.ForschungenDatenbank);
+                  Name => VerzeichnisKonstanten.ForschungenDatenbank,
+                  Form => "WCEM=8");
             
             Nullwert := ForschungenDurchgehen (LadenPrüfenExtern => True);
       
@@ -186,7 +190,8 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.GebaeudeDatenbank);
+                  Name => VerzeichnisKonstanten.GebaeudeDatenbank,
+                  Form => "WCEM=8");
             
             PrüfungErfolgreich := GebäudeDurchgehen (LadenPrüfenExtern => False);
       
@@ -199,7 +204,8 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.GebaeudeDatenbank);
+                  Name => VerzeichnisKonstanten.GebaeudeDatenbank,
+                  Form => "WCEM=8");
             
             Nullwert := GebäudeDurchgehen (LadenPrüfenExtern => True);
       
@@ -257,7 +263,8 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.KartenDatenbank);
+                  Name => VerzeichnisKonstanten.KartenDatenbank,
+                  Form => "WCEM=8");
             
             PrüfungErfolgreich := KartenDurchgehen (LadenPrüfenExtern => False);
       
@@ -270,7 +277,8 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.KartenDatenbank);
+                  Name => VerzeichnisKonstanten.KartenDatenbank,
+                  Form => "WCEM=8");
             
             Nullwert := KartenDurchgehen (LadenPrüfenExtern => True);
       
@@ -341,7 +349,8 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.VerbesserungenDatenbank);
+                  Name => VerzeichnisKonstanten.VerbesserungenDatenbank,
+                  Form => "WCEM=8");
             
             PrüfungErfolgreich := VerbesserungenDurchgehen (LadenPrüfenExtern => False);
       
@@ -355,7 +364,8 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.VerbesserungenDatenbank);
+                  Name => VerzeichnisKonstanten.VerbesserungenDatenbank,
+                  Form => "WCEM=8");
             
             Nullwert := VerbesserungenDurchgehen (LadenPrüfenExtern => True);
       
@@ -415,7 +425,8 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.SpeziesDatenbank);
+                  Name => VerzeichnisKonstanten.SpeziesDatenbank,
+                  Form => "WCEM=8");
       
             PrüfungErfolgreich := SpeziesDurchgehen (LadenPrüfenExtern => False);
       
@@ -428,7 +439,8 @@ package body EinlesenDatenbankenLogik is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.SpeziesDatenbank);
+                  Name => VerzeichnisKonstanten.SpeziesDatenbank,
+                  Form => "WCEM=8");
       
             Nullwert := SpeziesDurchgehen (LadenPrüfenExtern => True);
       

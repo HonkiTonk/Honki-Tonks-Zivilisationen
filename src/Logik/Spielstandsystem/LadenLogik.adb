@@ -48,7 +48,8 @@ package body LadenLogik is
       
             Open (File => DateiLaden,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)));
+                  Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)),
+                  Form => "WCEM=8");
             
             PrüfungErfolgreich := Prüfen (DateiLadenExtern => DateiLaden);
          end if;
@@ -66,7 +67,8 @@ package body LadenLogik is
                
                Open (File => DateiLaden,
                      Mode => In_File,
-                     Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)));
+                     Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)),
+                     Form => "WCEM=8");
                
                Ladevorgang (DateiLadenExtern => DateiLaden);
       

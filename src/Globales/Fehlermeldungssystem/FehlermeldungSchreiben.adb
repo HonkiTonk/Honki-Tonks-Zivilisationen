@@ -12,12 +12,14 @@ package body FehlermeldungSchreiben is
          when True =>
             Open (File => DateiMeldung,
                   Mode => Append_File,
-                  Name => "Meldungen");
+                  Name => "Meldungen",
+                  Form => "WCEM=8");
             
          when False =>
             Create (File => DateiMeldung,
                     Mode => Out_File,
-                    Name => "Meldungen");
+                    Name => "Meldungen",
+                    Form => "WCEM=8");
       end case;
       
       Put_Line (File => DateiMeldung,
@@ -39,12 +41,14 @@ package body FehlermeldungSchreiben is
          when True =>
             Ada.Text_IO.Open (File => DateiMeldungASCII,
                               Mode => Ada.Text_IO.Append_File,
-                              Name => "Meldungen");
+                              Name => "Meldungen",
+                              Form => "WCEM=8");
             
          when False =>
             Ada.Text_IO.Create (File => DateiMeldungASCII,
                                 Mode => Ada.Text_IO.Out_File,
-                                Name => "Meldungen");
+                                Name => "Meldungen",
+                                Form => "WCEM=8");
       end case;
       
       Ada.Text_IO.Put_Line (File => DateiMeldungASCII,

@@ -8,7 +8,8 @@ package body SchreibenTastaturLogik is
       
       Create (File => TastenbelegungSpeichern,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.Tastenbelegung);
+              Name => VerzeichnisKonstanten.Tastenbelegung,
+              Form => "WCEM=8");
       
       TastenbelegungDatenbank.AllgemeineBelegungArray'Write (Stream (File => TastenbelegungSpeichern),
                                                              TastenbelegungDatenbank.AllgemeineBelegung);

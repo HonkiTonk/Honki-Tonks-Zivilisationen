@@ -27,7 +27,8 @@ package body EinlesenSoundsLogik is
             
             Open (File => DateiSounds,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei);
+                  Name => VerzeichnisKonstanten.Audio & VerzeichnisKonstanten.Sound & VerzeichnisKonstanten.NullDatei,
+                  Form => "WCEM=8");
       end case;
       
       SoundsSchleife:
