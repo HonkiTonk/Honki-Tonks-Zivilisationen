@@ -43,6 +43,7 @@ package StadtRecords is
 
 
    -- Warum ist das hier nicht Boolean'Range? äöü
+   -- Oder ein eigenes Enum? äöü
    type EinwohnerArbeiterArray is array (1 .. 2) of ProduktionDatentypen.Einwohner;
    
    -- XXX äöü
