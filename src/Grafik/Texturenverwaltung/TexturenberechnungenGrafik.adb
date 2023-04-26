@@ -1,3 +1,5 @@
+with GrafikKonstanten;
+
 package body TexturenberechnungenGrafik is
    
    -- Setzt ganzzahlige BereichnummerExtern voraus.
@@ -11,7 +13,7 @@ package body TexturenberechnungenGrafik is
                                        TeilerExtern         => StandardTexturenbereich.x);
       
         
-      Teiler := (BereichnummerExtern, 0.00);
+      Teiler := (BereichnummerExtern, GrafikKonstanten.Nullwert);
       
       TeilerSchleife:
       while
@@ -43,7 +45,7 @@ package body TexturenberechnungenGrafik is
       Texturenvektor := Texturenfeld (TexturengrößeExtern => TexturengrößeExtern,
                                       TeilerExtern        => TeilerExtern);
       
-      Teiler := (BereichnummerExtern, 0.00);
+      Teiler := (BereichnummerExtern, GrafikKonstanten.Nullwert);
       
       TeilerSchleife:
       while

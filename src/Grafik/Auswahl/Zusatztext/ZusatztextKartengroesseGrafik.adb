@@ -7,6 +7,7 @@ with MenueDatentypen;
 with KartenKonstanten;
 with TextKonstanten;
 with TextaccessVariablen;
+with AuswahlKonstanten;
 
 with TextaccessverwaltungssystemGrafik;
 with MenuestringsSetzenGrafik;
@@ -33,7 +34,7 @@ package body ZusatztextKartengroesseGrafik is
       case
         AktuelleAuswahlExtern
       is
-         when 0 =>
+         when AuswahlKonstanten.LeerAuswahl =>
             null;
             
          when others =>
@@ -59,7 +60,7 @@ package body ZusatztextKartengroesseGrafik is
       case
         AktuelleAuswahlExtern
       is
-         when 0 =>
+         when AuswahlKonstanten.LeerAuswahl =>
             null;
             
          when others =>

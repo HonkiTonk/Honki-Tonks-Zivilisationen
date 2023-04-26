@@ -92,7 +92,7 @@ package body SprachauswahlGrafik is
             
             KonvexverwaltungssystemGrafik.PfeilErstellen (PfeilaccessExtern => PfeilAccess);
             
-            Textposition.x := Viewfläche.x / GrafikKonstanten.Halbierung - 0.50 * Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
+            Textposition.x := Viewfläche.x / GrafikKonstanten.Halbierung - Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width / GrafikKonstanten.Halbierung;
             
             -- Das auch nach TestfarbeGrafik? äöü
             if

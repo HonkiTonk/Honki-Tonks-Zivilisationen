@@ -39,10 +39,11 @@ private
    RichtungNull : constant KartenDatentypen.UmgebungsbereichEins := -1;
    RichtungMaximum : constant KartenDatentypen.UmgebungsbereichEins := 1;
    
+   Scrollgeschwindigkeitsänderung : constant KartenDatentypen.KartenfeldPositiv := 4;
    AktuelleSichtweite : KartenDatentypen.KartenfeldPositiv;
    Sichthöhe : KartenDatentypen.KartenfeldPositiv;
    Sichtbreite : KartenDatentypen.KartenfeldPositiv;
-   
+      
    -- Dafür vielleicht zwei Werte einbauen, einen für niedrige und einen für hohe Auflösungen? äöü
    Scrollbereichanteil : constant Float := 5.00;
    XAchsenbereich : Float;

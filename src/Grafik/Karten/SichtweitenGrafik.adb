@@ -153,11 +153,11 @@ package body SichtweitenGrafik is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      FensterKarte := (0.00, 0.00, FensterGrafik.AktuelleAuflösung.x, FensterGrafik.AktuelleAuflösung.y);
+      FensterKarte := FensterGrafik.AktuelleAuflösung;
       Sichtbereich.YAchse := AktuelleZoomstufe * 2 + 1;
       Sichtbereich.XAchse := AktuelleZoomstufe * 2 + 1;
       
-      KartenfelderAbmessung.y := FensterKarte.height / Float (Sichtbereich.YAchse);
+      KartenfelderAbmessung.y := FensterKarte.y / Float (Sichtbereich.YAchse);
       KartenfelderAbmessung.x := FensterGrafik.AktuelleAuflösung.x / Float (Sichtbereich.XAchse);
       
       Bewegungsbereich.YAchse := Sichtbereich.YAchse - 1;
@@ -200,9 +200,8 @@ package body SichtweitenGrafik is
    
    
    
-   -- Warum ist FensterKarte ein Rect und kein Vector? äöü
    function Kartenfläche
-     return Sf.Graphics.Rect.sfFloatRect
+     return Sf.System.Vector2.sfVector2f
    is begin
       
       return FensterKarte;

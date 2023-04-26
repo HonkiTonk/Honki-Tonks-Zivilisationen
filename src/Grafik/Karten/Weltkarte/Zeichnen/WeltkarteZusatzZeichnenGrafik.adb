@@ -223,7 +223,8 @@ package body WeltkarteZusatzZeichnenGrafik is
          TextaccessverwaltungssystemGrafik.Skalieren (TextaccessExtern => TextaccessVariablen.KarteAccess,
                                                       SkalierungExtern => Skalierung);
       
-         Textposition.x := PositionExtern.x - TextberechnungenBreiteGrafik.HalbeBreiteBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.KarteAccess) + 0.50 * SichtweitenGrafik.Kartenfeldfläche.x;
+         Textposition.x := PositionExtern.x
+           - TextberechnungenBreiteGrafik.HalbeBreiteBerechnenGlobaleGrenzen (TextAccessExtern => TextaccessVariablen.KarteAccess) + SichtweitenGrafik.Kartenfeldfläche.x / GrafikKonstanten.Halbierung;
       end if;
       
       if
@@ -232,9 +233,9 @@ package body WeltkarteZusatzZeichnenGrafik is
          Textposition.x := GrafikKonstanten.Nullwert;
          
       elsif
-        Textposition.x > SichtweitenGrafik.Kartenfläche.width - Textgröße.x * Skalierung.x
+        Textposition.x > SichtweitenGrafik.Kartenfläche.x - Textgröße.x * Skalierung.x
       then
-         Textposition.x := SichtweitenGrafik.Kartenfläche.width - Textgröße.x * Skalierung.x;
+         Textposition.x := SichtweitenGrafik.Kartenfläche.x - Textgröße.x * Skalierung.x;
          
       else
          null;

@@ -1,5 +1,4 @@
 with Sf.System.Vector2;
-with Sf.Graphics.Rect;
 
 with SpeziesDatentypen;
 with KartenDatentypen;
@@ -7,8 +6,6 @@ with KartenRecords;
 
 private with TastenbelegungDatentypen;
 
--- Das Ganze später besser aufteilen? äöü
--- Um ein im Kreis linken zu verhindern erst einmal die KartenberechnungenGrafik hier mit rein geschoben. äöü
 package SichtweitenGrafik is
    pragma Elaborate_Body;
       
@@ -63,16 +60,12 @@ package SichtweitenGrafik is
                );
    
    function Kartenfläche
-     return Sf.Graphics.Rect.sfFloatRect
+     return Sf.System.Vector2.sfVector2f
      with
        Post => (
-                  Kartenfläche'Result.left >= 0.00
+                  Kartenfläche'Result.x >= 0.00
                 and
-                  Kartenfläche'Result.top >= 0.00
-                and
-                  Kartenfläche'Result.width >= 0.00
-                and
-                  Kartenfläche'Result.height >= 0.00
+                  Kartenfläche'Result.y >= 0.00
                );
    
 private
@@ -93,6 +86,6 @@ private
    
    Cursor : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   FensterKarte : Sf.Graphics.Rect.sfFloatRect;
+   FensterKarte : Sf.System.Vector2.sfVector2f;
 
 end SichtweitenGrafik;

@@ -1,7 +1,7 @@
 with MenueDatentypen;
 with RueckgabeDatentypen;
 
-private with MenueKonstanten;
+private with AuswahlKonstanten;
 
 package MenueauswahlLogik is
    pragma Elaborate_Body;
@@ -15,7 +15,7 @@ private
    Anfang : constant Positive := 1;
    Ende : Positive;
 
-   AktuelleAuswahl : Natural := MenueKonstanten.LeerAuswahl;
+   AktuelleAuswahl : Natural := AuswahlKonstanten.LeerAuswahl;
 
    RechteMaustaste : constant Integer := -2;
    Ausgewählt : Integer;

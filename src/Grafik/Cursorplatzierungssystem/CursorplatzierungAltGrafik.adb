@@ -34,14 +34,14 @@ package body CursorplatzierungAltGrafik is
             if
               Clock - Scrollzeit > ZeitKonstanten.ScrollverzögernMinimalzoom
               and
-                SichtweitenGrafik.SichthöheLesen <= 4
+                SichtweitenGrafik.SichthöheLesen <= Scrollgeschwindigkeitsänderung
             then
                null;
                 
             elsif
               Clock - Scrollzeit > ZeitKonstanten.Scrollverzögerung
               and
-                SichtweitenGrafik.SichthöheLesen > 4
+                SichtweitenGrafik.SichthöheLesen > Scrollgeschwindigkeitsänderung
             then
                null;
                
@@ -54,7 +54,7 @@ package body CursorplatzierungAltGrafik is
             if
               BefehlsknöpfePrüfen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = True
             then
-               return;
+               null;
                   
             else
                Platzierung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,

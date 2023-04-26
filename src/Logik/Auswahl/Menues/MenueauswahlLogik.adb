@@ -1,4 +1,5 @@
 with TastenbelegungDatentypen;
+with MenueKonstanten;
 
 with TasteneingabeLogik;
 with MenuerueckgabenLogik;
@@ -52,12 +53,12 @@ package body MenueauswahlLogik is
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl = MenueKonstanten.LeerAuswahl
+                 AktuelleAuswahl = AuswahlKonstanten.LeerAuswahl
                then
                   null;
                   
                else
-                  NachGrafiktask.AktuelleAuswahl.AuswahlEins := MenueKonstanten.LeerAuswahl;
+                  NachGrafiktask.AktuelleAuswahl.AuswahlEins := AuswahlKonstanten.LeerAuswahl;
                   return AktuelleAuswahl;
                end if;
                

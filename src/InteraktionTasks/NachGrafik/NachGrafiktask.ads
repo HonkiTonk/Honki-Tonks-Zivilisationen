@@ -9,13 +9,13 @@ with StadtKonstanten;
 with StadtDatentypen;
 with ZahlenDatentypen;
 with SystemDatentypen;
-with MenueKonstanten;
 with StadtRecords;
 with SystemRecords;
 with EinheitenRecords;
 with KartenRecords;
 with KartenRecordKonstanten;
 with SpeziesKonstanten;
+with AuswahlKonstanten;
 
 -- Variablen mal nach Kategorien in Records sortieren. äöü
 package NachGrafiktask is
@@ -29,7 +29,7 @@ package NachGrafiktask is
    MehrereSeiten : Boolean := False;
    LöschenAusgewählt : Boolean := False;
    
-   Endauswahl : Natural := 0;
+   Endauswahl : Natural := AuswahlKonstanten.LeerAuswahl;
    -- Wird für Spielstart benötigt.
    
    AktuelleDarstellung : GrafikDatentypen.Grafik_Aktuelle_Darstellung_Enum := GrafikDatentypen.Grafik_Start_Enum;
@@ -71,7 +71,7 @@ package NachGrafiktask is
    EinheitBewegungsbereich : Boolean := False;
    
    -- AktuelleAuswahl.AuswahlZwei wird auch bei JaNein verwendet, damit es sonst zu falschen Farbanzeigen kommen kann, wenn AuswahlEins bereits von einem Menü belegt wird, beispielsweise Speichern.
-   AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord := (MenueKonstanten.LeerAuswahl, MenueKonstanten.LeerAuswahl);
+   AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord := (AuswahlKonstanten.LeerAuswahl, AuswahlKonstanten.LeerAuswahl);
    SpeichernLaden : Boolean := False;
    
    WelcheAuswahl : EinheitenRecords.AuswahlRecord := (False, (others => 0));

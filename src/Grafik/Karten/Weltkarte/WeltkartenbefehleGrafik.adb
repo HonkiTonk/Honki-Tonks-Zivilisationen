@@ -4,6 +4,7 @@ with Views;
 with InteraktionAuswahl;
 with EinheitenKonstanten;
 with ViewKonstanten;
+with GrafikKonstanten;
 
 with LeseEinheitenDatenbank;
 
@@ -77,7 +78,7 @@ package body WeltkartenbefehleGrafik is
         EinheitenArtExtern
       is
          when EinheitenDatentypen.Einmalig_Enum =>
-            InteraktionAuswahl.PositionenEinheitenbefehle := (others => (0.00, 0.00, Texturgröße.x, Texturgröße.y));
+            InteraktionAuswahl.PositionenEinheitenbefehle := (others => (GrafikKonstanten.Nullwert, GrafikKonstanten.Nullwert, Texturgröße.x, Texturgröße.y));
             return Texturgröße;
             
          when others =>

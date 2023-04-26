@@ -1,4 +1,5 @@
 with SpeziesDatentypen;
+with AuswahlKonstanten;
 
 with ZusatztextSpeziesmenueGrafik;
 with ZusatztextKartengroesseGrafik;
@@ -22,7 +23,7 @@ package body ZusatztextaufteilungGrafik is
             if
               AktuelleAuswahlExtern > AnzahlKartengrößen
             then
-               AktuelleAuswahl := 0;
+               AktuelleAuswahl := AuswahlKonstanten.LeerAuswahl;
                
             else
                AktuelleAuswahl := AktuelleAuswahlExtern;

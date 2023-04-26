@@ -4,10 +4,6 @@ with MenueDatentypen;
 package MenueKonstanten is
    pragma Elaborate_Body;
 
-   -- Das mit der 0 funktioniert so auch nicht mehr, überarbeiten. äöü
-   -- Nur die StadtEinheitenauswahl nutzt das aktuell anders, also das anpassen dann geht es wieder. äöü
-   LeerAuswahl : constant Natural := 0;
-
    SchleifenwertanpassungGrafikZuAuswahlPosition : constant Positive := 1;
    StandardArrayanpassung : constant Positive := 2;
 

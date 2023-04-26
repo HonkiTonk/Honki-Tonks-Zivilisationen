@@ -30,7 +30,7 @@ package ChangelogVorlage is
 
    -- Version 0.05.0190 => 0.05. (26.04.2023):
    
-   -- Diverse Zahlen durch Konstante ersetzt.
+   -- Diverse Zahlen durch benannte Konstanten ersetzt.
    -- Textdateien überarbeitet.
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Ukrainisch hinzugefügt.
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Griechisch hinzugefügt.
@@ -44,7 +44,7 @@ package ChangelogVorlage is
    -- Die Namen der Sprachdateien können jetzt alle UTF8 Zeichen enthalten.
    -- Fehler korrigiert, welcher unter Windows bei der Verwendung von UTF8 Dateinamen zu Programmstopps führte.
    -- Alle Dateien werden jetzt als UTF8 codierte Dateien erstellt/geöffnet.
-   -- Diverse Zahlen durch Konstante ersetzt.
+   -- Diverse Zahlen durch benannte Konstanten ersetzt.
    -- Produktionswerteberechnungen für Städte überarbeitet.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    

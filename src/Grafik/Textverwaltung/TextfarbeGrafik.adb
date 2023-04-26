@@ -4,6 +4,7 @@ with SpielDatentypen;
 with SpeziesKonstanten;
 with SpeziesDatentypen;
 with TextDatentypen;
+with AuswahlKonstanten;
 
 with LeseAllgemeines;
 with LeseSpeziesbelegung;
@@ -65,7 +66,7 @@ package body TextfarbeGrafik is
             AktuelleEinstellung := MenueKonstanten.StandardArrayanpassung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (LeseAllgemeines.Schwierigkeitsgrad);
             
          when others =>
-            AktuelleEinstellung := 0;
+            AktuelleEinstellung := AuswahlKonstanten.LeerAuswahl;
       end case;
       
       if

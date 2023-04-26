@@ -6,6 +6,7 @@ with Sf.Graphics.Color;
 
 with GrafikDatentypen;
 with SonstigesKonstanten;
+with GrafikRecordKonstanten;
 
 with LeseEinstellungenGrafik;
 
@@ -62,7 +63,7 @@ package body FensterGrafik is
          when others =>
             Fehlermeldungssystem.Grafik (FehlermeldungExtern => "FensterGrafik.FensterErzeugenErweitert: Unbekannter Fenstermodus: " & Fenstermodus'Wide_Wide_Image);
             Fenstermodus := 2;
-            Startauflösung := (640, 480);
+            Startauflösung := GrafikRecordKonstanten.Minimalauflösung;
       end case;
             
       FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (Startauflösung.x,

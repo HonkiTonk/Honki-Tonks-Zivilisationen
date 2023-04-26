@@ -3,11 +3,11 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 
 with VerzeichnisKonstanten;
 with TastenbelegungDatentypen;
-with MenueKonstanten;
 with MenueDatentypen;
 with GrafikDatentypen;
 with TextnummernKonstanten;
 with TextKonstanten;
+with AuswahlKonstanten;
 
 with LeseAllgemeines;
 
@@ -105,7 +105,7 @@ package body SpielstandlisteLogik is
                case
                  Ausgewählt
                is
-                  when MenueKonstanten.LeerAuswahl | Zurück =>
+                  when AuswahlKonstanten.LeerAuswahl | Zurück =>
                      RückgabeWert := TextKonstanten.LeerUnboundedString;
                      exit SpielstandSchleife;
                   
@@ -203,19 +203,19 @@ package body SpielstandlisteLogik is
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl = MenueKonstanten.LeerAuswahl
+                 AktuelleAuswahl = AuswahlKonstanten.LeerAuswahl
                then
                   null;
                   
                else
-                  NachGrafiktask.AktuelleAuswahl.AuswahlEins := MenueKonstanten.LeerAuswahl;
+                  NachGrafiktask.AktuelleAuswahl.AuswahlEins := AuswahlKonstanten.LeerAuswahl;
                   NachGrafiktask.LöschenAusgewählt := False;
                   return AktuelleAuswahl;
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
                NachGrafiktask.LöschenAusgewählt := False;
-               return MenueKonstanten.LeerAuswahl;
+               return AuswahlKonstanten.LeerAuswahl;
                
             when others =>
                null;

@@ -1,8 +1,8 @@
 with InteraktionAuswahl;
 with GrafikDatentypen;
-with MenueKonstanten;
 with TastenbelegungDatentypen;
 with MenueDatentypen;
+with AuswahlKonstanten;
 
 with LeseDiplomatie;
 with SchreibeDiplomatie;
@@ -85,7 +85,7 @@ package body DiplomatieLogik is
             is
                when TastenbelegungDatentypen.Auswählen_Enum =>
                   if
-                    Auswahl = MenueKonstanten.LeerAuswahl
+                    Auswahl = AuswahlKonstanten.LeerAuswahl
                   then
                      null;
                   

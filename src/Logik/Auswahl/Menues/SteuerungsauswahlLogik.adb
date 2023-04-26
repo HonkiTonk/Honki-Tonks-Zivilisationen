@@ -4,6 +4,7 @@ with InteraktionAuswahl;
 with MenueKonstanten;
 with GrafikDatentypen;
 with TextnummernKonstanten;
+with AuswahlKonstanten;
 
 with LeseTastenbelegungDatenbank;
 with SchreibeTastenbelegungDatenbank;
@@ -31,7 +32,7 @@ package body SteuerungsauswahlLogik is
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl < MenueKonstanten.LeerAuswahl
+                 AktuelleAuswahl < AuswahlKonstanten.LeerAuswahl
                then
                   OftVerwendetSound.Klick;
                   WelcheSteuerung := NummerZuKategorie (AktuelleAuswahl);

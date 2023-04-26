@@ -1,6 +1,6 @@
 with GrafikDatentypen;
-with MenueKonstanten;
 with TastenbelegungDatentypen;
+with AuswahlKonstanten;
 
 with TasteneingabeLogik;
 with NachGrafiktask;
@@ -27,7 +27,7 @@ package body JaNeinLogik is
          is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl = MenueKonstanten.LeerAuswahl
+                 AktuelleAuswahl = AuswahlKonstanten.LeerAuswahl
                then
                   null;
                   
@@ -36,7 +36,7 @@ package body JaNeinLogik is
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
-               AktuelleAuswahl := MenueKonstanten.LeerAuswahl;
+               AktuelleAuswahl := AuswahlKonstanten.LeerAuswahl;
                exit AuswahlSchleife;
             
             when others =>

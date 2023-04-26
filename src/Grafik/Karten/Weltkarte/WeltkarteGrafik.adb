@@ -66,7 +66,7 @@ package body WeltkarteGrafik is
                           
          end loop XAchseSchleife;
          
-         Feldposition := (0.00, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
+         Feldposition := (GrafikKonstanten.Nullwert, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
          
       end loop YAchseSchleife;
             
@@ -120,7 +120,7 @@ package body WeltkarteGrafik is
             
          end loop XAchseNamenSchleife;
          
-         Feldposition := (0.00, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
+         Feldposition := (GrafikKonstanten.Nullwert, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y);
          
       end loop YAchseNamenSchleife;
             

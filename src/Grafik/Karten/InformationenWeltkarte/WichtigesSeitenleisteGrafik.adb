@@ -6,6 +6,7 @@ with TextKonstanten;
 with ForschungKonstanten;
 with ViewKonstanten;
 with GrafikKonstanten;
+with ProduktionKonstanten;
 
 with LeseWichtiges;
 with LeseGrenzen;
@@ -122,12 +123,12 @@ package body WichtigesSeitenleisteGrafik is
       end case;
       
       if
-        Geldzuwachs = 0
+        Geldzuwachs = ProduktionKonstanten.LeerProduktion
       then
          return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image;
            
       elsif
-        Geldzuwachs > 0
+        Geldzuwachs > ProduktionKonstanten.LeerProduktion
       then
          return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand & "+"
            & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => SpeziesExtern));

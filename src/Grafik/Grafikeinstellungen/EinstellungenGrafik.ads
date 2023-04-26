@@ -1,4 +1,5 @@
 with GrafikRecords;
+with GrafikRecordKonstanten;
 
 package EinstellungenGrafik is
    pragma Elaborate_Body;
@@ -20,7 +21,7 @@ private
                                                                            -- Default window style = 7
                                                                            Fenstermodus => 7,
                                                                            
-                                                                           Auflösung    => (640, 480),
+                                                                           Auflösung    => GrafikRecordKonstanten.Minimalauflösung,
                                                                            Farbtiefe    => 32,
                                                                            Bildrate     => 30
                                                                           );

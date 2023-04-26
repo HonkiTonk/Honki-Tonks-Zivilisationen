@@ -3,13 +3,13 @@ with Sf.Graphics.View;
 
 with Views;
 with InteraktionAuswahl;
-with MenueKonstanten;
 with SpeziesDatentypen;
 with ForschungKonstanten;
 with StadtKonstanten;
 with EinheitenKonstanten;
 with ViewKonstanten;
 with GrafikRecordKonstanten;
+with AuswahlKonstanten;
 
 with LeseEinstellungenGrafik;
 
@@ -52,7 +52,7 @@ package body MausauswahlLogik is
          
       end loop DiplomatieSchleife;
       
-      return MenueKonstanten.LeerAuswahl;
+      return AuswahlKonstanten.LeerAuswahl;
       
    end SpeziesauswahlDiplomatie;
    
@@ -201,7 +201,7 @@ package body MausauswahlLogik is
          
       end loop PositionSchleife;
       
-      return MenueKonstanten.LeerAuswahl;
+      return AuswahlKonstanten.LeerAuswahl;
       
    end Menüs;
    
@@ -231,7 +231,7 @@ package body MausauswahlLogik is
          
       end loop PositionSchleife;
       
-      return MenueKonstanten.LeerAuswahl;
+      return AuswahlKonstanten.LeerAuswahl;
       
    end JaNein;
    
@@ -283,7 +283,7 @@ package body MausauswahlLogik is
          
       end loop SteuerungSchleife;
       
-      return MenueKonstanten.LeerAuswahl;
+      return AuswahlKonstanten.LeerAuswahl;
       
    end Steuerung;
    
@@ -364,8 +364,8 @@ package body MausauswahlLogik is
                                                                  view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
       
       case
-        Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    TextboxExtern      => SichtweitenGrafik.Kartenfläche)
+        Vergleiche.AuswahlpositionVereinfacht (MauspositionExtern => Mausposition,
+                                               TextboxExtern      => SichtweitenGrafik.Kartenfläche)
       is
          when True =>
             return BefehleDatentypen.Auswählen_Enum;
@@ -493,7 +493,7 @@ package body MausauswahlLogik is
          
       end loop PositionSchleife;
       
-      return MenueKonstanten.LeerAuswahl;
+      return AuswahlKonstanten.LeerAuswahl;
       
    end SpeichernLaden;
    
@@ -557,7 +557,7 @@ package body MausauswahlLogik is
          
       end loop MausZeigerSchleife;
       
-      return MenueKonstanten.LeerAuswahl;
+      return AuswahlKonstanten.LeerAuswahl;
       
    end Sprachenauswahl;
    
