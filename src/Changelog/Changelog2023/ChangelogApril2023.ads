@@ -14,27 +14,27 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (28.04.2023):
+   -- Version 0.05.0280 => 0.05. (28.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (27.04.2023):
+   -- Version 0.05.0245 => 0.05.0280 (27.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Diverse Zahlen durch benannte Konstanten ersetzt.
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Ukrainisch hinzugefügt.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.0190 => 0.05. (26.04.2023):
+   -- Version 0.05.0190 => 0.05.0245 (26.04.2023):
    
    -- Diverse Zahlen durch benannte Konstanten ersetzt.
    -- Textdateien überarbeitet.
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Ukrainisch hinzugefügt.
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Griechisch hinzugefügt.
-   -- 
    -- Kommentare und Kleinigkeiten korrigiert.
    
    
