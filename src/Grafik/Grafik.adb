@@ -1,5 +1,6 @@
 with GrafikDatentypen;
 with ZeitKonstanten;
+with SystemKonstanten;
 
 with IntroGrafik;
 with MenueaufteilungGrafik;
@@ -241,7 +242,7 @@ package body Grafik is
       case
         NachGrafiktask.Spielmeldung
       is
-         when 0 =>
+         when SystemKonstanten.LeerMeldung =>
             return;
             
          when others =>
@@ -251,7 +252,7 @@ package body Grafik is
       if
         Clock - NachGrafiktask.StartzeitSpielmeldung > ZeitKonstanten.AnzeigezeitSpielmeldungen
       then
-         NachGrafiktask.Spielmeldung := 0;
+         NachGrafiktask.Spielmeldung := SystemKonstanten.LeerMeldung;
          
       else
          SpielmeldungenGrafik.Spielmeldung (MeldungExtern => NachGrafiktask.Spielmeldung);

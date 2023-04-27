@@ -10,6 +10,7 @@ with TextaccessVariablen;
 with Views;
 with ViewKonstanten;
 with GrafikKonstanten;
+with TextKonstanten;
 
 with LeseForschungenDatenbank;
 with LeseEinheitenDatenbank;
@@ -343,7 +344,7 @@ package body ForschungsauswahlGrafik is
         Forschungszeit
       is
          when ProduktionDatentypen.Lagermenge'Last =>
-            Text := Text & " ∞";
+            Text := Text & TextKonstanten.Unendlich;
             
          when others =>
             Text := Text & Forschungszeit'Wide_Wide_Image;

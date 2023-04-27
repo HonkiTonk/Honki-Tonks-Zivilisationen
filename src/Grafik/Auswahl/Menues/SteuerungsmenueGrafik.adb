@@ -116,7 +116,7 @@ package body SteuerungsmenueGrafik is
          InteraktionAuswahl.PositionenSteuerungsaufteilung (AufteilungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert)));
       
          Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert))).width
-           + 2.00 * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
+           + GrafikKonstanten.Verdoppelung * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
          
       end loop AufteilungSchleife;
       
@@ -236,7 +236,7 @@ package body SteuerungsmenueGrafik is
             Text := Text & TastenbelegungKonstanten.Tastennamen (AktuelleBelegung);
 
          when others =>
-            Text := Text & Wide_Wide_Character'Val (191);
+            Text := Text & Wide_Wide_Character'Val (UnbekannteTaste);
       end case;
       
       return To_Wide_Wide_String (Source => Text);

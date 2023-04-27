@@ -8,10 +8,12 @@ package TextKonstanten is
    Leerzeichen : constant Wide_Wide_String (1 .. 1) := " ";
    Trennzeichen : constant Wide_Wide_String (1 .. 1) := "/";
    TrennzeichenUnterschiedlich : constant Wide_Wide_String (1 .. 1) := "|";
+   Trennstrich : constant Wide_Wide_String (1 .. 3) := " - ";
    StandardAbstand : constant Wide_Wide_String (1 .. 4) := "    ";
    LangerAbstand : constant Wide_Wide_String (1 .. 10) := "          ";
    UmbruchAbstand : constant Wide_Wide_String (1 .. 5) := Ada.Characters.Wide_Wide_Latin_1.LF & StandardAbstand;
-   Unendlich : constant Wide_Wide_String (1 .. 4) := " (∞)";
+   UnendlichGeklammert : constant Wide_Wide_String (1 .. 4) := " (∞)";
+   Unendlich : constant Wide_Wide_String (1 .. 2) := " ∞";
    
    FehlenderText : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "ÄÖÜ Hier wurde kein Text eingelesen ÜÖÄ");
    LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);

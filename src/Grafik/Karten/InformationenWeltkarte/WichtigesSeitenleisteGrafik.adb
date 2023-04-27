@@ -165,7 +165,7 @@ package body WichtigesSeitenleisteGrafik is
          when ProduktionDatentypen.Lagermenge'Last =>
             return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Forschungsprojekt,
                                                                                                                                                                                 SpeziesExtern => SpeziesExtern)
-              & TextKonstanten.Unendlich;
+              & TextKonstanten.UnendlichGeklammert;
             
          when others =>
             return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Forschungsprojekt,

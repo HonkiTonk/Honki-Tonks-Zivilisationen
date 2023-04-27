@@ -7,6 +7,7 @@ with TextaccessVariablen;
 with InteraktionAuswahl;
 with Menuetexte;
 with GrafikKonstanten;
+with TextKonstanten;
 
 with TextberechnungenBreiteGrafik;
 with MenuestringsSetzenGrafik;
@@ -89,7 +90,7 @@ package body KartenformmenueGrafik is
                WelcherZusatztext := 12;
             end if;
 
-            Zusatztext := " - " & Menuetexte.Kartenform (WelcherZusatztext);
+            Zusatztext := TextKonstanten.Trennstrich & Menuetexte.Kartenform (WelcherZusatztext);
 
          when 4 =>
             if
@@ -176,7 +177,7 @@ package body KartenformmenueGrafik is
                                                                 WelchesMenüExtern => MenueDatentypen.Kartenform_Menü_Enum);
       end case;
 
-      Zusatztext := " - " & Menuetexte.Kartenform (WelcherZusatztext);
+      Zusatztext := TextKonstanten.Trennstrich & Menuetexte.Kartenform (WelcherZusatztext);
       
       return MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => SchleifenwertExtern,
                                                           WelchesMenüExtern => MenueDatentypen.Kartenform_Menü_Enum)

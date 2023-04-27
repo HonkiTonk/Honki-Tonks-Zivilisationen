@@ -7,6 +7,7 @@ with Views;
 with GrafikDatentypen;
 with ViewKonstanten;
 with GrafikKonstanten;
+with ProduktionKonstanten;
 
 with KampfwerteStadtErmittelnLogik;
 with TextberechnungenHoeheGrafik;
@@ -109,7 +110,7 @@ package body StadtseitenleisteGrafik is
          if
            VolleInformation = False
            and
-             TextSchleifenwert >= 2
+             TextSchleifenwert >= Informationsgrenze
          then
             null;
             
@@ -143,12 +144,12 @@ package body StadtseitenleisteGrafik is
    begin
             
       if
-        ProduktionExtern = 0
+        ProduktionExtern = ProduktionKonstanten.LeerProduktion
       then
          return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image;
          
       elsif
-        ProduktionExtern > 0
+        ProduktionExtern > ProduktionKonstanten.LeerProduktion
       then
          return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image & TextKonstanten.StandardAbstand & "+" & ZahlAlsStringProduktion (ZahlExtern => ProduktionExtern);
          
@@ -189,13 +190,13 @@ package body StadtseitenleisteGrafik is
    begin
       
       if
-        BauprojektExtern.Gebäude /= 0
+        BauprojektExtern.Gebäude /= StadtKonstanten.LeerBauprojekt.Gebäude
       then
          Text := To_Unbounded_Wide_Wide_String (Source => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauprojektExtern.Gebäude,
                                                                                                          SpeziesExtern => SpeziesExtern));
       
       elsif
-        BauprojektExtern.Einheit /= 0
+        BauprojektExtern.Einheit /= StadtKonstanten.LeerBauprojekt.Einheit
       then
          Text := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauprojektExtern.Einheit,
                                                                                                           SpeziesExtern => SpeziesExtern));
@@ -208,7 +209,7 @@ package body StadtseitenleisteGrafik is
         BauzeitExtern
       is
          when ProduktionDatentypen.Produktion'Last =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & TextKonstanten.Unendlich;
+            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & TextKonstanten.UnendlichGeklammert;
             
          when others =>
             return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & " (" & ZahlAlsStringProduktion (ZahlExtern => BauzeitExtern) & ")";

@@ -142,7 +142,7 @@ package body StadtumgebungGrafik is
             
       ObjekteZeichnenGrafik.RahmenZeichnen (PositionExtern    => (PositionExtern.x + Rahmendicke, PositionExtern.y + Rahmendicke),
                                             FarbeExtern       => Farbe,
-                                            GrößeExtern       => (FeldgrößeExtern.x - 2.00 * Rahmendicke, FeldgrößeExtern.y - 2.00 * Rahmendicke),
+                                            GrößeExtern       => (FeldgrößeExtern.x - GrafikKonstanten.Verdoppelung * Rahmendicke, FeldgrößeExtern.y - GrafikKonstanten.Verdoppelung * Rahmendicke),
                                             RahmendickeExtern => Rahmendicke);
       
    end DarstellungUmgebung;

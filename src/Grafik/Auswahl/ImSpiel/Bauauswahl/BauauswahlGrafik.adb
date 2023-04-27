@@ -9,6 +9,7 @@ with EinheitenKonstanten;
 with ViewKonstanten;
 with StadtKonstanten;
 with GrafikKonstanten;
+with AuswahlKonstanten;
 
 with TextberechnungenBreiteGrafik;
 with InteraktionAuswahl;
@@ -192,13 +193,13 @@ package body BauauswahlGrafik is
                                      AbmessungenExtern => ViewflächeAktuell);
       
       if
-        BauauswahlExtern.Bauprojekt.Gebäude /= 0
+        BauauswahlExtern.Bauprojekt.Gebäude /= AuswahlKonstanten.LeerGebäudeauswahl
       then
          Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauauswahlExtern.Bauprojekt.Gebäude,
                                                                                                                                   SpeziesExtern => BauauswahlExtern.Spezies);
          
       elsif
-        BauauswahlExtern.Bauprojekt.Einheit /= 0
+        BauauswahlExtern.Bauprojekt.Einheit /= AuswahlKonstanten.LeerEinheitenauswahl
       then
          Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauauswahlExtern.Bauprojekt.Einheit,
                                                                                                                                    SpeziesExtern => BauauswahlExtern.Spezies);

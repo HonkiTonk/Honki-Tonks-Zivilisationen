@@ -106,7 +106,7 @@ package body EinheitenseitenleisteGrafik is
          if
            VolleInformation = False
            and
-             TextSchleifenwert >= 3
+             TextSchleifenwert >= Informationsgrenze
          then
             null;
             

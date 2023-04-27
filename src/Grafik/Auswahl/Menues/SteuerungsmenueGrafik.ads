@@ -17,7 +17,8 @@ package SteuerungsmenueGrafik is
      (AuswahlExtern : in Integer);
    
 private
-      
+   
+   UnbekannteTaste : constant Positive := 191;
    ArrayAnfang : Positive;
    ArrayEnde : Positive;
       

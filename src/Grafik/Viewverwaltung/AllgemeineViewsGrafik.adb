@@ -44,7 +44,7 @@ package body AllgemeineViewsGrafik is
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                                               ViewbreiteExtern => Viewfläche (Überschrift_Enum).x);
-      Textposition.y := 2.00 * TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := GrafikKonstanten.Verdoppelung * TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                           PositionExtern   => Textposition);

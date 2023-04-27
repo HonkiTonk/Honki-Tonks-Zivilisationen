@@ -1,8 +1,16 @@
+with StadtDatentypen;
+with EinheitenDatentypen;
+
 package AuswahlKonstanten is
    pragma Pure;
 
-   -- Das mit der 0 funktioniert so auch nicht mehr, überarbeiten. äöü
-   -- Nur die StadtEinheitenauswahl nutzt das aktuell anders, also das anpassen dann geht es wieder. äöü
+   -- Nur die StadtEinheitenauswahl nutzt aktuell keine 0, eventuell anpassen? äöü
    LeerAuswahl : constant Natural := 0;
+
+   LeerGebäudeauswahl : constant StadtDatentypen.GebäudeIDMitNullwert := StadtDatentypen.GebäudeIDMitNullwert'First;
+
+   LeerEinheitenauswahl : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
+
+   LeerStadtEinheitAuswahl : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
 
 end AuswahlKonstanten;

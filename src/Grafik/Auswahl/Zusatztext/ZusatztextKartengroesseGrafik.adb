@@ -53,8 +53,8 @@ package body ZusatztextKartengroesseGrafik is
     
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
                                          str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 1,
-                                                                                              WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & "5x"
-                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse)) & "x"
+                                                                                              WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & Ebenenanzahl
+                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse)) & KleinesX
                                          & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse)));
       
       case
@@ -66,10 +66,10 @@ package body ZusatztextKartengroesseGrafik is
          when others =>
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                                str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum),
-                                                                                                    WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & "5x"
+                                                                                                    WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & Ebenenanzahl
                                                & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).YAchse))
-                                               & "x" & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv
-                                                                            (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).XAchse)));
+                                               & KleinesX & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv
+                                                                                 (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).XAchse)));
       end case;
       
    end TextFestlegen;

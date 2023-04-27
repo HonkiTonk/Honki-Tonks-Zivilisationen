@@ -16,6 +16,7 @@ with KartenRecords;
 with KartenRecordKonstanten;
 with SpeziesKonstanten;
 with AuswahlKonstanten;
+with SystemKonstanten;
 
 -- Variablen mal nach Kategorien in Records sortieren. äöü
 package NachGrafiktask is
@@ -53,7 +54,7 @@ package NachGrafiktask is
    -- Später erweitern mit nur Schriftgröße setzen, nur Schriftfarbe setzen, usw.. äöü
    AccesseSetzen : Boolean := False;
    
-   Spielmeldung : SystemDatentypen.Spielmeldungen := 0;
+   Spielmeldung : SystemDatentypen.Spielmeldungen := SystemKonstanten.LeerMeldung;
    StartzeitSpielmeldung : Time;
 
    TastenEingabe : Boolean := False;
@@ -74,9 +75,9 @@ package NachGrafiktask is
    AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord := (AuswahlKonstanten.LeerAuswahl, AuswahlKonstanten.LeerAuswahl);
    SpeichernLaden : Boolean := False;
    
-   WelcheAuswahl : EinheitenRecords.AuswahlRecord := (False, (others => 0));
+   WelcheAuswahl : EinheitenRecords.AuswahlRecord := (False, (others => AuswahlKonstanten.LeerStadtEinheitAuswahl));
    
-   AktuelleBauauswahl : StadtRecords.BauprojektRecord := (0, 0);
+   AktuelleBauauswahl : StadtRecords.BauprojektRecord := (AuswahlKonstanten.LeerGebäudeauswahl, AuswahlKonstanten.LeerEinheitenauswahl);
    
    GeheZu : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKoordinate;
    

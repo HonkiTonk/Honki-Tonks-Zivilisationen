@@ -24,7 +24,7 @@ package ChangelogVorlage is
    -- Version 0.05.0245 => 0.05.0280 (27.04.2023):
    
    -- Diverse Zahlen durch benannte Konstanten ersetzt.
-   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Ukrainisch hinzugefügt.
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Chinesisch hinzugefügt.
    -- Kommentare und Kleinigkeiten korrigiert.
    
    

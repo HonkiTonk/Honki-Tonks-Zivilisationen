@@ -73,6 +73,8 @@ private
    VolleInformation : Boolean;
    MausInformationen : Boolean;
    
+   Informationsgrenze : constant Positive := 2;
+   
    Textbreite : Float;
    Textskalierung : Float;
          

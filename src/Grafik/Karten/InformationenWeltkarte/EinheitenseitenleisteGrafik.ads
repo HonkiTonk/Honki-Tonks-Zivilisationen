@@ -54,6 +54,8 @@ private
    Angriffsbonus : KampfDatentypen.KampfwerteGroß;
    Verteidigungsbonus : KampfDatentypen.KampfwerteGroß;
    
+   Informationsgrenze : constant Positive := 3;
+   
    Textbreite : Float;
    TextbreiteDebug : Float;
       

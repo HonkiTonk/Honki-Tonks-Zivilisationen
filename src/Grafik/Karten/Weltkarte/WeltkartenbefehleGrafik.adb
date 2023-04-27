@@ -82,7 +82,7 @@ package body WeltkartenbefehleGrafik is
             return Texturgröße;
             
          when others =>
-            Teiler := 1.00;
+            Teiler := GrafikKonstanten.Einswert;
             Knopffläche := TexturenberechnungenGrafik.Texturenfeld (TexturengrößeExtern => Texturgröße,
                                                                      TeilerExtern        => (3.00, 5.00));
       end case;
@@ -142,7 +142,7 @@ package body WeltkartenbefehleGrafik is
       SpritesverwaltungssystemGrafik.PositionZeichnen (SpriteAccessExtern => SpriteAccess,
                                                        PositionExtern     => GrafikRecordKonstanten.Nullposition);
       
-      Teiler := 1.00;
+      Teiler := GrafikKonstanten.Einswert;
       Knopffläche := TexturenberechnungenGrafik.Texturenfeld (TexturengrößeExtern => Texturgröße,
                                                                TeilerExtern        => (3.00, 4.00));
       
