@@ -27,6 +27,8 @@ package EinwohnersystemLogik is
               );
    
 private
+   
+   Koordinatenausgleich : constant KartenDatentypen.KartenfeldPositiv := 3;
       
    Stadtfeld : KartenRecords.YXAchsenKartenfeldRecord;
    

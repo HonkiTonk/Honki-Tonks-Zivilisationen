@@ -4,6 +4,7 @@ with GrafikDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenverbesserungDatentypen;
+with WichtigesKonstanten;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -164,10 +165,10 @@ package body RundenendeLogik is
       case
         LeseAllgemeines.Zusammenbruchszeit
       is
-         when -1 =>
+         when WichtigesKonstanten.KeinZusammenbruch =>
             Weiterspielen := LeseAllgemeines.Weiterspielen;
             
-         when 0 =>
+         when WichtigesKonstanten.Zusammenbruch =>
             AbspannLogik.Abspann (AbspannExtern => GrafikDatentypen.Planet_Vernichtet_Enum);
             return False;
             

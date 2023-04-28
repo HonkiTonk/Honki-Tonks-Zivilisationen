@@ -1,5 +1,5 @@
 package ZeitKonstanten is
-   pragma Elaborate_Body;
+   pragma Pure;
    
    WartezeitStart : constant Duration := 0.002;
    

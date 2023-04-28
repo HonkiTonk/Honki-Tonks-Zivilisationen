@@ -2,6 +2,7 @@ with KartenKonstanten;
 with KampfKonstanten;
 with KartengrundDatentypen;
 with GrafikKonstanten;
+with ProduktionKonstanten;
 
 with LeseWeltkarte;
 with LeseKartenDatenbanken;
@@ -202,7 +203,7 @@ package body KartenAllgemeinesLogik is
         KartenFluss
       is
          when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
@@ -226,7 +227,7 @@ package body KartenAllgemeinesLogik is
         KartenFluss
       is
          when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
@@ -250,7 +251,7 @@ package body KartenAllgemeinesLogik is
         KartenFluss
       is
          when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             -- Hat schon einmal einen Absturz durch range check failed verursacht, eventuell müssen hier überall weitere Tests rein. äöü
@@ -275,7 +276,7 @@ package body KartenAllgemeinesLogik is
         KartenFluss
       is
          when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
@@ -370,7 +371,7 @@ package body KartenAllgemeinesLogik is
         KartenWeg
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
@@ -394,7 +395,7 @@ package body KartenAllgemeinesLogik is
         KartenWeg
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
@@ -418,7 +419,7 @@ package body KartenAllgemeinesLogik is
         KartenWeg
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
@@ -442,7 +443,7 @@ package body KartenAllgemeinesLogik is
         KartenWeg
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
@@ -514,7 +515,7 @@ package body KartenAllgemeinesLogik is
         KartenVerbesserung
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => KartenVerbesserung,
@@ -538,7 +539,7 @@ package body KartenAllgemeinesLogik is
         KartenVerbesserung
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => KartenVerbesserung,
@@ -562,7 +563,7 @@ package body KartenAllgemeinesLogik is
         KartenVerbesserung
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => KartenVerbesserung,
@@ -586,7 +587,7 @@ package body KartenAllgemeinesLogik is
         KartenVerbesserung
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => KartenVerbesserung,
@@ -658,7 +659,7 @@ package body KartenAllgemeinesLogik is
         KartenRessource
       is
          when KartenextraDatentypen.Leer_Ressource_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,
@@ -682,7 +683,7 @@ package body KartenAllgemeinesLogik is
         KartenRessource
       is
          when KartenextraDatentypen.Leer_Ressource_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,
@@ -706,7 +707,7 @@ package body KartenAllgemeinesLogik is
         KartenRessource
       is
          when KartenextraDatentypen.Leer_Ressource_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,
@@ -730,7 +731,7 @@ package body KartenAllgemeinesLogik is
         KartenRessource
       is
          when KartenextraDatentypen.Leer_Ressource_Enum =>
-            return 0;
+            return ProduktionKonstanten.LeerProduktion;
             
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,

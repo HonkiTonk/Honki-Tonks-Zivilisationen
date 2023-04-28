@@ -2,6 +2,7 @@ with InteraktionAuswahl;
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
 with TextnummernKonstanten;
+with AuswahlKonstanten;
 
 with LeseStadtGebaut;
 
@@ -87,7 +88,7 @@ package body GebaeudeVerkaufenLogik is
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl = 0
+                 AktuelleAuswahl = AuswahlKonstanten.LeerGebäudeauswahl
                then
                   null;
                   

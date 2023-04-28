@@ -7,6 +7,7 @@ with Sf.Graphics.Color;
 with GrafikDatentypen;
 with SonstigesKonstanten;
 with GrafikRecordKonstanten;
+with GrafikKonstanten;
 
 with LeseEinstellungenGrafik;
 
@@ -41,28 +42,22 @@ package body FensterGrafik is
    procedure FensterErzeugenErweitert
    is begin
       
-      -- FensterVollbild:
-      -- No border / title bar = 0
-      -- Title bar + fixed border = 1
-      -- Titlebar + resizable border + maximize button = 2
-      -- Titlebar + close button = 4
-      -- Fullscreen mode = 8
-      -- Default window style = 7
       Fenstermodus := LeseEinstellungenGrafik.Fenstermodus;
       
       case
         Fenstermodus
       is
-         when 0 | 1 | 2 | 4 | 7 =>
+         when GrafikKonstanten.RahmenlosesFenster | GrafikKonstanten.TitelleisteFesteGrenzenFenster | GrafikKonstanten.TitelleisteGrößenänderungMaximierenFenster | GrafikKonstanten.TitelleisteSchließenFenster
+            | GrafikKonstanten.StandardFenster =>
             Startauflösung := LeseEinstellungenGrafik.Auflösung;
             
             -- Die Vollbildauflösung noch seperat speichern? äöü
-         when 8 =>
+         when GrafikKonstanten.Vollbild =>
             Startauflösung := (Sf.Window.VideoMode.getDesktopMode.width, Sf.Window.VideoMode.getDesktopMode.height);
             
          when others =>
             Fehlermeldungssystem.Grafik (FehlermeldungExtern => "FensterGrafik.FensterErzeugenErweitert: Unbekannter Fenstermodus: " & Fenstermodus'Wide_Wide_Image);
-            Fenstermodus := 2;
+            Fenstermodus := GrafikKonstanten.StandardFenster;
             Startauflösung := GrafikRecordKonstanten.Minimalauflösung;
       end case;
             
@@ -71,7 +66,7 @@ package body FensterGrafik is
                                                                          LeseEinstellungenGrafik.Farbtiefe),
                                                                title => SonstigesKonstanten.Spielname,
                                                                style => Fenstermodus);
-            
+      
    end FensterErzeugenErweitert;
    
    

@@ -336,6 +336,7 @@ package body SpielLogik is
 
 
 
+   -- Das hier mal nach Menues verschieben. äöü
    function Spielmenü
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum

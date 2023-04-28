@@ -5,7 +5,7 @@ package body LadezeitenLogik is
    procedure SpielweltNullsetzen
    is begin
       
-      FortschrittSpielwelt := (others => 0);
+      FortschrittSpielwelt := (others => AnfangLadezeit);
       
    end SpielweltNullsetzen;
    
@@ -14,7 +14,7 @@ package body LadezeitenLogik is
    procedure KINullsetzenFortschritt
    is begin
       
-      FortschrittKI := (others => 0);
+      FortschrittKI := (others => AnfangLadezeit);
       
    end KINullsetzenFortschritt;
    
@@ -23,7 +23,7 @@ package body LadezeitenLogik is
    procedure RundenendeNullsetzen
    is begin
       
-      FortschrittRundenende := 0;
+      FortschrittRundenende := AnfangLadezeit;
       
    end RundenendeNullsetzen;
    
@@ -32,7 +32,7 @@ package body LadezeitenLogik is
    procedure SpeichernLadenNullsetzen
    is begin
       
-      FortschrittSpeichernLaden := 0;
+      FortschrittSpeichernLaden := AnfangLadezeit;
       
    end SpeichernLadenNullsetzen;
    

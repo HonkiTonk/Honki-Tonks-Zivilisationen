@@ -3,15 +3,15 @@ with SystemDatentypen;
 
 package LadezeitenLogik is
    pragma Elaborate_Body;
+   
+   FortschrittRundenende : SystemDatentypen.NullBisHundert;
+   FortschrittSpeichernLaden : SystemDatentypen.NullBisHundert;
       
    type FortschrittSpielweltArray is array (LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range) of SystemDatentypen.NullBisHundert;
    FortschrittSpielwelt : FortschrittSpielweltArray;
    
    type FortschrittKIArray is array (LadezeitenDatentypen.KI_Rechnet_Enum'Range) of SystemDatentypen.NullBisHundert;
    FortschrittKI : FortschrittKIArray;
-   
-   FortschrittRundenende : SystemDatentypen.NullBisHundert;
-   FortschrittSpeichernLaden : SystemDatentypen.NullBisHundert;
 
    procedure SpielweltNullsetzen;
    procedure KINullsetzenFortschritt;
@@ -36,6 +36,8 @@ package LadezeitenLogik is
      (SpeichernLadenExtern : in Boolean);
    
 private
+   
+   AnfangLadezeit : constant SystemDatentypen.NullBisHundert := SystemDatentypen.NullBisHundert'First;
    
    type FortschrittSchritteArray is array (1 .. 5) of SystemDatentypen.NullBisHundert;
    FortschrittSchritte : constant FortschrittSchritteArray := (

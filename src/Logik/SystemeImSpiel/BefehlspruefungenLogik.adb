@@ -1,5 +1,6 @@
 with AufgabenDatentypen;
 with TextnummernKonstanten;
+with AuswahlKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseCursor;
@@ -46,7 +47,7 @@ package body BefehlspruefungenLogik is
                                                          StadtNummerExtern   => StadtNummer,
                                                          EinheitNummerExtern => EinheitNummer)
          is
-            when 0 =>
+            when AuswahlKonstanten.LeerAuswahl =>
                LeerRückgabewert := StadtEntfernenLogik.StadtAbreißen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummer));
                
             when 1 =>
@@ -132,7 +133,7 @@ package body BefehlspruefungenLogik is
           Transportiert = False
       then
          TransporterNummer := EinheitSpeziesNummerExtern.Nummer;
-         AusgewählteEinheit := 0;
+         AusgewählteEinheit := AuswahlKonstanten.LeerAuswahl;
 
       elsif
         LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= EinheitenKonstanten.LeerWirdTransportiert
@@ -152,7 +153,7 @@ package body BefehlspruefungenLogik is
       case
         AusgewählteEinheit
       is
-         when 0 =>
+         when AuswahlKonstanten.LeerAuswahl =>
             EinheitSteuern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, TransporterNummer));
             
          when Positive (EinheitenRecords.TransporterArray'First) .. Positive (EinheitenRecords.TransporterArray'Last) =>
@@ -178,7 +179,7 @@ package body BefehlspruefungenLogik is
                                                       StadtNummerExtern   => StadtNummerExtern,
                                                       EinheitNummerExtern => EinheitNummerExtern)
       is
-         when 0 =>
+         when AuswahlKonstanten.LeerAuswahl =>
             StadtAktion (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummerExtern));
             
          when 1 =>

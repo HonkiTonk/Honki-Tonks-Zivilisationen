@@ -49,9 +49,10 @@ package KartenKonstanten is
    KampfVerteidigung : constant KampfDatentypen.Kampf_Enum := KampfDatentypen.Verteidigung_Enum;
    KampfAngriff : constant KampfDatentypen.Kampf_Enum := KampfDatentypen.Angriff_Enum;
    
+   MinimaleKartengröße : constant KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv'Last / 50;
+   
    type StandardKartengrößenArray is array (RueckgabeDatentypen.Kartengrößen_Standard_Enum'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
    StandardKartengrößen : constant StandardKartengrößenArray := (
-                                                                     -- (20, 20), (40, 40), (80, 80), (120, 80), (120, 160), (160, 160), (240, 240), (320, 320), (Last, Last)
                                                                      RueckgabeDatentypen.Auswahl_Eins_Enum   => (KartenDatentypen.KartenfeldPositiv'Last / 50, KartenDatentypen.KartenfeldPositiv'Last / 50),
                                                                      RueckgabeDatentypen.Auswahl_Zwei_Enum   => (KartenDatentypen.KartenfeldPositiv'Last / 25, KartenDatentypen.KartenfeldPositiv'Last / 25),
                                                                      RueckgabeDatentypen.Auswahl_Drei_Enum   => (KartenDatentypen.KartenfeldPositiv'Last / 12, KartenDatentypen.KartenfeldPositiv'Last / 12),

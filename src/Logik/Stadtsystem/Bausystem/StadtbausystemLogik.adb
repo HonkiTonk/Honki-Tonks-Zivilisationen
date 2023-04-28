@@ -1,5 +1,6 @@
 with GrafikDatentypen;
 with TastenbelegungDatentypen;
+with AuswahlKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -24,9 +25,9 @@ package body StadtbausystemLogik is
       NeuesBauprojekt := BauobjektAuswählen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       if
-        (NeuesBauprojekt.Gebäude = 0
+        (NeuesBauprojekt.Gebäude = AuswahlKonstanten.LeerGebäudeauswahl
          and
-           NeuesBauprojekt.Einheit = 0)
+           NeuesBauprojekt.Einheit = AuswahlKonstanten.LeerEinheitenauswahl)
         or
           NeuesBauprojekt = AktuellesBauprojekt
       then
@@ -157,9 +158,9 @@ package body StadtbausystemLogik is
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl.Gebäude = 0
+                 AktuelleAuswahl.Gebäude = AuswahlKonstanten.LeerGebäudeauswahl
                  and
-                   AktuelleAuswahl.Einheit = 0
+                   AktuelleAuswahl.Einheit = AuswahlKonstanten.LeerEinheitenauswahl
                then
                   null;
                   

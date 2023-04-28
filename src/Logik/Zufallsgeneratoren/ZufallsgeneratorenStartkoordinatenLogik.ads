@@ -11,7 +11,6 @@ package ZufallsgeneratorenStartkoordinatenLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
-   use type KartenDatentypen.Ebene;
      
    function Startkoordinaten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -22,7 +21,7 @@ package ZufallsgeneratorenStartkoordinatenLogik is
               ),
            
        Post => (
-                  Startkoordinaten'Result.EAchse in -1 .. 0
+                  Startkoordinaten'Result.EAchse in KartenDatentypen.EbeneUnterflächeOberfläche'Range
                 and
                   Startkoordinaten'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and

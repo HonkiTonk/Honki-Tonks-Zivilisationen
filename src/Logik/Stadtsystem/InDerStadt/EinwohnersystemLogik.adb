@@ -47,7 +47,7 @@ package body EinwohnersystemLogik is
             return False;
             
          when others =>
-            Stadtfeld.YAchse := Stadtfeld.YAchse - 3;
+            Stadtfeld.YAchse := Stadtfeld.YAchse - Koordinatenausgleich;
             Stadtfeld.XAchse := MausfeldPrüfen (MausachseExtern   => Mausposition.x,
                                                  BasiswertExtern   => Feldfläche.x,
                                                  AnfangswertExtern => 0,
@@ -61,7 +61,7 @@ package body EinwohnersystemLogik is
             return False;
             
          when others =>
-            Stadtfeld.XAchse := Stadtfeld.XAchse - 3;
+            Stadtfeld.XAchse := Stadtfeld.XAchse - Koordinatenausgleich;
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Stadtfeld.YAchse, Stadtfeld.XAchse),
                                                                                                       LogikGrafikExtern => True);

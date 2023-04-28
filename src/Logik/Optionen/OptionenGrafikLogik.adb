@@ -144,14 +144,15 @@ package body OptionenGrafikLogik is
       case
         LeseEinstellungenGrafik.Fenstermodus
       is
-         when 7 =>
-            SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => 8);
+         when GrafikKonstanten.StandardFenster =>
+            SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.Vollbild);
             
-         when 8 =>
-            SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => 7);
+         when GrafikKonstanten.Vollbild =>
+            SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.StandardFenster);
             
          when others =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "OptionenGrafikLogik.VollbildFenster: Unbekannter Fenstermodus: " & LeseEinstellungenGrafik.Fenstermodus'Wide_Wide_Image);
+            SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.StandardFenster);
       end case;
       
       NachGrafiktask.FensterVerändert := GrafikDatentypen.Modus_Verändert_Enum;

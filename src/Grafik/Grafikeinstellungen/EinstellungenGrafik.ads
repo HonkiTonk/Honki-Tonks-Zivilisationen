@@ -1,5 +1,6 @@
 with GrafikRecords;
 with GrafikRecordKonstanten;
+with GrafikKonstanten;
 
 package EinstellungenGrafik is
    pragma Elaborate_Body;
@@ -13,13 +14,7 @@ package EinstellungenGrafik is
 private
    
    FensterStandardEinstellungen : constant GrafikRecords.FensterRecord := (
-                                                                           -- No border / title bar = 0
-                                                                           -- Title bar + fixed border = 1
-                                                                           -- Titlebar + resizable border + maximize button = 2
-                                                                           -- Titlebar + close button = 4
-                                                                           -- Fullscreen mode = 8
-                                                                           -- Default window style = 7
-                                                                           Fenstermodus => 7,
+                                                                           Fenstermodus => GrafikKonstanten.StandardFenster,
                                                                            
                                                                            Auflösung    => GrafikRecordKonstanten.Minimalauflösung,
                                                                            Farbtiefe    => 32,

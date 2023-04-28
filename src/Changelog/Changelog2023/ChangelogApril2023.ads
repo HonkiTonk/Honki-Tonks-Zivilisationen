@@ -16,8 +16,10 @@ package ChangelogVorlage is
 
    -- Version 0.05.0280 => 0.05. (28.04.2023):
    
+   -- Diverse Zahlen durch benannte Konstanten ersetzt.
+   -- Zusätzliche sichere Rückgabewerte hinzugefügt.
    -- 
-   -- Kleinigkeiten korrigiert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 

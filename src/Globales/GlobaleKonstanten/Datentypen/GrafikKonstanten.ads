@@ -1,4 +1,5 @@
 with Sf;
+with Sf.Window.Window;
 
 package GrafikKonstanten is
    pragma Elaborate_Body;
@@ -21,6 +22,13 @@ package GrafikKonstanten is
    
    MinimaleBildrate : constant Sf.sfUint32 := 1;
    MaximaleBildrate : constant Sf.sfUint32 := 1_000;
+        
+   RahmenlosesFenster : constant Sf.Window.Window.sfWindowStyle := 0;
+   TitelleisteFesteGrenzenFenster : constant Sf.Window.Window.sfWindowStyle := 1;
+   TitelleisteGrößenänderungMaximierenFenster : constant Sf.Window.Window.sfWindowStyle := 2;
+   TitelleisteSchließenFenster : constant Sf.Window.Window.sfWindowStyle := 4;
+   StandardFenster : constant Sf.Window.Window.sfWindowStyle := 7;
+   Vollbild : constant Sf.Window.Window.sfWindowStyle := 8;
    
    Nullwert : constant Float := 0.00;
    Einswert : constant Float := 1.00;

@@ -41,7 +41,7 @@ package WichtigesRecordKonstanten is
                                                                  Rundengrenze          => Natural'First,
                                                                  IronmanName           => TextKonstanten.LeerUnboundedString,
                                                                  PlanetVernichtet      => SpeziesKonstanten.LeerSpezies,
-                                                                 Zusammenbruchszeit    => -1,
+                                                                 Zusammenbruchszeit    => WichtigesKonstanten.KeinZusammenbruch,
                                                                  AnzahlEingesetzterPZB => 0
                                                                 );
    

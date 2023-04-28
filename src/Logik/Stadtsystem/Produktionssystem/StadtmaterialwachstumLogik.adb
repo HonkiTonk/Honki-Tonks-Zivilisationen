@@ -1,6 +1,7 @@
 with EinheitenDatentypen;
 with StadtDatentypen;
 with ProduktionDatentypen;
+with AuswahlKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseEinheitenDatenbank;
@@ -27,16 +28,16 @@ package body StadtmaterialwachstumLogik is
       Bauprojekt := LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
         
       if
-        Bauprojekt.Gebäude = 0
+        Bauprojekt.Gebäude = AuswahlKonstanten.LeerGebäudeauswahl
         and
-          Bauprojekt.Einheit = 0
+          Bauprojekt.Einheit = AuswahlKonstanten.LeerEinheitenauswahl
       then
          SchreibeStadtGebaut.Material (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                        MaterialExtern           => StadtKonstanten.LeerMaterial,
                                        ÄndernSetzenExtern       => False);
          
       elsif
-        Bauprojekt.Gebäude /= 0
+        Bauprojekt.Gebäude /= AuswahlKonstanten.LeerGebäudeauswahl
       then
          if
            LeseStadtGebaut.Material (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) >= LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,

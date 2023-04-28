@@ -27,6 +27,7 @@ package body SichtbarkeitsberechnungssystemLogik is
                                                SichtweiteExtern           => SichtweiteObjekt);
             return;
             
+            -- Das hier auch noch einmal überarbeiten, eventuell will ich mehr als drei Felder aufdecken? äöü
          when 3 =>
             EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             

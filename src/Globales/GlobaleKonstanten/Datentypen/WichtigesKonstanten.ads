@@ -36,5 +36,10 @@ package WichtigesKonstanten is
    LeerAktuelleSympathieBewertung : constant DiplomatieDatentypen.Meinung := 0;
    LeerZeitSeitLetzterÄnderung : constant ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
    DiplomatischerStatusÄnderungszeit : constant Positive := 10;
+   
+   
+   
+   KeinZusammenbruch : constant ZahlenDatentypen.EigenerInteger := -1;
+   Zusammenbruch : constant ZahlenDatentypen.EigenesNatural := 0;
 
 end WichtigesKonstanten;

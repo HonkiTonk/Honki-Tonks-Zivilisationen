@@ -142,7 +142,7 @@ package body SpieleinstellungenKartenLogik is
      return KartenRecords.YXAchsenKartenfeldPositivRecord
    is begin
             
-      BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 20,
+      BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (KartenKonstanten.MinimaleKartengröße),
                                                                      ZahlenMaximumExtern => Positive (KartenDatentypen.KartenfeldPositiv'Last),
                                                                      WelcheFrageExtern   => TextnummernKonstanten.FrageYAchsengrößeEingeben);
       case
@@ -157,7 +157,7 @@ package body SpieleinstellungenKartenLogik is
       
       YAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
       
-      BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 20,
+      BenutzerdefinierteGröße := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (KartenKonstanten.MinimaleKartengröße),
                                                                      ZahlenMaximumExtern => Positive (KartenDatentypen.KartenfeldPositiv'Last),
                                                                      WelcheFrageExtern   => TextnummernKonstanten.FrageXAchsengrößeEingeben);
       

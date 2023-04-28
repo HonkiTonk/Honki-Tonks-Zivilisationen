@@ -5,7 +5,7 @@ package body ZufallsgeneratorenKampfLogik is
       return Natural
    is begin
       
-      AnzahlErfolge := 0;
+      AnzahlErfolge := LeerErfolge;
       Würfel.Reset (Gen => Würfelwurf);
       
       WürfelSchleife:
@@ -30,9 +30,9 @@ package body ZufallsgeneratorenKampfLogik is
       end loop WürfelSchleife;
       
       if
-        AnzahlErfolge < 0
+        AnzahlErfolge < LeerErfolge
       then
-         return 0;
+         return LeerErfolge;
          
       else
          return AnzahlErfolge;

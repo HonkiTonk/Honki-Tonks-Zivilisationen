@@ -104,7 +104,7 @@ package body StadtBauenLogik is
       if
         EinheitSpeziesNummerExtern.Spezies = SpeziesDatentypen.Ekropa_Enum
         and
-          Einheitenkoordinaten.EAchse /= 0
+          Einheitenkoordinaten.EAchse /= KartenKonstanten.LeerEAchseÄnderung
       then
          return False;
          
