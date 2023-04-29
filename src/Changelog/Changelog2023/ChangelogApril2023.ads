@@ -11,6 +11,7 @@ package ChangelogVorlage is
    
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Japanisch hinzugefügt.
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Koreanisch hinzugefügt.
+   -- Sprachdateien überarbeiet.
    -- 
    -- Kleinigkeiten korrigiert.
    
