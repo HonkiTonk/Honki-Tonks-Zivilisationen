@@ -7,18 +7,20 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (29.04.2023):
+   -- Version 0.05.0325 => 0.05. (29.04.2023):
    
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Japanisch hinzugefügt.
+   -- Zu Testzwecken eine automatische Übersetzung für die Sprache Koreanisch hinzugefügt.
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.0280 => 0.05. (28.04.2023):
+   -- Version 0.05.0280 => 0.05.0325 (28.04.2023):
    
    -- Diverse Zahlen durch benannte Konstanten ersetzt.
-   -- Zusätzliche sichere Rückgabewerte hinzugefügt.
-   -- 
+   -- Einige zusätzliche sichere Rückgabewerte hinzugefügt.
+   -- Nach neuem Font gesucht, welches auch asiatische Zeichen darstellen kann.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
