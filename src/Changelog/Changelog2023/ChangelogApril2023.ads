@@ -1,18 +1,17 @@
 package ChangelogVorlage is
    
-   -- Version 0.05. => 0.05. (30.04.2023):
+   -- Version 0.05.0370 => 0.05. (30.04.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.0325 => 0.05. (29.04.2023):
+   -- Version 0.05.0325 => 0.05.0370 (29.04.2023):
    
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Japanisch hinzugefügt.
    -- Zu Testzwecken eine automatische Übersetzung für die Sprache Koreanisch hinzugefügt.
-   -- Sprachdateien überarbeiet.
-   -- 
+   -- Sprachdateien überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    
