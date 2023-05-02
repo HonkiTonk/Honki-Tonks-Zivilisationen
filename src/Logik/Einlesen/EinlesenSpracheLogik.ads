@@ -12,6 +12,7 @@ private
    SchleifenAbzug : Natural;
       
    ZwischenSpeicher : Unbounded_Wide_Wide_String;
+   Test : Unbounded_Wide_Wide_String;
    
    Suche : Search_Type;
    

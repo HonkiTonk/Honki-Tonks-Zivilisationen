@@ -31,7 +31,6 @@ project HonkiTonksZivilisationen is
    end Pretty_Printer;
 
    package Prove is
-      for Proof_Switches ("ada") use ("-j4", "--proof-warnings", "--codepeer=on");
    end Prove;
 
    package Linker is

@@ -1,9 +1,8 @@
 package ChangelogVorlage is
    
-   -- Version 0.05.0370 => 0.05. (30.04.2023):
+   -- Version 0.05.0370 => 0.05.0370 (30.04.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

@@ -203,16 +203,15 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (02.05.2023):
+   -- Version 0.05.0390 => 0.05. (02.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (01.05.2023):
+   -- Version 0.05.0370 => 0.05.0390 (01.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Sprachenordner können unter Linux jetzt auch Sonderzeichen enthalten.
 
 end ChangelogVorlage;

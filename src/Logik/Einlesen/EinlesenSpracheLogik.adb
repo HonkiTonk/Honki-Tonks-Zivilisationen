@@ -1,8 +1,10 @@
-with Ada.Characters.Conversions; use Ada.Characters.Conversions;
+-- with Ada.Characters.Conversions; use Ada.Characters.Conversions;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with GlobaleTexte;
 with TextKonstanten;
 with VerzeichnisKonstanten;
+-- with EinlesenAllgemeinesLogik;
 
 package body EinlesenSpracheLogik is
 
@@ -30,7 +32,7 @@ package body EinlesenSpracheLogik is
            or
              Simple_Name (Directory_Entry => Verzeichnis) = ".."
          then
-                  null;
+            null;
             
             -- Gibt immer 0 zurück, später mal nachprüfen warum. äöü
             -- Mach er nur bei Verzeichnissen, nicht bei einzelnen Dateien. äöü
@@ -49,6 +51,7 @@ package body EinlesenSpracheLogik is
             null;
             
          else
+            Test := To_Unbounded_Wide_Wide_String (Source => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis)));
             VerzeichnisInnenSchleife:
             for SpracheSchleifenwert in GlobaleTexte.SprachenEinlesen'Range loop
                if
@@ -57,7 +60,7 @@ package body EinlesenSpracheLogik is
                   null;
             
                else
-                  GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
+                  GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) := Test;
                   exit VerzeichnisInnenSchleife;
                end if;
          
