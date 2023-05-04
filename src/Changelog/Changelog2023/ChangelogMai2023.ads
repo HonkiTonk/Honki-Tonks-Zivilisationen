@@ -189,24 +189,22 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (04.05.2023):
+   -- Version 0.05.0430 => 0.05. (04.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (03.05.2023):
+   -- Version 0.05.0410 => 0.05.0430 (03.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Datei/Ordnernamen mit Sonderzeichen unter Windows wird wohl erst einmal nichts werden.
    
    
 
-   -- Version 0.05.0390 => 0.05. (02.05.2023):
+   -- Version 0.05.0390 => 0.05.0410 (02.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter versucht das Einlesen von Dateien/Ordner mit Sonderzeichen unter Windows korrekt zum Laufen zu bringen.
    
    
 
