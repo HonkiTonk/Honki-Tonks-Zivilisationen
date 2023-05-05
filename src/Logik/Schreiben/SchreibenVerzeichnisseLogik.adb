@@ -36,6 +36,16 @@ package body SchreibenVerzeichnisseLogik is
             Create_Directory (New_Directory => VerzeichnisKonstanten.Datenbanken);
       end case;
       
+      case
+        Exists (Name => VerzeichnisKonstanten.Einstellungen)
+      is
+         when True =>
+            null;
+            
+         when False =>
+            Create_Directory (New_Directory => VerzeichnisKonstanten.Einstellungen);
+      end case;
+      
    end SchreibeSonstigeVerzeichnisse;
 
 end SchreibenVerzeichnisseLogik;

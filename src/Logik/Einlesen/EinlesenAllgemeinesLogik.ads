@@ -16,7 +16,7 @@ package EinlesenAllgemeinesLogik is
       return Boolean
      with
        Pre => (
-                 VerzeichnisExtern'Length > VerzeichnisKonstanten.SprachenStrich'Length
+                 VerzeichnisExtern'Length > VerzeichnisKonstanten.Sprachenordner'Length
               );
 
 private

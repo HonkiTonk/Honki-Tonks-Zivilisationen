@@ -1,9 +1,9 @@
 with MenueDatentypen;
 
 with AuswahlaufteilungLogik;
-with SchreibenTastaturLogik;
 with Fehlermeldungssystem;
 with StandardTastenbelegungDatenbank;
+with SchreibenEinstellungenLogik;
 
 package body OptionenSteuerungLogik is
 
@@ -20,11 +20,11 @@ package body OptionenSteuerungLogik is
            AuswahlWert
          is   
             when RueckgabeDatentypen.Speichern_Enum =>
-               SchreibenTastaturLogik.TastenbelegungSchreiben;
+               SchreibenEinstellungenLogik.TastenbelegungSchreiben;
                
             when RueckgabeDatentypen.Standard_Enum =>
                StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
-               SchreibenTastaturLogik.TastenbelegungSchreiben;
+               SchreibenEinstellungenLogik.TastenbelegungSchreiben;
             
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
                return AuswahlWert;

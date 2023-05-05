@@ -6,11 +6,13 @@ package SchreibenEinstellungenLogik is
    procedure Nutzereinstellungen;
    procedure Grafikeinstellungen;
    procedure Soundeinstellungen;
+   procedure TastenbelegungSchreiben;
 
 private
 
    DateiNutzereinstellungen : File_Type;
    DateiGrafikeinstellungen : File_Type;
    DateiSoundeinstellungen : File_Type;
+   DateiTastenbelegung : File_Type;
 
 end SchreibenEinstellungenLogik;

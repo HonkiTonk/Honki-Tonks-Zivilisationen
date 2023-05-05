@@ -1,0 +1,6 @@
+with VerzeichnisKonstanten;
+with TastenbelegungDatenbank;
+
+package body SchreibenTastaturLogik is
+
+end SchreibenTastaturLogik;

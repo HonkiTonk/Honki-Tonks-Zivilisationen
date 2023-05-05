@@ -175,24 +175,27 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (06.05.2023):
+   -- Version 0.05.0500 => 0.05. (06.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (05.05.2023):
+   -- Version 0.05.0430 => 0.05.0500 (05.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Anpassungen an den Speicherorten der Nutzereinstellungen vorgenommen.
+   -- Namensprüfungen für Spielstände in einen Linux- und einen Windowsbereich aufgeteilt.
+   -- Zusätzliche Prüfungen für Spielstandnamen eingebaut.
+   -- Neue Font eingebaut um auch asiatische Schriftzeichen korrekt anzeigen zu können.
+   -- Zusätzliche Prüfungen für die Sprachenordner eingebaut, damit es unter Windows zu keinen Problemen mehr kommt.
+   -- Contracs, Kommenatre und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05.0430 => 0.05. (04.05.2023):
+   -- Version 0.05.0430 => 0.05.0430 (04.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

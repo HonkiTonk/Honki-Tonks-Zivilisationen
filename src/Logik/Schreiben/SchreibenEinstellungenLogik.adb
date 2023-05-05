@@ -2,6 +2,7 @@ with SystemRecords;
 with VerzeichnisKonstanten;
 with GrafikRecords;
 with TonRecords;
+with TastenbelegungDatenbank;
 
 with LeseOptionen;
 with LeseEinstellungenSound;
@@ -76,5 +77,28 @@ package body SchreibenEinstellungenLogik is
       Close (File => DateiSoundeinstellungen);
             
    end Soundeinstellungen;
+   
+   
+
+   procedure TastenbelegungSchreiben
+   is begin
+      
+      Create (File => DateiTastenbelegung,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.Tastenbelegung,
+              Form => "WCEM=8");
+      
+      TastenbelegungDatenbank.AllgemeineBelegungArray'Write (Stream (File => DateiTastenbelegung),
+                                                             TastenbelegungDatenbank.AllgemeineBelegung);
+      
+      TastenbelegungDatenbank.EinheitenbelegungArray'Write (Stream (File => DateiTastenbelegung),
+                                                            TastenbelegungDatenbank.Einheitenbelegung);
+      
+      TastenbelegungDatenbank.StadtbelegungArray'Write (Stream (File => DateiTastenbelegung),
+                                                        TastenbelegungDatenbank.Stadtbelegung);
+      
+      Close (File => DateiTastenbelegung);
+      
+   end TastenbelegungSchreiben;
 
 end SchreibenEinstellungenLogik;

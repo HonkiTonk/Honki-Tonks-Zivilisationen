@@ -18,6 +18,7 @@ with SpielstandAllgemeinesLogik;
 with JaNeinLogik;
 with SpielstandEntfernenLogik;
 with SpielstandVariablen;
+with DebugobjekteLogik;
 
 package body SpielstandlisteLogik is
 
@@ -275,6 +276,51 @@ package body SpielstandlisteLogik is
       return Boolean
    is begin
       
+      case
+        DebugobjekteLogik.Debug.LinuxWindows
+      is
+         when True =>
+            return NamePrüfenLinux (NameExtern => NameExtern);
+            
+         when False =>
+            return NamePrüfenWindows (NameExtern => NameExtern);
+      end case;
+      
+   end NamePrüfen;
+   
+   
+   
+   function NamePrüfenLinux
+     (NameExtern : in Wide_Wide_String)
+      return Boolean
+   is begin
+      
+      PrüfenSchleife:
+      for PrüfenSchleifenwert in NameExtern'Range loop
+         
+         case
+           NameExtern (PrüfenSchleifenwert)
+         is
+            when '/' | NUL =>
+               return False;
+               
+            when others =>
+               null;
+         end case;
+         
+      end loop PrüfenSchleife;
+      
+      return True;
+      
+   end NamePrüfenLinux;
+   
+   
+   
+   function NamePrüfenWindows
+     (NameExtern : in Wide_Wide_String)
+      return Boolean
+   is begin
+      
       PrüfenSchleife:
       for PrüfenSchleifenwert in NameExtern'Range loop
          
@@ -292,6 +338,6 @@ package body SpielstandlisteLogik is
       
       return True;
       
-   end NamePrüfen;
+   end NamePrüfenWindows;
 
 end SpielstandlisteLogik;

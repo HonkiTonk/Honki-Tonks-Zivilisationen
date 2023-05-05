@@ -38,6 +38,7 @@ package SystemRecords is
       
       VolleInformation : Boolean;
       FehlerWarnung : Boolean;
+      LinuxWindows : Boolean;
       
    end record;
    

@@ -18,4 +18,21 @@ private
 
    procedure ZeichenEntfernen;
    
+   
+   
+   function Spielstandnamen
+     (EingegebenesZeichenExtern : in Wide_Wide_Character)
+      return Boolean;
+   
+   function SpielstandnamenLinux
+     (EingegebenesZeichenExtern : in Wide_Wide_Character)
+      return Boolean;
+     
+   function SpielstandnamenWindows
+     (EingegebenesZeichenExtern : in Wide_Wide_Character)
+      return Boolean;
+   
+   function ExtraprüfungenWindows
+     return Boolean;
+   
 end TexteingabeGrafik;

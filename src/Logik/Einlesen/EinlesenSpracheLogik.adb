@@ -1,5 +1,5 @@
--- with Ada.Characters.Conversions; use Ada.Characters.Conversions;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with GlobaleTexte;
 with TextKonstanten;
@@ -31,16 +31,16 @@ package body EinlesenSpracheLogik is
            Simple_Name (Directory_Entry => Verzeichnis) = "."
            or
              Simple_Name (Directory_Entry => Verzeichnis) = ".."
+           or
+             Simple_Name (Directory_Entry => Verzeichnis) = "Fonts"
          then
             null;
             
-            -- Gibt immer 0 zurück, später mal nachprüfen warum. äöü
-            -- Mach er nur bei Verzeichnissen, nicht bei einzelnen Dateien. äöü
-            -- elsif
-            --   Size (Directory_Entry => Verzeichnis) <= 10
-            --  then
-            --    null;
-            
+         elsif
+           Ordnernamen (NameExtern => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis))) = False
+         then
+            null;
+             
          elsif
            -- Das ausgeklammerte funktioniert unter Windwos nicht, wenn man Sonderzeichen verwendet.
            -- EinlesenAllgemeinesLogik.LeeresVerzeichnis (VerzeichnisExtern => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis)) = True
@@ -52,6 +52,7 @@ package body EinlesenSpracheLogik is
             
          else
             Test := To_Unbounded_Wide_Wide_String (Source => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis)));
+            
             VerzeichnisInnenSchleife:
             for SpracheSchleifenwert in GlobaleTexte.SprachenEinlesen'Range loop
                if
@@ -80,6 +81,32 @@ package body EinlesenSpracheLogik is
       end if;
       
    end EinlesenSprache;
+   
+   
+   
+   function Ordnernamen
+     (NameExtern : in Wide_Wide_String)
+      return Boolean
+   is begin
+      
+      NamenSchleife:
+      for NamenSchleifenwert in NameExtern'Range loop
+         
+         case
+           NameExtern (NamenSchleifenwert)
+         is
+            when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | Space | Hyphen | Low_Line | Full_Stop =>
+               null;
+               
+            when others =>
+               return False;
+         end case;
+         
+      end loop NamenSchleife;
+      
+      return True;
+      
+   end Ordnernamen;
    
    
    

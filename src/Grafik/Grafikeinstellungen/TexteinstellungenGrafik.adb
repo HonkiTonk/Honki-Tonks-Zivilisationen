@@ -29,7 +29,7 @@ package body TexteinstellungenGrafik is
             raise SchriftartFehlt;
             
          when True =>
-            TexteinstellungenGrafik.SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => VerzeichnisKonstanten.SprachenStrich & "FreeSans.otf");
+            TexteinstellungenGrafik.SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => VerzeichnisKonstanten.Schriftart);
       end case;
       
    end SchriftartFestlegen;
