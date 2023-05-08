@@ -17,4 +17,21 @@ package AllgemeineBerechnungen is
    --             EinwohnerExtern >= ArbeiterExtern
    --          );
 
+   generic type GanzeZahl is range <>;
+
+   function Basiszeitwert
+     (ZusatzwertExtern : in GanzeZahl;
+      TeilerExtern : in GanzeZahl)
+      return GanzeZahl
+     with
+       Pre => (
+                 ZusatzwertExtern > 0
+               and
+                 TeilerExtern > 0
+              ),
+
+       Post => (
+                  Basiszeitwert'Result > 0
+               );
+
 end AllgemeineBerechnungen;

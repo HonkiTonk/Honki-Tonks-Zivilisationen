@@ -15,7 +15,8 @@ package body KartengeneratorStandardLogik is
    procedure OberflächeGenerieren
    is begin
       
-      Kartenzeitwert := (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse + (25 - 1)) / 25;
+      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse,
+                                       TeilerExtern     => 25);
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse loop
@@ -196,7 +197,6 @@ package body KartengeneratorStandardLogik is
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                          LogikGrafikExtern => True);
             
-               -- Hier zusätzlich noch zum Quadrantengebiet (Zentrum, Mitte, Rand) jeweils eine eigene Landerzeugunswahrscheinlichkeit hinzufügen? äöü
                if
                  Quadrantenwert <= Quadranten (QuadrantenSchleifenwert)
                then

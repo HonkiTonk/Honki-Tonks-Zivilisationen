@@ -5,6 +5,8 @@ private with KartenartDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
+private with AllgemeineBerechnungen;
+
 package KartengeneratorStandardLogik is
    pragma Elaborate_Body;
 
@@ -23,8 +25,7 @@ private
    
    YAchseZwischenwert : KartenDatentypen.KartenfeldPositiv;
    XAchseZwischenwert : KartenDatentypen.KartenfeldPositiv;
-   
-   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
+   Kartenzeitwert : KartenDatentypen.KartenfeldPositiv;
    
    YAchseAnfang : KartenDatentypen.Kartenfeld;
    YAchseEnde : KartenDatentypen.Kartenfeld;
@@ -131,5 +132,7 @@ private
        Pre => (
                  XAchseExtern <= LeseWeltkarteneinstellungen.XAchse
               );
+   
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
 
 end KartengeneratorStandardLogik;

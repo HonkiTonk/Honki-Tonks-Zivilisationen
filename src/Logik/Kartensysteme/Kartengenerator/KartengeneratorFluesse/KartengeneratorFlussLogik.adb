@@ -16,7 +16,8 @@ package body KartengeneratorFlussLogik is
       use type SystemDatentypen.NullBisHundert;
    begin
       
-      Kartenzeitwert := (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse + (33 - 1)) / 33;
+      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse,
+                                       TeilerExtern     => 33);
       
       EAchseSchleife:
       for EAchseSchleifenwert in KartenDatentypen.EbenePlanet'Range loop

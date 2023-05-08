@@ -2,9 +2,12 @@ with KartenDatentypen;
 with SpeziesDatentypen;
 with KartenRecords;
 with EinheitenDatentypen;
+with StadtRecords;
+with StadtKonstanten;
 
 with LeseWeltkarteneinstellungen;
 with LeseSpeziesbelegung;
+with LeseGrenzen;
 
 package StadtumgebungErreichbarLogik is
    pragma Elaborate_Body;
@@ -12,18 +15,19 @@ package StadtumgebungErreichbarLogik is
    use type KartenDatentypen.Kartenfeld;
    
    function UmgebungErreichbar
-     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      NotwendigeFelderExtern : in Positive)
+     (StadtKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 AktuelleKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                 StadtKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
-                 AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                 StadtKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
                and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
               ),
            
        Post => (
@@ -36,24 +40,32 @@ private
    
    BereitsGetestet : KartenDatentypen.UmgebungsbereichZwei;
    Umgebung : KartenDatentypen.UmgebungsbereichDrei;
-   
-   GefundeneFelder : Positive;
+   Stadtumgebung : KartenDatentypen.UmgebungsbereichDrei;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenWertZwei : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   function NochErreichbar
-     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+   
+   
+   function Prüfungen
+     (StadtKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
      with
        Pre => (
+                 StadtKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 StadtKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+               and
                  AktuelleKoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  AktuelleKoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
-
+   
 end StadtumgebungErreichbarLogik;

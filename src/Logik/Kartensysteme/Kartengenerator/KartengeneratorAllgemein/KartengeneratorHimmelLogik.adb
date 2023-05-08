@@ -14,7 +14,8 @@ package body KartengeneratorHimmelLogik is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      Kartenzeitwert := (LeseWeltkarteneinstellungen.YAchse + (25 - 1)) / 25;
+      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.YAchse,
+                                       TeilerExtern     => 25);
                
       YAchseSchleife:
       for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop

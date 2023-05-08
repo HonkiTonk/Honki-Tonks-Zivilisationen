@@ -9,7 +9,6 @@ with LeseStadtGebaut;
 with LeseCursor;
 with SchreibeCursor;
 
-with EinheitSuchenLogik;
 with StadtumgebungErreichbarLogik;
 with MeldungenSetzenLogik;
 with EinheitenErzeugenEntfernenLogik;
@@ -65,23 +64,12 @@ package body StadtEinheitenBauenLogik is
    
    procedure PlatzErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-   is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   begin
+   is begin
       
-      if
-        EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                                                                                 LogikGrafikExtern => True).Nummer
-      then
-         KartenWert := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-         
-      else
-         KartenWert :=
-           StadtumgebungErreichbarLogik.UmgebungErreichbar (AktuelleKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
-                                                            SpeziesExtern             => StadtSpeziesNummerExtern.Spezies,
-                                                            IDExtern                  => EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit),
-                                                            NotwendigeFelderExtern    => 1);
-      end if;
+      KartenWert
+        := StadtumgebungErreichbarLogik.UmgebungErreichbar (StadtKoordinatenExtern   => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
+                                                            StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                            IDExtern                 => EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit));
       
       case
         KartenWert.XAchse

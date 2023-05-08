@@ -17,7 +17,8 @@ package body KartengeneratorUnterflaecheLogik is
       use type KartenDatentypen.Kartenfeld;
    begin
       
-      Kartenzeitwert := (KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse + (100 - 1)) / 100;
+      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse,
+                                       TeilerExtern     => 100);
                
       YAchseSchleife:
       for YAchseSchleifenwert in KartengeneratorVariablenLogik.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablenLogik.SchleifenendeOhnePolbereich.YAchse loop

@@ -5,6 +5,8 @@ private with SystemDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
+private with AllgemeineBerechnungen;
+
 package KartengeneratorLandschaftLogik is
    pragma Elaborate_Body;
 
@@ -13,7 +15,7 @@ package KartengeneratorLandschaftLogik is
 private
    use type KartenDatentypen.Kartenfeld;
    
-   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
+   Kartenzeitwert : KartenDatentypen.KartenfeldPositiv;
       
    Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
@@ -186,5 +188,7 @@ private
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
+   
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
 
 end KartengeneratorLandschaftLogik;

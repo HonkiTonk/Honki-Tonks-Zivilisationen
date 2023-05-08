@@ -1,6 +1,8 @@
 private with KartenDatentypen;
 private with SystemDatentypen;
 
+private with AllgemeineBerechnungen;
+
 package KartengeneratorFlussLogik is
    pragma Elaborate_Body;
 
@@ -9,7 +11,7 @@ package KartengeneratorFlussLogik is
 private
    use type KartenDatentypen.Ebene;
          
-   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
+   Kartenzeitwert : KartenDatentypen.KartenfeldPositiv;
    
    -- Später vom Nutzer einstellbar machen. äöü
    type WahrscheinlichkeitFlussArray is array (KartenDatentypen.EbenePlanet'Range) of SystemDatentypen.NullBisHundert;
@@ -18,5 +20,9 @@ private
                                                                        -1 => 30,
                                                                        0  => 30
                                                                       );
+   
+   
+   
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
 
 end KartengeneratorFlussLogik;

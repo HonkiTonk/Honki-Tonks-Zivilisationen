@@ -5,6 +5,8 @@ private with SystemDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
+private with AllgemeineBerechnungen;
+
 package KartengeneratorPlanetenkernLogik is
    pragma Elaborate_Body;
 
@@ -23,7 +25,7 @@ private
    YKernende : KartenDatentypen.KartenfeldPositiv;
    XKernende : KartenDatentypen.KartenfeldPositiv;
 
-   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
+   Kartenzeitwert : KartenDatentypen.KartenfeldPositiv;
 
    type BasisWahrscheinlichkeitenArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Fest_Enum'Range) of SystemDatentypen.NullBisHundert;
    BasisWahrscheinlichkeiten : BasisWahrscheinlichkeitenArray := (
@@ -98,5 +100,7 @@ private
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
+
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
 
 end KartengeneratorPlanetenkernLogik;

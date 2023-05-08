@@ -35,7 +35,7 @@ package DebugobjekteLogik is
                                                                      LinuxWindows     => False
                                                                     );
 
-   Debug : SystemRecords.DebugRecord := VweröffentlichungLinux;
+   Debug : SystemRecords.DebugRecord := EntwicklungLinux;
 
    Alleskönner : constant EinheitendatenbankRecord.EinheitenlisteRecord := (
                                                                              Einheitenart            => EinheitenDatentypen.Cheat_Enum,

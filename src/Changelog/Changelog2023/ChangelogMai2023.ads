@@ -154,31 +154,32 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (09.05.2023):
+   -- Version 0.05.0570 => 0.05. (09.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (08.05.2023):
+   -- Version 0.05.0510 => 0.05.0570 (08.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (07.05.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Eingabe von Spielstandnamen überarbeitet, es sollte jetzt nicht mehr möglich sein ungültige Namen unter Windows einzugeben.
+   -- Es sollte jetzt nicht mehr möglich sein ungültige Spielstandnamen unter Linux einzugeben.
+   -- Neu gebaute Einheiten werden jetzt nur noch auf Felder platzeirt, welche zur bauenden Stadt gehören.
+   -- Neu gebaute Schiffe werden jetzt nur noch in der Stadt platziert, wenn direkt ein Seefeld angrenzt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05.0510 => 0.05. (06.05.2023):
+   -- Version 0.05.0510 => 0.05.0510 (07.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.0510 => 0.05.0510 (06.05.2023):
+   
+   -- null.
    
    
 

@@ -40,7 +40,8 @@ package body KIForschungLogik is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      Ladezeit := (ForschungenDatenbank.ForschungslisteArray'Last (2) + (100 - 1)) / 100;
+      Ladezeit := ForschungenDatentypen.ForschungID (Basiszeitwert (ZusatzwertExtern => Positive (ForschungenDatenbank.ForschungslisteArray'Last (2)),
+                                                                    TeilerExtern     => 100));
       WelchesProjekt := ForschungKonstanten.LeerForschung;
       
       ForschungenSchleife:

@@ -6,7 +6,7 @@ with GrafikDatentypen;
 with InteraktionAuswahl;
 with TextaccessVariablen;
 with Views;
-with TextDatentypen;
+-- with TextDatentypen;
 with GrafikKonstanten;
 
 with TextberechnungenBreiteGrafik;
@@ -94,15 +94,8 @@ package body SprachauswahlGrafik is
             
             Textposition.x := Viewfläche.x / GrafikKonstanten.Halbierung - Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width / GrafikKonstanten.Halbierung;
             
-            -- Das auch nach TestfarbeGrafik? äöü
-            if
-              AktuelleAuswahl = Ende
-            then
-               AktuelleTextFarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Ausgewählt_Enum);
-                  
-            else
-               AktuelleTextFarbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
-            end if;
+            AktuelleTextFarbe := TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Ende,
+                                                                        AuswahlExtern    => AktuelleAuswahl);
             
             KonvexverwaltungssystemGrafik.PositionFarbeZeichnen (KonvexaccessExtern => PfeilAccess,
                                                                  PositionExtern     => Textposition,

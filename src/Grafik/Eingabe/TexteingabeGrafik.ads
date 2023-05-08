@@ -6,10 +6,10 @@ package TexteingabeGrafik is
    procedure Texteingabe;
 
 private
+   
+   Erlaubt : Boolean;
 
    EingegebenesZeichen : Wide_Wide_Character;
-
-   CharacterZuText : Wide_Wide_String (1 .. 1);
 
    TextEingegeben : Sf.Window.Event.sfEvent;
 
@@ -31,6 +31,9 @@ private
    function SpielstandnamenWindows
      (EingegebenesZeichenExtern : in Wide_Wide_Character)
       return Boolean;
+   
+   function Extraprüfungen
+     return Boolean;
    
    function ExtraprüfungenWindows
      return Boolean;

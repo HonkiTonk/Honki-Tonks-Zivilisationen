@@ -58,7 +58,7 @@ package body TexteingabeGrafik is
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
                then
                   case
-                    ExtraprüfungenWindows
+                    Extraprüfungen
                   is
                      when True =>
                         NachLogiktask.EingegebenerText.ErfolgreichAbbruch := True;
@@ -135,16 +135,6 @@ package body TexteingabeGrafik is
    is begin
       
       case
-        EingegebenesZeichenExtern
-      is
-         when NUL .. US =>
-            return False;
-            
-         when others =>
-            null;
-      end case;
-      
-      case
         DebugobjekteLogik.Debug.LinuxWindows
       is
          when True =>
@@ -175,7 +165,7 @@ package body TexteingabeGrafik is
       case
         EingegebenesZeichenExtern
       is
-         when '/' =>
+         when '/' | NUL =>
             return False;
             
          when others =>
@@ -203,7 +193,7 @@ package body TexteingabeGrafik is
       case
         EingegebenesZeichenExtern
       is
-         when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' =>
+         when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' | NUL .. US =>
             return False;
             
          when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | Space | Hyphen | Low_Line | Full_Stop =>
@@ -217,9 +207,23 @@ package body TexteingabeGrafik is
    
    
    
-   function ExtraprüfungenWindows
+   function Extraprüfungen
      return Boolean
    is begin
+      
+      VerboteneNamenSchleife:
+      for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneNamenArray'Range loop
+         
+         if
+           To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneName (VerboteneNamenSchleifenwert))
+         then
+            return False;
+         
+         else
+            null;
+         end if;
+         
+      end loop VerboteneNamenSchleife;
       
       case
         DebugobjekteLogik.Debug.LinuxWindows
@@ -228,8 +232,16 @@ package body TexteingabeGrafik is
             return True;
             
          when False =>
-            null;
+            return ExtraprüfungenWindows;
       end case;
+      
+   end Extraprüfungen;
+      
+      
+      
+   function ExtraprüfungenWindows
+     return Boolean
+   is begin
       
       PunktLeerzeichenSchleife:
       loop
@@ -272,19 +284,71 @@ package body TexteingabeGrafik is
          
       end loop PunktLeerzeichenSchleife;
       
-      -- Prüfen ob die Anfangszeichen identisch mit den verbotenen Namen sind und wenn ja, dann auf Punkt prüfen. äöü
-      -- Punkt sollte reichen? äöü
+      
+      
       VerboteneNamenSchleife:
       for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenArray'Range loop
          
          if
-           To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamen (VerboteneNamenSchleifenwert))
+           To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length < To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Length
+         then
+            Erlaubt := True;
+            
+         elsif
+           To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))
+           or
+             To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenKlein (VerboteneNamenSchleifenwert))
          then
             return False;
-            
+               
          else
-            null;
+            Erlaubt := False;
+                     
+            WörterSchleife:
+            for WörterSchleifenwert in To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Range loop
+         
+               if
+                 To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert)) (WörterSchleifenwert) = Element (Source => NachLogiktask.EingegebenerText.EingegebenerText,
+                                                                                                                                                                     Index  => WörterSchleifenwert)
+                 or
+                   To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenKlein (VerboteneNamenSchleifenwert)) (WörterSchleifenwert)
+                 = Element (Source => NachLogiktask.EingegebenerText.EingegebenerText,
+                            Index  => WörterSchleifenwert)
+               then
+                  null;
+               
+               else
+                  Erlaubt := True;
+                  exit WörterSchleife;
+               end if;
+                
+            end loop WörterSchleife;
          end if;
+            
+         case
+           Erlaubt
+         is
+            when True =>
+               null;
+               
+            when False =>
+               if
+                 To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length
+                 < To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Last + 1
+               then
+                  return False;
+                  
+               elsif
+                 Full_Stop
+                   = 
+                 To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText) (To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Last + 1)
+               then
+                  return False;
+                     
+               else
+                  null;
+               end if;
+         end case;
          
       end loop VerboteneNamenSchleife;
       

@@ -13,8 +13,8 @@ package body KartengeneratorKuesteLogik is
    procedure GenerierungKüstenSeeGewässer
    is begin
       
-      -- Diese Berechnung mal in eine eigene Datei verschieben und durch ein Generic nutzen? äöü
-      Kartenzeitwert := (LeseWeltkarteneinstellungen.YAchse + (100 - 1)) / 100;
+      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.YAchse,
+                                       TeilerExtern     => 100);
       
       YAchseSchleife:
       for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop

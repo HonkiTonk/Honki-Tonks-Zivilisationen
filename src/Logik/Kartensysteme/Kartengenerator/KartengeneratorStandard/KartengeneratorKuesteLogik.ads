@@ -3,6 +3,8 @@ private with KartenRecords;
 
 private with LeseWeltkarteneinstellungen;
 
+private with AllgemeineBerechnungen;
+
 package KartengeneratorKuesteLogik is
    pragma Elaborate_Body;
 
@@ -11,7 +13,7 @@ package KartengeneratorKuesteLogik is
 private
    use type KartenDatentypen.Kartenfeld;
    
-   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
+   Kartenzeitwert : KartenDatentypen.KartenfeldPositiv;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    
@@ -23,5 +25,9 @@ private
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
+   
+   
+   
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
 
 end KartengeneratorKuesteLogik;

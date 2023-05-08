@@ -57,7 +57,9 @@ package VerzeichnisKonstanten is
    Sprachenordner : constant Wide_Wide_String (1 .. 9) := "Sprachen/";
    Sprachen : constant String (1 .. 8) := "Sprachen";
    SprachenStrich : constant String (1 .. 9) := Sprachen & "/";
-   -- Schriftart : constant String (1 .. 27) := SprachenStrich & "Fonts/FreeSans.otf";
    Schriftart : constant String (1 .. 31) := SprachenStrich & "Fonts/wqy-microhei.ttc";
+   SchriftartStandard : constant String (1 .. 27) := SprachenStrich & "Fonts/FreeSans.otf";
+   SchriftartAsiatisch : constant String (1 .. 31) := SprachenStrich & "Fonts/wqy-microhei.ttc";
+   SchriftartArabisch : constant String (1 .. 17) := SprachenStrich & "Test.otf";
       
 end VerzeichnisKonstanten;

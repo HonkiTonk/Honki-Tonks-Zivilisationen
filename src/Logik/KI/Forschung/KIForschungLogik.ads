@@ -5,6 +5,8 @@ private with ForschungenDatenbank;
 
 with LeseSpeziesbelegung;
 
+private with AllgemeineBerechnungen;
+
 private with KIDatentypen;
 
 package KIForschungLogik is
@@ -37,5 +39,9 @@ private
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               );
+   
+   
+   
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => Positive);
 
 end KIForschungLogik;

@@ -3,6 +3,7 @@ with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
 with LeseWeltkarte;
+with LeseStadtGebaut;
 
 with KartenkoordinatenberechnungssystemLogik;
 with PassierbarkeitspruefungLogik;
@@ -11,18 +12,15 @@ with EinheitSuchenLogik;
 package body StadtumgebungErreichbarLogik is
    
    function UmgebungErreichbar
-     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      NotwendigeFelderExtern : in Positive)
+     (StadtKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
       return KartenRecords.AchsenKartenfeldNaturalRecord
-   is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   begin
+   is begin  
       
-      GefundeneFelder := 1;
       Umgebung := 1;
       BereitsGetestet := Umgebung - 1;
+      Stadtumgebung := LeseStadtGebaut.UmgebungGröße (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       BereichSchleife:
       loop
@@ -31,7 +29,7 @@ package body StadtumgebungErreichbarLogik is
             XAchseSchleife:
             for XAchseSchleifenwert in -Umgebung .. Umgebung loop
                
-               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
+               KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinatenExtern,
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                                          LogikGrafikExtern => True);
                
@@ -41,47 +39,17 @@ package body StadtumgebungErreichbarLogik is
                   null;
                  
                elsif
-                 BereitsGetestet >= abs (YAchseSchleifenwert)
+                 BereitsGetestet > abs (YAchseSchleifenwert)
                  and
-                   BereitsGetestet >= abs (XAchseSchleifenwert)
+                   BereitsGetestet > abs (XAchseSchleifenwert)
                then
                   null;
                   
                elsif
-                 True = LeseWeltkarte.BelegterGrund (SpeziesExtern     => SpeziesExtern,
-                                                     KoordinatenExtern => KartenWert)
-                 and
-                   EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenWert,
-                                                                                                            LogikGrafikExtern => True).Nummer
-                 and
-                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern              => SpeziesExtern,
-                                                                                IDExtern                   => IDExtern,
-                                                                                NeueKoordinatenExtern      => KartenWert,
-                                                                                StadtBerücksichtigenExtern => True)
-                 and
-                   True = NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
-                                          SpeziesExtern             => SpeziesExtern,
-                                          IDExtern                  => IDExtern)
-                 and
-                   GefundeneFelder < NotwendigeFelderExtern
-               then
-                  GefundeneFelder := GefundeneFelder + 1;
-                  
-               elsif
-                 True = LeseWeltkarte.BelegterGrund (SpeziesExtern     => SpeziesExtern,
-                                                     KoordinatenExtern => KartenWert)
-                 and
-                   EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenWert,
-                                                                                                            LogikGrafikExtern => True).Nummer
-                 and
-                   True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern              => SpeziesExtern,
-                                                                                IDExtern                   => IDExtern,
-                                                                                NeueKoordinatenExtern      => KartenWert,
-                                                                                StadtBerücksichtigenExtern => True)
-                 and
-                   True = NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
-                                          SpeziesExtern             => SpeziesExtern,
-                                          IDExtern                  => IDExtern)
+                 True = Prüfungen (StadtKoordinatenExtern    => StadtKoordinatenExtern,
+                                    StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
+                                    IDExtern                  => IDExtern,
+                                    AktuelleKoordinatenExtern => KartenWert)
                then
                   return KartenWert;
                               
@@ -93,9 +61,9 @@ package body StadtumgebungErreichbarLogik is
          end loop YAchseSchleife;
             
          if
-           Umgebung = KartenDatentypen.UmgebungsbereichDrei'Last
+           Umgebung = Stadtumgebung
          then
-            exit BereichSchleife;
+            return KartenRecordKonstanten.LeerKoordinate;
          
          else
             Umgebung := Umgebung + 1;
@@ -104,60 +72,80 @@ package body StadtumgebungErreichbarLogik is
                      
       end loop BereichSchleife;
       
-      return KartenRecordKonstanten.LeerKoordinate;
-      
    end UmgebungErreichbar;
    
    
    
-   function NochErreichbar
-     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+   function Prüfungen
+     (StadtKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is begin
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
+   begin  
       
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
-            
-            KartenWertZwei := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                          LogikGrafikExtern => True);
-            
-            if
-              KartenWertZwei.XAchse = KartenKonstanten.LeerXAchse
-            then
-               null;
+      if
+        False = LeseWeltkarte.BestimmteStadtBelegtGrund (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                         KoordinatenExtern        => AktuelleKoordinatenExtern)
+        or
+          EinheitenKonstanten.LeerNummer /= EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => AktuelleKoordinatenExtern,
+                                                                                                    LogikGrafikExtern => True).Nummer
+        or
+          False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern              => StadtSpeziesNummerExtern.Spezies,
+                                                                        IDExtern                   => IDExtern,
+                                                                        NeueKoordinatenExtern      => AktuelleKoordinatenExtern,
+                                                                        StadtBerücksichtigenExtern => True)
+      then
+         return False;
+         
+      elsif
+        StadtKoordinatenExtern = AktuelleKoordinatenExtern
+      then
+         YAchseSchleife:
+         for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            XAchseSchleife:
+            for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
-            elsif
-              YAchseSchleifenwert = 0
-              and
-                XAchseSchleifenwert = 0
-            then
-               null;
+               KartenWertZwei := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinatenExtern,
+                                                                                                             ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                             LogikGrafikExtern => True);
                
-            elsif
-              True = LeseWeltkarte.BelegterGrund (SpeziesExtern     => SpeziesExtern,
-                                                  KoordinatenExtern => KartenWertZwei)
-              and
-                True = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern              => SpeziesExtern,
-                                                                             IDExtern                   => IDExtern,
-                                                                             NeueKoordinatenExtern      => KartenWertZwei,
-                                                                             StadtBerücksichtigenExtern => True)
-            then
-               return True;
+               if
+                 KartenWert.XAchse = KartenKonstanten.LeerXAchse
+               then
+                  null;
+                  
+               elsif
+                 YAchseSchleifenwert = 0
+                 and
+                   XAchseSchleifenwert = 0
+               then
+                  null;
+                  
+               elsif
+                 False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern              => StadtSpeziesNummerExtern.Spezies,
+                                                                               IDExtern                   => IDExtern,
+                                                                               NeueKoordinatenExtern      => KartenWertZwei,
+                                                                               StadtBerücksichtigenExtern => True)
+               then
+                  null;
+                  
+               else
+                  return True;
+               end if;
                
-            else
-               null;
-            end if;
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+         
+         return False;
+         
+      else
+         return True;
+      end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
-      
-      return False;
-        
-   end NochErreichbar;
-
+   end Prüfungen;
+     
 end StadtumgebungErreichbarLogik;

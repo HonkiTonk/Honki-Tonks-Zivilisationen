@@ -14,7 +14,8 @@ package body KartengeneratorPlanetenkernLogik is
    procedure Planetenkern
    is begin
       
-      Kartenzeitwert := (LeseWeltkarteneinstellungen.YAchse + (25 - 1)) / 25;
+      Kartenzeitwert := Basiszeitwert (ZusatzwertExtern => LeseWeltkarteneinstellungen.YAchse,
+                                       TeilerExtern     => 25);
       
       YKernanfang := LeseWeltkarteneinstellungen.YAchse / 2 - LeseWeltkarteneinstellungen.YAchse / 10;
       XKernanfang := LeseWeltkarteneinstellungen.XAchse / 2 - LeseWeltkarteneinstellungen.XAchse / 10;

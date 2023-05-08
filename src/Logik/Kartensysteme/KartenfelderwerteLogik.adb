@@ -3,6 +3,7 @@ with KartenfeldereffekteLogik;
 
 -- Das hier wird von Logik und Grafik aufgerufen, zum Berechnen der Stadtproduktion bei Rundenende und zur Anzeige der aktuellen Produktionswerte eines Feldes.
 -- Sollte aber keine Probleme machen, da man nicht gleichzeitig in der Stadt und im Rundenende sein kann.
+-- Aber könnte das nciht auch bei einer Umbelegung gleichzeitig aufgerufen werden? äöü
 package body KartenfelderwerteLogik is
 
    function FeldNahrung

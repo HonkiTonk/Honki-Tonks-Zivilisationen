@@ -1,5 +1,7 @@
 private with KartenDatentypen;
 
+private with AllgemeineBerechnungen;
+
 package KartengeneratorUnterflaecheLogik is
    pragma Elaborate_Body;
 
@@ -7,6 +9,10 @@ package KartengeneratorUnterflaecheLogik is
 
 private
 
-   Kartenzeitwert : KartenDatentypen.KartenfeldNatural;
+   Kartenzeitwert : KartenDatentypen.KartenfeldPositiv;
+
+
+
+   function Basiszeitwert is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
 
 end KartengeneratorUnterflaecheLogik;

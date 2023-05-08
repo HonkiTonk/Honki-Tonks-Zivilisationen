@@ -14,10 +14,11 @@ package body KartengeneratorLogik is
    procedure Kartengenerator
    is begin
       
-      KartengeneratorAllgemeinesLogik.GenerierungAllgemeines;
-      -- Wenn ich die Einstellungen hier noch einmal auf Korrketheit prüfen will, sollte dann die Prüfung nicht am Anfang kommen? äöü
       -- Setzt im Moment nur die Ressourcen und kann deswegen nicht entfernt werden, später mal erweitern. äöü
+      -- Beim erweitern auch Prüfungen auf korrekte Werte einbauen. äöü
       PrüfeEinstellungen;
+      
+      KartengeneratorAllgemeinesLogik.GenerierungAllgemeines;
       LadezeitenLogik.FortschrittSpielweltMaximum (WelcheBerechnungenExtern => LadezeitenDatentypen.Generiere_Allgemeines_Enum);
       
       KartengeneratorKuesteLogik.GenerierungKüstenSeeGewässer;

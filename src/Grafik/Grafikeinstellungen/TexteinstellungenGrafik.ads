@@ -54,7 +54,7 @@ package TexteinstellungenGrafik is
    
 private
 
-   SchriftartAccess : Sf.Graphics.sfFont_Ptr;
+   SchriftartAccess : Sf.Graphics.sfFont_Ptr := null;
    
    Schriftgrößen : SchriftgrößenArray;
    

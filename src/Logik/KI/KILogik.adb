@@ -35,7 +35,8 @@ package body KILogik is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
       
-      Einheitenzeitwert := (LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) + (100 - 1)) / 100;
+      Einheitenzeitwert := BasiszeitwertEinheiten (ZusatzwertExtern => LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern),
+                                                   TeilerExtern     => 100);
       
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
@@ -74,7 +75,8 @@ package body KILogik is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
-      Städtezeitwert := StadtDatentypen.MaximaleStädte ((Positive (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)) + (100 - 1)) / 100);
+      Städtezeitwert := StadtDatentypen.MaximaleStädte (BasiszeitwertStädte (ZusatzwertExtern => Positive (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)),
+                                                                                TeilerExtern     => 100));
       
       StadtSchleife:
       for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
