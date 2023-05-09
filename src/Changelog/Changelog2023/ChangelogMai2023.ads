@@ -147,17 +147,19 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (10.05.2023):
+   -- Version 0.05.0620 => 0.05. (10.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.0570 => 0.05. (09.05.2023):
+   -- Version 0.05.0570 => 0.05.0620 (09.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Betriebssystem- und Entwicklung/Veröffentlichungprüfungen in verschiedene Dateien ausgelagert.
+   -- Das Debugmenü ist jetzt nicht mehr aufrufbar im Veröffentlichungsstatus.
+   -- Debugmenü überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

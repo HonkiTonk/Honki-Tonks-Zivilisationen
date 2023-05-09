@@ -4,6 +4,7 @@ with TextnummernKonstanten;
 with TextKonstanten;
 with ViewKonstanten;
 with GrafikKonstanten;
+with Projekteinstellungen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -12,7 +13,6 @@ with LeseStadtGebaut;
 with EinheitenbeschreibungenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
-with DebugobjekteLogik;
 with SeitenleisteLeerenGrafik;
 with KampfwerteEinheitErmittelnLogik;
 with TextaccessverwaltungssystemGrafik;
@@ -77,7 +77,7 @@ package body EinheitenseitenleisteGrafik is
       if
         SpeziesExtern = EinheitSpeziesNummer.Spezies
         or
-          DebugobjekteLogik.Debug.VolleInformation
+          Projekteinstellungen.Debug.VolleInformation
       then
          FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image
            & TextKonstanten.Trennzeichen & ZahlAlsStringBewegungspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummer.Spezies,
@@ -142,7 +142,7 @@ package body EinheitenseitenleisteGrafik is
       end loop TextSchleife;
       
       case
-        DebugobjekteLogik.Debug.VolleInformation
+        Projekteinstellungen.Debug.VolleInformation
       is
          when True =>
             Viewfläche := PlanZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,

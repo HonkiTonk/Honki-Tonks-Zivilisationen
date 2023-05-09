@@ -22,8 +22,6 @@ private
 
    RückgabeDebugmenü : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
-   WelcherText : Positive;
-
    type WechselArray is array (Wide_Wide_Character'Val (Wide_Wide_Character'Pos ('a')) .. Wide_Wide_Character'Val (Wide_Wide_Character'Pos ('r'))) of SpeziesDatentypen.Spezies_Verwendet_Enum;
    Wechsel : constant WechselArray := (
                                        'a' => SpeziesDatentypen.Menschen_Enum,
@@ -53,10 +51,15 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
-   procedure DiplomatischenStatusÄndern
-     (NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum);
-
    procedure MenschKITauschen
      (TasteExtern : in Wide_Wide_Character);
+
+   procedure DiplomatischenStatusÄndern
+     (NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
 
 end DebugmenueLogik;

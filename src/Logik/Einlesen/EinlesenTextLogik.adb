@@ -61,8 +61,7 @@ package body EinlesenTextLogik is
       Menuetexte.Debugmenü (2) := To_Unbounded_Wide_Wide_String (Source => "Karte aufdecken");
       Menuetexte.Debugmenü (3) := To_Unbounded_Wide_Wide_String (Source => "Alle Technologien");
       Menuetexte.Debugmenü (4) := To_Unbounded_Wide_Wide_String (Source => "Mensch/KI tauschen");
-      Menuetexte.Debugmenü (5) := To_Unbounded_Wide_Wide_String (Source => "Debug");
-      Menuetexte.Debugmenü (6) := To_Unbounded_Wide_Wide_String (Source => "Fertig");
+      Menuetexte.Debugmenü (5) := To_Unbounded_Wide_Wide_String (Source => "Fertig");
       
    end EinlesenDateien;
    

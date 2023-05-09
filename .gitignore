@@ -16,5 +16,3 @@ config/
 share/
 obj/
 obj_alire/
-obj_dynamic/
-obj_static_dynamic/

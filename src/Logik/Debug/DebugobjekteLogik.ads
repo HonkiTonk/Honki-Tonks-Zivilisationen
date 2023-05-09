@@ -1,41 +1,20 @@
-with ForschungenDatentypen;
-with EinheitenDatentypen;
-with KampfDatentypen;
-with EinheitenRecords;
 with EinheitendatenbankRecord;
-with SystemRecords;
-with KartenRecordKonstanten;
+
+private with ForschungenDatentypen;
+private with EinheitenDatentypen;
+private with KampfDatentypen;
+private with EinheitenRecords;
+private with KartenRecordKonstanten;
 
 -- In die adb Datei Lese/Schreibefunktionen einbauen und dann hier alles nach private schieben. äöü
 package DebugobjekteLogik is
    pragma Elaborate_Body;
+
+   function AlleskönnerEintrag
+     return EinheitendatenbankRecord.EinheitenlisteRecord;
+
+private
    use type ForschungenDatentypen.ForschungIDNichtMöglich;
-
-   EntwicklungLinux : constant SystemRecords.DebugRecord := (
-                                                             VolleInformation => True,
-                                                             FehlerWarnung    => True,
-                                                             LinuxWindows     => True
-                                                            );
-
-   EntwicklungWindows : constant SystemRecords.DebugRecord := (
-                                                               VolleInformation => True,
-                                                               FehlerWarnung    => True,
-                                                               LinuxWindows     => False
-                                                              );
-
-   VweröffentlichungLinux : constant SystemRecords.DebugRecord := (
-                                                                    VolleInformation => False,
-                                                                    FehlerWarnung    => False,
-                                                                    LinuxWindows     => True
-                                                                   );
-
-   VeröffentlichungWindows : constant SystemRecords.DebugRecord := (
-                                                                     VolleInformation => False,
-                                                                     FehlerWarnung    => False,
-                                                                     LinuxWindows     => False
-                                                                    );
-
-   Debug : SystemRecords.DebugRecord := EntwicklungLinux;
 
    Alleskönner : constant EinheitendatenbankRecord.EinheitenlisteRecord := (
                                                                              Einheitenart            => EinheitenDatentypen.Cheat_Enum,
@@ -59,9 +38,5 @@ package DebugobjekteLogik is
                                                                              Zusatzeffekt            => (others => False),
                                                                              Effektreichweite        => (others => KartenRecordKonstanten.LeerEffektbereich)
                                                                             );
-
-private
-
-
 
 end DebugobjekteLogik;

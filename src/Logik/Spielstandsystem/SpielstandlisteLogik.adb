@@ -8,6 +8,7 @@ with GrafikDatentypen;
 with TextnummernKonstanten;
 with TextKonstanten;
 with AuswahlKonstanten;
+with Projekteinstellungen;
 
 with LeseAllgemeines;
 
@@ -18,7 +19,6 @@ with SpielstandAllgemeinesLogik;
 with JaNeinLogik;
 with SpielstandEntfernenLogik;
 with SpielstandVariablen;
-with DebugobjekteLogik;
 
 package body SpielstandlisteLogik is
 
@@ -277,7 +277,7 @@ package body SpielstandlisteLogik is
    is begin
       
       case
-        DebugobjekteLogik.Debug.LinuxWindows
+        Projekteinstellungen.Debug.LinuxWindows
       is
          when True =>
             return NamePrüfenLinux (NameExtern => NameExtern);

@@ -9,12 +9,12 @@ with Sf.Graphics.RenderWindow;
 with SystemRecordKonstanten;
 with SystemKonstanten;
 with BetriebssystemKonstanten;
+with Projekteinstellungen;
 
 with NachGrafiktask;
 with NachLogiktask;
 -- with SpielstandlisteLogik;
 with FensterGrafik;
-with DebugobjekteLogik;
 
 package body TexteingabeGrafik is
 
@@ -135,7 +135,7 @@ package body TexteingabeGrafik is
    is begin
       
       case
-        DebugobjekteLogik.Debug.LinuxWindows
+        Projekteinstellungen.Debug.LinuxWindows
       is
          when True =>
             return SpielstandnamenLinux (EingegebenesZeichenExtern => EingegebenesZeichenExtern);
@@ -226,7 +226,7 @@ package body TexteingabeGrafik is
       end loop VerboteneNamenSchleife;
       
       case
-        DebugobjekteLogik.Debug.LinuxWindows
+        Projekteinstellungen.Debug.LinuxWindows
       is
          when True =>
             return True;

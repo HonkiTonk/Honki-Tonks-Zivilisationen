@@ -8,6 +8,7 @@ with GrafikDatentypen;
 with ViewKonstanten;
 with GrafikKonstanten;
 with ProduktionKonstanten;
+with Projekteinstellungen;
 
 with KampfwerteStadtErmittelnLogik;
 with TextberechnungenHoeheGrafik;
@@ -16,7 +17,6 @@ with ViewsEinstellenGrafik;
 with GebaeudebeschreibungenGrafik;
 with EinheitenbeschreibungenGrafik;
 with TextberechnungenBreiteGrafik;
-with DebugobjekteLogik;
 with TextaccessverwaltungssystemGrafik;
 with AllgemeineBerechnungen;
 
@@ -83,7 +83,7 @@ package body StadtseitenleisteGrafik is
       if
         StadtauswahlExtern.SpeziesNummer.Spezies = SpeziesExtern
         or
-          DebugobjekteLogik.Debug.VolleInformation
+          Projekteinstellungen.Debug.VolleInformation
       then
          FestzulegenderText (2) := Nahrung (ProduktionExtern => StadtauswahlExtern.Nahrungsproduktion,
                                             VorhandenExtern  => StadtauswahlExtern.Nahrungsmittel);

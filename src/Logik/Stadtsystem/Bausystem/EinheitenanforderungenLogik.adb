@@ -1,11 +1,11 @@
 with EinheitenKonstanten;
 with StadtDatentypen;
+with Projekteinstellungen;
 
 with LeseStadtGebaut;
 with LeseEinheitenDatenbank;
 
 with ForschungstestsLogik;
-with DebugobjekteLogik;
 with PassierbarkeitspruefungLogik;
 
 package body EinheitenanforderungenLogik is
@@ -28,7 +28,7 @@ package body EinheitenanforderungenLogik is
         EinheitenDatentypen.Cheat_Enum = LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                               IDExtern      => IDExtern)
       then
-         return DebugobjekteLogik.Debug.VolleInformation;
+         return Projekteinstellungen.Debug.VolleInformation;
          
       elsif
         False = PassierbarkeitspruefungLogik.RichtigeUmgebungVorhanden (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,

@@ -2,6 +2,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with MenueDatentypen;
 with KartenKonstanten;
+with Projekteinstellungen;
 
 with SchreibeWeltkarte;
 with LeseWeltkarteneinstellungen;
@@ -12,13 +13,22 @@ with SchreibeWichtiges;
 
 with AuswahlaufteilungLogik;
 with Fehlermeldungssystem;
-with DebugobjekteLogik;
 
 package body DebugmenueLogik is
 
    procedure Debugmenü
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
+      
+      case
+        Projekteinstellungen.Debug.VolleInformation
+      is
+         when False =>
+            return;
+            
+         when True =>
+            null;
+      end case;
       
       DebugmenüSchleife:
       loop
@@ -39,7 +49,8 @@ package body DebugmenueLogik is
                MenschKITauschen (TasteExtern => Taste);
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               DebugobjekteLogik.Debug.VolleInformation := not DebugobjekteLogik.Debug.VolleInformation;
+               DiplomatischenStatusÄndern (NeuerStatusExtern => DiplomatieDatentypen.Krieg_Enum,
+                                           SpeziesExtern     => SpeziesExtern);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -92,7 +103,6 @@ package body DebugmenueLogik is
    
    
    
-   -- Könnte ich nicht theoretisch hier einfach alle Felder auf True setzen? Die restlichen sollten ja eh nie geprüft werden. äöü
    procedure KarteAufdecken
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
@@ -112,40 +122,42 @@ package body DebugmenueLogik is
          end loop YAchseSchleife;
       end loop EbeneSchleife;
       
-      DiplomatischenStatusÄndern (NeuerStatusExtern => DiplomatieDatentypen.Neutral_Enum);
+      DiplomatischenStatusÄndern (NeuerStatusExtern => DiplomatieDatentypen.Neutral_Enum,
+                                   SpeziesExtern     => SpeziesExtern);
       
    end KarteAufdecken;
    
    
    
    procedure DiplomatischenStatusÄndern
-     (NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum)
+     (NeuerStatusExtern : in DiplomatieDatentypen.Status_Untereinander_Enum;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      SpeziesErsteSchleife:
-      for SpeziesEinsSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
-         SpeziesZweiteSchleife:
-         for SpeziesZweiSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
             
-            if
-              LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesEinsSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
-              or
-                LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesZweiSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
-              or
-                SpeziesEinsSchleifenwert = SpeziesZweiSchleifenwert
-            then
-               null;
+         if
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
+           or
+             SpeziesSchleifenwert = SpeziesExtern
+         then
+            null;
                
-            else
-               SchreibeDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesEinsSchleifenwert,
-                                                    SpeziesZweiExtern => SpeziesZweiSchleifenwert,
-                                                    ZustandExtern     => NeuerStatusExtern);
-            end if;
+         else
+            SchreibeDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesExtern,
+                                                 SpeziesZweiExtern => SpeziesSchleifenwert,
+                                                 ZustandExtern     => NeuerStatusExtern);
             
-         end loop SpeziesZweiteSchleife;
-      end loop SpeziesErsteSchleife;
+            
+            SchreibeDiplomatie.AktuellerZustand (SpeziesEinsExtern => SpeziesSchleifenwert,
+                                                 SpeziesZweiExtern => SpeziesExtern,
+                                                 ZustandExtern     => NeuerStatusExtern);
+         end if;
+            
+      end loop SpeziesSchleife;
       
    end DiplomatischenStatusÄndern;
 

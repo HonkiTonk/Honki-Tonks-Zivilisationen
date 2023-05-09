@@ -1341,7 +1341,7 @@ package EinheitenCarupex is
                                                                                                                                XAchseEnde   => 2))
                                                                                        ),
                                                                                       
-                                                                                     EinheitendatenbankRecord.EinheitenlisteArray'Last => DebugobjekteLogik.Alleskönner,
+                                                                                     EinheitendatenbankRecord.EinheitenlisteArray'Last => DebugobjekteLogik.AlleskönnerEintrag,
                                                                
                                                                                      others => EinheitenRecordKonstanten.LeerEinheitListe
                                                                                     );

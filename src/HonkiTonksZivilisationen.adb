@@ -3,6 +3,7 @@ with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Text_IO; use Ada.Text_IO;
 
 with ZeitKonstanten;
+with Projekteinstellungen;
 
 with StartLogik;
 with Grafik;
@@ -13,7 +14,6 @@ with NachGrafiktask;
 with FehlermeldungSchreiben;
 with StartEndeSound;
 -- with StartEndeMusik;
-with DebugobjekteLogik;
 
 procedure HonkiTonksZivilisationen
 is
@@ -49,7 +49,7 @@ is
    exception
       when StandardAdaFehler : others =>
          case
-           DebugobjekteLogik.Debug.FehlerWarnung
+           Projekteinstellungen.Debug.FehlerWarnung
          is
             when True =>
                Put_Line (Item => "Logiktask wurde abgebrochen.");
@@ -79,7 +79,7 @@ is
    exception
       when StandardAdaFehler : others =>
          case
-           DebugobjekteLogik.Debug.FehlerWarnung
+           Projekteinstellungen.Debug.FehlerWarnung
          is
             when True =>
                Put_Line (Item => "Grafiktask wurde abgebrochen.");
@@ -109,7 +109,7 @@ is
    exception
       when StandardAdaFehler : others =>
          case
-           DebugobjekteLogik.Debug.FehlerWarnung
+           Projekteinstellungen.Debug.FehlerWarnung
          is
             when True =>
                Put_Line (Item => "Musiktask wurde abgebrochen.");
@@ -139,7 +139,7 @@ is
    exception
       when StandardAdaFehler : others =>
          case
-           DebugobjekteLogik.Debug.FehlerWarnung
+           Projekteinstellungen.Debug.FehlerWarnung
          is
             when True =>
                Put_Line (Item => "Soundtask wurde abgebrochen.");
