@@ -28,9 +28,7 @@ package WeltkarteRecords is
       Stadtbelegung : StadtRecords.SpeziesStadtnummerRecord;
 
    end record;
-   
-   
-   
+      
    LeerWeltkarte : constant WeltkarteRecord := (
                                                 Grund         => (KartengrundDatentypen.Leer_Basisgrund_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum),
                                                 Effekte       => (others => False),

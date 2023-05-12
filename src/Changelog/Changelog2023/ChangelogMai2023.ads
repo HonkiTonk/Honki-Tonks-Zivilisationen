@@ -133,24 +133,22 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (12.05.2023):
+   -- Version 0.05.0630 => 0.05. (12.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (11.05.2023):
+   -- Version 0.05.0620 => 0.05.0630 (11.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter mit verschiedenen Fonts experimentiert.
    
    
 
-   -- Version 0.05.0620 => 0.05. (10.05.2023):
+   -- Version 0.05.0620 => 0.05.0620 (10.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
