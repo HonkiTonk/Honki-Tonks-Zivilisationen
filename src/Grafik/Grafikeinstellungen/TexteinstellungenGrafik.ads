@@ -1,3 +1,6 @@
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with Sf.Graphics;
 with Sf.Graphics.Color;
 
@@ -52,7 +55,31 @@ package TexteinstellungenGrafik is
    function SchriftfarbeneintragLesen
      return SchriftfarbenArray;
    
+   function StandardSchriftartVerwenden
+     return String
+     with
+       Post => (
+                  StandardSchriftartVerwenden'Result'Length > 0
+               );
+   
+   function EigeneSchriftartVerwenden
+     (SpracheExtern : in Wide_Wide_String)
+      return String
+     with
+       Pre => (
+                 SpracheExtern'Length > 0
+              ),
+         
+       Post => (
+                  EigeneSchriftartVerwenden'Result'Length > 0
+               );
+   
 private
+   
+   DateiSchriftart : File_Type;
+   
+   AktuelleSprache : Unbounded_Wide_Wide_String;
+   EigeneSchriftart : Unbounded_Wide_Wide_String;
 
    SchriftartAccess : Sf.Graphics.sfFont_Ptr := null;
    

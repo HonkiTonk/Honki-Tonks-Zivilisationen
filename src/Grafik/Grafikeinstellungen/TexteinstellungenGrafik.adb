@@ -1,10 +1,16 @@
 with Ada.Directories; use Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with Sf.Graphics.Font;
 
 with VerzeichnisKonstanten;
+with TextKonstanten;
+
+with LeseOptionen;
 
 with Fehlermeldungssystem;
+with EinlesenAllgemeinesLogik;
+with TextaccesseSchriftartGrafik;
 
 package body TexteinstellungenGrafik is
 
@@ -21,18 +27,85 @@ package body TexteinstellungenGrafik is
    procedure SchriftartFestlegen
    is begin
       
+      AktuelleSprache := LeseOptionen.Sprache;
+      
+      if
+        AktuelleSprache = TextKonstanten.LeerUnboundedString
+      then
+         SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => StandardSchriftartVerwenden);
+         
+      elsif
+        Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => AktuelleSprache)) & VerzeichnisKonstanten.ZweiDatei) = False
+      then
+         SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => StandardSchriftartVerwenden);
+         
+      else
+         SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => AktuelleSprache)));
+      end if;
+      
+      TextaccesseSchriftartGrafik.SchriftartSetzen (SchriftaccessExtern => SchriftartAccess);
+      
+   end SchriftartFestlegen;
+   
+   
+   
+   function StandardSchriftartVerwenden
+     return String
+   is begin
+      
       case
-        Exists (Name => VerzeichnisKonstanten.Schriftart)
+        Exists (Name => VerzeichnisKonstanten.FontOrdner & VerzeichnisKonstanten.SchriftartStandard)
       is
          when False =>
-            Fehlermeldungssystem.Grafik (FehlermeldungExtern => "TexteinstellungenGrafik.SchriftartFestlegen: Fontdatei ist nicht vorhanden");
+            Fehlermeldungssystem.Grafik (FehlermeldungExtern => "TexteinstellungenGrafik.StandardSchriftartVerwenden: Standardfont nicht vorhanden");
             raise SchriftartFehlt;
             
          when True =>
-            TexteinstellungenGrafik.SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => VerzeichnisKonstanten.Schriftart);
+            null;
       end case;
       
-   end SchriftartFestlegen;
+      return VerzeichnisKonstanten.FontOrdner & VerzeichnisKonstanten.SchriftartStandard;
+      
+   end StandardSchriftartVerwenden;
+   
+   
+   
+   function EigeneSchriftartVerwenden
+     (SpracheExtern : in Wide_Wide_String)
+      return String
+   is begin
+            
+      Open (File => DateiSchriftart,
+            Mode => In_File,
+            Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => SpracheExtern) & VerzeichnisKonstanten.ZweiDatei,
+            Form => "WCEM=8");
+      
+      case
+        EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSchriftart,
+                                                        AktuelleZeileExtern => 1)
+      is
+         when True =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "TexteinstellungenGrafik.EigeneSchriftartVerwenden: Fehlender Fontname");
+               
+         when False =>
+            EigeneSchriftart := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiSchriftart));
+            
+            if
+              Exists (Name => VerzeichnisKonstanten.FontOrdner & Encode (Item => To_Wide_Wide_String (Source => EigeneSchriftart))) = False
+            then
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "TexteinstellungenGrafik.EigeneSchriftartVerwenden: Fehlende Fontdatei");
+               
+            else
+               Close (File => DateiSchriftart);
+               return VerzeichnisKonstanten.FontOrdner & Encode (Item => To_Wide_Wide_String (Source => EigeneSchriftart));
+            end if;
+      end case;
+      
+      Close (File => DateiSchriftart);
+      
+      return StandardSchriftartVerwenden;
+      
+   end EigeneSchriftartVerwenden;
    
    
    

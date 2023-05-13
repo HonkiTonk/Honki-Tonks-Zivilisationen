@@ -4,7 +4,6 @@ with Sf.Window.Cursor;
 with Sf.Window.VideoMode;
 with Sf.Graphics.Color;
 
-with GrafikDatentypen;
 with SonstigesKonstanten;
 with GrafikRecordKonstanten;
 with GrafikKonstanten;
@@ -13,7 +12,6 @@ with LeseEinstellungenGrafik;
 
 with NachGrafiktask;
 with Fehlermeldungssystem;
-with TexteinstellungenGrafik;
 
 package body FensterGrafik is
    
@@ -31,8 +29,8 @@ package body FensterGrafik is
       else
          MauszeigerFestlegen;
          BildrateÄndern;
-         TexteinstellungenGrafik.SchriftartFestlegen;
          AktuelleAuflösungFestlegen;
+         NachGrafiktask.SchriftartSetzen := True;
       end if;
       
    end FensterErzeugen;
@@ -72,10 +70,11 @@ package body FensterGrafik is
    
 
    procedure FensterAnpassen
+     (FensterVerändertExtern : in GrafikDatentypen.Fenster_Ändern_Enum)
    is begin
       
       case
-        NachGrafiktask.FensterVerändert
+        FensterVerändertExtern
       is
          when GrafikDatentypen.Auflösung_Verändert_Enum | GrafikDatentypen.Modus_Verändert_Enum =>
             FensterEntfernen;

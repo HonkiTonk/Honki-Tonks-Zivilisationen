@@ -116,6 +116,7 @@ package body OptionenSonstigesLogik is
                
             else
                SchreibeOptionen.Sprache (SpracheExtern => GewählteSprache);
+               NachGrafiktask.SchriftartSetzen := True;
                EinlesenTextLogik.EinlesenDateien;
                EinlesenSpeziestexteLogik.SpeziestexteEinlesen;
                NachGrafiktask.AccesseSetzen := True;

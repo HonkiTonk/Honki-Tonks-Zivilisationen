@@ -14,7 +14,6 @@ package SprachauswahlGrafik is
     
 private
    
-   Erstaufruf : Boolean := True;
    MehrereSeiten : Boolean;
 
    AktuelleAuswahl : Natural;
@@ -27,6 +26,8 @@ private
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
+   
+   SchriftartAccess : Sf.Graphics.sfFont_Ptr := null;
       
    PfeilAccess : constant Sf.Graphics.sfConvexShape_Ptr := Sf.Graphics.ConvexShape.create;
    

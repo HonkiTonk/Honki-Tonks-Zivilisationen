@@ -1,13 +1,16 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Directories; use Ada.Directories;
 
 with Sf.Graphics.Text;
+with Sf.Graphics.Font;
 
 with GrafikDatentypen;
 with InteraktionAuswahl;
 with TextaccessVariablen;
 with Views;
--- with TextDatentypen;
 with GrafikKonstanten;
+with VerzeichnisKonstanten;
 
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
@@ -33,18 +36,6 @@ package body SprachauswahlGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
       
-      case
-        Erstaufruf
-      is
-         when True =>
-            Sf.Graphics.Text.setFont (text => TextaccessVariablen.SprachauswahlAccess,
-                                      font => TexteinstellungenGrafik.SchriftartLesen);
-            Erstaufruf := False;
-            
-         when False =>
-            null;
-      end case;
-      
       -- Diese Werte später in die Prozedur übergeben, außer die Sprachen? äöü
       -- Gilt auch für die Spielstandauswahl. äöü
       MehrereSeiten := NachGrafiktask.MehrereSeiten;
@@ -68,6 +59,18 @@ package body SprachauswahlGrafik is
               and
                 ZeileSchleifenwert < Ende)
          then
+            if
+              Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))) & VerzeichnisKonstanten.ZweiDatei) = False
+            then
+               SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => TexteinstellungenGrafik.StandardSchriftartVerwenden);
+            
+            else
+               SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => TexteinstellungenGrafik.EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))));
+            end if;
+         
+            Sf.Graphics.Text.setFont (text => TextaccessVariablen.SprachauswahlAccess,
+                                      font => SchriftartAccess);
+            
             TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                          TextExtern       => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)),
                                                          FarbeExtern      => AktuelleTextFarbe);

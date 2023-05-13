@@ -24,6 +24,7 @@ with TasteneingabeGrafik;
 with AbspannGrafik;
 with VerkaufsauswahlGrafik;
 with UebergabeRecordErmittelnGrafik;
+with TexteinstellungenGrafik;
 
 package body Grafik is
    
@@ -86,6 +87,17 @@ package body Grafik is
    is begin
       
       case
+        NachGrafiktask.SchriftartSetzen
+      is
+         when True =>
+            TexteinstellungenGrafik.SchriftartFestlegen;
+            NachGrafiktask.SchriftartSetzen := False;
+            
+         when False =>
+            null;
+      end case;
+      
+      case
         NachGrafiktask.AccesseSetzen
       is
          when True =>
@@ -100,7 +112,7 @@ package body Grafik is
         NachGrafiktask.FensterVerändert
       is
          when GrafikDatentypen.Fenster_Wurde_Verändert_Enum'Range =>
-            FensterGrafik.FensterAnpassen;
+            FensterGrafik.FensterAnpassen (FensterVerändertExtern => NachGrafiktask.FensterVerändert);
             SichtweitenGrafik.KartenfelderAbmessungBerechnen;
             SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
             NachGrafiktask.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;

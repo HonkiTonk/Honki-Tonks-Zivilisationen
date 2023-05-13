@@ -26,6 +26,7 @@ package VerzeichnisKonstanten is
    
    NullDatei : constant String (1 .. 2) := "/0";
    EinsDatei : constant String (1 .. 2) := "/1";
+   ZweiDatei : constant String (1 .. 2) := "/2";
    
    
    
@@ -57,9 +58,7 @@ package VerzeichnisKonstanten is
    Sprachenordner : constant Wide_Wide_String (1 .. 9) := "Sprachen/";
    Sprachen : constant String (1 .. 8) := "Sprachen";
    SprachenStrich : constant String (1 .. 9) := Sprachen & "/";
-   Schriftart : constant String (1 .. 31) := SprachenStrich & "Fonts/wqy-microhei.ttc";
-   SchriftartStandard : constant String (1 .. 27) := SprachenStrich & "Fonts/FreeSans.otf";
-   SchriftartAsiatisch : constant String (1 .. 31) := SprachenStrich & "Fonts/wqy-microhei.ttc";
-   SchriftartArabisch : constant String (1 .. 17) := SprachenStrich & "Test.otf";
+   FontOrdner : constant String (1 .. 15) := SprachenStrich & "Fonts/";
+   SchriftartStandard : constant String (1 .. 16) := "wqy-microhei.ttc";
       
 end VerzeichnisKonstanten;

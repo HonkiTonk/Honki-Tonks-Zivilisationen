@@ -1,24 +1,121 @@
+with Sf.Graphics;
+
 package TextaccesseSchriftartGrafik is
    pragma Elaborate_Body;
+   use type Sf.Graphics.sfFont_Ptr;
 
-   procedure SchriftartSetzen;
+   procedure SchriftartSetzen
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
 
 private
 
-   procedure Allgemeines;
-   procedure Menüs;
-   procedure Spezies;
-   procedure ZusatztextKartengröße;
-   procedure Sprachauswahl;
-   procedure Kartenformauswahl;
-   procedure StadtInformationen;
-   procedure EinheitenInformationen;
-   procedure KarteWichtiges;
-   procedure KarteAllgemeines;
-   procedure Karte;
-   procedure EinheitStadtAuswahl;
-   procedure AnzeigeEingabe;
-   procedure Ladezeiten;
-   procedure Befehle;
+   procedure Allgemeines
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure Menüs
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure Spezies
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure ZusatztextKartengröße
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure Sprachauswahl
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure Kartenformauswahl
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure StadtInformationen
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure EinheitenInformationen
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure KarteWichtiges
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure KarteAllgemeines
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure Karte
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure EinheitStadtAuswahl
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure AnzeigeEingabe
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure Ladezeiten
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
+
+   procedure Befehle
+     (SchriftaccessExtern : in Sf.Graphics.sfFont_Ptr)
+     with
+       Pre => (
+                 SchriftaccessExtern /= null
+              );
 
 end TextaccesseSchriftartGrafik;

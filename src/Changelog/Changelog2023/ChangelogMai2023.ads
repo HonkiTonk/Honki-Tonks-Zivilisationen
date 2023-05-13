@@ -119,24 +119,25 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (14.05.2023):
+   -- Version 0.05.0680 => 0.05. (14.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (13.05.2023):
+   -- Version 0.05.0630 => 0.05.0680 (13.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Es ist jetzt möglich nutzerdefinierte Fontdateien zu verwenden.
+   -- Die nutzerdefinierte Fontdatei wird jetzt bereits bei der Sprachenauswahl verwendet.
+   -- Interne Festlegung der Schriftart überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/erweitert.
    
    
 
-   -- Version 0.05.0630 => 0.05. (12.05.2023):
+   -- Version 0.05.0630 => 0.05.0630 (12.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

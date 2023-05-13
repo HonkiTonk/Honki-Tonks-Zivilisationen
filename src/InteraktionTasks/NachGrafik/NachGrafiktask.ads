@@ -53,6 +53,7 @@ package NachGrafiktask is
    
    -- Später erweitern mit nur Schriftgröße setzen, nur Schriftfarbe setzen, usw.. äöü
    AccesseSetzen : Boolean := False;
+   SchriftartSetzen : Boolean := False;
    
    Spielmeldung : SystemDatentypen.Spielmeldungen := SystemKonstanten.LeerMeldung;
    StartzeitSpielmeldung : Time;

@@ -4,11 +4,15 @@ with Sf.System.Vector2;
 private with Sf.Window;
 private with Sf.Window.Window;
 
+with GrafikDatentypen;
+
 package FensterGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfRenderWindow_Ptr;
 
-   procedure FensterAnpassen;
+   procedure FensterAnpassen
+     (FensterVerändertExtern : in GrafikDatentypen.Fenster_Ändern_Enum);
+   
    procedure BildrateÄndern;
    procedure FensterErzeugen;
    procedure FensterEntfernen;
