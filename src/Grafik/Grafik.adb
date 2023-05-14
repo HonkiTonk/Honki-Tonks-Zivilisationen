@@ -238,7 +238,7 @@ package body Grafik is
             return False;
       end case;
       
-      -- Hier die Eingabe/Spielmeldung mitübergeben damit sie leichter verschiebbar sind? äöü
+      -- Hier die Eingabe/Spielmeldung mit übergeben damit sie leichter verschiebbar sind? äöü
       AnzeigeSpielmeldungen;
       AnzeigeEingaben;
       

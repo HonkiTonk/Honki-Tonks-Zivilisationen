@@ -112,17 +112,16 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (15.05.2023):
+   -- Version 0.05.0695 => 0.05. (15.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.0680 => 0.05. (14.05.2023):
+   -- Version 0.05.0680 => 0.05.0695 (14.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
