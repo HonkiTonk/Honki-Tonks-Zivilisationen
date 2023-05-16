@@ -3,13 +3,10 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with GrafikDatentypen;
 with VerzeichnisKonstanten;
 with TextKonstanten;
-with KartenKonstanten;
 with StadtKonstanten;
 with EinheitenKonstanten;
 with TextnummernKonstanten;
 
-with SchreibeWeltkarte;
-with SchreibeWeltkarteneinstellungen;
 with SchreibeWichtiges;
 with SchreibeGrenzen;
 with SchreibeDiplomatie;
@@ -24,8 +21,10 @@ with NachGrafiktask;
 with SpielstandlisteLogik;
 with MeldungFestlegenLogik;
 with StandardSpielwerteSetzenLogik;
+with LadenKarteLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
+-- Wären bei den ganzen Prüfungen weitere exceptions sinnvoll? äöü
 package body LadenLogik is
    
    function Laden
@@ -90,8 +89,8 @@ package body LadenLogik is
    is begin
       
       case
-        KarteLaden (LadenPrüfenExtern => False,
-                    DateiLadenExtern  => DateiLadenExtern)
+        LadenKarteLogik.KarteLaden (LadenPrüfenExtern => False,
+                                    DateiLadenExtern  => DateiLadenExtern)
       is
          when False =>
             return False;
@@ -131,8 +130,8 @@ package body LadenLogik is
      (DateiLadenExtern : in File_Type)
    is begin
                
-      Leerwert := KarteLaden (LadenPrüfenExtern => True,
-                              DateiLadenExtern  => DateiLadenExtern);
+      Leerwert := LadenKarteLogik.KarteLaden (LadenPrüfenExtern => True,
+                                              DateiLadenExtern  => DateiLadenExtern);
                
       Leerwert := AllgemeinesLaden (LadenPrüfenExtern => True,
                                     DateiLadenExtern  => DateiLadenExtern);
@@ -146,66 +145,7 @@ package body LadenLogik is
       LadezeitenLogik.SpeichernLadenMaximum;
       
    end Ladevorgang;
-   
-   
-   
-   function KarteLaden
-     (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
-      return Boolean
-   is begin
-      
-      KartenRecords.PermanenteKartenparameterRecord'Read (Stream (File => DateiLadenExtern),
-                                                          Karteneinstellungen);
-      
-      case
-        LadenPrüfenExtern
-      is
-         when True =>
-            SchreibeWeltkarteneinstellungen.GesamteEinstellungen (EinstellungenExtern => Karteneinstellungen);
-            
-         when False =>
-            null;
-      end case;
-
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. Karteneinstellungen.Kartengröße.YAchse loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. Karteneinstellungen.Kartengröße.XAchse loop
-
-               WeltkarteRecords.WeltkarteRecord'Read (Stream (File => DateiLadenExtern),
-                                                      Karteneintrag);
-               
-               case
-                 LadenPrüfenExtern
-               is
-                  when True =>
-                     SchreibeWeltkarte.GanzerEintrag (EintrageExtern    => Karteneintrag,
-                                                      KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
-                     
-                  when False =>
-                     null;
-               end case;
-               
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-         
-         LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => False);
-         
-      end loop EAchseSchleife;
-      
-      return True;
-      
-      -- Wären hier weitere exceptions sinnvoll? äöü
-   exception
-      when Constraint_Error | End_Error =>
-         return False;
-      
-   end KarteLaden;
-     
-   
+        
    
    
    function AllgemeinesLaden

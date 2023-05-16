@@ -380,6 +380,18 @@ package body LeseWeltkarte is
    
    
    
+   function ImmerVorhanden
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return WeltkarteRecords.ImmerVorhanden
+   is begin
+      
+      return (Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Basisgrund,
+              Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar);
+      
+   end ImmerVorhanden;
+   
+   
+   
    function GanzerEintrag
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
       return WeltkarteRecords.WeltkarteRecord

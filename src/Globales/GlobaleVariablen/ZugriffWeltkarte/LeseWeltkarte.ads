@@ -189,6 +189,18 @@ package LeseWeltkarte is
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
+   function ImmerVorhanden
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return WeltkarteRecords.ImmerVorhanden
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   pragma Inline (ImmerVorhanden);
+   
+   
    function GanzerEintrag
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
       return WeltkarteRecords.WeltkarteRecord

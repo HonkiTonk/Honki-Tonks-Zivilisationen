@@ -14,7 +14,7 @@ package body FeldeffektEntfernenLogik is
       is
          when others =>
             SchreibeWeltkarte.AlleFeldeffekte (KoordinatenExtern => KoordinatenExtern,
-                                               FeldeffekteExtern => False);
+                                               FeldeffekteExtern => (False, False, False, False));
       end case;
       
    end FeldeffektEntfernen;

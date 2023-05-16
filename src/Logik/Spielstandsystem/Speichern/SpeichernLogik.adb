@@ -6,15 +6,11 @@ with SpielRecords;
 with TextKonstanten;
 with EinheitenRecords;
 with GrafikDatentypen;
-with WeltkarteRecords;
 with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
-with KartenKonstanten;
 with StadtKonstanten;
 with EinheitenKonstanten;
 
-with LeseWeltkarte;
-with LeseWeltkarteneinstellungen;
 with LeseWichtiges;
 with LeseGrenzen;
 with LeseAllgemeines;
@@ -26,6 +22,8 @@ with LeseOptionen;
 
 with LadezeitenLogik;
 with NachGrafiktask;
+with SpielstandAllgemeinesLogik;
+with SpeichernKarteLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -72,14 +70,14 @@ package body SpeichernLogik is
                  Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => (To_Wide_Wide_String (Source => Spielstandname)))),
                  Form => "WCEM=8");
       
-         Karte (DateiSpeichernExtern => DateiSpeichern,
-                AutospeichernExtern  => AutospeichernExtern);
-      
+         SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern,
+                                    AutospeichernExtern  => AutospeichernExtern);
+         
          Allgemeines (DateiSpeichernExtern => DateiSpeichern);
-         FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+         SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
       
          SpezieswerteSpeichern (DateiSpeichernExtern => DateiSpeichern);
-         FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+         SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
             
          Close (File => DateiSpeichern);
 
@@ -97,53 +95,6 @@ package body SpeichernLogik is
       end loop SpeichernSchleife;
       
    end Speichern;
-   
-   
-   
-   procedure FortschrittErhöhen
-     (AutospeichernExtern : in Boolean)
-   is begin
-      
-      case
-        AutospeichernExtern
-      is
-         when False =>
-            LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
-            
-         when True =>
-            null;
-      end case;
-      
-   end FortschrittErhöhen;
-   
-   
-   
-   procedure Karte
-     (DateiSpeichernExtern : in File_Type;
-      AutospeichernExtern : in Boolean)
-   is begin
-      
-      KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                           LeseWeltkarteneinstellungen.GesamteEinstellungen);
-      
-      EAchseSchleife:
-      for EAchseSchleifenwert in KartenKonstanten.AnfangEAchse .. KartenKonstanten.EndeEAchse loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
-
-               WeltkarteRecords.WeltkarteRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                       LeseWeltkarte.GanzerEintrag (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert)));
-               
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-                  
-         FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
-         
-      end loop EAchseSchleife;
-      
-   end Karte;
    
    
    

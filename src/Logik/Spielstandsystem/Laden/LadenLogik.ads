@@ -3,7 +3,6 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with SpeziesDatentypen;
 private with KartenRecords;
-private with WeltkarteRecords;
 private with SpielRecords;
 private with StadtRecords;
 private with EinheitenRecords;
@@ -25,8 +24,6 @@ private
 
    Spielstandname : Unbounded_Wide_Wide_String;
 
-   Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
-
    Wichtiges : SpielRecords.WichtigesRecord;
 
    Diplomatie : SpielRecords.DiplomatieRecord;
@@ -43,8 +40,6 @@ private
 
    Speziesbelegung : SpielRecords.SpeziesbelegungArray;
 
-   Karteneintrag : WeltkarteRecords.WeltkarteRecord;
-
    procedure Ladevorgang
      (DateiLadenExtern : in File_Type);
 
@@ -52,11 +47,6 @@ private
 
    function Prüfen
      (DateiLadenExtern : in File_Type)
-      return Boolean;
-
-   function KarteLaden
-     (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
       return Boolean;
 
    function AllgemeinesLaden

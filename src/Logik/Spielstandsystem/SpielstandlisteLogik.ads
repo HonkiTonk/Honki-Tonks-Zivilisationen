@@ -30,9 +30,6 @@ private
    AktuelleAuswahl : Natural;
    Ausgewählt : Natural;
 
-   KleinsteSpeicherdateigröße : constant File_Size := 127 * 1_024;
-   GrößteSpeicherdateigröße : constant File_Size := 159 * 1_024 * 1_024;
-
    Zwischenspeicher : Unbounded_Wide_Wide_String;
    RückgabeWert : Unbounded_Wide_Wide_String;
    Spielstandname : Unbounded_Wide_Wide_String;

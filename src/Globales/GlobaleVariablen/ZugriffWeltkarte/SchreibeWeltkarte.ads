@@ -58,7 +58,7 @@ package SchreibeWeltkarte is
    
    procedure AlleFeldeffekte
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      FeldeffekteExtern : in Boolean)
+      FeldeffekteExtern : in KartenRecords.FeldeffektArray)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -150,9 +150,25 @@ package SchreibeWeltkarte is
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
+   procedure ImmerVorhanden
+     (ImmerVorhandenExtern : in WeltkarteRecords.ImmerVorhanden;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
    procedure GanzerEintrag
-     (EintrageExtern : in WeltkarteRecords.WeltkarteRecord;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord);
+     (EintragExtern : in WeltkarteRecords.WeltkarteRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
    pragma Inline (GanzerEintrag);
    
    procedure Standardeinstellungen;

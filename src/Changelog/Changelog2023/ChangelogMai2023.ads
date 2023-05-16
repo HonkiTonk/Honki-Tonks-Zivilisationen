@@ -98,24 +98,26 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (17.05.2023):
+   -- Version 0.05.0755 => 0.05. (17.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (16.05.2023):
+   -- Version 0.05.0695 => 0.05.0755 (16.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Speichersystem überarbeitet.
+   -- Dateigröße der Spielstanddateien um 1/6 .. 1/3 reduziert.
+   -- Angefangen das Ladesystem an die neue Version des Speichersystem angepasst.
+   -- Das Spielstandsystem erfolgreich kaputt gemacht.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05.0695 => 0.05. (15.05.2023):
+   -- Version 0.05.0695 => 0.05.0695 (15.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

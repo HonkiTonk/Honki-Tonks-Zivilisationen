@@ -23,6 +23,8 @@ package KartenRecordKonstanten is
                                                                       XAchseEnde   => 0
                                                                      );
    
+   LeerEffekte : constant KartenRecords.FeldeffektArray := (others => False);
+   
    LeerDurchStadtBelegterGrund : constant StadtRecords.SpeziesStadtnummerRecord := (
                                                                                     Spezies => SpeziesKonstanten.LeerSpezies,
                                                                                     Nummer  => StadtDatentypen.MaximaleStädteMitNullWert'First

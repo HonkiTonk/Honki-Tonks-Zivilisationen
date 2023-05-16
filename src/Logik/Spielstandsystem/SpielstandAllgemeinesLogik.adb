@@ -5,6 +5,7 @@ with TextKonstanten;
 
 with TexteingabeLogik;
 with NachGrafiktask;
+with LadezeitenLogik;
 
 package body SpielstandAllgemeinesLogik is
 
@@ -40,5 +41,23 @@ package body SpielstandAllgemeinesLogik is
       return Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandnameExtern)));
       
    end SpielstandVorhanden;
+   
+   
+   
+   procedure FortschrittErhöhen
+     (AutospeichernExtern : in Boolean)
+   is begin
+      
+      case
+        AutospeichernExtern
+      is
+         when False =>
+            LadezeitenLogik.SpeichernLadenSchreiben (SpeichernLadenExtern => True);
+            
+         when True =>
+            null;
+      end case;
+      
+   end FortschrittErhöhen;
 
 end SpielstandAllgemeinesLogik;

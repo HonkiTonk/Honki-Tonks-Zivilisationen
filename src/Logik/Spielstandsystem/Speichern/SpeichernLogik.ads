@@ -23,18 +23,11 @@ private
    Spielstandname : Unbounded_Wide_Wide_String;
    Autospeichernname : Unbounded_Wide_Wide_String;
 
-   procedure Karte
-     (DateiSpeichernExtern : in File_Type;
-      AutospeichernExtern : in Boolean);
-
    procedure Allgemeines
      (DateiSpeichernExtern : in File_Type);
 
    procedure SpezieswerteSpeichern
      (DateiSpeichernExtern : in File_Type);
-
-   procedure FortschrittErhöhen
-     (AutospeichernExtern : in Boolean);
 
    procedure Spezieswerte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;

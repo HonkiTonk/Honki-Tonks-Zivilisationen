@@ -81,12 +81,6 @@ package body SpielstandlisteLogik is
                                                                NummerExtern => AktuellerSpielstand);
                   
                elsif
-                 Size (Name => VerzeichnisKonstanten.SpielstandStrich & Simple_Name (Directory_Entry => Spielstanddatei)) not in KleinsteSpeicherdateigröße .. GrößteSpeicherdateigröße
-               then
-                  SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => TextKonstanten.LeerUnboundedString,
-                                                               NummerExtern => AktuellerSpielstand);
-                  
-               elsif
                  AktuellerSpielstand = SpielstandVariablen.SpielstandArray'Last
                then
                   NachGrafiktask.MehrereSeiten := True;

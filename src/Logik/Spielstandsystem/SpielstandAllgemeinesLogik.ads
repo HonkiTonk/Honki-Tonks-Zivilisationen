@@ -4,6 +4,11 @@ private with SystemRecords;
 
 package SpielstandAllgemeinesLogik is
    pragma Elaborate_Body;
+      
+   procedure FortschrittErhöhen
+     (AutospeichernExtern : in Boolean);
+   
+   
 
    function SpielstandNameErmitteln
      return Unbounded_Wide_Wide_String;
