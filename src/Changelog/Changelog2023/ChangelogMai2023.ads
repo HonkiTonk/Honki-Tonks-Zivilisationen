@@ -91,17 +91,19 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (18.05.2023):
+   -- Version 0.05.0805 => 0.05. (18.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.0755 => 0.05. (17.05.2023):
+   -- Version 0.05.0755 => 0.05.0805 (17.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehlerhafte Textanzeige von Kartenfelder korrigiert.
+   -- Fehlerhafte Anzeige von Kartenfelder korrigiert.
+   -- Weiter am neuen Speichersystem gearbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

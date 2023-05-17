@@ -23,6 +23,15 @@ package StadtRecords is
    
    
    
+   type SpeziesStadtnummerVorhandenRecord is record
+      
+      Spezies : SpeziesDatentypen.Spezies_Verwendet_Enum;
+      Nummer : StadtDatentypen.MaximaleStädte;
+      
+   end record;
+   
+   
+   
    type BauprojektRecord is record
       
       Gebäude : StadtDatentypen.GebäudeIDMitNullwert;

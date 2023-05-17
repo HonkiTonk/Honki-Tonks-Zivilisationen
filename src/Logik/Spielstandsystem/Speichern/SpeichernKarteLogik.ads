@@ -15,7 +15,7 @@ package SpeichernKarteLogik is
       AutospeichernExtern : in Boolean);
    
 private
-   
+      
    Fluss : KartenextraDatentypen.Fluss_Enum;
    
    Ressource : KartenextraDatentypen.Ressourcen_Enum;

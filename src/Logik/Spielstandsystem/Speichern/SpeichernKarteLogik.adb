@@ -1,4 +1,3 @@
-with WeltkarteRecords;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -31,9 +30,9 @@ package body SpeichernKarteLogik is
             XAchseSchleife:
             for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
                
-               WeltkarteRecords.ImmerVorhanden'Write (Stream (File => DateiSpeichernExtern),
-                                                      LeseWeltkarte.ImmerVorhanden (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert)));
-               
+               KartenRecords.ImmerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
+                                                         LeseWeltkarte.ImmerVorhanden (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert)));
+                              
                Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                
                case
@@ -119,8 +118,8 @@ package body SpeichernKarteLogik is
                   null;
                   
                else
-                  EinheitenRecords.SpeziesEinheitnummerRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                                     Einheit);
+                  EinheitenRecords.SpeziesEinheitnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
+                                                                              (Einheit.Spezies, Einheit.Nummer));
                end if;
                
                Stadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
@@ -131,8 +130,8 @@ package body SpeichernKarteLogik is
                   null;
                   
                else
-                  StadtRecords.SpeziesStadtnummerRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                               Stadt);
+                  StadtRecords.SpeziesStadtnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
+                                                                        (Stadt.Spezies, Stadt.Nummer));
                end if;
                
             end loop XAchseSchleife;

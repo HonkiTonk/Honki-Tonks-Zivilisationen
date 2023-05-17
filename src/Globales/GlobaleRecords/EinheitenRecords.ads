@@ -20,6 +20,15 @@ package EinheitenRecords is
    
    
    
+   type SpeziesEinheitnummerVorhandenRecord is record
+      
+      Spezies : SpeziesDatentypen.Spezies_Verwendet_Enum;
+      Nummer : EinheitenDatentypen.MaximaleEinheiten;
+      
+   end record;
+   
+   
+   
    type SpeziesIDRecord is record
       
       Spezies : SpeziesDatentypen.Spezies_Enum;

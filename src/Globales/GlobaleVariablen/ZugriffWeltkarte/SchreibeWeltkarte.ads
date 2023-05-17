@@ -151,14 +151,15 @@ package SchreibeWeltkarte is
               );
    
    procedure ImmerVorhanden
-     (ImmerVorhandenExtern : in WeltkarteRecords.ImmerVorhanden;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      ImmerVorhandenExtern : in KartenRecords.ImmerVorhandenRecord)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
+   pragma Inline (ImmerVorhanden);
    
    procedure GanzerEintrag
      (EintragExtern : in WeltkarteRecords.WeltkarteRecord;

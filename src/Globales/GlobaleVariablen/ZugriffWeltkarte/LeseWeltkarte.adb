@@ -3,6 +3,7 @@ with KartenKonstanten;
 with EinheitenKonstanten;
 with Weltkarte;
 with SpeziesKonstanten;
+with KartenRecordKonstanten;
 
 with Fehlermeldungssystem;
 with FehlermeldungssystemZusatzinformationen;
@@ -95,7 +96,7 @@ package body LeseWeltkarte is
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
-            return (False, False, False, False);
+            return KartenRecordKonstanten.LeerEffekte;
             
          when others =>
             return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Effekte;
@@ -382,7 +383,7 @@ package body LeseWeltkarte is
    
    function ImmerVorhanden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return WeltkarteRecords.ImmerVorhanden
+      return KartenRecords.ImmerVorhandenRecord
    is begin
       
       return (Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Basisgrund,

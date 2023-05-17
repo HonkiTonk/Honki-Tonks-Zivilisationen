@@ -292,8 +292,8 @@ package body SchreibeWeltkarte is
    
    
    procedure ImmerVorhanden
-     (ImmerVorhandenExtern : in WeltkarteRecords.ImmerVorhanden;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      ImmerVorhandenExtern : in KartenRecords.ImmerVorhandenRecord)
    is begin
       
       Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Basisgrund := ImmerVorhandenExtern.Basisgrund;

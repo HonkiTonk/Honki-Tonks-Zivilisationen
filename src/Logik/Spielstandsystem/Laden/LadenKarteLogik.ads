@@ -20,60 +20,77 @@ private
    
    Streamposition : Positive_Count;
    
-   Fluss : KartenextraDatentypen.Fluss_Enum;
+   ImmerVorhanden : KartenRecords.ImmerVorhandenRecord;
    
-   Ressource : KartenextraDatentypen.Ressourcen_Enum;
+   Sichtbarkeit : KartenRecords.SichtbarkeitArray;
    
-   Weg : KartenverbesserungDatentypen.Weg_Enum;
+   Fluss : KartenextraDatentypen.Fluss_Vorhanden_Enum;
    
-   Verbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
+   Ressource : KartenextraDatentypen.Ressourcen_Vorhanden_Enum;
    
-   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
+   Weg : KartenverbesserungDatentypen.Weg_Vorhanden_Enum;
+   
+   Verbesserung : KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum;
+   
+   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum;
+   ZusatzgrundOberfläche : KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum;
+   ZusatzgrundUnterflaeche : KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum;
    
    Feldeffekte : KartenRecords.FeldeffektArray;
    
-   Einheit : EinheitenRecords.SpeziesEinheitnummerRecord;
+   Einheit : EinheitenRecords.SpeziesEinheitnummerVorhandenRecord;
      
-   Stadt : StadtRecords.SpeziesStadtnummerRecord;
-   
-   ImmerVorhanden : WeltkarteRecords.ImmerVorhanden;
+   Stadt : StadtRecords.SpeziesStadtnummerVorhandenRecord;
 
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
 
    Karteneintrag : WeltkarteRecords.WeltkarteRecord;
    
+   NichtVorhanden : exception;
    
+   procedure ImmerVorhandenSchreiben
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LadenPrüfenExtern : in Boolean);
    
-   function ZusatzgrundEinlesen
-     (DateiLadenExtern : in File_Type)
-      return KartengrundDatentypen.Zusatzgrund_Enum;
+   procedure ZusatzgrundEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LadenPrüfenExtern : in Boolean);
    
-   function FeldeffekteEinlesen
-     (DateiLadenExtern : in File_Type)
-      return KartenRecords.FeldeffektArray;
+   procedure FeldeffekteEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LadenPrüfenExtern : in Boolean);
    
-   function FlussEinlesen
-     (DateiLadenExtern : in File_Type)
-      return KartenextraDatentypen.Fluss_Enum;
+   procedure FlussEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LadenPrüfenExtern : in Boolean);
    
-   function RessourceEinlesen
-     (DateiLadenExtern : in File_Type)
-      return KartenextraDatentypen.Ressourcen_Enum;
+   procedure RessourceEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LadenPrüfenExtern : in Boolean);
    
-   function WegEinlesen
-     (DateiLadenExtern : in File_Type)
-      return KartenverbesserungDatentypen.Weg_Enum;
+   procedure WegEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LadenPrüfenExtern : in Boolean);
    
-   function VerbesserungEinlesen
-     (DateiLadenExtern : in File_Type)
-      return KartenverbesserungDatentypen.Verbesserung_Enum;
+   procedure VerbesserungEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LadenPrüfenExtern : in Boolean);
    
-   function EinheitEinlesen
-     (DateiLadenExtern : in File_Type)
-      return EinheitenRecords.SpeziesEinheitnummerRecord;
+   procedure EinheitEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LadenPrüfenExtern : in Boolean);
    
-   function StadtEinlesen
-     (DateiLadenExtern : in File_Type)
-      return StadtRecords.SpeziesStadtnummerRecord;
+   procedure StadtEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LadenPrüfenExtern : in Boolean);
 
 end LadenKarteLogik;

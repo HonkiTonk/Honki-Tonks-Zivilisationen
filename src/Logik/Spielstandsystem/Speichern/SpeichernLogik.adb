@@ -64,7 +64,7 @@ package body SpeichernLogik is
                LadezeitenLogik.SpeichernLadenNullsetzen;
                NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
          end case;
-      
+         
          Create (File => DateiSpeichern,
                  Mode => Out_File,
                  Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => (To_Wide_Wide_String (Source => Spielstandname)))),
