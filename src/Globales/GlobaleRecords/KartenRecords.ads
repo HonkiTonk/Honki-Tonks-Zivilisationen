@@ -102,6 +102,9 @@ package KartenRecords is
    
    type FelderwertungArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
    type SichtbarkeitArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Boolean;
+   for SichtbarkeitArray'Component_Size use 1;
+   for SichtbarkeitArray'Size use 18;
+   for SichtbarkeitArray'Alignment use 1;
    
    type KartengrundRecord is record
       

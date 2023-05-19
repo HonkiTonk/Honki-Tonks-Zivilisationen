@@ -26,7 +26,7 @@ with VerkaufsauswahlGrafik;
 with UebergabeRecordErmittelnGrafik;
 with TexteinstellungenGrafik;
 
-with Diagnoseinformationen;
+-- with Diagnoseinformationen;
 
 package body Grafik is
    
@@ -50,7 +50,7 @@ package body Grafik is
       -- SichtweitenGrafik.KartenfelderAbmessungBerechnen;
       -- SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
       
-      Diagnoseinformationen.Größenprüfung;
+      -- Diagnoseinformationen.Größenprüfung;
       
       Startzeit := Clock;
       

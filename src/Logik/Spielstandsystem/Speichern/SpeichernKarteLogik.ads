@@ -16,7 +16,7 @@ package SpeichernKarteLogik is
    procedure Karte
      (DateiSpeichernExtern : in File_Type;
       AutospeichernExtern : in Boolean);
-   
+      
 private
    use type KartenDatentypen.Kartenfeld;
    

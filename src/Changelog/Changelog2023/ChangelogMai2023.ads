@@ -77,17 +77,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (20.05.2023):
+   -- Version 0.05.0915 => 0.05. (20.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.0880 => 0.05. (19.05.2023):
+   -- Version 0.05.0880 => 0.05.0915 (19.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Speichersystem gearbeitet.
+   -- Angefangen bitweises Speichern einzubauen.
+   -- Kleinigkeiten korrigiert/angepasstt.
    
    
 
