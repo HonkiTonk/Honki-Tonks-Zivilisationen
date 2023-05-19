@@ -88,7 +88,7 @@ package ChangelogVorlage is
    
    -- Weiter am neuen Speichersystem gearbeitet.
    -- Angefangen bitweises Speichern einzubauen.
-   -- Kleinigkeiten korrigiert/angepasstt.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
 

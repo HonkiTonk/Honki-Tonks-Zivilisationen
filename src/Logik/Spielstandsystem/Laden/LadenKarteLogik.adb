@@ -6,7 +6,6 @@ with SchreibeWeltkarteneinstellungen;
 with LadezeitenLogik;
 with Fehlermeldungssystem;
 with FehlermeldungssystemZusatzinformationen;
-with BitsLesenLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenKarteLogik is
@@ -184,7 +183,8 @@ package body LadenKarteLogik is
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.UnterflächeKonstante | KartenKonstanten.OberflächeKonstante =>
-            Vorhanden := BitsLesenLogik.BooleanLesen (DateiLadenExtern => DateiLadenExtern);
+            Boolean'Read (Stream (File => DateiLadenExtern),
+                          Vorhanden);
             
          when others =>
             return True;
@@ -229,7 +229,8 @@ package body LadenKarteLogik is
       return Boolean
    is begin
             
-      Vorhanden := BitsLesenLogik.BooleanLesen (DateiLadenExtern => DateiLadenExtern);
+      Boolean'Read (Stream (File => DateiLadenExtern),
+                    Vorhanden);
       
       case
         Vorhanden
@@ -274,7 +275,8 @@ package body LadenKarteLogik is
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
-            Vorhanden := BitsLesenLogik.BooleanLesen (DateiLadenExtern => DateiLadenExtern);
+            Boolean'Read (Stream (File => DateiLadenExtern),
+                          Vorhanden);
             
          when others =>
             return True;
@@ -323,7 +325,8 @@ package body LadenKarteLogik is
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
-            Vorhanden := BitsLesenLogik.BooleanLesen (DateiLadenExtern => DateiLadenExtern);
+            Boolean'Read (Stream (File => DateiLadenExtern),
+                          Vorhanden);
             
          when others =>
             return True;
@@ -372,7 +375,8 @@ package body LadenKarteLogik is
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
-            Vorhanden := BitsLesenLogik.BooleanLesen (DateiLadenExtern => DateiLadenExtern);
+            Boolean'Read (Stream (File => DateiLadenExtern),
+                          Vorhanden);
             
          when others =>
             return True;
@@ -417,7 +421,8 @@ package body LadenKarteLogik is
       return Boolean
    is begin
       
-      Vorhanden := BitsLesenLogik.BooleanLesen (DateiLadenExtern => DateiLadenExtern);
+      Boolean'Read (Stream (File => DateiLadenExtern),
+                    Vorhanden);
       
       case
         Vorhanden
@@ -458,7 +463,8 @@ package body LadenKarteLogik is
       return Boolean
    is begin
       
-      Vorhanden := BitsLesenLogik.BooleanLesen (DateiLadenExtern => DateiLadenExtern);
+      Boolean'Read (Stream (File => DateiLadenExtern),
+                    Vorhanden);
       
       case
         Vorhanden
@@ -500,7 +506,8 @@ package body LadenKarteLogik is
       return Boolean
    is begin
       
-      Vorhanden := BitsLesenLogik.BooleanLesen (DateiLadenExtern => DateiLadenExtern);
+      Boolean'Read (Stream (File => DateiLadenExtern),
+                    Vorhanden);
       
       case
         Vorhanden

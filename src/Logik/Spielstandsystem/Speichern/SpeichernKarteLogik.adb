@@ -8,7 +8,6 @@ with LeseWeltkarte;
 with SpielstandAllgemeinesLogik;
 with Fehlermeldungssystem;
 with FehlermeldungssystemZusatzinformationen;
-with BitsSchreibenLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernKarteLogik is
@@ -43,12 +42,12 @@ package body SpeichernKarteLogik is
                if
                  Feldeffekte = KartenRecordKonstanten.LeerEffekte
                then
-                  BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                       BooleanExtern        => False);
+                  Boolean'Write (Stream (File => DateiSpeichernExtern),
+                                 False);
                   
                else
-                  BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                       BooleanExtern        => True);
+                  Boolean'Write (Stream (File => DateiSpeichernExtern),
+                                 True);
                   KartenRecords.FeldeffektArray'Write (Stream (File => DateiSpeichernExtern),
                                                        Feldeffekte);
                end if;
@@ -68,12 +67,12 @@ package body SpeichernKarteLogik is
                  Verbesserung
                is
                   when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-                     BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                          BooleanExtern        => False);
+                     Boolean'Write (Stream (File => DateiSpeichernExtern),
+                                    False);
                      
                   when others =>
-                     BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                          BooleanExtern        => True);
+                     Boolean'Write (Stream (File => DateiSpeichernExtern),
+                                    True);
                      KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                                      Verbesserung);
                end case;
@@ -83,12 +82,12 @@ package body SpeichernKarteLogik is
                if
                  Einheit = EinheitenKonstanten.LeerEinheit
                then
-                  BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                       BooleanExtern        => False);
+                  Boolean'Write (Stream (File => DateiSpeichernExtern),
+                                 False);
                   
                else
-                  BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                       BooleanExtern        => True);
+                  Boolean'Write (Stream (File => DateiSpeichernExtern),
+                                 True);
                   EinheitenRecords.SpeziesEinheitnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
                                                                               (Einheit.Spezies, Einheit.Nummer));
                end if;
@@ -98,12 +97,12 @@ package body SpeichernKarteLogik is
                if
                  Stadt = StadtKonstanten.LeerStadt
                then
-                  BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                       BooleanExtern        => False);
+                  Boolean'Write (Stream (File => DateiSpeichernExtern),
+                                 False);
                   
                else
-                  BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                       BooleanExtern        => True);
+                  Boolean'Write (Stream (File => DateiSpeichernExtern),
+                                 True);
                   StadtRecords.SpeziesStadtnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
                                                                         (Stadt.Spezies, Stadt.Nummer));
                end if;
@@ -160,12 +159,12 @@ package body SpeichernKarteLogik is
             if
               Zusatzgrund not in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range
             then
-               BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                    BooleanExtern        => True);
+               Boolean'Write (Stream (File => DateiSpeichernExtern),
+                              False);
                
             else
-               BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                    BooleanExtern        => True);
+               Boolean'Write (Stream (File => DateiSpeichernExtern),
+                              True);
                KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                        Zusatzgrund);
             end if;
@@ -192,12 +191,12 @@ package body SpeichernKarteLogik is
             if
               Fluss not in KartenextraDatentypen.Fluss_Vorhanden_Enum'Range
             then
-               BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                    BooleanExtern        => False);
+               Boolean'Write (Stream (File => DateiSpeichernExtern),
+                              False);
                
             else
-               BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                    BooleanExtern        => True);
+               Boolean'Write (Stream (File => DateiSpeichernExtern),
+                              True);
                KartenextraDatentypen.Fluss_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                  Fluss);
             end if;
@@ -224,12 +223,12 @@ package body SpeichernKarteLogik is
             if
               Ressource not in KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range
             then
-               BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                    BooleanExtern        => False);
+               Boolean'Write (Stream (File => DateiSpeichernExtern),
+                              False);
             
             else
-               BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                    BooleanExtern        => True);
+               Boolean'Write (Stream (File => DateiSpeichernExtern),
+                              True);
                KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                       Ressource);
             end if;
@@ -256,12 +255,12 @@ package body SpeichernKarteLogik is
             if
               Weg not in KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Range
             then
-               BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                    BooleanExtern        => False);
+               Boolean'Write (Stream (File => DateiSpeichernExtern),
+                              False);
                
             else
-               BitsSchreibenLogik.BooleanSchreiben (DateiSpeichernExtern => DateiSpeichernExtern,
-                                                    BooleanExtern        => True);
+               Boolean'Write (Stream (File => DateiSpeichernExtern),
+                              True);
                KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                       Weg);
             end if;
