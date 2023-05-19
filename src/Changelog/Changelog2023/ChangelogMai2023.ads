@@ -84,17 +84,21 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (19.05.2023):
+   -- Version 0.05.0880 => 0.05. (19.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.0805 => 0.05. (18.05.2023):
+   -- Version 0.05.0805 => 0.05.0880 (18.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehlerhafte Textanzeige von Kartenfelder in allen Sprachen korrigiert.
+   -- Weiter am neuen Speichersystem gearbeitet.
+   -- Kartenspeicherung überarbeitet.
+   -- Speichern und Laden sollte jetzt wieder fehlerfrei funktionieren.
+   -- Diagnosesystem überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/erweitert/angepasst/entfernt.
    
    
 
@@ -110,7 +114,7 @@ package ChangelogVorlage is
    -- Version 0.05.0695 => 0.05.0755 (16.05.2023):
    
    -- Das Speichersystem überarbeitet.
-   -- Dateigröße der Spielstanddateien um 1/6 .. 1/3 reduziert.
+   -- Dateigröße der Spielstanddateien reduziert.
    -- Angefangen das Ladesystem an die neue Version des Speichersystem angepasst.
    -- Das Spielstandsystem erfolgreich kaputt gemacht.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.

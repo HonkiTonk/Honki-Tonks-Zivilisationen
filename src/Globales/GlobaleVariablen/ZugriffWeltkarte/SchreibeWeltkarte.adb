@@ -126,6 +126,25 @@ package body SchreibeWeltkarte is
    
    
    
+   procedure GesamteSichtbarkeit
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      SichtbarkeitExtern : in KartenRecords.SichtbarkeitArray)
+   is begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.GesamteSichtbarkeit: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+            
+         when others =>
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar := SichtbarkeitExtern;
+      end case;
+      
+   end GesamteSichtbarkeit;
+   
+   
+   
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       FlussExtern : in KartenextraDatentypen.Fluss_Enum)
@@ -288,18 +307,6 @@ package body SchreibeWeltkarte is
       Weltkarte.Karte := (others => (others => (others => WeltkarteRecords.LeerWeltkarte)));
       
    end Standardeinstellungen;
-   
-   
-   
-   procedure ImmerVorhanden
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      ImmerVorhandenExtern : in KartenRecords.ImmerVorhandenRecord)
-   is begin
-      
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Basisgrund := ImmerVorhandenExtern.Basisgrund;
-      Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar := ImmerVorhandenExtern.Sichtbarkeit;
-      
-   end ImmerVorhanden;
    
    
    

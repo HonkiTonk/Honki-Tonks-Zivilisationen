@@ -1,11 +1,11 @@
 with KartenKonstanten;
-with KartenRecordKonstanten;
 
 with SchreibeWeltkarte;
 with SchreibeWeltkarteneinstellungen;
-with LadezeitenLogik;
 
-with Diagnoseinformationen;
+with LadezeitenLogik;
+with Fehlermeldungssystem;
+with FehlermeldungssystemZusatzinformationen;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenKarteLogik is
@@ -36,42 +36,73 @@ package body LadenKarteLogik is
          for YAchseSchleifenwert in KartenKonstanten.AnfangYAchse .. Karteneinstellungen.Kartengröße.YAchse loop
             XAchseSchleife:
             for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. Karteneinstellungen.Kartengröße.XAchse loop
-                              
-               -- ImmerVorhandenSchreiben (DateiLadenExtern  => DateiLadenExtern,
-               --                          KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-               --                          LadenPrüfenExtern => LadenPrüfenExtern);
                
-               ZusatzgrundEinlesen (DateiLadenExtern  => DateiLadenExtern,
-                                    KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                    LadenPrüfenExtern => LadenPrüfenExtern);
+               if
+                 False = ImmerVorhandenEinlesen (DateiLadenExtern  => DateiLadenExtern,
+                                                 KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                 LadenPrüfenExtern => LadenPrüfenExtern)
+               then
+                  return False;
                
-               FeldeffekteEinlesen (DateiLadenExtern  => DateiLadenExtern,
-                                    KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                    LadenPrüfenExtern => LadenPrüfenExtern);
-               
-               FlussEinlesen (DateiLadenExtern  => DateiLadenExtern,
-                              KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                              LadenPrüfenExtern => LadenPrüfenExtern);
-                              
-               RessourceEinlesen (DateiLadenExtern  => DateiLadenExtern,
-                                  KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                  LadenPrüfenExtern => LadenPrüfenExtern);
-               
-               WegEinlesen (DateiLadenExtern  => DateiLadenExtern,
-                            KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                            LadenPrüfenExtern => LadenPrüfenExtern);
-               
-               VerbesserungEinlesen (DateiLadenExtern  => DateiLadenExtern,
-                                     KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                     LadenPrüfenExtern => LadenPrüfenExtern);
-                              
-               EinheitEinlesen (DateiLadenExtern  => DateiLadenExtern,
-                                KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                LadenPrüfenExtern => LadenPrüfenExtern);
-                              
-               StadtEinlesen (DateiLadenExtern  => DateiLadenExtern,
-                              KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                              LadenPrüfenExtern => LadenPrüfenExtern);
+               elsif
+                 False = ZusatzgrundEinlesen (DateiLadenExtern  => DateiLadenExtern,
+                                              KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                              LadenPrüfenExtern => LadenPrüfenExtern)
+               then
+                  return False;
+                  
+               elsif
+                 False = FeldeffekteEinlesen (DateiLadenExtern  => DateiLadenExtern,
+                                              KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                              LadenPrüfenExtern => LadenPrüfenExtern)
+               then
+                  return False;
+                  
+               elsif
+                 False = FlussEinlesen (DateiLadenExtern  => DateiLadenExtern,
+                                        KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                        LadenPrüfenExtern => LadenPrüfenExtern)
+               then
+                  return False;
+                  
+               elsif
+                 False = RessourceEinlesen (DateiLadenExtern  => DateiLadenExtern,
+                                            KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                            LadenPrüfenExtern => LadenPrüfenExtern)
+               then
+                  return False;
+                  
+               elsif
+                 False = WegEinlesen (DateiLadenExtern  => DateiLadenExtern,
+                                      KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                      LadenPrüfenExtern => LadenPrüfenExtern)
+               then
+                  return False;
+                  
+               elsif
+                 False = VerbesserungEinlesen (DateiLadenExtern  => DateiLadenExtern,
+                                               KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                               LadenPrüfenExtern => LadenPrüfenExtern)
+               then
+                  return False;
+                     
+               elsif
+                 False = EinheitEinlesen (DateiLadenExtern  => DateiLadenExtern,
+                                          KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                          LadenPrüfenExtern => LadenPrüfenExtern)
+               then
+                  return False;
+                  
+               elsif
+                 False = StadtEinlesen (DateiLadenExtern  => DateiLadenExtern,
+                                        KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                        LadenPrüfenExtern => LadenPrüfenExtern)
+               then
+                  return False;
+                  
+               else
+                  null;
+               end if;
                                              
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -82,72 +113,94 @@ package body LadenKarteLogik is
             
       return True;
       
-      -- exception
-      --    when Constraint_Error | End_Error =>
-      --       return False;
+   exception
+      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         return False;
       
    end KarteLaden;
    
    
    
-   procedure ImmerVorhandenSchreiben
+   function ImmerVorhandenEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
+      return Boolean
    is begin
       
-      KartenRecords.ImmerVorhandenRecord'Read (Stream (File => DateiLadenExtern),
-                                               ImmerVorhanden);
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.HimmelKonstante =>
+            KartenRecords.SichtbarkeitArray'Read (Stream (File => DateiLadenExtern),
+                                                  ImmerVorhanden.Sichtbarkeit);
+            ImmerVorhanden.Basisgrund := KartengrundDatentypen.Wolken_Enum;
+            
+         when KartenKonstanten.WeltraumKonstante =>
+            KartenRecords.SichtbarkeitArray'Read (Stream (File => DateiLadenExtern),
+                                                  ImmerVorhanden.Sichtbarkeit);
+            ImmerVorhanden.Basisgrund := KartengrundDatentypen.Weltraum_Enum;
+            
+         when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
+            KartenRecords.ImmerVorhandenRecord'Read (Stream (File => DateiLadenExtern),
+                                                     ImmerVorhanden);
+            
+         when others =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.ImmerVorhandenEinlesen - Ungültige Ebene " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+      end case;
       
       case
         LadenPrüfenExtern
       is
          when True =>
-            SchreibeWeltkarte.ImmerVorhanden (KoordinatenExtern    => KoordinatenExtern,
-                                              ImmerVorhandenExtern => ImmerVorhanden);
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+                                          GrundExtern       => ImmerVorhanden.Basisgrund);
+            SchreibeWeltkarte.GesamteSichtbarkeit (KoordinatenExtern  => KoordinatenExtern,
+                                                   SichtbarkeitExtern => ImmerVorhanden.Sichtbarkeit);
             
          when False =>
             null;
       end case;
-            
-   end ImmerVorhandenSchreiben;
+      
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         return False;
+      
+   end ImmerVorhandenEinlesen;
    
    
    
-   procedure ZusatzgrundEinlesen
+   function ZusatzgrundEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
+      return Boolean
    is begin
-      
-      Streamposition := Index (File => DateiLadenExtern);
       
       case
         KoordinatenExtern.EAchse
       is
-         when KartenKonstanten.WeltraumKonstante =>
-            raise NichtVorhanden;
-            
-         when KartenKonstanten.HimmelKonstante =>
-            raise NichtVorhanden;
-            
-         when KartenKonstanten.OberflächeKonstante =>
-            KartengrundDatentypen.Zusatzgrund_Oberfläche_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                     ZusatzgrundOberfläche);
-            Zusatzgrund := ZusatzgrundOberfläche;
-            
-         when KartenKonstanten.UnterflächeKonstante =>
-            KartengrundDatentypen.Zusatzgrund_Unterfläche_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                      ZusatzgrundUnterflaeche);
-            Zusatzgrund := ZusatzgrundUnterflaeche;
-            
-         when KartenKonstanten.PlaneteninneresKonstante =>
-            raise NichtVorhanden;
+         when KartenKonstanten.UnterflächeKonstante | KartenKonstanten.OberflächeKonstante =>
+            Boolean'Read (Stream (File => DateiLadenExtern),
+                          Vorhanden);
             
          when others =>
-            raise NichtVorhanden;
+            return True;
       end case;
+      
+      case
+        Vorhanden
+      is
+         when False =>
+            return True;
             
+         when True =>
+            KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+                                                                   Zusatzgrund);
+      end case;
+      
       case
         LadenPrüfenExtern
       is
@@ -159,37 +212,36 @@ package body LadenKarteLogik is
             null;
       end case;
       
-      Diagnoseinformationen.Text (TextExtern => Zusatzgrund'Wide_Wide_Image);
+      return True;
       
    exception
-      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error | NichtVorhanden =>
-         Set_Index (File => DateiLadenExtern,
-                    To   => Streamposition);
+      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         return False;
       
    end ZusatzgrundEinlesen;
    
    
    
-   procedure FeldeffekteEinlesen
+   function FeldeffekteEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
-   is
-      use type KartenRecords.FeldeffektArray;
-   begin
+      return Boolean
+   is begin
+            
+      Boolean'Read (Stream (File => DateiLadenExtern),
+                    Vorhanden);
       
-      Streamposition := Index (File => DateiLadenExtern);
-      KartenRecords.FeldeffektArray'Read (Stream (File => DateiLadenExtern),
-                                          Feldeffekte);
-      
-      if
-        Feldeffekte = KartenRecordKonstanten.LeerEffekte
-      then
-         raise Constraint_Error;
-         
-      else
-         null;
-      end if;
+      case
+        Vorhanden
+      is
+         when False =>
+            return True;
+            
+         when True =>
+            KartenRecords.FeldeffektArray'Read (Stream (File => DateiLadenExtern),
+                                                Feldeffekte);
+      end case;
       
       case
         LadenPrüfenExtern
@@ -202,24 +254,44 @@ package body LadenKarteLogik is
             null;
       end case;
       
+      return True;
+      
    exception
       when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Set_Index (File => DateiLadenExtern,
-                    To   => Streamposition);
+         return False;
       
    end FeldeffekteEinlesen;
    
    
    
-   procedure FlussEinlesen
+   function FlussEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
+      return Boolean
    is begin
       
-      Streamposition := Index (File => DateiLadenExtern);
-      KartenextraDatentypen.Fluss_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                       Fluss);
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
+            Boolean'Read (Stream (File => DateiLadenExtern),
+                          Vorhanden);
+            
+         when others =>
+            return True;
+      end case;
+      
+      case
+        Vorhanden
+      is
+         when False =>
+            return True;
+            
+         when True =>
+            KartenextraDatentypen.Fluss_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+                                                             Fluss);
+      end case;
                
       case
         LadenPrüfenExtern
@@ -232,24 +304,44 @@ package body LadenKarteLogik is
             null;
       end case;
       
+      return True;
+      
    exception
       when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Set_Index (File => DateiLadenExtern,
-                    To   => Streamposition);
+         return False;
          
    end FlussEinlesen;
    
    
    
-   procedure RessourceEinlesen
+   function RessourceEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
+      return Boolean
    is begin
       
-      Streamposition := Index (File => DateiLadenExtern);
-      KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                            Ressource);
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
+            Boolean'Read (Stream (File => DateiLadenExtern),
+                          Vorhanden);
+            
+         when others =>
+            return True;
+      end case;
+      
+      case
+        Vorhanden
+      is
+         when False =>
+            return True;
+            
+         when True =>
+            KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+                                                                  Ressource);
+      end case;
       
       case
         LadenPrüfenExtern
@@ -262,24 +354,44 @@ package body LadenKarteLogik is
             null;
       end case;
       
+      return True;
+      
    exception
       when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Set_Index (File => DateiLadenExtern,
-                    To   => Streamposition);
+         return False;
       
    end RessourceEinlesen;
    
    
    
-   procedure WegEinlesen
+   function WegEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
+      return Boolean
    is begin
       
-      Streamposition := Index (File => DateiLadenExtern);
-      KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                            Weg);
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
+            Boolean'Read (Stream (File => DateiLadenExtern),
+                          Vorhanden);
+            
+         when others =>
+            return True;
+      end case;
+      
+      case
+        Vorhanden
+      is
+         when False =>
+            return True;
+            
+         when True =>
+            KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+                                                                  Weg);
+      end case;
       
       case
         LadenPrüfenExtern
@@ -292,24 +404,36 @@ package body LadenKarteLogik is
             null;
       end case;
       
+      return True;
+      
    exception
       when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Set_Index (File => DateiLadenExtern,
-                    To   => Streamposition);
+         return False;
       
    end WegEinlesen;
    
    
    
-   procedure VerbesserungEinlesen
+   function VerbesserungEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
+      return Boolean
    is begin
       
-      Streamposition := Index (File => DateiLadenExtern);
-      KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
-                                                                     Verbesserung);
+      Boolean'Read (Stream (File => DateiLadenExtern),
+                    Vorhanden);
+      
+      case
+        Vorhanden
+      is
+         when False =>
+            return True;
+            
+         when True =>
+            KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+                                                                           Verbesserung);
+      end case;
       
       case
         LadenPrüfenExtern
@@ -322,24 +446,36 @@ package body LadenKarteLogik is
             null;
       end case;
       
+      return True;
+      
    exception
       when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Set_Index (File => DateiLadenExtern,
-                    To   => Streamposition);
+         return False;
       
    end VerbesserungEinlesen;
    
    
    
-   procedure EinheitEinlesen
+   function EinheitEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
+      return Boolean
    is begin
       
-      Streamposition := Index (File => DateiLadenExtern);
-      EinheitenRecords.SpeziesEinheitnummerVorhandenRecord'Read (Stream (File => DateiLadenExtern),
-                                                                 Einheit);
+      Boolean'Read (Stream (File => DateiLadenExtern),
+                    Vorhanden);
+      
+      case
+        Vorhanden
+      is
+         when False =>
+            return True;
+            
+         when True =>
+            EinheitenRecords.SpeziesEinheitnummerVorhandenRecord'Read (Stream (File => DateiLadenExtern),
+                                                                       Einheit);
+      end case;
       
       case
         LadenPrüfenExtern
@@ -353,24 +489,36 @@ package body LadenKarteLogik is
             null;
       end case;
       
+      return True;
+      
    exception
       when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Set_Index (File => DateiLadenExtern,
-                    To   => Streamposition);
+         return False;
       
    end EinheitEinlesen;
    
    
    
-   procedure StadtEinlesen
+   function StadtEinlesen
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
+      return Boolean
    is begin
       
-      Streamposition := Index (File => DateiLadenExtern);
-      StadtRecords.SpeziesStadtnummerVorhandenRecord'Read (Stream (File => DateiLadenExtern),
-                                                           Stadt);
+      Boolean'Read (Stream (File => DateiLadenExtern),
+                    Vorhanden);
+      
+      case
+        Vorhanden
+      is
+         when False =>
+            return True;
+            
+         when True =>
+            StadtRecords.SpeziesStadtnummerVorhandenRecord'Read (Stream (File => DateiLadenExtern),
+                                                                 Stadt);
+      end case;
       
       case
         LadenPrüfenExtern
@@ -383,10 +531,11 @@ package body LadenKarteLogik is
             null;
       end case;
       
+      return True;
+      
    exception
       when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Set_Index (File => DateiLadenExtern,
-                    To   => Streamposition);
+         return False;
       
    end StadtEinlesen;
 

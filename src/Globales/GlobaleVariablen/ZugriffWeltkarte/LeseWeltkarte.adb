@@ -126,6 +126,25 @@ package body LeseWeltkarte is
    
    
    
+   function GesamteSichtbarkeit
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return KartenRecords.SichtbarkeitArray
+   is begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return KartenRecordKonstanten.LeerSichtbarkeit;
+            
+         when others =>
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar;
+      end case;
+      
+   end GesamteSichtbarkeit;
+   
+   
+   
    function Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenextraDatentypen.Fluss_Enum
@@ -378,18 +397,6 @@ package body LeseWeltkarte is
       end case;
       
    end EinheitenbelegungGrund;
-   
-   
-   
-   function ImmerVorhanden
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenRecords.ImmerVorhandenRecord
-   is begin
-      
-      return (Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Basisgrund,
-              Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar);
-      
-   end ImmerVorhanden;
    
    
    

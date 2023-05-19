@@ -6,6 +6,9 @@ private with StadtRecords;
 private with KartengrundDatentypen;
 private with KartenextraDatentypen;
 private with KartenverbesserungDatentypen;
+private with KartenDatentypen;
+
+private with LeseWeltkarteneinstellungen;
 
 package SpeichernKarteLogik is
    pragma Elaborate_Body;
@@ -15,6 +18,13 @@ package SpeichernKarteLogik is
       AutospeichernExtern : in Boolean);
    
 private
+   use type KartenDatentypen.Kartenfeld;
+   
+   GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
+      
+   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
+   
+   Feldeffekte : KartenRecords.FeldeffektArray;
       
    Fluss : KartenextraDatentypen.Fluss_Enum;
    
@@ -24,12 +34,58 @@ private
    
    Verbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
    
-   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
-   
-   Feldeffekte : KartenRecords.FeldeffektArray;
-   
    Einheit : EinheitenRecords.SpeziesEinheitnummerRecord;
      
    Stadt : StadtRecords.SpeziesStadtnummerRecord;
+   
+   procedure ImmerVorhandenSchreiben
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      DateiSpeichernExtern : in File_Type)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
+   procedure ZusatzgrundSchreiben
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      DateiSpeichernExtern : in File_Type)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
+   procedure FlussSchreiben
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      DateiSpeichernExtern : in File_Type)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
+   procedure RessourcenSchreiben
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      DateiSpeichernExtern : in File_Type)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
+   
+   procedure WegSchreiben
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      DateiSpeichernExtern : in File_Type)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
 
 end SpeichernKarteLogik;

@@ -26,6 +26,8 @@ with VerkaufsauswahlGrafik;
 with UebergabeRecordErmittelnGrafik;
 with TexteinstellungenGrafik;
 
+with Diagnoseinformationen;
+
 package body Grafik is
    
    procedure Grafik
@@ -47,6 +49,8 @@ package body Grafik is
       -- Oder liegt das daran dass die Fenstergröße erst jetzt bekannt ist? Mal nachprüfen. äöü
       -- SichtweitenGrafik.KartenfelderAbmessungBerechnen;
       -- SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
+      
+      Diagnoseinformationen.Größenprüfung;
       
       Startzeit := Clock;
       

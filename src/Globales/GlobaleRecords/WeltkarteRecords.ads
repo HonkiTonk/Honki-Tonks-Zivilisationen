@@ -1,7 +1,6 @@
 with KartenRecords;
 with KartengrundDatentypen;
 with KartenverbesserungDatentypen;
-with KartenKonstanten;
 with KartenRecordKonstanten;
 with EinheitenRecords;
 with EinheitenKonstanten;
@@ -34,8 +33,8 @@ package WeltkarteRecords is
    -- Das hier mal nach KartenRecordKonstanten schieben, wenn das denn geht. äöü
    LeerWeltkarte : constant WeltkarteRecord := (
                                                 Grund         => (KartengrundDatentypen.Leer_Basisgrund_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum),
-                                                Sichtbar      => (others => KartenKonstanten.LeerSichtbar),
-                                                Effekte       => (others => False),
+                                                Sichtbar      => KartenRecordKonstanten.LeerSichtbarkeit,
+                                                Effekte       => KartenRecordKonstanten.LeerEffekte,
                                                 Fluss         => KartenextraDatentypen.Leer_Fluss_Enum,
                                                 Ressource     => KartenextraDatentypen.Leer_Ressource_Enum,
                                                 Weg           => KartenverbesserungDatentypen.Leer_Weg_Enum,

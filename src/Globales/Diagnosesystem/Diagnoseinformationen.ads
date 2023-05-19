@@ -9,8 +9,11 @@ with KartenRecords;
 with EinheitenRecords;
 with StadtRecords;
 
+private with WeltkarteRecords;
+
 package Diagnoseinformationen is
    pragma Elaborate_Body;
+   
    
    procedure Größenprüfung;
    procedure Zeilenabstand;
@@ -58,5 +61,7 @@ private
    ByteTeiler : constant Positive := System.Storage_Unit;
    KilobyteTeiler : constant Positive := ByteTeiler * 1_024;
    MegabyteTeiler : constant Positive := KilobyteTeiler * 1_024;
+   
+   ZuPrüfendeGröße : constant Positive := WeltkarteRecords.WeltkarteRecord'Size;
 
 end Diagnoseinformationen;

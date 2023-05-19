@@ -79,6 +79,16 @@ package LeseWeltkarte is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
+   
+   function GesamteSichtbarkeit
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return KartenRecords.SichtbarkeitArray
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
 
    function Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -182,16 +192,6 @@ package LeseWeltkarte is
    function EinheitenbelegungGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return EinheitenRecords.SpeziesEinheitnummerRecord
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
-   
-   function ImmerVorhanden
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return KartenRecords.ImmerVorhandenRecord
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

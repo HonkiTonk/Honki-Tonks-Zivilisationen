@@ -78,6 +78,16 @@ package SchreibeWeltkarte is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
+   
+   procedure GesamteSichtbarkeit
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      SichtbarkeitExtern : in KartenRecords.SichtbarkeitArray)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
 
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -149,17 +159,6 @@ package SchreibeWeltkarte is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
-   
-   procedure ImmerVorhanden
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      ImmerVorhandenExtern : in KartenRecords.ImmerVorhandenRecord)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
-   pragma Inline (ImmerVorhanden);
    
    procedure GanzerEintrag
      (EintragExtern : in WeltkarteRecords.WeltkarteRecord;

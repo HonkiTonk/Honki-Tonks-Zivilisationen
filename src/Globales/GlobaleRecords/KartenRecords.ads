@@ -111,7 +111,7 @@ package KartenRecords is
    end record;
    
    
-   
+      
    type ImmerVorhandenRecord is record
       
       Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;

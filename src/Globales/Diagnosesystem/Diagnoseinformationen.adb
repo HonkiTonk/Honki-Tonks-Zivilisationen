@@ -1,17 +1,24 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Float_Text_IO;
 
-with WeltkarteRecords;
-
 package body Diagnoseinformationen is
 
    procedure Größenprüfung
    is begin
       
-      Put_Line (Item => "Bits:" & Integer (5 * WeltkarteRecords.WeltkarteRecord'Size * 1_000_000)'Wide_Wide_Image);
-      Put_Line (Item => "Bytes:" & Integer (5 * WeltkarteRecords.WeltkarteRecord'Size * 1_000_000 / ByteTeiler)'Wide_Wide_Image);
-      Put_Line (Item => "Kilobytes:" & Integer (5 * WeltkarteRecords.WeltkarteRecord'Size * 1_000_000 / KilobyteTeiler)'Wide_Wide_Image);
-      Put_Line (Item => "Megabytes:" & Integer (5 * WeltkarteRecords.WeltkarteRecord'Size * 1_000_000 / MegabyteTeiler)'Wide_Wide_Image);
+      Put_Line ("Einzeln:");
+      Put_Line (Item => "Bits:" & ZuPrüfendeGröße'Wide_Wide_Image);
+      Put_Line (Item => "Bytes:" & Integer (ZuPrüfendeGröße / ByteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Kilobytes:" & Integer (ZuPrüfendeGröße / KilobyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Megabytes:" & Integer (ZuPrüfendeGröße / MegabyteTeiler)'Wide_Wide_Image);
+      
+      New_Line;
+      
+      Put_Line ("Maximale Kartengröße:");
+      Put_Line (Item => "Bits:" & Integer (5 * ZuPrüfendeGröße * 1_000_000)'Wide_Wide_Image);
+      Put_Line (Item => "Bytes:" & Integer (5 * ZuPrüfendeGröße * 1_000_000 / ByteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Kilobytes:" & Integer (5 * ZuPrüfendeGröße * 1_000_000 / KilobyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Megabytes:" & Integer (5 * ZuPrüfendeGröße * 1_000_000 / MegabyteTeiler)'Wide_Wide_Image);
       
    end Größenprüfung;
    

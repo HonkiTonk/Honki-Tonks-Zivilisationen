@@ -1,8 +1,6 @@
 package KartenextraDatentypen is
    pragma Pure;
    
-   -- Für das Zeug hier auch mal Konstanten anlegen um einen leichteren Austausch zu ermöglichen? äöü
-
    -- Ressourcen für den Kern hinzufügen. äöü
    type Ressourcen_Enum is (
                             Leer_Ressource_Enum,
