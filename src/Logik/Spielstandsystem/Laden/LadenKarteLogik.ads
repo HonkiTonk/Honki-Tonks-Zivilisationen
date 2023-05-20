@@ -7,6 +7,7 @@ private with KartenverbesserungDatentypen;
 private with EinheitenRecords;
 private with StadtRecords;
 private with KartenDatentypen;
+private with SpeziesDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -22,10 +23,17 @@ private
    use type KartenDatentypen.Kartenfeld;
    
    Vorhanden : Boolean;
+   
+   Sichtbarkeit : KartenRecords.Sichtbarkeitszahl;
+   
+   GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
+   
+   SichtbarkeitAnfang : SpeziesDatentypen.Spezies_Verwendet_Enum;
+   SichtbarkeitEnde : SpeziesDatentypen.Spezies_Verwendet_Enum;
 
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
    
-   ImmerVorhanden : KartenRecords.ImmerVorhandenRecord;
+   Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
    
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum;
    
@@ -170,6 +178,21 @@ private
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
       return Boolean
+     with
+       Pre => (
+                 if
+                   LadenPrüfenExtern
+                     then
+                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  and
+                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
+              );
+   
+   function ZahlNachSichtbarkeit
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LadenPrüfenExtern : in Boolean)
+     return Boolean
      with
        Pre => (
                  if

@@ -7,6 +7,7 @@ private with KartengrundDatentypen;
 private with KartenextraDatentypen;
 private with KartenverbesserungDatentypen;
 private with KartenDatentypen;
+private with SpeziesDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -21,6 +22,11 @@ private
    use type KartenDatentypen.Kartenfeld;
    
    GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
+   
+   Sichtbarkeit : KartenRecords.Sichtbarkeitszahl;
+   
+   SichtbarkeitAnfang : SpeziesDatentypen.Spezies_Verwendet_Enum;
+   SichtbarkeitEnde : SpeziesDatentypen.Spezies_Verwendet_Enum;
       
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
    
@@ -37,8 +43,19 @@ private
    Einheit : EinheitenRecords.SpeziesEinheitnummerRecord;
      
    Stadt : StadtRecords.SpeziesStadtnummerRecord;
+      
+   procedure SichtbarkeitSchreiben
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      DateiSpeichernExtern : in File_Type)
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
    
-   procedure ImmerVorhandenSchreiben
+   
+   procedure BasisgrundSchreiben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       DateiSpeichernExtern : in File_Type)
      with
@@ -87,5 +104,5 @@ private
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
-
+   
 end SpeichernKarteLogik;

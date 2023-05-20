@@ -31,8 +31,10 @@ package body SpeichernKarteLogik is
             XAchseSchleife:
             for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
                
-               ImmerVorhandenSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                        DateiSpeichernExtern => DateiSpeichernExtern);
+               SichtbarkeitSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                      DateiSpeichernExtern => DateiSpeichernExtern);
+               BasisgrundSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                    DateiSpeichernExtern => DateiSpeichernExtern);
                
                ZusatzgrundSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                      DateiSpeichernExtern => DateiSpeichernExtern);
@@ -118,30 +120,81 @@ package body SpeichernKarteLogik is
    
    
    
-   procedure ImmerVorhandenSchreiben
+   procedure SichtbarkeitSchreiben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       DateiSpeichernExtern : in File_Type)
-   is begin
+   is
+      use type KartenRecords.Sichtbarkeitszahl;
+   begin
       
       GesamteSichtbarkeit := LeseWeltkarte.GesamteSichtbarkeit (KoordinatenExtern => KoordinatenExtern);
       
+      BereichSchleife:
+      for BereichSchleifenwert in 1 .. 3 loop
+         
+         Sichtbarkeit := 0;
+         
+         case
+           BereichSchleifenwert
+         is
+            when 1 =>
+               SichtbarkeitAnfang := SpeziesDatentypen.Speichern_Laden_Eins_Enum'First;
+               SichtbarkeitEnde := SpeziesDatentypen.Speichern_Laden_Eins_Enum'Last;
+               
+            when 2 =>
+               SichtbarkeitAnfang := SpeziesDatentypen.Speichern_Laden_Zwei_Enum'First;
+               SichtbarkeitEnde := SpeziesDatentypen.Speichern_Laden_Zwei_Enum'Last;
+               
+            when 3 =>
+               SichtbarkeitAnfang := SpeziesDatentypen.Speichern_Laden_Drei_Enum'First;
+               SichtbarkeitEnde := SpeziesDatentypen.Speichern_Laden_Drei_Enum'Last;
+         end case;
+      
+         SichtbarkeitSchleife:
+         for SichtbarkeitSchleifenwert in SichtbarkeitAnfang .. SichtbarkeitEnde loop
+         
+            case
+              GesamteSichtbarkeit (SichtbarkeitSchleifenwert)
+            is
+               when True =>
+                  Sichtbarkeit := Sichtbarkeit + 2**(SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SichtbarkeitSchleifenwert) - SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SichtbarkeitAnfang));
+               
+               when False =>
+                  null;
+            end case;
+         
+         end loop SichtbarkeitSchleife;
+      
+         KartenRecords.Sichtbarkeitszahl'Write (Stream (File => DateiSpeichernExtern),
+                                                Sichtbarkeit);
+         
+      end loop BereichSchleife;
+      
+   end SichtbarkeitSchreiben;
+   
+   
+   
+   procedure BasisgrundSchreiben
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      DateiSpeichernExtern : in File_Type)
+   is begin
+            
       case
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.HimmelKonstante | KartenKonstanten.WeltraumKonstante =>
-            KartenRecords.SichtbarkeitArray'Write (Stream (File => DateiSpeichernExtern),
-                                                   GesamteSichtbarkeit);
+            null;
             
          when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
-            KartenRecords.ImmerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                      (LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern), GesamteSichtbarkeit));
+            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                   LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.ImmerVorhandenSchreiben - Ungültige Ebene "
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.BasisgrundSchreiben - Ungültige Ebene "
                                         & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
       end case;
       
-   end ImmerVorhandenSchreiben;
+   end BasisgrundSchreiben;
    
    
    

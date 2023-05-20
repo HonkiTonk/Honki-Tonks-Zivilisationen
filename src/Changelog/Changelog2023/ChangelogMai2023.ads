@@ -70,17 +70,19 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (21.05.2023):
+   -- Version 0.05.0960 => 0.05. (21.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.0915 => 0.05. (20.05.2023):
+   -- Version 0.05.0915 => 0.05.0960 (20.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Speichersystem gearbeitet.
+   -- Maximale Dateigröße der Speicherdateien auf unter 50 MB reduziert.
+   -- Speichersystem sollte jetzt wieder fehelrfrei funktionieren.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
 

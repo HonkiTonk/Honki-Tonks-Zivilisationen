@@ -129,21 +129,29 @@ package body LadenKarteLogik is
    is begin
       
       case
+        ZahlNachSichtbarkeit (DateiLadenExtern  => DateiLadenExtern,
+                              KoordinatenExtern => KoordinatenExtern,
+                              LadenPrüfenExtern => LadenPrüfenExtern)
+      is
+         when False =>
+            return False;
+            
+         when True =>
+            null;
+      end case;
+      
+      case
         KoordinatenExtern.EAchse
       is
          when KartenKonstanten.HimmelKonstante =>
-            KartenRecords.SichtbarkeitArray'Read (Stream (File => DateiLadenExtern),
-                                                  ImmerVorhanden.Sichtbarkeit);
-            ImmerVorhanden.Basisgrund := KartengrundDatentypen.Wolken_Enum;
+            Basisgrund := KartengrundDatentypen.Wolken_Enum;
             
          when KartenKonstanten.WeltraumKonstante =>
-            KartenRecords.SichtbarkeitArray'Read (Stream (File => DateiLadenExtern),
-                                                  ImmerVorhanden.Sichtbarkeit);
-            ImmerVorhanden.Basisgrund := KartengrundDatentypen.Weltraum_Enum;
+            Basisgrund := KartengrundDatentypen.Weltraum_Enum;
             
          when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
-            KartenRecords.ImmerVorhandenRecord'Read (Stream (File => DateiLadenExtern),
-                                                     ImmerVorhanden);
+            KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
+                                                                  Basisgrund);
             
          when others =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.ImmerVorhandenEinlesen - Ungültige Ebene " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
@@ -154,9 +162,7 @@ package body LadenKarteLogik is
       is
          when True =>
             SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
-                                          GrundExtern       => ImmerVorhanden.Basisgrund);
-            SchreibeWeltkarte.GesamteSichtbarkeit (KoordinatenExtern  => KoordinatenExtern,
-                                                   SichtbarkeitExtern => ImmerVorhanden.Sichtbarkeit);
+                                          GrundExtern       => Basisgrund);
             
          when False =>
             null;
@@ -538,5 +544,83 @@ package body LadenKarteLogik is
          return False;
       
    end StadtEinlesen;
+   
+   
+   
+   function ZahlNachSichtbarkeit
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LadenPrüfenExtern : in Boolean)
+      return Boolean
+   is
+      use type KartenRecords.Sichtbarkeitszahl;
+   begin
+      
+      BereichSchleife:
+      for BereichSchleifenwert in 1 .. 3 loop
+         
+         KartenRecords.Sichtbarkeitszahl'Read (Stream (File => DateiLadenExtern),
+                                               Sichtbarkeit);
+         
+         if
+           LadenPrüfenExtern = False
+         then
+            null;
+            
+         else
+            -- Das hier in ein konstantes Array packen? äöü
+            case
+              BereichSchleifenwert
+            is
+               when 1 =>
+                  SichtbarkeitAnfang := SpeziesDatentypen.Speichern_Laden_Eins_Enum'First;
+                  SichtbarkeitEnde := SpeziesDatentypen.Speichern_Laden_Eins_Enum'Last;
+               
+               when 2 =>
+                  SichtbarkeitAnfang := SpeziesDatentypen.Speichern_Laden_Zwei_Enum'First;
+                  SichtbarkeitEnde := SpeziesDatentypen.Speichern_Laden_Zwei_Enum'Last;
+               
+               when 3 =>
+                  SichtbarkeitAnfang := SpeziesDatentypen.Speichern_Laden_Drei_Enum'First;
+                  SichtbarkeitEnde := SpeziesDatentypen.Speichern_Laden_Drei_Enum'Last;
+            end case;
+         
+            SichtbarkeitSchleife:
+            for SichtbarkeitSchleifenwert in reverse KartenRecords.SichtbarkeitArray'Range loop
+         
+               if
+                 Integer (Sichtbarkeit) - 2**(SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SichtbarkeitSchleifenwert) - SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SichtbarkeitAnfang)) >= 0
+               then
+                  GesamteSichtbarkeit (SichtbarkeitSchleifenwert) := True;
+                  Sichtbarkeit := Sichtbarkeit - 2**(SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SichtbarkeitSchleifenwert) - SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SichtbarkeitAnfang));
+            
+               else
+                  GesamteSichtbarkeit (SichtbarkeitSchleifenwert) := False;
+               end if;
+         
+            end loop SichtbarkeitSchleife;
+         end if;
+         
+      end loop BereichSchleife;
+      
+      case
+        LadenPrüfenExtern
+      is
+         when True =>
+            SchreibeWeltkarte.GesamteSichtbarkeit (KoordinatenExtern  => KoordinatenExtern,
+                                                   SichtbarkeitExtern => GesamteSichtbarkeit);
+            
+         when False =>
+            null;
+      end case;
+      
+      return True;
+      
+   exception
+         -- Dafür mal Fehlermeldungen einbauen, bei allen. Es wird hier ja der Fehler
+      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         return False;
+         
+   end ZahlNachSichtbarkeit;
 
 end LadenKarteLogik;
