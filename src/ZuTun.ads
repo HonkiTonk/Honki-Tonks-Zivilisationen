@@ -1,5 +1,8 @@
 -- Womit ich aufgehört habe:
 
+-- Werden die Texteinstellungen, also z. B. Textgröße korrekt gespeichert?
+-- Anpassung der Textabstände bei JaNeinGrafik.
+-- Stadtproduktion überarbeiten.
 --
 
 
@@ -34,3 +37,4 @@
 -- Minimap einbauen
 -- ZuTun mal besser gestalten
 --
+-- Alles was mit Laden/Speichern von Spielständen zu tun hat mal in eigene Datentypen/Konstant/usw. verschieben?

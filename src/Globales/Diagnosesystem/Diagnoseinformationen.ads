@@ -10,11 +10,13 @@ with EinheitenRecords;
 with StadtRecords;
 
 private with WeltkarteRecords;
+-- private with ;
 
 package Diagnoseinformationen is
    pragma Elaborate_Body;
    
    
+   procedure GrößenprüfungKartenfeld;
    procedure Größenprüfung;
    procedure Zeilenabstand;
    
@@ -62,6 +64,7 @@ private
    KilobyteTeiler : constant Positive := ByteTeiler * 1_024;
    MegabyteTeiler : constant Positive := KilobyteTeiler * 1_024;
    
-   ZuPrüfendeGröße : constant Positive := WeltkarteRecords.WeltkarteRecord'Size;
+   Kartenfeld : constant Positive := WeltkarteRecords.WeltkarteRecord'Size;
+   ZuPrüfendeGröße : constant Positive := Positive'Size;
 
 end Diagnoseinformationen;

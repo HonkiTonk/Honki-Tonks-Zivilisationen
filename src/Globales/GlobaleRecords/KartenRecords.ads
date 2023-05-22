@@ -107,9 +107,6 @@ package KartenRecords is
    for SichtbarkeitArray'Size use 18;
    for SichtbarkeitArray'Alignment use 1;
    
-   -- Das mal irgendwo hinschieben wo es besser passt. Vielleicht Kartendatentypen? äöü
-   type Sichtbarkeitszahl is range 0 .. 2**6 - 1;
-   
    type KartengrundRecord is record
       
       Basisgrund : KartengrundDatentypen.Basisgrund_Enum;

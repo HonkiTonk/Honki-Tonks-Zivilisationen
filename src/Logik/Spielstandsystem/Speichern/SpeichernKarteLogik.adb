@@ -2,6 +2,9 @@ with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenRecordKonstanten;
+with SystemKonstanten;
+with SpeziesKonstanten;
+with SpeziesDatentypen;
 
 with LeseWeltkarte;
 
@@ -15,11 +18,7 @@ package body SpeichernKarteLogik is
    procedure Karte
      (DateiSpeichernExtern : in File_Type;
       AutospeichernExtern : in Boolean)
-   is
-      use type EinheitenRecords.SpeziesEinheitnummerRecord;
-      use type StadtRecords.SpeziesStadtnummerRecord;
-      use type KartenRecords.FeldeffektArray;
-   begin
+   is begin
       
       KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
                                                            LeseWeltkarteneinstellungen.GesamteEinstellungen);
@@ -36,78 +35,34 @@ package body SpeichernKarteLogik is
                BasisgrundSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                     DateiSpeichernExtern => DateiSpeichernExtern);
                
-               ZusatzgrundSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                     DateiSpeichernExtern => DateiSpeichernExtern);
-               
+               Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                Feldeffekte := LeseWeltkarte.Feldeffekte (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
-                                             
-               if
-                 Feldeffekte = KartenRecordKonstanten.LeerEffekte
-               then
-                  Boolean'Write (Stream (File => DateiSpeichernExtern),
-                                 False);
-                  
-               else
-                  Boolean'Write (Stream (File => DateiSpeichernExtern),
-                                 True);
-                  KartenRecords.FeldeffektArray'Write (Stream (File => DateiSpeichernExtern),
-                                                       Feldeffekte);
-               end if;
-               
-               FlussSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                               DateiSpeichernExtern => DateiSpeichernExtern);
-               
-               RessourcenSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                    DateiSpeichernExtern => DateiSpeichernExtern);
-               
-               WegSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                             DateiSpeichernExtern => DateiSpeichernExtern);
-               
+               Fluss := LeseWeltkarte.Fluss (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+               Ressource := LeseWeltkarte.Ressource (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+               Weg := LeseWeltkarte.Weg (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                Verbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
-               
-               case
-                 Verbesserung
-               is
-                  when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-                     Boolean'Write (Stream (File => DateiSpeichernExtern),
-                                    False);
-                     
-                  when others =>
-                     Boolean'Write (Stream (File => DateiSpeichernExtern),
-                                    True);
-                     KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                                     Verbesserung);
-               end case;
-               
                Einheit := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
-               
-               if
-                 Einheit = EinheitenKonstanten.LeerEinheit
-               then
-                  Boolean'Write (Stream (File => DateiSpeichernExtern),
-                                 False);
-                  
-               else
-                  Boolean'Write (Stream (File => DateiSpeichernExtern),
-                                 True);
-                  EinheitenRecords.SpeziesEinheitnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                                              (Einheit.Spezies, Einheit.Nummer));
-               end if;
-               
                Stadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                
-               if
-                 Stadt = StadtKonstanten.LeerStadt
-               then
-                  Boolean'Write (Stream (File => DateiSpeichernExtern),
-                                 False);
-                  
-               else
-                  Boolean'Write (Stream (File => DateiSpeichernExtern),
-                                 True);
-                  StadtRecords.SpeziesStadtnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
-                                                                        (Stadt.Spezies, Stadt.Nummer));
-               end if;
+               VorhandeneFeldelementeSchreiben (ZusatzgrundExtern    => Zusatzgrund,
+                                                FeldeffekteExtern    => Feldeffekte,
+                                                FlussExtern          => Fluss,
+                                                RessourceExtern      => Ressource,
+                                                WegExtern            => Weg,
+                                                VerbesserungExtern   => Verbesserung,
+                                                EinheitExtern        => Einheit,
+                                                StadtExtern          => Stadt,
+                                                DateiSpeichernExtern => DateiSpeichernExtern);
+               
+               FeldelementeSchreiben (ZusatzgrundExtern    => Zusatzgrund,
+                                      FeldeffekteExtern    => Feldeffekte,
+                                      FlussExtern          => Fluss,
+                                      RessourceExtern      => Ressource,
+                                      WegExtern            => Weg,
+                                      VerbesserungExtern   => Verbesserung,
+                                      EinheitExtern        => Einheit,
+                                      StadtExtern          => Stadt,
+                                      DateiSpeichernExtern => DateiSpeichernExtern);
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -124,40 +79,25 @@ package body SpeichernKarteLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       DateiSpeichernExtern : in File_Type)
    is
-      use type KartenRecords.Sichtbarkeitszahl;
+      use type SystemDatentypen.Sichtbarkeitszahl;
    begin
       
       GesamteSichtbarkeit := LeseWeltkarte.GesamteSichtbarkeit (KoordinatenExtern => KoordinatenExtern);
       
       BereichSchleife:
-      for BereichSchleifenwert in 1 .. 3 loop
+      for BereichSchleifenwert in SpeziesKonstanten.SpeziesanfangLadenSpeichernArray'Range loop
          
          Sichtbarkeit := 0;
-         
-         case
-           BereichSchleifenwert
-         is
-            when 1 =>
-               SichtbarkeitAnfang := SpeziesDatentypen.Speichern_Laden_Eins_Enum'First;
-               SichtbarkeitEnde := SpeziesDatentypen.Speichern_Laden_Eins_Enum'Last;
-               
-            when 2 =>
-               SichtbarkeitAnfang := SpeziesDatentypen.Speichern_Laden_Zwei_Enum'First;
-               SichtbarkeitEnde := SpeziesDatentypen.Speichern_Laden_Zwei_Enum'Last;
-               
-            when 3 =>
-               SichtbarkeitAnfang := SpeziesDatentypen.Speichern_Laden_Drei_Enum'First;
-               SichtbarkeitEnde := SpeziesDatentypen.Speichern_Laden_Drei_Enum'Last;
-         end case;
       
          SichtbarkeitSchleife:
-         for SichtbarkeitSchleifenwert in SichtbarkeitAnfang .. SichtbarkeitEnde loop
+         for SichtbarkeitSchleifenwert in SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert) .. SpeziesKonstanten.SpeziesendeSpeichernLaden (BereichSchleifenwert) loop
          
             case
               GesamteSichtbarkeit (SichtbarkeitSchleifenwert)
             is
                when True =>
-                  Sichtbarkeit := Sichtbarkeit + 2**(SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SichtbarkeitSchleifenwert) - SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SichtbarkeitAnfang));
+                  Sichtbarkeit := Sichtbarkeit + 2**(SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SichtbarkeitSchleifenwert)
+                                                     - SpeziesDatentypen.Spezies_Verwendet_Enum'Pos (SpeziesKonstanten.SpeziesanfangSpeichernLaden (BereichSchleifenwert)));
                
                when False =>
                   null;
@@ -165,8 +105,8 @@ package body SpeichernKarteLogik is
          
          end loop SichtbarkeitSchleife;
       
-         KartenRecords.Sichtbarkeitszahl'Write (Stream (File => DateiSpeichernExtern),
-                                                Sichtbarkeit);
+         SystemDatentypen.Sichtbarkeitszahl'Write (Stream (File => DateiSpeichernExtern),
+                                                   Sichtbarkeit);
          
       end loop BereichSchleife;
       
@@ -198,130 +138,208 @@ package body SpeichernKarteLogik is
    
    
    
-   procedure ZusatzgrundSchreiben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+   procedure VorhandeneFeldelementeSchreiben
+     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+      FeldeffekteExtern : in KartenRecords.FeldeffektArray;
+      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
+      EinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
       DateiSpeichernExtern : in File_Type)
-   is begin
-            
-      case
-        KoordinatenExtern.EAchse
-      is
-         when KartenKonstanten.UnterflächeKonstante | KartenKonstanten.OberflächeKonstante =>
-            Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern);
-            
-            if
-              Zusatzgrund not in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range
-            then
-               Boolean'Write (Stream (File => DateiSpeichernExtern),
-                              False);
-               
-            else
-               Boolean'Write (Stream (File => DateiSpeichernExtern),
-                              True);
-               KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                       Zusatzgrund);
-            end if;
-            
-         when others =>
-            null;
-      end case;
-      
-   end ZusatzgrundSchreiben;
-   
-   
-   
-   procedure FlussSchreiben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      DateiSpeichernExtern : in File_Type)
-   is begin
+   is
+      use type EinheitenRecords.SpeziesEinheitnummerRecord;
+      use type StadtRecords.SpeziesStadtnummerRecord;
+      use type KartenRecords.FeldeffektArray;
+      use type SystemDatentypen.FeldelementVorhanden;
+   begin
       
       case
-        KoordinatenExtern.EAchse
+        ZusatzgrundExtern
       is
-         when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
-            Fluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
-               
-            if
-              Fluss not in KartenextraDatentypen.Fluss_Vorhanden_Enum'Range
-            then
-               Boolean'Write (Stream (File => DateiSpeichernExtern),
-                              False);
-               
-            else
-               Boolean'Write (Stream (File => DateiSpeichernExtern),
-                              True);
-               KartenextraDatentypen.Fluss_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                 Fluss);
-            end if;
-            
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            VorhandeneFeldelemente := SystemKonstanten.NichtsVorhanden;
+                     
          when others =>
-            null;
+            VorhandeneFeldelemente := SystemKonstanten.ZusatzgrundVorhanden;
       end case;
+               
+      if
+        FeldeffekteExtern = KartenRecordKonstanten.LeerEffekte
+      then
+         null;
+                  
+      else
+         VorhandeneFeldelemente := VorhandeneFeldelemente + SystemKonstanten.FeldeffekteVorhanden;
+      end if;
+               
+      case
+        FlussExtern
+      is
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
+            null;
+                     
+         when others =>
+            VorhandeneFeldelemente := VorhandeneFeldelemente + SystemKonstanten.FlussVorhanden;
+      end case;
+               
+      case
+        RessourceExtern
+      is
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
+            null;
+                     
+         when others =>
+            VorhandeneFeldelemente := VorhandeneFeldelemente + SystemKonstanten.RessourcenVorhanden;
+      end case;
+               
+      case
+        WegExtern
+      is
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+            null;
+                     
+         when others =>
+            VorhandeneFeldelemente := VorhandeneFeldelemente + SystemKonstanten.WegVorhanden;
+      end case;
+               
+      case
+        VerbesserungExtern
+      is
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+            null;
+                     
+         when others =>
+            VorhandeneFeldelemente := VorhandeneFeldelemente + SystemKonstanten.VerbesserungVorhanden;
+      end case;
+               
+      if
+        EinheitExtern = EinheitenKonstanten.LeerEinheit
+      then
+         null;
+                  
+      else
+         VorhandeneFeldelemente := VorhandeneFeldelemente + SystemKonstanten.EinheitVorhanden;
+      end if;
+                             
+      if
+        StadtExtern = StadtKonstanten.LeerStadt
+      then
+         null;
+                  
+      else
+         VorhandeneFeldelemente := VorhandeneFeldelemente + SystemKonstanten.StadtVorhanden;
+      end if;
       
-   end FlussSchreiben;
+      SystemDatentypen.FeldelementVorhanden'Write (Stream (File => DateiSpeichernExtern),
+                                                   VorhandeneFeldelemente);
+      
+   end VorhandeneFeldelementeSchreiben;
    
    
    
-   procedure RessourcenSchreiben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+   procedure FeldelementeSchreiben
+     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+      FeldeffekteExtern : in KartenRecords.FeldeffektArray;
+      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
+      EinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
       DateiSpeichernExtern : in File_Type)
-   is begin
+   is
+      use type EinheitenRecords.SpeziesEinheitnummerRecord;
+      use type StadtRecords.SpeziesStadtnummerRecord;
+      use type KartenRecords.FeldeffektArray;
+   begin
+      
+      if
+        StadtExtern = StadtKonstanten.LeerStadt
+      then
+         null;
+                  
+      else
+         StadtRecords.SpeziesStadtnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
+                                                               (StadtExtern.Spezies, StadtExtern.Nummer));
+      end if;
+      
+      if
+        EinheitExtern = EinheitenKonstanten.LeerEinheit
+      then
+         null;
+                  
+      else
+         EinheitenRecords.SpeziesEinheitnummerVorhandenRecord'Write (Stream (File => DateiSpeichernExtern),
+                                                                     (EinheitExtern.Spezies, EinheitExtern.Nummer));
+      end if;
       
       case
-        KoordinatenExtern.EAchse
+        VerbesserungExtern
       is
-         when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
-            Ressource := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
-               
-            if
-              Ressource not in KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Range
-            then
-               Boolean'Write (Stream (File => DateiSpeichernExtern),
-                              False);
-            
-            else
-               Boolean'Write (Stream (File => DateiSpeichernExtern),
-                              True);
-               KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                      Ressource);
-            end if;
-         
-         when others =>
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
             null;
+                     
+         when others =>
+            KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                            VerbesserungExtern);
       end case;
-      
-   end RessourcenSchreiben;
-   
-   
-   
-   procedure WegSchreiben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      DateiSpeichernExtern : in File_Type)
-   is begin
       
       case
-        KoordinatenExtern.EAchse
+        WegExtern
       is
-         when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
-            Weg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
-               
-            if
-              Weg not in KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Range
-            then
-               Boolean'Write (Stream (File => DateiSpeichernExtern),
-                              False);
-               
-            else
-               Boolean'Write (Stream (File => DateiSpeichernExtern),
-                              True);
-               KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                      Weg);
-            end if;
-            
-         when others =>
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
             null;
+                     
+         when others =>
+            KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                   WegExtern);
       end case;
       
-   end WegSchreiben;
+      case
+        RessourceExtern
+      is
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
+            null;
+                     
+         when others =>
+            KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                   RessourceExtern);
+      end case;
+      
+      case
+        FlussExtern
+      is
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
+            null;
+                     
+         when others =>
+            KartenextraDatentypen.Fluss_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                              FlussExtern);
+      end case;
+      
+      if
+        FeldeffekteExtern = KartenRecordKonstanten.LeerEffekte
+      then
+         null;
+                  
+      else
+         KartenRecords.FeldeffektArray'Write (Stream (File => DateiSpeichernExtern),
+                                              FeldeffekteExtern);
+      end if;
+      
+      case
+        ZusatzgrundExtern
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            null;
+                     
+         when others =>
+            KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
+                                                                    ZusatzgrundExtern);
+      end case;
+      
+   end FeldelementeSchreiben;
 
 end SpeichernKarteLogik;

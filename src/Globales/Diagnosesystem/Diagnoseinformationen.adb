@@ -3,22 +3,34 @@ with Ada.Float_Text_IO;
 
 package body Diagnoseinformationen is
 
-   procedure Größenprüfung
+   procedure GrößenprüfungKartenfeld
    is begin
       
       Put_Line ("Einzeln:");
-      Put_Line (Item => "Bits:" & ZuPrüfendeGröße'Wide_Wide_Image);
-      Put_Line (Item => "Bytes:" & Integer (ZuPrüfendeGröße / ByteTeiler)'Wide_Wide_Image);
-      Put_Line (Item => "Kilobytes:" & Integer (ZuPrüfendeGröße / KilobyteTeiler)'Wide_Wide_Image);
-      Put_Line (Item => "Megabytes:" & Integer (ZuPrüfendeGröße / MegabyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Bits:" & Kartenfeld'Wide_Wide_Image);
+      Put_Line (Item => "Bytes:" & Integer (Kartenfeld / ByteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Kilobytes:" & Integer (Kartenfeld / KilobyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Megabytes:" & Integer (Kartenfeld / MegabyteTeiler)'Wide_Wide_Image);
       
       New_Line;
       
       Put_Line ("Maximale Kartengröße:");
-      Put_Line (Item => "Bits:" & Integer (5 * ZuPrüfendeGröße * 1_000_000)'Wide_Wide_Image);
-      Put_Line (Item => "Bytes:" & Integer (5 * ZuPrüfendeGröße * 1_000_000 / ByteTeiler)'Wide_Wide_Image);
-      Put_Line (Item => "Kilobytes:" & Integer (5 * ZuPrüfendeGröße * 1_000_000 / KilobyteTeiler)'Wide_Wide_Image);
-      Put_Line (Item => "Megabytes:" & Integer (5 * ZuPrüfendeGröße * 1_000_000 / MegabyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Bits:" & Integer (5 * Kartenfeld * 1_000_000)'Wide_Wide_Image);
+      Put_Line (Item => "Bytes:" & Integer (5 * Kartenfeld * 1_000_000 / ByteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Kilobytes:" & Integer (5 * Kartenfeld * 1_000_000 / KilobyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Megabytes:" & Integer (5 * Kartenfeld * 1_000_000 / MegabyteTeiler)'Wide_Wide_Image);
+      
+   end GrößenprüfungKartenfeld;
+   
+   
+
+   procedure Größenprüfung
+   is begin
+      
+      Put_Line (Item => "Bits:" & ZuPrüfendeGröße'Wide_Wide_Image);
+      Put_Line (Item => "Bytes:" & Integer (ZuPrüfendeGröße / ByteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Kilobytes:" & Integer (ZuPrüfendeGröße / KilobyteTeiler)'Wide_Wide_Image);
+      Put_Line (Item => "Megabytes:" & Integer (ZuPrüfendeGröße / MegabyteTeiler)'Wide_Wide_Image);
       
    end Größenprüfung;
    

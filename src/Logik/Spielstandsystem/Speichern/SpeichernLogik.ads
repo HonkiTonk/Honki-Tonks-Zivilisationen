@@ -2,6 +2,8 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with SpeziesDatentypen;
+private with StadtDatentypen;
+private with EinheitenDatentypen;
 
 private with LeseSpeziesbelegung;
 
@@ -16,6 +18,10 @@ package SpeichernLogik is
 private
    use type SpeziesDatentypen.Spieler_Enum;
 
+   VorhandeneStädte : StadtDatentypen.MaximaleStädteMitNullWert;
+
+   VorhandeneEinheiten : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+
    AutospeichernWert : Positive := 1;
 
    DateiSpeichern : File_Type;
@@ -28,6 +34,14 @@ private
 
    procedure SpezieswerteSpeichern
      (DateiSpeichernExtern : in File_Type);
+
+   procedure StädteEinheitenSpeichern
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      DateiSpeichernExtern : in File_Type)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
 
    procedure Spezieswerte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;

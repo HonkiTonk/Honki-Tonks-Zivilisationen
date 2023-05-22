@@ -3,6 +3,10 @@ with StadtRecords;
 with StadtKonstanten;
 
 private with SystemRecords;
+private with StadtDatentypen;
+private with KartenverbesserungDatentypen;
+private with KartenDatentypen;
+private with KartenRecords;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -20,8 +24,26 @@ package StadtAllgemeinesLogik is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
+   procedure StädteSortieren
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+   
 private
    
+   StadtVorhanden : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
+   
+   StadtUmgebung : KartenDatentypen.UmgebungsbereichDrei;
+   
+   AlterPlatz : StadtDatentypen.MaximaleStädte;
+   
+   Stadtgrenze : StadtDatentypen.MaximaleStädteMitNullWert;
+   
    NeuerName : SystemRecords.TextEingabeRecord;
-
+   
+   Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
+   Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+      
 end StadtAllgemeinesLogik;

@@ -49,5 +49,14 @@ package SystemDatentypen is
       
    type NullBisHundert is range 0 .. 100;
    subtype EinsBisHundert is NullBisHundert range 1 .. NullBisHundert'Last;
+   
+   
+   
+   -- Für vorzeichenlose Datentypen mod verwenden.
+   -- Wird gespeichert als ein Byte.
+   type Sichtbarkeitszahl is mod 2**6;
+   
+   -- Wird gespeichert als ein Byte.
+   type FeldelementVorhanden is mod 2**8;
 
 end SystemDatentypen;

@@ -6,6 +6,8 @@ private with KartenRecords;
 private with SpielRecords;
 private with StadtRecords;
 private with EinheitenRecords;
+private with StadtDatentypen;
+private with EinheitenDatentypen;
 
 package LadenLogik is
    pragma Elaborate_Body;
@@ -40,6 +42,10 @@ private
 
    Speziesbelegung : SpielRecords.SpeziesbelegungArray;
 
+   VorhandeneStädte : StadtDatentypen.MaximaleStädteMitNullWert;
+
+   VorhandeneEinheiten : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+
    procedure Ladevorgang
      (DateiLadenExtern : in File_Type);
 
@@ -56,6 +62,12 @@ private
 
    function SpezieswerteLaden
      (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean;
+
+   function StädteEinheitenLaden
+     (LadenPrüfenExtern : in Boolean;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateiLadenExtern : in File_Type)
       return Boolean;
 

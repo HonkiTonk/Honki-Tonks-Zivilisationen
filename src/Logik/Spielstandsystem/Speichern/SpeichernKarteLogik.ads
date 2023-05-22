@@ -7,7 +7,7 @@ private with KartengrundDatentypen;
 private with KartenextraDatentypen;
 private with KartenverbesserungDatentypen;
 private with KartenDatentypen;
-private with SpeziesDatentypen;
+private with SystemDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -23,10 +23,9 @@ private
    
    GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
    
-   Sichtbarkeit : KartenRecords.Sichtbarkeitszahl;
+   Sichtbarkeit : SystemDatentypen.Sichtbarkeitszahl;
    
-   SichtbarkeitAnfang : SpeziesDatentypen.Spezies_Verwendet_Enum;
-   SichtbarkeitEnde : SpeziesDatentypen.Spezies_Verwendet_Enum;
+   VorhandeneFeldelemente : SystemDatentypen.FeldelementVorhanden;
       
    Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
    
@@ -53,8 +52,7 @@ private
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
-   
-   
+      
    procedure BasisgrundSchreiben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       DateiSpeichernExtern : in File_Type)
@@ -65,44 +63,26 @@ private
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
-   procedure ZusatzgrundSchreiben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      DateiSpeichernExtern : in File_Type)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
+   procedure VorhandeneFeldelementeSchreiben
+     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+      FeldeffekteExtern : in KartenRecords.FeldeffektArray;
+      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
+      EinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      DateiSpeichernExtern : in File_Type);
    
-   procedure FlussSchreiben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      DateiSpeichernExtern : in File_Type)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
-   
-   procedure RessourcenSchreiben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      DateiSpeichernExtern : in File_Type)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
-   
-   procedure WegSchreiben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      DateiSpeichernExtern : in File_Type)
-     with
-       Pre => (
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
+   procedure FeldelementeSchreiben
+     (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
+      FeldeffekteExtern : in KartenRecords.FeldeffektArray;
+      FlussExtern : in KartenextraDatentypen.Fluss_Enum;
+      RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
+      WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
+      VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
+      EinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      DateiSpeichernExtern : in File_Type);
    
 end SpeichernKarteLogik;

@@ -88,7 +88,7 @@ package body EinlesenEinstellungenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error =>
+      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
          return False;
       
    end NutzereinstellungenDurchgehen;
@@ -177,7 +177,7 @@ package body EinlesenEinstellungenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error =>
+      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
          return False;
       
    end GrafikeinstellungenDurchgehen;
@@ -253,7 +253,7 @@ package body EinlesenEinstellungenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error =>
+      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
          return False;
          
    end ToneinstellungenDurchgehen;

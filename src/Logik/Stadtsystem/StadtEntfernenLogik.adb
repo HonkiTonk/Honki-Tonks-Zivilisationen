@@ -14,6 +14,7 @@ with SpeziesEntfernenLogik;
 with JaNeinLogik;
 with GlobalesWachstumLogik;
 with StadtumgebungFestlegenLogik;
+with StadtAllgemeinesLogik;
 
 package body StadtEntfernenLogik is
    
@@ -55,7 +56,16 @@ package body StadtEntfernenLogik is
       GlobalesWachstumLogik.WachstumsratenBerechnen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       SchreibeWichtiges.AnzahlStädte (SpeziesExtern   => StadtSpeziesNummerExtern.Spezies,
                                        PlusMinusExtern => False);
-      SpeziesEntfernenLogik.SpeziesExistenzPrüfen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+      
+      case
+        SpeziesEntfernenLogik.SpeziesExistiertNoch (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
+      is
+         when True =>
+            StadtAllgemeinesLogik.StädteSortieren (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
+            
+         when False =>
+            null;
+      end case;
       
    end StadtEntfernen;
    

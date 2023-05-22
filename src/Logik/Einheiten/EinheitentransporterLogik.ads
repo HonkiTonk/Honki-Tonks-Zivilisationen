@@ -14,6 +14,7 @@ private with LeseWeltkarteneinstellungen;
 package EinheitentransporterLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
+   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    
    procedure TransporterEntladen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -23,6 +24,32 @@ package EinheitentransporterLogik is
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => TransporterExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   
+   procedure LadungsnummerAnpassen
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      LadungsnummerAltExtern : in EinheitenDatentypen.MaximaleEinheiten;
+      LadungsnummerNeuExtern : in EinheitenDatentypen.MaximaleEinheiten)
+     with
+       Pre => (
+                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => TransporterExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 LadungsnummerAltExtern <= LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
+               and
+                 LadungsnummerNeuExtern <= LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
+              );
+   
+   procedure LadungAnpassen
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     with
+       Pre => (
+                 TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => TransporterExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
+     
+     
    
    function TransporterGroßGenug
      (LadungExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;

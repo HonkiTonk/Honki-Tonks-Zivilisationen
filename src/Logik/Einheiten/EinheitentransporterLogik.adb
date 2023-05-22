@@ -2,6 +2,7 @@ with KartenKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
+with SchreibeEinheitenGebaut;
 
 with TransporterSuchenLogik;
 with KartenkoordinatenberechnungssystemLogik;
@@ -9,6 +10,7 @@ with EinheitSuchenLogik;
 with PassierbarkeitspruefungLogik;
 with BewegungspunkteBerechnenLogik;
 with BewegungsberechnungEinheitenLogik;
+with Fehlermeldungssystem;
 
 package body EinheitentransporterLogik is
    
@@ -232,5 +234,65 @@ package body EinheitentransporterLogik is
       return AktuelleLadungsmenge;
       
    end BelegtePlätze;
+   
+   
+   
+   procedure LadungsnummerAnpassen
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      LadungsnummerAltExtern : in EinheitenDatentypen.MaximaleEinheiten;
+      LadungsnummerNeuExtern : in EinheitenDatentypen.MaximaleEinheiten)
+   is begin
+      
+      LadungSchleife:
+      for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
+                                                                                                                        IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern)) loop
+         
+         if
+           LadungsnummerAltExtern = LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
+                                                                       PlatzExtern                => LadungSchleifenwert)
+         then
+            SchreibeEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
+                                                   LadungExtern               => LadungsnummerNeuExtern,
+                                                   LadungsplatzExtern         => LadungSchleifenwert);
+            return;
+               
+         else
+            null;
+         end if;
+         
+      end loop LadungSchleife;
+      
+      -- Das kann später vermutlich wieder weg, aber zu Testzwecken erst einmal drinnen lassen um besser Überprüfen zu können ob das Sortieren funktioniert. äöü
+      Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinheitentransporterLogik.LadungsnummerAnpassen - Transportierte Einheit wird nicht transportiert");
+      
+   end LadungsnummerAnpassen;
+   
+   
+   
+   procedure LadungAnpassen
+     (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+   is begin
+      
+      LadungSchleife:
+      for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
+                                                                                                                        IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern)) loop
+         
+         AktuelleLadung := LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
+                                                              PlatzExtern                => LadungSchleifenwert);
+         
+         case
+           AktuelleLadung
+         is
+            when EinheitenKonstanten.LeerNummer =>
+               null;
+               
+            when others =>
+               SchreibeEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, AktuelleLadung),
+                                                          TransporterExtern          => TransporterExtern.Nummer);
+         end case;
+         
+      end loop LadungSchleife;
+      
+   end LadungAnpassen;
 
 end EinheitentransporterLogik;

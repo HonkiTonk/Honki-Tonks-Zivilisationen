@@ -7,7 +7,7 @@ private with KartenverbesserungDatentypen;
 private with EinheitenRecords;
 private with StadtRecords;
 private with KartenDatentypen;
-private with SpeziesDatentypen;
+private with SystemDatentypen;
 
 private with LeseWeltkarteneinstellungen;
 
@@ -21,17 +21,16 @@ package LadenKarteLogik is
    
 private
    use type KartenDatentypen.Kartenfeld;
+
+   Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
    
-   Vorhanden : Boolean;
-   
-   Sichtbarkeit : KartenRecords.Sichtbarkeitszahl;
+   Sichtbarkeit : SystemDatentypen.Sichtbarkeitszahl;
    
    GesamteSichtbarkeit : KartenRecords.SichtbarkeitArray;
    
-   SichtbarkeitAnfang : SpeziesDatentypen.Spezies_Verwendet_Enum;
-   SichtbarkeitEnde : SpeziesDatentypen.Spezies_Verwendet_Enum;
-
-   Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord;
+   Potenz : Natural;
+   
+   VorhandeneFeldelemente : SystemDatentypen.FeldelementVorhanden;
    
    Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
    
@@ -52,147 +51,27 @@ private
    Stadt : StadtRecords.SpeziesStadtnummerVorhandenRecord;
    
    
-   
-   function ImmerVorhandenEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-                  and
-                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
-              );
-                     
-   function ZusatzgrundEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-                  and
-                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
-              );
-   
-   function FeldeffekteEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-                  and
-                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
-              );
-   
-   function FlussEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-                  and
-                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
-              );
-   
-   function RessourceEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-                  and
-                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
-              );
-   
-   function WegEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-                  and
-                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
-              );
-   
-   function VerbesserungEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-                  and
-                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
-              );
-   
-   function EinheitEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-                  and
-                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
-              );
-   
-   function StadtEinlesen
-     (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LadenPrüfenExtern : in Boolean)
-      return Boolean
-     with
-       Pre => (
-                 if
-                   LadenPrüfenExtern
-                     then
-                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-                  and
-                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
-              );
-   
+      
    function ZahlNachSichtbarkeit
      (DateiLadenExtern : in File_Type;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       LadenPrüfenExtern : in Boolean)
-     return Boolean
+      return Boolean
+     with
+       Pre => (
+                 if
+                   LadenPrüfenExtern
+                     then
+                 (KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  and
+                    KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse)
+              );
+   
+   function BasisgrundEinlesen
+     (DateiLadenExtern : in File_Type;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      LadenPrüfenExtern : in Boolean)
+      return Boolean
      with
        Pre => (
                  if

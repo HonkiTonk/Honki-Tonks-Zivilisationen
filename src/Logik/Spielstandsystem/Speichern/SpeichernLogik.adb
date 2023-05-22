@@ -10,6 +10,7 @@ with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
 with StadtKonstanten;
 with EinheitenKonstanten;
+with KartenverbesserungDatentypen;
 
 with LeseWichtiges;
 with LeseGrenzen;
@@ -126,6 +127,9 @@ package body SpeichernLogik is
                null;
                
             when others =>
+               StädteEinheitenSpeichern (SpeziesExtern        => SpeziesSchleifenwert,
+                                          DateiSpeichernExtern => DateiSpeichernExtern);
+               
                Spezieswerte (SpeziesExtern        => SpeziesSchleifenwert,
                              DateiSpeichernExtern => DateiSpeichernExtern);
          end case;
@@ -136,31 +140,82 @@ package body SpeichernLogik is
    
    
    
-   procedure Spezieswerte
+   procedure StädteEinheitenSpeichern
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateiSpeichernExtern : in File_Type)
-   is
-      use type SpeziesDatentypen.Spezies_Enum;
-   begin
+   is begin
       
       SpielRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernExtern),
                                         LeseGrenzen.GanzerEintrag (SpeziesExtern => SpeziesExtern));
       
+      VorhandeneEinheiten := EinheitenKonstanten.LeerNummer;
+      
+      AnzahlEinheitenSchleife:
+      for AnzahlEinheitenSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
+         
+         case
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, AnzahlEinheitenSchleifenwert))
+         is
+            when EinheitenKonstanten.LeerID =>
+               exit AnzahlEinheitenSchleife;
+               
+            when others =>
+               VorhandeneEinheiten := AnzahlEinheitenSchleifenwert;
+         end case;
+         
+      end loop AnzahlEinheitenSchleife;
+      
+      EinheitenDatentypen.MaximaleEinheitenMitNullWert'Write (Stream (File => DateiSpeichernExtern),
+                                                              VorhandeneEinheiten);
+      
       EinheitenSchleife:
-      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
+      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. VorhandeneEinheiten loop
                   
          EinheitenRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernExtern),
                                                        LeseEinheitenGebaut.GanzerEintrag (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert)));
          
       end loop EinheitenSchleife;
       
+      
+
+      VorhandeneStädte := StadtKonstanten.LeerNummer;
+      
+      AnzahlStädteSchleife:
+      for AnzahlStädteSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
+
+         case
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, AnzahlStädteSchleifenwert))
+         is
+            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+               exit AnzahlStädteSchleife;
+               
+            when others =>
+               VorhandeneStädte := AnzahlStädteSchleifenwert;
+         end case;
+
+      end loop AnzahlStädteSchleife;
+      
+      StadtDatentypen.MaximaleStädteMitNullWert'Write (Stream (File => DateiSpeichernExtern),
+                                                        VorhandeneStädte);
+      
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. VorhandeneStädte loop
                   
          StadtRecords.StadtGebautRecord'Write (Stream (File => DateiSpeichernExtern),
                                                LeseStadtGebaut.GanzerEintrag (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)));
             
       end loop StadtSchleife;
+      
+   end StädteEinheitenSpeichern;
+   
+   
+   
+   procedure Spezieswerte
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      DateiSpeichernExtern : in File_Type)
+   is
+      use type SpeziesDatentypen.Spezies_Enum;
+   begin
       
       DiplomatieSchleife:
       for DiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
@@ -183,8 +238,16 @@ package body SpeichernLogik is
       SpielRecords.WichtigesRecord'Write (Stream (File => DateiSpeichernExtern),
                                           LeseWichtiges.GanzerEintrag (SpeziesExtern => SpeziesExtern));
       
-      KartenRecords.CursorRecord'Write (Stream (File => DateiSpeichernExtern),
-                                        LeseCursor.GanzerEintrag (SpeziesExtern => SpeziesExtern));
+      case
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
+      is
+         when SpeziesDatentypen.Mensch_Spieler_Enum =>
+            KartenRecords.CursorRecord'Write (Stream (File => DateiSpeichernExtern),
+                                              LeseCursor.GanzerEintrag (SpeziesExtern => SpeziesExtern));
+            
+         when others =>
+            null;
+      end case;
       
    end Spezieswerte;
    

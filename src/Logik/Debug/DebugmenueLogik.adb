@@ -2,7 +2,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with MenueDatentypen;
 with KartenKonstanten;
-with Projekteinstellungen;
+-- with Projekteinstellungen;
 
 with SchreibeWeltkarte;
 with LeseWeltkarteneinstellungen;
@@ -20,15 +20,15 @@ package body DebugmenueLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      case
-        Projekteinstellungen.Debug.VolleInformation
-      is
-         when False =>
-            return;
+      -- case
+      --  Projekteinstellungen.Debug.VolleInformation
+      -- is
+      --   when False =>
+      --       return;
             
-         when True =>
-            null;
-      end case;
+      --   when True =>
+      --       null;
+      --  end case;
       
       DebugmenüSchleife:
       loop

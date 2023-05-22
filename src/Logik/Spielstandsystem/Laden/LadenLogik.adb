@@ -24,7 +24,6 @@ with StandardSpielwerteSetzenLogik;
 with LadenKarteLogik;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
--- Wären bei den ganzen Prüfungen weitere exceptions sinnvoll? äöü
 package body LadenLogik is
    
    function Laden
@@ -174,7 +173,7 @@ package body LadenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error =>
+      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
          return False;
          
    end AllgemeinesLaden;
@@ -194,16 +193,23 @@ package body LadenLogik is
            Speziesbelegung (SpeziesSchleifenwert).Belegung = SpeziesDatentypen.Leer_Spieler_Enum
          then
             null;
+            
+         elsif
+           False = StädteEinheitenLaden (LadenPrüfenExtern => LadenPrüfenExtern,
+                                          SpeziesExtern     => SpeziesSchleifenwert,
+                                          DateiLadenExtern  => DateiLadenExtern)
+         then
+            return False;
                
          elsif
-           True = Spezieswerte (LadenPrüfenExtern => LadenPrüfenExtern,
-                                SpeziesExtern     => SpeziesSchleifenwert,
-                                DateiLadenExtern  => DateiLadenExtern)
+           False = Spezieswerte (LadenPrüfenExtern => LadenPrüfenExtern,
+                                 SpeziesExtern     => SpeziesSchleifenwert,
+                                 DateiLadenExtern  => DateiLadenExtern)
          then
-            null;
+            return False;
             
          else
-            return False;
+            null;
          end if;
          
       end loop SpeziesSchleife;
@@ -214,20 +220,34 @@ package body LadenLogik is
    
    
    
-   function Spezieswerte
+   function StädteEinheitenLaden
      (LadenPrüfenExtern : in Boolean;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateiLadenExtern : in File_Type)
       return Boolean
-   is
-      use type SpeziesDatentypen.Spezies_Enum;
-   begin
+   is begin
       
       SpielRecords.GrenzenRecord'Read (Stream (File => DateiLadenExtern),
                                        Grenzen);
       
+      case
+        LadenPrüfenExtern
+      is
+         when True =>
+            SchreibeGrenzen.GanzerEintrag (SpeziesExtern => SpeziesExtern,
+                                           EintragExtern => Grenzen);
+            
+         when False =>
+            null;
+      end case;
+      
+      
+      
+      EinheitenDatentypen.MaximaleEinheitenMitNullWert'Read (Stream (File => DateiLadenExtern),
+                                                             VorhandeneEinheiten);
+      
       EinheitenSchleife:
-      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. Grenzen.Einheitengrenze loop
+      for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. VorhandeneEinheiten loop
             
          EinheitenRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenExtern),
                                                       Einheit);
@@ -245,8 +265,13 @@ package body LadenLogik is
             
       end loop EinheitenSchleife;
       
+      
+      
+      StadtDatentypen.MaximaleStädteMitNullWert'Read (Stream (File => DateiLadenExtern),
+                                                       VorhandeneStädte);
+      
       StadtSchleife:
-      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. Grenzen.Städtegrenze loop
+      for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. VorhandeneStädte loop
          
          StadtRecords.StadtGebautRecord'Read (Stream (File => DateiLadenExtern),
                                               Stadt);
@@ -263,6 +288,25 @@ package body LadenLogik is
          end case;
          
       end loop StadtSchleife;
+      
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         return False;
+   
+   end StädteEinheitenLaden;
+
+
+   
+   function Spezieswerte
+     (LadenPrüfenExtern : in Boolean;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      DateiLadenExtern : in File_Type)
+      return Boolean
+   is
+      use type SpeziesDatentypen.Spezies_Enum;
+   begin
             
       DiplomatieSchleife:
       for SpeziesDiplomatieSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
@@ -297,8 +341,16 @@ package body LadenLogik is
       SpielRecords.WichtigesRecord'Read (Stream (File => DateiLadenExtern),
                                          Wichtiges);
       
-      KartenRecords.CursorRecord'Read (Stream (File => DateiLadenExtern),
-                                       Cursor);
+      case
+        Speziesbelegung (SpeziesExtern).Belegung
+      is
+         when SpeziesDatentypen.Mensch_Spieler_Enum =>
+            KartenRecords.CursorRecord'Read (Stream (File => DateiLadenExtern),
+                                             Cursor);
+            
+         when others =>
+            null;
+      end case;
             
       case
         LadenPrüfenExtern
@@ -306,10 +358,16 @@ package body LadenLogik is
          when True =>
             SchreibeWichtiges.GanzerEintrag (SpeziesExtern => SpeziesExtern,
                                              EintragExtern => Wichtiges);
-            SchreibeGrenzen.GanzerEintrag (SpeziesExtern => SpeziesExtern,
-                                           EintragExtern => Grenzen);
-            SchreibeCursor.GanzerEintrag (SpeziesExtern => SpeziesExtern,
-                                          EintragExtern => Cursor);
+            
+            if
+              Speziesbelegung (SpeziesExtern).Belegung = SpeziesDatentypen.Mensch_Spieler_Enum
+            then
+               SchreibeCursor.GanzerEintrag (SpeziesExtern => SpeziesExtern,
+                                             EintragExtern => Cursor);
+               
+            else
+               null;
+            end if;
             
          when False =>
             null;
@@ -318,7 +376,7 @@ package body LadenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error =>
+      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
          return False;
       
    end Spezieswerte;

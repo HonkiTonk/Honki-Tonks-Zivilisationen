@@ -84,8 +84,9 @@ package body SpeziesEntfernenLogik is
    
    
    
-   procedure SpeziesExistenzPrüfen
+   function SpeziesExistiertNoch
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+     return Boolean
    is begin
             
       EinheitenSchleife:
@@ -98,7 +99,7 @@ package body SpeziesEntfernenLogik is
                null;
                
             when others =>
-               return;
+               return True;
          end case;
          
       end loop EinheitenSchleife;
@@ -113,14 +114,16 @@ package body SpeziesEntfernenLogik is
                null;
                
             when others =>
-               return;
+               return True;
          end case;
          
       end loop StadtSchleife;
       
       SpeziesEntfernen (SpeziesExtern => SpeziesExtern);
       
-   end SpeziesExistenzPrüfen;
+      return False;
+      
+   end SpeziesExistiertNoch;
    
    
    

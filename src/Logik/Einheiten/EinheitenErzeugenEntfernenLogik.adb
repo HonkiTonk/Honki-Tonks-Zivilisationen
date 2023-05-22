@@ -1,11 +1,16 @@
+with EinheitenRecordKonstanten;
+
 with SchreibeEinheitenGebaut;
 with SchreibeWichtiges;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
+with SchreibeWeltkarte;
 
 with SichtbarkeitsberechnungssystemLogik;
 with SpeziesEntfernenLogik;
 with EinheitenmodifizierungLogik;
+with EinheitentransporterLogik;
+with Fehlermeldungssystem;
 
 package body EinheitenErzeugenEntfernenLogik is
 
@@ -55,7 +60,12 @@ package body EinheitenErzeugenEntfernenLogik is
       
       Entfernen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      SpeziesEntfernenLogik.SpeziesExistenzPrüfen (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
+      case
+        SpeziesEntfernenLogik.SpeziesExistiertNoch (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+      is
+         when others =>
+            null;
+      end case;
       
    end EinheitEntfernen;
    
@@ -117,6 +127,89 @@ package body EinheitenErzeugenEntfernenLogik is
 
       SchreibeEinheitenGebaut.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
+      EinheitenSortieren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      
    end Entfernen;
+   
+   
+      
+   -- Mit Sortierung sollte es möglich sein diverse Schleifen vorzeitig abzubrechen, die mal durchgehen. äöü
+   procedure EinheitenSortieren
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+   is
+      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   begin
+      
+      Einheitengrenze := LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
+      -- Das sollte ich eventuell noch bei einigen anderen Speichern/Ladenbereichen einbauen. äöü
+      if
+        EinheitSpeziesNummerExtern.Nummer = Einheitengrenze
+      then
+         return;
+         
+      elsif
+        EinheitSpeziesNummerExtern.Nummer > Einheitengrenze
+      then
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinheitenErzeugenEntfernenLogik.EinheitenSortieren - Einheit außerhalb der Einheitengrenze");
+         return;
+            
+      else
+         Sortierungsnummer := EinheitenKonstanten.LeerNummer;
+      end if;
+      
+      EinheitenSchleife:
+      for EinheitenSchleifenwert in reverse EinheitSpeziesNummerExtern.Nummer + 1 .. Einheitengrenze loop
+         
+         case
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitenSchleifenwert))
+         is
+            when EinheitenKonstanten.LeerID =>
+               null;
+               
+            when others =>
+               Sortierungsnummer := EinheitenSchleifenwert;
+               exit EinheitenSchleife;
+         end case;
+         
+      end loop EinheitenSchleife;
+      
+      case
+        Sortierungsnummer
+      is
+         when EinheitenKonstanten.LeerNummer =>
+            return;
+            
+         when others =>
+            SchreibeEinheitenGebaut.GanzerEintrag (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                   EintragExtern              => LeseEinheitenGebaut.GanzerEintrag (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Sortierungsnummer)));
+      
+            Transporternummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Sortierungsnummer));
+      end case;
+      
+      case
+        Transporternummer
+      is
+         when EinheitenKonstanten.LeerNummer =>
+            null;
+            
+         when others =>
+            EinheitentransporterLogik.LadungsnummerAnpassen (TransporterExtern      => (EinheitSpeziesNummerExtern.Spezies, Transporternummer),
+                                                             LadungsnummerAltExtern => Sortierungsnummer,
+                                                             LadungsnummerNeuExtern => EinheitSpeziesNummerExtern.Nummer);
+      end case;
+      
+      EinheitentransporterLogik.LadungAnpassen (TransporterExtern => EinheitSpeziesNummerExtern);
+      
+      SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern          => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Sortierungsnummer)),
+                                          EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Sortierungsnummer));
+      
+      SchreibeEinheitenGebaut.GanzerEintrag (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Sortierungsnummer),
+                                             EintragExtern              => EinheitenRecordKonstanten.LeerEinheit);
+      
+      SchreibeWeltkarte.EinheitSchreiben (KoordinatenExtern          => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                          EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                          EinheitentauschExtern      => False);
+      
+   end EinheitenSortieren;
 
 end EinheitenErzeugenEntfernenLogik;

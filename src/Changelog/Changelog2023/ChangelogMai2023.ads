@@ -63,17 +63,28 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (22.05.2023):
+   -- Version 0.05.1105 => 0.05. (22.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.0960 => 0.05. (21.05.2023):
+   -- Version 0.05.0960 => 0.05.1105 (21.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Speichersystem gearbeitet.
+   -- Maximale Dateigröße der Speicherdateien auf unter 25 MB reduziert.
+   -- Die Cursorinformationen werden jetzt nur noch bei menschlichen Spielern mitgespeichert.
+   -- Weitere exceptions eingebaut.
+   -- Den Arbeitsspeicherverbrauch um rund 70 MB reduziert.
+   -- Städte werden jetzt sortiert, wenn eine Stadt entfernt wird.
+   -- Es werden jetzt nur noch Städte gespeichert die auch existieren.
+   -- Das Debugmenü kann in Veröffentlichungsversionen jetzt wieder aufgerufen werden.
+   -- Globales TextArray angelegt.
+   -- Einheiten werden jetzt sortiert, wenn eine Einheit entfernt wird.
+   -- Es werden jetzt nur noch Einheiten gespeichert die auch existieren.
+   -- Neues Speichersystem fertig gestellt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 
@@ -81,7 +92,7 @@ package ChangelogVorlage is
    
    -- Weiter am neuen Speichersystem gearbeitet.
    -- Maximale Dateigröße der Speicherdateien auf unter 50 MB reduziert.
-   -- Speichersystem sollte jetzt wieder fehelrfrei funktionieren.
+   -- Das Speichersystem sollte jetzt wieder fehlerfrei funktionieren.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    
@@ -176,7 +187,7 @@ package ChangelogVorlage is
    
    -- Eingabe von Spielstandnamen überarbeitet, es sollte jetzt nicht mehr möglich sein ungültige Namen unter Windows einzugeben.
    -- Es sollte jetzt nicht mehr möglich sein ungültige Spielstandnamen unter Linux einzugeben.
-   -- Neu gebaute Einheiten werden jetzt nur noch auf Felder platzeirt, welche zur bauenden Stadt gehören.
+   -- Neu gebaute Einheiten werden jetzt nur noch auf Felder platziert, welche zur bauenden Stadt gehören.
    -- Neu gebaute Schiffe werden jetzt nur noch in der Stadt platziert, wenn direkt ein Seefeld angrenzt.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
