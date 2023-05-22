@@ -74,7 +74,7 @@ package ChangelogVorlage is
    
    -- Weiter am neuen Speichersystem gearbeitet.
    -- Maximale Dateigröße der Speicherdateien auf unter 25 MB reduziert.
-   -- Die Cursorinformationen werden jetzt nur noch bei menschlichen Spielern mitgespeichert.
+   -- Die Cursorinformationen werden jetzt nur noch bei menschlichen Spielern gespeichert.
    -- Weitere exceptions eingebaut.
    -- Den Arbeitsspeicherverbrauch um rund 70 MB reduziert.
    -- Städte werden jetzt sortiert, wenn eine Stadt entfernt wird.
