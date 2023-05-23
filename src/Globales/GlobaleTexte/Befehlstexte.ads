@@ -5,6 +5,6 @@ package Befehlstexte is
    pragma Elaborate_Body;
 
    -- Die Stadt und Kartenbefehle getrennt voneinander oder zusammen? äöü
-   Stadtbefehle : TextArrays.TexteArray (1 .. 6) := (others => TextKonstanten.FehlenderText);
+   Stadtbefehle : TextArrays.AllgemeinesTextArray (1 .. 6) := (others => TextKonstanten.FehlenderText);
 
 end Befehlstexte;

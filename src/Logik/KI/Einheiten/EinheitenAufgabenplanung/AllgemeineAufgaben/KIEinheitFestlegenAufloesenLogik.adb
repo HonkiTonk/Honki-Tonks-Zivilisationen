@@ -105,7 +105,7 @@ package body KIEinheitFestlegenAufloesenLogik is
         and
           LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
                                                    IDExtern           => EinheitID,
-                                                   WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)
+                                                   WelcheKostenExtern => ProduktionDatentypen.Material_Enum)
         > 0
       then
          return True;

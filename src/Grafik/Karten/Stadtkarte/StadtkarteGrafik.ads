@@ -1,4 +1,3 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Calendar; use Ada.Calendar;
 
 private with Sf.System.Vector2;
@@ -10,6 +9,7 @@ with StadtGrafikRecords;
 private with StadtDatentypen;
 private with KartenRecords;
 private with GrafikRecordKonstanten;
+private with TextArrays;
 
 with LeseSpeziesbelegung;
 
@@ -43,8 +43,7 @@ private
    Grafikgröße : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
 
-   type GebäudetexteArray is array (1 .. 10) of Unbounded_Wide_Wide_String;
-   Gebäudetexte : GebäudetexteArray;
+   Gebäudetexte : TextArrays.AllgemeinesTextArray (1 .. 10);
 
    procedure GrafischeDarstellung
      (GrundExtern : in KartenRecords.KartengrundRecord);

@@ -49,17 +49,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (24.05.2023):
+   -- Version 0.05.1255 => 0.05. (24.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1215 => 0.05. (23.05.2023):
+   -- Version 0.05.1215 => 0.05.1255 (23.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Soweit möglich überall TextArrays.AllgemeinesTextArray eingebaut.
+   -- Angefangen die Festlegung der Kartenfelderproduktionswerte zu überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

@@ -37,13 +37,14 @@ package KartenKonstanten is
    LeerBewertung : constant BewertungDatentypen.Bewertung_Enum := BewertungDatentypen.Bewertung_Enum'First;
    
    LeerSichtbar : constant Boolean := False;
-         
+   
+   -- Den ganzen Prdouktionsabschnitt mal nach ProduktionKonstanten schieben? äöü
    LeerVerbesserungBewertung : constant BewertungDatentypen.Bewertung_Enum := BewertungDatentypen.Bewertung_Enum'First;
    LeerVerbesserungWirtschaft : constant ProduktionDatentypen.Einzelproduktion := ProduktionDatentypen.Einzelproduktion'First;
    LeerVerbesserungKampf : constant KampfDatentypen.KampfwerteKarte := KampfDatentypen.KampfwerteEinheiten'First;
    
    WirtschaftNahrung : constant ProduktionDatentypen.Wirtschaft_Enum := ProduktionDatentypen.Nahrung_Enum;
-   WirtschaftProduktion : constant ProduktionDatentypen.Wirtschaft_Enum := ProduktionDatentypen.Produktion_Enum;
+   WirtschaftMaterial : constant ProduktionDatentypen.Wirtschaft_Enum := ProduktionDatentypen.Material_Enum;
    WirtschaftGeld : constant ProduktionDatentypen.Wirtschaft_Enum := ProduktionDatentypen.Geld_Enum;
    WirtschaftForschung : constant ProduktionDatentypen.Wirtschaft_Enum := ProduktionDatentypen.Forschung_Enum;
    KampfVerteidigung : constant KampfDatentypen.Kampf_Enum := KampfDatentypen.Verteidigung_Enum;

@@ -12,6 +12,7 @@ with StadtGrafikRecords;
 private with GrafikRecordKonstanten;
 private with ProduktionDatentypen;
 private with TextaccessVariablen;
+private with TextArrays;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -85,8 +86,7 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
    Mausposition : Sf.System.Vector2.sfVector2f;
       
-   type FestzulegenderTextArray is array (TextaccessVariablen.StadtInformationenAccess'Range) of Unbounded_Wide_Wide_String;
-   FestzulegenderText : FestzulegenderTextArray;
+   FestzulegenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.StadtInformationenAccess'Range);
    
    
    

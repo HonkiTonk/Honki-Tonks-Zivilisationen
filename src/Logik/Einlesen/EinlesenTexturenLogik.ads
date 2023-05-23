@@ -2,6 +2,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with SpeziesDatentypen;
+private with TextArrays;
 
 package EinlesenTexturenLogik is
    pragma Elaborate_Body;
@@ -32,8 +33,7 @@ private
    DateiEinheiten : File_Type;
    DateiGebäude : File_Type;
 
-   type SpeziesverzeichnisseArray is array (1 .. 3) of Unbounded_Wide_Wide_String;
-   Speziesverzeichnisse : SpeziesverzeichnisseArray;
+   Speziesverzeichnisse : TextArrays.AllgemeinesTextArray (1 .. 3);
 
    procedure EinlesenSystem;
    procedure EinlesenHintergrund;

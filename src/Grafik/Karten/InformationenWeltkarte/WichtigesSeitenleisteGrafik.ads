@@ -11,6 +11,7 @@ private with ProduktionDatentypen;
 private with GrafikRecordKonstanten;
 private with ForschungenDatentypen;
 private with ZahlenDatentypen;
+private with TextArrays;
 
 with LeseWeltkarteneinstellungen;
 with LeseSpeziesbelegung;
@@ -50,8 +51,7 @@ private
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
    
-   type FestzulegenderTextArray is array (TextaccessVariablen.KarteWichtigesAccess'Range) of Unbounded_Wide_Wide_String;
-   FestzulegenderText : FestzulegenderTextArray;
+   FestzulegenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.KarteWichtigesAccess'Range);
 
    
    

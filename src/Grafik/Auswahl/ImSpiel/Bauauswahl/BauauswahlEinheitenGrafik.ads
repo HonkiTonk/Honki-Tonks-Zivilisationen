@@ -1,11 +1,10 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
 with EinheitenDatentypen;
 
 private with GrafikRecordKonstanten;
+private with TextArrays;
 
 with LeseSpeziesbelegung;
 
@@ -27,8 +26,7 @@ private
 
    Transportkapazität : EinheitenDatentypen.Transportplätze;
    
-   type EinheitentexteArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
-   Einheitentexte : EinheitentexteArray;
+   Einheitentexte : TextArrays.AllgemeinesTextArray (1 .. 11);
 
    Textbreite : Float;
    

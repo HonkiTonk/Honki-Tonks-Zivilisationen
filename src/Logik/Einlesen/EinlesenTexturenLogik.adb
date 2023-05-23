@@ -574,7 +574,7 @@ package body EinlesenTexturenLogik is
       SpeziesschleifeSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          EinzelpfadeEinlesenSchleife:
-         for EinzelpfadeEinlesenSchleifenwert in SpeziesverzeichnisseArray'Range loop
+         for EinzelpfadeEinlesenSchleifenwert in Speziesverzeichnisse'Range loop
          
             case
               EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSpezies,

@@ -6,7 +6,7 @@ package Spieltexte is
    IntroEnde : constant Positive := 1;
    OutroEnde : constant Positive := 4;
    
-   Intro : TextArrays.TexteArray (1 .. IntroEnde);
-   Outro : TextArrays.TexteArray (1 .. OutroEnde);
+   Intro : TextArrays.AllgemeinesTextArray (1 .. IntroEnde);
+   Outro : TextArrays.AllgemeinesTextArray (1 .. OutroEnde);
 
 end Spieltexte;

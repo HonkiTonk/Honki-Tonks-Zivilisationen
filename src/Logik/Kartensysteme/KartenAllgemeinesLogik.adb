@@ -8,6 +8,7 @@ with LeseWeltkarte;
 with LeseKartenDatenbanken;
 with LeseVerbesserungenDatenbank;
 
+-- Ist das hier überhaupt nötig? Es leitet ja das Zeug immer nur an die LeseDatenbanken weiter, die könnte ich auch direkt aufrufen. äöü
 package body KartenAllgemeinesLogik is
    
    -- Später mal ein besseres Berechnungssystem einbauen. äöü
@@ -51,7 +52,7 @@ package body KartenAllgemeinesLogik is
       
       Basiswirtschaft := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund.Basisgrund,
                                                                      SpeziesExtern       => SpeziesExtern,
-                                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+                                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftMaterial);
       
       case
         Gesamtgrund.Zusatzgrund
@@ -62,7 +63,7 @@ package body KartenAllgemeinesLogik is
          when others =>
             Zusatzwirtschaft := LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Gesamtgrund.Zusatzgrund,
                                                                              SpeziesExtern       => SpeziesExtern,
-                                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+                                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftMaterial);
             
             return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / GrafikKonstanten.Halbierung + Float (Zusatzwirtschaft) / GrafikKonstanten.Halbierung);
       end case;
@@ -232,7 +233,7 @@ package body KartenAllgemeinesLogik is
          when others =>
             return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
                                                           SpeziesExtern       => SpeziesExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftMaterial);
       end case;
       
    end FlussProduktion;
@@ -400,7 +401,7 @@ package body KartenAllgemeinesLogik is
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
                                                               SpeziesExtern     => SpeziesExtern,
-                                                              WelcherWertExtern => KartenKonstanten.WirtschaftProduktion);
+                                                              WelcherWertExtern => KartenKonstanten.WirtschaftMaterial);
       end case;
       
    end WegProduktion;
@@ -544,7 +545,7 @@ package body KartenAllgemeinesLogik is
          when others =>
             return LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => KartenVerbesserung,
                                                                        SpeziesExtern      => SpeziesExtern,
-                                                                       WelcherWertExtern  => KartenKonstanten.WirtschaftProduktion);
+                                                                       WelcherWertExtern  => KartenKonstanten.WirtschaftMaterial);
       end case;
       
    end VerbesserungProduktion;
@@ -688,7 +689,7 @@ package body KartenAllgemeinesLogik is
          when others =>
             return LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => KartenRessource,
                                                                SpeziesExtern       => SpeziesExtern,
-                                                               WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+                                                               WirtschaftArtExtern => KartenKonstanten.WirtschaftMaterial);
       end case;
       
    end RessourceProduktion;

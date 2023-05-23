@@ -1,3 +1,5 @@
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with Views;
 with GrafikDatentypen;
 with TextnummernKonstanten;
@@ -51,7 +53,7 @@ package body BauauswahlEinheitenGrafik is
                                                                                                                                            WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
       Einheitentexte (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteProduktionskosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
                                                                                                                                                   IDExtern           => AuswahlExtern,
-                                                                                                                                                  WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)'Wide_Wide_Image;
+                                                                                                                                                  WelcheKostenExtern => ProduktionDatentypen.Material_Enum)'Wide_Wide_Image;
       Einheitentexte (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => SpeziesExtern,
                                                                                                                                        IDExtern      => AuswahlExtern)'Wide_Wide_Image;
       Einheitentexte (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => SpeziesExtern,
@@ -100,7 +102,7 @@ package body BauauswahlEinheitenGrafik is
       Textbreite := GrafikKonstanten.Nullwert;
       
       InformationenSchleife:
-      for InformationSchleifenwert in EinheitentexteArray'Range loop
+      for InformationSchleifenwert in Einheitentexte'Range loop
          
          TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                                       TextExtern       => To_Wide_Wide_String (Source => Einheitentexte (InformationSchleifenwert)),

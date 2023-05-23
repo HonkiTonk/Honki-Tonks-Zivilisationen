@@ -1,11 +1,10 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
 with StadtDatentypen;
 
 private with GrafikRecordKonstanten;
+private with TextArrays;
 
 with LeseSpeziesbelegung;
 
@@ -24,8 +23,7 @@ package BauauswahlGebaeudeGrafik is
    
 private
    
-   type GebäudetexteArray is array (1 .. 10) of Unbounded_Wide_Wide_String;
-   Gebäudetexte : GebäudetexteArray;
+   Gebäudetexte : TextArrays.AllgemeinesTextArray (1 .. 10);
 
    Textbreite : Float;
    

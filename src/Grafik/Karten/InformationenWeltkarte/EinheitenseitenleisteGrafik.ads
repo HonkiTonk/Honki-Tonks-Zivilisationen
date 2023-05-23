@@ -14,6 +14,7 @@ private with StadtDatentypen;
 private with GrafikRecordKonstanten;
 private with AufgabenDatentypen;
 private with KartenRecords;
+private with TextArrays;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -72,8 +73,7 @@ private
    
    Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   type FestzulegenderTextArray is array (TextaccessVariablen.EinheitenInformationenAccess'Range) of Unbounded_Wide_Wide_String;
-   FestzulegenderText : FestzulegenderTextArray;
+   FestzulegenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.EinheitenInformationenAccess'Range);
    
    
    

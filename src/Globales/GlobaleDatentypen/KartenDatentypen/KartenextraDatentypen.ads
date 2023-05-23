@@ -14,7 +14,7 @@ package KartenextraDatentypen is
                             Kohle_Enum, Eisen_Enum, Öl_Enum, Hochwertiger_Boden_Enum, Gold_Enum
                                      
                             -- Kernressourcen
-                                   
+                            
                            );
    pragma Ordered (Ressourcen_Enum);
    

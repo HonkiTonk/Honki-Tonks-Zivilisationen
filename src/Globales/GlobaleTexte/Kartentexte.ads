@@ -9,15 +9,16 @@ package Kartentexte is
    
    NameBeschreibungMultiplikator : constant Positive := 2;
    
-   Basisgrund : TextArrays.TexteArray (1 .. NameBeschreibungMultiplikator * KartengrundDatentypen.Basisgrund_Enum'Pos (KartengrundDatentypen.Basisgrund_Enum'Last)) := (others => TextKonstanten.FehlenderText);
-   Zusatzgrund : TextArrays.TexteArray (1 .. NameBeschreibungMultiplikator * KartengrundDatentypen.Zusatzgrund_Enum'Pos (KartengrundDatentypen.Zusatzgrund_Enum'Last)) := (others => TextKonstanten.FehlenderText);
-   Kartenflüsse : TextArrays.TexteArray (1 .. NameBeschreibungMultiplikator * KartenextraDatentypen.Fluss_Enum'Pos (KartenextraDatentypen.Fluss_Enum'Last)) := (others => TextKonstanten.FehlenderText);
-   Kartenressourcen : TextArrays.TexteArray (1 .. NameBeschreibungMultiplikator * KartenextraDatentypen.Ressourcen_Enum'Pos (KartenextraDatentypen.Ressourcen_Enum'Last)) := (others => TextKonstanten.FehlenderText);
-   Feldeffekte : TextArrays.TexteArray (1 .. NameBeschreibungMultiplikator * KartengrundDatentypen.Effekt_Kartenfeld_Enum'Pos (KartengrundDatentypen.Effekt_Kartenfeld_Enum'Last))
+   Basisgrund : TextArrays.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartengrundDatentypen.Basisgrund_Enum'Pos (KartengrundDatentypen.Basisgrund_Enum'Last)) := (others => TextKonstanten.FehlenderText);
+   Zusatzgrund : TextArrays.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartengrundDatentypen.Zusatzgrund_Enum'Pos (KartengrundDatentypen.Zusatzgrund_Enum'Last)) := (others => TextKonstanten.FehlenderText);
+   Kartenflüsse : TextArrays.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenextraDatentypen.Fluss_Enum'Pos (KartenextraDatentypen.Fluss_Enum'Last)) := (others => TextKonstanten.FehlenderText);
+   Kartenressourcen : TextArrays.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenextraDatentypen.Ressourcen_Enum'Pos (KartenextraDatentypen.Ressourcen_Enum'Last))
+     := (others => TextKonstanten.FehlenderText);
+   Feldeffekte : TextArrays.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartengrundDatentypen.Effekt_Kartenfeld_Enum'Pos (KartengrundDatentypen.Effekt_Kartenfeld_Enum'Last))
      := (others => TextKonstanten.FehlenderText);
    
-   Verbesserungen : TextArrays.TexteArray (1 .. NameBeschreibungMultiplikator * KartenverbesserungDatentypen.Verbesserung_Enum'Pos (KartenverbesserungDatentypen.Verbesserung_Enum'Last))
+   Verbesserungen : TextArrays.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenverbesserungDatentypen.Verbesserung_Enum'Pos (KartenverbesserungDatentypen.Verbesserung_Enum'Last))
      := (others => TextKonstanten.FehlenderText);
-   Wege : TextArrays.TexteArray (1 .. NameBeschreibungMultiplikator * KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Weg_Enum'Last)) := (others => TextKonstanten.FehlenderText);
+   Wege : TextArrays.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenverbesserungDatentypen.Weg_Enum'Pos (KartenverbesserungDatentypen.Weg_Enum'Last)) := (others => TextKonstanten.FehlenderText);
 
 end Kartentexte;

@@ -1,3 +1,5 @@
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with Views;
 with KartengrundDatentypen;
 with ViewKonstanten;
@@ -184,14 +186,14 @@ package body StadtkarteGrafik is
       Gebäudetexte (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteProduktionskosten)
         & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
                                                   IDExtern           => GebäudeIDExtern,
-                                                  WelcheKostenExtern => ProduktionDatentypen.Produktion_Enum)'Wide_Wide_Image;
+                                                  WelcheKostenExtern => ProduktionDatentypen.Material_Enum)'Wide_Wide_Image;
       Gebäudetexte (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterNahrungsbonus) & LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => SpeziesExtern,
                                                                                                                                             IDExtern              => GebäudeIDExtern,
                                                                                                                                             WirtschaftBonusExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
       Gebäudetexte (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterProduktionsbonus)
         & LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => SpeziesExtern,
                                                  IDExtern              => GebäudeIDExtern,
-                                                 WirtschaftBonusExtern => ProduktionDatentypen.Produktion_Enum)'Wide_Wide_Image;
+                                                 WirtschaftBonusExtern => ProduktionDatentypen.Material_Enum)'Wide_Wide_Image;
       Gebäudetexte (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterGeldbonus) & LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => SpeziesExtern,
                                                                                                                                         IDExtern              => GebäudeIDExtern,
                                                                                                                                         WirtschaftBonusExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
@@ -212,7 +214,7 @@ package body StadtkarteGrafik is
                                                                           TextbreiteExtern => Textbreite);
       
       InformationenSchleife:
-      for InformationSchleifenwert in GebäudetexteArray'Range loop
+      for InformationSchleifenwert in Gebäudetexte'Range loop
          
          TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                                  TextExtern       => To_Wide_Wide_String (Source => Gebäudetexte (InformationSchleifenwert)),

@@ -1,9 +1,14 @@
+with ProduktionKonstanten;
+
+with LeseWeltkarte;
+with LeseKartenDatenbanken;
+
 with KartenAllgemeinesLogik;
 with KartenfeldereffekteLogik;
 
 -- Das hier wird von Logik und Grafik aufgerufen, zum Berechnen der Stadtproduktion bei Rundenende und zur Anzeige der aktuellen Produktionswerte eines Feldes.
 -- Sollte aber keine Probleme machen, da man nicht gleichzeitig in der Stadt und im Rundenende sein kann.
--- Aber könnte das nciht auch bei einer Umbelegung gleichzeitig aufgerufen werden? äöü
+-- Aber könnte das nicht auch bei einer Umbelegung gleichzeitig aufgerufen werden? äöü
 package body KartenfelderwerteLogik is
 
    function FeldNahrung
@@ -14,17 +19,57 @@ package body KartenfelderwerteLogik is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      return (KartenAllgemeinesLogik.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                   SpeziesExtern     => SpeziesExtern)
-              + KartenAllgemeinesLogik.RessourceNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                         SpeziesExtern     => SpeziesExtern)
-              + KartenAllgemeinesLogik.WegNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                   SpeziesExtern     => SpeziesExtern)
-              + KartenAllgemeinesLogik.VerbesserungNahrung (KoordinatenExtern => KoordinatenExtern,
+      Gesamtgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
+      
+      case
+        Gesamtgrund
+      is
+         when KartengrundDatentypen.Vernichtet_Enum =>
+            return ProduktionKonstanten.LeerProduktion;
+            
+         when others =>
+            Gesamtwert := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund,
+                                                                      SpeziesExtern       => SpeziesExtern,
+                                                                      WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
+      
+            Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern);
+            
+            Gesamtwert := Gesamtwert + LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Zusatzgrund,
+                                                                                    SpeziesExtern       => SpeziesExtern,
+                                                                                    WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
+      end case;
+      
+      Gesamtwert := ProduktionDatentypen.Feldproduktion (Float'Ceiling (Float (Gesamtwert) * Ressourcenbonus (KartenKonstanten.WirtschaftNahrung, LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern),
+                                                         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern))));
+      
+      case
+        LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern)
+      is
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
+            null;
+            
+         when others =>
+            null;
+      end case;
+      
+      if
+        Gesamtwert < ProduktionKonstanten.LeerProduktion
+      then
+         return ProduktionKonstanten.LeerProduktion;
+         
+      else
+         return (KartenAllgemeinesLogik.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
+                                                      SpeziesExtern     => SpeziesExtern)
+                 + KartenAllgemeinesLogik.RessourceNahrung (KoordinatenExtern => KoordinatenExtern,
                                                             SpeziesExtern     => SpeziesExtern)
-              + KartenAllgemeinesLogik.FlussNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                     SpeziesExtern     => SpeziesExtern))
-        / Feldeffektteiler (KartenfeldereffekteLogik.FeldeffektVorhanden (KoordinatenExtern => KoordinatenExtern));
+                 + KartenAllgemeinesLogik.WegNahrung (KoordinatenExtern => KoordinatenExtern,
+                                                      SpeziesExtern     => SpeziesExtern)
+                 + KartenAllgemeinesLogik.VerbesserungNahrung (KoordinatenExtern => KoordinatenExtern,
+                                                               SpeziesExtern     => SpeziesExtern)
+                 + KartenAllgemeinesLogik.FlussNahrung (KoordinatenExtern => KoordinatenExtern,
+                                                        SpeziesExtern     => SpeziesExtern))
+           / Feldeffektteiler (KartenfeldereffekteLogik.FeldeffektVorhanden (KoordinatenExtern => KoordinatenExtern));
+      end if;
       
    end FeldNahrung;
      

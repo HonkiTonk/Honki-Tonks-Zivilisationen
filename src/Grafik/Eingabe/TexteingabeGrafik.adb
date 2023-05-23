@@ -212,10 +212,10 @@ package body TexteingabeGrafik is
    is begin
       
       VerboteneNamenSchleife:
-      for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneNamenArray'Range loop
+      for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneNamen'Range loop
          
          if
-           To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneName (VerboteneNamenSchleifenwert))
+           To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneNamen (VerboteneNamenSchleifenwert))
          then
             return False;
          
@@ -287,7 +287,7 @@ package body TexteingabeGrafik is
       
       
       VerboteneNamenSchleife:
-      for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenArray'Range loop
+      for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenGroß'Range loop
          
          if
            To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length < To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Length
