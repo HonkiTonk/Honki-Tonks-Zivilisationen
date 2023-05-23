@@ -138,26 +138,6 @@ package body EinheitVerbessernLogik is
                                                                     SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies);
       end case;
       
-      -- Wenn die Nummer ungleich Null ist, dann sollte die ID auch immer ungleich Null sein, kann die erste Prüfung dann nicht raus? äöü
-      -- Dann könnte ich auch einfach return TransporterGroßGenug machen. äöü
-      -- if
-      --   TransporterID = EinheitenKonstanten.LeerID
-      --  then
-      --    null;
-         
-      -- elsif
-      -- False = EinheitentransporterLogik.TransporterGroßGenug (LadungExtern      => NeueIDExtern,
-      --                                                          TransporterExtern => TransporterID,
-      --                                                           SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies)
-      -- then
-      --    return False;
-         
-      -- else
-      --    null;
-      -- end if;
-      
-    --  return True;
-      
    end WeiterhinTransportierbar;
    
    

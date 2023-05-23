@@ -27,7 +27,15 @@ package body SpeziesEntfernenLogik is
       EinheitenSchleife:
       for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
          
-         SchreibeEinheitenGebaut.Nullsetzung (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert));
+         case
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert))
+         is
+            when EinheitenKonstanten.LeerID =>
+               exit EinheitenSchleife;
+               
+            when others =>
+               SchreibeEinheitenGebaut.Nullsetzung (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert));
+         end case;
          
       end loop EinheitenSchleife;
       
@@ -38,7 +46,7 @@ package body SpeziesEntfernenLogik is
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
             when StadtKonstanten.LeerID =>
-               null;
+               exit StadtSchleife;
                
             when others =>
                SchreibeStadtGebaut.Nullsetzung (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
@@ -86,7 +94,7 @@ package body SpeziesEntfernenLogik is
    
    function SpeziesExistiertNoch
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-     return Boolean
+      return Boolean
    is begin
             
       EinheitenSchleife:
@@ -96,7 +104,7 @@ package body SpeziesEntfernenLogik is
            LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert))
          is
             when EinheitenKonstanten.LeerID =>
-               null;
+               exit EinheitenSchleife;
                
             when others =>
                return True;
@@ -111,7 +119,7 @@ package body SpeziesEntfernenLogik is
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
             when StadtKonstanten.LeerID =>
-               null;
+               exit StadtSchleife;
                
             when others =>
                return True;

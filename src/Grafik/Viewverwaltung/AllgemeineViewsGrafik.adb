@@ -150,7 +150,7 @@ package body AllgemeineViewsGrafik is
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
 
       Viewfläche (Frage_Enum) := (Textbreite, Textposition.y);
       

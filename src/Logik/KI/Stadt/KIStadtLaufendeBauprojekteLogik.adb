@@ -20,9 +20,12 @@ package body KIStadtLaufendeBauprojekteLogik is
       for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) loop
             
          if
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert)) = StadtKonstanten.LeerID
+         then
+            exit StadtSchleife;
+            
+         elsif
            StadtNummerSchleifenwert = StadtSpeziesNummerExtern.Nummer
-           or
-             LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
          then
             null;
             
@@ -60,9 +63,12 @@ package body KIStadtLaufendeBauprojekteLogik is
       for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) loop
             
          if
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert)) = StadtKonstanten.LeerID
+         then
+            exit StadtSchleife;
+            
+         elsif
            StadtNummerSchleifenwert = StadtSpeziesNummerExtern.Nummer
-           or
-             LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
          then
             null;
                
@@ -101,9 +107,9 @@ package body KIStadtLaufendeBauprojekteLogik is
       for StadtSchleifenwert in StadtDatentypen.MaximaleStädte'First .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
          
          if
-           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) = StadtKonstanten.LeerID
          then
-            null;
+            exit StadtSchleife;
             
          elsif
            LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)).Einheit = StadtKonstanten.LeerBauprojekt.Einheit

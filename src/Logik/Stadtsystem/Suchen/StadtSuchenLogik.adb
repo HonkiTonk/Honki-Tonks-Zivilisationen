@@ -126,7 +126,7 @@ package body StadtSuchenLogik is
                   if
                     LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtNummerSchleifenwert)) = StadtKonstanten.LeerID
                   then
-                     null;
+                     exit StadtSchleife;
                      
                   elsif
                     LeseStadtGebaut.Name (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtNummerSchleifenwert)) = StadtName.EingegebenerText

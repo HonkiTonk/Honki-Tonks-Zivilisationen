@@ -1,5 +1,4 @@
 with WichtigesKonstanten;
-with KartenverbesserungDatentypen;
 with StadtKonstanten;
 
 with SchreibeWichtiges;
@@ -36,8 +35,8 @@ package body GlobalesWachstumLogik is
          case
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
-            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-               null;
+            when StadtKonstanten.LeerID =>
+               exit StadtSchleife;
                
             when others =>
                if

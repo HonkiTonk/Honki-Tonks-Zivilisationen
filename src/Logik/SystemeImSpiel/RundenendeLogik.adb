@@ -3,7 +3,6 @@ with TextnummernKonstanten;
 with GrafikDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with KartenverbesserungDatentypen;
 with WichtigesKonstanten;
 
 with SchreibeWichtiges;
@@ -118,7 +117,7 @@ package body RundenendeLogik is
            LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert))
          is
             when EinheitenKonstanten.LeerID =>
-               null;
+               exit EinheitenSchleife;
                   
             when others =>
                EinheitenmodifizierungLogik.HeilungBewegungspunkteNeueRunde (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert));
@@ -141,8 +140,8 @@ package body RundenendeLogik is
          case
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
-            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-               null;
+            when StadtKonstanten.LeerID =>
+               exit StadtSchleife;
                
             when others =>
                StadtmaterialwachstumLogik.Material (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));

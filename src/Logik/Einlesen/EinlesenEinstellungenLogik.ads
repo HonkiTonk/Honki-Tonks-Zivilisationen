@@ -14,15 +14,17 @@ package EinlesenEinstellungenLogik is
 private
    
    Nullwert : Boolean;
-   PrüfungErfolgreich : Boolean;
       
    DateiNutzereinstellungen : File_Type;
    DateiGrafikeinstellungen : File_Type;
    DateiSoundeinstellungen : File_Type;
-      
+   DateiSonstigeEinstellungen : File_Type;
+         
    ZwischenspeicherNutzereinstellungen : SystemRecords.NutzerEinstellungenRecord;
    
    Fenstereinstellungen : GrafikRecords.FensterRecord;
+   
+   ZwischenspeicherSonstigeEinstellungen : SystemRecords.SonstigeEinstellungenRecord;
    
    ZwischenspeicherGrafikeinstellungen : GrafikRecords.GrafikeinstellungenRecord;
    
@@ -40,19 +42,28 @@ private
    procedure Nutzereinstellungen;
    procedure Grafikeinstellungen;
    procedure Toneinstelllungen;
+   procedure SonstigeEinstellungen;
    
    
    
    function NutzereinstellungenDurchgehen
-     (LadenPrüfenExtern : in Boolean)
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
       return Boolean;
    
    function GrafikeinstellungenDurchgehen
-     (LadenPrüfenExtern : in Boolean)
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
       return Boolean;
    
    function ToneinstellungenDurchgehen
-     (LadenPrüfenExtern : in Boolean)
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean;
+   
+   function SonstigeEinstellungenDurchgehen
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
       return Boolean;
 
 end EinlesenEinstellungenLogik;

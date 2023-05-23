@@ -1,5 +1,4 @@
 with EinheitenKonstanten;
-with KartenverbesserungDatentypen;
 with LadezeitenDatentypen;
 with StadtKonstanten;
 
@@ -45,7 +44,7 @@ package body KILogik is
            LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitenSchleifenwert))
          is
             when EinheitenKonstanten.LeerID =>
-               null;
+               exit EinheitenSchleife;
             
             when others =>
                KIEinheitLogik.Einheit (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitenSchleifenwert));
@@ -84,8 +83,8 @@ package body KILogik is
          case
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
-            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-               null;
+            when StadtKonstanten.LeerID =>
+               exit StadtSchleife;
                
             when others =>
                KIStadtLogik.KIStadt (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));

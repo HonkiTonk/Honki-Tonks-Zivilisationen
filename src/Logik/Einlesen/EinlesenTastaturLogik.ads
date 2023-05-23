@@ -9,7 +9,6 @@ package EinlesenTastaturLogik is
    
 private
    
-   PrüfungErfolgreich : Boolean;
    Nullwert : Boolean;
    
    TastenbelegungLaden : File_Type;
@@ -23,7 +22,8 @@ private
    
    
    function TastaturbelegungDurchgehen
-     (LadenPrüfenExtern : in Boolean)
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
       return Boolean;
 
 end EinlesenTastaturLogik;

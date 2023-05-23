@@ -58,7 +58,7 @@ package body KIEinheitFestlegenModernisierenLogik is
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtSchleifenwert))
          is
             when StadtKonstanten.LeerID =>
-               null;
+               exit StadtSchleife;
                
             when others =>
                PlatzGefunden := EinheitVerbessernPlatz (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtSchleifenwert),

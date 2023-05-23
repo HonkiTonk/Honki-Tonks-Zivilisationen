@@ -11,12 +11,18 @@ package body TransporterSuchenLogik is
    is
       use type EinheitenDatentypen.Transport_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
    begin
       
-      EinheitSchleife:
+      EinheitenSchleife:
       for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
          
          if
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert)) = EinheitenKonstanten.LeerID
+         then
+            exit EinheitenSchleife;
+         
+         elsif
            LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert)) /= KoordinatenExtern
          then
             null;
@@ -31,7 +37,7 @@ package body TransporterSuchenLogik is
             return EinheitNummerSchleifenwert;
          end if;
          
-      end loop EinheitSchleife;
+      end loop EinheitenSchleife;
       
       return EinheitenKonstanten.LeerNummer;
       

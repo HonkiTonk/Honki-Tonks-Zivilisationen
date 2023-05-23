@@ -3,6 +3,7 @@ with VerzeichnisKonstanten;
 with GrafikRecords;
 with TonRecords;
 with TastenbelegungDatenbank;
+with OptionenVariablen;
 
 with LeseOptionen;
 with LeseEinstellungenSound;
@@ -100,5 +101,23 @@ package body SchreibenEinstellungenLogik is
       Close (File => DateiTastenbelegung);
       
    end TastenbelegungSchreiben;
+   
+   
+   
+   -- Hier später wieder den direkten Zugriff auf OptionenVariablen entfernen. äöü
+   procedure SonstigeEinstellungenSpeichern
+   is begin
+      
+      Create (File => DateiSonstigeEinstellungen,
+              Mode => Out_File,
+              Name => VerzeichnisKonstanten.SonstigeEinstellungen,
+              Form => "WCEM=8");
+      
+      SystemRecords.SonstigeEinstellungenRecord'Write (Stream (File => DateiSonstigeEinstellungen),
+                                                       OptionenVariablen.SonstigeEinstellungen);
+      
+      Close (File => DateiSonstigeEinstellungen);
+      
+   end SonstigeEinstellungenSpeichern;
 
 end SchreibenEinstellungenLogik;

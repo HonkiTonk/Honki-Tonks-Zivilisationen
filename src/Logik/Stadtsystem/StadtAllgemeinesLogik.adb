@@ -48,6 +48,16 @@ package body StadtAllgemeinesLogik is
       
       Stadtgrenze := LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern);
       
+      case
+        Stadtgrenze
+      is
+         when StadtKonstanten.LeerNummer =>
+            return;
+            
+         when others =>
+            null;
+      end case;
+      
       FreierPlatzSchleife:
       for FreierPlatzSchleifenwert in StadtKonstanten.AnfangNummer .. Stadtgrenze - 1 loop
 
@@ -116,10 +126,11 @@ package body StadtAllgemeinesLogik is
                HeimatstadtSchleife:
                for HeimaststadtSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
                
+                  -- Da die Einheiten inzwischen sortiert werden, sollte es hier immer möglich sein die Schleife zu verlassen.
                   if
                     LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, HeimaststadtSchleifenwert)) = EinheitenKonstanten.LeerID
                   then
-                     null;
+                     exit HeimatstadtSchleife;
                   
                   elsif
                     LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (SpeziesExtern, HeimaststadtSchleifenwert)) = AlterPlatz
@@ -139,6 +150,8 @@ package body StadtAllgemeinesLogik is
                                                   EintragExtern            => StadtRecordKonstanten.LeerStadt);
                
                -- Sollte ich hier noch den Stadtnamen für die KI anpassen? Sonst hat sie doppelte Stadtnamen. äöü
+               -- Besser eine Nummer für die KI festlegen diese auch Speichern/Laden, und dann für Stadtnamen verwenden. äöü
+               -- Mehr als 100 Stadtnamen einbauen, um Doppelnennung zu reduzieren? äöü
             
             when others =>
                null;

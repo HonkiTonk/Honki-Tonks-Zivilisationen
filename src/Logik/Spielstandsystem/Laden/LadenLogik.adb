@@ -48,25 +48,20 @@ package body LadenLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)),
                   Form => "WCEM=8");
-            
-            PrüfungErfolgreich := Prüfen (DateiLadenExtern => DateiLaden);
          end if;
-                  
-         Close (File => DateiLaden);
                         
          case
-           PrüfungErfolgreich
+           Prüfen (DateiLadenExtern => DateiLaden)
          is
             when False =>
                MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungUnladbar);
+               Close (File => DateiLaden);
                
             when True =>
                StandardSpielwerteSetzenLogik.Standardspielwerte (EinstellungenBehaltenExtern => True);
                
-               Open (File => DateiLaden,
-                     Mode => In_File,
-                     Name => VerzeichnisKonstanten.SpielstandStrich & Encode (Item => To_Wide_Wide_String (Source => Spielstandname)),
-                     Form => "WCEM=8");
+               Set_Index (File => DateiLaden,
+                          To   => 1);
                
                Ladevorgang (DateiLadenExtern => DateiLaden);
       
@@ -147,6 +142,7 @@ package body LadenLogik is
         
    
    
+   -- Hier mal eine Möglichkeit finden die Speziesbelegung nicht einfach Prozedur/Funktionsübergreifend zu nutzen. äöü
    function AllgemeinesLaden
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)

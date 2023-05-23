@@ -20,6 +20,7 @@ package body EinlesenEinstellungenLogik is
       Nutzereinstellungen;
       Grafikeinstellungen;
       Toneinstelllungen;
+      SonstigeEinstellungen;
       
    end EinlesenEinstellungen;
    
@@ -32,7 +33,7 @@ package body EinlesenEinstellungenLogik is
         Exists (Name => VerzeichnisKonstanten.Nutzereinstellungen)
       is
          when False =>
-            OptionenVariablen.StandardeinstellungenLaden;
+            OptionenVariablen.StandardNutzereinstellungenLaden;
             return;
             
          when True =>
@@ -40,39 +41,36 @@ package body EinlesenEinstellungenLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.Nutzereinstellungen,
                   Form => "WCEM=8");
-            
-            PrüfungErfolgreich := NutzereinstellungenDurchgehen (LadenPrüfenExtern => False);
-
-            Close (File => DateiNutzereinstellungen);
       end case;
       
       case
-        PrüfungErfolgreich
+        NutzereinstellungenDurchgehen (LadenPrüfenExtern => False,
+                                       DateiLadenExtern  => DateiNutzereinstellungen)
       is
          when False =>
-            OptionenVariablen.StandardeinstellungenLaden;
+            OptionenVariablen.StandardNutzereinstellungenLaden;
             
          when True =>
-            Open (File => DateiNutzereinstellungen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Nutzereinstellungen,
-                  Form => "WCEM=8");
-            
-            Nullwert := NutzereinstellungenDurchgehen (LadenPrüfenExtern => True);
-
-            Close (File => DateiNutzereinstellungen);
+            Set_Index (File => DateiNutzereinstellungen,
+                       To   => 1);
+              
+            Nullwert := NutzereinstellungenDurchgehen (LadenPrüfenExtern => True,
+                                                       DateiLadenExtern  => DateiNutzereinstellungen);
       end case;
+
+      Close (File => DateiNutzereinstellungen);
       
    end Nutzereinstellungen;
    
    
    
    function NutzereinstellungenDurchgehen
-     (LadenPrüfenExtern : in Boolean)
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
       return Boolean
    is begin
             
-      SystemRecords.NutzerEinstellungenRecord'Read (Stream (File => DateiNutzereinstellungen),
+      SystemRecords.NutzerEinstellungenRecord'Read (Stream (File => DateiLadenExtern),
                                                     ZwischenspeicherNutzereinstellungen);
       
       case
@@ -110,51 +108,48 @@ package body EinlesenEinstellungenLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.Grafikeinstellungen,
                   Form => "WCEM=8");
-            
-            PrüfungErfolgreich := GrafikeinstellungenDurchgehen (LadenPrüfenExtern => False);
-                        
-            Close (File => DateiGrafikeinstellungen);
       end case;
       
       case
-        PrüfungErfolgreich
+        GrafikeinstellungenDurchgehen (LadenPrüfenExtern => False,
+                                       DateiLadenExtern  => DateiGrafikeinstellungen)
       is
          when True =>
-            Open (File => DateiGrafikeinstellungen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafikeinstellungen,
-                  Form => "WCEM=8");
+            Set_Index (File => DateiGrafikeinstellungen,
+                       To   => 1);
             
-            Nullwert := GrafikeinstellungenDurchgehen (LadenPrüfenExtern => True);
-                        
-            Close (File => DateiGrafikeinstellungen);
+            Nullwert := GrafikeinstellungenDurchgehen (LadenPrüfenExtern => True,
+                                                       DateiLadenExtern  => DateiGrafikeinstellungen);
             
          when False =>
             EinstellungenGrafik.StandardeinstellungenLaden;
       end case;
+                        
+      Close (File => DateiGrafikeinstellungen);
       
    end Grafikeinstellungen;
    
    
    
    function GrafikeinstellungenDurchgehen
-     (LadenPrüfenExtern : in Boolean)
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
       return Boolean
    is begin
       
-      GrafikRecords.FensterRecord'Read (Stream (File => DateiGrafikeinstellungen),
+      GrafikRecords.FensterRecord'Read (Stream (File => DateiLadenExtern),
                                         Fenstereinstellungen);
-      GrafikRecords.GrafikeinstellungenRecord'Read (Stream (File => DateiGrafikeinstellungen),
+      GrafikRecords.GrafikeinstellungenRecord'Read (Stream (File => DateiLadenExtern),
                                                     ZwischenspeicherGrafikeinstellungen);
       
-      TexteinstellungenGrafik.SchriftgrößenArray'Read (Stream (File => DateiGrafikeinstellungen),
+      TexteinstellungenGrafik.SchriftgrößenArray'Read (Stream (File => DateiLadenExtern),
                                                          Schriftgrößen);
-      TexteinstellungenGrafik.SchriftfarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
+      TexteinstellungenGrafik.SchriftfarbenArray'Read (Stream (File => DateiLadenExtern),
                                                        Schriftfarben);
             
-      SpezieseinstellungenGrafik.SpeziesFarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
+      SpezieseinstellungenGrafik.SpeziesFarbenArray'Read (Stream (File => DateiLadenExtern),
                                                           Speziesfarben);
-      SpezieseinstellungenGrafik.SpeziesFarbenArray'Read (Stream (File => DateiGrafikeinstellungen),
+      SpezieseinstellungenGrafik.SpeziesFarbenArray'Read (Stream (File => DateiLadenExtern),
                                                           Rahmenfarben);
       
       case
@@ -200,43 +195,40 @@ package body EinlesenEinstellungenLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.Toneinstellungen,
                   Form => "WCEM=8");
-            
-            PrüfungErfolgreich := ToneinstellungenDurchgehen (LadenPrüfenExtern => False);
-      
-            Close (File => DateiSoundeinstellungen);
       end case;
       
       case
-        PrüfungErfolgreich
+        ToneinstellungenDurchgehen (LadenPrüfenExtern => False,
+                                    DateiLadenExtern  => DateiSoundeinstellungen)
       is
          when True =>
-            Open (File => DateiSoundeinstellungen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Toneinstellungen,
-                  Form => "WCEM=8");
+            Set_Index (File => DateiSoundeinstellungen,
+                       To   => 1);
             
-            Nullwert := ToneinstellungenDurchgehen (LadenPrüfenExtern => True);
-      
-            Close (File => DateiSoundeinstellungen);
+            Nullwert := ToneinstellungenDurchgehen (LadenPrüfenExtern => True,
+                                                    DateiLadenExtern  => DateiSoundeinstellungen);
             
          when False =>
             EinstellungenMusik.StandardeinstellungenLaden;
             EinstellungenSound.StandardeinstellungenLaden;
       end case;
       
+      Close (File => DateiSoundeinstellungen);
+      
    end Toneinstelllungen;
    
    
    
    function ToneinstellungenDurchgehen
-     (LadenPrüfenExtern : in Boolean)
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
       return Boolean
    is begin
       
-      TonRecords.SoundeinstellungenRecord'Read (Stream (File => DateiSoundeinstellungen),
+      TonRecords.SoundeinstellungenRecord'Read (Stream (File => DateiLadenExtern),
                                                 Soundeinstellungen);
       
-      TonRecords.MusikeinstellungenRecord'Read (Stream (File => DateiSoundeinstellungen),
+      TonRecords.MusikeinstellungenRecord'Read (Stream (File => DateiLadenExtern),
                                                 Musikeinstellungen);
       
       case
@@ -257,5 +249,72 @@ package body EinlesenEinstellungenLogik is
          return False;
          
    end ToneinstellungenDurchgehen;
+   
+   
+   
+   procedure SonstigeEinstellungen
+   is begin
+      
+      case
+        Exists (Name => VerzeichnisKonstanten.SonstigeEinstellungen)
+      is
+         when False =>
+            OptionenVariablen.SonstigeStandardeinstellungenLaden;
+            return;
+            
+         when True =>
+            Open (File => DateiSonstigeEinstellungen,
+                  Mode => In_File,
+                  Name => VerzeichnisKonstanten.SonstigeEinstellungen,
+                  Form => "WCEM=8");
+      end case;
+      
+      case
+        SonstigeEinstellungenDurchgehen (LadenPrüfenExtern => False,
+                                         DateiLadenExtern  => DateiSonstigeEinstellungen)
+      is
+         when True =>
+            Set_Index (File => DateiSonstigeEinstellungen,
+                       To   => 1);
+            
+            Nullwert := SonstigeEinstellungenDurchgehen (LadenPrüfenExtern => True,
+                                                         DateiLadenExtern  => DateiSonstigeEinstellungen);
+            
+         when False =>
+            OptionenVariablen.SonstigeStandardeinstellungenLaden;
+      end case;
+      
+      Close (File => DateiSonstigeEinstellungen);
+      
+   end SonstigeEinstellungen;
+   
+   
+   
+   function SonstigeEinstellungenDurchgehen
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean
+   is begin
+      
+      SystemRecords.SonstigeEinstellungenRecord'Read (Stream (File => DateiLadenExtern),
+                                                      ZwischenspeicherSonstigeEinstellungen);
+      
+      case
+        LadenPrüfenExtern
+      is
+         when False =>
+            null;
+            
+         when True =>
+            OptionenVariablen.SonstigeEinstellungen := ZwischenspeicherSonstigeEinstellungen;
+      end case;
+      
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+         return False;
+      
+   end SonstigeEinstellungenDurchgehen;
 
 end EinlesenEinstellungenLogik;

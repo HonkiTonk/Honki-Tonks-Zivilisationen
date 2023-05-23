@@ -17,13 +17,16 @@ package body KIAufgabenVerteiltLogik is
       
       GleicheAufgabe := 0;
      
-      EinheitSchleife:
+      EinheitenSchleife:
       for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) loop
             
          if
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerID
+         then
+            exit EinheitenSchleife;
+            
+         elsif
            EinheitNummerSchleifenwert = EinheitSpeziesNummerExtern.Nummer
-           or
-             LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerID
          then
             null;
                
@@ -36,7 +39,7 @@ package body KIAufgabenVerteiltLogik is
             null;
          end if;
             
-      end loop EinheitSchleife;
+      end loop EinheitenSchleife;
       
       return GleicheAufgabe;
       
@@ -53,14 +56,20 @@ package body KIAufgabenVerteiltLogik is
    is
       use type KIDatentypen.Einheit_Aufgabe_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
    begin
       
-      EinheitSchleife:
+      EinheitenSchleife:
       for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
          
          Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert));
          
          if
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert)) = EinheitenKonstanten.LeerID
+         then
+            exit EinheitenSchleife;
+            
+         elsif
            LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert)) /= AufgabeExtern
          then
             null;
@@ -78,7 +87,7 @@ package body KIAufgabenVerteiltLogik is
             null;
          end if;
          
-      end loop EinheitSchleife;
+      end loop EinheitenSchleife;
       
       return False;
       
@@ -93,12 +102,18 @@ package body KIAufgabenVerteiltLogik is
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
    begin
       
-      EinheitSchleife:
+      EinheitenSchleife:
       for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
          
          if
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert)) = EinheitenKonstanten.LeerID
+         then
+            exit EinheitenSchleife;
+            
+         elsif
            LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerSchleifenwert)) = ZielKoordinatenExtern
          then
             return True;
@@ -107,7 +122,7 @@ package body KIAufgabenVerteiltLogik is
             null;
          end if;
          
-      end loop EinheitSchleife;
+      end loop EinheitenSchleife;
       
       return False;
       

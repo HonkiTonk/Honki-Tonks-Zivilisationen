@@ -88,9 +88,9 @@ private
    Schriftfarben : SchriftfarbenArray;
    
    SchriftgrößenStandard : constant SchriftgrößenArray := (
-                                                               TextDatentypen.Überschrift_Enum => 36,
-                                                               TextDatentypen.Standard_Enum    => 24,
-                                                               TextDatentypen.Klein_Enum       => 12
+                                                               TextDatentypen.Überschrift_Enum => 48,
+                                                               TextDatentypen.Standard_Enum    => 32,
+                                                               TextDatentypen.Klein_Enum       => 24
                                                               );
    
    SchriftfarbenStandard : constant SchriftfarbenArray := (

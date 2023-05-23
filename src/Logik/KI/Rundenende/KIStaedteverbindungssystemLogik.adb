@@ -47,7 +47,7 @@ package body KIStaedteverbindungssystemLogik is
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, AnfangsstadtSchleifenwert))
          is
             when StadtKonstanten.LeerID =>
-               null;
+               exit AnfangsstadtSchleife;
                
             when others =>
                KoordinatenAnfangsstadt := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, AnfangsstadtSchleifenwert));
@@ -58,7 +58,7 @@ package body KIStaedteverbindungssystemLogik is
                   if
                     LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, EndstadtSchleifenwert)) = StadtKonstanten.LeerID
                   then
-                     null;
+                     exit EndstadtSchleife;
                      
                   elsif
                     False = VerbindungPrüfen (SpeziesExtern          => SpeziesExtern,

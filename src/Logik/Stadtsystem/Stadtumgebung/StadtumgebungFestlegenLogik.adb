@@ -26,7 +26,7 @@ package body StadtumgebungFestlegenLogik is
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
             when StadtKonstanten.LeerID =>
-               null;
+               exit StadtSchleife;
                
             when others =>
                StadtumgebungFestlegen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));

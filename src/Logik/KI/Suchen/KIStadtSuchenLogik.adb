@@ -48,9 +48,9 @@ package body KIStadtSuchenLogik is
       for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
          
          if
-           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) = StadtKonstanten.LeerID
          then
-            null;
+            exit StadtSchleife;
             
          elsif
            AktuelleStadt = StadtDatentypen.MaximaleStädteMitNullWert'First
@@ -96,9 +96,9 @@ package body KIStadtSuchenLogik is
       for StadtNummerSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => FeindlicheSpeziesExtern) loop
          
          if
-           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (FeindlicheSpeziesExtern, StadtNummerSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (FeindlicheSpeziesExtern, StadtNummerSchleifenwert)) = StadtKonstanten.LeerID
          then
-            null;
+            exit StadtSchleife;
                
          else
             Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (FeindlicheSpeziesExtern, StadtNummerSchleifenwert));

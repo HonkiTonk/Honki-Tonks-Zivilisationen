@@ -61,11 +61,9 @@ package body TexteinstellungenGrafik is
             raise SchriftartFehlt;
             
          when True =>
-            null;
+            return VerzeichnisKonstanten.FontOrdner & VerzeichnisKonstanten.SchriftartStandard;
       end case;
-      
-      return VerzeichnisKonstanten.FontOrdner & VerzeichnisKonstanten.SchriftartStandard;
-      
+            
    end StandardSchriftartVerwenden;
    
    

@@ -142,7 +142,7 @@ package body StadtBauenLogik is
          case
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummerSchleifenwert))
          is
-            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+            when StadtKonstanten.LeerID =>
                return StadtNummerSchleifenwert;
                
             when others =>
@@ -251,6 +251,9 @@ package body StadtBauenLogik is
          is
             when KartenverbesserungDatentypen.Hauptstadt_Enum =>
                return KartenverbesserungDatentypen.Stadt_Enum;
+               
+            when StadtKonstanten.LeerID =>
+               exit HauptsstadtSchleife;
                
             when others =>
                null;

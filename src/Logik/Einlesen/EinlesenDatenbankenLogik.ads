@@ -21,7 +21,6 @@ package EinlesenDatenbankenLogik is
    
 private
    
-   PrüfungErfolgreich : Boolean;
    Nullwert : Boolean;
    
    DatenbankEinlesen : File_Type;

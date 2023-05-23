@@ -56,17 +56,25 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (23.05.2023):
+   -- Version 0.05.1215 => 0.05. (23.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1105 => 0.05. (22.05.2023):
+   -- Version 0.05.1105 => 0.05.1215 (22.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Potentielle Fehler im Einheiten- und Stadtsortiersystem entfernt.
+   -- Maximale Zoomstufe auf 15 erhöht und den Scrollbereich wieder erhöht.
+   -- Dateien werden nach der Korrektheitsprüfung nicht mehr geschlossen und neu geöffnet, sondern der Index wird zurück auf eins gesetzt.
+   -- Wenn des Spiel korrekt beenden wird, dann werden jetzt diverse Einstellungen (beispielsweise der aktuelle Autospeichernwert) geschrieben.
+   -- Alles Schriftgrößen um 12 Punkte erhöht.
+   -- Wenn bei neuem Spiel gar keine Spezies belegt wurde, dann wird jetzt automatisch eine Spezies für den Menschen und eine für die KI belegt.
+   -- Schleifen berücksichtigen jetzt dass die Einheiten/Städte sortiert sind.
+   -- KI Berechnungen deutlich beschleunigt.
+   -- Textabstände und Positionen leicht angepasst um die Sichtbarkeit zu erhöhen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

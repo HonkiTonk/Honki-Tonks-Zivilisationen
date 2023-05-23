@@ -22,7 +22,7 @@ private
 
    VorhandeneEinheiten : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
-   AutospeichernWert : Positive := 1;
+   MaximalerAutospeichernwert : Natural;
 
    DateiSpeichern : File_Type;
 

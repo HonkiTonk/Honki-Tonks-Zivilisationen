@@ -138,6 +138,7 @@ package body EinlesenSpeziestexteLogik is
    
    
    
+   -- Hier mal überall False/True miteinander tauschen. äöü
    procedure Städtenamen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateinameExtern : in Wide_Wide_String)

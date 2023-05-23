@@ -2,11 +2,20 @@ with SystemRecordKonstanten;
 
 package body OptionenVariablen is
 
-   procedure StandardeinstellungenLaden
+   procedure StandardNutzereinstellungenLaden
    is begin
       
       NutzerEinstellungen := SystemRecordKonstanten.StandardNutzereinstellungen;
       
-   end StandardeinstellungenLaden;
+   end StandardNutzereinstellungenLaden;
+   
+   
+   
+   procedure SonstigeStandardeinstellungenLaden
+   is begin
+      
+      SonstigeEinstellungen := SystemRecordKonstanten.StandardSonstigeEinstellungen;
+      
+   end SonstigeStandardeinstellungenLaden;
 
 end OptionenVariablen;

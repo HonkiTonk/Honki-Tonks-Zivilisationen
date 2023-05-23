@@ -37,7 +37,7 @@ package body EinheitenverschiebungLogik is
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
             when StadtKonstanten.LeerID =>
-               null;
+               exit StadtSchleife;
                
             when others =>
                EinheitenErmitteln (StadtSpeziesNummerExtern  => (SpeziesExtern, StadtSchleifenwert),

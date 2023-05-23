@@ -1,5 +1,7 @@
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
 package body MeldungenSetzenLogik is
 
@@ -9,15 +11,33 @@ package body MeldungenSetzenLogik is
       
       StadtSchleife:
       for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
-                  
-         SchreibeStadtGebaut.LeerMeldungen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
+         
+         case
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
+         is
+            when StadtKonstanten.LeerID =>
+               exit StadtSchleife;
+               
+               when others =>
+               SchreibeStadtGebaut.LeerMeldungen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert));
+         end case;
                   
       end loop StadtSchleife;
+      
+      
                                              
       EinheitenSchleife:
       for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern) loop
-                  
-         SchreibeEinheitenGebaut.LeerMeldungen (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert));
+         
+         case
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert))
+         is
+            when EinheitenKonstanten.LeerID =>
+               exit EinheitenSchleife;
+               
+            when others =>
+               SchreibeEinheitenGebaut.LeerMeldungen (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert));
+         end case;
                   
       end loop EinheitenSchleife;
       

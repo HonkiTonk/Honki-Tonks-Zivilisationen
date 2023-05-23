@@ -73,7 +73,7 @@ private
    WelcheZoomanpassung : TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum;
    
    -- Maximale und Minimale Zoomstufe später anpassbar machen? äöü
-   MaximaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 10;
+   MaximaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 15;
    MinimaleZoomstufe : constant KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv'First;
    StandardZoomstufe : constant KartenDatentypen.KartenfeldPositiv := 5;
    AktuelleZoomstufe : KartenDatentypen.KartenfeldPositiv := StandardZoomstufe;

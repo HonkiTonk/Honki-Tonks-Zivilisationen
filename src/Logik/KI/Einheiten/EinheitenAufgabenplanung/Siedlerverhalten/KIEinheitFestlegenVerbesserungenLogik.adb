@@ -78,8 +78,8 @@ package body KIEinheitFestlegenVerbesserungenLogik is
          case
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert))
          is
-            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-               null;
+            when StadtKonstanten.LeerID =>
+               exit StadtSchleife;
                
             when others =>
                VerbesserungAnlegen := StadtumgebungErmitteln (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert),

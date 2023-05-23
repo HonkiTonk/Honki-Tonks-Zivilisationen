@@ -40,28 +40,22 @@ package body EinlesenDatenbankenLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.EinheitenDatenbank,
                   Form => "WCEM=8");
-            
-            PrüfungErfolgreich := EinheitenDurchgehen (LadenPrüfenExtern => False);
-      
-            Close (File => DatenbankEinlesen);
       end case;
       
       case
-        PrüfungErfolgreich
+        EinheitenDurchgehen (LadenPrüfenExtern => False)
       is
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.EinheitenDatenbank,
-                  Form => "WCEM=8");
+            Set_Index (File => DatenbankEinlesen,
+                       To   => 1);
             
             Nullwert := EinheitenDurchgehen (LadenPrüfenExtern => True);
-      
-            Close (File => DatenbankEinlesen);
             
          when False =>
             StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
       end case;
+      
+      Close (File => DatenbankEinlesen);
       
    end Einheiten;
    
@@ -110,28 +104,22 @@ package body EinlesenDatenbankenLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.ForschungenDatenbank,
                   Form => "WCEM=8");
-      
-            PrüfungErfolgreich := ForschungenDurchgehen (LadenPrüfenExtern => False);
-      
-            Close (File => DatenbankEinlesen);
       end case;
       
       case
-        PrüfungErfolgreich
+        ForschungenDurchgehen (LadenPrüfenExtern => False)
       is
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.ForschungenDatenbank,
-                  Form => "WCEM=8");
+            Set_Index (File => DatenbankEinlesen,
+                       To   => 1);
             
             Nullwert := ForschungenDurchgehen (LadenPrüfenExtern => True);
-      
-            Close (File => DatenbankEinlesen);
             
          when False =>
             StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
       end case;
+      
+      Close (File => DatenbankEinlesen);
       
    end Forschungen;
    
@@ -192,28 +180,22 @@ package body EinlesenDatenbankenLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.GebaeudeDatenbank,
                   Form => "WCEM=8");
-            
-            PrüfungErfolgreich := GebäudeDurchgehen (LadenPrüfenExtern => False);
-      
-            Close (File => DatenbankEinlesen);
       end case;
       
       case
-        PrüfungErfolgreich
+        GebäudeDurchgehen (LadenPrüfenExtern => False)
       is
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.GebaeudeDatenbank,
-                  Form => "WCEM=8");
+            Set_Index (File => DatenbankEinlesen,
+                       To   => 1);
             
             Nullwert := GebäudeDurchgehen (LadenPrüfenExtern => True);
-      
-            Close (File => DatenbankEinlesen);
             
          when False =>
             StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
       end case;
+      
+      Close (File => DatenbankEinlesen);
       
    end Gebäude;
    
@@ -265,24 +247,16 @@ package body EinlesenDatenbankenLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.KartenDatenbank,
                   Form => "WCEM=8");
-            
-            PrüfungErfolgreich := KartenDurchgehen (LadenPrüfenExtern => False);
-      
-            Close (File => DatenbankEinlesen);
       end case;
       
       case
-        PrüfungErfolgreich
+        KartenDurchgehen (LadenPrüfenExtern => False)
       is
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.KartenDatenbank,
-                  Form => "WCEM=8");
+            Set_Index (File => DatenbankEinlesen,
+                       To   => 1);
             
             Nullwert := KartenDurchgehen (LadenPrüfenExtern => True);
-      
-            Close (File => DatenbankEinlesen);
             
          when False =>
             StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
@@ -290,6 +264,8 @@ package body EinlesenDatenbankenLogik is
             StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
             StandardKartenDatenbank.StandardKartenressourcenDatenbankLaden;
       end case;
+      
+      Close (File => DatenbankEinlesen);
       
    end Karten;
    
@@ -351,30 +327,23 @@ package body EinlesenDatenbankenLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.VerbesserungenDatenbank,
                   Form => "WCEM=8");
-            
-            PrüfungErfolgreich := VerbesserungenDurchgehen (LadenPrüfenExtern => False);
-      
-            Close (File => DatenbankEinlesen);
-
       end case;
       
       case
-        PrüfungErfolgreich
+        VerbesserungenDurchgehen (LadenPrüfenExtern => False)
       is
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.VerbesserungenDatenbank,
-                  Form => "WCEM=8");
+            Set_Index (File => DatenbankEinlesen,
+                       To   => 1);
             
             Nullwert := VerbesserungenDurchgehen (LadenPrüfenExtern => True);
-      
-            Close (File => DatenbankEinlesen);
             
          when False =>
             StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
             StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
       end case;
+      
+      Close (File => DatenbankEinlesen);
       
    end Verbesserungen;
    
@@ -427,28 +396,22 @@ package body EinlesenDatenbankenLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.SpeziesDatenbank,
                   Form => "WCEM=8");
-      
-            PrüfungErfolgreich := SpeziesDurchgehen (LadenPrüfenExtern => False);
-      
-            Close (File => DatenbankEinlesen);
       end case;
       
       case
-        PrüfungErfolgreich
+        SpeziesDurchgehen (LadenPrüfenExtern => False)
       is
          when True =>
-            Open (File => DatenbankEinlesen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.SpeziesDatenbank,
-                  Form => "WCEM=8");
+            Set_Index (File => DatenbankEinlesen,
+                       To   => 1);
       
             Nullwert := SpeziesDurchgehen (LadenPrüfenExtern => True);
-      
-            Close (File => DatenbankEinlesen);
             
          when False =>
             StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
       end case;
+      
+      Close (File => DatenbankEinlesen);
       
    end Spezies;
       

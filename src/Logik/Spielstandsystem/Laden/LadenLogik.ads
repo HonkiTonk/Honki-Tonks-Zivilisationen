@@ -19,7 +19,6 @@ private
    use type SpeziesDatentypen.Spieler_Enum;
 
    Leerwert : Boolean;
-   PrüfungErfolgreich : Boolean;
    Zwischenprüfung : Boolean;
 
    DateiLaden : File_Type;

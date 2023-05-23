@@ -104,16 +104,6 @@ package body SpieleinstellungenSpeziesLogik is
    
    
    procedure SpeziesAutomatischBelegen
-   is begin
-      
-      SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpezies,
-                                        BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
-      
-   end SpeziesAutomatischBelegen;
-   
-   
-   
-   procedure SpeziesBelegenSchnellstart
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
@@ -141,7 +131,7 @@ package body SpieleinstellungenSpeziesLogik is
          
       end loop KIBelegenSchleife;
       
-   end SpeziesBelegenSchnellstart;
+   end SpeziesAutomatischBelegen;
 
 
 

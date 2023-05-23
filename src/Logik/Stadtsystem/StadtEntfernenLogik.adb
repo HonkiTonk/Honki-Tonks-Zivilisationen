@@ -2,6 +2,7 @@ with KartenverbesserungDatentypen;
 with StadtDatentypen;
 with EinheitenKonstanten;
 with TextnummernKonstanten;
+with EinheitenDatentypen;
 
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
@@ -75,12 +76,18 @@ package body StadtEntfernenLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type EinheitenDatentypen.EinheitenIDMitNullWert;
    begin
       
       EinheitenSchleife:
       for EinheitNummerSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) loop
          
          if
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerSchleifenwert)) = EinheitenKonstanten.LeerID
+         then
+            exit EinheitenSchleife;
+            
+         elsif
            LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerSchleifenwert)) = StadtSpeziesNummerExtern.Nummer
          then
             SchreibeEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerSchleifenwert),
@@ -117,16 +124,19 @@ package body StadtEntfernenLogik is
       for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) loop
          
          if
-           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, StadtSchleifenwert)) = KartenverbesserungDatentypen.Leer_Verbesserung_Enum
-           or
-             StadtSchleifenwert = StadtSpeziesNummerExtern.Nummer
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, StadtSchleifenwert)) = StadtKonstanten.LeerID
+         then
+            exit StadtSchleife;
+             
+         elsif
+           StadtSchleifenwert = StadtSpeziesNummerExtern.Nummer
          then
             null;
             
          else
             SchreibeStadtGebaut.ID (StadtSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, StadtSchleifenwert),
                                     IDExtern                 => KartenverbesserungDatentypen.Hauptstadt_Enum);
-            return;
+            exit StadtSchleife;
          end if;
          
       end loop StadtSchleife;

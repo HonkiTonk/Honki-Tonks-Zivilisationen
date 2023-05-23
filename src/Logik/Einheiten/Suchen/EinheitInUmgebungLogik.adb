@@ -39,7 +39,7 @@ package body EinheitInUmgebungLogik is
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert))
          is
             when StadtKonstanten.LeerID =>
-               null;
+               exit StadtSchleife;
                         
             when others =>
                if
@@ -72,7 +72,7 @@ package body EinheitInUmgebungLogik is
            LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitSchleifenwert))
          is
             when EinheitenKonstanten.LeerID =>
-               null;
+               exit EinheitenSchleife;
                         
             when others =>
                if

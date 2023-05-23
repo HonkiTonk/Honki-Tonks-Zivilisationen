@@ -12,7 +12,6 @@ package SpieleinstellungenSpeziesLogik is
    procedure StartwerteErmitteln;
    procedure SpeziesWählen;
    procedure SpeziesAutomatischBelegen;
-   procedure SpeziesBelegenSchnellstart;
    
    
    

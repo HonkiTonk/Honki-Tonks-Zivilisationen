@@ -297,9 +297,12 @@ package body KIBewegungsplanBerechnenLogik is
       for EinheitSchleifenwert in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) loop
          
          if
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitSchleifenwert)) = EinheitenKonstanten.LeerID
+         then
+            null;
+            
+         elsif
            EinheitSpeziesNummerExtern.Nummer = EinheitSchleifenwert
-           or
-             LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitSchleifenwert)) = EinheitenKonstanten.LeerID
          then
             null;
             

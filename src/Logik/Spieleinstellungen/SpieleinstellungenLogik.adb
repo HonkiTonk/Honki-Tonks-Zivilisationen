@@ -29,7 +29,7 @@ package body SpieleinstellungenLogik is
       is
          when True =>
             StandardSpielwerteSetzenLogik.Standardspielwerte (EinstellungenBehaltenExtern => False);
-            SpieleinstellungenSpeziesLogik.SpeziesBelegenSchnellstart;
+            SpieleinstellungenSpeziesLogik.SpeziesAutomatischBelegen;
             return AutomatischeEinstellungen;
             
          when False =>

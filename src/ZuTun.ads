@@ -1,7 +1,5 @@
 -- Womit ich aufgehört habe:
 
--- Werden die Texteinstellungen, also z. B. Textgröße korrekt gespeichert?
--- Anpassung der Textabstände bei JaNeinGrafik.
 -- Stadtproduktion überarbeiten.
 --
 

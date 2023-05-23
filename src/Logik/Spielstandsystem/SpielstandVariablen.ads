@@ -6,7 +6,7 @@ package SpielstandVariablen is
    pragma Elaborate_Body;
    
    type SpielstandArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
-   
+      
    procedure Nullsetzung;
    
    procedure SpielstandnameSchreiben

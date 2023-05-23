@@ -9,8 +9,6 @@ package DatenbankRecords is
    
    
    -- SpeziesDatenbank
-   -- Das entweder erweitern oder durch eine bessere Idee ersetzen. äöü
-   -- Entsprechend auch einen eigenen Datentyp für diese Werte anlegen. äöü
    type SpezieslisteRecord is record
       
       Aggressivität : SpeziesDatentypen.Speziesverhalten;

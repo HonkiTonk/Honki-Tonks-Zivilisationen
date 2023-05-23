@@ -38,17 +38,3 @@ Ekropa => bevorzugen bewaldete Flächen in gemäßigtem oder warmen Klima
 
 Tesorahn => bevorzugter Lebensraum sind Salzgewässer in flüssigem Zustand
 Talbidahr => Unterirdisch in gemäßigten Klimazonen
-
-
-
--- Ist das hier auch an anderen Stellen brauchbar? äöü
--- Bzw. überall einbauen und das aktuelle Viewflächensystem dadurch ersetzen oder erweitern?
-if
-  Textbreite > MaximaleTextbreite
-then
-   Skalierung := (MaximaleTextbreite / Textbreite, 1.00);
-   Textbreite := MaximaleTextbreite;
-
-else
-   Skalierung := (1.00, 1.00);
-end if;

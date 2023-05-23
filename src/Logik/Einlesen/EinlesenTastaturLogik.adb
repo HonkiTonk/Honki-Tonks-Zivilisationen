@@ -20,45 +20,42 @@ package body EinlesenTastaturLogik is
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.Tastenbelegung,
                   Form => "WCEM=8");
-            
-            PrüfungErfolgreich := TastaturbelegungDurchgehen (LadenPrüfenExtern => False);
-      
-            Close (File => TastenbelegungLaden);
       end case;
       
       case
-        PrüfungErfolgreich
+        TastaturbelegungDurchgehen (LadenPrüfenExtern => False,
+                                    DateiLadenExtern  => TastenbelegungLaden)
       is
          when True =>
-            Open (File => TastenbelegungLaden,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Tastenbelegung,
-                  Form => "WCEM=8");
+            Set_Index (File => TastenbelegungLaden,
+                       To   => 1);
                         
-            Nullwert := TastaturbelegungDurchgehen (LadenPrüfenExtern => True);
-      
-            Close (File => TastenbelegungLaden);
-            
+            Nullwert := TastaturbelegungDurchgehen (LadenPrüfenExtern => True,
+                                                    DateiLadenExtern  => TastenbelegungLaden);
+              
          when False =>
             StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
       end case;
+      
+      Close (File => TastenbelegungLaden);
       
    end Tastaturbelegung;
    
    
    
    function TastaturbelegungDurchgehen
-     (LadenPrüfenExtern : in Boolean)
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
      return Boolean
    is begin
       
-      TastenbelegungDatenbank.AllgemeineBelegungArray'Read (Stream (File => TastenbelegungLaden),
+      TastenbelegungDatenbank.AllgemeineBelegungArray'Read (Stream (File => DateiLadenExtern),
                                                             AllgemeineBelegung);
       
-      TastenbelegungDatenbank.EinheitenbelegungArray'Read (Stream (File => TastenbelegungLaden),
+      TastenbelegungDatenbank.EinheitenbelegungArray'Read (Stream (File => DateiLadenExtern),
                                                            Einheitenbelegung);
       
-      TastenbelegungDatenbank.StadtbelegungArray'Read (Stream (File => TastenbelegungLaden),
+      TastenbelegungDatenbank.StadtbelegungArray'Read (Stream (File => DateiLadenExtern),
                                                        Stadtbelegung);
       
       case

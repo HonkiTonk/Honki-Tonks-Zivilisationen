@@ -10,7 +10,7 @@ with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
 with StadtKonstanten;
 with EinheitenKonstanten;
-with KartenverbesserungDatentypen;
+with OptionenVariablen;
 
 with LeseWichtiges;
 with LeseGrenzen;
@@ -186,7 +186,7 @@ package body SpeichernLogik is
          case
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, AnzahlStädteSchleifenwert))
          is
-            when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+            when StadtKonstanten.LeerID =>
                exit AnzahlStädteSchleife;
                
             when others =>
@@ -263,20 +263,21 @@ package body SpeichernLogik is
          Autospeichernname := LeseAllgemeines.Ironman;
                
       else
-         Autospeichernname := To_Unbounded_Wide_Wide_String (Source => "Auto" & AutospeichernWert'Wide_Wide_Image);
+         Autospeichernname := To_Unbounded_Wide_Wide_String (Source => "Auto" & OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert'Wide_Wide_Image);
+         MaximalerAutospeichernwert := LeseOptionen.AnzahlAutospeichern;
          
          if
-           LeseOptionen.AnzahlAutospeichern = 1
+           MaximalerAutospeichernwert = 1
          then
             null;
 
          elsif
-           AutospeichernWert <= LeseOptionen.AnzahlAutospeichern - 1
+           OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert <= MaximalerAutospeichernwert
          then
-            AutospeichernWert := AutospeichernWert + 1;
+            OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert := OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert + 1;
                   
          else
-            AutospeichernWert := 1;
+            OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert := 1;
          end if;
       end if;
       

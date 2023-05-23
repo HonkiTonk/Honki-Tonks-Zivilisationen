@@ -33,6 +33,7 @@ package body TextaccesseSchriftgroesseGrafik is
    procedure Allgemeines
    is begin
       
+      
       Überschrift := TexteinstellungenGrafik.SchriftgrößeLesen (WelcheGrößeExtern => TextDatentypen.Überschrift_Enum);
       Normal := TexteinstellungenGrafik.SchriftgrößeLesen (WelcheGrößeExtern => TextDatentypen.Standard_Enum);
       Klein := TexteinstellungenGrafik.SchriftgrößeLesen (WelcheGrößeExtern => TextDatentypen.Klein_Enum);

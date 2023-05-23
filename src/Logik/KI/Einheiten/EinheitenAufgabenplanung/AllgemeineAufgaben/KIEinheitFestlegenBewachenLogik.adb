@@ -1,6 +1,7 @@
 with KartenKonstanten;
 with KartenDatentypen;
 with StadtKonstanten;
+with KartenverbesserungDatentypen;
 
 with LeseStadtGebaut;
 with SchreibeEinheitenGebaut;
@@ -16,6 +17,7 @@ package body KIEinheitFestlegenBewachenLogik is
       return Boolean
    is
       use type KartenDatentypen.Kartenfeld;
+      use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
             
       StadtSchleife:
@@ -24,6 +26,11 @@ package body KIEinheitFestlegenBewachenLogik is
          Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert));
          
          if
+           LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtNummerSchleifenwert)) = StadtKonstanten.LeerID
+         then
+            exit StadtSchleife;
+            
+         elsif
            Stadtkoordinaten.XAchse = KartenKonstanten.LeerXAchse
          then
             null;

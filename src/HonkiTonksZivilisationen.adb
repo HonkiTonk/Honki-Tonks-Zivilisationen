@@ -14,6 +14,7 @@ with NachGrafiktask;
 with FehlermeldungSchreiben;
 with StartEndeSound;
 -- with StartEndeMusik;
+with SchreibenEinstellungenLogik;
 
 procedure HonkiTonksZivilisationen
 is
@@ -234,6 +235,7 @@ begin
         and
           TasksLaufen (Task_Sound_Enum) = False
       then
+         SchreibenEinstellungenLogik.SonstigeEinstellungenSpeichern;
          exit SpielLäuftSchleife;
 
       else
