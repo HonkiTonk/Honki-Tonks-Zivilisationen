@@ -51,6 +51,7 @@ package ChangelogVorlage is
 
    -- Version 0.05.1255 => 0.05. (24.05.2023):
    
+   -- Discordserverlink hinzugefügt.
    -- 
    -- Kleinigkeiten korrigiert.
    
