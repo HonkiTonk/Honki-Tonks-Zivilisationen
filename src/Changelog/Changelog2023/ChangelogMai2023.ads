@@ -42,18 +42,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (25.05.2023):
+   -- Version 0.05.1290 => 0.05. (25.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1255 => 0.05. (24.05.2023):
+   -- Version 0.05.1255 => 0.05.1290 (24.05.2023):
    
    -- Discordserverlink hinzugefügt.
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Kartenfelderproduktionssystem gearbeitet.
+   -- Kommetare und Kleinigkeiten korrigiert.
    
    
 

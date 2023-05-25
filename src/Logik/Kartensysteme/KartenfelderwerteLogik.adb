@@ -9,6 +9,7 @@ with KartenfeldereffekteLogik;
 -- Das hier wird von Logik und Grafik aufgerufen, zum Berechnen der Stadtproduktion bei Rundenende und zur Anzeige der aktuellen Produktionswerte eines Feldes.
 -- Sollte aber keine Probleme machen, da man nicht gleichzeitig in der Stadt und im Rundenende sein kann.
 -- Aber könnte das nicht auch bei einer Umbelegung gleichzeitig aufgerufen werden? äöü
+-- Eventuell doch negative Produktion zulassen? Nach dem Motto es kostet je auch was etwas zu bewirtschaften was nichts erbringt. äöü
 package body KartenfelderwerteLogik is
 
    function FeldNahrung
@@ -39,18 +40,8 @@ package body KartenfelderwerteLogik is
                                                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
       end case;
       
-      Gesamtwert := ProduktionDatentypen.Feldproduktion (Float'Ceiling (Float (Gesamtwert) * Ressourcenbonus (KartenKonstanten.WirtschaftNahrung, LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern),
-                                                         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern))));
-      
-      case
-        LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern)
-      is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
-            null;
-            
-         when others =>
-            null;
-      end case;
+      Gesamtwert := ProduktionDatentypen.Feldproduktion (Float'Ceiling (Float (Gesamtwert) * Ressourcenbonus (KartenKonstanten.WirtschaftNahrung,
+                                                         LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern), LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern), SpeziesExtern)));
       
       if
         Gesamtwert < ProduktionKonstanten.LeerProduktion

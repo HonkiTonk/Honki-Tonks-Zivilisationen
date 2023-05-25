@@ -12,12 +12,26 @@ package KartendatenbankRecord is
    type WirtschaftArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, ProduktionDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.Einzelproduktion;
    type KampfArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, KampfDatentypen.Kampf_Enum'Range) of KampfDatentypen.KampfwerteKarte;
    type BewegungArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of EinheitenDatentypen.Bewegungspunkte;
+   
+   type BewertungsbonusArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Boolean;
+   type WirtschaftsbonusArray is array (ProduktionDatentypen.Wirtschaft_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Float;
+   type KampfbonusArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, KampfDatentypen.Kampf_Enum'Range) of Float;
       
    type KartenlistenRecord is record
             
       Bewertung : BewertungArray;
       Wirtschaft : WirtschaftArray;
       Kampf : KampfArray;
+      
+   end record;
+   
+   
+   
+   type KartenressourcenlisteRecord is record
+      
+      Bewertung : BewertungsbonusArray;
+      Wirtschaft : WirtschaftsbonusArray;
+      Kampf : KampfbonusArray;
       
    end record;
    
