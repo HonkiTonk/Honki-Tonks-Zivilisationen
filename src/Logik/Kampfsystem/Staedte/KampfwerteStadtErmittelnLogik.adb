@@ -2,11 +2,12 @@ with StadtDatentypen;
 with KartenKonstanten;
 
 with LeseGebaeudeDatenbank;
-with LeseVerbesserungenDatenbank;
+-- with LeseVerbesserungenDatenbank;
 
-with KartenfelderwerteLogik;
+-- with KartenfelderwerteLogik;
 
 -- Warum übergebe ich hier denn das gesamte Gebäudearray? Das kann man bestimmt auch besser lösen, oder? äöü
+-- Rechnet aktuell nicht den Produktionsbonus mit ein, später noch an das neue System anpassen. äöü
 package body KampfwerteStadtErmittelnLogik is
 
    function AktuelleVerteidigungStadt
@@ -19,11 +20,25 @@ package body KampfwerteStadtErmittelnLogik is
       use type KampfDatentypen.KampfwerteGroß;
    begin
       
-      VerteidigungWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => IDExtern,
-                                                                         SpeziesExtern      => SpeziesExtern,
-                                                                         WelcherWertExtern  => KartenKonstanten.KampfVerteidigung)
-        + KartenfelderwerteLogik.FeldVerteidigung (KoordinatenExtern => KoordinatenExtern,
-                                                   SpeziesExtern     => SpeziesExtern);
+      VerteidigungWert := 0;
+        
+      -- LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => IDExtern,
+      --                                                                  SpeziesExtern      => SpeziesExtern,
+      --                                                                  WelcherWertExtern  => KartenKonstanten.KampfVerteidigung);
+      -- + KartenfelderwerteLogik.FeldVerteidigung (KoordinatenExtern => KoordinatenExtern,
+      --                                            SpeziesExtern     => SpeziesExtern);
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when others =>
+            case
+              IDExtern
+            is
+               when others =>
+                  null;
+            end case;
+      end case;
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
@@ -58,11 +73,24 @@ package body KampfwerteStadtErmittelnLogik is
       use type KampfDatentypen.KampfwerteGroß;
    begin
       
-      AngriffWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => IDExtern,
-                                                                    SpeziesExtern      => SpeziesExtern,
-                                                                    WelcherWertExtern  => KartenKonstanten.KampfAngriff)
-        + KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => KoordinatenExtern,
-                                              SpeziesExtern     => SpeziesExtern);
+      AngriffWert := 0;
+      -- LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => IDExtern,
+      --                                                            SpeziesExtern      => SpeziesExtern,
+      --                                                            WelcherWertExtern  => KartenKonstanten.KampfAngriff);
+      -- + KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => KoordinatenExtern,
+      --                                        SpeziesExtern     => SpeziesExtern);
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when others =>
+            case
+              IDExtern
+            is
+               when others =>
+                  null;
+            end case;
+      end case;
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop

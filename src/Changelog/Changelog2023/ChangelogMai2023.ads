@@ -21,31 +21,33 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (28.05.2023):
+   -- Version 0.05.1355 => 0.05. (28.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (27.05.2023):
+   -- Version 0.05.1290 => 0.05.1355 (27.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (26.05.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Kartenfelderproduktionssystem gearbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Nahrungsproduktionsbonus durch Ressourcen überarbeitet.
+   -- Nahrungsproduktionsbonus durch Verbesserungen überarbeitet.
+   -- Code besser aufgeteilt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05.1290 => 0.05. (25.05.2023):
+   -- Version 0.05.1290 => 0.05.1290 (26.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.1290 => 0.05.1290 (25.05.2023):
+   
+   -- null.
    
    
 

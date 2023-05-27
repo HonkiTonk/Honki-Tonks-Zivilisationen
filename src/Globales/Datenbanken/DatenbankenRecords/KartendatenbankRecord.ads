@@ -14,8 +14,8 @@ package KartendatenbankRecord is
    type BewegungArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of EinheitenDatentypen.Bewegungspunkte;
    
    type BewertungsbonusArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Boolean;
-   type WirtschaftsbonusArray is array (ProduktionDatentypen.Wirtschaft_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Float;
-   type KampfbonusArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, KampfDatentypen.Kampf_Enum'Range) of Float;
+   type WirtschaftsbonusArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, ProduktionDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.Produktionsbonus;
+   type KampfbonusArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, KampfDatentypen.Kampf_Enum'Range) of ProduktionDatentypen.Produktionsbonus;
       
    type KartenlistenRecord is record
             
@@ -27,9 +27,22 @@ package KartendatenbankRecord is
    
    
    
-   type KartenressourcenlisteRecord is record
+   -- Das hier später besser benennen oder brauche ich diesen Record nur bei Ressourcen? äöü
+   type RessourcenlisteRecord is record
       
       Bewertung : BewertungsbonusArray;
+      
+      Wirtschaft : WirtschaftsbonusArray;
+      Kampf : KampfbonusArray;
+      
+   end record;
+   
+   
+   
+   -- Brauche ich bei Verbesserungen eine Bewertung? Wenn dann müsste ich ja eher die Umgabung nach einer Verbesserung überprüfen. äöü
+   -- Sollte auch bei Wegen gelten. äöü
+   type VerbesserungenlisteRecord is record
+      
       Wirtschaft : WirtschaftsbonusArray;
       Kampf : KampfbonusArray;
       

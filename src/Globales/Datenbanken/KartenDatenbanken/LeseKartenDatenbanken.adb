@@ -134,14 +134,14 @@ package body LeseKartenDatenbanken is
    function BewertungRessource
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return BewertungDatentypen.Bewertung_Enum
+      return Boolean
    is begin
       
       case
         RessourceExtern
       is
          when KartenextraDatentypen.Leer_Ressource_Enum =>
-            return KartenKonstanten.LeerBewertung;
+            return False;
             
          when others =>
             return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Bewertung (SpeziesExtern);
@@ -219,14 +219,14 @@ package body LeseKartenDatenbanken is
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.Einzelproduktion
+      return ProduktionDatentypen.Produktionsbonus
    is begin
       
       case
         RessourceExtern
       is
          when KartenextraDatentypen.Leer_Ressource_Enum =>
-            return ProduktionKonstanten.LeerProduktion;
+            return ProduktionKonstanten.LeerBonus;
             
          when others =>
             return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Wirtschaft (SpeziesExtern, WirtschaftArtExtern);
@@ -304,14 +304,14 @@ package body LeseKartenDatenbanken is
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfArtExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteAllgemein
+      return ProduktionDatentypen.Produktionsbonus
    is begin
       
       case
         RessourceExtern
       is
          when KartenextraDatentypen.Leer_Ressource_Enum =>
-            return KampfKonstanten.LeerKampfwert;
+            return ProduktionKonstanten.LeerBonus; -- KampfKonstanten.Leer;
             
          when others =>
             return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Kampf (SpeziesExtern, KampfArtExtern);

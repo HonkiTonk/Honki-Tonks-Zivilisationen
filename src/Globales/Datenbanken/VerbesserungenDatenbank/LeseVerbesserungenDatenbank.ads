@@ -28,7 +28,7 @@ package LeseVerbesserungenDatenbank is
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WelcherWertExtern : in ProduktionDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.Einzelproduktion
+      return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -48,7 +48,7 @@ package LeseVerbesserungenDatenbank is
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WelcherWertExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteAllgemein
+      return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

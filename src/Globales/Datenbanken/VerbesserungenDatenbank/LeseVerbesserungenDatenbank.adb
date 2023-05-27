@@ -49,14 +49,14 @@ package body LeseVerbesserungenDatenbank is
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WelcherWertExtern : in ProduktionDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.Einzelproduktion
+      return ProduktionDatentypen.Produktionsbonus
    is begin
       
       case
         VerbesserungExtern
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return ProduktionKonstanten.LeerProduktion;
+            return ProduktionKonstanten.LeerBonus;
             
          when others =>
             return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Wirtschaft (SpeziesExtern, WelcherWertExtern);
@@ -91,14 +91,14 @@ package body LeseVerbesserungenDatenbank is
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WelcherWertExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteAllgemein
+      return ProduktionDatentypen.Produktionsbonus
    is begin
       
       case
         VerbesserungExtern
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return KampfKonstanten.LeerKampfwert;
+            return ProduktionKonstanten.LeerBonus;
             
          when others =>
             return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Kampf (SpeziesExtern, WelcherWertExtern);

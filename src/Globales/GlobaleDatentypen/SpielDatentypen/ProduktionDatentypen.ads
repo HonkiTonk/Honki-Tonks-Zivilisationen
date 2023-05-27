@@ -14,6 +14,10 @@ package ProduktionDatentypen is
    
    
    
+   type Produktionsbonus is new Float range 0.00 .. 10.00;
+   
+   
+   
    -- Das hier ist für die Kartenfelder, das darunter für die Einheiten- und Gebäudekosten.
    type Wirtschaft_Enum is (
                             Nahrung_Enum, Material_Enum, Geld_Enum, Forschung_Enum

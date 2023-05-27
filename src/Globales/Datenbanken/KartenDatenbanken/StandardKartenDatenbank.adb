@@ -11,7 +11,8 @@ with ZusatzgrundOberflaeche;
 with ZusatzgrundUnterflaeche;
 with KartenextraDatentypen;
 with KartengrundFluss;
-with KartengrundRessourcen;
+with Landressourcen;
+with Wasserressourcen;
 
 package body StandardKartenDatenbank is
 
@@ -105,11 +106,11 @@ package body StandardKartenDatenbank is
          case
            KartenressourcenSchleifenwert
          is
-            when KartengrundRessourcen.KartenressourcenlisteLandArray'Range =>
-               KartenDatenbank.Kartenressourcenliste (KartenressourcenSchleifenwert) := KartengrundRessourcen.KartenressourcenlisteLand (KartenressourcenSchleifenwert);
+            when Landressourcen.LandressourcenlisteArray'Range =>
+               KartenDatenbank.Kartenressourcenliste (KartenressourcenSchleifenwert) := Landressourcen.Landressourcenliste (KartenressourcenSchleifenwert);
                
-            when KartengrundRessourcen.KartenressourcenlisteWasserArray'Range =>
-               KartenDatenbank.Kartenressourcenliste (KartenressourcenSchleifenwert) := KartengrundRessourcen.KartenressourcenlisteWasser (KartenressourcenSchleifenwert);
+            when Wasserressourcen.WasserressourcenlisteArray'Range =>
+               KartenDatenbank.Kartenressourcenliste (KartenressourcenSchleifenwert) := Wasserressourcen.Wasserressourcenliste (KartenressourcenSchleifenwert);
          end case;
          
       end loop KartenressourcenSchleife;

@@ -5,9 +5,8 @@ with ProduktionDatentypen;
 with KampfDatentypen;
 
 private with KartengrundDatentypen;
-private with KartenverbesserungDatentypen;
 private with KartenextraDatentypen;
-private with KartenKonstanten;
+private with KartenverbesserungDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseSpeziesbelegung;
@@ -97,74 +96,24 @@ package KartenfelderwerteLogik is
    
 private
    
+   Gesamtgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+   
+   RessourceVorhanden : KartenextraDatentypen.Ressourcen_Enum;
+   
+   VerbesserungVorhanden : KartenverbesserungDatentypen.Verbesserung_Enum;
+   
    Gesamtwert : ProduktionDatentypen.Feldproduktion;
    
-   Gesamtgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
-   Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
+   Ressourcenbonus : ProduktionDatentypen.Produktionsbonus;
+   Verbesserungsbonus : ProduktionDatentypen.Produktionsbonus;
+   Flussbonus : ProduktionDatentypen.Produktionsbonus;
+   Wegbonus : ProduktionDatentypen.Produktionsbonus;
+   Feldeffektmalus : ProduktionDatentypen.Produktionsbonus;
    
    type FeldeffektteilerArray is array (Boolean'Range) of ProduktionDatentypen.Feldproduktion;
    Feldeffektteiler : constant FeldeffektteilerArray := (
                                                          True  => 2,
                                                          False => 1
                                                         );
-   
-   LeerBonus : constant Float := 1.00;
-   
-   type RessourcenbonusArray is array (ProduktionDatentypen.Wirtschaft_Enum'Range, KartenverbesserungDatentypen.Verbesserung_Enum'Range, KartenextraDatentypen.Ressourcen_Enum'Range,
-                                       SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Float;
-   Ressourcenbonus : constant RessourcenbonusArray := (
-                                                       KartenKonstanten.WirtschaftNahrung =>
-                                                         (
-                                                          KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-                                                            (
-                                                             KartenextraDatentypen.Leer_Ressource_Enum =>
-                                                               (
-                                                                SpeziesDatentypen.Spezies_Verwendet_Enum'Range => LeerBonus
-                                                               ),
-                                                            
-                                                             others => (others => LeerBonus)),
-                                                          
-                                                          others => (others => (others => LeerBonus))),
-                                                       
-                                                       KartenKonstanten.WirtschaftMaterial =>
-                                                         (
-                                                          KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-                                                            (
-                                                             KartenextraDatentypen.Leer_Ressource_Enum =>
-                                                               (
-                                                                SpeziesDatentypen.Spezies_Verwendet_Enum'Range => LeerBonus
-                                                               ),
-                                                            
-                                                             others => (others => LeerBonus)),
-                                                          
-                                                          others => (others => (others => LeerBonus))),
-                                                       
-                                                       KartenKonstanten.WirtschaftGeld =>
-                                                         (
-                                                          KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-                                                            (
-                                                             KartenextraDatentypen.Leer_Ressource_Enum =>
-                                                               (
-                                                                SpeziesDatentypen.Spezies_Verwendet_Enum'Range => LeerBonus
-                                                               ),
-                                                            
-                                                             others => (others => LeerBonus)),
-                                                          
-                                                          others => (others => (others => LeerBonus))),
-                                                       
-                                                       KartenKonstanten.WirtschaftForschung =>
-                                                         (
-                                                          KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-                                                            (
-                                                             KartenextraDatentypen.Leer_Ressource_Enum =>
-                                                               (
-                                                                SpeziesDatentypen.Spezies_Verwendet_Enum'Range => LeerBonus
-                                                               ),
-                                                            
-                                                             others => (others => LeerBonus)),
-                                                          
-                                                          others => (others => (others => LeerBonus)))
-                                                      );
-   
    
 end KartenfelderwerteLogik;

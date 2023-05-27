@@ -1,50 +1,45 @@
 with KartenverbesserungDatentypen;
 with KartendatenbankRecord;
-with BewertungDatentypen;
+with ProduktionKonstanten;
 
 package VerbesserungenStandard is
    pragma Pure;
    
-   type StadtlisteArray is array (KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
+   type StadtlisteArray is array (KartenverbesserungDatentypen.Verbesserung_Städte_Enum'Range) of KartendatenbankRecord.VerbesserungenlisteRecord;
    Stadtliste : constant StadtlisteArray := (
                                              KartenverbesserungDatentypen.Hauptstadt_Enum =>
                                                (
-                                                Bewertung  => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                                Wirtschaft => (others => (others => 1)),
-                                                Kampf      => (others => (others => 1))
+                                                Wirtschaft => (others => (others => ProduktionKonstanten.LeerBonus)),
+                                                Kampf      => (others => (others => ProduktionKonstanten.LeerBonus))
                                                ),
                                                   
                                              KartenverbesserungDatentypen.Stadt_Enum =>
                                                (
-                                                Bewertung  => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                                Wirtschaft => (others => (others => 1)),
-                                                Kampf      => (others => (others => 1))
+                                                Wirtschaft => (others => (others => ProduktionKonstanten.LeerBonus)),
+                                                Kampf      => (others => (others => ProduktionKonstanten.LeerBonus))
                                                )
                                             );
    
    
    
-   type GebildelisteArray is array (KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum'Range) of KartendatenbankRecord.KartenlistenRecord;
+   type GebildelisteArray is array (KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum'Range) of KartendatenbankRecord.VerbesserungenlisteRecord;
    Gebildeliste : constant GebildelisteArray := (
                                                  KartenverbesserungDatentypen.Farm_Enum =>
                                                    (
-                                                    Bewertung  => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                                    Wirtschaft => (others => (others => 1)),
-                                                    Kampf      => (others => (others => 1))
+                                                    Wirtschaft => (others => (others => ProduktionKonstanten.LeerBonus)),
+                                                    Kampf      => (others => (others => ProduktionKonstanten.LeerBonus))
                                                    ),
                                                   
                                                  KartenverbesserungDatentypen.Mine_Enum =>
                                                    (
-                                                    Bewertung  => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                                    Wirtschaft => (others => (others => 1)),
-                                                    Kampf      => (others => (others => 1))
+                                                    Wirtschaft => (others => (others => ProduktionKonstanten.LeerBonus)),
+                                                    Kampf      => (others => (others => ProduktionKonstanten.LeerBonus))
                                                    ),
                                                   
                                                  KartenverbesserungDatentypen.Festung_Enum =>
                                                    (
-                                                    Bewertung  => (others => BewertungDatentypen.Bewertung_Eins_Enum),
-                                                    Wirtschaft => (others => (others => 1)),
-                                                    Kampf      => (others => (others => 1))
+                                                    Wirtschaft => (others => (others => ProduktionKonstanten.LeerBonus)),
+                                                    Kampf      => (others => (others => ProduktionKonstanten.LeerBonus))
                                                    )
                                                 );
 
