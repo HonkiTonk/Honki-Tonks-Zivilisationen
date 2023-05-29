@@ -9,7 +9,7 @@ package BasisgrundKern is
    
    -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type BasisgrundlisteKernArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
+   type BasisgrundlisteKernArray is array (KartengrundDatentypen.Basisgrund_Kernfläche_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteKern : constant BasisgrundlisteKernArray := (
                                                                KartengrundDatentypen.Lava_Enum =>
                                                                  (

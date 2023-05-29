@@ -6,8 +6,8 @@ with KartenverbesserungDatentypen;
 with SpeziesDatentypen;
 with GrafikDatentypen;
 with BefehleDatentypen;
-with KartengrundDatentypen;
 with KartenDatenbank;
+with KarteneffektDatentypen;
 
 package EingeleseneTexturenGrafik is
    pragma Elaborate_Body;
@@ -32,7 +32,7 @@ package EingeleseneTexturenGrafik is
    type ZusatzgrundAccessArray is array (KartenDatenbank.ZusatzgrundlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
    ZusatzgrundAccess : ZusatzgrundAccessArray := (others => null);
 
-   type FeldeffekteAccessArray is array (KartengrundDatentypen.Effekt_Kartenfeld_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   type FeldeffekteAccessArray is array (KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    FeldeffekteAccess : FeldeffekteAccessArray := (others => null);
 
    type KartenflussAccessArray is array (KartenDatenbank.KartenflusslisteArray'Range) of Sf.Graphics.sfTexture_Ptr;

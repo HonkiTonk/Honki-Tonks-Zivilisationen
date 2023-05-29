@@ -1,7 +1,7 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 package SchreibenDatenbankenLogik is
-   pragma Preelaborate;
+   pragma Elaborate_Body;
 
    procedure SchreibenAlleDatenbanken;
    procedure SchreibenEinheitenDatenbank;
@@ -10,6 +10,7 @@ package SchreibenDatenbankenLogik is
    procedure SchreibenKartenDatenbanken;
    procedure SchreibenVerbesserungenDatenbank;
    procedure SchreibenSpeziesDatenbank;
+   procedure SchreibenEffekteDatenbank;
 
 private
 

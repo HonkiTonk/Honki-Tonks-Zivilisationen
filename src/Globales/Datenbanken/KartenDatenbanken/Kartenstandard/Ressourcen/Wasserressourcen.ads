@@ -6,7 +6,7 @@ with ProduktionKonstanten;
 package Wasserressourcen is
    pragma Pure;
 
-   type WasserressourcenlisteArray is array (KartenextraDatentypen.Ressourcen_Oberfläche_Wasser_Enum'Range) of KartendatenbankRecord.RessourcenlisteRecord;
+   type WasserressourcenlisteArray is array (KartenextraDatentypen.Ressourcen_Oberfläche_Wasser_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
    Wasserressourcenliste : constant WasserressourcenlisteArray := (
                                                                    KartenextraDatentypen.Fisch_Enum =>
                                                                      (

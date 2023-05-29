@@ -8,6 +8,7 @@ with StandardKartenDatenbank;
 with StandardGebaeudeDatenbank;
 with StandardForschungenDatenbank;
 with StandardEinheitenDatenbank;
+with StandardEffekteDatenbank;
 
 package body EinlesenDatenbankenLogik is
    
@@ -20,6 +21,7 @@ package body EinlesenDatenbankenLogik is
       Karten;
       Verbesserungen;
       Spezies;
+      Effekte;
       
    end AlleDatenbanken;
    
@@ -442,5 +444,69 @@ package body EinlesenDatenbankenLogik is
          return False;
          
    end SpeziesDurchgehen;
+   
+   
+   
+   procedure Effekte
+   is begin
+      
+      case
+        Exists (Name => VerzeichnisKonstanten.EffekteDatenbank)
+      is
+         when False =>
+            StandardEffekteDatenbank.StandardEffekteDatenbankLaden;
+            return;
+            
+         when True =>
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => VerzeichnisKonstanten.EffekteDatenbank,
+                  Form => "WCEM=8");
+      end case;
+      
+      case
+        EffekteDurchgehen (LadenPrüfenExtern => False)
+      is
+         when True =>
+            Set_Index (File => DatenbankEinlesen,
+                       To   => 1);
+      
+            Nullwert := EffekteDurchgehen (LadenPrüfenExtern => True);
+            
+         when False =>
+            StandardEffekteDatenbank.StandardEffekteDatenbankLaden;
+      end case;
+      
+      Close (File => DatenbankEinlesen);
+      
+   end Effekte;
+   
+   
+   
+   function EffekteDurchgehen
+     (LadenPrüfenExtern : in Boolean)
+      return Boolean
+   is begin
+      
+      EffekteDatenbank.EffektelisteArray'Read (Stream (File => DatenbankEinlesen),
+                                               Effekteliste);
+   
+      case
+        LadenPrüfenExtern
+      is
+         when False =>
+            null;
+            
+         when True =>
+            EffekteDatenbank.Effekteliste := Effekteliste;
+      end case;
+      
+      return True;
+      
+   exception
+      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+         return False;
+      
+   end EffekteDurchgehen;
 
 end EinlesenDatenbankenLogik;

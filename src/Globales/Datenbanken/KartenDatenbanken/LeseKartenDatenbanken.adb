@@ -2,7 +2,6 @@ with KartenDatenbank;
 with KampfKonstanten;
 with EinheitenKonstanten;
 with ProduktionKonstanten;
-with KartenKonstanten;
 
 with Fehlermeldungssystem;
 
@@ -114,14 +113,14 @@ package body LeseKartenDatenbanken is
    function BewertungFluss
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return BewertungDatentypen.Bewertung_Enum
+      return Boolean
    is begin
       
       case
         FlussExtern
       is
          when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return KartenKonstanten.LeerBewertung;
+            return False;
             
          when others =>
             return KartenDatenbank.Kartenflussliste (FlussExtern).Bewertung (SpeziesExtern);
@@ -198,14 +197,14 @@ package body LeseKartenDatenbanken is
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
-      return ProduktionDatentypen.Einzelproduktion
+      return ProduktionDatentypen.Produktionsbonus
    is begin
       
       case
         FlussExtern
       is
          when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return ProduktionKonstanten.LeerProduktion;
+            return ProduktionKonstanten.LeerBonus;
             
          when others =>
             return KartenDatenbank.Kartenflussliste (FlussExtern).Wirtschaft (SpeziesExtern, WirtschaftArtExtern);
@@ -283,14 +282,14 @@ package body LeseKartenDatenbanken is
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfArtExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteAllgemein
+      return ProduktionDatentypen.Produktionsbonus
    is begin
       
       case
         FlussExtern
       is
          when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return KampfKonstanten.LeerKampfwert;
+            return ProduktionKonstanten.LeerBonus;
             
          when others =>
             return KartenDatenbank.Kartenflussliste (FlussExtern).Kampf (SpeziesExtern, KampfArtExtern);

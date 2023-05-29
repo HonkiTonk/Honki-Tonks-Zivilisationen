@@ -14,9 +14,10 @@ private with LeseWeltkarteneinstellungen;
 package SpeichernKarteLogik is
    pragma Elaborate_Body;
 
-   procedure Karte
+   function Karte
      (DateiSpeichernExtern : in File_Type;
-      AutospeichernExtern : in Boolean);
+      AutospeichernExtern : in Boolean)
+      return Boolean;
       
 private
    use type KartenDatentypen.Kartenfeld;
@@ -42,10 +43,13 @@ private
    Einheit : EinheitenRecords.SpeziesEinheitnummerRecord;
      
    Stadt : StadtRecords.SpeziesStadtnummerRecord;
+   
+   
       
-   procedure SichtbarkeitSchreiben
+   function SichtbarkeitSchreiben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       DateiSpeichernExtern : in File_Type)
+      return Boolean
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -53,9 +57,10 @@ private
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
       
-   procedure BasisgrundSchreiben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+   function BasisgrundSchreiben
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       DateiSpeichernExtern : in File_Type)
+      return Boolean
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -63,7 +68,7 @@ private
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
-   procedure VorhandeneFeldelementeSchreiben
+   function VorhandeneFeldelementeSchreiben
      (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       FeldeffekteExtern : in KartenRecords.FeldeffektArray;
       FlussExtern : in KartenextraDatentypen.Fluss_Enum;
@@ -72,9 +77,10 @@ private
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       EinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      DateiSpeichernExtern : in File_Type);
+      DateiSpeichernExtern : in File_Type)
+      return Boolean;
    
-   procedure FeldelementeSchreiben
+   function FeldelementeSchreiben
      (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       FeldeffekteExtern : in KartenRecords.FeldeffektArray;
       FlussExtern : in KartenextraDatentypen.Fluss_Enum;
@@ -83,6 +89,7 @@ private
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       EinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      DateiSpeichernExtern : in File_Type);
+      DateiSpeichernExtern : in File_Type)
+      return Boolean;
    
 end SpeichernKarteLogik;

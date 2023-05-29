@@ -69,7 +69,7 @@ package body LeseWeltkarte is
    
    function Effekt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      WelcherEffektExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
+      WelcherEffektExtern : in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
       return Boolean
    is begin
       

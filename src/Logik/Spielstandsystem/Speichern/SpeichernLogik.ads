@@ -29,29 +29,33 @@ private
    Spielstandname : Unbounded_Wide_Wide_String;
    Autospeichernname : Unbounded_Wide_Wide_String;
 
-   procedure Allgemeines
-     (DateiSpeichernExtern : in File_Type);
 
-   procedure SpezieswerteSpeichern
-     (DateiSpeichernExtern : in File_Type);
 
-   procedure StädteEinheitenSpeichern
+   function Allgemeines
+     (DateiSpeichernExtern : in File_Type)
+      return Boolean;
+
+   function SpezieswerteSpeichern
+     (DateiSpeichernExtern : in File_Type)
+      return Boolean;
+
+   function StädteEinheitenSpeichern
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateiSpeichernExtern : in File_Type)
+      return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
-   procedure Spezieswerte
+   function Spezieswerte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateiSpeichernExtern : in File_Type)
+      return Boolean
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
-
-
 
    function NameAutoSpeichern
      return Unbounded_Wide_Wide_String;

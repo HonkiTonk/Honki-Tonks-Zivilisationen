@@ -8,6 +8,7 @@ with SpeziesKonstanten;
 with GrafikKonstanten;
 with TextnummernKonstanten;
 with TextDatentypen;
+with KarteneffektDatentypen;
 
 with LeseWeltkarte;
 
@@ -19,6 +20,7 @@ with EingeleseneTexturenGrafik;
 with KartenfelderwerteLogik;
 with TexteinstellungenGrafik;
 with TextaccessverwaltungssystemGrafik;
+with NahrungsproduktionLogik;
 
 package body StadtumgebungGrafik is
 
@@ -166,8 +168,8 @@ package body StadtumgebungGrafik is
            ProduktionSchleifenwert
          is
             when 1 =>
-               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                           SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image;
+               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & NahrungsproduktionLogik.NahrungsproduktionKartenfeld (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                             SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image;
                
             when 2 =>
                Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
@@ -357,7 +359,7 @@ package body StadtumgebungGrafik is
    is begin
       
       EffekteSchleife:
-      for EffektSchleifenwert in KartengrundDatentypen.Effekt_Kartenfeld_Enum'Range loop
+      for EffektSchleifenwert in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
          
          case
            LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,

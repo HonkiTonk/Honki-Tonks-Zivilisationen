@@ -6,7 +6,7 @@ with ProduktionKonstanten;
 package Landressourcen is
    pragma Pure;
 
-   type LandressourcenlisteArray is array (KartenextraDatentypen.Ressourcen_Oberfläche_Land_Enum'Range) of KartendatenbankRecord.RessourcenlisteRecord;
+   type LandressourcenlisteArray is array (KartenextraDatentypen.Ressourcen_Oberfläche_Land_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
    Landressourcenliste : constant LandressourcenlisteArray := (
                                                                KartenextraDatentypen.Kohle_Enum =>
                                                                  (

@@ -2,20 +2,13 @@ with Ada.Directories; use Ada.Directories;
 
 with VerzeichnisKonstanten;
 
+with Fehlermeldungssystem;
+
 package body SchreibenVerzeichnisseLogik is
 
    procedure SchreibenVerzeichnisse
    is begin
       
-      SchreibeSonstigeVerzeichnisse;
-      
-   end SchreibenVerzeichnisse;
-   
-   
-   
-   procedure SchreibeSonstigeVerzeichnisse
-   is begin
-                  
       case
         Exists (Name => VerzeichnisKonstanten.Spielstand)
       is
@@ -46,6 +39,10 @@ package body SchreibenVerzeichnisseLogik is
             Create_Directory (New_Directory => VerzeichnisKonstanten.Einstellungen);
       end case;
       
-   end SchreibeSonstigeVerzeichnisse;
+   exception
+      when Status_Error | Name_Error | Use_Error | Device_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenVerzeichnisseLogik.SchreibenVerzeichnisse - Konnte nicht geschrieben werden");
+      
+   end SchreibenVerzeichnisse;
 
 end SchreibenVerzeichnisseLogik;

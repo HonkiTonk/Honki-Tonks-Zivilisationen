@@ -14,6 +14,7 @@ package ProduktionDatentypen is
    
    
    
+   -- Hier eine Begrenzung/Delta hinzufügen? äöü
    type Produktionsbonus is new Float range 0.00 .. 10.00;
    
    

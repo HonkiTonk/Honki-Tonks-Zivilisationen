@@ -51,5 +51,30 @@ package body Grenzpruefungen is
       end if;
       
    end Arbeitszeit;
+   
+   
+   
+   -- Die externen Werte eventuell noch prüfen ob sie kleiner als 0,01 sind und dann entsprechend auf 0,01 setzen? äöü
+   function Produktionsbonus
+     (RessourcenbonusExtern : in ProduktionDatentypen.Produktionsbonus;
+      VerbesserungsbonusExtern : in ProduktionDatentypen.Produktionsbonus;
+      WegebonusExtern : in ProduktionDatentypen.Produktionsbonus;
+      FlussbonusExtern : in ProduktionDatentypen.Produktionsbonus;
+      FeldeffektmalusExtern : in ProduktionDatentypen.Produktionsbonus)
+      return ProduktionDatentypen.Produktionsbonus
+   is
+      use type ProduktionDatentypen.Produktionsbonus;
+   begin
+      
+      if
+        Float (RessourcenbonusExtern) * Float (VerbesserungsbonusExtern) * Float (WegebonusExtern) * Float (FlussbonusExtern) * Float (FeldeffektmalusExtern) > Float (ProduktionDatentypen.Produktionsbonus'Last)
+      then
+         return ProduktionDatentypen.Produktionsbonus'Last;
+         
+      else
+         return (RessourcenbonusExtern * VerbesserungsbonusExtern * WegebonusExtern * FlussbonusExtern * FeldeffektmalusExtern);
+      end if;
+      
+   end Produktionsbonus;
 
 end Grenzpruefungen;

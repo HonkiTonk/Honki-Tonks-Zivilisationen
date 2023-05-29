@@ -3,8 +3,4 @@ package SchreibenVerzeichnisseLogik is
 
    procedure SchreibenVerzeichnisse;
 
-private
-
-   procedure SchreibeSonstigeVerzeichnisse;
-
 end SchreibenVerzeichnisseLogik;

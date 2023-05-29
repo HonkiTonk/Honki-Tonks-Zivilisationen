@@ -10,14 +10,14 @@ with LeseWeltkarte;
 
 with SpielstandAllgemeinesLogik;
 with Fehlermeldungssystem;
-with FehlermeldungssystemZusatzinformationen;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernKarteLogik is
 
-   procedure Karte
+   function Karte
      (DateiSpeichernExtern : in File_Type;
       AutospeichernExtern : in Boolean)
+      return Boolean
    is begin
       
       KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
@@ -30,21 +30,44 @@ package body SpeichernKarteLogik is
             XAchseSchleife:
             for XAchseSchleifenwert in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse loop
                
-               SichtbarkeitSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                      DateiSpeichernExtern => DateiSpeichernExtern);
-               BasisgrundSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                    DateiSpeichernExtern => DateiSpeichernExtern);
+               if
+                 False = SichtbarkeitSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                DateiSpeichernExtern => DateiSpeichernExtern)
+               then
+                  return False;
+                     
+               elsif
+                 False = BasisgrundSchreiben (KoordinatenExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                              DateiSpeichernExtern => DateiSpeichernExtern)
+               then
+                  return False;
+                  
+               else
+                  Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                  Feldeffekte := LeseWeltkarte.Feldeffekte (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                  Fluss := LeseWeltkarte.Fluss (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                  Ressource := LeseWeltkarte.Ressource (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                  Weg := LeseWeltkarte.Weg (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                  Verbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                  Einheit := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                  Stadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+               end if;
                
-               Zusatzgrund := LeseWeltkarte.Zusatzgrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
-               Feldeffekte := LeseWeltkarte.Feldeffekte (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
-               Fluss := LeseWeltkarte.Fluss (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
-               Ressource := LeseWeltkarte.Ressource (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
-               Weg := LeseWeltkarte.Weg (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
-               Verbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
-               Einheit := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
-               Stadt := LeseWeltkarte.StadtbelegungGrund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+               if
+                 False = VorhandeneFeldelementeSchreiben (ZusatzgrundExtern    => Zusatzgrund,
+                                                          FeldeffekteExtern    => Feldeffekte,
+                                                          FlussExtern          => Fluss,
+                                                          RessourceExtern      => Ressource,
+                                                          WegExtern            => Weg,
+                                                          VerbesserungExtern   => Verbesserung,
+                                                          EinheitExtern        => Einheit,
+                                                          StadtExtern          => Stadt,
+                                                          DateiSpeichernExtern => DateiSpeichernExtern)
+               then
+                  return False;
                
-               VorhandeneFeldelementeSchreiben (ZusatzgrundExtern    => Zusatzgrund,
+               elsif
+                 False = FeldelementeSchreiben (ZusatzgrundExtern    => Zusatzgrund,
                                                 FeldeffekteExtern    => Feldeffekte,
                                                 FlussExtern          => Fluss,
                                                 RessourceExtern      => Ressource,
@@ -52,17 +75,13 @@ package body SpeichernKarteLogik is
                                                 VerbesserungExtern   => Verbesserung,
                                                 EinheitExtern        => Einheit,
                                                 StadtExtern          => Stadt,
-                                                DateiSpeichernExtern => DateiSpeichernExtern);
-               
-               FeldelementeSchreiben (ZusatzgrundExtern    => Zusatzgrund,
-                                      FeldeffekteExtern    => Feldeffekte,
-                                      FlussExtern          => Fluss,
-                                      RessourceExtern      => Ressource,
-                                      WegExtern            => Weg,
-                                      VerbesserungExtern   => Verbesserung,
-                                      EinheitExtern        => Einheit,
-                                      StadtExtern          => Stadt,
-                                      DateiSpeichernExtern => DateiSpeichernExtern);
+                                                DateiSpeichernExtern => DateiSpeichernExtern)
+               then
+                  return False;
+                  
+               else
+                  null;
+               end if;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -71,13 +90,21 @@ package body SpeichernKarteLogik is
          
       end loop EAchseSchleife;
       
+      return True;
+      
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.Karte - Konnte nicht geschrieben werden");
+         return False;
+      
    end Karte;
    
    
    
-   procedure SichtbarkeitSchreiben
+   function SichtbarkeitSchreiben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       DateiSpeichernExtern : in File_Type)
+      return Boolean
    is
       use type SystemDatentypen.Sichtbarkeitszahl;
    begin
@@ -110,13 +137,21 @@ package body SpeichernKarteLogik is
          
       end loop BereichSchleife;
       
+      return True;
+      
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.SichtbarkeitSchreiben - Konnte nicht geschrieben werden");
+         return False;
+      
    end SichtbarkeitSchreiben;
    
    
    
-   procedure BasisgrundSchreiben
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+   function BasisgrundSchreiben
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       DateiSpeichernExtern : in File_Type)
+      return Boolean
    is begin
             
       case
@@ -127,18 +162,21 @@ package body SpeichernKarteLogik is
             
          when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
             KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
-                                                                   LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern));
-            
-         when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.BasisgrundSchreiben - Ungültige Ebene "
-                                        & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
+                                                                   LeseWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse)));
       end case;
+      
+      return True;
+      
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.BasisgrundSchreiben - Konnte nicht geschrieben werden");
+         return False;
       
    end BasisgrundSchreiben;
    
    
    
-   procedure VorhandeneFeldelementeSchreiben
+   function VorhandeneFeldelementeSchreiben
      (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       FeldeffekteExtern : in KartenRecords.FeldeffektArray;
       FlussExtern : in KartenextraDatentypen.Fluss_Enum;
@@ -148,6 +186,7 @@ package body SpeichernKarteLogik is
       EinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
       DateiSpeichernExtern : in File_Type)
+      return Boolean
    is
       use type EinheitenRecords.SpeziesEinheitnummerRecord;
       use type StadtRecords.SpeziesStadtnummerRecord;
@@ -235,11 +274,18 @@ package body SpeichernKarteLogik is
       SystemDatentypen.FeldelementVorhanden'Write (Stream (File => DateiSpeichernExtern),
                                                    VorhandeneFeldelemente);
       
+      return True;
+      
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.VorhandeneFeldelementeSchreiben - Konnte nicht geschrieben werden");
+         return False;
+      
    end VorhandeneFeldelementeSchreiben;
    
    
    
-   procedure FeldelementeSchreiben
+   function FeldelementeSchreiben
      (ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       FeldeffekteExtern : in KartenRecords.FeldeffektArray;
       FlussExtern : in KartenextraDatentypen.Fluss_Enum;
@@ -249,6 +295,7 @@ package body SpeichernKarteLogik is
       EinheitExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       StadtExtern : in StadtRecords.SpeziesStadtnummerRecord;
       DateiSpeichernExtern : in File_Type)
+      return Boolean
    is
       use type EinheitenRecords.SpeziesEinheitnummerRecord;
       use type StadtRecords.SpeziesStadtnummerRecord;
@@ -339,6 +386,13 @@ package body SpeichernKarteLogik is
             KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Write (Stream (File => DateiSpeichernExtern),
                                                                     ZusatzgrundExtern);
       end case;
+      
+      return True;
+      
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.FeldelementeSchreiben - Konnte nicht geschrieben werden");
+         return False;
       
    end FeldelementeSchreiben;
 

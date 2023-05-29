@@ -1,12 +1,13 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
-with EinheitenDatenbank;
-with ForschungenDatenbank;
-with ForschungRecordKonstanten;
-with GebaeudeDatenbank;
-with SpeziesDatenbank;
-with VerbesserungenDatenbank;
-with KartenDatenbank;
+private with EinheitenDatenbank;
+private with ForschungenDatenbank;
+private with ForschungRecordKonstanten;
+private with GebaeudeDatenbank;
+private with SpeziesDatenbank;
+private with VerbesserungenDatenbank;
+private with KartenDatenbank;
+private with EffekteDatenbank;
 
 package EinlesenDatenbankenLogik is
    pragma Elaborate_Body;
@@ -18,6 +19,7 @@ package EinlesenDatenbankenLogik is
    procedure Karten;
    procedure Verbesserungen;
    procedure Spezies;
+   procedure Effekte;
    
 private
    
@@ -51,6 +53,8 @@ private
    
    Speziesliste : SpeziesDatenbank.SpezieslisteArray;
    
+   Effekteliste : EffekteDatenbank.EffektelisteArray;
+   
    
    
    function EinheitenDurchgehen
@@ -74,6 +78,10 @@ private
       return Boolean;
    
    function SpeziesDurchgehen
+     (LadenPrüfenExtern : in Boolean)
+      return Boolean;
+   
+   function EffekteDurchgehen
      (LadenPrüfenExtern : in Boolean)
       return Boolean;
 

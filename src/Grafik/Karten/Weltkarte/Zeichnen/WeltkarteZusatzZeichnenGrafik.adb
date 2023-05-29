@@ -6,7 +6,7 @@ with SpeziesKonstanten;
 with KartenKonstanten;
 with TextaccessVariablen;
 with GrafikKonstanten;
-with KartengrundDatentypen;
+with KarteneffektDatentypen;
 with GrafikDatentypen;
 
 with LeseWeltkarte;
@@ -270,7 +270,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    is begin
       
       EffekteSchleife:
-      for EffektSchleifenwert in KartengrundDatentypen.Effekt_Kartenfeld_Enum'Range loop
+      for EffektSchleifenwert in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
          
          case
            LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,

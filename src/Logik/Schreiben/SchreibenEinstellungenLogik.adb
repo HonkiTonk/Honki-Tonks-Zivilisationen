@@ -12,6 +12,7 @@ with LeseEinstellungenMusik;
 
 with TexteinstellungenGrafik;
 with SpezieseinstellungenGrafik;
+with Fehlermeldungssystem;
 
 package body SchreibenEinstellungenLogik is
    
@@ -27,6 +28,10 @@ package body SchreibenEinstellungenLogik is
                                                      LeseOptionen.GanzerEintrag);
       
       Close (File => DateiNutzereinstellungen);
+      
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Nutzereinstellungen - Konnte nicht geschrieben werden");
       
    end Nutzereinstellungen;
    
@@ -57,6 +62,10 @@ package body SchreibenEinstellungenLogik is
       
       Close (File => DateiGrafikeinstellungen);
       
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Grafikeinstellungen - Konnte nicht geschrieben werden");
+      
    end Grafikeinstellungen;
    
    
@@ -76,6 +85,10 @@ package body SchreibenEinstellungenLogik is
                                                  LeseEinstellungenMusik.GanzerEintrag);
       
       Close (File => DateiSoundeinstellungen);
+      
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Soundeinstellungen - Konnte nicht geschrieben werden");
             
    end Soundeinstellungen;
    
@@ -100,6 +113,10 @@ package body SchreibenEinstellungenLogik is
       
       Close (File => DateiTastenbelegung);
       
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.TastenbelegungSchreiben - Konnte nicht geschrieben werden");
+      
    end TastenbelegungSchreiben;
    
    
@@ -117,6 +134,10 @@ package body SchreibenEinstellungenLogik is
                                                        OptionenVariablen.SonstigeEinstellungen);
       
       Close (File => DateiSonstigeEinstellungen);
+      
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.SonstigeEinstellungenSpeichern - Konnte nicht geschrieben werden");
       
    end SonstigeEinstellungenSpeichern;
 

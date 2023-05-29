@@ -9,7 +9,7 @@ package BasisgrundOberflaeche is
    
    -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type BasisgrundlisteOberflächeArray is array (KartengrundDatentypen.Basisgrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
+   type BasisgrundlisteOberflächeArray is array (KartengrundDatentypen.Basisgrund_Oberfläche_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteOberfläche : constant BasisgrundlisteOberflächeArray := (
                                                                              KartengrundDatentypen.Eis_Enum =>
                                                                                (

@@ -1,6 +1,7 @@
 with LeseStadtGebaut;
 
 with KartenfelderwerteLogik;
+with NahrungsproduktionLogik;
 
 package body StadtfeldBewertenLogik is
 
@@ -39,8 +40,8 @@ package body StadtfeldBewertenLogik is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      NahrungGesamt := KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
-                                                           SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
+      NahrungGesamt := NahrungsproduktionLogik.NahrungsproduktionKartenfeld (KoordinatenExtern => KoordinatenExtern,
+                                                                             SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
       
       if
         LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) <= 1

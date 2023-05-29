@@ -9,6 +9,7 @@ with LeseStadtGebaut;
 with KartenkoordinatenberechnungssystemLogik;
 with KartenfelderwerteLogik;
 with GlobalesWachstumLogik;
+with NahrungsproduktionLogik;
 
 package body StadtproduktionLogik is
    
@@ -113,8 +114,8 @@ package body StadtproduktionLogik is
                null;
                
             else
-               Nahrungsgewinnung := Nahrungsgewinnung + KartenfelderwerteLogik.FeldNahrung (KoordinatenExtern => KartenWert,
-                                                                                            SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
+               Nahrungsgewinnung := Nahrungsgewinnung + NahrungsproduktionLogik.NahrungsproduktionKartenfeld (KoordinatenExtern => KartenWert,
+                                                                                                              SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
                Materialgewinnung := Materialgewinnung + KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KartenWert,
                                                                                                SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
                Forschungsgewinnung := Forschungsgewinnung + KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KartenWert,

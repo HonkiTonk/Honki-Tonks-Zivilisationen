@@ -7,6 +7,7 @@ with EinheitenRecords;
 with StadtRecords;
 with WeltkarteRecords;
 with KartenextraDatentypen;
+with KarteneffektDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseSpeziesbelegung;
@@ -48,7 +49,7 @@ package SchreibeWeltkarte is
    
    procedure Feldeffekt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      FeldeffektExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
+      FeldeffektExtern : in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse

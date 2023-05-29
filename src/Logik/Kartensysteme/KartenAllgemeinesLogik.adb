@@ -1,5 +1,4 @@
 with KartenKonstanten;
-with KampfKonstanten;
 with KartengrundDatentypen;
 with GrafikKonstanten;
 with ProduktionKonstanten;
@@ -21,7 +20,7 @@ package body KartenAllgemeinesLogik is
       
       Basiswirtschaft := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund.Basisgrund,
                                                                      SpeziesExtern       => SpeziesExtern,
-                                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftMaterial);
+                                                                     WirtschaftArtExtern => ProduktionKonstanten.WirtschaftMaterial);
       
       case
         Gesamtgrund.Zusatzgrund
@@ -32,7 +31,7 @@ package body KartenAllgemeinesLogik is
          when others =>
             Zusatzwirtschaft := LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Gesamtgrund.Zusatzgrund,
                                                                              SpeziesExtern       => SpeziesExtern,
-                                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftMaterial);
+                                                                             WirtschaftArtExtern => ProduktionKonstanten.WirtschaftMaterial);
             
             return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / GrafikKonstanten.Halbierung + Float (Zusatzwirtschaft) / GrafikKonstanten.Halbierung);
       end case;
@@ -51,7 +50,7 @@ package body KartenAllgemeinesLogik is
       
       Basiswirtschaft := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund.Basisgrund,
                                                                      SpeziesExtern       => SpeziesExtern,
-                                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
+                                                                     WirtschaftArtExtern => ProduktionKonstanten.WirtschaftGeld);
       
       case
         Gesamtgrund.Zusatzgrund
@@ -62,7 +61,7 @@ package body KartenAllgemeinesLogik is
          when others =>
             Zusatzwirtschaft := LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Gesamtgrund.Zusatzgrund,
                                                                              SpeziesExtern       => SpeziesExtern,
-                                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
+                                                                             WirtschaftArtExtern => ProduktionKonstanten.WirtschaftGeld);
             
             return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / GrafikKonstanten.Halbierung + Float (Zusatzwirtschaft) / GrafikKonstanten.Halbierung);
       end case;
@@ -81,7 +80,7 @@ package body KartenAllgemeinesLogik is
       
       Basiswirtschaft := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund.Basisgrund,
                                                                      SpeziesExtern       => SpeziesExtern,
-                                                                     WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
+                                                                     WirtschaftArtExtern => ProduktionKonstanten.WirtschaftForschung);
       
       case
         Gesamtgrund.Zusatzgrund
@@ -92,7 +91,7 @@ package body KartenAllgemeinesLogik is
          when others =>
             Zusatzwirtschaft := LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => Gesamtgrund.Zusatzgrund,
                                                                              SpeziesExtern       => SpeziesExtern,
-                                                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
+                                                                             WirtschaftArtExtern => ProduktionKonstanten.WirtschaftForschung);
             
             return ProduktionDatentypen.Einzelproduktion (Float (Basiswirtschaft) / GrafikKonstanten.Halbierung + Float (Zusatzwirtschaft) / GrafikKonstanten.Halbierung);
       end case;
@@ -158,318 +157,6 @@ package body KartenAllgemeinesLogik is
       end case;
       
    end GrundAngriff;
-   
-   
-   
-   function FlussNahrung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ProduktionDatentypen.Einzelproduktion
-   is begin
-      
-      KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenFluss
-      is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return ProduktionKonstanten.LeerProduktion;
-            
-         when others =>
-            return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
-                                                          SpeziesExtern       => SpeziesExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
-      end case;
-      
-   end FlussNahrung;
-   
-   
-   
-   function FlussProduktion
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ProduktionDatentypen.Einzelproduktion
-   is begin
-      
-      KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenFluss
-      is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return ProduktionKonstanten.LeerProduktion;
-            
-         when others =>
-            return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
-                                                          SpeziesExtern       => SpeziesExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftMaterial);
-      end case;
-      
-   end FlussProduktion;
-   
-   
-   
-   function FlussGeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ProduktionDatentypen.Einzelproduktion
-   is begin
-      
-      KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenFluss
-      is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return ProduktionKonstanten.LeerProduktion;
-            
-         when others =>
-            -- Hat schon einmal einen Absturz durch range check failed verursacht, eventuell müssen hier überall weitere Tests rein. äöü
-            return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
-                                                          SpeziesExtern       => SpeziesExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
-      end case;
-      
-   end FlussGeld;
-   
-   
-   
-   function FlussWissen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ProduktionDatentypen.Einzelproduktion
-   is begin
-      
-      KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenFluss
-      is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return ProduktionKonstanten.LeerProduktion;
-            
-         when others =>
-            return LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => KartenFluss,
-                                                          SpeziesExtern       => SpeziesExtern,
-                                                          WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
-      end case;
-      
-   end FlussWissen;
-   
-   
-   
-   function FlussVerteidigung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return KampfDatentypen.KampfwerteKarte
-   is begin
-      
-      KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenFluss
-      is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return KampfKonstanten.LeerKampfwert;
-            
-         when others =>
-            return LeseKartenDatenbanken.KampfFluss (FlussExtern    => KartenFluss,
-                                                     SpeziesExtern  => SpeziesExtern,
-                                                     KampfArtExtern => KartenKonstanten.KampfVerteidigung);
-      end case;
-      
-   end FlussVerteidigung;
-   
-   
-
-   function FlussAngriff
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return KampfDatentypen.KampfwerteKarte
-   is begin
-      
-      KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenFluss
-      is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return KampfKonstanten.LeerKampfwert;
-            
-         when others =>
-            return LeseKartenDatenbanken.KampfFluss (FlussExtern    => KartenFluss,
-                                                     SpeziesExtern  => SpeziesExtern,
-                                                     KampfArtExtern => KartenKonstanten.KampfAngriff);
-      end case;
-      
-   end FlussAngriff;
-   
-   
-   
-   function FlussBewertung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return BewertungDatentypen.Bewertung_Enum
-   is begin
-      
-      KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenFluss
-      is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return KartenKonstanten.LeerBewertung;
-            
-         when others =>
-            return LeseKartenDatenbanken.BewertungFluss (FlussExtern   => KartenFluss,
-                                                         SpeziesExtern => SpeziesExtern);
-      end case;
-      
-   end FlussBewertung;
-   
-   
-   
-   function WegNahrung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ProduktionDatentypen.Einzelproduktion
-   is begin
-      
-      KartenWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenWeg
-      is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return ProduktionKonstanten.LeerProduktion;
-            
-         when others =>
-            return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
-                                                              SpeziesExtern     => SpeziesExtern,
-                                                              WelcherWertExtern => KartenKonstanten.WirtschaftNahrung);
-      end case;
-      
-   end WegNahrung;
-   
-   
-   
-   function WegProduktion
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ProduktionDatentypen.Einzelproduktion
-   is begin
-      
-      KartenWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenWeg
-      is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return ProduktionKonstanten.LeerProduktion;
-            
-         when others =>
-            return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
-                                                              SpeziesExtern     => SpeziesExtern,
-                                                              WelcherWertExtern => KartenKonstanten.WirtschaftMaterial);
-      end case;
-      
-   end WegProduktion;
-   
-   
-   
-   function WegGeld
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ProduktionDatentypen.Einzelproduktion
-   is begin
-      
-      KartenWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenWeg
-      is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return ProduktionKonstanten.LeerProduktion;
-            
-         when others =>
-            return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
-                                                              SpeziesExtern     => SpeziesExtern,
-                                                              WelcherWertExtern => KartenKonstanten.WirtschaftGeld);
-      end case;
-      
-   end WegGeld;
-   
-   
-   
-   function WegWissen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ProduktionDatentypen.Einzelproduktion
-   is begin
-      
-      KartenWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenWeg
-      is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return ProduktionKonstanten.LeerProduktion;
-            
-         when others =>
-            return LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => KartenWeg,
-                                                              SpeziesExtern     => SpeziesExtern,
-                                                              WelcherWertExtern => KartenKonstanten.WirtschaftForschung);
-      end case;
-      
-   end WegWissen;
-   
-   
-   
-   function WegVerteidigung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return KampfDatentypen.KampfwerteKarte
-   is begin
-      
-      KartenWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenWeg
-      is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return KampfKonstanten.LeerKampfwert;
-            
-         when others =>
-            return LeseVerbesserungenDatenbank.KampfWeg (WegExtern         => KartenWeg,
-                                                         SpeziesExtern     => SpeziesExtern,
-                                                         WelcherWertExtern => KartenKonstanten.KampfVerteidigung);
-      end case;
-      
-   end WegVerteidigung;
-   
-   
-   
-   function WegAngriff
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return KampfDatentypen.KampfwerteKarte
-   is begin
-      
-      KartenWeg := LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern);
-      
-      case
-        KartenWeg
-      is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return KampfKonstanten.LeerKampfwert;
-            
-         when others =>
-            return LeseVerbesserungenDatenbank.KampfWeg (WegExtern         => KartenWeg,
-                                                         SpeziesExtern     => SpeziesExtern,
-                                                         WelcherWertExtern => KartenKonstanten.KampfAngriff);
-      end case;
-      
-   end WegAngriff;
    
    
    

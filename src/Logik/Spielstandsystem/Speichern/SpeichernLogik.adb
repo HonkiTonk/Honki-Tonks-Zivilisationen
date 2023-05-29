@@ -25,6 +25,7 @@ with LadezeitenLogik;
 with NachGrafiktask;
 with SpielstandAllgemeinesLogik;
 with SpeichernKarteLogik;
+with Fehlermeldungssystem;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -70,17 +71,30 @@ package body SpeichernLogik is
                  Mode => Out_File,
                  Name => (VerzeichnisKonstanten.SpielstandStrich & Encode (Item => (To_Wide_Wide_String (Source => Spielstandname)))),
                  Form => "WCEM=8");
-      
-         SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern,
-                                    AutospeichernExtern  => AutospeichernExtern);
          
-         Allgemeines (DateiSpeichernExtern => DateiSpeichern);
-         SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
-      
-         SpezieswerteSpeichern (DateiSpeichernExtern => DateiSpeichern);
-         SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+         if
+           False = SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern,
+                                              AutospeichernExtern  => AutospeichernExtern)
+         then
+            null;
+            
+         elsif
+           False = Allgemeines (DateiSpeichernExtern => DateiSpeichern)
+         then
+            null;
+            
+         elsif
+           False = SpezieswerteSpeichern (DateiSpeichernExtern => DateiSpeichern)
+         then
+            null;
+            
+         else
+            SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
+         end if;
             
          Close (File => DateiSpeichern);
+         
+         LadezeitenLogik.SpeichernLadenMaximum;
 
          case
            AutospeichernExtern
@@ -89,18 +103,34 @@ package body SpeichernLogik is
                return;
             
             when False =>
-               LadezeitenLogik.SpeichernLadenMaximum;
                NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
          end case;
          
       end loop SpeichernSchleife;
       
+      -- Zu den ganzen exceptions hier und beim Schreiben noch spezifisches Handeln einbauen. äöü
+      -- Beispielsweise Datei schließen wenn etwas nicht geschrieben werden konnte, aber nicht wenn die Datei gar nicht angelegt werden konnt. äöü
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Speichern - Datei konnte nicht angelegt werden");
+         
+         case
+           AutospeichernExtern
+         is
+            when True =>
+               return;
+            
+            when False =>
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+         end case;
+      
    end Speichern;
    
    
    
-   procedure Allgemeines
+   function Allgemeines
      (DateiSpeichernExtern : in File_Type)
+      return Boolean
    is begin
             
       SpielRecords.AllgemeinesRecord'Write (Stream (File => DateiSpeichernExtern),
@@ -109,40 +139,58 @@ package body SpeichernLogik is
       SpielRecords.SpeziesbelegungArray'Write (Stream (File => DateiSpeichernExtern),
                                                LeseSpeziesbelegung.GanzesArray);
       
+      return True;
+      
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Allgemeines - Konnte nicht geschrieben werden");
+         return False;
+      
    end Allgemeines;
    
    
    
-   procedure SpezieswerteSpeichern
+   function SpezieswerteSpeichern
      (DateiSpeichernExtern : in File_Type)
+      return Boolean
    is begin
       
       SpeziesSchleife:
       for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
          
-         case
-           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
-         is
-            when SpeziesDatentypen.Leer_Spieler_Enum =>
-               null;
+         if
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert) = SpeziesDatentypen.Leer_Spieler_Enum
+         then
+            null;
                
-            when others =>
-               StädteEinheitenSpeichern (SpeziesExtern        => SpeziesSchleifenwert,
-                                          DateiSpeichernExtern => DateiSpeichernExtern);
-               
-               Spezieswerte (SpeziesExtern        => SpeziesSchleifenwert,
-                             DateiSpeichernExtern => DateiSpeichernExtern);
-         end case;
+         elsif
+           False =StädteEinheitenSpeichern (SpeziesExtern        => SpeziesSchleifenwert,
+                                             DateiSpeichernExtern => DateiSpeichernExtern)
+         then
+            return False;
+                  
+         elsif
+           False = Spezieswerte (SpeziesExtern        => SpeziesSchleifenwert,
+                                 DateiSpeichernExtern => DateiSpeichernExtern)
+         then
+            return False;
+                  
+         else
+            null;
+         end if;
          
       end loop SpeziesSchleife;
+      
+      return True;
       
    end SpezieswerteSpeichern;
    
    
    
-   procedure StädteEinheitenSpeichern
+   function StädteEinheitenSpeichern
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateiSpeichernExtern : in File_Type)
+      return Boolean
    is begin
       
       SpielRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernExtern),
@@ -206,13 +254,21 @@ package body SpeichernLogik is
             
       end loop StadtSchleife;
       
+      return True;
+      
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern - Konnte nicht geschrieben werden");
+         return False;
+      
    end StädteEinheitenSpeichern;
    
    
    
-   procedure Spezieswerte
+   function Spezieswerte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateiSpeichernExtern : in File_Type)
+      return Boolean
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
@@ -248,6 +304,13 @@ package body SpeichernLogik is
          when others =>
             null;
       end case;
+      
+      return True;
+      
+   exception
+      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Spezieswerte - Konnte nicht geschrieben werden");
+         return False;
       
    end Spezieswerte;
    

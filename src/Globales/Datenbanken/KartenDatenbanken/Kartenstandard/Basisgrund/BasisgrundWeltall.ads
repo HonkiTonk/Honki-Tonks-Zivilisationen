@@ -9,7 +9,7 @@ package BasisgrundWeltall is
    
    -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
 
-   type BasisgrundlisteWeltallArray is array (KartengrundDatentypen.Basisgrund_Weltraum_Enum'Range) of KartendatenbankRecord.KartenpassierbarkeitslistenRecord;
+   type BasisgrundlisteWeltallArray is array (KartengrundDatentypen.Basisgrund_Weltraum_Enum'Range) of KartendatenbankRecord.KartenbasisgrundlisteRecord;
    BasisgrundlisteWeltall : constant BasisgrundlisteWeltallArray := (
                                                                      KartengrundDatentypen.Weltraum_Enum =>
                                                                        (

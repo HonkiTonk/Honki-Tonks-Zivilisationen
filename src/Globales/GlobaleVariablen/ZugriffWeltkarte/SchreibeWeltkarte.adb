@@ -70,7 +70,7 @@ package body SchreibeWeltkarte is
    
    procedure Feldeffekt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      FeldeffektExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
+      FeldeffektExtern : in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
    is begin
       
       case

@@ -14,17 +14,22 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (29.05.2023):
+   -- Version 0.05.1430 => 0.05. (29.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1355 => 0.05. (28.05.2023):
+   -- Version 0.05.1355 => 0.05.1430 (28.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Kartenfelderproduktionssystem gearbeitet.
+   -- Nahrungsproduktionsbonus durch Wege überarbeitet.
+   -- Nahrungsproduktionsbonus durch Flüsse überarbeitet.
+   -- EffekteDatenbank angelegt.
+   -- Zusätzliche Exceptions und Fehlermeldungen hinzugefügt.
+   -- Sollten Verzeichnisse und Dateien nicht oder nicht vollständig geschrieben werden können, dann wird der Schreibeprozess abgebrochen und nicht mehr das Spiel gestoppt.
+   -- Kommentare und Kleinigkeiten korrigiert/erweitert.
    
    
 

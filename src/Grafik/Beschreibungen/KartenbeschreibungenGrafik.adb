@@ -95,22 +95,22 @@ package body KartenbeschreibungenGrafik is
    
    
    function KurzbeschreibungFeldeffekte
-     (FeldeffekteExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
+     (FeldeffekteExtern : in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Feldeffekte (2 * KartengrundDatentypen.Effekt_Kartenfeld_Enum'Pos (FeldeffekteExtern) - 1));
+      return To_Wide_Wide_String (Source => Kartentexte.Feldeffekte (2 * KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Pos (FeldeffekteExtern) - 1));
       
    end KurzbeschreibungFeldeffekte;
    
    
    
    function LangbeschreibungFeldeffekte
-     (FeldeffekteExtern : in KartengrundDatentypen.Effekt_Kartenfeld_Enum)
+     (FeldeffekteExtern : in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Feldeffekte (2 * KartengrundDatentypen.Effekt_Kartenfeld_Enum'Pos (FeldeffekteExtern)));
+      return To_Wide_Wide_String (Source => Kartentexte.Feldeffekte (2 * KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Pos (FeldeffekteExtern)));
       
    end LangbeschreibungFeldeffekte;
 

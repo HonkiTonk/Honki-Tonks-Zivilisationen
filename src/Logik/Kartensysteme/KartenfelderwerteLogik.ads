@@ -15,19 +15,6 @@ package KartenfelderwerteLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
-
-   function FeldNahrung
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ProduktionDatentypen.Feldproduktion
-     with
-       Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
    
    function FeldProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
