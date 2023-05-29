@@ -1,3 +1,6 @@
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Exceptions; use Ada.Exceptions;
+
 with Fehlermeldungssystem;
 
 package body EinlesenAllgemeinesLogik is
@@ -21,10 +24,11 @@ package body EinlesenAllgemeinesLogik is
       end case;
       
    exception
-      when End_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenAllgemeinesLogik.VorzeitigesZeilenende: Zu wenig Zeilen, aktuelle Zeile: " & AktuelleZeileExtern'Wide_Wide_Image);
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenAllgemeinesLogik.VorzeitigesZeilenende - aktuelle Zeile: " & AktuelleZeileExtern'Wide_Wide_Image & " "
+                                     & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return True;
-      
+         
    end VorzeitigesZeilenende;
 
 

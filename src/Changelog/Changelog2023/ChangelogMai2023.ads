@@ -7,17 +7,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (30.05.2023):
+   -- Version 0.05.1465 => 0.05. (30.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1430 => 0.05. (29.05.2023):
+   -- Version 0.05.1430 => 0.05.1465 (29.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehlermeldungssystem überarbeitet und um Zeitangabe erweitert.
+   -- Exceptions überarbeitet, so dass die Grund für die Exceptions ebenfall gespeichert/angezeigt wird.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
 

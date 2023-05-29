@@ -1,3 +1,6 @@
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Exceptions; use Ada.Exceptions;
+
 with SystemRecords;
 with VerzeichnisKonstanten;
 with GrafikRecords;
@@ -30,8 +33,18 @@ package body SchreibenEinstellungenLogik is
       Close (File => DateiNutzereinstellungen);
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Nutzereinstellungen - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Nutzereinstellungen - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DateiNutzereinstellungen)
+         is
+            when True =>
+               Close (File => DateiNutzereinstellungen);
+               
+            when False =>
+               null;
+         end case;
       
    end Nutzereinstellungen;
    
@@ -63,8 +76,18 @@ package body SchreibenEinstellungenLogik is
       Close (File => DateiGrafikeinstellungen);
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Grafikeinstellungen - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Grafikeinstellungen - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DateiGrafikeinstellungen)
+         is
+            when True =>
+               Close (File => DateiGrafikeinstellungen);
+               
+            when False =>
+               null;
+         end case;
       
    end Grafikeinstellungen;
    
@@ -87,8 +110,18 @@ package body SchreibenEinstellungenLogik is
       Close (File => DateiSoundeinstellungen);
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Soundeinstellungen - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Soundeinstellungen - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DateiSoundeinstellungen)
+         is
+            when True =>
+               Close (File => DateiSoundeinstellungen);
+               
+            when False =>
+               null;
+         end case;
             
    end Soundeinstellungen;
    
@@ -114,8 +147,18 @@ package body SchreibenEinstellungenLogik is
       Close (File => DateiTastenbelegung);
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.TastenbelegungSchreiben - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.TastenbelegungSchreiben - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DateiTastenbelegung)
+         is
+            when True =>
+               Close (File => DateiTastenbelegung);
+               
+            when False =>
+               null;
+         end case;
       
    end TastenbelegungSchreiben;
    
@@ -136,8 +179,19 @@ package body SchreibenEinstellungenLogik is
       Close (File => DateiSonstigeEinstellungen);
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.SonstigeEinstellungenSpeichern - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.SonstigeEinstellungenSpeichern - Konnte nicht geschrieben werden: "
+                                     & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DateiSonstigeEinstellungen)
+         is
+            when True =>
+               Close (File => DateiSonstigeEinstellungen);
+               
+            when False =>
+               null;
+         end case;
       
    end SonstigeEinstellungenSpeichern;
 

@@ -1,7 +1,11 @@
 with Ada.Directories; use Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Exceptions; use Ada.Exceptions;
 
 with VerzeichnisKonstanten;
 with StandardTastenbelegungDatenbank;
+
+with Fehlermeldungssystem;
 
 package body EinlesenTastaturLogik is
 
@@ -39,6 +43,21 @@ package body EinlesenTastaturLogik is
       
       Close (File => TastenbelegungLaden);
       
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTastaturLogik.Tastaturbelegung - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
+         
+         case
+           Is_Open (File => TastenbelegungLaden)
+         is
+            when True =>
+               Close (File => TastenbelegungLaden);
+               
+            when False =>
+               null;
+         end case;
+      
    end Tastaturbelegung;
    
    
@@ -73,9 +92,10 @@ package body EinlesenTastaturLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTastaturLogik.TastaturbelegungDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
-      
+         
    end TastaturbelegungDurchgehen;
 
 end EinlesenTastaturLogik;

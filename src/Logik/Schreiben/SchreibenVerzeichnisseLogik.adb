@@ -1,4 +1,6 @@
 with Ada.Directories; use Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Exceptions; use Ada.Exceptions;
 
 with VerzeichnisKonstanten;
 
@@ -40,8 +42,8 @@ package body SchreibenVerzeichnisseLogik is
       end case;
       
    exception
-      when Status_Error | Name_Error | Use_Error | Device_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenVerzeichnisseLogik.SchreibenVerzeichnisse - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenVerzeichnisseLogik.SchreibenVerzeichnisse - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
       
    end SchreibenVerzeichnisse;
 

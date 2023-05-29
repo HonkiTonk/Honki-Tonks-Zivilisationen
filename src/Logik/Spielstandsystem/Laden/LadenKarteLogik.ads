@@ -69,7 +69,7 @@ private
    
    function BasisgrundEinlesen
      (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       LadenPrüfenExtern : in Boolean)
       return Boolean
      with

@@ -1,4 +1,5 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Exceptions; use Ada.Exceptions;
 
 with KartenRecords;
 with StadtRecords;
@@ -108,11 +109,19 @@ package body SpeichernLogik is
          
       end loop SpeichernSchleife;
       
-      -- Zu den ganzen exceptions hier und beim Schreiben noch spezifisches Handeln einbauen. äöü
-      -- Beispielsweise Datei schließen wenn etwas nicht geschrieben werden konnte, aber nicht wenn die Datei gar nicht angelegt werden konnt. äöü
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Speichern - Datei konnte nicht angelegt werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Speichern - Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DateiSpeichern)
+         is
+            when True =>
+               Close (File => DateiSpeichern);
+               
+            when False =>
+               null;
+         end case;
          
          case
            AutospeichernExtern
@@ -123,7 +132,7 @@ package body SpeichernLogik is
             when False =>
                NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
          end case;
-      
+         
    end Speichern;
    
    
@@ -142,8 +151,8 @@ package body SpeichernLogik is
       return True;
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Allgemeines - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Allgemeines - Konnte nicht geschrieben werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Allgemeines;
@@ -257,8 +266,8 @@ package body SpeichernLogik is
       return True;
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern - Konnte nicht geschrieben werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end StädteEinheitenSpeichern;
@@ -308,8 +317,8 @@ package body SpeichernLogik is
       return True;
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Spezieswerte - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Spezieswerte - Konnte nicht geschrieben werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Spezieswerte;

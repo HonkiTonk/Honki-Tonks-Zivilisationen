@@ -1,3 +1,6 @@
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Exceptions; use Ada.Exceptions;
+
 with EinheitenDatenbank;
 with ForschungenDatenbank;
 with GebaeudeDatenbank;
@@ -40,8 +43,18 @@ package body SchreibenDatenbankenLogik is
       Close (File => DatenbankSpeichern);
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenEinheitenDatenbank - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenEinheitenDatenbank - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DatenbankSpeichern)
+         is
+            when True =>
+               Close (File => DatenbankSpeichern);
+               
+            when False =>
+               null;
+         end case;
       
    end SchreibenEinheitenDatenbank;
    
@@ -71,8 +84,18 @@ package body SchreibenDatenbankenLogik is
       Close (File => DatenbankSpeichern);
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenForschungenDatenbank - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenForschungenDatenbank - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DatenbankSpeichern)
+         is
+            when True =>
+               Close (File => DatenbankSpeichern);
+               
+            when False =>
+               null;
+         end case;
       
    end SchreibenForschungenDatenbank;
    
@@ -92,8 +115,18 @@ package body SchreibenDatenbankenLogik is
       Close (File => DatenbankSpeichern);
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenGebäudeDatenbank - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenGebäudeDatenbank - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DatenbankSpeichern)
+         is
+            when True =>
+               Close (File => DatenbankSpeichern);
+               
+            when False =>
+               null;
+         end case;
       
    end SchreibenGebäudeDatenbank;
    
@@ -122,8 +155,18 @@ package body SchreibenDatenbankenLogik is
       Close (File => DatenbankSpeichern);
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenKartenDatenbanken - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenKartenDatenbanken - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DatenbankSpeichern)
+         is
+            when True =>
+               Close (File => DatenbankSpeichern);
+               
+            when False =>
+               null;
+         end case;
       
    end SchreibenKartenDatenbanken;
    
@@ -146,8 +189,19 @@ package body SchreibenDatenbankenLogik is
       Close (File => DatenbankSpeichern);
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenVerbesserungenDatenbank - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenVerbesserungenDatenbank - Konnte nicht geschrieben werden: "
+                                     & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DatenbankSpeichern)
+         is
+            when True =>
+               Close (File => DatenbankSpeichern);
+               
+            when False =>
+               null;
+         end case;
       
    end SchreibenVerbesserungenDatenbank;
       
@@ -167,8 +221,18 @@ package body SchreibenDatenbankenLogik is
       Close (File => DatenbankSpeichern);
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenSpeziesDatenbank - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenSpeziesDatenbank - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DatenbankSpeichern)
+         is
+            when True =>
+               Close (File => DatenbankSpeichern);
+               
+            when False =>
+               null;
+         end case;
       
    end SchreibenSpeziesDatenbank;
    
@@ -188,8 +252,18 @@ package body SchreibenDatenbankenLogik is
       Close (File => DatenbankSpeichern);
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenEffekteDatenbank - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenEffekteDatenbank - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DatenbankSpeichern)
+         is
+            when True =>
+               Close (File => DatenbankSpeichern);
+               
+            when False =>
+               null;
+         end case;
       
    end SchreibenEffekteDatenbank;
 

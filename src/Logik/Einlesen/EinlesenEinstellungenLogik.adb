@@ -1,4 +1,6 @@
 with Ada.Directories; use Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Exceptions; use Ada.Exceptions;
 
 with VerzeichnisKonstanten;
 with OptionenVariablen;
@@ -11,6 +13,8 @@ with SchreibeEinstellungenGrafik;
 with EinstellungenGrafik;
 with EinstellungenMusik;
 with EinstellungenSound;
+
+with Fehlermeldungssystem;
 
 package body EinlesenEinstellungenLogik is
 
@@ -60,6 +64,21 @@ package body EinlesenEinstellungenLogik is
 
       Close (File => DateiNutzereinstellungen);
       
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenEinstellungenLogik.Nutzereinstellungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         OptionenVariablen.StandardNutzereinstellungenLaden;
+         
+         case
+           Is_Open (File => DateiNutzereinstellungen)
+         is
+            when True =>
+               Close (File => DateiNutzereinstellungen);
+               
+            when False =>
+               null;
+         end case;
+      
    end Nutzereinstellungen;
    
    
@@ -86,7 +105,8 @@ package body EinlesenEinstellungenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenEinstellungenLogik.NutzereinstellungenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end NutzereinstellungenDurchgehen;
@@ -126,6 +146,21 @@ package body EinlesenEinstellungenLogik is
       end case;
                         
       Close (File => DateiGrafikeinstellungen);
+      
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenEinstellungenLogik.Grafikeinstellungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         EinstellungenGrafik.StandardeinstellungenLaden;
+         
+         case
+           Is_Open (File => DateiGrafikeinstellungen)
+         is
+            when True =>
+               Close (File => DateiGrafikeinstellungen);
+               
+            when False =>
+               null;
+         end case;
       
    end Grafikeinstellungen;
    
@@ -172,7 +207,8 @@ package body EinlesenEinstellungenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenEinstellungenLogik.GrafikeinstellungenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end GrafikeinstellungenDurchgehen;
@@ -215,6 +251,22 @@ package body EinlesenEinstellungenLogik is
       
       Close (File => DateiSoundeinstellungen);
       
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenEinstellungenLogik.Toneinstelllungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         EinstellungenMusik.StandardeinstellungenLaden;
+         EinstellungenSound.StandardeinstellungenLaden;
+         
+         case
+           Is_Open (File => DateiSoundeinstellungen)
+         is
+            when True =>
+               Close (File => DateiSoundeinstellungen);
+               
+            when False =>
+               null;
+         end case;
+      
    end Toneinstelllungen;
    
    
@@ -245,7 +297,8 @@ package body EinlesenEinstellungenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenEinstellungenLogik.ToneinstellungenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end ToneinstellungenDurchgehen;
@@ -286,6 +339,21 @@ package body EinlesenEinstellungenLogik is
       
       Close (File => DateiSonstigeEinstellungen);
       
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenEinstellungenLogik.SonstigeEinstellungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         OptionenVariablen.SonstigeStandardeinstellungenLaden;
+         
+         case
+           Is_Open (File => DateiSonstigeEinstellungen)
+         is
+            when True =>
+               Close (File => DateiSonstigeEinstellungen);
+               
+            when False =>
+               null;
+         end case;
+      
    end SonstigeEinstellungen;
    
    
@@ -312,7 +380,8 @@ package body EinlesenEinstellungenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenEinstellungenLogik.SonstigeEinstellungenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end SonstigeEinstellungenDurchgehen;

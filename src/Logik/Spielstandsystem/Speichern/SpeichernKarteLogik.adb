@@ -1,3 +1,6 @@
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Exceptions; use Ada.Exceptions;
+
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -93,10 +96,10 @@ package body SpeichernKarteLogik is
       return True;
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.Karte - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.Karte - Konnte nicht geschrieben werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
-      
+         
    end Karte;
    
    
@@ -140,8 +143,8 @@ package body SpeichernKarteLogik is
       return True;
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.SichtbarkeitSchreiben - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.SichtbarkeitSchreiben - Konnte nicht geschrieben werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end SichtbarkeitSchreiben;
@@ -168,8 +171,8 @@ package body SpeichernKarteLogik is
       return True;
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.BasisgrundSchreiben - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.BasisgrundSchreiben - Konnte nicht geschrieben werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end BasisgrundSchreiben;
@@ -277,8 +280,8 @@ package body SpeichernKarteLogik is
       return True;
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.VorhandeneFeldelementeSchreiben - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.VorhandeneFeldelementeSchreiben - Konnte nicht geschrieben werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end VorhandeneFeldelementeSchreiben;
@@ -390,8 +393,8 @@ package body SpeichernKarteLogik is
       return True;
       
    exception
-      when End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.FeldelementeSchreiben - Konnte nicht geschrieben werden");
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernKarteLogik.FeldelementeSchreiben - Konnte nicht geschrieben werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end FeldelementeSchreiben;

@@ -1,4 +1,6 @@
 with Ada.Directories; use Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Exceptions; use Ada.Exceptions;
 
 with VerzeichnisKonstanten;
 
@@ -9,6 +11,8 @@ with StandardGebaeudeDatenbank;
 with StandardForschungenDatenbank;
 with StandardEinheitenDatenbank;
 with StandardEffekteDatenbank;
+
+with Fehlermeldungssystem;
 
 package body EinlesenDatenbankenLogik is
    
@@ -59,6 +63,21 @@ package body EinlesenDatenbankenLogik is
       
       Close (File => DatenbankEinlesen);
       
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Einheiten - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
+         
+         case
+           Is_Open (File => DatenbankEinlesen)
+         is
+            when True =>
+               Close (File => DatenbankEinlesen);
+               
+            when False =>
+               null;
+         end case;
+      
    end Einheiten;
    
    
@@ -84,7 +103,8 @@ package body EinlesenDatenbankenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.EinheitenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end EinheitenDurchgehen;
@@ -123,6 +143,21 @@ package body EinlesenDatenbankenLogik is
       
       Close (File => DatenbankEinlesen);
       
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Forschungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
+         
+         case
+           Is_Open (File => DatenbankEinlesen)
+         is
+            when True =>
+               Close (File => DatenbankEinlesen);
+               
+            when False =>
+               null;
+         end case;
+      
    end Forschungen;
    
    
@@ -160,7 +195,8 @@ package body EinlesenDatenbankenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.ForschungenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end ForschungenDurchgehen;
@@ -199,6 +235,21 @@ package body EinlesenDatenbankenLogik is
       
       Close (File => DatenbankEinlesen);
       
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Gebäude - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
+         
+         case
+           Is_Open (File => DatenbankEinlesen)
+         is
+            when True =>
+               Close (File => DatenbankEinlesen);
+               
+            when False =>
+               null;
+         end case;
+      
    end Gebäude;
    
    
@@ -224,7 +275,8 @@ package body EinlesenDatenbankenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.GebäudeDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end GebäudeDurchgehen;
@@ -269,6 +321,24 @@ package body EinlesenDatenbankenLogik is
       
       Close (File => DatenbankEinlesen);
       
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Karten - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
+         StandardKartenDatenbank.StandardZusatzgrundDatenbankLaden;
+         StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
+         StandardKartenDatenbank.StandardKartenressourcenDatenbankLaden;
+         
+         case
+           Is_Open (File => DatenbankEinlesen)
+         is
+            when True =>
+               Close (File => DatenbankEinlesen);
+               
+            when False =>
+               null;
+         end case;
+      
    end Karten;
    
    
@@ -306,7 +376,8 @@ package body EinlesenDatenbankenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.KartenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end KartenDurchgehen;
@@ -347,6 +418,22 @@ package body EinlesenDatenbankenLogik is
       
       Close (File => DatenbankEinlesen);
       
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Verbesserungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
+         StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
+         
+         case
+           Is_Open (File => DatenbankEinlesen)
+         is
+            when True =>
+               Close (File => DatenbankEinlesen);
+               
+            when False =>
+               null;
+         end case;
+      
    end Verbesserungen;
    
    
@@ -376,7 +463,8 @@ package body EinlesenDatenbankenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.VerbesserungenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end VerbesserungenDurchgehen;
@@ -415,6 +503,21 @@ package body EinlesenDatenbankenLogik is
       
       Close (File => DatenbankEinlesen);
       
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Spezies - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
+         
+         case
+           Is_Open (File => DatenbankEinlesen)
+         is
+            when True =>
+               Close (File => DatenbankEinlesen);
+               
+            when False =>
+               null;
+         end case;
+      
    end Spezies;
       
    
@@ -440,7 +543,8 @@ package body EinlesenDatenbankenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.SpeziesDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end SpeziesDurchgehen;
@@ -479,6 +583,21 @@ package body EinlesenDatenbankenLogik is
       
       Close (File => DatenbankEinlesen);
       
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Effekte - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         StandardEffekteDatenbank.StandardEffekteDatenbankLaden;
+         
+         case
+           Is_Open (File => DatenbankEinlesen)
+         is
+            when True =>
+               Close (File => DatenbankEinlesen);
+               
+            when False =>
+               null;
+         end case;
+      
    end Effekte;
    
    
@@ -504,7 +623,8 @@ package body EinlesenDatenbankenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Ada.Streams.Stream_IO.Status_Error | Mode_Error | Ada.Streams.Stream_IO.Name_Error | Ada.Streams.Stream_IO.Use_Error | Ada.Streams.Stream_IO.Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.EffekteDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end EffekteDurchgehen;

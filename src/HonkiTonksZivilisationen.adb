@@ -53,15 +53,13 @@ is
            Projekteinstellungen.Debug.FehlerWarnung
          is
             when True =>
-               Put_Line (Item => "Logiktask wurde abgebrochen.");
-               Put_Line (Item => Exception_Information (StandardAdaFehler));
+               Put_Line (Item => "Logiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
 
             when False =>
                null;
          end case;
 
-         FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Logiktask wurde abgebrochen.");
-         FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
+         FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => "Logiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end LogikTask;
@@ -83,15 +81,13 @@ is
            Projekteinstellungen.Debug.FehlerWarnung
          is
             when True =>
-               Put_Line (Item => "Grafiktask wurde abgebrochen.");
-               Put_Line (Item => Exception_Information (StandardAdaFehler));
+               Put_Line (Item => "Grafiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
 
             when False =>
                null;
          end case;
 
-         FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Grafiktask wurde abgebrochen.");
-         FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
+         FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => "Grafiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end GrafikTask;
@@ -113,15 +109,13 @@ is
            Projekteinstellungen.Debug.FehlerWarnung
          is
             when True =>
-               Put_Line (Item => "Musiktask wurde abgebrochen.");
-               Put_Line (Item => Exception_Information (StandardAdaFehler));
+               Put_Line (Item => "Musiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
 
             when False =>
                null;
          end case;
 
-         FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Musiktask wurde abgebrochen.");
-         FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
+         FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => "Musiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end MusikTask;
@@ -143,15 +137,13 @@ is
            Projekteinstellungen.Debug.FehlerWarnung
          is
             when True =>
-               Put_Line (Item => "Soundtask wurde abgebrochen.");
-               Put_Line (Item => Exception_Information (StandardAdaFehler));
+               Put_Line (Item => "Soundtask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
 
             when False =>
                null;
          end case;
 
-         FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Soundtask wurde abgebrochen.");
-         FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => Exception_Information (StandardAdaFehler));
+         FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => "Soundtask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end SoundTask;
@@ -198,7 +190,6 @@ begin
             StartEndeSound.Entfernen;
             Abort_Task (T => TaskID (Task_Sound_Enum));
 
-            FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Unerwartet beendet.");
             exit SpielLäuftSchleife;
 
          when False =>

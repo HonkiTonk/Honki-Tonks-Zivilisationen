@@ -1,4 +1,5 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Exceptions; use Ada.Exceptions;
 
 with GrafikDatentypen;
 with VerzeichnisKonstanten;
@@ -22,6 +23,8 @@ with SpielstandlisteLogik;
 with MeldungFestlegenLogik;
 with StandardSpielwerteSetzenLogik;
 with LadenKarteLogik;
+
+with Fehlermeldungssystem;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenLogik is
@@ -72,6 +75,22 @@ package body LadenLogik is
          end case;
          
       end loop LadenSchleife;
+      
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.Laden - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         
+         case
+           Is_Open (File => DateiLaden)
+         is
+            when True =>
+               Close (File => DateiLaden);
+               
+            when False =>
+               null;
+         end case;
+         
+         return False;
       
    end Laden;
    
@@ -148,7 +167,7 @@ package body LadenLogik is
       DateiLadenExtern : in File_Type)
       return Boolean
    is begin
-      
+            
       SpielRecords.AllgemeinesRecord'Read (Stream (File => DateiLadenExtern),
                                            Allgemeines);
       
@@ -169,7 +188,8 @@ package body LadenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.AllgemeinesLaden - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end AllgemeinesLaden;
@@ -288,7 +308,8 @@ package body LadenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.StädteEinheitenLaden - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
    
    end StädteEinheitenLaden;
@@ -372,7 +393,8 @@ package body LadenLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.Spezieswerte - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Spezieswerte;

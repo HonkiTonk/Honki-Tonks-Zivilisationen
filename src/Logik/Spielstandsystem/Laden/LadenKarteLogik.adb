@@ -1,3 +1,6 @@
+with Ada.Exceptions; use Ada.Exceptions;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+
 with KartenKonstanten;
 with SystemKonstanten;
 with SpeziesDatentypen;
@@ -8,7 +11,6 @@ with SchreibeWeltkarteneinstellungen;
 
 with LadezeitenLogik;
 with Fehlermeldungssystem;
-with FehlermeldungssystemZusatzinformationen;
 
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
 package body LadenKarteLogik is
@@ -247,7 +249,8 @@ package body LadenKarteLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.KarteLaden - Konnte nicht geladen werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end KarteLaden;
@@ -310,7 +313,8 @@ package body LadenKarteLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.ZahlNachSichtbarkeit - Konnte nicht geladen werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end ZahlNachSichtbarkeit;
@@ -319,7 +323,7 @@ package body LadenKarteLogik is
    
    function BasisgrundEinlesen
      (DateiLadenExtern : in File_Type;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldVorhandenRecord;
       LadenPrüfenExtern : in Boolean)
       return Boolean
    is begin
@@ -336,16 +340,13 @@ package body LadenKarteLogik is
          when KartenKonstanten.PlaneteninneresKonstante .. KartenKonstanten.OberflächeKonstante =>
             KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Read (Stream (File => DateiLadenExtern),
                                                                   Basisgrund);
-            
-         when others =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.ImmerVorhandenEinlesen - Ungültige Ebene " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
       end case;
       
       case
         LadenPrüfenExtern
       is
          when True =>
-            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern,
+            SchreibeWeltkarte.Basisgrund (KoordinatenExtern => (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
                                           GrundExtern       => Basisgrund);
             
          when False =>
@@ -355,7 +356,8 @@ package body LadenKarteLogik is
       return True;
       
    exception
-      when Constraint_Error | End_Error | Status_Error | Mode_Error | Name_Error | Use_Error | Device_Error | Data_Error =>
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.BasisgrundEinlesen - Konnte nicht geladen werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end BasisgrundEinlesen;
