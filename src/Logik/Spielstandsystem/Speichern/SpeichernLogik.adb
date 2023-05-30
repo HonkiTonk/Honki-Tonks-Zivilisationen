@@ -12,6 +12,7 @@ with SpielstandlisteLogik;
 with StadtKonstanten;
 with EinheitenKonstanten;
 with OptionenVariablen;
+with TextnummernKonstanten;
 
 with LeseWichtiges;
 with LeseGrenzen;
@@ -27,6 +28,7 @@ with NachGrafiktask;
 with SpielstandAllgemeinesLogik;
 with SpeichernKarteLogik;
 with Fehlermeldungssystem;
+with MeldungFestlegenLogik;
 
 -- Bei Änderungen am Speichersystem auch immer das Ladesystem anpassen!
 package body SpeichernLogik is
@@ -77,17 +79,17 @@ package body SpeichernLogik is
            False = SpeichernKarteLogik.Karte (DateiSpeichernExtern => DateiSpeichern,
                                               AutospeichernExtern  => AutospeichernExtern)
          then
-            null;
+            MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
          elsif
            False = Allgemeines (DateiSpeichernExtern => DateiSpeichern)
          then
-            null;
+            MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
          elsif
            False = SpezieswerteSpeichern (DateiSpeichernExtern => DateiSpeichern)
          then
-            null;
+            MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
             
          else
             SpielstandAllgemeinesLogik.FortschrittErhöhen (AutospeichernExtern => AutospeichernExtern);
@@ -111,6 +113,7 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
+         MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Speichern - Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
@@ -152,7 +155,7 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Allgemeines - Konnte nicht geschrieben werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Allgemeines - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Allgemeines;
@@ -267,7 +270,7 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern - Konnte nicht geschrieben werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end StädteEinheitenSpeichern;
@@ -318,7 +321,7 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Spezieswerte - Konnte nicht geschrieben werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Spezieswerte - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Spezieswerte;
@@ -335,6 +338,15 @@ package body SpeichernLogik is
          Autospeichernname := LeseAllgemeines.Ironman;
                
       else
+         if
+           OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert > MaximalerAutospeichernwert
+         then
+            OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert := MaximalerAutospeichernwert;
+            
+         else
+            null;
+         end if;
+         
          Autospeichernname := To_Unbounded_Wide_Wide_String (Source => "Auto" & OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert'Wide_Wide_Image);
          MaximalerAutospeichernwert := LeseOptionen.AnzahlAutospeichern;
          

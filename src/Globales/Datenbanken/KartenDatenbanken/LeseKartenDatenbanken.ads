@@ -74,7 +74,7 @@ package LeseKartenDatenbanken is
    function WirtschaftBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      WirtschaftArtExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -84,7 +84,7 @@ package LeseKartenDatenbanken is
    function WirtschaftZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      WirtschaftArtExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
@@ -94,7 +94,7 @@ package LeseKartenDatenbanken is
    function WirtschaftFluss
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      WirtschaftArtExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (
@@ -104,7 +104,7 @@ package LeseKartenDatenbanken is
    function WirtschaftRessourcen
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WirtschaftArtExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      WirtschaftArtExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (

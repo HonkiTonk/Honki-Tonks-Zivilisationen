@@ -47,7 +47,7 @@ package body LeseVerbesserungenDatenbank is
    function WirtschaftVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcherWertExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      WelcherWertExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
       
@@ -68,7 +68,7 @@ package body LeseVerbesserungenDatenbank is
    function WirtschaftWeg
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcherWertExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      WelcherWertExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
       
@@ -89,7 +89,7 @@ package body LeseVerbesserungenDatenbank is
    function KampfVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcherWertExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
       
@@ -100,7 +100,7 @@ package body LeseVerbesserungenDatenbank is
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
-            return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Kampf (SpeziesExtern, WelcherWertExtern);
+            return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Kampf (SpeziesExtern, KampfartExtern);
       end case;
       
    end KampfVerbesserung;
@@ -110,7 +110,7 @@ package body LeseVerbesserungenDatenbank is
    function KampfWeg
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcherWertExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
       
@@ -121,7 +121,7 @@ package body LeseVerbesserungenDatenbank is
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
-            return VerbesserungenDatenbank.Wegeliste (WegExtern).Kampf (SpeziesExtern, WelcherWertExtern);
+            return VerbesserungenDatenbank.Wegeliste (WegExtern).Kampf (SpeziesExtern, KampfartExtern);
       end case;
       
    end KampfWeg;

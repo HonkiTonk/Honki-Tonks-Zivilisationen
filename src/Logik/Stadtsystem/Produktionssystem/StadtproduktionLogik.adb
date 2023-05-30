@@ -7,9 +7,8 @@ with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 
 with KartenkoordinatenberechnungssystemLogik;
-with KartenfelderwerteLogik;
 with GlobalesWachstumLogik;
-with NahrungsproduktionLogik;
+with FeldproduktionLogik;
 
 package body StadtproduktionLogik is
    
@@ -114,12 +113,15 @@ package body StadtproduktionLogik is
                null;
                
             else
-               Nahrungsgewinnung := Nahrungsgewinnung + NahrungsproduktionLogik.NahrungsproduktionKartenfeld (KoordinatenExtern => KartenWert,
-                                                                                                              SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
-               Materialgewinnung := Materialgewinnung + KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KartenWert,
-                                                                                               SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
-               Forschungsgewinnung := Forschungsgewinnung + KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KartenWert,
-                                                                                               SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
+               Nahrungsgewinnung := Nahrungsgewinnung + FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KartenWert,
+                                                                                            SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+                                                                                            ProduktionsartExtern => ProduktionDatentypen.Nahrung_Enum);
+               Materialgewinnung := Materialgewinnung + FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KartenWert,
+                                                                                            SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+                                                                                            ProduktionsartExtern => ProduktionDatentypen.Material_Enum);
+               Forschungsgewinnung := Forschungsgewinnung + FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KartenWert,
+                                                                                                SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+                                                                                                ProduktionsartExtern => ProduktionDatentypen.Forschung_Enum);
                
                case
                  StadtSpeziesNummerExtern.Spezies
@@ -128,8 +130,9 @@ package body StadtproduktionLogik is
                      null;
                      
                   when others =>
-                     Geldgewinnung := Geldgewinnung + KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KartenWert,
-                                                                                       SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
+                     Geldgewinnung := Geldgewinnung + FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KartenWert,
+                                                                                          SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+                                                                                          ProduktionsartExtern => ProduktionDatentypen.Geld_Enum);
                end case;
                
             end if;

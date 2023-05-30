@@ -1,16 +1,20 @@
 package ChangelogVorlage is
    
-   -- Version 0.05. => 0.05. (31.05.2023):
+   -- Version 0.05.1530 => 0.05. (31.05.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1465 => 0.05. (30.05.2023):
+   -- Version 0.05.1465 => 0.05.1530 (30.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Kartenfelderproduktionssystem gearbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Bonusberechnung für den Kampf überarbeitet.
+   -- Das neue Kartenfeldproduktionssystem erst einmal auf alle Produktionsarten verallgemeinert.
+   -- Angefangen Meldungen einzubauen, wenn das Schreiben von Dateien nicht erfolgreich verlief.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

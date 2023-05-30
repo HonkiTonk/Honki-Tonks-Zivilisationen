@@ -1,19 +1,20 @@
-with SpielDatentypen;
-with ProduktionKonstanten;
 with KartenRecordKonstanten;
+with ProduktionKonstanten;
+with SpielDatentypen;
 
+with LeseEffekteDatenbank;
 with LeseWeltkarte;
 with LeseKartenDatenbanken;
-with LeseAllgemeines;
 with LeseVerbesserungenDatenbank;
+with LeseAllgemeines;
 
-with Grenzpruefungen;
-
-package body NahrungsproduktionLogik is
-
-   function NahrungsproduktionKartenfeld
+-- Erste einmal ein allumfassendes Feldproduktionssystem bauen und später feiner aufteilen. äöü
+package body FeldproduktionLogik is
+   
+   function Feldproduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Feldproduktion
    is
       use type ProduktionDatentypen.Produktion;
@@ -33,11 +34,11 @@ package body NahrungsproduktionLogik is
          when others =>
             Gesamtwert := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund,
                                                                       SpeziesExtern       => SpeziesExtern,
-                                                                      WirtschaftArtExtern => ProduktionKonstanten.WirtschaftNahrung);
+                                                                      WirtschaftArtExtern => ProduktionsartExtern);
             
             Gesamtwert := Gesamtwert + LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern),
                                                                                     SpeziesExtern       => SpeziesExtern,
-                                                                                    WirtschaftArtExtern => ProduktionKonstanten.WirtschaftNahrung);
+                                                                                    WirtschaftArtExtern => ProduktionsartExtern);
             
             RessourceVorhanden := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
             VerbesserungVorhanden := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -50,17 +51,17 @@ package body NahrungsproduktionLogik is
       then
          Verbesserungsbonus := LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => VerbesserungVorhanden,
                                                                                    SpeziesExtern      => SpeziesExtern,
-                                                                                   WelcherWertExtern  => ProduktionKonstanten.WirtschaftNahrung);
+                                                                                   WelcherWertExtern  => ProduktionsartExtern);
          Ressourcenbonus := LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => RessourceVorhanden,
                                                                         SpeziesExtern       => SpeziesExtern,
-                                                                        WirtschaftArtExtern => ProduktionKonstanten.WirtschaftNahrung);
+                                                                        WirtschaftArtExtern => ProduktionsartExtern);
          
       elsif
         RessourceVorhanden /= KartenextraDatentypen.Leer_Ressource_Enum
       then
          Ressourcenbonus := LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => RessourceVorhanden,
                                                                         SpeziesExtern       => SpeziesExtern,
-                                                                        WirtschaftArtExtern => ProduktionKonstanten.WirtschaftNahrung);
+                                                                        WirtschaftArtExtern => ProduktionsartExtern);
          Verbesserungsbonus := ProduktionKonstanten.LeerBonus;
          
       elsif
@@ -68,7 +69,7 @@ package body NahrungsproduktionLogik is
       then
          Verbesserungsbonus := LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => VerbesserungVorhanden,
                                                                                    SpeziesExtern      => SpeziesExtern,
-                                                                                   WelcherWertExtern  => ProduktionKonstanten.WirtschaftNahrung);
+                                                                                   WelcherWertExtern  => ProduktionsartExtern);
          Ressourcenbonus := ProduktionKonstanten.LeerBonus;
          
       else
@@ -78,13 +79,15 @@ package body NahrungsproduktionLogik is
             
       Wegbonus := LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern),
                                                              SpeziesExtern     => SpeziesExtern,
-                                                             WelcherWertExtern => ProduktionKonstanten.WirtschaftNahrung);
+                                                             WelcherWertExtern => ProduktionsartExtern);
       
       Flussbonus := LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern),
                                                            SpeziesExtern       => SpeziesExtern,
-                                                           WirtschaftArtExtern => ProduktionKonstanten.WirtschaftNahrung);
+                                                           WirtschaftArtExtern => ProduktionsartExtern);
       
-      Feldeffektmalus := 1.00;
+      Feldeffektmalus := FeldeffektemalusFestlegen (KoordinatenExtern    => KoordinatenExtern,
+                                                    SpeziesExtern        => SpeziesExtern,
+                                                    ProduktionsartExtern => ProduktionsartExtern);
       
       Gesamtbonus := Grenzpruefungen.Produktionsbonus (RessourcenbonusExtern    => Ressourcenbonus,
                                                        VerbesserungsbonusExtern => Verbesserungsbonus,
@@ -113,13 +116,14 @@ package body NahrungsproduktionLogik is
          return Gesamtwert;
       end if;
       
-   end NahrungsproduktionKartenfeld;
+   end Feldproduktion;
    
    
-   
+
    function FeldeffektemalusFestlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is
       use type KartenRecords.FeldeffektArray;
@@ -133,18 +137,29 @@ package body NahrungsproduktionLogik is
          return ProduktionKonstanten.LeerBonus;
          
       else
-         ZwischenspeicherMalus := ProduktionKonstanten.LeerBonus;
+         FeldeffektmalusZwischenspeicher := ProduktionKonstanten.LeerBonus;
       end if;
       
-      case
-        SpeziesExtern
-      is
-         when others =>
-            null;
-      end case;
+      EffekteSchleife:
+      for EffekteSchleifenwert in FeldeffekteVorhanden'Range loop
+         
+         case
+           FeldeffekteVorhanden (EffekteSchleifenwert)
+         is
+            when True =>
+               FeldeffektmalusZwischenspeicher := MultiplikationPrüfen (KommazahlEinsExtern => FeldeffektmalusZwischenspeicher,
+                                                                         KommazahlZweiExtern => LeseEffekteDatenbank.Produktion (EffektExtern           => EffekteSchleifenwert,
+                                                                                                                                 SpeziesExtern          => SpeziesExtern,
+                                                                                                                                 ProduktionszweigExtern => ProduktionsartExtern));
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop EffekteSchleife;
       
-      return ProduktionKonstanten.LeerBonus;
+      return FeldeffektmalusZwischenspeicher;
       
    end FeldeffektemalusFestlegen;
-     
-end NahrungsproduktionLogik;
+
+end FeldproduktionLogik;

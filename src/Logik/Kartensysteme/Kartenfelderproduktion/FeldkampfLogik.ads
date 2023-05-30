@@ -1,24 +1,28 @@
-with KartenDatentypen;
 with SpeziesDatentypen;
 with KartenRecords;
-with ProduktionDatentypen;
+with KartenDatentypen;
+with KampfDatentypen;
 
 private with KartengrundDatentypen;
-private with KartenverbesserungDatentypen;
 private with KartenextraDatentypen;
+private with KartenverbesserungDatentypen;
+private with ProduktionDatentypen;
 
 with LeseSpeziesbelegung;
 with LeseWeltkarteneinstellungen;
 
-package NahrungsproduktionLogik is
+private with Grenzpruefungen;
+
+package FeldkampfLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
 
-   function NahrungsproduktionKartenfeld
+   function Feldkampf
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ProduktionDatentypen.Feldproduktion
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
+      return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -36,23 +40,24 @@ private
    
    VerbesserungVorhanden : KartenverbesserungDatentypen.Verbesserung_Enum;
    
-   Gesamtwert : ProduktionDatentypen.Feldproduktion;
+   Gesamtwert : KampfDatentypen.KampfwerteAllgemein;
    
    Ressourcenbonus : ProduktionDatentypen.Produktionsbonus;
    Verbesserungsbonus : ProduktionDatentypen.Produktionsbonus;
    Flussbonus : ProduktionDatentypen.Produktionsbonus;
    Wegbonus : ProduktionDatentypen.Produktionsbonus;
-   ZwischenspeicherMalus : ProduktionDatentypen.Produktionsbonus;
+   FeldeffektmalusZwischenspeicher : ProduktionDatentypen.Produktionsbonus;
    Feldeffektmalus : ProduktionDatentypen.Produktionsbonus;
    Gesamtbonus : ProduktionDatentypen.Produktionsbonus;
    
    FeldeffekteVorhanden : KartenRecords.FeldeffektArray;
    
    
-   
+
    function FeldeffektemalusFestlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (
@@ -62,5 +67,7 @@ private
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
+   
+   function MultiplikationPrüfen is new Grenzpruefungen.StandardKommamultiplikation (KommaZahl => ProduktionDatentypen.Produktionsbonus);
 
-end NahrungsproduktionLogik;
+end FeldkampfLogik;

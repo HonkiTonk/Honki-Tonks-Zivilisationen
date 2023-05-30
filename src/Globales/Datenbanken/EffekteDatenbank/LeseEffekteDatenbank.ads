@@ -12,7 +12,7 @@ package LeseEffekteDatenbank is
    function Produktion
      (EffektExtern : in KarteneffektDatentypen.Effekt_Kartenfeld_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      ProduktionszweigExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      ProduktionszweigExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (

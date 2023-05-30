@@ -20,13 +20,13 @@ package ProduktionDatentypen is
    
    
    -- Das hier ist für die Kartenfelder, das darunter für die Einheiten- und Gebäudekosten.
-   type Wirtschaft_Enum is (
+   type Produktion_Enum is (
                             Nahrung_Enum, Material_Enum, Geld_Enum, Forschung_Enum
                            );
    
    
 
-   -- Das hier wird für Einheiten und Gebäude benutzt.
+   -- Das hier wird für Einheiten und Gebäude benutzt, das darüber für die Kartenfelder.
    type Permanente_Kosten_Enum is (
                                    Leer_Permanente_Kosten_Enum,
                                    

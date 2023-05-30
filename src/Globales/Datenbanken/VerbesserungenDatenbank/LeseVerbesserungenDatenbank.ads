@@ -27,7 +27,7 @@ package LeseVerbesserungenDatenbank is
    function WirtschaftVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcherWertExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      WelcherWertExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (
@@ -37,7 +37,7 @@ package LeseVerbesserungenDatenbank is
    function WirtschaftWeg
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcherWertExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      WelcherWertExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (
@@ -47,7 +47,7 @@ package LeseVerbesserungenDatenbank is
    function KampfVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcherWertExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (
@@ -57,7 +57,7 @@ package LeseVerbesserungenDatenbank is
    function KampfWeg
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcherWertExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (

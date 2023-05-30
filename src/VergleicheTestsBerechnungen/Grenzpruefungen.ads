@@ -10,6 +10,13 @@ package Grenzpruefungen is
       ÄnderungExtern : in GanzeZahl)
       return GanzeZahl;
 
+   generic type KommaZahl is digits <>;
+
+   function StandardKommamultiplikation
+     (KommazahlEinsExtern : in KommaZahl;
+      KommazahlZweiExtern : in KommaZahl)
+      return KommaZahl;
+
    function Arbeitszeit
      (AktuellerWertExtern : in ProduktionDatentypen.Arbeitszeit;
       ÄnderungExtern : in ProduktionDatentypen.Arbeitszeit)

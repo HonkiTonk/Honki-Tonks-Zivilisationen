@@ -57,7 +57,7 @@ package body LadenLogik is
            Prüfen (DateiLadenExtern => DateiLaden)
          is
             when False =>
-               MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungUnladbar);
+               MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungLadenFehlgeschlagen);
                Close (File => DateiLaden);
                
             when True =>

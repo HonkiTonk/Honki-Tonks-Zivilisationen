@@ -23,11 +23,31 @@ package body Grenzpruefungen is
       end if;
       
    end Standardprüfung;
+   
+   
+   
+   function StandardKommamultiplikation
+     (KommazahlEinsExtern : in KommaZahl;
+      KommazahlZweiExtern : in KommaZahl)
+      return KommaZahl
+   is begin
+      
+      if
+        Float (KommazahlEinsExtern) * Float (KommazahlZweiExtern) > Float (KommaZahl'Last)
+      then
+         return KommaZahl'Last;
+         
+      else
+         return KommazahlEinsExtern * KommazahlZweiExtern;
+      end if;
+      
+   end StandardKommamultiplikation;
 
    
    
    -- Kann nicht einfach in ein generic umgewandelt werden, da ja nicht der kleinste Wert sondern eins zurückgegeben wird.
    -- Eventuell gibt es dafür auch eine schöne Lösung? äöü
+   -- Man könnte das Minimum auch mitübergeben. äöü
    function Arbeitszeit
      (AktuellerWertExtern : in ProduktionDatentypen.Arbeitszeit;
       ÄnderungExtern : in ProduktionDatentypen.Arbeitszeit)

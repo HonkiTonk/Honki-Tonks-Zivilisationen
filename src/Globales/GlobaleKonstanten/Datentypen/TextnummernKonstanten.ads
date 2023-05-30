@@ -119,14 +119,15 @@ package TextnummernKonstanten is
    MeldungImKrieg : constant Positive := 8;
    MeldungNichtangriffspakt : constant Positive := 9;
    MeldungBelegt : constant Positive := 10;
-   MeldungUnladbar : constant Positive := 11;
+   MeldungLadenFehlgeschlagen : constant Positive := 11;
    MeldungUnverbesserbar : constant Positive := 12;
    MeldungNichtEigenesGebiet : constant Positive := 13;
    MeldungVerbessertZuGroß : constant Positive := 14;
    MeldungFehlenderLaderaum : constant Positive := 15;
+   MeldungSpeichernFehlgeschlagen : constant Positive := 16;
    
    AnfangMeldung : constant Positive := 1;
-   EndeMeldung : constant Positive := 15;
+   EndeMeldung : constant Positive := 16;
    
    
    

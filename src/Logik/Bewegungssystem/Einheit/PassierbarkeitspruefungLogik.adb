@@ -6,10 +6,10 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseVerbesserungenDatenbank;
 with LeseStadtGebaut;
+with LeseKartenDatenbanken;
 
 with StadtSuchenLogik;
 with KartenkoordinatenberechnungssystemLogik;
-with KartenAllgemeinesLogik;
 with Fehlermeldungssystem;
 
 package body PassierbarkeitspruefungLogik is
@@ -95,9 +95,10 @@ package body PassierbarkeitspruefungLogik is
       return Boolean
    is begin
       
+      -- Eventuell um Zusatzgrundprüfung erweiternt? äöü
       case
-        KartenAllgemeinesLogik.PassierbarGrund (KoordinatenExtern    => NeueKoordinatenExtern,
-                                                PassierbarkeitExtern => UmgebungExtern)
+        LeseKartenDatenbanken.PassierbarkeitBasisgrund (GrundExtern          => LeseWeltkarte.Basisgrund (KoordinatenExtern => NeueKoordinatenExtern),
+                                                        WelcheUmgebungExtern => UmgebungExtern)
       is
          when True =>
             return True;

@@ -9,6 +9,7 @@ with GrafikKonstanten;
 with TextnummernKonstanten;
 with TextDatentypen;
 with KarteneffektDatentypen;
+with ProduktionDatentypen;
 
 with LeseWeltkarte;
 
@@ -17,10 +18,9 @@ with ViewsEinstellenGrafik;
 with ObjekteZeichnenGrafik;
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
-with KartenfelderwerteLogik;
 with TexteinstellungenGrafik;
 with TextaccessverwaltungssystemGrafik;
-with NahrungsproduktionLogik;
+with FeldproduktionLogik;
 
 package body StadtumgebungGrafik is
 
@@ -168,20 +168,24 @@ package body StadtumgebungGrafik is
            ProduktionSchleifenwert
          is
             when 1 =>
-               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & NahrungsproduktionLogik.NahrungsproduktionKartenfeld (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                                             SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image;
+               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+                                                                                                                           SpeziesExtern        => SpeziesExtern,
+                                                                                                                           ProduktionsartExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
                
             when 2 =>
-               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                                    SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image;
+               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+                                                                                                                                 SpeziesExtern        => SpeziesExtern,
+                                                                                                                                 ProduktionsartExtern => ProduktionDatentypen.Material_Enum)'Wide_Wide_Image;
                
             when 3 =>
-               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                        SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image;
+               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+                                                                                                                           SpeziesExtern        => SpeziesExtern,
+                                                                                                                           ProduktionsartExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
                
             when 4 =>
-               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                             SpeziesExtern     => SpeziesExtern)'Wide_Wide_Image;
+               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+                                                                                                                              SpeziesExtern        => SpeziesExtern,
+                                                                                                                              ProduktionsartExtern => ProduktionDatentypen.Forschung_Enum)'Wide_Wide_Image;
          end case;
          
          TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,

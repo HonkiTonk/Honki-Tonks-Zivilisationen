@@ -24,7 +24,7 @@ package GebaeudedatenbankRecord is
 
    -- Die Bonus, Kosten und Kampfbereiche auf ein Enum anstelle eines Arrays umschreiben? äöü
    -- Dann passt das aber auch nicht mehr einfach in eine Schleife. äöü
-   type BonusWirtschaftArray is array (ProduktionDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.Feldproduktion;
+   type BonusWirtschaftArray is array (ProduktionDatentypen.Produktion_Enum'Range) of ProduktionDatentypen.Feldproduktion;
    type BonusKampfArray is array (KampfDatentypen.Kampf_Enum'Range) of KampfDatentypen.KampfwerteAllgemein;
    
    -- Was ist überhaupt mit Zusatzgrund? äöü

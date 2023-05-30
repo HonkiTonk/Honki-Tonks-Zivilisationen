@@ -91,7 +91,7 @@ package body LeseGebaeudeDatenbank is
    function WirtschaftBonus
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      WirtschaftBonusExtern : in ProduktionDatentypen.Wirtschaft_Enum)
+      WirtschaftBonusExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Feldproduktion
    is begin
       

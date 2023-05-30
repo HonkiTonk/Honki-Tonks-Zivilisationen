@@ -1,7 +1,6 @@
 with WichtigesKonstanten;
 with KartenKonstanten;
 with StadtArrays;
-with ProduktionKonstanten;
 
 with KIKonstanten;
 
@@ -111,7 +110,7 @@ package body KIGebaeudeBauenLogik is
         and
           StadtKonstanten.LeerNahrungsproduktion < Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                                                                        IDExtern              => IDExtern,
-                                                                                                       WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftNahrung)
+                                                                                                       WirtschaftBonusExtern => ProduktionDatentypen.Nahrung_Enum)
       then
          return 20;
          
@@ -120,7 +119,7 @@ package body KIGebaeudeBauenLogik is
         and
           LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                  IDExtern              => IDExtern,
-                                                 WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftNahrung)
+                                                 WirtschaftBonusExtern => ProduktionDatentypen.Nahrung_Enum)
         > StadtKonstanten.LeerNahrungsproduktion
       then
          return 10;
@@ -130,7 +129,7 @@ package body KIGebaeudeBauenLogik is
         and
           StadtKonstanten.LeerNahrungsproduktion = LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                                                           IDExtern              => IDExtern,
-                                                                                          WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftNahrung)
+                                                                                          WirtschaftBonusExtern => ProduktionDatentypen.Nahrung_Enum)
       then
          return 5;
       
@@ -144,7 +143,7 @@ package body KIGebaeudeBauenLogik is
       else
          return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                                                     IDExtern              => IDExtern,
-                                                                                    WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftNahrung)
+                                                                                    WirtschaftBonusExtern => ProduktionDatentypen.Nahrung_Enum)
                                              - LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                        IDExtern           => IDExtern,
                                                                                        WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum));
@@ -170,7 +169,7 @@ package body KIGebaeudeBauenLogik is
         and
           WichtigesKonstanten.LeerGeldZugewinnProRunde < Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                                                                              IDExtern              => IDExtern,
-                                                                                                             WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftGeld)
+                                                                                                             WirtschaftBonusExtern => ProduktionDatentypen.Geld_Enum)
       then
          return 20;
          
@@ -179,7 +178,7 @@ package body KIGebaeudeBauenLogik is
         and
           LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                  IDExtern              => IDExtern,
-                                                 WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftGeld)
+                                                 WirtschaftBonusExtern => ProduktionDatentypen.Geld_Enum)
         > StadtKonstanten.LeerGeldgewinnung
       then
          return 10;
@@ -189,7 +188,7 @@ package body KIGebaeudeBauenLogik is
         and
           StadtKonstanten.LeerGeldgewinnung = LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                                                      IDExtern              => IDExtern,
-                                                                                     WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftGeld)
+                                                                                     WirtschaftBonusExtern => ProduktionDatentypen.Geld_Enum)
       then
          return 5;
          
@@ -203,7 +202,7 @@ package body KIGebaeudeBauenLogik is
       else
          return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                                                     IDExtern              => IDExtern,
-                                                                                    WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftGeld)
+                                                                                    WirtschaftBonusExtern => ProduktionDatentypen.Geld_Enum)
                                              - LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                        IDExtern           => IDExtern,
                                                                                        WelcheKostenExtern => ProduktionDatentypen.Geld_Enum));
@@ -228,7 +227,7 @@ package body KIGebaeudeBauenLogik is
         and
           LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                  IDExtern              => IDExtern,
-                                                 WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftForschung)
+                                                 WirtschaftBonusExtern => ProduktionDatentypen.Forschung_Enum)
         > WichtigesKonstanten.LeerGesamteForschungsrate
       then
          return 5;
@@ -236,7 +235,7 @@ package body KIGebaeudeBauenLogik is
       else
          return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                                                     IDExtern              => IDExtern,
-                                                                                    WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftForschung));
+                                                                                    WirtschaftBonusExtern => ProduktionDatentypen.Forschung_Enum));
       end if;
       
    end WissensgewinnBewerten;
@@ -259,7 +258,7 @@ package body KIGebaeudeBauenLogik is
         and
           StadtKonstanten.LeerProduktionrate < Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                                                                    IDExtern              => IDExtern,
-                                                                                                   WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftMaterial)
+                                                                                                   WirtschaftBonusExtern => ProduktionDatentypen.Material_Enum)
       then
          return 20;
          
@@ -268,7 +267,7 @@ package body KIGebaeudeBauenLogik is
         and
           StadtKonstanten.LeerProduktionrate <= Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                                                                     IDExtern              => IDExtern,
-                                                                                                    WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftMaterial)
+                                                                                                    WirtschaftBonusExtern => ProduktionDatentypen.Material_Enum)
       then
          return 10;
          
@@ -277,7 +276,7 @@ package body KIGebaeudeBauenLogik is
         and
           StadtKonstanten.LeerProduktionrate = Produktion + LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                                                                    IDExtern              => IDExtern,
-                                                                                                   WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftMaterial)
+                                                                                                   WirtschaftBonusExtern => ProduktionDatentypen.Material_Enum)
       then
          return 5;
          
@@ -291,7 +290,7 @@ package body KIGebaeudeBauenLogik is
       else
          return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.WirtschaftBonus (SpeziesExtern         => StadtSpeziesNummerExtern.Spezies,
                                                                                     IDExtern              => IDExtern,
-                                                                                    WirtschaftBonusExtern => ProduktionKonstanten.WirtschaftMaterial)
+                                                                                    WirtschaftBonusExtern => ProduktionDatentypen.Material_Enum)
                                              - LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
                                                                                        IDExtern           => IDExtern,
                                                                                        WelcheKostenExtern => ProduktionDatentypen.Material_Enum));

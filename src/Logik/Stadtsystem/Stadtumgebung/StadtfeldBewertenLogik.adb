@@ -1,7 +1,6 @@
 with LeseStadtGebaut;
 
-with KartenfelderwerteLogik;
-with NahrungsproduktionLogik;
+with FeldproduktionLogik;
 
 package body StadtfeldBewertenLogik is
 
@@ -40,8 +39,9 @@ package body StadtfeldBewertenLogik is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      NahrungGesamt := NahrungsproduktionLogik.NahrungsproduktionKartenfeld (KoordinatenExtern => KoordinatenExtern,
-                                                                             SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
+      NahrungGesamt := FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+                                                           SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+                                                           ProduktionsartExtern => ProduktionDatentypen.Nahrung_Enum);
       
       if
         LeseStadtGebaut.Nahrungsproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) <= 1
@@ -83,8 +83,9 @@ package body StadtfeldBewertenLogik is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      RessourcenGesamt := KartenfelderwerteLogik.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
-                                                                 SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
+      RessourcenGesamt := FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+                                                              SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+                                                              ProduktionsartExtern => ProduktionDatentypen.Material_Enum);
       
       if
         LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) <= 0
@@ -126,8 +127,17 @@ package body StadtfeldBewertenLogik is
       use type ProduktionDatentypen.Produktion;
    begin
       
-      GeldGesamt := KartenfelderwerteLogik.FeldGeld (KoordinatenExtern => KoordinatenExtern,
-                                                     SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
+      case
+        StadtSpeziesNummerExtern.Spezies
+      is
+         when SpeziesDatentypen.Ekropa_Enum =>
+            return 0;
+            
+         when others =>
+            GeldGesamt := FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+                                                              SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+                                                              ProduktionsartExtern => ProduktionDatentypen.Geld_Enum);
+      end case;
 
       if
         LeseStadtGebaut.Geldgewinnung (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) <= 0
@@ -169,8 +179,9 @@ package body StadtfeldBewertenLogik is
       use type ProduktionDatentypen.Produktion;
    begin
 
-      WissenGesamt := KartenfelderwerteLogik.FeldWissen (KoordinatenExtern => KoordinatenExtern,
-                                                         SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
+      WissenGesamt := FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+                                                          SpeziesExtern        => StadtSpeziesNummerExtern.Spezies,
+                                                          ProduktionsartExtern => ProduktionDatentypen.Forschung_Enum);
       
       if
         LeseStadtGebaut.Forschungsrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) = 0
