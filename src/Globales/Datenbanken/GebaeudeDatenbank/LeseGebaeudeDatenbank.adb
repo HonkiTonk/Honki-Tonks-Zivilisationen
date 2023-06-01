@@ -88,10 +88,10 @@ package body LeseGebaeudeDatenbank is
    
    
    
-   function WirtschaftBonus
+   function Produktionsbonus
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      WirtschaftBonusExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsbonusExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Feldproduktion
    is begin
       
@@ -102,10 +102,10 @@ package body LeseGebaeudeDatenbank is
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
-            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).BonusWirtschaft (WirtschaftBonusExtern);
+            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).Produktionsbonus (ProduktionsbonusExtern);
       end case;
       
-   end WirtschaftBonus;
+   end Produktionsbonus;
    
    
    
@@ -123,7 +123,7 @@ package body LeseGebaeudeDatenbank is
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
-            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).BonusKampf (KampfBonusExtern);
+            return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).Kampfbonus (KampfBonusExtern);
       end case;
       
    end KampfBonus;

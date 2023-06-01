@@ -9,14 +9,14 @@ package KartendatenbankRecord is
    pragma Pure;
 
    type BewertungArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of BewertungDatentypen.Bewertung_Enum;
-   type WirtschaftArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, ProduktionDatentypen.Produktion_Enum'Range) of ProduktionDatentypen.Einzelproduktion;
-   type KampfArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, KampfDatentypen.Kampf_Enum'Range) of KampfDatentypen.KampfwerteKarte;
+   type ProduktionArray is array (ProduktionDatentypen.Produktion_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ProduktionDatentypen.Einzelproduktion;
+   type KampfArray is array (KampfDatentypen.Kampf_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of KampfDatentypen.KampfwerteKarte;
    type BewegungArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of EinheitenDatentypen.Bewegungspunkte;
    
    type KartenbasisgrundlisteRecord is record
       
       Bewertung : BewertungArray;
-      Wirtschaft : WirtschaftArray;
+      Wirtschaft : ProduktionArray;
       Kampf : KampfArray;
       
       Passierbarkeit : DatenbankRecords.PassierbarkeitArray;
@@ -29,7 +29,7 @@ package KartendatenbankRecord is
    type KartenzusatzgrundlisteRecord is record
       
       Bewertung : BewertungArray;
-      Wirtschaft : WirtschaftArray;
+      Wirtschaft : ProduktionArray;
       Kampf : KampfArray;
       
       Bewegung : BewegungArray;
@@ -39,7 +39,7 @@ package KartendatenbankRecord is
    
    
    type BewertungsbonusArray is array (BewertungArray'Range) of Boolean;
-   type WirtschaftsbonusArray is array (WirtschaftArray'Range (1), WirtschaftArray'Range (2)) of ProduktionDatentypen.Produktionsbonus;
+   type WirtschaftsbonusArray is array (ProduktionArray'Range (1), ProduktionArray'Range (2)) of ProduktionDatentypen.Produktionsbonus;
    type KampfbonusArray is array (KampfArray'Range (1), KampfArray'Range (2)) of ProduktionDatentypen.Produktionsbonus;
    
    type KartenextraslisteRecord is record

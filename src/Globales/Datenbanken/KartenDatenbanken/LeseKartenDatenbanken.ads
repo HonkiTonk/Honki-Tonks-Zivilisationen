@@ -71,40 +71,40 @@ package LeseKartenDatenbanken is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   function WirtschaftBasisgrund
+   function ProduktionBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WirtschaftArtExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   function WirtschaftZusatzgrund
+   function ProduktionZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WirtschaftArtExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Einzelproduktion
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   function WirtschaftFluss
+   function ProduktionFluss
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WirtschaftArtExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   function WirtschaftRessourcen
+   function ProduktionRessourcen
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WirtschaftArtExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (
@@ -114,7 +114,7 @@ package LeseKartenDatenbanken is
    function KampfBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
@@ -124,7 +124,7 @@ package LeseKartenDatenbanken is
    function KampfZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
@@ -134,7 +134,7 @@ package LeseKartenDatenbanken is
    function KampfFluss
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (
@@ -144,7 +144,7 @@ package LeseKartenDatenbanken is
    function KampfRessource
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (

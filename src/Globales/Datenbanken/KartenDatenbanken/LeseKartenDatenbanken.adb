@@ -150,10 +150,10 @@ package body LeseKartenDatenbanken is
    
    
    
-   function WirtschaftBasisgrund
+   function ProduktionBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WirtschaftArtExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -161,21 +161,21 @@ package body LeseKartenDatenbanken is
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.WirtschaftBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.ProduktionBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
-            return KartenDatenbank.Basisgrundliste (GrundExtern).Wirtschaft (SpeziesExtern, WirtschaftArtExtern);
+            return KartenDatenbank.Basisgrundliste (GrundExtern).Wirtschaft (ProduktionsartExtern, SpeziesExtern);
       end case;
       
-   end WirtschaftBasisgrund;
+   end ProduktionBasisgrund;
    
    
    
-   function WirtschaftZusatzgrund
+   function ProduktionZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WirtschaftArtExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Einzelproduktion
    is begin
       
@@ -186,17 +186,17 @@ package body LeseKartenDatenbanken is
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
-            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Wirtschaft (SpeziesExtern, WirtschaftArtExtern);
+            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Wirtschaft (ProduktionsartExtern, SpeziesExtern);
       end case;
       
-   end WirtschaftZusatzgrund;
+   end ProduktionZusatzgrund;
    
    
    
-   function WirtschaftFluss
+   function ProduktionFluss
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WirtschaftArtExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
       
@@ -207,17 +207,17 @@ package body LeseKartenDatenbanken is
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
-            return KartenDatenbank.Kartenflussliste (FlussExtern).Wirtschaft (SpeziesExtern, WirtschaftArtExtern);
+            return KartenDatenbank.Kartenflussliste (FlussExtern).Wirtschaft (ProduktionsartExtern, SpeziesExtern);
       end case;
       
-   end WirtschaftFluss;
+   end ProduktionFluss;
    
    
    
-   function WirtschaftRessourcen
+   function ProduktionRessourcen
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WirtschaftArtExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
       
@@ -228,17 +228,17 @@ package body LeseKartenDatenbanken is
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
-            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Wirtschaft (SpeziesExtern, WirtschaftArtExtern);
+            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Wirtschaft (ProduktionsartExtern, SpeziesExtern);
       end case;
       
-   end WirtschaftRessourcen;
+   end ProduktionRessourcen;
    
    
    
    function KampfBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       
@@ -250,7 +250,7 @@ package body LeseKartenDatenbanken is
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
-            return KartenDatenbank.Basisgrundliste (GrundExtern).Kampf (SpeziesExtern, KampfArtExtern);
+            return KartenDatenbank.Basisgrundliste (GrundExtern).Kampf (KampfartExtern, SpeziesExtern);
       end case;
       
    end KampfBasisgrund;
@@ -260,7 +260,7 @@ package body LeseKartenDatenbanken is
    function KampfZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is begin
       
@@ -271,7 +271,7 @@ package body LeseKartenDatenbanken is
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
-            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Kampf (SpeziesExtern, KampfArtExtern);
+            return KartenDatenbank.Zusatzgrundliste (GrundExtern).Kampf (KampfartExtern, SpeziesExtern);
       end case;
       
    end KampfZusatzgrund;
@@ -281,7 +281,7 @@ package body LeseKartenDatenbanken is
    function KampfFluss
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
       
@@ -292,7 +292,7 @@ package body LeseKartenDatenbanken is
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
-            return KartenDatenbank.Kartenflussliste (FlussExtern).Kampf (SpeziesExtern, KampfArtExtern);
+            return KartenDatenbank.Kartenflussliste (FlussExtern).Kampf (KampfartExtern, SpeziesExtern);
       end case;
       
    end KampfFluss;
@@ -302,7 +302,7 @@ package body LeseKartenDatenbanken is
    function KampfRessource
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KampfArtExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
       
@@ -310,10 +310,10 @@ package body LeseKartenDatenbanken is
         RessourceExtern
       is
          when KartenextraDatentypen.Leer_Ressource_Enum =>
-            return ProduktionKonstanten.LeerBonus; -- KampfKonstanten.Leer;
+            return ProduktionKonstanten.LeerBonus;
             
          when others =>
-            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Kampf (SpeziesExtern, KampfArtExtern);
+            return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Kampf (KampfartExtern, SpeziesExtern);
       end case;
       
    end KampfRessource;

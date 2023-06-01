@@ -12,7 +12,7 @@ package LeseVerbesserungenDatenbank is
    
    function PassierbarkeitWeg
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
+      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean;
    
    function BewegungWeg
@@ -24,20 +24,20 @@ package LeseVerbesserungenDatenbank is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   function WirtschaftVerbesserung
+   function ProduktionVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcherWertExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   function WirtschaftWeg
+   function ProduktionWeg
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcherWertExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (

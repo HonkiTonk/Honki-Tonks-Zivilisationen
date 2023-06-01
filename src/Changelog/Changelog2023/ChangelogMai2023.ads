@@ -1,9 +1,9 @@
 package ChangelogVorlage is
    
-   -- Version 0.05.1530 => 0.05. (31.05.2023):
+   -- Version 0.05.1530 => 0.05.1560 (31.05.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

@@ -6,7 +6,7 @@ package body LeseEffekteDatenbank is
    function Produktion
      (EffektExtern : in KarteneffektDatentypen.Effekt_Kartenfeld_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      ProduktionszweigExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
       
@@ -17,7 +17,7 @@ package body LeseEffekteDatenbank is
             return ProduktionKonstanten.LeerMalus;
             
          when others =>
-            return EffekteDatenbank.Effekteliste (EffektExtern).Wirtschaft (SpeziesExtern, ProduktionszweigExtern);
+            return EffekteDatenbank.Effekteliste (EffektExtern).Wirtschaft (ProduktionsartExtern, SpeziesExtern);
       end case;
       
    end Produktion;
@@ -38,7 +38,7 @@ package body LeseEffekteDatenbank is
             return ProduktionKonstanten.LeerMalus;
             
          when others =>
-            return EffekteDatenbank.Effekteliste (EffektExtern).Kampf (SpeziesExtern, KampfartExtern);
+            return EffekteDatenbank.Effekteliste (EffektExtern).Kampf (KampfartExtern, SpeziesExtern);
       end case;
       
    end Kampf;

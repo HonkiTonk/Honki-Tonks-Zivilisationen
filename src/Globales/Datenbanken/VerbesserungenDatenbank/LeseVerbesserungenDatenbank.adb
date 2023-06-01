@@ -6,7 +6,7 @@ package body LeseVerbesserungenDatenbank is
       
    function PassierbarkeitWeg
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
-      WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
+      UmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin
       
@@ -17,7 +17,7 @@ package body LeseVerbesserungenDatenbank is
             return False;
             
          when others =>
-            return VerbesserungenDatenbank.Wegeliste (WegExtern).Passierbarkeit (WelcheUmgebungExtern);
+            return VerbesserungenDatenbank.Wegeliste (WegExtern).Passierbarkeit (UmgebungExtern);
       end case;
       
    end PassierbarkeitWeg;
@@ -44,10 +44,10 @@ package body LeseVerbesserungenDatenbank is
    
       
    
-   function WirtschaftVerbesserung
+   function ProduktionVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcherWertExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
       
@@ -58,17 +58,17 @@ package body LeseVerbesserungenDatenbank is
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
-            return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Wirtschaft (SpeziesExtern, WelcherWertExtern);
+            return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Wirtschaft (ProduktionsartExtern, SpeziesExtern);
       end case;
       
-   end WirtschaftVerbesserung;
+   end ProduktionVerbesserung;
    
       
    
-   function WirtschaftWeg
+   function ProduktionWeg
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      WelcherWertExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsartExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Produktionsbonus
    is begin
       
@@ -79,10 +79,10 @@ package body LeseVerbesserungenDatenbank is
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
-            return VerbesserungenDatenbank.Wegeliste (WegExtern).Wirtschaft (SpeziesExtern, WelcherWertExtern);
+            return VerbesserungenDatenbank.Wegeliste (WegExtern).Wirtschaft (ProduktionsartExtern, SpeziesExtern);
       end case;
       
-   end WirtschaftWeg;
+   end ProduktionWeg;
    
       
    
@@ -100,7 +100,7 @@ package body LeseVerbesserungenDatenbank is
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
-            return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Kampf (SpeziesExtern, KampfartExtern);
+            return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Kampf (KampfartExtern, SpeziesExtern);
       end case;
       
    end KampfVerbesserung;
@@ -121,7 +121,7 @@ package body LeseVerbesserungenDatenbank is
             return ProduktionKonstanten.LeerBonus;
             
          when others =>
-            return VerbesserungenDatenbank.Wegeliste (WegExtern).Kampf (SpeziesExtern, KampfartExtern);
+            return VerbesserungenDatenbank.Wegeliste (WegExtern).Kampf (KampfartExtern, SpeziesExtern);
       end case;
       
    end KampfWeg;

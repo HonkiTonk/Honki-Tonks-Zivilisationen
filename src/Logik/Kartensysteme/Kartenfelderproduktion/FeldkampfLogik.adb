@@ -36,11 +36,11 @@ package body FeldkampfLogik is
          when others =>
             Gesamtwert := LeseKartenDatenbanken.KampfBasisgrund (GrundExtern    => Gesamtgrund,
                                                                  SpeziesExtern  => SpeziesExtern,
-                                                                 KampfArtExtern => KampfartExtern);
+                                                                 KampfartExtern => KampfartExtern);
             
             Gesamtwert := Gesamtwert + LeseKartenDatenbanken.KampfZusatzgrund (GrundExtern    => LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern),
                                                                                SpeziesExtern  => SpeziesExtern,
-                                                                               KampfArtExtern => KampfartExtern);
+                                                                               KampfartExtern => KampfartExtern);
             
             RessourceVorhanden := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
             VerbesserungVorhanden := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -56,14 +56,14 @@ package body FeldkampfLogik is
                                                                               KampfartExtern     => KampfartExtern);
          Ressourcenbonus := LeseKartenDatenbanken.KampfRessource (RessourceExtern => RessourceVorhanden,
                                                                   SpeziesExtern   => SpeziesExtern,
-                                                                  KampfArtExtern  => KampfartExtern);
+                                                                  KampfartExtern  => KampfartExtern);
          
       elsif
         RessourceVorhanden /= KartenextraDatentypen.Leer_Ressource_Enum
       then
          Ressourcenbonus := LeseKartenDatenbanken.KampfRessource (RessourceExtern => RessourceVorhanden,
                                                                   SpeziesExtern   => SpeziesExtern,
-                                                                  KampfArtExtern  => KampfartExtern);
+                                                                  KampfartExtern  => KampfartExtern);
          Verbesserungsbonus := ProduktionKonstanten.LeerBonus;
          
       elsif
@@ -85,7 +85,7 @@ package body FeldkampfLogik is
       
       Flussbonus := LeseKartenDatenbanken.KampfFluss (FlussExtern    => LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern),
                                                       SpeziesExtern  => SpeziesExtern,
-                                                      KampfArtExtern => KampfartExtern);
+                                                      KampfartExtern => KampfartExtern);
       
       Feldeffektmalus := FeldeffektemalusFestlegen (KoordinatenExtern => KoordinatenExtern,
                                                     SpeziesExtern     => SpeziesExtern,

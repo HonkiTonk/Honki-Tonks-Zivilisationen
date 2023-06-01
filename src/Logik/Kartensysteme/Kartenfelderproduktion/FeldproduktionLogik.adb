@@ -32,13 +32,13 @@ package body FeldproduktionLogik is
             return ProduktionKonstanten.LeerProduktion;
             
          when others =>
-            Gesamtwert := LeseKartenDatenbanken.WirtschaftBasisgrund (GrundExtern         => Gesamtgrund,
-                                                                      SpeziesExtern       => SpeziesExtern,
-                                                                      WirtschaftArtExtern => ProduktionsartExtern);
+            Gesamtwert := LeseKartenDatenbanken.ProduktionBasisgrund (GrundExtern          => Gesamtgrund,
+                                                                      SpeziesExtern        => SpeziesExtern,
+                                                                      ProduktionsartExtern => ProduktionsartExtern);
             
-            Gesamtwert := Gesamtwert + LeseKartenDatenbanken.WirtschaftZusatzgrund (GrundExtern         => LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern),
-                                                                                    SpeziesExtern       => SpeziesExtern,
-                                                                                    WirtschaftArtExtern => ProduktionsartExtern);
+            Gesamtwert := Gesamtwert + LeseKartenDatenbanken.ProduktionZusatzgrund (GrundExtern          => LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern),
+                                                                                    SpeziesExtern        => SpeziesExtern,
+                                                                                    ProduktionsartExtern => ProduktionsartExtern);
             
             RessourceVorhanden := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
             VerbesserungVorhanden := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -49,27 +49,27 @@ package body FeldproduktionLogik is
         and
           VerbesserungVorhanden /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
       then
-         Verbesserungsbonus := LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => VerbesserungVorhanden,
-                                                                                   SpeziesExtern      => SpeziesExtern,
-                                                                                   WelcherWertExtern  => ProduktionsartExtern);
-         Ressourcenbonus := LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => RessourceVorhanden,
-                                                                        SpeziesExtern       => SpeziesExtern,
-                                                                        WirtschaftArtExtern => ProduktionsartExtern);
+         Verbesserungsbonus := LeseVerbesserungenDatenbank.ProduktionVerbesserung (VerbesserungExtern   => VerbesserungVorhanden,
+                                                                                   SpeziesExtern        => SpeziesExtern,
+                                                                                   ProduktionsartExtern => ProduktionsartExtern);
+         Ressourcenbonus := LeseKartenDatenbanken.ProduktionRessourcen (RessourceExtern      => RessourceVorhanden,
+                                                                        SpeziesExtern        => SpeziesExtern,
+                                                                        ProduktionsartExtern => ProduktionsartExtern);
          
       elsif
         RessourceVorhanden /= KartenextraDatentypen.Leer_Ressource_Enum
       then
-         Ressourcenbonus := LeseKartenDatenbanken.WirtschaftRessourcen (RessourceExtern     => RessourceVorhanden,
-                                                                        SpeziesExtern       => SpeziesExtern,
-                                                                        WirtschaftArtExtern => ProduktionsartExtern);
+         Ressourcenbonus := LeseKartenDatenbanken.ProduktionRessourcen (RessourceExtern      => RessourceVorhanden,
+                                                                        SpeziesExtern        => SpeziesExtern,
+                                                                        ProduktionsartExtern => ProduktionsartExtern);
          Verbesserungsbonus := ProduktionKonstanten.LeerBonus;
          
       elsif
         VerbesserungVorhanden /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
       then
-         Verbesserungsbonus := LeseVerbesserungenDatenbank.WirtschaftVerbesserung (VerbesserungExtern => VerbesserungVorhanden,
-                                                                                   SpeziesExtern      => SpeziesExtern,
-                                                                                   WelcherWertExtern  => ProduktionsartExtern);
+         Verbesserungsbonus := LeseVerbesserungenDatenbank.ProduktionVerbesserung (VerbesserungExtern   => VerbesserungVorhanden,
+                                                                                   SpeziesExtern        => SpeziesExtern,
+                                                                                   ProduktionsartExtern => ProduktionsartExtern);
          Ressourcenbonus := ProduktionKonstanten.LeerBonus;
          
       else
@@ -77,13 +77,13 @@ package body FeldproduktionLogik is
          Verbesserungsbonus := ProduktionKonstanten.LeerBonus;
       end if;
             
-      Wegbonus := LeseVerbesserungenDatenbank.WirtschaftWeg (WegExtern         => LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern),
-                                                             SpeziesExtern     => SpeziesExtern,
-                                                             WelcherWertExtern => ProduktionsartExtern);
+      Wegbonus := LeseVerbesserungenDatenbank.ProduktionWeg (WegExtern            => LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern),
+                                                             SpeziesExtern        => SpeziesExtern,
+                                                             ProduktionsartExtern => ProduktionsartExtern);
       
-      Flussbonus := LeseKartenDatenbanken.WirtschaftFluss (FlussExtern         => LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern),
-                                                           SpeziesExtern       => SpeziesExtern,
-                                                           WirtschaftArtExtern => ProduktionsartExtern);
+      Flussbonus := LeseKartenDatenbanken.ProduktionFluss (FlussExtern          => LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern),
+                                                           SpeziesExtern        => SpeziesExtern,
+                                                           ProduktionsartExtern => ProduktionsartExtern);
       
       Feldeffektmalus := FeldeffektemalusFestlegen (KoordinatenExtern    => KoordinatenExtern,
                                                     SpeziesExtern        => SpeziesExtern,
@@ -148,9 +148,9 @@ package body FeldproduktionLogik is
          is
             when True =>
                FeldeffektmalusZwischenspeicher := MultiplikationPrüfen (KommazahlEinsExtern => FeldeffektmalusZwischenspeicher,
-                                                                         KommazahlZweiExtern => LeseEffekteDatenbank.Produktion (EffektExtern           => EffekteSchleifenwert,
-                                                                                                                                 SpeziesExtern          => SpeziesExtern,
-                                                                                                                                 ProduktionszweigExtern => ProduktionsartExtern));
+                                                                         KommazahlZweiExtern => LeseEffekteDatenbank.Produktion (EffektExtern         => EffekteSchleifenwert,
+                                                                                                                                 SpeziesExtern        => SpeziesExtern,
+                                                                                                                                 ProduktionsartExtern => ProduktionsartExtern));
                
             when False =>
                null;

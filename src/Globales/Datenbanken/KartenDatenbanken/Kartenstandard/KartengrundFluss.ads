@@ -2,6 +2,8 @@ with SpeziesDatentypen;
 with KartendatenbankRecord;
 with KartenextraDatentypen;
 with ProduktionKonstanten;
+with ProduktionDatentypen;
+with KampfDatentypen;
 
 package KartengrundFluss is
    pragma Pure;
@@ -32,68 +34,142 @@ package KartengrundFluss is
                                                                                      SpeziesDatentypen.Talbidahr_Enum        => True
                                                                                     ),
                                                                               
-                                                                                    -- Nahrung, Produktion, Geld, Forschung
                                                                                   Wirtschaft =>
                                                                                     (
-                                                                                     SpeziesDatentypen.Menschen_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Kasrodiah_Enum        => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Lasupin_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Lamustra_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Manuky_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Suroka_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Pryolon_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Moru_Phisihl_Enum     => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Larinos_Lotaris_Enum  => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Carupex_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Alary_Enum            => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Natries_Zermanis_Enum => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Tridatus_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Senelari_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Aspari_2_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Ekropa_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Tesorahn_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Talbidahr_Enum        => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                 ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus)
+                                                                                     ProduktionDatentypen.Nahrung_Enum =>
+                                                                                       (
+                                                                                        SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                                       ),
+                                                                         
+                                                                                     ProduktionDatentypen.Material_Enum =>
+                                                                                       (
+                                                                                        SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                                       ),
+                                                                         
+                                                                                     ProduktionDatentypen.Geld_Enum =>
+                                                                                       (
+                                                                                        SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                                       ),
+                                                                         
+                                                                                     ProduktionDatentypen.Forschung_Enum =>
+                                                                                       (
+                                                                                        SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                                       )
                                                                                     ),
-                                                                              
-                                                                                    -- Verteidigung, Angriff
+
                                                                                   Kampf =>
                                                                                     (
-                                                                                     SpeziesDatentypen.Menschen_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Kasrodiah_Enum        => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Lasupin_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Lamustra_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Manuky_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Suroka_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Pryolon_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Moru_Phisihl_Enum     => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Larinos_Lotaris_Enum  => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Carupex_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Alary_Enum            => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Natries_Zermanis_Enum => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Tridatus_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Senelari_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Aspari_2_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Ekropa_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Tesorahn_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                     SpeziesDatentypen.Talbidahr_Enum        => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus)
+                                                                                     KampfDatentypen.Angriff_Enum =>
+                                                                                       (
+                                                                                        SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                                       ),
+                                                                         
+                                                                                     KampfDatentypen.Verteidigung_Enum =>
+                                                                                       (
+                                                                                        SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                        SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                                       )
                                                                                     )
                                                                                  )
                                                                               );
@@ -124,68 +200,142 @@ package KartengrundFluss is
                                                                                        SpeziesDatentypen.Talbidahr_Enum        => True
                                                                                       ),
                                                                               
-                                                                                      -- Nahrung, Produktion, Geld, Forschung
                                                                                     Wirtschaft =>
                                                                                       (
-                                                                                       SpeziesDatentypen.Menschen_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Kasrodiah_Enum        => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Lasupin_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Lamustra_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Manuky_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Suroka_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Pryolon_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Moru_Phisihl_Enum     => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Larinos_Lotaris_Enum  => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Carupex_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Alary_Enum            => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Natries_Zermanis_Enum => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Tridatus_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Senelari_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Aspari_2_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Ekropa_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Tesorahn_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Talbidahr_Enum        => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus)
+                                                                                       ProduktionDatentypen.Nahrung_Enum =>
+                                                                                         (
+                                                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                                         ),
+                                                                         
+                                                                                       ProduktionDatentypen.Material_Enum =>
+                                                                                         (
+                                                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                                         ),
+                                                                         
+                                                                                       ProduktionDatentypen.Geld_Enum =>
+                                                                                         (
+                                                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                                         ),
+                                                                         
+                                                                                       ProduktionDatentypen.Forschung_Enum =>
+                                                                                         (
+                                                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                                         )
                                                                                       ),
-                                                                              
-                                                                                      -- Verteidigung, Angriff
+
                                                                                     Kampf =>
                                                                                       (
-                                                                                       SpeziesDatentypen.Menschen_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Kasrodiah_Enum        => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Lasupin_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Lamustra_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Manuky_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Suroka_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Pryolon_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Moru_Phisihl_Enum     => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Larinos_Lotaris_Enum  => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Carupex_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Alary_Enum            => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Natries_Zermanis_Enum => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Tridatus_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Senelari_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Aspari_2_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Ekropa_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Tesorahn_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                                       SpeziesDatentypen.Talbidahr_Enum        => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus)
+                                                                                       KampfDatentypen.Angriff_Enum =>
+                                                                                         (
+                                                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                                         ),
+                                                                         
+                                                                                       KampfDatentypen.Verteidigung_Enum =>
+                                                                                         (
+                                                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                                         )
                                                                                       )
                                                                                    )
                                                                                 );
@@ -215,69 +365,143 @@ package KartengrundFluss is
                                                                        SpeziesDatentypen.Tesorahn_Enum         => True,
                                                                        SpeziesDatentypen.Talbidahr_Enum        => True
                                                                       ),
-                                                                              
-                                                                      -- Nahrung, Produktion, Geld, Forschung
+                                                                    
                                                                     Wirtschaft =>
                                                                       (
-                                                                       SpeziesDatentypen.Menschen_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Kasrodiah_Enum        => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Lasupin_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Lamustra_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Manuky_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Suroka_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Pryolon_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Moru_Phisihl_Enum     => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Larinos_Lotaris_Enum  => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Carupex_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Alary_Enum            => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Natries_Zermanis_Enum => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Tridatus_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Senelari_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Aspari_2_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Ekropa_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Tesorahn_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Talbidahr_Enum        => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus,
-                                                                                                                   ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus)
+                                                                       ProduktionDatentypen.Nahrung_Enum =>
+                                                                         (
+                                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                         ),
+                                                                         
+                                                                       ProduktionDatentypen.Material_Enum =>
+                                                                         (
+                                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                         ),
+                                                                         
+                                                                       ProduktionDatentypen.Geld_Enum =>
+                                                                         (
+                                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                         ),
+                                                                         
+                                                                       ProduktionDatentypen.Forschung_Enum =>
+                                                                         (
+                                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                         )
                                                                       ),
-                                                                              
-                                                                      -- Verteidigung, Angriff
+
                                                                     Kampf =>
                                                                       (
-                                                                       SpeziesDatentypen.Menschen_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Kasrodiah_Enum        => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Lasupin_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Lamustra_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Manuky_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Suroka_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Pryolon_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Moru_Phisihl_Enum     => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Larinos_Lotaris_Enum  => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Carupex_Enum          => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Alary_Enum            => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Natries_Zermanis_Enum => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Tridatus_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Senelari_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Aspari_2_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Ekropa_Enum           => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Tesorahn_Enum         => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus),
-                                                                       SpeziesDatentypen.Talbidahr_Enum        => (ProduktionKonstanten.LeerBonus, ProduktionKonstanten.LeerBonus)
+                                                                       KampfDatentypen.Angriff_Enum =>
+                                                                         (
+                                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                         ),
+                                                                         
+                                                                       KampfDatentypen.Verteidigung_Enum =>
+                                                                         (
+                                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerBonus,
+                                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerBonus
+                                                                         )
                                                                       )
                                                                    )
                                                                 );

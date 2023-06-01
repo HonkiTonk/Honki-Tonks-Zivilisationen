@@ -159,8 +159,8 @@ package body PassierbarkeitspruefungLogik is
             end if;
             
          when others =>
-            return LeseVerbesserungenDatenbank.PassierbarkeitWeg (WegExtern            => WegVorhanden,
-                                                                  WelcheUmgebungExtern => UmgebungExtern);
+            return LeseVerbesserungenDatenbank.PassierbarkeitWeg (WegExtern      => WegVorhanden,
+                                                                  UmgebungExtern => UmgebungExtern);
       end case;
       
       -- Notwendig da sonst auch Schiffe über Schienen verschoben werden können. äöü

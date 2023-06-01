@@ -51,10 +51,10 @@ package LeseGebaeudeDatenbank is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   function WirtschaftBonus
+   function Produktionsbonus
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
-      WirtschaftBonusExtern : in ProduktionDatentypen.Produktion_Enum)
+      ProduktionsbonusExtern : in ProduktionDatentypen.Produktion_Enum)
       return ProduktionDatentypen.Feldproduktion
      with
        Pre => (
