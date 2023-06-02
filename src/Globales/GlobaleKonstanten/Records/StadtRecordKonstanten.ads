@@ -2,6 +2,7 @@ with StadtRecords;
 with StadtKonstanten;
 with KartenRecordKonstanten;
 with GebaeudedatenbankRecord;
+with ProduktionKonstanten;
 
 package StadtRecordKonstanten is
    pragma Elaborate_Body;
@@ -35,7 +36,7 @@ package StadtRecordKonstanten is
                                                                                 PermanenteKosten     => (others => StadtKonstanten.LeerPermanenteKosten),
                                                                                 Anforderungen        => StadtKonstanten.LeerAnforderungen,
                                                                                 Produktionsbonus     => (others => StadtKonstanten.LeerBonusWirtschaft),
-                                                                                Kampfbonus           => (others => StadtKonstanten.LeerBonusKampf),
+                                                                                Kampfbonus           => (others => ProduktionKonstanten.LeerBonus),
                                                                                 BasisgrundBenötigt   => (others => StadtKonstanten.LeerBasisgrundBenötigt),
                                                                                 ZusatzgrundBenötigt  => (others => StadtKonstanten.LeerZusatzgrundBenötigt),
                                                                                 FlussBenötigt        => (others => StadtKonstanten.LeerFlussBenötigt),

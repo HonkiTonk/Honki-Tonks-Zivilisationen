@@ -65,7 +65,7 @@ package LeseGebaeudeDatenbank is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
       KampfBonusExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteEinheiten
+      return ProduktionDatentypen.Produktionsbonus
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

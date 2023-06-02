@@ -4,7 +4,7 @@ with StadtKonstanten;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with FeldkampfLogik;
+with FeldkampfEinheitLogik;
 
 package body KampfwerteEinheitErmittelnLogik is
    
@@ -17,9 +17,9 @@ package body KampfwerteEinheitErmittelnLogik is
       Grundverteidigung (LogikGrafikExtern) := LeseEinheitenDatenbank.Verteidigung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                     IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
-      Bonusverteidigung (LogikGrafikExtern) := FeldkampfLogik.Feldkampf (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                         SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
-                                                                         KampfartExtern    => KampfDatentypen.Verteidigung_Enum);
+      Bonusverteidigung (LogikGrafikExtern) := FeldkampfEinheitLogik.Feldkampf (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                                                                SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+                                                                                KampfartExtern    => KampfDatentypen.Verteidigung_Enum);
         
       GesamteVerteidigung (LogikGrafikExtern) := Rangbonus (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                             KampfwertExtern            => (Grundverteidigung (LogikGrafikExtern) + Bonusverteidigung (LogikGrafikExtern)));
@@ -59,9 +59,9 @@ package body KampfwerteEinheitErmittelnLogik is
       Grundangriff (LogikGrafikExtern) := LeseEinheitenDatenbank.Angriff (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                           IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
-      Bonusverteidigung (LogikGrafikExtern) := FeldkampfLogik.Feldkampf (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                         SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
-                                                                         KampfartExtern    => KampfDatentypen.Angriff_Enum);
+      Bonusverteidigung (LogikGrafikExtern) := FeldkampfEinheitLogik.Feldkampf (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                                                                SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
+                                                                                KampfartExtern    => KampfDatentypen.Angriff_Enum);
       
       GesamterAngriff (LogikGrafikExtern) := Rangbonus (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                         KampfwertExtern            => (Grundangriff (LogikGrafikExtern) + Bonusangriff (LogikGrafikExtern)));

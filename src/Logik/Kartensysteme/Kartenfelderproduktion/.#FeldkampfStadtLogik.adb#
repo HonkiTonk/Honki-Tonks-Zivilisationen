@@ -9,9 +9,7 @@ with LeseVerbesserungenDatenbank;
 with LeseAllgemeines;
 with LeseEffekteDatenbank;
 
--- Hier als Grundwert die Standardwerte der Einheit nehmen und entsprechend damit weiterrechnen? Siehe dazu auch KampfwerteEinheitErmittelnLogik. äöü
--- Auch die Berücksichtigen dass die Städte wieder anders ihre Kampfwerte berechnen. Siehe dazu auch KampfwerteStadtErmittelnLogik. äöü
-package body FeldkampfLogik is
+package body FeldkampfStadtLogik is
 
    function Feldkampf
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -165,4 +163,4 @@ package body FeldkampfLogik is
       
    end FeldeffektemalusFestlegen;
 
-end FeldkampfLogik;
+end FeldkampfStadtLogik;

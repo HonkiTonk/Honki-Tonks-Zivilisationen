@@ -13,7 +13,7 @@ with LeseWeltkarteneinstellungen;
 
 private with Grenzpruefungen;
 
-package FeldkampfLogik is
+package FeldkampfStadtLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
@@ -70,4 +70,4 @@ private
    
    function MultiplikationPrüfen is new Grenzpruefungen.StandardKommamultiplikation (KommaZahl => ProduktionDatentypen.Produktionsbonus);
 
-end FeldkampfLogik;
+end FeldkampfStadtLogik;

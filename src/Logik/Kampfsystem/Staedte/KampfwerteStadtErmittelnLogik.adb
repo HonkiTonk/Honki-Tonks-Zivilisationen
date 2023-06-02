@@ -2,8 +2,9 @@ with StadtDatentypen;
 with KartenKonstanten;
 
 with LeseGebaeudeDatenbank;
+-- with LeseVerbesserungenDatenbank;
 
-with FeldkampfLogik;
+with FeldkampfStadtLogik;
 
 -- Warum übergebe ich hier denn das gesamte Gebäudearray? Das kann man bestimmt auch besser lösen, oder? äöü
 package body KampfwerteStadtErmittelnLogik is
@@ -15,18 +16,15 @@ package body KampfwerteStadtErmittelnLogik is
       GebäudeExtern : in StadtArrays.GebäudeArray)
       return KampfDatentypen.KampfwerteGroß
    is
-      use type KampfDatentypen.KampfwerteGroß;
+      -- use type KampfDatentypen.KampfwerteGroß;
    begin
       
-      VerteidigungWert := FeldkampfLogik.Feldkampf (KoordinatenExtern => KoordinatenExtern,
-                                                    SpeziesExtern     => SpeziesExtern,
-                                                    KampfartExtern    => KampfDatentypen.Verteidigung_Enum);
-        
-      -- LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => IDExtern,
-      --                                                                  SpeziesExtern      => SpeziesExtern,
-      --                                                                  WelcherWertExtern  => KartenKonstanten.KampfVerteidigung);
-      -- + KartenfelderwerteLogik.FeldVerteidigung (KoordinatenExtern => KoordinatenExtern,
-      --                                            SpeziesExtern     => SpeziesExtern);
+      VerteidigungWert := -- LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => IDExtern,
+                          --                                               SpeziesExtern      => SpeziesExtern,
+                          --                                               KampfartExtern     => KartenKonstanten.KampfVerteidigung)
+         FeldkampfStadtLogik.Feldkampf (KoordinatenExtern => KoordinatenExtern,
+                                         SpeziesExtern     => SpeziesExtern,
+                                         KampfartExtern    => KampfDatentypen.Verteidigung_Enum);
       
       case
         IDExtern
@@ -42,9 +40,9 @@ package body KampfwerteStadtErmittelnLogik is
            GebäudeExtern (GebäudeSchleifenwert)
          is
             when True =>
-               VerteidigungWert := VerteidigungWert + LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
-                                                                                        IDExtern         => GebäudeSchleifenwert,
-                                                                                        KampfBonusExtern => KartenKonstanten.KampfVerteidigung);
+               VerteidigungWert := KampfDatentypen.KampfwerteGroß (Float (VerteidigungWert) * Float (LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
+                                                                                                                                        IDExtern         => GebäudeSchleifenwert,
+                                                                                                                                        KampfBonusExtern => KartenKonstanten.KampfVerteidigung)));
 
             when False =>
                null;
@@ -65,18 +63,16 @@ package body KampfwerteStadtErmittelnLogik is
       GebäudeExtern : in StadtArrays.GebäudeArray)
       return KampfDatentypen.KampfwerteGroß
    is
-      use type KampfDatentypen.KampfwerteGroß;
+      -- use type KampfDatentypen.KampfwerteGroß;
    begin
       
-      AngriffWert := FeldkampfLogik.Feldkampf (KoordinatenExtern => KoordinatenExtern,
+      AngriffWert := FeldkampfStadtLogik.Feldkampf (KoordinatenExtern => KoordinatenExtern,
                                                SpeziesExtern     => SpeziesExtern,
                                                KampfartExtern    => KampfDatentypen.Angriff_Enum);
       
       -- LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => IDExtern,
       --                                                            SpeziesExtern      => SpeziesExtern,
       --                                                            WelcherWertExtern  => KartenKonstanten.KampfAngriff);
-      -- + KartenfelderwerteLogik.FeldAngriff (KoordinatenExtern => KoordinatenExtern,
-      --                                        SpeziesExtern     => SpeziesExtern);
       
       case
         IDExtern
@@ -92,9 +88,9 @@ package body KampfwerteStadtErmittelnLogik is
            GebäudeExtern (GebäudeSchleifenwert)
          is
             when True =>
-               AngriffWert := AngriffWert + LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
-                                                                              IDExtern         => GebäudeSchleifenwert,
-                                                                              KampfBonusExtern => KartenKonstanten.KampfAngriff);
+               AngriffWert := KampfDatentypen.KampfwerteGroß (Float (AngriffWert) + Float (LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
+                                                                                                                              IDExtern         => GebäudeSchleifenwert,
+                                                                                                                              KampfBonusExtern => KartenKonstanten.KampfAngriff)));
 
             when False =>
                null;

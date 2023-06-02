@@ -189,23 +189,23 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (03.06.2023):
+   -- Version 0.05.1590 => 0.05. (03.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (02.06.2023):
+   -- Version 0.05.1555 => 0.05.1590 (02.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kampfwerteberechnung für Städte überarbeitet.
+   -- Kampfwerteberechnung für Einheiten überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1555 => 0.05. (01.06.2023):
+   -- Version 0.05.1555 => 0.05.1555 (01.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
 
 end ChangelogVorlage;

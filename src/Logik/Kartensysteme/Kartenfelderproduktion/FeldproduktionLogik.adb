@@ -8,7 +8,7 @@ with LeseKartenDatenbanken;
 with LeseVerbesserungenDatenbank;
 with LeseAllgemeines;
 
--- Erste einmal ein allumfassendes Feldproduktionssystem bauen und später feiner aufteilen. äöü
+-- Später feiner aufteilen. äöü
 package body FeldproduktionLogik is
    
    function Feldproduktion
