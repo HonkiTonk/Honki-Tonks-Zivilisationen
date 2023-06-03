@@ -191,7 +191,7 @@ package ChangelogVorlage is
 
    -- Version 0.05.1590 => 0.05. (03.06.2023):
    
-   -- 
+   -- Neues Version veröffentlicht.
    -- Kleinigkeiten korrigiert.
    
    
