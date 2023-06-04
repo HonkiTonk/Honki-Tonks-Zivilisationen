@@ -13,6 +13,10 @@ package KartendatenbankRecord is
    type KampfArray is array (KampfDatentypen.Kampf_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of KampfDatentypen.KampfwerteKarte;
    type BewegungArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of EinheitenDatentypen.Bewegungspunkte;
    
+   type BewertungsbonusArray is array (BewertungArray'Range) of Boolean;
+   type WirtschaftsbonusArray is array (ProduktionArray'Range (1), ProduktionArray'Range (2)) of ProduktionDatentypen.Produktionsbonus;
+   type KampfbonusArray is array (KampfArray'Range (1), KampfArray'Range (2)) of KampfDatentypen.Kampfbonus;
+   
    type KartenbasisgrundlisteRecord is record
       
       Bewertung : BewertungArray;
@@ -36,13 +40,20 @@ package KartendatenbankRecord is
       
    end record;
    
-   
-   
-   type BewertungsbonusArray is array (BewertungArray'Range) of Boolean;
-   type WirtschaftsbonusArray is array (ProduktionArray'Range (1), ProduktionArray'Range (2)) of ProduktionDatentypen.Produktionsbonus;
-   type KampfbonusArray is array (KampfArray'Range (1), KampfArray'Range (2)) of ProduktionDatentypen.Produktionsbonus;
+      
    
    type KartenextraslisteRecord is record
+      
+      Bewertung : BewertungsbonusArray;
+      
+      Wirtschaft : WirtschaftsbonusArray;
+      Kampf : KampfArray;
+      
+   end record;
+   
+      
+   
+   type KarteneffektlisteRecord is record
       
       Bewertung : BewertungsbonusArray;
       
@@ -58,7 +69,7 @@ package KartendatenbankRecord is
    type VerbesserungenlisteRecord is record
       
       Wirtschaft : WirtschaftsbonusArray;
-      Kampf : KampfbonusArray;
+      Kampf : KampfArray;
       
    end record;
    
@@ -69,7 +80,7 @@ package KartendatenbankRecord is
    type WegelisteRecord is record
       
       Wirtschaft : WirtschaftsbonusArray;
-      Kampf : KampfbonusArray;
+      Kampf : KampfArray;
       
       Passierbarkeit : DatenbankRecords.PassierbarkeitArray;
       Bewegung : BewegungArray;

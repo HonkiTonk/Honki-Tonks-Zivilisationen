@@ -175,17 +175,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (05.06.2023):
+   -- Version 0.05.1650 => 0.05. (05.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1615 => 0.05. (04.06.2023):
+   -- Version 0.05.1615 => 0.05.1650 (04.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kampfwerteberechnung für Städte überarbeitet.
+   -- Kampfwerteberechnung für Einheiten überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

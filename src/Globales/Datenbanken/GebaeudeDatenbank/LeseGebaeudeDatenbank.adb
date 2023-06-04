@@ -2,6 +2,7 @@ with GebaeudeDatenbank;
 with StadtKonstanten;
 with ProduktionKonstanten;
 with ForschungKonstanten;
+with KampfKonstanten;
 
 -- Aufgrund der Änderungen in der gebäudedatenbank hier eventuell noch einmal die leeren Rückgabewerte überprüfen. äöü
 package body LeseGebaeudeDatenbank is
@@ -112,14 +113,14 @@ package body LeseGebaeudeDatenbank is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert;
       KampfBonusExtern : in KampfDatentypen.Kampf_Enum)
-      return ProduktionDatentypen.Produktionsbonus
+      return KampfDatentypen.Kampfbonus
    is begin
       
       case
         IDExtern
       is
          when StadtKonstanten.LeerGebäudeID =>
-            return ProduktionKonstanten.LeerBonus;
+            return KampfKonstanten.LeerBonus;
             
          when others =>
             return GebaeudeDatenbank.Gebäudeliste (SpeziesExtern, IDExtern).Kampfbonus (KampfBonusExtern);

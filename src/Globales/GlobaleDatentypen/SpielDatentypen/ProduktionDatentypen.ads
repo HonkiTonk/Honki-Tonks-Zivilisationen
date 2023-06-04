@@ -15,7 +15,9 @@ package ProduktionDatentypen is
    
    
    -- Hier eine Begrenzung/Delta hinzufügen? äöü
-   type Produktionsbonus is new Float range 0.00 .. 10.00;
+   type BonusMalus is new Float range 0.00 .. 10.00;
+   subtype Produktionsbonus is BonusMalus range 1.00 .. 10.00;
+   subtype Produktionsmalus is BonusMalus range 0.00 .. 1.00;
    
    
    

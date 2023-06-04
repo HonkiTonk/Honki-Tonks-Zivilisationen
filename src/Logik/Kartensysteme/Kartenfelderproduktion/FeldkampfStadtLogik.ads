@@ -4,9 +4,6 @@ with KartenDatentypen;
 with KampfDatentypen;
 
 private with KartengrundDatentypen;
-private with KartenextraDatentypen;
-private with KartenverbesserungDatentypen;
-private with ProduktionDatentypen;
 
 with LeseSpeziesbelegung;
 with LeseWeltkarteneinstellungen;
@@ -31,34 +28,12 @@ package FeldkampfStadtLogik is
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
-   
-private
-   
-   Gesamtgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
-   
-   RessourceVorhanden : KartenextraDatentypen.Ressourcen_Enum;
-   
-   VerbesserungVorhanden : KartenverbesserungDatentypen.Verbesserung_Enum;
-   
-   Gesamtwert : KampfDatentypen.KampfwerteAllgemein;
-   
-   Ressourcenbonus : ProduktionDatentypen.Produktionsbonus;
-   Verbesserungsbonus : ProduktionDatentypen.Produktionsbonus;
-   Flussbonus : ProduktionDatentypen.Produktionsbonus;
-   Wegbonus : ProduktionDatentypen.Produktionsbonus;
-   FeldeffektmalusZwischenspeicher : ProduktionDatentypen.Produktionsbonus;
-   Feldeffektmalus : ProduktionDatentypen.Produktionsbonus;
-   Gesamtbonus : ProduktionDatentypen.Produktionsbonus;
-   
-   FeldeffekteVorhanden : KartenRecords.FeldeffektArray;
-   
-   
 
    function FeldeffektemalusFestlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return ProduktionDatentypen.Produktionsbonus
+      return KampfDatentypen.Kampfbonus
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -68,6 +43,14 @@ private
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
-   function MultiplikationPrüfen is new Grenzpruefungen.StandardKommamultiplikation (KommaZahl => ProduktionDatentypen.Produktionsbonus);
+private
+   
+   Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
+   
+   Feldeffektmalus : KampfDatentypen.Kampfbonus;
+   
+   FeldeffekteVorhanden : KartenRecords.FeldeffektArray;
+   
+   function MultiplikationPrüfen is new Grenzpruefungen.StandardKommamultiplikation (KommaZahl => KampfDatentypen.Kampfbonus);
 
 end FeldkampfStadtLogik;

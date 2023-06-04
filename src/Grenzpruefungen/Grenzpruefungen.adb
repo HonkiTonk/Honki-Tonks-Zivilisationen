@@ -33,9 +33,15 @@ package body Grenzpruefungen is
    is begin
       
       if
-        Float (KommazahlEinsExtern) * Float (KommazahlZweiExtern) > Float (KommaZahl'Last)
+        Float (KommazahlEinsExtern) * Float (KommazahlZweiExtern) >= Float (KommaZahl'Last)
       then
          return KommaZahl'Last;
+         
+         -- Sollte aktuell nie auftreten da alle Kommazahlen größer Null sind, aber das kann sich in der Zukunft ja ändern.
+      elsif
+        Float (KommazahlEinsExtern) * Float (KommazahlZweiExtern) <= Float (KommaZahl'First)
+      then
+         return KommaZahl'First;
          
       else
          return KommazahlEinsExtern * KommazahlZweiExtern;

@@ -1,12 +1,9 @@
 with KampfKonstanten;
-with ProduktionKonstanten;
-with SpielDatentypen;
 with KartenRecordKonstanten;
 
 with LeseWeltkarte;
 with LeseKartenDatenbanken;
 with LeseVerbesserungenDatenbank;
-with LeseAllgemeines;
 with LeseEffekteDatenbank;
 
 package body FeldkampfStadtLogik is
@@ -17,106 +14,35 @@ package body FeldkampfStadtLogik is
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
       return KampfDatentypen.KampfwerteAllgemein
    is
-      use type KartenextraDatentypen.Ressourcen_Enum;
-      use type KartenverbesserungDatentypen.Verbesserung_Enum;
-      use type ProduktionDatentypen.Produktionsbonus;
       use type KampfDatentypen.KampfwerteGroß;
    begin
       
-      Gesamtgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
+      Basisgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
       
       case
-        Gesamtgrund
+        Basisgrund
       is
          when KartengrundDatentypen.Vernichtet_Enum =>
             return KampfKonstanten.LeerKampfwert;
             
          when others =>
-            Gesamtwert := LeseKartenDatenbanken.KampfBasisgrund (GrundExtern    => Gesamtgrund,
-                                                                 SpeziesExtern  => SpeziesExtern,
-                                                                 KampfartExtern => KampfartExtern);
-            
-            Gesamtwert := Gesamtwert + LeseKartenDatenbanken.KampfZusatzgrund (GrundExtern    => LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern),
-                                                                               SpeziesExtern  => SpeziesExtern,
-                                                                               KampfartExtern => KampfartExtern);
-            
-            RessourceVorhanden := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
-            VerbesserungVorhanden := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
-      end case;
-      
-      if
-        RessourceVorhanden /= KartenextraDatentypen.Leer_Ressource_Enum
-        and
-          VerbesserungVorhanden /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
-      then
-         Verbesserungsbonus := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => VerbesserungVorhanden,
-                                                                              SpeziesExtern      => SpeziesExtern,
-                                                                              KampfartExtern     => KampfartExtern);
-         Ressourcenbonus := LeseKartenDatenbanken.KampfRessource (RessourceExtern => RessourceVorhanden,
-                                                                  SpeziesExtern   => SpeziesExtern,
-                                                                  KampfartExtern  => KampfartExtern);
-         
-      elsif
-        RessourceVorhanden /= KartenextraDatentypen.Leer_Ressource_Enum
-      then
-         Ressourcenbonus := LeseKartenDatenbanken.KampfRessource (RessourceExtern => RessourceVorhanden,
-                                                                  SpeziesExtern   => SpeziesExtern,
-                                                                  KampfartExtern  => KampfartExtern);
-         Verbesserungsbonus := ProduktionKonstanten.LeerBonus;
-         
-      elsif
-        VerbesserungVorhanden /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
-      then
-         Verbesserungsbonus := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => VerbesserungVorhanden,
-                                                                              SpeziesExtern      => SpeziesExtern,
-                                                                              KampfartExtern     => KampfartExtern);
-         Ressourcenbonus := ProduktionKonstanten.LeerBonus;
-         
-      else
-         Ressourcenbonus := ProduktionKonstanten.LeerBonus;
-         Verbesserungsbonus := ProduktionKonstanten.LeerBonus;
-      end if;
-            
-      Wegbonus := LeseVerbesserungenDatenbank.KampfWeg (WegExtern      => LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern),
+            return LeseKartenDatenbanken.KampfBasisgrund (GrundExtern    => Basisgrund,
+                                                          SpeziesExtern  => SpeziesExtern,
+                                                          KampfartExtern => KampfartExtern)
+              + LeseKartenDatenbanken.KampfZusatzgrund (GrundExtern    => LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern),
                                                         SpeziesExtern  => SpeziesExtern,
-                                                        KampfartExtern => KampfartExtern);
-      
-      Flussbonus := LeseKartenDatenbanken.KampfFluss (FlussExtern    => LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern),
+                                                        KampfartExtern => KampfartExtern)
+              + LeseKartenDatenbanken.KampfRessource (RessourceExtern => LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern),
+                                                      SpeziesExtern   => SpeziesExtern,
+                                                      KampfartExtern  => KampfartExtern)
+              + LeseVerbesserungenDatenbank.KampfWeg (WegExtern      => LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern),
                                                       SpeziesExtern  => SpeziesExtern,
-                                                      KampfartExtern => KampfartExtern);
-      
-      Feldeffektmalus := FeldeffektemalusFestlegen (KoordinatenExtern => KoordinatenExtern,
-                                                    SpeziesExtern     => SpeziesExtern,
-                                                    KampfartExtern    => KampfartExtern);
-      
-      Gesamtbonus := Grenzpruefungen.Produktionsbonus (RessourcenbonusExtern    => Ressourcenbonus,
-                                                       VerbesserungsbonusExtern => Verbesserungsbonus,
-                                                       WegebonusExtern          => Wegbonus,
-                                                       FlussbonusExtern         => Flussbonus,
-                                                       FeldeffektmalusExtern    => Feldeffektmalus);
-      
-      case
-        LeseAllgemeines.Schwierigkeitsgrad
-      is
-         when SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum =>
-            Gesamtwert
-              := KampfDatentypen.KampfwerteAllgemein (ProduktionDatentypen.Produktionsbonus'Floor (ProduktionDatentypen.Produktionsbonus (Gesamtwert) * Ressourcenbonus * Verbesserungsbonus * Flussbonus * Wegbonus));
-            
-         when others =>
-            Gesamtwert
-              := KampfDatentypen.KampfwerteAllgemein (ProduktionDatentypen.Produktionsbonus'Ceiling (ProduktionDatentypen.Produktionsbonus (Gesamtwert) * Ressourcenbonus * Verbesserungsbonus * Flussbonus * Wegbonus));
+                                                      KampfartExtern => KampfartExtern)
+              + LeseKartenDatenbanken.KampfFluss (FlussExtern    => LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern),
+                                                  SpeziesExtern  => SpeziesExtern,
+                                                  KampfartExtern => KampfartExtern);
       end case;
-      
-      -- Das ergibt bei Kampf eher wenig Sinn, oder? äöü
-      if
-        Gesamtwert < KampfKonstanten.LeerKampfwert
-      then
-         return KampfKonstanten.LeerKampfwert;
-         
-      else
-         return Gesamtwert;
-      end if;
-      
+
    end Feldkampf;
    
    
@@ -125,7 +51,7 @@ package body FeldkampfStadtLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return ProduktionDatentypen.Produktionsbonus
+      return KampfDatentypen.Kampfbonus
    is
       use type KartenRecords.FeldeffektArray;
    begin
@@ -135,10 +61,10 @@ package body FeldkampfStadtLogik is
       if
         FeldeffekteVorhanden = KartenRecordKonstanten.LeerEffekte
       then
-         return ProduktionKonstanten.LeerBonus;
+         return KampfKonstanten.LeerBonus;
          
       else
-         FeldeffektmalusZwischenspeicher := ProduktionKonstanten.LeerBonus;
+         Feldeffektmalus := KampfKonstanten.LeerBonus;
       end if;
       
       EffekteSchleife:
@@ -148,10 +74,10 @@ package body FeldkampfStadtLogik is
            FeldeffekteVorhanden (EffekteSchleifenwert)
          is
             when True =>
-               FeldeffektmalusZwischenspeicher := MultiplikationPrüfen (KommazahlEinsExtern => FeldeffektmalusZwischenspeicher,
-                                                                         KommazahlZweiExtern => LeseEffekteDatenbank.Kampf (EffektExtern   => EffekteSchleifenwert,
-                                                                                                                            SpeziesExtern  => SpeziesExtern,
-                                                                                                                            KampfartExtern => KampfartExtern));
+               Feldeffektmalus := MultiplikationPrüfen (KommazahlEinsExtern => Feldeffektmalus,
+                                                         KommazahlZweiExtern => LeseEffekteDatenbank.Kampf (EffektExtern   => EffekteSchleifenwert,
+                                                                                                            SpeziesExtern  => SpeziesExtern,
+                                                                                                            KampfartExtern => KampfartExtern));
                
             when False =>
                null;
@@ -159,7 +85,7 @@ package body FeldkampfStadtLogik is
          
       end loop EffekteSchleife;
       
-      return FeldeffektmalusZwischenspeicher;
+      return Feldeffektmalus;
       
    end FeldeffektemalusFestlegen;
 

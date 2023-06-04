@@ -33,7 +33,7 @@ package KartenKonstanten is
       
    LeerSichtbar : constant Boolean := False;
    
-   -- Den ganzen Prdouktionsabschnitt mal nach ProduktionKonstanten schieben? äöü
+   -- Die drei Dinger mal nach KampdKonstanten verschieben? äöü
    LeerVerbesserungKampf : constant KampfDatentypen.KampfwerteKarte := KampfDatentypen.KampfwerteEinheiten'First;
    
    KampfVerteidigung : constant KampfDatentypen.Kampf_Enum := KampfDatentypen.Verteidigung_Enum;

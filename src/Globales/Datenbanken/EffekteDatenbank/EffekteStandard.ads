@@ -4,11 +4,12 @@ with SpeziesDatentypen;
 with ProduktionKonstanten;
 with ProduktionDatentypen;
 with KampfDatentypen;
+with KampfKonstanten;
 
 package EffekteStandard is
    pragma Pure;
 
-   type EffektelisteArray is array (KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
+   type EffektelisteArray is array (KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range) of KartendatenbankRecord.KarteneffektlisteRecord;
    Effekteliste : constant EffektelisteArray := (
                                                  others =>
                                                    (
@@ -130,46 +131,46 @@ package EffekteStandard is
                                                       (
                                                        KampfDatentypen.Angriff_Enum =>
                                                          (
-                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerMalus
+                                                          SpeziesDatentypen.Menschen_Enum         => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Kasrodiah_Enum        => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Lasupin_Enum          => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Lamustra_Enum         => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Manuky_Enum           => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Suroka_Enum           => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Pryolon_Enum          => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Carupex_Enum          => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Alary_Enum            => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Natries_Zermanis_Enum => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Tridatus_Enum         => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Senelari_Enum         => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Aspari_2_Enum         => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Ekropa_Enum           => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Tesorahn_Enum         => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Talbidahr_Enum        => KampfKonstanten.LeerMalus
                                                          ),
                                                                          
                                                        KampfDatentypen.Verteidigung_Enum =>
                                                          (
-                                                          SpeziesDatentypen.Menschen_Enum         => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Kasrodiah_Enum        => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Lasupin_Enum          => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Lamustra_Enum         => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Manuky_Enum           => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Suroka_Enum           => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Pryolon_Enum          => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Carupex_Enum          => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Alary_Enum            => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Natries_Zermanis_Enum => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Tridatus_Enum         => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Senelari_Enum         => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Aspari_2_Enum         => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Ekropa_Enum           => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Tesorahn_Enum         => ProduktionKonstanten.LeerMalus,
-                                                          SpeziesDatentypen.Talbidahr_Enum        => ProduktionKonstanten.LeerMalus
+                                                          SpeziesDatentypen.Menschen_Enum         => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Kasrodiah_Enum        => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Lasupin_Enum          => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Lamustra_Enum         => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Manuky_Enum           => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Suroka_Enum           => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Pryolon_Enum          => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Moru_Phisihl_Enum     => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Larinos_Lotaris_Enum  => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Carupex_Enum          => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Alary_Enum            => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Natries_Zermanis_Enum => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Tridatus_Enum         => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Senelari_Enum         => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Aspari_2_Enum         => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Ekropa_Enum           => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Tesorahn_Enum         => KampfKonstanten.LeerMalus,
+                                                          SpeziesDatentypen.Talbidahr_Enum        => KampfKonstanten.LeerMalus
                                                          )
                                                       )
                                                    )

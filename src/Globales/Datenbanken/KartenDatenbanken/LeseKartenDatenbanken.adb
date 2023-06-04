@@ -239,7 +239,7 @@ package body LeseKartenDatenbanken is
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteAllgemein
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       case
@@ -261,7 +261,7 @@ package body LeseKartenDatenbanken is
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteAllgemein
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       case
@@ -282,14 +282,14 @@ package body LeseKartenDatenbanken is
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return ProduktionDatentypen.Produktionsbonus
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       case
         FlussExtern
       is
          when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return ProduktionKonstanten.LeerBonus;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return KartenDatenbank.Kartenflussliste (FlussExtern).Kampf (KampfartExtern, SpeziesExtern);
@@ -303,14 +303,14 @@ package body LeseKartenDatenbanken is
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return ProduktionDatentypen.Produktionsbonus
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       case
         RessourceExtern
       is
          when KartenextraDatentypen.Leer_Ressource_Enum =>
-            return ProduktionKonstanten.LeerBonus;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Kampf (KampfartExtern, SpeziesExtern);

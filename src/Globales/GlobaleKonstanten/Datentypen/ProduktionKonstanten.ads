@@ -6,7 +6,7 @@ package ProduktionKonstanten is
    LeerProduktion : constant ProduktionDatentypen.Produktion := 0;
 
    LeerBonus : constant ProduktionDatentypen.Produktionsbonus := 1.00;
-   LeerMalus : constant ProduktionDatentypen.Produktionsbonus := 1.00;
+   LeerMalus : constant ProduktionDatentypen.Produktionsmalus := 1.00;
 
    KeinBonusVorhanden : constant Boolean := False;
    BonusVorhanden : constant Boolean := True;

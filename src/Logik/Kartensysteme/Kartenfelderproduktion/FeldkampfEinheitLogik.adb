@@ -5,9 +5,9 @@ with KartenRecordKonstanten;
 
 with LeseWeltkarte;
 with LeseKartenDatenbanken;
-with LeseVerbesserungenDatenbank;
+-- with LeseVerbesserungenDatenbank;
 with LeseAllgemeines;
-with LeseEffekteDatenbank;
+-- with LeseEffekteDatenbank;
 
 package body FeldkampfEinheitLogik is
 
@@ -49,27 +49,28 @@ package body FeldkampfEinheitLogik is
         and
           VerbesserungVorhanden /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
       then
-         Verbesserungsbonus := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => VerbesserungVorhanden,
-                                                                              SpeziesExtern      => SpeziesExtern,
-                                                                              KampfartExtern     => KampfartExtern);
-         Ressourcenbonus := LeseKartenDatenbanken.KampfRessource (RessourceExtern => RessourceVorhanden,
-                                                                  SpeziesExtern   => SpeziesExtern,
-                                                                  KampfartExtern  => KampfartExtern);
+        -- Verbesserungsbonus := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => VerbesserungVorhanden,
+        --                                                                      SpeziesExtern      => SpeziesExtern,
+        --                                                                      KampfartExtern     => KampfartExtern);
+       --  Ressourcenbonus := LeseKartenDatenbanken.KampfRessource (RessourceExtern => RessourceVorhanden,
+        --                                                          SpeziesExtern   => SpeziesExtern,
+        --                                                          KampfartExtern  => KampfartExtern);
+        null;
          
       elsif
         RessourceVorhanden /= KartenextraDatentypen.Leer_Ressource_Enum
       then
-         Ressourcenbonus := LeseKartenDatenbanken.KampfRessource (RessourceExtern => RessourceVorhanden,
-                                                                  SpeziesExtern   => SpeziesExtern,
-                                                                  KampfartExtern  => KampfartExtern);
+      --   Ressourcenbonus := LeseKartenDatenbanken.KampfRessource (RessourceExtern => RessourceVorhanden,
+      --                                                            SpeziesExtern   => SpeziesExtern,
+      --                                                            KampfartExtern  => KampfartExtern);
          Verbesserungsbonus := ProduktionKonstanten.LeerBonus;
          
       elsif
         VerbesserungVorhanden /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
       then
-         Verbesserungsbonus := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => VerbesserungVorhanden,
-                                                                              SpeziesExtern      => SpeziesExtern,
-                                                                              KampfartExtern     => KampfartExtern);
+       --  Verbesserungsbonus := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => VerbesserungVorhanden,
+       ----                                                                       SpeziesExtern      => SpeziesExtern,
+       --                                                                       KampfartExtern     => KampfartExtern);
          Ressourcenbonus := ProduktionKonstanten.LeerBonus;
          
       else
@@ -77,13 +78,13 @@ package body FeldkampfEinheitLogik is
          Verbesserungsbonus := ProduktionKonstanten.LeerBonus;
       end if;
             
-      Wegbonus := LeseVerbesserungenDatenbank.KampfWeg (WegExtern      => LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern),
-                                                        SpeziesExtern  => SpeziesExtern,
-                                                        KampfartExtern => KampfartExtern);
+    --  Wegbonus := LeseVerbesserungenDatenbank.KampfWeg (WegExtern      => LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern),
+    --                                                    SpeziesExtern  => SpeziesExtern,
+    --                                                    KampfartExtern => KampfartExtern);
       
-      Flussbonus := LeseKartenDatenbanken.KampfFluss (FlussExtern    => LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern),
-                                                      SpeziesExtern  => SpeziesExtern,
-                                                      KampfartExtern => KampfartExtern);
+    --  Flussbonus := LeseKartenDatenbanken.KampfFluss (FlussExtern    => LeseWeltkarte.Fluss (KoordinatenExtern => KoordinatenExtern),
+    --                                                  SpeziesExtern  => SpeziesExtern,
+    --                                                  KampfartExtern => KampfartExtern);
       
       Feldeffektmalus := FeldeffektemalusFestlegen (KoordinatenExtern => KoordinatenExtern,
                                                     SpeziesExtern     => SpeziesExtern,
@@ -130,6 +131,13 @@ package body FeldkampfEinheitLogik is
       use type KartenRecords.FeldeffektArray;
    begin
       
+      case
+        KampfartExtern
+      is
+         when others =>
+            null;
+      end case;
+      
       FeldeffekteVorhanden := LeseWeltkarte.Feldeffekte (KoordinatenExtern => KoordinatenExtern);
       
       if
@@ -148,10 +156,11 @@ package body FeldkampfEinheitLogik is
            FeldeffekteVorhanden (EffekteSchleifenwert)
          is
             when True =>
-               FeldeffektmalusZwischenspeicher := MultiplikationPrüfen (KommazahlEinsExtern => FeldeffektmalusZwischenspeicher,
-                                                                         KommazahlZweiExtern => LeseEffekteDatenbank.Kampf (EffektExtern   => EffekteSchleifenwert,
-                                                                                                                            SpeziesExtern  => SpeziesExtern,
-                                                                                                                            KampfartExtern => KampfartExtern));
+               null;
+             --  FeldeffektmalusZwischenspeicher := MultiplikationPrüfen (KommazahlEinsExtern => FeldeffektmalusZwischenspeicher,
+              --                                                           KommazahlZweiExtern => LeseEffekteDatenbank.Kampf (EffektExtern   => EffekteSchleifenwert,
+               --                                                                                                             SpeziesExtern  => SpeziesExtern,
+               --                                                                                                             KampfartExtern => KampfartExtern));
                
             when False =>
                null;

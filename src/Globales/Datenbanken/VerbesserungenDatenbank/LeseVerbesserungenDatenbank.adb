@@ -1,5 +1,6 @@
 with VerbesserungenDatenbank;
 with ProduktionKonstanten;
+with KampfKonstanten;
 with EinheitenKonstanten;
 
 package body LeseVerbesserungenDatenbank is
@@ -84,20 +85,20 @@ package body LeseVerbesserungenDatenbank is
       
    end ProduktionWeg;
    
-      
+   
    
    function KampfVerbesserung
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return ProduktionDatentypen.Produktionsbonus
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       case
         VerbesserungExtern
       is
          when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            return ProduktionKonstanten.LeerBonus;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return VerbesserungenDatenbank.Verbesserungenliste (VerbesserungExtern).Kampf (KampfartExtern, SpeziesExtern);
@@ -111,14 +112,14 @@ package body LeseVerbesserungenDatenbank is
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return ProduktionDatentypen.Produktionsbonus
+      return KampfDatentypen.KampfwerteKarte
    is begin
       
       case
         WegExtern
       is
          when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            return ProduktionKonstanten.LeerBonus;
+            return KampfKonstanten.LeerKampfwert;
             
          when others =>
             return VerbesserungenDatenbank.Wegeliste (WegExtern).Kampf (KampfartExtern, SpeziesExtern);

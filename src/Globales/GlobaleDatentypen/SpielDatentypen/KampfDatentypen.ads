@@ -25,6 +25,10 @@ package KampfDatentypen is
 
 
 
+   type Kampfbonus is new Float range 0.00 .. 10.00;
+
+
+
    type Kampf_Enum is (
                        Verteidigung_Enum, Angriff_Enum
                       );
