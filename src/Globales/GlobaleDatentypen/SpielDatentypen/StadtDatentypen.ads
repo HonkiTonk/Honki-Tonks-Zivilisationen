@@ -32,6 +32,11 @@ package StadtDatentypen is
                               );
    
    subtype Stadt_Meldungen_Verwendet_Enum is Stadt_Meldung_Enum range Stadt_Meldung_Enum'Succ (Stadt_Meldung_Enum'First) .. Stadt_Meldung_Enum'Last;
+   
+   
+   
+   type Einwohner is range 0 .. 100;
+   subtype EinwohnerVorhanden is Einwohner range 1 .. Einwohner'Last;
    -- Für Stadt
 
 end StadtDatentypen;

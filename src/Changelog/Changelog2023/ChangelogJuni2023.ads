@@ -168,24 +168,26 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (06.06.2023):
+   -- Version 0.05.1695 => 0.05. (06.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1650 => 0.05. (05.06.2023):
+   -- Version 0.05.1650 => 0.05.1695 (05.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kampfwerteberechnung für Städte überarbeitet.
+   -- Kampfwerteberechnung für Einheiten überarbeitet.
+   -- Wenn eine Stadt auf einem Vernichtet Feld gebaut wird, dann wird dort jetzt kein Weg mehr mit angelegt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
    -- Version 0.05.1615 => 0.05.1650 (04.06.2023):
    
    -- Kampfwerteberechnung für Städte überarbeitet.
-   -- Kampfwerteberechnung für Einheiten überarbeiten.
+   -- Kampfwerteberechnung für Einheiten überarbeitet.
    -- Kommentare und Kleinigkeiten korrigiert.
    
    

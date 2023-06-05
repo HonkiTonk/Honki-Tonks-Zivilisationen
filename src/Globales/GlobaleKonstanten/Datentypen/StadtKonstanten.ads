@@ -27,8 +27,8 @@ package StadtKonstanten is
    AnfangNummer : constant StadtDatentypen.MaximaleStädte := StadtDatentypen.MaximaleStädte'First;
    
    LeerID : constant KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum := KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
-   LeerEinwohner : constant ProduktionDatentypen.Einwohner := 0;
-   LeerArbeiter : constant ProduktionDatentypen.Einwohner := 0;
+   LeerEinwohner : constant StadtDatentypen.Einwohner := 0;
+   LeerArbeiter : constant StadtDatentypen.Einwohner := 0;
    LeerEinwohnerArbeiter : constant StadtRecords.EinwohnerArbeiterArray := (LeerEinwohner, LeerArbeiter);
    LeerNahrungsmittel : constant ProduktionDatentypen.StadtLagermenge := 0;
    LeerNahrungsproduktion : constant ProduktionDatentypen.Stadtproduktion := 0;
@@ -73,7 +73,7 @@ package StadtKonstanten is
    
    
    -- Das auch so ändern dass es davon einen Standardwert und einen einstellbaren Wert gibt. äöü
-   type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ProduktionDatentypen.Einwohner;
+   type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of StadtDatentypen.Einwohner;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
                                                                    SystemDatentypen.Anfangswert_Enum =>
                                                                      (

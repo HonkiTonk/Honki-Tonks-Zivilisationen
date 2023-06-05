@@ -1,5 +1,5 @@
 with WichtigesKonstanten;
-with KartenKonstanten;
+with KampfDatentypen;
 with StadtArrays;
 
 with KIKonstanten;
@@ -314,12 +314,12 @@ package body KIGebaeudeBauenLogik is
          when True =>
             return 2 * KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => StadtSpeziesNummerExtern.Spezies,
                                                                                       IDExtern         => IDExtern,
-                                                                                      KampfBonusExtern => KartenKonstanten.KampfVerteidigung));
+                                                                                      KampfBonusExtern => KampfDatentypen.Verteidigung_Enum));
             
          when False =>
             return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => StadtSpeziesNummerExtern.Spezies,
                                                                                   IDExtern         => IDExtern,
-                                                                                  KampfBonusExtern => KartenKonstanten.KampfVerteidigung));
+                                                                                  KampfBonusExtern => KampfDatentypen.Verteidigung_Enum));
       end case;
       
    end VerteidigungBewerten;
@@ -340,12 +340,12 @@ package body KIGebaeudeBauenLogik is
          when True =>
             return 2 * KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => StadtSpeziesNummerExtern.Spezies,
                                                                                       IDExtern         => IDExtern,
-                                                                                      KampfBonusExtern => KartenKonstanten.KampfAngriff));
+                                                                                      KampfBonusExtern => KampfDatentypen.Angriff_Enum));
             
          when False =>
             return KIDatentypen.BauenBewertung (LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => StadtSpeziesNummerExtern.Spezies,
                                                                                   IDExtern         => IDExtern,
-                                                                                  KampfBonusExtern => KartenKonstanten.KampfAngriff));
+                                                                                  KampfBonusExtern => KampfDatentypen.Angriff_Enum));
       end case;
       
    end AngriffBewerten;

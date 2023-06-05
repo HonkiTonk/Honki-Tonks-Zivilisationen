@@ -53,7 +53,7 @@ package StadtRecords is
 
    -- Warum ist das hier nicht Boolean'Range? äöü
    -- Oder ein eigenes Enum? äöü
-   type EinwohnerArbeiterArray is array (1 .. 2) of ProduktionDatentypen.Einwohner;
+   type EinwohnerArbeiterArray is array (1 .. 2) of StadtDatentypen.Einwohner;
    
    -- XXX äöü
    -- Wenn ich ein Record für das Array hier anlege, dann könnten darin die bereits erzeugten Ressourcen gespeichert werden und beim Wechsel des Bauprojekts blieben die angefangenen Gebäude erhalten. äöü

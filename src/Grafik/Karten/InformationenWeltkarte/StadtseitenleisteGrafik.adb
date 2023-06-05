@@ -169,11 +169,13 @@ package body StadtseitenleisteGrafik is
       return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (IDExtern          => StadtauswahlExtern.ID,
                                                                                                                               KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                                               SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,
-                                                                                                                              GebäudeExtern    => StadtauswahlExtern.GebäudeVorhanden)'Wide_Wide_Image
+                                                                                                                              GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden,
+                                                                                                                              EinwohnerExtern   => StadtauswahlExtern.EinwohnerArbeiter (1))'Wide_Wide_Image
         & " " & TextKonstanten.TrennzeichenUnterschiedlich & KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (IDExtern          => StadtauswahlExtern.ID,
                                                                                                                       KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                                       SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,
-                                                                                                                      GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden)'Wide_Wide_Image;
+                                                                                                                      GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden,
+                                                                                                                      EinwohnerExtern   => StadtauswahlExtern.EinwohnerArbeiter (1))'Wide_Wide_Image;
       
    end Kampfwerte;
    

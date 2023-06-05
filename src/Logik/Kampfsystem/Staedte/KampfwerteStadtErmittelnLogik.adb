@@ -1,37 +1,43 @@
-with StadtDatentypen;
-with KartenKonstanten;
+with KampfKonstanten;
 
 with LeseGebaeudeDatenbank;
-with LeseVerbesserungenDatenbank;
 
 with FeldkampfStadtLogik;
 with Kampfgrenzen;
 
 -- Warum übergebe ich hier denn das gesamte Gebäudearray? Das kann man bestimmt auch besser lösen, oder? äöü
--- Die Verberessung für die Stadt nur bei Einheiten berücksichtigen und für die Städte einen eigenen Wert einbauen? äöü
--- Eventuell die Einwohner dafür hernehmen? Als Kampfkraft und Lebenspunkte? äöü
+-- Wegen dem gleichzeitigen Zugriff von Logik und Grafik, eventuell sollte ich das aufteilen? Ja sollte ich! äöü
+-- Eventuell beide Funktionen zusammenführen? äöü
 package body KampfwerteStadtErmittelnLogik is
 
+   -- Einwohner * Verbesserung * Basisgrund * Zusatzgrund * Ressource * Fluss * Straße * Gebäudebonus * Feldeffekte
    function AktuelleVerteidigungStadt
      (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      GebäudeExtern : in StadtArrays.GebäudeArray)
+      GebäudeExtern : in StadtArrays.GebäudeArray;
+      EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden)
       return KampfDatentypen.KampfwerteGroß
-   is
-      use type KampfDatentypen.KampfwerteGroß;
-   begin
+   is begin
       
-      -- Grundwert ist (Stadttyp + Basisgrund + Zusatzgrund + Ressource + Fluss + Straße) * Gebäudebonus * Feldeffekte
-      VerteidigungWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => IDExtern,
-                                                                         SpeziesExtern      => SpeziesExtern,
-                                                                         KampfartExtern     => KartenKonstanten.KampfVerteidigung)
-        + FeldkampfStadtLogik.Feldkampf (KoordinatenExtern => KoordinatenExtern,
-                                         SpeziesExtern     => SpeziesExtern,
-                                         KampfartExtern    => KampfDatentypen.Verteidigung_Enum);
+      VerteidigungWert := FeldkampfStadtLogik.Feldkampf (KoordinatenExtern    => KoordinatenExtern,
+                                                         SpeziesExtern        => SpeziesExtern,
+                                                         KampfartExtern       => KampfDatentypen.Verteidigung_Enum,
+                                                         KampfBasiswertExtern => KampfDatentypen.KampfwerteGroß (EinwohnerExtern),
+                                                         StadttypExtern       => IDExtern);
+      
+      case
+        VerteidigungWert
+      is
+         when KampfKonstanten.LeerKampfwert =>
+            return KampfKonstanten.LeerKampfwert;
+            
+         when others =>
+            null;
+      end case;
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in GebäudeExtern'Range loop
          
          case
            GebäudeExtern (GebäudeSchleifenwert)
@@ -40,7 +46,7 @@ package body KampfwerteStadtErmittelnLogik is
                VerteidigungWert := Kampfgrenzen.KampfwertKampfbonus (KampfwertExtern  => VerteidigungWert,
                                                                      KampfbonusExtern => LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
                                                                                                                            IDExtern         => GebäudeSchleifenwert,
-                                                                                                                           KampfBonusExtern => KartenKonstanten.KampfVerteidigung));
+                                                                                                                           KampfBonusExtern => KampfDatentypen.Verteidigung_Enum));
 
             when False =>
                null;
@@ -48,35 +54,40 @@ package body KampfwerteStadtErmittelnLogik is
          
       end loop GebäudeSchleife;
       
-      return Kampfgrenzen.KampfwertKampfbonus (KampfwertExtern  => VerteidigungWert,
-                                               KampfbonusExtern => FeldkampfStadtLogik.FeldeffektemalusFestlegen (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                  SpeziesExtern     => SpeziesExtern,
-                                                                                                                  KampfartExtern    => KartenKonstanten.KampfVerteidigung));
+      return VerteidigungWert;
       
    end AktuelleVerteidigungStadt;
    
    
    
+   -- Einwohner * Verbesserung * Basisgrund * Zusatzgrund * Ressource * Fluss * Straße * Gebäudebonus * Feldeffekte
    function AktuellerAngriffStadt
      (IDExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      GebäudeExtern : in StadtArrays.GebäudeArray)
+      GebäudeExtern : in StadtArrays.GebäudeArray;
+      EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden)
       return KampfDatentypen.KampfwerteGroß
-   is
-      use type KampfDatentypen.KampfwerteGroß;
-   begin
+   is begin
+            
+      AngriffWert := FeldkampfStadtLogik.Feldkampf (KoordinatenExtern    => KoordinatenExtern,
+                                                    SpeziesExtern        => SpeziesExtern,
+                                                    KampfartExtern       => KampfDatentypen.Angriff_Enum,
+                                                    KampfBasiswertExtern => KampfDatentypen.KampfwerteGroß (EinwohnerExtern),
+                                                    StadttypExtern       => IDExtern);
       
-      -- Grundwert ist (Stadttyp + Basisgrund + Zusatzgrund + Ressource + Fluss + Straße) * Gebäudebonus * Feldeffekte
-      AngriffWert := LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => IDExtern,
-                                                                    SpeziesExtern      => SpeziesExtern,
-                                                                    KampfartExtern     => KartenKonstanten.KampfAngriff)
-        + FeldkampfStadtLogik.Feldkampf (KoordinatenExtern => KoordinatenExtern,
-                                         SpeziesExtern     => SpeziesExtern,
-                                         KampfartExtern    => KampfDatentypen.Angriff_Enum);
+      case
+        AngriffWert
+      is
+         when KampfKonstanten.LeerKampfwert =>
+            return KampfKonstanten.LeerKampfwert;
+            
+         when others =>
+            null;
+      end case;
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in GebäudeExtern'Range loop
          
          case
            GebäudeExtern (GebäudeSchleifenwert)
@@ -85,7 +96,7 @@ package body KampfwerteStadtErmittelnLogik is
                AngriffWert := Kampfgrenzen.KampfwertKampfbonus (KampfwertExtern  => AngriffWert,
                                                                 KampfbonusExtern => LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
                                                                                                                       IDExtern         => GebäudeSchleifenwert,
-                                                                                                                      KampfBonusExtern => KartenKonstanten.KampfAngriff));
+                                                                                                                      KampfBonusExtern => KampfDatentypen.Angriff_Enum));
 
             when False =>
                null;
@@ -93,10 +104,7 @@ package body KampfwerteStadtErmittelnLogik is
          
       end loop GebäudeSchleife;
       
-      return Kampfgrenzen.KampfwertKampfbonus (KampfwertExtern  => AngriffWert,
-                                               KampfbonusExtern => FeldkampfStadtLogik.FeldeffektemalusFestlegen (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                  SpeziesExtern     => SpeziesExtern,
-                                                                                                                  KampfartExtern    => KartenKonstanten.KampfAngriff));
+      return AngriffWert;
       
    end AktuellerAngriffStadt;
 

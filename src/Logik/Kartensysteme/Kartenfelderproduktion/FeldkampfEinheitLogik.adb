@@ -1,10 +1,9 @@
-with KampfKonstanten;
 with ProduktionKonstanten;
 with SpielDatentypen;
 with KartenRecordKonstanten;
 
 with LeseWeltkarte;
-with LeseKartenDatenbanken;
+-- with LeseKartenDatenbanken;
 -- with LeseVerbesserungenDatenbank;
 with LeseAllgemeines;
 -- with LeseEffekteDatenbank;
@@ -14,13 +13,13 @@ package body FeldkampfEinheitLogik is
    function Feldkampf
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KampfartExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum;
+      KampfBasiswertExtern : in KampfDatentypen.KampfwerteAllgemein)
       return KampfDatentypen.KampfwerteAllgemein
    is
       use type KartenextraDatentypen.Ressourcen_Enum;
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
       use type ProduktionDatentypen.Produktionsbonus;
-      use type KampfDatentypen.KampfwerteGroß;
    begin
       
       Gesamtgrund := LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern);
@@ -29,16 +28,16 @@ package body FeldkampfEinheitLogik is
         Gesamtgrund
       is
          when KartengrundDatentypen.Vernichtet_Enum =>
-            return KampfKonstanten.LeerKampfwert;
+            return KampfBasiswertExtern;
             
          when others =>
-            Gesamtwert := LeseKartenDatenbanken.KampfBasisgrund (GrundExtern    => Gesamtgrund,
-                                                                 SpeziesExtern  => SpeziesExtern,
-                                                                 KampfartExtern => KampfartExtern);
+         --   Gesamtwert := LeseKartenDatenbanken.KampfBasisgrund (GrundExtern    => Gesamtgrund,
+          --                                                       SpeziesExtern  => SpeziesExtern,
+          --                                                       KampfartExtern => KampfartExtern);
             
-            Gesamtwert := Gesamtwert + LeseKartenDatenbanken.KampfZusatzgrund (GrundExtern    => LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern),
-                                                                               SpeziesExtern  => SpeziesExtern,
-                                                                               KampfartExtern => KampfartExtern);
+         --   Gesamtwert := Gesamtwert + LeseKartenDatenbanken.KampfZusatzgrund (GrundExtern    => LeseWeltkarte.Zusatzgrund (KoordinatenExtern => KoordinatenExtern),
+        --                                                                       SpeziesExtern  => SpeziesExtern,
+        --                                                                       KampfartExtern => KampfartExtern);
             
             RessourceVorhanden := LeseWeltkarte.Ressource (KoordinatenExtern => KoordinatenExtern);
             VerbesserungVorhanden := LeseWeltkarte.Verbesserung (KoordinatenExtern => KoordinatenExtern);
@@ -108,15 +107,7 @@ package body FeldkampfEinheitLogik is
               := KampfDatentypen.KampfwerteAllgemein (ProduktionDatentypen.Produktionsbonus'Ceiling (ProduktionDatentypen.Produktionsbonus (Gesamtwert) * Ressourcenbonus * Verbesserungsbonus * Flussbonus * Wegbonus));
       end case;
       
-      -- Das ergibt bei Kampf eher wenig Sinn, oder? äöü
-      if
-        Gesamtwert < KampfKonstanten.LeerKampfwert
-      then
-         return KampfKonstanten.LeerKampfwert;
-         
-      else
-         return Gesamtwert;
-      end if;
+      return Gesamtwert;
       
    end Feldkampf;
    

@@ -7,12 +7,7 @@ package body Kampfgrenzen is
    is begin
       
       if
-        Float (KampfwertExtern) * Float (KampfbonusExtern) <= Float (KampfDatentypen.KampfwerteGroß'First)
-      then
-         return KampfDatentypen.KampfwerteGroß'First;
-         
-      elsif
-       Float (KampfwertExtern) * Float (KampfbonusExtern) >= Float (KampfDatentypen.KampfwerteGroß'Last)
+        Float (KampfwertExtern) * Float (KampfbonusExtern) >= Float (KampfDatentypen.KampfwerteGroß'Last)
       then
          return KampfDatentypen.KampfwerteGroß'Last;
          

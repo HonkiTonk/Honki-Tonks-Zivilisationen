@@ -1,7 +1,7 @@
 with SpeziesDatentypen;
 with StadtKonstanten;
 with StadtRecords;
-with ProduktionDatentypen;
+with StadtDatentypen;
 with KartenDatentypen;
 
 private with KartenRecords;
@@ -14,7 +14,7 @@ private with LeseWeltkarteneinstellungen;
 package StadtumgebungFestlegenLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type ProduktionDatentypen.Einwohner;
+   use type StadtDatentypen.Einwohner;
    
    procedure StadtumgebungFestlegenTechnologie
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)

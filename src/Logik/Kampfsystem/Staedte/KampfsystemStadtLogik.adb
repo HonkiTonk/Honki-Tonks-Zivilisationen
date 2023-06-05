@@ -1,7 +1,6 @@
-with ProduktionDatentypen;
+with StadtDatentypen;
 with KampfDatentypen;
 with SystemDatentypen;
-with StadtDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -35,14 +34,20 @@ package body KampfsystemStadtLogik is
          return False;
          
       else
-         KampfwerteVerteidiger.Verteidigung := KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (IDExtern          => LeseStadtGebaut.ID (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
-                                                                                                        KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
-                                                                                                        SpeziesExtern     => VerteidigendeStadtSpeziesNummerExtern.Spezies,
-                                                                                                        GebäudeExtern     => LeseStadtGebaut.AlleGebäude (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern));
+         KampfwerteVerteidiger.Verteidigung
+           := KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (IDExtern          => LeseStadtGebaut.ID (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
+                                                                       KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
+                                                                       SpeziesExtern     => VerteidigendeStadtSpeziesNummerExtern.Spezies,
+                                                                       GebäudeExtern     => LeseStadtGebaut.AlleGebäude (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
+                                                                       EinwohnerExtern   => LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
+                                                                                                                               EinwohnerArbeiterExtern  => True));
+         
          KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (IDExtern          => LeseStadtGebaut.ID (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
                                                                                                KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
                                                                                                SpeziesExtern     => VerteidigendeStadtSpeziesNummerExtern.Spezies,
-                                                                                               GebäudeExtern     => LeseStadtGebaut.AlleGebäude (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern));
+                                                                                               GebäudeExtern     => LeseStadtGebaut.AlleGebäude (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
+                                                                                               EinwohnerExtern   => LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
+                                                                                                                                                       EinwohnerArbeiterExtern  => True));
       
          KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
                                                                                                  LogikGrafikExtern          => True);
@@ -82,7 +87,7 @@ package body KampfsystemStadtLogik is
       KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
    is
-      use type ProduktionDatentypen.Einwohner;
+      use type StadtDatentypen.Einwohner;
       use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
@@ -105,7 +110,7 @@ package body KampfsystemStadtLogik is
         LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
                                            EinwohnerArbeiterExtern  => True)
         - 1
-        <= StadtKonstanten.LeerEinwohner
+        = StadtKonstanten.LeerEinwohner
       then
          StadtEntfernenLogik.StadtEntfernen (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern);
          return True;

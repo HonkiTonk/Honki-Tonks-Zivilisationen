@@ -305,8 +305,8 @@ package SchreibeStadtGebaut is
    
 private
    
-   AktuelleEinwohner : ProduktionDatentypen.Einwohner;
-   AktuelleArbeiter : ProduktionDatentypen.Einwohner;
+   AktuelleEinwohner : StadtDatentypen.Einwohner;
+   AktuelleArbeiter : StadtDatentypen.Einwohner;
    
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 

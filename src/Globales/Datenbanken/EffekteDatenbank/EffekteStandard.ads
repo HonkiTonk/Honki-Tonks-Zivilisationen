@@ -9,7 +9,7 @@ with KampfKonstanten;
 package EffekteStandard is
    pragma Pure;
 
-   type EffektelisteArray is array (KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range) of KartendatenbankRecord.KarteneffektlisteRecord;
+   type EffektelisteArray is array (KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
    Effekteliste : constant EffektelisteArray := (
                                                  others =>
                                                    (

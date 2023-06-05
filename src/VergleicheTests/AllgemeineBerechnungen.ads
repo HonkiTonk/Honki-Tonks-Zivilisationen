@@ -1,15 +1,15 @@
-with ProduktionDatentypen;
+with StadtDatentypen;
 
 -- Soll das hier sein weil ich das auch in anderen Bereichen als in Grafik verwenden wollte? äöü
 -- Oder ist das einfach nur falsch eingeordnet? äöü
 package AllgemeineBerechnungen is
    pragma Preelaborate;
-   use type ProduktionDatentypen.Einwohner;
+   use type StadtDatentypen.Einwohner;
 
    function FreieEinwohner
-     (EinwohnerExtern : in ProduktionDatentypen.Einwohner;
-      ArbeiterExtern : in ProduktionDatentypen.Einwohner)
-      return ProduktionDatentypen.Einwohner
+     (EinwohnerExtern : in StadtDatentypen.Einwohner;
+      ArbeiterExtern : in StadtDatentypen.Einwohner)
+      return StadtDatentypen.Einwohner
     with
       Pre => (
                 EinwohnerExtern >= ArbeiterExtern

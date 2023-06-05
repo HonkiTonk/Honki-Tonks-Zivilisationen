@@ -29,7 +29,7 @@ package body LeseStadtGebaut is
    function EinwohnerArbeiter
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean)
-      return ProduktionDatentypen.Einwohner
+      return StadtDatentypen.Einwohner
    is begin
       
       case
@@ -48,9 +48,9 @@ package body LeseStadtGebaut is
    
    function Arbeitslose
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.Einwohner
+      return StadtDatentypen.Einwohner
    is
-      use type ProduktionDatentypen.Einwohner;
+      use type StadtDatentypen.Einwohner;
    begin
       
       return EinwohnerArbeiter (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,

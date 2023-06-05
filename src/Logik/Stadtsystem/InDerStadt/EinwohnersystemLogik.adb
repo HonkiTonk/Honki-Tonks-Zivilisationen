@@ -1,6 +1,6 @@
 with Sf.Graphics.View;
 
-with ProduktionDatentypen;
+with StadtDatentypen;
 with KartenKonstanten;
 with GrafikKonstanten;
 with Views;
@@ -136,7 +136,7 @@ package body EinwohnersystemLogik is
       YAchseExtern : in KartenDatentypen.Kartenfeld;
       XAchseExtern : in KartenDatentypen.Kartenfeld)
    is
-      use type ProduktionDatentypen.Einwohner;
+      use type StadtDatentypen.Einwohner;
    begin
       
       if

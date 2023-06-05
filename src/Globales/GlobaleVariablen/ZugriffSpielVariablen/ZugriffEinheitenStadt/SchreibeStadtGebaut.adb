@@ -46,7 +46,7 @@ package body SchreibeStadtGebaut is
       EinwohnerArbeiterExtern : in Boolean;
       WachsenSchrumpfenExtern : in Boolean)
    is
-      use type ProduktionDatentypen.Einwohner;
+      use type StadtDatentypen.Einwohner;
    begin
       
       case
@@ -58,9 +58,9 @@ package body SchreibeStadtGebaut is
             if
               WachsenSchrumpfenExtern
               and
-                AktuelleEinwohner + 1 >= ProduktionDatentypen.Einwohner'Last
+                AktuelleEinwohner + 1 >= StadtDatentypen.Einwohner'Last
             then
-               AktuelleEinwohner := ProduktionDatentypen.Einwohner'Last;
+               AktuelleEinwohner := StadtDatentypen.Einwohner'Last;
                
             elsif
               WachsenSchrumpfenExtern
@@ -86,9 +86,9 @@ package body SchreibeStadtGebaut is
             if
               WachsenSchrumpfenExtern
               and
-                AktuelleArbeiter + 1 >= ProduktionDatentypen.Einwohner'Last
+                AktuelleArbeiter + 1 >= StadtDatentypen.Einwohner'Last
             then
-               AktuelleArbeiter := ProduktionDatentypen.Einwohner'Last;
+               AktuelleArbeiter := StadtDatentypen.Einwohner'Last;
                
             elsif
               WachsenSchrumpfenExtern

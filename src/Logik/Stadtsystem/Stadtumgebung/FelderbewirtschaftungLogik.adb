@@ -1,4 +1,5 @@
 with KartenKonstanten;
+with StadtDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -13,7 +14,7 @@ package body FelderbewirtschaftungLogik is
      (ZuwachsSchwundExtern : in Boolean;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type ProduktionDatentypen.Einwohner;
+      use type StadtDatentypen.Einwohner;
    begin
       
       case

@@ -2,13 +2,12 @@ with SpeziesDatentypen;
 with KartenRecords;
 with KartenDatentypen;
 with KampfDatentypen;
+with KartenverbesserungDatentypen;
 
 private with KartengrundDatentypen;
 
 with LeseSpeziesbelegung;
 with LeseWeltkarteneinstellungen;
-
-private with Grenzpruefungen;
 
 package FeldkampfStadtLogik is
    pragma Elaborate_Body;
@@ -18,22 +17,10 @@ package FeldkampfStadtLogik is
    function Feldkampf
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteAllgemein
-     with
-       Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
-               and
-                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
-               and
-                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
-
-   function FeldeffektemalusFestlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.Kampfbonus
+      KampfartExtern : in KampfDatentypen.Kampf_Enum;
+      KampfBasiswertExtern : in KampfDatentypen.KampfwerteAllgemein;
+      StadttypExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum)
+      return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -47,10 +34,8 @@ private
    
    Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
    
-   Feldeffektmalus : KampfDatentypen.Kampfbonus;
+   Gesamtwert : KampfDatentypen.KampfwerteGroß;
    
    FeldeffekteVorhanden : KartenRecords.FeldeffektArray;
-   
-   function MultiplikationPrüfen is new Grenzpruefungen.StandardKommamultiplikation (KommaZahl => KampfDatentypen.Kampfbonus);
 
 end FeldkampfStadtLogik;

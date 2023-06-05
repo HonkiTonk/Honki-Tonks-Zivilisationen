@@ -41,11 +41,6 @@ package ProduktionDatentypen is
    
    type Arbeitszeit is range -1 .. 100;
    
-   
-   
-   -- Datentypen für Einwohner: äöü
-   type Einwohner is range 0 .. 100;
-   
    -- Es werden benötigt: äöü
    -- Datentypen für diplomatischen Zustand, später in passendere Datei verschieben: äöü
    

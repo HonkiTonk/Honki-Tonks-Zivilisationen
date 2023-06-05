@@ -3,6 +3,7 @@ with StadtRecords;
 with StadtKonstanten;
 
 private with ProduktionDatentypen;
+private with StadtDatentypen;
 
 with LeseSpeziesbelegung;
 with LeseGrenzen;
@@ -24,7 +25,7 @@ private
    
    WachstumSchrumpfung : Boolean;
    
-   VorhandeneEinwohner : ProduktionDatentypen.Einwohner;
+   VorhandeneEinwohner : StadtDatentypen.Einwohner;
    
    VorhandeneNahrung : ProduktionDatentypen.Stadtproduktion;
    ProduzierteNahrung : ProduktionDatentypen.Stadtproduktion;

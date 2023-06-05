@@ -239,7 +239,7 @@ package body LeseKartenDatenbanken is
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteKarte
+      return KampfDatentypen.Kampfbonus
    is begin
       
       case
@@ -247,7 +247,7 @@ package body LeseKartenDatenbanken is
       is
          when KartengrundDatentypen.Leer_Basisgrund_Enum =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseKartenDatenbanken.KampfBasisgrund: Leerer Grund, Spezies: " & SpeziesExtern'Wide_Wide_Image);
-            return KampfKonstanten.LeerKampfwert;
+            return KampfKonstanten.LeerBonus;
             
          when others =>
             return KartenDatenbank.Basisgrundliste (GrundExtern).Kampf (KampfartExtern, SpeziesExtern);
@@ -261,14 +261,14 @@ package body LeseKartenDatenbanken is
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteKarte
+      return KampfDatentypen.Kampfbonus
    is begin
       
       case
         GrundExtern
       is
          when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
-            return KampfKonstanten.LeerKampfwert;
+            return KampfKonstanten.LeerBonus;
             
          when others =>
             return KartenDatenbank.Zusatzgrundliste (GrundExtern).Kampf (KampfartExtern, SpeziesExtern);
@@ -282,14 +282,14 @@ package body LeseKartenDatenbanken is
      (FlussExtern : in KartenextraDatentypen.Fluss_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteKarte
+      return KampfDatentypen.Kampfbonus
    is begin
       
       case
         FlussExtern
       is
          when KartenextraDatentypen.Leer_Fluss_Enum =>
-            return KampfKonstanten.LeerKampfwert;
+            return KampfKonstanten.LeerBonus;
             
          when others =>
             return KartenDatenbank.Kartenflussliste (FlussExtern).Kampf (KampfartExtern, SpeziesExtern);
@@ -303,14 +303,14 @@ package body LeseKartenDatenbanken is
      (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteKarte
+      return KampfDatentypen.Kampfbonus
    is begin
       
       case
         RessourceExtern
       is
          when KartenextraDatentypen.Leer_Ressource_Enum =>
-            return KampfKonstanten.LeerKampfwert;
+            return KampfKonstanten.LeerBonus;
             
          when others =>
             return KartenDatenbank.Kartenressourcenliste (RessourceExtern).Kampf (KampfartExtern, SpeziesExtern);

@@ -1,8 +1,8 @@
 with SpeziesDatentypen;
 with StadtKonstanten;
 with StadtRecords;
-with ProduktionDatentypen;
 
+private with StadtDatentypen;
 private with KartenDatentypen;
 
 with LeseGrenzen;
@@ -25,7 +25,7 @@ private
    
    Umgebung : KartenDatentypen.UmgebungsbereichDrei;
    
-   Einwohner : ProduktionDatentypen.Einwohner;
+   Einwohner : StadtDatentypen.Einwohner;
    
    procedure StadtumgebungErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)

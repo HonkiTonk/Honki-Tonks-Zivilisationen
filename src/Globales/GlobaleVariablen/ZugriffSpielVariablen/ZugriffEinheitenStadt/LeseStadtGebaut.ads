@@ -63,7 +63,7 @@ package LeseStadtGebaut is
    function EinwohnerArbeiter
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinwohnerArbeiterExtern : in Boolean)
-      return ProduktionDatentypen.Einwohner
+      return StadtDatentypen.Einwohner
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -73,7 +73,7 @@ package LeseStadtGebaut is
    
    function Arbeitslose
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.Einwohner
+      return StadtDatentypen.Einwohner
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

@@ -1,6 +1,5 @@
 with KartenDatentypen;
 with KartenRecords;
-with KampfDatentypen;
 with RueckgabeDatentypen;
 with KartenartDatentypen;
 
@@ -32,12 +31,6 @@ package KartenKonstanten is
    LeerPassierbarkeit : constant Boolean := False;
       
    LeerSichtbar : constant Boolean := False;
-   
-   -- Die drei Dinger mal nach KampdKonstanten verschieben? äöü
-   LeerVerbesserungKampf : constant KampfDatentypen.KampfwerteKarte := KampfDatentypen.KampfwerteEinheiten'First;
-   
-   KampfVerteidigung : constant KampfDatentypen.Kampf_Enum := KampfDatentypen.Verteidigung_Enum;
-   KampfAngriff : constant KampfDatentypen.Kampf_Enum := KampfDatentypen.Angriff_Enum;
    
    MinimaleKartengröße : constant KartenDatentypen.KartenfeldPositiv := KartenDatentypen.KartenfeldPositiv'Last / 50;
    

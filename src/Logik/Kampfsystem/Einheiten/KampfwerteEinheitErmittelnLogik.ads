@@ -55,6 +55,8 @@ private
    Bonusangriff : BonusArray;
    
    type GesamtArray is array (GrundArray'Range) of KampfDatentypen.KampfwerteGroß;
+   Verteidigung : GesamtArray;
+   Angriff : GesamtArray;
    GesamteVerteidigung : GesamtArray;
    GesamterAngriff : GesamtArray;
    
@@ -66,8 +68,6 @@ private
       return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
-                 KampfwertExtern >= 0
-               and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)

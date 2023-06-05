@@ -3,12 +3,12 @@ package KampfDatentypen is
 
    -- Negativer Bereich für Abzug.
    -- Das für Angriff, Verteidigung und Lebenspunkte verwenden oder noch weiter aufteilen? äöü
-   type KampfwerteGroß is range -1_000 .. 1_000;
-   subtype KampfwerteAllgemein is KampfwerteGroß range -100 .. 100;
+   -- Da negative Werte jetzt nicht mehr gebraucht werden die Datentypen anpassen, auch hinsichtlich der Multiplikation. äöü
+   -- EinheitenDatentypen enthält schon Lebenspunkte, diese eventuell hierher verschieben? äöü
+   type KampfwerteGroß is range 0 .. 1_000;
+   subtype KampfwerteAllgemein is KampfwerteGroß range 0 .. 100;
 
    subtype KampfwerteEinheiten is KampfwerteAllgemein range 0 .. 100;
-
-   subtype KampfwerteKarte is KampfwerteAllgemein range -10 .. 10;
 
 
 

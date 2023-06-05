@@ -1,9 +1,9 @@
 package body AllgemeineBerechnungen is
 
    function FreieEinwohner
-     (EinwohnerExtern : in ProduktionDatentypen.Einwohner;
-      ArbeiterExtern : in ProduktionDatentypen.Einwohner)
-      return ProduktionDatentypen.Einwohner
+     (EinwohnerExtern : in StadtDatentypen.Einwohner;
+      ArbeiterExtern : in StadtDatentypen.Einwohner)
+      return StadtDatentypen.Einwohner
    is begin
       
       return EinwohnerExtern - ArbeiterExtern;

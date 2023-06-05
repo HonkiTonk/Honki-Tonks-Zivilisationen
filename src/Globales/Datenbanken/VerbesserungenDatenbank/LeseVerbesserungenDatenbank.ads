@@ -48,7 +48,7 @@ package LeseVerbesserungenDatenbank is
      (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteKarte
+      return KampfDatentypen.Kampfbonus
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -58,7 +58,7 @@ package LeseVerbesserungenDatenbank is
      (WegExtern : in KartenverbesserungDatentypen.Weg_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum)
-      return KampfDatentypen.KampfwerteKarte
+      return KampfDatentypen.Kampfbonus
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

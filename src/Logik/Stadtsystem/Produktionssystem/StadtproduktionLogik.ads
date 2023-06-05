@@ -5,6 +5,7 @@ with StadtRecords;
 private with KartenRecords;
 private with KartenDatentypen;
 private with ProduktionDatentypen;
+private with StadtDatentypen;
 
 with LeseSpeziesbelegung;
 with LeseGrenzen;
@@ -36,7 +37,7 @@ private
 
    Feldeffekt : Boolean;
    
-   VorhandeneEinwohner : ProduktionDatentypen.Einwohner;
+   VorhandeneEinwohner : StadtDatentypen.Einwohner;
    
    NutzbarerBereich : KartenDatentypen.Kartenfeld;
 

@@ -1,6 +1,7 @@
 with KartenDatentypen;
 with Speziestexte;
 with TextnummernKonstanten;
+with KartengrundDatentypen;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
@@ -83,6 +84,7 @@ package body StadtBauenLogik is
    
    
    
+   -- Städtebau auf Vernichtet erlauben? äöü
    function StadtBaubar
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
@@ -207,6 +209,16 @@ package body StadtBauenLogik is
    procedure WegAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
+      
+      case
+        LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern)
+      is
+         when KartengrundDatentypen.Vernichtet_Enum =>
+            return;
+            
+         when others =>
+            null;
+      end case;
       
       case
         LeseWeltkarte.Weg (KoordinatenExtern => KoordinatenExtern)

@@ -21,7 +21,8 @@ package FeldkampfEinheitLogik is
    function Feldkampf
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KampfartExtern : in KampfDatentypen.Kampf_Enum)
+      KampfartExtern : in KampfDatentypen.Kampf_Enum;
+      KampfBasiswertExtern : in KampfDatentypen.KampfwerteAllgemein)
       return KampfDatentypen.KampfwerteAllgemein
      with
        Pre => (
