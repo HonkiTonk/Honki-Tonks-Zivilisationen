@@ -170,6 +170,7 @@ package ChangelogVorlage is
 
    -- Version 0.05.1695 => 0.05. (06.06.2023):
    
+   -- Anpassungen für Alire vorgenommen.
    -- 
    -- Kleinigkeiten korrigiert.
    
