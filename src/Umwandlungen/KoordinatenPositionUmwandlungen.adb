@@ -1,6 +1,7 @@
 with KartenKonstanten;
 with KartenRecordKonstanten;
 with GrafikRecordKonstanten;
+with SystemDatentypen;
 
 with LeseCursor;
 
@@ -29,7 +30,7 @@ package body KoordinatenPositionUmwandlungen is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => False);
+                                                                                                      TaskExtern => SystemDatentypen.Grafik_Task_Enum);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -77,7 +78,7 @@ package body KoordinatenPositionUmwandlungen is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => False);
+                                                                                                      TaskExtern => SystemDatentypen.Grafik_Task_Enum);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

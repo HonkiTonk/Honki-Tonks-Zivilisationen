@@ -2,6 +2,7 @@ with StadtKonstanten;
 with KartenKonstanten;
 with KartenRecordKonstanten;
 with AufgabenDatentypen;
+with SystemDatentypen;
 
 with LeseGrenzen;
 with LeseStadtGebaut;
@@ -246,7 +247,7 @@ package body KIStaedteverbindungssystemLogik is
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
                
             Bewertung (BewertungPosition).Koordinaten := KartenWert;
                

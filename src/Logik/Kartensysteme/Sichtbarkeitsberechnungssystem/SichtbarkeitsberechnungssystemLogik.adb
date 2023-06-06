@@ -1,4 +1,5 @@
 with KartenKonstanten;
+with SystemDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -78,7 +79,7 @@ package body SichtbarkeitsberechnungssystemLogik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
             case
               KartenWert.XAchse
@@ -114,7 +115,7 @@ package body SichtbarkeitsberechnungssystemLogik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
             case
               KartenWert.XAchse

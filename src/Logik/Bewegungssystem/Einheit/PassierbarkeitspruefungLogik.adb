@@ -1,5 +1,6 @@
 with KartengrundDatentypen;
 with KartenKonstanten;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
@@ -183,7 +184,7 @@ package body PassierbarkeitspruefungLogik is
             
             Ekropaumgebung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => NeueKoordinatenExtern,
                                                                                                           ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                          LogikGrafikExtern => True);
+                                                                                                          TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
             case
               Ekropaumgebung.XAchse
@@ -228,7 +229,7 @@ package body PassierbarkeitspruefungLogik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

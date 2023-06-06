@@ -82,7 +82,7 @@ package LeseEinheitenDatenbank is
    function MaximaleLebenspunkte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return EinheitenDatentypen.VorhandeneLebenspunkte
+      return KampfDatentypen.LebenspunkteVorhanden
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -91,7 +91,7 @@ package LeseEinheitenDatenbank is
    function MaximaleBewegungspunkte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return EinheitenDatentypen.VorhandeneBewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteVorhanden
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

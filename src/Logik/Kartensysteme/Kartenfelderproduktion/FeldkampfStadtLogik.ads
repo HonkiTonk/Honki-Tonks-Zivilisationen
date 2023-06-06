@@ -3,8 +3,7 @@ with KartenRecords;
 with KartenDatentypen;
 with KampfDatentypen;
 with KartenverbesserungDatentypen;
-
-private with KartengrundDatentypen;
+with SystemDatentypen;
 
 with LeseSpeziesbelegung;
 with LeseWeltkarteneinstellungen;
@@ -18,8 +17,9 @@ package FeldkampfStadtLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KampfartExtern : in KampfDatentypen.Kampf_Enum;
-      KampfBasiswertExtern : in KampfDatentypen.KampfwerteAllgemein;
-      StadttypExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum)
+      KampfBasiswertExtern : in KampfDatentypen.KampfwerteEinheiten;
+      StadttypExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
@@ -32,10 +32,7 @@ package FeldkampfStadtLogik is
    
 private
    
-   Basisgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
-   
-   Gesamtwert : KampfDatentypen.KampfwerteGroß;
-   
-   FeldeffekteVorhanden : KartenRecords.FeldeffektArray;
+   type KampfArray is array (SystemDatentypen.Task_Enum'Range) of KampfDatentypen.KampfwerteGroß;
+   Gesamtwert : KampfArray;
 
 end FeldkampfStadtLogik;

@@ -4,6 +4,7 @@ with GrafikRecordKonstanten;
 with Views;
 with KartenRecordKonstanten;
 with ViewKonstanten;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 with LeseCursor;
@@ -65,7 +66,7 @@ package body SeitenleisteGrafik is
             end case;
             
             EinheitSpeziesNummer := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => AktuelleKoordinaten,
-                                                                                            LogikGrafikExtern => False);
+                                                                                            TaskExtern => SystemDatentypen.Grafik_Task_Enum);
       
             case
               EinheitSpeziesNummer.Nummer

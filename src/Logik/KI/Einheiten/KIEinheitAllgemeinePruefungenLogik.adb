@@ -1,4 +1,5 @@
 with SpeziesKonstanten;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 
@@ -57,7 +58,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
    begin
             
       EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
-                                                                                LogikGrafikExtern => True);
+                                                                                TaskExtern => SystemDatentypen.Logik_Task_Enum);
       
       if
         EinheitAufFeld.Nummer = EinheitenKonstanten.LeerNummer

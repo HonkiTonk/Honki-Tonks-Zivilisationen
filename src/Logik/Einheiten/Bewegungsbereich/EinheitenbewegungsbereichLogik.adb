@@ -65,7 +65,7 @@ package body EinheitenbewegungsbereichLogik is
 
       Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                 ÄnderungExtern    => (BewegungsfeldExtern.EAchse, BewegungsfeldExtern.YAchse, BewegungsfeldExtern.XAchse),
-                                                                                                LogikGrafikExtern => True);
+                                                                                                TaskExtern => SystemDatentypen.Logik_Task_Enum);
 
       case
         FeldPrüfen (NeueKoordinatenExtern           => Kartenwert,
@@ -215,7 +215,7 @@ package body EinheitenbewegungsbereichLogik is
          Stadt := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                                                                KoordinatenExtern => NeueKoordinatenExtern);
          Einheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinatenExtern,
-                                                                            LogikGrafikExtern => True);
+                                                                            TaskExtern => SystemDatentypen.Logik_Task_Enum);
       end if;
       
       if

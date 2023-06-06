@@ -5,6 +5,7 @@ with StadtKonstanten;
 with KartenextraDatentypen;
 with DiplomatieDatentypen;
 with KarteneffektDatentypen;
+with SystemDatentypen;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -131,7 +132,7 @@ package body PZBEingesetztLogik is
 
                Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                         LogikGrafikExtern => True);
+                                                                                                         TaskExtern => SystemDatentypen.Logik_Task_Enum);
                
                case
                  Kartenwert.EAchse
@@ -157,7 +158,7 @@ package body PZBEingesetztLogik is
    is begin
       
       Einheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
-                                                                         LogikGrafikExtern => True);
+                                                                         TaskExtern => SystemDatentypen.Logik_Task_Enum);
       
       case
         Einheit.Nummer

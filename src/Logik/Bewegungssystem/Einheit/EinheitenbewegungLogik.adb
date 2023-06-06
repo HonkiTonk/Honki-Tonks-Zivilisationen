@@ -1,5 +1,6 @@
 with EinheitenDatentypen;
 with SpeziesKonstanten;
+with SystemDatentypen;
 
 with LeseEinheitenGebaut;
 
@@ -28,7 +29,7 @@ package body EinheitenbewegungLogik is
       FeldPassierbar := PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                   NeueKoordinatenExtern      => KoordinatenExtern);
       EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
-                                                                                LogikGrafikExtern => True);
+                                                                                TaskExtern => SystemDatentypen.Logik_Task_Enum);
       
       Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       

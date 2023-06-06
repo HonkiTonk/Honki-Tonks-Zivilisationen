@@ -1,44 +1,44 @@
 package body KartenkoordinatenWerteLogik is
 
    procedure YAchseVerschiebungSchreiben
-     (LogikGrafikExtern : in Boolean;
+     (TaskExtern : in SystemDatentypen.Task_Enum;
       ÜbergangExtern : in KartenartDatentypen.Kartenform_Y_Einstellbar_Enum)
    is begin
       
-      VerschiebungYAchse (LogikGrafikExtern) := ÜbergangExtern;
+      VerschiebungYAchse (TaskExtern) := ÜbergangExtern;
       
    end YAchseVerschiebungSchreiben;
    
    
 
    procedure XAchseVerschiebungSchreiben
-     (LogikGrafikExtern : in Boolean;
+     (TaskExtern : in SystemDatentypen.Task_Enum;
       ÜbergangExtern : in KartenartDatentypen.Kartenform_X_Einstellbar_Enum)
    is begin
       
-      VerschiebungXAchse (LogikGrafikExtern) := ÜbergangExtern;
+      VerschiebungXAchse (TaskExtern) := ÜbergangExtern;
       
    end XAchseVerschiebungSchreiben;
    
    
 
    function YAchseVerschiebungLesen
-     (LogikGrafikExtern : in Boolean)
+     (TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenartDatentypen.Kartenform_Y_Einstellbar_Enum
    is begin
       
-      return VerschiebungYAchse (LogikGrafikExtern);
+      return VerschiebungYAchse (TaskExtern);
       
    end YAchseVerschiebungLesen;
    
    
 
    function XAchseVerschiebungLesen
-     (LogikGrafikExtern : in Boolean)
+     (TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenartDatentypen.Kartenform_X_Einstellbar_Enum
    is begin
       
-      return VerschiebungXAchse (LogikGrafikExtern);
+      return VerschiebungXAchse (TaskExtern);
       
    end XAchseVerschiebungLesen;
 

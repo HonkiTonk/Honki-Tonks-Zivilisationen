@@ -4,6 +4,7 @@ with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with StadtDatentypen;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
@@ -111,7 +112,7 @@ package body EinheitInUmgebungLogik is
       
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -127,7 +128,7 @@ package body EinheitInUmgebungLogik is
             else
                AndereEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
                                                                                                  KoordinatenExtern => KartenWert,
-                                                                                                 LogikGrafikExtern => True);
+                                                                                                 TaskExtern => SystemDatentypen.Logik_Task_Enum);
                
                if
                  AndereEinheit.Nummer = EinheitenKonstanten.LeerNummer

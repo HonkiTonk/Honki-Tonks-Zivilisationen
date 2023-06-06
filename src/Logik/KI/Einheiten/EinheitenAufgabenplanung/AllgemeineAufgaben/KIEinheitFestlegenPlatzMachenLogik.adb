@@ -57,7 +57,7 @@ package body KIEinheitFestlegenPlatzMachenLogik is
                
                Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
                                                                                                          ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                         LogikGrafikExtern => True);
+                                                                                                         TaskExtern => SystemDatentypen.Logik_Task_Enum);
                
                if
                  Kartenwert.XAchse = KartenKonstanten.LeerXAchse

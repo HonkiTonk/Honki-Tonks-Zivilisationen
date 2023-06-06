@@ -1,6 +1,7 @@
 with KartengrundDatentypen;
 with LadezeitenDatentypen;
 with KartenKonstanten;
+with SystemDatentypen;
 
 with SchreibeWeltkarte;
 with LeseWeltkarte;
@@ -60,7 +61,7 @@ package body KartengeneratorKuesteLogik is
                      
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
                         
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

@@ -1,4 +1,5 @@
 with KartenDatentypen;
+with SystemDatentypen;
 
 private with KartenkoordinatenWerteLogik;
 
@@ -8,7 +9,7 @@ package KartenkoordinateEAchseBerechnenLogik is
    function KartenkoordinateEAchseBerechnen
      (EAchseExtern : in KartenDatentypen.EbeneVorhanden;
       ÄnderungEAchseExtern : in KartenDatentypen.Ebene;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.Ebene;
    
 private
@@ -21,13 +22,13 @@ private
    function KartenkoordinateEAchseÜbergangUnten
      (EAchseExtern : in KartenDatentypen.EbeneVorhanden;
       ÄnderungEAchseExtern : in KartenDatentypen.Ebene;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.Ebene;
    
    function KartenkoordinateEAchseÜbergangOben
      (EAchseExtern : in KartenDatentypen.EbeneVorhanden;
       ÄnderungEAchseExtern : in KartenDatentypen.Ebene;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.Ebene;
 
 end KartenkoordinateEAchseBerechnenLogik;

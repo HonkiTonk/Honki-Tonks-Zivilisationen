@@ -1,7 +1,7 @@
 with KampfDatentypen;
 
 package Kampfgrenzen is
-   pragma Elaborate_Body;
+   pragma Pure;
 
    function KampfwertKampfbonus
      (KampfwertExtern : in KampfDatentypen.KampfwerteGroß;

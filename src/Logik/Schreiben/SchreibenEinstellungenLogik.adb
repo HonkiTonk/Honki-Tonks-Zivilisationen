@@ -24,7 +24,7 @@ package body SchreibenEinstellungenLogik is
       
       Create (File => DateiNutzereinstellungen,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.Nutzereinstellungen,
+              Name => VerzeichnisKonstanten.Spieleinstellungen,
               Form => "WCEM=8");
       
       SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiNutzereinstellungen),
@@ -132,7 +132,7 @@ package body SchreibenEinstellungenLogik is
       
       Create (File => DateiTastenbelegung,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.Tastenbelegung,
+              Name => VerzeichnisKonstanten.Tasteneinstellungen,
               Form => "WCEM=8");
       
       TastenbelegungDatenbank.AllgemeineBelegungArray'Write (Stream (File => DateiTastenbelegung),

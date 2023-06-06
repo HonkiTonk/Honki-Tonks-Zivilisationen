@@ -168,14 +168,14 @@ package body LeseEinheitenDatenbank is
    function MaximaleLebenspunkte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return EinheitenDatentypen.VorhandeneLebenspunkte
+      return KampfDatentypen.LebenspunkteVorhanden
    is begin
             
       case
         IDExtern
       is
          when EinheitenKonstanten.LeerID =>
-            return EinheitenDatentypen.VorhandeneLebenspunkte'First;
+            return KampfDatentypen.LebenspunkteVorhanden'First;
             
          when others =>
             return EinheitenDatenbank.Einheitenliste (SpeziesExtern, IDExtern).MaximaleLebenspunkte;
@@ -188,7 +188,7 @@ package body LeseEinheitenDatenbank is
    function MaximaleBewegungspunkte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return EinheitenDatentypen.VorhandeneBewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteVorhanden
    is
       use type EinheitenDatentypen.Bewegungspunkte;
    begin

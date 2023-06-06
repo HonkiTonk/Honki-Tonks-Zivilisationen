@@ -1,6 +1,7 @@
 with KartenartDatentypen;
 with KartenRecordKonstanten;
 with KartenKonstanten;
+with SystemDatentypen;
 
 with SchreibeCursor;
 
@@ -153,7 +154,7 @@ package body GeheZuGrafik is
       
       return KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KartenwertKoordinatenberechnung,
                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.LeerXAchseÄnderung),
-                                                                                         LogikGrafikExtern => False);
+                                                                                         TaskExtern => SystemDatentypen.Grafik_Task_Enum);
       
    end Koordinatenberechnung;
 

@@ -29,9 +29,9 @@ private
       
    Mausbefehl : BefehleDatentypen.Einheitenbelegung_Enum;
    
-   Bewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
-   NeueBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
-   AktuelleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
+   Bewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
+   NeueBewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
+   AktuelleBewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Bewegungsschritt : KartenRecords.AchsenKartenfeldNaturalRecord;

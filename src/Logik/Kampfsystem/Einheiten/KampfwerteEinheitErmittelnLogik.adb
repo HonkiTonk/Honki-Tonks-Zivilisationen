@@ -5,31 +5,39 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
 with FeldkampfEinheitLogik;
+with Kampfgrenzen;
 
 package body KampfwerteEinheitErmittelnLogik is
-   
+ 
+   -- Einheitenwert * Verbesserung * Basisgrund * Zusatzgrund * Ressource * Fluss * Straße * Gebäudebonus * Feldeffekte * Rang
    function Gesamtverteidigung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KampfDatentypen.KampfwerteGroß
-   is begin
+   is
+      use type KampfDatentypen.Kampfbonus;
+   begin
       
-      Verteidigung (LogikGrafikExtern) := LeseEinheitenDatenbank.Verteidigung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                               IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+      Verteidigung (TaskExtern) := LeseEinheitenDatenbank.Verteidigung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                        IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
-      Verteidigung (LogikGrafikExtern) := FeldkampfEinheitLogik.Feldkampf (KoordinatenExtern    => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                           SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
-                                                                           KampfartExtern       => KampfDatentypen.Verteidigung_Enum,
-                                                                           KampfBasiswertExtern => Verteidigung (LogikGrafikExtern));
-        
-      GesamteVerteidigung (LogikGrafikExtern) := Rangbonus (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                            KampfwertExtern            => (Grundverteidigung (LogikGrafikExtern) + Bonusverteidigung (LogikGrafikExtern)));
+      Verteidigung (TaskExtern) := FeldkampfEinheitLogik.Feldkampf (KoordinatenExtern    => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                                                    SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
+                                                                    KampfartExtern       => KampfDatentypen.Verteidigung_Enum,
+                                                                    KampfBasiswertExtern => Verteidigung (TaskExtern),
+                                                                    TaskExtern    => TaskExtern);
+      
+      -- Möglicherweise ein konstantes Array anlegen, wo man dann die rangabhängigen Bonis reinschreibt? äöü
+      Verteidigung (TaskExtern)
+        := Kampfgrenzen.KampfwertKampfbonus (KampfwertExtern  => Verteidigung (TaskExtern),
+                                             KampfbonusExtern => (1.00 + KampfDatentypen.Kampfbonus (LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)) / 10.00));
       
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when AufgabenDatentypen.Verschanzen_Enum =>
-            GesamteVerteidigung (LogikGrafikExtern) := KampfDatentypen.KampfwerteGroß (Float (GesamteVerteidigung (LogikGrafikExtern)) * Verschanzungsbonus);
+            Verteidigung (TaskExtern) := Kampfgrenzen.KampfwertKampfbonus (KampfwertExtern  => Verteidigung (TaskExtern),
+                                                                           KampfbonusExtern => Verschanzungsbonus);
                   
          when others =>
             null;
@@ -39,59 +47,52 @@ package body KampfwerteEinheitErmittelnLogik is
         LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when StadtKonstanten.LeerNummer =>
-            GesamteVerteidigung (LogikGrafikExtern) := GesamteVerteidigung (LogikGrafikExtern) / 2;
+            Verteidigung (TaskExtern) := Verteidigung (TaskExtern) / FehlendeHeimatstadtMalus;
             
          when others =>
             null;
       end case;
            
-      return GesamteVerteidigung (LogikGrafikExtern);
+      return Verteidigung (TaskExtern);
       
    end Gesamtverteidigung;
    
    
    
+   -- Einheitenwert * Verbesserung * Basisgrund * Zusatzgrund * Ressource * Fluss * Straße * Gebäudebonus * Feldeffekte * Rang
    function Gesamtangriff
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KampfDatentypen.KampfwerteGroß
-   is begin
+   is
+      use type KampfDatentypen.Kampfbonus;
+   begin
       
-      Grundangriff (LogikGrafikExtern) := LeseEinheitenDatenbank.Angriff (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                          IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+      Angriff (TaskExtern) := LeseEinheitenDatenbank.Angriff (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                              IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
-     -- Bonusverteidigung (LogikGrafikExtern) := FeldkampfEinheitLogik.Feldkampf (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-     --                                                                           SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
-     --                                                                           KampfartExtern    => KampfDatentypen.Angriff_Enum);
+      Angriff (TaskExtern) := FeldkampfEinheitLogik.Feldkampf (KoordinatenExtern    => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+                                                               SpeziesExtern        => EinheitSpeziesNummerExtern.Spezies,
+                                                               KampfartExtern       => KampfDatentypen.Angriff_Enum,
+                                                               KampfBasiswertExtern => Angriff (TaskExtern),
+                                                               TaskExtern    => TaskExtern);
       
-      GesamterAngriff (LogikGrafikExtern) := Rangbonus (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                        KampfwertExtern            => (Grundangriff (LogikGrafikExtern) + Bonusangriff (LogikGrafikExtern)));
+      Angriff (TaskExtern)
+        := Kampfgrenzen.KampfwertKampfbonus (KampfwertExtern  => Angriff (TaskExtern),
+                                             KampfbonusExtern => (1.00 + KampfDatentypen.Kampfbonus (LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)) / 10.00));
       
       case
         LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
       is
          when StadtKonstanten.LeerNummer =>
-            GesamterAngriff (LogikGrafikExtern) := GesamterAngriff (LogikGrafikExtern) / 2;
+            Angriff (TaskExtern) := Angriff (TaskExtern) / FehlendeHeimatstadtMalus;
             
          when others =>
             null;
       end case;
       
-      return GesamterAngriff (LogikGrafikExtern);
+      return Angriff (TaskExtern);
       
    end Gesamtangriff;
-   
-   
-   
-   -- Das hier später noch einmal anpassen/erweitern. äöü
-   function Rangbonus
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      KampfwertExtern : in KampfDatentypen.KampfwerteGroß)
-      return KampfDatentypen.KampfwerteGroß
-   is begin
-      
-      return KampfDatentypen.KampfwerteGroß (Float (KampfwertExtern) * (1.00 + Float (LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)) / 10.00));
-      
-   end Rangbonus;
 
 end KampfwerteEinheitErmittelnLogik;

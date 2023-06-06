@@ -2,6 +2,7 @@ with DiplomatieDatentypen;
 with EinheitenDatentypen;
 with AufgabenDatentypen;
 with SpeziesKonstanten;
+with SystemDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -23,7 +24,7 @@ package body KIBewegungAllgemeinLogik is
    begin
       
       BlockierendeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => FeldKoordinatenExtern,
-                                                                                     LogikGrafikExtern => True);
+                                                                                     TaskExtern => SystemDatentypen.Logik_Task_Enum);
       BlockierendeStadt := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => FeldKoordinatenExtern).Spezies;
       
       if

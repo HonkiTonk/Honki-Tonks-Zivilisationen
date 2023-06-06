@@ -11,32 +11,32 @@ package body EinheitSuchenLogik is
    function KoordinatenEinheitMitSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
    is
       use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
-      Einheit (LogikGrafikExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
+      Einheit (TaskExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Einheit (LogikGrafikExtern).Spezies /= SpeziesExtern
+        Einheit (TaskExtern).Spezies /= SpeziesExtern
         or
-          Einheit (LogikGrafikExtern).Spezies = SpeziesKonstanten.LeerSpezies
+          Einheit (TaskExtern).Spezies = SpeziesKonstanten.LeerSpezies
         or
-          Einheit (LogikGrafikExtern).Nummer = EinheitenKonstanten.LeerNummer
+          Einheit (TaskExtern).Nummer = EinheitenKonstanten.LeerNummer
       then
          return EinheitenKonstanten.LeerNummer;
          
       elsif
-        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern)) /= KoordinatenExtern
+        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => Einheit (TaskExtern)) /= KoordinatenExtern
       then
          return EinheitenKonstanten.LeerNummer;
             
       else
-         return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern),
-                                                      LogikGrafikExtern          => LogikGrafikExtern).Nummer;
+         return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (TaskExtern),
+                                                      TaskExtern          => TaskExtern).Nummer;
       end if;
       
    end KoordinatenEinheitMitSpeziesSuchen;
@@ -46,30 +46,30 @@ package body EinheitSuchenLogik is
    -- Sucht beliebige Einheit.
    function KoordinatenEinheitOhneSpeziesSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenRecords.SpeziesEinheitnummerRecord
    is
       use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
-      Einheit (LogikGrafikExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
+      Einheit (TaskExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Einheit (LogikGrafikExtern).Spezies = SpeziesKonstanten.LeerSpezies
+        Einheit (TaskExtern).Spezies = SpeziesKonstanten.LeerSpezies
         or
-          Einheit (LogikGrafikExtern).Nummer = EinheitenKonstanten.LeerNummer
+          Einheit (TaskExtern).Nummer = EinheitenKonstanten.LeerNummer
       then
          return EinheitenKonstanten.LeerEinheit;
          
       elsif
-        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern)) /= KoordinatenExtern
+        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => Einheit (TaskExtern)) /= KoordinatenExtern
       then
          return EinheitenKonstanten.LeerEinheit;
             
       else
-         return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern),
-                                                      LogikGrafikExtern          => LogikGrafikExtern);
+         return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (TaskExtern),
+                                                      TaskExtern          => TaskExtern);
       end if;
       
    end KoordinatenEinheitOhneSpeziesSuchen;
@@ -80,32 +80,32 @@ package body EinheitSuchenLogik is
    function KoordinatenEinheitOhneSpezielleSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenRecords.SpeziesEinheitnummerRecord
    is
       use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
       
-      Einheit (LogikGrafikExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
+      Einheit (TaskExtern) := LeseWeltkarte.EinheitenbelegungGrund (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Einheit (LogikGrafikExtern).Spezies = SpeziesExtern
+        Einheit (TaskExtern).Spezies = SpeziesExtern
         or
-          Einheit (LogikGrafikExtern).Spezies = SpeziesKonstanten.LeerSpezies
+          Einheit (TaskExtern).Spezies = SpeziesKonstanten.LeerSpezies
         or
-          Einheit (LogikGrafikExtern).Nummer = EinheitenKonstanten.LeerNummer
+          Einheit (TaskExtern).Nummer = EinheitenKonstanten.LeerNummer
       then
          return EinheitenKonstanten.LeerEinheit;
          
       elsif
-        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern)) /= KoordinatenExtern
+        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => Einheit (TaskExtern)) /= KoordinatenExtern
       then
          return EinheitenKonstanten.LeerEinheit;
             
       else
-         return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (LogikGrafikExtern),
-                                                      LogikGrafikExtern          => LogikGrafikExtern);
+         return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => Einheit (TaskExtern),
+                                                      TaskExtern          => TaskExtern);
       end if;
       
    end KoordinatenEinheitOhneSpezielleSpeziesSuchen;
@@ -114,21 +114,21 @@ package body EinheitSuchenLogik is
    
    function TransporterverschachtelungDurchgehen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenRecords.SpeziesEinheitnummerRecord
    is begin
       
-      Transporternummer (LogikGrafikExtern) := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      Transporternummer (TaskExtern) := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
       case
-        Transporternummer (LogikGrafikExtern)
+        Transporternummer (TaskExtern)
       is
          when EinheitenKonstanten.LeerWirdTransportiert =>
             return EinheitSpeziesNummerExtern;
                   
          when others =>
-            return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Transporternummer (LogikGrafikExtern)),
-                                                         LogikGrafikExtern          => LogikGrafikExtern);
+            return TransporterverschachtelungDurchgehen (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Transporternummer (TaskExtern)),
+                                                         TaskExtern          => TaskExtern);
       end case;
       
    end TransporterverschachtelungDurchgehen;

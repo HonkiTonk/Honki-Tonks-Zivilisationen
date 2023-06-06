@@ -195,7 +195,7 @@ package body KartengeneratorStandardLogik is
             
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseZwischenwert, XAchseZwischenwert),
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                         LogikGrafikExtern => True);
+                                                                                                         TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
                if
                  Quadrantenwert <= Quadranten (QuadrantenSchleifenwert)
@@ -219,7 +219,7 @@ package body KartengeneratorStandardLogik is
                            
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (KartenKonstanten.OberflächeKonstante, YAchseZwischenwert, XAchseZwischenwert),
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchsenabstandSchleifenwert, XAchsenabstandSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
             if
               YAchsenabstandSchleifenwert in -Landmassen (1) .. Landmassen (2)

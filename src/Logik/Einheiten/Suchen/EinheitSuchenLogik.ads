@@ -3,6 +3,7 @@ with SpeziesDatentypen;
 with EinheitenDatentypen;
 with KartenRecords;
 with EinheitenRecords;
+with SystemDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -17,7 +18,7 @@ package EinheitSuchenLogik is
    function KoordinatenEinheitMitSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre => (
@@ -34,7 +35,7 @@ package EinheitSuchenLogik is
 
    function KoordinatenEinheitOhneSpeziesSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenRecords.SpeziesEinheitnummerRecord
      with
        Pre => (
@@ -46,7 +47,7 @@ package EinheitSuchenLogik is
    function KoordinatenEinheitOhneSpezielleSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenRecords.SpeziesEinheitnummerRecord
      with
        Pre => (
@@ -66,17 +67,17 @@ private
    
    Transporterkapazität : EinheitenDatentypen.Transportplätze;
    
-   type TransporternummerArray is array (Boolean'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   type TransporternummerArray is array (SystemDatentypen.Task_Enum'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    Transporternummer : TransporternummerArray;
    
-   type EinheitArray is array (Boolean'Range) of EinheitenRecords.SpeziesEinheitnummerRecord;
+   type EinheitArray is array (SystemDatentypen.Task_Enum'Range) of EinheitenRecords.SpeziesEinheitnummerRecord;
    Einheit : EinheitArray;
    
    
    
    function TransporterverschachtelungDurchgehen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return EinheitenRecords.SpeziesEinheitnummerRecord
      with
        Pre => (

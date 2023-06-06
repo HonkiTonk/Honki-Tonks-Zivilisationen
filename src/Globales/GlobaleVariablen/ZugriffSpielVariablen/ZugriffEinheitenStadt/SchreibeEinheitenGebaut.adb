@@ -59,10 +59,10 @@ package body SchreibeEinheitenGebaut is
    
    procedure Lebenspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LebenspunkteExtern : in EinheitenDatentypen.Lebenspunkte;
+      LebenspunkteExtern : in KampfDatentypen.Lebenspunkte;
       RechnenSetzenExtern : in Boolean)
    is
-      use type EinheitenDatentypen.Lebenspunkte;
+      use type KampfDatentypen.Lebenspunkte;
    begin
       
       case

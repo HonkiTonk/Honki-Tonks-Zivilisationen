@@ -1,4 +1,5 @@
 with KartenDatentypen;
+with SystemDatentypen;
 
 private with KartenartDatentypen;
 
@@ -13,7 +14,7 @@ package KartenkoordinateYAchseBerechnenLogik is
    function KartenkoordinateYAchseBerechnen
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
@@ -40,7 +41,7 @@ private
       
    ÜberhangYAchse : KartenkoordinatenWerteLogik.ÜberhangArray;
    
-   type KartenartArray is array (Boolean'Range) of KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
+   type KartenartArray is array (SystemDatentypen.Task_Enum'Range) of KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
    Kartenart : KartenartArray;
    
    
@@ -48,7 +49,7 @@ private
    function ÜbergangNorden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
@@ -62,7 +63,7 @@ private
    function ÜbergangNordenNormal
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (
@@ -89,7 +90,7 @@ private
    function ÜbergangSüden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldNatural
      with
        Pre => (
@@ -103,7 +104,7 @@ private
    function ÜbergangSüdenNormal
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldPositiv
      with
        Pre => (

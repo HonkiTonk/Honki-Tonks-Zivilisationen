@@ -22,12 +22,12 @@ package EinheitendatenbankRecord is
 
       Passierbarkeit : DatenbankRecords.PassierbarkeitArray;
       
-      MaximaleLebenspunkte : EinheitenDatentypen.VorhandeneLebenspunkte;
-      MaximaleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
+      MaximaleLebenspunkte : KampfDatentypen.LebenspunkteVorhanden;
+      MaximaleBewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
       VerbesserungZu : EinheitenDatentypen.EinheitenIDMitNullWert;
 
       Beförderungsgrenze : KampfDatentypen.ErfahrungspunkteVorhanden;
-      MaximalerRang : KampfDatentypen.RangVorhanden;
+      MaximalerRang : KampfDatentypen.Rang;
       Reichweite : KampfDatentypen.ReichweiteVorhanden;
       Angriff : KampfDatentypen.KampfwerteEinheiten;
       Verteidigung : KampfDatentypen.KampfwerteEinheiten;

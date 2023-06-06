@@ -1,4 +1,5 @@
 with KartenartDatentypen;
+with SystemDatentypen;
 
 package KartenkoordinatenWerteLogik is
    pragma Preelaborate;
@@ -7,24 +8,24 @@ package KartenkoordinatenWerteLogik is
    VerschiebungswertYAchse : constant Float := 0.50;
    VerschiebungswertXAchse : constant Float := 0.50;
    
-   type ÜberhangArray is array (Boolean'Range) of Integer;
+   type ÜberhangArray is array (SystemDatentypen.Task_Enum'Range) of Integer;
 
    procedure YAchseVerschiebungSchreiben
-     (LogikGrafikExtern : in Boolean;
+     (TaskExtern : in SystemDatentypen.Task_Enum;
       ÜbergangExtern : in KartenartDatentypen.Kartenform_Y_Einstellbar_Enum);
 
    procedure XAchseVerschiebungSchreiben
-     (LogikGrafikExtern : in Boolean;
+     (TaskExtern : in SystemDatentypen.Task_Enum;
       ÜbergangExtern : in KartenartDatentypen.Kartenform_X_Einstellbar_Enum);
    
    
 
    function YAchseVerschiebungLesen
-     (LogikGrafikExtern : in Boolean)
+     (TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenartDatentypen.Kartenform_Y_Einstellbar_Enum;
 
    function XAchseVerschiebungLesen
-     (LogikGrafikExtern : in Boolean)
+     (TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenartDatentypen.Kartenform_X_Einstellbar_Enum;
    
    

@@ -1,5 +1,6 @@
 with KartenKonstanten;
 with KartenRecordKonstanten;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
@@ -34,7 +35,7 @@ package body KIEinheitSuchenLogik is
             
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                         LogikGrafikExtern => True);
+                                                                                                         TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
                if
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -50,7 +51,7 @@ package body KIEinheitSuchenLogik is
                else
                   FeindlicheEinheit := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => FeindExtern,
                                                                                               KoordinatenExtern => KartenWert,
-                                                                                              LogikGrafikExtern => True);
+                                                                                              TaskExtern => SystemDatentypen.Logik_Task_Enum);
                   case
                     FeindlicheEinheit
                   is

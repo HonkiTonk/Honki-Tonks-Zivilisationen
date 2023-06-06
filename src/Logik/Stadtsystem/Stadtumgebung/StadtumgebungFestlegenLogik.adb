@@ -1,5 +1,6 @@
 with KartenKonstanten;
 with KartenRecordKonstanten;
+with SystemDatentypen;
 
 with SchreibeWeltkarte;
 with SchreibeStadtGebaut;
@@ -55,7 +56,7 @@ package body StadtumgebungFestlegenLogik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -164,7 +165,7 @@ package body StadtumgebungFestlegenLogik is
                
                BelegungKartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                                  ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                 LogikGrafikExtern => True);
+                                                                                                                 TaskExtern => SystemDatentypen.Logik_Task_Enum);
                
                if
                  BelegungKartenwert.XAchse = KartenKonstanten.LeerXAchse
@@ -225,7 +226,7 @@ package body StadtumgebungFestlegenLogik is
             else
                UmgebendesKartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                                    ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                   LogikGrafikExtern => True);
+                                                                                                                   TaskExtern => SystemDatentypen.Logik_Task_Enum);
 
                case
                  UmgebendesKartenwert.XAchse

@@ -38,7 +38,7 @@ package LeseKartenDatenbanken is
    function BewegungBasisgrund
      (GrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return EinheitenDatentypen.VorhandeneBewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteVorhanden
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -47,7 +47,7 @@ package LeseKartenDatenbanken is
    function BewegungZusatzgrund
      (GrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return EinheitenDatentypen.VorhandeneBewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteVorhanden
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

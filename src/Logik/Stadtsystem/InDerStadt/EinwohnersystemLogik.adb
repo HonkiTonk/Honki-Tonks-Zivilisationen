@@ -5,6 +5,7 @@ with KartenKonstanten;
 with GrafikKonstanten;
 with Views;
 with ViewKonstanten;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -64,7 +65,7 @@ package body EinwohnersystemLogik is
             Stadtfeld.XAchse := Stadtfeld.XAchse - Koordinatenausgleich;
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Stadtfeld.YAchse, Stadtfeld.XAchse),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
       end case;
       
       case

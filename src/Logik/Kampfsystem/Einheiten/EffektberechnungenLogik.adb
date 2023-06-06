@@ -1,4 +1,5 @@
 with KarteneffektDatentypen;
+with KampfDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -20,7 +21,7 @@ package body EffektberechnungenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type EinheitenDatentypen.Einheitart_Enum;
-      use type EinheitenDatentypen.Lebenspunkte;
+      use type KampfDatentypen.Lebenspunkte;
    begin
       
       EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

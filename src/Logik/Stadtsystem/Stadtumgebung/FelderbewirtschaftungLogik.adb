@@ -1,5 +1,6 @@
 with KartenKonstanten;
 with StadtDatentypen;
+with SystemDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -72,7 +73,7 @@ package body FelderbewirtschaftungLogik is
             
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
             Bewertung := ProduktionDatentypen.Stadtproduktion'First;
             

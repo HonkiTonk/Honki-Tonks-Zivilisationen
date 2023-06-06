@@ -36,7 +36,7 @@ package body BewegungspunkteBerechnenLogik is
    function NotwendigeBewegungspunkte
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.VorhandeneBewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteVorhanden
    is begin
             
       BewegungspunkteNotwendig := NotwendigeBewegungspunkteErmitteln (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
@@ -98,9 +98,9 @@ package body BewegungspunkteBerechnenLogik is
                                                             SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
       
       if
-        BewegungspunkteGesamt >= Positive (EinheitenDatentypen.VorhandeneBewegungspunkte'Last)
+        BewegungspunkteGesamt >= Positive (EinheitenDatentypen.BewegungspunkteVorhanden'Last)
       then
-         return EinheitenDatentypen.VorhandeneBewegungspunkte'Last;
+         return EinheitenDatentypen.BewegungspunkteVorhanden'Last;
          
       else
          return EinheitenDatentypen.Bewegungspunkte (BewegungspunkteGesamt);

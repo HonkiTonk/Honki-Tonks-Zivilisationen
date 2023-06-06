@@ -1,4 +1,5 @@
 with KartenKonstanten;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -106,7 +107,7 @@ package body GebaeudeanforderungenLogik is
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

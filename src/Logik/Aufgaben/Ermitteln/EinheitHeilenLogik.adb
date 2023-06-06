@@ -1,5 +1,5 @@
-with EinheitenDatentypen;
 with AufgabenDatentypen;
+with KampfDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -12,7 +12,7 @@ package body EinheitHeilenLogik is
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is
-      use type EinheitenDatentypen.Lebenspunkte;
+      use type KampfDatentypen.Lebenspunkte;
    begin
       
       if

@@ -1,6 +1,7 @@
 with EinheitenDatentypen;
 with KartenRecordKonstanten;
 with SpeziesKonstanten;
+with SystemDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -147,7 +148,7 @@ package body KIEinheitenbewegungLogik is
             
       Tauscheinheit := (EinheitSpeziesNummerExtern.Spezies, EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                                                                                                    KoordinatenExtern => NeueKoordinatenExtern,
-                                                                                                                   LogikGrafikExtern => True));
+                                                                                                                   TaskExtern => SystemDatentypen.Logik_Task_Enum));
       
       if
         Tauscheinheit.Nummer = EinheitSpeziesNummerExtern.Nummer
@@ -215,7 +216,7 @@ package body KIEinheitenbewegungLogik is
    begin
       
       FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinaten,
-                                                                               LogikGrafikExtern => True);
+                                                                               TaskExtern => SystemDatentypen.Logik_Task_Enum);
       FremdeStadt := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinaten);
       
       if

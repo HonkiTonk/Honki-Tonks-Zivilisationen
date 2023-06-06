@@ -1,6 +1,7 @@
 with KartenKonstanten;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -31,7 +32,7 @@ package body StadtumgebungErreichbarLogik is
                
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinatenExtern,
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                         LogikGrafikExtern => True);
+                                                                                                         TaskExtern => SystemDatentypen.Logik_Task_Enum);
                
                if
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -92,7 +93,7 @@ package body StadtumgebungErreichbarLogik is
                                                          KoordinatenExtern        => AktuelleKoordinatenExtern)
         or
           EinheitenKonstanten.LeerNummer /= EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                                                    LogikGrafikExtern => True).Nummer
+                                                                                                    TaskExtern => SystemDatentypen.Logik_Task_Enum).Nummer
         or
           False = PassierbarkeitspruefungLogik.PassierbarkeitPrüfenID (SpeziesExtern              => StadtSpeziesNummerExtern.Spezies,
                                                                         IDExtern                   => IDExtern,
@@ -111,7 +112,7 @@ package body StadtumgebungErreichbarLogik is
                
                KartenWertZwei := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinatenExtern,
                                                                                                              ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                             LogikGrafikExtern => True);
+                                                                                                             TaskExtern => SystemDatentypen.Logik_Task_Enum);
                
                if
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse

@@ -52,6 +52,10 @@ package SystemDatentypen is
    
    
    
+   type Task_Enum is (Logik_Task_Enum, Grafik_Task_Enum);
+   
+   
+   
    -- Für vorzeichenlose Datentypen mod verwenden.
    -- Wird gespeichert als ein Byte.
    type Sichtbarkeitszahl is mod 2**6;

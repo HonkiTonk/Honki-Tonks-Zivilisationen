@@ -7,6 +7,7 @@ with EinheitenKonstanten;
 
 private with StadtDatentypen;
 private with AufgabenDatentypen;
+private with KampfDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -59,7 +60,7 @@ private
    
    Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
    
-   Heilungsrate : constant EinheitenDatentypen.VorhandeneLebenspunkte := 10;
+   Heilungsrate : constant KampfDatentypen.LebenspunkteVorhanden := 10;
          
    NeueHeimatstadt : StadtRecords.SpeziesStadtnummerRecord;
    

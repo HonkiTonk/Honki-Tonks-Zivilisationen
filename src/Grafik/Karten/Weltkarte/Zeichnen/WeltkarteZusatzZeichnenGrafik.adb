@@ -8,6 +8,7 @@ with TextaccessVariablen;
 with GrafikKonstanten;
 with KarteneffektDatentypen;
 with GrafikDatentypen;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
@@ -129,7 +130,7 @@ package body WeltkarteZusatzZeichnenGrafik is
          
          KartenWertRahmen := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                          ÄnderungExtern    => Umgebung (UmgebungSchleifenwert),
-                                                                                                         LogikGrafikExtern => False);
+                                                                                                         TaskExtern => SystemDatentypen.Grafik_Task_Enum);
                
          if
            KartenWertRahmen.XAchse = KartenKonstanten.LeerXAchse

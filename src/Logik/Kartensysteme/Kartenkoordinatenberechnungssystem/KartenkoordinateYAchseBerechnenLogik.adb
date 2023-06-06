@@ -5,7 +5,7 @@ package body KartenkoordinateYAchseBerechnenLogik is
    function KartenkoordinateYAchseBerechnen
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldNatural
    is begin
       
@@ -14,14 +14,14 @@ package body KartenkoordinateYAchseBerechnenLogik is
       then
          return ÜbergangNorden (YAchseExtern         => YAchseExtern,
                                  ÄnderungYAchseExtern => ÄnderungYAchseExtern,
-                                 LogikGrafikExtern    => LogikGrafikExtern);
+                                 TaskExtern    => TaskExtern);
         
       elsif
         YAchseExtern + ÄnderungYAchseExtern > LeseWeltkarteneinstellungen.YAchse
       then
          return ÜbergangSüden (YAchseExtern         => YAchseExtern,
                                  ÄnderungYAchseExtern => ÄnderungYAchseExtern,
-                                 LogikGrafikExtern    => LogikGrafikExtern);
+                                 TaskExtern    => TaskExtern);
          
       else
          return YAchseExtern + ÄnderungYAchseExtern;
@@ -34,29 +34,29 @@ package body KartenkoordinateYAchseBerechnenLogik is
    function ÜbergangNorden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldNatural
    is begin
       
-      Kartenart (LogikGrafikExtern) := LeseWeltkarteneinstellungen.YAchseNorden;
+      Kartenart (TaskExtern) := LeseWeltkarteneinstellungen.YAchseNorden;
       
       case
-        Kartenart (LogikGrafikExtern)
+        Kartenart (TaskExtern)
       is
          when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerYAchse;
                         
          when KartenartDatentypen.Karte_Y_Übergang_Enum | KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (LogikGrafikExtern => LogikGrafikExtern,
-                                                                     ÜbergangExtern    => Kartenart (LogikGrafikExtern));
+            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
+                                                                     ÜbergangExtern    => Kartenart (TaskExtern));
             
             return ÜbergangNordenNormal (YAchseExtern         => YAchseExtern,
                                           ÄnderungYAchseExtern => ÄnderungYAchseExtern,
-                                          LogikGrafikExtern    => LogikGrafikExtern);
+                                          TaskExtern    => TaskExtern);
             
          when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (LogikGrafikExtern => LogikGrafikExtern,
-                                                                     ÜbergangExtern    => Kartenart (LogikGrafikExtern));
+            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
+                                                                     ÜbergangExtern    => Kartenart (TaskExtern));
             
             return ÜbergangNordenRückwärts (YAchseExtern         => YAchseExtern,
                                                ÄnderungYAchseExtern => ÄnderungYAchseExtern);
@@ -69,20 +69,20 @@ package body KartenkoordinateYAchseBerechnenLogik is
    function ÜbergangNordenNormal
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      ÜberhangYAchse (LogikGrafikExtern) := Integer (YAchseExtern + ÄnderungYAchseExtern + LeseWeltkarteneinstellungen.YAchse);
+      ÜberhangYAchse (TaskExtern) := Integer (YAchseExtern + ÄnderungYAchseExtern + LeseWeltkarteneinstellungen.YAchse);
       
       YAchseKleinerSchleife:
-      while ÜberhangYAchse (LogikGrafikExtern) < Positive (KartenKonstanten.AnfangYAchse) loop
+      while ÜberhangYAchse (TaskExtern) < Positive (KartenKonstanten.AnfangYAchse) loop
             
-         ÜberhangYAchse (LogikGrafikExtern) := ÜberhangYAchse (LogikGrafikExtern) + Positive (LeseWeltkarteneinstellungen.YAchse);
+         ÜberhangYAchse (TaskExtern) := ÜberhangYAchse (TaskExtern) + Positive (LeseWeltkarteneinstellungen.YAchse);
 
       end loop YAchseKleinerSchleife;
          
-      return KartenDatentypen.KartenfeldPositiv (ÜberhangYAchse (LogikGrafikExtern));
+      return KartenDatentypen.KartenfeldPositiv (ÜberhangYAchse (TaskExtern));
       
    end ÜbergangNordenNormal;
    
@@ -110,29 +110,29 @@ package body KartenkoordinateYAchseBerechnenLogik is
    function ÜbergangSüden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldNatural
    is begin
       
-      Kartenart (LogikGrafikExtern) := LeseWeltkarteneinstellungen.YAchseSüden;
+      Kartenart (TaskExtern) := LeseWeltkarteneinstellungen.YAchseSüden;
       
       case
-        Kartenart (LogikGrafikExtern)
+        Kartenart (TaskExtern)
       is
          when KartenartDatentypen.Karte_Y_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerYAchse;
             
          when KartenartDatentypen.Karte_Y_Übergang_Enum | KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (LogikGrafikExtern => LogikGrafikExtern,
-                                                                     ÜbergangExtern    => Kartenart (LogikGrafikExtern));
+            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
+                                                                     ÜbergangExtern    => Kartenart (TaskExtern));
             
             return ÜbergangSüdenNormal (YAchseExtern         => YAchseExtern,
                                           ÄnderungYAchseExtern => ÄnderungYAchseExtern,
-                                          LogikGrafikExtern    => LogikGrafikExtern);
+                                          TaskExtern    => TaskExtern);
             
          when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (LogikGrafikExtern => LogikGrafikExtern,
-                                                                     ÜbergangExtern    => Kartenart (LogikGrafikExtern));
+            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
+                                                                     ÜbergangExtern    => Kartenart (TaskExtern));
             
             return ÜbergangSüdenRückwärts (YAchseExtern         => YAchseExtern,
                                                ÄnderungYAchseExtern => ÄnderungYAchseExtern);
@@ -145,20 +145,20 @@ package body KartenkoordinateYAchseBerechnenLogik is
    function ÜbergangSüdenNormal
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      ÜberhangYAchse (LogikGrafikExtern) := Positive (YAchseExtern + ÄnderungYAchseExtern - LeseWeltkarteneinstellungen.YAchse);
+      ÜberhangYAchse (TaskExtern) := Positive (YAchseExtern + ÄnderungYAchseExtern - LeseWeltkarteneinstellungen.YAchse);
          
       YAchseGrößerSchleife:
-      while ÜberhangYAchse (LogikGrafikExtern) > Positive (LeseWeltkarteneinstellungen.YAchse) loop
+      while ÜberhangYAchse (TaskExtern) > Positive (LeseWeltkarteneinstellungen.YAchse) loop
             
-         ÜberhangYAchse (LogikGrafikExtern) := ÜberhangYAchse (LogikGrafikExtern) - Positive (LeseWeltkarteneinstellungen.YAchse);
+         ÜberhangYAchse (TaskExtern) := ÜberhangYAchse (TaskExtern) - Positive (LeseWeltkarteneinstellungen.YAchse);
             
       end loop YAchseGrößerSchleife;
          
-      return KartenDatentypen.KartenfeldPositiv (ÜberhangYAchse (LogikGrafikExtern));
+      return KartenDatentypen.KartenfeldPositiv (ÜberhangYAchse (TaskExtern));
       
    end ÜbergangSüdenNormal;
    

@@ -5,6 +5,7 @@ with TextKonstanten;
 with ViewKonstanten;
 with GrafikKonstanten;
 with Projekteinstellungen;
+with SystemDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -185,9 +186,10 @@ package body EinheitenseitenleisteGrafik is
       
       return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & " "
         & ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                                LogikGrafikExtern          => False))
-        & " " & TextKonstanten.TrennzeichenUnterschiedlich & " " & ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                                                                                                              LogikGrafikExtern          => False));
+                                                                                                TaskExtern                 => SystemDatentypen.Grafik_Task_Enum))
+        & " " & TextKonstanten.TrennzeichenUnterschiedlich & " "
+        & ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                                                     TaskExtern                 => SystemDatentypen.Grafik_Task_Enum));
       
    end Kampfwerte;
    

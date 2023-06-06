@@ -1,4 +1,5 @@
 with KampfDatentypen;
+with SystemDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -20,14 +21,14 @@ package body KampfsystemEinheitenLogik is
    begin
       
       KampfwerteVerteidiger.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => VerteidigerExtern,
-                                                                                                LogikGrafikExtern          => True);
+                                                                                                TaskExtern                 => SystemDatentypen.Logik_Task_Enum);
       KampfwerteVerteidiger.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => VerteidigerExtern,
-                                                                                      LogikGrafikExtern          => True);
+                                                                                      TaskExtern                 => SystemDatentypen.Logik_Task_Enum);
       
       KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreiferExtern,
-                                                                                              LogikGrafikExtern          => True);
+                                                                                              TaskExtern                 => SystemDatentypen.Logik_Task_Enum);
       KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreiferExtern,
-                                                                                    LogikGrafikExtern          => True);
+                                                                                    TaskExtern                 => SystemDatentypen.Logik_Task_Enum);
       
       if
         KampfwerteVerteidiger.Verteidigung = EinheitenKonstanten.LeerVerteidigung
@@ -61,7 +62,7 @@ package body KampfsystemEinheitenLogik is
       KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.Lebenspunkte;
+      use type KampfDatentypen.Lebenspunkte;
    begin
       
       IDAngreifer := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => AngreiferExtern);
@@ -77,14 +78,14 @@ package body KampfsystemEinheitenLogik is
            Kampfergebnis < 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
-                                                  LebenspunkteExtern         => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  LebenspunkteExtern         => KampfDatentypen.Lebenspunkte (Kampfergebnis),
                                                   RechnenSetzenExtern        => True);
             
          elsif
            Kampfergebnis > 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern,
-                                                  LebenspunkteExtern         => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
+                                                  LebenspunkteExtern         => KampfDatentypen.Lebenspunkte (-Kampfergebnis),
                                                   RechnenSetzenExtern        => True);
             
          else
@@ -128,14 +129,14 @@ package body KampfsystemEinheitenLogik is
            Kampfergebnis < 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => VerteidigerExtern,
-                                                  LebenspunkteExtern         => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  LebenspunkteExtern         => KampfDatentypen.Lebenspunkte (Kampfergebnis),
                                                   RechnenSetzenExtern        => True);
             
          elsif
            Kampfergebnis > 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreiferExtern,
-                                                  LebenspunkteExtern         => EinheitenDatentypen.Lebenspunkte (-Kampfergebnis),
+                                                  LebenspunkteExtern         => KampfDatentypen.Lebenspunkte (-Kampfergebnis),
                                                   RechnenSetzenExtern        => True);
             
          else

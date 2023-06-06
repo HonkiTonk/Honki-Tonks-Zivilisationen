@@ -1,6 +1,7 @@
 with KartenRecordKonstanten;
 with KartenKonstanten;
 with KartengrundDatentypen;
+with SystemDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseWeltkarte;
@@ -92,7 +93,7 @@ package body KIZielSuchenLogik is
                                                                                                             ÄnderungExtern    => (EAchseSchleifenwert,
                                                                                                                                    Multiplikator.YAchse * YAchseSchleifenwert,
                                                                                                                                    Multiplikator.XAchse * XAchseSchleifenwert),
-                                                                                                            LogikGrafikExtern => True);
+                                                                                                            TaskExtern => SystemDatentypen.Logik_Task_Enum);
                   
                   -- Könnte man ZielGefunden nicht vor der Schleife auf False setze und sich hier das Neusetzen bei LeerAchse sparen? äöü
                   case

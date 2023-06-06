@@ -1,4 +1,5 @@
 with SpeziesKonstanten;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 with SchreibeWeltkarte;
@@ -99,7 +100,7 @@ package body SichtbarkeitSetzenLogik is
       
       FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
                                                                                         KoordinatenExtern => KoordinatenExtern,
-                                                                                        LogikGrafikExtern => True);
+                                                                                        TaskExtern => SystemDatentypen.Logik_Task_Enum);
       
       case
         FremdeEinheit.Spezies

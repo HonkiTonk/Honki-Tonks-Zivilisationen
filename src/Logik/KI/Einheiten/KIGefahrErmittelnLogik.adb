@@ -2,6 +2,7 @@ with EinheitenDatentypen;
 with KartenDatentypen;
 with DiplomatieDatentypen;
 with KartenKonstanten;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 with LeseEinheitenGebaut;
@@ -62,7 +63,7 @@ package body KIGefahrErmittelnLogik is
                
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
                
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -77,7 +78,7 @@ package body KIGefahrErmittelnLogik is
                   
             else
                EinheitUnzugeordnet := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenWert,
-                                                                                              LogikGrafikExtern => True);
+                                                                                              TaskExtern => SystemDatentypen.Logik_Task_Enum);
                   
                case
                  ReaktionErfoderlich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,

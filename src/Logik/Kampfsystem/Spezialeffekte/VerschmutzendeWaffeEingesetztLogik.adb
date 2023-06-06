@@ -1,6 +1,7 @@
 with KartenKonstanten;
 with KarteneffektDatentypen;
 with DiplomatieDatentypen;
+with SystemDatentypen;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -44,7 +45,7 @@ package body VerschmutzendeWaffeEingesetztLogik is
 
                Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, Koordinaten.YAchse, Koordinaten.XAchse),
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                         LogikGrafikExtern => True);
+                                                                                                         TaskExtern => SystemDatentypen.Logik_Task_Enum);
                
                case
                  Kartenwert.EAchse

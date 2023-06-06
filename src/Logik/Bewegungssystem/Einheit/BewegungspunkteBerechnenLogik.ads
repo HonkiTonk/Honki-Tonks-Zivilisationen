@@ -33,7 +33,7 @@ package BewegungspunkteBerechnenLogik is
    function NotwendigeBewegungspunkte
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.VorhandeneBewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteVorhanden
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -55,7 +55,7 @@ private
    
    EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
    
-   AktuelleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
+   AktuelleBewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
    
    BenötigteBewegungspunkte : EinheitenDatentypen.Bewegungspunkte;
    BewegungspunkteNotwendig : EinheitenDatentypen.Bewegungspunkte;

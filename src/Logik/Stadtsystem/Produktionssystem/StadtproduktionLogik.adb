@@ -1,6 +1,7 @@
 with EinheitenDatentypen;
 with KartenKonstanten;
 with ProduktionKonstanten;
+with SystemDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -97,7 +98,7 @@ package body StadtproduktionLogik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

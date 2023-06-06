@@ -6,6 +6,7 @@ with Views;
 with ViewKonstanten;
 with KartenDatentypen;
 with GrafikKonstanten;
+with SystemDatentypen;
 
 with LeseCursor;
 with SchreibeCursor;
@@ -79,7 +80,7 @@ package body CursorplatzierungGrafik is
       
       KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern),
                                                                                                 ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, Kartenänderung.YAchse, Kartenänderung.XAchse),
-                                                                                                LogikGrafikExtern => False);
+                                                                                                TaskExtern => SystemDatentypen.Grafik_Task_Enum);
       
       case
         KartenWert.EAchse

@@ -1,6 +1,7 @@
 with KartenKonstanten;
 with KartenRecordKonstanten;
 with StadtDatentypen;
+with SystemDatentypen;
 
 with LeseStadtGebaut;
 with SchreibeEinheitenGebaut;
@@ -114,7 +115,7 @@ package body KIEinheitFestlegenModernisierenLogik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

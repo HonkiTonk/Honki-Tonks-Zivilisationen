@@ -17,6 +17,7 @@ with KampfberechnungenLogik;
 with FelderbewirtschaftungLogik;
 with EffektberechnungenLogik;
 
+-- Die Namensgebung im Kampfsystem ein wenig anpassen. äöü
 package body KampfsystemStadtLogik is
 
    function KampfsystemStadt
@@ -25,7 +26,7 @@ package body KampfsystemStadtLogik is
       return Boolean
    is
       use type KampfDatentypen.KampfwerteGroß;
-      use type EinheitenDatentypen.Lebenspunkte;
+      use type KampfDatentypen.Lebenspunkte;
    begin
       
       if
@@ -40,19 +41,21 @@ package body KampfsystemStadtLogik is
                                                                        SpeziesExtern     => VerteidigendeStadtSpeziesNummerExtern.Spezies,
                                                                        GebäudeExtern     => LeseStadtGebaut.AlleGebäude (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
                                                                        EinwohnerExtern   => LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
-                                                                                                                               EinwohnerArbeiterExtern  => True));
+                                                                                                                               EinwohnerArbeiterExtern  => True),
+                                                                       TaskExtern => SystemDatentypen.Logik_Task_Enum);
          
          KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (IDExtern          => LeseStadtGebaut.ID (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
                                                                                                KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
                                                                                                SpeziesExtern     => VerteidigendeStadtSpeziesNummerExtern.Spezies,
                                                                                                GebäudeExtern     => LeseStadtGebaut.AlleGebäude (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
                                                                                                EinwohnerExtern   => LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
-                                                                                                                                                       EinwohnerArbeiterExtern  => True));
+                                                                                                                                                       EinwohnerArbeiterExtern  => True),
+                                                                                               TaskExtern => SystemDatentypen.Logik_Task_Enum);
       
          KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                                                                 LogikGrafikExtern          => True);
+                                                                                                 TaskExtern                 => SystemDatentypen.Logik_Task_Enum);
          KampfwerteAngreifer.Angriff := KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                                                       LogikGrafikExtern          => True);
+                                                                                       TaskExtern                 => SystemDatentypen.Logik_Task_Enum);
       end if;
       
       if
@@ -153,7 +156,7 @@ package body KampfsystemStadtLogik is
       KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.Lebenspunkte;
+      use type KampfDatentypen.Lebenspunkte;
    begin
       
       GesundheitStadt := Positive (LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
@@ -171,7 +174,7 @@ package body KampfsystemStadtLogik is
            Kampfergebnis < 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                  LebenspunkteExtern         => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  LebenspunkteExtern         => KampfDatentypen.Lebenspunkte (Kampfergebnis),
                                                   RechnenSetzenExtern        => True);
             
          elsif
@@ -212,7 +215,7 @@ package body KampfsystemStadtLogik is
            Kampfergebnis < 0
          then
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
-                                                  LebenspunkteExtern         => EinheitenDatentypen.Lebenspunkte (Kampfergebnis),
+                                                  LebenspunkteExtern         => KampfDatentypen.Lebenspunkte (Kampfergebnis),
                                                   RechnenSetzenExtern        => True);
             
          elsif

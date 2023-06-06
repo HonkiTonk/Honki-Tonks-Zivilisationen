@@ -78,20 +78,16 @@ package EinheitenDatentypen is
    
 
    type Bewegungspunkte is range -100 .. 100;
-   subtype VorhandeneBewegungspunkte is Bewegungspunkte range 0 .. Bewegungspunkte'Last;
+   subtype BewegungspunkteVorhanden is Bewegungspunkte range 0 .. Bewegungspunkte'Last;
    
    
    
-   type Lebenspunkte is range -1_000 .. 1_000;
-   subtype VorhandeneLebenspunkte is Lebenspunkte range 1 .. Lebenspunkte'Last;
+   -- Eventuell später einbauen? äöü
+   -- type Erschöpfung is range 0 .. 10;
    
    
    
-   type Erschöpfung is range 0 .. 10;
-   
-   
-   
-   type Bewegungsplan is range 0 .. VorhandeneBewegungspunkte'Last;
+   type Bewegungsplan is range 0 .. BewegungspunkteVorhanden'Last;
    subtype BewegungsplanVorhanden is Bewegungsplan range 1 .. Bewegungsplan'Last;
    
    
@@ -108,6 +104,7 @@ package EinheitenDatentypen is
    
      
    -- Der Nullwert wird für die Auswahl von Städten/Einheiten benötigt, nicht entfernen.
+   -- Die Auswahl von Städten/Einheiten mal überarbeiten oder ist das irrelevant? äöü
    type Transportplätze is range 0 .. 8;
    subtype TransportplätzeVorhanden is Transportplätze range 1 .. Transportplätze'Last;
 

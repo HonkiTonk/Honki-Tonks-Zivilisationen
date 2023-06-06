@@ -34,7 +34,7 @@ package body EinlesenEinstellungenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.Nutzereinstellungen)
+        Exists (Name => VerzeichnisKonstanten.Spieleinstellungen)
       is
          when False =>
             OptionenVariablen.StandardNutzereinstellungenLaden;
@@ -43,7 +43,7 @@ package body EinlesenEinstellungenLogik is
          when True =>
             Open (File => DateiNutzereinstellungen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Nutzereinstellungen,
+                  Name => VerzeichnisKonstanten.Spieleinstellungen,
                   Form => "WCEM=8");
       end case;
       

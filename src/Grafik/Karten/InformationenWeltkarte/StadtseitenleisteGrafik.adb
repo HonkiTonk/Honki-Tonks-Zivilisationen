@@ -9,6 +9,7 @@ with ViewKonstanten;
 with GrafikKonstanten;
 with ProduktionKonstanten;
 with Projekteinstellungen;
+with SystemDatentypen;
 
 with KampfwerteStadtErmittelnLogik;
 with TextberechnungenHoeheGrafik;
@@ -170,12 +171,14 @@ package body StadtseitenleisteGrafik is
                                                                                                                               KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                                               SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,
                                                                                                                               GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden,
-                                                                                                                              EinwohnerExtern   => StadtauswahlExtern.EinwohnerArbeiter (1))'Wide_Wide_Image
+                                                                                                                              EinwohnerExtern   => StadtauswahlExtern.EinwohnerArbeiter (1),
+                                                                                                                              TaskExtern => SystemDatentypen.Grafik_Task_Enum)'Wide_Wide_Image
         & " " & TextKonstanten.TrennzeichenUnterschiedlich & KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (IDExtern          => StadtauswahlExtern.ID,
                                                                                                                       KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                                       SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,
                                                                                                                       GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden,
-                                                                                                                      EinwohnerExtern   => StadtauswahlExtern.EinwohnerArbeiter (1))'Wide_Wide_Image;
+                                                                                                                      EinwohnerExtern   => StadtauswahlExtern.EinwohnerArbeiter (1),
+                                                                                                                      TaskExtern => SystemDatentypen.Grafik_Task_Enum)'Wide_Wide_Image;
       
    end Kampfwerte;
    

@@ -13,7 +13,7 @@ package body EinlesenTastaturLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.Tastenbelegung)
+        Exists (Name => VerzeichnisKonstanten.Tasteneinstellungen)
       is
          when False =>
             StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
@@ -22,7 +22,7 @@ package body EinlesenTastaturLogik is
          when True =>
             Open (File => TastenbelegungLaden,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Tastenbelegung,
+                  Name => VerzeichnisKonstanten.Tasteneinstellungen,
                   Form => "WCEM=8");
       end case;
       

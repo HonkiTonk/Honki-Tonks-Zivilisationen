@@ -10,6 +10,7 @@ with TextnummernKonstanten;
 with TextDatentypen;
 with KarteneffektDatentypen;
 with ProduktionDatentypen;
+with SystemDatentypen;
 
 with LeseWeltkarte;
 
@@ -50,7 +51,7 @@ package body StadtumgebungGrafik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => False);
+                                                                                                      TaskExtern => SystemDatentypen.Grafik_Task_Enum);
             
             if
               KartenWert.EAchse = KartenKonstanten.LeerEAchse

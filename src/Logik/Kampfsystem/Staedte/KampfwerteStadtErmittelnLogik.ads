@@ -4,6 +4,7 @@ with KartenverbesserungDatentypen;
 with KartenRecords;
 with StadtArrays;
 with StadtDatentypen;
+with SystemDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -16,7 +17,8 @@ package KampfwerteStadtErmittelnLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       GebäudeExtern : in StadtArrays.GebäudeArray;
-      EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden)
+      EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden;
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
@@ -28,7 +30,8 @@ package KampfwerteStadtErmittelnLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       GebäudeExtern : in StadtArrays.GebäudeArray;
-      EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden)
+      EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden;
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KampfDatentypen.KampfwerteGroß
      with
        Pre => (
@@ -37,7 +40,8 @@ package KampfwerteStadtErmittelnLogik is
    
 private
    
-   VerteidigungWert : KampfDatentypen.KampfwerteGroß;
-   AngriffWert : KampfDatentypen.KampfwerteGroß;
+   type KampfwerteArray is array (SystemDatentypen.Task_Enum'Range) of KampfDatentypen.KampfwerteGroß;
+   Verteidigung : KampfwerteArray;
+   Angriff : KampfwerteArray;
 
 end KampfwerteStadtErmittelnLogik;

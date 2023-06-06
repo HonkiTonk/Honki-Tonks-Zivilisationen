@@ -5,7 +5,7 @@ package body KartenkoordinateXAchseBerechnenLogik is
    function KartenkoordinateXAchseBerechnen
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldNatural
    is begin
       
@@ -14,14 +14,14 @@ package body KartenkoordinateXAchseBerechnenLogik is
       then
          return ÜbergangWesten (XAchseExtern         => XAchseExtern,
                                  ÄnderungXAchseExtern => ÄnderungXAchseExtern,
-                                 LogikGrafikExtern    => LogikGrafikExtern);
+                                 TaskExtern    => TaskExtern);
         
       elsif
         XAchseExtern + ÄnderungXAchseExtern > LeseWeltkarteneinstellungen.XAchse
       then
          return ÜbergangOsten (XAchseExtern         => XAchseExtern,
                                 ÄnderungXAchseExtern => ÄnderungXAchseExtern,
-                                LogikGrafikExtern    => LogikGrafikExtern);
+                                TaskExtern    => TaskExtern);
          
       else
          return XAchseExtern + ÄnderungXAchseExtern;
@@ -34,29 +34,29 @@ package body KartenkoordinateXAchseBerechnenLogik is
    function ÜbergangWesten
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldNatural
    is begin
       
-      Kartenart (LogikGrafikExtern) := LeseWeltkarteneinstellungen.XAchseWesten;
+      Kartenart (TaskExtern) := LeseWeltkarteneinstellungen.XAchseWesten;
       
       case
-        Kartenart (LogikGrafikExtern)
+        Kartenart (TaskExtern)
       is
          when KartenartDatentypen.Karte_X_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerXAchse;
             
          when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (LogikGrafikExtern   => LogikGrafikExtern,
-                                                                     ÜbergangExtern      => Kartenart (LogikGrafikExtern));
+            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (TaskExtern   => TaskExtern,
+                                                                     ÜbergangExtern      => Kartenart (TaskExtern));
             
             return ÜbergangWestenNormal (XAchseExtern         => XAchseExtern,
                                           ÄnderungXAchseExtern => ÄnderungXAchseExtern,
-                                          LogikGrafikExtern    => LogikGrafikExtern);
+                                          TaskExtern    => TaskExtern);
             
          when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (LogikGrafikExtern   => LogikGrafikExtern,
-                                                                     ÜbergangExtern      => Kartenart (LogikGrafikExtern));
+            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (TaskExtern   => TaskExtern,
+                                                                     ÜbergangExtern      => Kartenart (TaskExtern));
       
             return ÜbergangWestenRückwärts (XAchseExtern         => XAchseExtern,
                                                ÄnderungXAchseExtern => ÄnderungXAchseExtern);
@@ -69,20 +69,20 @@ package body KartenkoordinateXAchseBerechnenLogik is
    function ÜbergangWestenNormal
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      ÜberhangXAchse (LogikGrafikExtern) := Integer (XAchseExtern + ÄnderungXAchseExtern + LeseWeltkarteneinstellungen.XAchse);
+      ÜberhangXAchse (TaskExtern) := Integer (XAchseExtern + ÄnderungXAchseExtern + LeseWeltkarteneinstellungen.XAchse);
          
       XAchseKleinerSchleife:
-      while ÜberhangXAchse (LogikGrafikExtern) < Positive (KartenKonstanten.AnfangXAchse) loop
+      while ÜberhangXAchse (TaskExtern) < Positive (KartenKonstanten.AnfangXAchse) loop
             
-         ÜberhangXAchse (LogikGrafikExtern) := ÜberhangXAchse (LogikGrafikExtern) + Positive (LeseWeltkarteneinstellungen.XAchse);
+         ÜberhangXAchse (TaskExtern) := ÜberhangXAchse (TaskExtern) + Positive (LeseWeltkarteneinstellungen.XAchse);
 
       end loop XAchseKleinerSchleife;
          
-      return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (LogikGrafikExtern));
+      return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (TaskExtern));
       
    end ÜbergangWestenNormal;
    
@@ -110,29 +110,29 @@ package body KartenkoordinateXAchseBerechnenLogik is
    function ÜbergangOsten
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldNatural
    is begin
       
-      Kartenart (LogikGrafikExtern) := LeseWeltkarteneinstellungen.XAchseOsten;
+      Kartenart (TaskExtern) := LeseWeltkarteneinstellungen.XAchseOsten;
       
       case
-        Kartenart (LogikGrafikExtern)
+        Kartenart (TaskExtern)
       is
          when KartenartDatentypen.Karte_X_Kein_Übergang_Enum =>
             return KartenKonstanten.LeerXAchse;
             
          when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (LogikGrafikExtern => LogikGrafikExtern,
-                                                                     ÜbergangExtern    => Kartenart (LogikGrafikExtern));
+            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
+                                                                     ÜbergangExtern    => Kartenart (TaskExtern));
             
             return ÜbergangOstenNormal (XAchseExtern         => XAchseExtern,
                                          ÄnderungXAchseExtern => ÄnderungXAchseExtern,
-                                         LogikGrafikExtern    => LogikGrafikExtern);
+                                         TaskExtern    => TaskExtern);
             
          when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (LogikGrafikExtern => LogikGrafikExtern,
-                                                                     ÜbergangExtern    => Kartenart (LogikGrafikExtern));
+            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
+                                                                     ÜbergangExtern    => Kartenart (TaskExtern));
       
             return ÜbergangOstenRückwärts (XAchseExtern         => XAchseExtern,
                                               ÄnderungXAchseExtern => ÄnderungXAchseExtern);
@@ -145,20 +145,20 @@ package body KartenkoordinateXAchseBerechnenLogik is
    function ÜbergangOstenNormal
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      ÜberhangXAchse (LogikGrafikExtern) := Positive (XAchseExtern + ÄnderungXAchseExtern - LeseWeltkarteneinstellungen.XAchse);
+      ÜberhangXAchse (TaskExtern) := Positive (XAchseExtern + ÄnderungXAchseExtern - LeseWeltkarteneinstellungen.XAchse);
          
       XAchseGrößerSchleife:
-      while ÜberhangXAchse (LogikGrafikExtern) > Positive (LeseWeltkarteneinstellungen.XAchse) loop
+      while ÜberhangXAchse (TaskExtern) > Positive (LeseWeltkarteneinstellungen.XAchse) loop
             
-         ÜberhangXAchse (LogikGrafikExtern) := ÜberhangXAchse (LogikGrafikExtern) - Positive (LeseWeltkarteneinstellungen.XAchse);
+         ÜberhangXAchse (TaskExtern) := ÜberhangXAchse (TaskExtern) - Positive (LeseWeltkarteneinstellungen.XAchse);
             
       end loop XAchseGrößerSchleife;
          
-      return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (LogikGrafikExtern));
+      return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (TaskExtern));
       
    end ÜbergangOstenNormal;
    

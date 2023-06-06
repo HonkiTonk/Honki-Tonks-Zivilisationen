@@ -161,18 +161,24 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (07.06.2023):
+   -- Version 0.05.1795 => 0.05. (07.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1695 => 0.05. (06.06.2023):
+   -- Version 0.05.1695 => 0.05.1795 (06.06.2023):
    
    -- Anpassungen für Alire vorgenommen.
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kampfwerteberechnung für Einheiten überarbeitet.
+   -- Kampfwerteberechnung für Städte überarbeitet.
+   -- Interne Struktur überarbeitet.
+   -- Einheiten starten jetzt mit dem Rang 0.
+   -- Fehler behoben der beim Autospeichern zu einem Programmstopp führen konnte.
+   -- Fehler behoben der beim manuellen Speichern zu einem Programmstopp führte.
+   -- Weiter am neuen Kartenfelderproduktionssystem gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

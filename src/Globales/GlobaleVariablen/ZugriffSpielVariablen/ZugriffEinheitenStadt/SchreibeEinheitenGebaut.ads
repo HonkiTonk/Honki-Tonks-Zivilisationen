@@ -67,7 +67,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Lebenspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LebenspunkteExtern : in EinheitenDatentypen.Lebenspunkte;
+      LebenspunkteExtern : in KampfDatentypen.Lebenspunkte;
       RechnenSetzenExtern : in Boolean)
      with
        Pre => (
@@ -356,8 +356,8 @@ private
    
    Beförderungsgrenze : KampfDatentypen.ErfahrungspunkteVorhanden;
    
-   MaximaleLebenspunkte : EinheitenDatentypen.VorhandeneLebenspunkte;
+   MaximaleLebenspunkte : KampfDatentypen.LebenspunkteVorhanden;
    
-   MaximaleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
+   MaximaleBewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
 
 end SchreibeEinheitenGebaut;

@@ -46,7 +46,7 @@ private
    
    BewegungDurchführen : Boolean;
    
-   AktuelleBewegungspunkte : EinheitenDatentypen.VorhandeneBewegungspunkte;
+   AktuelleBewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
    
    BewertungPosition : Positive;
    

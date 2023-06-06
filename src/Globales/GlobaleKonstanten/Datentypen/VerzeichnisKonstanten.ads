@@ -18,10 +18,10 @@ package VerzeichnisKonstanten is
    
    
    Einstellungen : constant String (1 .. 13) := "Einstellungen";
-   Nutzereinstellungen : constant String (1 .. 33) := Einstellungen & "/Nutzereinstellungen";
+   Spieleinstellungen : constant String (1 .. 32) := Einstellungen & "/Spieleinstellungen";
    Grafikeinstellungen : constant String (1 .. 33) := Einstellungen & "/Grafikeinstellungen";
    Toneinstellungen : constant String (1 .. 30) := Einstellungen & "/Toneinstellungen";
-   Tastenbelegung : constant String (1 .. 28) := Einstellungen & "/Tastenbelegung";
+   Tasteneinstellungen : constant String (1 .. 33) := Einstellungen & "/Tasteneinstellungen";
    SonstigeEinstellungen : constant String (1 .. 35) := Einstellungen & "/SonstigeEinstellungen";
    
    

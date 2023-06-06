@@ -1,5 +1,6 @@
 with KartenKonstanten;
 with DiplomatieDatentypen;
+with SystemDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -68,7 +69,7 @@ package body EinheitenverschiebungLogik is
                
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                       ÄnderungExtern    => (Stadtkoordinaten.EAchse, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
                      
             if
               Kartenwert.XAchse = KartenKonstanten.LeerXAchse
@@ -84,7 +85,7 @@ package body EinheitenverschiebungLogik is
             else
                EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => KontaktierteSpeziesExtern,
                                                                                        KoordinatenExtern => Kartenwert,
-                                                                                       LogikGrafikExtern => True);
+                                                                                       TaskExtern => SystemDatentypen.Logik_Task_Enum);
             end if;
                
             case
@@ -126,7 +127,7 @@ package body EinheitenverschiebungLogik is
                      
                KartenwertVerschieben := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Einheitenkoordinaten,
                                                                                                                     ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                    LogikGrafikExtern => True);
+                                                                                                                    TaskExtern => SystemDatentypen.Logik_Task_Enum);
             
                if
                  KartenwertVerschieben.XAchse = KartenKonstanten.LeerXAchse
@@ -148,7 +149,7 @@ package body EinheitenverschiebungLogik is
                                                                                     NeueKoordinatenExtern      => KartenwertVerschieben)
                  and
                    EinheitenKonstanten.LeerNummer = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenwertVerschieben,
-                                                                                                            LogikGrafikExtern => True).Nummer
+                                                                                                            TaskExtern => SystemDatentypen.Logik_Task_Enum).Nummer
                then
                   SchreibeEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                        KoordinatenExtern          => KartenwertVerschieben,

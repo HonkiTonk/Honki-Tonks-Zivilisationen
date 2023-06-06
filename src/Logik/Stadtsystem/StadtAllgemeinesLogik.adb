@@ -2,6 +2,7 @@ with KartenKonstanten;
 with EinheitenKonstanten;
 with EinheitenDatentypen;
 with StadtRecordKonstanten;
+with SystemDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -102,7 +103,7 @@ package body StadtAllgemeinesLogik is
                   
                      Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => Stadtkoordinaten,
                                                                                                                ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                               LogikGrafikExtern => True);
+                                                                                                               TaskExtern => SystemDatentypen.Logik_Task_Enum);
                   
                      if
                        Kartenwert.XAchse = KartenKonstanten.LeerXAchse

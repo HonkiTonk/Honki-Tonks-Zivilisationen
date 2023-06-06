@@ -23,16 +23,6 @@ package body SpeichernKarteLogik is
       return Boolean
    is begin
       
-      case
-        AutospeichernExtern
-      is
-         when False =>
-            raise Constraint_Error;
-            
-         when others =>
-            null;
-      end case;
-      
       KartenRecords.PermanenteKartenparameterRecord'Write (Stream (File => DateiSpeichernExtern),
                                                            LeseWeltkarteneinstellungen.GesamteEinstellungen);
       

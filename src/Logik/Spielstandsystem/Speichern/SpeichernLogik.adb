@@ -338,6 +338,8 @@ package body SpeichernLogik is
          Autospeichernname := LeseAllgemeines.Ironman;
                
       else
+         MaximalerAutospeichernwert := LeseOptionen.AnzahlAutospeichern;
+         
          if
            OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert > MaximalerAutospeichernwert
          then
@@ -348,7 +350,6 @@ package body SpeichernLogik is
          end if;
          
          Autospeichernname := To_Unbounded_Wide_Wide_String (Source => "Auto" & OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert'Wide_Wide_Image);
-         MaximalerAutospeichernwert := LeseOptionen.AnzahlAutospeichern;
          
          if
            MaximalerAutospeichernwert = 1

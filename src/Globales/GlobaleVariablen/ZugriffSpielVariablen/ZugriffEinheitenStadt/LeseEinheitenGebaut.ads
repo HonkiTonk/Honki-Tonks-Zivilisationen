@@ -68,7 +68,7 @@ package LeseEinheitenGebaut is
       
    function Lebenspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.Lebenspunkte
+      return KampfDatentypen.Lebenspunkte
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -78,7 +78,7 @@ package LeseEinheitenGebaut is
    
    function Bewegungspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.VorhandeneBewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteVorhanden
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -311,6 +311,6 @@ private
    Beförderungsgrenze : KampfDatentypen.Erfahrungspunkte;
    MaximalerRang : KampfDatentypen.Rang;
    
-   ErlaubteLebenspunkte : EinheitenDatentypen.VorhandeneLebenspunkte;
+   ErlaubteLebenspunkte : KampfDatentypen.LebenspunkteVorhanden;
 
 end LeseEinheitenGebaut;

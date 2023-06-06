@@ -55,9 +55,9 @@ package body LeseEinheitenGebaut is
    
    function Lebenspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.Lebenspunkte
+      return KampfDatentypen.Lebenspunkte
    is
-      use type EinheitenDatentypen.Lebenspunkte;
+      use type KampfDatentypen.Lebenspunkte;
    begin
       
       -- Solche Prüfungen hier noch überall einbauen, da jetzt ja auch der Grafiktask hierauf zugreift. äöü
@@ -97,7 +97,7 @@ package body LeseEinheitenGebaut is
    
    function Bewegungspunkte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.VorhandeneBewegungspunkte
+      return EinheitenDatentypen.BewegungspunkteVorhanden
    is begin
       
       return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Bewegungspunkte;

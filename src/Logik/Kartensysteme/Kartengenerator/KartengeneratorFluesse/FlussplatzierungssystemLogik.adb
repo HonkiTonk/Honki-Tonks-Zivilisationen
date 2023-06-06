@@ -1,3 +1,5 @@
+with SystemDatentypen;
+
 with LeseWeltkarte;
 with SchreibeWeltkarte;
 
@@ -18,7 +20,7 @@ package body FlussplatzierungssystemLogik is
 
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      LogikGrafikExtern => True);
+                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
 
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

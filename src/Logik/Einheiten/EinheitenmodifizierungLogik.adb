@@ -17,7 +17,7 @@ package body EinheitenmodifizierungLogik is
    is
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       use type EinheitenDatentypen.Bewegungspunkte;
-      use type EinheitenDatentypen.Lebenspunkte;
+      use type KampfDatentypen.Lebenspunkte;
    begin
       
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

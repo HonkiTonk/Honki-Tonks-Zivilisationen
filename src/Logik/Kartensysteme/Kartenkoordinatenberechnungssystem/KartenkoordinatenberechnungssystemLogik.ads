@@ -1,6 +1,7 @@
 with KartenDatentypen;
 with KartenKonstanten;
 with KartenRecords;
+with SystemDatentypen;
 
 with LeseWeltkarteneinstellungen;
 
@@ -12,7 +13,7 @@ package KartenkoordinatenberechnungssystemLogik is
    function Kartenkoordinatenberechnungssystem
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
-      LogikGrafikExtern : in Boolean)
+      TaskExtern : in SystemDatentypen.Task_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
@@ -53,7 +54,7 @@ package KartenkoordinatenberechnungssystemLogik is
    
 private
    
-   type NeueKoordinateArray is array (Boolean'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
+   type NeueKoordinateArray is array (SystemDatentypen.Task_Enum'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
    NeueKoordinate : NeueKoordinateArray;
    
 end KartenkoordinatenberechnungssystemLogik;

@@ -2,6 +2,7 @@ with KartenverbesserungDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 with StadtKonstanten;
+with SystemDatentypen;
 
 with LeseStadtGebaut;
 
@@ -106,7 +107,7 @@ package body KIStadtSuchenLogik is
             case
               EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => FeindlicheSpeziesExtern,
                                                                      KoordinatenExtern => Stadtkoordinaten,
-                                                                     LogikGrafikExtern => True)
+                                                                     TaskExtern => SystemDatentypen.Logik_Task_Enum)
             is
                when EinheitenKonstanten.LeerNummer =>
                   return Stadtkoordinaten;
