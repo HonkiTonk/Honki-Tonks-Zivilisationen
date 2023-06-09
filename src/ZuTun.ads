@@ -1,6 +1,6 @@
 -- Womit ich aufgehört habe:
 
--- Stadtproduktion überarbeiten.
+-- Textskalierung/Anpassung an die Auflösung ist so nicht richtig, noch einmal drüber schauen.
 --
 
 

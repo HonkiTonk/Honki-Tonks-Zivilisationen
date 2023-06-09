@@ -23,6 +23,8 @@ with TexteinstellungenGrafik;
 with TextaccessverwaltungssystemGrafik;
 with FeldproduktionLogik;
 
+with Sf.Graphics.Text;
+
 package body StadtumgebungGrafik is
 
    procedure Stadtumgebung
@@ -127,7 +129,7 @@ package body StadtumgebungGrafik is
                Farbe := Sf.Graphics.Color.sfGreen;
                Wirtschaftsinformationen (KoordinatenExtern => KarteKoordinatenExtern,
                                          PositionExtern    => (PositionExtern.x + Rahmendicke, PositionExtern.y + Rahmendicke),
-                                         FeldgrößeExtern   => FeldgrößeExtern,
+                                         FeldgrößeExtern   => (FeldgrößeExtern.x - 2.80 * Rahmendicke, FeldgrößeExtern.y - 2.00 * Rahmendicke),
                                          SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
                
             when False =>
@@ -161,38 +163,51 @@ package body StadtumgebungGrafik is
       
       TextaccessverwaltungssystemGrafik.Farbe (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                FarbeExtern      => TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum));
-        
+      
       ProduktionSchleife:
-      for ProduktionSchleifenwert in 1 .. 4 loop
+      for ProduktionSchleifenwert in ProduktionDatentypen.Produktion_Enum'Range loop
          
          case
            ProduktionSchleifenwert
          is
-            when 1 =>
+            when ProduktionDatentypen.Nahrung_Enum =>
                Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
                                                                                                                            SpeziesExtern        => SpeziesExtern,
-                                                                                                                           ProduktionsartExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
+                                                                                                                           ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
                
-            when 2 =>
+            when ProduktionDatentypen.Material_Enum =>
                Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
                                                                                                                                  SpeziesExtern        => SpeziesExtern,
-                                                                                                                                 ProduktionsartExtern => ProduktionDatentypen.Material_Enum)'Wide_Wide_Image;
+                                                                                                                                 ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
                
-            when 3 =>
+            when ProduktionDatentypen.Geld_Enum =>
                Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
                                                                                                                            SpeziesExtern        => SpeziesExtern,
-                                                                                                                           ProduktionsartExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
+                                                                                                                           ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
                
-            when 4 =>
+            when ProduktionDatentypen.Forschung_Enum =>
                Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
                                                                                                                               SpeziesExtern        => SpeziesExtern,
-                                                                                                                              ProduktionsartExtern => ProduktionDatentypen.Forschung_Enum)'Wide_Wide_Image;
+                                                                                                                              ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
          end case;
          
-         TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
-                                                                 TextExtern       => To_Wide_Wide_String (Source => Text),
-                                                                 PositionExtern   => (PositionExtern.x, (FeldgrößeExtern.y / 5.00) * Float (ProduktionSchleifenwert - 1) + PositionExtern.y));
+         TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                         TextExtern       => To_Wide_Wide_String (Source => Text),
+                                                         PositionExtern   => (PositionExtern.x, (FeldgrößeExtern.y / 4.30)
+                                                                              * Float (ProduktionDatentypen.Produktion_Enum'Pos (ProduktionSchleifenwert)) + PositionExtern.y));
          
+         if
+           Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width > FeldgrößeExtern.x
+         then
+            Breitenskalierung := FeldgrößeExtern.x / Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width;
+            
+         else
+            Breitenskalierung := 1.00;
+         end if;
+         
+         TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+                                                              SkalierungExtern => (Breitenskalierung, 1.00));
+                  
       end loop ProduktionSchleife;
       
    end Wirtschaftsinformationen;

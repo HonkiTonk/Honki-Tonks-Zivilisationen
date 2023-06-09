@@ -46,6 +46,7 @@ private
    Verbesserungsfeld : KartenverbesserungDatentypen.Verbesserung_Enum;
    
    Rahmendicke : Float;
+   Breitenskalierung : Float;
    
    Text : Unbounded_Wide_Wide_String;
    
@@ -55,7 +56,9 @@ private
    
    AktuellePosition : Sf.System.Vector2.sfVector2f;
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   ViewflächeFeldproduktion : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Feldgröße : Sf.System.Vector2.sfVector2f;
+   Skalierung : Sf.System.Vector2.sfVector2f;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
@@ -204,7 +207,7 @@ private
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse
                and
-                 PositionExtern.x >= 0.00
+                PositionExtern.x >= 0.00
                and
                  PositionExtern.y >= 0.00
                and

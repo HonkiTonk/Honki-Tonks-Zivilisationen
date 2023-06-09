@@ -140,31 +140,30 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (10.06.2023):
+   -- Version 0.05.1830 => 0.05. (10.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (09.06.2023):
+   -- Version 0.05.1795 => 0.05.1830 (09.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (08.06.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textanzeige überarbeitet, so dass einige überstejemde Texte jetzt nicht mehr überstehen.
+   -- Minimal mögliche Auflösung auf 640x480 erhöht.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05.1795 => 0.05. (07.06.2023):
+   -- Version 0.05.1795 => 0.05.1795 (08.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.1795 => 0.05.1795 (07.06.2023):
+   
+   -- null.
    
    
 

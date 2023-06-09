@@ -27,6 +27,17 @@ package body ViewsEinstellenGrafik is
    
    
    
+   procedure ViewSetzen
+     (ViewExtern : in Sf.Graphics.sfView_Ptr)
+   is begin
+      
+      Sf.Graphics.RenderWindow.setView (renderWindow => FensterGrafik.FensterLesen,
+                                        view         => ViewExtern);
+      
+   end ViewSetzen;
+   
+   
+   
    function ViewflächeAuflösungAnpassen
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f

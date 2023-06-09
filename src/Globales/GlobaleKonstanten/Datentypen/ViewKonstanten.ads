@@ -40,5 +40,6 @@ package ViewKonstanten is
    SteuerungAuswahl : constant Positive := 2;
    
    InformationsfeldStadtkarte : constant Positive := 1;
+   InformationenFeldproduktion : constant Positive := 2;
 
 end ViewKonstanten;

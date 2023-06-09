@@ -27,6 +27,13 @@ package ViewsEinstellenGrafik is
                  AnzeigebereichExtern.height >= 0.00
               );
    
+   procedure ViewSetzen
+     (ViewExtern : in Sf.Graphics.sfView_Ptr)
+     with
+       Pre => (
+                 ViewExtern /= null
+              );
+   
    
    
    function ViewflächeAuflösungAnpassen

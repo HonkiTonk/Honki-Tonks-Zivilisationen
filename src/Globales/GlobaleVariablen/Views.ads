@@ -37,6 +37,6 @@ package Views is
 
    EditorenviewAccesse : constant ViewsArray (1 .. 2) := (others => Sf.Graphics.View.create);
 
-   InformationsfeldAccesse : constant ViewsArray (ViewKonstanten.InformationsfeldStadtkarte .. ViewKonstanten.InformationsfeldStadtkarte) := (others => Sf.Graphics.View.create);
+   InformationsfeldAccesse : constant ViewsArray (ViewKonstanten.InformationsfeldStadtkarte .. ViewKonstanten.InformationenFeldproduktion) := (others => Sf.Graphics.View.create);
 
 end Views;
