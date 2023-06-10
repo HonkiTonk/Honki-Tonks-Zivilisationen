@@ -20,6 +20,7 @@ package GrafikRecords is
    type GrafikeinstellungenRecord is record
       
       EbeneUnterhalbSichtbar : Boolean;
+      BildrateAnzeigen : Boolean;
       
    end record;
 

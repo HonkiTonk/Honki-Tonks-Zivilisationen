@@ -52,6 +52,16 @@ package body LeseEinstellungenGrafik is
       return EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar;
       
    end EbenenUnterhalbSichtbar;
+   
+   
+   
+   function BildrateAnzeigen
+     return Boolean
+   is begin
+      
+      return EinstellungenGrafik.Grafikeinstellungen.BildrateAnzeigen;
+      
+   end BildrateAnzeigen;
    -- Grafikeinstellungen
    
    

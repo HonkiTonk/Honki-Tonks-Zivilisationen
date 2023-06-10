@@ -52,6 +52,10 @@ package LeseEinstellungenGrafik is
    function EbenenUnterhalbSichtbar
      return Boolean;
    pragma Inline (EbenenUnterhalbSichtbar);
+   
+   function BildrateAnzeigen
+     return Boolean;
+   pragma Inline (BildrateAnzeigen);
    -- Grafikeinstellungen
    
    

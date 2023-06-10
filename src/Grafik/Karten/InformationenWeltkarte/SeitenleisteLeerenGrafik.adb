@@ -1,5 +1,6 @@
 with Views;
 with GrafikDatentypen;
+with GrafikRecordKonstanten;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;

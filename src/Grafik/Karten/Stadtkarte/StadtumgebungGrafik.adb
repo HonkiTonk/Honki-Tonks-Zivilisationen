@@ -32,7 +32,7 @@ package body StadtumgebungGrafik is
    is
       use type KartenDatentypen.Ebene;
    begin
-            
+      
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtUmgebung).width,
                                                                                               GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtUmgebung).height));
@@ -199,14 +199,23 @@ package body StadtumgebungGrafik is
          if
            Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width > FeldgrößeExtern.x
          then
-            Breitenskalierung := FeldgrößeExtern.x / Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width;
+            Skalierung.x := FeldgrößeExtern.x / Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width;
             
          else
-            Breitenskalierung := 1.00;
+            Skalierung.x := 1.00;
+         end if;
+         
+         if
+           Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height * 4.30 > FeldgrößeExtern.y
+         then
+            Skalierung.y := FeldgrößeExtern.y / (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height * 4.30);
+            
+         else
+            Skalierung.y := 1.00;
          end if;
          
          TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
-                                                              SkalierungExtern => (Breitenskalierung, 1.00));
+                                                              SkalierungExtern => Skalierung);
                   
       end loop ProduktionSchleife;
       

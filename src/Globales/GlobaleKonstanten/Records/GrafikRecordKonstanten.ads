@@ -6,10 +6,6 @@ with ViewKonstanten;
 
 package GrafikRecordKonstanten is
    pragma Elaborate_Body;
-   
-   Minimalauflösung : constant Sf.System.Vector2.sfVector2u := (640, 480);
-   
-   
 
    StartView : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
    

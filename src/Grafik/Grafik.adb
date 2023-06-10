@@ -2,6 +2,8 @@ with GrafikDatentypen;
 with ZeitKonstanten;
 with SystemKonstanten;
 
+with LeseEinstellungenGrafik;
+
 with IntroGrafik;
 with MenueaufteilungGrafik;
 with NachGrafiktask;
@@ -25,6 +27,7 @@ with AbspannGrafik;
 with VerkaufsauswahlGrafik;
 with UebergabeRecordErmittelnGrafik;
 with TexteinstellungenGrafik;
+with BildrateAnzeigenGrafik;
 
 -- with Diagnoseinformationen;
 
@@ -43,12 +46,6 @@ package body Grafik is
       -- Das Setzen der Schriftart kann scheinbar erst nach dem Erzeugen eines Fensters stattfinden.
       -- Oder habe ich zu dem Zeitpunkt den Font noch nicht eingelesen? Mal nachprüfen. äöü
       FensterGrafik.FensterErzeugen;
-      
-      -- Aus irgendeinen Grund scheint das Windows zu brauchen, obwohl diese Werte bereits in StandardSpielwerteSetzenLogik.StandardspielwerteGrafik berechnet werden.
-      -- Später (erst nach der Veröffentlichung von GNAT 13) mal nachprüfen warum. äöü
-      -- Oder liegt das daran dass die Fenstergröße erst jetzt bekannt ist? Mal nachprüfen. äöü
-      -- SichtweitenGrafik.KartenfelderAbmessungBerechnen;
-      -- SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
       
       -- Diagnoseinformationen.Größenprüfung;
       
@@ -77,6 +74,16 @@ package body Grafik is
                
             when False =>
                exit GrafikSchleife;
+         end case;
+         
+         case
+           LeseEinstellungenGrafik.BildrateAnzeigen
+         is
+            when True =>
+               BildrateAnzeigenGrafik.Bildrate;
+            
+            when False =>
+               null;
          end case;
          
       end loop GrafikSchleife;
@@ -204,7 +211,7 @@ package body Grafik is
          
          when GrafikDatentypen.Grafik_Menüs_Enum =>
             MenueaufteilungGrafik.Menüaufteilung (WelchesMenüExtern     => NachGrafiktask.AktuellesMenü,
-                                                  AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl);
+                                                   AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl);
                
          when GrafikDatentypen.Grafik_Editoren_Enum =>
             EditorenGrafik.Editoren (WelcherEditorExtern => NachGrafiktask.WelcherEditor);

@@ -133,23 +133,24 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (11.06.2023):
+   -- Version 0.05.1865 => 0.05. (11.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1830 => 0.05. (10.06.2023):
+   -- Version 0.05.1830 => 0.05.1865 (10.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textanzeige überarbeitet, um bei kleineren Auflösung bessere Lesbarkeit zu erreichen.
+   -- Zu Testzwecken eine einfache Bildratenanzeige für das Terminal eingebaut.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
    -- Version 0.05.1795 => 0.05.1830 (09.06.2023):
    
-   -- Textanzeige überarbeitet, so dass einige überstejemde Texte jetzt nicht mehr überstehen.
+   -- Textanzeige überarbeitet, so dass einige überstehende Texte jetzt nicht mehr überstehen.
    -- Minimal mögliche Auflösung auf 640x480 erhöht.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    

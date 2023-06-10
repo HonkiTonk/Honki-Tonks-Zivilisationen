@@ -1,7 +1,5 @@
 with Sf.System.Vector2;
 
-private with GrafikRecordKonstanten;
-
 package SeitenleisteLeerenGrafik is
    pragma Elaborate_Body;
 
@@ -24,6 +22,6 @@ package SeitenleisteLeerenGrafik is
    
 private
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   Viewfläche : Sf.System.Vector2.sfVector2f;
 
 end SeitenleisteLeerenGrafik;

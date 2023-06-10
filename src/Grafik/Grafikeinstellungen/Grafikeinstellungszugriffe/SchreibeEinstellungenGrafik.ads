@@ -51,6 +51,9 @@ package SchreibeEinstellungenGrafik is
    -- Grafikeinstellungen
    procedure EbenenUnterhalbSichtbar;
    pragma Inline (EbenenUnterhalbSichtbar);
+   
+   procedure BildrateAnzeigen;
+   pragma Inline (BildrateAnzeigen);
    -- Grafikeinstellungen
    
    

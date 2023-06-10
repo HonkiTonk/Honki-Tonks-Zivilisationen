@@ -51,6 +51,15 @@ package body SchreibeEinstellungenGrafik is
       EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar := not EinstellungenGrafik.Grafikeinstellungen.EbeneUnterhalbSichtbar;
       
    end EbenenUnterhalbSichtbar;
+   
+   
+   
+   procedure BildrateAnzeigen
+   is begin
+      
+      EinstellungenGrafik.Grafikeinstellungen.BildrateAnzeigen := not EinstellungenGrafik.Grafikeinstellungen.BildrateAnzeigen;
+      
+   end BildrateAnzeigen;
    -- Grafikeinstellungen
    
    

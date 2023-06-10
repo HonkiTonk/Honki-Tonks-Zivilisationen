@@ -122,16 +122,7 @@ package body EinheitenseitenleisteGrafik is
             Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
                                                                     ErlaubteBreiteExtern => Viewfläche.x);
             Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
-            
-            if
-              Textbreite > Viewfläche.x
-            then
-               Textbreite := Viewfläche.x;
-            
-            else
-               null;
-            end if;
-            
+                        
             TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
                                                                  SkalierungExtern => Skalierung);
          end if;
