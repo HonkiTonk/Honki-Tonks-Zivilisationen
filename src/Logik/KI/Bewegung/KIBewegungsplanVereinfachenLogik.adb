@@ -56,7 +56,7 @@ package body KIBewegungsplanVereinfachenLogik is
                
                KartenwertVereinfachung := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuellePlankoordinaten,
                                                                                                                       ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                if
                  KartenwertVereinfachung.XAchse = KartenKonstanten.LeerXAchse

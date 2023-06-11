@@ -54,8 +54,8 @@ package body KartenkoordinatenberechnungssystemLogik is
             end if;
       end case;
       
-      KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
-                                                               ÜbergangExtern    => KartenartDatentypen.Karte_Y_Kein_Übergang_Enum);
+      KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern     => TaskExtern,
+                                                               ÜbergangExtern => KartenartDatentypen.Karte_Y_Kein_Übergang_Enum);
       
       case
         ÄnderungExtern.YAchse
@@ -78,8 +78,8 @@ package body KartenkoordinatenberechnungssystemLogik is
             end if;
       end case;
       
-      KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
-                                                               ÜbergangExtern    => KartenartDatentypen.Karte_X_Kein_Übergang_Enum);
+      KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (TaskExtern     => TaskExtern,
+                                                               ÜbergangExtern => KartenartDatentypen.Karte_X_Kein_Übergang_Enum);
             
       case
         ÄnderungExtern.XAchse

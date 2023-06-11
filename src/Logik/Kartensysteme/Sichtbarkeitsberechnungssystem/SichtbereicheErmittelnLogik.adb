@@ -78,7 +78,7 @@ package body SichtbereicheErmittelnLogik is
       
       KartenBlockadeWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YÄnderungExtern, XÄnderungExtern),
-                                                                                                        TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                        TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
         KartenBlockadeWert.XAchse

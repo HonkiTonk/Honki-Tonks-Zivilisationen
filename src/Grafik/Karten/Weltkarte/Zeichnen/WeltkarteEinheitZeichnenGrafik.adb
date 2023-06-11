@@ -28,7 +28,7 @@ package body WeltkarteEinheitZeichnenGrafik is
    begin
       
       EinheitSpeziesNummer := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
-                                                                                      TaskExtern => SystemDatentypen.Grafik_Task_Enum);
+                                                                                      TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
       
       if
         EinheitSpeziesNummer.Nummer = EinheitenKonstanten.LeerNummer

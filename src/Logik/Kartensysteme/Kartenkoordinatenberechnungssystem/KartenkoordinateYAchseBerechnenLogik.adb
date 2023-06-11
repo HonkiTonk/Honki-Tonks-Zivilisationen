@@ -47,16 +47,16 @@ package body KartenkoordinateYAchseBerechnenLogik is
             return KartenKonstanten.LeerYAchse;
                         
          when KartenartDatentypen.Karte_Y_Übergang_Enum | KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
-                                                                     ÜbergangExtern    => Kartenart (TaskExtern));
+            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern     => TaskExtern,
+                                                                     ÜbergangExtern => Kartenart (TaskExtern));
             
             return ÜbergangNordenNormal (YAchseExtern         => YAchseExtern,
                                           ÄnderungYAchseExtern => ÄnderungYAchseExtern,
                                           TaskExtern    => TaskExtern);
             
          when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
-                                                                     ÜbergangExtern    => Kartenart (TaskExtern));
+            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern     => TaskExtern,
+                                                                     ÜbergangExtern => Kartenart (TaskExtern));
             
             return ÜbergangNordenRückwärts (YAchseExtern         => YAchseExtern,
                                                ÄnderungYAchseExtern => ÄnderungYAchseExtern);
@@ -123,16 +123,16 @@ package body KartenkoordinateYAchseBerechnenLogik is
             return KartenKonstanten.LeerYAchse;
             
          when KartenartDatentypen.Karte_Y_Übergang_Enum | KartenartDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
-                                                                     ÜbergangExtern    => Kartenart (TaskExtern));
+            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern     => TaskExtern,
+                                                                     ÜbergangExtern => Kartenart (TaskExtern));
             
             return ÜbergangSüdenNormal (YAchseExtern         => YAchseExtern,
                                           ÄnderungYAchseExtern => ÄnderungYAchseExtern,
                                           TaskExtern    => TaskExtern);
             
          when KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
-                                                                     ÜbergangExtern    => Kartenart (TaskExtern));
+            KartenkoordinatenWerteLogik.YAchseVerschiebungSchreiben (TaskExtern     => TaskExtern,
+                                                                     ÜbergangExtern => Kartenart (TaskExtern));
             
             return ÜbergangSüdenRückwärts (YAchseExtern         => YAchseExtern,
                                                ÄnderungYAchseExtern => ÄnderungYAchseExtern);

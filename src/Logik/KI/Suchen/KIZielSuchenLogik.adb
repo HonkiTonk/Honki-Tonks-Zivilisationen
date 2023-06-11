@@ -93,7 +93,7 @@ package body KIZielSuchenLogik is
                                                                                                             ÄnderungExtern    => (EAchseSchleifenwert,
                                                                                                                                    Multiplikator.YAchse * YAchseSchleifenwert,
                                                                                                                                    Multiplikator.XAchse * XAchseSchleifenwert),
-                                                                                                            TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                            TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                   
                   -- Könnte man ZielGefunden nicht vor der Schleife auf False setze und sich hier das Neusetzen bei LeerAchse sparen? äöü
                   case

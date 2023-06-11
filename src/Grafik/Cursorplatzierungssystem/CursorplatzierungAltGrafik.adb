@@ -112,7 +112,7 @@ package body CursorplatzierungAltGrafik is
       
       Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies),
                                                                                                 ÄnderungExtern    => Koordinatenänderung,
-                                                                                                TaskExtern => SystemDatentypen.Grafik_Task_Enum);
+                                                                                                TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
       
       case
         Kartenwert.XAchse
@@ -157,7 +157,7 @@ package body CursorplatzierungAltGrafik is
             
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AlteCursorkoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      TaskExtern => SystemDatentypen.Grafik_Task_Enum);
+                                                                                                      TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
             if
               Kartenwert.XAchse = KartenKonstanten.LeerXAchse

@@ -160,7 +160,7 @@ package body KIBewegungsplanBerechnenLogik is
                
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
                                                                                                          ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                         TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                Bewertung (BewertungPosition).Koordinaten := KartenWert;
                

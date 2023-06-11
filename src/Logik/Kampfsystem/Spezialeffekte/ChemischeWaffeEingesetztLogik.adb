@@ -51,7 +51,7 @@ package body ChemischeWaffeEingesetztLogik is
 
                Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, Koordinaten.YAchse, Koordinaten.XAchse),
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                         TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                case
                  Kartenwert.EAchse
@@ -81,7 +81,7 @@ package body ChemischeWaffeEingesetztLogik is
                      end if;
                      
                      Spezies := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => Kartenwert,
-                                                                                        TaskExtern => SystemDatentypen.Logik_Task_Enum).Spezies;
+                                                                                        TaskExtern        => SystemDatentypen.Logik_Task_Enum).Spezies;
                      
                      if
                        Spezies = EinheitSpeziesNummerExtern.Spezies
@@ -151,7 +151,7 @@ package body ChemischeWaffeEingesetztLogik is
 
             KartenwertFluss := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                            ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                           TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                           TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
             if
               KartenwertFluss.EAchse = KartenKonstanten.LeerEAchse

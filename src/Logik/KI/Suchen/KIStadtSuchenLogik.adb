@@ -107,7 +107,7 @@ package body KIStadtSuchenLogik is
             case
               EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => FeindlicheSpeziesExtern,
                                                                      KoordinatenExtern => Stadtkoordinaten,
-                                                                     TaskExtern => SystemDatentypen.Logik_Task_Enum)
+                                                                     TaskExtern        => SystemDatentypen.Logik_Task_Enum)
             is
                when EinheitenKonstanten.LeerNummer =>
                   return Stadtkoordinaten;

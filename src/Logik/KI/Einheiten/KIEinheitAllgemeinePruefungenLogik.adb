@@ -58,7 +58,7 @@ package body KIEinheitAllgemeinePruefungenLogik is
    begin
             
       EinheitAufFeld := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
-                                                                                TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       if
         EinheitAufFeld.Nummer = EinheitenKonstanten.LeerNummer

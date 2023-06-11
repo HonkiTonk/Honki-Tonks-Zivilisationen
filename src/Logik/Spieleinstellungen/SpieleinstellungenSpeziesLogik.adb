@@ -219,7 +219,7 @@ package body SpieleinstellungenSpeziesLogik is
       
       case
         EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => GezogeneKoordinate,
-                                                                TaskExtern => SystemDatentypen.Logik_Task_Enum).Nummer
+                                                                TaskExtern        => SystemDatentypen.Logik_Task_Enum).Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
             StartKoordinaten (1) := GezogeneKoordinate;
@@ -267,7 +267,7 @@ package body SpieleinstellungenSpeziesLogik is
 
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                   
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -301,7 +301,7 @@ package body SpieleinstellungenSpeziesLogik is
             then
                case
                  EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KartenWert,
-                                                                         TaskExtern => SystemDatentypen.Logik_Task_Enum).Nummer
+                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum).Nummer
                is
                   when EinheitenKonstanten.LeerNummer =>
                      Zusatzkoordinate := KartenWert;

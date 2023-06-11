@@ -178,7 +178,7 @@ package body KIStadtLogik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             case
               KartenWert.XAchse
@@ -189,7 +189,7 @@ package body KIStadtLogik is
                when others =>
                   FremdeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpezielleSpeziesSuchen (SpeziesExtern     => StadtSpeziesNummerExtern.Spezies,
                                                                                                     KoordinatenExtern => KartenWert,
-                                                                                                    TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                    TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                   
                   if
                     FremdeEinheit.Nummer = EinheitenKonstanten.LeerNummer

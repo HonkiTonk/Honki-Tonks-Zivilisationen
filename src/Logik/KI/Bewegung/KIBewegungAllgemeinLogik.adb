@@ -24,7 +24,7 @@ package body KIBewegungAllgemeinLogik is
    begin
       
       BlockierendeEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => FeldKoordinatenExtern,
-                                                                                     TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                     TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       BlockierendeStadt := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => FeldKoordinatenExtern).Spezies;
       
       if

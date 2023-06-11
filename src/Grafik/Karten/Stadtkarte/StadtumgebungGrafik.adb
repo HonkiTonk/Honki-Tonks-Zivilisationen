@@ -53,7 +53,7 @@ package body StadtumgebungGrafik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      TaskExtern => SystemDatentypen.Grafik_Task_Enum);
+                                                                                                      TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
             if
               KartenWert.EAchse = KartenKonstanten.LeerEAchse

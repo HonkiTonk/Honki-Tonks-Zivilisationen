@@ -123,16 +123,16 @@ package body KartenkoordinateXAchseBerechnenLogik is
             return KartenKonstanten.LeerXAchse;
             
          when KartenartDatentypen.Karte_X_Übergang_Enum | KartenartDatentypen.Karte_X_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
-                                                                     ÜbergangExtern    => Kartenart (TaskExtern));
+            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (TaskExtern     => TaskExtern,
+                                                                     ÜbergangExtern => Kartenart (TaskExtern));
             
             return ÜbergangOstenNormal (XAchseExtern         => XAchseExtern,
                                          ÄnderungXAchseExtern => ÄnderungXAchseExtern,
                                          TaskExtern    => TaskExtern);
             
          when KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
-            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (TaskExtern => TaskExtern,
-                                                                     ÜbergangExtern    => Kartenart (TaskExtern));
+            KartenkoordinatenWerteLogik.XAchseVerschiebungSchreiben (TaskExtern     => TaskExtern,
+                                                                     ÜbergangExtern => Kartenart (TaskExtern));
       
             return ÜbergangOstenRückwärts (XAchseExtern         => XAchseExtern,
                                               ÄnderungXAchseExtern => ÄnderungXAchseExtern);

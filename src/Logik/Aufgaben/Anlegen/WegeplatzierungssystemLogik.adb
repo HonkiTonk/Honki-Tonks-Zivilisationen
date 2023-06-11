@@ -30,7 +30,7 @@ package body WegeplatzierungssystemLogik is
             else
                Entfernungskartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                                     ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                    TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                                    TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
                case
                  Entfernungskartenwert.XAchse
@@ -74,7 +74,7 @@ package body WegeplatzierungssystemLogik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

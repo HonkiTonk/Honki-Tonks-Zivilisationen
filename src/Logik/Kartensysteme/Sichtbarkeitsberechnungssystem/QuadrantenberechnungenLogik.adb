@@ -88,7 +88,7 @@ package body QuadrantenberechnungenLogik is
               
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
-                                                                                                        TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                        TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
         KartenQuadrantWert.XAchse
@@ -220,7 +220,7 @@ package body QuadrantenberechnungenLogik is
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
-                                                                                                        TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                        TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
         KartenQuadrantWert.XAchse
@@ -352,7 +352,7 @@ package body QuadrantenberechnungenLogik is
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
-                                                                                                        TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                        TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
         KartenQuadrantWert.XAchse
@@ -484,7 +484,7 @@ package body QuadrantenberechnungenLogik is
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                         ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
-                                                                                                        TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                        TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
         KartenQuadrantWert.XAchse

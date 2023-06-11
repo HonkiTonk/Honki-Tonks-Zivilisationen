@@ -66,7 +66,7 @@ package body SeitenleisteGrafik is
             end case;
             
             EinheitSpeziesNummer := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => AktuelleKoordinaten,
-                                                                                            TaskExtern => SystemDatentypen.Grafik_Task_Enum);
+                                                                                            TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
       
             case
               EinheitSpeziesNummer.Nummer

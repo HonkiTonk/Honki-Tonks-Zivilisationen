@@ -131,7 +131,7 @@ package body EinheitentransporterLogik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => TranspoterKoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -174,7 +174,7 @@ package body EinheitentransporterLogik is
    begin
       
       EinheitVorhanden := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => KoordinatenExtern,
-                                                                                  TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                  TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
         EinheitVorhanden.Nummer

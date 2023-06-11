@@ -33,7 +33,7 @@ package body BefehlspruefungenLogik is
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
                                                                               KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
-                                                                              TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                              TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
                                                                         KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
       
@@ -87,7 +87,7 @@ package body BefehlspruefungenLogik is
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
                                                                               KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
-                                                                              TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                              TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       StadtNummer := StadtSuchenLogik.KoordinatenStadtMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
                                                                         KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
@@ -249,7 +249,7 @@ package body BefehlspruefungenLogik is
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
                                                                               KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
-                                                                              TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                              TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       case
         EinheitNummer
       is
@@ -281,7 +281,7 @@ package body BefehlspruefungenLogik is
                      
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
                                                                               KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
-                                                                              TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                              TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
         EinheitNummer

@@ -130,7 +130,7 @@ package body WeltkarteZusatzZeichnenGrafik is
          
          KartenWertRahmen := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                          ÄnderungExtern    => Umgebung (UmgebungSchleifenwert),
-                                                                                                         TaskExtern => SystemDatentypen.Grafik_Task_Enum);
+                                                                                                         TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
                
          if
            KartenWertRahmen.XAchse = KartenKonstanten.LeerXAchse

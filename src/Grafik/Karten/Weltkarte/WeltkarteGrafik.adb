@@ -44,7 +44,7 @@ package body WeltkarteGrafik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      TaskExtern => SystemDatentypen.Grafik_Task_Enum);
+                                                                                                      TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -88,7 +88,7 @@ package body WeltkarteGrafik is
             
             KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => CursorKoordinatenAlt,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseNamenSchleifenwert, XAchseNamenSchleifenwert),
-                                                                                                      TaskExtern => SystemDatentypen.Grafik_Task_Enum);
+                                                                                                      TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

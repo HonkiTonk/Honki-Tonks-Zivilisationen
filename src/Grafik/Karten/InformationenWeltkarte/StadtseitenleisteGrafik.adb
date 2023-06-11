@@ -172,13 +172,13 @@ package body StadtseitenleisteGrafik is
                                                                                                                               SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,
                                                                                                                               GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden,
                                                                                                                               EinwohnerExtern   => StadtauswahlExtern.EinwohnerArbeiter (1),
-                                                                                                                              TaskExtern => SystemDatentypen.Grafik_Task_Enum)'Wide_Wide_Image
+                                                                                                                              TaskExtern        => SystemDatentypen.Grafik_Task_Enum)'Wide_Wide_Image
         & " " & TextKonstanten.TrennzeichenUnterschiedlich & KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (IDExtern          => StadtauswahlExtern.ID,
                                                                                                                       KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                                       SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,
                                                                                                                       GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden,
                                                                                                                       EinwohnerExtern   => StadtauswahlExtern.EinwohnerArbeiter (1),
-                                                                                                                      TaskExtern => SystemDatentypen.Grafik_Task_Enum)'Wide_Wide_Image;
+                                                                                                                      TaskExtern        => SystemDatentypen.Grafik_Task_Enum)'Wide_Wide_Image;
       
    end Kampfwerte;
    

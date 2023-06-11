@@ -40,7 +40,7 @@ package body Zusatzgrundplatzierungssystem is
             else
                Entfernungskartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                                     ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                    TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                                    TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                case
                  Entfernungskartenwert.XAchse
@@ -90,7 +90,7 @@ package body Zusatzgrundplatzierungssystem is
             
             Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
             if
               Kartenwert.XAchse = KartenKonstanten.LeerXAchse

@@ -47,7 +47,7 @@ package body CursorbewegungLogik is
       else
          KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => BasisKoordinaten,
                                                                                                    ÄnderungExtern    => Richtung (RichtungExtern),
-                                                                                                   TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                   TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       end if;
       
       case

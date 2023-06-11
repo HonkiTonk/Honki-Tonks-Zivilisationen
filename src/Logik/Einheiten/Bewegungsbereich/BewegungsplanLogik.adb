@@ -43,7 +43,7 @@ package body BewegungsplanLogik is
          EinzelbewegungKartenwert
            := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                                                                                           ÄnderungExtern    => ÄnderungExtern,
-                                                                                          TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                          TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       end if;
       
       case
@@ -114,7 +114,7 @@ package body BewegungsplanLogik is
                   NeueKoordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                          PlanschrittExtern          => 1);
                   AndereEinheit := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => NeueKoordinaten,
-                                                                                           TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                           TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                   StadtAufFeld := StadtSuchenLogik.KoordinatenStadtOhneSpezielleSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,
                                                                                                KoordinatenExtern => NeueKoordinaten);
                end if;
@@ -190,17 +190,17 @@ package body BewegungsplanLogik is
                                                                           NeueKoordinatenExtern      => ZielkoordinatenExtern)
         and
           EinheitSpeziesNummerExtern.Spezies /= EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                                        TaskExtern => SystemDatentypen.Logik_Task_Enum).Spezies
+                                                                                                        TaskExtern        => SystemDatentypen.Logik_Task_Enum).Spezies
       then
          return True;
          
       elsif
         EinheitSpeziesNummerExtern.Spezies = EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                                     TaskExtern => SystemDatentypen.Logik_Task_Enum).Spezies
+                                                                                                     TaskExtern        => SystemDatentypen.Logik_Task_Enum).Spezies
         and then
           False = EinheitenbewegungLogik.EinheitentauschPrüfung (BewegendeEinheitExtern => EinheitSpeziesNummerExtern,
                                                                   StehendeEinheitExtern  => EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => ZielkoordinatenExtern,
-                                                                                                                                                    TaskExtern => SystemDatentypen.Logik_Task_Enum))
+                                                                                                                                                    TaskExtern        => SystemDatentypen.Logik_Task_Enum))
       then
          return True;
          
@@ -407,7 +407,7 @@ package body BewegungsplanLogik is
                
                KartenWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
                                                                                                          ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                         TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                Bewertung (BewertungPosition).Koordinaten := KartenWert;
                

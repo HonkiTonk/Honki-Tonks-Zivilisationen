@@ -121,7 +121,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
                
                VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => EinheitKoordinaten,
                                                                                                                       ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                if
                  VerbesserungKoordinaten.XAchse = KartenKonstanten.LeerXAchse
@@ -173,7 +173,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
             else
                VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
                                                                                                                       ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                      TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
             
                if
                  VerbesserungKoordinaten.XAchse = KartenKonstanten.LeerXAchse

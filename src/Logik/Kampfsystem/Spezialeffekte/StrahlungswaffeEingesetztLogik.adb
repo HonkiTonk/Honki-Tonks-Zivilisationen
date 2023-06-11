@@ -49,7 +49,7 @@ package body StrahlungswaffeEingesetztLogik is
 
                Kartenwert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EAchseSchleifenwert, Koordinaten.YAchse, Koordinaten.XAchse),
                                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                         TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
                
                case
                  Kartenwert.EAchse
@@ -77,7 +77,7 @@ package body StrahlungswaffeEingesetztLogik is
                      end if;
                      
                      Spezies := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => Kartenwert,
-                                                                                        TaskExtern => SystemDatentypen.Logik_Task_Enum).Spezies;
+                                                                                        TaskExtern        => SystemDatentypen.Logik_Task_Enum).Spezies;
                      
                      if
                        Spezies = EinheitSpeziesNummerExtern.Spezies

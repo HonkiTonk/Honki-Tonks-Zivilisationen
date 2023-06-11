@@ -154,7 +154,7 @@ package body GeheZuGrafik is
       
       return KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KartenwertKoordinatenberechnung,
                                                                                          ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.LeerXAchseÄnderung),
-                                                                                         TaskExtern => SystemDatentypen.Grafik_Task_Enum);
+                                                                                         TaskExtern        => SystemDatentypen.Grafik_Task_Enum);
       
    end Koordinatenberechnung;
 

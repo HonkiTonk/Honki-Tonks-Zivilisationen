@@ -42,7 +42,7 @@ package body KampfsystemStadtLogik is
                                                                        GebäudeExtern     => LeseStadtGebaut.AlleGebäude (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
                                                                        EinwohnerExtern   => LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
                                                                                                                                EinwohnerArbeiterExtern  => True),
-                                                                       TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                       TaskExtern        => SystemDatentypen.Logik_Task_Enum);
          
          KampfwerteVerteidiger.Angriff := KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (IDExtern          => LeseStadtGebaut.ID (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
                                                                                                KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
@@ -50,7 +50,7 @@ package body KampfsystemStadtLogik is
                                                                                                GebäudeExtern     => LeseStadtGebaut.AlleGebäude (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern),
                                                                                                EinwohnerExtern   => LeseStadtGebaut.EinwohnerArbeiter (StadtSpeziesNummerExtern => VerteidigendeStadtSpeziesNummerExtern,
                                                                                                                                                        EinwohnerArbeiterExtern  => True),
-                                                                                               TaskExtern => SystemDatentypen.Logik_Task_Enum);
+                                                                                               TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
          KampfwerteAngreifer.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => AngreifendeEinheitSpeziesNummerExtern,
                                                                                                  TaskExtern                 => SystemDatentypen.Logik_Task_Enum);
