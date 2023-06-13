@@ -119,16 +119,17 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05.1900 => 0.05. (13.06.2023):
+   -- Version 0.05.1905 => 0.05. (13.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1880 => 0.05.1900 (12..2023):
+   -- Version 0.05.1880 => 0.05.1910 (12..2023):
    
    -- GNAT-12 auf GNAT-13 aktualisiert und alle notwendigen Bibliotheken aktualisiert.
+   -- Fehler in den gpr Dateien korrigiert.
    
    
 

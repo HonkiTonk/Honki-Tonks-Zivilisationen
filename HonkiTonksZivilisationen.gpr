@@ -21,7 +21,6 @@ project HonkiTonksZivilisationen is
                for Source_Dirs use ("src/**", "srcBS/EntwicklungLinux");
                for Create_Missing_Dirs use "True";
                for Main use ("HonkiTonksZivilisationen.adb");
-               for Runtime ("ada") use "default";
 
             when "Veroeffentlichung" =>
                for Exec_Dir use "Honki Tonks Zivilisationen";
@@ -29,7 +28,6 @@ project HonkiTonksZivilisationen is
                for Source_Dirs use ("src/**", "srcBS/VereoffentlichungLinux");
                for Create_Missing_Dirs use "True";
                for Main use ("HonkiTonksZivilisationen.adb");
-               for Runtime ("ada") use "default";
          end case;
 
       when "Windows" =>
@@ -42,7 +40,6 @@ project HonkiTonksZivilisationen is
                for Source_Dirs use ("src/**", "srcBS/EntwicklungWindows");
                for Create_Missing_Dirs use "True";
                for Main use ("HonkiTonksZivilisationen.adb");
-               for Runtime ("ada") use "default";
 
             when "Veroeffentlichung" =>
                for Exec_Dir use "/mnt/7db030dd-f557-47fa-b854-251d5b7172b9/Ada/Zivilisationen Win/Honki Tonks Zivilisationen";
@@ -50,7 +47,6 @@ project HonkiTonksZivilisationen is
                for Source_Dirs use ("src/**", "srcBS/VereoffentlichungWindows");
                for Create_Missing_Dirs use "True";
                for Main use ("HonkiTonksZivilisationen.adb");
-               for Runtime ("ada") use "default";
          end case;
    end case;
 
