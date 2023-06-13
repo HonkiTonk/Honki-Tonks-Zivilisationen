@@ -1,5 +1,9 @@
 with Ada.Calendar; use Ada.Calendar;
 
+private with Sf.System.Vector2;
+
+private with GrafikRecordKonstanten;
+
 package BildrateAnzeigenGrafik is
    pragma Elaborate_Body;
 
@@ -7,22 +11,10 @@ package BildrateAnzeigenGrafik is
    
 private
    
-   AktuelleBildrate : Float;
+   AktuelleBildrate : Positive;
    
    LetzteZeit : Time := Clock;
    
-   procedure Terminalanzeige
-     (BildrateExtern : in Float)
-     with
-       Pre => (
-                 BildrateExtern > 0.00
-              );
-   
-   procedure SFMLAnzeige
-     (BildrateExtern : in Float)
-     with
-       Pre => (
-                 BildrateExtern > 0.00
-              );
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
 
 end BildrateAnzeigenGrafik;

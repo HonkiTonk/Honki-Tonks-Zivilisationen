@@ -29,15 +29,5 @@ package body LeseOptionen is
       return OptionenVariablen.NutzerEinstellungen.RundenAutospeichern;
       
    end RundenAutospeichern;
-   
-   
-
-   function GanzerEintrag
-     return SystemRecords.NutzerEinstellungenRecord
-   is begin
-      
-      return OptionenVariablen.NutzerEinstellungen;
-      
-   end GanzerEintrag;
      
 end LeseOptionen;

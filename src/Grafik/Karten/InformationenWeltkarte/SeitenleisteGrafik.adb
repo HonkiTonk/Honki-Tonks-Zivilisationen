@@ -45,7 +45,6 @@ package body SeitenleisteGrafik is
       is
          when True =>
             AllgemeinesSeitenleisteGrafik.AllgemeineInformationen (SpeziesExtern => SpeziesExtern);
-                                    
             StadtSpeziesNummer := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => AktuelleKoordinaten);
       
             case

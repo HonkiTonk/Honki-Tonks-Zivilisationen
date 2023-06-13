@@ -34,18 +34,19 @@ private
    
    Anfang : constant Positive := 1;
    AbzugFertig : constant Positive := 2;
-   AbzugZHB : constant Positive := 4;
+   -- Enthält aktuell Speichern, Zurück, Hauptmenü und Spiel beenden.
+   AbzugZusatzauswahl : constant Positive := 4;
    Grundwert : constant Positive := RueckgabeDatentypen.Rückgabe_Werte_Enum'Pos (RueckgabeDatentypen.Auswahl_Null_Enum);
    
    Ende : Positive;
    
    type MenüendeArray is array (MenueDatentypen.Menü_Ohne_Steuerung_Enum'Range) of Positive;
    Menüende : MenüendeArray := (
-                                  MenueDatentypen.Optionen_Menü_Enum           => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Optionen_Menü_Enum) - AbzugZHB,
-                                  MenueDatentypen.Grafik_Menü_Enum             => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Grafik_Menü_Enum) - AbzugZHB,
-                                  MenueDatentypen.Sound_Menü_Enum              => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Sound_Menü_Enum) - AbzugZHB,
-                                  MenueDatentypen.Editoren_Menü_Enum           => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Editoren_Menü_Enum) - AbzugZHB,
-                                  MenueDatentypen.Sonstiges_Menü_Enum          => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Sonstiges_Menü_Enum) - AbzugZHB,
+                                  MenueDatentypen.Optionen_Menü_Enum           => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Optionen_Menü_Enum) - AbzugZusatzauswahl,
+                                  MenueDatentypen.Grafik_Menü_Enum             => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Grafik_Menü_Enum) - AbzugZusatzauswahl,
+                                  MenueDatentypen.Sound_Menü_Enum              => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Sound_Menü_Enum) - AbzugZusatzauswahl,
+                                  MenueDatentypen.Editoren_Menü_Enum           => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Editoren_Menü_Enum) - AbzugZusatzauswahl,
+                                  MenueDatentypen.Sonstiges_Menü_Enum          => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Sonstiges_Menü_Enum) - AbzugZusatzauswahl,
                                   MenueDatentypen.Debug_Menü_Enum              => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Debug_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Kartenart_Menü_Enum          => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenart_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Kartenressourcen_Menü_Enum   => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenressourcen_Menü_Enum) - AbzugFertig,

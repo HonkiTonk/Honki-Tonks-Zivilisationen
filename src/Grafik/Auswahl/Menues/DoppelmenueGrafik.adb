@@ -91,7 +91,7 @@ package body DoppelmenueGrafik is
                                                       TextExtern       => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => PositionSchleifenwert,
                                                                                                                        WelchesMenüExtern => WelchesMenüExtern),
                                                       FarbeExtern      => TextfarbeGrafik.FarbeDoppelmenü (AktuellerTextExtern   => PositionSchleifenwert,
-                                                                                                            AktuelleAuswahlExtern => AktuelleAuswahlExtern + 1));
+                                                                                                            AktuelleAuswahlExtern => AktuelleAuswahlExtern + MenueKonstanten.SchleifenanpassungGrafikLogik));
                   
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                                  ViewbreiteExtern => ViewflächeExtern.x);
@@ -102,7 +102,7 @@ package body DoppelmenueGrafik is
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);
          
-         InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert - 1)
+         InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert - MenueKonstanten.SchleifenanpassungGrafikLogik)
            := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert));
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,

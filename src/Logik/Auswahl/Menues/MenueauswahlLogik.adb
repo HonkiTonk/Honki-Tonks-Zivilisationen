@@ -13,7 +13,7 @@ package body MenueauswahlLogik is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      Ende := MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) - 1;
+      Ende := MenueKonstanten.EndeAbzugGrafik (WelchesMenüExtern) - MenueKonstanten.SchleifenanpassungGrafikLogik;
       
       Ausgewählt := Auswahl (WelchesMenüExtern => WelchesMenüExtern,
                               EndeExtern        => Ende);

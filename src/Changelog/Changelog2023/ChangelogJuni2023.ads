@@ -112,17 +112,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (14.06.2023):
+   -- Version 0.05.1945 => 0.05. (14.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.1905 => 0.05. (13.06.2023):
+   -- Version 0.05.1910 => 0.05.1945 (13.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Bildratenanzeige als SFML Anzeige und eine Aktivierungsoption in den Grafikeinstellungen eingebaut.
+   -- Angefangen das Einstellungsspeichersystem zu überarbeiten, damit bei neuen Einstellungsmöglichkeiten dennoch die alten Nutzereinstellungen geladen werden können.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

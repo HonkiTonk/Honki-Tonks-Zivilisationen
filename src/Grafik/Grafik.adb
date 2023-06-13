@@ -76,16 +76,6 @@ package body Grafik is
                exit GrafikSchleife;
          end case;
          
-         case
-           LeseEinstellungenGrafik.BildrateAnzeigen
-         is
-            when True =>
-               BildrateAnzeigenGrafik.Bildrate;
-            
-            when False =>
-               null;
-         end case;
-         
       end loop GrafikSchleife;
       
       FensterGrafik.FensterEntfernen;
@@ -252,6 +242,16 @@ package body Grafik is
       -- Hier die Eingabe/Spielmeldung mit übergeben damit sie leichter verschiebbar sind? äöü
       AnzeigeSpielmeldungen;
       AnzeigeEingaben;
+               
+      case
+        LeseEinstellungenGrafik.BildrateAnzeigen
+      is
+         when True =>
+            BildrateAnzeigenGrafik.Bildrate;
+            
+         when False =>
+            null;
+      end case;
       
       return True;
       

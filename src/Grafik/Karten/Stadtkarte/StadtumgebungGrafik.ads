@@ -45,6 +45,7 @@ private
    Stadtfeld : KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum;
    Verbesserungsfeld : KartenverbesserungDatentypen.Verbesserung_Enum;
    
+   Schriftabstandanpassung : constant Float := 4.30;
    Rahmendicke : Float;
    
    Text : Unbounded_Wide_Wide_String;
@@ -55,7 +56,6 @@ private
    
    AktuellePosition : Sf.System.Vector2.sfVector2f;
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
-   ViewflächeFeldproduktion : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Skalierung : Sf.System.Vector2.sfVector2f;
    Feldgröße : Sf.System.Vector2.sfVector2f;
 

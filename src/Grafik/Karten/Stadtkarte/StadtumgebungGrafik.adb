@@ -129,7 +129,7 @@ package body StadtumgebungGrafik is
                Farbe := Sf.Graphics.Color.sfGreen;
                Wirtschaftsinformationen (KoordinatenExtern => KarteKoordinatenExtern,
                                          PositionExtern    => (PositionExtern.x + Rahmendicke, PositionExtern.y + Rahmendicke),
-                                         FeldgrößeExtern   => (FeldgrößeExtern.x - 2.80 * Rahmendicke, FeldgrößeExtern.y - 2.00 * Rahmendicke),
+                                         FeldgrößeExtern   => (FeldgrößeExtern.x - 2.80 * Rahmendicke, FeldgrößeExtern.y - GrafikKonstanten.Verdoppelung * Rahmendicke),
                                          SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
                
             when False =>
@@ -193,7 +193,7 @@ package body StadtumgebungGrafik is
          
          TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                          TextExtern       => To_Wide_Wide_String (Source => Text),
-                                                         PositionExtern   => (PositionExtern.x, (FeldgrößeExtern.y / 4.30)
+                                                         PositionExtern   => (PositionExtern.x, (FeldgrößeExtern.y / Schriftabstandanpassung)
                                                                               * Float (ProduktionDatentypen.Produktion_Enum'Pos (ProduktionSchleifenwert)) + PositionExtern.y));
          
          if
@@ -202,16 +202,16 @@ package body StadtumgebungGrafik is
             Skalierung.x := FeldgrößeExtern.x / Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width;
             
          else
-            Skalierung.x := 1.00;
+            Skalierung.x := GrafikKonstanten.Einswert;
          end if;
          
          if
-           Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height * 4.30 > FeldgrößeExtern.y
+           Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height * Schriftabstandanpassung > FeldgrößeExtern.y
          then
-            Skalierung.y := FeldgrößeExtern.y / (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height * 4.30);
+            Skalierung.y := FeldgrößeExtern.y / (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height * Schriftabstandanpassung);
             
          else
-            Skalierung.y := 1.00;
+            Skalierung.y := GrafikKonstanten.Einswert;
          end if;
          
          TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,

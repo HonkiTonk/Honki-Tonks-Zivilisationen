@@ -19,6 +19,8 @@ package GrafikRecordKonstanten is
    Leerbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.00, 0.00);
    Gesamtbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 1.00);
    
+   Bildratenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.05, 0.05);
+   
    Kartenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.80, 1.00);
    Leistendicke : constant Sf.System.Vector2.sfVector2f := (Kartenbereich.width, 1.00 - Kartenbereich.width);
   

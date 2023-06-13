@@ -1,6 +1,5 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with SystemRecords;
 with ZahlenDatentypen;
 
 package LeseOptionen is
@@ -17,9 +16,5 @@ package LeseOptionen is
    function RundenAutospeichern
      return ZahlenDatentypen.EigenesPositive;
    pragma Inline (RundenAutospeichern);
-
-   function GanzerEintrag
-     return SystemRecords.NutzerEinstellungenRecord;
-   pragma Inline (GanzerEintrag);
 
 end LeseOptionen;

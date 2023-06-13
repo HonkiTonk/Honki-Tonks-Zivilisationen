@@ -4,7 +4,7 @@ with MenueDatentypen;
 package MenueKonstanten is
    pragma Elaborate_Body;
 
-   SchleifenwertanpassungGrafikZuAuswahlPosition : constant Positive := 1;
+   SchleifenanpassungGrafikLogik : constant Positive := 1;
    StandardArrayanpassung : constant Positive := 2;
 
    type EndeMenüArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Positive;
@@ -19,7 +19,7 @@ package MenueKonstanten is
                                            MenueDatentypen.Einstellungen_Menü_Enum      => 12,
                                            MenueDatentypen.Editoren_Menü_Enum           => 10,
                                            MenueDatentypen.Sonstiges_Menü_Enum          => 7,
-                                           MenueDatentypen.Grafik_Menü_Enum             => 9,
+                                           MenueDatentypen.Grafik_Menü_Enum             => 10,
                                            MenueDatentypen.Sound_Menü_Enum              => 6,
                                            MenueDatentypen.Debug_Menü_Enum              => 5,
                                            MenueDatentypen.Kartenart_Menü_Enum          => 9,

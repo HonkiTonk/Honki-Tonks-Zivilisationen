@@ -12,6 +12,7 @@ package Views is
    -- Die beiden zusammenfassen? äöü
    MenüviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
    ZusatztextviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
+   BildratenviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
    LadeviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 

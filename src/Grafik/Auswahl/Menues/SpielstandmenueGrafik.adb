@@ -83,7 +83,7 @@ package body SpielstandmenueGrafik is
             is
                when SpielstandlisteAnfang .. SpielstandlisteEnde =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
-                                                     str  => TextSetzen (TextExtern => To_Wide_Wide_String (Spielstand (TextSchleifenwert - MenueKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition))));
+                                                     str  => TextSetzen (TextExtern => To_Wide_Wide_String (Spielstand (TextSchleifenwert - MenueKonstanten.SchleifenanpassungGrafikLogik))));
                   
                when others =>
                   null;
@@ -93,14 +93,14 @@ package body SpielstandmenueGrafik is
                                                                                                   ViewbreiteExtern => ViewflächeExtern.x);
             
             if
-              TextSchleifenwert = MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) - 1
+              TextSchleifenwert = MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) - MenueKonstanten.SchleifenanpassungGrafikLogik
               and
                 NachGrafiktask.LöschenAusgewählt
             then
                Farbe := Sf.Graphics.Color.sfRed;
                
             else
-               Farbe := TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert - MenueKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition,
+               Farbe := TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert - MenueKonstanten.SchleifenanpassungGrafikLogik,
                                                                AuswahlExtern    => AuswahlExtern);
             end if;
          
@@ -117,7 +117,7 @@ package body SpielstandmenueGrafik is
                                                                               SkalierungExtern => Skalierung,
                                                                               FarbeExtern      => Farbe);
             
-            InteraktionAuswahl.PositionenSpielstand (TextSchleifenwert - MenueKonstanten.SchleifenwertanpassungGrafikZuAuswahlPosition)
+            InteraktionAuswahl.PositionenSpielstand (TextSchleifenwert - MenueKonstanten.SchleifenanpassungGrafikLogik)
               := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
          end if;
          

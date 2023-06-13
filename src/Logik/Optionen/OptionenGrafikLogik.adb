@@ -12,8 +12,8 @@ with NachGrafiktask;
 with NachLogiktask;
 with AuswahlaufteilungLogik;
 with ZahleneingabeLogik;
-with SchreibenEinstellungenLogik;
 with Fehlermeldungssystem;
+with SchreibenEinstellungenLogik;
 
 package body OptionenGrafikLogik is
 
@@ -42,6 +42,9 @@ package body OptionenGrafikLogik is
                SchreibeEinstellungenGrafik.EbenenUnterhalbSichtbar;
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+               SchreibeEinstellungenGrafik.BildrateAnzeigen;
+               
+            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                SchreibenEinstellungenLogik.Grafikeinstellungen;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>

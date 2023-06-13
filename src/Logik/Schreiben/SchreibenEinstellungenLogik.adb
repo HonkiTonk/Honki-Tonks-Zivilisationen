@@ -1,5 +1,6 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Exceptions; use Ada.Exceptions;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemRecords;
 with VerzeichnisKonstanten;
@@ -7,6 +8,7 @@ with GrafikRecords;
 with TonRecords;
 with TastenbelegungDatenbank;
 with OptionenVariablen;
+with ZahlenDatentypen;
 
 with LeseOptionen;
 with LeseEinstellungenSound;
@@ -19,6 +21,7 @@ with Fehlermeldungssystem;
 
 package body SchreibenEinstellungenLogik is
    
+   -- Gesamter Record ist SystemRecords.NutzerEinstellungenRecord;
    procedure Nutzereinstellungen
    is begin
       
@@ -27,8 +30,14 @@ package body SchreibenEinstellungenLogik is
               Name => VerzeichnisKonstanten.Spieleinstellungen,
               Form => "WCEM=8");
       
-      SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiNutzereinstellungen),
-                                                     LeseOptionen.GanzerEintrag);
+      Unbounded_Wide_Wide_String'Write (Stream (File => DateiNutzereinstellungen),
+                                        LeseOptionen.Sprache);
+      
+      ZahlenDatentypen.EigenesNatural'Write (Stream (File => DateiNutzereinstellungen),
+                                             LeseOptionen.AnzahlAutospeichern);
+      
+      ZahlenDatentypen.EigenesPositive'Write (Stream (File => DateiNutzereinstellungen),
+                                              LeseOptionen.RundenAutospeichern);
       
       Close (File => DateiNutzereinstellungen);
       

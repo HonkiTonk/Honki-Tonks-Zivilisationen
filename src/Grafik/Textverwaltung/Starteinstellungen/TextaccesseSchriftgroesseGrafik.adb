@@ -55,8 +55,11 @@ package body TextaccesseSchriftgroesseGrafik is
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.Spielmeldung,
                                          size => Normal);
+                  
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.BildrateAccess,
+                                         size => Normal);
       
-      
+            
       
       IntroSchleife:
       for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop

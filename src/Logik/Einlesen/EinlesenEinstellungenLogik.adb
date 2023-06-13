@@ -105,8 +105,12 @@ package body EinlesenEinstellungenLogik is
       return True;
       
    exception
+      when End_Error =>
+         return False;
+         
       when StandardAdaFehler : others =>
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenEinstellungenLogik.NutzereinstellungenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+                  
          return False;
       
    end NutzereinstellungenDurchgehen;
