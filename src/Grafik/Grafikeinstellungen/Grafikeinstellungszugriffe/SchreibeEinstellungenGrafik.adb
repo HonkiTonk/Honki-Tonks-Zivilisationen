@@ -7,7 +7,7 @@ package body SchreibeEinstellungenGrafik is
      (FenstermodusExtern : in Sf.Window.Window.sfWindowStyle)
    is begin
       
-      EinstellungenGrafik.FensterEinstellungen.Fenstermodus := FenstermodusExtern;
+      EinstellungenGrafik.Grafikeinstellungen.Fenstermodus := FenstermodusExtern;
       
    end Fenstermodus;
    
@@ -17,7 +17,7 @@ package body SchreibeEinstellungenGrafik is
      (AuflösungExtern : in Sf.System.Vector2.sfVector2u)
    is begin
       
-      EinstellungenGrafik.FensterEinstellungen.Auflösung := AuflösungExtern;
+      EinstellungenGrafik.Grafikeinstellungen.Auflösung := AuflösungExtern;
       
    end Auflösung;
    
@@ -27,7 +27,7 @@ package body SchreibeEinstellungenGrafik is
      (FarbtiefeExtern : in Sf.sfUint32)
    is begin
       
-      EinstellungenGrafik.FensterEinstellungen.Farbtiefe := FarbtiefeExtern;
+      EinstellungenGrafik.Grafikeinstellungen.Farbtiefe := FarbtiefeExtern;
       
    end Farbtiefe;
    
@@ -37,7 +37,7 @@ package body SchreibeEinstellungenGrafik is
      (BildrateExtern : in Sf.sfUint32)
    is begin
       
-      EinstellungenGrafik.FensterEinstellungen.Bildrate := BildrateExtern;
+      EinstellungenGrafik.Grafikeinstellungen.Bildrate := BildrateExtern;
       
    end Bildrate;
    -- Fenstereinstellungen
@@ -65,10 +65,10 @@ package body SchreibeEinstellungenGrafik is
    
 
    procedure Fenstereinstellungen
-     (EintragExtern : in GrafikRecords.FensterRecord)
+     (EintragExtern : in GrafikRecords.GrafikeinstellungenRecord)
    is begin
       
-      EinstellungenGrafik.FensterEinstellungen := EintragExtern;
+      EinstellungenGrafik.Grafikeinstellungen := EintragExtern;
       
    end Fenstereinstellungen;
    

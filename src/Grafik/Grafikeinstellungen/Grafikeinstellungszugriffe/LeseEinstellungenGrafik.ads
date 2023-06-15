@@ -1,16 +1,16 @@
 with Sf.Window.Window;
 with Sf.System.Vector2;
 with Sf;
+with Sf.Graphics.Color;
 
-with GrafikRecords;
 with GrafikKonstanten;
+with SpeziesDatentypen;
 
 package LeseEinstellungenGrafik is
    pragma Elaborate_Body;
    use type Sf.sfUint32;
    use type Sf.Window.Window.sfWindowStyle;
    
-   -- Fenstereinstellungen
    function Fenstermodus
      return Sf.Window.Window.sfWindowStyle
      with
@@ -44,11 +44,17 @@ package LeseEinstellungenGrafik is
                   Bildrate'Result in GrafikKonstanten.MinimaleBildrate .. GrafikKonstanten.MaximaleBildrate
                );
    pragma Inline (Bildrate);
-   -- Fenstereinstellungen
    
+   function SpeziesfarbeLesen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return Sf.Graphics.Color.sfColor;
+   pragma Inline (SpeziesfarbeLesen);
    
+   function RahmenfarbeLesen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return Sf.Graphics.Color.sfColor;
+   pragma Inline (RahmenfarbeLesen);
    
-   -- Grafikeinstellungen
    function EbenenUnterhalbSichtbar
      return Boolean;
    pragma Inline (EbenenUnterhalbSichtbar);
@@ -56,16 +62,5 @@ package LeseEinstellungenGrafik is
    function BildrateAnzeigen
      return Boolean;
    pragma Inline (BildrateAnzeigen);
-   -- Grafikeinstellungen
-   
-   
-
-   function Fenstereinstellungen
-     return GrafikRecords.FensterRecord;
-   pragma Inline (Fenstereinstellungen);
-   
-   function Grafikeinstellungen
-     return GrafikRecords.GrafikeinstellungenRecord;
-   pragma Inline (Grafikeinstellungen);
 
 end LeseEinstellungenGrafik;

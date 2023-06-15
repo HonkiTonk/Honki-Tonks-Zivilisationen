@@ -5,6 +5,7 @@ with Sf.Graphics.Font;
 
 with VerzeichnisKonstanten;
 with TextKonstanten;
+with EinstellungenGrafik;
 
 with LeseOptionen;
 
@@ -13,16 +14,6 @@ with EinlesenAllgemeinesLogik;
 with TextaccesseSchriftartGrafik;
 
 package body TexteinstellungenGrafik is
-
-   procedure StandardLaden
-   is begin
-      
-      Schriftgrößen := SchriftgrößenStandard;
-      Schriftfarben := SchriftfarbenStandard;
-      
-   end StandardLaden;
-   
-   
    
    procedure SchriftartFestlegen
    is begin
@@ -122,7 +113,7 @@ package body TexteinstellungenGrafik is
       WelcheGrößeExtern : in TextDatentypen.Schriftgröße_Enum)
    is begin
       
-      Schriftgrößen (WelcheGrößeExtern) := GrößeExtern;
+      EinstellungenGrafik.Grafikeinstellungen.Schriftgrößen (WelcheGrößeExtern) := GrößeExtern;
       
    end SchriftgrößeSchreiben;
 
@@ -133,29 +124,9 @@ package body TexteinstellungenGrafik is
       WelcheFarbeExtern : in TextDatentypen.Schriftfarbe_Enum)
    is begin
 
-      Schriftfarben (WelcheFarbeExtern) := FarbeExtern;
+      EinstellungenGrafik.Grafikeinstellungen.Schriftfarben (WelcheFarbeExtern) := FarbeExtern;
 
    end SchriftfarbeSchreiben;
-
-
-   
-   procedure SchriftgrößeneintragSchreiben
-     (EintragExtern : in SchriftgrößenArray)
-   is begin
-
-      Schriftgrößen := EintragExtern;
-
-   end SchriftgrößeneintragSchreiben;
-   
-   
-   
-   procedure SchriftfarbeneintragSchreiben
-     (EintragExtern : in SchriftfarbenArray)
-   is begin
-      
-      Schriftfarben := EintragExtern;
-      
-   end SchriftfarbeneintragSchreiben;
 
 
 
@@ -164,7 +135,7 @@ package body TexteinstellungenGrafik is
       return Sf.sfUint32
    is begin
 
-      return Schriftgrößen (WelcheGrößeExtern);
+      return EinstellungenGrafik.Grafikeinstellungen.Schriftgrößen (WelcheGrößeExtern);
 
    end SchriftgrößeLesen;
    
@@ -175,28 +146,8 @@ package body TexteinstellungenGrafik is
       return Sf.Graphics.Color.sfColor
    is begin
       
-      return Schriftfarben (WelcheFarbeExtern);
+      return EinstellungenGrafik.Grafikeinstellungen.Schriftfarben (WelcheFarbeExtern);
       
    end SchriftfarbeLesen;
-
-
-
-   function SchriftgrößeneintragLesen
-     return SchriftgrößenArray
-   is begin
-
-      return Schriftgrößen;
-
-   end SchriftgrößeneintragLesen;
-   
-   
-   
-   function SchriftfarbeneintragLesen
-     return SchriftfarbenArray
-   is begin
-      
-      return Schriftfarben;
-      
-   end SchriftfarbeneintragLesen;
 
 end TexteinstellungenGrafik;

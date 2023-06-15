@@ -1,5 +1,9 @@
+with Sf;
+
 with TextaccessVariablen;
 with Views;
+
+with LeseEinstellungenGrafik;
 
 with TextaccessverwaltungssystemGrafik;
 with ViewsEinstellenGrafik;
@@ -13,9 +17,39 @@ package body BildrateAnzeigenGrafik is
    procedure Bildrate
    is begin
       
-      AktuelleBildrate := Positive (Float'Floor (1.00 / Float (Clock - LetzteZeit)));
+      Zeitunterschied := Float (Clock - LetzteZeit);
       LetzteZeit := Clock;
-            
+      
+      if
+        Zeitunterschied = 0.00
+      then
+         AktuelleBildrate := 1;
+         
+      elsif
+        Float'Floor (1.00 / Zeitunterschied) < 1.00
+      then
+         AktuelleBildrate := 1;
+         
+      else
+         AktuelleBildrate := Positive (Float'Floor (1.00 / Zeitunterschied));
+      end if;
+      
+      ZielBildrate := Positive (LeseEinstellungenGrafik.Bildrate);
+      
+      if
+        AktuelleBildrate < ZielBildrate / 2
+      then
+         Farbe := Sf.Graphics.Color.sfRed;
+      
+      elsif
+        AktuelleBildrate < ZielBildrate - 1
+      then
+         Farbe := Sf.Graphics.Color.sfYellow;
+         
+      else
+         Farbe := Sf.Graphics.Color.sfGreen;
+      end if;
+                     
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Bildratenbereich.width,
                                                                                               GrafikRecordKonstanten.Bildratenbereich.height));
@@ -24,9 +58,10 @@ package body BildrateAnzeigenGrafik is
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Bildratenbereich);
       
-      TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.BildrateAccess,
-                                                              TextExtern       => AktuelleBildrate'Wide_Wide_Image,
-                                                              PositionExtern   => (5.00, 5.00));
+      TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.BildrateAccess,
+                                                                   TextExtern       => AktuelleBildrate'Wide_Wide_Image,
+                                                                   PositionExtern   => (5.00, 5.00),
+                                                                   FarbeExtern      => Farbe);
       
       Viewfläche.x := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.BildrateAccess,
                                                                              TextbreiteExtern => 5.00);

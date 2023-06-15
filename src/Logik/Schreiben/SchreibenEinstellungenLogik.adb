@@ -2,26 +2,29 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with Sf.Window.Window;
+with Sf.System.Vector2;
+with Sf.Graphics.Color;
+
 with SystemRecords;
 with VerzeichnisKonstanten;
-with GrafikRecords;
 with TonRecords;
 with TastenbelegungDatenbank;
 with OptionenVariablen;
 with ZahlenDatentypen;
+with TextDatentypen;
+with SpeziesDatentypen;
 
 with LeseOptionen;
 with LeseEinstellungenSound;
 with LeseEinstellungenGrafik;
 with LeseEinstellungenMusik;
 
-with TexteinstellungenGrafik;
-with SpezieseinstellungenGrafik;
 with Fehlermeldungssystem;
+with TexteinstellungenGrafik;
 
 package body SchreibenEinstellungenLogik is
    
-   -- Gesamter Record ist SystemRecords.NutzerEinstellungenRecord;
    procedure Nutzereinstellungen
    is begin
       
@@ -30,6 +33,7 @@ package body SchreibenEinstellungenLogik is
               Name => VerzeichnisKonstanten.Spieleinstellungen,
               Form => "WCEM=8");
       
+      -- SystemRecords.NutzerEinstellungenRecord
       Unbounded_Wide_Wide_String'Write (Stream (File => DateiNutzereinstellungen),
                                         LeseOptionen.Sprache);
       
@@ -38,6 +42,7 @@ package body SchreibenEinstellungenLogik is
       
       ZahlenDatentypen.EigenesPositive'Write (Stream (File => DateiNutzereinstellungen),
                                               LeseOptionen.RundenAutospeichern);
+      -- SystemRecords.NutzerEinstellungenRecord
       
       Close (File => DateiNutzereinstellungen);
       
@@ -59,6 +64,8 @@ package body SchreibenEinstellungenLogik is
    
    
    
+   -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
+   -- Keine Schleifen einbauen, sonst wird das automatisch irgendwo dazwischen eingebaut und nicht am Ende wenn der Schleifenbereich erweitert wird!
    procedure Grafikeinstellungen
    is begin
       
@@ -66,21 +73,113 @@ package body SchreibenEinstellungenLogik is
               Mode => Out_File,
               Name => VerzeichnisKonstanten.Grafikeinstellungen,
               Form => "WCEM=8");
+      
+      -- GrafikRecords.GrafikeinstellungenRecord
+      Sf.Window.Window.sfWindowStyle'Write (Stream (File => DateiGrafikeinstellungen),
+                                            LeseEinstellungenGrafik.Fenstermodus);
+      
+      Sf.System.Vector2.sfVector2u'Write (Stream (File => DateiGrafikeinstellungen),
+                                          LeseEinstellungenGrafik.Auflösung);
+      
+      Sf.sfUint32'Write (Stream (File => DateiGrafikeinstellungen),
+                         LeseEinstellungenGrafik.Farbtiefe);
+      
+      Sf.sfUint32'Write (Stream (File => DateiGrafikeinstellungen),
+                         LeseEinstellungenGrafik.Bildrate);
+      
+      
+      
+      Sf.sfUint32'Write (Stream (File => DateiGrafikeinstellungen),
+                         TexteinstellungenGrafik.SchriftgrößeLesen (WelcheGrößeExtern => TextDatentypen.Überschrift_Enum));
+      
+      Sf.sfUint32'Write (Stream (File => DateiGrafikeinstellungen),
+                         TexteinstellungenGrafik.SchriftgrößeLesen (WelcheGrößeExtern => TextDatentypen.Standard_Enum));
+      
+      Sf.sfUint32'Write (Stream (File => DateiGrafikeinstellungen),
+                         TexteinstellungenGrafik.SchriftgrößeLesen (WelcheGrößeExtern => TextDatentypen.Klein_Enum));
             
-      GrafikRecords.FensterRecord'Write (Stream (File => DateiGrafikeinstellungen),
-                                         LeseEinstellungenGrafik.Fenstereinstellungen);
-      GrafikRecords.GrafikeinstellungenRecord'Write (Stream (File => DateiGrafikeinstellungen),
-                                                     LeseEinstellungenGrafik.Grafikeinstellungen);
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Überschrift_Enum));
       
-      TexteinstellungenGrafik.SchriftgrößenArray'Write (Stream (File => DateiGrafikeinstellungen),
-                                                          TexteinstellungenGrafik.SchriftgrößeneintragLesen);
-      TexteinstellungenGrafik.SchriftfarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
-                                                        TexteinstellungenGrafik.SchriftfarbeneintragLesen);
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum ));
       
-      SpezieseinstellungenGrafik.SpeziesFarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
-                                                           SpezieseinstellungenGrafik.FarbenarrayLesen);
-      SpezieseinstellungenGrafik.SpeziesFarbenArray'Write (Stream (File => DateiGrafikeinstellungen),
-                                                           SpezieseinstellungenGrafik.RahmenarrayLesen);
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Ausgewählt_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Mensch_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.KI_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Sonstiges_Enum));
+      
+      
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Menschen_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Kasrodiah_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Lasupin_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Lamustra_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Manuky_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Suroka_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Pryolon_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Talbidahr_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Moru_Phisihl_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Larinos_Lotaris_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Carupex_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Alary_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Tesorahn_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Natries_Zermanis_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Tridatus_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Senelari_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Aspari_2_Enum));
+      
+      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Ekropa_Enum));
+      
+      
+      
+      Boolean'Write (Stream (File => DateiGrafikeinstellungen),
+                     LeseEinstellungenGrafik.EbenenUnterhalbSichtbar);
+      
+      Boolean'Write (Stream (File => DateiGrafikeinstellungen),
+                     LeseEinstellungenGrafik.BildrateAnzeigen);
+      -- GrafikRecords.GrafikeinstellungenRecord
       
       Close (File => DateiGrafikeinstellungen);
       

@@ -2,12 +2,11 @@ with EinstellungenGrafik;
 
 package body LeseEinstellungenGrafik is
    
-   -- Fenstereinstellungen
    function Fenstermodus
      return Sf.Window.Window.sfWindowStyle
    is begin
       
-      return EinstellungenGrafik.FensterEinstellungen.Fenstermodus;
+      return EinstellungenGrafik.Grafikeinstellungen.Fenstermodus;
       
    end Fenstermodus;
    
@@ -17,7 +16,7 @@ package body LeseEinstellungenGrafik is
      return Sf.System.Vector2.sfVector2u
    is begin
       
-      return EinstellungenGrafik.FensterEinstellungen.Auflösung;
+      return EinstellungenGrafik.Grafikeinstellungen.Auflösung;
       
    end Auflösung;
    
@@ -27,7 +26,7 @@ package body LeseEinstellungenGrafik is
      return Sf.sfUint32
    is begin
       
-      return EinstellungenGrafik.FensterEinstellungen.Farbtiefe;
+      return EinstellungenGrafik.Grafikeinstellungen.Farbtiefe;
       
    end Farbtiefe;
    
@@ -37,14 +36,35 @@ package body LeseEinstellungenGrafik is
      return Sf.sfUint32
    is begin
       
-      return EinstellungenGrafik.FensterEinstellungen.Bildrate;
+      return EinstellungenGrafik.Grafikeinstellungen.Bildrate;
       
    end Bildrate;
-   -- Fenstereinstellungen
    
    
    
-   -- Grafikeinstellungen
+   function SpeziesfarbeLesen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return Sf.Graphics.Color.sfColor
+   is begin
+      
+      return EinstellungenGrafik.Grafikeinstellungen.Speziesfarben (SpeziesExtern);
+      
+   end SpeziesfarbeLesen;
+   
+   
+   
+   function RahmenfarbeLesen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return Sf.Graphics.Color.sfColor
+   is begin
+      
+      return (EinstellungenGrafik.Grafikeinstellungen.Speziesfarben (SpeziesExtern).r, EinstellungenGrafik.Grafikeinstellungen.Speziesfarben (SpeziesExtern).g,
+              EinstellungenGrafik.Grafikeinstellungen.Speziesfarben (SpeziesExtern).b, GrafikKonstanten.Undurchsichtig);
+      
+   end RahmenfarbeLesen;
+   
+   
+   
    function EbenenUnterhalbSichtbar
      return Boolean
    is begin
@@ -62,26 +82,5 @@ package body LeseEinstellungenGrafik is
       return EinstellungenGrafik.Grafikeinstellungen.BildrateAnzeigen;
       
    end BildrateAnzeigen;
-   -- Grafikeinstellungen
-   
-   
-   
-   function Fenstereinstellungen
-     return GrafikRecords.FensterRecord
-   is begin
-      
-      return EinstellungenGrafik.FensterEinstellungen;
-      
-   end Fenstereinstellungen;
-   
-   
-   
-   function Grafikeinstellungen
-     return GrafikRecords.GrafikeinstellungenRecord
-   is begin
-      
-      return EinstellungenGrafik.Grafikeinstellungen;
-      
-   end Grafikeinstellungen;
 
 end LeseEinstellungenGrafik;

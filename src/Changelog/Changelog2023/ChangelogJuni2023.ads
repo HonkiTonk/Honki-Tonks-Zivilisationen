@@ -98,24 +98,26 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (16.06.2023):
+   -- Version 0.05.2000 => 0.05. (16.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (15.06.2023):
+   -- Version 0.05.1945 => 0.05.2000 (15.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Potentielle Probleme in der Bildratenberechnung korrigiert.
+   -- Weiter am neuen Einstellungsspeichersystem gearbeitet.
+   -- Alle Grafikeinstellungen in einem Record zusammengeführt.
+   -- Bildratenanzeige ändert jetzt ihre Farbe basierend auf dem Unterschied zwischen der Zielrate und der tatsächlichen Rate.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05.1945 => 0.05. (14.06.2023):
+   -- Version 0.05.1945 => 0.05.1945 (14.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

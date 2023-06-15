@@ -12,9 +12,9 @@ with SystemDatentypen;
 
 with LeseWeltkarte;
 with LeseStadtGebaut;
+with LeseEinstellungenGrafik;
 
 with TextberechnungenBreiteGrafik;
-with SpezieseinstellungenGrafik;
 with KartenkoordinatenberechnungssystemLogik;
 with TextaccessverwaltungssystemGrafik;
 with StadtSuchenLogik;
@@ -122,7 +122,7 @@ package body WeltkarteZusatzZeichnenGrafik is
    begin
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => PositionExtern,
-                                                FarbeExtern    => SpezieseinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesExtern),
+                                                FarbeExtern    => LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesExtern),
                                                 GrößeExtern    => SichtweitenGrafik.Kartenfeldfläche);
       
       UmgebungSchleife:
@@ -183,7 +183,7 @@ package body WeltkarteZusatzZeichnenGrafik is
       end case;
       
       ObjekteZeichnenGrafik.RahmenteilZeichnen (PositionExtern => Rahmenposition,
-                                                FarbeExtern    => SpezieseinstellungenGrafik.RahmenfarbeLesen (SpeziesExtern => SpeziesExtern),
+                                                FarbeExtern    => LeseEinstellungenGrafik.RahmenfarbeLesen (SpeziesExtern => SpeziesExtern),
                                                 GrößeExtern    => Rahmengröße);
       
    end RahmenZeichnen;

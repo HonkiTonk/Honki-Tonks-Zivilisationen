@@ -8,13 +8,12 @@ with OptionenVariablen;
 with SchreibeOptionen;
 with SchreibeEinstellungenSound;
 with SchreibeEinstellungenMusik;
-with SchreibeEinstellungenGrafik;
 
-with EinstellungenGrafik;
 with EinstellungenMusik;
 with EinstellungenSound;
 
 with Fehlermeldungssystem;
+with EinlesenGrafikeinstellungenLogik;
 
 package body EinlesenEinstellungenLogik is
 
@@ -22,7 +21,7 @@ package body EinlesenEinstellungenLogik is
    is begin
       
       Nutzereinstellungen;
-      Grafikeinstellungen;
+      EinlesenGrafikeinstellungenLogik.Grafikeinstellungen;
       Toneinstelllungen;
       SonstigeEinstellungen;
       
@@ -88,9 +87,13 @@ package body EinlesenEinstellungenLogik is
       DateiLadenExtern : in File_Type)
       return Boolean
    is begin
-            
-      SystemRecords.NutzerEinstellungenRecord'Read (Stream (File => DateiLadenExtern),
-                                                    ZwischenspeicherNutzereinstellungen);
+      
+      Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenExtern),
+                                       Sprache);
+      ZahlenDatentypen.EigenesNatural'Read (Stream (File => DateiLadenExtern),
+                                            AnzahlAutospeichern);
+      ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
+                                             RundenAutospeichern);
       
       case
         LadenPrüfenExtern
@@ -99,7 +102,9 @@ package body EinlesenEinstellungenLogik is
             null;
             
          when True =>
-            SchreibeOptionen.GanzerEintrag (EintragExtern => ZwischenspeicherNutzereinstellungen);
+            SchreibeOptionen.Sprache (SpracheExtern => Sprache);
+            SchreibeOptionen.AnzahlAutospeichern (AutospeicheranzahlExtern => AnzahlAutospeichern);
+            SchreibeOptionen.RundenAutospeichern (RundenanzahlExtern => RundenAutospeichern);
       end case;
       
       return True;
@@ -114,108 +119,6 @@ package body EinlesenEinstellungenLogik is
          return False;
       
    end NutzereinstellungenDurchgehen;
-   
-   
-   
-   procedure Grafikeinstellungen
-   is begin
-      
-      case
-        Exists (Name => VerzeichnisKonstanten.Grafikeinstellungen)
-      is
-         when False =>
-            EinstellungenGrafik.StandardeinstellungenLaden;
-            return;
-            
-         when True =>
-            Open (File => DateiGrafikeinstellungen,
-                  Mode => In_File,
-                  Name => VerzeichnisKonstanten.Grafikeinstellungen,
-                  Form => "WCEM=8");
-      end case;
-      
-      case
-        GrafikeinstellungenDurchgehen (LadenPrüfenExtern => False,
-                                       DateiLadenExtern  => DateiGrafikeinstellungen)
-      is
-         when True =>
-            Set_Index (File => DateiGrafikeinstellungen,
-                       To   => 1);
-            
-            Nullwert := GrafikeinstellungenDurchgehen (LadenPrüfenExtern => True,
-                                                       DateiLadenExtern  => DateiGrafikeinstellungen);
-            
-         when False =>
-            EinstellungenGrafik.StandardeinstellungenLaden;
-      end case;
-                        
-      Close (File => DateiGrafikeinstellungen);
-      
-   exception
-      when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenEinstellungenLogik.Grafikeinstellungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
-         EinstellungenGrafik.StandardeinstellungenLaden;
-         
-         case
-           Is_Open (File => DateiGrafikeinstellungen)
-         is
-            when True =>
-               Close (File => DateiGrafikeinstellungen);
-               
-            when False =>
-               null;
-         end case;
-      
-   end Grafikeinstellungen;
-   
-   
-   
-   function GrafikeinstellungenDurchgehen
-     (LadenPrüfenExtern : in Boolean;
-      DateiLadenExtern : in File_Type)
-      return Boolean
-   is begin
-      
-      GrafikRecords.FensterRecord'Read (Stream (File => DateiLadenExtern),
-                                        Fenstereinstellungen);
-      GrafikRecords.GrafikeinstellungenRecord'Read (Stream (File => DateiLadenExtern),
-                                                    ZwischenspeicherGrafikeinstellungen);
-      
-      TexteinstellungenGrafik.SchriftgrößenArray'Read (Stream (File => DateiLadenExtern),
-                                                         Schriftgrößen);
-      TexteinstellungenGrafik.SchriftfarbenArray'Read (Stream (File => DateiLadenExtern),
-                                                       Schriftfarben);
-            
-      SpezieseinstellungenGrafik.SpeziesFarbenArray'Read (Stream (File => DateiLadenExtern),
-                                                          Speziesfarben);
-      SpezieseinstellungenGrafik.SpeziesFarbenArray'Read (Stream (File => DateiLadenExtern),
-                                                          Rahmenfarben);
-      
-      case
-        LadenPrüfenExtern
-      is
-         when False =>
-            null;
-            
-         when True =>
-            SchreibeEinstellungenGrafik.Fenstereinstellungen (EintragExtern => Fenstereinstellungen);
-            SchreibeEinstellungenGrafik.Grafikeinstellungen (EintragExtern => ZwischenspeicherGrafikeinstellungen);
-            
-            TexteinstellungenGrafik.SchriftgrößeneintragSchreiben (EintragExtern => Schriftgrößen);
-            TexteinstellungenGrafik.SchriftfarbeneintragSchreiben (EintragExtern => Schriftfarben);
-            
-            SpezieseinstellungenGrafik.FarbenarraySchreiben (FarbenExtern => Speziesfarben);
-            SpezieseinstellungenGrafik.RahmenarraySchreiben (FarbenExtern => Rahmenfarben);
-      end case;
-      
-      return True;
-      
-   exception
-      when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenEinstellungenLogik.GrafikeinstellungenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
-         return False;
-      
-   end GrafikeinstellungenDurchgehen;
    
    
    

@@ -59,7 +59,7 @@ package SchreibeEinstellungenGrafik is
    
 
    procedure Fenstereinstellungen
-     (EintragExtern : in GrafikRecords.FensterRecord);
+     (EintragExtern : in GrafikRecords.GrafikeinstellungenRecord);
    pragma Inline (Fenstereinstellungen);
    
    procedure Grafikeinstellungen
