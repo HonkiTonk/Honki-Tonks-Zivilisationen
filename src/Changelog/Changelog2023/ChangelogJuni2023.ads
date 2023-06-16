@@ -98,10 +98,12 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05.2000 => 0.05. (16.06.2023):
+   -- Version 0.05.2000 => 0.05.2045 (16.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Einstellungsspeichersystem gearbeitet.
+   -- Grafikeinstellungen werden jetzt so gespeichert/geladen das bei einer Erweiterung die alten Einstellungen weiter funktionieren sollten.
+   -- Spielereinstellungen werden jetzt so gespeichert/geladen das bei einer Erweiterung die alten Einstellungen weiter funktionieren sollten.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

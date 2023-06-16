@@ -1,0 +1,134 @@
+with Ada.Directories; use Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Exceptions; use Ada.Exceptions;
+
+with OptionenVariablen;
+with VerzeichnisKonstanten;
+with SystemRecordKonstanten;
+
+with SchreibeOptionen;
+
+with Fehlermeldungssystem;
+
+package body EinlesenNutzereinstellungenLogik is
+
+   procedure Nutzereinstellungen
+   is begin
+      
+      case
+        Exists (Name => VerzeichnisKonstanten.Spieleinstellungen)
+      is
+         when False =>
+            OptionenVariablen.StandardNutzereinstellungenLaden;
+            return;
+            
+         when True =>
+            Open (File => DateiNutzereinstellungen,
+                  Mode => In_File,
+                  Name => VerzeichnisKonstanten.Spieleinstellungen,
+                  Form => "WCEM=8");
+      end case;
+      
+      case
+        NutzereinstellungenDurchgehen (LadenPrüfenExtern => False,
+                                       DateiLadenExtern  => DateiNutzereinstellungen)
+      is
+         when False =>
+            OptionenVariablen.StandardNutzereinstellungenLaden;
+            
+         when True =>
+            Set_Index (File => DateiNutzereinstellungen,
+                       To   => 1);
+              
+            Nullwert := NutzereinstellungenDurchgehen (LadenPrüfenExtern => True,
+                                                       DateiLadenExtern  => DateiNutzereinstellungen);
+      end case;
+
+      Close (File => DateiNutzereinstellungen);
+      
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenNutzereinstellungenLogik.Nutzereinstellungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         OptionenVariablen.StandardNutzereinstellungenLaden;
+         
+         case
+           Is_Open (File => DateiNutzereinstellungen)
+         is
+            when True =>
+               Close (File => DateiNutzereinstellungen);
+               
+            when False =>
+               null;
+         end case;
+      
+   end Nutzereinstellungen;
+   
+   
+   
+   function NutzereinstellungenDurchgehen
+     (LadenPrüfenExtern : in Boolean;
+      DateiLadenExtern : in File_Type)
+      return Boolean
+   is begin
+      
+      -- SystemRecords.NutzerEinstellungenRecord
+      case
+        End_Of_File (File => DateiLadenExtern)
+      is
+         when True =>
+            return False;
+            
+         when False =>
+            Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenExtern),
+                                             Sprache);
+      end case;
+      
+      case
+        End_Of_File (File => DateiLadenExtern)
+      is
+         when True =>
+            AnzahlAutospeichern := SystemRecordKonstanten.StandardNutzereinstellungen.AnzahlAutospeichern;
+            
+         when False =>
+            ZahlenDatentypen.EigenesNatural'Read (Stream (File => DateiLadenExtern),
+                                                  AnzahlAutospeichern);
+      end case;
+      
+      case
+        End_Of_File (File => DateiLadenExtern)
+      is
+         when True =>
+            RundenAutospeichern := SystemRecordKonstanten.StandardNutzereinstellungen.RundenAutospeichern;
+            
+         when False =>
+            ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
+                                                   RundenAutospeichern);
+      end case;
+      -- SystemRecords.NutzerEinstellungenRecord
+      
+      case
+        LadenPrüfenExtern
+      is
+         when False =>
+            null;
+            
+         when True =>
+            SchreibeOptionen.GanzeSpieleinstellungen (EinstellungenExtern => (
+                                                                              Sprache             => Sprache,
+                                                                              AnzahlAutospeichern => AnzahlAutospeichern,
+                                                                              RundenAutospeichern => RundenAutospeichern
+                                                                             ));
+      end case;
+      
+      return True;
+      
+   exception
+      when StandardAdaFehler : others =>
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenNutzereinstellungenLogik.NutzereinstellungenDurchgehen - Konnte nicht geladen werden: "
+                                     & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+                  
+         return False;
+         
+   end NutzereinstellungenDurchgehen;
+
+end EinlesenNutzereinstellungenLogik;

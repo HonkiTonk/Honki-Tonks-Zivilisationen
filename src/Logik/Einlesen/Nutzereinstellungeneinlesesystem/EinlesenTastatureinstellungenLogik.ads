@@ -2,10 +2,10 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 private with TastenbelegungDatenbank;
 
-package EinlesenTastaturLogik is
+package EinlesenTastatureinstellungenLogik is
    pragma Elaborate_Body;
    
-   procedure Tastaturbelegung;
+   procedure Tastatureinstellungen;
    
 private
    
@@ -21,9 +21,9 @@ private
    
    
    
-   function TastaturbelegungDurchgehen
+   function TastatureinstellungenDurchgehen
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
       return Boolean;
 
-end EinlesenTastaturLogik;
+end EinlesenTastatureinstellungenLogik;

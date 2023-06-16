@@ -102,7 +102,7 @@ package body SchreibenEinstellungenLogik is
                                        TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Überschrift_Enum));
       
       Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum ));
+                                       TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum));
       
       Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
                                        TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Ausgewählt_Enum));
@@ -118,59 +118,14 @@ package body SchreibenEinstellungenLogik is
       
       
       
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Menschen_Enum));
+      -- Die Schleife kann ich hier verwenden, weil sich die Speziesanzahl nicht mehr ändern wird.
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
       
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Kasrodiah_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Lasupin_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Lamustra_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Manuky_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Suroka_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Pryolon_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Talbidahr_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Moru_Phisihl_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Larinos_Lotaris_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Carupex_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Alary_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Tesorahn_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Natries_Zermanis_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Tridatus_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Senelari_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Aspari_2_Enum));
-      
-      Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
-                                       LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesDatentypen.Ekropa_Enum));
+         Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
+                                          LeseEinstellungenGrafik.SpeziesfarbeLesen (SpeziesExtern => SpeziesSchleifenwert));
+         
+      end loop SpeziesSchleife;
       
       
       
@@ -240,7 +195,7 @@ package body SchreibenEinstellungenLogik is
       
       Create (File => DateiTastenbelegung,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.Tasteneinstellungen,
+              Name => VerzeichnisKonstanten.Tastatureinstellungen,
               Form => "WCEM=8");
       
       TastenbelegungDatenbank.AllgemeineBelegungArray'Write (Stream (File => DateiTastenbelegung),

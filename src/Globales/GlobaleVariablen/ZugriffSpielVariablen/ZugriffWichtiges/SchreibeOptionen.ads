@@ -22,8 +22,8 @@ package SchreibeOptionen is
      (RundenanzahlExtern : in ZahlenDatentypen.EigenesPositive);
    pragma Inline (RundenAutospeichern);
 
-   procedure GanzerEintrag
-     (EintragExtern : in SystemRecords.NutzerEinstellungenRecord);
-   pragma Inline (GanzerEintrag);
+   procedure GanzeSpieleinstellungen
+     (EinstellungenExtern : in SystemRecords.NutzerEinstellungenRecord);
+   pragma Inline (GanzeSpieleinstellungen);
 
 end SchreibeOptionen;

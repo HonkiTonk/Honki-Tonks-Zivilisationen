@@ -6,7 +6,7 @@ package OptionenVariablen is
 
    NutzerEinstellungen : SystemRecords.NutzerEinstellungenRecord;
 
-   -- Das hier vielleicht lieber in Spielende Einstellugnen oder sowas umbenennen. äöü
+   -- Das hier vielleicht lieber in Spielende Einstellugnen oder sowas umbenennen? äöü
    SonstigeEinstellungen : SystemRecords.SonstigeEinstellungenRecord;
 
    procedure StandardNutzereinstellungenLaden;

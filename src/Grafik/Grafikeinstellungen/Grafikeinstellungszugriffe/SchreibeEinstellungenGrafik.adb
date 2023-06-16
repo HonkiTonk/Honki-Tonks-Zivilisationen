@@ -2,7 +2,6 @@ with EinstellungenGrafik;
 
 package body SchreibeEinstellungenGrafik is
    
-   -- Fenstereinstellungen
    procedure Fenstermodus
      (FenstermodusExtern : in Sf.Window.Window.sfWindowStyle)
    is begin
@@ -40,11 +39,9 @@ package body SchreibeEinstellungenGrafik is
       EinstellungenGrafik.Grafikeinstellungen.Bildrate := BildrateExtern;
       
    end Bildrate;
-   -- Fenstereinstellungen
    
    
    
-   -- Grafikeinstellungen
    procedure EbenenUnterhalbSichtbar
    is begin
       
@@ -60,26 +57,15 @@ package body SchreibeEinstellungenGrafik is
       EinstellungenGrafik.Grafikeinstellungen.BildrateAnzeigen := not EinstellungenGrafik.Grafikeinstellungen.BildrateAnzeigen;
       
    end BildrateAnzeigen;
-   -- Grafikeinstellungen
    
    
-
-   procedure Fenstereinstellungen
-     (EintragExtern : in GrafikRecords.GrafikeinstellungenRecord)
+   
+   procedure GesamteGrafikeinstellungen
+     (EinstellungenExtern : in GrafikRecords.GrafikeinstellungenRecord)
    is begin
       
-      EinstellungenGrafik.Grafikeinstellungen := EintragExtern;
+      EinstellungenGrafik.Grafikeinstellungen := EinstellungenExtern;
       
-   end Fenstereinstellungen;
-   
-   
-   
-   procedure Grafikeinstellungen
-     (EintragExtern : in GrafikRecords.GrafikeinstellungenRecord)
-   is begin
-      
-      EinstellungenGrafik.Grafikeinstellungen := EintragExtern;
-      
-   end Grafikeinstellungen;
+   end GesamteGrafikeinstellungen;
 
 end SchreibeEinstellungenGrafik;

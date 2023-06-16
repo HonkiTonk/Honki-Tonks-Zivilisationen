@@ -7,13 +7,13 @@ with StandardTastenbelegungDatenbank;
 
 with Fehlermeldungssystem;
 
-package body EinlesenTastaturLogik is
+package body EinlesenTastatureinstellungenLogik is
 
-   procedure Tastaturbelegung
+   procedure Tastatureinstellungen
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.Tasteneinstellungen)
+        Exists (Name => VerzeichnisKonstanten.Tastatureinstellungen)
       is
          when False =>
             StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
@@ -22,20 +22,20 @@ package body EinlesenTastaturLogik is
          when True =>
             Open (File => TastenbelegungLaden,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.Tasteneinstellungen,
+                  Name => VerzeichnisKonstanten.Tastatureinstellungen,
                   Form => "WCEM=8");
       end case;
       
       case
-        TastaturbelegungDurchgehen (LadenPrüfenExtern => False,
-                                    DateiLadenExtern  => TastenbelegungLaden)
+        TastatureinstellungenDurchgehen (LadenPrüfenExtern => False,
+                                         DateiLadenExtern  => TastenbelegungLaden)
       is
          when True =>
             Set_Index (File => TastenbelegungLaden,
                        To   => 1);
                         
-            Nullwert := TastaturbelegungDurchgehen (LadenPrüfenExtern => True,
-                                                    DateiLadenExtern  => TastenbelegungLaden);
+            Nullwert := TastatureinstellungenDurchgehen (LadenPrüfenExtern => True,
+                                                         DateiLadenExtern  => TastenbelegungLaden);
               
          when False =>
             StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
@@ -45,7 +45,7 @@ package body EinlesenTastaturLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTastaturLogik.Tastaturbelegung - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTastatureinstellungenLogik.Tastatureinstellungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
          
          case
@@ -58,11 +58,11 @@ package body EinlesenTastaturLogik is
                null;
          end case;
       
-   end Tastaturbelegung;
+   end Tastatureinstellungen;
    
    
    
-   function TastaturbelegungDurchgehen
+   function TastatureinstellungenDurchgehen
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
      return Boolean
@@ -93,9 +93,10 @@ package body EinlesenTastaturLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTastaturLogik.TastaturbelegungDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTastatureinstellungenLogik.TastatureinstellungenDurchgehen - Konnte nicht geladen werden: "
+                                     & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
-   end TastaturbelegungDurchgehen;
+   end TastatureinstellungenDurchgehen;
 
-end EinlesenTastaturLogik;
+end EinlesenTastatureinstellungenLogik;

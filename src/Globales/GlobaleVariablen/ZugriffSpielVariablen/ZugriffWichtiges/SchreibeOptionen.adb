@@ -32,12 +32,12 @@ package body SchreibeOptionen is
    
    
 
-   procedure GanzerEintrag
-     (EintragExtern : in SystemRecords.NutzerEinstellungenRecord)
+   procedure GanzeSpieleinstellungen
+     (EinstellungenExtern : in SystemRecords.NutzerEinstellungenRecord)
    is begin
       
-      OptionenVariablen.NutzerEinstellungen := EintragExtern;
+      OptionenVariablen.NutzerEinstellungen := EinstellungenExtern;
       
-   end GanzerEintrag;
+   end GanzeSpieleinstellungen;
 
 end SchreibeOptionen;

@@ -2,7 +2,6 @@ with TextKonstanten;
 
 with EinlesenSpracheLogik;
 with EinlesenTextLogik;
-with EinlesenTastaturLogik;
 with EinlesenDatenbankenLogik;
 with SchreibenEinstellungenLogik;
 with SprachauswahlLogik;
@@ -21,7 +20,6 @@ package body EinlesenLogik is
    is begin
       
       EinlesenDatenbankenLogik.AlleDatenbanken;
-      EinlesenTastaturLogik.Tastaturbelegung;
       EinlesenTexturenLogik.EinlesenTexturen;
       EinlesenMusikLogik.EinlesenMusik;
       EinlesenSoundsLogik.EinlesenSounds;

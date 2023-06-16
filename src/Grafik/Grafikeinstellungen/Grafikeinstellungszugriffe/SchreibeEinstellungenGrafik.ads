@@ -10,7 +10,6 @@ package SchreibeEinstellungenGrafik is
    use type Sf.sfUint32;
    use type Sf.Window.Window.sfWindowStyle;
    
-   -- Fenstereinstellungen
    procedure Fenstermodus
      (FenstermodusExtern : in Sf.Window.Window.sfWindowStyle)
      with
@@ -44,26 +43,15 @@ package SchreibeEinstellungenGrafik is
                  BildrateExtern in GrafikKonstanten.MinimaleBildrate .. GrafikKonstanten.MaximaleBildrate
               );
    pragma Inline (Bildrate);
-   -- Fenstereinstellungen
    
-   
-   
-   -- Grafikeinstellungen
    procedure EbenenUnterhalbSichtbar;
    pragma Inline (EbenenUnterhalbSichtbar);
    
    procedure BildrateAnzeigen;
    pragma Inline (BildrateAnzeigen);
-   -- Grafikeinstellungen
    
-   
-
-   procedure Fenstereinstellungen
-     (EintragExtern : in GrafikRecords.GrafikeinstellungenRecord);
-   pragma Inline (Fenstereinstellungen);
-   
-   procedure Grafikeinstellungen
-     (EintragExtern : in GrafikRecords.GrafikeinstellungenRecord);
-   pragma Inline (Grafikeinstellungen);
+   procedure GesamteGrafikeinstellungen
+     (EinstellungenExtern : in GrafikRecords.GrafikeinstellungenRecord);
+   pragma Inline (GesamteGrafikeinstellungen);
 
 end SchreibeEinstellungenGrafik;

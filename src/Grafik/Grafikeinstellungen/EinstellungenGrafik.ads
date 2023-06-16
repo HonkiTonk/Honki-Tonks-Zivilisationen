@@ -1,10 +1,10 @@
-private with Sf.Graphics.Color;
+with Sf.Graphics.Color;
 
 with GrafikRecords;
 
-private with GrafikKonstanten;
-private with TextDatentypen;
-private with SpeziesDatentypen;
+with GrafikKonstanten;
+with TextDatentypen;
+with SpeziesDatentypen;
 
 package EinstellungenGrafik is
    pragma Elaborate_Body;
@@ -12,8 +12,6 @@ package EinstellungenGrafik is
    Grafikeinstellungen : GrafikRecords.GrafikeinstellungenRecord;
    
    procedure StandardeinstellungenLaden;
-   
-private
    
    -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
    GrafikeinstellungenStandard : constant GrafikRecords.GrafikeinstellungenRecord := (
