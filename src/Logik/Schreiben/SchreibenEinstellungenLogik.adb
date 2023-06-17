@@ -6,19 +6,15 @@ with Sf.Window.Window;
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
 
-with SystemRecords;
 with VerzeichnisKonstanten;
-with TonRecords;
 with TastenbelegungDatenbank;
-with OptionenVariablen;
 with ZahlenDatentypen;
 with TextDatentypen;
 with SpeziesDatentypen;
 
 with LeseOptionen;
-with LeseEinstellungenSound;
 with LeseEinstellungenGrafik;
-with LeseEinstellungenMusik;
+with LeseEinstellungenTon;
 
 with Fehlermeldungssystem;
 with TexteinstellungenGrafik;
@@ -156,37 +152,39 @@ package body SchreibenEinstellungenLogik is
    
    
    
-   procedure Soundeinstellungen
+   procedure Toneinstellungen
    is begin
       
-      Create (File => DateiSoundeinstellungen,
+      Create (File => DateiToneinstellungen,
               Mode => Out_File,
               Name => VerzeichnisKonstanten.Toneinstellungen,
               Form => "WCEM=8");
       
-      TonRecords.SoundeinstellungenRecord'Write (Stream (File => DateiSoundeinstellungen),
-                                                 LeseEinstellungenSound.GanzerEintrag);
+      -- TonRecords.ToneinstellungenRecord
+      Float'Write (Stream (File => DateiToneinstellungen),
+                   LeseEinstellungenTon.Soundlautstärke);
       
-      TonRecords.MusikeinstellungenRecord'Write (Stream (File => DateiSoundeinstellungen),
-                                                 LeseEinstellungenMusik.GanzerEintrag);
+      Float'Write (Stream (File => DateiToneinstellungen),
+                   LeseEinstellungenTon.Musiklautstärke);
+      -- TonRecords.ToneinstellungenRecord
       
-      Close (File => DateiSoundeinstellungen);
+      Close (File => DateiToneinstellungen);
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Soundeinstellungen - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Toneinstellungen - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
-           Is_Open (File => DateiSoundeinstellungen)
+           Is_Open (File => DateiToneinstellungen)
          is
             when True =>
-               Close (File => DateiSoundeinstellungen);
+               Close (File => DateiToneinstellungen);
                
             when False =>
                null;
          end case;
             
-   end Soundeinstellungen;
+   end Toneinstellungen;
    
    
 
@@ -227,7 +225,6 @@ package body SchreibenEinstellungenLogik is
    
    
    
-   -- Hier später wieder den direkten Zugriff auf OptionenVariablen entfernen. äöü
    procedure SonstigeEinstellungenSpeichern
    is begin
       
@@ -236,16 +233,19 @@ package body SchreibenEinstellungenLogik is
               Name => VerzeichnisKonstanten.SonstigeEinstellungen,
               Form => "WCEM=8");
       
-      SystemRecords.SonstigeEinstellungenRecord'Write (Stream (File => DateiSonstigeEinstellungen),
-                                                       OptionenVariablen.SonstigeEinstellungen);
+      -- SystemRecords.SonstigeEinstellungenRecord
+      ZahlenDatentypen.EigenesPositive'Write (Stream (File => DateiSonstigeEinstellungen),
+                                              LeseOptionen.AktuellerAutospeichernwert);
+      -- SystemRecords.SonstigeEinstellungenRecord
       
       Close (File => DateiSonstigeEinstellungen);
       
    exception
       when StandardAdaFehler : others =>
+         -- Das hier mal überall auslagern? äöü
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.SonstigeEinstellungenSpeichern - Konnte nicht geschrieben werden: "
                                      & Decode (Item => Exception_Information (X => StandardAdaFehler)));
-         
+                                              
          case
            Is_Open (File => DateiSonstigeEinstellungen)
          is

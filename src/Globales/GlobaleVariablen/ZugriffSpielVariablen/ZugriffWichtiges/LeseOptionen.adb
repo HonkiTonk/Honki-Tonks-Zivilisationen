@@ -29,5 +29,15 @@ package body LeseOptionen is
       return OptionenVariablen.NutzerEinstellungen.RundenAutospeichern;
       
    end RundenAutospeichern;
+   
+   
+   
+   function AktuellerAutospeichernwert
+     return ZahlenDatentypen.EigenesPositive
+   is begin
+      
+      return OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert;
+      
+   end AktuellerAutospeichernwert;
      
 end LeseOptionen;

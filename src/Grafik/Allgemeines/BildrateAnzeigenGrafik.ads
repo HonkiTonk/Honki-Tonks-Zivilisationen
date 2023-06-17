@@ -13,7 +13,8 @@ package BildrateAnzeigenGrafik is
 private
    
    AktuelleBildrate : Positive;
-   ZielBildrate : Positive;
+   
+   ZielBildrate : Natural;
    
    Zeitunterschied : Float;
    

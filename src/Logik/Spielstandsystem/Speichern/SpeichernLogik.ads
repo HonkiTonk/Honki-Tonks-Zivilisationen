@@ -4,6 +4,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 private with SpeziesDatentypen;
 private with StadtDatentypen;
 private with EinheitenDatentypen;
+private with ZahlenDatentypen;
 
 private with LeseSpeziesbelegung;
 
@@ -21,6 +22,8 @@ private
    VorhandeneStädte : StadtDatentypen.MaximaleStädteMitNullWert;
 
    VorhandeneEinheiten : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+
+   AktuellerAutospeichernwert : ZahlenDatentypen.EigenesPositive;
 
    MaximalerAutospeichernwert : Natural;
 

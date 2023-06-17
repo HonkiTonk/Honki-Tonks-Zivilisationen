@@ -1,6 +1,6 @@
 with Sf.Audio.Music;
 
-with LeseEinstellungenMusik;
+with LeseEinstellungenTon;
 
 with EingeleseneMusik;
 
@@ -23,7 +23,7 @@ package body StarteinstellungenMusik is
 
             else
                Sf.Audio.Music.setVolume (music  => EingeleseneMusik.Musik (SpeziesSchleifenwert, LiedSchleifenwert),
-                                         volume => LeseEinstellungenMusik.Lautstärke);
+                                         volume => LeseEinstellungenTon.Musiklautstärke);
             end if;
 
          end loop LiedSchleife;

@@ -16,5 +16,11 @@ package LeseOptionen is
    function RundenAutospeichern
      return ZahlenDatentypen.EigenesPositive;
    pragma Inline (RundenAutospeichern);
+   
+   
+   
+   function AktuellerAutospeichernwert
+     return ZahlenDatentypen.EigenesPositive;
+   pragma Inline (AktuellerAutospeichernwert);
 
 end LeseOptionen;

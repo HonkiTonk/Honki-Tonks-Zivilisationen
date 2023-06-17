@@ -5,6 +5,8 @@ with Ada.Exceptions; use Ada.Exceptions;
 with VerzeichnisKonstanten;
 with OptionenVariablen;
 
+with SchreibeOptionen;
+
 with Fehlermeldungssystem;
 
 package body EinlesenSonstigeEinstellungenLogik is
@@ -68,8 +70,18 @@ package body EinlesenSonstigeEinstellungenLogik is
       return Boolean
    is begin
       
-      SystemRecords.SonstigeEinstellungenRecord'Read (Stream (File => DateiLadenExtern),
-                                                      ZwischenspeicherSonstigeEinstellungen);
+      -- SystemRecords.SonstigeEinstellungenRecord
+      case
+        End_Of_File (File => DateiLadenExtern)
+      is
+         when True =>
+            return False;
+            
+         when False =>
+            ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
+                                                   Autospeichernwert);
+      end case;
+      -- SystemRecords.SonstigeEinstellungenRecord
       
       case
         LadenPrüfenExtern
@@ -78,7 +90,9 @@ package body EinlesenSonstigeEinstellungenLogik is
             null;
             
          when True =>
-            OptionenVariablen.SonstigeEinstellungen := ZwischenspeicherSonstigeEinstellungen;
+            SchreibeOptionen.GanzeSonstigeEinstellungen (EinstellungenExtern => (
+                                                                                 AktuellerAutospeichernwert => Autospeichernwert
+                                                                                ));
       end case;
       
       return True;

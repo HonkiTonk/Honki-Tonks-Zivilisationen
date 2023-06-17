@@ -1,6 +1,6 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
-private with SystemRecords;
+private with ZahlenDatentypen;
 
 package EinlesenSonstigeEinstellungenLogik is
    pragma Elaborate_Body;
@@ -13,7 +13,7 @@ private
       
    DateiSonstigeEinstellungen : File_Type;
    
-   ZwischenspeicherSonstigeEinstellungen : SystemRecords.SonstigeEinstellungenRecord;
+   Autospeichernwert : ZahlenDatentypen.EigenesPositive;
    
    
    

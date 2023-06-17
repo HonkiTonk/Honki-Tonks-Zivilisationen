@@ -13,7 +13,7 @@ with TextberechnungenHoeheGrafik;
 package body BildrateAnzeigenGrafik is
    
    -- Eine Anzeige einbauen bei der die wissenschaftliche Anzeige verwendet wird? äöü
-   -- generell wieder als Float anzeigen? äöü
+   -- Generell wieder als Float anzeigen? äöü
    procedure Bildrate
    is begin
       
@@ -33,10 +33,16 @@ package body BildrateAnzeigenGrafik is
       else
          AktuelleBildrate := Positive (Float'Floor (1.00 / Zeitunterschied));
       end if;
+              
+      ZielBildrate := Natural (LeseEinstellungenGrafik.Bildrate);
       
-      ZielBildrate := Positive (LeseEinstellungenGrafik.Bildrate);
-      
+      -- Die Farbgebung noch einmal überdenken. äöü
       if
+        ZielBildrate = 0
+      then
+         Farbe := Sf.Graphics.Color.sfGreen;
+         
+      elsif
         AktuelleBildrate < ZielBildrate / 2
       then
          Farbe := Sf.Graphics.Color.sfRed;

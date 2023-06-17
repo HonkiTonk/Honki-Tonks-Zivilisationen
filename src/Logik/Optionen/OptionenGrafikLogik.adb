@@ -112,7 +112,7 @@ package body OptionenGrafikLogik is
       use type GrafikDatentypen.Fenster_Ändern_Enum;
    begin
       
-      EingabeBildrate := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MinimaleBildrate),
+      EingabeBildrate := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesNatural (GrafikKonstanten.MinimaleBildrate),
                                                            ZahlenMaximumExtern => ZahlenDatentypen.EigenesPositive (GrafikKonstanten.MaximaleBildrate),
                                                            WelcheFrageExtern   => TextnummernKonstanten.FrageBildrate);
       

@@ -2,8 +2,7 @@ with MenueDatentypen;
 with TextnummernKonstanten;
 with TonKonstanten;
 
-with SchreibeEinstellungenSound;
-with SchreibeEinstellungenMusik;
+with SchreibeEinstellungenTon;
 with SchreibenEinstellungenLogik;
 
 with AuswahlaufteilungLogik;
@@ -33,7 +32,7 @@ package body OptionenSoundLogik is
                Musiklautstärke;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
-               SchreibenEinstellungenLogik.Soundeinstellungen;
+               SchreibenEinstellungenLogik.Toneinstellungen;
                return AuswahlWert;
                
             when others =>
@@ -60,7 +59,7 @@ package body OptionenSoundLogik is
             null;
             
          when True =>
-            SchreibeEinstellungenSound.Lautstärke (LautstärkeExtern => Float (NeueLaustärke.EingegebeneZahl));
+            SchreibeEinstellungenTon.Soundlautstärke (LautstärkeExtern => Float (NeueLaustärke.EingegebeneZahl));
             StarteinstellungenSound.Lautstärke;
       end case;
       
@@ -82,7 +81,7 @@ package body OptionenSoundLogik is
             null;
             
          when True =>
-            SchreibeEinstellungenMusik.Lautstärke (LautstärkeExtern => Float (NeueLaustärke.EingegebeneZahl));
+            SchreibeEinstellungenTon.Musiklautstärke (LautstärkeExtern => Float (NeueLaustärke.EingegebeneZahl));
             StarteinstellungenMusik.Lautstärke;
       end case;
       

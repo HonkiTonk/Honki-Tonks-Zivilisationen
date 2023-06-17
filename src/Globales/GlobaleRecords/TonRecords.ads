@@ -1,17 +1,10 @@
 package TonRecords is
    pragma Pure;
-
-   type SoundeinstellungenRecord is record
-      
-      Lautstärke : Float;
-      
-   end record;
    
-   
-   
-   type MusikeinstellungenRecord is record
+   type ToneinstellungenRecord is record
       
-      Lautstärke : Float;
+      Soundlautstärke : Float;
+      Musiklautstärke : Float;
       
    end record;
 

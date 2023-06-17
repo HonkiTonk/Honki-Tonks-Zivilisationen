@@ -11,7 +11,6 @@ with VerzeichnisKonstanten;
 with SpielstandlisteLogik;
 with StadtKonstanten;
 with EinheitenKonstanten;
-with OptionenVariablen;
 with TextnummernKonstanten;
 
 with LeseWichtiges;
@@ -22,6 +21,7 @@ with LeseCursor;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with LeseOptionen;
+with SchreibeOptionen;
 
 with LadezeitenLogik;
 with NachGrafiktask;
@@ -339,17 +339,18 @@ package body SpeichernLogik is
                
       else
          MaximalerAutospeichernwert := LeseOptionen.AnzahlAutospeichern;
+         AktuellerAutospeichernwert := LeseOptionen.AktuellerAutospeichernwert;
          
          if
-           OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert > MaximalerAutospeichernwert
+           AktuellerAutospeichernwert > MaximalerAutospeichernwert
          then
-            OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert := MaximalerAutospeichernwert;
+            SchreibeOptionen.AktuellerAutospeichernwert (AutospeichernwertExtern => MaximalerAutospeichernwert);
             
          else
             null;
          end if;
          
-         Autospeichernname := To_Unbounded_Wide_Wide_String (Source => "Auto" & OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert'Wide_Wide_Image);
+         Autospeichernname := To_Unbounded_Wide_Wide_String (Source => "Auto" & AktuellerAutospeichernwert'Wide_Wide_Image);
          
          if
            MaximalerAutospeichernwert = 1
@@ -357,12 +358,12 @@ package body SpeichernLogik is
             null;
 
          elsif
-           OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert <= MaximalerAutospeichernwert
+           AktuellerAutospeichernwert < MaximalerAutospeichernwert
          then
-            OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert := OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert + 1;
+            SchreibeOptionen.AktuellerAutospeichernwert (AutospeichernwertExtern => AktuellerAutospeichernwert + 1);
                   
          else
-            OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert := 1;
+            SchreibeOptionen.AktuellerAutospeichernwert (AutospeichernwertExtern => 1);
          end if;
       end if;
       

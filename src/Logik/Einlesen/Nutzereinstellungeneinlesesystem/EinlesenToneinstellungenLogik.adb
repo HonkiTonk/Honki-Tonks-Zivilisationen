@@ -4,12 +4,10 @@ with Ada.Exceptions; use Ada.Exceptions;
 
 with VerzeichnisKonstanten;
 
-with SchreibeEinstellungenSound;
-with SchreibeEinstellungenMusik;
+with SchreibeEinstellungenTon;
 
-with EinstellungenMusik;
-with EinstellungenSound;
 with Fehlermeldungssystem;
+with EinstellungenTon;
 
 package body EinlesenToneinstellungenLogik is
 
@@ -20,12 +18,11 @@ package body EinlesenToneinstellungenLogik is
         Exists (Name => VerzeichnisKonstanten.Toneinstellungen)
       is
          when False =>
-            EinstellungenMusik.StandardeinstellungenLaden;
-            EinstellungenSound.StandardeinstellungenLaden;
+            EinstellungenTon.StandardeinstellungenLaden;
             return;
             
          when True =>
-            Open (File => DateiSoundeinstellungen,
+            Open (File => DateiToneinstellungen,
                   Mode => In_File,
                   Name => VerzeichnisKonstanten.Toneinstellungen,
                   Form => "WCEM=8");
@@ -33,33 +30,31 @@ package body EinlesenToneinstellungenLogik is
       
       case
         ToneinstellungenDurchgehen (LadenPrüfenExtern => False,
-                                    DateiLadenExtern  => DateiSoundeinstellungen)
+                                    DateiLadenExtern  => DateiToneinstellungen)
       is
          when True =>
-            Set_Index (File => DateiSoundeinstellungen,
+            Set_Index (File => DateiToneinstellungen,
                        To   => 1);
             
             Nullwert := ToneinstellungenDurchgehen (LadenPrüfenExtern => True,
-                                                    DateiLadenExtern  => DateiSoundeinstellungen);
+                                                    DateiLadenExtern  => DateiToneinstellungen);
             
          when False =>
-            EinstellungenMusik.StandardeinstellungenLaden;
-            EinstellungenSound.StandardeinstellungenLaden;
+            EinstellungenTon.StandardeinstellungenLaden;
       end case;
       
-      Close (File => DateiSoundeinstellungen);
+      Close (File => DateiToneinstellungen);
       
    exception
       when StandardAdaFehler : others =>
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenToneinstellungenLogik.Toneinstelllungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
-         EinstellungenMusik.StandardeinstellungenLaden;
-         EinstellungenSound.StandardeinstellungenLaden;
+         EinstellungenTon.StandardeinstellungenLaden;
          
          case
-           Is_Open (File => DateiSoundeinstellungen)
+           Is_Open (File => DateiToneinstellungen)
          is
             when True =>
-               Close (File => DateiSoundeinstellungen);
+               Close (File => DateiToneinstellungen);
                
             when False =>
                null;
@@ -75,11 +70,29 @@ package body EinlesenToneinstellungenLogik is
       return Boolean
    is begin
       
-      TonRecords.SoundeinstellungenRecord'Read (Stream (File => DateiLadenExtern),
-                                                Soundeinstellungen);
+      -- TonRecords.ToneinstellungenRecord
+      case
+        End_Of_File (File => DateiLadenExtern)
+      is
+         when True =>
+            return False;
+            
+         when False =>
+            Float'Read (Stream (File => DateiLadenExtern),
+                        Soundlautstärke);
+      end case;
       
-      TonRecords.MusikeinstellungenRecord'Read (Stream (File => DateiLadenExtern),
-                                                Musikeinstellungen);
+      case
+        End_Of_File (File => DateiLadenExtern)
+      is
+         when True =>
+            Musiklautstärke := EinstellungenTon.ToneinstellungenStandard.Musiklautstärke;
+            
+         when False =>
+            Float'Read (Stream (File => DateiLadenExtern),
+                        Musiklautstärke);
+      end case;
+      -- TonRecords.ToneinstellungenRecord
       
       case
         LadenPrüfenExtern
@@ -88,8 +101,10 @@ package body EinlesenToneinstellungenLogik is
             null;
             
          when True =>
-            SchreibeEinstellungenSound.GanzerEintrag (EintragExtern => Soundeinstellungen);
-            SchreibeEinstellungenMusik.GanzerEintrag (EintrageExtern => Musikeinstellungen);
+            SchreibeEinstellungenTon.GesamteToneinstellungen (EinstellungenExtern => (
+                                                                                      Soundlautstärke => Soundlautstärke,
+                                                                                      Musiklautstärke => Musiklautstärke
+                                                                                     ));
       end case;
       
       return True;

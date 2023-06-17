@@ -1,7 +1,5 @@
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
-private with TonRecords;
-
 package EinlesenToneinstellungenLogik is
    pragma Elaborate_Body;
    
@@ -11,12 +9,10 @@ private
    
    Nullwert : Boolean;
    
-   DateiSoundeinstellungen : File_Type;
+   DateiToneinstellungen : File_Type;
    
-   Soundeinstellungen : TonRecords.SoundeinstellungenRecord;
-   
-   Musikeinstellungen : TonRecords.MusikeinstellungenRecord;
-   
+   Soundlautstärke : Float;
+   Musiklautstärke : Float;
    
    
    function ToneinstellungenDurchgehen

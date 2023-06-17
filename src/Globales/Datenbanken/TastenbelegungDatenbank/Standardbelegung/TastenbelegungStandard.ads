@@ -51,7 +51,8 @@ package TastenbelegungStandard is
    
    
    EinheitenbelegungStandard : constant TastenbelegungDatenbank.EinheitenbelegungArray := (
-                                                                                           BefehleDatentypen.Auswählen_Enum             => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                                           -- Wenn ich dafür auch eine Taste festlege/festlegen lasse, dann kann ich auch eine Steuerung ohne Maus anbieten? äöü
+                                                                                           -- BefehleDatentypen.Auswählen_Enum             => Sf.Window.Keyboard.sfKeyUnknown,
                                 
                                                                                            -- Bewegung
                                                                                            BefehleDatentypen.Oben_Enum                  => Sf.Window.Keyboard.sfKeyNumpad8,

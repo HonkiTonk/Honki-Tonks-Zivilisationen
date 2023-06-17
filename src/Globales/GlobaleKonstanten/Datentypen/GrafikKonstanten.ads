@@ -20,7 +20,7 @@ package GrafikKonstanten is
    MinimaleAuflösunghöhe : constant Sf.sfUint32 := 480;
    MaximaleAuflösungshöhe : constant Sf.sfUint32 := 3_072;
    
-   MinimaleBildrate : constant Sf.sfUint32 := 1;
+   MinimaleBildrate : constant Sf.sfUint32 := Sf.sfUint32'First;
    MaximaleBildrate : constant Sf.sfUint32 := 1_000;
         
    RahmenlosesFenster : constant Sf.Window.Window.sfWindowStyle := 0;

@@ -25,5 +25,15 @@ package SchreibeOptionen is
    procedure GanzeSpieleinstellungen
      (EinstellungenExtern : in SystemRecords.NutzerEinstellungenRecord);
    pragma Inline (GanzeSpieleinstellungen);
+   
+   
+   
+   procedure AktuellerAutospeichernwert
+     (AutospeichernwertExtern : in ZahlenDatentypen.EigenesPositive);
+   pragma Inline (AktuellerAutospeichernwert);
+   
+   procedure GanzeSonstigeEinstellungen
+     (EinstellungenExtern : in SystemRecords.SonstigeEinstellungenRecord);
+   pragma Inline (GanzeSonstigeEinstellungen);
 
 end SchreibeOptionen;

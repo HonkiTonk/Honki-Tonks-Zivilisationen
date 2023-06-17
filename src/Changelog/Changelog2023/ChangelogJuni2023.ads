@@ -84,17 +84,22 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (18.06.2023):
+   -- Version 0.05.2120 => 0.05. (18.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (17.06.2023):
+   -- Version 0.05.2045 => 0.05.2120 (17.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Einstellungsspeichersystem gearbeitet.
+   -- SonstigeEinstellungen werden jetzt so gespeichert/geladen das bei einer Erweiterung die alten Einstellungen weiter funktionieren sollten.
+   -- Sound- und Musikeinstellungen in einem Record zusammengeführt.
+   -- Toneinstellungen werden jetzt so gespeichert/geladen das bei einer Erweiterung die alten Einstellungen weiter funktionieren sollten.
+   -- Es ist jetzt wieder möglich die Bildratenbegrenzung vollständig zu entfernen.
+   -- Angefangen die Steuerung zu überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

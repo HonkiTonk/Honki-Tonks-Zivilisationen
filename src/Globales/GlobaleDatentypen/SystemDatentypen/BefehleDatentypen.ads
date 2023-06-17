@@ -41,6 +41,7 @@ package BefehleDatentypen is
                                   );
    
    subtype Einheitenbelegung_Vorhanden_Enum is Einheitenbelegung_Enum range Einheitenbelegung_Enum'Succ (Einheitenbelegung_Enum'First) .. Einheitenbelegung_Enum'Last;
+   subtype Testenbelegung_Auswählbar is Einheitenbelegung_Vorhanden_Enum range Einheitenbelegung_Vorhanden_Enum'Succ (Einheitenbelegung_Vorhanden_Enum'First) .. Einheitenbelegung_Vorhanden_Enum'Last;
    subtype Belegung_Auswählen_Enum is Einheitenbelegung_Vorhanden_Enum range Oben_Enum .. Entladen_Enum;
    
    subtype Einheiten_Bewegung_Enum is Belegung_Auswählen_Enum range Oben_Enum .. Ebene_Runter_Enum;
