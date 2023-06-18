@@ -14,6 +14,8 @@ package TextKonstanten is
    UmbruchAbstand : constant Wide_Wide_String (1 .. 5) := Ada.Characters.Wide_Wide_Latin_1.LF & StandardAbstand;
    UnendlichGeklammert : constant Wide_Wide_String (1 .. 4) := " (∞)";
    Unendlich : constant Wide_Wide_String (1 .. 2) := " ∞";
+   Haken : constant Wide_Wide_String (1 .. 2) := " ✔";
+   Kreuz : constant Wide_Wide_String (1 .. 2) := " ✘";
    
    FehlenderText : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "ÄÖÜ Hier wurde kein Text eingelesen ÜÖÄ");
    LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);

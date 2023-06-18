@@ -77,17 +77,21 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (19.06.2023):
+   -- Version 0.05.2190 => 0.05. (19.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2120 => 0.05. (18.06.2023):
+   -- Version 0.05.2120 => 0.05.2190 (18.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Einstellungsspeichersystem gearbeitet.
+   -- Tastatureinstellungen werden jetzt so gespeichert/geladen das bei einer reinen Erweiterung die alten Einstellungen weiter funktionieren sollten.
+   -- Einlesegeschwindigkeit der Einstellungen verbessert.
+   -- Einstellungsmenüs um Anzeigen für die aktuellen Einstellungen erweitert.
+   -- Anpassungen an der Textanzeige vergenommen, wodurch längere Texte jetzt den vorhandenen Platz vollständig belegen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
@@ -98,7 +102,7 @@ package ChangelogVorlage is
    -- Sound- und Musikeinstellungen in einem Record zusammengeführt.
    -- Toneinstellungen werden jetzt so gespeichert/geladen das bei einer Erweiterung die alten Einstellungen weiter funktionieren sollten.
    -- Es ist jetzt wieder möglich die Bildratenbegrenzung vollständig zu entfernen.
-   -- Angefangen die Steuerung zu überarbeiten.
+   -- Die Steuerung leicht bearbeitet.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    

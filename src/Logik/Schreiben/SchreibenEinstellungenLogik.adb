@@ -1,24 +1,29 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Exceptions; use Ada.Exceptions;
 
 with Sf.Window.Window;
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
+with Sf.Window.Keyboard;
 
 with VerzeichnisKonstanten;
-with TastenbelegungDatenbank;
 with ZahlenDatentypen;
 with TextDatentypen;
 with SpeziesDatentypen;
+with TastenbelegungDatentypen;
+with BefehleDatentypen;
 
 with LeseOptionen;
 with LeseEinstellungenGrafik;
 with LeseEinstellungenTon;
+with LeseTastenbelegungDatenbank;
 
 with Fehlermeldungssystem;
 with TexteinstellungenGrafik;
 
+-- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
+-- Keine Schleifen einbauen, sonst wird das automatisch irgendwo dazwischen eingebaut und nicht am Ende wenn der Schleifenbereich erweitert wird!
 package body SchreibenEinstellungenLogik is
    
    procedure Nutzereinstellungen
@@ -60,8 +65,6 @@ package body SchreibenEinstellungenLogik is
    
    
    
-   -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
-   -- Keine Schleifen einbauen, sonst wird das automatisch irgendwo dazwischen eingebaut und nicht am Ende wenn der Schleifenbereich erweitert wird!
    procedure Grafikeinstellungen
    is begin
       
@@ -188,44 +191,216 @@ package body SchreibenEinstellungenLogik is
    
    
 
-   procedure TastenbelegungSchreiben
+   procedure Tastatureinstellungen
    is begin
       
-      Create (File => DateiTastenbelegung,
+      Create (File => DateiTastatureinstellungen,
               Mode => Out_File,
               Name => VerzeichnisKonstanten.Tastatureinstellungen,
               Form => "WCEM=8");
       
-      TastenbelegungDatenbank.AllgemeineBelegungArray'Write (Stream (File => DateiTastenbelegung),
-                                                             TastenbelegungDatenbank.AllgemeineBelegung);
+      -- TastenbelegungDatenbank.AllgemeineBelegungArray
+      -- TastenbelegungDatenbank.EinheitenbelegungArray
+      -- TastenbelegungDatenbank.StadtbelegungArray
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Auswählen_Enum));
       
-      TastenbelegungDatenbank.EinheitenbelegungArray'Write (Stream (File => DateiTastenbelegung),
-                                                            TastenbelegungDatenbank.Einheitenbelegung);
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Oben_Enum));
       
-      TastenbelegungDatenbank.StadtbelegungArray'Write (Stream (File => DateiTastenbelegung),
-                                                        TastenbelegungDatenbank.Stadtbelegung);
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Links_Enum));
       
-      Close (File => DateiTastenbelegung);
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Unten_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Rechts_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Links_Oben_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Rechts_Oben_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Links_Unten_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Rechts_Unten_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Ebene_Hoch_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Ebene_Runter_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Forschung_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Diplomatie_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Stadt_Suchen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Nächste_Stadt_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Nächste_Einheit_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Nächste_Einheit_Mit_Meldung_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Gehe_Zu_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Runde_Beenden_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Debugmenü_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.AllgemeineBelegung (BefehlExtern => TastenbelegungDatentypen.Abwählen_Enum));
+      
+      
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Auswählen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Oben_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Links_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Unten_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Rechts_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Links_Oben_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Rechts_Oben_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Links_Unten_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Rechts_Unten_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Ebene_Hoch_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Ebene_Runter_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Bauen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Straße_Bauen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Mine_Bauen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Farm_Bauen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Festung_Bauen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Wald_Aufforsten_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Roden_Trockenlegen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Feldeffekte_Entfernen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Heilen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Verschanzen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Plündern_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Auflösen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Einheit_Verbessern_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Heimatstadt_Ändern_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Entladen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => BefehleDatentypen.Abwählen_Enum));
+      
+      
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => BefehleDatentypen.Stadtkarte_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => BefehleDatentypen.Bauen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => BefehleDatentypen.Verkaufen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => BefehleDatentypen.Umbenennen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => BefehleDatentypen.Auflösen_Enum));
+      
+      Sf.Window.Keyboard.sfKeyCode'Write (Stream (File => DateiTastatureinstellungen),
+                                          LeseTastenbelegungDatenbank.Stadtbelegung (BefehlExtern => BefehleDatentypen.Verlassen_Enum));
+      -- TastenbelegungDatenbank.AllgemeineBelegungArray
+      -- TastenbelegungDatenbank.EinheitenbelegungArray
+      -- TastenbelegungDatenbank.StadtbelegungArray
+      
+      Close (File => DateiTastatureinstellungen);
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.TastenbelegungSchreiben - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Tastatureinstellungen - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
-           Is_Open (File => DateiTastenbelegung)
+           Is_Open (File => DateiTastatureinstellungen)
          is
             when True =>
-               Close (File => DateiTastenbelegung);
+               Close (File => DateiTastatureinstellungen);
                
             when False =>
                null;
          end case;
       
-   end TastenbelegungSchreiben;
+   end Tastatureinstellungen;
    
    
    
-   procedure SonstigeEinstellungenSpeichern
+   procedure SonstigeEinstellungen
    is begin
       
       Create (File => DateiSonstigeEinstellungen,
@@ -242,8 +417,7 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         -- Das hier mal überall auslagern? äöü
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.SonstigeEinstellungenSpeichern - Konnte nicht geschrieben werden: "
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.SonstigeEinstellungen - Konnte nicht geschrieben werden: "
                                      & Decode (Item => Exception_Information (X => StandardAdaFehler)));
                                               
          case
@@ -256,6 +430,6 @@ package body SchreibenEinstellungenLogik is
                null;
          end case;
       
-   end SonstigeEinstellungenSpeichern;
+   end SonstigeEinstellungen;
 
 end SchreibenEinstellungenLogik;

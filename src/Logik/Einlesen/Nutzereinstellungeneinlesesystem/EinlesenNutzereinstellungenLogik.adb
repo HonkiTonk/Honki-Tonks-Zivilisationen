@@ -10,6 +10,7 @@ with SchreibeOptionen;
 
 with Fehlermeldungssystem;
 
+-- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenNutzereinstellungenLogik is
 
    procedure Nutzereinstellungen
@@ -37,9 +38,6 @@ package body EinlesenNutzereinstellungenLogik is
             OptionenVariablen.StandardNutzereinstellungenLaden;
             
          when True =>
-            Set_Index (File => DateiNutzereinstellungen,
-                       To   => 1);
-              
             Nullwert := NutzereinstellungenDurchgehen (LadenPrüfenExtern => True,
                                                        DateiLadenExtern  => DateiNutzereinstellungen);
       end case;
@@ -71,54 +69,51 @@ package body EinlesenNutzereinstellungenLogik is
       return Boolean
    is begin
       
-      -- SystemRecords.NutzerEinstellungenRecord
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            return False;
+      if
+        LadenPrüfenExtern = False
+      then
+         -- SystemRecords.NutzerEinstellungenRecord
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               return False;
             
-         when False =>
-            Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenExtern),
-                                             Sprache);
-      end case;
+            when False =>
+               Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenExtern),
+                                                Sprache);
+         end case;
       
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            AnzahlAutospeichern := SystemRecordKonstanten.StandardNutzereinstellungen.AnzahlAutospeichern;
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               AnzahlAutospeichern := SystemRecordKonstanten.StandardNutzereinstellungen.AnzahlAutospeichern;
             
-         when False =>
-            ZahlenDatentypen.EigenesNatural'Read (Stream (File => DateiLadenExtern),
-                                                  AnzahlAutospeichern);
-      end case;
+            when False =>
+               ZahlenDatentypen.EigenesNatural'Read (Stream (File => DateiLadenExtern),
+                                                     AnzahlAutospeichern);
+         end case;
       
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            RundenAutospeichern := SystemRecordKonstanten.StandardNutzereinstellungen.RundenAutospeichern;
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               RundenAutospeichern := SystemRecordKonstanten.StandardNutzereinstellungen.RundenAutospeichern;
             
-         when False =>
-            ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
-                                                   RundenAutospeichern);
-      end case;
-      -- SystemRecords.NutzerEinstellungenRecord
+            when False =>
+               ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
+                                                      RundenAutospeichern);
+         end case;
+         -- SystemRecords.NutzerEinstellungenRecord
       
-      case
-        LadenPrüfenExtern
-      is
-         when False =>
-            null;
-            
-         when True =>
-            SchreibeOptionen.GanzeSpieleinstellungen (EinstellungenExtern => (
-                                                                              Sprache             => Sprache,
-                                                                              AnzahlAutospeichern => AnzahlAutospeichern,
-                                                                              RundenAutospeichern => RundenAutospeichern
-                                                                             ));
-      end case;
+      else
+         SchreibeOptionen.GanzeSpieleinstellungen (EinstellungenExtern => (
+                                                                           Sprache             => Sprache,
+                                                                           AnzahlAutospeichern => AnzahlAutospeichern,
+                                                                           RundenAutospeichern => RundenAutospeichern
+                                                                          ));
+      end if;
       
       return True;
       

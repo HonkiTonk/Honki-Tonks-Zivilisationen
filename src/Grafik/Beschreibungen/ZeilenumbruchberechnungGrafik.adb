@@ -7,7 +7,7 @@ with TextaccessVariablen;
 
 package body ZeilenumbruchberechnungGrafik is
    
-   -- Achtung! Text der hier reinkommt darf nicht durch den View in der Breite skaliert werden und muss durch zwei geteilt werden.
+   -- Text der hier reinkommt darf nicht durch den View in der Breite skaliert werden, sondern muss mit der Viewbreite multipliziert werden.
    function Zeilenumbruchberechnung
      (TextExtern : in Wide_Wide_String;
       TextfeldbreiteExtern : in Float)

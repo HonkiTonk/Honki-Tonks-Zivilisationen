@@ -133,7 +133,7 @@ package body TasteneingabeLogik is
       end if;
       
       EinheitenbelegungSchleife:
-      for EinheitenbelegungSchleifenwert in BefehleDatentypen.Testenbelegung_Auswählbar'Range loop
+      for EinheitenbelegungSchleifenwert in BefehleDatentypen.Einheitenbelegung_Vorhanden_Enum'Range loop
             
          if
            LeseTastenbelegungDatenbank.Einheitenbelegung (BefehlExtern => EinheitenbelegungSchleifenwert) = Taste

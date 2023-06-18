@@ -106,6 +106,7 @@ private
                   KIRechnet'Result.y >= 0.00
                );
    
+   -- Das hier überall mal besser benennen? äöü
    function ZahlAlsStringLadefortschritt is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => SystemDatentypen.NullBisHundert);
 
 end LadezeitenGrafik;

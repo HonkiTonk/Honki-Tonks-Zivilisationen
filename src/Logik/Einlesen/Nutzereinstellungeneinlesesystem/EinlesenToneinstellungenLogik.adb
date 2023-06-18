@@ -9,6 +9,7 @@ with SchreibeEinstellungenTon;
 with Fehlermeldungssystem;
 with EinstellungenTon;
 
+-- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenToneinstellungenLogik is
 
    procedure Toneinstelllungen
@@ -33,9 +34,6 @@ package body EinlesenToneinstellungenLogik is
                                     DateiLadenExtern  => DateiToneinstellungen)
       is
          when True =>
-            Set_Index (File => DateiToneinstellungen,
-                       To   => 1);
-            
             Nullwert := ToneinstellungenDurchgehen (LadenPrüfenExtern => True,
                                                     DateiLadenExtern  => DateiToneinstellungen);
             
@@ -70,42 +68,39 @@ package body EinlesenToneinstellungenLogik is
       return Boolean
    is begin
       
-      -- TonRecords.ToneinstellungenRecord
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            return False;
+      if
+        LadenPrüfenExtern = False
+      then
+         -- TonRecords.ToneinstellungenRecord
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               return False;
             
-         when False =>
-            Float'Read (Stream (File => DateiLadenExtern),
-                        Soundlautstärke);
-      end case;
+            when False =>
+               Float'Read (Stream (File => DateiLadenExtern),
+                           Soundlautstärke);
+         end case;
       
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Musiklautstärke := EinstellungenTon.ToneinstellungenStandard.Musiklautstärke;
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Musiklautstärke := EinstellungenTon.ToneinstellungenStandard.Musiklautstärke;
             
-         when False =>
-            Float'Read (Stream (File => DateiLadenExtern),
-                        Musiklautstärke);
-      end case;
-      -- TonRecords.ToneinstellungenRecord
+            when False =>
+               Float'Read (Stream (File => DateiLadenExtern),
+                           Musiklautstärke);
+         end case;
+         -- TonRecords.ToneinstellungenRecord
       
-      case
-        LadenPrüfenExtern
-      is
-         when False =>
-            null;
-            
-         when True =>
-            SchreibeEinstellungenTon.GesamteToneinstellungen (EinstellungenExtern => (
-                                                                                      Soundlautstärke => Soundlautstärke,
-                                                                                      Musiklautstärke => Musiklautstärke
-                                                                                     ));
-      end case;
+      else
+         SchreibeEinstellungenTon.GesamteToneinstellungen (EinstellungenExtern => (
+                                                                                   Soundlautstärke => Soundlautstärke,
+                                                                                   Musiklautstärke => Musiklautstärke
+                                                                                  ));
+      end if;
       
       return True;
       

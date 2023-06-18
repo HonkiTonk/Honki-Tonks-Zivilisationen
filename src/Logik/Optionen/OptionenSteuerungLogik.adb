@@ -20,11 +20,11 @@ package body OptionenSteuerungLogik is
            AuswahlWert
          is   
             when RueckgabeDatentypen.Speichern_Enum =>
-               SchreibenEinstellungenLogik.TastenbelegungSchreiben;
+               SchreibenEinstellungenLogik.Tastatureinstellungen;
                
             when RueckgabeDatentypen.Standard_Enum =>
                StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
-               SchreibenEinstellungenLogik.TastenbelegungSchreiben;
+               SchreibenEinstellungenLogik.Tastatureinstellungen;
             
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
                return AuswahlWert;

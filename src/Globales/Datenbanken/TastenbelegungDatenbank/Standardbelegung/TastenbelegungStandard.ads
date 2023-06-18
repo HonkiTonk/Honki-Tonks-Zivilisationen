@@ -4,6 +4,7 @@ with TastenbelegungDatenbank;
 with TastenbelegungDatentypen;
 with BefehleDatentypen;
 
+-- Daas hier nach StandardTastenbelegungDatenbank packen? äöü
 package TastenbelegungStandard is
    pragma Elaborate_Body;
 
@@ -51,9 +52,8 @@ package TastenbelegungStandard is
    
    
    EinheitenbelegungStandard : constant TastenbelegungDatenbank.EinheitenbelegungArray := (
-                                                                                           -- Wenn ich dafür auch eine Taste festlege/festlegen lasse, dann kann ich auch eine Steuerung ohne Maus anbieten? äöü
-                                                                                           -- BefehleDatentypen.Auswählen_Enum             => Sf.Window.Keyboard.sfKeyUnknown,
-                                
+                                                                                           BefehleDatentypen.Auswählen_Enum             => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                                           
                                                                                            -- Bewegung
                                                                                            BefehleDatentypen.Oben_Enum                  => Sf.Window.Keyboard.sfKeyNumpad8,
                                                                                            BefehleDatentypen.Links_Enum                 => Sf.Window.Keyboard.sfKeyNumpad4,
@@ -87,7 +87,7 @@ package TastenbelegungStandard is
                                                                                            BefehleDatentypen.Einheit_Verbessern_Enum    => Sf.Window.Keyboard.sfKeyU,
                                                                                            BefehleDatentypen.Heimatstadt_Ändern_Enum    => Sf.Window.Keyboard.sfKeyC,
                                                                                            BefehleDatentypen.Entladen_Enum              => Sf.Window.Keyboard.sfKeyE,
-                                   
+                                                                                           
                                                                                            BefehleDatentypen.Abwählen_Enum              => Sf.Window.Keyboard.sfKeyEscape
                                                                                           );
    

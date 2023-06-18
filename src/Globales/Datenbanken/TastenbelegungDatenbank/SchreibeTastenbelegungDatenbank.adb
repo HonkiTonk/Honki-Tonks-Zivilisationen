@@ -1,5 +1,3 @@
-with TastenbelegungDatenbank;
-
 package body SchreibeTastenbelegungDatenbank is
    
    procedure AllgemeineBelegung
@@ -32,5 +30,35 @@ package body SchreibeTastenbelegungDatenbank is
       TastenbelegungDatenbank.Stadtbelegung (BefehlExtern) := TasteExtern;
       
    end Stadtbelegung;
+   
+   
+   
+   procedure GesamteAllgemeineTastenbelegung
+     (BelegungExtern : in TastenbelegungDatenbank.AllgemeineBelegungArray)
+   is begin
+      
+      TastenbelegungDatenbank.AllgemeineBelegung := BelegungExtern;
+      
+   end GesamteAllgemeineTastenbelegung;
+   
+   
+   
+   procedure GesamteEinheitenbelegung
+     (BelegungExtern : in TastenbelegungDatenbank.EinheitenbelegungArray)
+   is begin
+      
+      TastenbelegungDatenbank.Einheitenbelegung := BelegungExtern;
+      
+   end GesamteEinheitenbelegung;
+   
+   
+   
+   procedure GesamteStadtbelegung
+     (BelegungExtern : in TastenbelegungDatenbank.StadtbelegungArray)
+   is begin
+      
+      TastenbelegungDatenbank.Stadtbelegung := BelegungExtern;
+      
+   end GesamteStadtbelegung;
 
 end SchreibeTastenbelegungDatenbank;

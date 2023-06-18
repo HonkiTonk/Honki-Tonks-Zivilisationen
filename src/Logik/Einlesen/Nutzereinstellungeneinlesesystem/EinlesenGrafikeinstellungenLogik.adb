@@ -12,9 +12,9 @@ with SchreibeEinstellungenGrafik;
 with Fehlermeldungssystem;
 with EinstellungenGrafik;
 
+-- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenGrafikeinstellungenLogik is
 
-   -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
    procedure Grafikeinstellungen
    is begin
       
@@ -37,9 +37,6 @@ package body EinlesenGrafikeinstellungenLogik is
                                        DateiLadenExtern  => DateiGrafikeinstellungen)
       is
          when True =>
-            Set_Index (File => DateiGrafikeinstellungen,
-                       To   => 1);
-            
             Nullwert := GrafikeinstellungenDurchgehen (LadenPrüfenExtern => True,
                                                        DateiLadenExtern  => DateiGrafikeinstellungen);
             
@@ -74,220 +71,217 @@ package body EinlesenGrafikeinstellungenLogik is
       return Boolean
    is begin
       
-      -- GrafikRecords.GrafikeinstellungenRecord
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            return False;
+      if
+        LadenPrüfenExtern = False
+      then
+         -- GrafikRecords.GrafikeinstellungenRecord
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               return False;
             
-         when False =>
-            Sf.Window.Window.sfWindowStyle'Read (Stream (File => DateiLadenExtern),
-                                                 Fenstermodus);
-      end case;
-      
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Auflösung := EinstellungenGrafik.GrafikeinstellungenStandard.Auflösung;
-            
-         when False =>
-            Sf.System.Vector2.sfVector2u'Read (Stream (File => DateiLadenExtern),
-                                               Auflösung);
-      end case;
-      
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Farbtiefe := EinstellungenGrafik.GrafikeinstellungenStandard.Farbtiefe;
-            
-         when False =>
-            Sf.sfUint32'Read (Stream (File => DateiLadenExtern),
-                              Farbtiefe);
-      end case;
-      
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Bildrate := EinstellungenGrafik.GrafikeinstellungenStandard.Bildrate;
-            
-         when False =>
-            Sf.sfUint32'Read (Stream (File => DateiLadenExtern),
-                              Bildrate);
-      end case;
-      
-      
-      
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Schriftgrößen (TextDatentypen.Überschrift_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftgrößen (TextDatentypen.Überschrift_Enum);
-            
-         when False =>
-            Sf.sfUint32'Read (Stream (File => DateiLadenExtern),
-                              Schriftgrößen (TextDatentypen.Überschrift_Enum));
-      end case;
-      
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Schriftgrößen (TextDatentypen.Standard_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftgrößen (TextDatentypen.Standard_Enum);
-            
-         when False =>
-            Sf.sfUint32'Read (Stream (File => DateiLadenExtern),
-                              Schriftgrößen (TextDatentypen.Standard_Enum));
-      end case;
-      
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Schriftgrößen (TextDatentypen.Klein_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftgrößen (TextDatentypen.Klein_Enum);
-            
-         when False =>
-            Sf.sfUint32'Read (Stream (File => DateiLadenExtern),
-                              Schriftgrößen (TextDatentypen.Klein_Enum));
-      end case;
-            
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Schriftfarben (TextDatentypen.Überschrift_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.Überschrift_Enum);
-            
-         when False =>
-            Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
-                                            Schriftfarben (TextDatentypen.Überschrift_Enum));
-      end case;
-      
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Schriftfarben (TextDatentypen.Standard_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.Standard_Enum);
-            
-         when False =>
-            Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
-                                            Schriftfarben (TextDatentypen.Standard_Enum));
-      end case;
-      
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Schriftfarben (TextDatentypen.Ausgewählt_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.Ausgewählt_Enum);
-            
-         when False =>
-            Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
-                                            Schriftfarben (TextDatentypen.Ausgewählt_Enum));
-      end case;
-      
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Schriftfarben (TextDatentypen.Mensch_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.Mensch_Enum);
-            
-         when False =>
-            Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
-                                            Schriftfarben (TextDatentypen.Mensch_Enum));
-      end case;
-        
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Schriftfarben (TextDatentypen.KI_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.KI_Enum);
-            
-         when False =>
-            Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
-                                            Schriftfarben (TextDatentypen.KI_Enum));
-      end case;
-      
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            Schriftfarben (TextDatentypen.Sonstiges_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.Sonstiges_Enum);
-            
-         when False =>
-            Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
-                                            Schriftfarben (TextDatentypen.Sonstiges_Enum));
-      end case;
-      
-      
-      
-      -- Die Schleife kann ich hier verwenden, weil sich die Speziesanzahl nicht mehr ändern wird.
-      SpeziesSchleife:
-      for SpeziesSchleifenwert in SpeziesFarben'Range loop
+            when False =>
+               Sf.Window.Window.sfWindowStyle'Read (Stream (File => DateiLadenExtern),
+                                                    Fenstermodus);
+         end case;
       
          case
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               SpeziesFarben (SpeziesSchleifenwert) := EinstellungenGrafik.GrafikeinstellungenStandard.Speziesfarben (SpeziesSchleifenwert);
+               Auflösung := EinstellungenGrafik.GrafikeinstellungenStandard.Auflösung;
+            
+            when False =>
+               Sf.System.Vector2.sfVector2u'Read (Stream (File => DateiLadenExtern),
+                                                  Auflösung);
+         end case;
+      
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Farbtiefe := EinstellungenGrafik.GrafikeinstellungenStandard.Farbtiefe;
+            
+            when False =>
+               Sf.sfUint32'Read (Stream (File => DateiLadenExtern),
+                                 Farbtiefe);
+         end case;
+      
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Bildrate := EinstellungenGrafik.GrafikeinstellungenStandard.Bildrate;
+            
+            when False =>
+               Sf.sfUint32'Read (Stream (File => DateiLadenExtern),
+                                 Bildrate);
+         end case;
+      
+      
+      
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Schriftgrößen (TextDatentypen.Überschrift_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftgrößen (TextDatentypen.Überschrift_Enum);
+            
+            when False =>
+               Sf.sfUint32'Read (Stream (File => DateiLadenExtern),
+                                 Schriftgrößen (TextDatentypen.Überschrift_Enum));
+         end case;
+      
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Schriftgrößen (TextDatentypen.Standard_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftgrößen (TextDatentypen.Standard_Enum);
+            
+            when False =>
+               Sf.sfUint32'Read (Stream (File => DateiLadenExtern),
+                                 Schriftgrößen (TextDatentypen.Standard_Enum));
+         end case;
+      
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Schriftgrößen (TextDatentypen.Klein_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftgrößen (TextDatentypen.Klein_Enum);
+            
+            when False =>
+               Sf.sfUint32'Read (Stream (File => DateiLadenExtern),
+                                 Schriftgrößen (TextDatentypen.Klein_Enum));
+         end case;
+            
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Schriftfarben (TextDatentypen.Überschrift_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.Überschrift_Enum);
             
             when False =>
                Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
-                                               SpeziesFarben (SpeziesSchleifenwert));
+                                               Schriftfarben (TextDatentypen.Überschrift_Enum));
          end case;
+      
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Schriftfarben (TextDatentypen.Standard_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.Standard_Enum);
+            
+            when False =>
+               Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
+                                               Schriftfarben (TextDatentypen.Standard_Enum));
+         end case;
+      
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Schriftfarben (TextDatentypen.Ausgewählt_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.Ausgewählt_Enum);
+            
+            when False =>
+               Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
+                                               Schriftfarben (TextDatentypen.Ausgewählt_Enum));
+         end case;
+      
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Schriftfarben (TextDatentypen.Mensch_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.Mensch_Enum);
+            
+            when False =>
+               Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
+                                               Schriftfarben (TextDatentypen.Mensch_Enum));
+         end case;
+        
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Schriftfarben (TextDatentypen.KI_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.KI_Enum);
+            
+            when False =>
+               Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
+                                               Schriftfarben (TextDatentypen.KI_Enum));
+         end case;
+      
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Schriftfarben (TextDatentypen.Sonstiges_Enum) := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftfarben (TextDatentypen.Sonstiges_Enum);
+            
+            when False =>
+               Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
+                                               Schriftfarben (TextDatentypen.Sonstiges_Enum));
+         end case;
+      
+      
+      
+         -- Die Schleife kann ich hier verwenden, weil sich die Speziesanzahl nicht mehr ändern wird.
+         SpeziesSchleife:
+         for SpeziesSchleifenwert in SpeziesFarben'Range loop
+      
+            case
+              End_Of_File (File => DateiLadenExtern)
+            is
+               when True =>
+                  SpeziesFarben (SpeziesSchleifenwert) := EinstellungenGrafik.GrafikeinstellungenStandard.Speziesfarben (SpeziesSchleifenwert);
+            
+               when False =>
+                  Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
+                                                  SpeziesFarben (SpeziesSchleifenwert));
+            end case;
                
-      end loop SpeziesSchleife;
+         end loop SpeziesSchleife;
       
       
       
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            EbenenUnterhalbSichtbar := EinstellungenGrafik.GrafikeinstellungenStandard.EbeneUnterhalbSichtbar;
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               EbenenUnterhalbSichtbar := EinstellungenGrafik.GrafikeinstellungenStandard.EbeneUnterhalbSichtbar;
             
-         when False =>
-            Boolean'Read (Stream (File => DateiLadenExtern),
-                          EbenenUnterhalbSichtbar);
-      end case;
+            when False =>
+               Boolean'Read (Stream (File => DateiLadenExtern),
+                             EbenenUnterhalbSichtbar);
+         end case;
       
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            BildrateAnzeigen := EinstellungenGrafik.GrafikeinstellungenStandard.BildrateAnzeigen;
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               BildrateAnzeigen := EinstellungenGrafik.GrafikeinstellungenStandard.BildrateAnzeigen;
             
-         when False =>
-            Boolean'Read (Stream (File => DateiLadenExtern),
-                          BildrateAnzeigen);
-      end case;
-      -- GrafikRecords.GrafikeinstellungenRecord
+            when False =>
+               Boolean'Read (Stream (File => DateiLadenExtern),
+                             BildrateAnzeigen);
+         end case;
+         -- GrafikRecords.GrafikeinstellungenRecord
       
-      case
-        LadenPrüfenExtern
-      is
-         when False =>
-            null;
-            
-         when True =>
-            SchreibeEinstellungenGrafik.GesamteGrafikeinstellungen (EinstellungenExtern => (
-                                                                                            Fenstermodus           => Fenstermodus,
+      else
+         SchreibeEinstellungenGrafik.GesamteGrafikeinstellungen (EinstellungenExtern => (
+                                                                                         Fenstermodus           => Fenstermodus,
                                                                            
-                                                                                            Auflösung              => Auflösung,
-                                                                                            Farbtiefe              => Farbtiefe,
-                                                                                            Bildrate               => Bildrate,
+                                                                                         Auflösung              => Auflösung,
+                                                                                         Farbtiefe              => Farbtiefe,
+                                                                                         Bildrate               => Bildrate,
                                                                                       
-                                                                                            Schriftgrößen          => Schriftgrößen,
+                                                                                         Schriftgrößen          => Schriftgrößen,
                                                                                       
-                                                                                            Schriftfarben          => Schriftfarben,
+                                                                                         Schriftfarben          => Schriftfarben,
                                                                                       
-                                                                                            Speziesfarben          => SpeziesFarben,
+                                                                                         Speziesfarben          => SpeziesFarben,
                                                                                                           
-                                                                                            EbeneUnterhalbSichtbar => EbenenUnterhalbSichtbar,
-                                                                                            BildrateAnzeigen       => BildrateAnzeigen
-                                                                                           ));
-      end case;
+                                                                                         EbeneUnterhalbSichtbar => EbenenUnterhalbSichtbar,
+                                                                                         BildrateAnzeigen       => BildrateAnzeigen
+                                                                                        ));
+      end if;
       
       return True;
       

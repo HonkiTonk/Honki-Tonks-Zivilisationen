@@ -9,6 +9,7 @@ with SchreibeOptionen;
 
 with Fehlermeldungssystem;
 
+-- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenSonstigeEinstellungenLogik is
 
    procedure SonstigeEinstellungen
@@ -33,9 +34,6 @@ package body EinlesenSonstigeEinstellungenLogik is
                                          DateiLadenExtern  => DateiSonstigeEinstellungen)
       is
          when True =>
-            Set_Index (File => DateiSonstigeEinstellungen,
-                       To   => 1);
-            
             Nullwert := SonstigeEinstellungenDurchgehen (LadenPrüfenExtern => True,
                                                          DateiLadenExtern  => DateiSonstigeEinstellungen);
             
@@ -70,30 +68,27 @@ package body EinlesenSonstigeEinstellungenLogik is
       return Boolean
    is begin
       
-      -- SystemRecords.SonstigeEinstellungenRecord
-      case
-        End_Of_File (File => DateiLadenExtern)
-      is
-         when True =>
-            return False;
+      if
+        LadenPrüfenExtern = False
+      then
+         -- SystemRecords.SonstigeEinstellungenRecord
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               return False;
             
-         when False =>
-            ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
-                                                   Autospeichernwert);
-      end case;
-      -- SystemRecords.SonstigeEinstellungenRecord
+            when False =>
+               ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
+                                                      Autospeichernwert);
+         end case;
+         -- SystemRecords.SonstigeEinstellungenRecord
       
-      case
-        LadenPrüfenExtern
-      is
-         when False =>
-            null;
-            
-         when True =>
-            SchreibeOptionen.GanzeSonstigeEinstellungen (EinstellungenExtern => (
-                                                                                 AktuellerAutospeichernwert => Autospeichernwert
-                                                                                ));
-      end case;
+      else
+         SchreibeOptionen.GanzeSonstigeEinstellungen (EinstellungenExtern => (
+                                                                              AktuellerAutospeichernwert => Autospeichernwert
+                                                                             ));
+      end if;
       
       return True;
       

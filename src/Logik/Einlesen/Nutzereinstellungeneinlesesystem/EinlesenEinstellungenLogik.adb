@@ -4,6 +4,7 @@ with EinlesenTastatureinstellungenLogik;
 with EinlesenToneinstellungenLogik;
 with EinlesenSonstigeEinstellungenLogik;
 
+-- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 package body EinlesenEinstellungenLogik is
 
    procedure EinlesenEinstellungen

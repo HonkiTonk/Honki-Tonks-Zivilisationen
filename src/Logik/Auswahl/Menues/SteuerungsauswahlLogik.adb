@@ -151,7 +151,7 @@ package body SteuerungsauswahlLogik is
    begin
       
       EinheitenbelegungSchleife:
-      for EinheitenbelegungSchleifenwert in BefehleDatentypen.Testenbelegung_Auswählbar'Range loop
+      for EinheitenbelegungSchleifenwert in BefehleDatentypen.Einheitenbelegung_Vorhanden_Enum'Range loop
          
          if
            EinheitenbelegungSchleifenwert = BefehleDatentypen.Einheitenbelegung_Enum'Val (AuswahlExtern)

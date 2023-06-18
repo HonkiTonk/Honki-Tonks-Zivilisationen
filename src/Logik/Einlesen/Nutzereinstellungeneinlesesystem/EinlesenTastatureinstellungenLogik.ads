@@ -11,7 +11,7 @@ private
    
    Nullwert : Boolean;
    
-   TastenbelegungLaden : File_Type;
+   DateiTastatureinstellungen : File_Type;
    
    AllgemeineBelegung : TastenbelegungDatenbank.AllgemeineBelegungArray;
    

@@ -226,7 +226,7 @@ begin
         and
           TasksLaufen (Task_Sound_Enum) = False
       then
-         SchreibenEinstellungenLogik.SonstigeEinstellungenSpeichern;
+         SchreibenEinstellungenLogik.SonstigeEinstellungen;
          exit SpielLäuftSchleife;
 
       else
