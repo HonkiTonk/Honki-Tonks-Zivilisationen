@@ -2,9 +2,17 @@ with Sf.Graphics;
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
 
+-- Noch eine Prozedure einbauen die alles auf Standard zurücksetzt? äöü
 package TextaccessverwaltungssystemGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfText_Ptr;
+   
+   procedure Standardskalierung
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+              );
    
    procedure PositionSkalierenFarbeZeichnen
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr;

@@ -89,6 +89,10 @@ package body BauauswahlGebaeudeGrafik is
             Textbreite := GrafikKonstanten.Nullwert;
       end case;
       
+      -- Irgendwo wird der TextaccessVariablen.TextAccess skaliert und nicht zurückgesetzt, mal nachprüfen wo und entsprechend anpassen. äöü
+      -- Vielleicht für alles eigene Textaccesse anlegen oder den TextaccessVariablen.TextAccess immer auf Standardwerte zurücksetzen? äöü
+      TextaccessverwaltungssystemGrafik.Standardskalierung (TextaccessExtern => TextaccessVariablen.TextAccess);
+      
       InformationenSchleife:
       for InformationSchleifenwert in Gebäudetexte'Range loop
          
@@ -147,7 +151,8 @@ package body BauauswahlGebaeudeGrafik is
                                                                     TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                       (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
                                                                                                                                               SpeziesExtern => SpeziesExtern),
-                                                                       TextfeldbreiteExtern => ViewflächeBeschreibung.x / GrafikKonstanten.Halbierung - Textposition.x),
+                                                                       TextfeldbreiteExtern => ViewflächeBeschreibung.x,
+                                                                       BreitenabzugExtern   => Textposition.x),
                                                                     PositionExtern   => Textposition);
             
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,

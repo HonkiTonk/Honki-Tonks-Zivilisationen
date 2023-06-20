@@ -2,8 +2,20 @@ with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 
 with FensterGrafik;
+with GrafikRecordKonstanten;
 
 package body TextaccessverwaltungssystemGrafik is
+   
+   procedure Standardskalierung
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr)
+   is begin
+      
+      Sf.Graphics.Text.setScale (text  => TextaccessExtern,
+                                 scale => GrafikRecordKonstanten.Standardskalierung);
+      
+   end Standardskalierung;
+   
+     
    
    procedure PositionSkalierenFarbeZeichnen
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr;

@@ -22,6 +22,7 @@ package body IntroGrafik is
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.AbspannviewAccess,
                                             GrößeExtern          => Viewfläche,
+                                            -- Warum benutze ich denn für das Intro auch den Abspannbereich und habe keinen eigenen Introbereich oder generell einen Sequenzenbereich? äöü
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Abspannbereich);
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Intro_Hintergrund_Enum,
@@ -34,12 +35,14 @@ package body IntroGrafik is
       IntroSchleife:
       for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop
          
+         -- Ergibt die Kombination aus ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung und TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln überhaupt Sinn? äöü
          TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
                                                                  TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                    (TextExtern           => To_Wide_Wide_String (Source => Spieltexte.Intro (IntroSchleifenwert)),
-                                                                    TextfeldbreiteExtern => (Viewfläche.x / GrafikKonstanten.Halbierung - Textposition.x)),
+                                                                    TextfeldbreiteExtern => Viewfläche.x,
+                                                                    BreitenabzugExtern   => Textposition.x),
                                                                  PositionExtern   => Textposition);
-      
+         
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          TextAccessExtern => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);

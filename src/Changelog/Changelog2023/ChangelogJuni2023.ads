@@ -63,17 +63,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (21.06.2023):
+   -- Version 0.05.2265 => 0.05. (21.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2225 => 0.05. (20.06.2023):
+   -- Version 0.05.2225 => 0.05.2265 (20.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler in der Skalierung einiger Texte korrigiert.
+   -- Zeilenumbruchberechnung überarbeitet, wodurch gebrochene Texte besser den vorhandenen Platz ausnutzen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

@@ -125,6 +125,7 @@ package body EingabenanzeigeGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
                                                                               ViewbreiteExtern => Viewfläche.x);
       
+      TextaccessverwaltungssystemGrafik.Standardskalierung (TextaccessExtern => TextaccessVariablen.TextAccess);
       TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
                                                           PositionExtern   => Textposition);
       
@@ -285,6 +286,8 @@ package body EingabenanzeigeGrafik is
                                                                     ErlaubteBreiteExtern => MaximaleTextbreite);
             Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
             
+            -- Das nicht entfernen, ist für eine bessere Skalierung notwendig.
+            -- Eventuell noch an anderen Stellen einbauen. äöü
             if
               Textbreite > MaximaleTextbreite
             then

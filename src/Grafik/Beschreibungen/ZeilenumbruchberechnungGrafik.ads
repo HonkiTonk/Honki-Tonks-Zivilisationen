@@ -5,11 +5,14 @@ package ZeilenumbruchberechnungGrafik is
    
    function Zeilenumbruchberechnung
      (TextExtern : in Wide_Wide_String;
-      TextfeldbreiteExtern : in Float)
+      TextfeldbreiteExtern : in Float;
+      BreitenabzugExtern : in Float)
       return Wide_Wide_String
      with
        Pre => (
                  TextfeldbreiteExtern > 0.00
+               and
+                 BreitenabzugExtern >= 0.00
               );
    
 private
@@ -18,6 +21,9 @@ private
    SchleifenEnde : Positive;
 
    Zwischenwert : Integer;
+   
+   Textfeldbreitenmultiplikator : constant Float := 0.75;
+   Textfeldbreite : Float;
    
    NeuerText : Unbounded_Wide_Wide_String;
 

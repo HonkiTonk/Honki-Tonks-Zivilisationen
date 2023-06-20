@@ -35,6 +35,7 @@ package GrafikKonstanten is
    
    Halbierung : constant Float := 2.00;
    Verdoppelung : constant Float := 2.00;
+   Verdreifachung : constant Float := 3.00;
    
    AnzahlStadtumgebungsfelder : constant Float := 7.00;
    MaximalerViewbereich : constant Float := 1.00;

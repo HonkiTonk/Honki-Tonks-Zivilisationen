@@ -274,7 +274,8 @@ package body ForschungsauswahlGrafik is
                                                                     TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                       (TextExtern           => ForschungsbeschreibungenGrafik.Langbeschreibung (IDExtern      => ZusatztextExtern,
                                                                                                                                                 SpeziesExtern => SpeziesExtern),
-                                                                       TextfeldbreiteExtern => Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung).x / GrafikKonstanten.Halbierung - Textposition.x),
+                                                                       TextfeldbreiteExtern => Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung).x,
+                                                                       BreitenabzugExtern   => Textposition.x),
                                                                     PositionExtern   => Textposition);
       
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
@@ -283,7 +284,7 @@ package body ForschungsauswahlGrafik is
             
             Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
-            Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung) := Textposition;
+            Viewfläche (ViewKonstanten.ForschungsmenüBeschreibung).y := Textposition.y;
       end case;
               
    end Beschreibung;

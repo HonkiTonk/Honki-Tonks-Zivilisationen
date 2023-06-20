@@ -7,13 +7,13 @@ with TextaccessVariablen;
 
 package body ZeilenumbruchberechnungGrafik is
    
-   -- Text der hier reinkommt darf nicht durch den View in der Breite skaliert werden, sondern muss mit der Viewbreite multipliziert werden.
    function Zeilenumbruchberechnung
      (TextExtern : in Wide_Wide_String;
-      TextfeldbreiteExtern : in Float)
+      TextfeldbreiteExtern : in Float;
+      BreitenabzugExtern : in Float)
       return Wide_Wide_String
    is begin
-      
+            
       case
         TextExtern'Length
       is
@@ -23,8 +23,11 @@ package body ZeilenumbruchberechnungGrafik is
          when others =>
             NeuerText := TextKonstanten.LeerUnboundedString;
       
+            -- Sollte TextExtern'First nicht immer 1 sein? äöü
             SchleifenAnfang := TextExtern'First;
             SchleifenEnde := TextExtern'Last;
+            
+            Textfeldbreite := TextfeldbreiteExtern * Textfeldbreitenmultiplikator - BreitenabzugExtern;
       end case;
       
       ZeilenumbruchSchleife:
@@ -50,13 +53,13 @@ package body ZeilenumbruchberechnungGrafik is
             is
                when Ada.Characters.Wide_Wide_Latin_1.Space =>
                   Zwischenwert := TextbereichSchleifenwert;
-               
+                  
                when others =>
                   null;
             end case;
-                     
+            
             if
-              Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ZeilenumbruchAccess).width >= TextfeldbreiteExtern
+              Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ZeilenumbruchAccess).width >= Textfeldbreite
             then
                case
                  Zwischenwert
@@ -84,7 +87,7 @@ package body ZeilenumbruchberechnungGrafik is
             
          end loop TextbereichSchleife;
       end loop ZeilenumbruchSchleife;
-      
+            
       return To_Wide_Wide_String (Source => NeuerText);
       
    end Zeilenumbruchberechnung;

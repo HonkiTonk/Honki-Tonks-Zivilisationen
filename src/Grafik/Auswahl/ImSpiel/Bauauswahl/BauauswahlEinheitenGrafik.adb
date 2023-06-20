@@ -146,12 +146,15 @@ package body BauauswahlEinheitenGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
+      TextaccessverwaltungssystemGrafik.Standardskalierung (TextaccessExtern => TextaccessVariablen.TextAccess);
+      -- Sollche Konstrukte mal auseinanderziehen, damit es übersichtlicher ist. äöü
       TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),
                                                               TextExtern       => 
-                                                                ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung
-                                                                                                                       (IDExtern      => AuswahlExtern,
-                                                                                                                        SpeziesExtern => SpeziesExtern),
-                                                                                                                       TextfeldbreiteExtern => ViewflächeBeschreibung.x / GrafikKonstanten.Halbierung - Textposition.x),
+                                                                ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
+                                                                  (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern      => AuswahlExtern,
+                                                                                                                                           SpeziesExtern => SpeziesExtern),
+                                                                   TextfeldbreiteExtern => ViewflächeBeschreibung.x,
+                                                                   BreitenabzugExtern   => Textposition.x),
                                                               PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,

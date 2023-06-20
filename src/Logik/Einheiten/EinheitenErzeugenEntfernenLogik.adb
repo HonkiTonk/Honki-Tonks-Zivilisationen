@@ -186,6 +186,9 @@ package body EinheitenErzeugenEntfernenLogik is
             Transporternummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Sortierungsnummer));
       end case;
       
+      -- Das hier (und vermutlich auch das zeug darüber) bereitet Probleme, wenn man einen Transporter mit beladenen Transportern entfernt. äöü
+      -- Oder überhaupt einen beladenen Transporter. äöü
+      -- Erst alles entfernen und dann Sortieren? äöü
       case
         Transporternummer
       is
