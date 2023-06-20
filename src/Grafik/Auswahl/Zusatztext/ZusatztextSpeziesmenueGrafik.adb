@@ -1,5 +1,4 @@
 with TextaccessVariablen;
--- with GrafikKonstanten;
 with GrafikRecordKonstanten;
 
 with ZeilenumbruchberechnungGrafik;

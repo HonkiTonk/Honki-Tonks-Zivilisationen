@@ -71,7 +71,7 @@ package body ZusatztextaufteilungGrafik is
          when MenueDatentypen.Kartenform_Menü_Enum =>
             if
               -- Dafür später auch was universelleres bauen? äöü
-              AktuelleAuswahlExtern in 1 .. 6
+              AktuelleAuswahlExtern in AnfangKartenform .. EndeKartenform
             then
                ZusatztextKartenformGrafik.ZusatztextKartenform (AktuelleAuswahlExtern => AktuelleAuswahlExtern,
                                                                 ViewflächeExtern      => ViewflächeExtern);

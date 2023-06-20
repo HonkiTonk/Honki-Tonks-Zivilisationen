@@ -11,6 +11,7 @@ package body ZusatztextKartenformGrafik is
 
    -- Das mal von Text in irgendwas anderes umbenennen? Oder später zum Bild noch einen Text hinzufügen? äöü
    -- Später noch einmal überarbeiten, gilt auch für die Texturen. äöü
+   -- Später mal die Zahlen mit KartenformmenueGrafik Konstanten zusammenführen? äöü
    procedure ZusatztextKartenform
      (AktuelleAuswahlExtern : in Positive;
       ViewflächeExtern : in Sf.System.Vector2.sfVector2f)

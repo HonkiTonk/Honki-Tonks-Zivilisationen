@@ -70,106 +70,106 @@ package body KartenformmenueGrafik is
       case
         SchleifenwertExtern
       is
-         when 2 =>
+         when EbeneOben =>
             if
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseOben = KartenartDatentypen.Karte_E_Kein_Übergang_Enum
             then
-               WelcherZusatztext := 11;
+               WelcherZusatztext := KeinÜbergang;
                
             else
-               WelcherZusatztext := 12;
+               WelcherZusatztext := Übergang;
             end if;
             
-         when 3 =>
+         when EbeneUnten =>
             if
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.EAchseUnten = KartenartDatentypen.Karte_E_Kein_Übergang_Enum
             then
-               WelcherZusatztext := 11;
+               WelcherZusatztext := KeinÜbergang;
                
             else
-               WelcherZusatztext := 12;
+               WelcherZusatztext := Übergang;
             end if;
 
             Zusatztext := TextKonstanten.Trennstrich & Menuetexte.Kartenform (WelcherZusatztext);
 
-         when 4 =>
+         when Norden =>
             if
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
             then
-               WelcherZusatztext := 11;
+               WelcherZusatztext := KeinÜbergang;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Übergang_Enum
             then
-               WelcherZusatztext := 12;
+               WelcherZusatztext := Übergang;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseNorden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
             then
-               WelcherZusatztext := 13;
+               WelcherZusatztext := RückwärtsVerschobenerÜbergang;
 
             else
-               WelcherZusatztext := 14;
+               WelcherZusatztext := VerschobenerÜbergang;
             end if;
 
-         when 5 =>
+         when Süden =>
             if
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Kein_Übergang_Enum
             then
-               WelcherZusatztext := 11;
+               WelcherZusatztext := KeinÜbergang;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Übergang_Enum
             then
-               WelcherZusatztext := 12;
+               WelcherZusatztext := Übergang;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.YAchseSüden = KartenartDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum
             then
-               WelcherZusatztext := 13;
+               WelcherZusatztext := RückwärtsVerschobenerÜbergang;
 
             else
-               WelcherZusatztext := 14;
+               WelcherZusatztext := VerschobenerÜbergang;
             end if;
 
-         when 6 =>
+         when Westen =>
             if
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
             then
-               WelcherZusatztext := 11;
+               WelcherZusatztext := KeinÜbergang;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Übergang_Enum
             then
-               WelcherZusatztext := 12;
+               WelcherZusatztext := Übergang;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseWesten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
             then
-               WelcherZusatztext := 13;
+               WelcherZusatztext := RückwärtsVerschobenerÜbergang;
 
             else
-               WelcherZusatztext := 14;
+               WelcherZusatztext := VerschobenerÜbergang;
             end if;
 
-         when 7 =>
+         when Osten =>
             if
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Kein_Übergang_Enum
             then
-               WelcherZusatztext := 11;
+               WelcherZusatztext := KeinÜbergang;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Übergang_Enum
             then
-               WelcherZusatztext := 12;
+               WelcherZusatztext := Übergang;
 
             elsif
               KartengeneratorVariablenLogik.Kartenparameter.Kartenform.XAchseOsten = KartenartDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum
             then
-               WelcherZusatztext := 13;
+               WelcherZusatztext := RückwärtsVerschobenerÜbergang;
 
             else
-               WelcherZusatztext := 14;
+               WelcherZusatztext := VerschobenerÜbergang;
             end if;
             
          when others =>

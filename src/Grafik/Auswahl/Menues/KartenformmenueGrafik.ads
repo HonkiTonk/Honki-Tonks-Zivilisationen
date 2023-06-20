@@ -21,6 +21,18 @@ package KartenformmenueGrafik is
 
 private
 
+   -- Ist um eins verschoben, da die textdateien ja noch eine Überschrift enthalten.
+   -- Später mit ZusatztextaufteilungGrafik zusammenführen? äöü
+   EbeneOben : constant Positive := 2;
+   EbeneUnten : constant Positive := 3;
+   Norden : constant Positive := 4;
+   Süden : constant Positive := 5;
+   Westen : constant Positive := 6;
+   Osten : constant Positive := 7;
+   KeinÜbergang : constant Positive := 11;
+   Übergang : constant Positive := 12;
+   RückwärtsVerschobenerÜbergang : constant Positive := 13;
+   VerschobenerÜbergang : constant Positive := 14;
    WelcherZusatztext : Positive;
 
    Textbreite : Float;

@@ -70,17 +70,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (20.06.2023):
+   -- Version 0.05.2225 => 0.05. (20.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2190 => 0.05. (19.06.2023):
+   -- Version 0.05.2190 => 0.05.2225 (19.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Übersetzungen an einigen Stellen überarbeitet.
+   -- Einige Zahlen durch Konstante ersetzt.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

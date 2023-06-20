@@ -32,6 +32,10 @@ package ZusatztextaufteilungGrafik is
 
 private
 
+   -- Später mit KartenformmenueGrafik zusammenführen? äöü
+   -- Generell mal auslagern? äöü
+   AnfangKartenform : constant Positive := 1;
+   EndeKartenform : constant Positive := 6;
    AnzahlKartengrößen : constant Positive := 9;
    MaximaleKartenformen : constant Positive := 10;
 
