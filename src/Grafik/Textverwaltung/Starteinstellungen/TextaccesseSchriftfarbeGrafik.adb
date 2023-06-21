@@ -46,14 +46,34 @@ package body TextaccesseSchriftfarbeGrafik is
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.ZeilenumbruchAccess,
                                  color => SonstigeFarbe);
       
-      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TextAccess,
-                                 color => Standardfarbe);
-      
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.TexthöheAccess,
                                  color => Standardfarbe);
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.Spielmeldung,
                                  color => Standardfarbe);
+      
+      -- Später das Zeug überall sortieren. äöü
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.DiplomatieAccess,
+                                 color => Standardfarbe);
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitenseitenleisteAccess,
+                                 color => Standardfarbe);
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EingabenanzeigeAccess,
+                                 color => Standardfarbe);
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.EinheitenbauinformationenAccess,
+                                 color => Standardfarbe);
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudebauinformationenAccess,
+                                 color => Standardfarbe);
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.StadtkarteAccess,
+                                 color => Standardfarbe);
+      
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.StadtumgebungAccess,
+                                 color => Standardfarbe);
+      -- Später das Zeug überall sortieren. äöü
       
       
       

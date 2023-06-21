@@ -88,24 +88,20 @@ package body BauauswahlGebaeudeGrafik is
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             Textbreite := GrafikKonstanten.Nullwert;
       end case;
-      
-      -- Irgendwo wird der TextaccessVariablen.TextAccess skaliert und nicht zurückgesetzt, mal nachprüfen wo und entsprechend anpassen. äöü
-      -- Vielleicht für alles eigene Textaccesse anlegen oder den TextaccessVariablen.TextAccess immer auf Standardwerte zurücksetzen? äöü
-      TextaccessverwaltungssystemGrafik.Standardskalierung (TextaccessExtern => TextaccessVariablen.TextAccess);
-      
+            
       InformationenSchleife:
       for InformationSchleifenwert in Gebäudetexte'Range loop
          
-         TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+         TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.GebäudebauinformationenAccess,
                                                                       TextExtern       => To_Wide_Wide_String (Source => Gebäudetexte (InformationSchleifenwert)),
                                                                       PositionExtern   => Textposition,
                                                                       FarbeExtern      => TextfarbeGrafik.Standardfarbe);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                         TextAccessExtern => TextaccessVariablen.GebäudebauinformationenAccess,
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
+         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudebauinformationenAccess,
                                                                              TextbreiteExtern => Textbreite);
          
       end loop InformationenSchleife;

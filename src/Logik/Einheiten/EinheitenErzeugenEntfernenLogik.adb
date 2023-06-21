@@ -78,11 +78,11 @@ package body EinheitenErzeugenEntfernenLogik is
    begin
       
       Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+                                                                           IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
       
       TransporterSchleife:
       for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
-        
+         
          EinheitNummer := LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                              PlatzExtern                => LadungSchleifenwert);
          
@@ -92,6 +92,7 @@ package body EinheitenErzeugenEntfernenLogik is
             null;
             
          else
+            EinheitEntfernenLadung (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer));
             Entfernen (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer));
          end if;
          
@@ -104,7 +105,7 @@ package body EinheitenErzeugenEntfernenLogik is
    procedure Entfernen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
-      
+            
       EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                            VorzeichenWechselExtern    => -1);
       

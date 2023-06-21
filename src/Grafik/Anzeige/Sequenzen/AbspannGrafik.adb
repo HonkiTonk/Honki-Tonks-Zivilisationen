@@ -80,15 +80,15 @@ package body AbspannGrafik is
       
       NeueViewfläche := AllgemeinerText;
       
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.OutroAccess (1),
                                          str  => "oO");
       
-      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
+      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.OutroAccess (1),
                                                                               ViewbreiteExtern => ViewflächeExtern.x);
       Textposition.y := NeueViewfläche.y;
       Textbreite := NeueViewfläche.x;
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (1),
                                                           PositionExtern   => Textposition);
       
       return (Textbreite, Textposition.y);
@@ -104,15 +104,15 @@ package body AbspannGrafik is
       
       NeueViewfläche := AllgemeinerText;
       
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.OutroAccess (1),
                                          str  => "\o/");
       
-      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
+      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.OutroAccess (1),
                                                                               ViewbreiteExtern => ViewflächeExtern.x);
       Textposition.y := NeueViewfläche.y;
       Textbreite := NeueViewfläche.x;
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (1),
                                                           PositionExtern   => Textposition);
       
       return (Textbreite, Textposition.y);

@@ -104,16 +104,16 @@ package body BauauswahlEinheitenGrafik is
       InformationenSchleife:
       for InformationSchleifenwert in Einheitentexte'Range loop
          
-         TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+         TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenbauinformationenAccess,
                                                                       TextExtern       => To_Wide_Wide_String (Source => Einheitentexte (InformationSchleifenwert)),
                                                                       PositionExtern   => Textposition,
                                                                       FarbeExtern      => TextfarbeGrafik.Standardfarbe);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                         TextAccessExtern => TextaccessVariablen.EinheitenbauinformationenAccess,
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
+         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenbauinformationenAccess,
                                                                              TextbreiteExtern => Textbreite);
          
       end loop InformationenSchleife;
@@ -146,7 +146,6 @@ package body BauauswahlEinheitenGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      TextaccessverwaltungssystemGrafik.Standardskalierung (TextaccessExtern => TextaccessVariablen.TextAccess);
       -- Sollche Konstrukte mal auseinanderziehen, damit es übersichtlicher ist. äöü
       TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),
                                                               TextExtern       => 

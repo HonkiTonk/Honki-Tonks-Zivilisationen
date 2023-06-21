@@ -7,7 +7,6 @@ with Meldungstexte;
 with SpeziesKonstanten;
 with GrafikKonstanten;
 with TextnummernKonstanten;
-with TextDatentypen;
 with KarteneffektDatentypen;
 with ProduktionDatentypen;
 with SystemDatentypen;
@@ -19,7 +18,6 @@ with ViewsEinstellenGrafik;
 with ObjekteZeichnenGrafik;
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
-with TexteinstellungenGrafik;
 with TextaccessverwaltungssystemGrafik;
 with FeldproduktionLogik;
 
@@ -161,9 +159,6 @@ package body StadtumgebungGrafik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      TextaccessverwaltungssystemGrafik.Farbe (TextaccessExtern => TextaccessVariablen.TextAccess,
-                                               FarbeExtern      => TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum));
-      
       ProduktionSchleife:
       for ProduktionSchleifenwert in ProduktionDatentypen.Produktion_Enum'Range loop
          
@@ -191,30 +186,30 @@ package body StadtumgebungGrafik is
                                                                                                                               ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
          end case;
          
-         TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.TextAccess,
+         TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.StadtumgebungAccess,
                                                          TextExtern       => To_Wide_Wide_String (Source => Text),
                                                          PositionExtern   => (PositionExtern.x, (FeldgrößeExtern.y / Schriftabstandanpassung)
                                                                               * Float (ProduktionDatentypen.Produktion_Enum'Pos (ProduktionSchleifenwert)) + PositionExtern.y));
          
          if
-           Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width > FeldgrößeExtern.x
+           Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtumgebungAccess).width > FeldgrößeExtern.x
          then
-            Skalierung.x := FeldgrößeExtern.x / Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).width;
+            Skalierung.x := FeldgrößeExtern.x / Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtumgebungAccess).width;
             
          else
             Skalierung.x := GrafikKonstanten.Einswert;
          end if;
          
          if
-           Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height * Schriftabstandanpassung > FeldgrößeExtern.y
+           Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtumgebungAccess).height * Schriftabstandanpassung > FeldgrößeExtern.y
          then
-            Skalierung.y := FeldgrößeExtern.y / (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TextAccess).height * Schriftabstandanpassung);
+            Skalierung.y := FeldgrößeExtern.y / (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.StadtumgebungAccess).height * Schriftabstandanpassung);
             
          else
             Skalierung.y := GrafikKonstanten.Einswert;
          end if;
          
-         TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+         TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.StadtumgebungAccess,
                                                               SkalierungExtern => Skalierung);
                   
       end loop ProduktionSchleife;

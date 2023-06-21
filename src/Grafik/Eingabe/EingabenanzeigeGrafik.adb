@@ -77,24 +77,24 @@ package body EingabenanzeigeGrafik is
             Text := ZahlAlsStringNatural (ZahlExtern => NachGrafiktask.EingegebeneZahl);       
       end case;
                                     
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EingabenanzeigeAccess,
                                          str  => To_Wide_Wide_String (Source => Text));
       
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
+      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
+      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                                               ViewbreiteExtern => Viewfläche.x);
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                           PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                      TextAccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
-      -- Die Viewflächen auch in ein Array umwandeln?
+      -- Die Viewflächen auch in ein Array umwandeln? äöü
       Viewfläche := (Textbreite, Textposition.y);
       
    end AnzeigeGanzeZahl;
@@ -116,21 +116,21 @@ package body EingabenanzeigeGrafik is
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EingabenanzeigeAccess,
                                          str  => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText));
       
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.TextAccess,
+      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);
       
-      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.TextAccess,
+      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                                               ViewbreiteExtern => Viewfläche.x);
       
-      TextaccessverwaltungssystemGrafik.Standardskalierung (TextaccessExtern => TextaccessVariablen.TextAccess);
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.TextAccess,
+      TextaccessverwaltungssystemGrafik.Standardskalierung (TextaccessExtern => TextaccessVariablen.EingabenanzeigeAccess);
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                           PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.TextAccess,
+                                                                      TextAccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
       Viewfläche := (Textbreite, Textposition.y);

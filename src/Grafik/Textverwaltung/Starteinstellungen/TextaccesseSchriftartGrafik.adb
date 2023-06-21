@@ -42,9 +42,6 @@ package body TextaccesseSchriftartGrafik is
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.ZeilenumbruchAccess,
                                 font => SchriftaccessExtern);
       
-      Sf.Graphics.Text.setFont (text => TextaccessVariablen.TextAccess,
-                                font => SchriftaccessExtern);
-      
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.TexthöheAccess,
                                 font => SchriftaccessExtern);
       
@@ -53,6 +50,29 @@ package body TextaccesseSchriftartGrafik is
                   
       Sf.Graphics.Text.setFont (text => TextaccessVariablen.BildrateAccess,
                                 font => SchriftaccessExtern);
+      
+      -- Später das Zeug überall sortieren. äöü
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.DiplomatieAccess,
+                                font => SchriftaccessExtern);
+      
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitenseitenleisteAccess,
+                                font => SchriftaccessExtern);
+      
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.EingabenanzeigeAccess,
+                                font => SchriftaccessExtern);
+      
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.EinheitenbauinformationenAccess,
+                                font => SchriftaccessExtern);
+      
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudebauinformationenAccess,
+                                font => SchriftaccessExtern);
+      
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.StadtkarteAccess,
+                                font => SchriftaccessExtern);
+      
+      Sf.Graphics.Text.setFont (text => TextaccessVariablen.StadtumgebungAccess,
+                                font => SchriftaccessExtern);
+      -- Später das Zeug überall sortieren. äöü
       
       
       

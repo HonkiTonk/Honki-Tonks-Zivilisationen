@@ -47,9 +47,6 @@ package body TextaccesseSchriftgroesseGrafik is
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ZeilenumbruchAccess,
                                          size => Klein);
       
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TextAccess,
-                                         size => Normal);
-      
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.TexthöheAccess,
                                          size => Normal);
       
@@ -59,7 +56,30 @@ package body TextaccesseSchriftgroesseGrafik is
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.BildrateAccess,
                                          size => Normal);
       
+      -- Später das Zeug überall sortieren. äöü
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.DiplomatieAccess,
+                                         size => Normal);
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitenseitenleisteAccess,
+                                         size => Normal);
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EingabenanzeigeAccess,
+                                         size => Normal);
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitenbauinformationenAccess,
+                                         size => Normal);
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudebauinformationenAccess,
+                                         size => Normal);
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.StadtkarteAccess,
+                                         size => Normal);
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.StadtumgebungAccess,
+                                         size => Normal);
+      -- Später das Zeug überall sortieren. äöü
             
+      
       
       IntroSchleife:
       for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop

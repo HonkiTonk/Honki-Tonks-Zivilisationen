@@ -56,17 +56,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (22.06.2023):
+   -- Version 0.05.2300 => 0.05. (22.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2265 => 0.05. (21.06.2023):
+   -- Version 0.05.2265 => 0.05.2300 (21.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler im Entfernen von verschachtelten Einheiten versucht zu beheben.
+   -- Für alle Texte einen eigenen Access angelegt und allgemeinen Textaccess entfernt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

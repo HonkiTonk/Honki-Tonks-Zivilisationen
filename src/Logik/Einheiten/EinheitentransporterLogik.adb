@@ -263,7 +263,8 @@ package body EinheitentransporterLogik is
          
       end loop LadungSchleife;
       
-      -- Das kann später vermutlich wieder weg, aber zu Testzwecken erst einmal drinnen lassen um besser Überprüfen zu können ob das Sortieren funktioniert. äöü
+      -- Das kann theortisch weg, aber zu Sicherheitszwischen mal drinnen lassen um besser Überprüfen zu können ob das Sortieren funktioniert. äöü
+      -- Dauerhaft drinnen lassen? äöü
       Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinheitentransporterLogik.LadungsnummerAnpassen - Transportierte Einheit wird nicht transportiert");
       
    end LadungsnummerAnpassen;
