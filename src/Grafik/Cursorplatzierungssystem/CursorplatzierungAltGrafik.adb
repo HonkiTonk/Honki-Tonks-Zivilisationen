@@ -204,7 +204,7 @@ package body CursorplatzierungAltGrafik is
       
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => (Viewzentrum.x - Viewfläche.x / GrafikKonstanten.Halbierung, Viewzentrum.y - Viewfläche.y / GrafikKonstanten.Halbierung, Viewfläche.x, Viewfläche.y))
+                                       RechteckExtern     => (Viewzentrum.x - Viewfläche.x / GrafikKonstanten.Halbierung, Viewzentrum.y - Viewfläche.y / GrafikKonstanten.Halbierung, Viewfläche.x, Viewfläche.y))
          is
             when True =>
                return True;
@@ -236,7 +236,7 @@ package body CursorplatzierungAltGrafik is
             
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => (Viewzentrum.x - Viewfläche.x / GrafikKonstanten.Halbierung, Viewzentrum.y - Viewfläche.y / GrafikKonstanten.Halbierung, Viewfläche.x, Viewfläche.y))
+                                       RechteckExtern     => (Viewzentrum.x - Viewfläche.x / GrafikKonstanten.Halbierung, Viewzentrum.y - Viewfläche.y / GrafikKonstanten.Halbierung, Viewfläche.x, Viewfläche.y))
          is
             when True =>
                return True;

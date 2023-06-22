@@ -76,7 +76,7 @@ package body StadtkarteGrafik is
                   
                   if
                     True = Vergleiche.Auswahlposition (MauspositionExtern => InteraktionAllgemein.Mausposition,
-                                                       TextboxExtern      => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y, Grafikgröße.x, Grafikgröße.y))
+                                                       RechteckExtern     => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y, Grafikgröße.x, Grafikgröße.y))
                   then
                      GebäudeZusatzinformationen := GebäudeID;
                      

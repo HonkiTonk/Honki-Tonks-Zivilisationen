@@ -53,7 +53,6 @@ package GrafikRecordKonstanten is
                                                                                     ViewKonstanten.SteuerungAuswahl   => (0.00, Überschriftbereich.height + 0.05, 1.00, 1.00 - Überschriftbereich.height - 0.05)
                                                                                    );
    
-   -- Eventuell die Weltkarte und die Seitenleiste in zwei seperate Records aufteilen? Wäre bei dem neuen System vermutlich besser. äöü
    Weltkartenbereich : constant BereicheArray (Views.WeltkarteAccess'Range) := (
                                                                                 ViewKonstanten.WeltKarte                  => Kartenbereich,
                                                                                 ViewKonstanten.WeltBefehleRechts          => (0.59, 0.79, 0.20, 0.20),

@@ -34,10 +34,8 @@ package WichtigesRecordKonstanten is
                                                                  Gewonnen              => False,
                                                                  Weiterspielen         => False,
                                                                  SpeziesAmZugNachLaden   => SpeziesKonstanten.LeerSpezies,
-                                                                 -- Das auslagern damit man es nicht immer neu setzen muss? äöü
                                                                  Schwierigkeitsgrad    => SpielDatentypen.Schwierigkeitsgrad_Leicht_Enum,
                                                                  Rundenanzahl          => Positive'First,
-                                                                 -- Das auslagern damit man es nicht immer neu setzen muss? äöü
                                                                  Rundengrenze          => Natural'First,
                                                                  IronmanName           => TextKonstanten.LeerUnboundedString,
                                                                  PlanetVernichtet      => SpeziesKonstanten.LeerSpezies,
@@ -72,7 +70,6 @@ package WichtigesRecordKonstanten is
                                                                   Besiegt  => False
                                                                  );
    
-   -- Wird noch nicht verwendet. Wird das jemals sinnvoll sein? äöü
    LeerSpeziesListe : constant DatenbankRecords.SpezieslisteRecord := (
                                                                        Aggressivität       => 1,
                                                                        Expansion           => 1,

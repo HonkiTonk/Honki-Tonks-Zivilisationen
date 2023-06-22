@@ -1,7 +1,5 @@
 with StadtDatentypen;
 
--- Soll das hier sein weil ich das auch in anderen Bereichen als in Grafik verwenden wollte? äöü
--- Oder ist das einfach nur falsch eingeordnet? äöü
 package AllgemeineBerechnungen is
    pragma Preelaborate;
    use type StadtDatentypen.Einwohner;

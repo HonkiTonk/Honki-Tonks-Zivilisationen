@@ -22,13 +22,9 @@ package GebaeudedatenbankRecord is
       
    end record;
 
-   -- Die Bonus, Kosten und Kampfbereiche auf ein Enum anstelle eines Arrays umschreiben? äöü
-   -- Dann passt das aber auch nicht mehr einfach in eine Schleife. äöü
    type ProduktionsbonusArray is array (ProduktionDatentypen.Produktion_Enum'Range) of ProduktionDatentypen.Feldproduktion;
    type KampfbonusArray is array (KampfDatentypen.Kampf_Enum'Range) of KampfDatentypen.Kampfbonus;
    
-   -- Was ist überhaupt mit Zusatzgrund? äöü
-   -- Um das alles da rein zu basteln müsste man aber die Gebäudeumgebungsprüfung noch einmal deutlich überarbeiten. äöü
    -- Könnte man theoretisch um das vernichtete Feld kürzen, aber ob sich das lohnt? äöü
    -- Wenn ich Leer mit reinnehme könnte ich daran prüfen ob überhaupt eines gebraucht wird und entsprechend die Prüfung verkürzen? Ist das sinnvoll? äöü
    type BasisgrundArray is array (KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Range) of Boolean;

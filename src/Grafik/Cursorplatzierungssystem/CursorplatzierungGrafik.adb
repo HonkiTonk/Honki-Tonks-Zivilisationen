@@ -43,7 +43,7 @@ package body CursorplatzierungGrafik is
       
       case
         Vergleiche.AuswahlpositionVereinfacht (MauspositionExtern => Mausposition,
-                                               TextboxExtern      => Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)))
+                                               VektorExtern       => Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)))
       is
          when False =>
             return;

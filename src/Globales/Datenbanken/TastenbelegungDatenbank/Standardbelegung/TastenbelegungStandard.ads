@@ -4,7 +4,7 @@ with TastenbelegungDatenbank;
 with TastenbelegungDatentypen;
 with BefehleDatentypen;
 
--- Daas hier nach StandardTastenbelegungDatenbank packen? äöü
+-- Das hier nach StandardTastenbelegungDatenbank packen? äöü
 package TastenbelegungStandard is
    pragma Elaborate_Body;
 

@@ -4,7 +4,7 @@ package body Vergleiche is
    
    function Auswahlposition
      (MauspositionExtern : in Sf.System.Vector2.sfVector2f;
-      TextboxExtern : in Sf.Graphics.Rect.sfFloatRect)
+      RechteckExtern : in Sf.Graphics.Rect.sfFloatRect)
       return Boolean
    is begin
       
@@ -19,9 +19,9 @@ package body Vergleiche is
          return False;
             
       elsif
-        MauspositionExtern.x in TextboxExtern.left .. TextboxExtern.left + TextboxExtern.width
+        MauspositionExtern.x in RechteckExtern.left .. RechteckExtern.left + RechteckExtern.width
         and
-          MauspositionExtern.y in TextboxExtern.top .. TextboxExtern.top + TextboxExtern.height
+          MauspositionExtern.y in RechteckExtern.top .. RechteckExtern.top + RechteckExtern.height
       then
          return True;
          
@@ -35,7 +35,7 @@ package body Vergleiche is
    
    function AuswahlpositionVereinfacht
      (MauspositionExtern : in Sf.System.Vector2.sfVector2f;
-      TextboxExtern : in Sf.System.Vector2.sfVector2f)
+      VektorExtern : in Sf.System.Vector2.sfVector2f)
       return Boolean
    is begin
       
@@ -47,9 +47,9 @@ package body Vergleiche is
          return False;
             
       elsif
-        MauspositionExtern.x in GrafikKonstanten.Nullwert .. TextboxExtern.x
+        MauspositionExtern.x in GrafikKonstanten.Nullwert .. VektorExtern.x
         and
-          MauspositionExtern.y in GrafikKonstanten.Nullwert .. TextboxExtern.y
+          MauspositionExtern.y in GrafikKonstanten.Nullwert .. VektorExtern.y
       then
          return True;
          

@@ -87,7 +87,7 @@ package body KoordinatenPositionUmwandlungen is
                
             elsif
               True = Vergleiche.Auswahlposition (MauspositionExtern => PositionExtern,
-                                                 TextboxExtern      => (Feldposition.x, Feldposition.y,
+                                                 RechteckExtern     => (Feldposition.x, Feldposition.y,
                                                                         Feldposition.x + SichtweitenGrafik.Kartenfeldfläche.x, Feldposition.y + SichtweitenGrafik.Kartenfeldfläche.y))
             then
                return KartenWert;

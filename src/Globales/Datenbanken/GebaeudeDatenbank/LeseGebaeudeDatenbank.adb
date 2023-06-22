@@ -4,7 +4,6 @@ with ProduktionKonstanten;
 with ForschungKonstanten;
 with KampfKonstanten;
 
--- Aufgrund der Änderungen in der gebäudedatenbank hier eventuell noch einmal die leeren Rückgabewerte überprüfen. äöü
 package body LeseGebaeudeDatenbank is
 
    function PreisGeld

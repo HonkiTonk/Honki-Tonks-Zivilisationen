@@ -9,9 +9,7 @@ package SpeziesKonstanten is
    
    Speziesanfang : constant Positive := SpeziesDatentypen.SpeziesnummernVorhanden'First;
    Speziesende : constant Positive := SpeziesDatentypen.SpeziesnummernVorhanden'Last;
-   
-   -- Die Spezien auch mal in einzelne Konstanten packen? äöü
-   
+      
    type SpeziesanfangLadenSpeichernArray is array (1 .. 3) of SpeziesDatentypen.Spezies_Verwendet_Enum;
    SpeziesanfangSpeichernLaden : constant SpeziesanfangLadenSpeichernArray := (1 => SpeziesDatentypen.Speichern_Laden_Eins_Enum'First,
                                                                                2 => SpeziesDatentypen.Speichern_Laden_Zwei_Enum'First,

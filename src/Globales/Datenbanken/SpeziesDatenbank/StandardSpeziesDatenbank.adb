@@ -32,17 +32,17 @@ package body StandardSpeziesDatenbank is
                                         SpeziesManuky.SpezieslisteManuky,
                                         SpeziesSuroka.SpezieslisteSuroka,
                                         SpeziesPryolon.SpezieslistePryolon,
-                                        SpeziesTalbidahr.SpezieslisteTalbidahr,
                                         SpeziesMoruPhisihl.SpezieslisteMoruPhisihl,
                                         SpeziesLarinosLotaris.SpezieslisteLarinosLotaris,
                                         SpeziesCarupex.SpezieslisteCarupex,
                                         SpeziesAlary.SpezieslisteAlary,
-                                        SpeziesTesorahn.SpezieslisteTesorahn,
                                         SpeziesNatriesZermanis.SpezieslisteNatriesZermanis,
                                         SpeziesTridatus.SpezieslisteTridatus,
                                         SpeziesSenelari.SpezieslisteSenelari,
                                         SpeziesAspari2.SpezieslisteAspari2,
-                                        SpeziesEkropa.SpezieslisteEkropa
+                                        SpeziesEkropa.SpezieslisteEkropa,
+                                        SpeziesTalbidahr.SpezieslisteTalbidahr,
+                                        SpeziesTesorahn.SpezieslisteTesorahn
                                        );
       
       -- Kann wegen dam Kompilerfehler mit gnat-wu aktuell nicht verwendet werden. äöü

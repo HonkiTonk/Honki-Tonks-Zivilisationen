@@ -38,7 +38,7 @@ package body MausauswahlLogik is
             when True =>
                if
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    TextboxExtern      => InteraktionAuswahl.PositionenDiplomatieSpezies (SpeziesSchleifenwert))
+                                                    RechteckExtern     => InteraktionAuswahl.PositionenDiplomatieSpezies (SpeziesSchleifenwert))
                then
                   return SpeziesDatentypen.Spezies_Enum'Pos (SpeziesSchleifenwert);
          
@@ -70,7 +70,7 @@ package body MausauswahlLogik is
       
       case
         Vergleiche.Auswahlposition (MauspositionExtern => InteraktionAllgemein.Mausposition,
-                                    TextboxExtern      => (0.00, 0.00, Float (Auflösung.x), Float (Auflösung.y)))
+                                    RechteckExtern     => (0.00, 0.00, Float (Auflösung.x), Float (Auflösung.y)))
       is
          when False =>
             return ForschungKonstanten.LeerAnforderung;
@@ -90,7 +90,7 @@ package body MausauswahlLogik is
             when True =>
                if
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    TextboxExtern      => InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert))
+                                                    RechteckExtern     => InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert))
                then
                   return ForschungSchleifenwert;
          
@@ -127,7 +127,7 @@ package body MausauswahlLogik is
             when True =>
                if
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    TextboxExtern      => InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert))
+                                                    RechteckExtern     => InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert))
                then
                   return (GebäudeSchleifenwert, EinheitenKonstanten.LeerID);
          
@@ -154,7 +154,7 @@ package body MausauswahlLogik is
             when True =>
                if
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    TextboxExtern      => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
+                                                    RechteckExtern     => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
                then
                   return (StadtKonstanten.LeerGebäudeID, EinheitenSchleifenwert);
          
@@ -190,7 +190,7 @@ package body MausauswahlLogik is
                   
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert))
          is
             when True =>
                return PositionSchleifenwert;
@@ -220,7 +220,7 @@ package body MausauswahlLogik is
          
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenJaNein (PositionSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenJaNein (PositionSchleifenwert))
          is
             when True =>
                return PositionSchleifenwert;
@@ -250,7 +250,7 @@ package body MausauswahlLogik is
          
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenSteuerungsaufteilung (AufteilungSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenSteuerungsaufteilung (AufteilungSchleifenwert))
          is
             when True =>
                return -AufteilungSchleifenwert;
@@ -272,7 +272,7 @@ package body MausauswahlLogik is
          
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenSteuerung (SteuerungSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenSteuerung (SteuerungSchleifenwert))
          is
             when True =>
                return SteuerungSchleifenwert;
@@ -302,7 +302,7 @@ package body MausauswahlLogik is
                   
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenKartenbefehle (BefehlSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenKartenbefehle (BefehlSchleifenwert))
          is
             when True =>
                return BefehlSchleifenwert;
@@ -321,7 +321,7 @@ package body MausauswahlLogik is
       
       case
         Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    TextboxExtern      => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)).x,
+                                    RechteckExtern     => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)).x,
                                                            Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)).y))
       is
          when True =>
@@ -348,7 +348,7 @@ package body MausauswahlLogik is
          
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenEinheitenbefehle (BefehlSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenEinheitenbefehle (BefehlSchleifenwert))
          is
             when True =>
                return BefehlSchleifenwert;
@@ -365,7 +365,7 @@ package body MausauswahlLogik is
       
       case
         Vergleiche.AuswahlpositionVereinfacht (MauspositionExtern => Mausposition,
-                                               TextboxExtern      => SichtweitenGrafik.Kartenfläche)
+                                               VektorExtern       => SichtweitenGrafik.Kartenfläche)
       is
          when True =>
             return BefehleDatentypen.Auswählen_Enum;
@@ -388,7 +388,7 @@ package body MausauswahlLogik is
       
       case
         Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    TextboxExtern      => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung)).x,
+                                    RechteckExtern     => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung)).x,
                                                            Sf.Graphics.View.getSize (view => Views.StadtviewAccesse (ViewKonstanten.StadtUmgebung)).y))
       is
          when False =>
@@ -415,7 +415,7 @@ package body MausauswahlLogik is
          
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenStadtbefehle (BefehleSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenStadtbefehle (BefehleSchleifenwert))
          is
             when True =>
                return BefehleSchleifenwert;
@@ -449,7 +449,7 @@ package body MausauswahlLogik is
             when True =>
                if
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    TextboxExtern      => InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert))
+                                                    RechteckExtern     => InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert))
                then
                   return GebäudeSchleifenwert;
          
@@ -482,7 +482,7 @@ package body MausauswahlLogik is
                   
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenSpielstand (PositionSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenSpielstand (PositionSchleifenwert))
          is
             when True =>
                return PositionSchleifenwert;
@@ -514,7 +514,7 @@ package body MausauswahlLogik is
          
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert))
          is
             when True =>
                return Natural (AuswahlSchleifenwert);
@@ -546,7 +546,7 @@ package body MausauswahlLogik is
          
          case
            Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                       TextboxExtern      => InteraktionAuswahl.PositionenSprachauswahl (PositionSchleifenwert))
+                                       RechteckExtern     => InteraktionAuswahl.PositionenSprachauswahl (PositionSchleifenwert))
          is
             when True =>
                return PositionSchleifenwert;

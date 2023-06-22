@@ -1,6 +1,5 @@
 with MenueDatentypen;
 
--- Das hier mal aufteilen und anders benennen, ist ja hauptsächlich Menüzeug. äöü
 package MenueKonstanten is
    pragma Elaborate_Body;
 

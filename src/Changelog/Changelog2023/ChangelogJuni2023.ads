@@ -49,17 +49,19 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (23.06.2023):
+   -- Version 0.05.2345 => 0.05. (23.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2300 => 0.05. (22.06.2023):
+   -- Version 0.05.2300 => 0.05.2345 (22.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- gpr Dateien erweitert.
+   -- Interne Benennung überarbeitet.
+   -- Fehlerhafte Reihenfolge der StandardSpeziesDatenbank korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
