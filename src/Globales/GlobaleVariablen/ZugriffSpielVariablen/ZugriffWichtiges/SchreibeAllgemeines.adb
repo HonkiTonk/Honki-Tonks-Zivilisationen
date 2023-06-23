@@ -4,6 +4,7 @@ with WichtigesRecordKonstanten;
 package body SchreibeAllgemeines is
    
    -- Später erweitern damit man weiß wer gewonnen hat. äöü
+   -- Vielleicht mit dem ganzen Spezies_Enum und Leer dann verwenden für keiner hat gewonnen? äöü
    procedure Gewonnen
    is begin
       

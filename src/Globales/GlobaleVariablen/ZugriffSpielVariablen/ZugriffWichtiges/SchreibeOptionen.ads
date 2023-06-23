@@ -33,7 +33,7 @@ package SchreibeOptionen is
    pragma Inline (AktuellerAutospeichernwert);
    
    procedure GanzeSonstigeEinstellungen
-     (EinstellungenExtern : in SystemRecords.SonstigeEinstellungenRecord);
+     (EinstellungenExtern : in SystemRecords.SpielendeEinstellungenRecord);
    pragma Inline (GanzeSonstigeEinstellungen);
 
 end SchreibeOptionen;

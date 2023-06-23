@@ -51,7 +51,6 @@ package EinheitenDatentypen is
                             
                             Nahkämpfer_Enum, Fernkämpfer_Enum, Beides_Enum,
                             
-                            -- Hier einmal Nutzung einbauen und dann für alle die Zusatzwirkungen mit der Effekteinstellung bestimmen? äöü
                             Einmalig_Enum,
                             
                             Cheat_Enum

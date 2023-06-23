@@ -12,7 +12,6 @@ package KartenDatentypen is
    -- Dafür auch mal einen subtype für die Einheitensichtweite einbauen? äöü
    subtype Sichtweite is SichtweiteNatural range 1 .. SichtweiteNatural'Last;
    
-   -- Noch Umgebungsbereich von 0 .. X einbauen? äöü
    subtype UmgebungsbereichDrei is Kartenfeld range -3 .. 3;
    subtype UmgebungsbereichZwei is UmgebungsbereichDrei range -2 .. 2;
    subtype UmgebungsbereichEins is UmgebungsbereichZwei range -1 .. 1;
@@ -30,7 +29,6 @@ package KartenDatentypen is
    
    
    
-   -- Bräuchte ich hier auch noch einen 7x7 Quadranten für die maximale Stadtumgebung oder kann ich das sparen? äöü
    type KartengeneratorQuadranten is range 1 .. 25;
    subtype StandardQuadranten is KartengeneratorQuadranten range 1 .. 4;
 

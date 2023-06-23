@@ -4,7 +4,6 @@ with KartenverbesserungDatentypen;
 with StadtKonstanten;
 with KartenextraDatentypen;
 with DiplomatieDatentypen;
-with KarteneffektDatentypen;
 with SystemDatentypen;
 
 with LeseEinheitenDatenbank;
@@ -34,7 +33,7 @@ package body PZBEingesetztLogik is
       Zusammenbruchszeit := LeseAllgemeines.Zusammenbruchszeit;
       Vernichtungsbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                       IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                      EffektExtern  => KarteneffektDatentypen.Vernichtet_Enum);
+                                                                      EffektExtern  => KartenextraDatentypen.Vernichtet_Enum);
       
       case
         Zusammenbruchszeit
@@ -106,7 +105,7 @@ package body PZBEingesetztLogik is
                                                                             ZeitbegrenzungBerücksichtigenExtern => False);
             SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => EinheitSpeziesNummerExtern.Spezies,
                                                   SpeziesZweiExtern   => SpeziesSchleifenwert,
-                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KarteneffektDatentypen.Vernichtet_Enum, EinheitSpeziesNummerExtern.Spezies),
+                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KartenextraDatentypen.Vernichtet_Enum, EinheitSpeziesNummerExtern.Spezies),
                                                   RechnenSetzenExtern => False);
          end if;
          

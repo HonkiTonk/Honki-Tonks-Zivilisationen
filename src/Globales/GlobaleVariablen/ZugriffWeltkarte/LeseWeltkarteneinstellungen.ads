@@ -2,10 +2,6 @@ with KartenDatentypen;
 with KartenartDatentypen;
 with KartenRecords;
 
--- Inline bei allen Lese/Schreibedateien verwenden? äöü
--- Oder nur bei einigen und bei komplexeren lassen? äöü
--- Vermutlich ist letzteres sinnvoller. äöü
--- Eventuell auch noch bei einigen anderen Teilen einbauen? äöü
 package LeseWeltkarteneinstellungen is
    pragma Elaborate_Body;
 

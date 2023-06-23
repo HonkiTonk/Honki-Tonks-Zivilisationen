@@ -63,7 +63,7 @@ package body LeseEinheitenGebaut is
       -- Solche Prüfungen hier noch überall einbauen, da jetzt ja auch der Grafiktask hierauf zugreift. äöü
       -- Eventuell sollte ich das dann auch nicht mehr in eine Variable überführen. äöü
       -- Leider muss ich diese Informationen in eine Variable überführen, da sonst die Grafikanzeige Probleme bekommt. äöü
-      -- Entweder was besseres ausdenken oder auf geschützt setzen oder wieder Arrays verwenden. äöü
+      -- Entweder was besseres ausdenken oder auf geschützt setzen oder wieder Logik/Grafik Arrays verrwenden. äöü
       EinheitID := GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID;
       
       case

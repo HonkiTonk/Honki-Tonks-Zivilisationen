@@ -1,5 +1,3 @@
-with TextnummernKonstanten;
-
 package SystemDatentypen is
    pragma Pure;
 
@@ -20,20 +18,6 @@ package SystemDatentypen is
                       
                       Gewonnen_Enum, Verloren_Enum
                      );
-   
-   
-   
-   -- Das hier mal in einen eigenen Bereich oder in die TextnummernKonstanten verschieben. äöü
-   -- subtype Zeug is Natural range 0 .. TextnummernKonstanten.EndeZeug;
-   subtype ZeugVorhanden is Positive range TextnummernKonstanten.AnfangZeug .. TextnummernKonstanten.EndeZeug;
-   
-   -- subtype Fragen is Natural range 0 .. TextnummernKonstanten.EndeFrage;
-   subtype FragenVorhanden is Positive range TextnummernKonstanten.AnfangFrage .. TextnummernKonstanten.EndeFrage;
-     
-   subtype Spielmeldungen is Natural range 0 .. TextnummernKonstanten.EndeMeldung;
-   subtype SpielmeldungenVorhanden is Positive range TextnummernKonstanten.AnfangMeldung .. Spielmeldungen'Last;
-   
-   subtype LadezeitVorhanden is Positive range TextnummernKonstanten.AnfangLadezeit .. TextnummernKonstanten.EndeLadezeit;
    
    
    

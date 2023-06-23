@@ -3,7 +3,6 @@ with KartengrundDatentypen;
 with KartenextraDatentypen;
 with DiplomatieDatentypen;
 with SpeziesKonstanten;
-with KarteneffektDatentypen;
 with SystemDatentypen;
 
 with LeseEinheitenDatenbank;
@@ -26,7 +25,7 @@ package body ChemischeWaffeEingesetztLogik is
       
       Gefahrenbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                   IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                  EffektExtern  => KarteneffektDatentypen.Chemisch_Enum);
+                                                                  EffektExtern  => KartenextraDatentypen.Chemisch_Enum);
       
       Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
@@ -61,7 +60,7 @@ package body ChemischeWaffeEingesetztLogik is
                      
                   when others =>
                      SchreibeWeltkarte.Feldeffekt (KoordinatenExtern => Kartenwert,
-                                                   FeldeffektExtern  => KarteneffektDatentypen.Chemisch_Enum);
+                                                   FeldeffektExtern  => KartenextraDatentypen.Chemisch_Enum);
                      Wasserverschmutzung (KoordinatenExtern => Kartenwert);
                      
                      Spezies := LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => Kartenwert);
@@ -115,7 +114,7 @@ package body ChemischeWaffeEingesetztLogik is
          else
             SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => EinheitSpeziesNummerExtern.Spezies,
                                                   SpeziesZweiExtern   => SpeziesSchleifenwert,
-                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KarteneffektDatentypen.Chemisch_Enum, EinheitSpeziesNummerExtern.Spezies),
+                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KartenextraDatentypen.Chemisch_Enum, EinheitSpeziesNummerExtern.Spezies),
                                                   RechnenSetzenExtern => True);
          end if;
          
@@ -160,7 +159,7 @@ package body ChemischeWaffeEingesetztLogik is
                
             elsif
               True = LeseWeltkarte.Effekt (KoordinatenExtern   => KartenwertFluss,
-                                           WelcherEffektExtern => KarteneffektDatentypen.Chemisch_Enum)
+                                           WelcherEffektExtern => KartenextraDatentypen.Chemisch_Enum)
             then
                null;
                
@@ -173,11 +172,11 @@ package body ChemischeWaffeEingesetztLogik is
               LeseWeltkarte.Basisgrund (KoordinatenExtern => KartenwertFluss) = KartengrundDatentypen.Küstengewässer_Enum
             then
                SchreibeWeltkarte.Feldeffekt (KoordinatenExtern => KartenwertFluss,
-                                             FeldeffektExtern  => KarteneffektDatentypen.Chemisch_Enum);
+                                             FeldeffektExtern  => KartenextraDatentypen.Chemisch_Enum);
                      
             else
                SchreibeWeltkarte.Feldeffekt (KoordinatenExtern => KartenwertFluss,
-                                             FeldeffektExtern  => KarteneffektDatentypen.Chemisch_Enum);
+                                             FeldeffektExtern  => KartenextraDatentypen.Chemisch_Enum);
                Wasserverschmutzung (KoordinatenExtern => KartenwertFluss);
             end if;
 

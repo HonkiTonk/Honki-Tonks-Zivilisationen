@@ -200,7 +200,7 @@ package LeseStadtGebaut is
    
    function Zufriedenheit
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.Feldproduktion
+      return ProduktionDatentypen.ZufriedenheitVorhanden
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

@@ -9,9 +9,10 @@ package Views is
    ÜberschriftviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
    VersionsnummerviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
-   -- Die beiden zusammenfassen? äöü
+   -- Die beiden zusammenfassen? Scheint sinnvoll. äöü
    MenüviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
    ZusatztextviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
+
    BildratenviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
    LadeviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;

@@ -8,7 +8,6 @@ with EinheitenDatentypen;
 with StadtKonstanten;
 with StadtDatentypen;
 with ZahlenDatentypen;
-with SystemDatentypen;
 with StadtRecords;
 with SystemRecords;
 with EinheitenRecords;
@@ -17,6 +16,7 @@ with KartenRecordKonstanten;
 with SpeziesKonstanten;
 with AuswahlKonstanten;
 with SystemKonstanten;
+with TextnummernKonstanten;
 
 -- Variablen mal nach Kategorien in Records sortieren. äöü
 package NachGrafiktask is
@@ -55,7 +55,7 @@ package NachGrafiktask is
    AccesseSetzen : Boolean := False;
    SchriftartSetzen : Boolean := False;
    
-   Spielmeldung : SystemDatentypen.Spielmeldungen := SystemKonstanten.LeerMeldung;
+   Spielmeldung : TextnummernKonstanten.Spielmeldungen := SystemKonstanten.LeerMeldung;
    StartzeitSpielmeldung : Time;
 
    TastenEingabe : Boolean := False;

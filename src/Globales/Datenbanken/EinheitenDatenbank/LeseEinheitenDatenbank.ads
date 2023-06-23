@@ -5,7 +5,7 @@ with ProduktionDatentypen;
 with KampfDatentypen;
 with KartenRecords;
 with StadtDatentypen;
-with KarteneffektDatentypen;
+with KartenextraDatentypen;
 
 with LeseSpeziesbelegung;
 
@@ -181,7 +181,7 @@ package LeseEinheitenDatenbank is
    function Zusatzeffekt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      EffektExtern : in KarteneffektDatentypen.Effekt_Vorhanden_Enum)
+      EffektExtern : in KartenextraDatentypen.Effekt_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -191,7 +191,7 @@ package LeseEinheitenDatenbank is
    function Effektreichweite
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      EffektExtern : in KarteneffektDatentypen.Effekt_Vorhanden_Enum)
+      EffektExtern : in KartenextraDatentypen.Effekt_Vorhanden_Enum)
       return KartenRecords.EffektbereichRecord
      with
        Pre => (

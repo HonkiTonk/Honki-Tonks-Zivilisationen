@@ -5,7 +5,7 @@ with AufgabenDatentypen;
 with SystemDatentypen;
 with BefehleDatentypen;
 with ForschungenDatentypen;
-with KarteneffektDatentypen;
+with KartenextraDatentypen;
 
 package ForschungRecordKonstanten is
    pragma Pure;
@@ -150,7 +150,7 @@ package ForschungRecordKonstanten is
                                                                                       SpeziesDatentypen.Talbidahr_Enum        => 1
                                                                                      )
                                                                                   );
-      
+   
    -- Das hier als Standard nehmen und Laden wenn keine Datenbank verfügbar ist, dafür eine Datenbank anlegen. äöü
    type TechnologieWegeArray is array (AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
    StandardtechnologieWege : constant TechnologieWegeArray := (
@@ -221,9 +221,9 @@ package ForschungRecordKonstanten is
                                                                  )
                                                               );
    
-   type TechnologieEffektentfernungArray is array (KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
+   type TechnologieEffektentfernungArray is array (KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
    StandardtechnologieEffektentfernung : constant TechnologieEffektentfernungArray := (
-                                                                                       KarteneffektDatentypen.Strahlung_Enum =>
+                                                                                       KartenextraDatentypen.Strahlung_Enum =>
                                                                                          (
                                                                                           SpeziesDatentypen.Menschen_Enum         => 0,
                                                                                           SpeziesDatentypen.Kasrodiah_Enum        => 0,
@@ -245,7 +245,7 @@ package ForschungRecordKonstanten is
                                                                                           SpeziesDatentypen.Talbidahr_Enum        => 0
                                                                                          ),
                                                                                        
-                                                                                       KarteneffektDatentypen.Biologisch_Enum =>
+                                                                                       KartenextraDatentypen.Biologisch_Enum =>
                                                                                          (
                                                                                           SpeziesDatentypen.Menschen_Enum         => 0,
                                                                                           SpeziesDatentypen.Kasrodiah_Enum        => 0,
@@ -267,7 +267,7 @@ package ForschungRecordKonstanten is
                                                                                           SpeziesDatentypen.Talbidahr_Enum        => 0
                                                                                          ),
                                                                                        
-                                                                                       KarteneffektDatentypen.Chemisch_Enum =>
+                                                                                       KartenextraDatentypen.Chemisch_Enum =>
                                                                                          (
                                                                                           SpeziesDatentypen.Menschen_Enum         => 0,
                                                                                           SpeziesDatentypen.Kasrodiah_Enum        => 0,
@@ -289,7 +289,7 @@ package ForschungRecordKonstanten is
                                                                                           SpeziesDatentypen.Talbidahr_Enum        => 0
                                                                                          ),
                                                                                        
-                                                                                       KarteneffektDatentypen.Verschmutzt_Enum =>
+                                                                                       KartenextraDatentypen.Verschmutzt_Enum =>
                                                                                          (
                                                                                           SpeziesDatentypen.Menschen_Enum         => 0,
                                                                                           SpeziesDatentypen.Kasrodiah_Enum        => 0,

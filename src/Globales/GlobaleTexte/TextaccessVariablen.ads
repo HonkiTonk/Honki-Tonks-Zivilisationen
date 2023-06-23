@@ -11,9 +11,6 @@ with Spieltexte;
 
 with InteraktionAuswahl;
 
--- Generell mal drüber schauen was wirklich gebraucht wird. äöü
--- Wenn ich regelmäßig den Text und die Farne neusetzen muss sind Arrays nicht sinnvoll gegenüber einem einzelnen Access. äöü
--- Warum habe ich hier nicht einfach ein Array mit unbekannter Länge? äöü
 -- Auch mal thematisch aufteilen? äöü
 package TextaccessVariablen is
    pragma Elaborate_Body;
@@ -53,7 +50,6 @@ package TextaccessVariablen is
    -- Allgemeines
 
    -- Menüs
-   -- Die ganzen Arrays mal so anpassen wie das MenüsAccessArray, bzw. soweit wie das möglich ist. äöü
    type MenüsAccessArray is array (InteraktionAuswahl.PositionenMenüeinträgeArray'Range (1), InteraktionAuswahl.PositionenMenüeinträgeArray'Range (2)) of Sf.Graphics.sfText_Ptr;
    MenüsAccess : constant MenüsAccessArray := (others => (others => Sf.Graphics.Text.create));
    

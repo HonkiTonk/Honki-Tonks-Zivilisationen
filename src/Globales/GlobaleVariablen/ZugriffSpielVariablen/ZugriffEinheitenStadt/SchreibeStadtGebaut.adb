@@ -449,10 +449,10 @@ package body SchreibeStadtGebaut is
    
    procedure Zufriedenheit
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      ZufriedenheitExtern : in ProduktionDatentypen.Feldproduktion;
+      ZufriedenheitExtern : in ProduktionDatentypen.Zufriedenheit;
       ÄndernSetzenExtern : in Boolean)
    is
-      use type ProduktionDatentypen.Produktion;
+      use type ProduktionDatentypen.Zufriedenheit;
    begin
       
       case
@@ -460,15 +460,12 @@ package body SchreibeStadtGebaut is
       is
          when True =>
             if
-              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Zufriedenheit + ZufriedenheitExtern >= ProduktionDatentypen.Feldproduktion'Last
+              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Zufriedenheit + ZufriedenheitExtern >= ProduktionDatentypen.ZufriedenheitVorhanden'Last
             then
-               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Zufriedenheit := ProduktionDatentypen.Feldproduktion'Last;
+               GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Zufriedenheit := ProduktionDatentypen.ZufriedenheitVorhanden'Last;
                
-               -- Der Änderungswert kann aktuell nicht kleiner als 0 sein, später mal anpassen. äöü
-               -- Passe ich den Datentyp an sich an oder tausche ich ihn aus? äöü
-               -- Vermutlich ist austauschen am sinnvollsten. äöü
             elsif
-              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Zufriedenheit + ZufriedenheitExtern = StadtKonstanten.LeerZufriedenheit
+              GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Zufriedenheit + ZufriedenheitExtern <= StadtKonstanten.LeerZufriedenheit
             then
                GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Zufriedenheit := StadtKonstanten.LeerZufriedenheit;
                

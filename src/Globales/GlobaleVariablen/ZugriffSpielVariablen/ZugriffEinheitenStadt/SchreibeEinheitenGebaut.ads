@@ -179,8 +179,7 @@ package SchreibeEinheitenGebaut is
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
-               -- Kann hier nicht nur auf KISpieler geprüft werden, da in VerbesserungFertiggestellt.AufgabeNachfolgerVerschieben es auch bei menschlichem Spieler entsprechend gesetzt wird. äöü
-               -- Später mal anpassen? äöü
+               -- Kann hier nicht nur auf KISpieler prüfen, da in VerbesserungFertiggestelltLogik/AufgabeNachfolgerVerschieben es auch bei menschlichem Spieler gesetzt wird.
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    pragma Inline (KIBeschäftigt);

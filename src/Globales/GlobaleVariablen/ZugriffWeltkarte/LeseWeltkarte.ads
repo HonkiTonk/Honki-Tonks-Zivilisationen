@@ -8,7 +8,7 @@ with EinheitenRecords;
 with WeltkarteRecords;
 with StadtKonstanten;
 with KartenextraDatentypen;
-with KarteneffektDatentypen;
+with StadtDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseGrenzen;
@@ -18,6 +18,8 @@ package LeseWeltkarte is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
+   use type SpeziesDatentypen.Spezies_Enum;
+   use type StadtDatentypen.MaximaleStädteMitNullWert;
    
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -51,7 +53,7 @@ package LeseWeltkarte is
    
    function Effekt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      WelcherEffektExtern : in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
+      WelcherEffektExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
       return Boolean
      with
        Pre => (
@@ -154,7 +156,6 @@ package LeseWeltkarte is
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
-   -- Hier noch korrekten Post Contract einbauen. äöü
    function StadtbelegungGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return StadtRecords.SpeziesStadtnummerRecord
@@ -163,7 +164,14 @@ package LeseWeltkarte is
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
+              ),
+         
+       Post => (
+                  if StadtbelegungGrund'Result.Spezies /= SpeziesDatentypen.Leer_Spezies_Enum then
+                    (StadtbelegungGrund'Result.Nummer <= LeseGrenzen.Städtegrenzen (StadtbelegungGrund'Result.Spezies)
+                     and
+                       LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtbelegungGrund'Result.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum)
+               );
    
    function BestimmteStadtBelegtGrund
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;

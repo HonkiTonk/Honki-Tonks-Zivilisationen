@@ -27,7 +27,7 @@ package KartenartDatentypen is
    
    
    
-   -- Statt eines Enums einen Zahlenwert von 0 bis 100 einbauen? äöü
+   -- Statt eines Enums einen Zahlenwert von 0 bis 100 einbauen. äöü
    type Kartentemperatur_Enum is (
                                   Kartentemperatur_Kalt_Enum, Kartentemperatur_Gemäßigt_Enum, Kartentemperatur_Heiß_Enum, Kartentemperatur_Eiszeit_Enum, Kartentemperatur_Wüste_Enum
                                  );
@@ -35,8 +35,8 @@ package KartenartDatentypen is
    
    
    
-   -- Das hier durch einen Zahlenwert von 0 bis 100 ersetzen? äöü
-   -- Und später noch eine Möglichkeit einbauen um jeden Wert einzeln festzulegen? äöü
+   -- Das hier durch einen Zahlenwert von 0 bis 100 ersetzen. äöü
+   -- Und später noch eine Möglichkeit einbauen um jeden Wert einzeln festzulegen. äöü
    type Kartenressourcenmenge_Enum is (
                                        Kartenressourcen_Arm_Enum, Kartenressourcen_Wenig_Enum, Kartenressourcen_Mittel_Enum, Kartenressourcen_Viel_Enum, Kartenressourcen_Überfluss_Enum
                                       );

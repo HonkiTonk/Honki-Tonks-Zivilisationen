@@ -46,17 +46,17 @@ package body SchreibeOptionen is
      (AutospeichernwertExtern : in ZahlenDatentypen.EigenesPositive)
    is begin
       
-      OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert := AutospeichernwertExtern;
+      OptionenVariablen.SpielendeEinstellungen.AktuellerAutospeichernwert := AutospeichernwertExtern;
       
    end AktuellerAutospeichernwert;
    
    
    
    procedure GanzeSonstigeEinstellungen
-     (EinstellungenExtern : in SystemRecords.SonstigeEinstellungenRecord)
+     (EinstellungenExtern : in SystemRecords.SpielendeEinstellungenRecord)
    is begin
       
-      OptionenVariablen.SonstigeEinstellungen := EinstellungenExtern;
+      OptionenVariablen.SpielendeEinstellungen := EinstellungenExtern;
       
    end GanzeSonstigeEinstellungen;
 

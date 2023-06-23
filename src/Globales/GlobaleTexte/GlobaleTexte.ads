@@ -1,6 +1,6 @@
 with TextKonstanten;
-with SystemDatentypen;
 with TextArrays;
+with TextnummernKonstanten;
 
 package GlobaleTexte is
    pragma Elaborate_Body;
@@ -15,6 +15,6 @@ package GlobaleTexte is
    Handelsmenü : TextArrays.AllgemeinesTextArray (1 .. 10) := (others => TextKonstanten.FehlenderText);
    DiplomatieStatus : TextArrays.AllgemeinesTextArray (1 .. 4) := (others => TextKonstanten.FehlenderText);
    Angebot : TextArrays.AllgemeinesTextArray (1 .. 2) := (others => TextKonstanten.FehlenderText);
-   Ladezeit : TextArrays.AllgemeinesTextArray (SystemDatentypen.LadezeitVorhanden'Range) := (others => TextKonstanten.FehlenderText);
+   Ladezeit : TextArrays.AllgemeinesTextArray (TextnummernKonstanten.LadezeitVorhanden'Range) := (others => TextKonstanten.FehlenderText);
    
 end GlobaleTexte;

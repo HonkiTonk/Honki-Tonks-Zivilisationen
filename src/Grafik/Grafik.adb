@@ -28,7 +28,7 @@ with UebergabeRecordErmittelnGrafik;
 with TexteinstellungenGrafik;
 with BildrateAnzeigenGrafik;
 
--- with Diagnoseinformationen;
+with Diagnoseinformationen;
 
 package body Grafik is
    
@@ -46,7 +46,7 @@ package body Grafik is
       -- Oder habe ich zu dem Zeitpunkt den Font noch nicht eingelesen? Mal nachprüfen. äöü
       FensterGrafik.FensterErzeugen;
       
-      -- Diagnoseinformationen.Größenprüfung;
+      Diagnoseinformationen.Größenprüfung;
       
       Startzeit := Clock;
       
@@ -268,7 +268,7 @@ package body Grafik is
    procedure AnzeigeSpielmeldungen
      (AktuelleDarstellungExtern : in GrafikDatentypen.AKtuelle_Anzeige_Enum;
       LetzteDarstellungExtern : in GrafikDatentypen.AKtuelle_Anzeige_Enum;
-      SpielmeldungExtern : in SystemDatentypen.Spielmeldungen)
+      SpielmeldungExtern : in TextnummernKonstanten.Spielmeldungen)
    is
       use type GrafikDatentypen.AKtuelle_Anzeige_Enum;
    begin

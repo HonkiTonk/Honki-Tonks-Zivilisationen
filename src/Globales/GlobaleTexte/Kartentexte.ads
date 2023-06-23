@@ -3,7 +3,6 @@ with KartengrundDatentypen;
 with KartenverbesserungDatentypen;
 with KartenextraDatentypen;
 with TextArrays;
-with KarteneffektDatentypen;
 
 package Kartentexte is
    pragma Elaborate_Body;
@@ -15,7 +14,7 @@ package Kartentexte is
    Kartenflüsse : TextArrays.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenextraDatentypen.Fluss_Enum'Pos (KartenextraDatentypen.Fluss_Enum'Last)) := (others => TextKonstanten.FehlenderText);
    Kartenressourcen : TextArrays.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenextraDatentypen.Ressourcen_Enum'Pos (KartenextraDatentypen.Ressourcen_Enum'Last))
      := (others => TextKonstanten.FehlenderText);
-   Feldeffekte : TextArrays.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Pos (KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Last))
+   Feldeffekte : TextArrays.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Pos (KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Last))
      := (others => TextKonstanten.FehlenderText);
    
    Verbesserungen : TextArrays.AllgemeinesTextArray (1 .. NameBeschreibungMultiplikator * KartenverbesserungDatentypen.Verbesserung_Enum'Pos (KartenverbesserungDatentypen.Verbesserung_Enum'Last))

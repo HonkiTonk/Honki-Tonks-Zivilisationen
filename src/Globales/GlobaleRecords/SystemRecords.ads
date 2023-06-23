@@ -18,7 +18,7 @@ package SystemRecords is
    
    -- Hier eventuell auch letzte Karten/Spieleinstellugnen speichern? äöü
    -- Oder das dann lieber temporär speichern und nach Spielende wegwerfen? äöü
-   type SonstigeEinstellungenRecord is record
+   type SpielendeEinstellungenRecord is record
       
       AktuellerAutospeichernwert : ZahlenDatentypen.EigenesPositive;
       

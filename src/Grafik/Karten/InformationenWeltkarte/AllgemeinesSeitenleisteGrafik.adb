@@ -7,7 +7,6 @@ with KartengrundDatentypen;
 with ViewKonstanten;
 with TextKonstanten;
 with GrafikKonstanten;
-with KarteneffektDatentypen;
 
 with LeseWeltkarte;
 with LeseCursor;
@@ -128,7 +127,7 @@ package body AllgemeinesSeitenleisteGrafik is
       Text := TextKonstanten.LeerUnboundedString;
       
       FeldeffekteSchleife:
-      for FeldeffektSchleifenwert in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
+      for FeldeffektSchleifenwert in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
       
          case
            LeseWeltkarte.Effekt (KoordinatenExtern   => AktuelleKoordinaten,

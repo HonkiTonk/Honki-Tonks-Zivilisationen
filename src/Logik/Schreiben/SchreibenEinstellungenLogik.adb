@@ -405,13 +405,13 @@ package body SchreibenEinstellungenLogik is
       
       Create (File => DateiSonstigeEinstellungen,
               Mode => Out_File,
-              Name => VerzeichnisKonstanten.SonstigeEinstellungen,
+              Name => VerzeichnisKonstanten.SpielendeEinstellungen,
               Form => "WCEM=8");
       
-      -- SystemRecords.SonstigeEinstellungenRecord
+      -- SystemRecords.SpielendeEinstellungenRecord
       ZahlenDatentypen.EigenesPositive'Write (Stream (File => DateiSonstigeEinstellungen),
                                               LeseOptionen.AktuellerAutospeichernwert);
-      -- SystemRecords.SonstigeEinstellungenRecord
+      -- SystemRecords.SpielendeEinstellungenRecord
       
       Close (File => DateiSonstigeEinstellungen);
       

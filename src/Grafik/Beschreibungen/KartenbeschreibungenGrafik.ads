@@ -1,6 +1,5 @@
 with KartengrundDatentypen;
 with KartenextraDatentypen;
-with KarteneffektDatentypen;
 
 package KartenbeschreibungenGrafik is
    pragma Elaborate_Body;
@@ -38,11 +37,11 @@ package KartenbeschreibungenGrafik is
       return Wide_Wide_String;
 
    function KurzbeschreibungFeldeffekte
-     (FeldeffekteExtern : in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
+     (FeldeffekteExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
       return Wide_Wide_String;
 
    function LangbeschreibungFeldeffekte
-     (FeldeffekteExtern : in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
+     (FeldeffekteExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
       return Wide_Wide_String;
 
 end KartenbeschreibungenGrafik;

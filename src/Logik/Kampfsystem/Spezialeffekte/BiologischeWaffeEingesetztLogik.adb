@@ -1,7 +1,7 @@
 with KartenKonstanten;
 with DiplomatieDatentypen;
 with SpeziesKonstanten;
-with KarteneffektDatentypen;
+with KartenextraDatentypen;
 with SystemDatentypen;
 
 with LeseEinheitenDatenbank;
@@ -24,7 +24,7 @@ package body BiologischeWaffeEingesetztLogik is
       
       Krankheitsbereich := LeseEinheitenDatenbank.Effektreichweite (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                     IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                                                    EffektExtern  => KarteneffektDatentypen.Biologisch_Enum);
+                                                                    EffektExtern  => KartenextraDatentypen.Biologisch_Enum);
       
       Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
@@ -59,7 +59,7 @@ package body BiologischeWaffeEingesetztLogik is
                      
                   when others =>
                      SchreibeWeltkarte.Feldeffekt (KoordinatenExtern => Kartenwert,
-                                                   FeldeffektExtern  => KarteneffektDatentypen.Biologisch_Enum);
+                                                   FeldeffektExtern  => KartenextraDatentypen.Biologisch_Enum);
                      Spezies := LeseWeltkarte.SpeziesBelegtGrund (KoordinatenExtern => Kartenwert);
                      
                      if
@@ -111,7 +111,7 @@ package body BiologischeWaffeEingesetztLogik is
          else
             SchreibeDiplomatie.AktuelleSympathie (SpeziesEinsExtern   => EinheitSpeziesNummerExtern.Spezies,
                                                   SpeziesZweiExtern   => SpeziesSchleifenwert,
-                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KarteneffektDatentypen.Biologisch_Enum, EinheitSpeziesNummerExtern.Spezies),
+                                                  SympathieExtern     => DiplomatieDatentypen.MeinungsänderungFeldeffekte (KartenextraDatentypen.Biologisch_Enum, EinheitSpeziesNummerExtern.Spezies),
                                                   RechnenSetzenExtern => True);
          end if;
          

@@ -175,7 +175,7 @@ package body LeseStadtGebaut is
    
    function Zufriedenheit
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return ProduktionDatentypen.Feldproduktion
+      return ProduktionDatentypen.ZufriedenheitVorhanden
    is begin
       
       return GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Zufriedenheit;

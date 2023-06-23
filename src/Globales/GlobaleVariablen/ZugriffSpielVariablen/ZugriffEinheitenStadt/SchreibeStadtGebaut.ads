@@ -181,7 +181,7 @@ package SchreibeStadtGebaut is
    
    procedure Zufriedenheit
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      ZufriedenheitExtern : in ProduktionDatentypen.Feldproduktion;
+      ZufriedenheitExtern : in ProduktionDatentypen.Zufriedenheit;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre => (

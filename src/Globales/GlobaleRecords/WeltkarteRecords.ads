@@ -12,8 +12,8 @@ package WeltkarteRecords is
 
    type WeltkarteRecord is record
 
-      -- Den Grundrecord hier eventuell aufteilen? äöü
-      Grund : KartenRecords.KartengrundRecord;
+      Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
+      Zusatzgrund : KartengrundDatentypen.Zusatzgrund_Enum;
       Sichtbar : KartenRecords.SichtbarkeitArray;
       
       Effekte : KartenRecords.FeldeffektArray;
@@ -32,7 +32,8 @@ package WeltkarteRecords is
    
    -- Das hier mal nach KartenRecordKonstanten schieben, wenn das denn geht. äöü
    LeerWeltkarte : constant WeltkarteRecord := (
-                                                Grund         => (KartengrundDatentypen.Leer_Basisgrund_Enum, KartengrundDatentypen.Leer_Zusatzgrund_Enum),
+                                                Basisgrund    => KartengrundDatentypen.Leer_Basisgrund_Enum,
+                                                Zusatzgrund   => KartengrundDatentypen.Leer_Zusatzgrund_Enum,
                                                 Sichtbar      => KartenRecordKonstanten.LeerSichtbarkeit,
                                                 Effekte       => KartenRecordKonstanten.LeerEffekte,
                                                 Fluss         => KartenextraDatentypen.Leer_Fluss_Enum,

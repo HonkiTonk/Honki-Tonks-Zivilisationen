@@ -36,7 +36,7 @@ package body LeseOptionen is
      return ZahlenDatentypen.EigenesPositive
    is begin
       
-      return OptionenVariablen.SonstigeEinstellungen.AktuellerAutospeichernwert;
+      return OptionenVariablen.SpielendeEinstellungen.AktuellerAutospeichernwert;
       
    end AktuellerAutospeichernwert;
      

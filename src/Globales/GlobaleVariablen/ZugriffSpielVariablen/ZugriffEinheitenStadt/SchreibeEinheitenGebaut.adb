@@ -70,24 +70,23 @@ package body SchreibeEinheitenGebaut is
       is
          when True =>
             MaximaleLebenspunkte := LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                                 IDExtern    => GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID);
+                                                                                 IDExtern      => GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID);
             
             if
               GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Lebenspunkte + LebenspunkteExtern >= MaximaleLebenspunkte
             then
                GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Lebenspunkte := MaximaleLebenspunkte;
                
-               -- Wäre es sinnvoll das auszulagern? Scheint eher nicht der Fall zu sein. äöü
                case
                  GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Beschäftigung.Aufgabe
                is
                   when AufgabenDatentypen.Heilen_Enum =>
                      Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                     BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
+                                     BeschäftigungExtern        => EinheitenKonstanten.LeerBeschäftigung);
                      Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                          ZeitExtern               => EinheitenKonstanten.LeerBeschäftigungszeit,
-                                          RechnenSetzenExtern      => False);
-                  
+                                          ZeitExtern                 => EinheitenKonstanten.LeerBeschäftigungszeit,
+                                          RechnenSetzenExtern        => False);
+                     
                   when others =>
                      null;
                end case;

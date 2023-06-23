@@ -1,4 +1,3 @@
-with StadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with Weltkarte;
@@ -22,7 +21,7 @@ package body LeseWeltkarte is
             return KartengrundDatentypen.Leer_Basisgrund_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Basisgrund;
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Basisgrund;
       end case;
       
    end Basisgrund;
@@ -41,7 +40,7 @@ package body LeseWeltkarte is
             return KartengrundDatentypen.Leer_Zusatzgrund_Enum;
             
          when others =>
-            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Zusatzgrund;
+            return Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Zusatzgrund;
       end case;
       
    end Zusatzgrund;
@@ -69,7 +68,7 @@ package body LeseWeltkarte is
    
    function Effekt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      WelcherEffektExtern : in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
+      WelcherEffektExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
       return Boolean
    is begin
       
@@ -225,10 +224,7 @@ package body LeseWeltkarte is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
-      use type SpeziesDatentypen.Spezies_Enum;
-   begin
+   is begin
       
       case
         KoordinatenExtern.EAchse
@@ -260,10 +256,7 @@ package body LeseWeltkarte is
    function UnbelegterGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
-      use type SpeziesDatentypen.Spezies_Enum;
-   begin
+   is begin
       
       case
         KoordinatenExtern.EAchse
@@ -327,10 +320,7 @@ package body LeseWeltkarte is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
-   is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
-      use type SpeziesDatentypen.Spezies_Enum;
-   begin
+   is begin
       
       case
         KoordinatenExtern.EAchse

@@ -20,8 +20,8 @@ package SystemRecordKonstanten is
                                                                                       RundenAutospeichern => 10
                                                                                      );
 
-   StandardSonstigeEinstellungen : constant SystemRecords.SonstigeEinstellungenRecord := (
-                                                                                          AktuellerAutospeichernwert => 1
-                                                                                         );
+   StandardSpielendeEinstellungen : constant SystemRecords.SpielendeEinstellungenRecord := (
+                                                                                            AktuellerAutospeichernwert => 1
+                                                                                           );
 
 end SystemRecordKonstanten;

@@ -149,5 +149,16 @@ package TextnummernKonstanten is
    
    AnfangLadezeit : constant Positive := 1;
    EndeLadezeit : constant Positive := 15;
+   
+   
+   
+   subtype ZeugVorhanden is Positive range TextnummernKonstanten.AnfangZeug .. EndeZeug;
+   
+   subtype FragenVorhanden is Positive range TextnummernKonstanten.AnfangFrage .. EndeFrage;
+     
+   subtype Spielmeldungen is Natural range 0 .. EndeMeldung;
+   subtype SpielmeldungenVorhanden is Positive range AnfangMeldung .. Spielmeldungen'Last;
+   
+   subtype LadezeitVorhanden is Positive range AnfangLadezeit .. EndeLadezeit;
 
 end TextnummernKonstanten;

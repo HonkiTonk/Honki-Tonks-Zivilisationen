@@ -16,16 +16,16 @@ package body EinlesenSonstigeEinstellungenLogik is
    is begin
       
       case
-        Exists (Name => VerzeichnisKonstanten.SonstigeEinstellungen)
+        Exists (Name => VerzeichnisKonstanten.SpielendeEinstellungen)
       is
          when False =>
-            OptionenVariablen.SonstigeStandardeinstellungenLaden;
+            OptionenVariablen.SpielendeStandardeinstellungenLaden;
             return;
             
          when True =>
             Open (File => DateiSonstigeEinstellungen,
                   Mode => In_File,
-                  Name => VerzeichnisKonstanten.SonstigeEinstellungen,
+                  Name => VerzeichnisKonstanten.SpielendeEinstellungen,
                   Form => "WCEM=8");
       end case;
       
@@ -38,7 +38,7 @@ package body EinlesenSonstigeEinstellungenLogik is
                                                          DateiLadenExtern  => DateiSonstigeEinstellungen);
             
          when False =>
-            OptionenVariablen.SonstigeStandardeinstellungenLaden;
+            OptionenVariablen.SpielendeStandardeinstellungenLaden;
       end case;
       
       Close (File => DateiSonstigeEinstellungen);
@@ -46,7 +46,7 @@ package body EinlesenSonstigeEinstellungenLogik is
    exception
       when StandardAdaFehler : others =>
          Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSonstigeEinstellungenLogik.SonstigeEinstellungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
-         OptionenVariablen.SonstigeStandardeinstellungenLaden;
+         OptionenVariablen.SpielendeStandardeinstellungenLaden;
          
          case
            Is_Open (File => DateiSonstigeEinstellungen)
@@ -71,7 +71,7 @@ package body EinlesenSonstigeEinstellungenLogik is
       if
         LadenPrüfenExtern = False
       then
-         -- SystemRecords.SonstigeEinstellungenRecord
+         -- SystemRecords.SpielendeEinstellungenRecord
          case
            End_Of_File (File => DateiLadenExtern)
          is
@@ -82,7 +82,7 @@ package body EinlesenSonstigeEinstellungenLogik is
                ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
                                                       Autospeichernwert);
          end case;
-         -- SystemRecords.SonstigeEinstellungenRecord
+         -- SystemRecords.SpielendeEinstellungenRecord
       
       else
          SchreibeOptionen.GanzeSonstigeEinstellungen (EinstellungenExtern => (

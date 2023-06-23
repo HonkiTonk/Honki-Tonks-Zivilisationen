@@ -1,7 +1,7 @@
 with Ada.Calendar; use Ada.Calendar;
 
 private with GrafikDatentypen;
-private with SystemDatentypen;
+private with TextnummernKonstanten;
 
 package Grafik is
    pragma Elaborate_Body;
@@ -21,7 +21,7 @@ private
    procedure AnzeigeSpielmeldungen
      (AktuelleDarstellungExtern : in GrafikDatentypen.AKtuelle_Anzeige_Enum;
       LetzteDarstellungExtern : in GrafikDatentypen.AKtuelle_Anzeige_Enum;
-      SpielmeldungExtern : in SystemDatentypen.Spielmeldungen);
+      SpielmeldungExtern : in TextnummernKonstanten.Spielmeldungen);
 
 
 

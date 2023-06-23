@@ -3,7 +3,7 @@ with KartengrundDatentypen;
 with SpeziesDatentypen;
 with KartenartDatentypen;
 with BewertungDatentypen;
-with KarteneffektDatentypen;
+with KartenextraDatentypen;
 
 package KartenRecords is
    pragma Pure;
@@ -95,9 +95,9 @@ package KartenRecords is
    
    
    
-   type EffekteArray is array (KarteneffektDatentypen.Effekt_Vorhanden_Enum'Range) of Boolean;
+   type EffekteArray is array (KartenextraDatentypen.Effekt_Vorhanden_Enum'Range) of Boolean;
    type EffektbereichArray is array (EffekteArray'Range) of EffektbereichRecord;
-   type FeldeffektArray is array (KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range) of Boolean;
+   type FeldeffektArray is array (KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range) of Boolean;
    
    
    

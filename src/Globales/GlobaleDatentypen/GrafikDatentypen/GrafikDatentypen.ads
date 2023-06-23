@@ -26,7 +26,6 @@ package GrafikDatentypen is
    
    
    
-   -- Oder in eigene Datentypen verschieben? äöü
    type Welche_Eingabe_Enum is (
                                 Keine_Eingabe_Enum,
                                 
@@ -41,7 +40,6 @@ package GrafikDatentypen is
    
    
    type Hintergrund_Enum is (
-                             -- Das hier kann später vermutlich wieder weg? äöü
                              Intro_Hintergrund_Enum,
                              
                              Seitenleiste_Hintergrund_Enum, Bauen_Hintergrund_Enum, Forschung_Hintergrund_Enum, Menü_Hintergrund_Enum, PZB_Ende_Hintergrund_Enum,

@@ -23,7 +23,7 @@ package body SchreibeWeltkarte is
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Basisgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Basisgrund := GrundExtern;
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Basisgrund := GrundExtern;
       end case;
       
    end Basisgrund;
@@ -42,7 +42,7 @@ package body SchreibeWeltkarte is
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Zusatzgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund.Zusatzgrund := GrundExtern;
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Zusatzgrund := GrundExtern;
       end case;
       
    end Zusatzgrund;
@@ -61,7 +61,8 @@ package body SchreibeWeltkarte is
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWeltkarte.Gesamtgrund: " & FehlermeldungssystemZusatzinformationen.Koordinaten (KoordinatenExtern => KoordinatenExtern));
             
          when others =>
-            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund := GrundExtern;
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Basisgrund := GrundExtern.Basisgrund;
+            Weltkarte.Karte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Zusatzgrund := GrundExtern.Zusatzgrund;
       end case;
       
    end Gesamtgrund;
@@ -70,7 +71,7 @@ package body SchreibeWeltkarte is
    
    procedure Feldeffekt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      FeldeffektExtern : in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
+      FeldeffektExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
    is begin
       
       case

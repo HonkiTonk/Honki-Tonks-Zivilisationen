@@ -11,11 +11,11 @@ package body OptionenVariablen is
    
    
    
-   procedure SonstigeStandardeinstellungenLaden
+   procedure SpielendeStandardeinstellungenLaden
    is begin
       
-      SonstigeEinstellungen := SystemRecordKonstanten.StandardSonstigeEinstellungen;
+      SpielendeEinstellungen := SystemRecordKonstanten.StandardSpielendeEinstellungen;
       
-   end SonstigeStandardeinstellungenLaden;
+   end SpielendeStandardeinstellungenLaden;
 
 end OptionenVariablen;

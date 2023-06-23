@@ -42,19 +42,21 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (24.06.2023):
+   -- Version 0.05.2420 => 0.05. (24.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2345 => 0.05. (23.06.2023):
+   -- Version 0.05.2345 => 0.05.2420 (23.06.2023):
    
    -- Interne Struktur und Benennung überarbeitet.
    -- Diverse Zahlen durch Konstante ersetzt.
    -- Spielmeldungen werden jetzt sofort ausgeblendet, wenn die Anzeige wechselt.
-   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
+   -- Zufriedenheit in eigene Datentypen ausgelagert.
+   -- Code zusammengeführt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/hinzugefügt.
    
    
 

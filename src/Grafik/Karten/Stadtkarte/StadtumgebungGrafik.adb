@@ -7,7 +7,6 @@ with Meldungstexte;
 with SpeziesKonstanten;
 with GrafikKonstanten;
 with TextnummernKonstanten;
-with KarteneffektDatentypen;
 with ProduktionDatentypen;
 with SystemDatentypen;
 
@@ -383,7 +382,7 @@ package body StadtumgebungGrafik is
    is begin
       
       EffekteSchleife:
-      for EffektSchleifenwert in KarteneffektDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
+      for EffektSchleifenwert in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
          
          case
            LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,

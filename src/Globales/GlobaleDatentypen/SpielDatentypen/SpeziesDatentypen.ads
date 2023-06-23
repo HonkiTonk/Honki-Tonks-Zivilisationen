@@ -17,10 +17,10 @@ package SpeziesDatentypen is
    subtype Spezies_Wasser_Enum is Spezies_Unterirdisch_Enum range Tesorahn_Enum .. Tesorahn_Enum;
    subtype Spezies_Erde_Enum is Spezies_Unterirdisch_Enum range Talbidahr_Enum .. Talbidahr_Enum;
    
-   -- Hier vielleicht keine festen Werte nehmen sondern von First aus berechnen? Also First .. First + 6, First + 7 .. usw.? äöü
-   subtype Speichern_Laden_Eins_Enum is Spezies_Verwendet_Enum range Spezies_Verwendet_Enum'First .. Suroka_Enum;
-   subtype Speichern_Laden_Zwei_Enum is Spezies_Verwendet_Enum range Spezies_Enum'Succ (Speichern_Laden_Eins_Enum'Last) .. Natries_Zermanis_Enum;
-   subtype Speichern_Laden_Drei_Enum is Spezies_Verwendet_Enum range Spezies_Enum'Succ (Speichern_Laden_Zwei_Enum'Last)  .. Spezies_Verwendet_Enum'Last;
+   subtype Speichern_Laden_Eins_Enum is Spezies_Verwendet_Enum range Spezies_Verwendet_Enum'First .. Spezies_Verwendet_Enum'Val (Spezies_Verwendet_Enum'Pos (Spezies_Verwendet_Enum'First) + 5);
+   subtype Speichern_Laden_Zwei_Enum is Spezies_Verwendet_Enum range Spezies_Enum'Succ (Speichern_Laden_Eins_Enum'Last)
+     .. Spezies_Verwendet_Enum'Val (Spezies_Verwendet_Enum'Pos (Spezies_Enum'Succ (Speichern_Laden_Eins_Enum'Last)) + 5);
+   subtype Speichern_Laden_Drei_Enum is Spezies_Verwendet_Enum range Spezies_Enum'Succ (Speichern_Laden_Zwei_Enum'Last) .. Spezies_Verwendet_Enum'Last;
    
    subtype Speziesnummern is Natural range Spezies_Enum'Pos (Spezies_Enum'First) .. Spezies_Enum'Pos (Spezies_Enum'Last);
    subtype SpeziesnummernVorhanden is Speziesnummern range Spezies_Enum'Pos (Spezies_Verwendet_Enum'First) .. Speziesnummern'Last;
@@ -28,6 +28,7 @@ package SpeziesDatentypen is
    
    
    -- Das hier mal woanders hinschieben? Hat ja nicht wirklich was mit den Spezies zu tun. äöü
+   -- Vielleicht SystemDatentypen? äöü
    type Spieler_Enum is (
                          Leer_Spieler_Enum,
                          

@@ -1,8 +1,7 @@
 package RueckgabeDatentypen is
    pragma Pure;
    
-   -- Eventuell kann man das auch in zwei Teile aufteilen? äöü
-   -- Ein Teil für die ganzen Menüs und ein zweiter Teil für die Befehlsrückgaben? äöü
+   -- Aufteilen, ein Teil für die ganzen Menüs und ein zweiter Teil für die Befehlsrückgaben. äöü
    -- Eventuell auch in mehr als zwei Teile. äöü
    type Rückgabe_Werte_Enum is (
                                  Start_Weiter_Enum, Speichern_Enum, Laden_Enum, Optionen_Enum, Standard_Enum, Würdigungen_Enum, Runde_Beenden_Enum, Fertig_Enum, Schleife_Verlassen_Enum,
