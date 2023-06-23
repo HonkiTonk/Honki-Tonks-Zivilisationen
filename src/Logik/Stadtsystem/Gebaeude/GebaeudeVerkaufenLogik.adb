@@ -31,7 +31,7 @@ package body GebaeudeVerkaufenLogik is
             GebäudeVerkaufen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end case;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Stadtkarte_Enum;
       
    end Verkaufsliste;
    
@@ -75,7 +75,7 @@ package body GebaeudeVerkaufenLogik is
       use type StadtDatentypen.GebäudeIDMitNullwert;
    begin
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Verkaufen_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Verkaufen_Enum;
       
       AuswahlSchleife:
       loop

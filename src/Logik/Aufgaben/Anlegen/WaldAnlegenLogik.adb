@@ -1,4 +1,5 @@
 with KartenverbesserungDatentypen;
+with KartenKonstanten;
 
 with SchreibeWeltkarte;
 with LeseWeltkarte;
@@ -10,17 +11,15 @@ package body WaldAnlegenLogik is
 
    procedure WaldAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-   is
-      use type KartenDatentypen.Ebene;
-   begin
+   is begin
       
       case
         KoordinatenExtern.EAchse
       is
-         when 0 =>
+         when KartenKonstanten.OberflächeKonstante =>
             NeuerGrund := KartengrundDatentypen.Wald_Enum;
             
-         when -1 =>
+         when KartenKonstanten.UnterflächeKonstante =>
             NeuerGrund := KartengrundDatentypen.Unterwald_Enum;
             
          when others =>

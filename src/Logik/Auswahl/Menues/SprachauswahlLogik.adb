@@ -21,7 +21,7 @@ package body SprachauswahlLogik is
       
       SprachenListeFestlegen;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Sprache_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Sprache_Enum;
             
       return AuswahlSpracheSFML;
       

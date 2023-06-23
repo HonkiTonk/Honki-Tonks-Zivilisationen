@@ -51,8 +51,10 @@ package ChangelogVorlage is
 
    -- Version 0.05.2345 => 0.05. (23.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Diverse Zahlen durch Konstante ersetzt.
+   -- Spielmeldungen werden jetzt sofort ausgeblendet, wenn die Anzeige wechselt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

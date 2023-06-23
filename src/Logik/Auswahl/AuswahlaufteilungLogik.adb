@@ -12,7 +12,7 @@ package body AuswahlaufteilungLogik is
    is begin
             
       NachGrafiktask.AktuellesMenü := WelchesMenüExtern;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Menüs_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Menüs_Enum;
       
       case
         WelchesMenüExtern

@@ -1,18 +1,18 @@
 package GrafikDatentypen is
    pragma Pure;
 
-   type Grafik_Aktuelle_Darstellung_Enum is (
-                                             Grafik_Start_Enum, Grafik_Intro_Enum, Grafik_Abspann_Enum,
-                                             Grafik_Pause_Enum,
-                                             Grafik_Generierungszeit_Enum, Grafik_KI_Rechenzeit_Enum, Grafik_Rundenende_Enum, Grafik_Speichern_Laden_Enum,
-                                             Grafik_Menüs_Enum, Grafik_Sprache_Enum,
-                                             Grafik_Editoren_Enum,
-                                             Grafik_Weltkarte_Enum, Grafik_Stadtkarte_Enum, Grafik_Forschung_Enum, Grafik_Bauen_Enum, Grafik_Verkaufen_Enum, Grafik_Forschung_Erfolgreich_Enum,
-                                             Grafik_Diplomatie_Enum,
-                                             Grafik_Ende_Enum
-                                            );
+   type AKtuelle_Anzeige_Enum is (
+                                  Start_Enum, Intro_Enum, Abspann_Enum,
+                                  Pause_Enum,
+                                  Generierungszeit_Enum, KI_Rechenzeit_Enum, Rundenende_Enum, Speichern_Laden_Enum,
+                                  Menüs_Enum, Sprache_Enum,
+                                  Editoren_Enum,
+                                  Weltkarte_Enum, Stadtkarte_Enum, Forschung_Enum, Bauen_Enum, Verkaufen_Enum, Forschungserfolg_Enum,
+                                  Diplomatie_Enum,
+                                  Ende_Enum
+                                 );
    
-   subtype Ladezeiten_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Generierungszeit_Enum .. Grafik_Speichern_Laden_Enum;
+   subtype Ladezeiten_Enum is AKtuelle_Anzeige_Enum range Generierungszeit_Enum .. Speichern_Laden_Enum;
    
    
    
@@ -69,7 +69,7 @@ package GrafikDatentypen is
    
    subtype Spezieshintergrund_Vorhanden_Enum is Spezieshintergrund_Enum range Spezieshintergrund_Enum'Succ (Spezieshintergrund_Enum'First) .. Spezieshintergrund_Enum'Last;
    
-   subtype Abspann_Enum is Spezieshintergrund_Vorhanden_Enum range Gewonnen_Enum .. Spezieshintergrund_Vorhanden_Enum'Last;
+   subtype Abspannhintergrund_Enum is Spezieshintergrund_Vorhanden_Enum range Gewonnen_Enum .. Spezieshintergrund_Vorhanden_Enum'Last;
    
    
    

@@ -17,7 +17,7 @@ package body StadtmenueLogik is
    is begin
       
       NachGrafiktask.AktuelleStadt := StadtSpeziesNummerExtern.Nummer;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Stadtkarte_Enum;
       
       StadtSchleife:
       loop
@@ -66,7 +66,7 @@ package body StadtmenueLogik is
          
       end loop StadtSchleife;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
       NachGrafiktask.AktuelleStadt := StadtKonstanten.LeerNummer;
       
    end Stadtmenü;

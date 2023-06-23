@@ -1,4 +1,4 @@
-with EinheitenKonstanten;
+with ProduktionKonstanten;
 
 package body Grenzpruefungen is
    
@@ -68,9 +68,9 @@ package body Grenzpruefungen is
          return ProduktionDatentypen.Arbeitszeit'Last;
          
       elsif
-        AktuellerWertExtern + ÄnderungExtern <= EinheitenKonstanten.MinimaleArbeitszeit
+        AktuellerWertExtern + ÄnderungExtern <= ProduktionKonstanten.MinimaleArbeitszeit
       then
-         return EinheitenKonstanten.MinimaleArbeitszeit;
+         return ProduktionKonstanten.MinimaleArbeitszeit;
          
       else
          return AktuellerWertExtern + ÄnderungExtern;

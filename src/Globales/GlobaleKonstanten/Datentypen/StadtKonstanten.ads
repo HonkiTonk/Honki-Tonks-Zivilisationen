@@ -22,6 +22,7 @@ package StadtKonstanten is
    LeerNummer : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
    
    -- Wieso ist diese Recordkonstante hier und nicht bei den Recordkonstanten? äöü
+   -- Weil es in RecordKonstanten auch ein LeerStadt gibt, welches aber den Stadtrecord darstellt. äöü
    LeerStadt : constant StadtRecords.SpeziesStadtnummerRecord := (SpeziesKonstanten.LeerSpezies, LeerNummer);
    
    AnfangNummer : constant StadtDatentypen.MaximaleStädte := StadtDatentypen.MaximaleStädte'First;

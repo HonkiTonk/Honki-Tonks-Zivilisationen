@@ -8,8 +8,7 @@ package Weltkarte is
 
    Karteneinstellungen : KartenRecords.PermanenteKartenparameterRecord := KartenRecordKonstanten.Standardkartenparameter;
 
-   -- Später die Anzahl der Ebenen auch vom Nutzer einstellbar machen? äöü
-   -- Eventuell auf -1 .. 0 als minimale Eingabe begrenzen? äöü
+   -- Ebenen auch vom Nutzer einstellbar machenmit Begrenzung auf -1 .. 0. äöü
    type KarteArray is array (KartenDatentypen.EbeneVorhanden'Range, KartenDatentypen.KartenfeldPositiv'Range, KartenDatentypen.KartenfeldPositiv'Range) of WeltkarteRecords.WeltkarteRecord;
    Karte : KarteArray := (others => (others => (others => WeltkarteRecords.LeerWeltkarte)));
 

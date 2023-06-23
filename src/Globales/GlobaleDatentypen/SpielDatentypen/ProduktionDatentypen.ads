@@ -32,7 +32,9 @@ package ProduktionDatentypen is
    type Permanente_Kosten_Enum is (
                                    Leer_Permanente_Kosten_Enum,
                                    
-                                   Nahrung_Enum, Material_Enum, Geld_Enum -- , Hier_Spezielle_Ressourcen_Einbauen_Enum? äöü
+                                   Nahrung_Enum, Material_Enum, Geld_Enum
+                                   
+                                   -- Noch spezielles Ressourcen hier einbauen, weglassen oder ein eigenes Enum dafür erstellen? äöü
                                   );
    
    subtype Permanente_Kosten_Verwendet_Enum is Permanente_Kosten_Enum range Permanente_Kosten_Enum'Succ (Permanente_Kosten_Enum'First) .. Permanente_Kosten_Enum'Last;
@@ -40,11 +42,11 @@ package ProduktionDatentypen is
    
    
    type Arbeitszeit is range -1 .. 100;
-   
-   -- Es werden benötigt: äöü
-   -- Datentypen für diplomatischen Zustand, später in passendere Datei verschieben: äöü
+   subtype ArbeitszeitVorhanden is Arbeitszeit range 0 .. Arbeitszeit'Last;
    
    
-   -- Datentypen für Zufriedenheit: äöü
+   
+   type Zufriedenheit is range -100 .. 100;
+   subtype ZufriedenheitVorhanden is Zufriedenheit range 0 .. Zufriedenheit'Last;
 
 end ProduktionDatentypen;

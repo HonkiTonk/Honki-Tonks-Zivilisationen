@@ -3,7 +3,7 @@ with TastenbelegungDatentypen;
 
 private with SystemRecords;
 private with KartenRecords;
-private with KartenDatentypen;
+private with KartenRecordKonstanten;
 
 with LeseSpeziesbelegung;
 
@@ -22,8 +22,6 @@ package CursorbewegungLogik is
    procedure GeheZu;
 
 private
-   use type KartenDatentypen.Kartenfeld;
-   use type KartenDatentypen.Ebene;
    
    KoordinatenPunkt : SystemRecords.ZahlenEingabeRecord;
 
@@ -33,19 +31,19 @@ private
    
    type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Erweitert_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Richtung : constant RichtungArray := (
-                                         TastenbelegungDatentypen.Auswählen_Enum    => (0, 0, 0),
+                                         TastenbelegungDatentypen.Auswählen_Enum    => KartenRecordKonstanten.LeerKoordinatenänderung,
                                          
-                                         TastenbelegungDatentypen.Oben_Enum         => (0, -1, 0),
-                                         TastenbelegungDatentypen.Links_Enum        => (0, 0, -1),
-                                         TastenbelegungDatentypen.Unten_Enum        => (0, 1, 0),
-                                         TastenbelegungDatentypen.Rechts_Enum       => (0, 0, 1),
-                                         TastenbelegungDatentypen.Links_Oben_Enum   => (0, -1, -1),
-                                         TastenbelegungDatentypen.Rechts_Oben_Enum  => (0, -1, 1),
-                                         TastenbelegungDatentypen.Links_Unten_Enum  => (0, 1, -1),
-                                         TastenbelegungDatentypen.Rechts_Unten_Enum => (0, 1, 1),
+                                         TastenbelegungDatentypen.Oben_Enum         => KartenRecordKonstanten.Nordbewegung,
+                                         TastenbelegungDatentypen.Links_Enum        => KartenRecordKonstanten.Westbewegung,
+                                         TastenbelegungDatentypen.Unten_Enum        => KartenRecordKonstanten.Südbewegung,
+                                         TastenbelegungDatentypen.Rechts_Enum       => KartenRecordKonstanten.OstBewegung,
+                                         TastenbelegungDatentypen.Links_Oben_Enum   => KartenRecordKonstanten.Nordwestbewegung,
+                                         TastenbelegungDatentypen.Rechts_Oben_Enum  => KartenRecordKonstanten.Nordostbewegung,
+                                         TastenbelegungDatentypen.Links_Unten_Enum  => KartenRecordKonstanten.Südwestbewegung,
+                                         TastenbelegungDatentypen.Rechts_Unten_Enum => KartenRecordKonstanten.Südostbewegung,
                                          
-                                         TastenbelegungDatentypen.Ebene_Hoch_Enum   => (1, 0, 0),
-                                         TastenbelegungDatentypen.Ebene_Runter_Enum => (-1, 0, 0)
+                                         TastenbelegungDatentypen.Ebene_Hoch_Enum   => KartenRecordKonstanten.EbeneHoch,
+                                         TastenbelegungDatentypen.Ebene_Runter_Enum => KartenRecordKonstanten.EbeneRunter
                                         );
    
 end CursorbewegungLogik;

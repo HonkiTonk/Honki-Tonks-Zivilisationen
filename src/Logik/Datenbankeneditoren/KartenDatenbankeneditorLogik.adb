@@ -16,7 +16,7 @@ package body KartenDatenbankeneditorLogik is
    is begin
       
       NachGrafiktask.WelcherEditor := GrafikDatentypen.Kartengrund_Editor_Enum;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Editoren_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Editoren_Enum;
       
       KartengrundSchleife:
       loop

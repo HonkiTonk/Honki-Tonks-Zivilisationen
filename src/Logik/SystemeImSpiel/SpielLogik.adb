@@ -175,11 +175,11 @@ package body SpielLogik is
       LadezeitenLogik.KINullsetzenFortschritt;
       
       NachGrafiktask.KIRechnet := SpeziesExtern;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_KI_Rechenzeit_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.KI_Rechenzeit_Enum;
       
       KILogik.KI (SpeziesExtern => SpeziesExtern);
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
       NachGrafiktask.KIRechnet := SpeziesKonstanten.LeerSpezies;
       
    end KISpieler;
@@ -254,7 +254,7 @@ package body SpielLogik is
       SpielerSchleife:
       loop
          
-         NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Weltkarte_Enum;
+         NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Weltkarte_Enum;
          
          case
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
@@ -327,7 +327,7 @@ package body SpielLogik is
                      
       end loop SpielerSchleife;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
       NachGrafiktask.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
       
       return RückgabeMenschAmZug;

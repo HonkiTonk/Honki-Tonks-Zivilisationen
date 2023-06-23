@@ -1,4 +1,5 @@
 with SpeziesDatenbank;
+with SpeziesDatentypen;
 
 with SpeziesMenschen;
 with SpeziesKasrodiah;
@@ -24,48 +25,69 @@ package body StandardSpeziesDatenbank is
    procedure StandardSpeziesDatenbankLaden
    is begin
       
-      SpeziesDatenbank.Speziesliste := (
-                                        SpeziesMenschen.SpezieslisteMenschen,
-                                        SpeziesKasrodiah.SpezieslisteKasrodiah,
-                                        SpeziesLasupin.SpezieslisteLasupin,
-                                        SpeziesLamustra.SpezieslisteLamustra,
-                                        SpeziesManuky.SpezieslisteManuky,
-                                        SpeziesSuroka.SpezieslisteSuroka,
-                                        SpeziesPryolon.SpezieslistePryolon,
-                                        SpeziesMoruPhisihl.SpezieslisteMoruPhisihl,
-                                        SpeziesLarinosLotaris.SpezieslisteLarinosLotaris,
-                                        SpeziesCarupex.SpezieslisteCarupex,
-                                        SpeziesAlary.SpezieslisteAlary,
-                                        SpeziesNatriesZermanis.SpezieslisteNatriesZermanis,
-                                        SpeziesTridatus.SpezieslisteTridatus,
-                                        SpeziesSenelari.SpezieslisteSenelari,
-                                        SpeziesAspari2.SpezieslisteAspari2,
-                                        SpeziesEkropa.SpezieslisteEkropa,
-                                        SpeziesTalbidahr.SpezieslisteTalbidahr,
-                                        SpeziesTesorahn.SpezieslisteTesorahn
-                                       );
-      
-      -- Kann wegen dam Kompilerfehler mit gnat-wu aktuell nicht verwendet werden. äöü
-      -- SpeziesDatenbank.Speziesliste := (
-      --                                 SpeziesDatentypen.Menschen_Enum         => SpeziesMenschen.SpezieslisteMenschen,
-      --                               SpeziesDatentypen.Kasrodiah_Enum        => SpeziesKasrodiah.SpezieslisteKasrodiah,
-      --                             SpeziesDatentypen.Lasupin_Enum          => SpeziesLasupin.SpezieslisteLasupin,
-      --                           SpeziesDatentypen.Lamustra_Enum         => SpeziesLamustra.SpezieslisteLamustra,
-      --                         SpeziesDatentypen.Manuky_Enum           => SpeziesManuky.SpezieslisteManuky,
-      --                       SpeziesDatentypen.Suroka_Enum           => SpeziesSuroka.SpezieslisteSuroka,
-      --                     SpeziesDatentypen.Pryolon_Enum          => SpeziesPryolon.SpezieslistePryolon,
-      --                   SpeziesDatentypen.Talbidahr_Enum        => SpeziesTalbidahr.SpezieslisteTalbidahr,
-      --                 SpeziesDatentypen.Moru_Phisihl_Enum     => SpeziesMoruPhisihl.SpezieslisteMoruPhisihl,
-      --               SpeziesDatentypen.Larinos_Lotaris_Enum  => SpeziesLarinosLotaris.SpezieslisteLarinosLotaris,
-      --             SpeziesDatentypen.Carupex_Enum          => SpeziesCarupex.SpezieslisteCarupex,
-      --           SpeziesDatentypen.Alary_Enum            => SpeziesAlary.SpezieslisteAlary,
-      --         SpeziesDatentypen.Tesorahn_Enum         => SpeziesTesorahn.SpezieslisteTesorahn,
-      --       SpeziesDatentypen.Natries_Zermanis_Enum => SpeziesNatriesZermanis.SpezieslisteNatriesZermanis,
-      --     SpeziesDatentypen.Tridatus_Enum         => SpeziesTridatus.SpezieslisteTridatus,
-      --   SpeziesDatentypen.Senelari_Enum         => SpeziesSenelari.SpezieslisteSenelari,
-      -- SpeziesDatentypen.Aspari_2_Enum         => SpeziesAspari2.SpezieslisteAspari2,
-      -- SpeziesDatentypen.Ekropa_Enum           => SpeziesEkropa.SpezieslisteEkropa
-      -- );
+      -- Ersatz für die direkte Zuweisung in die Liste, da dies eine falsche Warnung mit -gnatwu erzeugt.
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatenbank.SpezieslisteArray'Range loop
+         
+         case
+           SpeziesSchleifenwert
+         is
+            when SpeziesDatentypen.Menschen_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesMenschen.SpezieslisteMenschen;
+               
+            when SpeziesDatentypen.Kasrodiah_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesKasrodiah.SpezieslisteKasrodiah;
+               
+            when SpeziesDatentypen.Lasupin_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesLasupin.SpezieslisteLasupin;
+               
+            when SpeziesDatentypen.Lamustra_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesLamustra.SpezieslisteLamustra;
+               
+            when SpeziesDatentypen.Manuky_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesManuky.SpezieslisteManuky;
+               
+            when SpeziesDatentypen.Suroka_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesSuroka.SpezieslisteSuroka;
+               
+            when SpeziesDatentypen.Pryolon_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesPryolon.SpezieslistePryolon;
+               
+            when SpeziesDatentypen.Moru_Phisihl_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesMoruPhisihl.SpezieslisteMoruPhisihl;
+               
+            when SpeziesDatentypen.Larinos_Lotaris_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesLarinosLotaris.SpezieslisteLarinosLotaris;
+               
+            when SpeziesDatentypen.Carupex_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesCarupex.SpezieslisteCarupex;
+               
+            when SpeziesDatentypen.Alary_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesAlary.SpezieslisteAlary;
+               
+            when SpeziesDatentypen.Natries_Zermanis_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesNatriesZermanis.SpezieslisteNatriesZermanis;
+               
+            when SpeziesDatentypen.Tridatus_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesTridatus.SpezieslisteTridatus;
+               
+            when SpeziesDatentypen.Senelari_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesSenelari.SpezieslisteSenelari;
+               
+            when SpeziesDatentypen.Aspari_2_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesAspari2.SpezieslisteAspari2;
+               
+            when SpeziesDatentypen.Ekropa_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesEkropa.SpezieslisteEkropa;
+               
+            when SpeziesDatentypen.Talbidahr_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesTalbidahr.SpezieslisteTalbidahr;
+               
+            when SpeziesDatentypen.Tesorahn_Enum =>
+               SpeziesDatenbank.Speziesliste (SpeziesSchleifenwert) := SpeziesTesorahn.SpezieslisteTesorahn;
+         end case;
+         
+      end loop SpeziesSchleife;
       
    end StandardSpeziesDatenbankLaden;
 

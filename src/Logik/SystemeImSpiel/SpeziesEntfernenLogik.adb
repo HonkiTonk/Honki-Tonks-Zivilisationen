@@ -76,7 +76,7 @@ package body SpeziesEntfernenLogik is
       if
         SpeziesExtern = NachGrafiktask.AktuelleSpezies
       then
-         NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+         NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
          
       else
          null;

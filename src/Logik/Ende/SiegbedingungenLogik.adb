@@ -53,7 +53,7 @@ package body SiegbedingungenLogik is
       case
         Sieg
       is 
-         when GrafikDatentypen.Abspann_Enum'Range =>
+         when GrafikDatentypen.Abspannhintergrund_Enum'Range =>
             NachGrafiktask.AktuelleSpezies := SpeziesDatentypen.Ekropa_Enum;
             AbspannLogik.Abspann (AbspannExtern => Sieg);
             NachGrafiktask.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;

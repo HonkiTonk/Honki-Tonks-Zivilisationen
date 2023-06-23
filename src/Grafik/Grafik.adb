@@ -1,4 +1,3 @@
-with GrafikDatentypen;
 with ZeitKonstanten;
 with SystemKonstanten;
 
@@ -162,19 +161,21 @@ package body Grafik is
      return Boolean
    is begin
       
+      AktuelleDarstellung := NachGrafiktask.AktuelleDarstellung;
+      
       case
-        NachGrafiktask.AktuelleDarstellung
+        AktuelleDarstellung
       is
-         when GrafikDatentypen.Grafik_Start_Enum =>
-            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+         when GrafikDatentypen.Start_Enum =>
+            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
             NachLogiktask.GrafikWarten := False;
             
             -- Wenn ich diese schreckliche Introlösung ersetze, dann die Sprachauswahl auch in die Menüs verschieben? äöü
-         when GrafikDatentypen.Grafik_Sprache_Enum =>
+         when GrafikDatentypen.Sprache_Enum =>
             SprachauswahlGrafik.Sprachauswahl;
             Startzeit := Clock;
                
-         when GrafikDatentypen.Grafik_Intro_Enum =>
+         when GrafikDatentypen.Intro_Enum =>
             IntroGrafik.Intro;
             
             -- Später eine bessere Variante dafür bauen. äöü
@@ -183,14 +184,14 @@ package body Grafik is
               or
                 NachGrafiktask.IntroAnzeigen = False
             then
-               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
                NachLogiktask.IntroAbwarten := False;
                
             else
                null;
             end if;
             
-         when GrafikDatentypen.Grafik_Pause_Enum =>
+         when GrafikDatentypen.Pause_Enum =>
             delay ZeitKonstanten.WartezeitGrafik;
             
          when GrafikDatentypen.Ladezeiten_Enum'Range =>
@@ -199,50 +200,53 @@ package body Grafik is
             -- Diese Prüfung kann nicht rausgezogen werden, da er mit dem aktuellen System sonst Tasteneingaben nicht mehr korrekt erkennt.
             TasteneingabeGrafik.FensterAnpassen;
          
-         when GrafikDatentypen.Grafik_Menüs_Enum =>
+         when GrafikDatentypen.Menüs_Enum =>
             MenueaufteilungGrafik.Menüaufteilung (WelchesMenüExtern     => NachGrafiktask.AktuellesMenü,
                                                    AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl);
                
-         when GrafikDatentypen.Grafik_Editoren_Enum =>
+         when GrafikDatentypen.Editoren_Enum =>
             EditorenGrafik.Editoren (WelcherEditorExtern => NachGrafiktask.WelcherEditor);
                
-         when GrafikDatentypen.Grafik_Weltkarte_Enum =>
+         when GrafikDatentypen.Weltkarte_Enum =>
             KartenaufteilungGrafik.Weltkarte (EinheitenauswahlExtern => UebergabeRecordErmittelnGrafik.Einheit (EinheitSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleEinheit)));
             
-         when GrafikDatentypen.Grafik_Stadtkarte_Enum =>
+         when GrafikDatentypen.Stadtkarte_Enum =>
             KartenaufteilungGrafik.Stadtkarte (StadtauswahlExtern => UebergabeRecordErmittelnGrafik.Stadt (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt)));
                
-         when GrafikDatentypen.Grafik_Forschung_Enum =>
+         when GrafikDatentypen.Forschung_Enum =>
             ForschungsauswahlGrafik.ForschungAnzeige (SpeziesExtern         => NachGrafiktask.AktuelleSpezies,
                                                       AktuelleAuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
-         when GrafikDatentypen.Grafik_Forschung_Erfolgreich_Enum =>
+         when GrafikDatentypen.Forschungserfolg_Enum =>
             ForschungserfolgGrafik.Forschungserfolg (SpeziesExtern => NachGrafiktask.AktuelleSpezies,
                                                      AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
-         when GrafikDatentypen.Grafik_Bauen_Enum =>
+         when GrafikDatentypen.Bauen_Enum =>
             BauauswahlGrafik.Bauauswahl (BauauswahlExtern      => UebergabeRecordErmittelnGrafik.Bauauswahl (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt)),
                                          AktuelleAuswahlExtern => NachGrafiktask.AktuelleBauauswahl);
             
-         when GrafikDatentypen.Grafik_Verkaufen_Enum =>
+         when GrafikDatentypen.Verkaufen_Enum =>
             VerkaufsauswahlGrafik.Verkaufsauswahl (SpeziesExtern         => NachGrafiktask.AktuelleSpezies,
                                                    AktuelleAuswahlExtern => NachGrafiktask.AktuelleBauauswahl.Gebäude);
             
-         when GrafikDatentypen.Grafik_Diplomatie_Enum =>
+         when GrafikDatentypen.Diplomatie_Enum =>
             DiplomatieauswahlGrafik.Diplomatieauswahl (AuswahlExtern => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
-         when GrafikDatentypen.Grafik_Abspann_Enum =>
+         when GrafikDatentypen.Abspann_Enum =>
             AbspannGrafik.Abspann (AbspannExtern => NachGrafiktask.Abspannart,
                                    SpeziesExtern => NachGrafiktask.AktuelleSpezies);
             
-         when GrafikDatentypen.Grafik_Ende_Enum =>
+         when GrafikDatentypen.Ende_Enum =>
             return False;
       end case;
       
-      -- Hier die Eingabe/Spielmeldung mit übergeben damit sie leichter verschiebbar sind? äöü
-      AnzeigeSpielmeldungen;
+      AnzeigeSpielmeldungen (AktuelleDarstellungExtern => AktuelleDarstellung,
+                             LetzteDarstellungExtern   => LetzteDarstellung,
+                             SpielmeldungExtern        => NachGrafiktask.Spielmeldung);
+      
+      -- Hier die Eingabe mit übergeben damit sie leichter verschiebbar sind? äöü
       AnzeigeEingaben;
-               
+                             
       case
         LeseEinstellungenGrafik.BildrateAnzeigen
       is
@@ -253,6 +257,8 @@ package body Grafik is
             null;
       end case;
       
+      LetzteDarstellung := AktuelleDarstellung;
+      
       return True;
       
    end AnzeigeAuswahl;
@@ -260,27 +266,32 @@ package body Grafik is
    
    
    procedure AnzeigeSpielmeldungen
-   is begin
-      
-      case
-        NachGrafiktask.Spielmeldung
-      is
-         when SystemKonstanten.LeerMeldung =>
-            return;
-            
-         when others =>
-            null;
-      end case;
+     (AktuelleDarstellungExtern : in GrafikDatentypen.AKtuelle_Anzeige_Enum;
+      LetzteDarstellungExtern : in GrafikDatentypen.AKtuelle_Anzeige_Enum;
+      SpielmeldungExtern : in SystemDatentypen.Spielmeldungen)
+   is
+      use type GrafikDatentypen.AKtuelle_Anzeige_Enum;
+   begin
       
       if
+        SpielmeldungExtern = SystemKonstanten.LeerMeldung 
+      then
+         null;
+      
+      elsif
+        LetzteDarstellungExtern /= AktuelleDarstellungExtern
+      then
+         NachGrafiktask.Spielmeldung := SystemKonstanten.LeerMeldung;
+      
+      elsif
         Clock - NachGrafiktask.StartzeitSpielmeldung > ZeitKonstanten.AnzeigezeitSpielmeldungen
       then
          NachGrafiktask.Spielmeldung := SystemKonstanten.LeerMeldung;
          
       else
-         SpielmeldungenGrafik.Spielmeldung (MeldungExtern => NachGrafiktask.Spielmeldung);
+         SpielmeldungenGrafik.Spielmeldung (MeldungExtern => SpielmeldungExtern);
       end if;
-            
+      
    end AnzeigeSpielmeldungen;
    
    

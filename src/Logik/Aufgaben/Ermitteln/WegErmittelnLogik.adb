@@ -1,4 +1,5 @@
 with EinheitenRecordKonstanten;
+with ProduktionKonstanten;
 
 with LeseWeltkarte;
 with LeseForschungenDatenbank;
@@ -23,7 +24,7 @@ package body WegErmittelnLogik is
       case
         ArbeitszeitWegLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, Gesamtgrund.Basisgrund)
       is
-         when EinheitenKonstanten.UnmöglicheArbeit =>
+         when ProduktionKonstanten.UnmöglicheArbeit =>
             return False;
          
          when others =>
@@ -114,7 +115,7 @@ package body WegErmittelnLogik is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
@@ -174,7 +175,7 @@ package body WegErmittelnLogik is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
@@ -220,7 +221,7 @@ package body WegErmittelnLogik is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
@@ -267,7 +268,7 @@ package body WegErmittelnLogik is
             return EinheitenRecordKonstanten.KeineArbeit;
       end case;
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitWegLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case

@@ -8,7 +8,6 @@ with VerzeichnisKonstanten;
 with StandardTastenbelegungDatenbank;
 with TastenbelegungDatentypen;
 with BefehleDatentypen;
-with TastenbelegungStandard;
 
 with SchreibeTastenbelegungDatenbank;
 
@@ -94,7 +93,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Oben_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Oben_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Oben_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Oben_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -105,7 +104,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Links_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Links_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Links_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Links_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -116,7 +115,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Unten_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Unten_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Unten_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Unten_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -127,7 +126,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Rechts_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Rechts_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Rechts_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Rechts_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -138,7 +137,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Links_Oben_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Links_Oben_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Links_Oben_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Links_Oben_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -149,7 +148,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Rechts_Oben_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Rechts_Oben_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Rechts_Oben_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Rechts_Oben_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -160,7 +159,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Links_Unten_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Links_Unten_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Links_Unten_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Links_Unten_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -171,7 +170,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Rechts_Unten_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Rechts_Unten_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Rechts_Unten_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Rechts_Unten_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -182,7 +181,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Ebene_Hoch_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Ebene_Hoch_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Ebene_Hoch_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Ebene_Hoch_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -193,7 +192,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Ebene_Runter_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Ebene_Runter_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Ebene_Runter_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Ebene_Runter_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -204,7 +203,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Forschung_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Forschung_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Forschung_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Forschung_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -215,7 +214,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Diplomatie_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Diplomatie_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Diplomatie_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Diplomatie_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -226,7 +225,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Stadt_Suchen_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Stadt_Suchen_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Stadt_Suchen_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Stadt_Suchen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -237,7 +236,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Nächste_Stadt_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Nächste_Stadt_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Nächste_Stadt_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Nächste_Stadt_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -248,7 +247,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -259,7 +258,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Nächste_Einheit_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Nächste_Einheit_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Nächste_Einheit_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Nächste_Einheit_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -270,7 +269,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Nächste_Einheit_Mit_Meldung_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Nächste_Einheit_Mit_Meldung_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Nächste_Einheit_Mit_Meldung_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Nächste_Einheit_Mit_Meldung_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -281,7 +280,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -292,7 +291,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -303,7 +302,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Gehe_Zu_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Gehe_Zu_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Gehe_Zu_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Gehe_Zu_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -314,7 +313,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Runde_Beenden_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Runde_Beenden_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Runde_Beenden_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Runde_Beenden_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -325,7 +324,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Debugmenü_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Debugmenü_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Debugmenü_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Debugmenü_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -336,7 +335,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               AllgemeineBelegung (TastenbelegungDatentypen.Abwählen_Enum) := TastenbelegungStandard.AllgemeineBelegungStandard (TastenbelegungDatentypen.Abwählen_Enum);
+               AllgemeineBelegung (TastenbelegungDatentypen.Abwählen_Enum) := StandardTastenbelegungDatenbank.AllgemeineBelegungStandard (TastenbelegungDatentypen.Abwählen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -349,7 +348,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Auswählen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Auswählen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Auswählen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Auswählen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -360,7 +359,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Oben_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Oben_Enum);
+               Einheitenbelegung (BefehleDatentypen.Oben_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Oben_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -371,7 +370,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Links_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Links_Enum);
+               Einheitenbelegung (BefehleDatentypen.Links_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Links_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -382,7 +381,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Unten_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Unten_Enum);
+               Einheitenbelegung (BefehleDatentypen.Unten_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Unten_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -393,7 +392,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Rechts_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Rechts_Enum);
+               Einheitenbelegung (BefehleDatentypen.Rechts_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Rechts_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -404,7 +403,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Links_Oben_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Links_Oben_Enum);
+               Einheitenbelegung (BefehleDatentypen.Links_Oben_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Links_Oben_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -415,7 +414,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Rechts_Oben_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Rechts_Oben_Enum);
+               Einheitenbelegung (BefehleDatentypen.Rechts_Oben_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Rechts_Oben_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -426,7 +425,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Links_Unten_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Links_Unten_Enum);
+               Einheitenbelegung (BefehleDatentypen.Links_Unten_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Links_Unten_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -437,7 +436,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Rechts_Unten_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Rechts_Unten_Enum);
+               Einheitenbelegung (BefehleDatentypen.Rechts_Unten_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Rechts_Unten_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -448,7 +447,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Ebene_Hoch_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Ebene_Hoch_Enum);
+               Einheitenbelegung (BefehleDatentypen.Ebene_Hoch_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Ebene_Hoch_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -459,7 +458,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Ebene_Runter_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Ebene_Runter_Enum);
+               Einheitenbelegung (BefehleDatentypen.Ebene_Runter_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Ebene_Runter_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -470,7 +469,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Bauen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Bauen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Bauen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Bauen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -481,7 +480,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Straße_Bauen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Straße_Bauen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Straße_Bauen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Straße_Bauen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -492,7 +491,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Mine_Bauen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Mine_Bauen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Mine_Bauen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Mine_Bauen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -503,7 +502,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Farm_Bauen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Farm_Bauen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Farm_Bauen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Farm_Bauen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -514,7 +513,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Festung_Bauen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Festung_Bauen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Festung_Bauen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Festung_Bauen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -525,7 +524,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Wald_Aufforsten_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Wald_Aufforsten_Enum);
+               Einheitenbelegung (BefehleDatentypen.Wald_Aufforsten_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Wald_Aufforsten_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -536,7 +535,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Roden_Trockenlegen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Roden_Trockenlegen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Roden_Trockenlegen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Roden_Trockenlegen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -547,7 +546,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Feldeffekte_Entfernen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Feldeffekte_Entfernen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Feldeffekte_Entfernen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Feldeffekte_Entfernen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -558,7 +557,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Heilen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Heilen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Heilen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Heilen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -569,7 +568,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Verschanzen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Verschanzen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Verschanzen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Verschanzen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -580,7 +579,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Plündern_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Plündern_Enum);
+               Einheitenbelegung (BefehleDatentypen.Plündern_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Plündern_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -591,7 +590,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Auflösen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Auflösen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Auflösen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Auflösen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -602,7 +601,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Einheit_Verbessern_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Einheit_Verbessern_Enum);
+               Einheitenbelegung (BefehleDatentypen.Einheit_Verbessern_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Einheit_Verbessern_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -613,7 +612,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Heimatstadt_Ändern_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Heimatstadt_Ändern_Enum);
+               Einheitenbelegung (BefehleDatentypen.Heimatstadt_Ändern_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Heimatstadt_Ändern_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -624,7 +623,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Entladen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Entladen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Entladen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Entladen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -635,7 +634,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Einheitenbelegung (BefehleDatentypen.Abwählen_Enum) := TastenbelegungStandard.EinheitenbelegungStandard (BefehleDatentypen.Abwählen_Enum);
+               Einheitenbelegung (BefehleDatentypen.Abwählen_Enum) := StandardTastenbelegungDatenbank.EinheitenbelegungStandard (BefehleDatentypen.Abwählen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -648,7 +647,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Stadtbelegung (BefehleDatentypen.Stadtkarte_Enum) := TastenbelegungStandard.StadtbelegungStandard (BefehleDatentypen.Stadtkarte_Enum);
+               Stadtbelegung (BefehleDatentypen.Stadtkarte_Enum) := StandardTastenbelegungDatenbank.StadtbelegungStandard (BefehleDatentypen.Stadtkarte_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -659,7 +658,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Stadtbelegung (BefehleDatentypen.Bauen_Enum) := TastenbelegungStandard.StadtbelegungStandard (BefehleDatentypen.Bauen_Enum);
+               Stadtbelegung (BefehleDatentypen.Bauen_Enum) := StandardTastenbelegungDatenbank.StadtbelegungStandard (BefehleDatentypen.Bauen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -670,7 +669,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Stadtbelegung (BefehleDatentypen.Verkaufen_Enum) := TastenbelegungStandard.StadtbelegungStandard (BefehleDatentypen.Verkaufen_Enum);
+               Stadtbelegung (BefehleDatentypen.Verkaufen_Enum) := StandardTastenbelegungDatenbank.StadtbelegungStandard (BefehleDatentypen.Verkaufen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -681,7 +680,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Stadtbelegung (BefehleDatentypen.Umbenennen_Enum) := TastenbelegungStandard.StadtbelegungStandard (BefehleDatentypen.Umbenennen_Enum);
+               Stadtbelegung (BefehleDatentypen.Umbenennen_Enum) := StandardTastenbelegungDatenbank.StadtbelegungStandard (BefehleDatentypen.Umbenennen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -692,7 +691,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Stadtbelegung (BefehleDatentypen.Auflösen_Enum) := TastenbelegungStandard.StadtbelegungStandard (BefehleDatentypen.Auflösen_Enum);
+               Stadtbelegung (BefehleDatentypen.Auflösen_Enum) := StandardTastenbelegungDatenbank.StadtbelegungStandard (BefehleDatentypen.Auflösen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),
@@ -703,7 +702,7 @@ package body EinlesenTastatureinstellungenLogik is
            End_Of_File (File => DateiLadenExtern)
          is
             when True =>
-               Stadtbelegung (BefehleDatentypen.Verlassen_Enum) := TastenbelegungStandard.StadtbelegungStandard (BefehleDatentypen.Verlassen_Enum);
+               Stadtbelegung (BefehleDatentypen.Verlassen_Enum) := StandardTastenbelegungDatenbank.StadtbelegungStandard (BefehleDatentypen.Verlassen_Enum);
             
             when False =>
                Sf.Window.Keyboard.sfKeyCode'Read (Stream (File => DateiTastatureinstellungen),

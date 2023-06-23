@@ -41,7 +41,7 @@ package body StadtbausystemLogik is
                                        ÄndernSetzenExtern       => False);
       end if;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Stadtkarte_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Stadtkarte_Enum;
       
    end Bauen;
 
@@ -145,7 +145,7 @@ package body StadtbausystemLogik is
      return StadtRecords.BauprojektRecord
    is begin
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Bauen_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Bauen_Enum;
       
       AuswahlSchleife:
       loop

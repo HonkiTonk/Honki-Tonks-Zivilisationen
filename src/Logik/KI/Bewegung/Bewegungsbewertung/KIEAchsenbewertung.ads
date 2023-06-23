@@ -1,5 +1,7 @@
 with KartenDatentypen;
 
+private with KartenKonstanten;
+
 package KIEAchsenbewertung is
    pragma Elaborate_Body;
 
@@ -9,8 +11,7 @@ package KIEAchsenbewertung is
       return KartenDatentypen.KartenfeldNatural;
 
 private
-   use type KartenDatentypen.Ebene;
-
+   
    WelcheFelderanzahl : Positive;
 
    type FelderanzahlArray is array (1 .. 3) of KartenDatentypen.KartenfeldNatural;
@@ -18,11 +19,11 @@ private
    
    type EbenenumrechnungArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.KartenfeldPositiv;
    Ebenenumrechnung : constant EbenenumrechnungArray := (
-                                                         -2 => 1,
-                                                         -1 => 2,
-                                                         0 => 3,
-                                                         1 => 4,
-                                                         2 => 5
+                                                         KartenKonstanten.PlaneteninneresKonstante => 1,
+                                                         KartenKonstanten.UnterflächeKonstante     => 2,
+                                                         KartenKonstanten.OberflächeKonstante      => 3,
+                                                         KartenKonstanten.HimmelKonstante          => 4,
+                                                         KartenKonstanten.WeltraumKonstante        => 5
                                                         );
    
    

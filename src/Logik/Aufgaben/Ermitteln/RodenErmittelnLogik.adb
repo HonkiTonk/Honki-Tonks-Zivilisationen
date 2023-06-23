@@ -1,4 +1,5 @@
 with TextnummernKonstanten;
+with ProduktionKonstanten;
 
 with LeseWeltkarte;
   
@@ -30,7 +31,7 @@ package body RodenErmittelnLogik is
          return False;
          
       elsif
-        ArbeitszeitRodenLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, Gesamtgrund.Basisgrund) = EinheitenKonstanten.UnmöglicheArbeit
+        ArbeitszeitRodenLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, Gesamtgrund.Basisgrund) = ProduktionKonstanten.UnmöglicheArbeit
       then
          return False;
          
@@ -90,7 +91,7 @@ package body RodenErmittelnLogik is
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitRodenLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,
@@ -111,7 +112,7 @@ package body RodenErmittelnLogik is
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitRodenLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => Arbeitszeit,

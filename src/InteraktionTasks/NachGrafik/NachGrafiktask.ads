@@ -33,7 +33,7 @@ package NachGrafiktask is
    Endauswahl : Natural := AuswahlKonstanten.LeerAuswahl;
    -- Wird für Spielstart benötigt.
    
-   AktuelleDarstellung : GrafikDatentypen.Grafik_Aktuelle_Darstellung_Enum := GrafikDatentypen.Grafik_Start_Enum;
+   AktuelleDarstellung : GrafikDatentypen.AKtuelle_Anzeige_Enum := GrafikDatentypen.Start_Enum;
    
    FensterGeschlossen : Boolean := False;
    NameSpielstand : Boolean := False;

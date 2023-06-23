@@ -20,7 +20,6 @@ package FlussplatzierungssystemLogik is
               );
    
 private
-   use type KartenDatentypen.Ebene;
    
    WelcherFluss : KartenextraDatentypen.Fluss_Enum;
    

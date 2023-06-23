@@ -1,13 +1,11 @@
-with ProduktionDatentypen;
+with ProduktionKonstanten;
 with SpeziesDatentypen;
 with KartengrundDatentypen;
 with SpeziesArrays;
 
 package ArbeitszeitFarmLogik is
    pragma Preelaborate;
-   use type ProduktionDatentypen.Arbeitszeit;
 
-   -- -1 bedeutet es ist unmöglich diese Verbesserung auf diesem Grund anzulegen.
    Basiszeit : constant SpeziesArrays.BasiszeitArray := (
                                                          SpeziesDatentypen.Menschen_Enum =>
                                                            (
@@ -26,15 +24,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Kasrodiah_Enum =>
@@ -54,15 +52,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Lasupin_Enum =>
@@ -82,15 +80,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Lamustra_Enum =>
@@ -110,15 +108,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Manuky_Enum =>
@@ -138,15 +136,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Suroka_Enum =>
@@ -166,15 +164,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Pryolon_Enum =>
@@ -194,15 +192,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Moru_Phisihl_Enum =>
@@ -222,15 +220,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Larinos_Lotaris_Enum =>
@@ -250,15 +248,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Carupex_Enum =>
@@ -278,15 +276,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Alary_Enum =>
@@ -306,15 +304,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Natries_Zermanis_Enum =>
@@ -334,15 +332,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Tridatus_Enum =>
@@ -362,15 +360,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Senelari_Enum =>
@@ -390,15 +388,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Aspari_2_Enum =>
@@ -418,15 +416,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Ekropa_Enum =>
@@ -446,15 +444,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Tesorahn_Enum =>
@@ -474,15 +472,15 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            ),
 
                                                          SpeziesDatentypen.Talbidahr_Enum =>
@@ -502,21 +500,21 @@ package ArbeitszeitFarmLogik is
                                                             KartengrundDatentypen.Erdgestein_Enum               => 2,
                                                             KartengrundDatentypen.Sand_Enum                     => 2,
                                                             KartengrundDatentypen.Gestein_Enum                  => 5,
-                                                            KartengrundDatentypen.Lava_Enum                     => -1,
-                                                            KartengrundDatentypen.Planetenkern_Enum             => -1,
+                                                            KartengrundDatentypen.Lava_Enum                     => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Planetenkern_Enum             => ProduktionKonstanten.UnmöglicheArbeit,
                                                             KartengrundDatentypen.Ringwoodit_Enum               => 2,
                                                             KartengrundDatentypen.Majorit_Enum                  => 2,
                                                             KartengrundDatentypen.Perowskit_Enum                => 2,
                                                             KartengrundDatentypen.Magnesiowüstit_Enum           => 2,
-                                                            KartengrundDatentypen.Vernichtet_Enum               => -1,
-                                                            KartengrundDatentypen.Weltraum_Enum                 => -1,
-                                                            KartengrundDatentypen.Wolken_Enum                   => -1
+                                                            KartengrundDatentypen.Vernichtet_Enum               => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Weltraum_Enum                 => ProduktionKonstanten.UnmöglicheArbeit,
+                                                            KartengrundDatentypen.Wolken_Enum                   => ProduktionKonstanten.UnmöglicheArbeit
                                                            )
                                                         );
 
 
 
-   -- -1 bedeutet es ist unmöglich diese Verbesserung auf diesem Grund anzulegen.
+   -- ProduktionKonstanten.UnmöglicheArbeit bedeutet es ist unmöglich diese Verbesserung auf diesem Grund anzulegen.
    Zusatzzeit : constant SpeziesArrays.ZusatzzeitArray := (
                                                            SpeziesDatentypen.Menschen_Enum =>
                                                              (

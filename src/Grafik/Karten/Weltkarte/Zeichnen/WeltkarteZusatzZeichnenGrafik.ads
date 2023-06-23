@@ -10,6 +10,7 @@ with KartenartDatentypen;
 
 private with KartenverbesserungDatentypen;
 private with StadtRecords;
+private with KartenRecordKonstanten;
 
 with LeseSpeziesbelegung;
 with LeseWeltkarteneinstellungen;
@@ -145,10 +146,10 @@ private
       
    type UmgebungArray is array (KartenartDatentypen.Himmelsrichtungen_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Umgebung : constant UmgebungArray := (
-                                         KartenartDatentypen.Norden_Enum => (0, -1, 0),
-                                         KartenartDatentypen.Westen_Enum => (0, 0, -1),
-                                         KartenartDatentypen.Osten_Enum  => (0, 0, 1),
-                                         KartenartDatentypen.Süden_Enum  => (0, 1, 0)
+                                         KartenartDatentypen.Norden_Enum => KartenRecordKonstanten.Nordbewegung,
+                                         KartenartDatentypen.Westen_Enum => KartenRecordKonstanten.Westbewegung,
+                                         KartenartDatentypen.Osten_Enum  => KartenRecordKonstanten.OstBewegung,
+                                         KartenartDatentypen.Süden_Enum  => KartenRecordKonstanten.Südbewegung
                                         );
 
 end WeltkarteZusatzZeichnenGrafik;

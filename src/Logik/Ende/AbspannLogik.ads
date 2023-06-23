@@ -4,6 +4,6 @@ package AbspannLogik is
    pragma Elaborate_Body;
 
    procedure Abspann
-     (AbspannExtern : in GrafikDatentypen.Abspann_Enum);
+     (AbspannExtern : in GrafikDatentypen.Abspannhintergrund_Enum);
 
 end AbspannLogik;

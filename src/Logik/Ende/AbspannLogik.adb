@@ -8,7 +8,7 @@ with TasteneingabeLogik;
 package body AbspannLogik is
 
    procedure Abspann
-     (AbspannExtern : in GrafikDatentypen.Abspann_Enum)
+     (AbspannExtern : in GrafikDatentypen.Abspannhintergrund_Enum)
    is begin
       
       case
@@ -22,7 +22,7 @@ package body AbspannLogik is
       end case;
       
       NachGrafiktask.Abspannart := AbspannExtern;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Abspann_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Abspann_Enum;
       
       AbspannSchleife:
       loop
@@ -39,7 +39,7 @@ package body AbspannLogik is
          
       end loop AbspannSchleife;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
       NachGrafiktask.Abspannart := GrafikDatentypen.Leer_Hintergrund_Enum;
       
    end Abspann;

@@ -67,7 +67,7 @@ package body SpeichernLogik is
             
             when False =>
                LadezeitenLogik.SpeichernLadenNullsetzen;
-               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Speichern_Laden_Enum;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Speichern_Laden_Enum;
          end case;
          
          Create (File => DateiSpeichern,
@@ -106,7 +106,7 @@ package body SpeichernLogik is
                return;
             
             when False =>
-               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
          end case;
          
       end loop SpeichernSchleife;
@@ -133,7 +133,7 @@ package body SpeichernLogik is
                return;
             
             when False =>
-               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
          end case;
          
    end Speichern;

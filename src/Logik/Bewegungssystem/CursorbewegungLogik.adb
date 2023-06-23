@@ -1,6 +1,7 @@
 with TextnummernKonstanten;
 with KartenKonstanten;
 with SystemDatentypen;
+with KartenDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseCursor;
@@ -16,6 +17,7 @@ package body CursorbewegungLogik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
+      use type KartenDatentypen.Ebene;
    begin
       
       -- Ist nötig, da sonst bei schnellem Scrollen die Ebene nicht korrekt gewechselt wird.

@@ -13,7 +13,7 @@ with TextaccessverwaltungssystemGrafik;
 package body AbspannGrafik is
 
    procedure Abspann
-     (AbspannExtern : in GrafikDatentypen.Abspann_Enum;
+     (AbspannExtern : in GrafikDatentypen.Abspannhintergrund_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       

@@ -28,30 +28,30 @@ package body FlussplatzierungssystemLogik is
                null;
                   
             elsif
-              YAchseSchleifenwert = 0
+              YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
               and
-                XAchseSchleifenwert = -1
+                XAchseSchleifenwert = KartenKonstanten.XAchseWesten
             then
                Flussseite.Links := BerechnungLinks (KoordinatenExtern => KartenWert);
                
             elsif
-              YAchseSchleifenwert = 0
+              YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
               and
-                XAchseSchleifenwert = 1
+                XAchseSchleifenwert = KartenKonstanten.XAchseOsten
             then
                Flussseite.Rechts := BerechnungRechts (KoordinatenExtern => KartenWert);
                
             elsif
-              YAchseSchleifenwert = -1
+              YAchseSchleifenwert = KartenKonstanten.YAchseNorden
               and
-                XAchseSchleifenwert = 0
+                XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
             then
                Flussseite.Oben := BerechnungOben (KoordinatenExtern => KartenWert);
                
             elsif
-              YAchseSchleifenwert = 1
+              YAchseSchleifenwert = KartenKonstanten.YAchseSüden
               and
-                XAchseSchleifenwert = 0
+                XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
             then
                Flussseite.Unten := BerechnungUnten (KoordinatenExtern => KartenWert);
                

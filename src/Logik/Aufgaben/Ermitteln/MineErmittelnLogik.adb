@@ -1,4 +1,5 @@
 with EinheitenRecordKonstanten;
+with ProduktionKonstanten;
 
 with LeseWeltkarte;
 
@@ -22,7 +23,7 @@ package body MineErmittelnLogik is
       case
         ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, Gesamtgrund.Basisgrund)
       is
-         when EinheitenKonstanten.UnmöglicheArbeit =>
+         when ProduktionKonstanten.UnmöglicheArbeit =>
             return False;
          
          when others =>
@@ -93,7 +94,7 @@ package body MineErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
@@ -132,7 +133,7 @@ package body MineErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
@@ -166,7 +167,7 @@ package body MineErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitMineLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if

@@ -98,33 +98,33 @@ package body Zusatzgrundplatzierungssystem is
                null;
                   
             elsif
-              YAchseSchleifenwert = 0
+              YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
               and
-                XAchseSchleifenwert = -1
+                XAchseSchleifenwert = KartenKonstanten.XAchseWesten
             then
                Grundumgebung.Links := BerechnungLinks (KoordinatenExtern => Kartenwert,
                                                        GrundnummerExtern => Grundnummer);
                
             elsif
-              YAchseSchleifenwert = 0
+              YAchseSchleifenwert = KartenKonstanten.LeerYAchseÄnderung
               and
-                XAchseSchleifenwert = 1
+                XAchseSchleifenwert = KartenKonstanten.XAchseOsten
             then
                Grundumgebung.Rechts := BerechnungRechts (KoordinatenExtern => Kartenwert,
                                                          GrundnummerExtern => Grundnummer);
                
             elsif
-              YAchseSchleifenwert = -1
+              YAchseSchleifenwert = KartenKonstanten.YAchseNorden
               and
-                XAchseSchleifenwert = 0
+                XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
             then
                Grundumgebung.Oben := BerechnungOben (KoordinatenExtern => Kartenwert,
                                                      GrundnummerExtern => Grundnummer);
                
             elsif
-              YAchseSchleifenwert = 1
+              YAchseSchleifenwert = KartenKonstanten.YAchseSüden
               and
-                XAchseSchleifenwert = 0
+                XAchseSchleifenwert = KartenKonstanten.LeerXAchseÄnderung
             then
                Grundumgebung.Unten := BerechnungUnten (KoordinatenExtern => Kartenwert,
                                                        GrundnummerExtern => Grundnummer);

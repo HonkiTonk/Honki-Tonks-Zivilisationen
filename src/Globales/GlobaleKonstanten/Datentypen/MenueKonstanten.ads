@@ -81,7 +81,6 @@ package MenueKonstanten is
                                                 );
 
    -- Steuerung
-   -- Diese Werte (teilweise? vollständig?) nach TastenbelegungDatentypen und BefehleDatentypen verschieben? äöü
    AllgemeineSteuerung : constant Positive := 2;
    AllgemeineSteuerungEnumausgleich : constant Positive := AllgemeineSteuerung - 1;
    Einheitensteuerung : constant Positive := 25;

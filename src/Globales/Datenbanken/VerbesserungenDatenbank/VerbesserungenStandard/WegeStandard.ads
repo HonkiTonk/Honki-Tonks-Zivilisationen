@@ -163,7 +163,24 @@ package WegeStandard is
                                                   
                                               Bewegung =>
                                                 (
-                                                 others => -1
+                                                 SpeziesDatentypen.Menschen_Enum         => -1,
+                                                 SpeziesDatentypen.Kasrodiah_Enum        => -1,
+                                                 SpeziesDatentypen.Lasupin_Enum          => -1,
+                                                 SpeziesDatentypen.Lamustra_Enum         => -1,
+                                                 SpeziesDatentypen.Manuky_Enum           => -1,
+                                                 SpeziesDatentypen.Suroka_Enum           => -1,
+                                                 SpeziesDatentypen.Pryolon_Enum          => -1,
+                                                 SpeziesDatentypen.Moru_Phisihl_Enum     => -1,
+                                                 SpeziesDatentypen.Larinos_Lotaris_Enum  => -1,
+                                                 SpeziesDatentypen.Carupex_Enum          => -1,
+                                                 SpeziesDatentypen.Alary_Enum            => -1,
+                                                 SpeziesDatentypen.Natries_Zermanis_Enum => -1,
+                                                 SpeziesDatentypen.Tridatus_Enum         => -1,
+                                                 SpeziesDatentypen.Senelari_Enum         => -1,
+                                                 SpeziesDatentypen.Aspari_2_Enum         => -1,
+                                                 SpeziesDatentypen.Ekropa_Enum           => -1,
+                                                 SpeziesDatentypen.Tesorahn_Enum         => -1,
+                                                 SpeziesDatentypen.Talbidahr_Enum        => -1
                                                 )
                                              )
                                           );
@@ -322,7 +339,24 @@ package WegeStandard is
                                                       
                                                       Bewegung =>
                                                         (
-                                                         others => -2
+                                                         SpeziesDatentypen.Menschen_Enum         => -2,
+                                                         SpeziesDatentypen.Kasrodiah_Enum        => -2,
+                                                         SpeziesDatentypen.Lasupin_Enum          => -2,
+                                                         SpeziesDatentypen.Lamustra_Enum         => -2,
+                                                         SpeziesDatentypen.Manuky_Enum           => -2,
+                                                         SpeziesDatentypen.Suroka_Enum           => -2,
+                                                         SpeziesDatentypen.Pryolon_Enum          => -2,
+                                                         SpeziesDatentypen.Moru_Phisihl_Enum     => -2,
+                                                         SpeziesDatentypen.Larinos_Lotaris_Enum  => -2,
+                                                         SpeziesDatentypen.Carupex_Enum          => -2,
+                                                         SpeziesDatentypen.Alary_Enum            => -2,
+                                                         SpeziesDatentypen.Natries_Zermanis_Enum => -2,
+                                                         SpeziesDatentypen.Tridatus_Enum         => -2,
+                                                         SpeziesDatentypen.Senelari_Enum         => -2,
+                                                         SpeziesDatentypen.Aspari_2_Enum         => -2,
+                                                         SpeziesDatentypen.Ekropa_Enum           => -2,
+                                                         SpeziesDatentypen.Tesorahn_Enum         => -2,
+                                                         SpeziesDatentypen.Talbidahr_Enum        => -2
                                                         )
                                                      )
                                                   );
@@ -479,7 +513,24 @@ package WegeStandard is
                                                   
                                                   Bewegung =>
                                                     (
-                                                     others => -1
+                                                     SpeziesDatentypen.Menschen_Enum         => -1,
+                                                     SpeziesDatentypen.Kasrodiah_Enum        => -1,
+                                                     SpeziesDatentypen.Lasupin_Enum          => -1,
+                                                     SpeziesDatentypen.Lamustra_Enum         => -1,
+                                                     SpeziesDatentypen.Manuky_Enum           => -1,
+                                                     SpeziesDatentypen.Suroka_Enum           => -1,
+                                                     SpeziesDatentypen.Pryolon_Enum          => -1,
+                                                     SpeziesDatentypen.Moru_Phisihl_Enum     => -1,
+                                                     SpeziesDatentypen.Larinos_Lotaris_Enum  => -1,
+                                                     SpeziesDatentypen.Carupex_Enum          => -1,
+                                                     SpeziesDatentypen.Alary_Enum            => -1,
+                                                     SpeziesDatentypen.Natries_Zermanis_Enum => -1,
+                                                     SpeziesDatentypen.Tridatus_Enum         => -1,
+                                                     SpeziesDatentypen.Senelari_Enum         => -1,
+                                                     SpeziesDatentypen.Aspari_2_Enum         => -1,
+                                                     SpeziesDatentypen.Ekropa_Enum           => -1,
+                                                     SpeziesDatentypen.Tesorahn_Enum         => -1,
+                                                     SpeziesDatentypen.Talbidahr_Enum        => -1
                                                     )
                                                  )
                                               );

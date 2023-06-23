@@ -185,7 +185,7 @@ package body SpielstandlisteLogik is
       
       NachGrafiktask.SpeichernLaden := SpeichernLadenExtern;
       NachGrafiktask.AktuellesMenü := MenueDatentypen.Spielstand_Menü_Enum;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Menüs_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Menüs_Enum;
       
       AuswahlSchleife:
       loop

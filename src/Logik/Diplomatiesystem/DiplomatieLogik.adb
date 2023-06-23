@@ -72,7 +72,7 @@ package body DiplomatieLogik is
       DiplomatieSchleife:
       loop
          
-         NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Diplomatie_Enum;
+         NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Diplomatie_Enum;
          
          SpeziesauswahlSchleife:
          loop

@@ -27,16 +27,16 @@ package body LadezeitenGrafik is
       case
         WelcheLadeanzeigeExtern
       is
-         when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
+         when GrafikDatentypen.Generierungszeit_Enum =>
             Text := GlobaleTexte.Ladezeit (TextnummernKonstanten.LadezeitSpielwelt);
             
-         when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
+         when GrafikDatentypen.KI_Rechenzeit_Enum =>
             Text := SpeziesbeschreibungenGrafik.Kurzbeschreibung (SpeziesExtern => SpeziesExtern) & " " & GlobaleTexte.Ladezeit (TextnummernKonstanten.LadezeitRechnet);
             
-         when GrafikDatentypen.Grafik_Rundenende_Enum =>
+         when GrafikDatentypen.Rundenende_Enum =>
             Text := GlobaleTexte.Ladezeit (TextnummernKonstanten.LadezeitRundenwechsel);
             
-         when GrafikDatentypen.Grafik_Speichern_Laden_Enum =>
+         when GrafikDatentypen.Speichern_Laden_Enum =>
             Text := GlobaleTexte.Ladezeit (TextnummernKonstanten.LadezeitSpielstand);
       end case;
       
@@ -57,16 +57,16 @@ package body LadezeitenGrafik is
       case
         WelcheLadeanzeigeExtern
       is
-         when GrafikDatentypen.Grafik_Generierungszeit_Enum =>
+         when GrafikDatentypen.Generierungszeit_Enum =>
             Viewfläche := SpielweltErstellen (ViewflächeExtern => Viewfläche);
             
-         when GrafikDatentypen.Grafik_KI_Rechenzeit_Enum =>
+         when GrafikDatentypen.KI_Rechenzeit_Enum =>
             Viewfläche := KIRechnet (ViewflächeExtern => Viewfläche);
             
-         when GrafikDatentypen.Grafik_Rundenende_Enum =>
+         when GrafikDatentypen.Rundenende_Enum =>
             Viewfläche := Rundenende (ViewflächeExtern => Viewfläche);
             
-         when GrafikDatentypen.Grafik_Speichern_Laden_Enum =>
+         when GrafikDatentypen.Speichern_Laden_Enum =>
             Viewfläche := SpeichernLaden (ViewflächeExtern => Viewfläche);
       end case;
       

@@ -101,7 +101,7 @@ package body HauptmenueLogik is
          
       end loop HauptmenüSchleife;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Ende_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Ende_Enum;
       NachMusiktask.AktuelleMusik := TonDatentypen.Musik_Ende_Enum;
       NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Ende_Enum;
       

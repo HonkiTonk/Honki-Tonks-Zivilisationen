@@ -1,5 +1,6 @@
 with EinheitenRecordKonstanten;
 with TextnummernKonstanten;
+with ProduktionKonstanten;
 
 with LeseWeltkarte;
 
@@ -26,7 +27,7 @@ package body WaldErmittelnLogik is
       case
         ArbeitszeitWaldLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, Gesamtgrund.Basisgrund)
       is
-         when EinheitenKonstanten.UnmöglicheArbeit =>
+         when ProduktionKonstanten.UnmöglicheArbeit =>
             return False;
          
          when others =>
@@ -114,7 +115,7 @@ package body WaldErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitWaldLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
@@ -155,7 +156,7 @@ package body WaldErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitWaldLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if

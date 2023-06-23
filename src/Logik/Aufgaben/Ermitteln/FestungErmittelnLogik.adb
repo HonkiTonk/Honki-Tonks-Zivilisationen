@@ -1,3 +1,5 @@
+with ProduktionKonstanten;
+
 with LeseWeltkarte;
 
 with Fehlermeldungssystem;
@@ -19,7 +21,7 @@ package body FestungErmittelnLogik is
       case
         ArbeitszeitFestungLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, Gesamtgrund.Basisgrund)
       is
-         when EinheitenKonstanten.UnmöglicheArbeit =>
+         when ProduktionKonstanten.UnmöglicheArbeit =>
             return False;
          
          when others =>
@@ -82,7 +84,7 @@ package body FestungErmittelnLogik is
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
@@ -111,7 +113,7 @@ package body FestungErmittelnLogik is
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case
@@ -140,7 +142,7 @@ package body FestungErmittelnLogik is
       return EinheitenRecords.ArbeitRecord
    is begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitFestungLogik.Basiszeit (SpeziesExtern, GrundExtern.Basisgrund));
 
       case

@@ -109,6 +109,7 @@ package body EinheitenErzeugenEntfernenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
 
+      -- Für die Modifikationseintscheidung auch mal eine Konstante anlegen. äöü
       EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                            VorzeichenWechselExtern    => -1);
 

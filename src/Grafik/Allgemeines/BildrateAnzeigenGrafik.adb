@@ -36,7 +36,6 @@ package body BildrateAnzeigenGrafik is
               
       ZielBildrate := Natural (LeseEinstellungenGrafik.Bildrate);
       
-      -- Die Farbgebung noch einmal überdenken. äöü
       if
         ZielBildrate = 0
       then

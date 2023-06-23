@@ -63,7 +63,7 @@ package body ForschungsauswahlLogik is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
    begin
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Forschung_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Forschung_Enum;
       
       AuswahlSchleife:
       loop
@@ -95,7 +95,7 @@ package body ForschungsauswahlLogik is
          
       end loop AuswahlSchleife;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Pause_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
       
       return GewählteForschung;
       
@@ -109,7 +109,7 @@ package body ForschungsauswahlLogik is
       
       NachGrafiktask.AktuelleSpezies := SpeziesExtern;
       Auswahl := 1;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Forschung_Erfolgreich_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Forschungserfolg_Enum;
       
       ErfolgSchleife:
       loop
@@ -152,7 +152,7 @@ package body ForschungsauswahlLogik is
                                            ForschungIDExtern => Forschungsmöglichkeiten (SpeziesExtern => SpeziesExtern));
       
       NachGrafiktask.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Rundenende_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Rundenende_Enum;
       
    end Forschungserfolg;
 

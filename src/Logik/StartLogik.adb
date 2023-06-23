@@ -51,7 +51,7 @@ package body StartLogik is
       EinlesenLogik.EinlesenMitAnzeige;
       NachGrafiktask.AccesseSetzen := True;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Grafik_Intro_Enum;
+      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Intro_Enum;
       
       IntroSchleife:
       while NachLogiktask.IntroAbwarten loop

@@ -10,6 +10,7 @@ package body KIEAchsenbewertung is
       return KartenDatentypen.KartenfeldNatural
    is
       use type KartenDatentypen.Kartenfeld;
+      use type KartenDatentypen.Ebene;
    begin
       
       if

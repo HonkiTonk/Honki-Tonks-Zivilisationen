@@ -2,6 +2,7 @@ with EinheitenRecords;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 with EinheitendatenbankRecord;
+with ProduktionKonstanten;
 
 package EinheitenRecordKonstanten is
    pragma Elaborate_Body;
@@ -50,13 +51,13 @@ package EinheitenRecordKonstanten is
                                                                                 );
    
    KeineArbeit : constant EinheitenRecords.ArbeitRecord := (
-                                                            Aufgabe     => EinheitenKonstanten.LeerArbeit,
-                                                            Arbeitszeit => EinheitenKonstanten.LeerArbeitszeit
+                                                            Aufgabe     => ProduktionKonstanten.LeerArbeit,
+                                                            Arbeitszeit => ProduktionKonstanten.LeerArbeitszeit
                                                            );
    
    KeineArbeitVorleistung : constant EinheitenRecords.ArbeitVorleistungRecord := (
-                                                                                  Aufgabe     => EinheitenKonstanten.LeerArbeit,
-                                                                                  Arbeitszeit => EinheitenKonstanten.LeerArbeitszeit,
+                                                                                  Aufgabe     => ProduktionKonstanten.LeerArbeit,
+                                                                                  Arbeitszeit => ProduktionKonstanten.LeerArbeitszeit,
                                                                                   Vorarbeit   => False
                                                                                  );
 

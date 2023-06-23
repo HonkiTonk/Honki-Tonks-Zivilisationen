@@ -11,7 +11,6 @@ with ForschungstestsLogik;
 -- Um da UND und ODER ein die Anforderungen zu bekommen müsste man hier alles noch einmal deutlich überarbeiten. äöü
 package body GebaeudeanforderungenLogik is
    
-   -- Sollte ein Gebäude für eine Spezies nicht existieren dann einfach die Forschugnsanforderungen auf -1 setzen.
    function AnforderungenErfüllt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)

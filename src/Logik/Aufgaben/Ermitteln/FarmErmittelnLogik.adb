@@ -1,4 +1,5 @@
 with EinheitenRecordKonstanten;
+with ProduktionKonstanten;
 
 with LeseWeltkarte;
 
@@ -22,7 +23,7 @@ package body FarmErmittelnLogik is
       case
         ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, Gesamtgrund.Basisgrund)
       is
-         when EinheitenKonstanten.UnmöglicheArbeit =>
+         when ProduktionKonstanten.UnmöglicheArbeit =>
             return False;
          
          when others =>
@@ -102,7 +103,7 @@ package body FarmErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
@@ -141,7 +142,7 @@ package body FarmErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if
@@ -175,7 +176,7 @@ package body FarmErmittelnLogik is
       use type KartengrundDatentypen.Zusatzgrund_Enum;
    begin
       
-      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => EinheitenKonstanten.MinimaleArbeitszeit,
+      Arbeitszeit := Grenzpruefungen.Arbeitszeit (AktuellerWertExtern => ProduktionKonstanten.MinimaleArbeitszeit,
                                                   ÄnderungExtern      => ArbeitszeitFarmLogik.Basiszeit (EinheitSpeziesNummerExtern.Spezies, GrundExtern.Basisgrund));
       
       if

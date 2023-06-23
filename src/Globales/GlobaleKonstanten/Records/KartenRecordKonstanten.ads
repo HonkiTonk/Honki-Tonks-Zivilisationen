@@ -14,19 +14,33 @@ package KartenRecordKonstanten is
                                                                              XAchse => KartenKonstanten.LeerXAchse
                                                                             );
    
-   LeerKoordinatenänderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
+   LeerKoordinatenänderung : constant KartenRecords.AchsenKartenfeldRecord
+     := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.LeerXAchseÄnderung);
+   
+   EbeneHoch : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.EbeneHoch, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.LeerXAchseÄnderung);
+   EbeneRunter : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.EbeneRunter, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.LeerXAchseÄnderung);
+   
+   Nordbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.YAchseNorden, KartenKonstanten.LeerXAchseÄnderung);
+   Südbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.YAchseSüden, KartenKonstanten.LeerXAchseÄnderung);
+   Westbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.XAchseWesten);
+   OstBewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.LeerYAchseÄnderung, KartenKonstanten.XAchseOsten);
+   Nordwestbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.YAchseNorden, KartenKonstanten.XAchseWesten);
+   Nordostbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.YAchseNorden, KartenKonstanten.XAchseOsten);
+   Südwestbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.YAchseSüden, KartenKonstanten.XAchseWesten);
+   Südostbewegung : constant KartenRecords.AchsenKartenfeldRecord := (KartenKonstanten.LeerEAchseÄnderung, KartenKonstanten.YAchseSüden, KartenKonstanten.XAchseOsten);
    
    LeerEffektbereich : constant KartenRecords.EffektbereichRecord := (
-                                                                      YAchseAnfang => 0,
-                                                                      YAchseEnde   => 0,
-                                                                      XAchseAnfang => 0,
-                                                                      XAchseEnde   => 0
+                                                                      YAchseAnfang => KartenKonstanten.LeerYAchse,
+                                                                      YAchseEnde   => KartenKonstanten.LeerYAchse,
+                                                                      XAchseAnfang => KartenKonstanten.LeerXAchse,
+                                                                      XAchseEnde   => KartenKonstanten.LeerXAchse
                                                                      );
    
    LeerEffekte : constant KartenRecords.FeldeffektArray := (others => False);
    
    LeerSichtbarkeit : constant KartenRecords.SichtbarkeitArray := (others => False);
    
+   -- Das nach StadtRecordKonstanten verschieben? äöü
    LeerDurchStadtBelegterGrund : constant StadtRecords.SpeziesStadtnummerRecord := (
                                                                                     Spezies => SpeziesKonstanten.LeerSpezies,
                                                                                     Nummer  => StadtDatentypen.MaximaleStädteMitNullWert'First

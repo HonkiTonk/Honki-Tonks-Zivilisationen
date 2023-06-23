@@ -1,5 +1,5 @@
 with EinheitenDatentypen;
-with ProduktionDatentypen;
+with ProduktionKonstanten;
 
 with KIDatentypen;
 
@@ -18,9 +18,7 @@ package body VerbesserungFertiggestelltLogik is
 
    procedure VerbesserungFertiggestellt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-   is
-      use type ProduktionDatentypen.Arbeitszeit;
-   begin
+   is begin
       
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
@@ -30,21 +28,22 @@ package body VerbesserungFertiggestelltLogik is
                
          when others =>
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                         ZeitExtern                 => -1,
+                                                         ZeitExtern                 => ProduktionKonstanten.UnmöglicheArbeit,
                                                          RechnenSetzenExtern        => True);
       end case;
       
-      if
-        LeseEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerBeschäftigungszeit
-      then
-         MeldungenSetzenLogik.EinheitmeldungSetzen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                    EreignisExtern             => EinheitenDatentypen.Aufgabe_Abgeschlossen_Enum);
-         VerbesserungAngelegt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-         AufgabeNachfolgerVerschieben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      case
+        LeseEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
+      is
+         when EinheitenKonstanten.LeerBeschäftigungszeit =>
+            MeldungenSetzenLogik.EinheitmeldungSetzen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                       EreignisExtern             => EinheitenDatentypen.Aufgabe_Abgeschlossen_Enum);
+            VerbesserungAngelegt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+            AufgabeNachfolgerVerschieben (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          
-      else
-         null;
-      end if;
+         when others =>
+            null;
+      end case;
       
    end VerbesserungFertiggestellt;
    
