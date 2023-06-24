@@ -95,7 +95,6 @@ package body EinlesenSpeziestexteLogik is
    
    
    
-   -- Wäre es nicht immer besser die Rückgabeposition bei True/False cases zuerst zu positionieren? äöü
    procedure NameBeschreibung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateinameExtern : in Wide_Wide_String)
@@ -138,7 +137,6 @@ package body EinlesenSpeziestexteLogik is
    
    
    
-   -- Hier mal überall False/True miteinander tauschen. äöü
    procedure Städtenamen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       DateinameExtern : in Wide_Wide_String)
@@ -147,15 +145,15 @@ package body EinlesenSpeziestexteLogik is
       case
         Exists (Name => Encode (Item => DateinameExtern))
       is
+         when False =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Städtenamen: Es fehlt: " & DateinameExtern);
+            return;
+            
          when True =>
             Open (File => DateiStädtenamen,
                   Mode => In_File,
                   Name => Encode (Item => DateinameExtern),
                   Form => "WCEM=8");
-            
-         when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Städtenamen: Es fehlt: " & DateinameExtern);
-            return;
       end case;
       
       StädtenamenSchleife:
@@ -189,6 +187,10 @@ package body EinlesenSpeziestexteLogik is
       case
         Exists (Name => Encode (Item => DateinameExtern))
       is
+         when False =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Forschungen: Es fehlt: " & DateinameExtern);
+            return;
+            
          when True =>
             AktuelleZeile := 1;
       
@@ -196,10 +198,6 @@ package body EinlesenSpeziestexteLogik is
                   Mode => In_File,
                   Name => Encode (Item => DateinameExtern),
                   Form => "WCEM=8");
-            
-         when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Forschungen: Es fehlt: " & DateinameExtern);
-            return;
       end case;
       
       ForschungenSchleife:
@@ -238,6 +236,10 @@ package body EinlesenSpeziestexteLogik is
       case
         Exists (Name => Encode (Item => DateinameExtern))
       is
+         when False =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Einheiten: Es fehlt: " & DateinameExtern);
+            return;
+            
          when True =>
             AktuelleZeile := 1;
       
@@ -245,10 +247,6 @@ package body EinlesenSpeziestexteLogik is
                   Mode => In_File,
                   Name => Encode (Item => DateinameExtern),
                   Form => "WCEM=8");
-            
-         when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Einheiten: Es fehlt: " & DateinameExtern);
-            return;
       end case;
       
       EinheitenSchleife:
@@ -287,6 +285,10 @@ package body EinlesenSpeziestexteLogik is
       case
         Exists (Name => Encode (Item => DateinameExtern))
       is
+         when False =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Gebäude: Es fehlt: " & DateinameExtern);
+            return;
+            
          when True =>
             AktuelleZeile := 1;
       
@@ -294,10 +296,6 @@ package body EinlesenSpeziestexteLogik is
                   Mode => In_File,
                   Name => Encode (Item => DateinameExtern),
                   Form => "WCEM=8");
-            
-         when False =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Gebäude: Es fehlt: " & DateinameExtern);
-            return;
       end case;
       
       GebäudeSchleife:

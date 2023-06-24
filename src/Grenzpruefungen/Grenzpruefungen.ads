@@ -20,6 +20,6 @@ package Grenzpruefungen is
    function Arbeitszeit
      (AktuellerWertExtern : in ProduktionDatentypen.Arbeitszeit;
       ÄnderungExtern : in ProduktionDatentypen.Arbeitszeit)
-      return ProduktionDatentypen.Arbeitszeit;
+      return ProduktionDatentypen.ArbeitszeitVorhanden;
 
 end Grenzpruefungen;

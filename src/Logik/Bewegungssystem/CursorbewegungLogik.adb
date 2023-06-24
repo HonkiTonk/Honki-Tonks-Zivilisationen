@@ -31,7 +31,6 @@ package body CursorbewegungLogik is
             BasisKoordinaten := NachGrafiktask.GeheZu;
       end case;
       
-      -- Das Scrollen duch die Ebenen auch noch von den Ebenenübergangeinstellungen abhängig machen? äöü
       if
         BasisKoordinaten.EAchse = KartenKonstanten.WeltraumKonstante
         and

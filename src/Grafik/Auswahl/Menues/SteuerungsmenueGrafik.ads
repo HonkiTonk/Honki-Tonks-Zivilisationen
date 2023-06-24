@@ -7,8 +7,7 @@ private with Sf.Graphics.Color;
 private with GrafikRecordKonstanten;
 private with InteraktionAuswahl;
 private with MenueKonstanten;
-
-private with SteuerungsauswahlLogik;
+private with TastenbelegungDatentypen;
 
 package SteuerungsmenueGrafik is
    pragma Elaborate_Body;
@@ -45,7 +44,7 @@ private
    
    function Steuerungsaufteilung
      (AuswahlExtern : in Integer;
-      WelcheSteuerungExtern : in SteuerungsauswahlLogik.Tastenbelegungskategorie_Enum)
+      WelcheSteuerungExtern : in TastenbelegungDatentypen.Tastenbelegungskategorie_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
@@ -56,7 +55,7 @@ private
    
    function Steuerung
      (AuswahlExtern : in Integer;
-      WelcheSteuerungExtern : in SteuerungsauswahlLogik.Tastenbelegungskategorie_Enum)
+      WelcheSteuerungExtern : in TastenbelegungDatentypen.Tastenbelegungskategorie_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Post => (
@@ -66,7 +65,7 @@ private
                );
    
    function TextFestlegen
-     (WelcheSteuerungExtern : in SteuerungsauswahlLogik.Tastenbelegungskategorie_Enum;
+     (WelcheSteuerungExtern : in TastenbelegungDatentypen.Tastenbelegungskategorie_Enum;
       WelcheZeileExtern : in Positive)
       return Wide_Wide_String;
 

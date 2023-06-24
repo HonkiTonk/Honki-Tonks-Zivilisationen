@@ -16,7 +16,6 @@ with VerschmutzendeWaffeEingesetztLogik;
 -- Die Meinungsänderung später noch Effekt- und Speziesspezifisch gestalten. äöü
 package body EffektberechnungenLogik is
 
-   -- Aktuell kann eine Einheit mehrere Effekte aber nur eine Reichweite haben, das später mal erweitern. äöü
    procedure Effektberechnungen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is

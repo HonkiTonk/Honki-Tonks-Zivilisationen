@@ -19,7 +19,7 @@ with LeseKIVariablen;
 package body KIGefahrErmittelnLogik is
    
    -- Noch eine Version bauen um die Kampfstärken direkt zu vergleichen? äöü
-   -- Diese function kann vermutlich später raus? äöü
+   -- Diese Funktion kann vermutlich später raus? äöü
    function GefahrErmitteln
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return EinheitenRecords.SpeziesEinheitnummerRecord
@@ -47,6 +47,7 @@ package body KIGefahrErmittelnLogik is
    
    
    -- Den Bereich eventuell vergrößern? Gibt später ja auch Einheiten mit größerem Bewegungsradius. äöü
+   -- Den Bereich vom SChwierigkeitsgrad abhängig machen? äöü
    function GefahrSuchen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return EinheitenRecords.SpeziesEinheitnummerRecord

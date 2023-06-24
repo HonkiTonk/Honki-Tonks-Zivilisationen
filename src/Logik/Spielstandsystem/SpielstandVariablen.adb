@@ -23,7 +23,7 @@ package body SpielstandVariablen is
    
    
    function GanzeSpielstandliste
-     return SpielstandArray
+     return TextArrays.SpielstandArray
    is begin
       
       return Spielstand;

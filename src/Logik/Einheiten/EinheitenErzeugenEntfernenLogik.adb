@@ -52,6 +52,7 @@ package body EinheitenErzeugenEntfernenLogik is
 
 
 
+   -- Wenn ein Transporter eine Ladung enthält, dann diese erst komplett entfernen (inklusive der Ladungsladung), dann den Transporter entfernen und anschließend erst sortieren. äöü
    procedure EinheitEntfernen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
@@ -187,7 +188,7 @@ package body EinheitenErzeugenEntfernenLogik is
             Transporternummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Sortierungsnummer));
       end case;
       
-      -- Das hier (und vermutlich auch das zeug darüber) bereitet Probleme, wenn man einen Transporter mit beladenen Transportern entfernt. äöü
+      -- Das hier (und vermutlich auch das Zeug darüber) bereitet Probleme, wenn man einen Transporter mit beladenen Transportern entfernt. äöü
       -- Oder überhaupt einen beladenen Transporter. äöü
       -- Erst alles entfernen und dann Sortieren? äöü
       case

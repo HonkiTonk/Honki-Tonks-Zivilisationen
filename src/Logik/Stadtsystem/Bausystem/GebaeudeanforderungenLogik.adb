@@ -312,14 +312,7 @@ package body GebaeudeanforderungenLogik is
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
       return Boolean
-   is
-      use type KartengrundDatentypen.Basisgrund_Enum;
-      use type KartengrundDatentypen.Zusatzgrund_Enum;
-      use type KartenextraDatentypen.Fluss_Enum;
-      use type KartenextraDatentypen.Ressourcen_Enum;
-      use type KartenverbesserungDatentypen.Verbesserung_Enum;
-      use type KartenverbesserungDatentypen.Weg_Enum;
-   begin
+   is begin
       
       YAchseSchleife:
       for YAchseSchleifenwert in UmgebungArray'Range (1) loop

@@ -162,34 +162,35 @@ package body KIEinheitFestlegenVerbesserungenLogik is
          XAchseSchleife:
          for XAchseSchleifenwert in -Stadtumgebung .. Stadtumgebung loop
             
-            -- Da die Stadt selbst als Verebsserung zählt, sollte diese Prüfung problemlos weg können, oder? äöü
+            -- Da die Stadt selbst als Verbesserung zählt, sollte diese Prüfung problemlos weg können, oder? äöü
+            -- Um das zu testen die Prüfung mal ausgeklammert, wenn alles weiterhin funktioniert dann kann das ja weg. äöü
+            -- if
+            --   YAchseSchleifenwert = 0
+            --   and
+            --    XAchseSchleifenwert = 0
+            -- then
+            --   null;
+               
+            -- else
+            VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
+                                                                                                                   ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                                   TaskExtern        => SystemDatentypen.Logik_Task_Enum);
+            
             if
-              YAchseSchleifenwert = 0
-              and
-                XAchseSchleifenwert = 0
+              VerbesserungKoordinaten.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
-               
+                  
+            elsif
+              True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern          => VerbesserungKoordinaten,
+                                                         EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern))
+            then
+               return VerbesserungKoordinaten;
+                  
             else
-               VerbesserungKoordinaten := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => StadtKoordinaten,
-                                                                                                                      ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                                      TaskExtern        => SystemDatentypen.Logik_Task_Enum);
-            
-               if
-                 VerbesserungKoordinaten.XAchse = KartenKonstanten.LeerXAchse
-               then
-                  null;
-                  
-               elsif
-                 True = AllgemeineVerbesserungenPrüfungen (KoordinatenExtern          => VerbesserungKoordinaten,
-                                                            EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern))
-               then
-                  return VerbesserungKoordinaten;
-                  
-               else
-                  null;
-               end if;
+               null;
             end if;
+            -- end if;
                      
          end loop XAchseSchleife;
       end loop YAchseSchleife;

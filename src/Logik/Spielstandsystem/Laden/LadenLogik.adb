@@ -26,9 +26,8 @@ with LadenKarteLogik;
 
 with Fehlermeldungssystem;
 
-with Diagnoseinformationen;
-
 -- Bei Änderungen am Ladesystem auch immer das Speichersystem anpassen!
+-- Änderungen an den zu ladenden Datentypen kann jederzeit Probleme bei Laden verursachen.
 package body LadenLogik is
    
    function Laden
@@ -61,9 +60,8 @@ package body LadenLogik is
             when False =>
                MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungLadenFehlgeschlagen);
                Close (File => DateiLaden);
-               -- DiplomatieDatentypen
+               
             when True =>
-               Diagnoseinformationen.Zahl (ZahlExtern => 1);
                StandardSpielwerteSetzenLogik.Standardspielwerte (EinstellungenBehaltenExtern => True);
                
                Set_Index (File => DateiLaden,

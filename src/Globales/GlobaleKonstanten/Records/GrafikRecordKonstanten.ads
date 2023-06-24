@@ -14,16 +14,14 @@ package GrafikRecordKonstanten is
    
    Standardskalierung : constant Sf.System.Vector2.sfVector2f := (1.00, 1.00);
    
-   
-   
    Leerbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.00, 0.00);
    Gesamtbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 1.00);
    
-   Bildratenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.05, 0.05);
    
-   Kartenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.80, 1.00);
-   Leistendicke : constant Sf.System.Vector2.sfVector2f := (Kartenbereich.width, 1.00 - Kartenbereich.width);
-  
+   
+   -- Hier mal Dinge in Arrays zusammenfassen. äöü
+   Bildratenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.05, 0.05);
+     
    Sprachenbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
    Abspannbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;
    
@@ -39,31 +37,30 @@ package GrafikRecordKonstanten is
    JaNeinBereich : constant Sf.Graphics.Rect.sfFloatRect := (Fragenbereich.left, Fragenbereich.top + Fragenbereich.height, Fragenbereich.width, 2.00 * Fragenbereich.height);
    Meldungsbereich : constant Sf.Graphics.Rect.sfFloatRect := Fragenbereich;
    
-   Stadtauswahlbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.25, 0.45, 0.50, 0.10);
-   Einheitauswahlbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.25, 0.35, 0.50, 0.30);
-   
    type BereicheArray is array (Positive range <>) of Sf.Graphics.Rect.sfFloatRect;
-   MenüDoppelbereich : constant BereicheArray (1 .. 2) := (
-                                                            1 => (0.00, Überschriftbereich.height, 0.25, 1.00 - Überschriftbereich.height),
-                                                            2 => (0.25, Überschriftbereich.height, 0.75, 1.00 - Überschriftbereich.height)
-                                                           );
+   MenüDoppelbereich : constant BereicheArray (Views.MenüviewAccesse'Range) := (
+                                                                                  ViewKonstanten.MenüAuswahl    => (0.00, Überschriftbereich.height, 0.25, 1.00 - Überschriftbereich.height),
+                                                                                  ViewKonstanten.MenüZusatztext => (0.25, Überschriftbereich.height, 0.75, 1.00 - Überschriftbereich.height)
+                                                                                 );
    
    Steuerungbereich : constant BereicheArray (Views.SteuerungviewAccesse'Range) := (
                                                                                     ViewKonstanten.SteuerungKategorie => (0.00, Überschriftbereich.height, 1.00, 0.05),
                                                                                     ViewKonstanten.SteuerungAuswahl   => (0.00, Überschriftbereich.height + 0.05, 1.00, 1.00 - Überschriftbereich.height - 0.05)
                                                                                    );
    
-   Weltkartenbereich : constant BereicheArray (Views.WeltkarteAccess'Range) := (
-                                                                                ViewKonstanten.WeltKarte                  => Kartenbereich,
-                                                                                ViewKonstanten.WeltBefehleRechts          => (0.59, 0.79, 0.20, 0.20),
-                                                                                ViewKonstanten.WeltBefehleLinks           => (0.01, 0.79, 0.20, 0.20),
-                                                                                ViewKonstanten.WeltEinheitenbefehleRechts => (0.59, 0.59, 0.20, 0.20),
-                                                                                ViewKonstanten.WeltEinheitenbefehleLinks  => (0.01, 0.59, 0.20, 0.20),
-                                                                                ViewKonstanten.WeltWichtiges              => (Leistendicke.x, 0.00, Leistendicke.y, 0.20),
-                                                                                ViewKonstanten.WeltAllgemeines            => (Leistendicke.x, 0.20, Leistendicke.y, 0.10),
-                                                                                ViewKonstanten.WeltStadt                  => (Leistendicke.x, 0.30, Leistendicke.y, 0.35),
-                                                                                ViewKonstanten.WeltEinheit                => (Leistendicke.x, 0.65, Leistendicke.y, 0.35)
-                                                                               );
+   Kartenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.80, 1.00);
+   Leistendicke : constant Sf.System.Vector2.sfVector2f := (Kartenbereich.width, 1.00 - Kartenbereich.width);
+   Weltkartenbereich : constant BereicheArray (Views.WeltkarteAccesse'Range) := (
+                                                                                 ViewKonstanten.WeltKarte                  => Kartenbereich,
+                                                                                 ViewKonstanten.WeltBefehleRechts          => (0.59, 0.79, 0.20, 0.20),
+                                                                                 ViewKonstanten.WeltBefehleLinks           => (0.01, 0.79, 0.20, 0.20),
+                                                                                 ViewKonstanten.WeltEinheitenbefehleRechts => (0.59, 0.59, 0.20, 0.20),
+                                                                                 ViewKonstanten.WeltEinheitenbefehleLinks  => (0.01, 0.59, 0.20, 0.20),
+                                                                                 ViewKonstanten.WeltWichtiges              => (Leistendicke.x, 0.00, Leistendicke.y, 0.20),
+                                                                                 ViewKonstanten.WeltAllgemeines            => (Leistendicke.x, 0.20, Leistendicke.y, 0.10),
+                                                                                 ViewKonstanten.WeltStadt                  => (Leistendicke.x, 0.30, Leistendicke.y, 0.35),
+                                                                                 ViewKonstanten.WeltEinheit                => (Leistendicke.x, 0.65, Leistendicke.y, 0.35)
+                                                                                );
    
    Forschungsbereich : constant BereicheArray (Views.ForschungsviewAccesse'Range) := (
                                                                                       ViewKonstanten.ForschungsmenüForschungsliste => (0.00, 0.10, 0.50, 0.40),
@@ -93,6 +90,11 @@ package GrafikRecordKonstanten is
                                                                             ViewKonstanten.StadtBefehle       => (0.80, 0.75, 0.20, 0.25),
                                                                             ViewKonstanten.StadtKarte         => (0.00, 0.00, 1.00, 1.00)
                                                                            );
+   
+   StadtEinheitAuswahlbereich : constant BereicheArray (ViewKonstanten.AuswahlbereichStadt .. ViewKonstanten.AuswahlbereichEinheit) := (
+                                                                                                                                        ViewKonstanten.AuswahlbereichStadt   => (0.25, 0.45, 0.50, 0.10),
+                                                                                                                                        ViewKonstanten.AuswahlbereichEinheit => (0.25, 0.35, 0.50, 0.30)
+                                                                                                                                       );
    
    Editorenbereich : constant BereicheArray (Views.EditorenviewAccesse'Range) := (
                                                                                   1 => Unterschriftbereich,

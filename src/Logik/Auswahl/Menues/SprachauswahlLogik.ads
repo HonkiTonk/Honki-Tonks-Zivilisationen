@@ -1,15 +1,14 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with TextArrays;
+
 package SprachauswahlLogik is
    pragma Elaborate_Body;
       
-   -- Das auch mal in irgendwas Globales verschieben? äöü
-   -- Hier und auch bei der Spielstandauswahl auch mal das 1 .. X in Konstante packen? äöü
-   type AktuelleSprachenArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
-   AktuelleSprachen : AktuelleSprachenArray;
+   AktuelleSprachen : TextArrays.SprachenArray;
    
    
-
+   
    function AuswahlSprache
      return Unbounded_Wide_Wide_String;
    

@@ -11,6 +11,7 @@ with MenueDatentypen;
 with DiplomatieDatentypen;
 with TextKonstanten;
 with GrafikKonstanten;
+with ViewKonstanten;
 
 with LeseDiplomatie;
 
@@ -38,7 +39,7 @@ package body DiplomatieauswahlGrafik is
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.MenüEinfachbereich.width, GrafikRecordKonstanten.MenüEinfachbereich.height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.MenüEinfachbereich);
       

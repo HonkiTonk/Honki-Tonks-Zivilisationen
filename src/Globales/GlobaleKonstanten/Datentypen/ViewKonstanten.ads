@@ -1,5 +1,8 @@
 package ViewKonstanten is
    pragma Pure;
+   
+   MenüAuswahl : constant Positive := 1;
+   MenüZusatztext : constant Positive := 2;
       
    WeltKarte : constant Positive := 1;
    WeltBefehleRechts : constant Positive := 2;
@@ -41,5 +44,8 @@ package ViewKonstanten is
    
    InformationsfeldStadtkarte : constant Positive := 1;
    InformationenFeldproduktion : constant Positive := 2;
+   
+   AuswahlbereichStadt : constant Positive := 1;
+   AuswahlbereichEinheit : constant Positive := 2;
 
 end ViewKonstanten;

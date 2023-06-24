@@ -9,6 +9,7 @@ with LeseWeltkarte;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with SchreibeWeltkarte;
+with LeseForschungenDatenbank;
 
 with StadtumgebungFestlegenLogik;
 with TexteingabeLogik;
@@ -19,6 +20,7 @@ with Fehlermeldungssystem;
 with WegeplatzierungssystemLogik;
 with EinheitenSpielmeldungenLogik;
 with MeldungFestlegenLogik;
+with ForschungstestsLogik;
 
 package body StadtBauenLogik is
 
@@ -84,7 +86,6 @@ package body StadtBauenLogik is
    
    
    
-   -- Städtebau auf Vernichtet erlauben? äöü
    function StadtBaubar
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
@@ -188,7 +189,8 @@ package body StadtBauenLogik is
                                              EinwohnerArbeiterExtern  => True,
                                              WachsenSchrumpfenExtern  => True);
       
-      WegAnlegen (KoordinatenExtern => KoordinatenExtern);
+      WegAnlegen (KoordinatenExtern => KoordinatenExtern,
+                  SpeziesExtern     => StadtSpeziesNummerExtern.Spezies);
       SchreibeWeltkarte.Verbesserung (KoordinatenExtern  => KoordinatenExtern,
                                       VerbesserungExtern => Stadtart);
       
@@ -205,9 +207,9 @@ package body StadtBauenLogik is
    
    
    
-   -- Später auch eine Schiene anlegen? äöü
    procedure WegAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       case
@@ -237,7 +239,17 @@ package body StadtBauenLogik is
             return;
             
          when KartenKonstanten.OberflächeKonstante =>
-            WelcherWeg := AufgabenDatentypen.Straße_Bauen_Enum;
+            -- Das hier mal auslagern und auch in WegErmittelnLogik anpassen/zusammenführen/sinnvoller gestalten. äöü
+            if
+              True = ForschungstestsLogik.TechnologieVorhanden (SpeziesExtern     => SpeziesExtern,
+                                                                TechnologieExtern => LeseForschungenDatenbank.Wege (WegExtern     => AufgabenDatentypen.Schiene_Bauen_Enum,
+                                                                                                                    SpeziesExtern => SpeziesExtern))
+            then
+               WelcherWeg := AufgabenDatentypen.Schiene_Bauen_Enum;
+               
+            else
+               WelcherWeg := AufgabenDatentypen.Straße_Bauen_Enum;
+            end if;
             
          when others =>
             WelcherWeg := AufgabenDatentypen.Tunnel_Bauen_Enum;

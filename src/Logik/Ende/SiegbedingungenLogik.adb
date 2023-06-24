@@ -138,6 +138,7 @@ package body SiegbedingungenLogik is
       is
          when 0 =>
             -- Was mache ich denn in diesem Fall? Kann eventuell im neuen System auftreten, auf True lassen bis ich was besseres für die Enden gebaut habe. äöü
+            -- Wenn ich ein besseres System für die Enden gebaut habe, dann sollte das hier eh nicht mehr existieren, also ignorieren. äöü
             return True;
             
          when 1 =>

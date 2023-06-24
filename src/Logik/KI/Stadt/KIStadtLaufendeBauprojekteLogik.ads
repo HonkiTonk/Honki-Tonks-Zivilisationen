@@ -49,6 +49,7 @@ package KIStadtLaufendeBauprojekteLogik is
                   GleicheEinheitArtBauprojekte'Result <= LeseGrenzen.Einheitengrenze (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                );
    
+   -- Ab hier weiter machen mit dem durchgehen von äöü. äöü
    function EinheitenInProduktion
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert

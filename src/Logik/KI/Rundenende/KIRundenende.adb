@@ -1,6 +1,5 @@
 with KIStaedteverbindungssystemLogik;
 
--- Kann das weg oder kommt eventuell später noch mehr dazu? äöü
 package body KIRundenende is
 
    procedure Rundenende

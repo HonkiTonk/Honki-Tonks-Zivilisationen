@@ -28,13 +28,19 @@ package GebaeudeanforderungenLogik is
               );
    
 private
+   use type KartengrundDatentypen.Basisgrund_Enum;
+   use type KartengrundDatentypen.Zusatzgrund_Enum;
+   use type KartenextraDatentypen.Fluss_Enum;
+   use type KartenextraDatentypen.Ressourcen_Enum;
+   use type KartenverbesserungDatentypen.Verbesserung_Enum;
+   use type KartenverbesserungDatentypen.Weg_Enum;
    
    Umgebungsgröße : KartenDatentypen.UmgebungsbereichDrei;
    
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Stadtkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   -- Später dann noch um Zusatzgrund und Wege erweitern. äöü
+   -- Den Record und die LeerUmgebung mal in Globales verschieben? äöü
    type UmgebungRecord is record
       
       Basisgrund : KartengrundDatentypen.Basisgrund_Enum;
@@ -57,15 +63,7 @@ private
    
    type UmgebungArray is array (KartenDatentypen.UmgebungsbereichDrei'Range, KartenDatentypen.UmgebungsbereichDrei'Range) of UmgebungRecord;
    Umgebung : UmgebungArray;
-   
-   -- Kann vermutlich weg, aber eventuell wird das noch woanders nützlich sein, mal nach KartenKonstanten oder so auslagern. äöü
-   type FlussZuFlussartArray is array (KartenextraDatentypen.Fluss_Vorhanden_Enum'Range) of KartenextraDatentypen.Flussarten_Enum;
-   FlussZuFlussart : constant FlussZuFlussartArray := (
-                                                       KartenextraDatentypen.Fluss_Oberfläche_Enum'Range  => KartenextraDatentypen.Oberfläche_Fluss_Enum,
-                                                       KartenextraDatentypen.Fluss_Unterfläche_Enum'Range => KartenextraDatentypen.Unterfläche_Fluss_Enum,
-                                                       KartenextraDatentypen.Fluss_Kernfläche_Enum'Range  => KartenextraDatentypen.Kernfläche_Fluss_Enum
-                                                      );
-   
+      
    procedure UmgebungDurchgehen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
      with
@@ -88,7 +86,6 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
-   -- Hier später noch einen Contracs einbauen um zu Prüfen dass immer wenigstens eins nicht Leer ist? äöü
    function UmgebungVorhanden
      (BasisgrundExtern : in KartengrundDatentypen.Basisgrund_Enum;
       ZusatzgrundExtern : in KartengrundDatentypen.Zusatzgrund_Enum;
@@ -96,7 +93,21 @@ private
       RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum;
       VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
-      return Boolean;
+      return Boolean
+     with
+       Pre => (
+                 BasisgrundExtern /= KartengrundDatentypen.Leer_Basisgrund_Enum
+               or
+                 ZusatzgrundExtern /= KartengrundDatentypen.Leer_Zusatzgrund_Enum
+               or
+                 FlussExtern /= KartenextraDatentypen.Leer_Fluss_Enum
+               or
+                 RessourceExtern /= KartenextraDatentypen.Leer_Ressource_Enum
+               or
+                 VerbesserungExtern /= KartenverbesserungDatentypen.Leer_Verbesserung_Enum
+               or
+                 WegExtern /= KartenverbesserungDatentypen.Leer_Weg_Enum
+              );
    
    function NotwendigeUmgebung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;

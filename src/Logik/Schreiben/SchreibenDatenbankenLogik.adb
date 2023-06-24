@@ -12,6 +12,7 @@ with ForschungRecordKonstanten;
 with EffekteDatenbank;
 with Fehlermeldungssystem;
 
+-- Das Schreiben/Einlesen der Datenbanken auch so aufteilen wie das Schreiben/Einlesen der Einstellungen? äöü
 package body SchreibenDatenbankenLogik is
    
    procedure SchreibenAlleDatenbanken

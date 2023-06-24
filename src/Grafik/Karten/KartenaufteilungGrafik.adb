@@ -39,7 +39,7 @@ package body KartenaufteilungGrafik is
          when others =>
             Position := KoordinatenPositionUmwandlungen.KoordinatenZuKartenposition (KoordinatenExtern => EinheitenauswahlExtern.Koordinaten,
                                                                                      SpeziesExtern     => EinheitenauswahlExtern.SpeziesNummer.Spezies);
-            Viewgröße := Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
+            Viewgröße := Sf.Graphics.View.getSize (view => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
             
             if
               Position.y >= Viewgröße.y / GrafikKonstanten.Halbierung

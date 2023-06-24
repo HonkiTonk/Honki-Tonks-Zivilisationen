@@ -428,6 +428,7 @@ package body SpieleinstellungenKartenLogik is
 
 
    -- Temperatur durch was anderes ersetzen, was mehr über die Kartenbeschaffenheit aussagt. äöü
+   -- Oder drinnen lassen und weitere Einstellmöglichkeiten wie Gebirgigkeit einbauen? äöü
    procedure KartentemperaturWählen
    is begin
             

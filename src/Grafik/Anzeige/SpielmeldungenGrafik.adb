@@ -25,7 +25,7 @@ package body SpielmeldungenGrafik is
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Meldungsbereich.width, GrafikRecordKonstanten.Meldungsbereich.height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MeldungssviewAccess,
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MeldungsviewAccess,
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Meldungsbereich);
       

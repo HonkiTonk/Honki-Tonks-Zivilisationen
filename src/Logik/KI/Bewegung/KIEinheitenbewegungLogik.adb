@@ -226,8 +226,8 @@ package body KIEinheitenbewegungLogik is
       then
          -- Evenutell muss hier und weiter unten noch einmal Anpassungen vorgenommen werden, damit bei eimal Waffen alles richtig funktioniert. äöü
          if
-           True = KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                          VerteidigendeStadtSpeziesNummerExtern => FremdeStadt)
+           True = KampfsystemStadtLogik.KampfwerteErmitteln (AngreiferExtern   => EinheitSpeziesNummerExtern,
+                                                             VerteidigerExtern => FremdeStadt)
            and then
              True = KampfsystemEinheitenLogik.KampfsystemNahkampf (AngreiferExtern   => EinheitSpeziesNummerExtern,
                                                                    VerteidigerExtern => FremdeEinheit)
@@ -254,8 +254,8 @@ package body KIEinheitenbewegungLogik is
          
       else
          case
-           KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                   VerteidigendeStadtSpeziesNummerExtern => FremdeStadt)
+           KampfsystemStadtLogik.KampfwerteErmitteln (AngreiferExtern   => EinheitSpeziesNummerExtern,
+                                                      VerteidigerExtern => FremdeStadt)
          is
             when True =>
                BewegtSich (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

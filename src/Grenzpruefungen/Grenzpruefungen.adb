@@ -52,12 +52,10 @@ package body Grenzpruefungen is
    
    
    -- Kann nicht einfach in ein generic umgewandelt werden, da ja nicht der kleinste Wert sondern eins zurückgegeben wird.
-   -- Eventuell gibt es dafür auch eine schöne Lösung? äöü
-   -- Man könnte das Minimum auch mitübergeben. äöü
    function Arbeitszeit
      (AktuellerWertExtern : in ProduktionDatentypen.Arbeitszeit;
       ÄnderungExtern : in ProduktionDatentypen.Arbeitszeit)
-      return ProduktionDatentypen.Arbeitszeit
+      return ProduktionDatentypen.ArbeitszeitVorhanden
    is
       use type ProduktionDatentypen.Arbeitszeit;
    begin

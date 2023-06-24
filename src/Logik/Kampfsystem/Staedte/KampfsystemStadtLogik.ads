@@ -15,21 +15,21 @@ package KampfsystemStadtLogik is
    use type SpeziesDatentypen.Spezies_Enum;
    use type SpeziesDatentypen.Spieler_Enum;
 
-   function KampfsystemStadt
-     (AngreifendeEinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      VerteidigendeStadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+   function KampfwerteErmitteln
+     (AngreiferExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      VerteidigerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
      with
        Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreiferExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigendeStadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 AngreifendeEinheitSpeziesNummerExtern.Spezies /= VerteidigendeStadtSpeziesNummerExtern.Spezies
+                 AngreiferExtern.Spezies /= VerteidigerExtern.Spezies
                and
-                 AngreifendeEinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies)
+                 AngreiferExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => AngreiferExtern.Spezies)
                and
-                 VerteidigendeStadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => VerteidigendeStadtSpeziesNummerExtern.Spezies)
+                 VerteidigerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => VerteidigerExtern.Spezies)
               );
    
 private
@@ -43,43 +43,43 @@ private
    KampfwerteAngreifer : KampfRecords.KampfwerteRecord;
    
    
-   
-   function Kampfverlauf
-     (AngreifendeEinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      
+   function Kampf
+     (AngreiferExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord;
-      VerteidigendeStadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      VerteidigerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
      with
        Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreiferExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigendeStadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 AngreifendeEinheitSpeziesNummerExtern.Spezies /= VerteidigendeStadtSpeziesNummerExtern.Spezies
+                 AngreiferExtern.Spezies /= VerteidigerExtern.Spezies
                and
-                 AngreifendeEinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies)
+                 AngreiferExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => AngreiferExtern.Spezies)
                and
-                 VerteidigendeStadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => VerteidigendeStadtSpeziesNummerExtern.Spezies)
+                 VerteidigerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => VerteidigerExtern.Spezies)
               );
    
-   function Kampf
-     (AngreifendeEinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+   function Kampfverlauf
+     (AngreiferExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       KampfwerteAngreiferExtern : in KampfRecords.KampfwerteRecord;
-      VerteidigendeStadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      VerteidigerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       KampfwerteVerteidigerExtern : in KampfRecords.KampfwerteRecord)
       return Boolean
      with
        Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => AngreiferExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigendeStadtSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => VerteidigerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 AngreifendeEinheitSpeziesNummerExtern.Spezies /= VerteidigendeStadtSpeziesNummerExtern.Spezies
+                 AngreiferExtern.Spezies /= VerteidigerExtern.Spezies
                and
-                 AngreifendeEinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => AngreifendeEinheitSpeziesNummerExtern.Spezies)
+                 AngreiferExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => AngreiferExtern.Spezies)
                and
-                 VerteidigendeStadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => VerteidigendeStadtSpeziesNummerExtern.Spezies)
+                 VerteidigerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => VerteidigerExtern.Spezies)
               );
 
 end KampfsystemStadtLogik;

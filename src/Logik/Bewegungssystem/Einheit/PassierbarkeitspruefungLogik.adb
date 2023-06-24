@@ -213,6 +213,7 @@ package body PassierbarkeitspruefungLogik is
    
    
    -- In eine eigene Datei verschieben? äöü
+   -- Habe ich sowas nicht schon mal irgendwo? äöü
    function RichtigeUmgebungVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)

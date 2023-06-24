@@ -4,8 +4,7 @@ private with Sf.Graphics.ConvexShape;
 private with Sf.System.Vector2;
 
 private with GrafikRecordKonstanten;
-
-private with SprachauswahlLogik;
+private with TextArrays;
 
 package SprachauswahlGrafik is
    pragma Elaborate_Body;
@@ -31,6 +30,6 @@ private
       
    PfeilAccess : constant Sf.Graphics.sfConvexShape_Ptr := Sf.Graphics.ConvexShape.create;
    
-   AktuelleSprachen : SprachauswahlLogik.AktuelleSprachenArray;
+   AktuelleSprachen : TextArrays.SprachenArray;
 
 end SprachauswahlGrafik;

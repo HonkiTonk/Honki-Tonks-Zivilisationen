@@ -124,7 +124,7 @@ package body ChemischeWaffeEingesetztLogik is
    
    
    
-   -- Hier auch noch die Kriegserklärung/Meinungsverschlechterung einbauen? äöü
+   -- Hier auch noch die Kriegserklärung/Meinungsverschlechterung einbauen. äöü
    procedure Wasserverschmutzung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is

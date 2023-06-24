@@ -89,7 +89,7 @@ package body SprachauswahlLogik is
       for SprachenSchleifenwert in GlobaleTexte.SprachenEinlesen'Range loop
          
          if
-           SprachenSchleifenwert <= AktuelleSprachenArray'Last
+           SprachenSchleifenwert <= TextArrays.SprachenArray'Last
            and
              GlobaleTexte.SprachenEinlesen (SprachenSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
@@ -98,7 +98,7 @@ package body SprachauswahlLogik is
             return;
             
          elsif
-           SprachenSchleifenwert >= AktuelleSprachenArray'Last
+           SprachenSchleifenwert >= TextArrays.SprachenArray'Last
          then
             exit MehrSprachenVorhandenSchleife;
             

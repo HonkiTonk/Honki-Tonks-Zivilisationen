@@ -1,16 +1,12 @@
 with Sf.Window.Keyboard;
 
 with RueckgabeDatentypen;
+with TastenbelegungDatentypen;
 
 package SteuerungsauswahlLogik is
    pragma Elaborate_Body;
-   
-   -- Das hier später noch in irgendwas Globales schieben. äöü
-   type Tastenbelegungskategorie_Enum is (
-                                          Allgemeine_Belegung_Enum, Einheitenbelegung_Enum, Stadtbelegung_Enum
-                                         );
-   
-   WelcheSteuerung : Tastenbelegungskategorie_Enum := Allgemeine_Belegung_Enum;
+      
+   WelcheSteuerung : TastenbelegungDatentypen.Tastenbelegungskategorie_Enum := TastenbelegungDatentypen.Allgemeinbelegung_Enum;
    
    
    
@@ -29,16 +25,16 @@ private
    
    NeueTaste : Sf.Window.Keyboard.sfKeyCode;
    
-   type NummerZuKategorieArray is array (-3 .. -1) of Tastenbelegungskategorie_Enum;
+   type NummerZuKategorieArray is array (-3 .. -1) of TastenbelegungDatentypen.Tastenbelegungskategorie_Enum;
    NummerZuKategorie : constant NummerZuKategorieArray := (
-                                                           -1 => Allgemeine_Belegung_Enum,
-                                                           -2 => Einheitenbelegung_Enum,
-                                                           -3 => Stadtbelegung_Enum
+                                                           -1 => TastenbelegungDatentypen.Allgemeinbelegung_Enum,
+                                                           -2 => TastenbelegungDatentypen.Einheitenbelegung_Enum,
+                                                           -3 => TastenbelegungDatentypen.Stadtbelegung_Enum
                                                           );
       
    procedure TasteBelegen
      (AuswahlExtern : in Positive;
-      WelcheSteuerungExtern : in Tastenbelegungskategorie_Enum);
+      WelcheSteuerungExtern : in TastenbelegungDatentypen.Tastenbelegungskategorie_Enum);
    
    procedure AllgemeineBelegung
      (AuswahlExtern : in Positive;

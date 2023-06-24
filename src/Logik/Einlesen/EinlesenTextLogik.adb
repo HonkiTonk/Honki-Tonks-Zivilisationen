@@ -67,7 +67,6 @@ package body EinlesenTextLogik is
    
    
    
-   -- Verzeichnis hier in Datei umbenennen? äöü
    procedure EinlesenAufteilen
      (WelcheDateiExtern : in Positive;
       VerzeichnisExtern : in Wide_Wide_String)

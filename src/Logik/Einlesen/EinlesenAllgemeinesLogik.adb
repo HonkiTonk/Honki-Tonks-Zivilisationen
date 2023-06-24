@@ -52,6 +52,7 @@ package body EinlesenAllgemeinesLogik is
          Get_Next_Entry (Search          => Prüfungssuche,
                          Directory_Entry => Verzeichnisprüfung);
          
+         -- Mit BetriebssystemKonstanten verschmelzen? äöü
          if
            Simple_Name (Directory_Entry => Verzeichnisprüfung) = "."
            or

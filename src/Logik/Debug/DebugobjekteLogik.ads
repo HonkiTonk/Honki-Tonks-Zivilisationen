@@ -6,7 +6,6 @@ private with KampfDatentypen;
 private with EinheitenRecords;
 private with KartenRecordKonstanten;
 
--- In die adb Datei Lese/Schreibefunktionen einbauen und dann hier alles nach private schieben. äöü
 package DebugobjekteLogik is
    pragma Elaborate_Body;
 

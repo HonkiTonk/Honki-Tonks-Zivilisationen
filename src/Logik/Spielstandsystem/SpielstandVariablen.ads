@@ -1,12 +1,11 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with TextKonstanten;
+with TextArrays;
 
 package SpielstandVariablen is
    pragma Elaborate_Body;
-   
-   type SpielstandArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
-      
+         
    procedure Nullsetzung;
    
    procedure SpielstandnameSchreiben
@@ -20,10 +19,10 @@ package SpielstandVariablen is
       return Unbounded_Wide_Wide_String;
    
    function GanzeSpielstandliste
-     return SpielstandArray;
+     return TextArrays.SpielstandArray;
    
 private
       
-   Spielstand : SpielstandArray := (others => TextKonstanten.LeerUnboundedString);
+   Spielstand : TextArrays.SpielstandArray := (others => TextKonstanten.LeerUnboundedString);
    
 end SpielstandVariablen;

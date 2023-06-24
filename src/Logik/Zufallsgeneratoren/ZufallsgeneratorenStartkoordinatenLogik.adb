@@ -19,16 +19,14 @@ package body ZufallsgeneratorenStartkoordinatenLogik is
       
       KartenpunktWählen.Reset (Gen => KartenpunktGewählt);
       
-      -- Warum ist das hier +2/-2 und nicht +1/-1? äöü
-      -- Vermutlich damit man nicht direkt neben der Arktis spawnt. äöü
-      -- Was aber sinnfrei ist, da man die Eisdicke ja selber einstellen kann. äöü
+      -- Das +1/-1 ist hier, damit man nicht direkt am Kartenrand platziert wird.
       Startkoordinate.YAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
-                                                           First => KartenDatentypen.KartenfeldPositiv'First + 2,
-                                                           Last  => LeseWeltkarteneinstellungen.YAchse - 2);
+                                                           First => KartenDatentypen.KartenfeldPositiv'First + 1,
+                                                           Last  => LeseWeltkarteneinstellungen.YAchse - 1);
       
       Startkoordinate.XAchse := KartenpunktWählen.Random (Gen   => KartenpunktGewählt,
-                                                           First => KartenDatentypen.KartenfeldPositiv'First + 2,
-                                                           Last  => LeseWeltkarteneinstellungen.XAchse - 2);
+                                                           First => KartenDatentypen.KartenfeldPositiv'First + 1,
+                                                           Last  => LeseWeltkarteneinstellungen.XAchse - 1);
          
       return Startkoordinate;
       

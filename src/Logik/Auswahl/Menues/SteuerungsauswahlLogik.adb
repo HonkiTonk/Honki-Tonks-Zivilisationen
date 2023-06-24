@@ -1,4 +1,3 @@
-with TastenbelegungDatentypen;
 with BefehleDatentypen;
 with InteraktionAuswahl;
 with MenueKonstanten;
@@ -71,7 +70,7 @@ package body SteuerungsauswahlLogik is
    
    procedure TasteBelegen
      (AuswahlExtern : in Positive;
-      WelcheSteuerungExtern : in Tastenbelegungskategorie_Enum)
+      WelcheSteuerungExtern : in TastenbelegungDatentypen.Tastenbelegungskategorie_Enum)
    is begin
       
       NachGrafiktask.AnzeigeFrage := TextnummernKonstanten.FrageNeueTaste;
@@ -94,15 +93,15 @@ package body SteuerungsauswahlLogik is
       case
         WelcheSteuerungExtern
       is
-         when Allgemeine_Belegung_Enum =>
+         when TastenbelegungDatentypen.Allgemeinbelegung_Enum =>
             AllgemeineBelegung (AuswahlExtern => AuswahlExtern - MenueKonstanten.AllgemeineSteuerungEnumausgleich,
                                 TasteExtern   => NeueTaste);
             
-         when Einheitenbelegung_Enum =>
+         when TastenbelegungDatentypen.Einheitenbelegung_Enum =>
             Einheitenbelegung (AuswahlExtern => AuswahlExtern - MenueKonstanten.EinheitensteuerungEnumausgleich,
                                TasteExtern   => NeueTaste);
             
-         when Stadtbelegung_Enum =>
+         when TastenbelegungDatentypen.Stadtbelegung_Enum =>
             Stadtbelegung (AuswahlExtern => AuswahlExtern - MenueKonstanten.StadtsteuerungEnumausgleich,
                            TasteExtern   => NeueTaste);
       end case;

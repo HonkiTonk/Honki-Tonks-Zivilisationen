@@ -6,6 +6,7 @@ with TextaccessVariablen;
 with MenueKonstanten;
 with GrafikKonstanten;
 with InteraktionAuswahl;
+with ViewKonstanten;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
@@ -28,7 +29,7 @@ package body DoppelmenueGrafik is
                                                                                          VerhältnisExtern => (GrafikRecordKonstanten.MenüDoppelbereich (Auswahlbereich).width,
                                                                                                                GrafikRecordKonstanten.MenüDoppelbereich (Auswahlbereich).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl),
                                             GrößeExtern          => Viewfläche (Auswahlbereich),
                                             AnzeigebereichExtern => GrafikRecordKonstanten.MenüDoppelbereich (Auswahlbereich));
       
@@ -57,7 +58,7 @@ package body DoppelmenueGrafik is
                                                                                         VerhältnisExtern => (GrafikRecordKonstanten.MenüDoppelbereich (Zusatzbereich).width,
                                                                                                               GrafikRecordKonstanten.MenüDoppelbereich (Zusatzbereich).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ZusatztextviewAccess,
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccesse (ViewKonstanten.MenüZusatztext),
                                             GrößeExtern          => Viewfläche (Zusatzbereich),
                                             AnzeigebereichExtern => GrafikRecordKonstanten.MenüDoppelbereich (Zusatzbereich));
       

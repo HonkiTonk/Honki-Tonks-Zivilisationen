@@ -61,9 +61,12 @@ private
               );
 
    procedure WegAnlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
                  KoordinatenExtern.YAchse in KartenKonstanten.AnfangYAchse .. LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse in KartenKonstanten.AnfangXAchse .. LeseWeltkarteneinstellungen.XAchse

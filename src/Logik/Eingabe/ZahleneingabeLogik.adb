@@ -25,6 +25,7 @@ package body ZahleneingabeLogik is
                                                PlusMinusExtern     => True);
       
       -- Hier Sonderwerte setzen und in der Grafik das dann beim Text zusätzlich anzeigen? Oder neben der eingegebenen Zahl? Oder einfach gar nicht? äöü
+      -- Den erlaubten Zahlenbereich mit in den Fragetext schieben? äöü
       -- LeerWert := MinimumMaximumSetzen (ZahlenMinimumExtern => ZahlenMinimumExtern,
       --                                  ZahlenMaximumExtern => ZahlenMaximumExtern);
       

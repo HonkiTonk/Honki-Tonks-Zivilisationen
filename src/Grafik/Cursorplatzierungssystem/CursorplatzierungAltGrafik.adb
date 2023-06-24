@@ -77,7 +77,7 @@ package body CursorplatzierungAltGrafik is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
-                                                                 view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
+                                                                 view         => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
       
       SchreibeCursor.EAchseAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                 EAchseExtern  => LeseCursor.EAchseAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
@@ -260,7 +260,7 @@ package body CursorplatzierungAltGrafik is
       use type KartenartDatentypen.Kartenform_Enum;
    begin
       
-      Achsenviewfläche := Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
+      Achsenviewfläche := Sf.Graphics.View.getSize (view => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
       AktuelleSichtweite := SichtweitenGrafik.SichthöheLesen;
       YAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformYAchse;
       
@@ -327,7 +327,7 @@ package body CursorplatzierungAltGrafik is
       use type KartenartDatentypen.Kartenform_Enum;
    begin
       
-      XAchsenbereich := Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)).x;
+      XAchsenbereich := Sf.Graphics.View.getSize (view => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte)).x;
       AktuelleSichtweite := SichtweitenGrafik.SichtbreiteLesen;
       XAchseÜbergänge := LeseWeltkarteneinstellungen.KartenformXAchse;
       

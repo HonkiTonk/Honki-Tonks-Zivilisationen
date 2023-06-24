@@ -11,6 +11,7 @@ with TextaccessVariablen;
 with Views;
 with GrafikKonstanten;
 with VerzeichnisKonstanten;
+with ViewKonstanten;
 
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
@@ -21,6 +22,7 @@ with HintergrundGrafik;
 with TextaccessverwaltungssystemGrafik;
 with KonvexverwaltungssystemGrafik;
 with TextfarbeGrafik;
+with SprachauswahlLogik;
 
 package body SprachauswahlGrafik is
    
@@ -29,7 +31,7 @@ package body SprachauswahlGrafik is
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Sprachenbereich);
       

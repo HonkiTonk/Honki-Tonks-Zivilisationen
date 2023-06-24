@@ -30,7 +30,7 @@ package body WichtigesSeitenleisteGrafik is
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltWichtiges).width,
                                                                                               GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltWichtiges).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccess (ViewKonstanten.WeltWichtiges),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccesse (ViewKonstanten.WeltWichtiges),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltWichtiges));
       

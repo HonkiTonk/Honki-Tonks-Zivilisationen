@@ -49,6 +49,7 @@ package KIDatentypen is
 
 
    -- Die beiden Bewertungen zusammenführen, warum sind die überhaupt getrennt? äöü
+   -- Oder in Vorhanden umbenennen, wobei das vermutlich hier uninteressant ist. äöü
    type AufgabenWichtigkeit is range -100 .. 100;
    subtype AufgabenWichtigkeitKlein is AufgabenWichtigkeit range -1 .. 100;
 

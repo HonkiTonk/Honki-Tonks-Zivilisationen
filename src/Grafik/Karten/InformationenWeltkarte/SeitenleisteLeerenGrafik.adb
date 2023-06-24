@@ -17,7 +17,7 @@ package body SeitenleisteLeerenGrafik is
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Weltkartenbereich (AnzeigebereichExtern).width,
                                                                                               GrafikRecordKonstanten.Weltkartenbereich (AnzeigebereichExtern).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccess (AnzeigebereichExtern),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccesse (AnzeigebereichExtern),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (AnzeigebereichExtern));
       

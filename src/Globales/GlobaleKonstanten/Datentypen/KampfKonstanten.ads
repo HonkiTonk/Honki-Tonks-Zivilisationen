@@ -11,4 +11,6 @@ package KampfKonstanten is
    LeerBonus : constant KampfDatentypen.Kampfbonus := 1.00;
    LeerMalus : constant KampfDatentypen.Kampfbonus := 1.00;
 
+   KampfverlaufUnentschieden : constant Natural := 0;
+
 end KampfKonstanten;

@@ -3,21 +3,18 @@ with Sf.Graphics.View;
 
 with ViewKonstanten;
 
+   -- Hier mal Dinge in Arrays zusammenfassen. äöü
 package Views is
    pragma Elaborate_Body;
 
    ÜberschriftviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
    VersionsnummerviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
-   -- Die beiden zusammenfassen? Scheint sinnvoll. äöü
-   MenüviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
-   ZusatztextviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
-
    BildratenviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
    LadeviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
-   MeldungssviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
+   MeldungsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
 
    KartenbefehlsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
    EinheitenbefehlsviewAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.create;
@@ -28,10 +25,12 @@ package Views is
 
    type ViewsArray is array (Positive range <>) of Sf.Graphics.sfView_Ptr;
 
+   MenüviewAccesse : constant ViewsArray (ViewKonstanten.MenüAuswahl .. ViewKonstanten.MenüZusatztext) := (others => Sf.Graphics.View.create);
+
    FragenviewAccesse : constant ViewsArray (ViewKonstanten.Frage .. ViewKonstanten.Antwort) := (others => Sf.Graphics.View.create);
    SteuerungviewAccesse : constant ViewsArray (ViewKonstanten.SteuerungKategorie .. ViewKonstanten.SteuerungAuswahl) := (others => Sf.Graphics.View.create);
 
-   WeltkarteAccess : constant ViewsArray (ViewKonstanten.WeltKarte .. ViewKonstanten.WeltEinheit) := (others => Sf.Graphics.View.create);
+   WeltkarteAccesse : constant ViewsArray (ViewKonstanten.WeltKarte .. ViewKonstanten.WeltEinheit) := (others => Sf.Graphics.View.create);
    StadtviewAccesse : constant ViewsArray (ViewKonstanten.StadtUmgebung .. ViewKonstanten.StadtKarte) := (others => Sf.Graphics.View.create);
 
    ForschungsviewAccesse : constant ViewsArray (ViewKonstanten.ForschungsmenüForschungsliste .. ViewKonstanten.ForschungsmenüErfolg) := (others => Sf.Graphics.View.create);

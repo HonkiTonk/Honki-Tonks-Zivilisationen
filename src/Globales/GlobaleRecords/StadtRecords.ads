@@ -78,10 +78,12 @@ package StadtRecords is
       Geldgewinnung : ProduktionDatentypen.Stadtproduktion;
       PermanenteKostenPosten : PermanenteKostenArray;
       
+      -- Forschungsrate in einen eigenen Datentypen packen? äöü
       Forschungsrate : ProduktionDatentypen.Stadtproduktion;
       Bauprojekt : BauprojektRecord;
       Bauzeit : ProduktionDatentypen.Produktion;
-
+      
+      -- Korruption auch in einen eigenen Datentypen packen? äöü
       Korruption : ProduktionDatentypen.Stadtproduktion;
       Zufriedenheit : ProduktionDatentypen.ZufriedenheitVorhanden;
       GebäudeVorhanden : StadtArrays.GebäudeArray;

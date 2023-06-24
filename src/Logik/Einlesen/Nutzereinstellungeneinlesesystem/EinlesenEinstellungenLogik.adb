@@ -5,6 +5,7 @@ with EinlesenToneinstellungenLogik;
 with EinlesenSonstigeEinstellungenLogik;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
+-- Änderungen an den zu ladenden Datentypen kann jederzeit Probleme bei laden verursachen.
 package body EinlesenEinstellungenLogik is
 
    procedure EinlesenEinstellungen

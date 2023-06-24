@@ -35,17 +35,24 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (25.06.2023):
+   -- Version 0.05.2525 => 0.05. (25.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2420 => 0.05. (24.06.2023):
+   -- Version 0.05.2420 => 0.05.2525 (24.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Mausauswahl optimiert.
+   -- Diverse Variablen in Arrays gepackt.
+   -- Diverse Zahlen durch Konstante ersetzt.
+   -- Wenn die entsprechende Technologie vorhanden ist, dann wird beim Bau einer Stadt jetzt eine Schiene statt einer Straße angelegt.
+   -- Alle KIVariablen werden jetzt beim Starten eines neuen Spieles ebenfalls vollständig zurückgesetzt.
+   -- Unnötigen Code gelöscht.
+   -- Lese/Schreibezugriffe für KIVariablen angelegt und eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
 
@@ -54,7 +61,7 @@ package ChangelogVorlage is
    -- Interne Struktur und Benennung überarbeitet.
    -- Diverse Zahlen durch Konstante ersetzt.
    -- Spielmeldungen werden jetzt sofort ausgeblendet, wenn die Anzeige wechselt.
-   -- Zufriedenheit in eigene Datentypen ausgelagert.
+   -- Zufriedenheit in eigenen Datentypen ausgelagert.
    -- Code zusammengeführt.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/hinzugefügt.
    

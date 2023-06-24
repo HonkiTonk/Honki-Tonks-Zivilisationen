@@ -12,6 +12,7 @@ with KIEinheitUmsetzenModernisierenLogik;
 package body KIEinheitHandlungstestsLogik is
    
    -- Das hier später anpassen, dass die Verschanzung für eine Runde beendet wird. äöü
+   -- Warum sollte die Verschanzung beendet werden? Um die Einheit zu verbessern? äöü
    function BewachtStadt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean

@@ -28,7 +28,7 @@ package body WeltkarteGrafik is
      (EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord)
    is begin
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccess (ViewKonstanten.WeltKarte),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte),
                                             GrößeExtern          => FensterGrafik.AktuelleAuflösung,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltKarte));
       

@@ -124,8 +124,8 @@ package body EinheitenbewegungLogik is
                                                     GegnerischeSpeziesExtern => FremdeStadtExtern.Spezies)
       is
          when True =>
-            return KampfsystemStadtLogik.KampfsystemStadt (AngreifendeEinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                           VerteidigendeStadtSpeziesNummerExtern => FremdeStadtExtern);
+            return KampfsystemStadtLogik.KampfwerteErmitteln (AngreiferExtern   => EinheitSpeziesNummerExtern,
+                                                              VerteidigerExtern => FremdeStadtExtern);
             
          when False =>
             return False;

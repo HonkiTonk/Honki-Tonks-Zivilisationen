@@ -9,5 +9,17 @@ package body LeseKIVariablen is
       return KIVariablen.Kriegszustand;
       
    end Kriegszustand;
+   
+   
+   
+   function Stadtverbindung
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+      AbschnittExtern : in EinheitenDatentypen.Bewegungsplan)
+      return KartenRecords.AchsenKartenfeldNaturalRecord
+   is begin
+      
+      return KIVariablen.Stadtverbindung (SpeziesExtern, AbschnittExtern);
+      
+   end Stadtverbindung;
 
 end LeseKIVariablen;

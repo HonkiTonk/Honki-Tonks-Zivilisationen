@@ -41,6 +41,7 @@ package body KIBewegungsplanBerechnenLogik is
       is
          when True =>
             -- Das hier entfernen? Sollte vermutlich keine Bedeutung mehr haben mit dem neuen System? äöü
+            -- Vorher noch einmal genau überprüfen. äöü
             KIBewegungsplanVereinfachenLogik.Planvereinfachung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>

@@ -11,6 +11,7 @@ with MausauswahlLogik;
 
 -- Kann man das so umbauen dass es wie die restlichen Mausauswahlen eine 0 als Leerauswahl zurück gibt? äöü
 -- Kann man vermutlich aber dazu müsste man wohl mehr anpassen. äöü
+-- Wäre das überhaupt sinnvoll? äöü
 package body AuswahlStadtEinheitLogik is
 
    function AuswahlStadtEinheit

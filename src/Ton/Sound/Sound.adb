@@ -33,6 +33,7 @@ package body Sound is
                               
             when TonDatentypen.Sound_Ende_Enum =>
                -- Hier vielleicht null und unten drunter dann alle Sounds stoppen und entsprechend die Schleife verlassen? äöü
+               -- Oder vielleicht das ganze noch einmal neu und besser gestalten? äöü
                exit SoundSchleife;
                
             when others =>

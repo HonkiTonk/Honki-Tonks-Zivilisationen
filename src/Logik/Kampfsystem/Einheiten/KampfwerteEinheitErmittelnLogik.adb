@@ -28,6 +28,7 @@ package body KampfwerteEinheitErmittelnLogik is
                                                                     TaskExtern    => TaskExtern);
       
       -- Möglicherweise ein konstantes Array anlegen, wo man dann die rangabhängigen Bonis reinschreibt? äöü
+      -- Das dann auch Speziesabhängig? äöü
       Verteidigung (TaskExtern)
         := Kampfgrenzen.KampfwertKampfbonus (KampfwertExtern  => Verteidigung (TaskExtern),
                                              KampfbonusExtern => (1.00 + KampfDatentypen.Kampfbonus (LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)) / 10.00));

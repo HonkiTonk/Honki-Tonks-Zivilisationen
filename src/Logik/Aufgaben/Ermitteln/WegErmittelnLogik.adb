@@ -242,6 +242,7 @@ package body WegErmittelnLogik is
      
      
    -- Das ist doch ein wenig sinnfrei, oder? äöü
+   -- Vielleicht Wasserröhren? Ähnlich wie ein Tunnel? äöü
    function UnterflächeWasser
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       WegExtern : in KartenverbesserungDatentypen.Weg_Enum;

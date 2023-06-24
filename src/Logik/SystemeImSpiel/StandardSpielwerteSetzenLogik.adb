@@ -11,6 +11,7 @@ with SchreibeSpeziesbelegung;
 with SchreibeCursor;
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
+with SchreibeKIVariablen;
 
 with KartengeneratorVariablenLogik;
 with SichtweitenGrafik;
@@ -52,6 +53,8 @@ package body StandardSpielwerteSetzenLogik is
       SchreibeCursor.Standardeinstellungen;
       SchreibeSpeziesbelegung.Standardeinstellungen; 
       SchreibeAllgemeines.Standardeinstellungen;
+      
+      SchreibeKIVariablen.Standardeinstellungen;
       
       SchreibeWeltkarteneinstellungen.Standardeinstellungen;
       SchreibeWeltkarte.Standardeinstellungen;

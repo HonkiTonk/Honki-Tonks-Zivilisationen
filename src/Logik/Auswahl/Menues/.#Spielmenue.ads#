@@ -1,0 +1,17 @@
+with SpeziesDatentypen;
+with RueckgabeDatentypen;
+
+with LeseSpeziesbelegung;
+
+package Spielmenue is
+   pragma Elaborate_Body;
+
+   function Spielmenü
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
+              );
+
+end Spielmenue;

@@ -12,9 +12,12 @@ with LeseForschungenDatenbank;
 with KartenkoordinatenberechnungssystemLogik;
 with ForschungstestsLogik;
 
-with KIVariablen;
 with KIKonstanten;
 with KIDatentypen;
+with KIVariablen;
+
+with LeseKIVariablen;
+with SchreibeKIVariablen;
 
 with KIBewegungsbewertungLogik;
 with KIAufgabenVerteiltLogik;
@@ -23,6 +26,7 @@ package body KIStaedteverbindungssystemLogik is
 
    -- Eventuell sollte ich speichern welche Städte miteinander verbunden sind, damit diese Prüfungen hier nicht immer wieder durchlaufen müssen. äöü
    -- Wobei natürlich das Problem ist dass die Verbindung ja getrennt werden kann, also müsste ich noch was einbauen dass das dann alle paar Runden prüft. äöü
+   -- Beziehungsweise müsste es nach jeder Plünderun geprüft werden, wobei ich bei der Plünderung prüfen könnte ob da ein Weg zerstört wird und nur dann die Verbundenheit von Städten ernuet prüfen. äöü
    procedure Stadtverbindung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
@@ -31,8 +35,8 @@ package body KIStaedteverbindungssystemLogik is
    begin
       
       case
-        -- Lese/Schreibezeug dafür anlegen. äöü
-        KIVariablen.Stadtverbindung (SpeziesExtern, KIKonstanten.VerbindungsplanVorhanden).XAchse
+        LeseKIVariablen.Stadtverbindung (SpeziesExtern   => SpeziesExtern,
+                                         AbschnittExtern => KIKonstanten.VerbindungsplanVorhanden).XAchse
       is
          when KartenKonstanten.LeerXAchse =>
             Stadtgrenze := LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern);
@@ -171,13 +175,12 @@ package body KIStaedteverbindungssystemLogik is
                return True;
                
             when False =>
-               KIVariablen.Stadtverbindung (SpeziesExtern, AktuellePlanpositionExtern) := KartenRecordKonstanten.LeerKoordinate;
+               SchreibeKIVariablen.Stadtverbindung (SpeziesExtern     => SpeziesExtern,
+                                                    AbschnittExtern   => AktuellePlanpositionExtern,
+                                                    KoordinatenExtern => KartenRecordKonstanten.LeerKoordinate);
          end case;
          
       end loop DurchlaufSchleife;
-      
-      -- Muss ich das überhaupt auf Null setzen? äöü
-      -- KIVariablen.Stadtverbindung (SpeziesExtern, Schleifenwert) := KartenRecordKonstanten.LeerKoordinate;
       
       return False;
       
@@ -207,11 +210,15 @@ package body KIStaedteverbindungssystemLogik is
             return False;
                
          when KartenDatentypen.KartenfeldNatural'First =>
-            KIVariablen.Stadtverbindung (SpeziesExtern, KIKonstanten.VerbindungsplanVorhanden) := ZielkoordinatenExtern;
+            SchreibeKIVariablen.Stadtverbindung (SpeziesExtern     => SpeziesExtern,
+                                                 AbschnittExtern   => KIKonstanten.VerbindungsplanVorhanden,
+                                                 KoordinatenExtern => ZielkoordinatenExtern);
             return True;
                
          when others =>
-            KIVariablen.Stadtverbindung (SpeziesExtern, AktuellePlanpositionExtern) := KoordinatenzwischenspeicherWindows;
+            SchreibeKIVariablen.Stadtverbindung (SpeziesExtern     => SpeziesExtern,
+                                                 AbschnittExtern   => AktuellePlanpositionExtern,
+                                                 KoordinatenExtern => KoordinatenzwischenspeicherWindows);
             
             if
               AktuellePlanpositionExtern = KIVariablen.Stadtverbindung'Last (2)
@@ -309,7 +316,8 @@ package body KIStaedteverbindungssystemLogik is
       for FelderSchleifenwert in KIVariablen.StadtverbindungArray'Range (2) loop
          
          if
-           KoordinatenExtern = KIVariablen.Stadtverbindung (SpeziesExtern, FelderSchleifenwert)
+           KoordinatenExtern = LeseKIVariablen.Stadtverbindung (SpeziesExtern   => SpeziesExtern,
+                                                                AbschnittExtern => FelderSchleifenwert)
          then
             return True;
             
@@ -349,19 +357,24 @@ package body KIStaedteverbindungssystemLogik is
       for VerbindungSchleifenwert in EinheitenDatentypen.BewegungsplanVorhanden'Range loop
          
          if
-           KIVariablen.Stadtverbindung (SpeziesExtern, VerbindungSchleifenwert).XAchse = KartenKonstanten.LeerXAchse
+           KartenKonstanten.LeerXAchse = LeseKIVariablen.Stadtverbindung (SpeziesExtern   => SpeziesExtern,
+                                                                          AbschnittExtern => VerbindungSchleifenwert).XAchse
          then
             null;
             
          elsif
            True = KIAufgabenVerteiltLogik.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen_Enum,
                                                               SpeziesExtern         => SpeziesExtern,
-                                                              ZielKoordinatenExtern => KIVariablen.Stadtverbindung (SpeziesExtern, VerbindungSchleifenwert))
+                                                              ZielKoordinatenExtern => LeseKIVariablen.Stadtverbindung (SpeziesExtern   => SpeziesExtern,
+                                                                                                                        AbschnittExtern => VerbindungSchleifenwert))
          then
-            KIVariablen.Stadtverbindung (SpeziesExtern, VerbindungSchleifenwert) := KartenRecordKonstanten.LeerKoordinate;
+            SchreibeKIVariablen.Stadtverbindung (SpeziesExtern     => SpeziesExtern,
+                                                 AbschnittExtern   => VerbindungSchleifenwert,
+                                                 KoordinatenExtern => KartenRecordKonstanten.LeerKoordinate);
                
          else
-            VorhandenerWeg := LeseWeltkarte.Weg (KoordinatenExtern => KIVariablen.Stadtverbindung (SpeziesExtern, VerbindungSchleifenwert));
+            VorhandenerWeg := LeseWeltkarte.Weg (KoordinatenExtern => LeseKIVariablen.Stadtverbindung (SpeziesExtern   => SpeziesExtern,
+                                                                                                       AbschnittExtern => VerbindungSchleifenwert));
                              
             if
               VorhandenerWeg = KartenverbesserungDatentypen.Leer_Weg_Enum
@@ -376,7 +389,9 @@ package body KIStaedteverbindungssystemLogik is
                null;
             
             else
-               KIVariablen.Stadtverbindung (SpeziesExtern, VerbindungSchleifenwert) := KartenRecordKonstanten.LeerKoordinate;
+               SchreibeKIVariablen.Stadtverbindung (SpeziesExtern     => SpeziesExtern,
+                                                    AbschnittExtern   => VerbindungSchleifenwert,
+                                                    KoordinatenExtern => KartenRecordKonstanten.LeerKoordinate);
             end if;
          end if;
          
@@ -393,7 +408,9 @@ package body KIStaedteverbindungssystemLogik is
       ElementExtern : in EinheitenDatentypen.BewegungsplanVorhanden)
    is begin
       
-      KIVariablen.Stadtverbindung (SpeziesExtern, ElementExtern) := KartenRecordKonstanten.LeerKoordinate;
+      SchreibeKIVariablen.Stadtverbindung (SpeziesExtern     => SpeziesExtern,
+                                           AbschnittExtern   => ElementExtern,
+                                           KoordinatenExtern => KartenRecordKonstanten.LeerKoordinate);
       
       Leerwert := VerbindungLeeren (SpeziesExtern => SpeziesExtern);
       
@@ -412,7 +429,8 @@ package body KIStaedteverbindungssystemLogik is
       for VerbindungSchleifenwert in EinheitenDatentypen.BewegungsplanVorhanden'Range loop
          
          if
-           KIVariablen.Stadtverbindung (SpeziesExtern, VerbindungSchleifenwert) = KartenRecordKonstanten.LeerKoordinate
+           KartenRecordKonstanten.LeerKoordinate = LeseKIVariablen.Stadtverbindung (SpeziesExtern   => SpeziesExtern,
+                                                                                    AbschnittExtern => VerbindungSchleifenwert)
          then
             null;
             
@@ -422,7 +440,10 @@ package body KIStaedteverbindungssystemLogik is
          
       end loop VerbindungSchleife;
       
-      KIVariablen.Stadtverbindung (SpeziesExtern, KIKonstanten.VerbindungsplanVorhanden) := KartenRecordKonstanten.LeerKoordinate;
+      
+      SchreibeKIVariablen.Stadtverbindung (SpeziesExtern     => SpeziesExtern,
+                                           AbschnittExtern   => KIKonstanten.VerbindungsplanVorhanden,
+                                           KoordinatenExtern => KartenRecordKonstanten.LeerKoordinate);
       
       return False;
       

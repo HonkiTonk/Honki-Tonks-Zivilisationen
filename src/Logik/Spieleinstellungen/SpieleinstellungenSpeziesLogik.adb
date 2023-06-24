@@ -168,7 +168,7 @@ package body SpieleinstellungenSpeziesLogik is
                     NotAusSchleifenwert
                   is
                      when ZahlenDatentypen.NotAus'Last =>
-                        -- Hier wieder eine Meldung einbauen für den Fall dass die Spezies nicht platziert werden konnte? äöü
+                        -- Hier wieder eine Meldung einbauen für den Fall dass die Spezies nicht platziert werden konnte? Scheint sinnvoll. äöü
                         SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesSchleifenwert,
                                                           BelegungExtern => SpeziesDatentypen.Leer_Spieler_Enum);
                         

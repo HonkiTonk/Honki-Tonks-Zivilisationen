@@ -202,10 +202,10 @@ package body EingabenanzeigeGrafik is
         WelcheAuswahlExtern.StadtEinheit
       is
          when True =>
-            Anzeigebereich := GrafikRecordKonstanten.Stadtauswahlbereich;
+            Anzeigebereich := GrafikRecordKonstanten.StadtEinheitAuswahlbereich (ViewKonstanten.AuswahlbereichStadt);
             
          when False =>
-            Anzeigebereich := GrafikRecordKonstanten.Einheitauswahlbereich;
+            Anzeigebereich := GrafikRecordKonstanten.StadtEinheitAuswahlbereich (ViewKonstanten.AuswahlbereichEinheit);
       end case;
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,

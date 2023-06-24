@@ -9,6 +9,7 @@ with TextnummernKonstanten;
 with TextKonstanten;
 with AuswahlKonstanten;
 with Projekteinstellungen;
+with TextArrays;
 
 with LeseAllgemeines;
 
@@ -30,7 +31,7 @@ package body SpielstandlisteLogik is
       SpielstandSchleife:
       loop
          
-         Schleifenanfang := SpielstandVariablen.SpielstandArray'First;
+         Schleifenanfang := TextArrays.SpielstandArray'First;
          NachGrafiktask.MehrereSeiten := False;
          
          Start_Search (Search    => Suche,
@@ -45,14 +46,14 @@ package body SpielstandlisteLogik is
             case
               Schleifenanfang
             is
-               when SpielstandVariablen.SpielstandArray'First =>
+               when TextArrays.SpielstandArray'First =>
                   SpielstandVariablen.Nullsetzung;
                   
                when others =>
-                  Zwischenspeicher := SpielstandVariablen.SpielstandnameLesen (NummerExtern => SpielstandVariablen.SpielstandArray'Last);
+                  Zwischenspeicher := SpielstandVariablen.SpielstandnameLesen (NummerExtern => TextArrays.SpielstandArray'Last);
                   SpielstandVariablen.Nullsetzung;
                   SpielstandVariablen.SpielstandnameSchreiben (NameExtern   => Zwischenspeicher,
-                                                               NummerExtern => SpielstandVariablen.SpielstandArray'First);
+                                                               NummerExtern => TextArrays.SpielstandArray'First);
             end case;
             
             AktuellerSpielstand := Schleifenanfang;
@@ -81,7 +82,7 @@ package body SpielstandlisteLogik is
                                                                NummerExtern => AktuellerSpielstand);
                   
                elsif
-                 AktuellerSpielstand = SpielstandVariablen.SpielstandArray'Last
+                 AktuellerSpielstand = TextArrays.SpielstandArray'Last
                then
                   NachGrafiktask.MehrereSeiten := True;
                   exit SpeicherdateiSchleife;
@@ -112,7 +113,7 @@ package body SpielstandlisteLogik is
                      
                      else
                         -- Schleifenanfang muss hier auf einen Wert ungleich SpielstandVariablen.SpielstandArray'First gesetzt werden, damit bei mehreren Seiten es korrekt weitergeht.
-                        Schleifenanfang := SpielstandVariablen.SpielstandArray'First + 1;
+                        Schleifenanfang := TextArrays.SpielstandArray'First + 1;
                         exit AuswahlSchleife;
                      end if;
                   

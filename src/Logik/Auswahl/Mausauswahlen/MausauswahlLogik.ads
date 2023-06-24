@@ -92,9 +92,7 @@ package MausauswahlLogik is
               );
    
 private
-   
-   Auflösung : Sf.System.Vector2.sfVector2u;
-   
+      
    Mausposition : Sf.System.Vector2.sfVector2f;
-   
+    
 end MausauswahlLogik;

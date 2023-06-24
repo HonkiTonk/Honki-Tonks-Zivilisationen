@@ -28,7 +28,7 @@ with UebergabeRecordErmittelnGrafik;
 with TexteinstellungenGrafik;
 with BildrateAnzeigenGrafik;
 
-with Diagnoseinformationen;
+-- with Diagnoseinformationen;
 
 package body Grafik is
    
@@ -46,7 +46,7 @@ package body Grafik is
       -- Oder habe ich zu dem Zeitpunkt den Font noch nicht eingelesen? Mal nachprüfen. äöü
       FensterGrafik.FensterErzeugen;
       
-      Diagnoseinformationen.Größenprüfung;
+      -- Diagnoseinformationen.Größenprüfung;
       
       Startzeit := Clock;
       

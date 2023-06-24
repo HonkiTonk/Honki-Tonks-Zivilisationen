@@ -5,4 +5,8 @@ package TextArrays is
 
    type AllgemeinesTextArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
 
+   type SpielstandArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
+
+   type SprachenArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
+
 end TextArrays;

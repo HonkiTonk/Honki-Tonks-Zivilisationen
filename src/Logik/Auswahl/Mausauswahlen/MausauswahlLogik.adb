@@ -11,24 +11,27 @@ with ViewKonstanten;
 with GrafikRecordKonstanten;
 with AuswahlKonstanten;
 
-with LeseEinstellungenGrafik;
-
 with InteraktionAllgemein;
 with Vergleiche;
 with SichtweitenGrafik;
 with FensterGrafik;
+with MausauswahlAllgemeinLogik;
+
+-- with Diagnoseinformationen;
 
 -- Thematisch aufteilen? äöü
+-- Mal schauen ob die Vorabprüfung ob der Mauszeiger überhaupt im richtigen Bereich ist noch fehlerfrei überall eingebaut werden kann. äöü
 package body MausauswahlLogik is
 
+   -- Hier ist gar nicht der aufgeteilte Viewbereich drin, ist das nicht auch aufgeteilt? äöü
    function SpeziesauswahlDiplomatie
      return Natural
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
-                                                                 view         => Views.MenüviewAccess);
-            
+                                                                 view         => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl));
+      
       DiplomatieSchleife:
       for SpeziesSchleifenwert in InteraktionAuswahl.SpeziesMöglicheArray'Range loop
          
@@ -62,23 +65,20 @@ package body MausauswahlLogik is
      return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
       
-      -- Das hier überall bei den Berechnung zu aktuellen Mausposition einbauen? äöü
-      -- Würde dann die Schleifen nicht zwingend durchlaufen müssen. äöü
-      -- Ist aber vermutlich nur im Fenstermodus relevant. äöü
-      -- Oder auch im Vollbild wenn man raustabt? äöü
-      Auflösung := LeseEinstellungenGrafik.Auflösung;
+      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
+                                                                 point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
+                                                                 view         => Views.ForschungsviewAccesse (ViewKonstanten.ForschungsmenüForschungsliste));
       
       case
-        Vergleiche.Auswahlposition (MauspositionExtern => InteraktionAllgemein.Mausposition,
-                                    RechteckExtern     => (0.00, 0.00, Float (Auflösung.x), Float (Auflösung.y)))
+        MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
+                                                     BereichExtern      => (GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüForschungsliste).width,
+                                                                            GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüForschungsliste).height))
       is
          when False =>
             return ForschungKonstanten.LeerAnforderung;
 
          when True =>
-            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                       point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
-                                                                       view         => Views.ForschungsviewAccesse (ViewKonstanten.ForschungsmenüForschungsliste));
+            null;
       end case;
       
       ForschungSchleife:
@@ -118,55 +118,75 @@ package body MausauswahlLogik is
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
                                                                  view         => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeliste));
       
-      GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
-         
-         case
-           InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
-         is
-            when True =>
-               if
-                 True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    RechteckExtern     => InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert))
-               then
-                  return (GebäudeSchleifenwert, EinheitenKonstanten.LeerID);
-         
-               else
-                  null;
-               end if;
+      case
+        MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
+                                                     BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
+                                                                            GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height))
+      is
+         when False =>
+            Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
+                                                                       point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
+                                                                       view         => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenliste));
 
-            when others =>
-               null;
-         end case;
+         when True =>
+            GebäudeSchleife:
+            for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
          
-      end loop GebäudeSchleife;
+               case
+                 InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
+               is
+                  when True =>
+                     if
+                       True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                                          RechteckExtern     => InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert))
+                     then
+                        return (GebäudeSchleifenwert, EinheitenKonstanten.LeerID);
+         
+                     else
+                        null;
+                     end if;
+
+                  when False =>
+                     null;
+               end case;
+         
+            end loop GebäudeSchleife;
             
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                 point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
-                                                                 view         => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenliste));
+            return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID);
+      end case;
       
-      EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
+      case
+        MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
+                                                     BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
+                                                                            GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height))
+      is
+         when False =>
+            return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID);
+            
+         when True =>
+            EinheitenSchleife:
+            for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
          
-         case
-           InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)
-         is
-            when True =>
-               if
-                 True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    RechteckExtern     => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
-               then
-                  return (StadtKonstanten.LeerGebäudeID, EinheitenSchleifenwert);
+               case
+                 InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)
+               is
+                  when True =>
+                     if
+                       True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                                          RechteckExtern     => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
+                     then
+                        return (StadtKonstanten.LeerGebäudeID, EinheitenSchleifenwert);
          
-               else
-                  null;
-               end if;
+                     else
+                        null;
+                     end if;
 
-            when others =>
-               null;
-         end case;
+                  when False =>
+                     null;
+               end case;
                
-      end loop EinheitenSchleife;
+            end loop EinheitenSchleife;
+      end case;
       
       return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID);
       
@@ -183,7 +203,7 @@ package body MausauswahlLogik is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
-                                                                 view         => Views.MenüviewAccess);
+                                                                 view         => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl));
       
       PositionSchleife:
       for PositionSchleifenwert in AnfangExtern .. EndeExtern loop
@@ -317,12 +337,12 @@ package body MausauswahlLogik is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
-                                                                 view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
+                                                                 view         => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
       
       case
         Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                    RechteckExtern     => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)).x,
-                                                           Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)).y))
+                                    RechteckExtern     => (0.00, 0.00, Sf.Graphics.View.getSize (view => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte)).x,
+                                                           Sf.Graphics.View.getSize (view => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte)).y))
       is
          when True =>
             return TastenbelegungDatentypen.Auswählen_Enum;
@@ -361,7 +381,7 @@ package body MausauswahlLogik is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
-                                                                 view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
+                                                                 view         => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
       
       case
         Vergleiche.AuswahlpositionVereinfacht (MauspositionExtern => Mausposition,
@@ -475,7 +495,7 @@ package body MausauswahlLogik is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
-                                                                 view         => Views.MenüviewAccess);
+                                                                 view         => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl));
       
       PositionSchleife:
       for PositionSchleifenwert in InteraktionAuswahl.PositionenSpielstand'Range loop
@@ -539,7 +559,7 @@ package body MausauswahlLogik is
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
-                                                                 view         => Views.MenüviewAccess);
+                                                                 view         => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl));
       
       MausZeigerSchleife:
       for PositionSchleifenwert in AnfangExtern .. EndeExtern loop

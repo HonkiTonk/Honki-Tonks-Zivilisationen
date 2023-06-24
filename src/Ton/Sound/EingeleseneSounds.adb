@@ -6,8 +6,6 @@ package body EingeleseneSounds is
       use type Sf.Audio.sfSound_Ptr;
    begin
       
-      -- Sollte ich den Soundbuffer wirklich schon am Anfang für alle Sounds festlegen? äöü
-      -- Ist das sinnvoll? äöü
       SoundSchleife:
       for SoundSchleifenwert in SoundaccesseArray'Range loop
          

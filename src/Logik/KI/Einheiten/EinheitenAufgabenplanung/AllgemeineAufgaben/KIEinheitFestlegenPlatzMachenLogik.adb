@@ -10,36 +10,6 @@ with PassierbarkeitspruefungLogik;
 with KIAufgabenVerteiltLogik;
 
 package body KIEinheitFestlegenPlatzMachenLogik is
-   
-   -- War vorher für die Berechnung der Aufgabenwerte zuständig, kann vermutlich nach einer Anpassung der Festlegung weg. äöü
-   -- function PlatzMachen
-   --   (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-   -- return KIDatentypen.AufgabenWichtigkeitKlein
-   -- is begin
-      
-   --    EinheitenKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-      
-   --    BlockiertSchleife:
-   --    for BlockiertSchleifenwert in EinheitenDatentypen.MaximaleEinheiten'Range loop
-         
-   --      case
-   --        Vergleiche.Koordinatenvergleich (KoordinateEinsExtern  => EinheitenKoordinaten,
-   -- KoordinatenZweiExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, BlockiertSchleifenwert)))
-   --      is
-   --        when True =>
-   --          return KIKonstanten.PlatzFreiMachen;
-               
-   --       when False =>
-   --         null;
-   --      end case;
-         
-   --   end loop BlockiertSchleife;
-      
-   --   return KIKonstanten.UnmöglichAufgabenbewertung;
-      
-   -- end PlatzMachen;
-   
-   
 
    function PlatzMachen
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

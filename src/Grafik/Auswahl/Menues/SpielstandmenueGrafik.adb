@@ -14,6 +14,7 @@ with MenueDatentypen;
 with TextKonstanten;
 with VerzeichnisKonstanten;
 with GrafikKonstanten;
+with ViewKonstanten;
 
 with HintergrundGrafik;
 with ViewsEinstellenGrafik;
@@ -23,6 +24,7 @@ with NachGrafiktask;
 with TextfarbeGrafik;
 with TextaccessverwaltungssystemGrafik;
 with TextskalierungGrafik;
+with SpielstandVariablen;
 
 package body SpielstandmenueGrafik is
 
@@ -33,7 +35,7 @@ package body SpielstandmenueGrafik is
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.MenüEinfachbereich.width, GrafikRecordKonstanten.MenüEinfachbereich.height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccess,
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.MenüviewAccesse (ViewKonstanten.MenüAuswahl),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.MenüEinfachbereich);
       

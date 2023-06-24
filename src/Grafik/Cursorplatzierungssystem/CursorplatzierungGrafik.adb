@@ -32,7 +32,7 @@ package body CursorplatzierungGrafik is
          when KartenKonstanten.LeerEAchse =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                        point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
-                                                                       view         => Views.WeltkarteAccess (ViewKonstanten.WeltKarte));
+                                                                       view         => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
             Sichtbereich := SichtweitenGrafik.SichtbereichLesen;
             
          when others =>
@@ -43,7 +43,7 @@ package body CursorplatzierungGrafik is
       
       case
         Vergleiche.AuswahlpositionVereinfacht (MauspositionExtern => Mausposition,
-                                               VektorExtern       => Sf.Graphics.View.getSize (view => Views.WeltkarteAccess (ViewKonstanten.WeltKarte)))
+                                               VektorExtern       => Sf.Graphics.View.getSize (view => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte)))
       is
          when False =>
             return;

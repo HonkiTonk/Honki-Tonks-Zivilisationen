@@ -4,8 +4,7 @@ private with Sf.System.Vector2;
 private with Sf.Graphics.Color;
 
 private with GrafikRecordKonstanten;
-
-private with SpielstandVariablen;
+private with TextArrays;
 
 package SpielstandmenueGrafik is
    pragma Elaborate_Body;
@@ -32,7 +31,7 @@ private
 
    Farbe : Sf.Graphics.Color.sfColor;
       
-   Spielstand : SpielstandVariablen.SpielstandArray;
+   Spielstand : TextArrays.SpielstandArray;
    
    Erstellungszeit : Time;
    

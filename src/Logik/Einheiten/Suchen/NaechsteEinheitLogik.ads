@@ -9,7 +9,7 @@ package NaechsteEinheitLogik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    -- Das hier auch mal austauschen? äöü
-   -- Alternativ könnte man den erweiterten Boolean aus SystemDatentypen verwenden, aber es dann linke ich halt die SystemDatentypen mir ein, ob das sinnvoll ist? äöü
+   -- Alternativ könnte man den erweiterten Boolean aus SystemDatentypen verwenden, aber dann linke ich halt die SystemDatentypen mit ein, ob das sinnvoll ist? äöü
    type Bewegungspunkte_Enum is (
                                  Hat_Bewegungspunkte_Enum, Keine_Bewegungspunkte_Enum, Egal_Bewegungspunkte_Enum
                                 );

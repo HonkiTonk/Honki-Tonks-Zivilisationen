@@ -152,7 +152,7 @@ package body StadtAllgemeinesLogik is
                
                -- Sollte ich hier noch den Stadtnamen für die KI anpassen? Sonst hat sie doppelte Stadtnamen. äöü
                -- Besser eine Nummer für die KI festlegen diese auch Speichern/Laden, und dann für Stadtnamen verwenden. äöü
-               -- Mehr als 100 Stadtnamen einbauen, um Doppelnennung zu reduzieren? äöü
+               -- Mehr als 100 Stadtnamen einbauen, um Doppelbenennung zu reduzieren? äöü
             
             when others =>
                null;
