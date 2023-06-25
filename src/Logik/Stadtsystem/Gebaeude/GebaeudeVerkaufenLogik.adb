@@ -101,7 +101,7 @@ package body GebaeudeVerkaufenLogik is
                         
                      when True =>
                         GebaeudeAllgemeinLogik.GebäudeVerkaufen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                 WelchesGebäudeExtern     => AktuelleAuswahl);
+                                                                  WelchesGebäudeExtern     => AktuelleAuswahl);
                         StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
                   
                         if
@@ -161,7 +161,7 @@ package body GebaeudeVerkaufenLogik is
                         
          when True =>
             GebaeudeAllgemeinLogik.GebäudeVerkaufen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                     WelchesGebäudeExtern     => StadtDatentypen.GebäudeID (Auswahl));
+                                                      WelchesGebäudeExtern     => StadtDatentypen.GebäudeID (Auswahl));
             StadtproduktionLogik.Stadtproduktion (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end case;
       

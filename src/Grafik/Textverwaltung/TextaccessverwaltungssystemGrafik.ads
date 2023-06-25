@@ -22,14 +22,14 @@ package TextaccessverwaltungssystemGrafik is
      with
        Pre => (
                  TextaccessExtern /= null
-                 --   and
-               --     PositionExtern.x >= 0.00
+               and
+                 PositionExtern.x >= 0.00
                and
                  PositionExtern.y >= 0.00
-                 -- and
-               --   SkalierungExtern.x >= 0.00
-               -- and
-               --   SkalierungExtern.y >= 0.00
+               and
+                 SkalierungExtern.x >= 0.00
+               and
+                 SkalierungExtern.y >= 0.00
               );
    
    procedure PositionFarbeZeichnen
@@ -39,8 +39,8 @@ package TextaccessverwaltungssystemGrafik is
      with
        Pre => (
                  TextaccessExtern /= null
-                 --   and
-               --     PositionExtern.x >= 0.00
+               and
+                 PositionExtern.x >= 0.00
                and
                  PositionExtern.y >= 0.00
               );
@@ -52,8 +52,8 @@ package TextaccessverwaltungssystemGrafik is
      with
        Pre => (
                  TextaccessExtern /= null
-                 --   and
-               --     PositionExtern.x >= 0.00
+               and
+                 PositionExtern.x >= 0.00
                and
                  PositionExtern.y >= 0.00
               );
@@ -100,11 +100,7 @@ package TextaccessverwaltungssystemGrafik is
      with
        Pre => (
                  TextaccessExtern /= null
-                 -- Das hier funktioniert aktuell nicht mit dem Hauptmenü, später anpassen. äöü
-               -- and
-               --   PositionExtern.x >= 0.00
-               -- and
-               --   PositionExtern.y >= 0.00
+                 -- Hier keine prüfung auf >= 0.00 einbauen, weil das Probleme mit dem Hauptmenü erzeugt.
               );
 
    procedure TextPositionZeichnen
@@ -126,10 +122,10 @@ package TextaccessverwaltungssystemGrafik is
      with
        Pre => (
                  TextaccessExtern /= null
-                 -- and
-               --   SkalierungExtern.x >= 0.00
-               -- and
-               --   SkalierungExtern.y >= 0.00
+               and
+                 SkalierungExtern.x >= 0.00
+               and
+                 SkalierungExtern.y >= 0.00
               );
    
    procedure TextPositionSkalierenZeichnen
@@ -157,8 +153,8 @@ package TextaccessverwaltungssystemGrafik is
      with
        Pre => (
                  TextaccessExtern /= null
-                 -- and
-               --   PositionExtern.x >= 0.00
+               and
+                 PositionExtern.x >= 0.00
                and
                  PositionExtern.y >= 0.00
                and

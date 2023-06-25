@@ -119,7 +119,7 @@ package body EinlesenSpeziestexteLogik is
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiNameBeschreibung,
-                                                           AktuelleZeileExtern => Positive (NameBeschreibungSchleifenwert))
+                                                           AktuelleZeileExtern => NameBeschreibungSchleifenwert)
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.NameBeschreibung: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & NameBeschreibungSchleifenwert'Wide_Wide_Image);

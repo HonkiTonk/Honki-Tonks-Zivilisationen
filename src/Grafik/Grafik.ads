@@ -9,7 +9,7 @@ package Grafik is
    procedure Grafik;
 
 private
-
+   Test : String (1 .. 10);
    Startzeit : Time;
 
    LetzteDarstellung : GrafikDatentypen.AKtuelle_Anzeige_Enum := GrafikDatentypen.Start_Enum;

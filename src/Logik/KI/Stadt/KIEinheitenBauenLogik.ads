@@ -43,9 +43,11 @@ private
    
    
    
+   -- Theoretisch könnte man StädteanzahlExtern noch mit einem Contracts prüfen ob es <= Städtegrenzen ist, muss dann aber immer eine Umwandlung enthalten, da der Datentype ja bei Einheiten ist. äöü
    function EinheitBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenID;
+      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -67,7 +69,8 @@ private
    
    function NahkämpferBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID;
+      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -78,7 +81,8 @@ private
    
    function FernkämpferBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID;
+      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -132,7 +136,8 @@ private
               );
    
    function EinheitenDurchgehen
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KIRecords.EinheitIDBewertungRecord
      with
        Pre => (
@@ -143,7 +148,8 @@ private
    
    function SpezielleEinheitBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenID;
+      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KIDatentypen.BauenBewertung
      with
        Pre => (

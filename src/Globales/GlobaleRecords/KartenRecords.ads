@@ -5,6 +5,7 @@ with KartenartDatentypen;
 with BewertungDatentypen;
 with KartenextraDatentypen;
 
+-- Die ganzen Records hier mal besser benennen? äöü
 package KartenRecords is
    pragma Pure;
    
@@ -30,6 +31,15 @@ package KartenRecords is
       
       YAchse : KartenDatentypen.Kartenfeld;
       XAchse : KartenDatentypen.Kartenfeld;
+      
+   end record;
+   
+   
+   
+   type SichtweiteRecord is record
+      
+      YAchse : KartenDatentypen.SichtweiteNatural;
+      XAchse : KartenDatentypen.SichtweiteNatural;
       
    end record;
    

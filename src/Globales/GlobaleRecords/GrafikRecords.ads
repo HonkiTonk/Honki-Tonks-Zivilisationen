@@ -15,6 +15,14 @@ package GrafikRecords is
       
    type SpeziesFarbenArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Sf.Graphics.Color.sfColor;
    
+   
+   
+   -- NachGrafiktask Records
+   
+   -- NachGrafiktask Records
+   
+   
+   
    -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
    type GrafikeinstellungenRecord is record
       

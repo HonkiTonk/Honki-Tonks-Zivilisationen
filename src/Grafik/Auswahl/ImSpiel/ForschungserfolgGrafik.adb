@@ -3,6 +3,7 @@ with TextaccessVariablen;
 with GrafikDatentypen;
 with ViewKonstanten;
 with GrafikKonstanten;
+with ForschungKonstanten;
 
 with LeseWichtiges;
 
@@ -21,30 +22,39 @@ package body ForschungserfolgGrafik is
       AuswahlExtern : in Natural)
    is begin
       
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
-      
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewKonstanten.ForschungsmenüErfolg),
-                                            GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüErfolg));
-      
-      HintergrundGrafik.Spezieshintergrund (SpeziesExtern     => SpeziesExtern,
-                                            HintergrundExtern => GrafikDatentypen.Forschungserfolg_Enum,
-                                            AbmessungenExtern => Viewfläche);
-      
+      -- Das hier nach Grafik auslagern und mit übergeben? äöü
       Forschungprojekt := LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern);
+      
+      case
+        Forschungprojekt
+      is
+         when ForschungKonstanten.LeerForschung =>
+            return;
+            
+         when others =>
+            Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
+      
+            ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.ForschungsviewAccesse (ViewKonstanten.ForschungsmenüErfolg),
+                                                  GrößeExtern          => Viewfläche,
+                                                  AnzeigebereichExtern => GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüErfolg));
+      
+            HintergrundGrafik.Spezieshintergrund (SpeziesExtern     => SpeziesExtern,
+                                                  HintergrundExtern => GrafikDatentypen.Forschungserfolg_Enum,
+                                                  AbmessungenExtern => Viewfläche);
+      end case;
       
       case
         AuswahlExtern
       is
          when 1 =>
             Viewfläche := Forschung (SpeziesExtern     => SpeziesExtern,
-                                     TechnologieExtern => Forschungprojekt,
-                                     ViewbreiteExtern  => Viewfläche.x);
+                                      TechnologieExtern => Forschungprojekt,
+                                      ViewbreiteExtern  => Viewfläche.x);
             
          when 2 =>
             Viewfläche := Infotext (SpeziesExtern     => SpeziesExtern,
-                                    TechnologieExtern => Forschungprojekt,
-                                    ViewbreiteExtern  => Viewfläche.x);
+                                     TechnologieExtern => Forschungprojekt,
+                                     ViewbreiteExtern  => Viewfläche.x);
             
          when others =>
             Fehlermeldungssystem.Grafik (FehlermeldungExtern => "ForschungserfolgGrafik.Forschungserfolg: Auswahlbereich: " & AuswahlExtern'Wide_Wide_Image);

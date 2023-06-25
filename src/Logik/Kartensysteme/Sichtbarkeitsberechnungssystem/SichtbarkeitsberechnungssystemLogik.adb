@@ -29,6 +29,8 @@ package body SichtbarkeitsberechnungssystemLogik is
             return;
             
             -- Das hier auch noch einmal überarbeiten, eventuell will ich mehr als drei Felder aufdecken? äöü
+            -- Die Sichtweite auch in die EinheitenDatenbank packen'und dann hier Einheitenabhängig berechnen? äöü
+            -- Eventuell mit dem Gelände als Abzug/Teiler? äöü
          when 3 =>
             EinheitID := LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             

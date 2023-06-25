@@ -24,7 +24,6 @@ package body KIEinheitenBauenLogik is
    begin
       
       -- AnzahlStädte sollte immer größer 0 sein, da nur bei vorhandenen Städten etwas gebaut werden sollte.
-      -- AnzahlStädte mal übergeben und nicht mehr so einfach benutzen. äöü
       AnzahlStädte := EinheitenDatentypen.MaximaleEinheiten (LeseWichtiges.AnzahlStädte (SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
       VorhandeneEinheiten := LeseWichtiges.AnzahlEinheiten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       
@@ -36,7 +35,8 @@ package body KIEinheitenBauenLogik is
          return KIKonstanten.LeerEinheitenbewertung;
          
       else
-         return EinheitenDurchgehen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+         return EinheitenDurchgehen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                     StädteanzahlExtern       => AnzahlStädte);
       end if;
       
    end EinheitenBauen;
@@ -44,7 +44,8 @@ package body KIEinheitenBauenLogik is
    
    
    function EinheitenDurchgehen
-     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
+     (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
+      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KIRecords.EinheitIDBewertungRecord
    is
       use type KIDatentypen.BauenBewertung;
@@ -61,7 +62,8 @@ package body KIEinheitenBauenLogik is
          is
             when True =>
                Einheitwertung := EinheitBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                  IDExtern                 => EinheitenSchleifenwert);
+                                                  IDExtern                 => EinheitenSchleifenwert,
+                                                  StädteanzahlExtern       => StädteanzahlExtern);
                
                if
                  Einheitwertung <= KIKonstanten.LeerBewertung
@@ -91,7 +93,8 @@ package body KIEinheitenBauenLogik is
    
    function EinheitBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenID;
+      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
@@ -120,8 +123,9 @@ package body KIEinheitenBauenLogik is
       Gesamtwertung := Gesamtwertung + RessourcenKostenBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                                  EinheitenIDExtern        => IDExtern);
       Gesamtwertung := Gesamtwertung + SpezielleEinheitBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                                 IDExtern                 => IDExtern);
-            
+                                                                 IDExtern                 => IDExtern,
+                                                                 StädteanzahlExtern       => StädteanzahlExtern);
+      
       Gesamtwertung := Gesamtwertung + KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
                                                                                                           IDExtern      => IDExtern));
       
@@ -167,7 +171,8 @@ package body KIEinheitenBauenLogik is
    
    function SpezielleEinheitBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenID;
+      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
@@ -183,11 +188,13 @@ package body KIEinheitenBauenLogik is
             
          when EinheitenDatentypen.Nahkämpfer_Enum =>
             return Gesamtwertung + NahkämpferBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                        EinheitenIDExtern        => IDExtern);
+                                                        EinheitenIDExtern        => IDExtern,
+                                                        StädteanzahlExtern       => StädteanzahlExtern);
             
          when EinheitenDatentypen.Fernkämpfer_Enum =>
             return Gesamtwertung + FernkämpferBewerten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                         EinheitenIDExtern        => IDExtern);
+                                                         EinheitenIDExtern        => IDExtern,
+                                                         StädteanzahlExtern       => StädteanzahlExtern);
             
          when EinheitenDatentypen.Beides_Enum =>
             null;
@@ -247,7 +254,8 @@ package body KIEinheitenBauenLogik is
    
    function NahkämpferBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID;
+      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
@@ -263,22 +271,22 @@ package body KIEinheitenBauenLogik is
       is
          when False =>
             if
-              MengeVorhanden + MengeImBau < AnzahlStädte
+              MengeVorhanden + MengeImBau < StädteanzahlExtern
             then
                -- Auf die maximale Größe der ID und des KIDatentypen.BauenBewertung Datentyps achten.
                return 20 + KIDatentypen.BauenBewertung (EinheitenIDExtern);
                
             elsif
-              MengeVorhanden = 2 * AnzahlStädte
+              MengeVorhanden = 2 * StädteanzahlExtern
               or
-                MengeVorhanden + MengeImBau = 2 * AnzahlStädte
+                MengeVorhanden + MengeImBau = 2 * StädteanzahlExtern
             then
                return KIKonstanten.LeerBewertung;
          
             elsif
-              MengeVorhanden > 2 * AnzahlStädte
+              MengeVorhanden > 2 * StädteanzahlExtern
               or
-                MengeVorhanden + MengeImBau > 2 * AnzahlStädte
+                MengeVorhanden + MengeImBau > 2 * StädteanzahlExtern
             then
                return -50;
          
@@ -295,16 +303,16 @@ package body KIEinheitenBauenLogik is
                return 20 + KIDatentypen.BauenBewertung (EinheitenIDExtern);
                
             elsif
-              MengeVorhanden = 5 * AnzahlStädte
+              MengeVorhanden = 5 * StädteanzahlExtern
               or
-                MengeVorhanden + MengeImBau = 5 * AnzahlStädte
+                MengeVorhanden + MengeImBau = 5 * StädteanzahlExtern
             then
                return KIKonstanten.LeerBewertung;
          
             elsif
-              MengeVorhanden > 5 * AnzahlStädte
+              MengeVorhanden > 5 * StädteanzahlExtern
               or
-                MengeVorhanden + MengeImBau > 5 * AnzahlStädte
+                MengeVorhanden + MengeImBau > 5 * StädteanzahlExtern
             then
                return -5;
          
@@ -320,7 +328,8 @@ package body KIEinheitenBauenLogik is
    
    function FernkämpferBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID;
+      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
@@ -336,16 +345,16 @@ package body KIEinheitenBauenLogik is
       is
          when False =>
             if
-              MengeVorhanden = 2 * AnzahlStädte
+              MengeVorhanden = 2 * StädteanzahlExtern
               or
-                MengeVorhanden + MengeImBau = 2 * AnzahlStädte
+                MengeVorhanden + MengeImBau = 2 * StädteanzahlExtern
             then
                return KIKonstanten.LeerBewertung;
          
             elsif
-              MengeVorhanden > 2 * AnzahlStädte
+              MengeVorhanden > 2 * StädteanzahlExtern
               or
-                MengeVorhanden + MengeImBau > 2 * AnzahlStädte
+                MengeVorhanden + MengeImBau > 2 * StädteanzahlExtern
             then
                return -50;
          
@@ -356,16 +365,16 @@ package body KIEinheitenBauenLogik is
             
          when True =>
             if
-              MengeVorhanden = 5 * AnzahlStädte
+              MengeVorhanden = 5 * StädteanzahlExtern
               or
-                MengeVorhanden + MengeImBau = 5 * AnzahlStädte
+                MengeVorhanden + MengeImBau = 5 * StädteanzahlExtern
             then
                return KIKonstanten.LeerBewertung;
          
             elsif
-              MengeVorhanden > 5 * AnzahlStädte
+              MengeVorhanden > 5 * StädteanzahlExtern
               or
-                MengeVorhanden + MengeImBau > 5 * AnzahlStädte
+                MengeVorhanden + MengeImBau > 5 * StädteanzahlExtern
             then
                return -5;
          
@@ -401,7 +410,6 @@ package body KIEinheitenBauenLogik is
       
       return KIKonstanten.LeerBewertung;
       
-      -- Da das System so wie es aktuell ist nicht korrekt funktioniert, wird vorübergehen hier mit 0 multipliziert, das später wieder entfernen. äöü
       -- return -(KIDatentypen.BauenBewertung (LeseEinheitenDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
       --                                                                                 IDExtern    => EinheitenIDExtern)
       --          / LeseStadtGebaut.Produktionrate (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)

@@ -77,7 +77,7 @@ package body LadezeitenGrafik is
    
 
    -- Die ViewflächeExtern.y wird nicht benötigt, nur den x-Wert hineingeben als Float? äöü
-   -- Gilt auch bei en anderen Funktionen. äöü
+   -- Gilt auch bei den anderen Funktionen. äöü
    function SpielweltErstellen
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f

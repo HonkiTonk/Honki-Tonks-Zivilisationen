@@ -29,8 +29,7 @@ private
    
    procedure QuadrantEins
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
@@ -44,8 +43,7 @@ private
 
    procedure QuadrantZwei
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
@@ -59,8 +57,7 @@ private
 
    procedure QuadrantDrei
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with
@@ -74,8 +71,7 @@ private
 
    procedure QuadrantVier
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
      with

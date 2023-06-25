@@ -18,7 +18,7 @@ package KartenDatentypen is
    
    
    
-   -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
+   -- Rückgabewert, Planeteninneres, Unterfläche, Oberfläche, Himmel, Weltraum
    type Ebene is new UmgebungsbereichDrei range -3 .. 2;
    subtype EbeneVorhanden is Ebene range -2 .. Ebene'Last;
    subtype EbenePlanet is EbeneVorhanden range EbeneVorhanden'First .. 0;
@@ -31,5 +31,9 @@ package KartenDatentypen is
    
    type KartengeneratorQuadranten is range 1 .. 25;
    subtype StandardQuadranten is KartengeneratorQuadranten range 1 .. 4;
+   
+   
+   
+   type Achsenverschiebung is new Float range 0.00 .. 1.00;
 
 end KartenDatentypen;

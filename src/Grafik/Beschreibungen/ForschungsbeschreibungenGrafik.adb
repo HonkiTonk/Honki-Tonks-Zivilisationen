@@ -20,7 +20,7 @@ package body ForschungsbeschreibungenGrafik is
             return To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeines));
             
          when others =>
-            return To_Wide_Wide_String (Source => Speziestexte.Forschungen (SpeziesExtern, IDExtern, 1));
+            return To_Wide_Wide_String (Source => Speziestexte.Forschungen (SpeziesExtern, IDExtern, TextnummernKonstanten.KurzeBeschreibung));
       end case;
       
    end Kurzbeschreibung;
@@ -33,7 +33,7 @@ package body ForschungsbeschreibungenGrafik is
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Speziestexte.Forschungen (SpeziesExtern, IDExtern, 2));
+      return To_Wide_Wide_String (Source => Speziestexte.Forschungen (SpeziesExtern, IDExtern, TextnummernKonstanten.LangeBeschreibung));
       
    end Langbeschreibung;
 

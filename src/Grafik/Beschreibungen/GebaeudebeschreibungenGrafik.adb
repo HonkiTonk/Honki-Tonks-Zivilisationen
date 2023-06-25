@@ -1,6 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Speziestexte;
+with TextnummernKonstanten;
 
 package body GebaeudebeschreibungenGrafik is
 
@@ -10,7 +11,7 @@ package body GebaeudebeschreibungenGrafik is
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Speziestexte.Gebäude (SpeziesExtern, IDExtern, 1));
+      return To_Wide_Wide_String (Source => Speziestexte.Gebäude (SpeziesExtern, IDExtern, TextnummernKonstanten.KurzeBeschreibung));
       
    end Kurzbeschreibung;
    
@@ -22,7 +23,7 @@ package body GebaeudebeschreibungenGrafik is
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Speziestexte.Gebäude (SpeziesExtern, IDExtern, 2));
+      return To_Wide_Wide_String (Source => Speziestexte.Gebäude (SpeziesExtern, IDExtern, TextnummernKonstanten.LangeBeschreibung));
       
    end Langbeschreibung;
 

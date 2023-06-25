@@ -119,6 +119,7 @@ package body AllgemeineViewsGrafik is
    
    
    
+   -- Hier weitermachen. äöü
    -- Das hier vielleicht nach EingabeanzeigeGrafik schieben? Wird aktuell ja nur dort benötigt. äöü
    procedure Frage
      (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;

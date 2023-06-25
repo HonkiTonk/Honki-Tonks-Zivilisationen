@@ -1,12 +1,13 @@
 with KartenartDatentypen;
+with KartenDatentypen;
 with SystemDatentypen;
 
 package KartenkoordinatenWerteLogik is
    pragma Preelaborate;
 
    -- Achsenverschiebung einstellbar machen. äöü
-   VerschiebungswertYAchse : constant Float := 0.50;
-   VerschiebungswertXAchse : constant Float := 0.50;
+   VerschiebungswertYAchse : constant KartenDatentypen.Achsenverschiebung := 0.50;
+   VerschiebungswertXAchse : constant KartenDatentypen.Achsenverschiebung := 0.50;
    
    type ÜberhangArray is array (SystemDatentypen.Task_Enum'Range) of Integer;
 

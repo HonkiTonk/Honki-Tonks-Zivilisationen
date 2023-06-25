@@ -4,6 +4,7 @@ with GlobaleTexte;
 with Speziestexte;
 with TextKonstanten;
 with EinheitenKonstanten;
+with TextnummernKonstanten;
 
 package body EinheitenbeschreibungenGrafik is
 
@@ -20,7 +21,7 @@ package body EinheitenbeschreibungenGrafik is
             return TextKonstanten.LeerString;
             
          when others =>
-            return To_Wide_Wide_String (Source => Speziestexte.Einheiten (SpeziesExtern, IDExtern, 1));
+            return To_Wide_Wide_String (Source => Speziestexte.Einheiten (SpeziesExtern, IDExtern, TextnummernKonstanten.KurzeBeschreibung));
       end case;
          
    end Kurzbeschreibung;
@@ -33,7 +34,7 @@ package body EinheitenbeschreibungenGrafik is
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Speziestexte.Einheiten (SpeziesExtern, IDExtern, 2));
+      return To_Wide_Wide_String (Source => Speziestexte.Einheiten (SpeziesExtern, IDExtern, TextnummernKonstanten.LangeBeschreibung));
       
    end Langbeschreibung;
    

@@ -16,8 +16,6 @@ with TextaccessverwaltungssystemGrafik;
 
 package body SpielmeldungenGrafik is
 
-   -- Möglicherweise mit einer modifizierten Version von EingabenanzeigeGrafik.AnzeigeText zusammenfassen? äöü
-   -- Dann müsste ich den Text, den Access, den Anzeigebereich und den View mitübergeben, ob das sinnvoll ist? äöü
    procedure Spielmeldung
      (MeldungExtern : in Positive)
    is begin

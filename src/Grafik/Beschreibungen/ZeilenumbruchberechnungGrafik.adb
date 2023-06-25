@@ -23,7 +23,6 @@ package body ZeilenumbruchberechnungGrafik is
          when others =>
             NeuerText := TextKonstanten.LeerUnboundedString;
       
-            -- Sollte TextExtern'First nicht immer 1 sein? äöü
             SchleifenAnfang := TextExtern'First;
             SchleifenEnde := TextExtern'Last;
             

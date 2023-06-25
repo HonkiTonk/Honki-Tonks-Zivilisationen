@@ -18,7 +18,6 @@ package body KartengrundEditorGrafik is
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
       
-      -- Eins und Zwei bei den Views/Anzeigebereich durch True und False ersetzen? äöü
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.EditorenviewAccesse (1),
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Editorenbereich (1));

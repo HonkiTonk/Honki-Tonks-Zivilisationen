@@ -20,6 +20,7 @@ with TextfarbeGrafik;
 with ZeilenumbruchberechnungGrafik;
 with GebaeudebeschreibungenGrafik;
 with TextaccessverwaltungssystemGrafik;
+with UmwandlungenAdaNachEigenes;
 
 package body BauauswahlGebaeudeGrafik is
 
@@ -77,14 +78,16 @@ package body BauauswahlGebaeudeGrafik is
               & LeseGebaeudeDatenbank.Produktionsbonus (SpeziesExtern          => SpeziesExtern,
                                                         IDExtern               => AuswahlExtern,
                                                         ProduktionsbonusExtern => ProduktionDatentypen.Forschung_Enum)'Wide_Wide_Image;
-            -- Hier noch eine Umwandlung von Wissenschaftlich nach Normal einbauen. äöü
-            Gebäudetexte (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterVerteidigungsbonus) & LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
-                                                                                                                                                  IDExtern         => AuswahlExtern,
-                                                                                                                                                  KampfBonusExtern => KampfDatentypen.Verteidigung_Enum)'Wide_Wide_Image;
-            Gebäudetexte (10) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterAngriffsbonus) & LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
-                                                                                                                                              IDExtern         => AuswahlExtern,
-                                                                                                                                              KampfBonusExtern => KampfDatentypen.Angriff_Enum)'Wide_Wide_Image;
-      
+            
+            Gebäudetexte (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterVerteidigungsbonus)
+              & UmwandlungenAdaNachEigenes.FloatAlsString (KampfbonusExtern => LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
+                                                                                                                 IDExtern         => AuswahlExtern,
+                                                                                                                 KampfBonusExtern => KampfDatentypen.Verteidigung_Enum));
+            Gebäudetexte (10) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterAngriffsbonus)
+              & UmwandlungenAdaNachEigenes.FloatAlsString (KampfbonusExtern => LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
+                                                                                                                 IDExtern         => AuswahlExtern,
+                                                                                                                 KampfBonusExtern => KampfDatentypen.Angriff_Enum));
+            
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             Textbreite := GrafikKonstanten.Nullwert;

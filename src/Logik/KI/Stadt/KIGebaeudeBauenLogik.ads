@@ -31,7 +31,10 @@ private
    Gesamtwertung : KIDatentypen.BauenBewertung;
    Gebäudewertung : KIDatentypen.BauenBewertung;
    
+   Produktionsbonus : ProduktionDatentypen.Feldproduktion;
+   
    Produktion : ProduktionDatentypen.Stadtproduktion;
+   PermanenteKosten : ProduktionDatentypen.Stadtproduktion;
    
    GebäudeBewertet : KIRecords.GebäudeIDBewertungRecord;
    
@@ -81,7 +84,7 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.KI_Spieler_Enum
               );
           
-   function RessourcenproduktionBewerten
+   function MaterialproduktionBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID)
       return KIDatentypen.BauenBewertung

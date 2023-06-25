@@ -206,9 +206,17 @@ package body SchreibeWichtiges is
       
       SpielVariablen.Wichtiges (SpeziesExtern).Forschungsprojekt := ForschungIDExtern;
       
-      Forschungsmenge (SpeziesExtern             => SpeziesExtern,
-                       ForschungZugewinnExtern => WichtigesKonstanten.LeerForschungsmenge,
-                       RechnenSetzenExtern     => False);
+      case
+        ForschungIDExtern
+      is
+         when ForschungKonstanten.LeerForschung =>
+            null;
+            
+         when others =>
+            Forschungsmenge (SpeziesExtern             => SpeziesExtern,
+                             ForschungZugewinnExtern => WichtigesKonstanten.LeerForschungsmenge,
+                             RechnenSetzenExtern     => False);
+      end case;
       
    end Forschungsprojekt;
    

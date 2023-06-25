@@ -16,7 +16,7 @@ package body KartengeneratorRessourcenLogik is
    procedure GenerierungRessourcen
    is
    
-      -- Später noch Ressourcen für weitere Ebenen einbauen? äöü
+      -- Später noch Ressourcen für weitere Ebenen einbauen. äöü
       task RessourcenUnterfläche;
       task RessourcenKern;
       

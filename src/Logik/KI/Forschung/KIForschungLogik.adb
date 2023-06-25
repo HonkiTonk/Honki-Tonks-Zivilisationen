@@ -85,17 +85,8 @@ package body KIForschungLogik is
                
       end loop ForschungenSchleife;
       
-      -- Solche Prüfungen alle mal nach Lese/Schreibe verschieben? Dann müsste ich die auch nicht immer wieder lokal Wiederholen. Dafür halt mehr Aufrufe, sollte aber ignorierbar sein. äöü
-      case
-        WelchesProjekt
-      is
-         when ForschungKonstanten.LeerForschung =>
-            null;
-            
-         when others =>
-            SchreibeWichtiges.Forschungsprojekt (SpeziesExtern     => SpeziesExtern,
-                                                 ForschungIDExtern => WelchesProjekt);
-      end case;
+      SchreibeWichtiges.Forschungsprojekt (SpeziesExtern     => SpeziesExtern,
+                                           ForschungIDExtern => WelchesProjekt);
       
    end NeuesForschungsprojekt;
 

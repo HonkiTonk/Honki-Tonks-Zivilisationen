@@ -4,7 +4,6 @@ with GrafikKonstanten;
 package body PruefungenGrafik is
 
    -- Das hier und ähnliche Prüfungen bei allen/mehr Teilern einbauen? äöü
-   -- Benötigt aber einen Grafik und eine Logikvariante, oder doch mal protected einbauen? äöü
    -- Eventuell auch eigene Varianten für die aktuell verwendeten Orte einbauen? Dann wäre eine bessere Anpassung auf den jeweiligen Bereich möglich. äöü
    function NullprüfungKommazahl
      (KommazahlExtern : in Float)

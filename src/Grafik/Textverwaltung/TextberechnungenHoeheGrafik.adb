@@ -26,7 +26,6 @@ package body TextberechnungenHoeheGrafik is
    
    
    
-   -- Die beiden Sachen umbenennen? äöü
    function NeueTextposition
      (PositionExtern : in Float;
       TextAccessExtern : in Sf.Graphics.sfText_Ptr;

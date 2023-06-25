@@ -14,8 +14,6 @@ package body KartengeneratorLogik is
    procedure Kartengenerator
    is begin
       
-      -- Setzt im Moment nur die Ressourcen und kann deswegen nicht entfernt werden, später mal erweitern. äöü
-      -- Beim erweitern auch Prüfungen auf korrekte Werte einbauen. äöü
       PrüfeEinstellungen;
       
       KartengeneratorAllgemeinesLogik.GenerierungAllgemeines;
@@ -40,8 +38,8 @@ package body KartengeneratorLogik is
    
    
    
-   -- Das hier ist vermutlich noch nicht fertig gebaut? äöü
-   -- Ergibt was auch immer ich hier machen wollte überhaupt noch Sinn? äöü
+   -- Setzt im Moment nur die Ressourcen und kann deswegen nicht entfernt werden, später mal erweitern. äöü
+   -- Beim Erweitern auch Prüfungen auf korrekte Werte einbauen. äöü
    procedure PrüfeEinstellungen
    is begin
       

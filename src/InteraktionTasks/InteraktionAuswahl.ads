@@ -39,6 +39,7 @@ package InteraktionAuswahl is
    type PositionenForschungArray is array (ForschungenDatentypen.ForschungID'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenForschung : PositionenForschungArray := (others => GrafikRecordKonstanten.Leerbereich);
 
+   -- Das sind keine Positionen, sondern nur die vorhandenen Möglichkeiten!
    type MöglicheForschungenArray is array (PositionenForschungArray'Range) of Boolean;
    MöglicheForschungen : MöglicheForschungenArray := (others => False);
 
@@ -47,12 +48,14 @@ package InteraktionAuswahl is
    type PositionenMöglicheGebäudeArray is array (StadtDatentypen.GebäudeID'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenMöglicheGebäude : PositionenMöglicheGebäudeArray := (others => GrafikRecordKonstanten.Leerbereich);
 
+   -- Das sind keine Positionen, sondern nur die vorhandenen Möglichkeiten!
    type MöglicheGebäudeArray is array (PositionenMöglicheGebäudeArray'Range) of Boolean;
    MöglicheGebäude : MöglicheGebäudeArray := (others => False);
 
    type PositionenEinheitenBauenArray is array (EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenEinheitenBauen : PositionenEinheitenBauenArray := (others => GrafikRecordKonstanten.Leerbereich);
 
+   -- Das sind keine Positionen, sondern nur die vorhandenen Möglichkeiten!
    type MöglicheEinheitenArray is array (PositionenEinheitenBauenArray'Range) of Boolean;
    MöglicheEinheiten : MöglicheEinheitenArray := (others => False);
 
@@ -64,6 +67,7 @@ package InteraktionAuswahl is
    type PositionenDiplomatieSpeziesArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenDiplomatieSpezies : PositionenDiplomatieSpeziesArray := (others => GrafikRecordKonstanten.Leerbereich);
 
+   -- Das sind keine Positionen, sondern nur die vorhandenen Möglichkeiten!
    type SpeziesMöglicheArray is array (PositionenDiplomatieSpeziesArray'Range) of Boolean;
    SpeziesMöglich : SpeziesMöglicheArray := (others => False);
 

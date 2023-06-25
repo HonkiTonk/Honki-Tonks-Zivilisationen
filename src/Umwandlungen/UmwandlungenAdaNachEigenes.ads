@@ -1,5 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with KampfDatentypen;
+
 package UmwandlungenAdaNachEigenes is
    pragma Elaborate_Body;
    
@@ -13,10 +15,27 @@ package UmwandlungenAdaNachEigenes is
                   To_Wide_Wide_String (Source => ZahlAlsStringLeerzeichenEntfernen'Result)'Length > 0
                );
    
+   function FloatAlsString
+     (KampfbonusExtern : in KampfDatentypen.Kampfbonus)
+      return Wide_Wide_String
+     with
+       Post => (
+                  FloatAlsString'Result'Length > 0
+               );
+   
+   function PunktNachKomma
+     (ZahlenstringExtern : in String)
+      return String
+     with
+       Post => (
+                  PunktNachKomma'Result'Length > 0
+               );
+   
 private
-   
-   UngewandelteZahl : Wide_Wide_String (1 .. 6);
-   
+      
    Zahlenstring : Unbounded_Wide_Wide_String;
+   
+   Kommazahlenstring : String (1 .. 5);
+   Zwischenspeicher : String (Kommazahlenstring'Range);
 
 end UmwandlungenAdaNachEigenes;

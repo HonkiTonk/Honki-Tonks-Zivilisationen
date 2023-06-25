@@ -189,12 +189,12 @@ package body KartenkoordinateYAchseBerechnenLogik is
    is begin
       
       if
-        YAchseExtern + KartenDatentypen.KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertYAchse * Float (LeseWeltkarteneinstellungen.YAchse)) > LeseWeltkarteneinstellungen.YAchse
+        YAchseExtern + KartenDatentypen.KartenfeldPositiv (Float (KartenkoordinatenWerteLogik.VerschiebungswertYAchse) * Float (LeseWeltkarteneinstellungen.YAchse)) > LeseWeltkarteneinstellungen.YAchse
       then
-         return YAchseExtern - KartenDatentypen.KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertYAchse * Float (LeseWeltkarteneinstellungen.YAchse));
+         return YAchseExtern - KartenDatentypen.KartenfeldPositiv (Float (KartenkoordinatenWerteLogik.VerschiebungswertYAchse) * Float (LeseWeltkarteneinstellungen.YAchse));
 
       else
-         return YAchseExtern + KartenDatentypen.KartenfeldPositiv (KartenkoordinatenWerteLogik.VerschiebungswertYAchse * Float (LeseWeltkarteneinstellungen.YAchse));
+         return YAchseExtern + KartenDatentypen.KartenfeldPositiv (Float (KartenkoordinatenWerteLogik.VerschiebungswertYAchse) * Float (LeseWeltkarteneinstellungen.YAchse));
       end if;
       
    end YAchseVerschieben;

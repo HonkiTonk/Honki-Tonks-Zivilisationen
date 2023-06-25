@@ -28,17 +28,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (26.06.2023):
+   -- Version 0.05.2570 => 0.05. (26.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2525 => 0.05. (25.06.2023):
+   -- Version 0.05.2525 => 0.05.2570 (25.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Die Anzeige des Kampfbonis die ein Gebäude bringt erfolgt jetzt nicht mehr Wissenschaftlich.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/erweitert/angepasst/überarbeitet.
    
    
 

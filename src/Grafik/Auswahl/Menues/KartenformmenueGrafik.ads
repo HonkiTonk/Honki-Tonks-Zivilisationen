@@ -21,7 +21,7 @@ package KartenformmenueGrafik is
 
 private
 
-   -- Ist um eins verschoben, da die textdateien ja noch eine Überschrift enthalten.
+   -- Ist um eins verschoben, da die Textdateien ja noch eine Überschrift enthalten.
    -- Später mit ZusatztextaufteilungGrafik zusammenführen? äöü
    EbeneOben : constant Positive := 2;
    EbeneUnten : constant Positive := 3;

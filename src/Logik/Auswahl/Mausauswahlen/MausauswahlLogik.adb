@@ -71,8 +71,8 @@ package body MausauswahlLogik is
       
       case
         MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
-                                                     BereichExtern      => (GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüForschungsliste).width,
-                                                                            GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüForschungsliste).height))
+                                                    BereichExtern      => (GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüForschungsliste).width,
+                                                                           GrafikRecordKonstanten.Forschungsbereich (ViewKonstanten.ForschungsmenüForschungsliste).height))
       is
          when False =>
             return ForschungKonstanten.LeerAnforderung;
@@ -120,8 +120,8 @@ package body MausauswahlLogik is
       
       case
         MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
-                                                     BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
-                                                                            GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height))
+                                                    BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
+                                                                           GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height))
       is
          when False =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
@@ -157,8 +157,8 @@ package body MausauswahlLogik is
       
       case
         MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
-                                                     BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
-                                                                            GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height))
+                                                    BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
+                                                                           GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height))
       is
          when False =>
             return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID);

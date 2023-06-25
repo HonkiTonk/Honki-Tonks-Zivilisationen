@@ -23,7 +23,7 @@ package ForschungserfolgGrafik is
    
 private
    
-   Forschungprojekt : ForschungenDatentypen.ForschungID;
+   Forschungprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
    
    Textbreite : Float;
    

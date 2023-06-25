@@ -49,7 +49,6 @@ package KIStadtLaufendeBauprojekteLogik is
                   GleicheEinheitArtBauprojekte'Result <= LeseGrenzen.Einheitengrenze (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                );
    
-   -- Ab hier weiter machen mit dem durchgehen von äöü. äöü
    function EinheitenInProduktion
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return EinheitenDatentypen.MaximaleEinheitenMitNullWert
@@ -58,10 +57,10 @@ package KIStadtLaufendeBauprojekteLogik is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
               ),
    
-   -- Sollte so eine Post Bedingung nicht auf <= MaximaleStädte eingeschränkt sein? äöü
-   -- Einen subtype für MaximaleEinheiten erstellen der nur bis MaximalStädte geht? äöü
+   -- Einen subtype für MaximaleEinheiten erstellen der nur bis MaximaleStädte geht? äöü
+   -- Ist <= Städtegrenzen, da ja nicht mehr Einheiten gebaut werden kann als Städte vorhanden sind.
      Post => (
-                EinheitenInProduktion'Result <= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
+                EinheitenInProduktion'Result <= EinheitenDatentypen.MaximaleEinheitenMitNullWert (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern))
              );
    
 private

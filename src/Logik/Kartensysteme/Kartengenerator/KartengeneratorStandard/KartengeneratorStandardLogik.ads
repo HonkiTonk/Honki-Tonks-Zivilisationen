@@ -49,7 +49,6 @@ private
    end record;
    
    -- Später Nutzereinstellbar machen. äöü
-   -- Alles oder nur Teile davon? äöü
    WahrscheinlichkeitLandmasse : constant WahrscheinlichkeitenRecord := (20, 80);
    
    WahrscheinlichkeitLand : constant WahrscheinlichkeitenRecord := (0, 95);

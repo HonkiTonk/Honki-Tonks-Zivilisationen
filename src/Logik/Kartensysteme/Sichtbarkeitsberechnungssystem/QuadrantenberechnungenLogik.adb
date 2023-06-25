@@ -19,11 +19,10 @@ package body QuadrantenberechnungenLogik is
          XQuadrantSchleife:
          for XQuadrantSchleifenwert in 0 .. SichtweiteExtern loop
             
-            QuadrantEins (SpeziesExtern             => SpeziesExtern,
-                          SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
-                          SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
-                          SichtweiteExtern          => SichtweiteExtern,
-                          KoordinatenExtern         => KoordinatenExtern);
+            QuadrantEins (SpeziesExtern            => SpeziesExtern,
+                          SichtweiteRichtungExtern => (YQuadrantSchleifenwert, XQuadrantSchleifenwert),
+                          SichtweiteExtern         => SichtweiteExtern,
+                          KoordinatenExtern        => KoordinatenExtern);
             
             case
               YQuadrantSchleifenwert
@@ -32,11 +31,10 @@ package body QuadrantenberechnungenLogik is
                   null;
                   
                when others =>
-                  QuadrantZwei (SpeziesExtern             => SpeziesExtern,
-                                SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
-                                SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
-                                SichtweiteExtern          => SichtweiteExtern,
-                                KoordinatenExtern         => KoordinatenExtern);
+                  QuadrantZwei (SpeziesExtern            => SpeziesExtern,
+                                SichtweiteRichtungExtern => (YQuadrantSchleifenwert, XQuadrantSchleifenwert),
+                                SichtweiteExtern         => SichtweiteExtern,
+                                KoordinatenExtern        => KoordinatenExtern);
             end case;
       
             case
@@ -46,11 +44,10 @@ package body QuadrantenberechnungenLogik is
                   null;
                   
                when others =>
-                  QuadrantDrei (SpeziesExtern             => SpeziesExtern,
-                                SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
-                                SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
-                                SichtweiteExtern          => SichtweiteExtern,
-                                KoordinatenExtern         => KoordinatenExtern);
+                  QuadrantDrei (SpeziesExtern            => SpeziesExtern,
+                                SichtweiteRichtungExtern => (YQuadrantSchleifenwert, XQuadrantSchleifenwert),
+                                SichtweiteExtern         => SichtweiteExtern,
+                                KoordinatenExtern        => KoordinatenExtern);
             end case;
       
             if
@@ -61,11 +58,10 @@ package body QuadrantenberechnungenLogik is
                null;
                
             else
-               QuadrantVier (SpeziesExtern             => SpeziesExtern,
-                             SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
-                             SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
-                             SichtweiteExtern          => SichtweiteExtern,
-                             KoordinatenExtern         => KoordinatenExtern);
+               QuadrantVier (SpeziesExtern            => SpeziesExtern,
+                             SichtweiteRichtungExtern => (YQuadrantSchleifenwert, XQuadrantSchleifenwert),
+                             SichtweiteExtern         => SichtweiteExtern,
+                             KoordinatenExtern        => KoordinatenExtern);
             end if;
             
          end loop XQuadrantSchleife;
@@ -75,11 +71,9 @@ package body QuadrantenberechnungenLogik is
    
    
    
-   -- Auch mal einen zweidimensionalen Record für die Sichtweiten einbauen? äöü
    procedure QuadrantEins
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
@@ -87,7 +81,9 @@ package body QuadrantenberechnungenLogik is
    begin
               
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
+                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
+                                                                                                                               -SichtweiteRichtungExtern.YAchse,
+                                                                                                                               SichtweiteRichtungExtern.XAchse),
                                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
@@ -101,22 +97,22 @@ package body QuadrantenberechnungenLogik is
       end case;
       
       if
-        SichtweiteYRichtungExtern <= 1
+        SichtweiteRichtungExtern.YAchse <= 1
         and
-          SichtweiteXRichtungExtern <= 1
+          SichtweiteRichtungExtern.XAchse <= 1
       then
          SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                      KoordinatenExtern => KartenQuadrantWert);
                
       elsif
-        SichtweiteYRichtungExtern in 2 .. 3
+        SichtweiteRichtungExtern.YAchse in 2 .. 3
         and
-          SichtweiteXRichtungExtern <= 1
+          SichtweiteRichtungExtern.XAchse <= 1
       then
          YÄnderungSchleife:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.YAchse loop
             XÄnderungSchleife:
-            for XÄnderungSchleifenwert in 0 .. SichtweiteXRichtungExtern loop
+            for XÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.XAchse loop
                     
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
@@ -127,9 +123,9 @@ package body QuadrantenberechnungenLogik is
                   exit YÄnderungSchleife;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.YAchse
                  and
-                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.XAchse
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -142,14 +138,14 @@ package body QuadrantenberechnungenLogik is
          end loop YÄnderungSchleife;
                
       elsif
-        SichtweiteYRichtungExtern <= 1
+        SichtweiteRichtungExtern.YAchse <= 1
         and
-          SichtweiteXRichtungExtern in 2 .. 3
+          SichtweiteRichtungExtern.XAchse in 2 .. 3
       then
          YÄnderungSchleife22:
-         for YÄnderungSchleifenwert in 0 .. SichtweiteYRichtungExtern loop
+         for YÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.YAchse loop
             XÄnderungSchleife22:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.XAchse loop
                                  
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
@@ -160,9 +156,9 @@ package body QuadrantenberechnungenLogik is
                   exit YÄnderungSchleife22;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.YAchse
                  and
-                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.XAchse
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -176,9 +172,9 @@ package body QuadrantenberechnungenLogik is
                
       else
          YÄnderungSchleife333:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.YAchse loop
             XÄnderungSchleife333:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.XAchse loop
                      
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
@@ -189,9 +185,9 @@ package body QuadrantenberechnungenLogik is
                   exit YÄnderungSchleife333;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.YAchse
                  and
-                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.XAchse
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -210,8 +206,7 @@ package body QuadrantenberechnungenLogik is
    
    procedure QuadrantZwei
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
@@ -219,7 +214,9 @@ package body QuadrantenberechnungenLogik is
    begin
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
+                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
+                                                                                                                               SichtweiteRichtungExtern.YAchse,
+                                                                                                                               SichtweiteRichtungExtern.XAchse),
                                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
@@ -233,22 +230,22 @@ package body QuadrantenberechnungenLogik is
       end case;
       
       if
-        SichtweiteYRichtungExtern <= 1
+        SichtweiteRichtungExtern.YAchse <= 1
         and
-          SichtweiteXRichtungExtern <= 1
+          SichtweiteRichtungExtern.XAchse <= 1
       then
          SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                      KoordinatenExtern => KartenQuadrantWert);
                
       elsif
-        SichtweiteYRichtungExtern in 2 .. 3
+        SichtweiteRichtungExtern.YAchse in 2 .. 3
         and
-          SichtweiteXRichtungExtern <= 1
+          SichtweiteRichtungExtern.XAchse <= 1
       then
          YÄnderungSchleife:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.YAchse loop
             XÄnderungSchleife:
-            for XÄnderungSchleifenwert in 0 .. SichtweiteXRichtungExtern loop
+            for XÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.XAchse loop
                                          
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
@@ -259,9 +256,9 @@ package body QuadrantenberechnungenLogik is
                   exit YÄnderungSchleife;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.YAchse
                  and
-                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.XAchse
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -274,14 +271,14 @@ package body QuadrantenberechnungenLogik is
          end loop YÄnderungSchleife;
                
       elsif
-        SichtweiteYRichtungExtern <= 1
+        SichtweiteRichtungExtern.YAchse <= 1
         and
-          SichtweiteXRichtungExtern in 2 .. 3
+          SichtweiteRichtungExtern.XAchse in 2 .. 3
       then
          YÄnderungSchleife22:
-         for YÄnderungSchleifenwert in 0 .. SichtweiteYRichtungExtern loop
+         for YÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.YAchse loop
             XÄnderungSchleife22:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.XAchse loop
                                  
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
@@ -292,9 +289,9 @@ package body QuadrantenberechnungenLogik is
                   exit YÄnderungSchleife22;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.YAchse
                  and
-                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.XAchse
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -308,9 +305,9 @@ package body QuadrantenberechnungenLogik is
                
       else
          YÄnderungSchleife333:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.YAchse loop
             XÄnderungSchleife333:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.XAchse loop
                      
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
@@ -321,9 +318,9 @@ package body QuadrantenberechnungenLogik is
                   exit YÄnderungSchleife333;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.YAchse
                  and
-                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.XAchse
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -342,8 +339,7 @@ package body QuadrantenberechnungenLogik is
    
    procedure QuadrantDrei
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
@@ -351,7 +347,9 @@ package body QuadrantenberechnungenLogik is
    begin
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
+                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
+                                                                                                                               SichtweiteRichtungExtern.YAchse,
+                                                                                                                               -SichtweiteRichtungExtern.XAchse),
                                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
@@ -365,22 +363,22 @@ package body QuadrantenberechnungenLogik is
       end case;
       
       if
-        SichtweiteYRichtungExtern <= 1
+        SichtweiteRichtungExtern.YAchse <= 1
         and
-          SichtweiteXRichtungExtern <= 1
+          SichtweiteRichtungExtern.XAchse <= 1
       then
          SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                      KoordinatenExtern => KartenQuadrantWert);
          
       elsif
-        SichtweiteYRichtungExtern in 2 .. 3
+        SichtweiteRichtungExtern.YAchse in 2 .. 3
         and
-          SichtweiteXRichtungExtern <= 1
+          SichtweiteRichtungExtern.XAchse <= 1
       then
          YÄnderungSchleife:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.YAchse loop
             XÄnderungSchleife:
-            for XÄnderungSchleifenwert in 0 .. SichtweiteXRichtungExtern loop
+            for XÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.XAchse loop
                     
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
@@ -391,9 +389,9 @@ package body QuadrantenberechnungenLogik is
                   exit YÄnderungSchleife;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.YAchse
                  and
-                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.XAchse
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -406,14 +404,14 @@ package body QuadrantenberechnungenLogik is
          end loop YÄnderungSchleife;
                
       elsif
-        SichtweiteYRichtungExtern <= 1
+        SichtweiteRichtungExtern.YAchse <= 1
         and
-          SichtweiteXRichtungExtern in 2 .. 3
+          SichtweiteRichtungExtern.XAchse in 2 .. 3
       then
          YÄnderungSchleife22:
-         for YÄnderungSchleifenwert in 0 .. SichtweiteYRichtungExtern loop
+         for YÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.YAchse loop
             XÄnderungSchleife22:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.XAchse loop
                
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
@@ -424,9 +422,9 @@ package body QuadrantenberechnungenLogik is
                   exit YÄnderungSchleife22;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.YAchse
                  and
-                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.XAchse
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -440,9 +438,9 @@ package body QuadrantenberechnungenLogik is
                
       else
          YÄnderungSchleife333:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.YAchse loop
             XÄnderungSchleife333:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.XAchse loop
                                        
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
@@ -453,9 +451,9 @@ package body QuadrantenberechnungenLogik is
                   exit YÄnderungSchleife333;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.YAchse
                  and
-                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.XAchse
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -474,8 +472,7 @@ package body QuadrantenberechnungenLogik is
    
    procedure QuadrantVier
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteNatural;
-      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteNatural;
+      SichtweiteRichtungExtern : in KartenRecords.SichtweiteRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
@@ -483,7 +480,9 @@ package body QuadrantenberechnungenLogik is
    begin
                     
       KartenQuadrantWert := KartenkoordinatenberechnungssystemLogik.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
+                                                                                                        ÄnderungExtern    => (KartenKonstanten.LeerEAchseÄnderung,
+                                                                                                                               -SichtweiteRichtungExtern.YAchse,
+                                                                                                                               -SichtweiteRichtungExtern.XAchse),
                                                                                                         TaskExtern        => SystemDatentypen.Logik_Task_Enum);
       
       case
@@ -497,22 +496,22 @@ package body QuadrantenberechnungenLogik is
       end case;
       
       if
-        SichtweiteYRichtungExtern <= 1
+        SichtweiteRichtungExtern.YAchse <= 1
         and
-          SichtweiteXRichtungExtern <= 1
+          SichtweiteRichtungExtern.XAchse <= 1
       then
          SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                      KoordinatenExtern => KartenQuadrantWert);
                
       elsif
-        SichtweiteYRichtungExtern in 2 .. 3
+        SichtweiteRichtungExtern.YAchse in 2 .. 3
         and
-          SichtweiteXRichtungExtern <= 1
+          SichtweiteRichtungExtern.XAchse <= 1
       then
          YÄnderungSchleife:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.YAchse loop
             XÄnderungSchleife:
-            for XÄnderungSchleifenwert in 0 .. SichtweiteXRichtungExtern loop
+            for XÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.XAchse loop
                
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
@@ -523,9 +522,9 @@ package body QuadrantenberechnungenLogik is
                   exit YÄnderungSchleife;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.YAchse
                  and
-                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.XAchse
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -538,14 +537,14 @@ package body QuadrantenberechnungenLogik is
          end loop YÄnderungSchleife;
                
       elsif
-        SichtweiteYRichtungExtern <= 1
+        SichtweiteRichtungExtern.YAchse <= 1
         and
-          SichtweiteXRichtungExtern in 2 .. 3
+          SichtweiteRichtungExtern.XAchse in 2 .. 3
       then
          YÄnderungSchleife22:
-         for YÄnderungSchleifenwert in 0 .. SichtweiteYRichtungExtern loop
+         for YÄnderungSchleifenwert in 0 .. SichtweiteRichtungExtern.YAchse loop
             XÄnderungSchleife22:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.XAchse loop
                
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
@@ -556,9 +555,9 @@ package body QuadrantenberechnungenLogik is
                   exit YÄnderungSchleife22;
                   
                elsif
-                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.YAchse
                  and
-                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.XAchse
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);
@@ -572,9 +571,9 @@ package body QuadrantenberechnungenLogik is
                
       else
          YÄnderungSchleife333:
-         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+         for YÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.YAchse loop
             XÄnderungSchleife333:
-            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+            for XÄnderungSchleifenwert in 2 .. SichtweiteRichtungExtern.XAchse loop
                      
                if
                  False = SichtbereicheErmittelnLogik.SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
@@ -585,9 +584,9 @@ package body QuadrantenberechnungenLogik is
                   exit YÄnderungSchleife333;
                         
                elsif
-                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 YÄnderungSchleifenwert = SichtweiteRichtungExtern.YAchse
                  and
-                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+                   XÄnderungSchleifenwert = SichtweiteRichtungExtern.XAchse
                then
                   SichtbarkeitSetzenLogik.EbenenBerechnungen (SpeziesExtern     => SpeziesExtern,
                                                               KoordinatenExtern => KartenQuadrantWert);

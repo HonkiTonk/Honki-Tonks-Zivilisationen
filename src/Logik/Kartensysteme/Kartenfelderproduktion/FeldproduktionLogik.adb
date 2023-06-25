@@ -10,7 +10,7 @@ with Produktionsgrenzen;
 -- Wie bei den Kampfwerten aufbauen, allerdings mit Basis/Zusatzgrund als Grundwert. äöü
 -- Keine Separierung nötig, da die Logik das nur noch Rundenende aufruft und die Grafik nur während einer Runde.
 -- Das System hier und das System zur Berechnung der Kampfwerte haben ein Problem. Wenn Irgendwo die Werte das Maximum überschreiten dann erhält man am Schluss bei den Effekten weniger als möglich. äöü
--- So lassen oder anpasssen? äöü
+-- Irgendwann mal anpasssen. äöü
 package body FeldproduktionLogik is
    
    function Feldproduktion
