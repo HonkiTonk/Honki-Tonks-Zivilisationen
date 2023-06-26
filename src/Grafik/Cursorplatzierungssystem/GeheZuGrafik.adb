@@ -35,7 +35,6 @@ package body GeheZuGrafik is
    
    
    
-   -- Muss später wahrscheinlich noch an die anderen Übergangsarten angepasst werden. äöü
    function Koordinatenberechnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return KartenRecords.AchsenKartenfeldNaturalRecord

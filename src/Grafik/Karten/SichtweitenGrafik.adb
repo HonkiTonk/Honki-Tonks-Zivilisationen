@@ -25,7 +25,7 @@ package body SichtweitenGrafik is
    begin
       
       -- Eine Möglichkeit einbauen das abzustellen? äöü
-      -- Eine Möglichkeit einbauen um direkt zu Standardzoomstufe zu springen und nicht zur Kleinsten?
+      -- Eine Möglichkeit einbauen um direkt zu Standardzoomstufe zu springen und nicht zur Kleinsten? äöü
       if
         AktuelleZoomstufe + ÄnderungExtern > MaximaleZoomstufe
       then

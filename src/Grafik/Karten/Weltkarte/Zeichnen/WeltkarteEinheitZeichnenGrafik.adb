@@ -17,7 +17,6 @@ with NachGrafiktask;
 
 package body WeltkarteEinheitZeichnenGrafik is
 
-   -- Das hier noch einmal überarbeiten? äöü
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord;

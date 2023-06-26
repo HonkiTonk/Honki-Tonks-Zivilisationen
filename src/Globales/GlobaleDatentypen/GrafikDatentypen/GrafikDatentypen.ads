@@ -26,16 +26,16 @@ package GrafikDatentypen is
    
    
    
-   type Welche_Eingabe_Enum is (
+   type Eingabe_Enum is (
                                 Keine_Eingabe_Enum,
                                 
                                 Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Zeichen_Eingabe_Enum, Ja_Nein_Enum,
                                 
                                 Einheit_Auswahl_Enum
-                               );
+                        );
    
-   subtype Eingaben_Vorhanden_Enum is Welche_Eingabe_Enum range Welche_Eingabe_Enum'Succ (Welche_Eingabe_Enum'First) .. Welche_Eingabe_Enum'Last;
-   subtype Eingaben_Fragen_Enum is Eingaben_Vorhanden_Enum range Zahlen_Eingabe_Enum .. Ja_Nein_Enum;
+   subtype Eingabe_Vorhanden_Enum is Eingabe_Enum range Eingabe_Enum'Succ (Eingabe_Enum'First) .. Eingabe_Enum'Last;
+   subtype Eingabe_Fragen_Enum is Eingabe_Vorhanden_Enum range Zahlen_Eingabe_Enum .. Ja_Nein_Enum;
       
    
    

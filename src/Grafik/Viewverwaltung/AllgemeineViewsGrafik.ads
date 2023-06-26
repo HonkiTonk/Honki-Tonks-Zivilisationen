@@ -19,13 +19,9 @@ package AllgemeineViewsGrafik is
    procedure Versionsnummer
      (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum);
    
-   procedure Frage
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
-      FrageExtern : in Wide_Wide_String);
-   
 private
    
-   type Flächen_Enum is (Überschrift_Enum, Versionsnummer_Enum, Frage_Enum);
+   type Flächen_Enum is (Überschrift_Enum, Versionsnummer_Enum);
    
    Textbreite : Float;
    

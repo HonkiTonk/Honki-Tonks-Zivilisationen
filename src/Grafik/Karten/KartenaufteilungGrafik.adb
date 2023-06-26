@@ -5,6 +5,8 @@ with Views;
 with ViewKonstanten;
 with GrafikKonstanten;
 
+with LeseEinheitenDatenbank;
+
 with CursorplatzierungGrafik;
 with CursorplatzierungAltGrafik;
 with WeltkarteGrafik;
@@ -52,9 +54,8 @@ package body KartenaufteilungGrafik is
                RechtsLinksBefehlsanzeige := True;
             end if;
             
-            -- Hier eventuell direkt die Einheitenart übergeben? äöü
-            WeltkartenbefehleGrafik.Einheitenbefehle (SpeziesExtern     => EinheitenauswahlExtern.SpeziesNummer.Spezies,
-                                                      IDExtern          => EinheitenauswahlExtern.ID,
+            WeltkartenbefehleGrafik.Einheitenbefehle (EinheitartExtern  => LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies,
+                                                                                                                IDExtern      => EinheitenauswahlExtern.ID),
                                                       RechtsLinksExtern => RechtsLinksBefehlsanzeige);
       end case;
          

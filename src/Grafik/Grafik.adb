@@ -244,8 +244,7 @@ package body Grafik is
                              LetzteDarstellungExtern   => LetzteDarstellung,
                              SpielmeldungExtern        => NachGrafiktask.Spielmeldung);
       
-      -- Hier die Eingabe mit übergeben damit sie leichter verschiebbar sind? äöü
-      AnzeigeEingaben;
+      AnzeigeEingaben (EingabeExtern => NachGrafiktask.Eingabe);
                              
       case
         LeseEinstellungenGrafik.BildrateAnzeigen
@@ -297,14 +296,15 @@ package body Grafik is
    
    
    procedure AnzeigeEingaben
+     (EingabeExtern : in GrafikDatentypen.Eingabe_Enum)
    is begin
       
       case
-        NachGrafiktask.Eingabe
+        EingabeExtern
       is
-         when GrafikDatentypen.Eingaben_Fragen_Enum'Range =>
+         when GrafikDatentypen.Eingabe_Fragen_Enum'Range =>
             EingabenanzeigeGrafik.Fragenaufteilung (FrageExtern   => NachGrafiktask.AnzeigeFrage,
-                                                    EingabeExtern => NachGrafiktask.Eingabe);
+                                                    EingabeExtern => EingabeExtern);
             
          when GrafikDatentypen.Einheit_Auswahl_Enum =>
             EingabenanzeigeGrafik.AnzeigeEinheitenStadt (SpeziesStadtnameExtern =>

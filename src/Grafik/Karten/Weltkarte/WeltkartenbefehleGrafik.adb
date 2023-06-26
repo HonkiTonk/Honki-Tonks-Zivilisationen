@@ -6,8 +6,6 @@ with EinheitenKonstanten;
 with ViewKonstanten;
 with GrafikKonstanten;
 
-with LeseEinheitenDatenbank;
-
 with ViewsEinstellenGrafik;
 with TexturenSetzenSkalierenGrafik;
 with EingeleseneTexturenGrafik;
@@ -17,16 +15,12 @@ with TexturenberechnungenGrafik;
 package body WeltkartenbefehleGrafik is
    
    procedure Einheitenbefehle
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+     (EinheitartExtern : in EinheitenDatentypen.Einheitart_Enum;
       RechtsLinksExtern : in Boolean)
    is begin
-      
-      Einheitart := LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => SpeziesExtern,
-                                                         IDExtern      => IDExtern);
-      
+            
       case
-        Einheitart
+        EinheitartExtern
       is
          when EinheitenKonstanten.LeerEinheitArt =>
             return;
@@ -52,7 +46,7 @@ package body WeltkartenbefehleGrafik is
                                             GrößeExtern          => EinheitenViewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (WelcherViewbereich));
       
-      EinheitenViewfläche := Einheitenbefehlsknöpfe (EinheitenArtExtern => Einheitart,
+      EinheitenViewfläche := Einheitenbefehlsknöpfe (EinheitenArtExtern => EinheitartExtern,
                                                        WelcheTexturExtern => WelcherKnopf);
       
    end Einheitenbefehle;

@@ -20,8 +20,6 @@ with SeitenleisteLeerenGrafik;
 
 package body AllgemeinesSeitenleisteGrafik is
 
-   -- Den ganzen Text in ein Array zusammenfassen und in der Schleife abarbeiten? äöü
-   -- Alternativ auch bei leerem Text ein Zeichen setzen um einen gleichmäßigeren Abstand zu erhalten? äöü
    procedure AllgemeineInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
@@ -179,7 +177,9 @@ package body AllgemeinesSeitenleisteGrafik is
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
             when False =>
-               null;
+               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                               TextAccessExtern => TextaccessVariablen.TexthöheAccess,
+                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          end case;
          
       end loop TextSchleife;

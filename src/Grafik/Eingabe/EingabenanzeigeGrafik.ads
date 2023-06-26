@@ -24,7 +24,7 @@ package EingabenanzeigeGrafik is
    
    procedure Fragenaufteilung
      (FrageExtern : in ZahlenDatentypen.EigenesPositive;
-      EingabeExtern : in GrafikDatentypen.Eingaben_Fragen_Enum);
+      EingabeExtern : in GrafikDatentypen.Eingabe_Fragen_Enum);
    
    procedure AnzeigeEinheitenStadt
      (SpeziesStadtnameExtern : in EinheitenGrafikRecords.SpeziesStadtnameGrafikRecord;
@@ -49,6 +49,7 @@ private
    
    EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
    
+   FrageViewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
    Skalierung : Sf.System.Vector2.sfVector2f;
@@ -60,8 +61,12 @@ private
    procedure AnzeigeText;
    procedure AnzeigeJaNein;
    
+   procedure Frage
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
+      FrageExtern : in Wide_Wide_String);
    
    
-   function ZahlAlsStringNatural is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => Natural);
+   
+   function ZahlAlsString is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => Natural);
 
 end EingabenanzeigeGrafik;

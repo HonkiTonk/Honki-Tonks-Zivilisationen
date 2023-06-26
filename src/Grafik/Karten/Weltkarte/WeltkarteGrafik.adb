@@ -153,7 +153,6 @@ package body WeltkarteGrafik is
                Transparents := GrafikKonstanten.Weltraumtransparents;
             
             when KartenKonstanten.OberflächeKonstante =>
-               -- Hier eventuell später noch den aktuellen Grund berücksichtigen oder ist der bei Wasser niemals wichtig? äöü
                if
                  LeseWeltkarte.Basisgrund (KoordinatenExtern => KoordinatenExtern) in KartengrundDatentypen.Basisgrund_Oberfläche_Wasser_Enum'Range
                then

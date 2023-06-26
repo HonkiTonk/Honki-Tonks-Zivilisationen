@@ -83,10 +83,10 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
-   function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Produktion);
+   function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Produktion);
    
-   function ZahlAlsStringEbeneVorhanden is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.EbeneVorhanden);
+   function ZahlAlsStringEbeneVorhanden is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KartenDatentypen.EbeneVorhanden);
    
-   function ZahlAlsStringPositive is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => Natural);
+   function ZahlAlsStringPositive is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => Natural);
 
 end WichtigesSeitenleisteGrafik;

@@ -9,15 +9,18 @@ package Grafik is
    procedure Grafik;
 
 private
-   Test : String (1 .. 10);
+
    Startzeit : Time;
 
    LetzteDarstellung : GrafikDatentypen.AKtuelle_Anzeige_Enum := GrafikDatentypen.Start_Enum;
    AktuelleDarstellung : GrafikDatentypen.AKtuelle_Anzeige_Enum;
 
-   procedure AnzeigeEingaben;
    procedure GrafikanpassungenVorFensterleerung;
    procedure Eingaben;
+
+   procedure AnzeigeEingaben
+     (EingabeExtern : in GrafikDatentypen.Eingabe_Enum);
+
    procedure AnzeigeSpielmeldungen
      (AktuelleDarstellungExtern : in GrafikDatentypen.AKtuelle_Anzeige_Enum;
       LetzteDarstellungExtern : in GrafikDatentypen.AKtuelle_Anzeige_Enum;

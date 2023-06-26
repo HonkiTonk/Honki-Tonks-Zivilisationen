@@ -12,8 +12,6 @@ with TextberechnungenHoeheGrafik;
 
 package body BildrateAnzeigenGrafik is
    
-   -- Eine Anzeige einbauen bei der die wissenschaftliche Anzeige verwendet wird? äöü
-   -- Generell wieder als Float anzeigen? äöü
    procedure Bildrate
    is begin
       
@@ -21,33 +19,28 @@ package body BildrateAnzeigenGrafik is
       LetzteZeit := Clock;
       
       if
-        Zeitunterschied = 0.00
+        Zeitunterschied <= 0.000_001
       then
-         AktuelleBildrate := 1;
-         
-      elsif
-        Float'Floor (1.00 / Zeitunterschied) < 1.00
-      then
-         AktuelleBildrate := 1;
+         AktuelleBildrate := 1_000_000.00;
          
       else
-         AktuelleBildrate := Positive (Float'Floor (1.00 / Zeitunterschied));
+         AktuelleBildrate := 1.00 / Zeitunterschied;
       end if;
               
-      ZielBildrate := Natural (LeseEinstellungenGrafik.Bildrate);
+      ZielBildrate := Float (LeseEinstellungenGrafik.Bildrate);
       
       if
-        ZielBildrate = 0
+        ZielBildrate = 0.00
       then
          Farbe := Sf.Graphics.Color.sfGreen;
          
       elsif
-        AktuelleBildrate < ZielBildrate / 2
+        AktuelleBildrate < ZielBildrate / 2.00
       then
          Farbe := Sf.Graphics.Color.sfRed;
       
       elsif
-        AktuelleBildrate < ZielBildrate - 1
+        AktuelleBildrate < ZielBildrate - 1.00
       then
          Farbe := Sf.Graphics.Color.sfYellow;
          
@@ -64,7 +57,7 @@ package body BildrateAnzeigenGrafik is
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Bildratenbereich);
       
       TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.BildrateAccess,
-                                                                   TextExtern       => AktuelleBildrate'Wide_Wide_Image,
+                                                                   TextExtern       => KommazahlAlsString (KommazahlExtern => AktuelleBildrate),
                                                                    PositionExtern   => (5.00, 5.00),
                                                                    FarbeExtern      => Farbe);
       

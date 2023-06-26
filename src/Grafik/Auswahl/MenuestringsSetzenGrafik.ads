@@ -53,6 +53,6 @@ private
                  WelcheZeileExtern <= MenueKonstanten.EndeMenü (MenueDatentypen.Sonstiges_Menü_Enum)
               );
    
-   function ZahlAlsString is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => Natural);
+   function ZahlAlsString is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => Natural);
 
 end MenuestringsSetzenGrafik;

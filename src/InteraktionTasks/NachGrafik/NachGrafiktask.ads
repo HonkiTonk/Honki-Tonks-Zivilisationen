@@ -66,7 +66,7 @@ package NachGrafiktask is
    
    AnzeigeFrage : ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
    
-   Eingabe : GrafikDatentypen.Welche_Eingabe_Enum := GrafikDatentypen.Keine_Eingabe_Enum;
+   Eingabe : GrafikDatentypen.Eingabe_Enum := GrafikDatentypen.Keine_Eingabe_Enum;
    
    EinheitBewegt : Boolean := False;
    Einheitenbewegung : Boolean := False;

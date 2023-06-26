@@ -19,20 +19,20 @@ with NachLogiktask;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with NachGrafiktask;
-with AllgemeineViewsGrafik;
 with TextfarbeGrafik;
 with TextaccessverwaltungssystemGrafik;
 with TextskalierungGrafik;
 
+-- Die Viewflächen hier alle in ein Array umwandeln? äöü
 package body EingabenanzeigeGrafik is
    
    procedure Fragenaufteilung
      (FrageExtern : in ZahlenDatentypen.EigenesPositive;
-      EingabeExtern : in GrafikDatentypen.Eingaben_Fragen_Enum)
+      EingabeExtern : in GrafikDatentypen.Eingabe_Fragen_Enum)
    is begin
       
-      AllgemeineViewsGrafik.Frage (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
-                                   FrageExtern       => To_Wide_Wide_String (Source => Meldungstexte.Frage (FrageExtern)));
+      Frage (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
+             FrageExtern       => To_Wide_Wide_String (Source => Meldungstexte.Frage (FrageExtern)));
       
       case
         EingabeExtern
@@ -53,6 +53,44 @@ package body EingabenanzeigeGrafik is
    end Fragenaufteilung;
    
    
+   
+   procedure Frage
+     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
+      FrageExtern : in Wide_Wide_String)
+   is begin
+      
+      FrageViewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => FrageViewfläche,
+                                                                             VerhältnisExtern => (GrafikRecordKonstanten.Fragenbereich.width, GrafikRecordKonstanten.Fragenbereich.height));
+      
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (ViewKonstanten.Frage),
+                                            GrößeExtern          => FrageViewfläche,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Fragenbereich);
+      
+      HintergrundGrafik.Hintergrund (HintergrundExtern => HintergrundExtern,
+                                     AbmessungenExtern => FrageViewfläche);
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
+                                         str  => FrageExtern);
+      
+      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
+                                                                              ViewbreiteExtern => FrageViewfläche.x);
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      
+      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ÜberschriftAccess,
+                                                          PositionExtern   => Textposition);
+      
+      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
+                                                                          TextbreiteExtern => GrafikKonstanten.Nullwert);
+      
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+
+      FrageViewfläche := (Textbreite, Textposition.y);
+      
+   end Frage;
+   
+   
 
    procedure AnzeigeGanzeZahl
    is begin
@@ -71,10 +109,10 @@ package body EingabenanzeigeGrafik is
         NachGrafiktask.EingegebenesVorzeichen
       is
          when False =>
-            Text := To_Unbounded_Wide_Wide_String (Source => "-") & ZahlAlsStringNatural (ZahlExtern => NachGrafiktask.EingegebeneZahl);
+            Text := To_Unbounded_Wide_Wide_String (Source => "-") & ZahlAlsString (ZahlExtern => NachGrafiktask.EingegebeneZahl);
                               
          when True =>
-            Text := ZahlAlsStringNatural (ZahlExtern => NachGrafiktask.EingegebeneZahl);       
+            Text := To_Unbounded_Wide_Wide_String (Source => ZahlAlsString (ZahlExtern => NachGrafiktask.EingegebeneZahl));       
       end case;
                                     
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EingabenanzeigeAccess,
@@ -94,7 +132,6 @@ package body EingabenanzeigeGrafik is
                                                                       TextAccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
-      -- Die Viewflächen auch in ein Array umwandeln? äöü
       Viewfläche := (Textbreite, Textposition.y);
       
    end AnzeigeGanzeZahl;

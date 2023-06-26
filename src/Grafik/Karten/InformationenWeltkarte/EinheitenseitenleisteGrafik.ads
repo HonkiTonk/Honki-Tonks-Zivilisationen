@@ -139,22 +139,22 @@ private
                   PlanZielKoordinaten'Result.y >= 0.00
                );
       
-   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitenDatentypen.MaximaleEinheitenMitNullWert);
+   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.MaximaleEinheitenMitNullWert);
    
-   function ZahlAlsStringProduktionFeld is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Feldproduktion);
+   function ZahlAlsStringProduktionFeld is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Feldproduktion);
    
-   function ZahlAlsStringGesamtproduktionStadt is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Stadtproduktion);
+   function ZahlAlsStringGesamtproduktionStadt is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Stadtproduktion);
    
-   function ZahlAlsStringLebenspunkte is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KampfDatentypen.Lebenspunkte);
+   function ZahlAlsStringLebenspunkte is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Lebenspunkte);
    
-   function ZahlAlsStringBewegungspunkte is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitenDatentypen.Bewegungspunkte);
+   function ZahlAlsStringBewegungspunkte is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Bewegungspunkte);
    
-   function ZahlAlsStringKampfwerte is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KampfDatentypen.KampfwerteGroß);
+   function ZahlAlsStringKampfwerte is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.KampfwerteGroß);
    
-   function ZahlAlsStringArbeitszeit is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
+   function ZahlAlsStringArbeitszeit is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
    
-   function ZahlAlsStringErfahrungspunkte is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KampfDatentypen.Erfahrungspunkte);
+   function ZahlAlsStringErfahrungspunkte is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Erfahrungspunkte);
    
-   function ZahlAlsStringRang is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KampfDatentypen.Rang);
+   function ZahlAlsStringRang is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Rang);
 
 end EinheitenseitenleisteGrafik;

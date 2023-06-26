@@ -16,6 +16,7 @@ with ForschungsbeschreibungenGrafik;
 with EinheitenbeschreibungenGrafik;
 with GebaeudebeschreibungenGrafik;
 
+-- Mal sowas für Textstyle einbauen? äöü
 package body TextaccesseTextGrafik is
 
    procedure TextSetzen

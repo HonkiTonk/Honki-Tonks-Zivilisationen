@@ -6,20 +6,18 @@ with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenDatentypen;
 with KartenRecords;
-
-private with KartenDatentypen;
+with KartenDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
-
-private with LeseWeltkarteneinstellungen;
+with LeseWeltkarteneinstellungen;
 
 package CursorplatzierungAltGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   use type KartenDatentypen.Kartenfeld;
 
-   -- Hier und wieter unten noch Contracts einbauen. äöü
    procedure CursorplatzierungAlt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
@@ -28,10 +26,13 @@ package CursorplatzierungAltGrafik is
                  EinheitSpeziesNummerExtern.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+               and
+                 EinheitenkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 EinheitenkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
 private
-   use type KartenDatentypen.Kartenfeld;
    
    EinheitFolgen : Boolean;
    
@@ -73,6 +74,10 @@ private
                  EinheitSpeziesNummerExtern.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+               and
+                 EinheitenkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 EinheitenkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
    
    
@@ -96,6 +101,10 @@ private
                  EinheitSpeziesNummerExtern.Nummer <= LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
+               and
+                 EinheitenkoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 EinheitenkoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               );
          
    function AlteYAchseFestlegen

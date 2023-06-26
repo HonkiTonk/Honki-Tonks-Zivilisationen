@@ -49,6 +49,7 @@ package body FensterGrafik is
             Startauflösung := LeseEinstellungenGrafik.Auflösung;
             
             -- Die Vollbildauflösung noch seperat speichern? äöü
+            -- Hier muss dann später noch eine Prüfung rein ob die gespeicherte Auflösung möglich ist. äöü
          when GrafikKonstanten.Vollbild =>
             Startauflösung := (Sf.Window.VideoMode.getDesktopMode.width, Sf.Window.VideoMode.getDesktopMode.height);
             

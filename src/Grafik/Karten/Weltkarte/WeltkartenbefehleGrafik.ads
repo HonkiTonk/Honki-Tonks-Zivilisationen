@@ -2,7 +2,6 @@ private with Sf.System.Vector2;
 private with Sf.Graphics;
 private with Sf.Graphics.Sprite;
 
-with SpeziesDatentypen;
 with EinheitenDatentypen;
 
 private with GrafikRecordKonstanten;
@@ -15,14 +14,11 @@ package WeltkartenbefehleGrafik is
      (RechtsLinksExtern : in Boolean);
    
    procedure Einheitenbefehle
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+     (EinheitartExtern : in EinheitenDatentypen.Einheitart_Enum;
       RechtsLinksExtern : in Boolean);
    
 private
-      
-   Einheitart : EinheitenDatentypen.Einheitart_Enum;
-   
+         
    WelcherKnopf : BefehleDatentypen.Befehlsknöpfe_Enum;
    
    AnfangEinheitenbefehle : constant Positive := 2;

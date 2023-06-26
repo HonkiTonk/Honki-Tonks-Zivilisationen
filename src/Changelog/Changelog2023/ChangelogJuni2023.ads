@@ -21,17 +21,19 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (27.06.2023):
+   -- Version 0.05.2620 => 0.05. (27.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2570 => 0.05. (26.06.2023):
+   -- Version 0.05.2570 => 0.05.2620 (26.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Bildrate wird jetzt als zweistellige Kommazahl angezeigt.
+   -- Die Anzeige von allen Kommazahlen sollte jetzt immer zweistellig, normal und ohne zusätzliche Leerzeichen erfolgen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/erweitert.
    
    
 

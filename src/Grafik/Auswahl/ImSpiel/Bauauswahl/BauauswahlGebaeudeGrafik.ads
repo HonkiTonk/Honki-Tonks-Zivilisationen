@@ -5,8 +5,11 @@ with StadtDatentypen;
 
 private with GrafikRecordKonstanten;
 private with TextArrays;
+private with KampfDatentypen;
 
 with LeseSpeziesbelegung;
+
+private with UmwandlungenAdaNachEigenes;
 
 package BauauswahlGebaeudeGrafik is
    pragma Elaborate_Body;
@@ -39,5 +42,9 @@ private
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
+   
+   
+   
+   function KommazahlAlsString is new UmwandlungenAdaNachEigenes.KommazahlAlsString (Kommazahl => KampfDatentypen.Kampfbonus);
 
 end BauauswahlGebaeudeGrafik;

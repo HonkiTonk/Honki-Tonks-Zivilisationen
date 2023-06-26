@@ -45,7 +45,7 @@ package body LadezeitenGrafik is
                                           SpielenamenExtern => False);
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                      VerhältnisExtern => (GrafikRecordKonstanten.Ladebereich.width, GrafikRecordKonstanten.Ladebereich.height));
+                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Ladebereich.width, GrafikRecordKonstanten.Ladebereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.LadeviewAccess,
                                             GrößeExtern          => Viewfläche,
@@ -90,7 +90,7 @@ package body LadezeitenGrafik is
       SpielweltErstellenSchleife:
       for SpielweltErstellenSchleifenwert in LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range loop
                 
-         Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))
+         Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))
            & TextKonstanten.Trennzeichen & MaximalerLadefortschritt;
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
@@ -130,7 +130,7 @@ package body LadezeitenGrafik is
       KIRechnetSchleife:
       for KIRechnetSchleifenwert in LadezeitenDatentypen.KI_Rechnet_Enum'Range loop
                   
-         Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittKI (KIRechnetSchleifenwert))
+         Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittKI (KIRechnetSchleifenwert))
            & TextKonstanten.Trennzeichen & MaximalerLadefortschritt;
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
@@ -166,7 +166,7 @@ package body LadezeitenGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RundenendeAccess (1),
-                                         str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittRundenende)) & TextKonstanten.Trennzeichen & MaximalerLadefortschritt);
+                                         str  => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittRundenende) & TextKonstanten.Trennzeichen & MaximalerLadefortschritt);
                                                  
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
                                                                               ViewbreiteExtern => ViewflächeExtern.x);
@@ -190,8 +190,7 @@ package body LadezeitenGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpeichernLadenAccess (1),
-                                         str  => To_Wide_Wide_String (Source => ZahlAlsStringLadefortschritt (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden)) & TextKonstanten.Trennzeichen
-                                         & MaximalerLadefortschritt);
+                                         str  => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden) & TextKonstanten.Trennzeichen & MaximalerLadefortschritt);
                                                  
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
                                                                               ViewbreiteExtern => ViewflächeExtern.x);

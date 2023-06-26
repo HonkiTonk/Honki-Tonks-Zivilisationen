@@ -75,6 +75,6 @@ private
                   PositionFestlegen'Result.y >= 0.00
                );
    
-   function ZahlAlsStringKartenfeldPositiv is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
+   function ZahlAlsString is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
 
 end ZusatztextKartengroesseGrafik;

@@ -13,4 +13,5 @@
 -- Brauchbare Editoren
 -- Minimap einbauen
 -- Alles was mit Laden/Speichern von Spielständen zu tun hat mal in eigene Datentypen/Konstant/usw. verschieben?
+-- Sf.Window.VideoMode mal genauer anschauen, um mehr Vollbildmodis zu bekommen als nur den mit der aktuellen Auflösung (siehe auch FensterGrafik.FensterErzeugenErweitert).
 --

@@ -1,5 +1,3 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with Sf.Graphics.Text;
 
 with MenueKonstanten;
@@ -54,8 +52,8 @@ package body ZusatztextKartengroesseGrafik is
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
                                          str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 1,
                                                                                               WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & Ebenenanzahl
-                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse)) & KleinesX
-                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse)));
+                                         & ZahlAlsString (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.YAchse) & KleinesX
+                                         & ZahlAlsString (ZahlExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße.XAchse));
       
       case
         AktuelleAuswahlExtern
@@ -67,9 +65,8 @@ package body ZusatztextKartengroesseGrafik is
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                                str  => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => MenueKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum),
                                                                                                     WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & TextKonstanten.StandardAbstand & Ebenenanzahl
-                                               & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).YAchse))
-                                               & KleinesX & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv
-                                                                                 (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).XAchse)));
+                                               & ZahlAlsString (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).YAchse) & KleinesX
+                                               & ZahlAlsString (ZahlExtern => KartenKonstanten.StandardKartengrößen (StandardKartengrößen (AktuelleAuswahlExtern)).XAchse));
       end case;
       
    end TextFestlegen;

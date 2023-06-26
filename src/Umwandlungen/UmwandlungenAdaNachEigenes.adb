@@ -2,60 +2,49 @@ with Ada.Float_Text_IO; use Ada.Float_Text_IO;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Strings.Wide_Wide_Fixed;
 
+-- Eventuell noch ein Zeichen für tausender Stellen hinzufügen? äöü
 package body UmwandlungenAdaNachEigenes is
    
-   -- Wieso Unbounded_Wide_Wide_String? Müsste Wide_Wide_String nicht auch gehen? Wenn nicht dann mal eine Wide_Wide_String Variante bauen. äöü
-   function ZahlAlsStringLeerzeichenEntfernen
+   function ZahlAlsString
      (ZahlExtern : in GanzeZahl)
-      return Unbounded_Wide_Wide_String
+      return Wide_Wide_String
    is begin
       
       if
         ZahlExtern >= 0
       then
-         Zahlenstring := To_Unbounded_Wide_Wide_String (Source => Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlExtern'Wide_Wide_Image,
-                                                                                                    Side   => Ada.Strings.Left));
+         return Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlExtern'Wide_Wide_Image,
+                                                  Side   => Ada.Strings.Left);
          
       else
-         Zahlenstring := To_Unbounded_Wide_Wide_String (Source => ZahlExtern'Wide_Wide_Image);
+         return ZahlExtern'Wide_Wide_Image;
       end if;
       
-      return Zahlenstring;
-      
-   end ZahlAlsStringLeerzeichenEntfernen;
+   end ZahlAlsString;
    
    
    
-   function FloatAlsString
-     (KampfbonusExtern : in KampfDatentypen.Kampfbonus)
+   function KommazahlAlsString
+     (KommazahlExtern : in Kommazahl)
       return Wide_Wide_String
-   is
-      use type KampfDatentypen.Kampfbonus;
-   begin
+   is begin
       
       Put (To   => Kommazahlenstring,
-           Item => Float (KampfbonusExtern),
+           Item => Float (KommazahlExtern),
            Aft  => 2,
            Exp  => 0);
       
       -- Hier später noch eine Prüfung einbauen ob ein Punkt oder ein Komma als Trennung genutzt werden soll. äöü
-      -- Das auch eventuell für Tausenderstellen einbauen? äöü
-      -- Kommazahlenstring := PunktNachKomma (ZahlenstringExtern => Kommazahlenstring);
+      -- Kommazahlenstring := PunktOderKomma (ZahlenstringExtern => Kommazahlenstring);
+            
+      return Ada.Strings.Wide_Wide_Fixed.Trim (Source => Decode (Item => Kommazahlenstring),
+                                               Side   => Ada.Strings.Left);
       
-      if
-        KampfbonusExtern = KampfDatentypen.Kampfbonus'Last
-      then
-         return " " & Decode (Item => Kommazahlenstring);
-         
-      else
-         return Decode (Item => Kommazahlenstring);
-      end if;
-      
-   end FloatAlsString;
+   end KommazahlAlsString;
    
    
    
-   function PunktNachKomma
+   function PunktOderKomma
      (ZahlenstringExtern : in String)
       return String
    is begin
@@ -80,6 +69,6 @@ package body UmwandlungenAdaNachEigenes is
       
       return Zwischenspeicher;
       
-   end PunktNachKomma;
+   end PunktOderKomma;
 
 end UmwandlungenAdaNachEigenes;

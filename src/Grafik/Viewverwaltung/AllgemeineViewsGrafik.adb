@@ -3,7 +3,6 @@ with Sf.Graphics.Text;
 with TextaccessVariablen;
 with Views;
 with SonstigesKonstanten;
-with ViewKonstanten;
 with GrafikKonstanten;
 
 with TextberechnungenBreiteGrafik;
@@ -116,45 +115,5 @@ package body AllgemeineViewsGrafik is
       Viewfläche (Versionsnummer_Enum) := (Textbreite, Textposition.y);
       
    end Versionsnummer;
-   
-   
-   
-   -- Hier weitermachen. äöü
-   -- Das hier vielleicht nach EingabeanzeigeGrafik schieben? Wird aktuell ja nur dort benötigt. äöü
-   procedure Frage
-     (HintergrundExtern : in GrafikDatentypen.Hintergrund_Enum;
-      FrageExtern : in Wide_Wide_String)
-   is begin
-      
-      Viewfläche (Frage_Enum) := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche (Frage_Enum),
-                                                                                     VerhältnisExtern => (GrafikRecordKonstanten.Fragenbereich.width, GrafikRecordKonstanten.Fragenbereich.height));
-      
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.FragenviewAccesse (ViewKonstanten.Frage),
-                                            GrößeExtern          => Viewfläche (Frage_Enum),
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Fragenbereich);
-      
-      HintergrundGrafik.Hintergrund (HintergrundExtern => HintergrundExtern,
-                                     AbmessungenExtern => Viewfläche (Frage_Enum));
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ÜberschriftAccess,
-                                         str  => FrageExtern);
-      
-      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                              ViewbreiteExtern => Viewfläche (Frage_Enum).x);
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                          PositionExtern   => Textposition);
-      
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                          TextbreiteExtern => GrafikKonstanten.Nullwert);
-      
-      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
-
-      Viewfläche (Frage_Enum) := (Textbreite, Textposition.y);
-      
-   end Frage;
 
 end AllgemeineViewsGrafik;

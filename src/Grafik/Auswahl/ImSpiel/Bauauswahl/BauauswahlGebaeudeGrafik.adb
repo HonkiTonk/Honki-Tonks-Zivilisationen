@@ -6,7 +6,6 @@ with TextnummernKonstanten;
 with Meldungstexte;
 with TextaccessVariablen;
 with ProduktionDatentypen;
-with KampfDatentypen;
 with StadtKonstanten;
 with GrafikKonstanten;
 
@@ -20,7 +19,6 @@ with TextfarbeGrafik;
 with ZeilenumbruchberechnungGrafik;
 with GebaeudebeschreibungenGrafik;
 with TextaccessverwaltungssystemGrafik;
-with UmwandlungenAdaNachEigenes;
 
 package body BauauswahlGebaeudeGrafik is
 
@@ -79,14 +77,14 @@ package body BauauswahlGebaeudeGrafik is
                                                         IDExtern               => AuswahlExtern,
                                                         ProduktionsbonusExtern => ProduktionDatentypen.Forschung_Enum)'Wide_Wide_Image;
             
-            Gebäudetexte (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterVerteidigungsbonus)
-              & UmwandlungenAdaNachEigenes.FloatAlsString (KampfbonusExtern => LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
-                                                                                                                 IDExtern         => AuswahlExtern,
-                                                                                                                 KampfBonusExtern => KampfDatentypen.Verteidigung_Enum));
-            Gebäudetexte (10) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterAngriffsbonus)
-              & UmwandlungenAdaNachEigenes.FloatAlsString (KampfbonusExtern => LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
-                                                                                                                 IDExtern         => AuswahlExtern,
-                                                                                                                 KampfBonusExtern => KampfDatentypen.Angriff_Enum));
+            Gebäudetexte (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterVerteidigungsbonus) & " "
+              & KommazahlAlsString (KommazahlExtern => (LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
+                                                                                          IDExtern         => AuswahlExtern,
+                                                                                          KampfBonusExtern => KampfDatentypen.Verteidigung_Enum)));
+            Gebäudetexte (10) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterAngriffsbonus) & " "
+              & KommazahlAlsString (KommazahlExtern => (LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
+                                                                                          IDExtern         => AuswahlExtern,
+                                                                                          KampfBonusExtern => KampfDatentypen.Angriff_Enum)));
             
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;

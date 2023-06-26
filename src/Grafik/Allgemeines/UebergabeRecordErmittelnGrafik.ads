@@ -24,9 +24,6 @@ package UebergabeRecordErmittelnGrafik is
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
    
-   -- Die Contracts hier und bei der Bauauswahl auf <= anstellte von in ändern. äöü
-   -- Wobei das ja nur aufgerufen werden sollte wenn da auch eine Stadt ist, oder? äöü
-   -- Dann könnten die Contracts so bleiben, scheint bisher auch so zu funktionieren. äöü
    function Stadt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return StadtGrafikRecords.StadtGrafikRecord

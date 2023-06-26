@@ -5,6 +5,8 @@ private with Sf.Graphics.Color;
 
 private with GrafikRecordKonstanten;
 
+private with UmwandlungenAdaNachEigenes;
+
 package BildrateAnzeigenGrafik is
    pragma Elaborate_Body;
 
@@ -12,10 +14,8 @@ package BildrateAnzeigenGrafik is
    
 private
    
-   AktuelleBildrate : Positive;
-   
-   ZielBildrate : Natural;
-   
+   AktuelleBildrate : Float;
+   ZielBildrate : Float;
    Zeitunterschied : Float;
    
    LetzteZeit : Time := Clock;
@@ -23,5 +23,9 @@ private
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    
    Farbe : Sf.Graphics.Color.sfColor;
+   
+   
+   
+   function KommazahlAlsString is new UmwandlungenAdaNachEigenes.KommazahlAlsString (Kommazahl => Float);
 
 end BildrateAnzeigenGrafik;

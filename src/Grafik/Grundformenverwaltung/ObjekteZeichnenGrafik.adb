@@ -69,7 +69,6 @@ package body ObjekteZeichnenGrafik is
    
    
    
-   -- Wird aktuell nicht mehr benötigt, sollte sich das in der Zukunft nicht ändern kann es theoretisch raus. äöü
    procedure KreisZeichnen
      (RadiusExtern : in Float;
       PositionExtern : in Sf.System.Vector2.sfVector2f;

@@ -70,8 +70,6 @@ package body WichtigesSeitenleisteGrafik is
    
    
    
-   -- Wieso gibt es keine Lese/Schreibefunktion für die Rundenanzahl? äöü
-   -- Vermutlich weil sie meistens nur gelesen und nur am Rundenende oder beim Standard setzen aufgerufen wird? äöü
    function Rundenanzahl
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Unbounded_Wide_Wide_String
