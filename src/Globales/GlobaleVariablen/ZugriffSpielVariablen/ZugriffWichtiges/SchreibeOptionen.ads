@@ -21,19 +21,21 @@ package SchreibeOptionen is
    procedure RundenAutospeichern
      (RundenanzahlExtern : in ZahlenDatentypen.EigenesPositive);
    pragma Inline (RundenAutospeichern);
+   
+   procedure Dezimaltrennzeichen
+     (ZeichenExtern : in Wide_Wide_Character);
+   pragma Inline (Dezimaltrennzeichen);
 
    procedure GanzeSpieleinstellungen
      (EinstellungenExtern : in SystemRecords.NutzerEinstellungenRecord);
    pragma Inline (GanzeSpieleinstellungen);
    
-   
-   
    procedure AktuellerAutospeichernwert
      (AutospeichernwertExtern : in ZahlenDatentypen.EigenesPositive);
    pragma Inline (AktuellerAutospeichernwert);
    
-   procedure GanzeSonstigeEinstellungen
+   procedure GanzeSpielendeEinstellungen
      (EinstellungenExtern : in SystemRecords.SpielendeEinstellungenRecord);
-   pragma Inline (GanzeSonstigeEinstellungen);
+   pragma Inline (GanzeSpielendeEinstellungen);
 
 end SchreibeOptionen;

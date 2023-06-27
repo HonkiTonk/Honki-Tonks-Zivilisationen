@@ -2,6 +2,7 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 private with Sf.Window.Window;
 private with Sf.System.Vector2;
+private with Sf.Graphics.Text;
 
 private with GrafikRecords;
 
@@ -33,6 +34,8 @@ private
    Schriftgrößen : GrafikRecords.SchriftgrößenArray;
    
    Schriftfarben : GrafikRecords.SchriftfarbenArray;
+   
+   Schriftstil : Sf.Graphics.Text.sfTextStyle;
    
    SpeziesFarben : GrafikRecords.SpeziesFarbenArray;
    

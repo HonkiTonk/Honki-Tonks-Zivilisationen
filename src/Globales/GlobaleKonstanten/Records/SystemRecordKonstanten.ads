@@ -17,7 +17,8 @@ package SystemRecordKonstanten is
    StandardNutzereinstellungen : constant SystemRecords.NutzerEinstellungenRecord := (
                                                                                       Sprache             => TextKonstanten.LeerUnboundedString,
                                                                                       AnzahlAutospeichern => 10,
-                                                                                      RundenAutospeichern => 10
+                                                                                      RundenAutospeichern => 10,
+                                                                                      Dezimaltrennzeichen => ','
                                                                                      );
 
    StandardSpielendeEinstellungen : constant SystemRecords.SpielendeEinstellungenRecord := (

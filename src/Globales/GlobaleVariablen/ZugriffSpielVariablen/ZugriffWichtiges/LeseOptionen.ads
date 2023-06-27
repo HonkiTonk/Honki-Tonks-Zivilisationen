@@ -17,7 +17,9 @@ package LeseOptionen is
      return ZahlenDatentypen.EigenesPositive;
    pragma Inline (RundenAutospeichern);
    
-   
+   function Dezimaltrennzeichen
+     return Wide_Wide_Character;
+   pragma Inline (Dezimaltrennzeichen);
    
    function AktuellerAutospeichernwert
      return ZahlenDatentypen.EigenesPositive;

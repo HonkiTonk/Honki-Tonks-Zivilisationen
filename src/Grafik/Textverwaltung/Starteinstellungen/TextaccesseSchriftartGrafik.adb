@@ -9,6 +9,7 @@ package body TextaccesseSchriftartGrafik is
    is begin
       
       -- Ein paar der Sachen zusammenfassen? Oder doch lieber nach Dateien/Bereich getrennt lassen? äöü
+      -- Gilt auch für die anderen Bereiche der Textverwaltung. äöü
       Allgemeines (SchriftaccessExtern => SchriftaccessExtern);
       Menüs (SchriftaccessExtern => SchriftaccessExtern);
       Spezies (SchriftaccessExtern => SchriftaccessExtern);

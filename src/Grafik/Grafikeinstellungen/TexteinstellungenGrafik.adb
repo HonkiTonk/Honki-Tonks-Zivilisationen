@@ -149,5 +149,25 @@ package body TexteinstellungenGrafik is
       return EinstellungenGrafik.Grafikeinstellungen.Schriftfarben (WelcheFarbeExtern);
       
    end SchriftfarbeLesen;
+   
+   
+   
+   procedure SchriftstilSchreiben
+     (StilExtern : in Sf.Graphics.Text.sfTextStyle)
+   is begin
+      
+      EinstellungenGrafik.Grafikeinstellungen.Schriftstil := StilExtern;
+      
+   end SchriftstilSchreiben;
+   
+   
+   
+   function SchriftstilLesen
+     return Sf.Graphics.Text.sfTextStyle
+   is begin
+      
+      return EinstellungenGrafik.Grafikeinstellungen.Schriftstil;
+      
+   end SchriftstilLesen;
 
 end TexteinstellungenGrafik;

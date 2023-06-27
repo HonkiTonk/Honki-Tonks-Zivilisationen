@@ -2,6 +2,7 @@ with Sf;
 with Sf.Window.Window;
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
+with Sf.Graphics.Text;
 
 with TextDatentypen;
 with SpeziesDatentypen;
@@ -34,6 +35,7 @@ package GrafikRecords is
    
       Schriftgrößen : SchriftgrößenArray;
       Schriftfarben : SchriftfarbenArray;
+      Schriftstil : Sf.Graphics.Text.sfTextStyle;
       
       Speziesfarben : SpeziesFarbenArray;
       

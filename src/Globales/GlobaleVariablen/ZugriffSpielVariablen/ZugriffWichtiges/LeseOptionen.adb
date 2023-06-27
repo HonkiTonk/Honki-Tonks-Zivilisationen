@@ -32,6 +32,16 @@ package body LeseOptionen is
    
    
    
+   function Dezimaltrennzeichen
+     return Wide_Wide_Character
+   is begin
+      
+      return OptionenVariablen.NutzerEinstellungen.Dezimaltrennzeichen;
+      
+   end Dezimaltrennzeichen;
+   
+   
+   
    function AktuellerAutospeichernwert
      return ZahlenDatentypen.EigenesPositive
    is begin

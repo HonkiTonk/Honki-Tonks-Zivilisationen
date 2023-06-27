@@ -20,6 +20,8 @@ private
    
    RundenAutospeichern : ZahlenDatentypen.EigenesPositive;
    
+   Dezimaltrennzeichen : Wide_Wide_Character;
+   
    
    
    function NutzereinstellungenDurchgehen

@@ -28,13 +28,14 @@ private
    Stringlänge : constant Positive := 10;
    
    Kommazahlenstring : String (1 .. Stringlänge);
-   Zwischenspeicher : String (Kommazahlenstring'Range);
+   
+   Zwischenspeicher : Wide_Wide_String (Kommazahlenstring'Range);
    
    
    
    function PunktOderKomma
-     (ZahlenstringExtern : in String)
-      return String
+     (ZahlenstringExtern : in Wide_Wide_String)
+      return Wide_Wide_String
      with
        Post => (
                   PunktOderKomma'Result'Length > 0

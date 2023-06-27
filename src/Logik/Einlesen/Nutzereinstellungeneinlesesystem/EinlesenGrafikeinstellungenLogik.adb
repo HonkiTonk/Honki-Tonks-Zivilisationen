@@ -74,7 +74,6 @@ package body EinlesenGrafikeinstellungenLogik is
       if
         LadenPrüfenExtern = False
       then
-         -- GrafikRecords.GrafikeinstellungenRecord
          case
            End_Of_File (File => DateiLadenExtern)
          is
@@ -219,6 +218,17 @@ package body EinlesenGrafikeinstellungenLogik is
                Sf.Graphics.Color.sfColor'Read (Stream (File => DateiLadenExtern),
                                                Schriftfarben (TextDatentypen.Sonstiges_Enum));
          end case;
+         
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Schriftstil := EinstellungenGrafik.GrafikeinstellungenStandard.Schriftstil;
+               
+            when False =>
+               Sf.Graphics.Text.sfTextStyle'Read (Stream (File => DateiLadenExtern),
+                                                  Schriftstil);
+         end case;
       
       
       
@@ -262,7 +272,10 @@ package body EinlesenGrafikeinstellungenLogik is
                Boolean'Read (Stream (File => DateiLadenExtern),
                              BildrateAnzeigen);
          end case;
-         -- GrafikRecords.GrafikeinstellungenRecord
+         
+         -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig gelesen wurde!
+         -- Sollte Probleme mit geänderten Datentypen vorbeugen.
+         return End_Of_File (File => DateiLadenExtern);
       
       else
          SchreibeEinstellungenGrafik.GesamteGrafikeinstellungen (EinstellungenExtern => (
@@ -273,17 +286,17 @@ package body EinlesenGrafikeinstellungenLogik is
                                                                                          Bildrate               => Bildrate,
                                                                                       
                                                                                          Schriftgrößen          => Schriftgrößen,
-                                                                                      
                                                                                          Schriftfarben          => Schriftfarben,
+                                                                                         Schriftstil            => Schriftstil,
                                                                                       
                                                                                          Speziesfarben          => SpeziesFarben,
                                                                                                           
                                                                                          EbeneUnterhalbSichtbar => EbenenUnterhalbSichtbar,
                                                                                          BildrateAnzeigen       => BildrateAnzeigen
                                                                                         ));
-      end if;
       
-      return True;
+         return True;
+      end if;
       
    exception
       when StandardAdaFehler : others =>

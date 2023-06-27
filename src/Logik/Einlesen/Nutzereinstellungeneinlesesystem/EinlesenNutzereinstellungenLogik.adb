@@ -72,7 +72,6 @@ package body EinlesenNutzereinstellungenLogik is
       if
         LadenPrüfenExtern = False
       then
-         -- SystemRecords.NutzerEinstellungenRecord
          case
            End_Of_File (File => DateiLadenExtern)
          is
@@ -105,17 +104,32 @@ package body EinlesenNutzereinstellungenLogik is
                ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
                                                       RundenAutospeichern);
          end case;
-         -- SystemRecords.NutzerEinstellungenRecord
+         
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               Dezimaltrennzeichen := SystemRecordKonstanten.StandardNutzereinstellungen.Dezimaltrennzeichen;
+               
+            when False =>
+               Wide_Wide_Character'Read (Stream (File => DateiLadenExtern),
+                                         Dezimaltrennzeichen);
+         end case;
+         
+         -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig gelesen wurde!
+         -- Sollte Probleme mit geänderten Datentypen vorbeugen.
+         return End_Of_File (File => DateiLadenExtern);
       
       else
          SchreibeOptionen.GanzeSpieleinstellungen (EinstellungenExtern => (
                                                                            Sprache             => Sprache,
                                                                            AnzahlAutospeichern => AnzahlAutospeichern,
-                                                                           RundenAutospeichern => RundenAutospeichern
+                                                                           RundenAutospeichern => RundenAutospeichern,
+                                                                           Dezimaltrennzeichen => Dezimaltrennzeichen
                                                                           ));
-      end if;
       
-      return True;
+         return True;
+      end if;
       
    exception
       when StandardAdaFehler : others =>

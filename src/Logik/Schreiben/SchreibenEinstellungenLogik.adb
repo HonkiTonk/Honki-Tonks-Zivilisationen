@@ -6,6 +6,7 @@ with Sf.Window.Window;
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
 with Sf.Window.Keyboard;
+with Sf.Graphics.Text;
 
 with VerzeichnisKonstanten;
 with ZahlenDatentypen;
@@ -43,6 +44,9 @@ package body SchreibenEinstellungenLogik is
       
       ZahlenDatentypen.EigenesPositive'Write (Stream (File => DateiNutzereinstellungen),
                                               LeseOptionen.RundenAutospeichern);
+      
+      Wide_Wide_Character'Write (Stream (File => DateiNutzereinstellungen),
+                                 LeseOptionen.Dezimaltrennzeichen);
       -- SystemRecords.NutzerEinstellungenRecord
       
       Close (File => DateiNutzereinstellungen);
@@ -114,6 +118,9 @@ package body SchreibenEinstellungenLogik is
       
       Sf.Graphics.Color.sfColor'Write (Stream (File => DateiGrafikeinstellungen),
                                        TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Sonstiges_Enum));
+      
+      Sf.Graphics.Text.sfTextStyle'Write (Stream (File => DateiGrafikeinstellungen),
+                                          TexteinstellungenGrafik.SchriftstilLesen);
       
       
       

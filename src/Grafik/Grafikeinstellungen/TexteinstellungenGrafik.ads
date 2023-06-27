@@ -3,10 +3,10 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with Sf.Graphics;
 with Sf.Graphics.Color;
+with Sf.Graphics.Text;
 
 with TextDatentypen;
 
--- Später auch was für den Textstyle einbauen? äöü
 package TexteinstellungenGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfFont_Ptr;
@@ -20,6 +20,9 @@ package TexteinstellungenGrafik is
    procedure SchriftfarbeSchreiben
      (FarbeExtern : in Sf.Graphics.Color.sfColor;
       WelcheFarbeExtern : in TextDatentypen.Schriftfarbe_Enum);
+   
+   procedure SchriftstilSchreiben
+     (StilExtern : in Sf.Graphics.Text.sfTextStyle);
    
    
    
@@ -56,6 +59,9 @@ package TexteinstellungenGrafik is
        Post => (
                   EigeneSchriftartVerwenden'Result'Length > 0
                );
+   
+   function SchriftstilLesen
+     return Sf.Graphics.Text.sfTextStyle;
    
 private
    

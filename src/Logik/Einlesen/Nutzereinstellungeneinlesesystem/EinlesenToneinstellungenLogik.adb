@@ -71,7 +71,6 @@ package body EinlesenToneinstellungenLogik is
       if
         LadenPrüfenExtern = False
       then
-         -- TonRecords.ToneinstellungenRecord
          case
            End_Of_File (File => DateiLadenExtern)
          is
@@ -93,16 +92,19 @@ package body EinlesenToneinstellungenLogik is
                Float'Read (Stream (File => DateiLadenExtern),
                            Musiklautstärke);
          end case;
-         -- TonRecords.ToneinstellungenRecord
+         
+         -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig gelesen wurde!
+         -- Sollte Probleme mit geänderten Datentypen vorbeugen.
+         return End_Of_File (File => DateiLadenExtern);
       
       else
          SchreibeEinstellungenTon.GesamteToneinstellungen (EinstellungenExtern => (
                                                                                    Soundlautstärke => Soundlautstärke,
                                                                                    Musiklautstärke => Musiklautstärke
                                                                                   ));
-      end if;
       
-      return True;
+         return True;
+      end if;
       
    exception
       when StandardAdaFehler : others =>

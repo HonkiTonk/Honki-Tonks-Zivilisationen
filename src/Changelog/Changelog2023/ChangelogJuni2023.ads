@@ -14,17 +14,20 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (28.06.2023):
+   -- Version 0.05.2680 => 0.05. (28.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2620 => 0.05. (27.06.2023):
+   -- Version 0.05.2620 => 0.05.2680 (27.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Grafiken überarbeitet und optimiert.
+   -- Textaccessverwaltungssystem überarbeitet.
+   -- Das Textaccessverwaltungssystem kann jetzt auch den Textstil ändern.
+   -- Fehler korrigiert, welcher zu Problemen führen konnte wenn gespeicherte Einstellungen geladen wurden, die Datentype der Einstellungen aber gekürzt wuden.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

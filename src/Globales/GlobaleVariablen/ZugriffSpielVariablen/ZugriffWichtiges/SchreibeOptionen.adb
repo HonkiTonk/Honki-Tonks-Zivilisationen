@@ -31,6 +31,16 @@ package body SchreibeOptionen is
    end RundenAutospeichern;
    
    
+   
+   procedure Dezimaltrennzeichen
+     (ZeichenExtern : in Wide_Wide_Character)
+   is begin
+      
+      OptionenVariablen.NutzerEinstellungen.Dezimaltrennzeichen := ZeichenExtern;
+      
+   end Dezimaltrennzeichen;
+   
+   
 
    procedure GanzeSpieleinstellungen
      (EinstellungenExtern : in SystemRecords.NutzerEinstellungenRecord)
@@ -52,12 +62,12 @@ package body SchreibeOptionen is
    
    
    
-   procedure GanzeSonstigeEinstellungen
+   procedure GanzeSpielendeEinstellungen
      (EinstellungenExtern : in SystemRecords.SpielendeEinstellungenRecord)
    is begin
       
       OptionenVariablen.SpielendeEinstellungen := EinstellungenExtern;
       
-   end GanzeSonstigeEinstellungen;
+   end GanzeSpielendeEinstellungen;
 
 end SchreibeOptionen;

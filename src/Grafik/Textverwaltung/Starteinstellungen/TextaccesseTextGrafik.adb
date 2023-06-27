@@ -16,7 +16,6 @@ with ForschungsbeschreibungenGrafik;
 with EinheitenbeschreibungenGrafik;
 with GebaeudebeschreibungenGrafik;
 
--- Mal sowas für Textstyle einbauen? äöü
 package body TextaccesseTextGrafik is
 
    procedure TextSetzen
@@ -49,7 +48,7 @@ package body TextaccesseTextGrafik is
                                          str  => "Version: " & SonstigesKonstanten.Versionsnummer);
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.TexthöheAccess,
-                                         str  => "abcdefghijklmnopqrstuvwxyzäöüß   ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ   0123456789   ?!§$%&/()=:;.,<>|'*+#");
+                                         str  => "abcdefghijklmnopqrstuvwxyzäöüß - ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ - 0123456789 - ?!§$%&/()=:;.,<>|'*+#");
       
       
       

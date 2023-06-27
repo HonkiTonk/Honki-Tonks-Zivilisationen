@@ -71,7 +71,6 @@ package body EinlesenSonstigeEinstellungenLogik is
       if
         LadenPrüfenExtern = False
       then
-         -- SystemRecords.SpielendeEinstellungenRecord
          case
            End_Of_File (File => DateiLadenExtern)
          is
@@ -82,15 +81,18 @@ package body EinlesenSonstigeEinstellungenLogik is
                ZahlenDatentypen.EigenesPositive'Read (Stream (File => DateiLadenExtern),
                                                       Autospeichernwert);
          end case;
-         -- SystemRecords.SpielendeEinstellungenRecord
+         
+         -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig gelesen wurde!
+         -- Sollte Probleme mit geänderten Datentypen vorbeugen.
+         return End_Of_File (File => DateiLadenExtern);
       
       else
-         SchreibeOptionen.GanzeSonstigeEinstellungen (EinstellungenExtern => (
-                                                                              AktuellerAutospeichernwert => Autospeichernwert
-                                                                             ));
-      end if;
+         SchreibeOptionen.GanzeSpielendeEinstellungen (EinstellungenExtern => (
+                                                                               AktuellerAutospeichernwert => Autospeichernwert
+                                                                              ));
       
-      return True;
+         return True;
+      end if;
       
    exception
       when StandardAdaFehler : others =>

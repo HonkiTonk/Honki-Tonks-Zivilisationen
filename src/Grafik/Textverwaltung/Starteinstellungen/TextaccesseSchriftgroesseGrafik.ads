@@ -3,28 +3,60 @@ with Sf;
 package TextaccesseSchriftgroesseGrafik is
    pragma Elaborate_Body;
 
-   procedure SchriftgrößeSetzen;
+   procedure SchriftgrößeSetzen
+     (ÜberschriftExtern : in Sf.sfUint32;
+      StandardExtern : in Sf.sfUint32;
+      KleinExtern : in Sf.sfUint32);
 
 private
 
-   Überschrift : Sf.sfUint32;
-   Normal : Sf.sfUint32;
-   Klein : Sf.sfUint32;
+   procedure Allgemeines
+     (ÜberschriftExtern : in Sf.sfUint32;
+      StandardExtern : in Sf.sfUint32;
+      KleinExtern : in Sf.sfUint32);
 
-   procedure Allgemeines;
-   procedure Menüs;
-   procedure Spezies;
-   procedure ZusatztextKartengröße;
-   procedure Sprachauswahl;
-   procedure Kartenformauswahl;
-   procedure StadtInformationen;
-   procedure EinheitenInformationen;
-   procedure KarteWichtiges;
-   procedure KarteAllgemeines;
-   procedure Karte;
-   procedure EinheitStadtAuswahl;
-   procedure AnzeigeEingabe;
-   procedure Ladezeiten;
-   procedure Befehle;
+   procedure Menüs
+     (StandardExtern : in Sf.sfUint32);
+
+   procedure Spezies
+     (ÜberschriftExtern : in Sf.sfUint32;
+      StandardExtern : in Sf.sfUint32);
+
+   procedure ZusatztextKartengröße
+     (StandardExtern : in Sf.sfUint32);
+
+   procedure Sprachauswahl
+     (StandardExtern : in Sf.sfUint32);
+
+   procedure Kartenformauswahl
+     (ÜberschriftExtern : in Sf.sfUint32;
+      StandardExtern : in Sf.sfUint32);
+
+   procedure StadtInformationen
+     (StandardExtern : in Sf.sfUint32);
+
+   procedure EinheitenInformationen
+     (StandardExtern : in Sf.sfUint32);
+
+   procedure KarteWichtiges
+     (StandardExtern : in Sf.sfUint32);
+
+   procedure KarteAllgemeines
+     (StandardExtern : in Sf.sfUint32);
+
+   procedure Karte
+     (ÜberschriftExtern : in Sf.sfUint32);
+
+   procedure EinheitStadtAuswahl
+     (StandardExtern : in Sf.sfUint32);
+
+   procedure AnzeigeEingabe
+     (StandardExtern : in Sf.sfUint32);
+
+   procedure Ladezeiten
+     (StandardExtern : in Sf.sfUint32);
+
+   procedure Befehle
+     (StandardExtern : in Sf.sfUint32);
 
 end TextaccesseSchriftgroesseGrafik;

@@ -12,6 +12,8 @@ package SystemRecords is
       AnzahlAutospeichern : ZahlenDatentypen.EigenesNatural;
       RundenAutospeichern : ZahlenDatentypen.EigenesPositive;
       
+      Dezimaltrennzeichen : Wide_Wide_Character;
+      
    end record;
    
    

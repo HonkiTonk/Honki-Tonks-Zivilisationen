@@ -36,6 +36,8 @@ package EinstellungenGrafik is
                                                                                                                  TextDatentypen.Sonstiges_Enum   => Sf.Graphics.Color.sfCyan
                                                                                                                 ),
                                                                                       
+                                                                                      Schriftstil            => 0,
+                                                                                      
                                                                                       Speziesfarben          => (
                                                                                                                  SpeziesDatentypen.Menschen_Enum         => (255, 230, 200, 75),
                                                                                                                  SpeziesDatentypen.Kasrodiah_Enum        => (255, 100, 40, 75),

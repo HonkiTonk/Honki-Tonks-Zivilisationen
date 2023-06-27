@@ -32,10 +32,10 @@ package GrafikRecordKonstanten is
    MenüEinfachbereich : constant Sf.Graphics.Rect.sfFloatRect := Unterschriftbereich;
    Ladebereich : constant Sf.Graphics.Rect.sfFloatRect := Unterschriftbereich;
    
-   Fragenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.25, 0.45, 0.50, 0.05);
-   Eingabebereich : constant Sf.Graphics.Rect.sfFloatRect := (Fragenbereich.left, Fragenbereich.top + Fragenbereich.height, Fragenbereich.width, Fragenbereich.height);
-   JaNeinBereich : constant Sf.Graphics.Rect.sfFloatRect := (Fragenbereich.left, Fragenbereich.top + Fragenbereich.height, Fragenbereich.width, 2.00 * Fragenbereich.height);
-   Meldungsbereich : constant Sf.Graphics.Rect.sfFloatRect := Fragenbereich;
+   Meldungsbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.25, 0.45, 0.50, 0.05);
+   Fragenbereich : constant Sf.Graphics.Rect.sfFloatRect := Meldungsbereich;
+   Eingabebereich : constant Sf.Graphics.Rect.sfFloatRect := (Meldungsbereich.left, Meldungsbereich.top + Meldungsbereich.height, Meldungsbereich.width, Meldungsbereich.height);
+   JaNeinBereich : constant Sf.Graphics.Rect.sfFloatRect := (Meldungsbereich.left, Meldungsbereich.top + Meldungsbereich.height, Meldungsbereich.width, 2.00 * Meldungsbereich.height);
    
    type BereicheArray is array (Positive range <>) of Sf.Graphics.Rect.sfFloatRect;
    MenüDoppelbereich : constant BereicheArray (Views.MenüviewAccesse'Range) := (
