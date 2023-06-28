@@ -5,7 +5,6 @@ with KartengrundDatentypen;
 with ViewKonstanten;
 with ZeitKonstanten;
 with GrafikDatentypen;
-with GrafikVariablen;
 with TextaccessVariablen;
 with KartenDatentypen;
 with Meldungstexte;
@@ -16,6 +15,8 @@ with GrafikKonstanten;
 
 with LeseWeltkarte;
 with LeseGebaeudeDatenbank;
+with LeseGrafikVariablen;
+with SchreibeGrafikVariablen;
 
 with FensterGrafik;
 with EingeleseneTexturenGrafik;
@@ -152,16 +153,17 @@ package body StadtkarteGrafik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      GrafikVariablen.InformationsfeldBereiche (ViewKonstanten.InformationsfeldStadtkarte)
-        := ViewbereicheBerechnenGrafik.ViewbereichBreiteHöheBerechnen (BereichExtern => GrafikVariablen.InformationsfeldBereiche (ViewKonstanten.InformationsfeldStadtkarte));
+      Rechteck := ViewbereicheBerechnenGrafik.ViewbereichBreiteHöheBerechnen (BereichExtern => LeseGrafikVariablen.InformationsfeldBereiche (WelcherBereichExtern => ViewKonstanten.InformationsfeldStadtkarte));
+      
+      SchreibeGrafikVariablen.InformationsfeldBereiche (WelcherBereichExtern => ViewKonstanten.InformationsfeldStadtkarte,
+                                                        RechteckExtern       => Rechteck);
                                                                         
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (GrafikVariablen.InformationsfeldBereiche (ViewKonstanten.InformationsfeldStadtkarte).width,
-                                                                                              GrafikVariablen.InformationsfeldBereiche (ViewKonstanten.InformationsfeldStadtkarte).height));
+                                                                        VerhältnisExtern => (Rechteck.width, Rechteck.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.InformationsfeldAccesse (ViewKonstanten.InformationsfeldStadtkarte),
                                             GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikVariablen.InformationsfeldBereiche (ViewKonstanten.InformationsfeldStadtkarte));
+                                            AnzeigebereichExtern => LeseGrafikVariablen.InformationsfeldBereiche (WelcherBereichExtern => ViewKonstanten.InformationsfeldStadtkarte));
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);

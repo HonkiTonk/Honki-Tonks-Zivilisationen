@@ -55,7 +55,7 @@ package body EinlesenLogik is
                end loop SpracheAuswählenSchleife;
                   
                SchreibeOptionen.Sprache (SpracheExtern => GewählteSprache);
-               NachGrafiktask.SchriftartSetzen := True;
+               NachGrafiktask.Texteinstellungen.SchriftartSetzen := True;
                SchreibenEinstellungenLogik.Nutzereinstellungen;
                   
             when False =>

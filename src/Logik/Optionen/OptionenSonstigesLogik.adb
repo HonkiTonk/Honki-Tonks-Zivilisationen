@@ -1,6 +1,7 @@
 with TextKonstanten;
 with MenueDatentypen;
 with TextnummernKonstanten;
+with SystemKonstanten;
 
 with SchreibenEinstellungenLogik;
 with EinlesenSpracheLogik;
@@ -55,7 +56,7 @@ package body OptionenSonstigesLogik is
    is begin
       
       EingegebeneZahl := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
-                                                           ZahlenMaximumExtern => 999_999_999,
+                                                           ZahlenMaximumExtern => SystemKonstanten.MaximaleEingabe,
                                                            WelcheFrageExtern   => TextnummernKonstanten.FrageWievieleAutospielstände);
       case
         EingegebeneZahl.ErfolgreichAbbruch
@@ -75,7 +76,7 @@ package body OptionenSonstigesLogik is
    is begin
       
       EingegebeneZahl := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => 0,
-                                                           ZahlenMaximumExtern => 999_999_999,
+                                                           ZahlenMaximumExtern => SystemKonstanten.MaximaleEingabe,
                                                            WelcheFrageExtern   => TextnummernKonstanten.FrageRundenAutomatischSpeichern);
 
       case
@@ -116,10 +117,10 @@ package body OptionenSonstigesLogik is
                
             else
                SchreibeOptionen.Sprache (SpracheExtern => GewählteSprache);
-               NachGrafiktask.SchriftartSetzen := True;
+               NachGrafiktask.Texteinstellungen.SchriftartSetzen := True;
                EinlesenTextLogik.EinlesenDateien;
                EinlesenSpeziestexteLogik.SpeziestexteEinlesen;
-               NachGrafiktask.AccesseSetzen := True;
+               NachGrafiktask.Texteinstellungen.TextSetzen := True;
             end if;
             
          when False =>
@@ -127,9 +128,5 @@ package body OptionenSonstigesLogik is
       end case;
       
    end SpracheWechseln;
-   
-   
-   
-   -- Hier später noch eine Option für den Wechsel der Schriftart einbauen. äöü
 
 end OptionenSonstigesLogik;

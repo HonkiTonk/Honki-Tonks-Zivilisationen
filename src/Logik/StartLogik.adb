@@ -50,7 +50,10 @@ package body StartLogik is
       end loop FensterVorhandenSchleife;
       
       EinlesenLogik.EinlesenMitAnzeige;
-      NachGrafiktask.AccesseSetzen := True;
+      NachGrafiktask.Texteinstellungen.SchriftgrößeSetzen := True;
+      NachGrafiktask.Texteinstellungen.SchriftfarbeSetzen := True;
+      NachGrafiktask.Texteinstellungen.SchriftstilSetzen := True;
+      NachGrafiktask.Texteinstellungen.TextSetzen := True;
       
       NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Intro_Enum;
       

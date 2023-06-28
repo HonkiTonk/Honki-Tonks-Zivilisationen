@@ -7,17 +7,18 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (29.06.2023):
+   -- Version 0.05.2720 => 0.05. (29.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2680 => 0.05. (28.06.2023):
+   -- Version 0.05.2680 => 0.05.2720 (28.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Lese/Schreibedateien für die Grafikvariablen angelegt.
+   -- Angefangen die tasksübergreifenden Variablen besser zu gruppieren.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
@@ -26,7 +27,7 @@ package ChangelogVorlage is
    -- Grafiken überarbeitet und optimiert.
    -- Textaccessverwaltungssystem überarbeitet.
    -- Das Textaccessverwaltungssystem kann jetzt auch den Textstil ändern.
-   -- Fehler korrigiert, welcher zu Problemen führen konnte wenn gespeicherte Einstellungen geladen wurden, die Datentype der Einstellungen aber gekürzt wuden.
+   -- Fehler korrigiert, welcher zu Fehlern führen konnte wenn gespeicherte Einstellungen geladen wurden, die Datentype der Einstellungen aber gekürzt wurden.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    

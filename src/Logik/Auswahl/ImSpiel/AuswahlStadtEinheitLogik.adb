@@ -50,7 +50,7 @@ package body AuswahlStadtEinheitLogik is
       InteraktionAuswahl.PositionenEinheitStadt (1) := InteraktionAuswahl.PositionenEinheitStadt (2);
       AktuelleAuswahl := 0;
       NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
-      NachGrafiktask.WelcheAuswahl := WelcheAuswahl;
+      NachGrafiktask.StadtEinheitAuswahl := WelcheAuswahl;
       
       NachGrafiktask.Eingabe := GrafikDatentypen.Einheit_Auswahl_Enum;
       NachGrafiktask.AktuelleStadt := StadtNummerExtern;

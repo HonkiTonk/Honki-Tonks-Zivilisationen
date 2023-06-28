@@ -6,6 +6,7 @@ with Sf.Graphics.Text;
 
 with TextDatentypen;
 with SpeziesDatentypen;
+with GrafikDatentypen;
 
 package GrafikRecords is
    pragma Elaborate_Body;
@@ -19,7 +20,23 @@ package GrafikRecords is
    
    
    -- NachGrafiktask Records
+   type TexteinstellungenRecord is record
+      
+      SchriftartSetzen : Boolean;
+      SchriftgrößeSetzen : Boolean;
+      SchriftfarbeSetzen : Boolean;
+      SchriftstilSetzen : Boolean;
+      TextSetzen : Boolean;
+      
+   end record;
    
+   
+   
+   type EingabeRecord is record
+      
+      Eingabe : GrafikDatentypen.Eingabe_Enum;
+      
+   end record;
    -- NachGrafiktask Records
    
    

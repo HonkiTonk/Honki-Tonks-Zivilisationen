@@ -41,6 +41,8 @@ private
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   LetzteAuflösung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.Nullposition;
+   AktuelleAuflösung : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
    
    type TextAnzeigenArray is array (TextaccessVariablen.KarteAllgemeinesAccess'Range) of Boolean;

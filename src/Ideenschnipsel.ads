@@ -23,3 +23,24 @@ is begin
    end case;
       
 end Test;
+
+
+
+AktuelleAuflösung := FensterGrafik.AktuelleAuflösung;
+      
+if
+  LetzteAuflösung.x /= AktuelleAuflösung.x
+  or
+    LetzteAuflösung.y /= AktuelleAuflösung.y
+then
+   -- Hier da dann Die Viewberechnung/Textpositionsberechnung einbauen. Kann das funktionieren?
+   -- Eventuell doch zwei Schleifen machen, einmal die Berechnung und einmal die Anzeige.
+   -- Wenn ich die Positionen der Texte auch noch in einem Array speichere, als Texthöhe immer meinen Texthöhenaccess verwende, dann brauche ich nur bei Auflösungsänderungen die Werte neu berechnen.
+   -- Wäre vermutlich schneller. Aber ist das relevant/sinnvoll/nützlich?
+   LetzteAuflösung := AktuelleAuflösung;
+         
+else
+   null;
+end if;
+
+-- Hier dann die Anzeige platzieren.

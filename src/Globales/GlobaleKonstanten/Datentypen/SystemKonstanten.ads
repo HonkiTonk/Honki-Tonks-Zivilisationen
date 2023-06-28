@@ -1,5 +1,6 @@
 with SystemDatentypen;
 with TextnummernKonstanten;
+with ZahlenDatentypen;
 
 package SystemKonstanten is
    pragma Pure;
@@ -18,5 +19,9 @@ package SystemKonstanten is
    VerbesserungVorhanden : constant SystemDatentypen.FeldelementVorhanden := 32;
    EinheitVorhanden : constant SystemDatentypen.FeldelementVorhanden := 64;
    StadtVorhanden : constant SystemDatentypen.FeldelementVorhanden := 128;
+   
+   MaximaleEingabe : constant ZahlenDatentypen.EigenesPositive := 999_999_999;
+   
+   MinimaleEingabe : constant ZahlenDatentypen.EigenerInteger := -999_999_999;
 
 end SystemKonstanten;

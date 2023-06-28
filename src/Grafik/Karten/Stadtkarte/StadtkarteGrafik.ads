@@ -1,6 +1,7 @@
 with Ada.Calendar; use Ada.Calendar;
 
 private with Sf.System.Vector2;
+private with Sf.Graphics.Rect;
 
 with SpeziesDatentypen;
 with StadtKonstanten;
@@ -42,6 +43,8 @@ private
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Grafikgröße : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
+
+   Rechteck : Sf.Graphics.Rect.sfFloatRect;
 
    Gebäudetexte : TextArrays.AllgemeinesTextArray (1 .. 10);
 

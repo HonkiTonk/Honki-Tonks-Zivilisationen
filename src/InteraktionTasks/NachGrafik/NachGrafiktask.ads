@@ -17,8 +17,9 @@ with SpeziesKonstanten;
 with AuswahlKonstanten;
 with SystemKonstanten;
 with TextnummernKonstanten;
+with GrafikRecords;
 
--- Variablen mal nach Kategorien in Records sortieren. äöü
+-- Variablen mal nach Kategorien in Records sortieren und in thematische Dateien mit eigenem Zugriff ordnen? äöü
 package NachGrafiktask is
    pragma Elaborate_Body;
    
@@ -51,12 +52,12 @@ package NachGrafiktask is
    
    FensterVerändert : GrafikDatentypen.Fenster_Ändern_Enum := GrafikDatentypen.Keine_Änderung_Enum;
    
-   -- Später erweitern mit nur Schriftgröße setzen, nur Schriftfarbe setzen, usw.. äöü
-   AccesseSetzen : Boolean := False;
-   SchriftartSetzen : Boolean := False;
+   Texteinstellungen : GrafikRecords.TexteinstellungenRecord := (others => False);
    
    Spielmeldung : TextnummernKonstanten.Spielmeldungen := SystemKonstanten.LeerMeldung;
    StartzeitSpielmeldung : Time;
+   
+   Eingaben : GrafikRecords.EingabeRecord;
 
    TastenEingabe : Boolean := False;
    TextEingabe : Boolean := False;
@@ -76,7 +77,7 @@ package NachGrafiktask is
    AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord := (AuswahlKonstanten.LeerAuswahl, AuswahlKonstanten.LeerAuswahl);
    SpeichernLaden : Boolean := False;
    
-   WelcheAuswahl : EinheitenRecords.AuswahlRecord := (False, (others => AuswahlKonstanten.LeerStadtEinheitAuswahl));
+   StadtEinheitAuswahl : EinheitenRecords.AuswahlRecord := (False, (others => AuswahlKonstanten.LeerStadtEinheitAuswahl));
    
    AktuelleBauauswahl : StadtRecords.BauprojektRecord := (AuswahlKonstanten.LeerGebäudeauswahl, AuswahlKonstanten.LeerEinheitenauswahl);
    

@@ -87,23 +87,56 @@ package body Grafik is
    is begin
       
       case
-        NachGrafiktask.SchriftartSetzen
+        NachGrafiktask.Texteinstellungen.SchriftartSetzen
       is
          when True =>
             TexteinstellungenGrafik.SchriftartFestlegen;
-            NachGrafiktask.SchriftartSetzen := False;
+            NachGrafiktask.Texteinstellungen.SchriftartSetzen := False;
             
          when False =>
             null;
       end case;
       
       case
-        NachGrafiktask.AccesseSetzen
+        NachGrafiktask.Texteinstellungen.SchriftgrößeSetzen
       is
          when True =>
-            TextaccesseSetzenGrafik.StandardSetzen;
-            NachGrafiktask.AccesseSetzen := False;
-               
+            TextaccesseSetzenGrafik.Schriftgröße;
+            NachGrafiktask.Texteinstellungen.SchriftgrößeSetzen := False;
+            
+         when False =>
+            null;
+      end case;
+      
+      case
+        NachGrafiktask.Texteinstellungen.SchriftfarbeSetzen
+      is
+         when True =>
+            TextaccesseSetzenGrafik.Schriftfarbe;
+            NachGrafiktask.Texteinstellungen.SchriftfarbeSetzen := False;
+            
+         when False =>
+            null;
+      end case;
+      
+      case
+        NachGrafiktask.Texteinstellungen.SchriftstilSetzen
+      is
+         when True =>
+            TextaccesseSetzenGrafik.Schriftstil;
+            NachGrafiktask.Texteinstellungen.SchriftstilSetzen := False;
+            
+         when False =>
+            null;
+      end case;
+      
+      case
+        NachGrafiktask.Texteinstellungen.TextSetzen
+      is
+         when True =>
+            TextaccesseSetzenGrafik.Text;
+            NachGrafiktask.Texteinstellungen.TextSetzen := False;
+            
          when False =>
             null;
       end case;
@@ -309,7 +342,7 @@ package body Grafik is
          when GrafikDatentypen.Einheit_Auswahl_Enum =>
             EingabenanzeigeGrafik.AnzeigeEinheitenStadt (SpeziesStadtnameExtern =>
                                                             UebergabeRecordErmittelnGrafik.SpeziesStadtname (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt)),
-                                                         WelcheAuswahlExtern    => NachGrafiktask.WelcheAuswahl,
+                                                         WelcheAuswahlExtern    => NachGrafiktask.StadtEinheitAuswahl,
                                                          AktuelleAuswahlExtern  => NachGrafiktask.AktuelleAuswahl.AuswahlEins);
             
             -- Wenn ich das Baumenü/Forschungsmenü hierher verschiebe, dann könnte ich das Neusetzen vermeiden und diese Setzsachen in eine Prozedur auslagern. äöü

@@ -23,7 +23,7 @@ package body AllgemeinesSeitenleisteGrafik is
    procedure AllgemeineInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
-      
+        
       Viewfläche := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltAllgemeines,
                                                     ViewflächeExtern     => Viewfläche);
       

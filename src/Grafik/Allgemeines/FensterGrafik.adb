@@ -29,7 +29,7 @@ package body FensterGrafik is
          MauszeigerFestlegen;
          BildrateÄndern;
          AktuelleAuflösungFestlegen;
-         NachGrafiktask.SchriftartSetzen := True;
+         NachGrafiktask.Texteinstellungen.SchriftartSetzen := True;
       end if;
       
    end FensterErzeugen;
