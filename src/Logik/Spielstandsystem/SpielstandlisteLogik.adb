@@ -32,7 +32,7 @@ package body SpielstandlisteLogik is
       loop
          
          Schleifenanfang := TextArrays.SpielstandArray'First;
-         NachGrafiktask.MehrereSeiten := False;
+         NachGrafiktask.Auswahl.SprachenSeitenauswahl := False;
          
          Start_Search (Search    => Suche,
                        Directory => VerzeichnisKonstanten.Spielstand,
@@ -84,7 +84,7 @@ package body SpielstandlisteLogik is
                elsif
                  AktuellerSpielstand = TextArrays.SpielstandArray'Last
                then
-                  NachGrafiktask.MehrereSeiten := True;
+                  NachGrafiktask.Auswahl.SprachenSeitenauswahl := True;
                   exit SpeicherdateiSchleife;
                      
                else
@@ -130,7 +130,7 @@ package body SpielstandlisteLogik is
                      end if;
                      
                   when Löschen =>
-                     NachGrafiktask.LöschenAusgewählt := True;
+                     NachGrafiktask.Auswahl.LöschenAuswahl := True;
                      Ausgewählt := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
                      
                      if
@@ -184,15 +184,15 @@ package body SpielstandlisteLogik is
       return Natural
    is begin
       
-      NachGrafiktask.SpeichernLaden := SpeichernLadenExtern;
-      NachGrafiktask.AktuellesMenü := MenueDatentypen.Spielstand_Menü_Enum;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Menüs_Enum;
+      NachGrafiktask.Spielstand.SpeichernLaden := SpeichernLadenExtern;
+      NachGrafiktask.Grafik.AktuellesMenü := MenueDatentypen.Spielstand_Menü_Enum;
+      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Menüs_Enum;
       
       AuswahlSchleife:
       loop
       
          AktuelleAuswahl := MausauswahlLogik.SpeichernLaden;
-         NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
+         NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -204,13 +204,13 @@ package body SpielstandlisteLogik is
                   null;
                   
                else
-                  NachGrafiktask.AktuelleAuswahl.AuswahlEins := AuswahlKonstanten.LeerAuswahl;
-                  NachGrafiktask.LöschenAusgewählt := False;
+                  NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AuswahlKonstanten.LeerAuswahl;
+                  NachGrafiktask.Auswahl.LöschenAuswahl := False;
                   return AktuelleAuswahl;
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
-               NachGrafiktask.LöschenAusgewählt := False;
+               NachGrafiktask.Auswahl.LöschenAuswahl := False;
                return AuswahlKonstanten.LeerAuswahl;
                
             when others =>

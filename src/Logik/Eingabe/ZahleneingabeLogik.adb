@@ -30,8 +30,8 @@ package body ZahleneingabeLogik is
       --                                  ZahlenMaximumExtern => ZahlenMaximumExtern);
       
       NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
-      NachGrafiktask.EingegebeneZahl := EingegebeneZahl.EingegebeneZahl;
-      NachGrafiktask.Eingabe := GrafikDatentypen.Zahlen_Eingabe_Enum;
+      NachGrafiktask.Eingaben.ZahlenEingabe := EingegebeneZahl.EingegebeneZahl;
+      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Zahlen_Eingabe_Enum;
       
       return ZahlSchleife (ZahlenMinimumExtern => ZahlenMinimumExtern,
                            ZahlenMaximumExtern => ZahlenMaximumExtern);
@@ -50,7 +50,7 @@ package body ZahleneingabeLogik is
       loop
          
          NachLogiktask.GrafikWarten := True;
-         NachGrafiktask.TastenEingabe := True;
+         NachGrafiktask.Eingaben.TastenEingabe := True;
          EingabeAllgemeinLogik.EingabeAbwarten;
          Zahlen := NachLogiktask.TastaturTaste;
          
@@ -95,8 +95,8 @@ package body ZahleneingabeLogik is
                null;
          end case;
          
-         NachGrafiktask.EingegebenesVorzeichen := WelchesVorzeichen;
-         NachGrafiktask.EingegebeneZahl := Natural'Wide_Wide_Value (ZahlenString);
+         NachGrafiktask.Eingaben.VorzeichenEingabe := WelchesVorzeichen;
+         NachGrafiktask.Eingaben.ZahlenEingabe := Natural'Wide_Wide_Value (ZahlenString);
 
       end loop ZahlenSchleife;
       
@@ -117,7 +117,7 @@ package body ZahleneingabeLogik is
             null;
       end case;
             
-      NachGrafiktask.Eingabe := GrafikDatentypen.Keine_Eingabe_Enum;
+      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
       
       return EingegebeneZahl;
       

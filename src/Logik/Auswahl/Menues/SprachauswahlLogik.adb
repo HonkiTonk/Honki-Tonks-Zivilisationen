@@ -21,7 +21,7 @@ package body SprachauswahlLogik is
       
       SprachenListeFestlegen;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Sprache_Enum;
+      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Sprache_Enum;
             
       return AuswahlSpracheSFML;
       
@@ -93,8 +93,8 @@ package body SprachauswahlLogik is
            and
              GlobaleTexte.SprachenEinlesen (SprachenSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
-            NachGrafiktask.Endauswahl := Ende;
-            NachGrafiktask.MehrereSeiten := MehrereSeiten;
+            NachGrafiktask.Auswahl.Endauswahl := Ende;
+            NachGrafiktask.Auswahl.SprachenSeitenauswahl := MehrereSeiten;
             return;
             
          elsif
@@ -111,8 +111,8 @@ package body SprachauswahlLogik is
       Ende := Ende + 1;
       MehrereSeiten := True;
       
-      NachGrafiktask.Endauswahl := Ende;
-      NachGrafiktask.MehrereSeiten := MehrereSeiten;
+      NachGrafiktask.Auswahl.Endauswahl := Ende;
+      NachGrafiktask.Auswahl.SprachenSeitenauswahl := MehrereSeiten;
       
    end SprachenListeFestlegen;
    
@@ -127,7 +127,7 @@ package body SprachauswahlLogik is
             
          AktuelleAuswahl := MausauswahlLogik.Sprachenauswahl (AnfangExtern => AktuelleSprachen'First,
                                                               EndeExtern   => Ende);
-         NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
+         NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
             
          case
            TasteneingabeLogik.VereinfachteEingabe

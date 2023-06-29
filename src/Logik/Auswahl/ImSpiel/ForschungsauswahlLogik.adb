@@ -63,13 +63,13 @@ package body ForschungsauswahlLogik is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
    begin
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Forschung_Enum;
+      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Forschung_Enum;
       
       AuswahlSchleife:
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Forschungsmenü;
-         NachGrafiktask.AktuelleAuswahl.AuswahlEins := Natural (AktuelleAuswahl);
+         NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := Natural (AktuelleAuswahl);
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -95,7 +95,7 @@ package body ForschungsauswahlLogik is
          
       end loop AuswahlSchleife;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
+      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
       
       return GewählteForschung;
       
@@ -109,12 +109,12 @@ package body ForschungsauswahlLogik is
       
       NachGrafiktask.AktuelleSpezies := SpeziesExtern;
       Auswahl := 1;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Forschungserfolg_Enum;
+      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Forschungserfolg_Enum;
       
       ErfolgSchleife:
       loop
          
-         NachGrafiktask.AktuelleAuswahl.AuswahlEins := Auswahl;
+         NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := Auswahl;
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -152,7 +152,7 @@ package body ForschungsauswahlLogik is
                                            ForschungIDExtern => Forschungsmöglichkeiten (SpeziesExtern => SpeziesExtern));
       
       NachGrafiktask.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Rundenende_Enum;
+      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Rundenende_Enum;
       
    end Forschungserfolg;
 

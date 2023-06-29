@@ -21,8 +21,8 @@ package body AbspannLogik is
             null;
       end case;
       
-      NachGrafiktask.Abspannart := AbspannExtern;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Abspann_Enum;
+      NachGrafiktask.Grafik.Abspannart := AbspannExtern;
+      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Abspann_Enum;
       
       AbspannSchleife:
       loop
@@ -39,8 +39,8 @@ package body AbspannLogik is
          
       end loop AbspannSchleife;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
-      NachGrafiktask.Abspannart := GrafikDatentypen.Leer_Hintergrund_Enum;
+      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
+      NachGrafiktask.Grafik.Abspannart := GrafikDatentypen.Leer_Hintergrund_Enum;
       
    end Abspann;
 

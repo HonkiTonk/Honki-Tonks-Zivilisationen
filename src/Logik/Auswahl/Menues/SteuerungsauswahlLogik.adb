@@ -24,7 +24,7 @@ package body SteuerungsauswahlLogik is
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Steuerung;
-         NachGrafiktask.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
+         NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -74,11 +74,11 @@ package body SteuerungsauswahlLogik is
    is begin
       
       NachGrafiktask.AnzeigeFrage := TextnummernKonstanten.FrageNeueTaste;
-      NachGrafiktask.Eingabe := GrafikDatentypen.Zeichen_Eingabe_Enum;
+      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Zeichen_Eingabe_Enum;
       
       NeueTaste := TasteneingabeLogik.TastenbelegungAnpassen;
       
-      NachGrafiktask.Eingabe := GrafikDatentypen.Keine_Eingabe_Enum;
+      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
       
       case
         NeueTaste

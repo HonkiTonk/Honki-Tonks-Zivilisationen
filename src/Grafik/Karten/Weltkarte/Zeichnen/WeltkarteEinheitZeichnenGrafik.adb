@@ -98,7 +98,7 @@ package body WeltkarteEinheitZeichnenGrafik is
       if
         EinheitAnzeigen = False
         and
-          NachGrafiktask.Einheitenbewegung = False
+          NachGrafiktask.Einheitenbewegung.Einheitenbewegung = False
       then
          null;
          

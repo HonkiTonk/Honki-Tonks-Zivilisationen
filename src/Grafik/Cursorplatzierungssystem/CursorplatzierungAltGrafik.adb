@@ -138,13 +138,13 @@ package body CursorplatzierungAltGrafik is
    begin
       
       case
-        NachGrafiktask.EinheitBewegt
+        NachGrafiktask.Einheitenbewegung.EinheitBewegt
       is
          when False =>
             return True;
             
          when True =>
-            NachGrafiktask.EinheitBewegt := False;
+            NachGrafiktask.Einheitenbewegung.EinheitBewegt := False;
       end case;
       
       AlteCursorkoordinaten := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);

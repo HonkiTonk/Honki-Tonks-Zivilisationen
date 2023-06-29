@@ -6,7 +6,6 @@ with Sf.Graphics.Text;
 
 with TextDatentypen;
 with SpeziesDatentypen;
-with GrafikDatentypen;
 
 package GrafikRecords is
    pragma Elaborate_Body;
@@ -16,28 +15,6 @@ package GrafikRecords is
    type SchriftfarbenArray is array (TextDatentypen.Schriftfarbe_Enum'Range) of Sf.Graphics.Color.sfColor;
       
    type SpeziesFarbenArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of Sf.Graphics.Color.sfColor;
-   
-   
-   
-   -- NachGrafiktask Records
-   type TexteinstellungenRecord is record
-      
-      SchriftartSetzen : Boolean;
-      SchriftgrößeSetzen : Boolean;
-      SchriftfarbeSetzen : Boolean;
-      SchriftstilSetzen : Boolean;
-      TextSetzen : Boolean;
-      
-   end record;
-   
-   
-   
-   type EingabeRecord is record
-      
-      Eingabe : GrafikDatentypen.Eingabe_Enum;
-      
-   end record;
-   -- NachGrafiktask Records
    
    
    

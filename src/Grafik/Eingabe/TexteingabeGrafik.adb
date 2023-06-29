@@ -62,7 +62,7 @@ package body TexteingabeGrafik is
                   is
                      when True =>
                         NachLogiktask.EingegebenerText.ErfolgreichAbbruch := True;
-                        NachGrafiktask.TextEingabe := False;
+                        NachGrafiktask.Eingaben.TextEingabe := False;
                         NachLogiktask.GrafikWarten := False;
                         
                      when False =>
@@ -73,7 +73,7 @@ package body TexteingabeGrafik is
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
                then
                   NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
-                  NachGrafiktask.TextEingabe := False;
+                  NachGrafiktask.Eingaben.TextEingabe := False;
                   NachLogiktask.GrafikWarten := False;
                   
                else
@@ -85,7 +85,7 @@ package body TexteingabeGrafik is
                  TextEingegeben.mouseButton.button = Sf.Window.Mouse.sfMouseRight
                then
                   NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
-                  NachGrafiktask.TextEingabe := False;
+                  NachGrafiktask.Eingaben.TextEingabe := False;
                   NachLogiktask.GrafikWarten := False;
                   
                else
@@ -107,7 +107,7 @@ package body TexteingabeGrafik is
    is begin
             
       case
-        NachGrafiktask.NameSpielstand
+        NachGrafiktask.Spielstand.NameSpielstand
       is
          when True =>
             if

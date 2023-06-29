@@ -93,7 +93,7 @@ package body OptionenGrafikLogik is
             SchreibeEinstellungenGrafik.Auflösung (AuflösungExtern => NeueAuflösung);
       
             NachLogiktask.GrafikWarten := True;
-            NachGrafiktask.FensterVerändert := GrafikDatentypen.Auflösung_Verändert_Enum;
+            NachGrafiktask.Grafik.FensterVerändert := GrafikDatentypen.Auflösung_Verändert_Enum;
       end case;
       
       ErzeugungNeuesFensterAbwartenSchleife:
@@ -124,11 +124,11 @@ package body OptionenGrafikLogik is
             
          when True =>
             SchreibeEinstellungenGrafik.Bildrate (BildrateExtern => Sf.sfUint32 (EingabeBildrate.EingegebeneZahl));
-            NachGrafiktask.FensterVerändert := GrafikDatentypen.Bildrate_Ändern_Enum;
+            NachGrafiktask.Grafik.FensterVerändert := GrafikDatentypen.Bildrate_Ändern_Enum;
       end case;
       
       NeueBildrateAbwartenSchleife:
-      while NachGrafiktask.FensterVerändert = GrafikDatentypen.Bildrate_Ändern_Enum loop
+      while NachGrafiktask.Grafik.FensterVerändert = GrafikDatentypen.Bildrate_Ändern_Enum loop
          
          delay ZeitKonstanten.WartezeitLogik;
          
@@ -158,10 +158,10 @@ package body OptionenGrafikLogik is
             SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.StandardFenster);
       end case;
       
-      NachGrafiktask.FensterVerändert := GrafikDatentypen.Modus_Verändert_Enum;
+      NachGrafiktask.Grafik.FensterVerändert := GrafikDatentypen.Modus_Verändert_Enum;
       
       ErzeugungNeuesFensterAbwartenSchleife:
-      while NachGrafiktask.FensterVerändert = GrafikDatentypen.Modus_Verändert_Enum loop
+      while NachGrafiktask.Grafik.FensterVerändert = GrafikDatentypen.Modus_Verändert_Enum loop
          
          delay ZeitKonstanten.WartezeitLogik;
          

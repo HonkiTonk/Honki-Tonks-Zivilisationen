@@ -46,7 +46,7 @@ package body LadenLogik is
          
          else
             LadezeitenLogik.SpeichernLadenNullsetzen;
-            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Speichern_Laden_Enum;
+            NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Speichern_Laden_Enum;
       
             Open (File => DateiLaden,
                   Mode => In_File,
@@ -70,7 +70,7 @@ package body LadenLogik is
                Ladevorgang (DateiLadenExtern => DateiLaden);
       
                Close (File => DateiLaden);
-               NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
+               NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
 
                return True;
          end case;

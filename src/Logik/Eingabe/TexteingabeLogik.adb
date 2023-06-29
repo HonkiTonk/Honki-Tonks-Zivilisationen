@@ -90,14 +90,14 @@ package body TexteingabeLogik is
             NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
       end case;
       
-      NachGrafiktask.Eingabe := GrafikDatentypen.Text_Eingabe_Enum;
+      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Text_Eingabe_Enum;
       
       NachLogiktask.GrafikWarten := True;
-      NachGrafiktask.TextEingabe := True;
+      NachGrafiktask.Eingaben.TextEingabe := True;
       
       EingabeAllgemeinLogik.EingabeAbwarten;
       
-      NachGrafiktask.Eingabe := GrafikDatentypen.Keine_Eingabe_Enum;
+      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
       
       return NachLogiktask.EingegebenerText;
       

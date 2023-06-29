@@ -72,13 +72,13 @@ package body DiplomatieLogik is
       DiplomatieSchleife:
       loop
          
-         NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Diplomatie_Enum;
+         NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Diplomatie_Enum;
          
          SpeziesauswahlSchleife:
          loop
             
             Auswahl := MausauswahlLogik.SpeziesauswahlDiplomatie;
-            NachGrafiktask.AktuelleAuswahl.AuswahlEins := Auswahl;
+            NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := Auswahl;
                         
             case
               TasteneingabeLogik.VereinfachteEingabe

@@ -38,7 +38,7 @@ package body StartLogik is
          
       end loop TonSchleife;
       
-      NachGrafiktask.ErzeugeFenster := True;
+      NachGrafiktask.Spielstart.ErzeugeFenster := True;
       
       -- Solche Warteschleifen mal alle in einer Datei sammeln und entsprechend aufrufen? äöü
       -- Lohnt sich das? So oft verwende ich die ja nicht. äöü
@@ -55,7 +55,7 @@ package body StartLogik is
       NachGrafiktask.Texteinstellungen.SchriftstilSetzen := True;
       NachGrafiktask.Texteinstellungen.TextSetzen := True;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Intro_Enum;
+      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Intro_Enum;
       
       IntroSchleife:
       while NachLogiktask.IntroAbwarten loop
@@ -64,7 +64,7 @@ package body StartLogik is
            TasteneingabeLogik.VereinfachteEingabe
          is
             when TastenbelegungDatentypen.Abwählen_Enum =>
-               NachGrafiktask.IntroAnzeigen := False;
+               NachGrafiktask.Spielstart.IntroBeenden := True;
                
             when others =>
                null;

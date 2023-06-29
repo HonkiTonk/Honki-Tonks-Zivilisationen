@@ -8,38 +8,27 @@ with EinheitenDatentypen;
 with StadtKonstanten;
 with StadtDatentypen;
 with ZahlenDatentypen;
-with StadtRecords;
-with SystemRecords;
-with EinheitenRecords;
 with KartenRecords;
 with KartenRecordKonstanten;
 with SpeziesKonstanten;
 with AuswahlKonstanten;
 with SystemKonstanten;
 with TextnummernKonstanten;
-with GrafikRecords;
+with TaskRecords;
 
 -- Variablen mal nach Kategorien in Records sortieren und in thematische Dateien mit eigenem Zugriff ordnen? äöü
 package NachGrafiktask is
    pragma Elaborate_Body;
    
-   -- Wird für Spielstart benötigt.
-   ErzeugeFenster : Boolean := False;
-   IntroAnzeigen : Boolean := True;
+   Spielstart : TaskRecords.SpielstartRecord := (others => False);
    
-   -- Sprache
-   MehrereSeiten : Boolean := False;
-   LöschenAusgewählt : Boolean := False;
-   
-   Endauswahl : Natural := AuswahlKonstanten.LeerAuswahl;
-   -- Wird für Spielstart benötigt.
-   
-   AktuelleDarstellung : GrafikDatentypen.AKtuelle_Anzeige_Enum := GrafikDatentypen.Start_Enum;
-   
-   FensterGeschlossen : Boolean := False;
-   NameSpielstand : Boolean := False;
-   
-   AktuellesMenü : MenueDatentypen.Welches_Menü_Enum := MenueDatentypen.Leer_Menü_Enum;
+   Grafik : TaskRecords.GrafikRecord := (
+                                         FensterGeschlossen  => False,
+                                         AktuelleDarstellung => GrafikDatentypen.Start_Enum,
+                                         AktuellesMenü       => MenueDatentypen.Leer_Menü_Enum,
+                                         FensterVerändert    => GrafikDatentypen.Keine_Änderung_Enum,
+                                         Abspannart          => GrafikDatentypen.Leer_Hintergrund_Enum
+                                        );
    
    KIRechnet : SpeziesDatentypen.Spezies_Enum := SpeziesKonstanten.LeerSpezies;
    AktuelleSpezies : SpeziesDatentypen.Spezies_Enum := SpeziesKonstanten.LeerSpezies;
@@ -50,45 +39,41 @@ package NachGrafiktask is
    AktuelleStadt : StadtDatentypen.MaximaleStädteMitNullWert := StadtKonstanten.LeerNummer;
    Stadtkarte : Boolean := False;
    
-   FensterVerändert : GrafikDatentypen.Fenster_Ändern_Enum := GrafikDatentypen.Keine_Änderung_Enum;
-   
-   Texteinstellungen : GrafikRecords.TexteinstellungenRecord := (others => False);
+   Texteinstellungen : TaskRecords.TexteinstellungenRecord := (others => False);
    
    Spielmeldung : TextnummernKonstanten.Spielmeldungen := SystemKonstanten.LeerMeldung;
    StartzeitSpielmeldung : Time;
-   
-   Eingaben : GrafikRecords.EingabeRecord;
-
-   TastenEingabe : Boolean := False;
-   TextEingabe : Boolean := False;
-   
-   EingegebenesVorzeichen : Boolean := False;
-   EingegebeneZahl : ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
-   
+      
+   Eingaben : TaskRecords.EingabeRecord := (
+                                            TastenEingabe     => False,
+                                            TextEingabe       => False,
+                                            VorzeichenEingabe => False,
+                                            Eingabeart        => GrafikDatentypen.Keine_Eingabe_Enum,
+                                            ZahlenEingabe     => ZahlenDatentypen.EigenesNatural'First
+                                           );
+     
    AnzeigeFrage : ZahlenDatentypen.EigenesNatural := ZahlenDatentypen.EigenesNatural'First;
    
-   Eingabe : GrafikDatentypen.Eingabe_Enum := GrafikDatentypen.Keine_Eingabe_Enum;
+   Einheitenbewegung : TaskRecords.EinheitenbewegungRecord := (others => False);
    
-   EinheitBewegt : Boolean := False;
-   Einheitenbewegung : Boolean := False;
-   EinheitBewegungsbereich : Boolean := False;
+   Spielstand : TaskRecords.SpielstandRecord := (others => False);
    
    -- AktuelleAuswahl.AuswahlZwei wird auch bei JaNein verwendet, damit es sonst zu falschen Farbanzeigen kommen kann, wenn AuswahlEins bereits von einem Menü belegt wird, beispielsweise Speichern.
-   AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord := (AuswahlKonstanten.LeerAuswahl, AuswahlKonstanten.LeerAuswahl);
-   SpeichernLaden : Boolean := False;
-   
-   StadtEinheitAuswahl : EinheitenRecords.AuswahlRecord := (False, (others => AuswahlKonstanten.LeerStadtEinheitAuswahl));
-   
-   AktuelleBauauswahl : StadtRecords.BauprojektRecord := (AuswahlKonstanten.LeerGebäudeauswahl, AuswahlKonstanten.LeerEinheitenauswahl);
+   Auswahl : TaskRecords.AuswahlRecord := (
+                                           SprachenSeitenauswahl => False,
+                                           LöschenAuswahl        => False,
+                                           Endauswahl            => AuswahlKonstanten.LeerAuswahl,
+                                           AktuelleAuswahl       => (AuswahlKonstanten.LeerAuswahl, AuswahlKonstanten.LeerAuswahl),
+                                           StadtEinheitAuswahl   => (False, (others => AuswahlKonstanten.LeerStadtEinheitAuswahl)),
+                                           Bauauswahl            => (AuswahlKonstanten.LeerGebäudeauswahl, AuswahlKonstanten.LeerEinheitenauswahl)
+                                          );
    
    GeheZu : KartenRecords.AchsenKartenfeldNaturalRecord := KartenRecordKonstanten.LeerKoordinate;
-   
-   Abspannart : GrafikDatentypen.Spezieshintergrund_Enum := GrafikDatentypen.Leer_Hintergrund_Enum;
    
    
    
    -- Editoren
-   WelcherEditor : GrafikDatentypen.Editor_Enum;
+   Editoren : TaskRecords.EditorRecord;
    -- Editoren
 
 end NachGrafiktask;

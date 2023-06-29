@@ -37,11 +37,11 @@ package body TasteneingabeGrafik is
            Nutzereingabe.eventType
          is
             when Sf.Window.Event.sfEvtClosed =>
-               NachGrafiktask.FensterGeschlossen := True;
+               NachGrafiktask.Grafik.FensterGeschlossen := True;
                return;
                   
             when Sf.Window.Event.sfEvtResized =>
-               NachGrafiktask.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
+               NachGrafiktask.Grafik.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
                
             when Sf.Window.Event.sfEvtMouseLeft =>
                InteraktionAllgemein.Mausposition := GrafikRecordKonstanten.FalschePosition;
@@ -67,7 +67,7 @@ package body TasteneingabeGrafik is
                   
             when Sf.Window.Event.sfEvtMouseWheelScrolled =>
                if
-                 NachGrafiktask.AktuelleDarstellung /= GrafikDatentypen.Weltkarte_Enum
+                 NachGrafiktask.Grafik.AktuelleDarstellung /= GrafikDatentypen.Weltkarte_Enum
                then
                   null;
                   
@@ -89,7 +89,7 @@ package body TasteneingabeGrafik is
                      
       end loop TasteSchleife;
       
-      NachGrafiktask.TastenEingabe := False;
+      NachGrafiktask.Eingaben.TastenEingabe := False;
       NachLogiktask.GrafikWarten := False;
       
    end Tasteneingabe;
@@ -111,11 +111,11 @@ package body TasteneingabeGrafik is
            Fensteranpassung.eventType
          is
             when Sf.Window.Event.sfEvtClosed =>
-               NachGrafiktask.FensterGeschlossen := True;
+               NachGrafiktask.Grafik.FensterGeschlossen := True;
                return;
                   
             when Sf.Window.Event.sfEvtResized =>
-               NachGrafiktask.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
+               NachGrafiktask.Grafik.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
                
             when others =>
                null;

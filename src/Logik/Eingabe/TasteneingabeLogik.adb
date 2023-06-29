@@ -10,7 +10,7 @@ package body TasteneingabeLogik is
    is begin
       
       NachLogiktask.GrafikWarten := True;
-      NachGrafiktask.TastenEingabe := True;
+      NachGrafiktask.Eingaben.TastenEingabe := True;
       
       EingabeAllgemeinLogik.EingabeAbwarten;
       
@@ -208,7 +208,7 @@ package body TasteneingabeLogik is
       loop
          
          NachLogiktask.GrafikWarten := True;
-         NachGrafiktask.TastenEingabe := True;
+         NachGrafiktask.Eingaben.TastenEingabe := True;
          
          EingabeAllgemeinLogik.EingabeAbwarten;
       

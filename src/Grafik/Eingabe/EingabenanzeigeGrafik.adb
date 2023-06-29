@@ -106,13 +106,13 @@ package body EingabenanzeigeGrafik is
                                      AbmessungenExtern => Viewfläche);
       
       case
-        NachGrafiktask.EingegebenesVorzeichen
+        NachGrafiktask.Eingaben.VorzeichenEingabe
       is
          when False =>
-            Text := To_Unbounded_Wide_Wide_String (Source => "-") & ZahlAlsString (ZahlExtern => NachGrafiktask.EingegebeneZahl);
+            Text := To_Unbounded_Wide_Wide_String (Source => "-") & ZahlAlsString (ZahlExtern => NachGrafiktask.Eingaben.ZahlenEingabe);
                               
          when True =>
-            Text := To_Unbounded_Wide_Wide_String (Source => ZahlAlsString (ZahlExtern => NachGrafiktask.EingegebeneZahl));       
+            Text := To_Unbounded_Wide_Wide_String (Source => ZahlAlsString (ZahlExtern => NachGrafiktask.Eingaben.ZahlenEingabe));       
       end case;
                                     
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EingabenanzeigeAccess,
@@ -192,7 +192,7 @@ package body EingabenanzeigeGrafik is
       Textbreite := GrafikKonstanten.Nullwert;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      AktuelleAuswahl := NachGrafiktask.AktuelleAuswahl.AuswahlZwei;
+      AktuelleAuswahl := NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlZwei;
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop

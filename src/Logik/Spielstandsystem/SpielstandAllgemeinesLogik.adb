@@ -13,9 +13,9 @@ package body SpielstandAllgemeinesLogik is
      return Unbounded_Wide_Wide_String
    is begin
      
-      NachGrafiktask.NameSpielstand := True;
+      NachGrafiktask.Spielstand.NameSpielstand := True;
       SpielstandName := TexteingabeLogik.SpielstandName;
-      NachGrafiktask.NameSpielstand := False;
+      NachGrafiktask.Spielstand.NameSpielstand := False;
       
       case
         SpielstandName.ErfolgreichAbbruch

@@ -94,7 +94,7 @@ package body BewegungsplanLogik is
                         AktuellePlanpositionExtern => 1)
       is
          when True =>
-            NachGrafiktask.Einheitenbewegung := True;
+            NachGrafiktask.Einheitenbewegung.Einheitenbewegung := True;
             
             DurchführungSchleife:
             loop
@@ -107,7 +107,7 @@ package body BewegungsplanLogik is
                    EinheitenKonstanten.LeerLebenspunkte = LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
                then
                   NachSoundtask.SoundStoppen := TonDatentypen.Sound_Einheitenbewegung_Enum;
-                  NachGrafiktask.Einheitenbewegung := False;
+                  NachGrafiktask.Einheitenbewegung.Einheitenbewegung := False;
                   return False;
                         
                else
@@ -163,7 +163,7 @@ package body BewegungsplanLogik is
             null;
       end case;
       
-      NachGrafiktask.Einheitenbewegung := False;
+      NachGrafiktask.Einheitenbewegung.Einheitenbewegung := False;
       return True;
       
    end BewegungPlanen;

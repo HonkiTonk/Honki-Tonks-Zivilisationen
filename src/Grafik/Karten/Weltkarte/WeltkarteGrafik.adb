@@ -236,9 +236,9 @@ package body WeltkarteGrafik is
                                                      PositionExtern         => PositionExtern);
       
       if
-        NachGrafiktask.EinheitBewegungsbereich
+        NachGrafiktask.Einheitenbewegung.EinheitBewegungsbereich
         and
-          (NachGrafiktask.Einheitenbewegung = False)
+          (NachGrafiktask.Einheitenbewegung.Einheitenbewegung = False)
         and
           EinheitenauswahlExtern.SpeziesNummer.Nummer /= EinheitenKonstanten.LeerNummer
       then

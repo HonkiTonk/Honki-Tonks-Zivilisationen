@@ -197,7 +197,7 @@ begin
       end case;
 
       case
-        NachGrafiktask.FensterGeschlossen
+        NachGrafiktask.Grafik.FensterGeschlossen
       is
          when True =>
             StartEndeSound.TaskStoppen;

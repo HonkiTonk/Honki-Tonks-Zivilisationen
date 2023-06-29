@@ -43,7 +43,7 @@ package body RundenendeLogik is
       is
          when True =>
             LadezeitenLogik.RundenendeNullsetzen;
-            NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Rundenende_Enum;
+            NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Rundenende_Enum;
             
          when False =>
             return False;

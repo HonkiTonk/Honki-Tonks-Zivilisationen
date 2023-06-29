@@ -26,8 +26,6 @@ private
    use type StadtDatentypen.GebäudeIDMitNullwert;
    use type EinheitenDatentypen.EinheitenIDMitNullWert;
 
-   GebäudeBaubar : Boolean;
-   EinheitenBaubar : Boolean;
    BauenMöglich : Boolean;
 
    WasGebautWerdenSoll : Natural;
@@ -76,13 +74,13 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtSpeziesNummerExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
               );
 
-   function AuswahlBauprojektSFML
+   function AuswahlBauprojekt
      return StadtRecords.BauprojektRecord
      with
        Post => (
-                (if AuswahlBauprojektSFML'Result.Gebäude /= 0 then AuswahlBauprojektSFML'Result.Einheit = 0)
+                (if AuswahlBauprojekt'Result.Gebäude /= 0 then AuswahlBauprojekt'Result.Einheit = 0)
                 and
-                  (if AuswahlBauprojektSFML'Result.Einheit /= 0 then AuswahlBauprojektSFML'Result.Gebäude = 0)
+                  (if AuswahlBauprojekt'Result.Einheit /= 0 then AuswahlBauprojekt'Result.Gebäude = 0)
                );
 
 end StadtbausystemLogik;

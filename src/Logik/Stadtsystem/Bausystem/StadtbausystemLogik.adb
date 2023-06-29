@@ -41,7 +41,7 @@ package body StadtbausystemLogik is
                                        ÄndernSetzenExtern       => False);
       end if;
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Stadtkarte_Enum;
+      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Stadtkarte_Enum;
       
    end Bauen;
 
@@ -52,18 +52,15 @@ package body StadtbausystemLogik is
       return StadtRecords.BauprojektRecord
    is begin
 
-      GebäudeBaubar := MöglicheGebäudeErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-      EinheitenBaubar := MöglicheEinheitenErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
-
       if
-        GebäudeBaubar = False
+        MöglicheGebäudeErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) = False
         and
-          EinheitenBaubar = False
+          MöglicheEinheitenErmitteln (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern) = False
       then
          return StadtKonstanten.LeerBauprojekt;
          
       else
-         return AuswahlBauprojektSFML;
+         return AuswahlBauprojekt;
       end if;
       
    end BauobjektAuswählen;
@@ -141,17 +138,17 @@ package body StadtbausystemLogik is
    
    
    
-   function AuswahlBauprojektSFML
+   function AuswahlBauprojekt
      return StadtRecords.BauprojektRecord
    is begin
       
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Bauen_Enum;
+      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Bauen_Enum;
       
       AuswahlSchleife:
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Baumenü;
-         NachGrafiktask.AktuelleBauauswahl := AktuelleAuswahl;
+         NachGrafiktask.Auswahl.Bauauswahl := AktuelleAuswahl;
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -178,6 +175,6 @@ package body StadtbausystemLogik is
          
       end loop AuswahlSchleife;
       
-   end AuswahlBauprojektSFML;
+   end AuswahlBauprojekt;
 
 end StadtbausystemLogik;

@@ -1,16 +1,16 @@
 package ChangelogVorlage is
 
-   -- Version 0.05. => 0.05. (30.06.2023):
+   -- Version 0.05.2745 => 0.05. (30.06.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2720 => 0.05. (29.06.2023):
+   -- Version 0.05.2720 => 0.05.2745 (29.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter die taskübergreifenden Variablen besser organisiert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
