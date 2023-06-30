@@ -9,6 +9,7 @@ with SystemDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
+with SchreibeSoundtask;
 
 with KartenkoordinatenberechnungssystemLogik;
 with EinheitenbewegungLogik;
@@ -16,8 +17,7 @@ with BewegungsberechnungEinheitenLogik;
 with PassierbarkeitspruefungLogik;
 with EinheitSuchenLogik;
 with StadtSuchenLogik;
-with NachGrafiktask;
-with NachSoundtask;
+with Grafiktask;
 with TransporterBeladenEntladenLogik;
 
 with KIBewegungsplanVereinfachenLogik;
@@ -94,7 +94,7 @@ package body BewegungsplanLogik is
                         AktuellePlanpositionExtern => 1)
       is
          when True =>
-            NachGrafiktask.Einheitenbewegung.Einheitenbewegung := True;
+            Grafiktask.Einheitenbewegung.Einheitenbewegung := True;
             
             DurchführungSchleife:
             loop
@@ -106,8 +106,8 @@ package body BewegungsplanLogik is
                  or
                    EinheitenKonstanten.LeerLebenspunkte = LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
                then
-                  NachSoundtask.SoundStoppen := TonDatentypen.Sound_Einheitenbewegung_Enum;
-                  NachGrafiktask.Einheitenbewegung.Einheitenbewegung := False;
+                  SchreibeSoundtask.SoundStoppen (SoundExtern => TonDatentypen.Sound_Einheitenbewegung_Enum);
+                  Grafiktask.Einheitenbewegung.Einheitenbewegung := False;
                   return False;
                         
                else
@@ -120,7 +120,7 @@ package body BewegungsplanLogik is
                end if;
                
                -- Sollte die Länge der Bewegungsverzögerung und des Bewegungssounds identisch sein? äöü
-               NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Einheitenbewegung_Enum;
+               SchreibeSoundtask.SoundStarten (SoundExtern => TonDatentypen.Sound_Einheitenbewegung_Enum);
                
                if
                  KartenRecordKonstanten.LeerKoordinate = NeueKoordinaten
@@ -157,13 +157,13 @@ package body BewegungsplanLogik is
                   
             end loop DurchführungSchleife;
             
-            NachSoundtask.SoundStoppen := TonDatentypen.Sound_Einheitenbewegung_Enum;
+            SchreibeSoundtask.SoundStoppen (SoundExtern => TonDatentypen.Sound_Einheitenbewegung_Enum);
             
          when False =>
             null;
       end case;
       
-      NachGrafiktask.Einheitenbewegung.Einheitenbewegung := False;
+      Grafiktask.Einheitenbewegung.Einheitenbewegung := False;
       return True;
       
    end BewegungPlanen;

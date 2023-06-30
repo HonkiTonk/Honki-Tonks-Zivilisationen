@@ -8,7 +8,7 @@ with LeseWichtiges;
 
 with TasteneingabeLogik;
 with MausauswahlLogik;
-with NachGrafiktask;
+with Grafiktask;
 with ForschungstestsLogik;
 
 package body ForschungsauswahlLogik is
@@ -63,13 +63,13 @@ package body ForschungsauswahlLogik is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
    begin
       
-      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Forschung_Enum;
+      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Forschung_Enum;
       
       AuswahlSchleife:
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Forschungsmenü;
-         NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := Natural (AktuelleAuswahl);
+         Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := Natural (AktuelleAuswahl);
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -95,7 +95,7 @@ package body ForschungsauswahlLogik is
          
       end loop AuswahlSchleife;
       
-      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
+      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
       
       return GewählteForschung;
       
@@ -107,14 +107,14 @@ package body ForschungsauswahlLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      NachGrafiktask.AktuelleSpezies := SpeziesExtern;
+      Grafiktask.Aktuelles.AktuelleSpezies := SpeziesExtern;
       Auswahl := 1;
-      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Forschungserfolg_Enum;
+      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Forschungserfolg_Enum;
       
       ErfolgSchleife:
       loop
          
-         NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := Auswahl;
+         Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := Auswahl;
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -151,8 +151,8 @@ package body ForschungsauswahlLogik is
       SchreibeWichtiges.Forschungsprojekt (SpeziesExtern     => SpeziesExtern,
                                            ForschungIDExtern => Forschungsmöglichkeiten (SpeziesExtern => SpeziesExtern));
       
-      NachGrafiktask.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
-      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Rundenende_Enum;
+      Grafiktask.Aktuelles.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
+      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Rundenende_Enum;
       
    end Forschungserfolg;
 

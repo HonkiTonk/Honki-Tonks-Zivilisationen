@@ -8,7 +8,7 @@ with LeseDiplomatie;
 with SchreibeDiplomatie;
 with LeseAllgemeines;
 
-with NachGrafiktask;
+with Grafiktask;
 with TasteneingabeLogik;
 with MausauswahlLogik;
 with AuswahlaufteilungLogik;
@@ -72,13 +72,13 @@ package body DiplomatieLogik is
       DiplomatieSchleife:
       loop
          
-         NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Diplomatie_Enum;
+         Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Diplomatie_Enum;
          
          SpeziesauswahlSchleife:
          loop
             
             Auswahl := MausauswahlLogik.SpeziesauswahlDiplomatie;
-            NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := Auswahl;
+            Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := Auswahl;
                         
             case
               TasteneingabeLogik.VereinfachteEingabe
@@ -91,7 +91,7 @@ package body DiplomatieLogik is
                   
                   else
                      KontaktierteSpezies := SpeziesDatentypen.Spezies_Verwendet_Enum'Val (Auswahl);
-                     NachGrafiktask.KontaktierteSpezies := KontaktierteSpezies;
+                     Grafiktask.Aktuelles.KontaktierteSpezies := KontaktierteSpezies;
                      exit SpeziesauswahlSchleife;
                   end if;
                

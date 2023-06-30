@@ -2,12 +2,13 @@ with GrafikDatentypen;
 with ZeitKonstanten;
 with TastenbelegungDatentypen;
 
+with LeseLogiktask;
+
 with SchreibenVerzeichnisseLogik;
 with EinlesenEinstellungenLogik;
 with EinlesenLogik;
 with HauptmenueLogik;
-with NachGrafiktask;
-with NachLogiktask;
+with Grafiktask;
 with LogiktaskAnAlle;
 with TasteneingabeLogik;
 
@@ -26,9 +27,9 @@ package body StartLogik is
       loop
          
          if
-           NachLogiktask.SoundWarten
+           LeseLogiktask.WartenSound
            or
-             NachLogiktask.MusikWarten
+             LeseLogiktask.WartenMusik
          then
             delay ZeitKonstanten.WartezeitLogik;
             
@@ -38,33 +39,33 @@ package body StartLogik is
          
       end loop TonSchleife;
       
-      NachGrafiktask.Spielstart.ErzeugeFenster := True;
+      Grafiktask.Spielstart.ErzeugeFenster := True;
       
       -- Solche Warteschleifen mal alle in einer Datei sammeln und entsprechend aufrufen? äöü
       -- Lohnt sich das? So oft verwende ich die ja nicht. äöü
       FensterVorhandenSchleife:
-      while NachLogiktask.GrafikWarten loop
+      while LeseLogiktask.WartenGrafik = True loop
          
          delay ZeitKonstanten.WartezeitLogik;
          
       end loop FensterVorhandenSchleife;
       
       EinlesenLogik.EinlesenMitAnzeige;
-      NachGrafiktask.Texteinstellungen.SchriftgrößeSetzen := True;
-      NachGrafiktask.Texteinstellungen.SchriftfarbeSetzen := True;
-      NachGrafiktask.Texteinstellungen.SchriftstilSetzen := True;
-      NachGrafiktask.Texteinstellungen.TextSetzen := True;
+      Grafiktask.Texteinstellungen.SchriftgrößeSetzen := True;
+      Grafiktask.Texteinstellungen.SchriftfarbeSetzen := True;
+      Grafiktask.Texteinstellungen.SchriftstilSetzen := True;
+      Grafiktask.Texteinstellungen.TextSetzen := True;
       
-      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Intro_Enum;
+      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Intro_Enum;
       
       IntroSchleife:
-      while NachLogiktask.IntroAbwarten loop
+      while LeseLogiktask.WartenIntro = True loop
          
          case
            TasteneingabeLogik.VereinfachteEingabe
          is
             when TastenbelegungDatentypen.Abwählen_Enum =>
-               NachGrafiktask.Spielstart.IntroBeenden := True;
+               Grafiktask.Spielstart.IntroBeenden := True;
                
             when others =>
                null;

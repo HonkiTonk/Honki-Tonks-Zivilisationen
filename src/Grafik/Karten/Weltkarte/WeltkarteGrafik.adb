@@ -19,7 +19,7 @@ with SichtweitenGrafik;
 with WeltkarteFeldZeichnenGrafik;
 with WeltkarteZusatzZeichnenGrafik;
 with WeltkarteEinheitZeichnenGrafik;
-with NachGrafiktask;
+with Grafiktask;
 with FensterGrafik;
 
 package body WeltkarteGrafik is
@@ -236,9 +236,9 @@ package body WeltkarteGrafik is
                                                      PositionExtern         => PositionExtern);
       
       if
-        NachGrafiktask.Einheitenbewegung.EinheitBewegungsbereich
+        Grafiktask.Einheitenbewegung.EinheitBewegungsbereich
         and
-          (NachGrafiktask.Einheitenbewegung.Einheitenbewegung = False)
+          (Grafiktask.Einheitenbewegung.Einheitenbewegung = False)
         and
           EinheitenauswahlExtern.SpeziesNummer.Nummer /= EinheitenKonstanten.LeerNummer
       then

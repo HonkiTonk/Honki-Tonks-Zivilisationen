@@ -9,7 +9,7 @@ with GrafikKonstanten;
 
 with LeseEinstellungenGrafik;
 
-with NachGrafiktask;
+with Grafiktask;
 with Fehlermeldungssystem;
 
 package body FensterGrafik is
@@ -29,7 +29,7 @@ package body FensterGrafik is
          MauszeigerFestlegen;
          BildrateÄndern;
          AktuelleAuflösungFestlegen;
-         NachGrafiktask.Texteinstellungen.SchriftartSetzen := True;
+         Grafiktask.Texteinstellungen.SchriftartSetzen := True;
       end if;
       
    end FensterErzeugen;

@@ -18,7 +18,7 @@ with WeltkartenbefehleGrafik;
 with KoordinatenPositionUmwandlungen;
 with SichtweitenGrafik;
 with StadtkarteGrafik;
-with NachGrafiktask;
+with Grafiktask;
 
 package body KartenaufteilungGrafik is
    
@@ -72,7 +72,7 @@ package body KartenaufteilungGrafik is
    is begin
       
       case
-        NachGrafiktask.Stadtkarte
+        Grafiktask.Aktuelles.Stadtkarte
       is
          when True =>
             StadtkarteGrafik.Stadtkarte (StadtauswahlExtern => (StadtauswahlExtern.SpeziesNummer.Spezies, StadtauswahlExtern.Koordinaten, StadtauswahlExtern.GebäudeVorhanden));

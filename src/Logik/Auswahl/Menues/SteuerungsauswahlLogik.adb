@@ -8,7 +8,7 @@ with AuswahlKonstanten;
 with LeseTastenbelegungDatenbank;
 with SchreibeTastenbelegungDatenbank;
 
-with NachGrafiktask;
+with Grafiktask;
 with TasteneingabeLogik;
 with MenuerueckgabenLogik;
 with MausauswahlLogik;
@@ -24,7 +24,7 @@ package body SteuerungsauswahlLogik is
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Steuerung;
-         NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
+         Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -73,12 +73,12 @@ package body SteuerungsauswahlLogik is
       WelcheSteuerungExtern : in TastenbelegungDatentypen.Tastenbelegungskategorie_Enum)
    is begin
       
-      NachGrafiktask.AnzeigeFrage := TextnummernKonstanten.FrageNeueTaste;
-      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Zeichen_Eingabe_Enum;
+      Grafiktask.Meldungen.AnzeigeFrage := TextnummernKonstanten.FrageNeueTaste;
+      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Zeichen_Eingabe_Enum;
       
       NeueTaste := TasteneingabeLogik.TastenbelegungAnpassen;
       
-      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
+      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
       
       case
         NeueTaste

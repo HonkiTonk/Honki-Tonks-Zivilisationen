@@ -16,7 +16,7 @@ with TransporterSuchenLogik;
 with AufgabeFestlegenLogik;
 with EinheitenkontrollsystemLogik;
 with AuswahlStadtEinheitLogik;
-with NachGrafiktask;
+with Grafiktask;
 with JaNeinLogik;
 with EinheitenSpielmeldungenLogik;
 with StadtAllgemeinesLogik;
@@ -201,7 +201,7 @@ package body BefehlspruefungenLogik is
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    begin
       
-      NachGrafiktask.AktuelleEinheit := EinheitSpeziesNummerExtern.Nummer;
+      Grafiktask.Aktuelles.AktuelleEinheit := EinheitSpeziesNummerExtern.Nummer;
       
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
@@ -237,7 +237,7 @@ package body BefehlspruefungenLogik is
          end case;
       end if;
       
-      NachGrafiktask.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
+      Grafiktask.Aktuelles.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
             
    end EinheitSteuern;
    

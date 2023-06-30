@@ -10,7 +10,7 @@ with Grafik;
 with Musik;
 with Sound;
 
-with NachGrafiktask;
+with Grafiktask;
 with FehlermeldungSchreiben;
 with StartEndeSound;
 -- with StartEndeMusik;
@@ -34,7 +34,7 @@ is
    TaskID : TaskIDArray;
 
    task LogikTask;
-   task GrafikTask;
+   task GrafikTaskSpäterEntfernen;
    task MusikTask;
    task SoundTask;
 
@@ -66,7 +66,7 @@ is
 
 
 
-   task body GrafikTask
+   task body GrafikTaskSpäterEntfernen
    is begin
 
       TaskID (Task_Grafik_Enum) := Current_Task;
@@ -90,7 +90,7 @@ is
          FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => "Grafiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
-   end GrafikTask;
+   end GrafikTaskSpäterEntfernen;
 
 
 
@@ -197,7 +197,7 @@ begin
       end case;
 
       case
-        NachGrafiktask.Grafik.FensterGeschlossen
+        Grafiktask.Grafik.FensterGeschlossen
       is
          when True =>
             StartEndeSound.TaskStoppen;

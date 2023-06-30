@@ -8,7 +8,7 @@ with StadtBauenLogik;
 with AufgabenLogik;
 with MausauswahlLogik;
 with EinheitentransporterLogik;
-with NachGrafiktask;
+with Grafiktask;
 with EinheitenbewegungsbereichLogik;
 with EffektberechnungenLogik;
 with BewegungsplanLogik;
@@ -23,7 +23,7 @@ package body EinheitenkontrollsystemLogik is
       
       Bewegungspunkte := LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       EinheitenbewegungsbereichLogik.BewegungsbereichBerechnen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-      NachGrafiktask.Einheitenbewegung.EinheitBewegungsbereich := True;
+      Grafiktask.Einheitenbewegung.EinheitBewegungsbereich := True;
       
       KontrollSchleife:
       loop
@@ -56,7 +56,7 @@ package body EinheitenkontrollsystemLogik is
          
       end loop KontrollSchleife;
       
-      NachGrafiktask.Einheitenbewegung.EinheitBewegungsbereich := False;
+      Grafiktask.Einheitenbewegung.EinheitBewegungsbereich := False;
       
    end Einheitenkontrolle;
    
@@ -75,7 +75,7 @@ package body EinheitenkontrollsystemLogik is
             return BefehleMaus (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when BefehleDatentypen.Einheiten_Bewegung_Enum'Range =>
-            NachGrafiktask.Einheitenbewegung.EinheitBewegt := True;
+            Grafiktask.Einheitenbewegung.EinheitBewegt := True;
             return BewegungsplanLogik.Einzelschritt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                      ÄnderungExtern             =>  Richtung (BefehlExtern));
             

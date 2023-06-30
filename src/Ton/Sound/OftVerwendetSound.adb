@@ -1,13 +1,13 @@
 with TonDatentypen;
 
-with NachSoundtask;
+with SchreibeSoundtask;
 
 package body OftVerwendetSound is
 
    procedure Klick
    is begin
       
-      NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Klick_Enum;
+      SchreibeSoundtask.SoundStarten (SoundExtern => TonDatentypen.Sound_Klick_Enum);
       
    end Klick;
 

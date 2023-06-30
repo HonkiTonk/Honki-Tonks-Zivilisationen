@@ -5,7 +5,7 @@ with SystemDatentypen;
 
 with SchreibeCursor;
 
-with NachGrafiktask;
+with Grafiktask;
 with SichtweitenGrafik;
 with KartenkoordinatenberechnungssystemLogik;
 
@@ -15,21 +15,21 @@ package body GeheZuGrafik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
                 
-      Kartenwert := Koordinatenberechnung (KoordinatenExtern => NachGrafiktask.GeheZu);
+      Kartenwert := Koordinatenberechnung (KoordinatenExtern => Grafiktask.Aktuelles.GeheZu);
       
       case
         Kartenwert.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
             SchreibeCursor.KoordinatenAlt (SpeziesExtern     => SpeziesExtern,
-                                           KoordinatenExtern => NachGrafiktask.GeheZu);
+                                           KoordinatenExtern => Grafiktask.Aktuelles.GeheZu);
             
          when others =>
             SchreibeCursor.KoordinatenAlt (SpeziesExtern     => SpeziesExtern,
                                            KoordinatenExtern => Kartenwert);
       end case;
       
-      NachGrafiktask.GeheZu := KartenRecordKonstanten.LeerKoordinate;
+      Grafiktask.Aktuelles.GeheZu := KartenRecordKonstanten.LeerKoordinate;
       
    end GeheZuFestlegung;
    

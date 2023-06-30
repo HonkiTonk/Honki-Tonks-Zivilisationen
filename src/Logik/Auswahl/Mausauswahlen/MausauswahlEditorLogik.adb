@@ -4,7 +4,7 @@ with Views;
 with InteraktionAuswahl;
 
 with EinstellungenGrafik;
-with NachLogiktask;
+with Logiktask;
 with Vergleiche;
 
 package body MausauswahlEditorLogik is

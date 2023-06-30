@@ -10,15 +10,15 @@ with EinheitenKonstanten;
 with GrafikKonstanten;
 
 with LeseEinheitenGebaut;
+with LeseLogiktask;
 
 with EinheitenbeschreibungenGrafik;
 with TextberechnungenHoeheGrafik;
 with InteraktionAuswahl;
 with TextberechnungenBreiteGrafik;
-with NachLogiktask;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
-with NachGrafiktask;
+with Grafiktask;
 with TextfarbeGrafik;
 with TextaccessverwaltungssystemGrafik;
 with TextskalierungGrafik;
@@ -106,13 +106,13 @@ package body EingabenanzeigeGrafik is
                                      AbmessungenExtern => Viewfläche);
       
       case
-        NachGrafiktask.Eingaben.VorzeichenEingabe
+        Grafiktask.Eingaben.VorzeichenEingabe
       is
          when False =>
-            Text := To_Unbounded_Wide_Wide_String (Source => "-") & ZahlAlsString (ZahlExtern => NachGrafiktask.Eingaben.ZahlenEingabe);
+            Text := To_Unbounded_Wide_Wide_String (Source => "-") & ZahlAlsString (ZahlExtern => Grafiktask.Eingaben.ZahlenEingabe);
                               
          when True =>
-            Text := To_Unbounded_Wide_Wide_String (Source => ZahlAlsString (ZahlExtern => NachGrafiktask.Eingaben.ZahlenEingabe));       
+            Text := To_Unbounded_Wide_Wide_String (Source => ZahlAlsString (ZahlExtern => Grafiktask.Eingaben.ZahlenEingabe));       
       end case;
                                     
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EingabenanzeigeAccess,
@@ -154,7 +154,7 @@ package body EingabenanzeigeGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EingabenanzeigeAccess,
-                                         str  => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText));
+                                         str  => To_Wide_Wide_String (Source => LeseLogiktask.Texteingabe));
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);
@@ -192,7 +192,7 @@ package body EingabenanzeigeGrafik is
       Textbreite := GrafikKonstanten.Nullwert;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      AktuelleAuswahl := NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlZwei;
+      AktuelleAuswahl := Grafiktask.Auswahl.AktuelleAuswahl.AuswahlZwei;
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop

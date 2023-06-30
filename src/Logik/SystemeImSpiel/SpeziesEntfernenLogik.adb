@@ -14,7 +14,7 @@ with SchreibeSpeziesbelegung;
 with SchreibeCursor;
 
 with LadezeitenLogik;
-with NachGrafiktask;
+with Grafiktask;
 
 package body SpeziesEntfernenLogik is
 
@@ -74,9 +74,9 @@ package body SpeziesEntfernenLogik is
       end loop DiplomatieSchleife;
       
       if
-        SpeziesExtern = NachGrafiktask.AktuelleSpezies
+        SpeziesExtern = Grafiktask.Aktuelles.AktuelleSpezies
       then
-         NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
+         Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
          
       else
          null;

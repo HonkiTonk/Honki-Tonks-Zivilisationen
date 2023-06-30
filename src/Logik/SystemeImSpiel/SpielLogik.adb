@@ -13,7 +13,7 @@ with LadezeitenLogik;
 with SpeziesEntfernenLogik;
 with RundenendeLogik;
 with Fehlermeldungssystem;
-with NachGrafiktask;
+with Grafiktask;
 with BefehlsauswahlLogik;
 with JaNeinLogik;
 with Spielertests;
@@ -170,13 +170,13 @@ package body SpielLogik is
       
       LadezeitenLogik.KINullsetzenFortschritt;
       
-      NachGrafiktask.KIRechnet := SpeziesExtern;
-      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.KI_Rechenzeit_Enum;
+      Grafiktask.Aktuelles.KIRechnet := SpeziesExtern;
+      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.KI_Rechenzeit_Enum;
       
       KILogik.KI (SpeziesExtern => SpeziesExtern);
       
-      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
-      NachGrafiktask.KIRechnet := SpeziesKonstanten.LeerSpezies;
+      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
+      Grafiktask.Aktuelles.KIRechnet := SpeziesKonstanten.LeerSpezies;
       
    end KISpieler;
    
@@ -235,7 +235,7 @@ package body SpielLogik is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
    begin
       
-      NachGrafiktask.AktuelleSpezies := SpeziesExtern;
+      Grafiktask.Aktuelles.AktuelleSpezies := SpeziesExtern;
       
       if
         LeseAllgemeines.Rundenanzahl = 2
@@ -251,7 +251,7 @@ package body SpielLogik is
       SpielerSchleife:
       loop
          
-         NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Weltkarte_Enum;
+         Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Weltkarte_Enum;
          
          case
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
@@ -324,8 +324,8 @@ package body SpielLogik is
                      
       end loop SpielerSchleife;
       
-      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
-      NachGrafiktask.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
+      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
+      Grafiktask.Aktuelles.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
       
       return RückgabeMenschAmZug;
       

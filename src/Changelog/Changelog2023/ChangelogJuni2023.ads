@@ -1,9 +1,14 @@
 package ChangelogVorlage is
 
-   -- Version 0.05.2745 => 0.05. (30.06.2023):
+   -- Version 0.05.2745 => 0.05.2820 (30.06.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die taskübergreifenden Variablen fertig neu organisiert.
+   -- Interne Benennung überarbeitet.
+   -- Lese/Schreibedateien für Logiktask angelegt.
+   -- Lese/Schreibedateien für Musiktask angelegt.
+   -- Lese/Schreibedateien für Soundtask angelegt.
+   -- Unnötigen Code gelöscht.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

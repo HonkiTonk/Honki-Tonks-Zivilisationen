@@ -210,7 +210,7 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (01.07.2023):
+   -- Version 0.05.2820 => 0.05. (01.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.

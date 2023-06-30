@@ -2,7 +2,8 @@ with Sf.Audio.SoundStatus;
 with Sf.Audio.Sound;
 with Sf.Audio.SoundBuffer;
 
-with NachSoundtask;
+with SchreibeSoundtask;
+
 with EingeleseneSounds;
 
 package body StartEndeSound is
@@ -73,8 +74,8 @@ package body StartEndeSound is
    procedure TaskStoppen
    is begin
       
-      NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Ende_Enum;
-      NachSoundtask.SoundStoppen := TonDatentypen.Sound_Ende_Enum;
+      SchreibeSoundtask.SoundStarten (SoundExtern => TonDatentypen.Sound_Ende_Enum);
+      SchreibeSoundtask.SoundStoppen (SoundExtern => TonDatentypen.Sound_Ende_Enum);
       
    end TaskStoppen;
    

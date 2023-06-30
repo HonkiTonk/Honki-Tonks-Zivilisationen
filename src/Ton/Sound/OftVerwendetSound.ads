@@ -1,5 +1,5 @@
 package OftVerwendetSound is
-   pragma Preelaborate;
+   pragma Elaborate_Body;
 
    procedure Klick;
 

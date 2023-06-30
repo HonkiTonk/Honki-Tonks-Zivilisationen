@@ -1,4 +1,3 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with Sf;
@@ -11,9 +10,10 @@ with SystemKonstanten;
 with BetriebssystemKonstanten;
 with Projekteinstellungen;
 
-with NachGrafiktask;
-with NachLogiktask;
--- with SpielstandlisteLogik;
+with SchreibeLogiktask;
+with LeseLogiktask;
+
+with Grafiktask;
 with FensterGrafik;
 
 package body TexteingabeGrafik is
@@ -61,9 +61,9 @@ package body TexteingabeGrafik is
                     Extraprüfungen
                   is
                      when True =>
-                        NachLogiktask.EingegebenerText.ErfolgreichAbbruch := True;
-                        NachGrafiktask.Eingaben.TextEingabe := False;
-                        NachLogiktask.GrafikWarten := False;
+                        SchreibeLogiktask.ErfolgTexteingabe (ErfolgExtern => True);
+                        Grafiktask.Eingaben.TextEingabe := False;
+                        SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
                         
                      when False =>
                         null;
@@ -72,9 +72,7 @@ package body TexteingabeGrafik is
                elsif
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
                then
-                  NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
-                  NachGrafiktask.Eingaben.TextEingabe := False;
-                  NachLogiktask.GrafikWarten := False;
+                  Abbruch;
                   
                else
                   null;
@@ -84,9 +82,7 @@ package body TexteingabeGrafik is
                if
                  TextEingegeben.mouseButton.button = Sf.Window.Mouse.sfMouseRight
                then
-                  NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
-                  NachGrafiktask.Eingaben.TextEingabe := False;
-                  NachLogiktask.GrafikWarten := False;
+                  Abbruch;
                   
                else
                   null;
@@ -102,12 +98,23 @@ package body TexteingabeGrafik is
    
    
    
+   procedure Abbruch
+   is begin
+      
+      SchreibeLogiktask.KompletteTexteingabe (EingabeExtern => SystemRecordKonstanten.LeerTexteingabe);
+      Grafiktask.Eingaben.TextEingabe := False;
+      SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
+      
+   end Abbruch;
+   
+   
+   
    procedure ZeichenHinzufügen
      (EingegebenesZeichenExtern : in Wide_Wide_Character)
    is begin
             
       case
-        NachGrafiktask.Spielstand.NameSpielstand
+        Grafiktask.Spielstand.NameSpielstand
       is
          when True =>
             if
@@ -122,8 +129,8 @@ package body TexteingabeGrafik is
          when False =>
             null;
       end case;
-            
-      NachLogiktask.EingegebenerText.EingegebenerText := NachLogiktask.EingegebenerText.EingegebenerText & EingegebenesZeichenExtern;
+      
+      SchreibeLogiktask.Texteingabe (TextExtern => (LeseLogiktask.Texteingabe & EingegebenesZeichenExtern));
       
    end ZeichenHinzufügen;
    
@@ -154,7 +161,7 @@ package body TexteingabeGrafik is
    is begin
       
       if
-        To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length >= SystemKonstanten.MaximaleZeichenlängeDateisystem
+        To_Wide_Wide_String (Source => LeseLogiktask.Texteingabe)'Length >= SystemKonstanten.MaximaleZeichenlängeDateisystem
       then
          return False;
          
@@ -182,7 +189,7 @@ package body TexteingabeGrafik is
    is begin
       
       if
-        To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length >= SystemKonstanten.MaximaleSpielstandlängeWindows
+        To_Wide_Wide_String (Source => LeseLogiktask.Texteingabe)'Length >= SystemKonstanten.MaximaleSpielstandlängeWindows
       then
          return False;
          
@@ -215,7 +222,7 @@ package body TexteingabeGrafik is
       for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneNamen'Range loop
          
          if
-           To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneNamen (VerboteneNamenSchleifenwert))
+           To_Wide_Wide_String (Source => LeseLogiktask.Texteingabe) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneNamen (VerboteneNamenSchleifenwert))
          then
             return False;
          
@@ -246,37 +253,39 @@ package body TexteingabeGrafik is
       PunktLeerzeichenSchleife:
       loop
          
+         Text := LeseLogiktask.Texteingabe;
+         
          if
-           To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length = 0
+           To_Wide_Wide_String (Source => Text)'Length = 0
          then
             return False;
             
          elsif
            -- Full_Stop = Period, nicht erlaubt am Ende unter Windows!
-           Full_Stop = Element (Source => NachLogiktask.EingegebenerText.EingegebenerText,
-                                Index  => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Last)
+           Full_Stop = Element (Source => Text,
+                                Index  => To_Wide_Wide_String (Source => Text)'Last)
          then
-            NachLogiktask.EingegebenerText.EingegebenerText := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => NachLogiktask.EingegebenerText.EingegebenerText,
-                                                                                                       From    => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Last,
-                                                                                                       Through => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Last);
+            SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
+                                                                                                     From    => To_Wide_Wide_String (Source => Text)'Last,
+                                                                                                     Through => To_Wide_Wide_String (Source => Text)'Last));
             
          elsif
            -- Leerzeichen ist am Anfang unter Windows nicht erlaubt!
-           Space = Element (Source => NachLogiktask.EingegebenerText.EingegebenerText,
-                            Index  => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'First)
+           Space = Element (Source => Text,
+                            Index  => To_Wide_Wide_String (Source => Text)'First)
          then
-            NachLogiktask.EingegebenerText.EingegebenerText := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => NachLogiktask.EingegebenerText.EingegebenerText,
-                                                                                                       From    => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'First,
-                                                                                                       Through => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'First);
+            SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
+                                                                                                     From    => To_Wide_Wide_String (Source => Text)'First,
+                                                                                                     Through => To_Wide_Wide_String (Source => Text)'First));
             
          elsif
            -- Leerzeichen ist am Ende unter Windows nicht erlaubt!
-           Space = Element (Source => NachLogiktask.EingegebenerText.EingegebenerText,
-                            Index  => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Last)
+           Space = Element (Source => Text,
+                            Index  => To_Wide_Wide_String (Source => Text)'Last)
          then
-            NachLogiktask.EingegebenerText.EingegebenerText := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => NachLogiktask.EingegebenerText.EingegebenerText,
-                                                                                                       From    => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Last,
-                                                                                                       Through => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Last);
+            SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
+                                                                                                     From    => To_Wide_Wide_String (Source => Text)'Last,
+                                                                                                     Through => To_Wide_Wide_String (Source => Text)'Last));
             
          else
             exit PunktLeerzeichenSchleife;
@@ -289,15 +298,17 @@ package body TexteingabeGrafik is
       VerboteneNamenSchleife:
       for VerboteneNamenSchleifenwert in BetriebssystemKonstanten.VerboteneWindowsnamenGroß'Range loop
          
+         Text := LeseLogiktask.Texteingabe;
+         
          if
-           To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length < To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Length
+           To_Wide_Wide_String (Source => Text)'Length < To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Length
          then
             Erlaubt := True;
             
          elsif
-           To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))
+           To_Wide_Wide_String (Source => Text) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))
            or
-             To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenKlein (VerboteneNamenSchleifenwert))
+             To_Wide_Wide_String (Source => Text) = To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenKlein (VerboteneNamenSchleifenwert))
          then
             return False;
                
@@ -308,12 +319,11 @@ package body TexteingabeGrafik is
             for WörterSchleifenwert in To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Range loop
          
                if
-                 To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert)) (WörterSchleifenwert) = Element (Source => NachLogiktask.EingegebenerText.EingegebenerText,
+                 To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert)) (WörterSchleifenwert) = Element (Source => Text,
                                                                                                                                                                      Index  => WörterSchleifenwert)
                  or
-                   To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenKlein (VerboteneNamenSchleifenwert)) (WörterSchleifenwert)
-                 = Element (Source => NachLogiktask.EingegebenerText.EingegebenerText,
-                            Index  => WörterSchleifenwert)
+                   To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenKlein (VerboteneNamenSchleifenwert)) (WörterSchleifenwert) = Element (Source => Text,
+                                                                                                                                                                       Index  => WörterSchleifenwert)
                then
                   null;
                
@@ -333,15 +343,12 @@ package body TexteingabeGrafik is
                
             when False =>
                if
-                 To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length
-                 < To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Last + 1
+                 To_Wide_Wide_String (Source => Text)'Length < To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Last + 1
                then
                   return False;
                   
                elsif
-                 Full_Stop
-                   = 
-                 To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText) (To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Last + 1)
+                 Full_Stop = To_Wide_Wide_String (Source => Text) (To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Last + 1)
                then
                   return False;
                      
@@ -361,16 +368,18 @@ package body TexteingabeGrafik is
    procedure ZeichenEntfernen
    is begin
       
+      Text := LeseLogiktask.Texteingabe;
+      
       case
-        To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Length
+        To_Wide_Wide_String (Source => Text)'Length
       is
          when 0 =>
             null;
          
          when others =>
-            NachLogiktask.EingegebenerText.EingegebenerText := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => NachLogiktask.EingegebenerText.EingegebenerText,
-                                                                                                       From    => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Last,
-                                                                                                       Through => To_Wide_Wide_String (Source => NachLogiktask.EingegebenerText.EingegebenerText)'Last);
+            SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
+                                                                                                     From    => To_Wide_Wide_String (Source => Text)'Last,
+                                                                                                     Through => To_Wide_Wide_String (Source => Text)'Last));
       end case;
       
    end ZeichenEntfernen;

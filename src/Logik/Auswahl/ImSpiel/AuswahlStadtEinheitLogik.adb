@@ -5,7 +5,7 @@ with InteraktionAuswahl;
 
 with LeseEinheitenGebaut;
 
-with NachGrafiktask;
+with Grafiktask;
 with TasteneingabeLogik;
 with MausauswahlLogik;
 
@@ -49,18 +49,18 @@ package body AuswahlStadtEinheitLogik is
       -- Sollte dieser Fehler irgendwann einmal behoben werden, dann kann das weg. äöü
       InteraktionAuswahl.PositionenEinheitStadt (1) := InteraktionAuswahl.PositionenEinheitStadt (2);
       AktuelleAuswahl := 0;
-      NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
-      NachGrafiktask.Auswahl.StadtEinheitAuswahl := WelcheAuswahl;
+      Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
+      Grafiktask.Auswahl.StadtEinheitAuswahl := WelcheAuswahl;
       
-      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Einheit_Auswahl_Enum;
-      NachGrafiktask.AktuelleStadt := StadtNummerExtern;
+      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Einheit_Auswahl_Enum;
+      Grafiktask.Aktuelles.AktuelleStadt := StadtNummerExtern;
       
       AuswahlSchleife:
       loop
          
          AktuelleAuswahl := MausauswahlLogik.StadtEinheitauswahl (AnfangExtern => WelcheAuswahl.MöglicheAuswahlen'First,
                                                                   EndeExtern   => WelcheAuswahl.MöglicheAuswahlen'Last);
-         NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
+         Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -85,7 +85,7 @@ package body AuswahlStadtEinheitLogik is
          
       end loop AuswahlSchleife;
       
-      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
+      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
       
       return AktuelleAuswahl;
       

@@ -13,7 +13,7 @@ with KartenspritesZeichnenGrafik;
 with SichtweitenGrafik;
 with EinheitenbewegungsbereichLogik;
 with WeltkarteZusatzZeichnenGrafik;
-with NachGrafiktask;
+with Grafiktask;
 
 package body WeltkarteEinheitZeichnenGrafik is
 
@@ -98,7 +98,7 @@ package body WeltkarteEinheitZeichnenGrafik is
       if
         EinheitAnzeigen = False
         and
-          NachGrafiktask.Einheitenbewegung.Einheitenbewegung = False
+          Grafiktask.Einheitenbewegung.Einheitenbewegung = False
       then
          null;
          

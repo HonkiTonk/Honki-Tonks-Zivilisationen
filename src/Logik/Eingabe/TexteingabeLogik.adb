@@ -7,9 +7,10 @@ with GrafikDatentypen;
 with TextKonstanten;
 
 with LeseStadtGebaut;
+with SchreibeLogiktask;
+with LeseLogiktask;
 
-with NachLogiktask;
-with NachGrafiktask;
+with Grafiktask;
 with EingabeAllgemeinLogik;
 
 package body TexteingabeLogik is
@@ -24,19 +25,19 @@ package body TexteingabeLogik is
         BauenExtern
       then
          Frage := TextnummernKonstanten.FrageStadtname;
-         NachLogiktask.EingegebenerText.EingegebenerText := Speziestexte.Städtenamen (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer);
+         SchreibeLogiktask.Texteingabe (TextExtern => Speziestexte.Städtenamen (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer));
          
       elsif
         StadtSpeziesNummerExtern.Spezies = SpeziesKonstanten.LeerSpezies
       then
          Frage := TextnummernKonstanten.FrageStadtSuchen;
-         NachLogiktask.EingegebenerText.EingegebenerText := TextKonstanten.LeerUnboundedString;
+         SchreibeLogiktask.Texteingabe (TextExtern => TextKonstanten.LeerUnboundedString);
          
       else
          Frage := TextnummernKonstanten.FrageStadtname;
-         NachLogiktask.EingegebenerText.EingegebenerText := LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
+         SchreibeLogiktask.Texteingabe (TextExtern => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
       end if;
-      
+                                            
       return NameEingeben (WelcheFrageExtern => Frage);
       
    end StadtName;
@@ -78,7 +79,7 @@ package body TexteingabeLogik is
       return SystemRecords.TextEingabeRecord
    is begin
       
-      NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
+      Grafiktask.Meldungen.AnzeigeFrage := WelcheFrageExtern;
       
       case
         WelcheFrageExtern
@@ -87,19 +88,19 @@ package body TexteingabeLogik is
             null;
             
          when others =>
-            NachLogiktask.EingegebenerText := SystemRecordKonstanten.LeerTexteingabe;
+            SchreibeLogiktask.KompletteTexteingabe (EingabeExtern => SystemRecordKonstanten.LeerTexteingabe);
       end case;
       
-      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Text_Eingabe_Enum;
+      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Text_Eingabe_Enum;
       
-      NachLogiktask.GrafikWarten := True;
-      NachGrafiktask.Eingaben.TextEingabe := True;
+      SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
+      Grafiktask.Eingaben.TextEingabe := True;
       
       EingabeAllgemeinLogik.EingabeAbwarten;
       
-      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
+      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
       
-      return NachLogiktask.EingegebenerText;
+      return LeseLogiktask.KompletteTexteingabe;
       
    end NameEingeben;
 

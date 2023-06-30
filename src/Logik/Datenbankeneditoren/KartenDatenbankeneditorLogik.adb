@@ -7,7 +7,7 @@ with TastenbelegungDatentypen;
 with KartenDatenbank;
 
 with MausauswahlEditorLogik;
-with NachGrafiktask;
+with Grafiktask;
 with TasteneingabeLogik;
 
 package body KartenDatenbankeneditorLogik is
@@ -15,8 +15,8 @@ package body KartenDatenbankeneditorLogik is
    procedure KartenDatenbankenEditor
    is begin
       
-      NachGrafiktask.WelcherEditor := GrafikDatentypen.Kartengrund_Editor_Enum;
-      NachGrafiktask.AktuelleDarstellung := GrafikDatentypen.Editoren_Enum;
+      Grafiktask.WelcherEditor := GrafikDatentypen.Kartengrund_Editor_Enum;
+      Grafiktask.AktuelleDarstellung := GrafikDatentypen.Editoren_Enum;
       
       KartengrundSchleife:
       loop

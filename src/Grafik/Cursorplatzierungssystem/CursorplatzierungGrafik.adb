@@ -14,7 +14,7 @@ with SchreibeCursor;
 with InteraktionAllgemein;
 with KartenkoordinatenberechnungssystemLogik;
 with FensterGrafik;
-with NachGrafiktask;
+with Grafiktask;
 with SichtweitenGrafik;
 with Vergleiche;
 
@@ -27,7 +27,7 @@ package body CursorplatzierungGrafik is
    begin
       
       case
-        NachGrafiktask.GeheZu.EAchse
+        Grafiktask.Aktuelles.GeheZu.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
@@ -37,7 +37,7 @@ package body CursorplatzierungGrafik is
             
          when others =>
             SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
-                                               KoordinatenExtern => NachGrafiktask.GeheZu);
+                                               KoordinatenExtern => Grafiktask.Aktuelles.GeheZu);
             return;
       end case;
       

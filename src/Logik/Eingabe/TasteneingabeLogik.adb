@@ -1,21 +1,22 @@
 with LeseTastenbelegungDatenbank;
+with SchreibeLogiktask;
+with LeseLogiktask;
 
-with NachLogiktask;
 with EingabeAllgemeinLogik;
-with NachGrafiktask;
+with Grafiktask;
 
 package body TasteneingabeLogik is
    
    procedure EingabeanfangSetzen
    is begin
       
-      NachLogiktask.GrafikWarten := True;
-      NachGrafiktask.Eingaben.TastenEingabe := True;
+      SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
+      Grafiktask.Eingaben.TastenEingabe := True;
       
       EingabeAllgemeinLogik.EingabeAbwarten;
       
-      Maustaste := NachLogiktask.MausTaste;
-      Taste := NachLogiktask.TastaturTaste;
+      Maustaste := LeseLogiktask.Maustaste;
+      Taste := LeseLogiktask.Tastaturtaste;
       
    end EingabeanfangSetzen;
    
@@ -207,12 +208,12 @@ package body TasteneingabeLogik is
       TasteneingabeSchleife:
       loop
          
-         NachLogiktask.GrafikWarten := True;
-         NachGrafiktask.Eingaben.TastenEingabe := True;
+         SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
+         Grafiktask.Eingaben.TastenEingabe := True;
          
          EingabeAllgemeinLogik.EingabeAbwarten;
       
-         Maustaste := NachLogiktask.MausTaste;
+         Maustaste := LeseLogiktask.Maustaste;
          
          case
            Maustaste
@@ -221,7 +222,7 @@ package body TasteneingabeLogik is
                return Sf.Window.Keyboard.sfKeyUnknown;
             
             when others =>
-               Taste := NachLogiktask.TastaturTaste;
+               Taste := LeseLogiktask.Tastaturtaste;
          end case;
       
          case

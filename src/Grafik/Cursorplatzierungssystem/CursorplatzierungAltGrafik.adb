@@ -15,7 +15,7 @@ with SchreibeCursor;
 
 with KartenkoordinatenberechnungssystemLogik;
 with SichtweitenGrafik;
-with NachGrafiktask;
+with Grafiktask;
 with FensterGrafik;
 with InteraktionAllgemein;
 with Vergleiche;
@@ -29,7 +29,7 @@ package body CursorplatzierungAltGrafik is
    is begin
       
       case
-        NachGrafiktask.GeheZu.EAchse
+        Grafiktask.Aktuelles.GeheZu.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
             if
@@ -97,7 +97,7 @@ package body CursorplatzierungAltGrafik is
         EinheitFolgen
       is
          when False =>
-            NachGrafiktask.GeheZu := EinheitenkoordinatenExtern;
+            Grafiktask.Aktuelles.GeheZu := EinheitenkoordinatenExtern;
             return;
             
          when True =>
@@ -138,13 +138,13 @@ package body CursorplatzierungAltGrafik is
    begin
       
       case
-        NachGrafiktask.Einheitenbewegung.EinheitBewegt
+        Grafiktask.Einheitenbewegung.EinheitBewegt
       is
          when False =>
             return True;
             
          when True =>
-            NachGrafiktask.Einheitenbewegung.EinheitBewegt := False;
+            Grafiktask.Einheitenbewegung.EinheitBewegt := False;
       end case;
       
       AlteCursorkoordinaten := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);

@@ -2,16 +2,17 @@ with GrafikDatentypen;
 with TonDatentypen;
 with MenueDatentypen;
 
+with SchreibeMusiktask;
+with SchreibeSoundtask;
+
 with OptionenLogik;
 with SpieleinstellungenLogik;
 with SpielLogik;
 with LadenLogik;
 with AuswahlaufteilungLogik;
 with Fehlermeldungssystem;
-with NachSoundtask;
-with NachGrafiktask;
+with Grafiktask;
 with DatenbankeneditorenLogik;
-with NachMusiktask;
 
 package body HauptmenueLogik is
 
@@ -101,9 +102,9 @@ package body HauptmenueLogik is
          
       end loop HauptmenüSchleife;
       
-      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Ende_Enum;
-      NachMusiktask.AktuelleMusik := TonDatentypen.Musik_Ende_Enum;
-      NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Ende_Enum;
+      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Ende_Enum;
+      SchreibeMusiktask.AktuelleMusik (MusikExtern => TonDatentypen.Musik_Ende_Enum);
+      SchreibeSoundtask.SoundStarten (SoundExtern => TonDatentypen.Sound_Ende_Enum);
       
    end Hauptmenü;
 

@@ -3,7 +3,7 @@ with TastenbelegungDatentypen;
 with AuswahlKonstanten;
 
 with TasteneingabeLogik;
-with NachGrafiktask;
+with Grafiktask;
 with MausauswahlLogik;
 
 package body JaNeinLogik is
@@ -13,14 +13,14 @@ package body JaNeinLogik is
       return Boolean
    is begin
       
-      NachGrafiktask.AnzeigeFrage := FrageZeileExtern;
-      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Ja_Nein_Enum;
+      Grafiktask.Meldungen.AnzeigeFrage := FrageZeileExtern;
+      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Ja_Nein_Enum;
       
       AuswahlSchleife:
       loop
       
          AktuelleAuswahl := MausauswahlLogik.JaNein;
-         NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlZwei := AktuelleAuswahl;
+         Grafiktask.Auswahl.AktuelleAuswahl.AuswahlZwei := AktuelleAuswahl;
       
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -45,8 +45,8 @@ package body JaNeinLogik is
          
       end loop AuswahlSchleife;
       
-      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
-      NachGrafiktask.AnzeigeFrage := 0;
+      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
+      Grafiktask.Meldungen.AnzeigeFrage := 0;
       
       case
         AktuelleAuswahl

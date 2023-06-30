@@ -2,17 +2,17 @@ with ZeitKonstanten;
 with SystemKonstanten;
 
 with LeseEinstellungenGrafik;
+with SchreibeLogiktask;
 
 with IntroGrafik;
 with MenueaufteilungGrafik;
-with NachGrafiktask;
+with Grafiktask;
 with FensterGrafik;
 with SichtweitenGrafik;
 with ForschungsauswahlGrafik;
 with SprachauswahlGrafik;
 with EingabenanzeigeGrafik;
 with BauauswahlGrafik;
-with NachLogiktask;
 with TexteingabeGrafik;
 with TextaccesseSetzenGrafik;
 with LadezeitenGrafik;
@@ -36,7 +36,7 @@ package body Grafik is
    is begin
             
       GrafikStartenSchleife:
-      while NachGrafiktask.Spielstart.ErzeugeFenster = False loop
+      while Grafiktask.Spielstart.ErzeugeFenster = False loop
 
          delay ZeitKonstanten.WartezeitGrafik;
          
@@ -54,7 +54,7 @@ package body Grafik is
       loop
                   
          case
-           NachGrafiktask.Grafik.FensterGeschlossen
+           Grafiktask.Grafik.FensterGeschlossen
          is
             when True =>
                exit GrafikSchleife;
@@ -87,73 +87,73 @@ package body Grafik is
    is begin
       
       case
-        NachGrafiktask.Texteinstellungen.SchriftartSetzen
+        Grafiktask.Texteinstellungen.SchriftartSetzen
       is
          when True =>
             TexteinstellungenGrafik.SchriftartFestlegen;
-            NachGrafiktask.Texteinstellungen.SchriftartSetzen := False;
+            Grafiktask.Texteinstellungen.SchriftartSetzen := False;
             
          when False =>
             null;
       end case;
       
       case
-        NachGrafiktask.Texteinstellungen.SchriftgrößeSetzen
+        Grafiktask.Texteinstellungen.SchriftgrößeSetzen
       is
          when True =>
             TextaccesseSetzenGrafik.Schriftgröße;
-            NachGrafiktask.Texteinstellungen.SchriftgrößeSetzen := False;
+            Grafiktask.Texteinstellungen.SchriftgrößeSetzen := False;
             
          when False =>
             null;
       end case;
       
       case
-        NachGrafiktask.Texteinstellungen.SchriftfarbeSetzen
+        Grafiktask.Texteinstellungen.SchriftfarbeSetzen
       is
          when True =>
             TextaccesseSetzenGrafik.Schriftfarbe;
-            NachGrafiktask.Texteinstellungen.SchriftfarbeSetzen := False;
+            Grafiktask.Texteinstellungen.SchriftfarbeSetzen := False;
             
          when False =>
             null;
       end case;
       
       case
-        NachGrafiktask.Texteinstellungen.SchriftstilSetzen
+        Grafiktask.Texteinstellungen.SchriftstilSetzen
       is
          when True =>
             TextaccesseSetzenGrafik.Schriftstil;
-            NachGrafiktask.Texteinstellungen.SchriftstilSetzen := False;
+            Grafiktask.Texteinstellungen.SchriftstilSetzen := False;
             
          when False =>
             null;
       end case;
       
       case
-        NachGrafiktask.Texteinstellungen.TextSetzen
+        Grafiktask.Texteinstellungen.TextSetzen
       is
          when True =>
             TextaccesseSetzenGrafik.Text;
-            NachGrafiktask.Texteinstellungen.TextSetzen := False;
+            Grafiktask.Texteinstellungen.TextSetzen := False;
             
          when False =>
             null;
       end case;
                
       case
-        NachGrafiktask.Grafik.FensterVerändert
+        Grafiktask.Grafik.FensterVerändert
       is
          when GrafikDatentypen.Fenster_Wurde_Verändert_Enum'Range =>
-            FensterGrafik.FensterAnpassen (FensterVerändertExtern => NachGrafiktask.Grafik.FensterVerändert);
+            FensterGrafik.FensterAnpassen (FensterVerändertExtern => Grafiktask.Grafik.FensterVerändert);
             SichtweitenGrafik.KartenfelderAbmessungBerechnen;
             SichtweitenGrafik.StadtumgebungAbmessungBerechnen;
-            NachGrafiktask.Grafik.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
-            NachLogiktask.GrafikWarten := False;
+            Grafiktask.Grafik.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
+            SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
             
          when GrafikDatentypen.Bildrate_Ändern_Enum =>
             FensterGrafik.BildrateÄndern;
-            NachGrafiktask.Grafik.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
+            Grafiktask.Grafik.FensterVerändert := GrafikDatentypen.Keine_Änderung_Enum;
                
          when others =>
             null;
@@ -167,7 +167,7 @@ package body Grafik is
    is begin
       
       case
-        NachGrafiktask.Eingaben.TextEingabe
+        Grafiktask.Eingaben.TextEingabe
       is
          when True =>
             TexteingabeGrafik.Texteingabe;
@@ -177,7 +177,7 @@ package body Grafik is
       end case;
          
       case
-        NachGrafiktask.Eingaben.TastenEingabe
+        Grafiktask.Eingaben.TastenEingabe
       is
          when True =>
             TasteneingabeGrafik.Tasteneingabe;
@@ -194,14 +194,14 @@ package body Grafik is
      return Boolean
    is begin
       
-      AktuelleDarstellung := NachGrafiktask.Grafik.AktuelleDarstellung;
+      AktuelleDarstellung := Grafiktask.Grafik.AktuelleDarstellung;
       
       case
         AktuelleDarstellung
       is
          when GrafikDatentypen.Start_Enum =>
-            NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
-            NachLogiktask.GrafikWarten := False;
+            Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
+            SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
             
             -- Wenn ich diese schreckliche Introlösung ersetze, dann die Sprachauswahl auch in die Menüs verschieben? äöü
          when GrafikDatentypen.Sprache_Enum =>
@@ -215,10 +215,10 @@ package body Grafik is
             if
               Startzeit + ZeitKonstanten.Introzeit < Clock
               or
-                NachGrafiktask.Spielstart.IntroBeenden = True
+                Grafiktask.Spielstart.IntroBeenden = True
             then
-               NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
-               NachLogiktask.IntroAbwarten := False;
+               Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
+               SchreibeLogiktask.WartenIntro (ZustandExtern => False);
                
             else
                null;
@@ -228,46 +228,47 @@ package body Grafik is
             delay ZeitKonstanten.WartezeitGrafik;
             
          when GrafikDatentypen.Ladezeiten_Enum'Range =>
-            LadezeitenGrafik.Ladezeiten (WelcheLadeanzeigeExtern => NachGrafiktask.Grafik.AktuelleDarstellung,
-                                         SpeziesExtern           => NachGrafiktask.KIRechnet);
+            LadezeitenGrafik.Ladezeiten (WelcheLadeanzeigeExtern => Grafiktask.Grafik.AktuelleDarstellung,
+                                         SpeziesExtern           => Grafiktask.Aktuelles.KIRechnet);
             -- Diese Prüfung kann nicht rausgezogen werden, da er mit dem aktuellen System sonst Tasteneingaben nicht mehr korrekt erkennt.
             TasteneingabeGrafik.FensterAnpassen;
          
          when GrafikDatentypen.Menüs_Enum =>
-            MenueaufteilungGrafik.Menüaufteilung (WelchesMenüExtern     => NachGrafiktask.Grafik.AktuellesMenü,
-                                                   AktuelleAuswahlExtern => NachGrafiktask.Auswahl.AktuelleAuswahl);
+            MenueaufteilungGrafik.Menüaufteilung (WelchesMenüExtern     => Grafiktask.Grafik.AktuellesMenü,
+                                                   AktuelleAuswahlExtern => Grafiktask.Auswahl.AktuelleAuswahl);
                
          when GrafikDatentypen.Editoren_Enum =>
-            EditorenGrafik.Editoren (WelcherEditorExtern => NachGrafiktask.Editoren.WelcherEditor);
+            EditorenGrafik.Editoren (WelcherEditorExtern => Grafiktask.Editoren.WelcherEditor);
                
          when GrafikDatentypen.Weltkarte_Enum =>
-            KartenaufteilungGrafik.Weltkarte (EinheitenauswahlExtern => UebergabeRecordErmittelnGrafik.Einheit (EinheitSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleEinheit)));
+            KartenaufteilungGrafik.Weltkarte (EinheitenauswahlExtern => UebergabeRecordErmittelnGrafik.Einheit (EinheitSpeziesNummerExtern
+                                              => (Grafiktask.Aktuelles.AktuelleSpezies, Grafiktask.Aktuelles.AktuelleEinheit)));
             
          when GrafikDatentypen.Stadtkarte_Enum =>
-            KartenaufteilungGrafik.Stadtkarte (StadtauswahlExtern => UebergabeRecordErmittelnGrafik.Stadt (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt)));
+            KartenaufteilungGrafik.Stadtkarte (StadtauswahlExtern => UebergabeRecordErmittelnGrafik.Stadt (StadtSpeziesNummerExtern => (Grafiktask.Aktuelles.AktuelleSpezies, Grafiktask.Aktuelles.AktuelleStadt)));
                
          when GrafikDatentypen.Forschung_Enum =>
-            ForschungsauswahlGrafik.ForschungAnzeige (SpeziesExtern         => NachGrafiktask.AktuelleSpezies,
-                                                      AktuelleAuswahlExtern => NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins);
+            ForschungsauswahlGrafik.ForschungAnzeige (SpeziesExtern         => Grafiktask.Aktuelles.AktuelleSpezies,
+                                                      AktuelleAuswahlExtern => Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins);
             
          when GrafikDatentypen.Forschungserfolg_Enum =>
-            ForschungserfolgGrafik.Forschungserfolg (SpeziesExtern => NachGrafiktask.AktuelleSpezies,
-                                                     AuswahlExtern => NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins);
+            ForschungserfolgGrafik.Forschungserfolg (SpeziesExtern => Grafiktask.Aktuelles.AktuelleSpezies,
+                                                     AuswahlExtern => Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins);
             
          when GrafikDatentypen.Bauen_Enum =>
-            BauauswahlGrafik.Bauauswahl (BauauswahlExtern      => UebergabeRecordErmittelnGrafik.Bauauswahl (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt)),
-                                         AktuelleAuswahlExtern => NachGrafiktask.Auswahl.Bauauswahl);
+            BauauswahlGrafik.Bauauswahl (BauauswahlExtern      => UebergabeRecordErmittelnGrafik.Bauauswahl (StadtSpeziesNummerExtern => (Grafiktask.Aktuelles.AktuelleSpezies, Grafiktask.Aktuelles.AktuelleStadt)),
+                                         AktuelleAuswahlExtern => Grafiktask.Auswahl.Bauauswahl);
             
          when GrafikDatentypen.Verkaufen_Enum =>
-            VerkaufsauswahlGrafik.Verkaufsauswahl (SpeziesExtern         => NachGrafiktask.AktuelleSpezies,
-                                                   AktuelleAuswahlExtern => NachGrafiktask.Auswahl.Bauauswahl.Gebäude);
+            VerkaufsauswahlGrafik.Verkaufsauswahl (SpeziesExtern         => Grafiktask.Aktuelles.AktuelleSpezies,
+                                                   AktuelleAuswahlExtern => Grafiktask.Auswahl.Bauauswahl.Gebäude);
             
          when GrafikDatentypen.Diplomatie_Enum =>
-            DiplomatieauswahlGrafik.Diplomatieauswahl (AuswahlExtern => NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins);
+            DiplomatieauswahlGrafik.Diplomatieauswahl (AuswahlExtern => Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins);
             
          when GrafikDatentypen.Abspann_Enum =>
-            AbspannGrafik.Abspann (AbspannExtern => NachGrafiktask.Grafik.Abspannart,
-                                   SpeziesExtern => NachGrafiktask.AktuelleSpezies);
+            AbspannGrafik.Abspann (AbspannExtern => Grafiktask.Grafik.Abspannart,
+                                   SpeziesExtern => Grafiktask.Aktuelles.AktuelleSpezies);
             
          when GrafikDatentypen.Ende_Enum =>
             return False;
@@ -275,9 +276,9 @@ package body Grafik is
       
       AnzeigeSpielmeldungen (AktuelleDarstellungExtern => AktuelleDarstellung,
                              LetzteDarstellungExtern   => LetzteDarstellung,
-                             SpielmeldungExtern        => NachGrafiktask.Spielmeldung);
+                             SpielmeldungExtern        => Grafiktask.Meldungen.Spielmeldung);
       
-      AnzeigeEingaben (EingabeExtern => NachGrafiktask.Eingaben.Eingabeart);
+      AnzeigeEingaben (EingabeExtern => Grafiktask.Eingaben.Eingabeart);
                              
       case
         LeseEinstellungenGrafik.BildrateAnzeigen
@@ -313,12 +314,12 @@ package body Grafik is
       elsif
         LetzteDarstellungExtern /= AktuelleDarstellungExtern
       then
-         NachGrafiktask.Spielmeldung := SystemKonstanten.LeerMeldung;
+         Grafiktask.Meldungen.Spielmeldung := SystemKonstanten.LeerMeldung;
       
       elsif
-        Clock - NachGrafiktask.StartzeitSpielmeldung > ZeitKonstanten.AnzeigezeitSpielmeldungen
+        Clock - Grafiktask.Meldungen.StartzeitSpielmeldung > ZeitKonstanten.AnzeigezeitSpielmeldungen
       then
-         NachGrafiktask.Spielmeldung := SystemKonstanten.LeerMeldung;
+         Grafiktask.Meldungen.Spielmeldung := SystemKonstanten.LeerMeldung;
          
       else
          SpielmeldungenGrafik.Spielmeldung (MeldungExtern => SpielmeldungExtern);
@@ -336,14 +337,14 @@ package body Grafik is
         EingabeExtern
       is
          when GrafikDatentypen.Eingabe_Fragen_Enum'Range =>
-            EingabenanzeigeGrafik.Fragenaufteilung (FrageExtern   => NachGrafiktask.AnzeigeFrage,
+            EingabenanzeigeGrafik.Fragenaufteilung (FrageExtern   => Grafiktask.Meldungen.AnzeigeFrage,
                                                     EingabeExtern => EingabeExtern);
             
          when GrafikDatentypen.Einheit_Auswahl_Enum =>
             EingabenanzeigeGrafik.AnzeigeEinheitenStadt (SpeziesStadtnameExtern =>
-                                                            UebergabeRecordErmittelnGrafik.SpeziesStadtname (StadtSpeziesNummerExtern => (NachGrafiktask.AktuelleSpezies, NachGrafiktask.AktuelleStadt)),
-                                                         WelcheAuswahlExtern    => NachGrafiktask.Auswahl.StadtEinheitAuswahl,
-                                                         AktuelleAuswahlExtern  => NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins);
+                                                            UebergabeRecordErmittelnGrafik.SpeziesStadtname (StadtSpeziesNummerExtern => (Grafiktask.Aktuelles.AktuelleSpezies, Grafiktask.Aktuelles.AktuelleStadt)),
+                                                         WelcheAuswahlExtern    => Grafiktask.Auswahl.StadtEinheitAuswahl,
+                                                         AktuelleAuswahlExtern  => Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins);
             
             -- Wenn ich das Baumenü/Forschungsmenü hierher verschiebe, dann könnte ich das Neusetzen vermeiden und diese Setzsachen in eine Prozedur auslagern. äöü
             -- Dann könnte ich auch ein durchsichtiges Fenster für die Menüs erstellen. äöü

@@ -8,8 +8,9 @@ with GrafikDatentypen;
 with GrafikRecordKonstanten;
 with GrafikKonstanten;
 
-with NachLogiktask;
-with NachGrafiktask;
+with SchreibeLogiktask;
+
+with Grafiktask;
 with SichtweitenGrafik;
 with InteraktionAllgemein;
 with FensterGrafik;
@@ -24,8 +25,8 @@ package body TasteneingabeGrafik is
    begin
       
       -- Kann man sfMouseButtonCount einfach so als Leerwert nehmen? Scheint zu funktionieren.
-      NachLogiktask.MausTaste := Sf.Window.Mouse.sfMouseButtonCount;
-      NachLogiktask.TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
+      SchreibeLogiktask.Maustaste (TasteExtern => Sf.Window.Mouse.sfMouseButtonCount);
+      SchreibeLogiktask.Tastaturtaste (TasteExtern => Sf.Window.Keyboard.sfKeyUnknown);
       
       TasteSchleife:
       while
@@ -37,11 +38,11 @@ package body TasteneingabeGrafik is
            Nutzereingabe.eventType
          is
             when Sf.Window.Event.sfEvtClosed =>
-               NachGrafiktask.Grafik.FensterGeschlossen := True;
+               Grafiktask.Grafik.FensterGeschlossen := True;
                return;
                   
             when Sf.Window.Event.sfEvtResized =>
-               NachGrafiktask.Grafik.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
+               Grafiktask.Grafik.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
                
             when Sf.Window.Event.sfEvtMouseLeft =>
                InteraktionAllgemein.Mausposition := GrafikRecordKonstanten.FalschePosition;
@@ -63,11 +64,11 @@ package body TasteneingabeGrafik is
            Nutzereingabe.eventType
          is
             when Sf.Window.Event.sfEvtKeyPressed =>
-               NachLogiktask.TastaturTaste := Nutzereingabe.key.code;
+               SchreibeLogiktask.Tastaturtaste (TasteExtern => Nutzereingabe.key.code);
                   
             when Sf.Window.Event.sfEvtMouseWheelScrolled =>
                if
-                 NachGrafiktask.Grafik.AktuelleDarstellung /= GrafikDatentypen.Weltkarte_Enum
+                 Grafiktask.Grafik.AktuelleDarstellung /= GrafikDatentypen.Weltkarte_Enum
                then
                   null;
                   
@@ -81,7 +82,7 @@ package body TasteneingabeGrafik is
                end if;
                   
             when Sf.Window.Event.sfEvtMouseButtonPressed =>
-               NachLogiktask.MausTaste := Nutzereingabe.mouseButton.button;
+               SchreibeLogiktask.Maustaste (TasteExtern => Nutzereingabe.mouseButton.button);
                
             when others =>
                null;
@@ -89,8 +90,8 @@ package body TasteneingabeGrafik is
                      
       end loop TasteSchleife;
       
-      NachGrafiktask.Eingaben.TastenEingabe := False;
-      NachLogiktask.GrafikWarten := False;
+      Grafiktask.Eingaben.TastenEingabe := False;
+      SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
       
    end Tasteneingabe;
    
@@ -111,11 +112,11 @@ package body TasteneingabeGrafik is
            Fensteranpassung.eventType
          is
             when Sf.Window.Event.sfEvtClosed =>
-               NachGrafiktask.Grafik.FensterGeschlossen := True;
+               Grafiktask.Grafik.FensterGeschlossen := True;
                return;
                   
             when Sf.Window.Event.sfEvtResized =>
-               NachGrafiktask.Grafik.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
+               Grafiktask.Grafik.FensterVerändert := GrafikDatentypen.Fenster_Verändert_Enum;
                
             when others =>
                null;

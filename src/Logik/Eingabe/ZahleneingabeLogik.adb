@@ -4,8 +4,10 @@ with Sf;
 
 with GrafikDatentypen;
 
-with NachGrafiktask;
-with NachLogiktask;
+with SchreibeLogiktask;
+with LeseLogiktask;
+
+with Grafiktask;
 with EingabeAllgemeinLogik;
 
 package body ZahleneingabeLogik is
@@ -29,9 +31,9 @@ package body ZahleneingabeLogik is
       -- LeerWert := MinimumMaximumSetzen (ZahlenMinimumExtern => ZahlenMinimumExtern,
       --                                  ZahlenMaximumExtern => ZahlenMaximumExtern);
       
-      NachGrafiktask.AnzeigeFrage := WelcheFrageExtern;
-      NachGrafiktask.Eingaben.ZahlenEingabe := EingegebeneZahl.EingegebeneZahl;
-      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Zahlen_Eingabe_Enum;
+      Grafiktask.Meldungen.AnzeigeFrage := WelcheFrageExtern;
+      Grafiktask.Eingaben.ZahlenEingabe := EingegebeneZahl.EingegebeneZahl;
+      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Zahlen_Eingabe_Enum;
       
       return ZahlSchleife (ZahlenMinimumExtern => ZahlenMinimumExtern,
                            ZahlenMaximumExtern => ZahlenMaximumExtern);
@@ -49,10 +51,10 @@ package body ZahleneingabeLogik is
       ZahlenSchleife:
       loop
          
-         NachLogiktask.GrafikWarten := True;
-         NachGrafiktask.Eingaben.TastenEingabe := True;
+         SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
+         Grafiktask.Eingaben.TastenEingabe := True;
          EingabeAllgemeinLogik.EingabeAbwarten;
-         Zahlen := NachLogiktask.TastaturTaste;
+         Zahlen := LeseLogiktask.Tastaturtaste;
          
          case
            GanzeZahlPrüfung (ZeichenExtern => Zahlen)
@@ -95,8 +97,8 @@ package body ZahleneingabeLogik is
                null;
          end case;
          
-         NachGrafiktask.Eingaben.VorzeichenEingabe := WelchesVorzeichen;
-         NachGrafiktask.Eingaben.ZahlenEingabe := Natural'Wide_Wide_Value (ZahlenString);
+         Grafiktask.Eingaben.VorzeichenEingabe := WelchesVorzeichen;
+         Grafiktask.Eingaben.ZahlenEingabe := Natural'Wide_Wide_Value (ZahlenString);
 
       end loop ZahlenSchleife;
       
@@ -117,7 +119,7 @@ package body ZahleneingabeLogik is
             null;
       end case;
             
-      NachGrafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
+      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
       
       return EingegebeneZahl;
       

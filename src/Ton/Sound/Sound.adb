@@ -1,10 +1,12 @@
 with ZeitKonstanten;
 
-with NachSoundtask;
+with SchreibeLogiktask;
+with LeseSoundtask;
+with SchreibeSoundtask;
+
 with StartEndeSound;
 with LogiktaskAnAlle;
 with StarteinstellungenSound;
-with NachLogiktask;
 
 package body Sound is
 
@@ -20,13 +22,13 @@ package body Sound is
       end loop EinlesenAbwartenSchleife;
       
       StarteinstellungenSound.Lautstärke;
-      NachLogiktask.SoundWarten := False;
+      SchreibeLogiktask.WartenSound (ZustandExtern => False);
             
       SoundSchleife:
       loop
          
          case
-           NachSoundtask.SoundAbspielen
+           LeseSoundtask.SoundStarten
          is
             when TonDatentypen.Sound_Pause_Enum =>
                delay ZeitKonstanten.WartezeitSound;
@@ -37,19 +39,19 @@ package body Sound is
                exit SoundSchleife;
                
             when others =>
-               WiedergegebeneSounds (NachSoundtask.SoundAbspielen) := True;
-               StartEndeSound.Abspielen (SoundExtern => NachSoundtask.SoundAbspielen);
+               WiedergegebeneSounds (LeseSoundtask.SoundStarten) := True;
+               StartEndeSound.Abspielen (SoundExtern => LeseSoundtask.SoundStarten);
          end case;
          
          case
-           NachSoundtask.SoundStoppen
+           LeseSoundtask.SoundStoppen
          is
             when TonDatentypen.Sound_Pause_Enum =>
                if
-                 WiedergegebeneSounds (NachSoundtask.SoundAbspielen) = True
+                 WiedergegebeneSounds (LeseSoundtask.SoundStarten) = True
                then
-                  WiedergegebeneSounds (NachSoundtask.SoundAbspielen) := False;
-                  NachSoundtask.SoundAbspielen := TonDatentypen.Sound_Pause_Enum;
+                  WiedergegebeneSounds (LeseSoundtask.SoundStarten) := False;
+                  SchreibeSoundtask.SoundStarten (SoundExtern => TonDatentypen.Sound_Pause_Enum);
                   
                else
                   null;
@@ -59,8 +61,8 @@ package body Sound is
                exit SoundSchleife;
                
             when others =>
-               StartEndeSound.Stoppen (SoundExtern => NachSoundtask.SoundStoppen);
-               NachSoundtask.SoundStoppen := TonDatentypen.Sound_Pause_Enum;
+               StartEndeSound.Stoppen (SoundExtern => LeseSoundtask.SoundStoppen);
+               SchreibeSoundtask.SoundStoppen (SoundExtern => TonDatentypen.Sound_Pause_Enum);
          end case;
          
       end loop SoundSchleife;

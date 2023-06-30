@@ -12,7 +12,7 @@ with SpieleinstellungenSonstigesLogik;
 with Fehlermeldungssystem;
 with LadezeitenLogik;
 with AuswahlaufteilungLogik;
-with NachGrafiktask;
+with Grafiktask;
 with StandardSpielwerteSetzenLogik;
 with KartengeneratorVariablenLogik;
 with Spielertests;
@@ -114,7 +114,7 @@ package body SpieleinstellungenLogik is
    is begin
       
       LadezeitenLogik.SpielweltNullsetzen;
-      NachGrafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Generierungszeit_Enum;
+      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Generierungszeit_Enum;
       
       -- Wird benötigt, da sonst die wichtigen Kartenwerte nicht gespeichert/geladen werden können. Sicherheitshalber immer vor Aufruf des Kartengenerators setzen.
       SchreibeWeltkarteneinstellungen.Fläche (AchsenExtern => KartengeneratorVariablenLogik.Kartenparameter.Kartengröße);

@@ -20,7 +20,7 @@ with HintergrundGrafik;
 with ViewsEinstellenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
-with NachGrafiktask;
+with Grafiktask;
 with TextfarbeGrafik;
 with TextaccessverwaltungssystemGrafik;
 with TextskalierungGrafik;
@@ -58,8 +58,8 @@ package body SpielstandmenueGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       NeueTextbreite := GrafikKonstanten.Nullwert;
       
-      MehrereSeiten := NachGrafiktask.Auswahl.SprachenSeitenauswahl;
-      SpeichernLaden := NachGrafiktask.Spielstand.SpeichernLaden;
+      MehrereSeiten := Grafiktask.Auswahl.SprachenSeitenauswahl;
+      SpeichernLaden := Grafiktask.Spielstand.SpeichernLaden;
       Spielstand := SpielstandVariablen.GanzeSpielstandliste;
       
       TextSchleife:
@@ -97,7 +97,7 @@ package body SpielstandmenueGrafik is
             if
               TextSchleifenwert = MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spielstand_Menü_Enum) - MenueKonstanten.SchleifenanpassungGrafikLogik
               and
-                NachGrafiktask.Auswahl.LöschenAuswahl
+                Grafiktask.Auswahl.LöschenAuswahl
             then
                Farbe := Sf.Graphics.Color.sfRed;
                

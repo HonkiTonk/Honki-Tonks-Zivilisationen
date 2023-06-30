@@ -1,13 +1,13 @@
 with ZeitKonstanten;
 
-with NachLogiktask;
+with LeseLogiktask;
 
 package body EingabeAllgemeinLogik is
 
    procedure EingabeAbwarten
    is begin
               
-      while NachLogiktask.GrafikWarten loop
+      while LeseLogiktask.WartenGrafik = True loop
          
          delay ZeitKonstanten.WartezeitEingabe;
          

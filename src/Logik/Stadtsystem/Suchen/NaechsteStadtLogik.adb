@@ -4,7 +4,7 @@ with StadtRecords;
 with LeseStadtGebaut;
 with LeseGrenzen;
 
-with NachGrafiktask;
+with Grafiktask;
 
 package body NaechsteStadtLogik is
 
@@ -49,7 +49,7 @@ package body NaechsteStadtLogik is
 
       end loop StadtSuchenSchleife;
       
-      NachGrafiktask.GeheZu := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadt (SpeziesExtern)));
+      Grafiktask.Aktuelles.GeheZu := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadt (SpeziesExtern)));
       
    end NächsteStadt;
    
@@ -110,7 +110,7 @@ package body NaechsteStadtLogik is
 
       end loop StadtSuchenSchleife;
       
-      NachGrafiktask.GeheZu := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadtMeldung (SpeziesExtern)));
+      Grafiktask.Aktuelles.GeheZu := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadtMeldung (SpeziesExtern)));
       
    end NächsteStadtMeldung;
 

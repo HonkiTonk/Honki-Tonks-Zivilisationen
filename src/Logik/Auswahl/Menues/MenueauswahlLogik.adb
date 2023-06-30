@@ -3,7 +3,7 @@ with MenueKonstanten;
 
 with TasteneingabeLogik;
 with MenuerueckgabenLogik;
-with NachGrafiktask;
+with Grafiktask;
 with MausauswahlLogik;
 
 package body MenueauswahlLogik is
@@ -46,7 +46,7 @@ package body MenueauswahlLogik is
          AktuelleAuswahl := MausauswahlLogik.Menüs (WelchesMenüExtern => WelchesMenüExtern,
                                                      AnfangExtern      => Anfang,
                                                      EndeExtern        => EndeExtern);
-         NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
+         Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -58,7 +58,7 @@ package body MenueauswahlLogik is
                   null;
                   
                else
-                  NachGrafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AuswahlKonstanten.LeerAuswahl;
+                  Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AuswahlKonstanten.LeerAuswahl;
                   return AktuelleAuswahl;
                end if;
                

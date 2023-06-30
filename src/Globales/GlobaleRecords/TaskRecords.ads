@@ -1,22 +1,52 @@
+with Ada.Calendar; use Ada.Calendar;
+
+with Sf.Window.Keyboard;
+with Sf.Window.Mouse;
+
 with GrafikDatentypen;
 with ZahlenDatentypen;
 with EinheitenRecords;
 with SystemRecords;
 with StadtRecords;
 with MenueDatentypen;
+with TextnummernKonstanten;
+with KartenRecords;
+with SpeziesDatentypen;
+with StadtDatentypen;
+with EinheitenDatentypen;
+with TonDatentypen;
 
 -- Eventuell ein paar der Namen noch einmal kürzen. äöü
 package TaskRecords is
-   pragma Preelaborate;
+   pragma Elaborate_Body;
    
    -- Logiktask
+   type WartenLogikRecord is record
+      
+      Sound : Boolean;
+      Musik : Boolean;
+      Grafik : Boolean;
+      Intro : Boolean;
+      
+   end record;
    
+   
+   
+   type EingabeLogikRecord is record
+
+      Tastaturtaste : Sf.Window.Keyboard.sfKeyCode;
+
+      Maustaste : Sf.Window.Mouse.sfMouseButton;
+
+      Text : SystemRecords.TextEingabeRecord;
+      
+   end record;
    -- Logiktask
    
    
 
    -- Grafiktask
-   type SpielstartRecord is record
+   type SpielstartGrafikRecord is record
       
       ErzeugeFenster : Boolean;
       IntroBeenden : Boolean;
@@ -41,7 +71,7 @@ package TaskRecords is
    
    
    
-   type TexteinstellungenRecord is record
+   type TexteinstellungenGrafikRecord is record
       
       SchriftartSetzen : Boolean;
       SchriftgrößeSetzen : Boolean;
@@ -53,7 +83,7 @@ package TaskRecords is
    
    
    
-   type AuswahlRecord is record
+   type AuswahlGrafikRecord is record
       
       SprachenSeitenauswahl : Boolean;
       LöschenAuswahl : Boolean;
@@ -71,7 +101,7 @@ package TaskRecords is
    
    
    
-   type EingabeRecord is record
+   type EingabeGrafikRecord is record
       
       TastenEingabe : Boolean;
       TextEingabe : Boolean;
@@ -85,7 +115,37 @@ package TaskRecords is
    
    
    
-   type SpielstandRecord is record
+   type MeldungenGrafikRecord is record
+      
+      Spielmeldung : TextnummernKonstanten.Spielmeldungen;
+      
+      StartzeitSpielmeldung : Time;
+      
+      AnzeigeFrage : ZahlenDatentypen.EigenesNatural;
+      
+   end record;
+   
+   
+   
+   type AktuellesGrafikRecord is record
+      
+      Stadtkarte : Boolean;
+      
+      KIRechnet : SpeziesDatentypen.Spezies_Enum;
+      AktuelleSpezies : SpeziesDatentypen.Spezies_Enum;
+      KontaktierteSpezies : SpeziesDatentypen.Spezies_Enum;
+      
+      AktuelleStadt : StadtDatentypen.MaximaleStädteMitNullWert;
+   
+      AktuelleEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   
+      GeheZu : KartenRecords.AchsenKartenfeldNaturalRecord;
+      
+   end record;
+   
+   
+   
+   type SpielstandGrafikRecord is record
       
       NameSpielstand : Boolean;
       SpeichernLaden : Boolean;
@@ -94,7 +154,7 @@ package TaskRecords is
    
    
    
-   type EinheitenbewegungRecord is record
+   type EinheitenbewegungGrafikRecord is record
       
       Einheitenbewegung : Boolean;
       EinheitBewegt : Boolean;
@@ -104,7 +164,7 @@ package TaskRecords is
    
    
    
-   type EditorRecord is record
+   type EditorGrafikRecord is record
       
       WelcherEditor : GrafikDatentypen.Editor_Enum;
       
@@ -113,8 +173,19 @@ package TaskRecords is
    
    
    
-   -- Tontask
+   -- Musiktask
    
-   -- Tontask
+   -- Musiktask
+   
+   
+   
+   -- Soundtask
+   type SoundRecord is record
+      
+      Starten : TonDatentypen.Sound_Aktuelle_Auswahl_Enum;
+      Stoppen : TonDatentypen.Sound_Aktuelle_Auswahl_Enum;
+      
+   end record;
+   -- Soundtask
 
 end TaskRecords;
