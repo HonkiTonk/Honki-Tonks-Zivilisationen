@@ -9,8 +9,9 @@ with SchreibeEinstellungenGrafik;
 with LeseEinstellungenGrafik;
 with SchreibeLogiktask;
 with LeseLogiktask;
+with SchreibeGrafiktask;
+with LeseGrafiktask;
 
-with Grafiktask;
 with AuswahlaufteilungLogik;
 with ZahleneingabeLogik;
 with Fehlermeldungssystem;
@@ -94,7 +95,7 @@ package body OptionenGrafikLogik is
             SchreibeEinstellungenGrafik.Auflösung (AuflösungExtern => NeueAuflösung);
       
             SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
-            Grafiktask.Grafik.FensterVerändert := GrafikDatentypen.Auflösung_Verändert_Enum;
+            SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Auflösung_Verändert_Enum);
       end case;
       
       ErzeugungNeuesFensterAbwartenSchleife:
@@ -110,7 +111,7 @@ package body OptionenGrafikLogik is
    
    procedure BildrateÄndern
    is
-      use type GrafikDatentypen.Fenster_Ändern_Enum;
+      use type GrafikDatentypen.Fenster_Anpassen_Enum;
    begin
       
       EingabeBildrate := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => ZahlenDatentypen.EigenesNatural (GrafikKonstanten.MinimaleBildrate),
@@ -125,11 +126,11 @@ package body OptionenGrafikLogik is
             
          when True =>
             SchreibeEinstellungenGrafik.Bildrate (BildrateExtern => Sf.sfUint32 (EingabeBildrate.EingegebeneZahl));
-            Grafiktask.Grafik.FensterVerändert := GrafikDatentypen.Bildrate_Ändern_Enum;
+            SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Bildrate_Ändern_Enum);
       end case;
       
       NeueBildrateAbwartenSchleife:
-      while Grafiktask.Grafik.FensterVerändert = GrafikDatentypen.Bildrate_Ändern_Enum loop
+      while LeseGrafiktask.FensterAnpassen = GrafikDatentypen.Bildrate_Ändern_Enum loop
          
          delay ZeitKonstanten.WartezeitLogik;
          
@@ -141,7 +142,7 @@ package body OptionenGrafikLogik is
    
    procedure VollbildFenster
    is
-      use type GrafikDatentypen.Fenster_Ändern_Enum;
+      use type GrafikDatentypen.Fenster_Anpassen_Enum;
    begin
       
       -- Wenn ich weitere Fenstermodis einbauen will muss ich das hier umbauen. äöü
@@ -159,10 +160,10 @@ package body OptionenGrafikLogik is
             SchreibeEinstellungenGrafik.Fenstermodus (FenstermodusExtern => GrafikKonstanten.StandardFenster);
       end case;
       
-      Grafiktask.Grafik.FensterVerändert := GrafikDatentypen.Modus_Verändert_Enum;
+      SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Modus_Verändert_Enum);
       
       ErzeugungNeuesFensterAbwartenSchleife:
-      while Grafiktask.Grafik.FensterVerändert = GrafikDatentypen.Modus_Verändert_Enum loop
+      while LeseGrafiktask.FensterAnpassen = GrafikDatentypen.Modus_Verändert_Enum loop
          
          delay ZeitKonstanten.WartezeitLogik;
          

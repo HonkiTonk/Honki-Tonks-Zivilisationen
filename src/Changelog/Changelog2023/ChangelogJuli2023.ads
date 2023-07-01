@@ -203,16 +203,20 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (02.07.2023):
+   -- Version 0.05.2890 => 0.05. (02.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2820 => 0.05. (01.07.2023):
+   -- Version 0.05.2820 => 0.05.2890 (01.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler, der zu einem Programmstopp führen konnte, in der Wegfindungsbewertung der KI korrigiert.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Lese/Schreibedateien für den Grafiktask angelegt.
+   -- Lese/Schreibedateien für den Gesamttask angelegt.
+   -- Angefangen die Entfernung von Einheiten die Transportiert werden zu überarbeiten, um eventuell auftretende Fehler zu korrigieren.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
 
 end ChangelogVorlage;

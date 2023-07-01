@@ -1,37 +1,40 @@
 package GrafikDatentypen is
    pragma Pure;
 
-   type AKtuelle_Anzeige_Enum is (
+   type Aktuelle_Anzeige_Enum is (
                                   Start_Enum, Intro_Enum, Abspann_Enum,
                                   Pause_Enum,
                                   Generierungszeit_Enum, KI_Rechenzeit_Enum, Rundenende_Enum, Speichern_Laden_Enum,
                                   Menüs_Enum, Sprache_Enum,
                                   Editoren_Enum,
-                                  Weltkarte_Enum, Stadtkarte_Enum, Forschung_Enum, Bauen_Enum, Verkaufen_Enum, Forschungserfolg_Enum,
+                                  Weltkarte_Enum, Stadtumgebung_Enum, Stadtkarte_Enum,
+                                  Forschung_Enum, Forschungserfolg_Enum,
+                                  Bauen_Enum, Verkaufen_Enum,
                                   Diplomatie_Enum,
                                   Ende_Enum
                                  );
    
-   subtype Ladezeiten_Enum is AKtuelle_Anzeige_Enum range Generierungszeit_Enum .. Speichern_Laden_Enum;
+   subtype Ladezeiten_Enum is Aktuelle_Anzeige_Enum range Generierungszeit_Enum .. Speichern_Laden_Enum;
+   subtype Stadt_Enum is Aktuelle_Anzeige_Enum range Stadtumgebung_Enum .. Stadtkarte_Enum;
    
    
    
-   type Fenster_Ändern_Enum is (
-                                 Keine_Änderung_Enum,
+   type Fenster_Anpassen_Enum is (
+                                  Keine_Änderung_Enum,
                                  
-                                 Bildrate_Ändern_Enum, Fenster_Verändert_Enum, Auflösung_Verändert_Enum, Modus_Verändert_Enum
-                                );
+                                  Bildrate_Ändern_Enum, Fenster_Verändert_Enum, Auflösung_Verändert_Enum, Modus_Verändert_Enum
+                                 );
    
-   subtype Fenster_Wurde_Verändert_Enum is Fenster_Ändern_Enum range Fenster_Verändert_Enum .. Modus_Verändert_Enum;
+   subtype Fenster_Wurde_Verändert_Enum is Fenster_Anpassen_Enum range Fenster_Verändert_Enum .. Modus_Verändert_Enum;
    
    
    
    type Eingabe_Enum is (
-                                Keine_Eingabe_Enum,
+                         Keine_Eingabe_Enum,
                                 
-                                Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Zeichen_Eingabe_Enum, Ja_Nein_Enum,
+                         Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Zeichen_Eingabe_Enum, Ja_Nein_Enum,
                                 
-                                Einheit_Auswahl_Enum
+                         Einheit_Auswahl_Enum
                         );
    
    subtype Eingabe_Vorhanden_Enum is Eingabe_Enum range Eingabe_Enum'Succ (Eingabe_Enum'First) .. Eingabe_Enum'Last;

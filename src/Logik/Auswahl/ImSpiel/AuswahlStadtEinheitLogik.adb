@@ -4,8 +4,8 @@ with GrafikRecordKonstanten;
 with InteraktionAuswahl;
 
 with LeseEinheitenGebaut;
+with SchreibeGrafiktask;
 
-with Grafiktask;
 with TasteneingabeLogik;
 with MausauswahlLogik;
 
@@ -17,7 +17,7 @@ package body AuswahlStadtEinheitLogik is
    function AuswahlStadtEinheit
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       -- Wenn die StadtNummerExtern = 0 ist, dann wird von einem beladenen Transporter ausgegangen.
-      StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
+      StadtnummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return Integer
    is begin
@@ -25,10 +25,10 @@ package body AuswahlStadtEinheitLogik is
       WelcheAuswahl.MöglicheAuswahlen := (others => 0);
       
       if
-        StadtNummerExtern /= StadtDatentypen.MaximaleStädteMitNullWert'First
+        StadtnummerExtern /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
          WelcheAuswahl.StadtEinheit := True;
-         WelcheAuswahl.MöglicheAuswahlen (0) := EinheitenDatentypen.MaximaleEinheitenMitNullWert (StadtNummerExtern);
+         WelcheAuswahl.MöglicheAuswahlen (0) := EinheitenDatentypen.MaximaleEinheitenMitNullWert (StadtnummerExtern);
          WelcheAuswahl.MöglicheAuswahlen (1) := EinheitNummerExtern;
 
       else
@@ -49,18 +49,18 @@ package body AuswahlStadtEinheitLogik is
       -- Sollte dieser Fehler irgendwann einmal behoben werden, dann kann das weg. äöü
       InteraktionAuswahl.PositionenEinheitStadt (1) := InteraktionAuswahl.PositionenEinheitStadt (2);
       AktuelleAuswahl := 0;
-      Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
-      Grafiktask.Auswahl.StadtEinheitAuswahl := WelcheAuswahl;
+      SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AktuelleAuswahl);
+      SchreibeGrafiktask.StadtEinheitAuswahl (AuswahlExtern => WelcheAuswahl);
       
-      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Einheit_Auswahl_Enum;
-      Grafiktask.Aktuelles.AktuelleStadt := StadtNummerExtern;
+      SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Einheit_Auswahl_Enum);
+      SchreibeGrafiktask.Stadtnummer (StadtnummerExtern => StadtnummerExtern);
       
       AuswahlSchleife:
       loop
          
          AktuelleAuswahl := MausauswahlLogik.StadtEinheitauswahl (AnfangExtern => WelcheAuswahl.MöglicheAuswahlen'First,
                                                                   EndeExtern   => WelcheAuswahl.MöglicheAuswahlen'Last);
-         Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
+         SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AktuelleAuswahl);
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -85,7 +85,7 @@ package body AuswahlStadtEinheitLogik is
          
       end loop AuswahlSchleife;
       
-      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
+      SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Keine_Eingabe_Enum);
       
       return AktuelleAuswahl;
       

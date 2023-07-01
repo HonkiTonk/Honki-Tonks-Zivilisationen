@@ -15,12 +15,12 @@ package AuswahlStadtEinheitLogik is
    
    function AuswahlStadtEinheit
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
+      StadtnummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
       return Integer
      with
        Pre => (
-                 StadtNummerExtern <= LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)
+                 StadtnummerExtern <= LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)
                and
                  EinheitNummerExtern <= LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
                and

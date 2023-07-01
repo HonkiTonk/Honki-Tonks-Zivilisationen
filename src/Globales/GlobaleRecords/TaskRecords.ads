@@ -16,7 +16,7 @@ with StadtDatentypen;
 with EinheitenDatentypen;
 with TonDatentypen;
 
--- Eventuell ein paar der Namen noch einmal kürzen. äöü
+-- Eventuell ein paar der Namen noch einmal anpassen. äöü
 package TaskRecords is
    pragma Elaborate_Body;
    
@@ -46,26 +46,15 @@ package TaskRecords is
    
 
    -- Grafiktask
-   type SpielstartGrafikRecord is record
-      
-      ErzeugeFenster : Boolean;
-      IntroBeenden : Boolean;
-      
-   end record;
-   
-   
-   
    type GrafikRecord is record
    
-      FensterGeschlossen : Boolean;
+      FensterErzeugen : Boolean;
+      IntroBeenden : Boolean;
+      FensterEntfernen : Boolean;
       
-      AktuelleDarstellung : GrafikDatentypen.AKtuelle_Anzeige_Enum;
+      FensterAnpassen : GrafikDatentypen.Fenster_Anpassen_Enum;
    
-      AktuellesMenü : MenueDatentypen.Welches_Menü_Enum;
-      
-      FensterVerändert : GrafikDatentypen.Fenster_Ändern_Enum;
-   
-      Abspannart : GrafikDatentypen.Spezieshintergrund_Enum;
+      Abspann : GrafikDatentypen.Spezieshintergrund_Enum;
       
    end record;
    
@@ -83,15 +72,34 @@ package TaskRecords is
    
    
    
+   type AktuellGrafikRecord is record
+      
+      Darstellung : GrafikDatentypen.Aktuelle_Anzeige_Enum;
+   
+      Menü : MenueDatentypen.Welches_Menü_Enum;
+      
+      KIRechnet : SpeziesDatentypen.Spezies_Enum;
+      AktiveSpezies : SpeziesDatentypen.Spezies_Enum;
+      KontaktierteSpezies : SpeziesDatentypen.Spezies_Enum;
+      
+      Stadtnummer : StadtDatentypen.MaximaleStädteMitNullWert;
+   
+      Einheitnummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   
+      GeheZu : KartenRecords.AchsenKartenfeldNaturalRecord;
+      
+   end record;
+   
+   
+   
    type AuswahlGrafikRecord is record
       
-      SprachenSeitenauswahl : Boolean;
-      LöschenAuswahl : Boolean;
+      Seitenauswahl : Boolean;
+      Löschauswahl : Boolean;
       
       Endauswahl : ZahlenDatentypen.EigenesNatural;
       
-      -- Die Auswahlrecords hier mal soweit möglich auseinander ziehen. äöü
-      AktuelleAuswahl : SystemRecords.MehrfacheAuswahlRecord;
+      Gesamtauswahl : SystemRecords.MehrfachauswahlRecord;
       
       StadtEinheitAuswahl : EinheitenRecords.AuswahlRecord;
       
@@ -103,52 +111,25 @@ package TaskRecords is
    
    type EingabeGrafikRecord is record
       
-      TastenEingabe : Boolean;
-      TextEingabe : Boolean;
-      VorzeichenEingabe : Boolean;
+      Tasteneingabe : Boolean;
+      Texteingabe : Boolean;
+      Vorzeicheneingabe : Boolean;
       
       Eingabeart : GrafikDatentypen.Eingabe_Enum;
    
-      ZahlenEingabe : ZahlenDatentypen.EigenesNatural;
+      Zahleneingabe : ZahlenDatentypen.EigenesNatural;
       
    end record;
    
    
    
-   type MeldungenGrafikRecord is record
+   type MeldungGrafikRecord is record
       
       Spielmeldung : TextnummernKonstanten.Spielmeldungen;
       
-      StartzeitSpielmeldung : Time;
+      Spielmeldungszeit : Time;
       
-      AnzeigeFrage : ZahlenDatentypen.EigenesNatural;
-      
-   end record;
-   
-   
-   
-   type AktuellesGrafikRecord is record
-      
-      Stadtkarte : Boolean;
-      
-      KIRechnet : SpeziesDatentypen.Spezies_Enum;
-      AktuelleSpezies : SpeziesDatentypen.Spezies_Enum;
-      KontaktierteSpezies : SpeziesDatentypen.Spezies_Enum;
-      
-      AktuelleStadt : StadtDatentypen.MaximaleStädteMitNullWert;
-   
-      AktuelleEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   
-      GeheZu : KartenRecords.AchsenKartenfeldNaturalRecord;
-      
-   end record;
-   
-   
-   
-   type SpielstandGrafikRecord is record
-      
-      NameSpielstand : Boolean;
-      SpeichernLaden : Boolean;
+      Fragenanzeige : ZahlenDatentypen.EigenesNatural;
       
    end record;
    
@@ -156,9 +137,18 @@ package TaskRecords is
    
    type EinheitenbewegungGrafikRecord is record
       
-      Einheitenbewegung : Boolean;
-      EinheitBewegt : Boolean;
-      EinheitBewegungsbereich : Boolean;
+      Bewegung : Boolean;
+      Bewegt : Boolean;
+      Bewegungsbereich : Boolean;
+      
+   end record;
+   
+   
+   
+   type SpielstandGrafikRecord is record
+      
+      Spielstandname : Boolean;
+      SpeichernLaden : Boolean;
       
    end record;
    
@@ -166,7 +156,7 @@ package TaskRecords is
    
    type EditorGrafikRecord is record
       
-      WelcherEditor : GrafikDatentypen.Editor_Enum;
+      Editor : GrafikDatentypen.Editor_Enum;
       
    end record;
    -- Grafiktask

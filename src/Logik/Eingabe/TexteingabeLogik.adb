@@ -9,8 +9,8 @@ with TextKonstanten;
 with LeseStadtGebaut;
 with SchreibeLogiktask;
 with LeseLogiktask;
+with SchreibeGrafiktask;
 
-with Grafiktask;
 with EingabeAllgemeinLogik;
 
 package body TexteingabeLogik is
@@ -79,7 +79,7 @@ package body TexteingabeLogik is
       return SystemRecords.TextEingabeRecord
    is begin
       
-      Grafiktask.Meldungen.AnzeigeFrage := WelcheFrageExtern;
+      SchreibeGrafiktask.Fragenanzeige (FrageExtern => WelcheFrageExtern);
       
       case
         WelcheFrageExtern
@@ -91,14 +91,14 @@ package body TexteingabeLogik is
             SchreibeLogiktask.KompletteTexteingabe (EingabeExtern => SystemRecordKonstanten.LeerTexteingabe);
       end case;
       
-      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Text_Eingabe_Enum;
+      SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Text_Eingabe_Enum);
       
       SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
-      Grafiktask.Eingaben.TextEingabe := True;
+      SchreibeGrafiktask.Texteingabe (JaNeinExtern => True);
       
       EingabeAllgemeinLogik.EingabeAbwarten;
       
-      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
+      SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Keine_Eingabe_Enum);
       
       return LeseLogiktask.KompletteTexteingabe;
       

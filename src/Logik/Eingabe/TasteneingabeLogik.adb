@@ -1,9 +1,9 @@
 with LeseTastenbelegungDatenbank;
 with SchreibeLogiktask;
 with LeseLogiktask;
+with SchreibeGrafiktask;
 
 with EingabeAllgemeinLogik;
-with Grafiktask;
 
 package body TasteneingabeLogik is
    
@@ -11,7 +11,7 @@ package body TasteneingabeLogik is
    is begin
       
       SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
-      Grafiktask.Eingaben.TastenEingabe := True;
+      SchreibeGrafiktask.Tasteneingabe (JaNeinExtern => True);
       
       EingabeAllgemeinLogik.EingabeAbwarten;
       
@@ -209,7 +209,7 @@ package body TasteneingabeLogik is
       loop
          
          SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
-         Grafiktask.Eingaben.TastenEingabe := True;
+         SchreibeGrafiktask.Tasteneingabe (JaNeinExtern => True);
          
          EingabeAllgemeinLogik.EingabeAbwarten;
       

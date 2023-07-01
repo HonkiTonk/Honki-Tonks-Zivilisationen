@@ -6,8 +6,8 @@ with GrafikDatentypen;
 
 with SchreibeLogiktask;
 with LeseLogiktask;
+with SchreibeGrafiktask;
 
-with Grafiktask;
 with EingabeAllgemeinLogik;
 
 package body ZahleneingabeLogik is
@@ -31,9 +31,9 @@ package body ZahleneingabeLogik is
       -- LeerWert := MinimumMaximumSetzen (ZahlenMinimumExtern => ZahlenMinimumExtern,
       --                                  ZahlenMaximumExtern => ZahlenMaximumExtern);
       
-      Grafiktask.Meldungen.AnzeigeFrage := WelcheFrageExtern;
-      Grafiktask.Eingaben.ZahlenEingabe := EingegebeneZahl.EingegebeneZahl;
-      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Zahlen_Eingabe_Enum;
+      SchreibeGrafiktask.Fragenanzeige (FrageExtern => WelcheFrageExtern);
+      SchreibeGrafiktask.Zahleneingabe (ZahlExtern => EingegebeneZahl.EingegebeneZahl);
+      SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Zahlen_Eingabe_Enum);
       
       return ZahlSchleife (ZahlenMinimumExtern => ZahlenMinimumExtern,
                            ZahlenMaximumExtern => ZahlenMaximumExtern);
@@ -52,7 +52,7 @@ package body ZahleneingabeLogik is
       loop
          
          SchreibeLogiktask.WartenGrafik (ZustandExtern => True);
-         Grafiktask.Eingaben.TastenEingabe := True;
+         SchreibeGrafiktask.Tasteneingabe (JaNeinExtern => True);
          EingabeAllgemeinLogik.EingabeAbwarten;
          Zahlen := LeseLogiktask.Tastaturtaste;
          
@@ -97,8 +97,8 @@ package body ZahleneingabeLogik is
                null;
          end case;
          
-         Grafiktask.Eingaben.VorzeichenEingabe := WelchesVorzeichen;
-         Grafiktask.Eingaben.ZahlenEingabe := Natural'Wide_Wide_Value (ZahlenString);
+         SchreibeGrafiktask.Vorzeicheneingabe (JaNeinExtern => WelchesVorzeichen);
+         SchreibeGrafiktask.Zahleneingabe (ZahlExtern => Natural'Wide_Wide_Value (ZahlenString));
 
       end loop ZahlenSchleife;
       
@@ -119,7 +119,7 @@ package body ZahleneingabeLogik is
             null;
       end case;
             
-      Grafiktask.Eingaben.Eingabeart := GrafikDatentypen.Keine_Eingabe_Enum;
+      SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Keine_Eingabe_Enum);
       
       return EingegebeneZahl;
       

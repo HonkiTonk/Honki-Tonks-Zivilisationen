@@ -1,5 +1,9 @@
 with TextKonstanten;
 
+with SchreibeGrafiktask;
+with SchreibeOptionen;
+with LeseOptionen;
+
 with EinlesenSpracheLogik;
 with EinlesenTextLogik;
 with EinlesenDatenbankenLogik;
@@ -10,9 +14,6 @@ with Fehlermeldungssystem;
 with EinlesenMusikLogik;
 with EinlesenSoundsLogik;
 with EinlesenSpeziestexteLogik;
-with SchreibeOptionen;
-with LeseOptionen;
-with Grafiktask;
 
 package body EinlesenLogik is
 
@@ -55,7 +56,7 @@ package body EinlesenLogik is
                end loop SpracheAuswählenSchleife;
                   
                SchreibeOptionen.Sprache (SpracheExtern => GewählteSprache);
-               Grafiktask.Texteinstellungen.SchriftartSetzen := True;
+               SchreibeGrafiktask.SchriftartSetzen (JaNeinExtern => True);
                SchreibenEinstellungenLogik.Nutzereinstellungen;
                   
             when False =>

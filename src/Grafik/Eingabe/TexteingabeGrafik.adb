@@ -12,8 +12,9 @@ with Projekteinstellungen;
 
 with SchreibeLogiktask;
 with LeseLogiktask;
+with SchreibeGrafiktask;
+with LeseGrafiktask;
 
-with Grafiktask;
 with FensterGrafik;
 
 package body TexteingabeGrafik is
@@ -62,7 +63,7 @@ package body TexteingabeGrafik is
                   is
                      when True =>
                         SchreibeLogiktask.ErfolgTexteingabe (ErfolgExtern => True);
-                        Grafiktask.Eingaben.TextEingabe := False;
+                        SchreibeGrafiktask.Texteingabe (JaNeinExtern => False);
                         SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
                         
                      when False =>
@@ -102,7 +103,7 @@ package body TexteingabeGrafik is
    is begin
       
       SchreibeLogiktask.KompletteTexteingabe (EingabeExtern => SystemRecordKonstanten.LeerTexteingabe);
-      Grafiktask.Eingaben.TextEingabe := False;
+      SchreibeGrafiktask.Texteingabe (JaNeinExtern => False);
       SchreibeLogiktask.WartenGrafik (ZustandExtern => False);
       
    end Abbruch;
@@ -114,7 +115,7 @@ package body TexteingabeGrafik is
    is begin
             
       case
-        Grafiktask.Spielstand.NameSpielstand
+        LeseGrafiktask.Spielstandname
       is
          when True =>
             if

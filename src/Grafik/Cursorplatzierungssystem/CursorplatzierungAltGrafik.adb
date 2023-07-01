@@ -9,15 +9,16 @@ with EinheitenKonstanten;
 with ViewKonstanten;
 with GrafikKonstanten;
 with SystemDatentypen;
+with InteraktionAuswahl;
 
 with LeseCursor;
 with SchreibeCursor;
+with LeseGrafiktask;
+with SchreibeGrafiktask;
 
 with KartenkoordinatenberechnungssystemLogik;
 with SichtweitenGrafik;
-with Grafiktask;
 with FensterGrafik;
-with InteraktionAllgemein;
 with Vergleiche;
 with GeheZuGrafik;
 
@@ -29,7 +30,7 @@ package body CursorplatzierungAltGrafik is
    is begin
       
       case
-        Grafiktask.Aktuelles.GeheZu.EAchse
+        LeseGrafiktask.GeheZu.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
             if
@@ -76,7 +77,7 @@ package body CursorplatzierungAltGrafik is
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                 point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
+                                                                 point        => (Sf.sfInt32 (InteraktionAuswahl.Mausposition.x), Sf.sfInt32 (InteraktionAuswahl.Mausposition.y)),
                                                                  view         => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
       
       SchreibeCursor.EAchseAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
@@ -97,7 +98,7 @@ package body CursorplatzierungAltGrafik is
         EinheitFolgen
       is
          when False =>
-            Grafiktask.Aktuelles.GeheZu := EinheitenkoordinatenExtern;
+            SchreibeGrafiktask.GeheZu (KoordinatenExtern => EinheitenkoordinatenExtern);
             return;
             
          when True =>
@@ -138,13 +139,13 @@ package body CursorplatzierungAltGrafik is
    begin
       
       case
-        Grafiktask.Einheitenbewegung.EinheitBewegt
+        LeseGrafiktask.EinheitBewegt
       is
          when False =>
             return True;
             
          when True =>
-            Grafiktask.Einheitenbewegung.EinheitBewegt := False;
+            SchreibeGrafiktask.EinheitBewegt (JaNeinExtern => False);
       end case;
       
       AlteCursorkoordinaten := LeseCursor.KoordinatenAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
@@ -188,9 +189,9 @@ package body CursorplatzierungAltGrafik is
    is begin
             
       if
-        InteraktionAllgemein.Mausposition.x < GrafikKonstanten.Nullwert
+        InteraktionAuswahl.Mausposition.x < GrafikKonstanten.Nullwert
         or
-          InteraktionAllgemein.Mausposition.y < GrafikKonstanten.Nullwert
+          InteraktionAuswahl.Mausposition.y < GrafikKonstanten.Nullwert
       then
          null;
          
@@ -199,7 +200,7 @@ package body CursorplatzierungAltGrafik is
          Viewzentrum := Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess);
          
          Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                    point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
+                                                                    point        => (Sf.sfInt32 (InteraktionAuswahl.Mausposition.x), Sf.sfInt32 (InteraktionAuswahl.Mausposition.y)),
                                                                     view         => Views.KartenbefehlsviewAccess);
       
          case
@@ -220,9 +221,9 @@ package body CursorplatzierungAltGrafik is
          null;
          
       elsif
-        InteraktionAllgemein.Mausposition.x <= GrafikKonstanten.Nullwert
+        InteraktionAuswahl.Mausposition.x <= GrafikKonstanten.Nullwert
         or
-          InteraktionAllgemein.Mausposition.y <= GrafikKonstanten.Nullwert
+          InteraktionAuswahl.Mausposition.y <= GrafikKonstanten.Nullwert
       then
          null;
          
@@ -231,7 +232,7 @@ package body CursorplatzierungAltGrafik is
          Viewzentrum := Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess);
          
          Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                    point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
+                                                                    point        => (Sf.sfInt32 (InteraktionAuswahl.Mausposition.x), Sf.sfInt32 (InteraktionAuswahl.Mausposition.y)),
                                                                     view         => Views.EinheitenbefehlsviewAccess);
             
          case

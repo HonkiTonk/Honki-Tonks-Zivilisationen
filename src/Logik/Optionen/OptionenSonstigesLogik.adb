@@ -8,12 +8,12 @@ with EinlesenSpracheLogik;
 with EinlesenTextLogik;
 with EinlesenSpeziestexteLogik;
 with SchreibeOptionen;
+with SchreibeGrafiktask;
 
 with SprachauswahlLogik;
 with ZahleneingabeLogik;
 with AuswahlaufteilungLogik;
 with Fehlermeldungssystem;
-with Grafiktask;
 
 package body OptionenSonstigesLogik is
 
@@ -117,10 +117,10 @@ package body OptionenSonstigesLogik is
                
             else
                SchreibeOptionen.Sprache (SpracheExtern => GewählteSprache);
-               Grafiktask.Texteinstellungen.SchriftartSetzen := True;
+               SchreibeGrafiktask.SchriftartSetzen (JaNeinExtern => True);
                EinlesenTextLogik.EinlesenDateien;
                EinlesenSpeziestexteLogik.SpeziestexteEinlesen;
-               Grafiktask.Texteinstellungen.TextSetzen := True;
+               SchreibeGrafiktask.TextSetzen (JaNeinExtern => True);
             end if;
             
          when False =>

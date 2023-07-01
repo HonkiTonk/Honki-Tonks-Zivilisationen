@@ -4,9 +4,10 @@ with GrafikDatentypen;
 with TastenbelegungDatentypen;
 with AuswahlKonstanten;
 
+with SchreibeGrafiktask;
+
 with TasteneingabeLogik;
 with Fehlermeldungssystem;
-with Grafiktask;
 with MausauswahlLogik;
 with OftVerwendetSound;
 
@@ -21,7 +22,7 @@ package body SprachauswahlLogik is
       
       SprachenListeFestlegen;
       
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Sprache_Enum;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Sprache_Enum);
             
       return AuswahlSpracheSFML;
       
@@ -93,8 +94,8 @@ package body SprachauswahlLogik is
            and
              GlobaleTexte.SprachenEinlesen (SprachenSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
-            Grafiktask.Auswahl.Endauswahl := Ende;
-            Grafiktask.Auswahl.SprachenSeitenauswahl := MehrereSeiten;
+            SchreibeGrafiktask.Endauswahl (AuswahlExtern => Ende);
+            SchreibeGrafiktask.Seitenauswahl (JaNeinExtern => MehrereSeiten);
             return;
             
          elsif
@@ -111,8 +112,8 @@ package body SprachauswahlLogik is
       Ende := Ende + 1;
       MehrereSeiten := True;
       
-      Grafiktask.Auswahl.Endauswahl := Ende;
-      Grafiktask.Auswahl.SprachenSeitenauswahl := MehrereSeiten;
+      SchreibeGrafiktask.Endauswahl (AuswahlExtern => Ende);
+      SchreibeGrafiktask.Seitenauswahl (JaNeinExtern => MehrereSeiten);
       
    end SprachenListeFestlegen;
    
@@ -127,7 +128,7 @@ package body SprachauswahlLogik is
             
          AktuelleAuswahl := MausauswahlLogik.Sprachenauswahl (AnfangExtern => AktuelleSprachen'First,
                                                               EndeExtern   => Ende);
-         Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
+         SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AktuelleAuswahl);
             
          case
            TasteneingabeLogik.VereinfachteEingabe

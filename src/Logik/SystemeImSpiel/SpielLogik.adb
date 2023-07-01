@@ -8,12 +8,12 @@ with LeseGrenzen;
 with LeseAllgemeines;
 with SchreibeAllgemeines;
 with LeseWichtiges;
+with SchreibeGrafiktask;
 
 with LadezeitenLogik;
 with SpeziesEntfernenLogik;
 with RundenendeLogik;
 with Fehlermeldungssystem;
-with Grafiktask;
 with BefehlsauswahlLogik;
 with JaNeinLogik;
 with Spielertests;
@@ -170,13 +170,13 @@ package body SpielLogik is
       
       LadezeitenLogik.KINullsetzenFortschritt;
       
-      Grafiktask.Aktuelles.KIRechnet := SpeziesExtern;
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.KI_Rechenzeit_Enum;
+      SchreibeGrafiktask.KIRechnet (SpeziesExtern => SpeziesExtern);
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.KI_Rechenzeit_Enum);
       
       KILogik.KI (SpeziesExtern => SpeziesExtern);
       
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
-      Grafiktask.Aktuelles.KIRechnet := SpeziesKonstanten.LeerSpezies;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Pause_Enum);
+      SchreibeGrafiktask.KIRechnet (SpeziesExtern => SpeziesKonstanten.LeerSpezies);
       
    end KISpieler;
    
@@ -235,7 +235,7 @@ package body SpielLogik is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
    begin
       
-      Grafiktask.Aktuelles.AktuelleSpezies := SpeziesExtern;
+      SchreibeGrafiktask.AktiveSpezies (SpeziesExtern => SpeziesExtern);
       
       if
         LeseAllgemeines.Rundenanzahl = 2
@@ -251,7 +251,7 @@ package body SpielLogik is
       SpielerSchleife:
       loop
          
-         Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Weltkarte_Enum;
+         SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Weltkarte_Enum);
          
          case
            LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern)
@@ -324,8 +324,8 @@ package body SpielLogik is
                      
       end loop SpielerSchleife;
       
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
-      Grafiktask.Aktuelles.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Pause_Enum);
+      SchreibeGrafiktask.AktiveSpezies (SpeziesExtern => SpeziesKonstanten.LeerSpezies);
       
       return RückgabeMenschAmZug;
       

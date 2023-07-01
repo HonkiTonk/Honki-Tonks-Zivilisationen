@@ -5,12 +5,13 @@ with Ada.Text_IO; use Ada.Text_IO;
 with ZeitKonstanten;
 with Projekteinstellungen;
 
-with StartLogik;
+with LeseGrafiktask;
+
+with Logik;
 with Grafik;
 with Musik;
 with Sound;
 
-with Grafiktask;
 with FehlermeldungSchreiben;
 with StartEndeSound;
 -- with StartEndeMusik;
@@ -33,18 +34,18 @@ is
    type TaskIDArray is array (Tasks_Enum'Range) of Task_Id;
    TaskID : TaskIDArray;
 
-   task LogikTask;
-   task GrafikTaskSpäterEntfernen;
-   task MusikTask;
-   task SoundTask;
+   task Logiktask;
+   task Grafiktask;
+   task Musiktask;
+   task Soundtask;
 
-   task body LogikTask
+   task body Logiktask
    is begin
 
       TaskID (Task_Logik_Enum) := Current_Task;
 
       TasksLaufen (Task_Logik_Enum) := True;
-      StartLogik.StartLogik;
+      Logik.Logik;
       TasksLaufen (Task_Logik_Enum) := False;
 
    exception
@@ -62,11 +63,11 @@ is
          FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => "Logiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
-   end LogikTask;
+   end Logiktask;
 
 
 
-   task body GrafikTaskSpäterEntfernen
+   task body Grafiktask
    is begin
 
       TaskID (Task_Grafik_Enum) := Current_Task;
@@ -90,11 +91,11 @@ is
          FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => "Grafiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
-   end GrafikTaskSpäterEntfernen;
+   end Grafiktask;
 
 
 
-   task body MusikTask
+   task body Musiktask
    is begin
 
       TaskID (Task_Musik_Enum) := Current_Task;
@@ -118,11 +119,11 @@ is
          FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => "Musiktask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
-   end MusikTask;
+   end Musiktask;
 
 
 
-   task body SoundTask
+   task body Soundtask
    is begin
 
       TaskID (Task_Sound_Enum) := Current_Task;
@@ -146,7 +147,7 @@ is
          FehlermeldungSchreiben.MeldungSchreibenASCII (MeldungExtern => "Soundtask wurde abgebrochen: " & Exception_Information (X => StandardAdaFehler));
          UnerwarteterFehler := True;
 
-   end SoundTask;
+   end Soundtask;
 
 begin
 
@@ -197,7 +198,7 @@ begin
       end case;
 
       case
-        Grafiktask.Grafik.FensterGeschlossen
+        LeseGrafiktask.FensterEntfernen
       is
          when True =>
             StartEndeSound.TaskStoppen;

@@ -12,10 +12,10 @@ with Projekteinstellungen;
 with TextArrays;
 
 with LeseAllgemeines;
+with SchreibeGrafiktask;
 
 with MausauswahlLogik;
 with TasteneingabeLogik;
-with Grafiktask;
 with SpielstandAllgemeinesLogik;
 with JaNeinLogik;
 with SpielstandEntfernenLogik;
@@ -32,7 +32,7 @@ package body SpielstandlisteLogik is
       loop
          
          Schleifenanfang := TextArrays.SpielstandArray'First;
-         Grafiktask.Auswahl.SprachenSeitenauswahl := False;
+         SchreibeGrafiktask.Seitenauswahl (JaNeinExtern => False);
          
          Start_Search (Search    => Suche,
                        Directory => VerzeichnisKonstanten.Spielstand,
@@ -84,7 +84,7 @@ package body SpielstandlisteLogik is
                elsif
                  AktuellerSpielstand = TextArrays.SpielstandArray'Last
                then
-                  Grafiktask.Auswahl.SprachenSeitenauswahl := True;
+                  SchreibeGrafiktask.Seitenauswahl (JaNeinExtern => True);
                   exit SpeicherdateiSchleife;
                      
                else
@@ -130,7 +130,7 @@ package body SpielstandlisteLogik is
                      end if;
                      
                   when Löschen =>
-                     Grafiktask.Auswahl.LöschenAuswahl := True;
+                     SchreibeGrafiktask.Löschauswahl (JaNeinExtern => True);
                      Ausgewählt := Mausauswahl (SpeichernLadenExtern => SpeichernLadenExtern);
                      
                      if
@@ -184,15 +184,15 @@ package body SpielstandlisteLogik is
       return Natural
    is begin
       
-      Grafiktask.Spielstand.SpeichernLaden := SpeichernLadenExtern;
-      Grafiktask.Grafik.AktuellesMenü := MenueDatentypen.Spielstand_Menü_Enum;
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Menüs_Enum;
+      SchreibeGrafiktask.SpeichernLaden (JaNeinExtern => SpeichernLadenExtern);
+      SchreibeGrafiktask.Menü (MenüExtern => MenueDatentypen.Spielstand_Menü_Enum);
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Menüs_Enum);
       
       AuswahlSchleife:
       loop
       
          AktuelleAuswahl := MausauswahlLogik.SpeichernLaden;
-         Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AktuelleAuswahl;
+         SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AktuelleAuswahl);
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -204,13 +204,13 @@ package body SpielstandlisteLogik is
                   null;
                   
                else
-                  Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := AuswahlKonstanten.LeerAuswahl;
-                  Grafiktask.Auswahl.LöschenAuswahl := False;
+                  SchreibeGrafiktask.Erstauswahl (AuswahlExtern => AuswahlKonstanten.LeerAuswahl);
+                  SchreibeGrafiktask.Löschauswahl (JaNeinExtern => False);
                   return AktuelleAuswahl;
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
-               Grafiktask.Auswahl.LöschenAuswahl := False;
+               SchreibeGrafiktask.Löschauswahl (JaNeinExtern => False);
                return AuswahlKonstanten.LeerAuswahl;
                
             when others =>

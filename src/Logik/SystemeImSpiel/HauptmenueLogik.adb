@@ -4,6 +4,7 @@ with MenueDatentypen;
 
 with SchreibeMusiktask;
 with SchreibeSoundtask;
+with SchreibeGrafiktask;
 
 with OptionenLogik;
 with SpieleinstellungenLogik;
@@ -11,7 +12,6 @@ with SpielLogik;
 with LadenLogik;
 with AuswahlaufteilungLogik;
 with Fehlermeldungssystem;
-with Grafiktask;
 with DatenbankeneditorenLogik;
 
 package body HauptmenueLogik is
@@ -102,7 +102,7 @@ package body HauptmenueLogik is
          
       end loop HauptmenüSchleife;
       
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Ende_Enum;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Ende_Enum);
       SchreibeMusiktask.AktuelleMusik (MusikExtern => TonDatentypen.Musik_Ende_Enum);
       SchreibeSoundtask.SoundStarten (SoundExtern => TonDatentypen.Sound_Ende_Enum);
       

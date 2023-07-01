@@ -6,6 +6,7 @@ with StadtGrafikRecords;
 with EinheitenGrafikRecords;
 with StadtKonstanten;
 with KartenDatentypen;
+with GrafikDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -31,7 +32,8 @@ package KartenaufteilungGrafik is
               );
 
    procedure Stadtkarte
-     (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
+     (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
+      AnzeigeExtern : in GrafikDatentypen.Stadt_Enum)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum

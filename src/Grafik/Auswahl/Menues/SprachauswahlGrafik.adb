@@ -13,10 +13,11 @@ with GrafikKonstanten;
 with VerzeichnisKonstanten;
 with ViewKonstanten;
 
+with LeseGrafiktask;
+
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 with TexteinstellungenGrafik;
-with Grafiktask;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextaccessverwaltungssystemGrafik;
@@ -40,9 +41,9 @@ package body SprachauswahlGrafik is
       
       -- Diese Werte später in die Prozedur übergeben, außer die Sprachen? äöü
       -- Gilt auch für die Spielstandauswahl. äöü
-      MehrereSeiten := Grafiktask.Auswahl.SprachenSeitenauswahl;
-      AktuelleAuswahl := Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins;
-      Ende := Grafiktask.Auswahl.Endauswahl;
+      MehrereSeiten := LeseGrafiktask.Seitenauswahl;
+      AktuelleAuswahl := LeseGrafiktask.Erstauswahl;
+      Ende := LeseGrafiktask.Endauswahl;
       AktuelleSprachen := SprachauswahlLogik.AktuelleSprachen;
       
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;

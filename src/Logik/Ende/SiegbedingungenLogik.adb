@@ -6,9 +6,9 @@ with LeseWichtiges;
 with SchreibeAllgemeines;
 with LeseSpeziesbelegung;
 with SchreibeSpeziesbelegung;
+with SchreibeGrafiktask;
 
 with AbspannLogik;
-with Grafiktask;
 
 package body SiegbedingungenLogik is
 
@@ -54,9 +54,10 @@ package body SiegbedingungenLogik is
         Sieg
       is 
          when GrafikDatentypen.Abspannhintergrund_Enum'Range =>
-            Grafiktask.Aktuelles.AktuelleSpezies := SpeziesDatentypen.Ekropa_Enum;
+            -- Warum schreibe ich hier immer Ekropa? Ist das ein Platzhalter? äöü
+            SchreibeGrafiktask.AktiveSpezies (SpeziesExtern => SpeziesDatentypen.Ekropa_Enum);
             AbspannLogik.Abspann (AbspannExtern => Sieg);
-            Grafiktask.Aktuelles.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
+            SchreibeGrafiktask.AktiveSpezies (SpeziesExtern => SpeziesKonstanten.LeerSpezies);
             
             if
               Sieg = GrafikDatentypen.Gewonnen_Enum

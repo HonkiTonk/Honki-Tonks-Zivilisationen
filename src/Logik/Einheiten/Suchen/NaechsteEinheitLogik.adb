@@ -3,8 +3,7 @@ with EinheitenRecords;
 
 with LeseEinheitenGebaut;
 with LeseGrenzen;
-
-with Grafiktask;
+with SchreibeGrafiktask;
 
 package body NaechsteEinheitLogik is
 
@@ -61,7 +60,7 @@ package body NaechsteEinheitLogik is
 
       end loop EinheitSuchenSchleife;
       
-      Grafiktask.Aktuelles.GeheZu := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, AktuelleEinheit (SpeziesExtern)));
+      SchreibeGrafiktask.GeheZu (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, AktuelleEinheit (SpeziesExtern))));
       
    end NächsteEinheit;
    
@@ -122,7 +121,7 @@ package body NaechsteEinheitLogik is
 
       end loop EinheitSuchenSchleife;
       
-      Grafiktask.Aktuelles.GeheZu := LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, AktuelleEinheitMeldung (SpeziesExtern)));
+      SchreibeGrafiktask.GeheZu (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (SpeziesExtern, AktuelleEinheitMeldung (SpeziesExtern))));
       
    end NächsteEinheitMeldung;
 

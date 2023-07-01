@@ -3,25 +3,25 @@ with ZeitKonstanten;
 with TastenbelegungDatentypen;
 
 with LeseLogiktask;
+with SchreibeGrafiktask;
+with SchreibeGesamttask;
 
 with SchreibenVerzeichnisseLogik;
 with EinlesenEinstellungenLogik;
 with EinlesenLogik;
 with HauptmenueLogik;
-with Grafiktask;
-with LogiktaskAnAlle;
 with TasteneingabeLogik;
 
-package body StartLogik is
+package body Logik is
 
-   procedure StartLogik
+   procedure Logik
    is begin
       
       SchreibenVerzeichnisseLogik.SchreibenVerzeichnisse;
       EinlesenEinstellungenLogik.EinlesenEinstellungen;
       
       EinlesenLogik.EinlesenOhneAnzeige;
-      LogiktaskAnAlle.EinlesenAbgeschlossen := True;
+      SchreibeGesamttask.EinstellungenEingelesen (JaNeinExtern => True);
       
       TonSchleife:
       loop
@@ -39,7 +39,7 @@ package body StartLogik is
          
       end loop TonSchleife;
       
-      Grafiktask.Spielstart.ErzeugeFenster := True;
+      SchreibeGrafiktask.FensterErzeugen (JaNeinExtern => True);
       
       -- Solche Warteschleifen mal alle in einer Datei sammeln und entsprechend aufrufen? äöü
       -- Lohnt sich das? So oft verwende ich die ja nicht. äöü
@@ -51,12 +51,12 @@ package body StartLogik is
       end loop FensterVorhandenSchleife;
       
       EinlesenLogik.EinlesenMitAnzeige;
-      Grafiktask.Texteinstellungen.SchriftgrößeSetzen := True;
-      Grafiktask.Texteinstellungen.SchriftfarbeSetzen := True;
-      Grafiktask.Texteinstellungen.SchriftstilSetzen := True;
-      Grafiktask.Texteinstellungen.TextSetzen := True;
-      
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Intro_Enum;
+      SchreibeGrafiktask.SchriftgrößeSetzen (JaNeinExtern => True);
+      SchreibeGrafiktask.SchriftfarbeSetzen (JaNeinExtern => True);
+      SchreibeGrafiktask.SchriftstilSetzen (JaNeinExtern => True);
+      SchreibeGrafiktask.TextSetzen (JaNeinExtern => True);
+            
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Intro_Enum);
       
       IntroSchleife:
       while LeseLogiktask.WartenIntro = True loop
@@ -65,7 +65,7 @@ package body StartLogik is
            TasteneingabeLogik.VereinfachteEingabe
          is
             when TastenbelegungDatentypen.Abwählen_Enum =>
-               Grafiktask.Spielstart.IntroBeenden := True;
+               SchreibeGrafiktask.IntroBeenden (JaNeinExtern => True);
                
             when others =>
                null;
@@ -75,6 +75,6 @@ package body StartLogik is
       
       HauptmenueLogik.Hauptmenü;
       
-   end StartLogik;
+   end Logik;
    
-end StartLogik;
+end Logik;

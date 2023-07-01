@@ -7,14 +7,14 @@ with ViewKonstanten;
 with KartenDatentypen;
 with GrafikKonstanten;
 with SystemDatentypen;
+with InteraktionAuswahl;
 
 with LeseCursor;
 with SchreibeCursor;
+with LeseGrafiktask;
 
-with InteraktionAllgemein;
 with KartenkoordinatenberechnungssystemLogik;
 with FensterGrafik;
-with Grafiktask;
 with SichtweitenGrafik;
 with Vergleiche;
 
@@ -27,17 +27,17 @@ package body CursorplatzierungGrafik is
    begin
       
       case
-        Grafiktask.Aktuelles.GeheZu.EAchse
+        LeseGrafiktask.GeheZu.EAchse
       is
          when KartenKonstanten.LeerEAchse =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                       point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
+                                                                       point        => (Sf.sfInt32 (InteraktionAuswahl.Mausposition.x), Sf.sfInt32 (InteraktionAuswahl.Mausposition.y)),
                                                                        view         => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
             Sichtbereich := SichtweitenGrafik.SichtbereichLesen;
             
          when others =>
             SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
-                                               KoordinatenExtern => Grafiktask.Aktuelles.GeheZu);
+                                               KoordinatenExtern => LeseGrafiktask.GeheZu);
             return;
       end case;
       

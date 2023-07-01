@@ -4,9 +4,9 @@ package ChangelogVorlage is
    
    -- Die taskübergreifenden Variablen fertig neu organisiert.
    -- Interne Benennung überarbeitet.
-   -- Lese/Schreibedateien für Logiktask angelegt.
-   -- Lese/Schreibedateien für Musiktask angelegt.
-   -- Lese/Schreibedateien für Soundtask angelegt.
+   -- Lese/Schreibedateien für den Logiktask angelegt.
+   -- Lese/Schreibedateien für den Musiktask angelegt.
+   -- Lese/Schreibedateien für den Soundtask angelegt.
    -- Unnötigen Code gelöscht.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    

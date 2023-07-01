@@ -10,7 +10,6 @@ with SichtbarkeitsberechnungssystemLogik;
 with SpeziesEntfernenLogik;
 with EinheitenmodifizierungLogik;
 with EinheitentransporterLogik;
-with Fehlermeldungssystem;
 
 package body EinheitenErzeugenEntfernenLogik is
 
@@ -57,9 +56,11 @@ package body EinheitenErzeugenEntfernenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is begin
       
-      EinheitEntfernenLadung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      Ladungsentfernung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       Entfernen (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      
+      Einheitensortierung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
       case
         SpeziesEntfernenLogik.SpeziesExistiertNoch (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -72,34 +73,43 @@ package body EinheitenErzeugenEntfernenLogik is
    
    
    
-   procedure EinheitEntfernenLadung
+   procedure Ladungsentfernung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-   is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   begin
+   is begin
       
-      Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
-                                                                           IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern));
+      case
+        LeseEinheitenDatenbank.KannTransportieren (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                   IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern))
+      is
+         when EinheitenDatentypen.Kein_Transport_Enum =>
+            return;
+            
+         when others =>
+            null;
+      end case;
       
       TransporterSchleife:
-      for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
+      for LadungSchleifenwert in EinheitenRecords.TransporterArray'First
+        .. LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                       IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)) loop
          
-         EinheitNummer := LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                             PlatzExtern                => LadungSchleifenwert);
-         
-         if
-           EinheitNummer = EinheitenKonstanten.LeerNummer
-         then
-            null;
-            
-         else
-            EinheitEntfernenLadung (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer));
-            Entfernen (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer));
-         end if;
+         case
+           LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                              PlatzExtern                => LadungSchleifenwert)
+         is
+            when EinheitenKonstanten.LeerNummer =>
+               null;
+               
+            when others =>
+               Ladungsentfernung (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                                                                                        PlatzExtern                => LadungSchleifenwert)));
+               Entfernen (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                                                                                                PlatzExtern                => LadungSchleifenwert)));
+         end case;
          
       end loop TransporterSchleife;
-               
-   end EinheitEntfernenLadung;
+      
+   end Ladungsentfernung;
    
    
    
@@ -129,51 +139,47 @@ package body EinheitenErzeugenEntfernenLogik is
 
       SchreibeEinheitenGebaut.Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
-      EinheitenSortieren (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-      
    end Entfernen;
    
    
-      
+   
    -- Mit Sortierung sollte es möglich sein diverse Schleifen vorzeitig abzubrechen, die mal durchgehen. äöü
-   procedure EinheitenSortieren
+   procedure Einheitensortierung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    begin
       
-      Einheitengrenze := LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
+      Schleifenende := LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);
       
-      if
-        EinheitSpeziesNummerExtern.Nummer = Einheitengrenze
-      then
-         return;
+      SortierenSchleife:
+      loop
+         EinheitSchleife:
+         for EinheitSchleifenwert in reverse EinheitenKonstanten.AnfangNummer .. Schleifenende loop
          
-      elsif
-        EinheitSpeziesNummerExtern.Nummer > Einheitengrenze
-      then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinheitenErzeugenEntfernenLogik.EinheitenSortieren - Platz außerhalb der Einheitengrenze");
-         return;
-            
-      else
-         Sortierungsnummer := EinheitenKonstanten.LeerNummer;
-      end if;
-      
-      EinheitenSchleife:
-      for EinheitenSchleifenwert in reverse EinheitSpeziesNummerExtern.Nummer + 1 .. Einheitengrenze loop
-         
-         case
-           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitenSchleifenwert))
-         is
-            when EinheitenKonstanten.LeerID =>
-               null;
+            case
+              LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitSchleifenwert))
+            is
+               when EinheitenKonstanten.LeerID =>
+                  null;
                
-            when others =>
-               Sortierungsnummer := EinheitenSchleifenwert;
-               exit EinheitenSchleife;
-         end case;
+               when others =>
+                  Sortierungsnummer := EinheitSchleifenwert;
+                  exit EinheitSchleife;
+            end case;
+            
+         end loop EinheitSchleife;
          
-      end loop EinheitenSchleife;
+         PlatzSchleife:
+         for PlatzSchleifenwert in EinheitenKonstanten. AnfangNummer .. Schleifenende loop
+            
+            null;
+            
+         end loop PlatzSchleife;
+         
+         exit SortierenSchleife;
+         
+      end loop SortierenSchleife;
       
       case
         Sortierungsnummer
@@ -188,9 +194,6 @@ package body EinheitenErzeugenEntfernenLogik is
             Transporternummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Sortierungsnummer));
       end case;
       
-      -- Das hier (und vermutlich auch das Zeug darüber) bereitet Probleme, wenn man einen Transporter mit beladenen Transportern entfernt. äöü
-      -- Oder überhaupt einen beladenen Transporter. äöü
-      -- Erst alles entfernen und dann Sortieren? äöü
       case
         Transporternummer
       is
@@ -216,6 +219,6 @@ package body EinheitenErzeugenEntfernenLogik is
                                           EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                           EinheitentauschExtern      => True);
       
-   end EinheitenSortieren;
+   end Einheitensortierung;
 
 end EinheitenErzeugenEntfernenLogik;

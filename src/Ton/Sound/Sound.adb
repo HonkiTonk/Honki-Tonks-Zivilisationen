@@ -3,9 +3,9 @@ with ZeitKonstanten;
 with SchreibeLogiktask;
 with LeseSoundtask;
 with SchreibeSoundtask;
+with LeseGesamttask;
 
 with StartEndeSound;
-with LogiktaskAnAlle;
 with StarteinstellungenSound;
 
 package body Sound is
@@ -15,7 +15,7 @@ package body Sound is
    is begin
       
       EinlesenAbwartenSchleife:
-      while LogiktaskAnAlle.EinlesenAbgeschlossen = False loop
+      while LeseGesamttask.EinstellungenEingelesen = False loop
          
          delay ZeitKonstanten.WartezeitSound;
          

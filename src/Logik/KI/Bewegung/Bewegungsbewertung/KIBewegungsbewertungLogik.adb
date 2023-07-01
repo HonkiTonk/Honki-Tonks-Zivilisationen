@@ -1,3 +1,5 @@
+with KartenKonstanten;
+
 with LeseEinheitenGebaut;
 
 with KIEAchsenbewertung;
@@ -12,8 +14,18 @@ package body KIBewegungsbewertungLogik is
       return KartenDatentypen.KartenfeldNatural
    is begin
       
-      return PositionsbewertungKoordinaten (ZielkoordinatenExtern => LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
-                                            NeueKoordinatenExtern => NeueKoordinatenExtern);
+      Zielkoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      
+      case
+        Zielkoordinaten.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return KartenDatentypen.KartenfeldNatural'Last;
+            
+         when others =>
+            return PositionsbewertungKoordinaten (ZielkoordinatenExtern => Zielkoordinaten,
+                                                  NeueKoordinatenExtern => NeueKoordinatenExtern);
+      end case;
       
    end PositionsbewertungEinheit;
    

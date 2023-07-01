@@ -1,4 +1,5 @@
 with Sf.Graphics.Rect;
+with Sf.System.Vector2;
 
 with MenueDatentypen;
 with MenueKonstanten;
@@ -13,15 +14,21 @@ with KartengrundDatentypen;
 
 -- Das hier später auch mal thematisch aufteilen? äöü
 -- Auch mal besser benennen? äöü
+-- Auch Lese/Schreibedateien dafür anlegen? äöü
 package InteraktionAuswahl is
    pragma Elaborate_Body;
+
+   -- Mausposition wird immer vom Grafiktask geschrieben und aktuell vom Logik- und Grafiktask gelesen, sollte auch so bleiben.
+   Mausposition : Sf.System.Vector2.sfVector2f;
+
+
 
    type PositionenMenüeinträgeArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range, 1 .. MenueKonstanten.ZweitlängstesMenü) of Sf.Graphics.Rect.sfFloatRect;
    PositionenMenüeinträge : PositionenMenüeinträgeArray := (others => (others => GrafikRecordKonstanten.Leerbereich));
 
+
+
    type PositionenArray is array (Positive range <>) of Sf.Graphics.Rect.sfFloatRect;
-
-
 
    PositionenSteuerungsaufteilung : PositionenArray (1 .. 3) := (others => GrafikRecordKonstanten.Leerbereich);
    PositionenSteuerung : PositionenArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum)) := (others => GrafikRecordKonstanten.Leerbereich);

@@ -2,9 +2,9 @@ with StadtKonstanten;
 
 with LeseWeltkarteneinstellungen;
 with LeseCursor;
+with LeseGrafiktask;
 
 with CursorbewegungLogik;
-with Grafiktask;
 with FensterGrafik;
 package body SichtweitenGrafik is
    
@@ -44,7 +44,7 @@ package body SichtweitenGrafik is
       end if;
       
       CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => WelcheZoomanpassung,
-                                                   SpeziesExtern    => Grafiktask.Aktuelles.AktuelleSpezies);
+                                                   SpeziesExtern    => LeseGrafiktask.AktiveSpezies);
       
       KartenfelderAbmessungBerechnen;
       

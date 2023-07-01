@@ -5,6 +5,7 @@ with KartenartDatentypen;
 with SystemDatentypen;
 
 with LeseEinheitenGebaut;
+with LeseGrafiktask;
 
 with EinheitSuchenLogik;
 with ObjekteZeichnenGrafik;
@@ -13,7 +14,6 @@ with KartenspritesZeichnenGrafik;
 with SichtweitenGrafik;
 with EinheitenbewegungsbereichLogik;
 with WeltkarteZusatzZeichnenGrafik;
-with Grafiktask;
 
 package body WeltkarteEinheitZeichnenGrafik is
 
@@ -98,7 +98,7 @@ package body WeltkarteEinheitZeichnenGrafik is
       if
         EinheitAnzeigen = False
         and
-          Grafiktask.Einheitenbewegung.Einheitenbewegung = False
+          LeseGrafiktask.Einheitenbewegung = False
       then
          null;
          

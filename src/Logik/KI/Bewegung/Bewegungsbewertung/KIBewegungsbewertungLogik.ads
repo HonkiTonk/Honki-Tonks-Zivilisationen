@@ -49,4 +49,6 @@ private
    BewertungYAchse : KartenDatentypen.KartenfeldNatural;
    BewertungXAchse : KartenDatentypen.KartenfeldNatural;
    
+   Zielkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+   
 end KIBewegungsbewertungLogik;

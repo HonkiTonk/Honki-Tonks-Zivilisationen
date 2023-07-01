@@ -12,6 +12,7 @@ with SystemDatentypen;
 with LeseWeltkarte;
 with LeseCursor;
 with LeseEinstellungenGrafik;
+with LeseGrafiktask;
 
 with KartenkoordinatenberechnungssystemLogik;
 with ViewsEinstellenGrafik;
@@ -19,7 +20,6 @@ with SichtweitenGrafik;
 with WeltkarteFeldZeichnenGrafik;
 with WeltkarteZusatzZeichnenGrafik;
 with WeltkarteEinheitZeichnenGrafik;
-with Grafiktask;
 with FensterGrafik;
 
 package body WeltkarteGrafik is
@@ -236,9 +236,9 @@ package body WeltkarteGrafik is
                                                      PositionExtern         => PositionExtern);
       
       if
-        Grafiktask.Einheitenbewegung.EinheitBewegungsbereich
+        LeseGrafiktask.Einheitenbewegungsbereich
         and
-          (Grafiktask.Einheitenbewegung.Einheitenbewegung = False)
+          LeseGrafiktask.Einheitenbewegung = False
         and
           EinheitenauswahlExtern.SpeziesNummer.Nummer /= EinheitenKonstanten.LeerNummer
       then

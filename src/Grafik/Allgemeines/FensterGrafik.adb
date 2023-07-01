@@ -8,8 +8,8 @@ with SonstigesKonstanten;
 with GrafikKonstanten;
 
 with LeseEinstellungenGrafik;
+with SchreibeGrafiktask;
 
-with Grafiktask;
 with Fehlermeldungssystem;
 
 package body FensterGrafik is
@@ -29,7 +29,7 @@ package body FensterGrafik is
          MauszeigerFestlegen;
          BildrateÄndern;
          AktuelleAuflösungFestlegen;
-         Grafiktask.Texteinstellungen.SchriftartSetzen := True;
+         SchreibeGrafiktask.SchriftartSetzen (JaNeinExtern => True);
       end if;
       
    end FensterErzeugen;
@@ -70,7 +70,7 @@ package body FensterGrafik is
    
 
    procedure FensterAnpassen
-     (FensterVerändertExtern : in GrafikDatentypen.Fenster_Ändern_Enum)
+     (FensterVerändertExtern : in GrafikDatentypen.Fenster_Anpassen_Enum)
    is begin
       
       case

@@ -11,7 +11,7 @@ package FensterGrafik is
    use type Sf.Graphics.sfRenderWindow_Ptr;
 
    procedure FensterAnpassen
-     (FensterVerändertExtern : in GrafikDatentypen.Fenster_Ändern_Enum);
+     (FensterVerändertExtern : in GrafikDatentypen.Fenster_Anpassen_Enum);
    
    procedure BildrateÄndern;
    procedure FensterErzeugen;

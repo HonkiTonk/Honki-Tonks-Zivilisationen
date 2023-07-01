@@ -1,6 +1,6 @@
 with GrafikKonstanten;
+with InteraktionAuswahl;
 
-with InteraktionAllgemein;
 with FensterGrafik;
 
 package body ViewbereicheBerechnenGrafik is
@@ -13,12 +13,12 @@ package body ViewbereicheBerechnenGrafik is
       NeuerBereich := BereichExtern;
       
       if
-        InteraktionAllgemein.Mausposition.x = GrafikKonstanten.Nullwert
+        InteraktionAuswahl.Mausposition.x = GrafikKonstanten.Nullwert
       then
          NeuerBereich.left := GrafikKonstanten.Nullwert;
             
       else
-         NeuerBereich.left := InteraktionAllgemein.Mausposition.x / FensterGrafik.AktuelleAuflösung.x;
+         NeuerBereich.left := InteraktionAuswahl.Mausposition.x / FensterGrafik.AktuelleAuflösung.x;
       end if;
          
       if
@@ -31,12 +31,12 @@ package body ViewbereicheBerechnenGrafik is
       end if;
          
       if
-        InteraktionAllgemein.Mausposition.y = GrafikKonstanten.Nullwert
+        InteraktionAuswahl.Mausposition.y = GrafikKonstanten.Nullwert
       then
          NeuerBereich.top := GrafikKonstanten.Nullwert;
             
       else
-         NeuerBereich.top := InteraktionAllgemein.Mausposition.y / FensterGrafik.AktuelleAuflösung.y;
+         NeuerBereich.top := InteraktionAuswahl.Mausposition.y / FensterGrafik.AktuelleAuflösung.y;
       end if;
          
       if

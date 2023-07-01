@@ -11,6 +11,7 @@ with GrafikKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseLogiktask;
+with LeseGrafiktask;
 
 with EinheitenbeschreibungenGrafik;
 with TextberechnungenHoeheGrafik;
@@ -18,7 +19,6 @@ with InteraktionAuswahl;
 with TextberechnungenBreiteGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
-with Grafiktask;
 with TextfarbeGrafik;
 with TextaccessverwaltungssystemGrafik;
 with TextskalierungGrafik;
@@ -106,13 +106,13 @@ package body EingabenanzeigeGrafik is
                                      AbmessungenExtern => Viewfläche);
       
       case
-        Grafiktask.Eingaben.VorzeichenEingabe
+        LeseGrafiktask.Vorzeicheneingabe
       is
          when False =>
-            Text := To_Unbounded_Wide_Wide_String (Source => "-") & ZahlAlsString (ZahlExtern => Grafiktask.Eingaben.ZahlenEingabe);
+            Text := To_Unbounded_Wide_Wide_String (Source => "-") & ZahlAlsString (ZahlExtern => LeseGrafiktask.Zahleneingabe);
                               
          when True =>
-            Text := To_Unbounded_Wide_Wide_String (Source => ZahlAlsString (ZahlExtern => Grafiktask.Eingaben.ZahlenEingabe));       
+            Text := To_Unbounded_Wide_Wide_String (Source => ZahlAlsString (ZahlExtern => LeseGrafiktask.Zahleneingabe));       
       end case;
                                     
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EingabenanzeigeAccess,
@@ -192,7 +192,7 @@ package body EingabenanzeigeGrafik is
       Textbreite := GrafikKonstanten.Nullwert;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      AktuelleAuswahl := Grafiktask.Auswahl.AktuelleAuswahl.AuswahlZwei;
+      AktuelleAuswahl := LeseGrafiktask.Zweitauswahl;
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop

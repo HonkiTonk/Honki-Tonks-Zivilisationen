@@ -14,7 +14,7 @@ package body MausauswahlEditorLogik is
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                 point        => (Sf.sfInt32 (InteraktionAllgemein.Mausposition.x), Sf.sfInt32 (InteraktionAllgemein.Mausposition.y)),
+                                                                 point        => (Sf.sfInt32 (InteraktionAuswahl.Mausposition.x), Sf.sfInt32 (InteraktionAuswahl.Mausposition.y)),
                                                                  view         => Views.EditorenviewAccesse (1));
       
       KartengrundSchleife:

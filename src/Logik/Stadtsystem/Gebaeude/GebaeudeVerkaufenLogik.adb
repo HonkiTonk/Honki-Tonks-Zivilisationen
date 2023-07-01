@@ -5,15 +5,14 @@ with TextnummernKonstanten;
 with AuswahlKonstanten;
 
 with LeseStadtGebaut;
+with SchreibeGrafiktask;
 
-with Grafiktask;
 with MausauswahlLogik;
 with TasteneingabeLogik;
 with GebaeudeAllgemeinLogik;
 with StadtproduktionLogik;
 with JaNeinLogik;
 with SichtweitenGrafik;
-with InteraktionAllgemein;
 
 package body GebaeudeVerkaufenLogik is
    
@@ -31,7 +30,7 @@ package body GebaeudeVerkaufenLogik is
             GebäudeVerkaufen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       end case;
       
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Stadtkarte_Enum;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Stadtumgebung_Enum);
       
    end Verkaufsliste;
    
@@ -75,13 +74,13 @@ package body GebaeudeVerkaufenLogik is
       use type StadtDatentypen.GebäudeIDMitNullwert;
    begin
       
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Verkaufen_Enum;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Verkaufen_Enum);
       
       AuswahlSchleife:
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Verkaufsmenü;
-         Grafiktask.Auswahl.Bauauswahl.Gebäude := AktuelleAuswahl;
+         SchreibeGrafiktask.Gebäudeauswahl (GebäudeExtern => AktuelleAuswahl);
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -133,7 +132,7 @@ package body GebaeudeVerkaufenLogik is
    is begin
       
       Grafikgröße := SichtweitenGrafik.Stadtumgebungsfläche;
-      Mausposition := InteraktionAllgemein.Mausposition;
+      Mausposition := InteraktionAuswahl.Mausposition;
       
       Auswahl := Natural (Float'Floor (Mausposition.y / Grafikgröße.y)) * Positive (StadtKonstanten.Stadtkartengröße);
       Auswahl := Auswahl + Natural (Float'Ceiling (Mausposition.x / Grafikgröße.x));

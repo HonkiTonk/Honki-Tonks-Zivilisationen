@@ -4,11 +4,11 @@ with AuswahlKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
+with SchreibeGrafiktask;
 
 with TasteneingabeLogik;
 with GebaeudeanforderungenLogik;
 with EinheitenanforderungenLogik;
-with Grafiktask;
 with InteraktionAuswahl;
 with MausauswahlLogik;
 with OftVerwendetSound;
@@ -41,7 +41,7 @@ package body StadtbausystemLogik is
                                        ÄndernSetzenExtern       => False);
       end if;
       
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Stadtkarte_Enum;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Stadtumgebung_Enum);
       
    end Bauen;
 
@@ -142,13 +142,14 @@ package body StadtbausystemLogik is
      return StadtRecords.BauprojektRecord
    is begin
       
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Bauen_Enum;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Bauen_Enum);
       
       AuswahlSchleife:
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Baumenü;
-         Grafiktask.Auswahl.Bauauswahl := AktuelleAuswahl;
+         SchreibeGrafiktask.Gebäudeauswahl (GebäudeExtern => AktuelleAuswahl.Gebäude);
+         SchreibeGrafiktask.Einheitenauswahl (EinheitExtern => AktuelleAuswahl.Einheit);
          
          case
            TasteneingabeLogik.VereinfachteEingabe

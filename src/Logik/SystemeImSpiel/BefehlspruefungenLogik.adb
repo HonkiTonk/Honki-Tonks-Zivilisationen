@@ -5,6 +5,7 @@ with SystemDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseCursor;
+with SchreibeGrafiktask;
 
 with StadtmenueLogik;
 with AufgabenLogik;
@@ -16,7 +17,6 @@ with TransporterSuchenLogik;
 with AufgabeFestlegenLogik;
 with EinheitenkontrollsystemLogik;
 with AuswahlStadtEinheitLogik;
-with Grafiktask;
 with JaNeinLogik;
 with EinheitenSpielmeldungenLogik;
 with StadtAllgemeinesLogik;
@@ -45,7 +45,7 @@ package body BefehlspruefungenLogik is
          -- Transporter sollten in der Stadt nicht beladen sein, deswegen es hier keine Prüfung auf Transporter braucht.
          case
            AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => SpeziesExtern,
-                                                         StadtNummerExtern   => StadtNummer,
+                                                         StadtnummerExtern   => StadtNummer,
                                                          EinheitNummerExtern => EinheitNummer)
          is
             when AuswahlKonstanten.LeerAuswahl =>
@@ -141,13 +141,13 @@ package body BefehlspruefungenLogik is
       then
          TransporterNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                              StadtNummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
+                                                                              StadtnummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
                                                                               EinheitNummerExtern => TransporterNummer);
 
       else
          TransporterNummer := EinheitSpeziesNummerExtern.Nummer;
          AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                              StadtNummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
+                                                                              StadtnummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
                                                                               EinheitNummerExtern => TransporterNummer);
       end if;
       
@@ -177,7 +177,7 @@ package body BefehlspruefungenLogik is
       
       case
         AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => SpeziesExtern,
-                                                      StadtNummerExtern   => StadtNummerExtern,
+                                                      StadtnummerExtern   => StadtNummerExtern,
                                                       EinheitNummerExtern => EinheitNummerExtern)
       is
          when AuswahlKonstanten.LeerAuswahl =>
@@ -201,7 +201,7 @@ package body BefehlspruefungenLogik is
       use type AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    begin
       
-      Grafiktask.Aktuelles.AktuelleEinheit := EinheitSpeziesNummerExtern.Nummer;
+      SchreibeGrafiktask.Einheitnummer (EinheitnummerExtern => EinheitSpeziesNummerExtern.Nummer);
       
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
@@ -237,7 +237,7 @@ package body BefehlspruefungenLogik is
          end case;
       end if;
       
-      Grafiktask.Aktuelles.AktuelleEinheit := EinheitenKonstanten.LeerNummer;
+      SchreibeGrafiktask.Einheitnummer (EinheitnummerExtern => EinheitenKonstanten.LeerNummer);
             
    end EinheitSteuern;
    

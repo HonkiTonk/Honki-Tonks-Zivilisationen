@@ -12,6 +12,7 @@ with LeseAllgemeines;
 with LeseGrenzen;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
+with SchreibeGrafiktask;
 
 with StadtmaterialwachstumLogik;
 with ForschungsfortschrittLogik;
@@ -23,7 +24,6 @@ with EinheitenmodifizierungLogik;
 with LadezeitenLogik;
 with SpeichernLogik;
 with VerbesserungFertiggestelltLogik;
-with Grafiktask;
 with JaNeinLogik;
 with AbspannLogik;
 with GlobalesWachstumLogik;
@@ -43,7 +43,7 @@ package body RundenendeLogik is
       is
          when True =>
             LadezeitenLogik.RundenendeNullsetzen;
-            Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Rundenende_Enum;
+            SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Rundenende_Enum);
             
          when False =>
             return False;

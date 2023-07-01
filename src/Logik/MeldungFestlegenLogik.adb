@@ -1,6 +1,6 @@
 with Ada.Calendar; use Ada.Calendar;
 
-with Grafiktask;
+with SchreibeGrafiktask;
 
 package body MeldungFestlegenLogik is
 
@@ -9,8 +9,8 @@ package body MeldungFestlegenLogik is
    is begin
       
       -- Hier sollte immer erst die Zeit festgelegt werden, da die Grafik ja die Meldung auf 0 setzen kann.
-      Grafiktask.Meldungen.StartzeitSpielmeldung := Clock;
-      Grafiktask.Meldungen.Spielmeldung := MeldungExtern;
+      SchreibeGrafiktask.Spielmeldungszeit (ZeitExtern => Clock);
+      SchreibeGrafiktask.Spielmeldung (MeldungExtern => MeldungExtern);
       
    end MeldungFestlegen;
    

@@ -5,9 +5,9 @@ with StadtKonstanten;
 
 with LeseStadtGebaut;
 with LeseWeltkarte;
+with SchreibeGrafiktask;
   
 with TexteingabeLogik;
-with Grafiktask;
 
 package body StadtSuchenLogik is
 
@@ -131,7 +131,7 @@ package body StadtSuchenLogik is
                   elsif
                     LeseStadtGebaut.Name (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtNummerSchleifenwert)) = StadtName.EingegebenerText
                   then
-                     Grafiktask.Aktuelles.GeheZu := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtNummerSchleifenwert));
+                     SchreibeGrafiktask.GeheZu (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesSchleifenwert, StadtNummerSchleifenwert)));
                      return;
                
                   else

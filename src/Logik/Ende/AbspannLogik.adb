@@ -1,8 +1,8 @@
 with TastenbelegungDatentypen;
 
 with LeseAllgemeines;
+with SchreibeGrafiktask;
 
-with Grafiktask;
 with TasteneingabeLogik;
 
 package body AbspannLogik is
@@ -15,14 +15,14 @@ package body AbspannLogik is
         AbspannExtern
       is
          when GrafikDatentypen.Planet_Vernichtet_Enum =>
-            Grafiktask.Aktuelles.AktuelleSpezies := LeseAllgemeines.PlanetVernichtet;
+            SchreibeGrafiktask.AktiveSpezies (SpeziesExtern => LeseAllgemeines.PlanetVernichtet);
             
          when others =>
             null;
       end case;
       
-      Grafiktask.Grafik.Abspannart := AbspannExtern;
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Abspann_Enum;
+      SchreibeGrafiktask.Abspann (AbspannExtern => AbspannExtern);
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Abspann_Enum);
       
       AbspannSchleife:
       loop
@@ -39,8 +39,8 @@ package body AbspannLogik is
          
       end loop AbspannSchleife;
       
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
-      Grafiktask.Grafik.Abspannart := GrafikDatentypen.Leer_Hintergrund_Enum;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Pause_Enum);
+      SchreibeGrafiktask.Abspann (AbspannExtern => GrafikDatentypen.Leer_Hintergrund_Enum);
       
    end Abspann;
 

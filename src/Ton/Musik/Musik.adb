@@ -3,10 +3,10 @@ with ZeitKonstanten;
 
 with SchreibeLogiktask;
 with LeseMusiktask;
+with LeseGesamttask;
 
 with IntroMusik;
 with StartEndeMusik;
-with LogiktaskAnAlle;
 with StarteinstellungenMusik;
 
 package body Musik is
@@ -15,7 +15,7 @@ package body Musik is
    is begin
       
       EinlesenAbwartenSchleife:
-      while LogiktaskAnAlle.EinlesenAbgeschlossen = False loop
+      while LeseGesamttask.EinstellungenEingelesen = False loop
          
          delay ZeitKonstanten.WartezeitMusik;
          

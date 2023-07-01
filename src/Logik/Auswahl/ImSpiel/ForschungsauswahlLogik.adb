@@ -5,10 +5,10 @@ with SpeziesKonstanten;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
+with SchreibeGrafiktask;
 
 with TasteneingabeLogik;
 with MausauswahlLogik;
-with Grafiktask;
 with ForschungstestsLogik;
 
 package body ForschungsauswahlLogik is
@@ -63,13 +63,13 @@ package body ForschungsauswahlLogik is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
    begin
       
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Forschung_Enum;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Forschung_Enum);
       
       AuswahlSchleife:
       loop
          
          AktuelleAuswahl := MausauswahlLogik.Forschungsmenü;
-         Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := Natural (AktuelleAuswahl);
+         SchreibeGrafiktask.Erstauswahl (AuswahlExtern => Natural (AktuelleAuswahl));
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -95,7 +95,7 @@ package body ForschungsauswahlLogik is
          
       end loop AuswahlSchleife;
       
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Pause_Enum);
       
       return GewählteForschung;
       
@@ -107,14 +107,14 @@ package body ForschungsauswahlLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      Grafiktask.Aktuelles.AktuelleSpezies := SpeziesExtern;
+      SchreibeGrafiktask.AktiveSpezies (SpeziesExtern => SpeziesExtern);
       Auswahl := 1;
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Forschungserfolg_Enum;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Forschungserfolg_Enum);
       
       ErfolgSchleife:
       loop
          
-         Grafiktask.Auswahl.AktuelleAuswahl.AuswahlEins := Auswahl;
+         SchreibeGrafiktask.Erstauswahl (AuswahlExtern => Auswahl);
          
          case
            TasteneingabeLogik.VereinfachteEingabe
@@ -151,8 +151,8 @@ package body ForschungsauswahlLogik is
       SchreibeWichtiges.Forschungsprojekt (SpeziesExtern     => SpeziesExtern,
                                            ForschungIDExtern => Forschungsmöglichkeiten (SpeziesExtern => SpeziesExtern));
       
-      Grafiktask.Aktuelles.AktuelleSpezies := SpeziesKonstanten.LeerSpezies;
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Rundenende_Enum;
+      SchreibeGrafiktask.AktiveSpezies (SpeziesExtern => SpeziesKonstanten.LeerSpezies);
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Rundenende_Enum);
       
    end Forschungserfolg;
 

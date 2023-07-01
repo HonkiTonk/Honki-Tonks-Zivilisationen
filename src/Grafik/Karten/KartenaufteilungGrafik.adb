@@ -18,7 +18,6 @@ with WeltkartenbefehleGrafik;
 with KoordinatenPositionUmwandlungen;
 with SichtweitenGrafik;
 with StadtkarteGrafik;
-with Grafiktask;
 
 package body KartenaufteilungGrafik is
    
@@ -68,19 +67,20 @@ package body KartenaufteilungGrafik is
    
 
    procedure Stadtkarte
-     (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
+     (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
+      AnzeigeExtern : in GrafikDatentypen.Stadt_Enum)
    is begin
       
       case
-        Grafiktask.Aktuelles.Stadtkarte
+        AnzeigeExtern
       is
-         when True =>
-            StadtkarteGrafik.Stadtkarte (StadtauswahlExtern => (StadtauswahlExtern.SpeziesNummer.Spezies, StadtauswahlExtern.Koordinaten, StadtauswahlExtern.GebäudeVorhanden));
-      
-         when False =>
+         when GrafikDatentypen.Stadtumgebung_Enum =>
             StadtumgebungGrafik.Stadtumgebung (StadtauswahlExtern => (StadtauswahlExtern.SpeziesNummer, StadtauswahlExtern.Koordinaten, StadtauswahlExtern.UmgebungBewirtschaftung));
             StadtseitenleisteGrafik.Stadtinformationen (StadtauswahlExtern => StadtauswahlExtern);
             StadtbefehleGrafik.Stadtbefehle;
+            
+         when GrafikDatentypen.Stadtkarte_Enum =>
+            StadtkarteGrafik.Stadtkarte (StadtauswahlExtern => (StadtauswahlExtern.SpeziesNummer.Spezies, StadtauswahlExtern.Koordinaten, StadtauswahlExtern.GebäudeVorhanden));
       end case;
       
    end Stadtkarte;

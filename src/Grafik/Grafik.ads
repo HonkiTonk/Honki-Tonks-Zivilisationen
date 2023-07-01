@@ -12,8 +12,8 @@ private
 
    Startzeit : Time;
 
-   LetzteDarstellung : GrafikDatentypen.AKtuelle_Anzeige_Enum := GrafikDatentypen.Start_Enum;
-   AktuelleDarstellung : GrafikDatentypen.AKtuelle_Anzeige_Enum;
+   LetzteDarstellung : GrafikDatentypen.Aktuelle_Anzeige_Enum := GrafikDatentypen.Start_Enum;
+   AktuelleDarstellung : GrafikDatentypen.Aktuelle_Anzeige_Enum;
 
    procedure GrafikanpassungenVorFensterleerung;
    procedure Eingaben;
@@ -22,8 +22,8 @@ private
      (EingabeExtern : in GrafikDatentypen.Eingabe_Enum);
 
    procedure AnzeigeSpielmeldungen
-     (AktuelleDarstellungExtern : in GrafikDatentypen.AKtuelle_Anzeige_Enum;
-      LetzteDarstellungExtern : in GrafikDatentypen.AKtuelle_Anzeige_Enum;
+     (AktuelleDarstellungExtern : in GrafikDatentypen.Aktuelle_Anzeige_Enum;
+      LetzteDarstellungExtern : in GrafikDatentypen.Aktuelle_Anzeige_Enum;
       SpielmeldungExtern : in TextnummernKonstanten.Spielmeldungen);
 
 

@@ -14,6 +14,7 @@ with GrafikKonstanten;
 with ViewKonstanten;
 
 with LeseDiplomatie;
+with LeseGrafiktask;
 
 with AllgemeineViewsGrafik;
 with HintergrundGrafik;
@@ -22,7 +23,6 @@ with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 with MenuestringsSetzenGrafik;
 with TextfarbeGrafik;
-with Grafiktask;
 with Fehlermeldungssystem;
 with TextaccessverwaltungssystemGrafik;
 
@@ -74,7 +74,7 @@ package body DiplomatieauswahlGrafik is
               & TextKonstanten.StandardAbstand;
                
             case
-              LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => Grafiktask.Aktuelles.AktuelleSpezies,
+              LeseDiplomatie.AktuellerZustand (SpeziesEinsExtern => LeseGrafiktask.AktiveSpezies,
                                                SpeziesZweiExtern => SpeziesDatentypen.Spezies_Enum'Val (PositionSchleifenwert))
             is
                when DiplomatieDatentypen.Neutral_Enum =>

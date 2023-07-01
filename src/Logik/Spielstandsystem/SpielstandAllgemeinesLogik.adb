@@ -3,8 +3,9 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 
 with TextKonstanten;
 
+with SchreibeGrafiktask;
+
 with TexteingabeLogik;
-with Grafiktask;
 with LadezeitenLogik;
 
 package body SpielstandAllgemeinesLogik is
@@ -13,9 +14,8 @@ package body SpielstandAllgemeinesLogik is
      return Unbounded_Wide_Wide_String
    is begin
      
-      Grafiktask.Spielstand.NameSpielstand := True;
       SpielstandName := TexteingabeLogik.SpielstandName;
-      Grafiktask.Spielstand.NameSpielstand := False;
+      SchreibeGrafiktask.Spielstandname (JaNeinExtern => False);
       
       case
         SpielstandName.ErfolgreichAbbruch

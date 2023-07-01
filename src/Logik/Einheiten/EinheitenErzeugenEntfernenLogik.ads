@@ -42,12 +42,11 @@ private
 
    Transporterkapazität : EinheitenDatentypen.Transportplätze;
 
-   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   Einheitengrenze : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   Schleifenende : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    Sortierungsnummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    Transporternummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
-   procedure EinheitEntfernenLadung
+   procedure Ladungsentfernung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      with
        Pre => (
@@ -65,7 +64,7 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
-   procedure EinheitenSortieren
+   procedure Einheitensortierung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
      with
        Pre => (

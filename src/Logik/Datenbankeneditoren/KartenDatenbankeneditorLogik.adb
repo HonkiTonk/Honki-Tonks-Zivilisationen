@@ -3,11 +3,11 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with KartengrundDatentypen;
 with GrafikDatentypen;
 with TastenbelegungDatentypen;
-
 with KartenDatenbank;
 
+with SchreibeGrafiktask;
+
 with MausauswahlEditorLogik;
-with Grafiktask;
 with TasteneingabeLogik;
 
 package body KartenDatenbankeneditorLogik is
@@ -15,8 +15,8 @@ package body KartenDatenbankeneditorLogik is
    procedure KartenDatenbankenEditor
    is begin
       
-      Grafiktask.WelcherEditor := GrafikDatentypen.Kartengrund_Editor_Enum;
-      Grafiktask.AktuelleDarstellung := GrafikDatentypen.Editoren_Enum;
+      SchreibeGrafiktask.Editorart (EditorartExtern => GrafikDatentypen.Kartengrund_Editor_Enum);
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Editoren_Enum);
       
       KartengrundSchleife:
       loop

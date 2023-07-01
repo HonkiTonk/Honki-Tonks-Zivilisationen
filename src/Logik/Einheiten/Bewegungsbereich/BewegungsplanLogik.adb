@@ -10,6 +10,7 @@ with SystemDatentypen;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 with SchreibeSoundtask;
+with SchreibeGrafiktask;
 
 with KartenkoordinatenberechnungssystemLogik;
 with EinheitenbewegungLogik;
@@ -17,7 +18,6 @@ with BewegungsberechnungEinheitenLogik;
 with PassierbarkeitspruefungLogik;
 with EinheitSuchenLogik;
 with StadtSuchenLogik;
-with Grafiktask;
 with TransporterBeladenEntladenLogik;
 
 with KIBewegungsplanVereinfachenLogik;
@@ -94,7 +94,7 @@ package body BewegungsplanLogik is
                         AktuellePlanpositionExtern => 1)
       is
          when True =>
-            Grafiktask.Einheitenbewegung.Einheitenbewegung := True;
+            SchreibeGrafiktask.Einheitenbewegung (JaNeinExtern => True);
             
             DurchführungSchleife:
             loop
@@ -107,7 +107,7 @@ package body BewegungsplanLogik is
                    EinheitenKonstanten.LeerLebenspunkte = LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
                then
                   SchreibeSoundtask.SoundStoppen (SoundExtern => TonDatentypen.Sound_Einheitenbewegung_Enum);
-                  Grafiktask.Einheitenbewegung.Einheitenbewegung := False;
+                  SchreibeGrafiktask.Einheitenbewegung (JaNeinExtern => False);
                   return False;
                         
                else
@@ -163,7 +163,7 @@ package body BewegungsplanLogik is
             null;
       end case;
       
-      Grafiktask.Einheitenbewegung.Einheitenbewegung := False;
+      SchreibeGrafiktask.Einheitenbewegung (JaNeinExtern => False);
       return True;
       
    end BewegungPlanen;

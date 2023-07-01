@@ -1,10 +1,11 @@
 with GrafikDatentypen;
 
+with SchreibeGrafiktask;
+
 with StadtbausystemLogik;
 with TasteneingabeLogik;
 with EinwohnersystemLogik;
 with GebaeudeVerkaufenLogik;
-with Grafiktask;
 with MausauswahlLogik;
 with StadtEntfernenLogik;
 with StadtAllgemeinesLogik;
@@ -16,8 +17,8 @@ package body StadtmenueLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      Grafiktask.Aktuelles.AktuelleStadt := StadtSpeziesNummerExtern.Nummer;
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Stadtkarte_Enum;
+      SchreibeGrafiktask.Stadtnummer (StadtnummerExtern => StadtSpeziesNummerExtern.Nummer);
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Stadtumgebung_Enum);
       
       StadtSchleife:
       loop
@@ -66,8 +67,8 @@ package body StadtmenueLogik is
          
       end loop StadtSchleife;
       
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
-      Grafiktask.Aktuelles.AktuelleStadt := StadtKonstanten.LeerNummer;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Pause_Enum);
+      SchreibeGrafiktask.Stadtnummer (StadtnummerExtern => StadtKonstanten.LeerNummer);
       
    end Stadtmenü;
    
@@ -142,7 +143,7 @@ package body StadtmenueLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
-      Grafiktask.Aktuelles.Stadtkarte := True;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Stadtkarte_Enum);
       
       StadtkarteSchleife:
       loop
@@ -162,7 +163,7 @@ package body StadtmenueLogik is
          
       end loop StadtkarteSchleife;
       
-      Grafiktask.Aktuelles.Stadtkarte := False;
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Stadtumgebung_Enum);
       
    end Stadtkarte;
 

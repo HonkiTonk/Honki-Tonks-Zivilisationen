@@ -16,9 +16,9 @@ with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
 with SchreibeAllgemeines;
 with SchreibeSpeziesbelegung;
+with SchreibeGrafiktask;
 
 with LadezeitenLogik;
-with Grafiktask;
 with SpielstandlisteLogik;
 with MeldungFestlegenLogik;
 with StandardSpielwerteSetzenLogik;
@@ -46,7 +46,7 @@ package body LadenLogik is
          
          else
             LadezeitenLogik.SpeichernLadenNullsetzen;
-            Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Speichern_Laden_Enum;
+            SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Speichern_Laden_Enum);
       
             Open (File => DateiLaden,
                   Mode => In_File,
@@ -70,7 +70,7 @@ package body LadenLogik is
                Ladevorgang (DateiLadenExtern => DateiLaden);
       
                Close (File => DateiLaden);
-               Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Pause_Enum;
+               SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Pause_Enum);
 
                return True;
          end case;

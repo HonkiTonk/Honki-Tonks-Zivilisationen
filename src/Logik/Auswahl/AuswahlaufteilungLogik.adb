@@ -1,8 +1,9 @@
 with GrafikDatentypen;
 
+with SchreibeGrafiktask;
+
 with MenueauswahlLogik;
 with SteuerungsauswahlLogik;
-with Grafiktask;
 
 package body AuswahlaufteilungLogik is
 
@@ -11,8 +12,8 @@ package body AuswahlaufteilungLogik is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
             
-      Grafiktask.Grafik.AktuellesMenü := WelchesMenüExtern;
-      Grafiktask.Grafik.AktuelleDarstellung := GrafikDatentypen.Menüs_Enum;
+      SchreibeGrafiktask.Menü (MenüExtern => WelchesMenüExtern);
+      SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Menüs_Enum);
       
       case
         WelchesMenüExtern

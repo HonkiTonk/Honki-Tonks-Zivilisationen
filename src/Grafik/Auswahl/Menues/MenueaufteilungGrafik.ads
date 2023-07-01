@@ -6,6 +6,6 @@ package MenueaufteilungGrafik is
 
    procedure Menüaufteilung
      (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
-      AktuelleAuswahlExtern : in SystemRecords.MehrfacheAuswahlRecord);
+      AktuelleAuswahlExtern : in SystemRecords.MehrfachauswahlRecord);
 
 end MenueaufteilungGrafik;

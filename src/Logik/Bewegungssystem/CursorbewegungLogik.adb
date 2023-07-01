@@ -5,9 +5,10 @@ with KartenDatentypen;
 
 with LeseWeltkarteneinstellungen;
 with LeseCursor;
+with LeseGrafiktask;
+with SchreibeGrafiktask;
 
 with ZahleneingabeLogik;
-with Grafiktask;
 with KartenkoordinatenberechnungssystemLogik;
 
 package body CursorbewegungLogik is
@@ -22,13 +23,13 @@ package body CursorbewegungLogik is
       
       -- Ist nötig, da sonst bei schnellem Scrollen die Ebene nicht korrekt gewechselt wird.
       case
-        Grafiktask.Aktuelles.GeheZu.XAchse
+        LeseGrafiktask.GeheZu.XAchse
       is
          when KartenKonstanten.LeerXAchse =>
             BasisKoordinaten := LeseCursor.KoordinatenAlt (SpeziesExtern => SpeziesExtern);
             
          when others =>
-            BasisKoordinaten := Grafiktask.Aktuelles.GeheZu;
+            BasisKoordinaten := LeseGrafiktask.GeheZu;
       end case;
       
       if
@@ -58,7 +59,7 @@ package body CursorbewegungLogik is
             null;
                
          when others =>
-            Grafiktask.Aktuelles.GeheZu := KartenWert;
+            SchreibeGrafiktask.GeheZu (KoordinatenExtern => KartenWert);
       end case;
       
    end CursorbewegungBerechnen;
@@ -106,7 +107,7 @@ package body CursorbewegungLogik is
          
          when True =>
             NeueKoordinate.XAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
-            Grafiktask.Aktuelles.GeheZu := NeueKoordinate;
+            SchreibeGrafiktask.GeheZu (KoordinatenExtern => NeueKoordinate);
       end case;
       
    end GeheZu;
