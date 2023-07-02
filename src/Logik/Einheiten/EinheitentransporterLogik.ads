@@ -28,7 +28,7 @@ package EinheitentransporterLogik is
    procedure LadungsnummerAnpassen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungsnummerAltExtern : in EinheitenDatentypen.MaximaleEinheiten;
-      LadungsnummerNeuExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      LadungsnummerNeuExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
      with
        Pre => (
                  TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)

@@ -32,15 +32,15 @@ package body SchreibeEinheitenGebaut is
             null;
             
          when others =>
-            SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
+            SchreibeWeltkarte.EinheitEntfernen (KoordinatenExtern          => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern),
                                                 EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end case;
       
       GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).KoordinatenAktuell := KoordinatenExtern;
       
-      SchreibeWeltkarte.EinheitSchreiben (KoordinatenExtern        => KoordinatenExtern,
+      SchreibeWeltkarte.EinheitSchreiben (KoordinatenExtern          => KoordinatenExtern,
                                           EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                          EinheitentauschExtern    => EinheitentauschExtern);
+                                          EinheitentauschExtern      => EinheitentauschExtern);
       
    end Koordinaten;
    

@@ -2,6 +2,7 @@ with TastenbelegungDatentypen;
 with InteraktionAuswahl;
 with GrafikDatentypen;
 with SpeziesKonstanten;
+with TextnummernKonstanten;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -10,6 +11,7 @@ with SchreibeGrafiktask;
 with TasteneingabeLogik;
 with MausauswahlLogik;
 with ForschungstestsLogik;
+with JaNeinLogik;
 
 package body ForschungsauswahlLogik is
 
@@ -18,20 +20,19 @@ package body ForschungsauswahlLogik is
    is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
    begin
-         
-      AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern);
-      WasErforschtWerdenSoll := Forschungsmöglichkeiten (SpeziesExtern => SpeziesExtern);
+      
+      NeuesForschungsprojekt := Forschungsmöglichkeiten (SpeziesExtern => SpeziesExtern);
 
       if
-        WasErforschtWerdenSoll = ForschungKonstanten.LeerAnforderung
+        NeuesForschungsprojekt = ForschungKonstanten.LeerAnforderung
         or
-          WasErforschtWerdenSoll = AktuellesForschungsprojekt
+          NeuesForschungsprojekt = LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern)
       then
          null;
                
       else
          SchreibeWichtiges.Forschungsprojekt (SpeziesExtern     => SpeziesExtern,
-                                              ForschungIDExtern => WasErforschtWerdenSoll);
+                                              ForschungIDExtern => NeuesForschungsprojekt);
       end if;
       
    end Forschung;
@@ -51,14 +52,15 @@ package body ForschungsauswahlLogik is
          
       end loop ForschungSchleife;
       
-      return Forschungsauswahl;
+      return Forschungsauswahl (AktuellesForschungsprojektExtern => LeseWichtiges.Forschungsprojekt (SpeziesExtern => SpeziesExtern));
 
    end Forschungsmöglichkeiten;
    
    
    
    function Forschungsauswahl
-     return ForschungenDatentypen.ForschungIDMitNullWert
+     (AktuellesForschungsprojektExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
+      return ForschungenDatentypen.ForschungIDMitNullWert
    is
       use type ForschungenDatentypen.ForschungIDNichtMöglich;
    begin
@@ -77,6 +79,16 @@ package body ForschungsauswahlLogik is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
                  AktuelleAuswahl = ForschungKonstanten.LeerAnforderung
+               then
+                  null;
+                  
+               elsif
+                 (AktuelleAuswahl /= AktuellesForschungsprojektExtern
+                  and
+                    AktuellesForschungsprojektExtern /= ForschungKonstanten.LeerAnforderung)
+                 and then
+               -- Hier noch eine passende Frage einbauen! äöü
+                 JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageForschungsprojekt) = False
                then
                   null;
                   

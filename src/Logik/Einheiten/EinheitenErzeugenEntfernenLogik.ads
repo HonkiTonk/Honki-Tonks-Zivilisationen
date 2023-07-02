@@ -42,9 +42,9 @@ private
 
    Transporterkapazität : EinheitenDatentypen.Transportplätze;
 
+   Schleifenanfang : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
    Schleifenende : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   Sortierungsnummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   Transporternummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   Einheitennummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
 
    procedure Ladungsentfernung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -65,12 +65,10 @@ private
               );
 
    procedure Einheitensortierung
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
-                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
 
 end EinheitenErzeugenEntfernenLogik;

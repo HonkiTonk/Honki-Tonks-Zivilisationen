@@ -1,6 +1,7 @@
 with GrafikDatentypen;
 with TastenbelegungDatentypen;
 with AuswahlKonstanten;
+with TextnummernKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -12,6 +13,7 @@ with EinheitenanforderungenLogik;
 with InteraktionAuswahl;
 with MausauswahlLogik;
 with OftVerwendetSound;
+with JaNeinLogik;
 
 package body StadtbausystemLogik is
 
@@ -21,7 +23,6 @@ package body StadtbausystemLogik is
       use type StadtRecords.BauprojektRecord;
    begin
       
-      AktuellesBauprojekt := LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       NeuesBauprojekt := BauobjektAuswählen (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       
       if
@@ -29,7 +30,7 @@ package body StadtbausystemLogik is
          and
            NeuesBauprojekt.Einheit = AuswahlKonstanten.LeerEinheitenauswahl)
         or
-          NeuesBauprojekt = AktuellesBauprojekt
+          NeuesBauprojekt = LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern)
       then
          null;
             
@@ -60,7 +61,7 @@ package body StadtbausystemLogik is
          return StadtKonstanten.LeerBauprojekt;
          
       else
-         return AuswahlBauprojekt;
+         return AuswahlBauprojekt (AktuelleBauprojektExtern => LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern));
       end if;
       
    end BauobjektAuswählen;
@@ -139,7 +140,8 @@ package body StadtbausystemLogik is
    
    
    function AuswahlBauprojekt
-     return StadtRecords.BauprojektRecord
+     (AktuelleBauprojektExtern : in StadtRecords.BauprojektRecord)
+      return StadtRecords.BauprojektRecord
    is begin
       
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Bauen_Enum);
@@ -159,6 +161,28 @@ package body StadtbausystemLogik is
                  AktuelleAuswahl.Gebäude = AuswahlKonstanten.LeerGebäudeauswahl
                  and
                    AktuelleAuswahl.Einheit = AuswahlKonstanten.LeerEinheitenauswahl
+               then
+                  null;
+                  
+               elsif
+                 AktuelleBauprojektExtern.Gebäude = AuswahlKonstanten.LeerGebäudeauswahl
+                 and
+                   AktuelleBauprojektExtern.Einheit = AuswahlKonstanten.LeerEinheitenauswahl
+               then
+                  OftVerwendetSound.Klick;
+                  return AktuelleAuswahl;
+                  
+               elsif
+                 ((AktuelleAuswahl.Gebäude /= AuswahlKonstanten.LeerGebäudeauswahl
+                   and
+                     AktuelleBauprojektExtern.Gebäude /= AktuelleAuswahl.Gebäude)
+                  or
+                    (AktuelleAuswahl.Einheit /= AuswahlKonstanten.LeerEinheitenauswahl
+                     and
+                       AktuelleBauprojektExtern.Einheit /= AktuelleAuswahl.Einheit))
+                 and then
+                   -- Hier noch eine passende Frage einbauen! äöü
+                 JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBauprojekt) = False
                then
                   null;
                   

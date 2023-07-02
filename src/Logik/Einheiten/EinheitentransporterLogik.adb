@@ -241,7 +241,7 @@ package body EinheitentransporterLogik is
    procedure LadungsnummerAnpassen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       LadungsnummerAltExtern : in EinheitenDatentypen.MaximaleEinheiten;
-      LadungsnummerNeuExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      LadungsnummerNeuExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
    is begin
       
       LadungSchleife:

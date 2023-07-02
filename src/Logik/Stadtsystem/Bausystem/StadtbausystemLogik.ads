@@ -2,7 +2,6 @@ with SpeziesDatentypen;
 with StadtRecords;
 with StadtKonstanten;
 
-private with KartenRecords;
 private with StadtDatentypen;
 private with EinheitenDatentypen;
 
@@ -28,17 +27,8 @@ private
 
    BauenMöglich : Boolean;
 
-   WasGebautWerdenSoll : Natural;
-   Befehl : Natural;
-
-   Zeilenabstand : Float;
-
    AktuelleAuswahl : StadtRecords.BauprojektRecord := (0, 0);
-   AktuellesBauprojekt : StadtRecords.BauprojektRecord;
    NeuesBauprojekt : StadtRecords.BauprojektRecord;
-   GewähltesBauprojekt : StadtRecords.BauprojektRecord;
-
-   KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
 
 
 
@@ -75,8 +65,15 @@ private
               );
 
    function AuswahlBauprojekt
-     return StadtRecords.BauprojektRecord
+     (AktuelleBauprojektExtern : in StadtRecords.BauprojektRecord)
+      return StadtRecords.BauprojektRecord
      with
+       Pre => (
+               (if AktuelleBauprojektExtern.Gebäude /= 0 then AktuelleBauprojektExtern.Einheit = 0)
+               and
+                 (if AktuelleBauprojektExtern.Einheit /= 0 then AktuelleBauprojektExtern.Gebäude = 0)
+              ),
+
        Post => (
                 (if AuswahlBauprojekt'Result.Gebäude /= 0 then AuswahlBauprojekt'Result.Einheit = 0)
                 and

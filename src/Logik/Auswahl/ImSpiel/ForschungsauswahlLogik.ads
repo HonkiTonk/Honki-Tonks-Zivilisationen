@@ -26,8 +26,7 @@ package ForschungsauswahlLogik is
 private
    
    AktuelleAuswahl : ForschungenDatentypen.ForschungIDMitNullWert := ForschungKonstanten.LeerAnforderung;
-   WasErforschtWerdenSoll : ForschungenDatentypen.ForschungIDMitNullWert;
-   AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
+   NeuesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
    GewählteForschung : ForschungenDatentypen.ForschungIDMitNullWert;
 
    Auswahl : Positive;
@@ -41,6 +40,7 @@ private
               );
 
    function Forschungsauswahl
-     return ForschungenDatentypen.ForschungIDMitNullWert;
+     (AktuellesForschungsprojektExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
+      return ForschungenDatentypen.ForschungIDMitNullWert;
 
 end ForschungsauswahlLogik;

@@ -196,17 +196,20 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (03.07.2023):
+   -- Version 0.05.2950 => 0.05. (03.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2890 => 0.05. (02.07.2023):
+   -- Version 0.05.2890 => 0.05.2950 (02.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Entfernung von transportierten Einheiten überarbeitet, um eventuell auftretende Fehler bei verschachtelten Transportern zu korrigieren.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Wenn bereits ein Gebäude oder eine Einheit im Bau ist und man ein neues Bauprojekt auswählt, dann wird jetzt erst nachgefragt ob das Projekt wirklich geändert werden soll.
+   -- Wenn bereits ein Forschungsprojekt ĺäuft, dann wird bei der Auswahl eines Neuen jetzt geftagt ob das alte abgebrochen werden soll.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

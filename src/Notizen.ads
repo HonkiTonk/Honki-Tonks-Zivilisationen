@@ -1,3 +1,5 @@
+-- Option einbauen um alle Sicherheitsabfragen zu entfernen? äöü
+
 SpeziesDatentypen.Menschen_Enum         => ,
   SpeziesDatentypen.Kasrodiah_Enum        => ,
     SpeziesDatentypen.Lasupin_Enum          => ,
