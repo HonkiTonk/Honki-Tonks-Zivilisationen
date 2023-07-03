@@ -1,14 +1,8 @@
-with EinheitenDatentypen;
 with SpeziesDatentypen;
 
-package DatenbankRecords is
+package SpeziesdatenbankRecord is
    pragma Pure;
-   
-   type PassierbarkeitArray is array (EinheitenDatentypen.Passierbarkeit_Enum'Range) of Boolean;
 
-   
-   
-   -- SpeziesDatenbank
    type SpezieslisteRecord is record
       
       Aggressivität : SpeziesDatentypen.Speziesverhalten;
@@ -19,9 +13,9 @@ package DatenbankRecords is
       Bewirtschaftung : SpeziesDatentypen.Speziesverhalten;
       
       Staatsformen : SpeziesDatentypen.StaatsformenArray;
+      
       -- Besondere Eigenschaften hinzufügen, als Enum? oder was Anderes?
       
    end record;
-   -- SpeziesDatenbank
-   
-end DatenbankRecords;
+
+end SpeziesdatenbankRecord;

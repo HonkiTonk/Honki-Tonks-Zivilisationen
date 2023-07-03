@@ -17,7 +17,7 @@ package body FeldkampfStadtLogik is
       KampfBasiswertExtern : in KampfDatentypen.KampfwerteEinheiten;
       StadttypExtern : in KartenverbesserungDatentypen.Verbesserung_Städte_Enum;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KampfDatentypen.KampfwerteGroß
+      return KampfDatentypen.Kampfwerte
    is begin
             
       case

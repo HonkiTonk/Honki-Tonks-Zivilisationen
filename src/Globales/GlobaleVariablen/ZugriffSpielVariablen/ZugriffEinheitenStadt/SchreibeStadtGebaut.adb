@@ -403,7 +403,8 @@ package body SchreibeStadtGebaut is
       else
          GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Bauzeit
            := (LeseEinheitenDatenbank.Produktionskosten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
-                                                         IDExtern    => EinheitenDatentypen.EinheitenID (GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Bauprojekt.Einheit))
+                                                         IDExtern      => EinheitenDatentypen.EinheitenIDVorhanden (GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies,
+                                                           StadtSpeziesNummerExtern.Nummer).Bauprojekt.Einheit))
                - GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Material)
              / GebautVariablen.StadtGebaut (StadtSpeziesNummerExtern.Spezies, StadtSpeziesNummerExtern.Nummer).Produktionrate;
       end if;

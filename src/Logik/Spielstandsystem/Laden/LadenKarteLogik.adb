@@ -250,7 +250,7 @@ package body LadenKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.KarteLaden - Konnte nicht geladen werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.KarteLaden: Konnte nicht geladen werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end KarteLaden;
@@ -314,7 +314,7 @@ package body LadenKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.ZahlNachSichtbarkeit - Konnte nicht geladen werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.ZahlNachSichtbarkeit: Konnte nicht geladen werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end ZahlNachSichtbarkeit;
@@ -357,7 +357,7 @@ package body LadenKarteLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.BasisgrundEinlesen - Konnte nicht geladen werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenKarteLogik.BasisgrundEinlesen: Konnte nicht geladen werden" & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end BasisgrundEinlesen;

@@ -17,7 +17,7 @@ package FehlermeldungssystemZusatzinformationen is
 
    function SpeziesID
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return Wide_Wide_String
      with
        Post => (

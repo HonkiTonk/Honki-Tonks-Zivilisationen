@@ -163,7 +163,7 @@ package body LeseGrafiktask is
    
    
    function Einheitnummer
-     return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+     return EinheitenDatentypen.Einheitenbereich
    is begin
       
       return Grafiktask.Aktuell.Einheitnummer;
@@ -253,7 +253,7 @@ package body LeseGrafiktask is
    
    
    function Einheitenauswahl
-     return EinheitenDatentypen.EinheitenIDMitNullWert
+     return EinheitenDatentypen.EinheitenID
    is begin
       
       return Grafiktask.Auswahl.Bauauswahl.Einheit;

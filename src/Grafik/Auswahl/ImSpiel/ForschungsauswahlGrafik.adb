@@ -115,7 +115,7 @@ package body ForschungsauswahlGrafik is
      (ZusatztextExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+      use type ForschungenDatentypen.ForschungIDUnmöglich;
    begin
       
       Viewfläche (ViewKonstanten.ForschungsmenüErmöglicht)
@@ -186,7 +186,7 @@ package body ForschungsauswahlGrafik is
       Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
          
       EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
+      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
             
          if
            ZusatztextExtern = LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => SpeziesExtern,

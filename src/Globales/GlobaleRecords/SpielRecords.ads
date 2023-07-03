@@ -37,9 +37,9 @@ package SpielRecords is
       Erforscht : ForschungenDatentypen.ErforschtArray;
       
       AnzahlStädte : StadtDatentypen.MaximaleStädteMitNullWert;
-      AnzahlArbeiter : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      AnzahlKämpfer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      AnzahlSonstiges : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      AnzahlArbeiter : EinheitenDatentypen.Einheitenbereich;
+      AnzahlKämpfer : EinheitenDatentypen.Einheitenbereich;
+      AnzahlSonstiges : EinheitenDatentypen.Einheitenbereich;
       
       -- Einbau sinnvoll?
       -- GesamterAngriff : ProduktionDatentypen.Produktion;
@@ -62,7 +62,7 @@ package SpielRecords is
    type GrenzenRecord is record
       
       Städtegrenze : StadtDatentypen.MaximaleStädteMitNullWert;
-      Einheitengrenze : EinheitenDatentypen.MaximaleEinheiten;
+      Einheitengrenze : EinheitenDatentypen.EinheitenbereichVorhanden;
       Geldgrenze : ZahlenDatentypen.EigenesNatural;
       Forschungsgrenze : ProduktionDatentypen.Lagermenge;
       Geldgewinngrenze : ProduktionDatentypen.Lagermenge;

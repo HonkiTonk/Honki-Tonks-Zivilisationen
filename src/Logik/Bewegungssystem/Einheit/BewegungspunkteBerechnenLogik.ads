@@ -53,7 +53,7 @@ private
    
    Gesamtgrund : KartenRecords.KartengrundRecord;
    
-   EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   EinheitID : EinheitenDatentypen.EinheitenID;
    
    AktuelleBewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
    

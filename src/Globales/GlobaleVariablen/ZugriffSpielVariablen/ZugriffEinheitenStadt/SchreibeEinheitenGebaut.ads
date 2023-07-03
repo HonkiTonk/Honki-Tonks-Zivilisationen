@@ -24,7 +24,7 @@ package SchreibeEinheitenGebaut is
 
    procedure ID
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -261,7 +261,7 @@ package SchreibeEinheitenGebaut is
       
    procedure Transportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LadungExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      LadungExtern : in EinheitenDatentypen.Einheitenbereich;
       LadungsplatzExtern : in EinheitenDatentypen.Transportplätze)
      with
        Pre => (
@@ -273,7 +273,7 @@ package SchreibeEinheitenGebaut is
    
    procedure WirdTransportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      TransporterExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
+      TransporterExtern : in EinheitenDatentypen.Einheitenbereich)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -315,7 +315,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Standardwerte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
      with

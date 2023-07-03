@@ -1,5 +1,5 @@
-with KartenDatentypen;
 with TextnummernKonstanten;
+with ProduktionKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseWeltkarte;
@@ -18,8 +18,7 @@ package body EinheitVerbessernLogik is
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
-      use type KartenDatentypen.Kartenfeld;
+      use type EinheitenDatentypen.EinheitenID;
    begin
       
       NeueEinheitenID := EinheitVerbesserbar (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -50,13 +49,13 @@ package body EinheitVerbessernLogik is
                                                      RechnenSetzenExtern        => False);
       
             EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                 VorzeichenWechselExtern    => -1);
+                                                                 VorzeichenwechselExtern    => ProduktionKonstanten.VorzeichenNegativ);
       
             SchreibeEinheitenGebaut.ID (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                         IDExtern                   => NeueEinheitenID);
       
             EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                                 VorzeichenWechselExtern    => 1);
+                                                                 VorzeichenwechselExtern    => ProduktionKonstanten.VorzeichenPositiv);
                                     
          when False =>
             null;
@@ -70,9 +69,9 @@ package body EinheitVerbessernLogik is
    
    function EinheitVerbesserbar
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.EinheitenIDMitNullWert
+      return EinheitenDatentypen.EinheitenID
    is
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.EinheitenID;
    begin
    
       EinheitenIDVerbesserbar := LeseEinheitenDatenbank.VerbesserungZu (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
@@ -120,7 +119,7 @@ package body EinheitVerbessernLogik is
    
    function WeiterhinTransportierbar
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueIDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      NeueIDExtern : in EinheitenDatentypen.EinheitenID)
       return Boolean
    is begin
             
@@ -144,7 +143,7 @@ package body EinheitVerbessernLogik is
    
    function LaderaumAusreichend
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueIDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      NeueIDExtern : in EinheitenDatentypen.EinheitenID)
       return Boolean
    is
       use type EinheitenDatentypen.Transportplätze;

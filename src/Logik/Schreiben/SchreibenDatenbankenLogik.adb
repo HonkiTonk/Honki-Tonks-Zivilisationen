@@ -12,7 +12,7 @@ with ForschungRecordKonstanten;
 with EffekteDatenbank;
 with Fehlermeldungssystem;
 
--- Das Schreiben/Einlesen der Datenbanken auch so aufteilen wie das Schreiben/Einlesen der Einstellungen? äöü
+-- Das Schreiben/Einlesen der Datenbanken auch so aufteilen wie das Schreiben/Einlesen der Einstellungen. äöü
 package body SchreibenDatenbankenLogik is
    
    procedure SchreibenAlleDatenbanken
@@ -45,7 +45,7 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenEinheitenDatenbank - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenEinheitenDatenbank: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DatenbankSpeichern)
@@ -86,7 +86,7 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenForschungenDatenbank - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenForschungenDatenbank: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DatenbankSpeichern)
@@ -117,7 +117,7 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenGebäudeDatenbank - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenGebäudeDatenbank: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DatenbankSpeichern)
@@ -157,7 +157,7 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenKartenDatenbanken - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenKartenDatenbanken: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DatenbankSpeichern)
@@ -191,7 +191,7 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenVerbesserungenDatenbank - Konnte nicht geschrieben werden: "
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenVerbesserungenDatenbank: Konnte nicht gespeichert werden: "
                                      & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
@@ -223,7 +223,7 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenSpeziesDatenbank - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenSpeziesDatenbank: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DatenbankSpeichern)
@@ -254,7 +254,7 @@ package body SchreibenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenEffekteDatenbank - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenDatenbankenLogik.SchreibenEffekteDatenbank: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DatenbankSpeichern)

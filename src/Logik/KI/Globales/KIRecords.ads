@@ -10,7 +10,7 @@ package KIRecords is
 
    type EinheitIDBewertungRecord is record
 
-      ID : EinheitenDatentypen.EinheitenIDMitNullWert;
+      ID : EinheitenDatentypen.EinheitenID;
       Bewertung : KIDatentypen.BauenBewertung;
 
    end record;
@@ -29,10 +29,10 @@ package KIRecords is
    type FeindlicheEinheitBewertet is record
 
       Spezies : SpeziesDatentypen.Spezies_Enum;
-      Nummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      Nummer : EinheitenDatentypen.Einheitenbereich;
 
-      Angriff : KampfDatentypen.KampfwerteGroß;
-      Verteidigung : KampfDatentypen.KampfwerteGroß;
+      Angriff : KampfDatentypen.Kampfwerte;
+      Verteidigung : KampfDatentypen.Kampfwerte;
 
    end record;
 

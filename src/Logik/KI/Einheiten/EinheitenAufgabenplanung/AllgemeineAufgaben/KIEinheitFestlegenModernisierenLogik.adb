@@ -98,7 +98,7 @@ package body KIEinheitFestlegenModernisierenLogik is
    -- Solche Stadtumgebungen auch mal in einer Funktion unterbringen oder soweit es möglich/sinnvoll ist? äöü
    function EinheitVerbessernPlatz
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is
       use type KartenDatentypen.Kartenfeld;

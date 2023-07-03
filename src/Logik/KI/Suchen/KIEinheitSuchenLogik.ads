@@ -31,7 +31,7 @@ package KIEinheitSuchenLogik is
    
 private
    
-   FeindlicheEinheit : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   FeindlicheEinheit : EinheitenDatentypen.Einheitenbereich;
    
    UmgebungPrüfen : KartenDatentypen.KartenfeldNatural;
    BereitsGeprüft : KartenDatentypen.KartenfeldNatural;

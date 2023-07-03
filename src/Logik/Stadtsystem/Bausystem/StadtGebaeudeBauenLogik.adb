@@ -28,7 +28,7 @@ package body StadtGebaeudeBauenLogik is
             null;
             
          when SpeziesDatentypen.Leer_Spieler_Enum =>
-            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtGebaeudeBauenLogik.GebäudeFertiggestellt - Unbelegte Spezies");
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "StadtGebaeudeBauenLogik.GebäudeFertiggestellt: Unbelegte Spezies");
       end case;
       
    end GebäudeFertiggestellt;

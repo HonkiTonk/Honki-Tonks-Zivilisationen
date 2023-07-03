@@ -5,6 +5,7 @@ with LeseStadtGebaut;
 with LeseGrenzen;
 with SchreibeGrafiktask;
 
+-- Dass die Begrenzungen hier am Anfang auf 0 gesetzt werden kann doch so auch nicht korrekt sein, oder? äöü
 package body NaechsteStadtLogik is
 
    procedure NächsteStadt

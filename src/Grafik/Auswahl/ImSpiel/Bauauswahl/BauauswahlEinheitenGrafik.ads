@@ -13,7 +13,7 @@ package BauauswahlEinheitenGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure Einheiteninformationen
-     (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (
@@ -35,7 +35,7 @@ private
    Textposition : Sf.System.Vector2.sfVector2f;
 
    procedure Einheitenbeschreibung
-     (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
        Pre => (

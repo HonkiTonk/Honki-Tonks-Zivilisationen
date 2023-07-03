@@ -1,4 +1,4 @@
-package ChangelogVorlage is
+package ChangelogJuli2023 is
    
    -- Version 0.05. => 0.05. (31.07.2023):
    
@@ -189,17 +189,20 @@ package ChangelogVorlage is
    
    
 
-   -- Version 0.05. => 0.05. (04.07.2023):
+   -- Version 0.05.3010 => 0.05. (04.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.2950 => 0.05. (03.07.2023):
+   -- Version 0.05.2950 => 0.05.3010 (03.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Fehlermeldungen überarbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Einige Zahlen durch Konstante ersetzt.
+   -- Kommentare und Kleinigkeiten korrigiert/erweitert/angepasst.
    
    
 
@@ -208,7 +211,7 @@ package ChangelogVorlage is
    -- Die Entfernung von transportierten Einheiten überarbeitet, um eventuell auftretende Fehler bei verschachtelten Transportern zu korrigieren.
    -- Interne Struktur und Benennung überarbeitet.
    -- Wenn bereits ein Gebäude oder eine Einheit im Bau ist und man ein neues Bauprojekt auswählt, dann wird jetzt erst nachgefragt ob das Projekt wirklich geändert werden soll.
-   -- Wenn bereits ein Forschungsprojekt ĺäuft, dann wird bei der Auswahl eines Neuen jetzt geftagt ob das alte abgebrochen werden soll.
+   -- Wenn bereits ein Forschungsprojekt ĺäuft, dann wird bei der Auswahl eines Neuen jetzt geftagt ob das Alte abgebrochen werden soll.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
@@ -222,4 +225,4 @@ package ChangelogVorlage is
    -- Angefangen die Entfernung von Einheiten die Transportiert werden zu überarbeiten, um eventuell auftretende Fehler zu korrigieren.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
 
-end ChangelogVorlage;
+end ChangelogJuli2023;

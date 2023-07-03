@@ -12,8 +12,8 @@ package KIStadtLaufendeBauprojekteLogik is
    use type SpeziesDatentypen.Spieler_Enum;
    use type StadtDatentypen.MaximaleStädteMitNullWert;
    use type StadtDatentypen.GebäudeIDMitNullwert;
-   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   use type EinheitenDatentypen.Einheitenbereich;
+   use type EinheitenDatentypen.EinheitenID;
 
    function StadtLaufendeBauprojekte
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -37,7 +37,7 @@ package KIStadtLaufendeBauprojekteLogik is
    function GleicheEinheitArtBauprojekte
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -51,7 +51,7 @@ package KIStadtLaufendeBauprojekteLogik is
    
    function EinheitenInProduktion
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.KI_Spieler_Enum
@@ -60,14 +60,14 @@ package KIStadtLaufendeBauprojekteLogik is
    -- Einen subtype für MaximaleEinheiten erstellen der nur bis MaximaleStädte geht? äöü
    -- Ist <= Städtegrenzen, da ja nicht mehr Einheiten gebaut werden kann als Städte vorhanden sind.
      Post => (
-                EinheitenInProduktion'Result <= EinheitenDatentypen.MaximaleEinheitenMitNullWert (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern))
+                EinheitenInProduktion'Result <= EinheitenDatentypen.Einheitenbereich (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern))
              );
    
 private
    
    GleichesGebäudeBauprojekt : StadtDatentypen.MaximaleStädteMitNullWert;
    
-   GleichesEinheitenBauprojekt : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   EinheitenImBau : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   GleichesEinheitenBauprojekt : EinheitenDatentypen.Einheitenbereich;
+   EinheitenImBau : EinheitenDatentypen.Einheitenbereich;
 
 end KIStadtLaufendeBauprojekteLogik;

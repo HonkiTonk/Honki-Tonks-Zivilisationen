@@ -10,7 +10,7 @@ package ProduktionDatentypen is
    
    subtype Feldproduktion is Stadtproduktion range -10 .. 100;
    subtype Einzelproduktion is Feldproduktion range -10 .. 10;
-   subtype Zwischenlösung is Stadtproduktion range -1 .. 1;
+   subtype Vorzeichenwechsel is Stadtproduktion range -1 .. 1;
    
    
    

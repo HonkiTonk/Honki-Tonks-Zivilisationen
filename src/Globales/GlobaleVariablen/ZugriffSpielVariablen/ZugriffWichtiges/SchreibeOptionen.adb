@@ -41,6 +41,16 @@ package body SchreibeOptionen is
    end Dezimaltrennzeichen;
    
    
+   
+   procedure SicherheitsfragenAnzeigen
+     (JaNeinExtern : in Boolean)
+   is begin
+      
+      OptionenVariablen.NutzerEinstellungen.SicherheitsfragenAnzeigen := JaNeinExtern;
+      
+   end SicherheitsfragenAnzeigen;
+   
+   
 
    procedure GanzeSpieleinstellungen
      (EinstellungenExtern : in SystemRecords.NutzerEinstellungenRecord)

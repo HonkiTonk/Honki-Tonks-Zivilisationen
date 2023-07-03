@@ -1,9 +1,9 @@
 with SpeziesDatentypen;
 with KampfDatentypen;
 with ProduktionDatentypen;
-with DatenbankRecords;
 with BewertungDatentypen;
 with EinheitenDatentypen;
+with EinheitenArrays;
 
 package KartendatenbankRecord is
    pragma Pure;
@@ -22,7 +22,7 @@ package KartendatenbankRecord is
       Wirtschaft : ProduktionArray;
       Kampf : KampfbonusArray;
       
-      Passierbarkeit : DatenbankRecords.PassierbarkeitArray;
+      Passierbarkeit : EinheitenArrays.PassierbarkeitArray;
       Bewegung : BewegungArray;
       
    end record;
@@ -70,7 +70,7 @@ package KartendatenbankRecord is
       Wirtschaft : WirtschaftsbonusArray;
       Kampf : KampfbonusArray;
       
-      Passierbarkeit : DatenbankRecords.PassierbarkeitArray;
+      Passierbarkeit : EinheitenArrays.PassierbarkeitArray;
       Bewegung : BewegungArray;
       
    end record;

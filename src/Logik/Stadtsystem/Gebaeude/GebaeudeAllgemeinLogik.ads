@@ -1,8 +1,9 @@
 with SpeziesDatentypen;
-with KartenDatentypen;
 with StadtKonstanten;
 with StadtDatentypen;
 with StadtRecords;
+
+private with ProduktionDatentypen;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -10,7 +11,6 @@ with LeseSpeziesbelegung;
 package GebaeudeAllgemeinLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
    
    procedure GebäudeProduktionBeenden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -42,14 +42,15 @@ package GebaeudeAllgemeinLogik is
               );
    
 private
+   use type ProduktionDatentypen.Produktion;
       
    procedure PermanenteKostenDurchGebäudeÄndern
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID;
-      VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
+      VorzeichenwechselExtern : in ProduktionDatentypen.Vorzeichenwechsel)
      with
        Pre => (
-                 VorzeichenWechselExtern /= 0
+                 VorzeichenwechselExtern /= 0
                and
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
                and

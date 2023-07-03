@@ -48,7 +48,7 @@ package GebaeudedatenbankRecord is
       Produktionskosten : ProduktionDatentypen.Lagermenge;
       PermanenteKosten : StadtRecords.PermanenteKostenArray;
       
-      Anforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
+      Anforderungen : ForschungenDatentypen.ForschungIDUnmöglich;
       
       Produktionsbonus : ProduktionsbonusArray;
       Kampfbonus : KampfbonusArray;

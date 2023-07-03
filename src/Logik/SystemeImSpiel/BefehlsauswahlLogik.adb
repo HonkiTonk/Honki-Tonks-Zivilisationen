@@ -45,7 +45,7 @@ package body BefehlsauswahlLogik is
       is
          when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
             CursorbewegungLogik.CursorbewegungBerechnen (RichtungExtern => BefehlExtern,
-                                                         SpeziesExtern    => SpeziesExtern);
+                                                         SpeziesExtern  => SpeziesExtern);
             
          when TastenbelegungDatentypen.Auswählen_Enum =>
             BefehlspruefungenLogik.AuswahlEinheitStadt (SpeziesExtern => SpeziesExtern);
@@ -60,15 +60,15 @@ package body BefehlsauswahlLogik is
             NaechsteStadtLogik.NächsteStadt (SpeziesExtern => SpeziesExtern);
             
          when TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum =>
-            NaechsteEinheitLogik.NächsteEinheit (SpeziesExtern           => SpeziesExtern,
+            NaechsteEinheitLogik.NächsteEinheit (SpeziesExtern         => SpeziesExtern,
                                                   BewegungspunkteExtern => NaechsteEinheitLogik.Hat_Bewegungspunkte_Enum);
             
          when TastenbelegungDatentypen.Nächste_Einheit_Enum =>
-            NaechsteEinheitLogik.NächsteEinheit (SpeziesExtern           => SpeziesExtern,
+            NaechsteEinheitLogik.NächsteEinheit (SpeziesExtern         => SpeziesExtern,
                                                   BewegungspunkteExtern => NaechsteEinheitLogik.Egal_Bewegungspunkte_Enum);
             
          when TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum =>
-            NaechsteEinheitLogik.NächsteEinheit (SpeziesExtern           => SpeziesExtern,
+            NaechsteEinheitLogik.NächsteEinheit (SpeziesExtern         => SpeziesExtern,
                                                   BewegungspunkteExtern => NaechsteEinheitLogik.Keine_Bewegungspunkte_Enum);
 
          when TastenbelegungDatentypen.Diplomatie_Enum =>

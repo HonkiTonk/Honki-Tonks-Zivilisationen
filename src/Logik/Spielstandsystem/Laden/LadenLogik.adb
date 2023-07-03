@@ -79,7 +79,7 @@ package body LadenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.Laden - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.Laden: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiLaden)
@@ -190,7 +190,7 @@ package body LadenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.AllgemeinesLaden - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.AllgemeinesLaden: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end AllgemeinesLaden;
@@ -260,7 +260,7 @@ package body LadenLogik is
       
       
       
-      EinheitenDatentypen.MaximaleEinheitenMitNullWert'Read (Stream (File => DateiLadenExtern),
+      EinheitenDatentypen.Einheitenbereich'Read (Stream (File => DateiLadenExtern),
                                                              VorhandeneEinheiten);
       
       EinheitenSchleife:
@@ -310,7 +310,7 @@ package body LadenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.StädteEinheitenLaden - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.StädteEinheitenLaden: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
    
    end StädteEinheitenLaden;
@@ -395,7 +395,7 @@ package body LadenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.Spezieswerte - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LadenLogik.Spezieswerte: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Spezieswerte;

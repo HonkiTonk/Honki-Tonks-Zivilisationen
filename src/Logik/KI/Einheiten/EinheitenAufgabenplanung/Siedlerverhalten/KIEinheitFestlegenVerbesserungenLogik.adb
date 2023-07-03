@@ -150,7 +150,7 @@ package body KIEinheitFestlegenVerbesserungenLogik is
    
    function StadtumgebungErmitteln
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin
       

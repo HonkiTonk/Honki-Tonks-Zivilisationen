@@ -43,7 +43,7 @@ private
 
    VorhandeneStädte : StadtDatentypen.MaximaleStädteMitNullWert;
 
-   VorhandeneEinheiten : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
 
    procedure Ladevorgang
      (DateiLadenExtern : in File_Type);

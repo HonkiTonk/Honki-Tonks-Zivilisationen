@@ -1,9 +1,9 @@
 with SpeziesDatentypen;
-with KartenDatentypen;
 with EinheitenRecords;
 with EinheitenDatentypen;
 with StadtRecords;
 with EinheitenKonstanten;
+with ProduktionDatentypen;
 
 private with StadtDatentypen;
 private with AufgabenDatentypen;
@@ -17,7 +17,7 @@ private with KIDatentypen;
 package EinheitenmodifizierungLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type KartenDatentypen.Kartenfeld;
+   use type ProduktionDatentypen.Produktion;
 
    procedure HeilungBewegungspunkteNeueRunde
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -37,22 +37,22 @@ package EinheitenmodifizierungLogik is
    
    procedure PermanenteKostenÄndern
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
+      VorzeichenwechselExtern : in ProduktionDatentypen.Vorzeichenwechsel)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
                and
-                 VorzeichenWechselExtern /= 0
+                 VorzeichenwechselExtern /= 0
               );
 
 private
    
    Feldeffekt : Boolean;
    
-   AktuelleID : EinheitenDatentypen.EinheitenID;
-   EinheitID : EinheitenDatentypen.EinheitenID;
+   AktuelleID : EinheitenDatentypen.EinheitenIDVorhanden;
+   EinheitID : EinheitenDatentypen.EinheitenIDVorhanden;
    
    AktuelleBeschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    
@@ -64,6 +64,6 @@ private
          
    NeueHeimatstadt : StadtRecords.SpeziesStadtnummerRecord;
    
-   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitenDatentypen.Einheitenbereich;
 
 end EinheitenmodifizierungLogik;

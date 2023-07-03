@@ -42,6 +42,16 @@ package body LeseOptionen is
    
    
    
+   function SicherheitsfragenAnzeigen
+     return Boolean
+   is begin
+      
+      return OptionenVariablen.NutzerEinstellungen.SicherheitsfragenAnzeigen;
+      
+   end SicherheitsfragenAnzeigen;
+   
+   
+   
    function AktuellerAutospeichernwert
      return ZahlenDatentypen.EigenesPositive
    is begin

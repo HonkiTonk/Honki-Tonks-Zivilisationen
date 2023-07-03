@@ -8,7 +8,7 @@ package ZufallsgeneratorenKampfLogik is
    pragma Elaborate_Body;
 
    function ErreichteErfolge
-     (WürfelanzahlExtern : in KampfDatentypen.KampfwerteGroß)
+     (WürfelanzahlExtern : in KampfDatentypen.Kampfwerte)
       return Natural;
 
 private

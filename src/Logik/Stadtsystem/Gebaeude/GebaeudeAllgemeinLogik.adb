@@ -1,4 +1,4 @@
-with ProduktionDatentypen;
+with ProduktionKonstanten;
 
 with SchreibeWichtiges;
 with SchreibeStadtGebaut;
@@ -24,10 +24,10 @@ package body GebaeudeAllgemeinLogik is
                                              WelchesGebäudeExtern      => IDExtern,
                                              HinzufügenEntfernenExtern => True);
       
-      PermanenteKostenDurchGebäudeÄndern (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                            IDExtern                => IDExtern,
-                                            VorzeichenWechselExtern => 1);
-                  
+      PermanenteKostenDurchGebäudeÄndern (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                            IDExtern                 => IDExtern,
+                                            VorzeichenwechselExtern  => ProduktionKonstanten.VorzeichenPositiv);
+      
    end GebäudeProduktionBeenden;
    
    
@@ -56,9 +56,9 @@ package body GebaeudeAllgemeinLogik is
                                                    WelchesGebäudeExtern      => GebäudeSchleifenwert,
                                                    HinzufügenEntfernenExtern => False);
             
-            PermanenteKostenDurchGebäudeÄndern (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                                  IDExtern                => GebäudeSchleifenwert,
-                                                  VorzeichenWechselExtern => -1);
+            PermanenteKostenDurchGebäudeÄndern (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                                  IDExtern                 => GebäudeSchleifenwert,
+                                                  VorzeichenwechselExtern  => ProduktionKonstanten.VorzeichenNegativ);
             
          end if;
          
@@ -82,32 +82,29 @@ package body GebaeudeAllgemeinLogik is
                                              WelchesGebäudeExtern      => WelchesGebäudeExtern,
                                              HinzufügenEntfernenExtern => False);
       
-      PermanenteKostenDurchGebäudeÄndern (StadtSpeziesNummerExtern  => StadtSpeziesNummerExtern,
-                                            IDExtern                => WelchesGebäudeExtern,
-                                            VorzeichenWechselExtern => -1);
+      PermanenteKostenDurchGebäudeÄndern (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
+                                            IDExtern                 => WelchesGebäudeExtern,
+                                            VorzeichenwechselExtern  => ProduktionKonstanten.VorzeichenNegativ);
       
    end GebäudeVerkaufen;
    
    
 
+      -- Der Vorzeichenwechsel wird benötigt um auch bei Entfernung von Gebäuden die permanenten Kosten korrekt zu ändern
    procedure PermanenteKostenDurchGebäudeÄndern
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       IDExtern : in StadtDatentypen.GebäudeID;
-      -- Der Vorzeichenwechsel wird benötigt um auch bei Entfernung von Gebäuden die permanenten Kosten korrekt zu ändern
-      VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
-   is
-      use type ProduktionDatentypen.Produktion;
-   begin
+      VorzeichenwechselExtern : in ProduktionDatentypen.Vorzeichenwechsel)
+   is begin
       
       PermanenteKostenSchleife:
       for PermanenteKostenSchleifenwert in StadtRecords.PermanenteKostenArray'Range loop
          
          SchreibeStadtGebaut.PermanenteKostenPosten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                                      WelcherPostenExtern      => PermanenteKostenSchleifenwert,
-                                                     KostenExtern             => ProduktionDatentypen.Stadtproduktion (VorzeichenWechselExtern)
-                                                     * LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
-                                                                                               IDExtern           => IDExtern,
-                                                                                               WelcheKostenExtern => PermanenteKostenSchleifenwert),
+                                                     KostenExtern             => VorzeichenwechselExtern * LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => StadtSpeziesNummerExtern.Spezies,
+                                                                                                                                                   IDExtern           => IDExtern,
+                                                                                                                                                   WelcheKostenExtern => PermanenteKostenSchleifenwert),
                                                      ÄndernSetzenExtern       => True);
          
       end loop PermanenteKostenSchleife;

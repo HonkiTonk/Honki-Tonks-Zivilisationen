@@ -1,7 +1,7 @@
 package body ZufallsgeneratorenKampfLogik is
    
    function ErreichteErfolge
-     (WürfelanzahlExtern : in KampfDatentypen.KampfwerteGroß)
+     (WürfelanzahlExtern : in KampfDatentypen.Kampfwerte)
       return Natural
    is begin
       

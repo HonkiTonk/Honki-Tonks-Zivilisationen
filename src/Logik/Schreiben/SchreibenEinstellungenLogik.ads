@@ -7,7 +7,7 @@ package SchreibenEinstellungenLogik is
    procedure Grafikeinstellungen;
    procedure Toneinstellungen;
    procedure Tastatureinstellungen;
-   procedure SonstigeEinstellungen;
+   procedure SpielendeEinstellungen;
 
 private
 
@@ -15,6 +15,6 @@ private
    DateiGrafikeinstellungen : File_Type;
    DateiToneinstellungen : File_Type;
    DateiTastatureinstellungen : File_Type;
-   DateiSonstigeEinstellungen : File_Type;
+   DateiSpielendeEinstellungen : File_Type;
 
 end SchreibenEinstellungenLogik;

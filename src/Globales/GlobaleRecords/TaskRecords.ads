@@ -84,7 +84,7 @@ package TaskRecords is
       
       Stadtnummer : StadtDatentypen.MaximaleStädteMitNullWert;
    
-      Einheitnummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      Einheitnummer : EinheitenDatentypen.Einheitenbereich;
    
       GeheZu : KartenRecords.AchsenKartenfeldNaturalRecord;
       

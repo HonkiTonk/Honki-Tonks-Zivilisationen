@@ -63,7 +63,7 @@ package SchreibeGrafiktask is
      (StadtnummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert);
    
    procedure Einheitnummer
-     (EinheitnummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert);
+     (EinheitnummerExtern : in EinheitenDatentypen.Einheitenbereich);
    
    procedure GeheZu
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord);
@@ -90,7 +90,7 @@ package SchreibeGrafiktask is
      (GebäudeExtern : in StadtDatentypen.GebäudeIDMitNullwert);
    
    procedure Einheitenauswahl
-     (EinheitExtern : in EinheitenDatentypen.EinheitenIDMitNullWert);
+     (EinheitExtern : in EinheitenDatentypen.EinheitenID);
    
    procedure Tasteneingabe
      (JaNeinExtern : in Boolean);

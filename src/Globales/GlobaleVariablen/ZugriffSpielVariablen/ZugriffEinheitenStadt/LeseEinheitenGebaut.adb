@@ -10,10 +10,10 @@ package body LeseEinheitenGebaut is
 
    function ID
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.EinheitenIDMitNullWert
+      return EinheitenDatentypen.EinheitenID
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       if
@@ -167,7 +167,7 @@ package body LeseEinheitenGebaut is
       if
         GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang > MaximalerRang
       then
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseEinheitenGebaut.Rang: Höherer Rang als erlaubt, "
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "LeseEinheitenGebaut.Rang: Rang höher als erlaubt, "
                                      & FehlermeldungssystemZusatzinformationen.SpeziesID (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
                                                                                           IDExtern      => EinheitID));
          GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Rang := MaximalerRang;
@@ -295,7 +295,7 @@ package body LeseEinheitenGebaut is
    function Transportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PlatzExtern : in EinheitenDatentypen.Transportplätze)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
    is begin
       
       return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Transportiert (PlatzExtern);
@@ -306,7 +306,7 @@ package body LeseEinheitenGebaut is
    
    function WirdTransportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
    is begin
       
       return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).WirdTransportiert;

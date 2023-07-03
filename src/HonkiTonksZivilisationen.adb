@@ -187,7 +187,7 @@ begin
             Abort_Task (T => TaskID (Task_Grafik_Enum));
             Abort_Task (T => TaskID (Task_Musik_Enum));
 
-            -- Wird benötigt damit nicht zusätzlich die Fehlermeldung "AL lib: (EE) alc_cleanup: 1 device not closed" noch mit angezeigt wird.
+            -- Wird benötigt damit nicht der Fehler "AL lib: (EE) alc_cleanup: 1 device not closed" erzeugt wird.
             StartEndeSound.Entfernen;
             Abort_Task (T => TaskID (Task_Sound_Enum));
 
@@ -227,7 +227,7 @@ begin
         and
           TasksLaufen (Task_Sound_Enum) = False
       then
-         SchreibenEinstellungenLogik.SonstigeEinstellungen;
+         SchreibenEinstellungenLogik.SpielendeEinstellungen;
          exit SpielLäuftSchleife;
 
       else

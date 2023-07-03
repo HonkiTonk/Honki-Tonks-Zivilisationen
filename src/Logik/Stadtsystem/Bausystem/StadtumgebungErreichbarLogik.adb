@@ -15,7 +15,7 @@ package body StadtumgebungErreichbarLogik is
    function UmgebungErreichbar
      (StadtKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return KartenRecords.AchsenKartenfeldNaturalRecord
    is begin  
       
@@ -80,11 +80,11 @@ package body StadtumgebungErreichbarLogik is
    function Prüfungen
      (StadtKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin  
       

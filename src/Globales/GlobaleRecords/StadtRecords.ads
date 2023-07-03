@@ -35,7 +35,7 @@ package StadtRecords is
    type BauprojektRecord is record
       
       Gebäude : StadtDatentypen.GebäudeIDMitNullwert;
-      Einheit : EinheitenDatentypen.EinheitenIDMitNullWert;
+      Einheit : EinheitenDatentypen.EinheitenID;
 
    end record;
    

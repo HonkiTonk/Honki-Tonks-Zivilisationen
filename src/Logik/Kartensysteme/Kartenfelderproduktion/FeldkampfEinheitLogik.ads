@@ -18,7 +18,7 @@ package FeldkampfEinheitLogik is
       KampfartExtern : in KampfDatentypen.Kampf_Enum;
       KampfBasiswertExtern : in KampfDatentypen.KampfwerteEinheiten;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KampfDatentypen.KampfwerteGroß
+      return KampfDatentypen.Kampfwerte
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -30,7 +30,7 @@ package FeldkampfEinheitLogik is
    
 private
    
-   type KampfArray is array (SystemDatentypen.Task_Enum'Range) of KampfDatentypen.KampfwerteGroß;
+   type KampfArray is array (SystemDatentypen.Task_Enum'Range) of KampfDatentypen.Kampfwerte;
    Gesamtwert : KampfArray;
 
 end FeldkampfEinheitLogik;

@@ -31,13 +31,13 @@ private
    Einheitwertung : KIDatentypen.BauenBewertung;
    AnzahlPassierbarkeiten : KIDatentypen.BauenBewertung;
    
-   MengeVorhanden : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   MengeImBau : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   MengeVorhanden : EinheitenDatentypen.Einheitenbereich;
+   MengeImBau : EinheitenDatentypen.Einheitenbereich;
    
-   MinimaleSiedlerMenge : constant EinheitenDatentypen.MaximaleEinheiten := 2;
-   AnzahlStädte : EinheitenDatentypen.MaximaleEinheiten;
+   MinimaleSiedlerMenge : constant EinheitenDatentypen.EinheitenbereichVorhanden := 2;
+   AnzahlStädte : EinheitenDatentypen.EinheitenbereichVorhanden;
    
-   VorhandeneEinheiten : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
    
    EinheitBewertet : KIRecords.EinheitIDBewertungRecord;
    
@@ -46,8 +46,8 @@ private
    -- Theoretisch könnte man StädteanzahlExtern noch mit einem Contracts prüfen ob es <= Städtegrenzen ist, muss dann aber immer eine Umwandlung enthalten, da der Datentype ja bei Einheiten ist. äöü
    function EinheitBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
-      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
+      StädteanzahlExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -58,7 +58,7 @@ private
    
    function ArbeiterBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -69,8 +69,8 @@ private
    
    function NahkämpferBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID;
-      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
+      StädteanzahlExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -81,8 +81,8 @@ private
    
    function FernkämpferBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID;
-      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
+      StädteanzahlExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -93,7 +93,7 @@ private
    
    function HerstellungskostenBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -104,7 +104,7 @@ private
      
    function GeldKostenBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -115,7 +115,7 @@ private
    
    function NahrungKostenBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -126,7 +126,7 @@ private
      
    function RessourcenKostenBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (
@@ -137,7 +137,7 @@ private
    
    function EinheitenDurchgehen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      StädteanzahlExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KIRecords.EinheitIDBewertungRecord
      with
        Pre => (
@@ -148,8 +148,8 @@ private
    
    function SpezielleEinheitBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
-      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
+      StädteanzahlExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KIDatentypen.BauenBewertung
      with
        Pre => (

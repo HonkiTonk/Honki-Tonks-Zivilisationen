@@ -10,10 +10,10 @@ package body LeseEinheitenDatenbank is
 
    function Einheitenart
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.Einheitart_Enum
    is
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.EinheitenID;
    begin
       
       if
@@ -33,7 +33,7 @@ package body LeseEinheitenDatenbank is
    
    function PreisGeld
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return ProduktionDatentypen.Produktion
    is begin
             
@@ -53,7 +53,7 @@ package body LeseEinheitenDatenbank is
    
    function Produktionskosten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return ProduktionDatentypen.Produktion
    is begin
             
@@ -73,7 +73,7 @@ package body LeseEinheitenDatenbank is
    
    function PermanenteKosten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
       WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
       return ProduktionDatentypen.Stadtproduktion
    is
@@ -105,8 +105,8 @@ package body LeseEinheitenDatenbank is
    
    function Anforderungen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return ForschungenDatentypen.ForschungIDNichtMöglich
+      IDExtern : in EinheitenDatentypen.EinheitenID)
+      return ForschungenDatentypen.ForschungIDUnmöglich
    is begin
             
       case
@@ -125,7 +125,7 @@ package body LeseEinheitenDatenbank is
    
    function GebäudeBenötigt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
       GebäudeExtern : in StadtDatentypen.GebäudeID)
       return Boolean
    is begin
@@ -146,7 +146,7 @@ package body LeseEinheitenDatenbank is
 
    function Passierbarkeit
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
       WelcheUmgebungExtern : in EinheitenDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin
@@ -167,7 +167,7 @@ package body LeseEinheitenDatenbank is
          
    function MaximaleLebenspunkte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return KampfDatentypen.LebenspunkteVorhanden
    is begin
             
@@ -187,7 +187,7 @@ package body LeseEinheitenDatenbank is
    
    function MaximaleBewegungspunkte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.BewegungspunkteVorhanden
    is
       use type EinheitenDatentypen.Bewegungspunkte;
@@ -219,8 +219,8 @@ package body LeseEinheitenDatenbank is
    
    function VerbesserungZu
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
-      return EinheitenDatentypen.EinheitenIDMitNullWert
+      IDExtern : in EinheitenDatentypen.EinheitenID)
+      return EinheitenDatentypen.EinheitenID
    is begin
             
       case
@@ -239,7 +239,7 @@ package body LeseEinheitenDatenbank is
    
    function Beförderungsgrenze
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return KampfDatentypen.Erfahrungspunkte
    is begin
       
@@ -259,7 +259,7 @@ package body LeseEinheitenDatenbank is
    
    function MaximalerRang
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return KampfDatentypen.Rang
    is begin
                            
@@ -279,7 +279,7 @@ package body LeseEinheitenDatenbank is
    
    function Reichweite
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return KampfDatentypen.Reichweite
    is begin
             
@@ -299,7 +299,7 @@ package body LeseEinheitenDatenbank is
    
    function Angriff
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return KampfDatentypen.KampfwerteEinheiten
    is begin
       
@@ -319,7 +319,7 @@ package body LeseEinheitenDatenbank is
    
    function Verteidigung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return KampfDatentypen.KampfwerteEinheiten
    is begin
       
@@ -342,7 +342,7 @@ package body LeseEinheitenDatenbank is
    -- Nö, wenn hier jemand dran herumbasteln will und dabei Mist rauskommt ist das ja nicht mein Problem.
    function KannTransportieren
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.Transport_Enum
    is begin
             
@@ -362,7 +362,7 @@ package body LeseEinheitenDatenbank is
    
    function KannTransportiertWerden
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.Transport_Enum
    is begin
             
@@ -382,7 +382,7 @@ package body LeseEinheitenDatenbank is
    
    function Transportkapazität
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return EinheitenDatentypen.Transportplätze
    is
       use type EinheitenDatentypen.Transport_Enum;
@@ -416,7 +416,7 @@ package body LeseEinheitenDatenbank is
    
    function Zusatzeffekt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
       EffektExtern : in KartenextraDatentypen.Effekt_Vorhanden_Enum)
       return Boolean
    is begin
@@ -437,7 +437,7 @@ package body LeseEinheitenDatenbank is
    
    function Effektreichweite
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+      IDExtern : in EinheitenDatentypen.EinheitenID;
       EffektExtern : in KartenextraDatentypen.Effekt_Vorhanden_Enum)
       return KartenRecords.EffektbereichRecord
    is begin

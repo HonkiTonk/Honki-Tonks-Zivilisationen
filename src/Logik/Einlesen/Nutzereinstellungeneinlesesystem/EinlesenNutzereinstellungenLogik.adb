@@ -46,7 +46,7 @@ package body EinlesenNutzereinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenNutzereinstellungenLogik.Nutzereinstellungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenNutzereinstellungenLogik.Nutzereinstellungen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          OptionenVariablen.StandardNutzereinstellungenLaden;
          
          case
@@ -116,16 +116,28 @@ package body EinlesenNutzereinstellungenLogik is
                                          Dezimaltrennzeichen);
          end case;
          
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               SicherheitsfragenAnzeigen := SystemRecordKonstanten.StandardNutzereinstellungen.SicherheitsfragenAnzeigen;
+               
+            when False =>
+               Boolean'Read (Stream (File => DateiLadenExtern),
+                             SicherheitsfragenAnzeigen);
+         end case;
+         
          -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig gelesen wurde!
          -- Sollte Probleme mit geänderten Datentypen vorbeugen.
          return End_Of_File (File => DateiLadenExtern);
       
       else
          SchreibeOptionen.GanzeSpieleinstellungen (EinstellungenExtern => (
-                                                                           Sprache             => Sprache,
-                                                                           AnzahlAutospeichern => AnzahlAutospeichern,
-                                                                           RundenAutospeichern => RundenAutospeichern,
-                                                                           Dezimaltrennzeichen => Dezimaltrennzeichen
+                                                                           Sprache                   => Sprache,
+                                                                           AnzahlAutospeichern       => AnzahlAutospeichern,
+                                                                           RundenAutospeichern       => RundenAutospeichern,
+                                                                           Dezimaltrennzeichen       => Dezimaltrennzeichen,
+                                                                           SicherheitsfragenAnzeigen => SicherheitsfragenAnzeigen
                                                                           ));
       
          return True;
@@ -133,7 +145,7 @@ package body EinlesenNutzereinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenNutzereinstellungenLogik.NutzereinstellungenDurchgehen - Konnte nicht geladen werden: "
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenNutzereinstellungenLogik.NutzereinstellungenDurchgehen: Konnte nicht geladen werden: "
                                      & Decode (Item => Exception_Information (X => StandardAdaFehler)));
                   
          return False;

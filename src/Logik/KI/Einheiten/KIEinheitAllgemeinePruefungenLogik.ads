@@ -39,7 +39,7 @@ private
    
    TransportMöglich : EinheitenDatentypen.Transport_Enum;
    
-   TransporterID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   TransporterID : EinheitenDatentypen.EinheitenID;
    
    BlockierteFelder : KartenDatentypen.KartenfeldNatural;
    

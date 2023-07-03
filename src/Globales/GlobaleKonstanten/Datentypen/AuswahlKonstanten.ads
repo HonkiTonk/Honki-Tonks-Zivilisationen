@@ -10,8 +10,8 @@ package AuswahlKonstanten is
 
    LeerGebäudeauswahl : constant StadtDatentypen.GebäudeIDMitNullwert := StadtDatentypen.GebäudeIDMitNullwert'First;
 
-   LeerEinheitenauswahl : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
+   LeerEinheitenauswahl : constant EinheitenDatentypen.EinheitenID := EinheitenDatentypen.EinheitenID'First;
 
-   LeerStadtEinheitAuswahl : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerStadtEinheitAuswahl : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;
 
 end AuswahlKonstanten;

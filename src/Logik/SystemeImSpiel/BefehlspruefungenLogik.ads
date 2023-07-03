@@ -57,8 +57,8 @@ private
    Transportiert : Boolean;
    LeerRückgabewert : Boolean;
 
-   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   TransporterNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitenDatentypen.Einheitenbereich;
+   TransporterNummer : EinheitenDatentypen.Einheitenbereich;
    StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
    
    -- Ist Integer um mit dem aktuellen Auswahlsystem zu funktionieren.
@@ -68,7 +68,7 @@ private
    procedure EinheitOderStadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
-      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
+      EinheitNummerExtern : in EinheitenDatentypen.Einheitenbereich)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum

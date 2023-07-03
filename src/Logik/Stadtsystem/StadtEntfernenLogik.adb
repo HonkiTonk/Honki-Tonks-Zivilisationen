@@ -76,7 +76,7 @@ package body StadtEntfernenLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.EinheitenID;
    begin
       
       EinheitenSchleife:

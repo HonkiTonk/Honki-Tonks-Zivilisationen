@@ -14,7 +14,7 @@ package body KIEinheitUmsetzenErkundenLogik is
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.EinheitenID;
    begin
       
       ZielKoordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

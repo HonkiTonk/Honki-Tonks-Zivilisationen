@@ -10,7 +10,7 @@ package body SchreibeEinheitenGebaut is
 
    procedure ID
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
    is begin
       
       GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).ID := IDExtern;
@@ -376,7 +376,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Transportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LadungExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      LadungExtern : in EinheitenDatentypen.Einheitenbereich;
       LadungsplatzExtern : in EinheitenDatentypen.Transportplätze)
    is begin
       
@@ -388,7 +388,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure WirdTransportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      TransporterExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
+      TransporterExtern : in EinheitenDatentypen.Einheitenbereich)
    is begin
       
       GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).WirdTransportiert := TransporterExtern;
@@ -434,7 +434,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Standardwerte
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
    is begin

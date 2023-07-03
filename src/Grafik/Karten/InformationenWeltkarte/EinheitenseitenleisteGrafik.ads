@@ -46,14 +46,14 @@ private
    
    Beschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    
-   IDEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
+   IDEinheit : EinheitenDatentypen.EinheitenID;
    
    Stadtnummer : StadtDatentypen.MaximaleStädteMitNullWert;
    
-   Ladungsnummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   Ladungsnummer : EinheitenDatentypen.Einheitenbereich;
    
-   Angriffsbonus : KampfDatentypen.KampfwerteGroß;
-   Verteidigungsbonus : KampfDatentypen.KampfwerteGroß;
+   Angriffsbonus : KampfDatentypen.Kampfwerte;
+   Verteidigungsbonus : KampfDatentypen.Kampfwerte;
    
    Informationsgrenze : constant Positive := 3;
    
@@ -113,7 +113,7 @@ private
    
    function Ladung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID)
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return Unbounded_Wide_Wide_String
      with
        Pre => (
@@ -139,7 +139,7 @@ private
                   PlanZielKoordinaten'Result.y >= 0.00
                );
       
-   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.MaximaleEinheitenMitNullWert);
+   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Einheitenbereich);
    
    function ZahlAlsStringProduktionFeld is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Feldproduktion);
    
@@ -149,7 +149,7 @@ private
    
    function ZahlAlsStringBewegungspunkte is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Bewegungspunkte);
    
-   function ZahlAlsStringKampfwerte is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.KampfwerteGroß);
+   function ZahlAlsStringKampfwerte is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Kampfwerte);
    
    function ZahlAlsStringArbeitszeit is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
    

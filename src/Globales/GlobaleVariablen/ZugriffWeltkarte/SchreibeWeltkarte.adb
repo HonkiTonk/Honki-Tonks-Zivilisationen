@@ -276,7 +276,7 @@ package body SchreibeWeltkarte is
    is
       use type SpeziesDatentypen.Spezies_Enum;
       use type KartenDatentypen.Ebene;
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
       use type EinheitenRecords.SpeziesEinheitnummerRecord;
    begin
       

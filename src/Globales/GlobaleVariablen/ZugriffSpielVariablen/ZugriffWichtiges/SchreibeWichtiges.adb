@@ -170,7 +170,7 @@ package body SchreibeWichtiges is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type ProduktionDatentypen.Produktion;
-      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+      use type ForschungenDatentypen.ForschungIDUnmöglich;
    begin
       
       if
@@ -264,7 +264,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte > LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte > Städtegrenze");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte: Städtegrenze überschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte + 1;
@@ -274,7 +274,7 @@ package body SchreibeWichtiges is
             if
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte = StadtDatentypen.MaximaleStädteMitNullWert'First
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte < 0");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte: Minimum unterschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte - 1;
@@ -289,7 +289,7 @@ package body SchreibeWichtiges is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       case
@@ -300,7 +300,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges
               > LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter > Einheitengrenze");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter: Einheitengrenze überschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter + 1;
@@ -308,9 +308,9 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
+              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter = EinheitenDatentypen.Einheitenbereich'First
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter < 0");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter: Minimum unterschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter - 1;
@@ -325,7 +325,7 @@ package body SchreibeWichtiges is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       case
@@ -336,7 +336,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges
               > LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer > Einheitengrenze");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer: Einheitengrenze überschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer + 1;
@@ -344,9 +344,9 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
+              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer = EinheitenDatentypen.Einheitenbereich'First
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer < 0");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer: Minimum unterschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer - 1;
@@ -361,7 +361,7 @@ package body SchreibeWichtiges is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       case
@@ -372,7 +372,7 @@ package body SchreibeWichtiges is
               SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges
               > LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern)
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges > Einheitengrenze");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges: Einheitengrenze überschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges + 1;
@@ -380,9 +380,9 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges = EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
+              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges = EinheitenDatentypen.Einheitenbereich'First
             then
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges < 0");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges: Minimum unterschritten");
                
             else
                SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges := SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges - 1;

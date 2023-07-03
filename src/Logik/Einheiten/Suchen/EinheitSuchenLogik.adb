@@ -12,7 +12,7 @@ package body EinheitSuchenLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
    is
       use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -139,7 +139,7 @@ package body EinheitSuchenLogik is
    -- Benötigt keine Taskaufteilung da sie nur vom Grafiktask aufgerufen wird.
    function TransporterladungSuchen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LadungsnummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
+      LadungsnummerExtern : in EinheitenDatentypen.Einheitenbereich)
       return Boolean
    is
       use type SpeziesDatentypen.Spezies_Enum;

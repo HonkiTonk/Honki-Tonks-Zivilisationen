@@ -230,7 +230,7 @@ package body EingabenanzeigeGrafik is
       AktuelleAuswahlExtern : in Integer)
    is
       use type EinheitenDatentypen.Transportplätze;
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       -- Das hier dynamisch an die Auswahlmöglichkeiten anpassen? äöü

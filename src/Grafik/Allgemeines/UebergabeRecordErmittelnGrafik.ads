@@ -12,7 +12,7 @@ with LeseSpeziesbelegung;
 package UebergabeRecordErmittelnGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   use type EinheitenDatentypen.Einheitenbereich;
 
    function Einheit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

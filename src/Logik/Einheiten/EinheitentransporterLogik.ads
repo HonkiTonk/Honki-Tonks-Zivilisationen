@@ -14,7 +14,7 @@ private with LeseWeltkarteneinstellungen;
 package EinheitentransporterLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   use type EinheitenDatentypen.Einheitenbereich;
    
    procedure TransporterEntladen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -27,8 +27,8 @@ package EinheitentransporterLogik is
    
    procedure LadungsnummerAnpassen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LadungsnummerAltExtern : in EinheitenDatentypen.MaximaleEinheiten;
-      LadungsnummerNeuExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
+      LadungsnummerAltExtern : in EinheitenDatentypen.EinheitenbereichVorhanden;
+      LadungsnummerNeuExtern : in EinheitenDatentypen.Einheitenbereich)
      with
        Pre => (
                  TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
@@ -52,8 +52,8 @@ package EinheitentransporterLogik is
      
    
    function TransporterGroßGenug
-     (LadungExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      TransporterExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+     (LadungExtern : in EinheitenDatentypen.EinheitenID;
+      TransporterExtern : in EinheitenDatentypen.EinheitenID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean
      with
@@ -93,10 +93,10 @@ private
    Transporterkapazität : EinheitenDatentypen.Transportplätze;
    AktuelleLadungsmenge : EinheitenDatentypen.Transportplätze;
    
-   TransporterID : EinheitenDatentypen.EinheitenIDMitNullWert;
-   LadungID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   TransporterID : EinheitenDatentypen.EinheitenID;
+   LadungID : EinheitenDatentypen.EinheitenID;
    
-   AktuelleLadung : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   AktuelleLadung : EinheitenDatentypen.Einheitenbereich;
    
    EinheitVorhanden : EinheitenRecords.SpeziesEinheitnummerRecord;
    

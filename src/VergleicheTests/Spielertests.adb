@@ -1,4 +1,8 @@
+with SpeziesKonstanten;
+
 with LeseSpeziesbelegung;
+
+with Fehlermeldungssystem;
 
 package body Spielertests is
    
@@ -89,5 +93,41 @@ package body Spielertests is
       return False;
       
    end KISpieler;
-
+   
+   
+   
+   function AnzahlMenschlicheSpieler
+     return Positive
+   is begin
+      
+      VorhandeneMenschen := 0;
+      
+      SpeziesSchleife:
+      for SpeziesSchleifenwert in SpeziesDatentypen.Spezies_Verwendet_Enum'Range loop
+         
+         case
+           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesSchleifenwert)
+         is
+            when SpeziesDatentypen.Mensch_Spieler_Enum =>
+               VorhandeneMenschen := VorhandeneMenschen + 1;
+               
+            when others =>
+               null;
+         end case;
+         
+      end loop SpeziesSchleife;
+      
+      case
+        VorhandeneMenschen
+      is
+         when SpeziesKonstanten.Speziesanfang .. SpeziesKonstanten.Speziesende =>
+            return VorhandeneMenschen;
+            
+         when others =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "Spielertests.AnzahlMenschlicheSpieler: Ungültige Anzahl an Spielern: " & VorhandeneMenschen'Wide_Wide_Image);
+            return 1;
+      end case;
+      
+   end AnzahlMenschlicheSpieler;
+   
 end Spielertests;

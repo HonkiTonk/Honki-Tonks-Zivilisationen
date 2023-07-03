@@ -15,7 +15,7 @@ package LeseGrenzen is
 
    function Einheitengrenze
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return EinheitenDatentypen.MaximaleEinheiten;
+      return EinheitenDatentypen.EinheitenbereichVorhanden;
    pragma Inline (Einheitengrenze);
 
    function Geldgrenze

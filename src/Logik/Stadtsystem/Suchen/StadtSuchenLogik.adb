@@ -98,7 +98,7 @@ package body StadtSuchenLogik is
    begin
       
       StadtName := TexteingabeLogik.StadtName (StadtSpeziesNummerExtern => StadtKonstanten.LeerStadt,
-                                               BauenExtern            => False);
+                                               BauenExtern              => False);
       
       case
         StadtName.ErfolgreichAbbruch

@@ -18,4 +18,7 @@ package ProduktionKonstanten is
    UnmöglicheArbeit : constant ProduktionDatentypen.Arbeitszeit := ProduktionDatentypen.Arbeitszeit'First;
    MinimaleArbeitszeit : constant ProduktionDatentypen.Arbeitszeit := 1;
 
+   VorzeichenNegativ : constant ProduktionDatentypen.Vorzeichenwechsel := ProduktionDatentypen.Vorzeichenwechsel'First;
+   VorzeichenPositiv : constant ProduktionDatentypen.Vorzeichenwechsel := ProduktionDatentypen.Vorzeichenwechsel'Last;
+
 end ProduktionKonstanten;

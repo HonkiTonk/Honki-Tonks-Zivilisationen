@@ -17,8 +17,8 @@ package EinheitenErzeugenEntfernenLogik is
 
    procedure EinheitErzeugen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
+      EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
      with
        Pre => (
@@ -42,9 +42,9 @@ private
 
    Transporterkapazität : EinheitenDatentypen.Transportplätze;
 
-   Schleifenanfang : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   Schleifenende : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-   Einheitennummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   Schleifenanfang : EinheitenDatentypen.Einheitenbereich;
+   Schleifenende : EinheitenDatentypen.Einheitenbereich;
+   Einheitennummer : EinheitenDatentypen.Einheitenbereich;
 
    procedure Ladungsentfernung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

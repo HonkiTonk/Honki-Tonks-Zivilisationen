@@ -194,7 +194,7 @@ package body SpielLogik is
       is
          when RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
             if
-              Spielertests.MenschlicheSpieler (SpeziesExtern => SpeziesExtern) = True
+              Spielertests.AnzahlMenschlicheSpieler > 1
             then
                -- Es ist recht nervig wenn man zurück zum Hauptmenü will und für jeden menschlichen Spieler gefragt wird ob er auf die KI gesetzt werden soll. äöü
                -- Deswegen wird bei Nein jetzt erst einmal direkt zurückgegangen, eventuell später wieder ändern oder besser gestalten. äöü
@@ -232,7 +232,7 @@ package body SpielLogik is
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is
       use type RueckgabeDatentypen.Rückgabe_Werte_Enum;
-      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+      use type ForschungenDatentypen.ForschungIDUnmöglich;
    begin
       
       SchreibeGrafiktask.AktiveSpezies (SpeziesExtern => SpeziesExtern);

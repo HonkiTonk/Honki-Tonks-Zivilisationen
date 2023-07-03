@@ -20,11 +20,11 @@ package body KIEinheitenBauenLogik is
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return KIRecords.EinheitIDBewertungRecord
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       -- AnzahlStädte sollte immer größer 0 sein, da nur bei vorhandenen Städten etwas gebaut werden sollte.
-      AnzahlStädte := EinheitenDatentypen.MaximaleEinheiten (LeseWichtiges.AnzahlStädte (SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
+      AnzahlStädte := EinheitenDatentypen.EinheitenbereichVorhanden (LeseWichtiges.AnzahlStädte (SpeziesExtern => StadtSpeziesNummerExtern.Spezies));
       VorhandeneEinheiten := LeseWichtiges.AnzahlEinheiten (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
       
       if
@@ -45,7 +45,7 @@ package body KIEinheitenBauenLogik is
    
    function EinheitenDurchgehen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      StädteanzahlExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KIRecords.EinheitIDBewertungRecord
    is
       use type KIDatentypen.BauenBewertung;
@@ -54,7 +54,7 @@ package body KIEinheitenBauenLogik is
       EinheitBewertet := KIKonstanten.LeerEinheitenbewertung;
       
       EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
+      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
          
          case
            EinheitenanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
@@ -93,8 +93,8 @@ package body KIEinheitenBauenLogik is
    
    function EinheitBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
-      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
+      StädteanzahlExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
@@ -171,8 +171,8 @@ package body KIEinheitenBauenLogik is
    
    function SpezielleEinheitBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
-      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
+      StädteanzahlExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
@@ -218,11 +218,11 @@ package body KIEinheitenBauenLogik is
    
    function ArbeiterBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       MengeVorhanden := LeseWichtiges.AnzahlArbeiter (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
@@ -254,12 +254,12 @@ package body KIEinheitenBauenLogik is
    
    function NahkämpferBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID;
-      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
+      StädteanzahlExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       MengeVorhanden := LeseWichtiges.AnzahlKämpfer (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
@@ -328,12 +328,12 @@ package body KIEinheitenBauenLogik is
    
    function FernkämpferBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID;
-      StädteanzahlExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
+      StädteanzahlExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       MengeVorhanden := LeseWichtiges.AnzahlKämpfer (SpeziesExtern => StadtSpeziesNummerExtern.Spezies);
@@ -390,10 +390,10 @@ package body KIEinheitenBauenLogik is
    
    function HerstellungskostenBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.EinheitenID;
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
@@ -422,7 +422,7 @@ package body KIEinheitenBauenLogik is
      
    function GeldKostenBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
@@ -454,7 +454,7 @@ package body KIEinheitenBauenLogik is
    
    function NahrungKostenBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;
@@ -486,7 +486,7 @@ package body KIEinheitenBauenLogik is
      
    function RessourcenKostenBewerten
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return KIDatentypen.BauenBewertung
    is
       use type KIDatentypen.BauenBewertung;

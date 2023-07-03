@@ -31,7 +31,7 @@ package body KILogik is
    procedure EinheitenDurchgehen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       Einheitenzeitwert := BasiszeitwertEinheiten (ZusatzwertExtern => LeseGrenzen.Einheitengrenze (SpeziesExtern => SpeziesExtern),

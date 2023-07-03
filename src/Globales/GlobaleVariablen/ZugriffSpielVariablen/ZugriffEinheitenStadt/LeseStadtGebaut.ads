@@ -24,7 +24,7 @@ package LeseStadtGebaut is
    use type KartenDatentypen.Kartenfeld;
    use type KartenDatentypen.Ebene;
    use type StadtDatentypen.GebäudeIDMitNullwert;
-   use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   use type EinheitenDatentypen.EinheitenID;
    
    function ID
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)

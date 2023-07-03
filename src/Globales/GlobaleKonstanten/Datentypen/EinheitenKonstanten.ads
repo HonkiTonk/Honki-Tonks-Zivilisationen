@@ -13,15 +13,15 @@ with KIDatentypen;
 package EinheitenKonstanten is
    pragma Preelaborate;
    
-   LeerNummer : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerNummer : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;
    
    -- Wieso ist diese Recordkonstante hier und nicht bei den Recordkonstanten? äöü
    -- Weil es da auch ein LeerEinheit gibt, welche aber den Einheitenrecord auf Leer setzt. äöü
    LeerEinheit : constant EinheitenRecords.SpeziesEinheitnummerRecord := (SpeziesKonstanten.LeerSpezies, LeerNummer);
    
-   AnfangNummer : constant EinheitenDatentypen.MaximaleEinheiten := EinheitenDatentypen.MaximaleEinheiten'First;
+   AnfangNummer : constant EinheitenDatentypen.EinheitenbereichVorhanden := EinheitenDatentypen.EinheitenbereichVorhanden'First;
 
-   LeerID : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
+   LeerID : constant EinheitenDatentypen.EinheitenID := EinheitenDatentypen.EinheitenID'First;
    LeerHeimatstadt : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerLebenspunkte : constant KampfDatentypen.Lebenspunkte := 0;
    LeerBewegungspunkte : constant EinheitenDatentypen.BewegungspunkteVorhanden := EinheitenDatentypen.BewegungspunkteVorhanden'First;
@@ -30,8 +30,8 @@ package EinheitenKonstanten is
    LeerBeschäftigung : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
    LeerBeschäftigungszeit : constant ProduktionDatentypen.Arbeitszeit := 0;
    LeerKIBeschäftigt : constant KIDatentypen.Einheit_Aufgabe_Enum := KIDatentypen.Leer_Aufgabe_Enum;
-   LeerTransportiert : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerWirdTransportiert : constant EinheitenDatentypen.MaximaleEinheitenMitNullWert := EinheitenDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerTransportiert : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;
+   LeerWirdTransportiert : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;
    LeerMeldung : constant EinheitenDatentypen.Einheit_Meldung_Enum := EinheitenDatentypen.Leer_Einheit_Meldung_Enum;
    
    StandardBewegungspunkt : constant EinheitenDatentypen.BewegungspunkteVorhanden := 3;
@@ -43,12 +43,12 @@ package EinheitenKonstanten is
    LeerPreisGeld : constant ProduktionDatentypen.Produktion := 0;
    LeerPreisRessourcen : constant ProduktionDatentypen.Produktion := 0;
    LeerPermanenteKosten : constant ProduktionDatentypen.Stadtproduktion := 0;
-   LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
+   LeerAnforderungen : constant ForschungenDatentypen.ForschungIDUnmöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerPassierbarkeit : constant Boolean := False;
    LeerGebäudeBenötigt : constant Boolean := False;
    LeerMaximaleLebenspunkte : constant KampfDatentypen.LebenspunkteVorhanden := KampfDatentypen.LebenspunkteVorhanden'First;
    LeerMaximaleBewegungspunkte : constant EinheitenDatentypen.BewegungspunkteVorhanden := 3;
-   LeerWirdVerbessertZu : constant EinheitenDatentypen.EinheitenIDMitNullWert := EinheitenDatentypen.EinheitenIDMitNullWert'First;
+   LeerWirdVerbessertZu : constant EinheitenDatentypen.EinheitenID := EinheitenDatentypen.EinheitenID'First;
    LeerBeförderungsgrenze : constant KampfDatentypen.ErfahrungspunkteVorhanden := KampfDatentypen.ErfahrungspunkteVorhanden'First;
    LeerMaximalerRang : constant KampfDatentypen.Rang := KampfDatentypen.Rang'First;
    LeerReichweite : constant KampfDatentypen.ReichweiteVorhanden := KampfDatentypen.ReichweiteVorhanden'First;

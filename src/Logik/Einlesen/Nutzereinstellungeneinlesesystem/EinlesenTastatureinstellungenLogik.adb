@@ -49,7 +49,7 @@ package body EinlesenTastatureinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTastatureinstellungenLogik.Tastatureinstellungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTastatureinstellungenLogik.Tastatureinstellungen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          StandardTastenbelegungDatenbank.StandardTastenbelegungLaden;
          
          case
@@ -720,7 +720,7 @@ package body EinlesenTastatureinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTastatureinstellungenLogik.TastatureinstellungenDurchgehen - Konnte nicht geladen werden: "
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTastatureinstellungenLogik.TastatureinstellungenDurchgehen: Konnte nicht geladen werden: "
                                      & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          

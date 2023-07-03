@@ -5,8 +5,8 @@ package KampfRecords is
 
    type KampfwerteRecord is record
       
-      Angriff : KampfDatentypen.KampfwerteGroß;
-      Verteidigung : KampfDatentypen.KampfwerteGroß;
+      Angriff : KampfDatentypen.Kampfwerte;
+      Verteidigung : KampfDatentypen.Kampfwerte;
       
    end record;
 

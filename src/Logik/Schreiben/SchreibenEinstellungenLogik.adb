@@ -47,13 +47,16 @@ package body SchreibenEinstellungenLogik is
       
       Wide_Wide_Character'Write (Stream (File => DateiNutzereinstellungen),
                                  LeseOptionen.Dezimaltrennzeichen);
+      
+      Boolean'Write (Stream (File => DateiNutzereinstellungen),
+                     LeseOptionen.SicherheitsfragenAnzeigen);
       -- SystemRecords.NutzerEinstellungenRecord
       
       Close (File => DateiNutzereinstellungen);
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Nutzereinstellungen - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Nutzereinstellungen: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiNutzereinstellungen)
@@ -146,7 +149,7 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Grafikeinstellungen - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Grafikeinstellungen: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiGrafikeinstellungen)
@@ -182,7 +185,7 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Toneinstellungen - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Toneinstellungen: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiToneinstellungen)
@@ -391,7 +394,7 @@ package body SchreibenEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Tastatureinstellungen - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.Tastatureinstellungen: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiTastatureinstellungen)
@@ -407,36 +410,36 @@ package body SchreibenEinstellungenLogik is
    
    
    
-   procedure SonstigeEinstellungen
+   procedure SpielendeEinstellungen
    is begin
       
-      Create (File => DateiSonstigeEinstellungen,
+      Create (File => DateiSpielendeEinstellungen,
               Mode => Out_File,
               Name => VerzeichnisKonstanten.SpielendeEinstellungen,
               Form => "WCEM=8");
       
       -- SystemRecords.SpielendeEinstellungenRecord
-      ZahlenDatentypen.EigenesPositive'Write (Stream (File => DateiSonstigeEinstellungen),
+      ZahlenDatentypen.EigenesPositive'Write (Stream (File => DateiSpielendeEinstellungen),
                                               LeseOptionen.AktuellerAutospeichernwert);
       -- SystemRecords.SpielendeEinstellungenRecord
       
-      Close (File => DateiSonstigeEinstellungen);
+      Close (File => DateiSpielendeEinstellungen);
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.SonstigeEinstellungen - Konnte nicht geschrieben werden: "
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenEinstellungenLogik.SpielendeEinstellungen: Konnte nicht gespeichert werden: "
                                      & Decode (Item => Exception_Information (X => StandardAdaFehler)));
                                               
          case
-           Is_Open (File => DateiSonstigeEinstellungen)
+           Is_Open (File => DateiSpielendeEinstellungen)
          is
             when True =>
-               Close (File => DateiSonstigeEinstellungen);
+               Close (File => DateiSpielendeEinstellungen);
                
             when False =>
                null;
          end case;
       
-   end SonstigeEinstellungen;
+   end SpielendeEinstellungen;
 
 end SchreibenEinstellungenLogik;

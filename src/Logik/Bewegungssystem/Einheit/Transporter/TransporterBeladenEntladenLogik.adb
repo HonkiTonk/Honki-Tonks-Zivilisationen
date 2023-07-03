@@ -30,7 +30,7 @@ package body TransporterBeladenEntladenLogik is
 
    function TransporterBeladen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      LadungExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return Boolean
    is begin
       
@@ -82,9 +82,9 @@ package body TransporterBeladenEntladenLogik is
    
    procedure EinheitAusladen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      LadungExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,

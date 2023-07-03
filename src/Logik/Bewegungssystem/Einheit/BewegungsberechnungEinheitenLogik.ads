@@ -32,7 +32,7 @@ package BewegungsberechnungEinheitenLogik is
    
 private
    
-   IstLadung : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   IstLadung : EinheitenDatentypen.Einheitenbereich;
    
    BewegungspunkteAbzug : EinheitenDatentypen.Bewegungspunkte;
    

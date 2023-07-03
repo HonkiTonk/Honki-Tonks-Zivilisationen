@@ -101,7 +101,7 @@ package body EinheitInUmgebungLogik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Boolean
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       

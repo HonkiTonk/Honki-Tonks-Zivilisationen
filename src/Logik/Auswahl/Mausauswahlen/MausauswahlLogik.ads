@@ -11,7 +11,7 @@ with TastenbelegungDatentypen;
 package MausauswahlLogik is
    pragma Elaborate_Body;
    use type StadtDatentypen.GebäudeIDMitNullwert;
-   use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   use type EinheitenDatentypen.EinheitenID;
    use type EinheitenDatentypen.Transportplätze;
 
    function SpeziesauswahlDiplomatie

@@ -13,13 +13,13 @@ package EinheitSuchenLogik is
    pragma Elaborate_Body;
    use type KartenDatentypen.Kartenfeld;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   use type EinheitenDatentypen.Einheitenbereich;
 
    function KoordinatenEinheitMitSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
@@ -60,14 +60,14 @@ package EinheitSuchenLogik is
    
    function TransporterladungSuchen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LadungsnummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
+      LadungsnummerExtern : in EinheitenDatentypen.Einheitenbereich)
       return Boolean;
    
 private
    
    Transporterkapazität : EinheitenDatentypen.Transportplätze;
    
-   type TransporternummerArray is array (SystemDatentypen.Task_Enum'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   type TransporternummerArray is array (SystemDatentypen.Task_Enum'Range) of EinheitenDatentypen.Einheitenbereich;
    Transporternummer : TransporternummerArray;
    
    type EinheitArray is array (SystemDatentypen.Task_Enum'Range) of EinheitenRecords.SpeziesEinheitnummerRecord;

@@ -43,7 +43,7 @@ package body KIPZBAufgabenLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       if

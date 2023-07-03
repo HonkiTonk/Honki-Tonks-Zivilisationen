@@ -18,7 +18,7 @@ package body AuswahlStadtEinheitLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       -- Wenn die StadtNummerExtern = 0 ist, dann wird von einem beladenen Transporter ausgegangen.
       StadtnummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
-      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return Integer
    is begin
       
@@ -28,7 +28,7 @@ package body AuswahlStadtEinheitLogik is
         StadtnummerExtern /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
          WelcheAuswahl.StadtEinheit := True;
-         WelcheAuswahl.MöglicheAuswahlen (0) := EinheitenDatentypen.MaximaleEinheitenMitNullWert (StadtnummerExtern);
+         WelcheAuswahl.MöglicheAuswahlen (0) := EinheitenDatentypen.Einheitenbereich (StadtnummerExtern);
          WelcheAuswahl.MöglicheAuswahlen (1) := EinheitNummerExtern;
 
       else

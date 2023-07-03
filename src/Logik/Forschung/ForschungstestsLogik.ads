@@ -18,7 +18,7 @@ package ForschungstestsLogik is
 
    function TechnologieVorhanden
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      TechnologieExtern : in ForschungenDatentypen.ForschungIDNichtMöglich)
+      TechnologieExtern : in ForschungenDatentypen.ForschungIDUnmöglich)
       return Boolean
      with
        Pre => (
@@ -27,6 +27,6 @@ package ForschungstestsLogik is
 
 private
 
-   Forschungsanforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
+   Forschungsanforderungen : ForschungenDatentypen.ForschungIDUnmöglich;
 
 end ForschungstestsLogik;

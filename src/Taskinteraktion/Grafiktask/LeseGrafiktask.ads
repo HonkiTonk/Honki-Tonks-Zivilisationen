@@ -63,7 +63,7 @@ package LeseGrafiktask is
      return StadtDatentypen.MaximaleStädteMitNullWert;
    
    function Einheitnummer
-     return EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+     return EinheitenDatentypen.Einheitenbereich;
    
    function GeheZu
      return KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -90,7 +90,7 @@ package LeseGrafiktask is
      return StadtDatentypen.GebäudeIDMitNullwert;
    
    function Einheitenauswahl
-     return EinheitenDatentypen.EinheitenIDMitNullWert;
+     return EinheitenDatentypen.EinheitenID;
    
    function Tasteneingabe
      return Boolean;

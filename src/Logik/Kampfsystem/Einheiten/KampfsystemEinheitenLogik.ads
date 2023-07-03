@@ -35,8 +35,8 @@ private
    KampfwerteVerteidiger : KampfRecords.KampfwerteRecord;
    KampfwerteAngreifer : KampfRecords.KampfwerteRecord;
 
-   IDAngreifer : EinheitenDatentypen.EinheitenID;
-   IDVerteidiger : EinheitenDatentypen.EinheitenID;
+   IDAngreifer : EinheitenDatentypen.EinheitenIDVorhanden;
+   IDVerteidiger : EinheitenDatentypen.EinheitenIDVorhanden;
 
    Kampfergebnis : Integer;
 

@@ -59,7 +59,7 @@ package InteraktionAuswahl is
    type MöglicheGebäudeArray is array (PositionenMöglicheGebäudeArray'Range) of Boolean;
    MöglicheGebäude : MöglicheGebäudeArray := (others => False);
 
-   type PositionenEinheitenBauenArray is array (EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.Rect.sfFloatRect;
+   type PositionenEinheitenBauenArray is array (EinheitenDatentypen.EinheitenIDVorhanden'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenEinheitenBauen : PositionenEinheitenBauenArray := (others => GrafikRecordKonstanten.Leerbereich);
 
    -- Das sind keine Positionen, sondern nur die vorhandenen Möglichkeiten!

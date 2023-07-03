@@ -25,7 +25,7 @@ with TextaccessverwaltungssystemGrafik;
 package body BauauswahlEinheitenGrafik is
 
    procedure Einheiteninformationen
-     (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type EinheitenDatentypen.Transport_Enum;
@@ -128,7 +128,7 @@ package body BauauswahlEinheitenGrafik is
    
    
    procedure Einheitenbeschreibung
-     (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       

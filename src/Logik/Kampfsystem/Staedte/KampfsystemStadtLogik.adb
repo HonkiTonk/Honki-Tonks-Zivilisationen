@@ -26,7 +26,7 @@ package body KampfsystemStadtLogik is
       VerteidigerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return Boolean
    is
-      use type KampfDatentypen.KampfwerteGroß;
+      use type KampfDatentypen.Kampfwerte;
       use type KampfDatentypen.Lebenspunkte;
    begin
       

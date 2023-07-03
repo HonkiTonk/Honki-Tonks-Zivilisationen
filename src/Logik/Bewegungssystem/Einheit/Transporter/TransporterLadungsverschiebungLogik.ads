@@ -33,6 +33,6 @@ private
    
    Transporterkapazität : EinheitenDatentypen.Transportplätze;
    
-   Ladungsnummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   Ladungsnummer : EinheitenDatentypen.Einheitenbereich;
 
 end TransporterLadungsverschiebungLogik;

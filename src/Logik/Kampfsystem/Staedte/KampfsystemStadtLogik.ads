@@ -34,7 +34,7 @@ package KampfsystemStadtLogik is
    
 private
          
-   IDAngreifer : EinheitenDatentypen.EinheitenID;
+   IDAngreifer : EinheitenDatentypen.EinheitenIDVorhanden;
    
    GesundheitStadt : Integer;
    Kampfergebnis : Integer;

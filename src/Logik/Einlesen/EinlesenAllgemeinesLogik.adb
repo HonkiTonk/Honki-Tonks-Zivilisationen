@@ -25,7 +25,7 @@ package body EinlesenAllgemeinesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenAllgemeinesLogik.VorzeitigesZeilenende - aktuelle Zeile: " & AktuelleZeileExtern'Wide_Wide_Image & " "
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenAllgemeinesLogik.VorzeitigesZeilenende: Aktuelle Zeile: " & AktuelleZeileExtern'Wide_Wide_Image & " "
                                      & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return True;
          

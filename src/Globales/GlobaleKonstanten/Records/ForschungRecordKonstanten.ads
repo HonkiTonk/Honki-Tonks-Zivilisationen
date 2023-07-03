@@ -16,7 +16,7 @@ package ForschungRecordKonstanten is
                                                                                      );
    
    -- Das hier als Standard nehmen und Laden wenn keine Datenbank verfügbar ist, dafür eine Datenbank anlegen. äöü
-   type TechnologieVerbesserungenArray is array (BefehleDatentypen.Siedler_Verbesserung_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
+   type TechnologieVerbesserungenArray is array (BefehleDatentypen.Siedler_Verbesserung_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDUnmöglich;
    StandardtechnologieVerbesserungen : constant TechnologieVerbesserungenArray := (
                                                                                    BefehleDatentypen.Straße_Bauen_Enum =>
                                                                                      (
@@ -152,7 +152,7 @@ package ForschungRecordKonstanten is
                                                                                   );
    
    -- Das hier als Standard nehmen und Laden wenn keine Datenbank verfügbar ist, dafür eine Datenbank anlegen. äöü
-   type TechnologieWegeArray is array (AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
+   type TechnologieWegeArray is array (AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDUnmöglich;
    StandardtechnologieWege : constant TechnologieWegeArray := (
                                                                AufgabenDatentypen.Straße_Bauen_Enum  =>
                                                                  (
@@ -221,7 +221,7 @@ package ForschungRecordKonstanten is
                                                                  )
                                                               );
    
-   type TechnologieEffektentfernungArray is array (KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
+   type TechnologieEffektentfernungArray is array (KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDUnmöglich;
    StandardtechnologieEffektentfernung : constant TechnologieEffektentfernungArray := (
                                                                                        KartenextraDatentypen.Strahlung_Enum =>
                                                                                          (
@@ -312,7 +312,7 @@ package ForschungRecordKonstanten is
                                                                                          )
                                                                                       );
       
-   type TechnologieUmgebungsgrößeArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
+   type TechnologieUmgebungsgrößeArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of ForschungenDatentypen.ForschungIDUnmöglich;
    StandardtechnologieUmgebungsgröße : constant TechnologieUmgebungsgrößeArray := (
                                                                                        SystemDatentypen.Anfangswert_Enum =>
                                                                                          (

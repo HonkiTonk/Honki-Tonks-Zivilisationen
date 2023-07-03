@@ -12,10 +12,10 @@ package body EinheitenanforderungenLogik is
 
    function AnforderungenErfüllt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitenDatentypen.EinheitenID)
       return Boolean
    is
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.EinheitenID;
       use type EinheitenDatentypen.Einheitart_Enum;
    begin
       

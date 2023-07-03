@@ -23,7 +23,7 @@ package EinheitVerbessernLogik is
    
    function EinheitVerbesserbar
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.EinheitenIDMitNullWert
+      return EinheitenDatentypen.EinheitenID
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -36,16 +36,16 @@ private
    AktuelleTransporterkapazität : EinheitenDatentypen.Transportplätze;
    NeueTransporterkapazität : EinheitenDatentypen.Transportplätze;
    
-   NeueEinheitenID : EinheitenDatentypen.EinheitenIDMitNullWert;
-   EinheitenIDVerbesserbar : EinheitenDatentypen.EinheitenIDMitNullWert;
+   NeueEinheitenID : EinheitenDatentypen.EinheitenID;
+   EinheitenIDVerbesserbar : EinheitenDatentypen.EinheitenID;
    
-   Transporternummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   Transporternummer : EinheitenDatentypen.Einheitenbereich;
    
    
    
    function WeiterhinTransportierbar
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueIDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      NeueIDExtern : in EinheitenDatentypen.EinheitenID)
       return Boolean
      with
        Pre => (
@@ -56,7 +56,7 @@ private
    
    function LaderaumAusreichend
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      NeueIDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+      NeueIDExtern : in EinheitenDatentypen.EinheitenID)
       return Boolean
      with
        Pre => (

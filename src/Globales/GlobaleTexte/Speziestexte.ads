@@ -25,7 +25,7 @@ package Speziestexte is
    
    
    
-   type EinheitenArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, EinheitenDatentypen.EinheitenID'Range, TextnummernKonstanten.Beschreibungen'Range) of Unbounded_Wide_Wide_String;
+   type EinheitenArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, EinheitenDatentypen.EinheitenIDVorhanden'Range, TextnummernKonstanten.Beschreibungen'Range) of Unbounded_Wide_Wide_String;
    Einheiten : EinheitenArray := (others => (others => (others => TextKonstanten.FehlenderText)));
    
    

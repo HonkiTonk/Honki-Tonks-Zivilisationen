@@ -13,7 +13,7 @@ package DebugobjekteLogik is
      return EinheitendatenbankRecord.EinheitenlisteRecord;
 
 private
-   use type ForschungenDatentypen.ForschungIDNichtMöglich;
+   use type ForschungenDatentypen.ForschungIDUnmöglich;
 
    Alleskönner : constant EinheitendatenbankRecord.EinheitenlisteRecord := (
                                                                              Einheitenart            => EinheitenDatentypen.Cheat_Enum,

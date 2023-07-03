@@ -142,6 +142,7 @@ package body SpeziesEntfernenLogik is
       
       SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => SpeziesExtern,
                                         BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
+      
       LadezeitenLogik.SpielweltNullsetzen;
       
    end SpeziesAufKISetzen;

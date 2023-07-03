@@ -1,13 +1,13 @@
 package EinheitenDatentypen is
    pragma Pure;
       
-   type MaximaleEinheitenMitNullWert is range 0 .. 1_000;
-   subtype MaximaleEinheiten is MaximaleEinheitenMitNullWert range 1 .. MaximaleEinheitenMitNullWert'Last;
+   type Einheitenbereich is range 0 .. 1_000;
+   subtype EinheitenbereichVorhanden is Einheitenbereich range 1 .. Einheitenbereich'Last;
    
    
 
-   type EinheitenIDMitNullWert is range 0 .. 50;
-   subtype EinheitenID is EinheitenIDMitNullWert range 1 .. EinheitenIDMitNullWert'Last;
+   type EinheitenID is range 0 .. 50;
+   subtype EinheitenIDVorhanden is EinheitenID range 1 .. EinheitenID'Last;
    
    
 

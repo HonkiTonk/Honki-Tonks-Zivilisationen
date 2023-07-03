@@ -14,7 +14,7 @@ package EinheitenRecords is
    type SpeziesEinheitnummerRecord is record
       
       Spezies : SpeziesDatentypen.Spezies_Enum;
-      Nummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      Nummer : EinheitenDatentypen.Einheitenbereich;
       
    end record;
    
@@ -23,7 +23,7 @@ package EinheitenRecords is
    type SpeziesEinheitnummerVorhandenRecord is record
       
       Spezies : SpeziesDatentypen.Spezies_Verwendet_Enum;
-      Nummer : EinheitenDatentypen.MaximaleEinheiten;
+      Nummer : EinheitenDatentypen.EinheitenbereichVorhanden;
       
    end record;
    
@@ -32,7 +32,7 @@ package EinheitenRecords is
    type SpeziesIDRecord is record
       
       Spezies : SpeziesDatentypen.Spezies_Enum;
-      ID : EinheitenDatentypen.EinheitenIDMitNullWert;
+      ID : EinheitenDatentypen.EinheitenID;
       
    end record;
    
@@ -59,12 +59,12 @@ package EinheitenRecords is
    
    
    type KIBewegungPlanArray is array (EinheitenDatentypen.BewegungsplanVorhanden'Range) of KartenRecords.AchsenKartenfeldNaturalRecord;
-   type TransporterArray is array (EinheitenDatentypen.TransportplätzeVorhanden'Range) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   type TransporterArray is array (EinheitenDatentypen.TransportplätzeVorhanden'Range) of EinheitenDatentypen.Einheitenbereich;
    type EinheitMeldungenArray is array (EinheitenDatentypen.Einheit_Meldung_Art_Enum'Range) of EinheitenDatentypen.Einheit_Meldung_Enum;
 
    type EinheitenGebautRecord is record
       
-      ID : EinheitenDatentypen.EinheitenIDMitNullWert;
+      ID : EinheitenDatentypen.EinheitenID;
       KoordinatenAktuell : KartenRecords.AchsenKartenfeldNaturalRecord;
       Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
       
@@ -83,7 +83,7 @@ package EinheitenRecords is
       KIVerbesserung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       
       Transportiert : TransporterArray;
-      WirdTransportiert : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      WirdTransportiert : EinheitenDatentypen.Einheitenbereich;
       
       Meldungen : EinheitMeldungenArray;
       
@@ -91,7 +91,7 @@ package EinheitenRecords is
    
    
    
-   type MöglicheAuswahlenArray is array (0 .. TransporterArray'Last) of EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   type MöglicheAuswahlenArray is array (0 .. TransporterArray'Last) of EinheitenDatentypen.Einheitenbereich;
    
    type AuswahlRecord is record
       

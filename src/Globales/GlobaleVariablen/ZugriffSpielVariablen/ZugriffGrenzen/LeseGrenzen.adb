@@ -15,7 +15,7 @@ package body LeseGrenzen is
    
    function Einheitengrenze
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return EinheitenDatentypen.MaximaleEinheiten
+      return EinheitenDatentypen.EinheitenbereichVorhanden
    is begin
       
       return SpielVariablen.Grenzen (SpeziesExtern).Einheitengrenze;

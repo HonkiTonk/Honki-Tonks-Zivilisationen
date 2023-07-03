@@ -21,6 +21,10 @@ package LeseOptionen is
      return Wide_Wide_Character;
    pragma Inline (Dezimaltrennzeichen);
    
+   function SicherheitsfragenAnzeigen
+     return Boolean;
+   pragma Inline (SicherheitsfragenAnzeigen);
+   
    function AktuellerAutospeichernwert
      return ZahlenDatentypen.EigenesPositive;
    pragma Inline (AktuellerAutospeichernwert);

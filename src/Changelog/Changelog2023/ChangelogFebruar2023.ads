@@ -1,4 +1,4 @@
-package ChangelogVorlage is
+package ChangelogFebruar2023 is
   
    -- Version 0.04.8090 => 0.04.8190 (28.02.2023):
    
@@ -241,4 +241,4 @@ package ChangelogVorlage is
    -- Diverse Zahlen durch benannte Konstante ersetzt.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
 
-end ChangelogVorlage;
+end ChangelogFebruar2023;

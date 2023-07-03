@@ -8,6 +8,5 @@ package HauptmenueLogik is
 private
   
    RückgabeAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
-   RückgabeKampagne : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 end HauptmenueLogik;

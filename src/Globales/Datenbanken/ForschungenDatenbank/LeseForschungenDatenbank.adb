@@ -28,7 +28,7 @@ package body LeseForschungenDatenbank is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
       WelcheAnforderungExtern : in ForschungenDatentypen.Forschung_Anforderung_Enum)
-      return ForschungenDatentypen.ForschungIDNichtMöglich
+      return ForschungenDatentypen.ForschungIDUnmöglich
    is begin
 
       case
@@ -48,7 +48,7 @@ package body LeseForschungenDatenbank is
    function Verbesserungen
      (VerbesserungExtern : in BefehleDatentypen.Siedler_Verbesserung_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ForschungenDatentypen.ForschungIDNichtMöglich
+      return ForschungenDatentypen.ForschungIDUnmöglich
    is begin
 
       return ForschungenDatenbank.TechnologieVerbesserungen (VerbesserungExtern, SpeziesExtern);
@@ -60,7 +60,7 @@ package body LeseForschungenDatenbank is
    function Wege
      (WegExtern : in AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ForschungenDatentypen.ForschungIDNichtMöglich
+      return ForschungenDatentypen.ForschungIDUnmöglich
    is begin
 
       return ForschungenDatenbank.TechnologieWege (WegExtern, SpeziesExtern);
@@ -72,7 +72,7 @@ package body LeseForschungenDatenbank is
    function Umgebung
      (AnfangEndeExtern : in SystemDatentypen.Anfang_Ende_Enum;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return ForschungenDatentypen.ForschungIDNichtMöglich
+      return ForschungenDatentypen.ForschungIDUnmöglich
    is begin
 
       return ForschungenDatenbank.TechnologieUmgebungsgröße (AnfangEndeExtern, SpeziesExtern);

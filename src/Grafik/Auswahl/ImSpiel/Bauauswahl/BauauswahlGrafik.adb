@@ -123,7 +123,7 @@ package body BauauswahlGrafik is
    
    
    procedure Einheiten
-     (AuswahlExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+     (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
@@ -142,7 +142,7 @@ package body BauauswahlGrafik is
       Textbreite := GrafikKonstanten.Nullwert;
           
       EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
+      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
          
          case
            InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)

@@ -93,7 +93,7 @@ package body LeseWichtiges is
    
    function AnzahlEinheiten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
    is begin
       
       return SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges;
@@ -104,7 +104,7 @@ package body LeseWichtiges is
      
    function AnzahlArbeiter
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
    is begin
       
       return SpielVariablen.Wichtiges (SpeziesExtern).AnzahlArbeiter;
@@ -115,7 +115,7 @@ package body LeseWichtiges is
      
    function AnzahlKämpfer
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
    is begin
       
       return SpielVariablen.Wichtiges (SpeziesExtern).AnzahlKämpfer;
@@ -126,7 +126,7 @@ package body LeseWichtiges is
      
    function AnzahlSonstiges
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
    is begin
       
       return SpielVariablen.Wichtiges (SpeziesExtern).AnzahlSonstiges;

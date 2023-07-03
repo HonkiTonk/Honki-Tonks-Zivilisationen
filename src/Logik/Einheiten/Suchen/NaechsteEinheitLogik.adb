@@ -11,8 +11,8 @@ package body NaechsteEinheitLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       BewegungspunkteExtern : in Bewegungspunkte_Enum)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenID;
       use type EinheitenDatentypen.Bewegungspunkte;
    begin
       
@@ -69,8 +69,8 @@ package body NaechsteEinheitLogik is
    procedure NächsteEinheitMeldung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
+      use type EinheitenDatentypen.EinheitenID;
    begin
       
       MeldungSchleifenbegrenzung := 0;

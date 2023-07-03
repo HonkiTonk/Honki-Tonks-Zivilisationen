@@ -11,12 +11,12 @@ package AuswahlStadtEinheitLogik is
    pragma Elaborate_Body;
    use type StadtDatentypen.MaximaleStädteMitNullWert;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   use type EinheitenDatentypen.Einheitenbereich;
    
    function AuswahlStadtEinheit
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       StadtnummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
-      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return Integer
      with
        Pre => (

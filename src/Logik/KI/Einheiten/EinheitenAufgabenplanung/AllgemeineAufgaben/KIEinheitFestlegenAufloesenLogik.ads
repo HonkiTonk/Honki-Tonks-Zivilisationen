@@ -24,11 +24,11 @@ package KIEinheitFestlegenAufloesenLogik is
 
 private
 
-   EinheitID : EinheitenDatentypen.EinheitenID;
+   EinheitID : EinheitenDatentypen.EinheitenIDVorhanden;
 
    Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
 
-   VorhandeneEinheiten : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
 
 
 

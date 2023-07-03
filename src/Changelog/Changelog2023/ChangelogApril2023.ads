@@ -1,4 +1,4 @@
-package ChangelogVorlage is
+package ChangelogApril2023 is
    
    -- Version 0.05.0370 => 0.05.0370 (30.04.2023):
    
@@ -292,4 +292,4 @@ package ChangelogVorlage is
    -- Kommentare und Kleinigkeiten korrigiert.
    -- Versehentlich das src Verzeichnis gelöscht und damit auch alle Änderungen.
 
-end ChangelogVorlage;
+end ChangelogApril2023;

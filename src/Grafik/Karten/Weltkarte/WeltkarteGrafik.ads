@@ -16,7 +16,7 @@ package WeltkarteGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
-   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   use type EinheitenDatentypen.Einheitenbereich;
    
    procedure WeltkarteAnzeigen
      (EinheitenauswahlExtern : in EinheitenGrafikRecords.EinheitGrafikRecord)

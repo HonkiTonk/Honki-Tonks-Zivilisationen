@@ -25,6 +25,10 @@ package SchreibeOptionen is
    procedure Dezimaltrennzeichen
      (ZeichenExtern : in Wide_Wide_Character);
    pragma Inline (Dezimaltrennzeichen);
+   
+   procedure SicherheitsfragenAnzeigen
+     (JaNeinExtern : in Boolean);
+   pragma Inline (SicherheitsfragenAnzeigen);
 
    procedure GanzeSpieleinstellungen
      (EinstellungenExtern : in SystemRecords.NutzerEinstellungenRecord);

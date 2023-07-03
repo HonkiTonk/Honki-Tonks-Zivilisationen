@@ -65,7 +65,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Einheiten - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Einheiten: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          StandardEinheitenDatenbank.StandardEinheitenDatenbankLaden;
          
          case
@@ -104,7 +104,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.EinheitenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.EinheitenDurchgehen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end EinheitenDurchgehen;
@@ -145,7 +145,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Forschungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Forschungen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          StandardForschungenDatenbank.StandardForschungenDatenbankLaden;
          
          case
@@ -196,7 +196,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.ForschungenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.ForschungenDurchgehen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end ForschungenDurchgehen;
@@ -237,7 +237,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Gebäude - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Gebäude: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          StandardGebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
          
          case
@@ -276,7 +276,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.GebäudeDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.GebäudeDurchgehen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end GebäudeDurchgehen;
@@ -323,7 +323,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Karten - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Karten: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          StandardKartenDatenbank.StandardBasisgrundDatenbankLaden;
          StandardKartenDatenbank.StandardZusatzgrundDatenbankLaden;
          StandardKartenDatenbank.StandardKartenflussDatenbankLaden;
@@ -377,7 +377,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.KartenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.KartenDurchgehen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end KartenDurchgehen;
@@ -420,7 +420,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Verbesserungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Verbesserungen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          StandardVerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
          StandardVerbesserungenDatenbank.StandardWegeDatenbankLaden;
          
@@ -464,7 +464,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.VerbesserungenDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.VerbesserungenDurchgehen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end VerbesserungenDurchgehen;
@@ -505,7 +505,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Spezies - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Spezies: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          StandardSpeziesDatenbank.StandardSpeziesDatenbankLaden;
          
          case
@@ -544,7 +544,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.SpeziesDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.SpeziesDurchgehen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
          
    end SpeziesDurchgehen;
@@ -585,7 +585,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Effekte - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.Effekte: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          StandardEffekteDatenbank.StandardEffekteDatenbankLaden;
          
          case
@@ -624,7 +624,7 @@ package body EinlesenDatenbankenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.EffekteDurchgehen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenDatenbankenLogik.EffekteDurchgehen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end EffekteDurchgehen;

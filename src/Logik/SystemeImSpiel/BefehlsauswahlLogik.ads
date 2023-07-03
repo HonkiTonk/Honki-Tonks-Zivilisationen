@@ -2,7 +2,6 @@ with SpeziesDatentypen;
 with RueckgabeDatentypen;
 
 private with TastenbelegungDatentypen;
-private with StadtRecords;
 
 with LeseSpeziesbelegung;
 
@@ -21,8 +20,6 @@ package BefehlsauswahlLogik is
 private
       
    Befehl : TastenbelegungDatentypen.Allgemeine_Belegung_Enum;
-   
-   StadtSuchenNachNamen : StadtRecords.SpeziesStadtnummerRecord;
    
    
    

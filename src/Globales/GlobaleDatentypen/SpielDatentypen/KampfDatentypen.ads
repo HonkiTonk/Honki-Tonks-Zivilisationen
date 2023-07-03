@@ -1,8 +1,8 @@
 package KampfDatentypen is
    pragma Pure;
 
-   type KampfwerteGroß is range 0 .. 1_000;
-   subtype KampfwerteEinheiten is KampfwerteGroß range 0 .. 100;
+   type Kampfwerte is range 0 .. 1_000;
+   subtype KampfwerteEinheiten is Kampfwerte range 0 .. 100;
 
 
 

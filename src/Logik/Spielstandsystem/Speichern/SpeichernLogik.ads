@@ -21,7 +21,7 @@ private
 
    VorhandeneStädte : StadtDatentypen.MaximaleStädteMitNullWert;
 
-   VorhandeneEinheiten : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
 
    AktuellerAutospeichernwert : ZahlenDatentypen.EigenesPositive;
 

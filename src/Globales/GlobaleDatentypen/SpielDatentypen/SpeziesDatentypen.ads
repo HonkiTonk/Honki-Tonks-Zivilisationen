@@ -43,12 +43,16 @@ package SpeziesDatentypen is
    
    type Speziesverhalten is range 1 .. 1_000;
    
+   
+   
    -- Soll ich das so überhaupt einbauen? Oder mir was besseres überlegen? äöü
    type Staatsform_Enum is (
                             Anarchie_Enum,
                             Demokratie_Enum
                            );
 
+   
+   
    type StaatsformenArray is array (1 .. 5) of Staatsform_Enum;
 
 end SpeziesDatentypen;

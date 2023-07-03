@@ -14,6 +14,8 @@ private
    
    Nullwert : Boolean;
    
+   SicherheitsfragenAnzeigen : Boolean;
+   
    Sprache : Unbounded_Wide_Wide_String;
    
    AnzahlAutospeichern : ZahlenDatentypen.EigenesNatural;

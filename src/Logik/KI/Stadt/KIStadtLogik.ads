@@ -29,8 +29,8 @@ private
 
    Umgebungsgröße : KartenDatentypen.UmgebungsbereichDrei;
 
-   NotfallEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
-   AktuelleEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
+   NotfallEinheit : EinheitenDatentypen.EinheitenID;
+   AktuelleEinheit : EinheitenDatentypen.EinheitenID;
 
    FremdeEinheit : EinheitenRecords.SpeziesEinheitnummerRecord;
 
@@ -73,7 +73,7 @@ private
 
    function WelcheEinheitArt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return EinheitenDatentypen.EinheitenIDMitNullWert
+      return EinheitenDatentypen.EinheitenID
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -83,9 +83,9 @@ private
 
    function NotfalleinheitBauen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      AktuelleEinheitExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      NächsteEinheitExtern : in EinheitenDatentypen.EinheitenID)
-      return EinheitenDatentypen.EinheitenID
+      AktuelleEinheitExtern : in EinheitenDatentypen.EinheitenID;
+      NächsteEinheitExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
+      return EinheitenDatentypen.EinheitenIDVorhanden
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)

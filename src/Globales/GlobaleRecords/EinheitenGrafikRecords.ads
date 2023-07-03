@@ -12,7 +12,7 @@ package EinheitenGrafikRecords is
       
       SpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
       
-      ID : EinheitenDatentypen.EinheitenIDMitNullWert;
+      ID : EinheitenDatentypen.EinheitenID;
       Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
       
    end record;

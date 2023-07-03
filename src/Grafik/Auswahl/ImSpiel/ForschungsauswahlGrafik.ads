@@ -27,7 +27,7 @@ private
    AktuelleAuswahl : ForschungenDatentypen.ForschungIDMitNullWert;
    AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
    
-   Forschungswert : ForschungenDatentypen.ForschungIDNichtMöglich;
+   Forschungswert : ForschungenDatentypen.ForschungIDUnmöglich;
    
    Forschungszeit : ProduktionDatentypen.Lagermenge;
       

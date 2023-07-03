@@ -59,7 +59,7 @@ package body KIStadtLogik is
       GebäudeBauenExtern : in KIRecords.GebäudeIDBewertungRecord;
       NotfallExtern : in Boolean)
    is
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.EinheitenID;
       use type StadtDatentypen.GebäudeIDMitNullwert;
       use type KIDatentypen.BauenBewertung;
    begin
@@ -144,7 +144,7 @@ package body KIStadtLogik is
       case
         NotfallEinheit
       is
-         when EinheitenDatentypen.EinheitenIDMitNullWert'First =>
+         when EinheitenDatentypen.EinheitenID'First =>
             return False;
             
          when others =>
@@ -164,7 +164,7 @@ package body KIStadtLogik is
       return Boolean
    is
       use type KartenDatentypen.Kartenfeld;
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
       use type DiplomatieDatentypen.Status_Untereinander_Enum;
    begin
       
@@ -227,7 +227,7 @@ package body KIStadtLogik is
    
    function WelcheEinheitArt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
-      return EinheitenDatentypen.EinheitenIDMitNullWert
+      return EinheitenDatentypen.EinheitenID
    is
       use type EinheitenDatentypen.Einheitart_Enum;
    begin
@@ -235,7 +235,7 @@ package body KIStadtLogik is
       AktuelleEinheit := EinheitenKonstanten.LeerID;
       
       EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
+      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
          
          if
            EinheitenDatentypen.Arbeiter_Enum = LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => StadtSpeziesNummerExtern.Spezies,
@@ -266,16 +266,16 @@ package body KIStadtLogik is
    -- Die Baukosten noch mit in die Bewertung einfließen lassen. äöü
    function NotfalleinheitBauen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      AktuelleEinheitExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
-      NächsteEinheitExtern : in EinheitenDatentypen.EinheitenID)
-      return EinheitenDatentypen.EinheitenID
+      AktuelleEinheitExtern : in EinheitenDatentypen.EinheitenID;
+      NächsteEinheitExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
+      return EinheitenDatentypen.EinheitenIDVorhanden
    is
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
-      use type KampfDatentypen.KampfwerteGroß;
+      use type EinheitenDatentypen.EinheitenID;
+      use type KampfDatentypen.Kampfwerte;
    begin
       
       if
-        AktuelleEinheitExtern = EinheitenDatentypen.EinheitenIDMitNullWert'First
+        AktuelleEinheitExtern = EinheitenDatentypen.EinheitenID'First
       then
          return NächsteEinheitExtern;
          

@@ -111,7 +111,7 @@ package body EinheitenverschiebungLogik is
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
       use type KartenDatentypen.Kartenfeld;
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       BereitsGeprüft := (0, 0);

@@ -51,7 +51,7 @@ package EingeleseneTexturenGrafik is
    type SpezieshintergrundAccessArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, GrafikDatentypen.Spezieshintergrund_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    SpezieshintergrundAccess : SpezieshintergrundAccessArray := (others => (others => null));
 
-   type EinheitenAccesArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.sfTexture_Ptr;
+   type EinheitenAccesArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, EinheitenDatentypen.EinheitenIDVorhanden'Range) of Sf.Graphics.sfTexture_Ptr;
    EinheitenAccess : EinheitenAccesArray := (others => (others => null));
 
    type GebäudeAccessArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, StadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfTexture_Ptr;

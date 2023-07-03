@@ -19,7 +19,7 @@ package body KampfsystemEinheitenLogik is
       VerteidigerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
       return Boolean
    is
-      use type KampfDatentypen.KampfwerteGroß;
+      use type KampfDatentypen.Kampfwerte;
    begin
       
       KampfwerteVerteidiger.Verteidigung := KampfwerteEinheitErmittelnLogik.Gesamtverteidigung (EinheitSpeziesNummerExtern => VerteidigerExtern,

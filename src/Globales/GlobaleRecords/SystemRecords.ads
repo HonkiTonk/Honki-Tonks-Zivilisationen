@@ -14,6 +14,8 @@ package SystemRecords is
       
       Dezimaltrennzeichen : Wide_Wide_Character;
       
+      SicherheitsfragenAnzeigen : Boolean;
+      
    end record;
    
    

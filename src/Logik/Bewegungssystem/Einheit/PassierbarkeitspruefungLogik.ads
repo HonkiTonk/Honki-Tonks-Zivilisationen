@@ -36,7 +36,7 @@ package PassierbarkeitspruefungLogik is
    
    function PassierbarkeitPrüfenID
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtBerücksichtigenExtern : in Boolean)
       return Boolean
@@ -51,7 +51,7 @@ package PassierbarkeitspruefungLogik is
       
    function RichtigeUmgebungVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return Boolean
      with
        Pre => (
@@ -66,7 +66,7 @@ private
    
    WegVorhanden : KartenverbesserungDatentypen.Weg_Enum;
       
-   IDEinheit : EinheitenDatentypen.EinheitenIDMitNullWert;
+   IDEinheit : EinheitenDatentypen.EinheitenID;
    
    StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
    StadtVorhanden : StadtDatentypen.MaximaleStädteMitNullWert;

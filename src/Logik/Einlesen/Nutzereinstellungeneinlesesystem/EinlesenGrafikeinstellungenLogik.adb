@@ -48,7 +48,7 @@ package body EinlesenGrafikeinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenGrafikeinstellungenLogik.Grafikeinstellungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenGrafikeinstellungenLogik.Grafikeinstellungen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          EinstellungenGrafik.StandardeinstellungenLaden;
          
          case
@@ -300,7 +300,7 @@ package body EinlesenGrafikeinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenGrafikeinstellungenLogik.GrafikeinstellungenDurchgehen - Konnte nicht geladen werden: "
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenGrafikeinstellungenLogik.GrafikeinstellungenDurchgehen: Konnte nicht geladen werden: "
                                      & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       

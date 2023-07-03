@@ -1,5 +1,5 @@
-with ProduktionDatentypen;
 with StadtKonstanten;
+with ProduktionKonstanten;
 
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
@@ -84,10 +84,8 @@ package body EinheitenmodifizierungLogik is
    
    procedure PermanenteKostenÄndern
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
-   is
-      use type ProduktionDatentypen.Produktion;
-   begin
+      VorzeichenwechselExtern : in ProduktionDatentypen.Vorzeichenwechsel)
+   is begin
       
       Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       
@@ -114,10 +112,9 @@ package body EinheitenmodifizierungLogik is
          else
             SchreibeStadtGebaut.PermanenteKostenPosten (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Heimatstadt),
                                                         WelcherPostenExtern      => PermanenteKostenSchleifenwert,
-                                                        KostenExtern             =>
-                                                          ProduktionDatentypen.Stadtproduktion (VorzeichenWechselExtern) * LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
-                                                                                                                                                                    IDExtern           => AktuelleID,
-                                                                                                                                                                    WelcheKostenExtern => PermanenteKostenSchleifenwert),
+                                                        KostenExtern             => VorzeichenwechselExtern * LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => EinheitSpeziesNummerExtern.Spezies,
+                                                                                                                                                       IDExtern           => AktuelleID,
+                                                                                                                                                       WelcheKostenExtern => PermanenteKostenSchleifenwert),
                                                         ÄndernSetzenExtern     => True);
          end if;
          
@@ -146,7 +143,7 @@ package body EinheitenmodifizierungLogik is
           EinheitSpeziesNummerExtern.Spezies /= NeueHeimatstadt.Spezies
       then
          PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
-                                  VorzeichenWechselExtern    => -1);
+                                  VorzeichenwechselExtern    => ProduktionKonstanten.VorzeichenNegativ);
       
          SchreibeEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
                                               HeimatstadtExtern          => StadtKonstanten.LeerNummer);
@@ -159,13 +156,13 @@ package body EinheitenmodifizierungLogik is
          
       else
          PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
-                                  VorzeichenWechselExtern    => -1);
+                                  VorzeichenwechselExtern    => ProduktionKonstanten.VorzeichenNegativ);
       
          SchreibeEinheitenGebaut.Heimatstadt (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
                                               HeimatstadtExtern          => NeueHeimatstadt.Nummer);
       
          PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, EinheitNummer),
-                                  VorzeichenWechselExtern    => 1);
+                                  VorzeichenwechselExtern    => ProduktionKonstanten.VorzeichenPositiv);
       end if;
       
    end HeimatstadtÄndern;

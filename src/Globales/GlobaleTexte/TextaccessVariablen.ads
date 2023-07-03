@@ -83,10 +83,10 @@ package TextaccessVariablen is
    
    
 
-   type EinheitentextAccessArray is array (SpeziesnamenAccess'Range, EinheitenDatentypen.EinheitenIDMitNullWert'Range) of Sf.Graphics.sfText_Ptr;
+   type EinheitentextAccessArray is array (SpeziesnamenAccess'Range, EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.sfText_Ptr;
    EinheitentextAccess : constant EinheitentextAccessArray := (others => (others => Sf.Graphics.Text.create));
 
-   type EinheitenzusatztextAccessArray is array (SpeziesnamenAccess'Range, EinheitenDatentypen.EinheitenID'Range) of Sf.Graphics.sfText_Ptr;
+   type EinheitenzusatztextAccessArray is array (SpeziesnamenAccess'Range, EinheitenDatentypen.EinheitenIDVorhanden'Range) of Sf.Graphics.sfText_Ptr;
    EinheitenzusatztextAccess : constant EinheitenzusatztextAccessArray := (others => (others => Sf.Graphics.Text.create));
    
    AktuellesBauprojekt : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;

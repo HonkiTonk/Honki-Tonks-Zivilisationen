@@ -21,7 +21,7 @@ package body EinheitenbewegungLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
       use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin

@@ -22,6 +22,6 @@ package EffektberechnungenLogik is
    
 private
    
-   EinheitID : EinheitenDatentypen.EinheitenID;
+   EinheitID : EinheitenDatentypen.EinheitenIDVorhanden;
 
 end EffektberechnungenLogik;

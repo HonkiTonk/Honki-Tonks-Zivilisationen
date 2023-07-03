@@ -16,7 +16,7 @@ package body FeldkampfEinheitLogik is
       KampfartExtern : in KampfDatentypen.Kampf_Enum;
       KampfBasiswertExtern : in KampfDatentypen.KampfwerteEinheiten;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KampfDatentypen.KampfwerteGroß
+      return KampfDatentypen.Kampfwerte
    is begin
       
       case

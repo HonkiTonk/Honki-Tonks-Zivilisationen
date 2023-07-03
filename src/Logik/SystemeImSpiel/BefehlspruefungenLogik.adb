@@ -27,7 +27,7 @@ package body BefehlspruefungenLogik is
    procedure WasWirdEntfernt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
@@ -38,7 +38,7 @@ package body BefehlspruefungenLogik is
                                                                         KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
       
       if
-        EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
+        EinheitNummer /= EinheitenDatentypen.Einheitenbereich'First
         and
           StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
@@ -65,7 +65,7 @@ package body BefehlspruefungenLogik is
          LeerRückgabewert := StadtEntfernenLogik.StadtAbreißen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummer));
          
       elsif
-        EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
+        EinheitNummer /= EinheitenDatentypen.Einheitenbereich'First
       then
          EinheitBefehle (SpeziesExtern => SpeziesExtern,
                          BefehlExtern  => BefehleDatentypen.Auflösen_Enum);
@@ -81,7 +81,7 @@ package body BefehlspruefungenLogik is
    procedure AuswahlEinheitStadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
       use type StadtDatentypen.MaximaleStädteMitNullWert;
    begin
       
@@ -93,7 +93,7 @@ package body BefehlspruefungenLogik is
                                                                         KoordinatenExtern => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern));
 
       if
-        EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
+        EinheitNummer /= EinheitenDatentypen.Einheitenbereich'First
         and
           StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
       then
@@ -108,7 +108,7 @@ package body BefehlspruefungenLogik is
          StadtAktion (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummer));
          
       elsif
-        EinheitNummer /= EinheitenDatentypen.MaximaleEinheitenMitNullWert'First
+        EinheitNummer /= EinheitenDatentypen.Einheitenbereich'First
       then
          AuswahlEinheitTransporter (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummer));
                
@@ -123,7 +123,7 @@ package body BefehlspruefungenLogik is
    procedure AuswahlEinheitTransporter
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       Transportiert := TransporterSuchenLogik.HatTransporterLadung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
@@ -172,7 +172,7 @@ package body BefehlspruefungenLogik is
    procedure EinheitOderStadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
-      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
+      EinheitNummerExtern : in EinheitenDatentypen.Einheitenbereich)
    is begin
       
       case

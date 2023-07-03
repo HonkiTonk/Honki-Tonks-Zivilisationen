@@ -163,7 +163,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Einheitnummer
-     (EinheitnummerExtern : in EinheitenDatentypen.MaximaleEinheitenMitNullWert)
+     (EinheitnummerExtern : in EinheitenDatentypen.Einheitenbereich)
    is begin
       
       Grafiktask.Aktuell.Einheitnummer := EinheitnummerExtern;
@@ -253,7 +253,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Einheitenauswahl
-     (EinheitExtern : in EinheitenDatentypen.EinheitenIDMitNullWert)
+     (EinheitExtern : in EinheitenDatentypen.EinheitenID)
    is begin
       
       Grafiktask.Auswahl.Bauauswahl.Einheit := EinheitExtern;

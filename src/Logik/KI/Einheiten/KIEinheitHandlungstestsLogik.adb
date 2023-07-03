@@ -70,7 +70,7 @@ package body KIEinheitHandlungstestsLogik is
       return Boolean
    is
       use type EinheitenDatentypen.Bewegungspunkte;
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.EinheitenID;
    begin
       
       if

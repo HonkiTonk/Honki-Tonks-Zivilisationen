@@ -37,7 +37,7 @@ private
 
    SichtweiteObjekt : KartenDatentypen.Sichtweite;
 
-   EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   EinheitID : EinheitenDatentypen.EinheitenID;
 
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;

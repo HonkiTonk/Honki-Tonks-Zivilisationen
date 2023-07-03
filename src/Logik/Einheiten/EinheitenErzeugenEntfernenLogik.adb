@@ -1,4 +1,5 @@
 with EinheitenRecordKonstanten;
+with ProduktionKonstanten;
 
 with SchreibeEinheitenGebaut;
 with SchreibeWichtiges;
@@ -14,8 +15,8 @@ package body EinheitenErzeugenEntfernenLogik is
 
    procedure EinheitErzeugen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
+      EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is begin
       
@@ -42,7 +43,7 @@ package body EinheitenErzeugenEntfernenLogik is
       end case;
       
       EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern),
-                                                           VorzeichenWechselExtern    => 1);
+                                                          VorzeichenwechselExtern    => ProduktionKonstanten.VorzeichenPositiv);
       
       SichtbarkeitsberechnungssystemLogik.SichtbarkeitsprüfungFürEinheit (EinheitSpeziesNummerExtern => (StadtSpeziesNummerExtern.Spezies, EinheitNummerExtern));
       
@@ -117,7 +118,7 @@ package body EinheitenErzeugenEntfernenLogik is
    is begin
             
       EinheitenmodifizierungLogik.PermanenteKostenÄndern (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                           VorzeichenWechselExtern    => -1);
+                                                           VorzeichenwechselExtern    => ProduktionKonstanten.VorzeichenNegativ);
       
       case
         LeseEinheitenDatenbank.Einheitenart (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
@@ -158,7 +159,7 @@ package body EinheitenErzeugenEntfernenLogik is
    procedure Einheitensortierung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       Schleifenanfang := EinheitenKonstanten.AnfangNummer;

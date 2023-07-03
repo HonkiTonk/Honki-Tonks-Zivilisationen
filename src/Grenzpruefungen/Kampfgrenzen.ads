@@ -4,8 +4,8 @@ package Kampfgrenzen is
    pragma Pure;
 
    function KampfwertKampfbonus
-     (KampfwertExtern : in KampfDatentypen.KampfwerteGroß;
+     (KampfwertExtern : in KampfDatentypen.Kampfwerte;
       KampfbonusExtern : in KampfDatentypen.Kampfbonus)
-      return KampfDatentypen.KampfwerteGroß;
+      return KampfDatentypen.Kampfwerte;
 
 end Kampfgrenzen;

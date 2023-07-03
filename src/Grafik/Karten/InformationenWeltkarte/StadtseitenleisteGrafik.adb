@@ -191,7 +191,7 @@ package body StadtseitenleisteGrafik is
       return Unbounded_Wide_Wide_String
    is
       use type StadtDatentypen.GebäudeIDMitNullwert;
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.EinheitenID;
    begin
       
       if

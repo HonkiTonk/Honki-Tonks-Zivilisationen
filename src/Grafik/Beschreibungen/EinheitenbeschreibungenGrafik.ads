@@ -6,12 +6,12 @@ package EinheitenbeschreibungenGrafik is
    pragma Elaborate_Body;
    
    function Kurzbeschreibung
-     (IDExtern : in EinheitenDatentypen.EinheitenIDMitNullWert;
+     (IDExtern : in EinheitenDatentypen.EinheitenID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Wide_Wide_String;
    
    function Langbeschreibung
-     (IDExtern : in EinheitenDatentypen.EinheitenID;
+     (IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Wide_Wide_String;
    

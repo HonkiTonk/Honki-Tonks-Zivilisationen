@@ -109,7 +109,7 @@ package body StadtbausystemLogik is
       InteraktionAuswahl.MöglicheEinheiten := (others => False);
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
+      for EinheitSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
          
          if
            True = EinheitenanforderungenLogik.AnforderungenErfüllt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
@@ -181,8 +181,7 @@ package body StadtbausystemLogik is
                      and
                        AktuelleBauprojektExtern.Einheit /= AktuelleAuswahl.Einheit))
                  and then
-                   -- Hier noch eine passende Frage einbauen! äöü
-                 JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBauprojekt) = False
+                   JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageBauprojektWechseln) = False
                then
                   null;
                   

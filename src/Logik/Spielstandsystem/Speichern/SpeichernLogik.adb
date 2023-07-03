@@ -114,7 +114,7 @@ package body SpeichernLogik is
    exception
       when StandardAdaFehler : others =>
          MeldungFestlegenLogik.MeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungSpeichernFehlgeschlagen);
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Speichern - Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Speichern: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          
          case
            Is_Open (File => DateiSpeichern)
@@ -155,7 +155,7 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Allgemeines - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Allgemeines: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Allgemeines;
@@ -225,7 +225,7 @@ package body SpeichernLogik is
          
       end loop AnzahlEinheitenSchleife;
       
-      EinheitenDatentypen.MaximaleEinheitenMitNullWert'Write (Stream (File => DateiSpeichernExtern),
+      EinheitenDatentypen.Einheitenbereich'Write (Stream (File => DateiSpeichernExtern),
                                                               VorhandeneEinheiten);
       
       EinheitenSchleife:
@@ -270,7 +270,7 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.StädteEinheitenSpeichern: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end StädteEinheitenSpeichern;
@@ -321,7 +321,7 @@ package body SpeichernLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Spezieswerte - Konnte nicht geschrieben werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SpeichernLogik.Spezieswerte: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
    end Spezieswerte;

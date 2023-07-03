@@ -51,7 +51,7 @@ package body KIStadtLaufendeBauprojekteLogik is
    function GleicheEinheitArtBauprojekte
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       EinheitArtExtern : in EinheitenDatentypen.Einheitart_Vorhanden_Enum)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
    is
       use type EinheitenDatentypen.Einheitart_Enum;
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
@@ -96,7 +96,7 @@ package body KIStadtLaufendeBauprojekteLogik is
    
    function EinheitenInProduktion
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
    is
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin

@@ -44,7 +44,7 @@ package body StadtAllgemeinesLogik is
       use type StadtDatentypen.MaximaleStädteMitNullWert;
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
       use type KartenDatentypen.Kartenfeld;
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.EinheitenID;
    begin
       
       Stadtgrenze := LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern);

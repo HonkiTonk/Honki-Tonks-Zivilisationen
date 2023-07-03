@@ -26,7 +26,7 @@ package body PassierbarkeitspruefungLogik is
       case
         IDEinheit
       is
-         when EinheitenDatentypen.EinheitenIDMitNullWert'First =>
+         when EinheitenDatentypen.EinheitenID'First =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "PassierbarkeitspruefungLogik.PassierbarkeitPrüfenNummer: Einheit ohne ID");
             return False;
             
@@ -45,7 +45,7 @@ package body PassierbarkeitspruefungLogik is
    -- So lassen oder später noch einmal anpassen? äöü
    function PassierbarkeitPrüfenID
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      IDExtern : in EinheitenDatentypen.EinheitenID;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       StadtBerücksichtigenExtern : in Boolean)
       return Boolean
@@ -216,7 +216,7 @@ package body PassierbarkeitspruefungLogik is
    -- Habe ich sowas nicht schon mal irgendwo? äöü
    function RichtigeUmgebungVorhanden
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitenIDExtern : in EinheitenDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
       return Boolean
    is begin
             

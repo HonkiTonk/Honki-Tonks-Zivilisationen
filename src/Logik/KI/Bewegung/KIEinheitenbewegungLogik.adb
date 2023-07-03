@@ -143,7 +143,7 @@ package body KIEinheitenbewegungLogik is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
             
       Tauscheinheit := (EinheitSpeziesNummerExtern.Spezies, EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => EinheitSpeziesNummerExtern.Spezies,

@@ -45,7 +45,7 @@ package LeseGebaeudeDatenbank is
    function Anforderungen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       IDExtern : in StadtDatentypen.GebäudeIDMitNullwert)
-      return ForschungenDatentypen.ForschungIDNichtMöglich
+      return ForschungenDatentypen.ForschungIDUnmöglich
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

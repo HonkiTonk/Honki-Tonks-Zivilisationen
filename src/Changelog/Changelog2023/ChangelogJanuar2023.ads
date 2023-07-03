@@ -1,4 +1,4 @@
-package ChangelogVorlage is
+package ChangelogJanuar2023 is
    
    -- Version 0.04.7075 => 0.04.7120 (31.01.2023):
    
@@ -263,4 +263,4 @@ package ChangelogVorlage is
    
    -- Kleinigkeiten korrigiert.
 
-end ChangelogVorlage;
+end ChangelogJanuar2023;

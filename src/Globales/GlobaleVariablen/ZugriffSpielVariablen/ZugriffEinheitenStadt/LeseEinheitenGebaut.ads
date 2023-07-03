@@ -24,7 +24,7 @@ package LeseEinheitenGebaut is
 
    function ID
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.EinheitenIDMitNullWert
+      return EinheitenDatentypen.EinheitenID
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -261,7 +261,7 @@ package LeseEinheitenGebaut is
    function Transportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       PlatzExtern : in EinheitenDatentypen.Transportplätze)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -272,7 +272,7 @@ package LeseEinheitenGebaut is
    
    function WirdTransportiert
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -306,7 +306,7 @@ package LeseEinheitenGebaut is
    
 private
    
-   EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   EinheitID : EinheitenDatentypen.EinheitenID;
    
    Beförderungsgrenze : KampfDatentypen.Erfahrungspunkte;
    MaximalerRang : KampfDatentypen.Rang;

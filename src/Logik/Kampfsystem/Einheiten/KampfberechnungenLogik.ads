@@ -4,8 +4,8 @@ package KampfberechnungenLogik is
    pragma Elaborate_Body;
    
    function Kampfberechnung
-     (AngriffExtern : in KampfDatentypen.KampfwerteGroß;
-      VerteidigungExtern : in KampfDatentypen.KampfwerteGroß)
+     (AngriffExtern : in KampfDatentypen.Kampfwerte;
+      VerteidigungExtern : in KampfDatentypen.Kampfwerte)
       return Integer;
    
 private

@@ -26,11 +26,11 @@ package KIEinheitFestlegenModernisierenLogik is
               );
    
 private
-   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   use type EinheitenDatentypen.Einheitenbereich;
    
    Umgebung : KartenDatentypen.UmgebungsbereichDrei;
    
-   NeueEinheitenID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   NeueEinheitenID : EinheitenDatentypen.EinheitenID;
    
    StadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    PlatzGefunden : KartenRecords.AchsenKartenfeldNaturalRecord;
@@ -38,7 +38,7 @@ private
    
    function EinheitVerbessernPlatz
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
-      EinheitNummerExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (

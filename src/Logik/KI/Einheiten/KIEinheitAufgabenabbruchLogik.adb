@@ -12,7 +12,7 @@ package body KIEinheitAufgabenabbruchLogik is
    procedure Friedenshandlung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       if

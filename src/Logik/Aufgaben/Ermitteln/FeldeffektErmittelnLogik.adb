@@ -16,7 +16,7 @@ package body FeldeffektErmittelnLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Boolean
    is
-      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+      use type ForschungenDatentypen.ForschungIDUnmöglich;
    begin
       
       FeldeffektEntfernbar := False;

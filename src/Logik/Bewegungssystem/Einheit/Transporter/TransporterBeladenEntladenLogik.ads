@@ -24,7 +24,7 @@ package TransporterBeladenEntladenLogik is
 
    function TransporterBeladen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      LadungExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return Boolean
      with
        Pre => (
@@ -35,7 +35,7 @@ package TransporterBeladenEntladenLogik is
    
    procedure EinheitAusladen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      LadungExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
      with
        Pre => (
                  TransporterExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => TransporterExtern.Spezies)
@@ -45,7 +45,7 @@ package TransporterBeladenEntladenLogik is
    
 private
    
-   AlterTransporter : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   AlterTransporter : EinheitenDatentypen.Einheitenbereich;
    
    FreierPlatzNummer : EinheitenDatentypen.Transportplätze;
    Transporterkapazität : EinheitenDatentypen.Transportplätze;

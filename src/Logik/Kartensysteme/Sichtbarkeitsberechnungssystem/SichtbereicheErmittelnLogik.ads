@@ -40,7 +40,7 @@ package SichtbereicheErmittelnLogik is
 
 private
    
-   EinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   EinheitID : EinheitenDatentypen.EinheitenID;
    
    Gesamtgrund : KartenRecords.KartengrundRecord;
    

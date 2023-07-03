@@ -14,5 +14,12 @@ package Spielertests is
    function KISpieler
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum)
       return Boolean;
+   
+   function AnzahlMenschlicheSpieler
+     return Positive;
+   
+private
+   
+   VorhandeneMenschen : Natural;
 
 end Spielertests;

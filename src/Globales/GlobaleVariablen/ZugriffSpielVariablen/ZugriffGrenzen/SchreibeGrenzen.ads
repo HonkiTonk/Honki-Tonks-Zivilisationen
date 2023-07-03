@@ -15,7 +15,7 @@ package SchreibeGrenzen is
    
    procedure Einheitengrenze
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      EinheitengrenzeExtern : in EinheitenDatentypen.MaximaleEinheiten);
+      EinheitengrenzeExtern : in EinheitenDatentypen.EinheitenbereichVorhanden);
    pragma Inline (Einheitengrenze);
    
    procedure Geldgrenze

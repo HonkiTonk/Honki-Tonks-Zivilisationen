@@ -18,7 +18,7 @@ package body ForschungsauswahlLogik is
    procedure Forschung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+      use type ForschungenDatentypen.ForschungIDUnmöglich;
    begin
       
       NeuesForschungsprojekt := Forschungsmöglichkeiten (SpeziesExtern => SpeziesExtern);
@@ -62,7 +62,7 @@ package body ForschungsauswahlLogik is
      (AktuellesForschungsprojektExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
       return ForschungenDatentypen.ForschungIDMitNullWert
    is
-      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+      use type ForschungenDatentypen.ForschungIDUnmöglich;
    begin
       
       SchreibeGrafiktask.Darstellung (DarstellungExtern => GrafikDatentypen.Forschung_Enum);
@@ -87,8 +87,7 @@ package body ForschungsauswahlLogik is
                   and
                     AktuellesForschungsprojektExtern /= ForschungKonstanten.LeerAnforderung)
                  and then
-               -- Hier noch eine passende Frage einbauen! äöü
-                 JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageForschungsprojekt) = False
+                   JaNeinLogik.JaNein (FrageZeileExtern => TextnummernKonstanten.FrageForschungsprojektWechseln) = False
                then
                   null;
                   

@@ -164,7 +164,7 @@ package body MausauswahlLogik is
             
          when True =>
             EinheitenSchleife:
-            for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenID'Range loop
+            for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
          
                case
                  InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)

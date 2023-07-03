@@ -1,4 +1,4 @@
-package ChangelogVorlage is
+package ChangelogMai2023 is
    
    -- Version 0.05.1530 => 0.05.1555 (31.05.2023):
    
@@ -261,4 +261,4 @@ package ChangelogVorlage is
    
    -- Sprachenordner können unter Linux jetzt auch Sonderzeichen enthalten.
 
-end ChangelogVorlage;
+end ChangelogMai2023;

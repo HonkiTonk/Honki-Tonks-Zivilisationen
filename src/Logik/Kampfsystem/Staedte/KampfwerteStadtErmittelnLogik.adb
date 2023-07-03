@@ -18,13 +18,13 @@ package body KampfwerteStadtErmittelnLogik is
       GebäudeExtern : in StadtArrays.GebäudeArray;
       EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KampfDatentypen.KampfwerteGroß
+      return KampfDatentypen.Kampfwerte
    is begin
       
       Verteidigung (TaskExtern) := FeldkampfStadtLogik.Feldkampf (KoordinatenExtern    => KoordinatenExtern,
                                                                   SpeziesExtern        => SpeziesExtern,
                                                                   KampfartExtern       => KampfDatentypen.Verteidigung_Enum,
-                                                                  KampfBasiswertExtern => KampfDatentypen.KampfwerteGroß (EinwohnerExtern),
+                                                                  KampfBasiswertExtern => KampfDatentypen.Kampfwerte (EinwohnerExtern),
                                                                   StadttypExtern       => IDExtern,
                                                                   TaskExtern    => TaskExtern);
       
@@ -70,13 +70,13 @@ package body KampfwerteStadtErmittelnLogik is
       GebäudeExtern : in StadtArrays.GebäudeArray;
       EinwohnerExtern : in StadtDatentypen.EinwohnerVorhanden;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KampfDatentypen.KampfwerteGroß
+      return KampfDatentypen.Kampfwerte
    is begin
             
       Angriff (TaskExtern) := FeldkampfStadtLogik.Feldkampf (KoordinatenExtern    => KoordinatenExtern,
                                                              SpeziesExtern        => SpeziesExtern,
                                                              KampfartExtern       => KampfDatentypen.Angriff_Enum,
-                                                             KampfBasiswertExtern => KampfDatentypen.KampfwerteGroß (EinwohnerExtern),
+                                                             KampfBasiswertExtern => KampfDatentypen.Kampfwerte (EinwohnerExtern),
                                                              StadttypExtern       => IDExtern,
                                                              TaskExtern    => TaskExtern);
       

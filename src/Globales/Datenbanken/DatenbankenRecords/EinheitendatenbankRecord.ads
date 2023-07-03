@@ -1,4 +1,3 @@
-with DatenbankRecords;
 with EinheitenDatentypen;
 with ProduktionDatentypen;
 with StadtRecords;
@@ -6,25 +5,26 @@ with ForschungenDatentypen;
 with KampfDatentypen;
 with KartenRecords;
 with StadtArrays;
+with EinheitenArrays;
 
 -- Voraussetzungen wie beim GebäudedatenbankRecord erweitern? äöü
 package EinheitendatenbankRecord is
    pragma Preelaborate;
-      
+         
    type EinheitenlisteRecord is record
       
       Einheitenart : EinheitenDatentypen.Einheitart_Enum;
       PreisGeld : ProduktionDatentypen.Produktion;
       Produktionskosten : ProduktionDatentypen.Lagermenge;
       PermanenteKosten : StadtRecords.PermanenteKostenArray;
-      Anforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
+      Anforderungen : ForschungenDatentypen.ForschungIDUnmöglich;
       NotwendigeGebäude : StadtArrays.GebäudeArray;
 
-      Passierbarkeit : DatenbankRecords.PassierbarkeitArray;
+      Passierbarkeit : EinheitenArrays.PassierbarkeitArray;
       
       MaximaleLebenspunkte : KampfDatentypen.LebenspunkteVorhanden;
       MaximaleBewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;
-      VerbesserungZu : EinheitenDatentypen.EinheitenIDMitNullWert;
+      VerbesserungZu : EinheitenDatentypen.EinheitenID;
 
       Beförderungsgrenze : KampfDatentypen.ErfahrungspunkteVorhanden;
       MaximalerRang : KampfDatentypen.Rang;
@@ -41,6 +41,6 @@ package EinheitendatenbankRecord is
       
    end record;
    
-   type EinheitenlisteArray is array (EinheitenDatentypen.EinheitenID'Range) of EinheitenlisteRecord;
+   type EinheitenlisteArray is array (EinheitenDatentypen.EinheitenIDVorhanden'Range) of EinheitenlisteRecord;
 
 end EinheitendatenbankRecord;

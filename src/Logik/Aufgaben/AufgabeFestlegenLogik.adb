@@ -18,7 +18,7 @@ package body AufgabeFestlegenLogik is
       if
         ArbeitExtern.Aufgabe = AufgabenDatentypen.Feldeffekt_Entfernen_Enum
         or
-          (KartenfeldereffekteLogik.FeldeffektVorhanden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)) = False)
+          KartenfeldereffekteLogik.FeldeffektVorhanden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)) = False
       then
          Arbeitszeit := ArbeitExtern.Arbeitszeit;
          

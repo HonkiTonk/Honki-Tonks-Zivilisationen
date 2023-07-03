@@ -22,7 +22,7 @@ private
 
    Städtezeitwert : StadtDatentypen.MaximaleStädte;
 
-   Einheitenzeitwert : EinheitenDatentypen.MaximaleEinheiten;
+   Einheitenzeitwert : EinheitenDatentypen.EinheitenbereichVorhanden;
 
    procedure EinheitenDurchgehen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
@@ -40,7 +40,7 @@ private
 
 
 
-   function BasiszeitwertEinheiten is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => EinheitenDatentypen.MaximaleEinheiten);
+   function BasiszeitwertEinheiten is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => EinheitenDatentypen.EinheitenbereichVorhanden);
 
    function BasiszeitwertStädte is new AllgemeineBerechnungen.Basiszeitwert (GanzeZahl => Positive);
 

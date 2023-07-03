@@ -28,7 +28,7 @@ package KartenverbesserungDatentypen is
    type Weg_Enum is (
                      Leer_Weg_Enum,
                             
-                     -- Wege - Straßen
+                     -- Straßen
                      Straßenkreuzung_Vier_Enum, Straße_Waagrecht_Enum, Straße_Senkrecht_Enum, Straßenkurve_Unten_Rechts_Enum, Straßenkurve_Unten_Links_Enum, Straßenkurve_Oben_Rechts_Enum,
                      Straßenkurve_Oben_Links_Enum, Straßenkreuzung_Drei_Oben_Enum, Straßenkreuzung_Drei_Unten_Enum, Straßenkreuzung_Drei_Rechts_Enum, Straßenkreuzung_Drei_Links_Enum,
                      Straßenendstück_Links_Enum, Straßenendstück_Rechts_Enum, Straßenendstück_Unten_Enum, Straßenendstück_Oben_Enum, Straße_Einzeln_Enum,

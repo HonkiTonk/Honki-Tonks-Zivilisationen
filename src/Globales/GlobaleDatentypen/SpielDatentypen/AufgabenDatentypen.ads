@@ -4,7 +4,6 @@ package AufgabenDatentypen is
    type Einheiten_Aufgaben_Enum is (
                                     Leer_Aufgabe_Enum,
                                     
-                                    -- Einheitenbefehle Verbesserungen
                                     -- Wege
                                     Straße_Bauen_Enum, Schiene_Bauen_Enum, Tunnel_Bauen_Enum,
                                     

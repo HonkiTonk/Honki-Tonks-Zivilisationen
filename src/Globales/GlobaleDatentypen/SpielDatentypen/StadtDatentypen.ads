@@ -4,6 +4,8 @@ package StadtDatentypen is
    -- Für Gebäude
    type GebäudeIDMitNullwert is range 0 .. 27;
    subtype GebäudeID is GebäudeIDMitNullwert range 1 .. GebäudeIDMitNullwert'Last;
+   
+   
 
    type Gebäude_Spezielle_Eigenschaften_Enum is (
                                                   Leer_Gebäude_Spezielle_Egienschaft_Enum,
@@ -20,10 +22,14 @@ package StadtDatentypen is
    -- Für Stadt
    type MaximaleStädteMitNullWert is range 0 .. 100;
    subtype MaximaleStädte is MaximaleStädteMitNullWert range 1 .. MaximaleStädteMitNullWert'Last;
+   
+   
 
    type Stadt_Meldung_Art_Enum is (
                                    Produktion_Fertig_Enum, Hungersnot_Enum, Einheit_In_Stadtnähe_Enum
                                   );
+   
+   
    
    type Stadt_Meldung_Enum is (
                                Leer_Stadt_Meldung_Enum,

@@ -1,4 +1,4 @@
-package ChangelogVorlage is
+package ChangelogMaerz2023 is
    
    -- Version 0.04.8790 => 0.04.8790 (31.03.2023):
    
@@ -221,4 +221,4 @@ package ChangelogVorlage is
    
    -- null.
 
-end ChangelogVorlage;
+end ChangelogMaerz2023;

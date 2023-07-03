@@ -20,16 +20,6 @@ package body DebugmenueLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      -- case
-      --  Projekteinstellungen.Debug.VolleInformation
-      -- is
-      --   when False =>
-      --       return;
-            
-      --   when True =>
-      --       null;
-      --  end case;
-      
       DebugmenüSchleife:
       loop
          

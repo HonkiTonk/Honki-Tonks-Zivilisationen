@@ -45,7 +45,7 @@ package body EinlesenSonstigeEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSonstigeEinstellungenLogik.SonstigeEinstellungen - Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSonstigeEinstellungenLogik.SonstigeEinstellungen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          OptionenVariablen.SpielendeStandardeinstellungenLaden;
          
          case
@@ -96,7 +96,7 @@ package body EinlesenSonstigeEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSonstigeEinstellungenLogik.SonstigeEinstellungenDurchgehen - Konnte nicht geladen werden: "
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSonstigeEinstellungenLogik.SonstigeEinstellungenDurchgehen: Konnte nicht geladen werden: "
                                      & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       

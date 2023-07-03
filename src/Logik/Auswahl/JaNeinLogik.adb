@@ -3,12 +3,14 @@ with TastenbelegungDatentypen;
 with AuswahlKonstanten;
 
 with SchreibeGrafiktask;
+with LeseOptionen;
 
 with TasteneingabeLogik;
 with MausauswahlLogik;
 
 package body JaNeinLogik is
 
+   -- Das noch einmal in umgedreht bauen oder über einen zusätzlichen Parameter kreieren und dann die Abfragen deaktivierbar machen. äöü
    function JaNein
      (FrageZeileExtern : in Positive)
       return Boolean
@@ -48,6 +50,17 @@ package body JaNeinLogik is
       
       SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Keine_Eingabe_Enum);
       SchreibeGrafiktask.Fragenanzeige (FrageExtern => 0);
+      
+      -- Hülle für später. äöü
+      case
+        LeseOptionen.SicherheitsfragenAnzeigen
+      is
+         when True =>
+            null;
+            
+         when False =>
+            null;
+      end case;
       
       case
         AktuelleAuswahl

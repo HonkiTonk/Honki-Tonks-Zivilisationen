@@ -7,11 +7,11 @@ package body TransporterSuchenLogik is
    function KoordinatenTransporterMitSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return EinheitenDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitenDatentypen.Einheitenbereich
    is
       use type EinheitenDatentypen.Transport_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
-      use type EinheitenDatentypen.EinheitenIDMitNullWert;
+      use type EinheitenDatentypen.EinheitenID;
    begin
       
       EinheitenSchleife:
@@ -47,7 +47,7 @@ package body TransporterSuchenLogik is
    
    function EinheitAufTransporterSuchen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      LadungExtern : in EinheitenDatentypen.MaximaleEinheiten)
+      LadungExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return EinheitenDatentypen.Transportplätze
    is begin
       

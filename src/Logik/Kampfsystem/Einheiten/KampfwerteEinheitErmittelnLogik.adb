@@ -13,7 +13,7 @@ package body KampfwerteEinheitErmittelnLogik is
    function Gesamtverteidigung
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KampfDatentypen.KampfwerteGroß
+      return KampfDatentypen.Kampfwerte
    is
       use type KampfDatentypen.Kampfbonus;
    begin
@@ -64,7 +64,7 @@ package body KampfwerteEinheitErmittelnLogik is
    function Gesamtangriff
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TaskExtern : in SystemDatentypen.Task_Enum)
-      return KampfDatentypen.KampfwerteGroß
+      return KampfDatentypen.Kampfwerte
    is
       use type KampfDatentypen.Kampfbonus;
    begin

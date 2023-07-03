@@ -16,7 +16,7 @@ with LeseSpeziesbelegung;
 package WeltkarteEinheitZeichnenGrafik is
    pragma Elaborate_Body;
    use type KartenDatentypen.Kartenfeld;
-   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   use type EinheitenDatentypen.Einheitenbereich;
    use type SpeziesDatentypen.Spieler_Enum;
 
    procedure AnzeigeEinheit
@@ -60,7 +60,7 @@ private
    
    AusgewählteEinheitAnzeigen : Boolean := True;
    
-   FeldeinheitID : EinheitenDatentypen.EinheitenIDMitNullWert;
+   FeldeinheitID : EinheitenDatentypen.EinheitenID;
       
    EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
    

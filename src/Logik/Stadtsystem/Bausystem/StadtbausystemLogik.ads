@@ -23,7 +23,7 @@ package StadtbausystemLogik is
 
 private
    use type StadtDatentypen.GebäudeIDMitNullwert;
-   use type EinheitenDatentypen.EinheitenIDMitNullWert;
+   use type EinheitenDatentypen.EinheitenID;
 
    BauenMöglich : Boolean;
 

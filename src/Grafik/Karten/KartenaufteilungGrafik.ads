@@ -15,7 +15,7 @@ with LeseWeltkarteneinstellungen;
 package KartenaufteilungGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   use type EinheitenDatentypen.Einheitenbereich;
    use type KartenDatentypen.Kartenfeld;
    
    procedure Weltkarte

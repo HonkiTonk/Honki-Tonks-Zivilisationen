@@ -18,7 +18,7 @@ package body StadtEinheitenBauenLogik is
    procedure EinheitFertiggestellt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
-      use type EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       EinheitNummer := 0;
@@ -69,7 +69,7 @@ package body StadtEinheitenBauenLogik is
       KartenWert
         := StadtumgebungErreichbarLogik.UmgebungErreichbar (StadtKoordinatenExtern   => LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern),
                                                             StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
-                                                            IDExtern                 => EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit));
+                                                            IDExtern                 => EinheitenDatentypen.EinheitenIDVorhanden (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit));
       
       case
         KartenWert.XAchse
@@ -94,7 +94,7 @@ package body StadtEinheitenBauenLogik is
       
       EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern        => KoordinatenExtern,
                                                        EinheitNummerExtern      => EinheitNummer,
-                                                       IDExtern                 => EinheitenDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit),
+                                                       IDExtern                 => EinheitenDatentypen.EinheitenIDVorhanden (LeseStadtGebaut.Bauprojekt (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern).Einheit),
                                                        StadtSpeziesNummerExtern => StadtSpeziesNummerExtern);
       SchreibeStadtGebaut.Material (StadtSpeziesNummerExtern => StadtSpeziesNummerExtern,
                                     MaterialExtern           => StadtKonstanten.LeerMaterial,

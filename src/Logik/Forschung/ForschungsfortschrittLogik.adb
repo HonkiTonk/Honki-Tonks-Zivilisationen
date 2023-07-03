@@ -14,7 +14,7 @@ package body ForschungsfortschrittLogik is
    procedure Forschungsfortschritt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type ForschungenDatentypen.ForschungIDNichtMöglich;
+      use type ForschungenDatentypen.ForschungIDUnmöglich;
       use type ProduktionDatentypen.Produktion;
    begin
       

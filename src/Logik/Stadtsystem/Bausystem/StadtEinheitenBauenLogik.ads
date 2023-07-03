@@ -26,7 +26,7 @@ package StadtEinheitenBauenLogik is
    
 private
     
-   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitenDatentypen.Einheitenbereich;
       
    KartenWert : KartenRecords.AchsenKartenfeldNaturalRecord;
    

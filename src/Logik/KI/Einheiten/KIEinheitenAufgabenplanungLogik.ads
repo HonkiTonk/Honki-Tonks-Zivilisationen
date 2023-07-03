@@ -23,6 +23,6 @@ package KIEinheitenAufgabenplanungLogik is
    
 private
    
-   EinheitID : EinheitenDatentypen.EinheitenID;
+   EinheitID : EinheitenDatentypen.EinheitenIDVorhanden;
 
 end KIEinheitenAufgabenplanungLogik;

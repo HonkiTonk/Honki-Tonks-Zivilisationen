@@ -5,7 +5,6 @@ with WichtigesKonstanten;
 with SpielDatentypen;
 with TextKonstanten;
 with SpeziesDatentypen;
-with DatenbankRecords;
 with SpeziesKonstanten;
 
 package WichtigesRecordKonstanten is
@@ -69,22 +68,5 @@ package WichtigesRecordKonstanten is
                                                                   Belegung => SpeziesDatentypen.Leer_Spieler_Enum,
                                                                   Besiegt  => False
                                                                  );
-   
-   LeerSpeziesListe : constant DatenbankRecords.SpezieslisteRecord := (
-                                                                       Aggressivität       => 1,
-                                                                       Expansion           => 1,
-                                                                       Wissenschaft        => 1,
-                                                                       Produktion          => 1,
-                                                                       Wirtschaft          => 1,
-                                                                       Bewirtschaftung     => 1,
-                                                                       Staatsformen        =>
-                                                                         (
-                                                                          SpeziesDatentypen.Anarchie_Enum,
-                                                                          SpeziesDatentypen.Anarchie_Enum,
-                                                                          SpeziesDatentypen.Anarchie_Enum,
-                                                                          SpeziesDatentypen.Anarchie_Enum,
-                                                                          SpeziesDatentypen.Anarchie_Enum
-                                                                         )
-                                                                      );
    
 end WichtigesRecordKonstanten;

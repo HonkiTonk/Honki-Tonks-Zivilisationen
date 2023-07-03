@@ -10,7 +10,7 @@ with KartenRecordKonstanten;
 package GebautVariablen is
    pragma Elaborate_Body;
 
-   type EinheitenGebautArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, EinheitenDatentypen.MaximaleEinheiten'Range) of EinheitenRecords.EinheitenGebautRecord;
+   type EinheitenGebautArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, EinheitenDatentypen.EinheitenbereichVorhanden'Range) of EinheitenRecords.EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => EinheitenRecordKonstanten.LeerEinheit));
    
    type EinheitenBewegungsplanArray is array (EinheitenGebautArray'Range (1), EinheitenGebautArray'Range (2)) of EinheitenRecords.KIBewegungPlanArray;

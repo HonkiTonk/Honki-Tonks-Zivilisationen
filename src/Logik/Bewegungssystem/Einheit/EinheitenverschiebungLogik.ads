@@ -44,7 +44,7 @@ private
    UmgebungPrüfen : KartenRecords.YXAchsenKartenfeldPositivRecord;
    BereitsGeprüft : KartenRecords.YXAchsenKartenfeldNaturalRecord;
    
-   EinheitNummer : EinheitenDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitenDatentypen.Einheitenbereich;
    
    Kartenwert : KartenRecords.AchsenKartenfeldNaturalRecord;
    KartenwertVerschieben : KartenRecords.AchsenKartenfeldNaturalRecord;
