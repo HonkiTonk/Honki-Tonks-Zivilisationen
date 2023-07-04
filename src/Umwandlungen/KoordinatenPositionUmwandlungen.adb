@@ -11,7 +11,7 @@ with Vergleiche;
 
 package body KoordinatenPositionUmwandlungen is
 
-   function KoordinatenZuKartenposition
+   function KoordinatenKartenposition
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Sf.System.Vector2.sfVector2f
@@ -56,12 +56,12 @@ package body KoordinatenPositionUmwandlungen is
       
       return GrafikRecordKonstanten.FalschePosition;
       
-   end KoordinatenZuKartenposition;
+   end KoordinatenKartenposition;
    
    
    
    -- Noch ungetestet, könnte eventuell nicht richtig funktionieren.
-   function KartenpositionZuKoordinaten
+   function KartenpositionKoordinaten
      (PositionExtern : in Sf.System.Vector2.sfVector2f;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
@@ -106,6 +106,6 @@ package body KoordinatenPositionUmwandlungen is
       
       return KartenRecordKonstanten.LeerKoordinate;
       
-   end KartenpositionZuKoordinaten;
+   end KartenpositionKoordinaten;
 
 end KoordinatenPositionUmwandlungen;

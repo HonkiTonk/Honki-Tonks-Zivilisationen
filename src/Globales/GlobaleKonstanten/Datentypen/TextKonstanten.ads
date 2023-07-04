@@ -1,5 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Characters.Wide_Wide_Latin_1;
+
+with BetriebssystemKonstanten;
 
 package TextKonstanten is
    pragma Elaborate_Body;
@@ -11,7 +12,7 @@ package TextKonstanten is
    Trennstrich : constant Wide_Wide_String (1 .. 3) := " - ";
    StandardAbstand : constant Wide_Wide_String (1 .. 4) := "    ";
    LangerAbstand : constant Wide_Wide_String (1 .. 10) := "          ";
-   UmbruchAbstand : constant Wide_Wide_String (1 .. 5) := Ada.Characters.Wide_Wide_Latin_1.LF & StandardAbstand;
+   UmbruchAbstand : constant Wide_Wide_String (1 .. 5) := BetriebssystemKonstanten.LF & StandardAbstand;
    UnendlichGeklammert : constant Wide_Wide_String (1 .. 4) := " (∞)";
    Unendlich : constant Wide_Wide_String (1 .. 2) := " ∞";
    Haken : constant Wide_Wide_String (1 .. 2) := " ✔";

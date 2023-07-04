@@ -132,7 +132,7 @@ package body GebaeudeVerkaufenLogik is
    is begin
       
       Grafikgröße := SichtweitenGrafik.Stadtumgebungsfläche;
-      Mausposition := InteraktionAuswahl.Mausposition;
+      Mausposition := InteraktionAuswahl.LeseGesamteMausposition;
       
       Auswahl := Natural (Float'Floor (Mausposition.y / Grafikgröße.y)) * Positive (StadtKonstanten.Stadtkartengröße);
       Auswahl := Auswahl + Natural (Float'Ceiling (Mausposition.x / Grafikgröße.x));

@@ -76,7 +76,7 @@ package body StadtkarteGrafik is
                                                                       TexturAccessExtern => EingeleseneTexturenGrafik.GebäudeAccess (StadtauswahlExtern.Spezies, GebäudeID));
                   
                   if
-                    True = Vergleiche.Auswahlposition (MauspositionExtern => InteraktionAuswahl.Mausposition,
+                    True = Vergleiche.Auswahlposition (MauspositionExtern => InteraktionAuswahl.LeseGesamteMausposition,
                                                        RechteckExtern     => (Float (XAchseSchleifenwert - 1) * Grafikgröße.x, Float (YAchseSchleifenwert - 1) * Grafikgröße.y, Grafikgröße.x, Grafikgröße.y))
                   then
                      GebäudeZusatzinformationen := GebäudeID;

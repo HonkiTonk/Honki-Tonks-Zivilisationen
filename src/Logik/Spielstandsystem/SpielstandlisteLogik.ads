@@ -55,12 +55,4 @@ private
                  NameExtern'Length > 0
               );
 
-   function NamePrüfenWindows
-     (NameExtern : in Wide_Wide_String)
-      return Boolean
-     with
-       Pre => (
-                 NameExtern'Length > 0
-              );
-
 end SpielstandlisteLogik;

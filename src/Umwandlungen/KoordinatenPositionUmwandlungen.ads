@@ -12,32 +12,32 @@ package KoordinatenPositionUmwandlungen is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
 
-   function KoordinatenZuKartenposition
+   function KoordinatenKartenposition
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Sf.System.Vector2.sfVector2f
      with
        Pre => (
-               --  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
-               -- and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
+               and
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
               ),
          
        Post => (
-                  KoordinatenZuKartenposition'Result.x >= -1.00
+                  KoordinatenKartenposition'Result.x >= -1.00
                 and
-                  KoordinatenZuKartenposition'Result.y >= -1.00
+                  KoordinatenKartenposition'Result.y >= -1.00
                );
    
-   function KartenpositionZuKoordinaten
+   function KartenpositionKoordinaten
      (PositionExtern : in Sf.System.Vector2.sfVector2f;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldNaturalRecord
      with
        Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
                and
                  PositionExtern.x >= 0.00
                and
@@ -45,9 +45,9 @@ package KoordinatenPositionUmwandlungen is
               ),
          
        Post => (
-                  KartenpositionZuKoordinaten'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
+                  KartenpositionKoordinaten'Result.YAchse <= LeseWeltkarteneinstellungen.YAchse
                 and
-                  KartenpositionZuKoordinaten'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
+                  KartenpositionKoordinaten'Result.XAchse <= LeseWeltkarteneinstellungen.XAchse
                );
    
 private

@@ -1,8 +1,7 @@
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with MenueDatentypen;
 with KartenKonstanten;
--- with Projekteinstellungen;
+with ProduktionDatentypen;
+with EinheitenKonstanten;
 
 with SchreibeWeltkarte;
 with LeseWeltkarteneinstellungen;
@@ -10,9 +9,14 @@ with SchreibeSpeziesbelegung;
 with SchreibeCursor;
 with SchreibeDiplomatie;
 with SchreibeWichtiges;
+with LeseCursor;
+with LeseEinheitenGebaut;
 
 with AuswahlaufteilungLogik;
 with Fehlermeldungssystem;
+with DebugmenueAllgemeinesLogik;
+with ZahleneingabeLogik;
+with EinheitenErzeugenEntfernenLogik;
 
 package body DebugmenueLogik is
 
@@ -35,12 +39,19 @@ package body DebugmenueLogik is
                SchreibeWichtiges.ErforschtDebug (SpeziesExtern => SpeziesExtern);
                               
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-               Get_Immediate (Item => Taste);
-               MenschKITauschen (TasteExtern => Taste);
+               MenschKITauschen (SpeziesExtern => SpeziesExtern);
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               DiplomatischenStatusÄndern (NeuerStatusExtern => DiplomatieDatentypen.Krieg_Enum,
-                                           SpeziesExtern     => SpeziesExtern);
+               DiplomatischenStatusÄndern (NeuerStatusExtern => DebugmenueAllgemeinesLogik.DiplomatiestatusAuswählen,
+                                            SpeziesExtern     => SpeziesExtern);
+               
+            when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
+               SchreibeWichtiges.Forschungsmenge (SpeziesExtern           => SpeziesExtern,
+                                                  ForschungZugewinnExtern => ProduktionDatentypen.Produktion'Last,
+                                                  RechnenSetzenExtern     => False);
+               
+            when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+               EinheitErzeugen (SpeziesExtern => SpeziesExtern);
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;
@@ -56,36 +67,37 @@ package body DebugmenueLogik is
    
    
    procedure MenschKITauschen
-     (TasteExtern : in Wide_Wide_Character)
-   is begin
-                     
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+   is
+      use type SpeziesDatentypen.Spezies_Enum;
+   begin
+      
+      AusgewählteSpezies := DebugmenueAllgemeinesLogik.SpeziesAuswählen (SpeziesExtern => SpeziesExtern);
+      
       case
-        TasteExtern
+        AusgewählteSpezies
       is
-         when 'a' .. 'r' =>
-            null;
-                  
-         when others =>
+         when SpeziesDatentypen.Leer_Spezies_Enum =>
             return;
+            
+         when others =>
+            null;
       end case;
       
       case
-        LeseSpeziesbelegung.Belegung (SpeziesExtern => Wechsel (TasteExtern))
+        LeseSpeziesbelegung.Belegung (SpeziesExtern => AusgewählteSpezies)
       is
-         when SpeziesDatentypen.Leer_Spieler_Enum =>
-            null;
-            
          when SpeziesDatentypen.KI_Spieler_Enum =>
-            SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => Wechsel (TasteExtern),
+            SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => AusgewählteSpezies,
                                               BelegungExtern => SpeziesDatentypen.Mensch_Spieler_Enum);
             
-            SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => Wechsel (TasteExtern),
+            SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => AusgewählteSpezies,
                                                KoordinatenExtern => (0, 1, 1));
-            SchreibeCursor.KoordinatenAlt (SpeziesExtern     => Wechsel (TasteExtern),
+            SchreibeCursor.KoordinatenAlt (SpeziesExtern     => AusgewählteSpezies,
                                            KoordinatenExtern => (0, 1, 1));
                                              
-         when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => Wechsel (TasteExtern),
+         when others =>
+            SchreibeSpeziesbelegung.Belegung (SpeziesExtern  => AusgewählteSpezies,
                                               BelegungExtern => SpeziesDatentypen.KI_Spieler_Enum);
       end case;
                                              
@@ -150,5 +162,55 @@ package body DebugmenueLogik is
       end loop SpeziesSchleife;
       
    end DiplomatischenStatusÄndern;
+   
+   
+   
+   procedure EinheitErzeugen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+   is begin
+      
+      Einheitenauswahl := ZahleneingabeLogik.Zahleneingabe (ZahlenMinimumExtern => Positive (EinheitenDatentypen.EinheitenbereichVorhanden'First),
+                                                            ZahlenMaximumExtern => Positive (EinheitenDatentypen.EinheitenbereichVorhanden'Last),
+                                                            WelcheFrageExtern   => 3);
+      
+      case
+        Einheitenauswahl.ErfolgreichAbbruch
+      is
+         when False =>
+            return;
+            
+         when True =>
+            Einheitennummer := EinheitenKonstanten.LeerNummer;
+      end case;
+      
+      EinheitenSchleife:
+      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenbereichVorhanden loop
+         
+         case
+           LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitenSchleifenwert))
+         is
+            when EinheitenKonstanten.LeerID =>
+               Einheitennummer := EinheitenSchleifenwert;
+               exit EinheitenSchleife;
+               
+            when others =>
+               null;
+         end case;
+      end loop EinheitenSchleife;
+      
+      case
+        Einheitennummer
+      is
+         when EinheitenKonstanten.LeerNummer =>
+            Einheitennummer := 1;
+            
+         when others =>
+            EinheitenErzeugenEntfernenLogik.EinheitErzeugen (KoordinatenExtern        => LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern),
+                                                             EinheitNummerExtern      => Einheitennummer,
+                                                             IDExtern                 => EinheitenDatentypen.EinheitenIDVorhanden (Einheitenauswahl.EingegebeneZahl),
+                                                             StadtSpeziesNummerExtern => (SpeziesExtern, 0));
+      end case;
+      
+   end EinheitErzeugen;
 
 end DebugmenueLogik;

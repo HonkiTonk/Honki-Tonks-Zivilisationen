@@ -19,15 +19,5 @@ private
    Verzeichnis : Directory_Entry_Type;
    
    procedure SprachenSortieren;
-   
-   
-   
-   function Ordnernamen
-     (NameExtern : in Wide_Wide_String)
-      return Boolean
-     with
-       Pre => (
-                 NameExtern'Length > 0
-              );
 
 end EinlesenSpracheLogik;

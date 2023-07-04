@@ -1,5 +1,3 @@
-with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
-
 with Sf;
 with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
@@ -39,14 +37,14 @@ package body TexteingabeGrafik is
                EingegebenesZeichen := Wide_Wide_Character'Val (TextEingegeben.text.unicode);
                
                if
-                 EingegebenesZeichen = CR
+                 EingegebenesZeichen = BetriebssystemKonstanten.CR
                then
                   null;
                
                elsif
-                 EingegebenesZeichen = BS
+                 EingegebenesZeichen = BetriebssystemKonstanten.BS
                  or
-                   EingegebenesZeichen = DEL
+                   EingegebenesZeichen = BetriebssystemKonstanten.DEL
                then
                   ZeichenEntfernen;
          
@@ -173,7 +171,7 @@ package body TexteingabeGrafik is
       case
         EingegebenesZeichenExtern
       is
-         when '/' | NUL =>
+         when '/' | BetriebssystemKonstanten.NUL =>
             return False;
             
          when others =>
@@ -201,10 +199,10 @@ package body TexteingabeGrafik is
       case
         EingegebenesZeichenExtern
       is
-         when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' | NUL .. US =>
+         when '\' | '/' | ':' | '*' | '?' | '"' | '<' | '>' | '|' | BetriebssystemKonstanten.NUL .. BetriebssystemKonstanten.US =>
             return False;
             
-         when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | Space | Hyphen | Low_Line | Full_Stop =>
+         when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | BetriebssystemKonstanten.Leerzeichen | BetriebssystemKonstanten.Bindestrich | BetriebssystemKonstanten.Unterstrich | BetriebssystemKonstanten.Punkt =>
             return True;
             
          when others =>
@@ -263,30 +261,30 @@ package body TexteingabeGrafik is
             
          elsif
            -- Full_Stop = Period, nicht erlaubt am Ende unter Windows!
-           Full_Stop = Element (Source => Text,
-                                Index  => To_Wide_Wide_String (Source => Text)'Last)
+           BetriebssystemKonstanten.Punkt = Element (Source => Text,
+                                                     Index  => To_Wide_Wide_String (Source => Text)'Last)
          then
             SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
-                                                                                                     From    => To_Wide_Wide_String (Source => Text)'Last,
-                                                                                                     Through => To_Wide_Wide_String (Source => Text)'Last));
+                                                                                                 From    => To_Wide_Wide_String (Source => Text)'Last,
+                                                                                                 Through => To_Wide_Wide_String (Source => Text)'Last));
             
          elsif
            -- Leerzeichen ist am Anfang unter Windows nicht erlaubt!
-           Space = Element (Source => Text,
-                            Index  => To_Wide_Wide_String (Source => Text)'First)
+           BetriebssystemKonstanten.Leerzeichen = Element (Source => Text,
+                                                           Index  => To_Wide_Wide_String (Source => Text)'First)
          then
             SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
-                                                                                                     From    => To_Wide_Wide_String (Source => Text)'First,
-                                                                                                     Through => To_Wide_Wide_String (Source => Text)'First));
+                                                                                                 From    => To_Wide_Wide_String (Source => Text)'First,
+                                                                                                 Through => To_Wide_Wide_String (Source => Text)'First));
             
          elsif
            -- Leerzeichen ist am Ende unter Windows nicht erlaubt!
-           Space = Element (Source => Text,
-                            Index  => To_Wide_Wide_String (Source => Text)'Last)
+           BetriebssystemKonstanten.Leerzeichen = Element (Source => Text,
+                                                           Index  => To_Wide_Wide_String (Source => Text)'Last)
          then
             SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
-                                                                                                     From    => To_Wide_Wide_String (Source => Text)'Last,
-                                                                                                     Through => To_Wide_Wide_String (Source => Text)'Last));
+                                                                                                 From    => To_Wide_Wide_String (Source => Text)'Last,
+                                                                                                 Through => To_Wide_Wide_String (Source => Text)'Last));
             
          else
             exit PunktLeerzeichenSchleife;
@@ -349,7 +347,7 @@ package body TexteingabeGrafik is
                   return False;
                   
                elsif
-                 Full_Stop = To_Wide_Wide_String (Source => Text) (To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Last + 1)
+                 BetriebssystemKonstanten.Punkt = To_Wide_Wide_String (Source => Text) (To_Wide_Wide_String (Source => BetriebssystemKonstanten.VerboteneWindowsnamenGroß (VerboteneNamenSchleifenwert))'Last + 1)
                then
                   return False;
                      
@@ -379,8 +377,8 @@ package body TexteingabeGrafik is
          
          when others =>
             SchreibeLogiktask.Texteingabe (TextExtern => Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => Text,
-                                                                                                     From    => To_Wide_Wide_String (Source => Text)'Last,
-                                                                                                     Through => To_Wide_Wide_String (Source => Text)'Last));
+                                                                                                 From    => To_Wide_Wide_String (Source => Text)'Last,
+                                                                                                 Through => To_Wide_Wide_String (Source => Text)'Last));
       end case;
       
    end ZeichenEntfernen;

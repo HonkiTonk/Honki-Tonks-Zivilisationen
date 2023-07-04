@@ -3,7 +3,6 @@ with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
--- Was ist überhaupt bei mehreren Meldungen? äöü
 package body MeldungenSetzenLogik is
 
    procedure MeldungenRundenende

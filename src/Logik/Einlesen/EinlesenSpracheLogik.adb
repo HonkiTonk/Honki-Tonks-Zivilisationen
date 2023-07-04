@@ -1,10 +1,10 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
-with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with GlobaleTexte;
 with TextKonstanten;
 with VerzeichnisKonstanten;
--- with EinlesenAllgemeinesLogik;
+
+with EinlesenAllgemeinesLogik;
 
 package body EinlesenSpracheLogik is
 
@@ -37,7 +37,10 @@ package body EinlesenSpracheLogik is
             null;
             
          elsif
-           Ordnernamen (NameExtern => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis))) = False
+           -- Das hier noch durch eine Windows uns eine Linuxversion ersetzen. äöü
+           -- Kann das nicht einfach raus wenn irgendwann einmal Wide_Wide_Directories da ist? äöü
+           -- Das ist je nur vorhandene Ordner durchgehen und man kann ja keine Dateien/Ordner anlegen die das Dateisystem nicht unterstützen. äöü
+           EinlesenAllgemeinesLogik.NamensprüfungWindows (NameExtern => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis))) = False
          then
             null;
              
@@ -81,32 +84,6 @@ package body EinlesenSpracheLogik is
       end if;
       
    end EinlesenSprache;
-   
-   
-   
-   function Ordnernamen
-     (NameExtern : in Wide_Wide_String)
-      return Boolean
-   is begin
-      
-      NamenSchleife:
-      for NamenSchleifenwert in NameExtern'Range loop
-         
-         case
-           NameExtern (NamenSchleifenwert)
-         is
-            when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | Space | Hyphen | Low_Line | Full_Stop =>
-               null;
-               
-            when others =>
-               return False;
-         end case;
-         
-      end loop NamenSchleife;
-      
-      return True;
-      
-   end Ordnernamen;
    
    
    

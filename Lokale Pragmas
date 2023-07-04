@@ -60,16 +60,34 @@ pragma Restrictions (No_Dependence => Ada.Execution_Time.Group_Budget);
 pragma Restrictions (No_Dependence => Ada.Execution_Time.Timers);
 pragma Restrictions (No_Dependence => Ada.Task_Attributes);
 pragma Restrictions (No_Dependence => Ada.System.Multiprocessors.Dispatching_Domains);
+pragma Restrictions (No_Implementation_Units);
 
--- pragma Restrictions (No_Relative_Delay); -- Die notwendige Verwendung von delay until verhinderte scheinbar den korrekten Abbruch von Tasks.
 
+
+-- Scheinbar sind pragma Restrictions (No_Unchecked_Conversion), pragma Restrictions (No_Unchecked_Deallocation) und pragma Restrictions (No_Asynchronous_Control) auch veraltete Funktionen, mal näher anschauen.
+-- pragma Restrictions (No_Obsolescent_Features);
+
+
+
+-- Nicht benutzbar in meinem Spiel:
+-- Die notwendige Verwendung von delay until verhinderte scheinbar den korrekten Abbruch von Tasks.
+-- pragma Restrictions (No_Relative_Delay);
 -- pragma Restrictions (No_Default_Stream_Attributes);
 -- pragma Restrictions (No_Abort_Statements);
--- pragma Restrictions (No_Finalization); -- Verursacht Probleme, vermutlich weil pragma Restrictions (No_Abort_Statements); nicht aktiv ist.
+-- Verursacht Probleme, vermutlich weil pragma Restrictions (No_Abort_Statements); nicht aktiv ist.
+-- pragma Restrictions (No_Finalization);
 -- pragma Restrictions (No_Task_Hierarchy);
--- pragma Restrictions (No_Implementation_Units);
--- pragma Restrictions (No_Multiple_Elaboration);
-
+-- pragma Restrictions (No_Multiple_Elaboration);	
 -- Werde ich vermutlich nicht einbauen können, da Real_Time keine Datumsfunktion hat. Gibt es dazu eine alternative Lösung?
 -- pragma Restrictions (No_Dependence => Ada.Calendar);
 -- pragma Restrictions (No_Calendar); -- Ist das nicht identisch mit dem Oberen?
+
+
+
+-- Veraltet:
+
+
+
+-- Sonstiges:
+-- Scheint bei meinem Spiel nicht wirklich einen Unterschied zu bewirken.
+-- pragma Discard_Names;

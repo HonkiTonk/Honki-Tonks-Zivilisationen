@@ -18,11 +18,6 @@ with KartengrundDatentypen;
 package InteraktionAuswahl is
    pragma Elaborate_Body;
 
-   -- Mausposition wird immer vom Grafiktask geschrieben und aktuell vom Logik- und Grafiktask gelesen, sollte auch so bleiben.
-   Mausposition : Sf.System.Vector2.sfVector2f;
-
-
-
    type PositionenMenüeinträgeArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range, 1 .. MenueKonstanten.ZweitlängstesMenü) of Sf.Graphics.Rect.sfFloatRect;
    PositionenMenüeinträge : PositionenMenüeinträgeArray := (others => (others => GrafikRecordKonstanten.Leerbereich));
 
@@ -98,5 +93,27 @@ package InteraktionAuswahl is
 
    type PositionenZusatzgrundeditorArray is array (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenZusatzgrundeditor : PositionenZusatzgrundeditorArray := (others => GrafikRecordKonstanten.Leerbereich);
+
+   procedure SchreibeGesamteMausposition
+     (MauspositionExtern : in Sf.System.Vector2.sfVector2f);
+
+
+
+   function LeseGesamteMausposition
+     return Sf.System.Vector2.sfVector2f;
+
+   function LeseGesamteMauspositionInteger
+     return Sf.System.Vector2.sfVector2i;
+
+   function LeseXMausachse
+     return Float;
+
+   function LeseYMausachse
+     return Float;
+
+private
+
+   -- Mausposition wird immer vom Grafiktask geschrieben und aktuell vom Logik- und Grafiktask gelesen, sollte auch so bleiben.
+   Mausposition : Sf.System.Vector2.sfVector2f;
 
 end InteraktionAuswahl;

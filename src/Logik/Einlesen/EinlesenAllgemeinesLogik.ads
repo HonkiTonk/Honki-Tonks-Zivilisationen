@@ -11,6 +11,14 @@ package EinlesenAllgemeinesLogik is
       AktuelleZeileExtern : in Positive)
       return Boolean;
 
+   function NamensprüfungWindows
+     (NameExtern : in Wide_Wide_String)
+      return Boolean
+     with
+       Pre => (
+                 NameExtern'Length > 0
+              );
+
    function LeeresVerzeichnis
      (VerzeichnisExtern : in String)
       return Boolean

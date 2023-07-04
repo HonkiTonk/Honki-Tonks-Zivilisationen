@@ -1,9 +1,8 @@
-with Ada.Characters.Wide_Wide_Latin_1;
-
 with Sf.Graphics.Text;
 
 with TextKonstanten;
 with TextaccessVariablen;
+with BetriebssystemKonstanten;
 
 package body ZeilenumbruchberechnungGrafik is
    
@@ -50,7 +49,7 @@ package body ZeilenumbruchberechnungGrafik is
             case
               TextExtern (TextbereichSchleifenwert)
             is
-               when Ada.Characters.Wide_Wide_Latin_1.Space =>
+               when BetriebssystemKonstanten.Leerzeichen =>
                   Zwischenwert := TextbereichSchleifenwert;
                   
                when others =>
@@ -64,11 +63,11 @@ package body ZeilenumbruchberechnungGrafik is
                  Zwischenwert
                is
                   when -1 =>
-                     NeuerText := NeuerText & TextExtern (SchleifenAnfang .. TextbereichSchleifenwert) & Ada.Characters.Wide_Wide_Latin_1.LF;
+                     NeuerText := NeuerText & TextExtern (SchleifenAnfang .. TextbereichSchleifenwert) & BetriebssystemKonstanten.LF;
                      SchleifenAnfang := TextbereichSchleifenwert + 1;
                      
                   when others =>
-                     NeuerText := NeuerText & TextExtern (SchleifenAnfang .. Zwischenwert - 1) & Ada.Characters.Wide_Wide_Latin_1.LF;
+                     NeuerText := NeuerText & TextExtern (SchleifenAnfang .. Zwischenwert - 1) & BetriebssystemKonstanten.LF;
                      SchleifenAnfang := Zwischenwert + 1;
                end case;
                

@@ -1,4 +1,3 @@
-with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with VerzeichnisKonstanten;
@@ -10,6 +9,7 @@ with TextKonstanten;
 with AuswahlKonstanten;
 with Projekteinstellungen;
 with TextArrays;
+with BetriebssystemKonstanten;
 
 with LeseAllgemeines;
 with SchreibeGrafiktask;
@@ -20,6 +20,7 @@ with SpielstandAllgemeinesLogik;
 with JaNeinLogik;
 with SpielstandEntfernenLogik;
 with SpielstandVariablen;
+with EinlesenAllgemeinesLogik;
 
 package body SpielstandlisteLogik is
 
@@ -278,7 +279,7 @@ package body SpielstandlisteLogik is
             return NamePrüfenLinux (NameExtern => NameExtern);
             
          when False =>
-            return NamePrüfenWindows (NameExtern => NameExtern);
+            return EinlesenAllgemeinesLogik.NamensprüfungWindows (NameExtern => NameExtern);
       end case;
       
    end NamePrüfen;
@@ -296,7 +297,7 @@ package body SpielstandlisteLogik is
          case
            NameExtern (PrüfenSchleifenwert)
          is
-            when '/' | NUL =>
+            when '/' | BetriebssystemKonstanten.NUL =>
                return False;
                
             when others =>
@@ -308,31 +309,5 @@ package body SpielstandlisteLogik is
       return True;
       
    end NamePrüfenLinux;
-   
-   
-   
-   function NamePrüfenWindows
-     (NameExtern : in Wide_Wide_String)
-      return Boolean
-   is begin
-      
-      PrüfenSchleife:
-      for PrüfenSchleifenwert in NameExtern'Range loop
-         
-         case
-           NameExtern (PrüfenSchleifenwert)
-         is
-            when 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | Space | Hyphen | Low_Line | Full_Stop =>
-               null;
-               
-            when others =>
-               return False;
-         end case;
-         
-      end loop PrüfenSchleife;
-      
-      return True;
-      
-   end NamePrüfenWindows;
 
 end SpielstandlisteLogik;

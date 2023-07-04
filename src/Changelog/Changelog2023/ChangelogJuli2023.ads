@@ -182,17 +182,20 @@ package ChangelogJuli2023 is
    
    
 
-   -- Version 0.05. => 0.05. (05.07.2023):
+   -- Version 0.05.3070 => 0.05. (05.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.3010 => 0.05. (04.07.2023):
+   -- Version 0.05.3010 => 0.05.3070 (04.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Lokale Pragmas erweitert.
+   -- Arbeitsspeicherverbrauch um rund 25 MB reduziert.
+   -- Debugmenü überarbeitet und erweitert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

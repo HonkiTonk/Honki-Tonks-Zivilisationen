@@ -77,7 +77,7 @@ package body CursorplatzierungAltGrafik is
    is begin
       
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                 point        => (Sf.sfInt32 (InteraktionAuswahl.Mausposition.x), Sf.sfInt32 (InteraktionAuswahl.Mausposition.y)),
+                                                                 point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                  view         => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
       
       SchreibeCursor.EAchseAlt (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
@@ -189,9 +189,9 @@ package body CursorplatzierungAltGrafik is
    is begin
             
       if
-        InteraktionAuswahl.Mausposition.x < GrafikKonstanten.Nullwert
+       InteraktionAuswahl.LeseXMausachse < GrafikKonstanten.Nullwert
         or
-          InteraktionAuswahl.Mausposition.y < GrafikKonstanten.Nullwert
+          InteraktionAuswahl.LeseYMausachse < GrafikKonstanten.Nullwert
       then
          null;
          
@@ -200,7 +200,7 @@ package body CursorplatzierungAltGrafik is
          Viewzentrum := Sf.Graphics.View.getCenter (view => Views.KartenbefehlsviewAccess);
          
          Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                    point        => (Sf.sfInt32 (InteraktionAuswahl.Mausposition.x), Sf.sfInt32 (InteraktionAuswahl.Mausposition.y)),
+                                                                    point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                     view         => Views.KartenbefehlsviewAccess);
       
          case
@@ -221,9 +221,9 @@ package body CursorplatzierungAltGrafik is
          null;
          
       elsif
-        InteraktionAuswahl.Mausposition.x <= GrafikKonstanten.Nullwert
+        InteraktionAuswahl.LeseXMausachse <= GrafikKonstanten.Nullwert
         or
-          InteraktionAuswahl.Mausposition.y <= GrafikKonstanten.Nullwert
+          InteraktionAuswahl.LeseYMausachse <= GrafikKonstanten.Nullwert
       then
          null;
          
@@ -232,7 +232,7 @@ package body CursorplatzierungAltGrafik is
          Viewzentrum := Sf.Graphics.View.getCenter (view => Views.EinheitenbefehlsviewAccess);
          
          Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                    point        => (Sf.sfInt32 (InteraktionAuswahl.Mausposition.x), Sf.sfInt32 (InteraktionAuswahl.Mausposition.y)),
+                                                                    point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                     view         => Views.EinheitenbefehlsviewAccess);
             
          case

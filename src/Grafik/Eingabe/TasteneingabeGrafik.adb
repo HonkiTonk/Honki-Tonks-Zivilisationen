@@ -46,14 +46,14 @@ package body TasteneingabeGrafik is
                SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Fenster_Verändert_Enum);
                
             when Sf.Window.Event.sfEvtMouseLeft =>
-               InteraktionAuswahl.Mausposition := GrafikRecordKonstanten.FalschePosition;
+               InteraktionAuswahl.SchreibeGesamteMausposition (MauspositionExtern => GrafikRecordKonstanten.FalschePosition);
                
             when Sf.Window.Event.sfEvtMouseEntered =>
-               InteraktionAuswahl.Mausposition := (Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => FensterGrafik.FensterLesen).x),
-                                                     Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => FensterGrafik.FensterLesen).y));
+               InteraktionAuswahl.SchreibeGesamteMausposition (MauspositionExtern => (Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => FensterGrafik.FensterLesen).x),
+                                                                                      Float (Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => FensterGrafik.FensterLesen).y)));
                   
             when Sf.Window.Event.sfEvtMouseMoved =>
-               InteraktionAuswahl.Mausposition := (Float (Nutzereingabe.mouseMove.x), Float (Nutzereingabe.mouseMove.y));
+               InteraktionAuswahl.SchreibeGesamteMausposition (MauspositionExtern => (Float (Nutzereingabe.mouseMove.x), Float (Nutzereingabe.mouseMove.y)));
                
             when others =>
                null;

@@ -31,7 +31,7 @@ package body CursorplatzierungGrafik is
       is
          when KartenKonstanten.LeerEAchse =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                       point        => (Sf.sfInt32 (InteraktionAuswahl.Mausposition.x), Sf.sfInt32 (InteraktionAuswahl.Mausposition.y)),
+                                                                       point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                        view         => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
             Sichtbereich := SichtweitenGrafik.SichtbereichLesen;
             

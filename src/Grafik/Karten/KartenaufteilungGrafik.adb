@@ -38,8 +38,8 @@ package body KartenaufteilungGrafik is
             RechtsLinksBefehlsanzeige := SichtweitenGrafik.UntenRechts (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
             
          when others =>
-            Position := KoordinatenPositionUmwandlungen.KoordinatenZuKartenposition (KoordinatenExtern => EinheitenauswahlExtern.Koordinaten,
-                                                                                     SpeziesExtern     => EinheitenauswahlExtern.SpeziesNummer.Spezies);
+            Position := KoordinatenPositionUmwandlungen.KoordinatenKartenposition (KoordinatenExtern => EinheitenauswahlExtern.Koordinaten,
+                                                                                   SpeziesExtern     => EinheitenauswahlExtern.SpeziesNummer.Spezies);
             Viewgröße := Sf.Graphics.View.getSize (view => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
             
             if
