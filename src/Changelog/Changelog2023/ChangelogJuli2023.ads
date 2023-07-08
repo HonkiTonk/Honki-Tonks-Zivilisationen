@@ -161,31 +161,28 @@ package ChangelogJuli2023 is
    
    
 
-   -- Version 0.05. => 0.05. (08.07.2023):
+   -- Version 0.05.3090 => 0.05. (08.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (07.07.2023):
+   -- Version 0.05.3070 => 0.05.3090 (07.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (06.07.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Version veröffentlicht.
    
    
 
-   -- Version 0.05.3070 => 0.05. (05.07.2023):
+   -- Version 0.05.3070 => 0.05.3070 (06.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.3070 => 0.05.3070 (05.07.2023):
+   
+   -- null.
    
    
 

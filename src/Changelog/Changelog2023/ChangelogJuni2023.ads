@@ -242,7 +242,7 @@ package ChangelogJuni2023 is
 
    -- Version 0.05.1590 => 0.05.1615 (03.06.2023):
    
-   -- Neues Version veröffentlicht.
+   -- Neue Version veröffentlicht.
    -- Kleinigkeiten korrigiert.
    
    
