@@ -2,6 +2,7 @@ with Ada.Calendar; use Ada.Calendar;
 
 private with GrafikDatentypen;
 private with TextnummernKonstanten;
+private with ZahlenDatentypen;
 
 package Grafik is
    pragma Elaborate_Body;
@@ -19,7 +20,8 @@ private
    procedure Eingaben;
 
    procedure AnzeigeEingaben
-     (EingabeExtern : in GrafikDatentypen.Eingabe_Enum);
+     (EingabeExtern : in GrafikDatentypen.Eingabe_Enum;
+      FrageExtern : in ZahlenDatentypen.EigenesNatural);
 
    procedure AnzeigeSpielmeldungen
      (AktuelleDarstellungExtern : in GrafikDatentypen.Aktuelle_Anzeige_Enum;

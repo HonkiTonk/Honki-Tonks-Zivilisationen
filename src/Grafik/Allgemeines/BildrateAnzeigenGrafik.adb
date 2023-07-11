@@ -40,7 +40,7 @@ package body BildrateAnzeigenGrafik is
          Farbe := Sf.Graphics.Color.sfRed;
       
       elsif
-        AktuelleBildrate < ZielBildrate - 1.00
+        AktuelleBildrate < ZielBildrate - 2.00
       then
          Farbe := Sf.Graphics.Color.sfYellow;
          
@@ -58,7 +58,7 @@ package body BildrateAnzeigenGrafik is
       
       TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.BildrateAccess,
                                                                    TextExtern       => KommazahlAlsString (KommazahlExtern => AktuelleBildrate),
-                                                                   PositionExtern   => (5.00, 5.00),
+                                                                   PositionExtern   => GrafikRecordKonstanten.StartView,
                                                                    FarbeExtern      => Farbe);
       
       Viewfläche.x := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.BildrateAccess,

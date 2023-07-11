@@ -118,8 +118,8 @@ package body ZahleneingabeLogik is
          when False =>
             null;
       end case;
-            
-      SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Keine_Eingabe_Enum);
+      
+      EingabeAllgemeinLogik.LeerEingabeartFrage;
       
       return EingegebeneZahl;
       

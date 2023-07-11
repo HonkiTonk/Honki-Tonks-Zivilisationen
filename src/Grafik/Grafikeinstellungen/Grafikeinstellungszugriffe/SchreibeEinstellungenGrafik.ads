@@ -32,7 +32,7 @@ package SchreibeEinstellungenGrafik is
      (FarbtiefeExtern : in Sf.sfUint32)
      with
        Pre => (
-                 FarbtiefeExtern > 0
+                 FarbtiefeExtern in GrafikKonstanten.MinimaleFarbtiefe .. GrafikKonstanten.MaximaleFarbtiefe
               );
    pragma Inline (Farbtiefe);
    
@@ -40,7 +40,7 @@ package SchreibeEinstellungenGrafik is
      (BildrateExtern : in Sf.sfUint32)
      with
        Pre => (
-                 BildrateExtern in GrafikKonstanten.MinimaleBildrate .. GrafikKonstanten.MaximaleBildrate
+                 BildrateExtern <= GrafikKonstanten.MaximaleBildrate
               );
    pragma Inline (Bildrate);
    

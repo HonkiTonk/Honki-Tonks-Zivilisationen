@@ -22,6 +22,9 @@ package GrafikKonstanten is
    
    MinimaleBildrate : constant Sf.sfUint32 := Sf.sfUint32'First;
    MaximaleBildrate : constant Sf.sfUint32 := 1_000;
+   
+   MinimaleFarbtiefe : constant Sf.sfUint32 := 1;
+   MaximaleFarbtiefe : constant Sf.sfUint32 := 32;
         
    RahmenlosesFenster : constant Sf.Window.Window.sfWindowStyle := 0;
    TitelleisteFesteGrenzenFenster : constant Sf.Window.Window.sfWindowStyle := 1;

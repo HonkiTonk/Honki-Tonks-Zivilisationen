@@ -33,7 +33,7 @@ package LeseEinstellungenGrafik is
      return Sf.sfUint32
      with
        Post => (
-                  Farbtiefe'Result > 0
+                  Farbtiefe'Result in GrafikKonstanten.MinimaleFarbtiefe .. GrafikKonstanten.MaximaleFarbtiefe
                );
    pragma Inline (Farbtiefe);
    
@@ -41,7 +41,7 @@ package LeseEinstellungenGrafik is
      return Sf.sfUint32
      with
        Post => (
-                  Bildrate'Result in GrafikKonstanten.MinimaleBildrate .. GrafikKonstanten.MaximaleBildrate
+                  Bildrate'Result <= GrafikKonstanten.MaximaleBildrate
                );
    pragma Inline (Bildrate);
    

@@ -4,13 +4,13 @@ private with System;
 
 with Sf.System.Vector2;
 with Sf.Graphics.Rect;
+with Sf.Graphics.Color;
 
 with KartenRecords;
 with EinheitenRecords;
 with StadtRecords;
 
 private with WeltkarteRecords;
--- private with ;
 
 package Diagnoseinformationen is
    pragma Elaborate_Body;
@@ -57,6 +57,9 @@ package Diagnoseinformationen is
    
    procedure Boxinformationen
      (BoxExtern : in Sf.Graphics.Rect.sfFloatRect);
+   
+   procedure Farbinformationen
+     (FarbeExtern : in Sf.Graphics.Color.sfColor);
    
 private
    

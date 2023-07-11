@@ -17,7 +17,7 @@ package body Logik is
    procedure Logik
    is begin
       
-      SchreibenVerzeichnisseLogik.SchreibenVerzeichnisse;
+      SchreibenVerzeichnisseLogik.Verzeichnisse;
       EinlesenEinstellungenLogik.EinlesenEinstellungen;
       
       EinlesenLogik.EinlesenOhneAnzeige;

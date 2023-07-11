@@ -8,7 +8,7 @@ with Fehlermeldungssystem;
 
 package body SchreibenVerzeichnisseLogik is
 
-   procedure SchreibenVerzeichnisse
+   procedure Verzeichnisse
    is begin
       
       case
@@ -43,8 +43,8 @@ package body SchreibenVerzeichnisseLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenVerzeichnisseLogik.SchreibenVerzeichnisse: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibenVerzeichnisseLogik.Verzeichnisse: Konnte nicht gespeichert werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
       
-   end SchreibenVerzeichnisse;
+   end Verzeichnisse;
 
 end SchreibenVerzeichnisseLogik;

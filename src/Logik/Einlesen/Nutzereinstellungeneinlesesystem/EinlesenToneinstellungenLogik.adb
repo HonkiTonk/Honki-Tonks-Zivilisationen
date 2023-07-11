@@ -93,8 +93,8 @@ package body EinlesenToneinstellungenLogik is
                            Musiklautstärke);
          end case;
          
-         -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig gelesen wurde!
-         -- Sollte Probleme mit geänderten Datentypen vorbeugen.
+         -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig eingelesen wurde!
+         -- Sollte Probleme mit geänderten Datentypen teilweise vorbeugen.
          return End_Of_File (File => DateiLadenExtern);
       
       else

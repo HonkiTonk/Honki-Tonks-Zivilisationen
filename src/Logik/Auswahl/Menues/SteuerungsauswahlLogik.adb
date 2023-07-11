@@ -13,6 +13,7 @@ with TasteneingabeLogik;
 with MenuerueckgabenLogik;
 with MausauswahlLogik;
 with OftVerwendetSound;
+with EingabeAllgemeinLogik;
 
 package body SteuerungsauswahlLogik is
       
@@ -78,7 +79,7 @@ package body SteuerungsauswahlLogik is
       
       NeueTaste := TasteneingabeLogik.TastenbelegungAnpassen;
       
-      SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Keine_Eingabe_Enum);
+      EingabeAllgemeinLogik.LeerEingabeartFrage;
       
       case
         NeueTaste

@@ -41,9 +41,7 @@ private
    
    Fenstermodus : Sf.Window.Window.sfWindowStyle;
    
-   MausAccess : Sf.Window.sfCursor_Ptr;
-   
-   FensterAccess : Sf.Graphics.sfRenderWindow_Ptr;
+   FensterAccess : Sf.Graphics.sfRenderWindow_Ptr := null;
    
    Startauflösung : Sf.System.Vector2.sfVector2u;
    Auflösung : Sf.System.Vector2.sfVector2u;
@@ -52,8 +50,12 @@ private
    
    FensterNichtErzeugbar : exception;
    
-   procedure FensterErzeugenErweitert;
    procedure AktuelleAuflösungFestlegen;
    procedure MauszeigerFestlegen;
+   
+   
+   
+   function FensterErzeugenErweitert
+     return Sf.Graphics.sfRenderWindow_Ptr;
    
 end FensterGrafik;

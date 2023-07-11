@@ -82,9 +82,10 @@ package body HintergrundGrafik is
       then
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "HintergrundGrafik.Spezieshintergrund: Hintergrund fehlt: " & SpeziesExtern'Wide_Wide_Image & " " & HintergrundExtern'Wide_Wide_Image);
       
+         -- Cyan Zeichnen lassen, um zu signalisieren dass hier etwas nicht stimmt.
          ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
                                                  PositionExtern  => GrafikRecordKonstanten.Nullposition,
-                                                 FarbeExtern     => Sf.Graphics.Color.sfBlack);
+                                                 FarbeExtern     => Sf.Graphics.Color.sfCyan);
          
       else
          Sf.Graphics.Sprite.scale (sprite  => SpezieshintergrundSpriteAccess,

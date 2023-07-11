@@ -133,44 +133,43 @@ package ChangelogJuli2023 is
    
    
 
-   -- Version 0.05. => 0.05. (12.07.2023):
+   -- Version 0.05.3160 => 0.05. (12.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (11.07.2023):
+   -- Version 0.05.3110 => 0.05.3160 (11.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (10.07.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert, welcher unter Windows zu verschwindendem Text führte.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Diagnossystem erweitert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05. => 0.05. (09.07.2023):
+   -- Version 0.05.3110 => 0.05.3110 (10.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.3090 => 0.05. (08.07.2023):
+   -- Version 0.05.3090 => 0.05.3110 (09.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Versucht einen Fehler in der Festlegung der Schriftart unter Windows zu beheben.
+   
+   
+
+   -- Version 0.05.3090 => 0.05.3090 (08.07.2023):
+   
+   -- null.
    
    
 
    -- Version 0.05.3070 => 0.05.3090 (07.07.2023):
    
-   -- Neue Version veröffentlicht.
+   -- Ver5sucht eine neue Version zu veröffentlichen.
    
    
 
@@ -190,7 +189,7 @@ package ChangelogJuli2023 is
    
    -- Interne Struktur und Benennung überarbeitet.
    -- Lokale Pragmas erweitert.
-   -- Arbeitsspeicherverbrauch um rund 25 MB reduziert.
+   -- Arbeitsspeicherverbrauch unter manchen Systemen um rund 25 MB reduziert.
    -- Debugmenü überarbeitet und erweitert.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    

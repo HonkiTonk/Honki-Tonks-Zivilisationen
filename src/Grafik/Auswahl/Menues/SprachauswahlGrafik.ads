@@ -1,3 +1,5 @@
+with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+
 private with Sf.Graphics;
 private with Sf.Graphics.Color;
 private with Sf.Graphics.ConvexShape;
@@ -13,7 +15,7 @@ package SprachauswahlGrafik is
     
 private
    
-   MehrereSeiten : Boolean;
+   MehrereSeitenVorhanden : Boolean;
 
    AktuelleAuswahl : Natural;
    Ende : Natural;
@@ -22,6 +24,9 @@ private
    
    AktuelleTextbreite : Float;
    NeueTextbreite : Float;
+   
+   AktuellerPfad : Unbounded_String := To_Unbounded_String (Source => "");
+   NeuerPfad : Unbounded_String := To_Unbounded_String (Source => "");
    
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;

@@ -7,6 +7,7 @@ with LeseOptionen;
 
 with TasteneingabeLogik;
 with MausauswahlLogik;
+with EingabeAllgemeinLogik;
 
 package body JaNeinLogik is
 
@@ -48,8 +49,7 @@ package body JaNeinLogik is
          
       end loop AuswahlSchleife;
       
-      SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Keine_Eingabe_Enum);
-      SchreibeGrafiktask.Fragenanzeige (FrageExtern => 0);
+      EingabeAllgemeinLogik.LeerEingabeartFrage;
       
       -- Hülle für später. äöü
       case

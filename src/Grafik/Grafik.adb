@@ -279,7 +279,8 @@ package body Grafik is
                              LetzteDarstellungExtern   => LetzteDarstellung,
                              SpielmeldungExtern        => LeseGrafiktask.Spielmeldung);
       
-      AnzeigeEingaben (EingabeExtern => LeseGrafiktask.Eingabeart);
+      AnzeigeEingaben (EingabeExtern => LeseGrafiktask.Eingabeart,
+                       FrageExtern   => LeseGrafiktask.Fragenanzeige);
                              
       case
         LeseEinstellungenGrafik.BildrateAnzeigen
@@ -331,15 +332,23 @@ package body Grafik is
    
    
    procedure AnzeigeEingaben
-     (EingabeExtern : in GrafikDatentypen.Eingabe_Enum)
+     (EingabeExtern : in GrafikDatentypen.Eingabe_Enum;
+      FrageExtern : in ZahlenDatentypen.EigenesNatural)
    is begin
       
       case
         EingabeExtern
       is
          when GrafikDatentypen.Eingabe_Fragen_Enum'Range =>
-            EingabenanzeigeGrafik.Fragenaufteilung (FrageExtern   => LeseGrafiktask.Fragenanzeige,
-                                                    EingabeExtern => EingabeExtern);
+            if
+              FrageExtern /= 0
+            then
+               EingabenanzeigeGrafik.Fragenaufteilung (FrageExtern   => FrageExtern,
+                                                       EingabeExtern => EingabeExtern);
+               
+            else
+               null;
+            end if;
             
          when GrafikDatentypen.Einheit_Auswahl_Enum =>
             EingabenanzeigeGrafik.AnzeigeEinheitenStadt (SpeziesStadtnameExtern => UebergabeRecordErmittelnGrafik.SpeziesStadtname (StadtSpeziesNummerExtern => (LeseGrafiktask.AktiveSpezies, LeseGrafiktask.Stadtnummer)),

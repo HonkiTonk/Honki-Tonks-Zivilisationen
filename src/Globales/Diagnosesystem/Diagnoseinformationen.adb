@@ -174,5 +174,17 @@ package body Diagnoseinformationen is
       New_Line;
       
    end Boxinformationen;
+   
+   
+   
+   procedure Farbinformationen
+     (FarbeExtern : in Sf.Graphics.Color.sfColor)
+   is begin
+      
+      Put ("Rot:" & FarbeExtern.r'Wide_Wide_Image & "   Grün:" & FarbeExtern.g'Wide_Wide_Image & "   Blau:" & FarbeExtern.b'Wide_Wide_Image & "   Alpha:" & FarbeExtern.a'Wide_Wide_Image);
+      
+      New_Line;
+      
+   end Farbinformationen;
 
 end Diagnoseinformationen;

@@ -41,7 +41,7 @@ package body SprachauswahlGrafik is
       
       -- Diese Werte später in die Prozedur übergeben, außer die Sprachen? äöü
       -- Gilt auch für die Spielstandauswahl. äöü
-      MehrereSeiten := LeseGrafiktask.Seitenauswahl;
+      MehrereSeitenVorhanden := LeseGrafiktask.Seitenauswahl;
       AktuelleAuswahl := LeseGrafiktask.Erstauswahl;
       Ende := LeseGrafiktask.Endauswahl;
       AktuelleSprachen := SprachauswahlLogik.AktuelleSprachen;
@@ -56,23 +56,32 @@ package body SprachauswahlGrafik is
                                                                      AuswahlExtern    => AktuelleAuswahl);
          
          if
-           MehrereSeiten = False
+           MehrereSeitenVorhanden = False
            or
-             (MehrereSeiten
+             (MehrereSeitenVorhanden
               and
                 ZeileSchleifenwert < Ende)
          then
             if
               Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))) & VerzeichnisKonstanten.ZweiDatei) = False
             then
-               SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => TexteinstellungenGrafik.StandardSchriftartVerwenden);
+               NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.StandardSchriftartVerwenden);
             
             else
-               SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => TexteinstellungenGrafik.EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))));
+               NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.EigeneSchriftartVerwenden (SpracheExtern => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))));
             end if;
-         
-            Sf.Graphics.Text.setFont (text => TextaccessVariablen.SprachauswahlAccess,
-                                      font => SchriftartAccess);
+            
+            if
+              NeuerPfad /= AktuellerPfad
+            then
+               AktuellerPfad := NeuerPfad;
+               SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => To_String (Source => AktuellerPfad));
+               Sf.Graphics.Text.setFont (text => TextaccessVariablen.SprachauswahlAccess,
+                                         font => SchriftartAccess);
+               
+            else
+               null;
+            end if;
             
             TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                          TextExtern       => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)),
@@ -90,7 +99,7 @@ package body SprachauswahlGrafik is
             InteraktionAuswahl.PositionenSprachauswahl (ZeileSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SprachauswahlAccess);
                         
          elsif
-           MehrereSeiten
+           MehrereSeitenVorhanden
            and
              ZeileSchleifenwert = AktuelleSprachen'Last
          then

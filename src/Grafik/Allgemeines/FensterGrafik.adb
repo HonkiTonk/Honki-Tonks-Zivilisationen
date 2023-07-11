@@ -17,7 +17,7 @@ package body FensterGrafik is
    procedure FensterErzeugen
    is begin
       
-      FensterErzeugenErweitert;
+      FensterAccess := FensterErzeugenErweitert;
 
       if
         FensterAccess = null
@@ -36,7 +36,8 @@ package body FensterGrafik is
    
    
    
-   procedure FensterErzeugenErweitert
+   function FensterErzeugenErweitert
+     return Sf.Graphics.sfRenderWindow_Ptr
    is begin
       
       Fenstermodus := LeseEinstellungenGrafik.Fenstermodus;
@@ -58,12 +59,15 @@ package body FensterGrafik is
             Fenstermodus := GrafikKonstanten.StandardFenster;
             Startauflösung := (GrafikKonstanten.MinimaleAuflösungsbreite, GrafikKonstanten.MinimaleAuflösunghöhe);
       end case;
-            
-      FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (Startauflösung.x,
-                                                                         Startauflösung.y,
-                                                                         LeseEinstellungenGrafik.Farbtiefe),
-                                                               title => SonstigesKonstanten.Spielname,
-                                                               style => Fenstermodus);
+      
+      return Sf.Graphics.RenderWindow.createUnicode (mode  => (
+                                                               width        => Startauflösung.x,
+                                                               height       => Startauflösung.y,
+                                                               bitsPerPixel => LeseEinstellungenGrafik.Farbtiefe
+                                                              ),
+                                                     -- Die Versionsnummer mit im Titel lassen? äöü
+                                                     title => SonstigesKonstanten.Spielname & " - " & SonstigesKonstanten.Versionsnummer,
+                                                     style => Fenstermodus);
       
    end FensterErzeugenErweitert;
    
@@ -142,9 +146,8 @@ package body FensterGrafik is
    procedure MauszeigerFestlegen
    is begin
       
-      MausAccess := Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorCross);
       Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => FensterAccess,
-                                               cursor       => MausAccess);
+                                               cursor       => Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorCross));
       
    end MauszeigerFestlegen;
    

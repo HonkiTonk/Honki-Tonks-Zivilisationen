@@ -1,6 +1,8 @@
 with ZeitKonstanten;
+with GrafikDatentypen;
 
 with LeseLogiktask;
+with SchreibeGrafiktask;
 
 package body EingabeAllgemeinLogik is
 
@@ -14,5 +16,16 @@ package body EingabeAllgemeinLogik is
       end loop;
       
    end EingabeAbwarten;
+   
+   
+   
+   procedure LeerEingabeartFrage
+   is begin
+      
+      -- Reihenfolge hier nicht ändern!
+      SchreibeGrafiktask.Eingabeart (EingabeartExtern => GrafikDatentypen.Keine_Eingabe_Enum);
+      SchreibeGrafiktask.Fragenanzeige (FrageExtern => 0);
+      
+   end LeerEingabeartFrage;
 
 end EingabeAllgemeinLogik;
