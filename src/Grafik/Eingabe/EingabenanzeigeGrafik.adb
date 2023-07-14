@@ -110,7 +110,7 @@ package body EingabenanzeigeGrafik is
       is
          when False =>
             Text := To_Unbounded_Wide_Wide_String (Source => "-") & ZahlAlsString (ZahlExtern => LeseGrafiktask.Zahleneingabe);
-                              
+            
          when True =>
             Text := To_Unbounded_Wide_Wide_String (Source => ZahlAlsString (ZahlExtern => LeseGrafiktask.Zahleneingabe));       
       end case;

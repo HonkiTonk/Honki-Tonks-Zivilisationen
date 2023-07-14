@@ -43,10 +43,11 @@ package body HintergrundGrafik is
                                                  FarbeExtern     => Sf.Graphics.Color.sfCyan);
          
       else
+         Skalierung := TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => HintergrundSpritePositionierbarAccess,
+                                                                               TextureAccessExtern => EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern),
+                                                                               GrößeExtern         => AbmessungenExtern);
          Sf.Graphics.Sprite.scale (sprite  => HintergrundSpritePositionierbarAccess,
-                                   factors => TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => HintergrundSpritePositionierbarAccess,
-                                                                                                      TextureAccessExtern => EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern),
-                                                                                                      GrößeExtern         => AbmessungenExtern));
+                                   factors => Skalierung);
          
          Farbe := Sf.Graphics.Sprite.getColor (sprite => HintergrundSpritePositionierbarAccess);
          
@@ -88,10 +89,11 @@ package body HintergrundGrafik is
                                                  FarbeExtern     => Sf.Graphics.Color.sfCyan);
          
       else
+         Skalierung := TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => SpezieshintergrundSpriteAccess,
+                                                                               TextureAccessExtern => EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, HintergrundExtern),
+                                                                               GrößeExtern         => AbmessungenExtern);
          Sf.Graphics.Sprite.scale (sprite  => SpezieshintergrundSpriteAccess,
-                                   factors => TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => SpezieshintergrundSpriteAccess,
-                                                                                                      TextureAccessExtern => EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, HintergrundExtern),
-                                                                                                      GrößeExtern         => AbmessungenExtern));
+                                   factors => Skalierung);
          
          Farbe := Sf.Graphics.Sprite.getColor (sprite => SpezieshintergrundSpriteAccess);
          

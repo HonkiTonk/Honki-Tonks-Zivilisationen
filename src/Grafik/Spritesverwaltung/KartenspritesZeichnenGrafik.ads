@@ -50,6 +50,8 @@ package KartenspritesZeichnenGrafik is
 
 private
 
+   Skalierung : Sf.System.Vector2.sfVector2f;
+
    Farbe : Sf.Graphics.Color.sfColor;
 
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;

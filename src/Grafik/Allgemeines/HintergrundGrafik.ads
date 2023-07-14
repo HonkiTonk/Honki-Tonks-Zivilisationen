@@ -47,9 +47,11 @@ package HintergrundGrafik is
 
 private
 
-   HintergrundSpritePositionierbarAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
-   SpezieshintergrundSpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
+   Skalierung : Sf.System.Vector2.sfVector2f;
 
    Farbe : Sf.Graphics.Color.sfColor;
+
+   HintergrundSpritePositionierbarAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
+   SpezieshintergrundSpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
 end HintergrundGrafik;

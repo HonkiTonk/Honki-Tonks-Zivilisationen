@@ -112,31 +112,29 @@ package ChangelogJuli2023 is
    
    
 
-   -- Version 0.05. => 0.05. (15.07.2023):
+   -- Version 0.05.3185 => 0.05. (15.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (14.07.2023):
+   -- Version 0.05.3160 => 0.05.3185 (14.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (13.07.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert der dazu führen konnte das Hintergründe immer schwarz waren.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.3160 => 0.05. (12.07.2023):
+   -- Version 0.05.3160 => 0.05.3160 (13.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.3160 => 0.05.3160 (12.07.2023):
+   
+   -- null.
    
    
 
@@ -144,7 +142,7 @@ package ChangelogJuli2023 is
    
    -- Fehler korrigiert, welcher unter Windows zu verschwindendem Text führte.
    -- Interne Struktur und Benennung überarbeitet.
-   -- Diagnossystem erweitert.
+   -- Diagnosesystem erweitert.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    

@@ -20,10 +20,12 @@ package body KartenspritesZeichnenGrafik is
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.KartenfeldZeichnen: TexturAccessExtern: null");
          
       else
+         Skalierung := TexturenSetzenSkalierenGrafik.Weltkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                TextureAccessExtern => TexturAccessExtern);
+         
          DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
                                        PositionExtern         => PositionExtern,
-                                       SkalierungExtern       => TexturenSetzenSkalierenGrafik.Weltkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                          TextureAccessExtern => TexturAccessExtern),
+                                       SkalierungExtern       => Skalierung,
                                        DurchsichtigkeitExtern => DurchsichtigkeitExtern);
       end if;
       
@@ -45,11 +47,13 @@ package body KartenspritesZeichnenGrafik is
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtfeldZeichnen: TexturAccessExtern: null");
          
       else
+         Skalierung := TexturenSetzenSkalierenGrafik.Stadtbewirtschaftung (SpriteAccessExtern  => SpriteAccess,
+                                                                           TextureAccessExtern => TexturAccessExtern,
+                                                                           GrößeExtern         => GrößeExtern);
+         
          DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
                                        PositionExtern         => PositionExtern,
-                                       SkalierungExtern       => TexturenSetzenSkalierenGrafik.Stadtbewirtschaftung (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                     TextureAccessExtern => TexturAccessExtern,
-                                                                                                                     GrößeExtern         => GrößeExtern),
+                                       SkalierungExtern       => Skalierung,
                                        DurchsichtigkeitExtern => Sf.sfUint8'Last);
       end if;
       
@@ -69,10 +73,12 @@ package body KartenspritesZeichnenGrafik is
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.StadtkarteZeichnen: TexturAccessExtern: null");
          
       else
+         Skalierung := TexturenSetzenSkalierenGrafik.Stadtkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                 TextureAccessExtern => TexturAccessExtern);
+         
          SpritesverwaltungssystemGrafik.PositionSkalierungZeichnen (SpriteAccessExtern => SpriteAccess,
                                                                     PositionExtern     => GrafikRecordKonstanten.Nullposition,
-                                                                    SkalierungExtern   => TexturenSetzenSkalierenGrafik.Stadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                    TextureAccessExtern => TexturAccessExtern));
+                                                                    SkalierungExtern   => Skalierung);
       end if;
       
    end StadtkarteZeichnen;
@@ -94,11 +100,13 @@ package body KartenspritesZeichnenGrafik is
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "KartenspritesZeichnenGrafik.SpriteZeichnenVariabel: TexturAccessExtern: null");
          
       else
+         Skalierung := TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => SpriteAccess,
+                                                                               TextureAccessExtern => TexturAccessExtern,
+                                                                               GrößeExtern         => GrößeExtern);
+         
          SpritesverwaltungssystemGrafik.PositionSkalierungZeichnen (SpriteAccessExtern => SpriteAccess,
                                                                     PositionExtern     => PositionExtern,
-                                                                    SkalierungExtern   => TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                                  TextureAccessExtern => TexturAccessExtern,
-                                                                                                                                                  GrößeExtern         => GrößeExtern));
+                                                                    SkalierungExtern   => Skalierung);
       end if;
       
    end SpriteZeichnenVariabel;

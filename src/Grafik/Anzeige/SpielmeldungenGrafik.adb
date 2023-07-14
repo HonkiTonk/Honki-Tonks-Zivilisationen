@@ -16,6 +16,7 @@ with TextaccessverwaltungssystemGrafik;
 
 package body SpielmeldungenGrafik is
 
+   -- Kann ich solche Konstrukte zusammenfassen, wenn ich einfach alles was wichtig ist übergebe? äöü
    procedure Spielmeldung
      (MeldungExtern : in Positive)
    is begin
