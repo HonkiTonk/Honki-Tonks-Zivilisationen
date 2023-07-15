@@ -114,6 +114,8 @@ package ChangelogJuli2023 is
 
    -- Version 0.05.3185 => 0.05. (15.07.2023):
    
+   -- Grafiken optimiert.
+   -- Neue Version erstellt.
    -- 
    -- Kleinigkeiten korrigiert.
    
