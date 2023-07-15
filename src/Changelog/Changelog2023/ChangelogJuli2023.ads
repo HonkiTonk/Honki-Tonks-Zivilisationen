@@ -105,18 +105,18 @@ package ChangelogJuli2023 is
    
    
 
-   -- Version 0.05. => 0.05. (16.07.2023):
+   -- Version 0.05.3230 => 0.05. (16.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.3185 => 0.05. (15.07.2023):
+   -- Version 0.05.3185 => 0.05.3230 (15.07.2023):
    
-   -- Grafiken optimiert.
+   -- Grafiken überarbeitet.
    -- Neue Version veröffentlicht.
-   -- 
+   -- Interne Struktur und Benennung überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    

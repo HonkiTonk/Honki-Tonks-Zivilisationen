@@ -77,7 +77,7 @@ private
                                                  False =>
                                                    (
                                                     True  => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Links_Enum),
-                                                    False => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussendstück_Rechts_Enum)
+                                                    False => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussende_Rechts_Enum)
                                                    )
                                                 )
                                              ),
@@ -95,7 +95,7 @@ private
                                                  False =>
                                                    (
                                                     True  => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Rechts_Enum),
-                                                    False => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussendstück_Links_Enum)
+                                                    False => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussende_Links_Enum)
                                                    )
                                                 ),
                                               
@@ -104,12 +104,12 @@ private
                                                  True =>
                                                    (
                                                     True  => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Fluss_Senkrecht_Enum),
-                                                    False => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussendstück_Unten_Enum)
+                                                    False => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussende_Unten_Enum)
                                                    ),
                                                  
                                                  False =>
                                                    (
-                                                    True  => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussendstück_Oben_Enum),
+                                                    True  => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussende_Oben_Enum),
                                                     False => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.See_Enum)
                                                    )
                                                 )
@@ -122,10 +122,10 @@ private
                                                 KartenextraDatentypen.Flusskurve_Unten_Links_Enum   => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Drei_Unten_Enum),
                                                 KartenextraDatentypen.Flusskurve_Oben_Links_Enum    => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Drei_Oben_Enum),
                                                 KartenextraDatentypen.Flusskreuzung_Drei_Links_Enum => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Vier_Enum),
-                                                KartenextraDatentypen.Flussendstück_Rechts_Enum     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Fluss_Waagrecht_Enum),
-                                                KartenextraDatentypen.Flussendstück_Unten_Enum      => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Oben_Rechts_Enum),
-                                                KartenextraDatentypen.Flussendstück_Oben_Enum       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Rechts_Enum),
-                                                KartenextraDatentypen.See_Enum                      => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussendstück_Links_Enum),
+                                                KartenextraDatentypen.Flussende_Rechts_Enum     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Fluss_Waagrecht_Enum),
+                                                KartenextraDatentypen.Flussende_Unten_Enum      => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Oben_Rechts_Enum),
+                                                KartenextraDatentypen.Flussende_Oben_Enum       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Rechts_Enum),
+                                                KartenextraDatentypen.See_Enum                      => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussende_Links_Enum),
                                                 others                                              => 0
                                                );
    
@@ -134,10 +134,10 @@ private
                                                  KartenextraDatentypen.Flusskurve_Unten_Rechts_Enum   => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Drei_Unten_Enum),
                                                  KartenextraDatentypen.Flusskurve_Oben_Rechts_Enum    => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Drei_Oben_Enum),
                                                  KartenextraDatentypen.Flusskreuzung_Drei_Rechts_Enum => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Vier_Enum),
-                                                 KartenextraDatentypen.Flussendstück_Links_Enum       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Fluss_Waagrecht_Enum),
-                                                 KartenextraDatentypen.Flussendstück_Unten_Enum       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Oben_Links_Enum),
-                                                 KartenextraDatentypen.Flussendstück_Oben_Enum        => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Links_Enum),
-                                                 KartenextraDatentypen.See_Enum                       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussendstück_Rechts_Enum),
+                                                 KartenextraDatentypen.Flussende_Links_Enum       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Fluss_Waagrecht_Enum),
+                                                 KartenextraDatentypen.Flussende_Unten_Enum       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Oben_Links_Enum),
+                                                 KartenextraDatentypen.Flussende_Oben_Enum        => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Links_Enum),
+                                                 KartenextraDatentypen.See_Enum                       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussende_Rechts_Enum),
                                                  others                                               => 0
                                                 );
    
@@ -146,10 +146,10 @@ private
                                                KartenextraDatentypen.Flusskurve_Oben_Rechts_Enum  => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Drei_Rechts_Enum),
                                                KartenextraDatentypen.Flusskurve_Oben_Links_Enum   => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Drei_Links_Enum),
                                                KartenextraDatentypen.Flusskreuzung_Drei_Oben_Enum => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Vier_Enum),
-                                               KartenextraDatentypen.Flussendstück_Links_Enum     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Rechts_Enum),
-                                               KartenextraDatentypen.Flussendstück_Rechts_Enum    => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Links_Enum),
-                                               KartenextraDatentypen.Flussendstück_Unten_Enum     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Fluss_Senkrecht_Enum),
-                                               KartenextraDatentypen.See_Enum                     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussendstück_Oben_Enum),
+                                               KartenextraDatentypen.Flussende_Links_Enum     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Rechts_Enum),
+                                               KartenextraDatentypen.Flussende_Rechts_Enum    => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Unten_Links_Enum),
+                                               KartenextraDatentypen.Flussende_Unten_Enum     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Fluss_Senkrecht_Enum),
+                                               KartenextraDatentypen.See_Enum                     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussende_Oben_Enum),
                                                others                                             => 0
                                               );
    
@@ -158,10 +158,10 @@ private
                                                 KartenextraDatentypen.Flusskurve_Unten_Rechts_Enum  => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Drei_Rechts_Enum),
                                                 KartenextraDatentypen.Flusskurve_Unten_Links_Enum   => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Drei_Links_Enum),
                                                 KartenextraDatentypen.Flusskreuzung_Drei_Unten_Enum => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskreuzung_Vier_Enum),
-                                                KartenextraDatentypen.Flussendstück_Links_Enum      => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Oben_Rechts_Enum),
-                                                KartenextraDatentypen.Flussendstück_Rechts_Enum     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Oben_Links_Enum),
-                                                KartenextraDatentypen.Flussendstück_Oben_Enum       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Fluss_Senkrecht_Enum),
-                                                KartenextraDatentypen.See_Enum                      => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussendstück_Unten_Enum),
+                                                KartenextraDatentypen.Flussende_Links_Enum      => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Oben_Rechts_Enum),
+                                                KartenextraDatentypen.Flussende_Rechts_Enum     => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flusskurve_Oben_Links_Enum),
+                                                KartenextraDatentypen.Flussende_Oben_Enum       => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Fluss_Senkrecht_Enum),
+                                                KartenextraDatentypen.See_Enum                      => KartenextraDatentypen.Fluss_Oberfläche_Enum'Pos (KartenextraDatentypen.Flussende_Unten_Enum),
                                                 others                                              => 0
                                                );
    

@@ -98,7 +98,7 @@ private
                                                              False =>
                                                                (
                                                                 True  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Unten_Links_Enum),
-                                                                False => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Rechts_Enum)
+                                                                False => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldende_Rechts_Enum)
                                                                )
                                                             )
                                                          ),
@@ -116,7 +116,7 @@ private
                                                              False =>
                                                                (
                                                                 True  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Unten_Rechts_Enum),
-                                                                False => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Links_Enum)
+                                                                False => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldende_Links_Enum)
                                                                )
                                                             ),
 
@@ -125,12 +125,12 @@ private
                                                              True =>
                                                                (
                                                                 True  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Senkrecht_Enum),
-                                                                False => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Unten_Enum)
+                                                                False => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldende_Unten_Enum)
                                                                ),
 
                                                              False =>
                                                                (
-                                                                True  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Oben_Enum),
+                                                                True  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldende_Oben_Enum),
                                                                 False => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Enum)
                                                                )
                                                             )
@@ -144,16 +144,16 @@ private
                                                           KartengrundDatentypen.Waldkurve_Unten_Links_Enum    => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Unten_Enum),
                                                           KartengrundDatentypen.Waldkurve_Oben_Links_Enum     => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Oben_Enum),
                                                           KartengrundDatentypen.Waldkreuzung_Drei_Links_Enum  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Vier_Enum),
-                                                          KartengrundDatentypen.Waldendstück_Rechts_Enum      => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Waagrecht_Enum),
-                                                          KartengrundDatentypen.Waldendstück_Unten_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Oben_Rechts_Enum),
-                                                          KartengrundDatentypen.Waldendstück_Oben_Enum        => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Unten_Rechts_Enum),
-                                                          KartengrundDatentypen.Wald_Enum                     => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Links_Enum),
+                                                          KartengrundDatentypen.Waldende_Rechts_Enum      => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Waagrecht_Enum),
+                                                          KartengrundDatentypen.Waldende_Unten_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Oben_Rechts_Enum),
+                                                          KartengrundDatentypen.Waldende_Oben_Enum        => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Unten_Rechts_Enum),
+                                                          KartengrundDatentypen.Wald_Enum                     => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldende_Links_Enum),
 
                                                           -- Alle Möglichkeiten die gleich bleiben.
                                                           KartengrundDatentypen.Wald_Waagrecht_Enum           => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Waagrecht_Enum),
                                                           KartengrundDatentypen.Waldkurve_Unten_Rechts_Enum   => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Unten_Rechts_Enum),
                                                           KartengrundDatentypen.Waldkurve_Oben_Rechts_Enum    => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Oben_Rechts_Enum),
-                                                          KartengrundDatentypen.Waldendstück_Links_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Links_Enum),
+                                                          KartengrundDatentypen.Waldende_Links_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldende_Links_Enum),
                                                           KartengrundDatentypen.Waldkreuzung_Drei_Oben_Enum   => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Oben_Enum),
                                                           KartengrundDatentypen.Waldkreuzung_Drei_Unten_Enum  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Unten_Enum),
                                                           KartengrundDatentypen.Waldkreuzung_Drei_Rechts_Enum => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Rechts_Enum),
@@ -166,16 +166,16 @@ private
                                                            KartengrundDatentypen.Waldkurve_Unten_Rechts_Enum   => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Unten_Enum),
                                                            KartengrundDatentypen.Waldkurve_Oben_Rechts_Enum    => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Oben_Enum),
                                                            KartengrundDatentypen.Waldkreuzung_Drei_Rechts_Enum => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Vier_Enum),
-                                                           KartengrundDatentypen.Waldendstück_Links_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Waagrecht_Enum),
-                                                           KartengrundDatentypen.Waldendstück_Unten_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Oben_Links_Enum),
-                                                           KartengrundDatentypen.Waldendstück_Oben_Enum        => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Unten_Links_Enum),
-                                                           KartengrundDatentypen.Wald_Enum                     => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Rechts_Enum),
+                                                           KartengrundDatentypen.Waldende_Links_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Waagrecht_Enum),
+                                                           KartengrundDatentypen.Waldende_Unten_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Oben_Links_Enum),
+                                                           KartengrundDatentypen.Waldende_Oben_Enum        => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Unten_Links_Enum),
+                                                           KartengrundDatentypen.Wald_Enum                     => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldende_Rechts_Enum),
 
                                                            -- Alle Möglichkeiten die gleich bleiben.
                                                            KartengrundDatentypen.Wald_Waagrecht_Enum           => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Waagrecht_Enum),
                                                            KartengrundDatentypen.Waldkurve_Unten_Links_Enum    => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Unten_Links_Enum),
                                                            KartengrundDatentypen.Waldkreuzung_Drei_Links_Enum  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Links_Enum),
-                                                           KartengrundDatentypen.Waldendstück_Rechts_Enum      => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Rechts_Enum),
+                                                           KartengrundDatentypen.Waldende_Rechts_Enum      => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldende_Rechts_Enum),
                                                            KartengrundDatentypen.Waldkurve_Oben_Links_Enum     => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Oben_Links_Enum),
                                                            KartengrundDatentypen.Waldkreuzung_Drei_Oben_Enum   => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Oben_Enum),
                                                            KartengrundDatentypen.Waldkreuzung_Drei_Unten_Enum  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Unten_Enum),
@@ -188,10 +188,10 @@ private
                                                          KartengrundDatentypen.Waldkurve_Oben_Rechts_Enum   => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Rechts_Enum),
                                                          KartengrundDatentypen.Waldkurve_Oben_Links_Enum    => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Links_Enum),
                                                          KartengrundDatentypen.Waldkreuzung_Drei_Oben_Enum  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Vier_Enum),
-                                                         KartengrundDatentypen.Waldendstück_Links_Enum      => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Unten_Rechts_Enum),
-                                                         KartengrundDatentypen.Waldendstück_Rechts_Enum     => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Unten_Links_Enum),
-                                                         KartengrundDatentypen.Waldendstück_Unten_Enum      => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Senkrecht_Enum),
-                                                         KartengrundDatentypen.Wald_Enum                    => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Oben_Enum),
+                                                         KartengrundDatentypen.Waldende_Links_Enum      => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Unten_Rechts_Enum),
+                                                         KartengrundDatentypen.Waldende_Rechts_Enum     => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Unten_Links_Enum),
+                                                         KartengrundDatentypen.Waldende_Unten_Enum      => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Senkrecht_Enum),
+                                                         KartengrundDatentypen.Wald_Enum                    => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldende_Oben_Enum),
 
                                                          -- Alle Möglichkeiten die gleich bleiben.
                                                          KartengrundDatentypen.Wald_Senkrecht_Enum           => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Senkrecht_Enum),
@@ -200,7 +200,7 @@ private
                                                          KartengrundDatentypen.Waldkreuzung_Drei_Unten_Enum  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Unten_Enum),
                                                          KartengrundDatentypen.Waldkreuzung_Drei_Rechts_Enum => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Rechts_Enum),
                                                          KartengrundDatentypen.Waldkreuzung_Drei_Links_Enum  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Links_Enum),
-                                                         KartengrundDatentypen.Waldendstück_Oben_Enum        => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Oben_Enum),
+                                                         KartengrundDatentypen.Waldende_Oben_Enum        => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldende_Oben_Enum),
                                                          KartengrundDatentypen.Waldkreuzung_Vier_Enum        => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Vier_Enum)
                                                         );
 
@@ -210,10 +210,10 @@ private
                                                           KartengrundDatentypen.Waldkurve_Unten_Rechts_Enum   => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Rechts_Enum),
                                                           KartengrundDatentypen.Waldkurve_Unten_Links_Enum    => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Links_Enum),
                                                           KartengrundDatentypen.Waldkreuzung_Drei_Unten_Enum  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Vier_Enum),
-                                                          KartengrundDatentypen.Waldendstück_Links_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Oben_Rechts_Enum),
-                                                          KartengrundDatentypen.Waldendstück_Rechts_Enum      => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Oben_Links_Enum),
-                                                          KartengrundDatentypen.Waldendstück_Oben_Enum        => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Senkrecht_Enum),
-                                                          KartengrundDatentypen.Wald_Enum                     => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Unten_Enum),
+                                                          KartengrundDatentypen.Waldende_Links_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Oben_Rechts_Enum),
+                                                          KartengrundDatentypen.Waldende_Rechts_Enum      => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkurve_Oben_Links_Enum),
+                                                          KartengrundDatentypen.Waldende_Oben_Enum        => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Senkrecht_Enum),
+                                                          KartengrundDatentypen.Wald_Enum                     => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldende_Unten_Enum),
 
                                                           -- Alle Möglichkeiten die gleich bleiben.
                                                           KartengrundDatentypen.Wald_Senkrecht_Enum           => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Wald_Senkrecht_Enum),
@@ -222,7 +222,7 @@ private
                                                           KartengrundDatentypen.Waldkreuzung_Drei_Oben_Enum   => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Oben_Enum),
                                                           KartengrundDatentypen.Waldkreuzung_Drei_Rechts_Enum => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Rechts_Enum),
                                                           KartengrundDatentypen.Waldkreuzung_Drei_Links_Enum  => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Drei_Links_Enum),
-                                                          KartengrundDatentypen.Waldendstück_Unten_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldendstück_Unten_Enum),
+                                                          KartengrundDatentypen.Waldende_Unten_Enum       => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldende_Unten_Enum),
                                                           KartengrundDatentypen.Waldkreuzung_Vier_Enum        => KartengrundDatentypen.Zusatzgrund_Wald_Enum'Pos (KartengrundDatentypen.Waldkreuzung_Vier_Enum)
                                                          );
 
