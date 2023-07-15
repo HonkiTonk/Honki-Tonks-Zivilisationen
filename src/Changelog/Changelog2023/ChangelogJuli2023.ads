@@ -115,7 +115,7 @@ package ChangelogJuli2023 is
    -- Version 0.05.3185 => 0.05. (15.07.2023):
    
    -- Grafiken optimiert.
-   -- Neue Version erstellt.
+   -- Neue Version veröffentlicht.
    -- 
    -- Kleinigkeiten korrigiert.
    
@@ -169,7 +169,7 @@ package ChangelogJuli2023 is
 
    -- Version 0.05.3070 => 0.05.3090 (07.07.2023):
    
-   -- Ver5sucht eine neue Version zu veröffentlichen.
+   -- Versucht eine neue Version zu veröffentlichen.
    
    
 
