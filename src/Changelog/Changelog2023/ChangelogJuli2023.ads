@@ -98,16 +98,17 @@ package ChangelogJuli2023 is
    
    
 
-   -- Version 0.05. => 0.05. (17.07.2023):
+   -- Version 0.05.3265 => 0.05. (17.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.3230 => 0.05. (16.07.2023):
+   -- Version 0.05.3230 => 0.05.3265 (16.07.2023):
    
-   -- 
+   -- Grafiken überarbeitet.
+   -- Saubere Test- und Kompilationsumgebung auf Basis von Debian 12 aufgesetzt.
    -- Kleinigkeiten korrigiert.
    
    
