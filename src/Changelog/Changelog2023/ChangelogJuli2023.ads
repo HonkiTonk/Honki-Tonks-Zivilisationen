@@ -84,16 +84,16 @@ package ChangelogJuli2023 is
    
    
 
-   -- Version 0.05. => 0.05. (19.07.2023):
+   -- Version 0.05.3335 => 0.05. (19.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.3310 => 0.05. (18.07.2023):
+   -- Version 0.05.3310 => 0.05.3335 (18.07.2023):
    
-   -- 
+   -- Texte und Übersetzung überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    
