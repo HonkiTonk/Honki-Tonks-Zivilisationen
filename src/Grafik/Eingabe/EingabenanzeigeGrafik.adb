@@ -47,6 +47,8 @@ package body EingabenanzeigeGrafik is
             AnzeigeJaNein;
             
          when GrafikDatentypen.Zeichen_Eingabe_Enum =>
+            -- Wird für die Frageanzeige verwendet, wenn eine neue Taste belegt werden soll.
+            -- Kann man das vielleicht entfernen oder erweitern?
             null;
       end case;
       

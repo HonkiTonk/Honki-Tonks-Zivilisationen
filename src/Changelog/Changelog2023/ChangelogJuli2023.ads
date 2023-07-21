@@ -63,37 +63,35 @@ package ChangelogJuli2023 is
    
    
 
-   -- Version 0.05. => 0.05. (22.07.2023):
+   -- Version 0.05.3360 => 0.05. (22.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (21.07.2023):
+   -- Version 0.05.3335 => 0.05.3360 (21.07.2023):
    
-   -- 
+   -- Angefangen eine Testsystem für die maximale Textlänge der vorhandenen Sprachen einzubauen.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (20.07.2023):
+   -- Version 0.05.3335 => 0.05.3335 (20.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.3335 => 0.05. (19.07.2023):
+   -- Version 0.05.3335 => 0.05.3335 (19.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
    -- Version 0.05.3310 => 0.05.3335 (18.07.2023):
    
-   -- Texte und Übersetzung überarbeitet.
+   -- Texte und Übersetzungen überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    
