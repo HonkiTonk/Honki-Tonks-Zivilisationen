@@ -42,31 +42,29 @@ package ChangelogJuli2023 is
    
    
 
-   -- Version 0.05. => 0.05. (25.07.2023):
+   -- Version 0.05.3385 => 0.05. (25.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (24.07.2023):
+   -- Version 0.05.3360 => 0.05.3385 (24.07.2023):
    
-   -- 
+   -- Weiter an Grafiken gescheitert.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (23.07.2023):
+   -- Version 0.05.3360 => 0.05.3360 (23.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.3360 => 0.05. (22.07.2023):
+   -- Version 0.05.3360 => 0.05.3360 (22.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
