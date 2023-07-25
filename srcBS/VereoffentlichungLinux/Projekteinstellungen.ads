@@ -6,7 +6,8 @@ package Projekteinstellungen is
    Debug : constant SystemRecords.DebugRecord := (
                                                   VolleInformation => False,
                                                   FehlerWarnung    => False,
-                                                  LinuxWindows     => True
+                                                  LinuxWindows     => True,
+                                                  NormalerText     => True
                                                  );
 
 end Projekteinstellungen;

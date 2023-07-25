@@ -71,7 +71,8 @@ package body TexteinstellungenGrafik is
       
       case
         EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSchriftart,
-                                                        AktuelleZeileExtern => 1)
+                                                        AktuelleZeileExtern => 1,
+                                                        DateiExtern         => "TexteinstellungenGrafik.EigeneSchriftartVerwenden")
       is
          when True =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "TexteinstellungenGrafik.EigeneSchriftartVerwenden: Fehlender Fontname");

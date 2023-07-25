@@ -16,13 +16,5 @@ package GlobaleTexte is
    DiplomatieStatus : TextArrays.AllgemeinesTextArray (1 .. 4) := (others => TextKonstanten.FehlenderText);
    Angebot : TextArrays.AllgemeinesTextArray (1 .. 2) := (others => TextKonstanten.FehlenderText);
    Ladezeit : TextArrays.AllgemeinesTextArray (TextnummernKonstanten.LadezeitVorhanden'Range) := (others => TextKonstanten.FehlenderText);
-            
-   BeschäftigungenLängstes : TextArrays.AllgemeinesTextArray (Beschäftigungen'Range) := (others => TextKonstanten.FehlenderText);
-   WürdigungLängstes : TextArrays.AllgemeinesTextArray (Würdigung'Range) := (others => TextKonstanten.FehlenderText);
-   DiplomatieKILängstes : TextArrays.AllgemeinesTextArray (DiplomatieKI'Range) := (others => TextKonstanten.FehlenderText);
-   HandelsmenüLängstes : TextArrays.AllgemeinesTextArray (Handelsmenü'Range) := (others => TextKonstanten.FehlenderText);
-   DiplomatieStatusLängstes : TextArrays.AllgemeinesTextArray (DiplomatieStatus'Range) := (others => TextKonstanten.FehlenderText);
-   AngebotLängstes : TextArrays.AllgemeinesTextArray (Angebot'Range) := (others => TextKonstanten.FehlenderText);
-   LadezeitLängstes : TextArrays.AllgemeinesTextArray (Ladezeit'Range) := (others => TextKonstanten.FehlenderText);
    
 end GlobaleTexte;

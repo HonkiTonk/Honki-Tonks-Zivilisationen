@@ -9,7 +9,8 @@ package body EinlesenAllgemeinesLogik is
 
    function VorzeitigesZeilenende
      (AktuelleDateiExtern : in File_Type;
-      AktuelleZeileExtern : in Positive)
+      AktuelleZeileExtern : in Positive;
+      DateiExtern : in Wide_Wide_String)
       return Boolean
    is begin
       
@@ -27,7 +28,7 @@ package body EinlesenAllgemeinesLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenAllgemeinesLogik.VorzeitigesZeilenende: Aktuelle Zeile: " & AktuelleZeileExtern'Wide_Wide_Image & " "
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenAllgemeinesLogik.VorzeitigesZeilenende: " & DateiExtern & ": Aktuelle Zeile: " & AktuelleZeileExtern'Wide_Wide_Image & " "
                                      & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return True;
          
@@ -104,5 +105,30 @@ package body EinlesenAllgemeinesLogik is
       return True;
       
    end LeeresVerzeichnis;
+   
+   
+   
+   function Texturenlimit
+     (TexturenpfadExtern : in String)
+     return Sf.Graphics.sfTexture_Ptr
+   is
+      use type Sf.sfUint32;
+   begin
+            
+      Texturengröße := Sf.Graphics.Texture.getSize (texture => Sf.Graphics.Texture.createFromFile (filename => TexturenpfadExtern));
+               
+      if
+        Texturengröße.x > MaximaleTexturengröße
+        or
+          Texturengröße.y > MaximaleTexturengröße
+      then
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => Decode (Item => TexturenpfadExtern) & " überschreitet Grafikkartetexturennmaximum:" & MaximaleTexturengröße'Wide_Wide_Image);
+         return null;
+                  
+      else
+         return Sf.Graphics.Texture.createFromFile (filename => TexturenpfadExtern);
+      end if;
+      
+   end Texturenlimit;
    
 end EinlesenAllgemeinesLogik;

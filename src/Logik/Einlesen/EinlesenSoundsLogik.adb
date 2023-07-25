@@ -36,7 +36,8 @@ package body EinlesenSoundsLogik is
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSounds,
-                                                           AktuelleZeileExtern => AktuelleZeile)
+                                                           AktuelleZeileExtern => AktuelleZeile,
+                                                           DateiExtern         => "EinlesenSoundsLogik.EinlesenSounds")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Fehlende Zeilen: "

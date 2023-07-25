@@ -38,7 +38,8 @@ package body EinlesenSpeziestexteLogik is
 
          case
            EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiEins,
-                                                           AktuelleZeileExtern => WelcheDateienSchleifenwert)
+                                                           AktuelleZeileExtern => WelcheDateienSchleifenwert,
+                                                           DateiExtern         => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Fehlende Zeilen, aktuelle Zeile: " & WelcheDateienSchleifenwert'Wide_Wide_Image);
@@ -119,7 +120,8 @@ package body EinlesenSpeziestexteLogik is
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiNameBeschreibung,
-                                                           AktuelleZeileExtern => NameBeschreibungSchleifenwert)
+                                                           AktuelleZeileExtern => NameBeschreibungSchleifenwert,
+                                                           DateiExtern         => "EinlesenSpeziestexteLogik.NameBeschreibung")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.NameBeschreibung: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & NameBeschreibungSchleifenwert'Wide_Wide_Image);
@@ -161,7 +163,8 @@ package body EinlesenSpeziestexteLogik is
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiStädtenamen,
-                                                           AktuelleZeileExtern => Positive (StädtenamenSchleifenwert))
+                                                           AktuelleZeileExtern => Positive (StädtenamenSchleifenwert),
+                                                           DateiExtern         => "EinlesenSpeziestexteLogik.Städtenamen")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Städtenamen: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & StädtenamenSchleifenwert'Wide_Wide_Image);
@@ -207,7 +210,8 @@ package body EinlesenSpeziestexteLogik is
          
             case
               EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiForschungen,
-                                                              AktuelleZeileExtern => AktuelleZeile)
+                                                              AktuelleZeileExtern => AktuelleZeile,
+                                                              DateiExtern         => "EinlesenSpeziestexteLogik.Forschungen")
             is
                when True =>
                   Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Forschungen: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
@@ -256,7 +260,8 @@ package body EinlesenSpeziestexteLogik is
          
             case
               EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiEinheiten,
-                                                              AktuelleZeileExtern => AktuelleZeile)
+                                                              AktuelleZeileExtern => AktuelleZeile,
+                                                              DateiExtern         => "EinlesenSpeziestexteLogik.Einheiten")
             is
                when True =>
                   Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Einheiten: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
@@ -305,7 +310,8 @@ package body EinlesenSpeziestexteLogik is
          
             case
               EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiGebäude,
-                                                              AktuelleZeileExtern => AktuelleZeile)
+                                                              AktuelleZeileExtern => AktuelleZeile,
+                                                              DateiExtern         => "EinlesenSpeziestexteLogik.Gebäude")
             is
                when True =>
                   Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Gebäude: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);

@@ -45,7 +45,8 @@ package body EinlesenMusikLogik is
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiVerzeichnisse,
-                                                           AktuelleZeileExtern => AktuelleZeile)
+                                                           AktuelleZeileExtern => AktuelleZeile,
+                                                           DateiExtern         => "EinlesenMusikLogik.EinlesenMusik")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Fehlende Zeilen: "
@@ -100,7 +101,8 @@ package body EinlesenMusikLogik is
                
          case
            EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiMusik,
-                                                           AktuelleZeileExtern => Positive (MusikSchleifenwert))
+                                                           AktuelleZeileExtern => Positive (MusikSchleifenwert),
+                                                           DateiExtern         => "EinlesenMusikLogik.EinlesenLieder")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenLieder: Fehlende Zeilen: " & DateipfadExtern & ", aktuelle Zeile: " & MusikSchleifenwert'Wide_Wide_Image);

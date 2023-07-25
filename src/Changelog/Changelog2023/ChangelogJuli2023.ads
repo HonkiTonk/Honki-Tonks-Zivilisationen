@@ -35,17 +35,20 @@ package ChangelogJuli2023 is
    
    
 
-   -- Version 0.05. => 0.05. (26.07.2023):
+   -- Version 0.05.3445 => 0.05. (26.07.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.3385 => 0.05. (25.07.2023):
+   -- Version 0.05.3385 => 0.05.3445 (25.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehlermeldungen erweitert.
+   -- System eingebaut was immer den längsten Text aus allen Sprachen anzeigt.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Texturen werden vor dem Einlesen jetzt geprüft ob sie nicht das Grafikkartenlimit überschreiten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

@@ -6,6 +6,4 @@ package Befehlstexte is
 
    Stadtbefehle : TextArrays.AllgemeinesTextArray (1 .. 6) := (others => TextKonstanten.FehlenderText);
 
-   StadtbefehleLängstes : TextArrays.AllgemeinesTextArray (Stadtbefehle'Range) := (others => TextKonstanten.FehlenderText);
-
 end Befehlstexte;

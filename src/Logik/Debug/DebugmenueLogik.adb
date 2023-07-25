@@ -66,6 +66,7 @@ package body DebugmenueLogik is
    
    
    
+   -- Eventuell hier was Ähnliches wie im Diplomatieauswahlmenü einbauen oder eine allgemeinere Version der Diplomatieauswahl bauen? äöü
    procedure MenschKITauschen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is

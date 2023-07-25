@@ -35,16 +35,16 @@ private
 
    Speziesverzeichnisse : TextArrays.AllgemeinesTextArray (1 .. 3);
 
-   procedure EinlesenSystem;
-   procedure EinlesenHintergrund;
-   procedure EinlesenKartenfelder;
-   procedure EinlesenKartenflüsse;
-   procedure EinlesenKartenressourcen;
-   procedure EinlesenVerbesserungen;
-   procedure EinlesenWege;
-   procedure EinlesenSpezies;
+   procedure System;
+   procedure Hintergrund;
+   procedure Kartenfelder;
+   procedure Kartenflüsse;
+   procedure Kartenressourcen;
+   procedure Verbesserungen;
+   procedure Wege;
+   procedure Spezies;
 
-   procedure EinlesenSpezieshintergrund
+   procedure Spezieshintergrund
      (DateipfadExtern : in Wide_Wide_String;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
@@ -52,7 +52,7 @@ private
                  DateipfadExtern'Length > 0
               );
 
-   procedure EinlesenEinheiten
+   procedure Einheiten
      (DateipfadExtern : in Wide_Wide_String;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
@@ -60,7 +60,7 @@ private
                  DateipfadExtern'Length > 0
               );
 
-   procedure EinlesenGebäude
+   procedure Gebäude
      (DateipfadExtern : in Wide_Wide_String;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
      with
