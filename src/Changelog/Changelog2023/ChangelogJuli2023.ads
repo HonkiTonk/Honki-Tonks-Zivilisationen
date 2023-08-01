@@ -1,27 +1,28 @@
 package ChangelogJuli2023 is
    
-   -- Version 0.05.3505 => 0.05. (31.07.2023):
+   -- Version 0.05.3525 => 0.05.3545 (31.07.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Spieltests in den VMs durchgeführt.
    
    
 
-   -- Version 0.05.3485 => 0.05.3505 (30.07.2023):
+   -- Version 0.05.3495 => 0.05.3525 (30.07.2023):
    
    -- GNAT auf Version 13.2 aktualisiert.
+   -- Spieltests in den VMs durchgeführt.
    
    
 
-   -- Version 0.05.3465 => 0.05.3485 (29.07.2023):
+   -- Version 0.05.3465 => 0.05.3495 (29.07.2023):
    
    -- VMs aktualisiert und neue Versionen der Bibliotheken gebaut.
+   -- Spieltests in den VMs durchgeführt.
    
    
 
    -- Version 0.05.3445 => 0.05.3465 (28.07.2023):
    
-   -- Spieltest in den VMs durchgeführt.
+   -- Spieltests in den VMs durchgeführt.
    
    
 
