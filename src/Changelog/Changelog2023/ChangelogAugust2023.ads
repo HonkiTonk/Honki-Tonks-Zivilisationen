@@ -204,7 +204,6 @@ package ChangelogAugust2023 is
 
    -- Version 0.05.3565 => 0.05.3585 (02.08.2023):
    
-   -- 
    -- Spieltests in den VMs durchgeführt.
    
    
