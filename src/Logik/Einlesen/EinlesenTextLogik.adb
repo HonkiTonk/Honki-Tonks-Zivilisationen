@@ -355,7 +355,7 @@ package body EinlesenTextLogik is
                
             when others =>
                if
-                 AktuellesMenü in 1 .. Menuetexte.Hauptmenü'Last
+                 AktuellesMenü <= Menuetexte.Hauptmenü'Last
                then
                   AktuelleZeile := AktuellesMenü;
                   Menuetexte.Hauptmenü (AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
