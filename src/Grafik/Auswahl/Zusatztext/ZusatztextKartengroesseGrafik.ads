@@ -3,7 +3,7 @@ with Sf.System.Vector2;
 private with KartenDatentypen;
 private with RueckgabeDatentypen;
 
-private with UmwandlungenAdaNachEigenes;
+private with UmwandlungenAdaEigenes;
 
 package ZusatztextKartengroesseGrafik is
    pragma Elaborate_Body;
@@ -75,6 +75,6 @@ private
                   PositionFestlegen'Result.y >= 0.00
                );
    
-   function ZahlAlsString is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
+   function ZahlAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KartenDatentypen.KartenfeldPositiv);
 
 end ZusatztextKartengroesseGrafik;

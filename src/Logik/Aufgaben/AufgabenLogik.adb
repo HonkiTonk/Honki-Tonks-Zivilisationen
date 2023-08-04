@@ -18,7 +18,7 @@ with VerbesserungPluendernLogik;
 with EinheitVerbessernLogik;
 with EinheitVerschanzenLogik;
 with EinheitAufloesenLogik;
-with UmwandlungenVerschiedeneDatentypen;
+with UmwandlungenDatentypen;
 with JaNeinLogik;
 with MeldungFestlegenLogik;
 with FeldeffektErmittelnLogik;
@@ -133,7 +133,7 @@ package body AufgabenLogik is
                return False;
                
             elsif
-              VerbesserungExtern = UmwandlungenVerschiedeneDatentypen.BefehleNachKartenverbesserung (TasteExtern => BefehlExtern)
+              VerbesserungExtern = UmwandlungenDatentypen.BefehleNachKartenverbesserung (TasteExtern => BefehlExtern)
             then
                MeldungFestlegenLogik.SpielermeldungFestlegen (MeldungExtern => TextnummernKonstanten.MeldungVerbesserungExistiert,
                                                               SpeziesExtern => SpeziesExtern);

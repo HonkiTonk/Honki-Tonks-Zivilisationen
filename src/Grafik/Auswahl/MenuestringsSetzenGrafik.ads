@@ -5,7 +5,7 @@ private with Sf.System.Vector2;
 with MenueDatentypen;
 with MenueKonstanten;
 
-private with UmwandlungenAdaNachEigenes;
+private with UmwandlungenAdaEigenes;
 
 package MenuestringsSetzenGrafik is
    pragma Elaborate_Body;
@@ -53,6 +53,6 @@ private
                  WelcheZeileExtern <= MenueKonstanten.EndeMenü (MenueDatentypen.Sonstiges_Menü_Enum)
               );
    
-   function ZahlAlsString is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => Natural);
+   function ZahlAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => Natural);
 
 end MenuestringsSetzenGrafik;

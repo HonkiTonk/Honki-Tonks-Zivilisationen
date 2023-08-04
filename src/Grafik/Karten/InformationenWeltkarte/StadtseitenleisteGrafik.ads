@@ -17,7 +17,7 @@ private with TextArrays;
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 
-private with UmwandlungenAdaNachEigenes;
+private with UmwandlungenAdaEigenes;
 
 package StadtseitenleisteGrafik is
    pragma Elaborate_Body;
@@ -123,6 +123,6 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
       
-   function ZahlAlsString is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Produktion);
+   function ZahlAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Produktion);
 
 end StadtseitenleisteGrafik;

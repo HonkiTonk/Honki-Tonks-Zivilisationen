@@ -1,3 +1,5 @@
+with Fehlermeldungssystem;
+
 package body AllgemeineBerechnungen is
 
    function FreieEinwohner
@@ -6,7 +8,15 @@ package body AllgemeineBerechnungen is
       return StadtDatentypen.Einwohner
    is begin
       
-      return EinwohnerExtern - ArbeiterExtern;
+      if
+        ArbeiterExtern > EinwohnerExtern
+      then
+         Fehlermeldungssystem.Mehrfachverwendung (FehlermeldungExtern => "AllgemeineBerechnungen.FreieEinwohner: Einwohner < Arbeiter:" & EinwohnerExtern'Wide_Wide_Image & "," & ArbeiterExtern'Wide_Wide_Image);
+         return StadtDatentypen.Einwohner'First;
+         
+      else
+         return EinwohnerExtern - ArbeiterExtern;
+      end if;
       
    end FreieEinwohner;
    

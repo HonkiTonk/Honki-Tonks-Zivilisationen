@@ -67,7 +67,7 @@ package body EinlesenLogik is
          null;
       end if;
       
-      EinlesenTextLogik.EinlesenDateien;
+      EinlesenTextLogik.EinlesenDateien (EinsprachigExtern => True);
       EinlesenSpeziestexteLogik.SpeziestexteEinlesen;
       
    end EinlesenMitAnzeige;

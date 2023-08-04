@@ -1,4 +1,4 @@
-package UmwandlungenAdaNachEigenes is
+package UmwandlungenAdaEigenes is
    pragma Elaborate_Body;
    
    generic type GanzeZahl is range <>;
@@ -41,4 +41,4 @@ private
                   PunktOderKomma'Result'Length > 0
                );
 
-end UmwandlungenAdaNachEigenes;
+end UmwandlungenAdaEigenes;

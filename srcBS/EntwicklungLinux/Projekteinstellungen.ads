@@ -6,9 +6,7 @@ package Projekteinstellungen is
    Debug : constant SystemRecords.DebugRecord := (
                                                   VolleInformation => True,
                                                   FehlerWarnung    => True,
-                                                  LinuxWindows     => True,
-                                                  -- Das hier eventuell in die Endeinstellungen einbauen? äöü
-                                                  NormalerText     => True
+                                                  LinuxWindows     => True
                                                  );
 
 end Projekteinstellungen;

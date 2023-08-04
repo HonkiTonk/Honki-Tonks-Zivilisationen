@@ -4,11 +4,13 @@ with BetriebssystemKonstanten;
 
 package TextKonstanten is
    pragma Elaborate_Body;
-
+   
+   TrennzeichenTextdateien : constant Wide_Wide_Character := '#';
+   TrennzeichenUnterschiedlich : constant Wide_Wide_Character := '|';
+   Trennzeichen : constant Wide_Wide_Character := '/';
+   
    LeerString : constant Wide_Wide_String := "";
    Leerzeichen : constant Wide_Wide_String (1 .. 1) := " ";
-   Trennzeichen : constant Wide_Wide_String (1 .. 1) := "/";
-   TrennzeichenUnterschiedlich : constant Wide_Wide_String (1 .. 1) := "|";
    Trennstrich : constant Wide_Wide_String (1 .. 3) := " - ";
    StandardAbstand : constant Wide_Wide_String (1 .. 4) := "    ";
    LangerAbstand : constant Wide_Wide_String (1 .. 10) := "          ";

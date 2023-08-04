@@ -5,11 +5,16 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 package EinlesenTextLogik is
    pragma Elaborate_Body;
    
-   procedure EinlesenDateien;
+   procedure EinlesenDateien
+     (EinsprachigExtern : in Boolean);
    
 private
    
-   AnzahlTextdateien : constant Positive := 39;
+   AnzahlTextdateien : constant Positive := 34;
+   Trennzeile : constant Positive := 1;
+   EinzulesendeZeile : Positive;
+   AktuelleZeile : Positive;
+   AktuellesMenü : Positive;
       
    DateiVerzeichnisse : File_Type;
    DateiText : File_Type;
@@ -21,138 +26,167 @@ private
    Zwischenspeicher : Unbounded_Wide_Wide_String;
    
    procedure Einlesen
-     (VerzeichnisExtern : Wide_Wide_String)
+     (VerzeichnisExtern : in Wide_Wide_String;
+      EinsprachigExtern : in Boolean)
      with
-       -- Den Contracts später mal noch um die Länge des Sprachenordners und /0 erweitern. äöü
-       Pre => (
-                 VerzeichnisExtern'Length > 0
-              );
-         
-   procedure Hauptmenü
-     (DateiExtern : in File_Type);
-   
-   procedure Spielmenü
-     (DateiExtern : in File_Type);
-   
-   procedure Optionsmenü
-     (DateiExtern : in File_Type);
-   
-   procedure Grafikmenü
-     (DateiExtern : in File_Type);
-   
-   procedure Soundmenü
-     (DateiExtern : in File_Type);
-   
-   procedure Steuerungmenü
-     (DateiExtern : in File_Type);
-   
-   procedure Sonstigesmenü
-     (DateiExtern : in File_Type);
-   
-   procedure Kartengröße
-     (DateiExtern : in File_Type);
-   
-   procedure Kartenart
-     (DateiExtern : in File_Type);
-   
-   procedure Kartentemperatur
-     (DateiExtern : in File_Type);
-   
-   procedure Speziesauswahl
-     (DateiExtern : in File_Type);
-   
-   procedure Schwierigkeitsgrad
-     (DateiExtern : in File_Type);
-   
-   procedure Kartenform
-     (DateiExtern : in File_Type);
-   
-   procedure Ressourcenmenge
-     (DateiExtern : in File_Type);
-   
-   procedure Basisgrund
-     (DateiExtern : in File_Type);
-   
-   procedure Verbesserungen
-     (DateiExtern : in File_Type);
-   
-   procedure Beschäftigungen
-     (DateiExtern : in File_Type);
-   
-   procedure Würdigung
-     (DateiExtern : in File_Type);
-   
-   procedure Diplomatiemenü
-     (DateiExtern : in File_Type);
-   
-   procedure DiplomatieKI
-     (DateiExtern : in File_Type);
-   
-   procedure Handelsmenü
-     (DateiExtern : in File_Type);
-   
-   procedure DiplomatieStatus
-     (DateiExtern : in File_Type);
-   
-   procedure Angebot
-     (DateiExtern : in File_Type);
-   
-   procedure Fehlermeldung
-     (DateiExtern : in File_Type);
-   
-   procedure Ladezeit
-     (DateiExtern : in File_Type);
-   
-   procedure Frage
-     (DateiExtern : in File_Type);
-   
-   procedure ZeugSachen
-     (DateiExtern : in File_Type);
-   
-   procedure Editoren
-     (DateiExtern : in File_Type);
-   
-   procedure Wege
-     (DateiExtern : in File_Type);
-   
-   procedure Kartenflüsse
-     (DateiExtern : in File_Type);
-   
-   procedure Kartenressourcen
-     (DateiExtern : in File_Type);
-   
-   procedure Einstellungen
-     (DateiExtern : in File_Type);
-   
-   procedure Kartenpole
-     (DateiExtern : in File_Type);
-   
-   procedure Stadtbefehle
-     (DateiExtern : in File_Type);
-   
-   procedure Spielstandmenü
-     (DateiExtern : in File_Type);
-   
-   procedure Intro
-     (DateiExtern : in File_Type);
-   
-   procedure Outro
-     (DateiExtern : in File_Type);
-   
-   procedure Zusatzgrund
-     (DateiExtern : in File_Type);
-   
-   procedure Feldeffekte
-     (DateiExtern : in File_Type);
+   -- Den Contracts später mal noch um die Länge des Sprachenordners und /0 erweitern. äöü
+     Pre => (
+               VerzeichnisExtern'Length > 0
+            );
    
    procedure EinlesenAufteilen
      (WelcheDateiExtern : in Positive;
-      VerzeichnisExtern : in Wide_Wide_String)
+      VerzeichnisExtern : in Wide_Wide_String;
+      EinsprachigExtern : in Boolean)
      with
        Pre => (
                  WelcheDateiExtern <= AnzahlTextdateien
                and
                  VerzeichnisExtern'Length > 0
               );
+   
+   procedure Menüs
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Steuerungmenü
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Kartengröße
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Kartenart
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Kartentemperatur
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Speziesauswahl
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Schwierigkeitsgrad
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Kartenform
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Ressourcenmenge
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Basisgrund
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Verbesserungen
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Beschäftigungen
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Würdigung
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Diplomatiemenü
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure DiplomatieKI
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Handelsmenü
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure DiplomatieStatus
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Angebot
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Fehlermeldung
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Ladezeit
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Frage
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure ZeugSachen
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Editoren
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Wege
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Kartenflüsse
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Kartenressourcen
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Einstellungen
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Kartenpole
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Stadtbefehle
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Spielstandmenü
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Intro
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Outro
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Zusatzgrund
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Feldeffekte
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   
+   
+   function Einsprachig
+     (EinsprachigExtern : in Boolean;
+      EingelesenerTextExtern : in Unbounded_Wide_Wide_String;
+      VorhandenerTextExtern : in Unbounded_Wide_Wide_String)
+      return Unbounded_Wide_Wide_String;
    
 end EinlesenTextLogik;

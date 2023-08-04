@@ -5,7 +5,7 @@ private with Sf.Graphics.Color;
 
 private with GrafikRecordKonstanten;
 
-private with UmwandlungenAdaNachEigenes;
+private with UmwandlungenAdaEigenes;
 
 package BildrateAnzeigenGrafik is
    pragma Elaborate_Body;
@@ -26,6 +26,6 @@ private
    
    
    
-   function KommazahlAlsString is new UmwandlungenAdaNachEigenes.KommazahlAlsString (Kommazahl => Float);
+   function KommazahlAlsString is new UmwandlungenAdaEigenes.KommazahlAlsString (Kommazahl => Float);
 
 end BildrateAnzeigenGrafik;

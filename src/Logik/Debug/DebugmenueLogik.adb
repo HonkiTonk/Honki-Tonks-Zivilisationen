@@ -17,6 +17,7 @@ with Fehlermeldungssystem;
 with DebugmenueAllgemeinesLogik;
 with ZahleneingabeLogik;
 with EinheitenErzeugenEntfernenLogik;
+with EinlesenTextLogik;
 
 package body DebugmenueLogik is
 
@@ -52,6 +53,10 @@ package body DebugmenueLogik is
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                EinheitErzeugen (SpeziesExtern => SpeziesExtern);
+               
+            when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
+               EinlesenTextLogik.EinlesenDateien (EinsprachigExtern => Einsprachig);
+               Einsprachig := not Einsprachig;
                
             when RueckgabeDatentypen.Fertig_Enum | RueckgabeDatentypen.Zurück_Enum =>
                return;

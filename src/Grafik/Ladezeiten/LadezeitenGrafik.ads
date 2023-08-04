@@ -11,7 +11,7 @@ private with SystemDatentypen;
 
 with LeseSpeziesbelegung;
 
-private with UmwandlungenAdaNachEigenes;
+private with UmwandlungenAdaEigenes;
 
 package LadezeitenGrafik is
    pragma Elaborate_Body;
@@ -106,6 +106,6 @@ private
                   KIRechnet'Result.y >= 0.00
                );
    
-   function ZahlAlsString is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => SystemDatentypen.NullBisHundert);
+   function ZahlAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => SystemDatentypen.NullBisHundert);
 
 end LadezeitenGrafik;

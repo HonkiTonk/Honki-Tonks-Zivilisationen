@@ -29,11 +29,19 @@ package Fehlermeldungssystem is
                  FehlermeldungExtern'Length > 0
               );
    
+   procedure Mehrfachverwendung
+     (FehlermeldungExtern : in Wide_Wide_String)
+     with
+       Pre => (
+                 FehlermeldungExtern'Length > 0
+              );
+   
 private
    
    LogikStopp : exception;
    GrafikStopp : exception;
    MusikStopp : exception;
    SoundStopp : exception;
+   MehrfachverwendungStopp : exception;
 
 end Fehlermeldungssystem;

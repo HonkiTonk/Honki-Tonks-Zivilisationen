@@ -20,6 +20,8 @@ package DebugmenueLogik is
 
 private
 
+   Einsprachig : Boolean := False;
+
    AusgewählteSpezies : SpeziesDatentypen.Spezies_Enum;
 
    RückgabeDebugmenü : RueckgabeDatentypen.Rückgabe_Werte_Enum;

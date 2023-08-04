@@ -19,7 +19,7 @@ private with TextArrays;
 with LeseGrenzen;
 with LeseSpeziesbelegung;
 
-private with UmwandlungenAdaNachEigenes;
+private with UmwandlungenAdaEigenes;
 
 package EinheitenseitenleisteGrafik is
    pragma Elaborate_Body;
@@ -139,22 +139,22 @@ private
                   PlanZielKoordinaten'Result.y >= 0.00
                );
       
-   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Einheitenbereich);
+   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Einheitenbereich);
    
-   function ZahlAlsStringProduktionFeld is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Feldproduktion);
+   function ZahlAlsStringProduktionFeld is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Feldproduktion);
    
-   function ZahlAlsStringGesamtproduktionStadt is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Stadtproduktion);
+   function ZahlAlsStringGesamtproduktionStadt is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Stadtproduktion);
    
-   function ZahlAlsStringLebenspunkte is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Lebenspunkte);
+   function ZahlAlsStringLebenspunkte is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Lebenspunkte);
    
-   function ZahlAlsStringBewegungspunkte is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Bewegungspunkte);
+   function ZahlAlsStringBewegungspunkte is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Bewegungspunkte);
    
-   function ZahlAlsStringKampfwerte is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Kampfwerte);
+   function ZahlAlsStringKampfwerte is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Kampfwerte);
    
-   function ZahlAlsStringArbeitszeit is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
+   function ZahlAlsStringArbeitszeit is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Arbeitszeit);
    
-   function ZahlAlsStringErfahrungspunkte is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Erfahrungspunkte);
+   function ZahlAlsStringErfahrungspunkte is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Erfahrungspunkte);
    
-   function ZahlAlsStringRang is new UmwandlungenAdaNachEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Rang);
+   function ZahlAlsStringRang is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Rang);
 
 end EinheitenseitenleisteGrafik;

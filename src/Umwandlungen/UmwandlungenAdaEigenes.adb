@@ -5,7 +5,7 @@ with Ada.Strings.Wide_Wide_Fixed;
 with LeseOptionen;
 
 -- Eventuell noch ein Zeichen für tausender Stellen hinzufügen? äöü
-package body UmwandlungenAdaNachEigenes is
+package body UmwandlungenAdaEigenes is
    
    function ZahlAlsString
      (ZahlExtern : in GanzeZahl)
@@ -70,4 +70,4 @@ package body UmwandlungenAdaNachEigenes is
       
    end PunktOderKomma;
 
-end UmwandlungenAdaNachEigenes;
+end UmwandlungenAdaEigenes;

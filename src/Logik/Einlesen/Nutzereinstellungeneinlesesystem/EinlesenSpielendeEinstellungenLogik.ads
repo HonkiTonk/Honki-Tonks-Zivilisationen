@@ -2,10 +2,10 @@ with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
 private with ZahlenDatentypen;
 
-package EinlesenSonstigeEinstellungenLogik is
+package EinlesenSpielendeEinstellungenLogik is
    pragma Elaborate_Body;
 
-   procedure SonstigeEinstellungen;
+   procedure SpielendeEinstellungen;
    
 private
    
@@ -17,9 +17,9 @@ private
    
    
    
-   function SonstigeEinstellungenDurchgehen
+   function SpielendeEinstellungenDurchgehen
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
       return Boolean;
 
-end EinlesenSonstigeEinstellungenLogik;
+end EinlesenSpielendeEinstellungenLogik;

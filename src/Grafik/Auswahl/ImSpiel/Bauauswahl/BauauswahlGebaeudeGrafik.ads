@@ -9,7 +9,7 @@ private with KampfDatentypen;
 
 with LeseSpeziesbelegung;
 
-private with UmwandlungenAdaNachEigenes;
+private with UmwandlungenAdaEigenes;
 
 package BauauswahlGebaeudeGrafik is
    pragma Elaborate_Body;
@@ -45,6 +45,6 @@ private
    
    
    
-   function KommazahlAlsString is new UmwandlungenAdaNachEigenes.KommazahlAlsString (Kommazahl => KampfDatentypen.Kampfbonus);
+   function KommazahlAlsString is new UmwandlungenAdaEigenes.KommazahlAlsString (Kommazahl => KampfDatentypen.Kampfbonus);
 
 end BauauswahlGebaeudeGrafik;

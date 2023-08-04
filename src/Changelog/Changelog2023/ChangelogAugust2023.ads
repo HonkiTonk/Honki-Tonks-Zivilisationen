@@ -182,17 +182,22 @@ package ChangelogAugust2023 is
    
    
 
-   -- Version 0.05. => 0.05. (05.08.2023):
+   -- Version 0.05.3665 => 0.05. (05.08.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.3585 => 0.05. (04.08.2023):
+   -- Version 0.05.3585 => 0.05.3665 (04.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehlermeldugnssystem erweitert.
+   -- Zusätzliche Fehlermeldungen eingebaut.
+   -- Internet Struktur und Benennung überarbeitet.
+   -- Debugmenü erweitert.
+   -- Einlesesystem für den Text überarbeitet und erweitert.
+   -- Textdateien zusammengeführt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

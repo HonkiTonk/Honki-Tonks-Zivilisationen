@@ -1,5 +1,3 @@
-with SpeziesKonstanten;
-
 with LeseSpeziesbelegung;
 
 with Fehlermeldungssystem;
@@ -120,7 +118,7 @@ package body Spielertests is
       case
         VorhandeneMenschen
       is
-         when SpeziesKonstanten.Speziesanfang .. SpeziesKonstanten.Speziesende =>
+         when SpeziesDatentypen.SpeziesnummernVorhanden'Range =>
             return VorhandeneMenschen;
             
          when others =>

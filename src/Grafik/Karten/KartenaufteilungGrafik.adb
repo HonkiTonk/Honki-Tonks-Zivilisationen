@@ -15,7 +15,7 @@ with StadtseitenleisteGrafik;
 with StadtumgebungGrafik;
 with StadtbefehleGrafik;
 with WeltkartenbefehleGrafik;
-with KoordinatenPositionUmwandlungen;
+with UmwandlungenGrafik;
 with SichtweitenGrafik;
 with StadtkarteGrafik;
 
@@ -38,7 +38,7 @@ package body KartenaufteilungGrafik is
             RechtsLinksBefehlsanzeige := SichtweitenGrafik.UntenRechts (SpeziesExtern => EinheitenauswahlExtern.SpeziesNummer.Spezies);
             
          when others =>
-            Position := KoordinatenPositionUmwandlungen.KoordinatenKartenposition (KoordinatenExtern => EinheitenauswahlExtern.Koordinaten,
+            Position := UmwandlungenGrafik.KoordinatenKartenposition (KoordinatenExtern => EinheitenauswahlExtern.Koordinaten,
                                                                                    SpeziesExtern     => EinheitenauswahlExtern.SpeziesNummer.Spezies);
             Viewgröße := Sf.Graphics.View.getSize (view => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));
             

@@ -5,16 +5,12 @@ with SpielDatentypen;
 with BefehleDatentypen;
 with KartenartDatentypen;
 
-package UmwandlungenVerschiedeneDatentypen is
+package UmwandlungenDatentypen is
    pragma Pure;
 
    function BefehleNachKartenverbesserung
      (TasteExtern : in BefehleDatentypen.Siedler_Konstruktionen_Enum)
       return KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum;
-   
-   function KartenverbesserungNachBefehle
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum)
-      return BefehleDatentypen.Siedler_Konstruktionen_Enum;
    
    function RückgabeNachSpezies
      (RückgabeExtern : in RueckgabeDatentypen.Spezies_Verwendet_Enum)
@@ -39,13 +35,6 @@ private
                                                                            BefehleDatentypen.Mine_Bauen_Enum    => KartenverbesserungDatentypen.Mine_Enum,
                                                                            BefehleDatentypen.Farm_Bauen_Enum    => KartenverbesserungDatentypen.Farm_Enum,
                                                                            BefehleDatentypen.Festung_Bauen_Enum => KartenverbesserungDatentypen.Festung_Enum
-                                                                          );
-   
-   type KartenverbesserungBefehleArray is array (KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum'Range) of BefehleDatentypen.Siedler_Konstruktionen_Enum;
-   KartenverbesserungBefehle : constant KartenverbesserungBefehleArray := (
-                                                                           KartenverbesserungDatentypen.Mine_Enum    => BefehleDatentypen.Mine_Bauen_Enum,
-                                                                           KartenverbesserungDatentypen.Farm_Enum    => BefehleDatentypen.Farm_Bauen_Enum,
-                                                                           KartenverbesserungDatentypen.Festung_Enum => BefehleDatentypen.Festung_Bauen_Enum
                                                                           );
    
    type RückgabeSpeziesArray is array (RueckgabeDatentypen.Spezies_Verwendet_Enum'Range) of SpeziesDatentypen.Spezies_Verwendet_Enum;
@@ -95,4 +84,4 @@ private
                                                                                RueckgabeDatentypen.Auswahl_Drei_Enum => SpielDatentypen.Schwierigkeitsgrad_Schwer_Enum
                                                                               );
 
-end UmwandlungenVerschiedeneDatentypen;
+end UmwandlungenDatentypen;

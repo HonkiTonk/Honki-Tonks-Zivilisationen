@@ -12,7 +12,7 @@ with ZufallsgeneratorenSpieleinstellungenLogik;
 with AuswahlaufteilungLogik;
 with Fehlermeldungssystem;
 with KartengeneratorVariablenLogik;
-with UmwandlungenVerschiedeneDatentypen;
+with UmwandlungenDatentypen;
 with KartentestsLogik;
 
 package body SpieleinstellungenKartenLogik is
@@ -441,7 +441,7 @@ package body SpieleinstellungenKartenLogik is
            KartentemperaturAuswahl
          is
             when RueckgabeDatentypen.Kartentemperatur_Enum'Range =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur := UmwandlungenVerschiedeneDatentypen.KartentemperaturrückgabeNachKartentemperatur (RückgabeExtern => KartentemperaturAuswahl);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur := UmwandlungenDatentypen.KartentemperaturrückgabeNachKartentemperatur (RückgabeExtern => KartentemperaturAuswahl);
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                KartengeneratorVariablenLogik.Kartenparameter.Kartentemperatur := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartentemperatur;
@@ -471,7 +471,7 @@ package body SpieleinstellungenKartenLogik is
            KartenressourcenAuswahl
          is
             when RueckgabeDatentypen.Kartenressourcen_Enum'Range =>
-               KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen := UmwandlungenVerschiedeneDatentypen.KartenressourcenrückgabeNachKartenressource (RückgabeExtern => KartenressourcenAuswahl);
+               KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen := UmwandlungenDatentypen.KartenressourcenrückgabeNachKartenressource (RückgabeExtern => KartenressourcenAuswahl);
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
                KartengeneratorVariablenLogik.Kartenparameter.Kartenressourcen := ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeKartenressourcen;

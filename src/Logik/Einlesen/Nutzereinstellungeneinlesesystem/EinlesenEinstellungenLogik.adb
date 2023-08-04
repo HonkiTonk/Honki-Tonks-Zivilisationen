@@ -2,7 +2,7 @@ with EinlesenGrafikeinstellungenLogik;
 with EinlesenNutzereinstellungenLogik;
 with EinlesenTastatureinstellungenLogik;
 with EinlesenToneinstellungenLogik;
-with EinlesenSonstigeEinstellungenLogik;
+with EinlesenSpielendeEinstellungenLogik;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
 -- Änderungen an den zu ladenden Datentypen kann jederzeit Probleme beim Laden verursachen.
@@ -15,7 +15,7 @@ package body EinlesenEinstellungenLogik is
       EinlesenGrafikeinstellungenLogik.Grafikeinstellungen;
       EinlesenToneinstellungenLogik.Toneinstelllungen;
       EinlesenTastatureinstellungenLogik.Tastatureinstellungen;
-      EinlesenSonstigeEinstellungenLogik.SonstigeEinstellungen;
+      EinlesenSpielendeEinstellungenLogik.SpielendeEinstellungen;
       
    end EinlesenEinstellungen;
 

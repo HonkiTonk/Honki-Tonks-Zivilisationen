@@ -10,9 +10,9 @@ with SchreibeOptionen;
 with Fehlermeldungssystem;
 
 -- Beim Record kann ich theoretisch alles beliebig neu ordnen, beim Einlesen/Schreiben muss ich aber immer alles neue an das Ende anhängen!
-package body EinlesenSonstigeEinstellungenLogik is
+package body EinlesenSpielendeEinstellungenLogik is
 
-   procedure SonstigeEinstellungen
+   procedure SpielendeEinstellungen
    is begin
       
       case
@@ -30,12 +30,12 @@ package body EinlesenSonstigeEinstellungenLogik is
       end case;
       
       case
-        SonstigeEinstellungenDurchgehen (LadenPrüfenExtern => False,
-                                         DateiLadenExtern  => DateiSonstigeEinstellungen)
+        SpielendeEinstellungenDurchgehen (LadenPrüfenExtern => False,
+                                          DateiLadenExtern  => DateiSonstigeEinstellungen)
       is
          when True =>
-            Nullwert := SonstigeEinstellungenDurchgehen (LadenPrüfenExtern => True,
-                                                         DateiLadenExtern  => DateiSonstigeEinstellungen);
+            Nullwert := SpielendeEinstellungenDurchgehen (LadenPrüfenExtern => True,
+                                                          DateiLadenExtern  => DateiSonstigeEinstellungen);
             
          when False =>
             OptionenVariablen.SpielendeStandardeinstellungenLaden;
@@ -45,7 +45,7 @@ package body EinlesenSonstigeEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSonstigeEinstellungenLogik.SonstigeEinstellungen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpielendeEinstellungenLogik.SpielendeEinstellungen: Konnte nicht geladen werden: " & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          OptionenVariablen.SpielendeStandardeinstellungenLaden;
          
          case
@@ -58,11 +58,11 @@ package body EinlesenSonstigeEinstellungenLogik is
                null;
          end case;
       
-   end SonstigeEinstellungen;
+   end SpielendeEinstellungen;
    
    
    
-   function SonstigeEinstellungenDurchgehen
+   function SpielendeEinstellungenDurchgehen
      (LadenPrüfenExtern : in Boolean;
       DateiLadenExtern : in File_Type)
       return Boolean
@@ -96,10 +96,10 @@ package body EinlesenSonstigeEinstellungenLogik is
       
    exception
       when StandardAdaFehler : others =>
-         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSonstigeEinstellungenLogik.SonstigeEinstellungenDurchgehen: Konnte nicht geladen werden: "
+         Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpielendeEinstellungenLogik.SonstigeEinstellungenDurchgehen: Konnte nicht geladen werden: "
                                      & Decode (Item => Exception_Information (X => StandardAdaFehler)));
          return False;
       
-   end SonstigeEinstellungenDurchgehen;
+   end SpielendeEinstellungenDurchgehen;
 
-end EinlesenSonstigeEinstellungenLogik;
+end EinlesenSpielendeEinstellungenLogik;

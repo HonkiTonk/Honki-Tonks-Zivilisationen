@@ -5,7 +5,7 @@ with SchreibeAllgemeines;
 with ZufallsgeneratorenSpieleinstellungenLogik;
 with AuswahlaufteilungLogik;
 with Fehlermeldungssystem;
-with UmwandlungenVerschiedeneDatentypen;
+with UmwandlungenDatentypen;
 
 package body SpieleinstellungenSonstigesLogik is
 
@@ -21,7 +21,7 @@ package body SpieleinstellungenSonstigesLogik is
            SchwierigkeitAuswahl
          is
             when RueckgabeDatentypen.Schwierigkeitsgrad_Enum'Range =>
-               SchreibeAllgemeines.Schwierigkeitsgrad (SchwierigkeitsgradExtern => UmwandlungenVerschiedeneDatentypen.RückgabeNachSchwierigkeitsgrad (RückgabeExtern => SchwierigkeitAuswahl));
+               SchreibeAllgemeines.Schwierigkeitsgrad (SchwierigkeitsgradExtern => UmwandlungenDatentypen.RückgabeNachSchwierigkeitsgrad (RückgabeExtern => SchwierigkeitAuswahl));
 
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
                SchreibeAllgemeines.Schwierigkeitsgrad (SchwierigkeitsgradExtern => ZufallsgeneratorenSpieleinstellungenLogik.ZufälligerSchwiewrigkeitsgrad);

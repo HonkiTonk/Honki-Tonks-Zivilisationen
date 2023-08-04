@@ -20,7 +20,7 @@ with EinheitenErzeugenEntfernenLogik;
 with AuswahlaufteilungLogik;
 with Fehlermeldungssystem;
 with LadezeitenLogik;
-with UmwandlungenVerschiedeneDatentypen;
+with UmwandlungenDatentypen;
 
 package body SpieleinstellungenSpeziesLogik is
    
@@ -36,7 +36,7 @@ package body SpieleinstellungenSpeziesLogik is
            SpeziesAuswahl
          is
             when RueckgabeDatentypen.Spezies_Verwendet_Enum'Range =>
-               BelegungÄndern (SpeziesExtern => UmwandlungenVerschiedeneDatentypen.RückgabeNachSpezies (RückgabeExtern => SpeziesAuswahl));
+               BelegungÄndern (SpeziesExtern => UmwandlungenDatentypen.RückgabeNachSpezies (RückgabeExtern => SpeziesAuswahl));
 
             when RueckgabeDatentypen.Auswahl_Neunzehn_Enum =>
                ZufallsgeneratorenSpieleinstellungenLogik.ZufälligeSpeziesbelegung;

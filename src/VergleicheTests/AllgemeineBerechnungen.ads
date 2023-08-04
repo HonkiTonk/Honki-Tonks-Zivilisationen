@@ -1,7 +1,7 @@
 with StadtDatentypen;
 
 package AllgemeineBerechnungen is
-   pragma Preelaborate;
+   pragma Elaborate_Body;
    use type StadtDatentypen.Einwohner;
 
    function FreieEinwohner

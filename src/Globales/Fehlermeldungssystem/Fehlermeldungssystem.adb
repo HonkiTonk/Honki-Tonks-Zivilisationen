@@ -87,5 +87,26 @@ package body Fehlermeldungssystem is
       end case;
       
    end Sound;
+   
+   
+   
+   procedure Mehrfachverwendung
+     (FehlermeldungExtern : in Wide_Wide_String)
+   is begin
+      
+      FehlermeldungSchreiben.MeldungSchreiben (MeldungExtern => "Mehrfachfehler: " & FehlermeldungExtern);
+      
+      case
+        Projekteinstellungen.Debug.FehlerWarnung
+      is
+         when True =>
+            Put_Line (Item => "Mehrfachfehler: " & FehlermeldungExtern);
+            raise MehrfachverwendungStopp;
+            
+         when False =>
+            null;
+      end case;
+      
+   end Mehrfachverwendung;
 
 end Fehlermeldungssystem;

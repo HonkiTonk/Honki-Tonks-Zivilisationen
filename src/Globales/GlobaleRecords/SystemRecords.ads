@@ -53,7 +53,6 @@ package SystemRecords is
       VolleInformation : Boolean;
       FehlerWarnung : Boolean;
       LinuxWindows : Boolean;
-      NormalerText : Boolean;
       
    end record;
    

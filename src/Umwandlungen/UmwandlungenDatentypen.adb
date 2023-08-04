@@ -1,4 +1,4 @@
-package body UmwandlungenVerschiedeneDatentypen is
+package body UmwandlungenDatentypen is
 
    function BefehleNachKartenverbesserung
      (TasteExtern : in BefehleDatentypen.Siedler_Konstruktionen_Enum)
@@ -8,17 +8,6 @@ package body UmwandlungenVerschiedeneDatentypen is
       return BefehleKartenverbesserung (TasteExtern);
       
    end BefehleNachKartenverbesserung;
-   
-   
-   
-   function KartenverbesserungNachBefehle
-     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Gebilde_Enum)
-      return BefehleDatentypen.Siedler_Konstruktionen_Enum
-   is begin
-      
-      return KartenverbesserungBefehle (VerbesserungExtern);
-      
-   end KartenverbesserungNachBefehle;
    
    
    
@@ -64,4 +53,4 @@ package body UmwandlungenVerschiedeneDatentypen is
       
    end RückgabeNachSchwierigkeitsgrad;
 
-end UmwandlungenVerschiedeneDatentypen;
+end UmwandlungenDatentypen;
