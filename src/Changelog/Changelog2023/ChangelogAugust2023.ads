@@ -184,6 +184,8 @@ package ChangelogAugust2023 is
 
    -- Version 0.05.3665 => 0.05. (05.08.2023):
    
+   -- Textdateien zusammengeführt.
+   -- Neue Version veröffentlicht.
    -- 
    -- Kleinigkeiten korrigiert.
    
