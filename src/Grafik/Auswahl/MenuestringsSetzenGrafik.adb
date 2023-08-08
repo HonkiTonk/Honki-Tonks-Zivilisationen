@@ -73,10 +73,10 @@ package body MenuestringsSetzenGrafik is
             AktuellerText := SonstigesMenü (WelcheZeileExtern => WelcheZeileExtern); -- Menuetexte.Sonstigesmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Steuerung_Menü_Enum =>
-            AktuellerText := Menuetexte.Steuerungmenü (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Steuerungsmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Editoren_Menü_Enum =>
-            AktuellerText := Menuetexte.Editoren (WelcheZeileExtern);
+            AktuellerText := Menuetexte.Editorenmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Einstellungen_Menü_Enum =>
             AktuellerText := Menuetexte.Einstellungsmenü (WelcheZeileExtern);

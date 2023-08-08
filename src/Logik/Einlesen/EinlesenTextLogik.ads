@@ -2,6 +2,9 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Directories; use Ada.Directories;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+private with Menuetexte;
+private with TextKonstanten;
+
 package EinlesenTextLogik is
    pragma Elaborate_Body;
    
@@ -10,11 +13,29 @@ package EinlesenTextLogik is
    
 private
    
-   AnzahlTextdateien : constant Positive := 34;
-   Trennzeile : constant Positive := 1;
+   -- Überall Menü anhängen um eine bessereAbgrenzung von ähnlichen Textdateinamen zu haben? äöü
+   AnzahlTextdateien : constant Positive := 22;
+   Hauptmenü : constant Positive := Menuetexte.Hauptmenü'Last;
+   Spielmenü : constant Positive := Hauptmenü + Menuetexte.Spielmenü'Last;
+   Optionsmenü : constant Positive := Spielmenü + Menuetexte.Optionsmenü'Last;
+   Grafikmenü : constant Positive := Optionsmenü + Menuetexte.Grafikmenü'Last;
+   Soundmenü : constant Positive := Grafikmenü + Menuetexte.Soundmenü'Last;
+   Steuerungsmenü : constant Positive := Soundmenü + Menuetexte.Steuerungsmenü'Last;
+   Sonstigesmenü : constant Positive := Steuerungsmenü + Menuetexte.Sonstigesmenü'Last;
+   Kartengröße : constant Positive := Sonstigesmenü + Menuetexte.Kartengröße'Last;
+   Kartenart : constant Positive := Kartengröße + Menuetexte.Kartenart'Last;
+   Kartentemperatur : constant Positive := Kartenart + Menuetexte.Kartentemperatur'Last;
+   Speziesauswahl : constant Positive := Kartentemperatur + Menuetexte.Speziesauswahl'Last;
+   Schwierigkeitsgrad : constant Positive := Speziesauswahl + Menuetexte.Schwierigkeitsgrad'Last;
+   Kartenform : constant Positive := Schwierigkeitsgrad + Menuetexte.Kartenform'Last;
+   Ressourcenmenge : constant Positive := Kartenform + Menuetexte.Ressourcenmenge'Last;
+   Diplomatiemenü : constant Positive := Ressourcenmenge + Menuetexte.Diplomatiemenü'Last;
+   Einstellungsmenü : constant Positive := Diplomatiemenü + Menuetexte.Einstellungsmenü'Last;
+   Kartenpole : constant Positive := Einstellungsmenü + Menuetexte.Kartenpole'Last;
+   Spielstandmenü : constant Positive := Kartenpole + Menuetexte.Spielstandmenü'Last;
+   Editorenmenü : constant Positive := Spielstandmenü + Menuetexte.Editorenmenü'Last;
    EinzulesendeZeile : Positive;
    AktuelleZeile : Positive;
-   AktuellesMenü : Positive;
       
    DateiVerzeichnisse : File_Type;
    DateiText : File_Type;
@@ -24,6 +45,9 @@ private
    Verzeichnis : Directory_Entry_Type;
    
    Zwischenspeicher : Unbounded_Wide_Wide_String;
+   
+   type ErsetzungenEingelesenArray is array (1 .. 6) of Unbounded_Wide_Wide_String;
+   ErsetzungenEingelesen : ErsetzungenEingelesenArray := (others => TextKonstanten.FehlenderText);
    
    procedure Einlesen
      (VerzeichnisExtern : in Wide_Wide_String;
@@ -45,39 +69,11 @@ private
                  VerzeichnisExtern'Length > 0
               );
    
+   procedure Ersetzungen
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
    procedure Menüs
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Steuerungmenü
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Kartengröße
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Kartenart
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Kartentemperatur
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Speziesauswahl
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Schwierigkeitsgrad
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Kartenform
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Ressourcenmenge
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
@@ -94,10 +90,6 @@ private
       EinsprachigExtern : in Boolean);
    
    procedure Würdigung
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Diplomatiemenü
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
@@ -133,10 +125,6 @@ private
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
-   procedure Editoren
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
    procedure Wege
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
@@ -149,19 +137,7 @@ private
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
-   procedure Einstellungen
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Kartenpole
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
    procedure Stadtbefehle
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Spielstandmenü
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
@@ -182,6 +158,10 @@ private
       EinsprachigExtern : in Boolean);
    
    
+   
+   function TextErsetzen
+     (TextExtern : in Wide_Wide_String)
+      return Unbounded_Wide_Wide_String;
    
    function Einsprachig
      (EinsprachigExtern : in Boolean;

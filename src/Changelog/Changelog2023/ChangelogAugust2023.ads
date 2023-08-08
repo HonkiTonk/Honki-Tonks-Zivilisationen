@@ -161,33 +161,30 @@ package ChangelogAugust2023 is
    
    
 
-   -- Version 0.05. => 0.05. (08.08.2023):
+   -- Version 0.05.3695 => 0.05.3730 (08.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (07.08.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einlesesystem für den Text überarbeitet und erweitert.
+   -- Textdateien zusammengeführt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05. => 0.05. (06.08.2023):
+   -- Version 0.05.3695 => 0.05.3695 (07.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.3665 => 0.05. (05.08.2023):
+   -- Version 0.05.3695 => 0.05.3695 (06.08.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.3665 => 0.05.3695 (05.08.2023):
    
    -- Textdateien zusammengeführt.
    -- Neue Version veröffentlicht.
-   -- 
-   -- Kleinigkeiten korrigiert.
    
    
 

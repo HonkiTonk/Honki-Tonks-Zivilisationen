@@ -5,24 +5,24 @@ Spiel laden
 Optionen
 Editoren
 Würdigungen
-Spiel beenden
+~~~
 #################################
 Spielmenü
 Weiter
 Speichern
 Laden
 Optionen
-Hauptmenü
-Spiel beenden
+~~
+~~~
 #################################
 Optionen
 Grafik
 Sound
 Steuerung
 Sonstiges
-Zurück
-Hauptmenü
-Spiel beenden
+~
+~~
+~~~
 #################################
 Grafikmenü
 Auflösung ändern
@@ -31,31 +31,234 @@ Bildrate ändern
 Ebenen unterhalb sichtbar
 Bildrate anzeigen
 Speichern
-Zurück
-Hauptmenü
-Spiel beenden
+~
+~~
+~~~
 #################################
 Soundmenü
 Soundlautstärke
 Musiklautstärke
-Zurück
-Hauptmenü
-Spiel beenden
+~
+~~
+~~~
+#################################
+Steuerung
+Allgemein
+Nach Norden scrollen
+Nach Westen scrollen
+Nach Süden scrollen
+Nach Osten scrollen
+Nach Nordwesten scrollen
+Nach Nordosten scrollen
+Nach Südwesten scrollen
+Nach Südosten scrollen
+Ebene hoch scrollen
+Ebene runter scrollen
+Forschungsmenü
+Diplomatiemenü
+Stadt suchen
+Nächste Stadt
+Nächste Stadt mit Meldung
+Nächste Einheit
+Nächste Einheit mit Meldung
+Nächste Einheit mit Bewegungspunkte
+Nächste Einheit ohne Bewegungspunkte
+Gehe Zu
+Runde beenden
+Abbruch
+Einheiten
+Nach Norden bewegen
+Nach Westen bewegen
+Nach Süden bewegen
+Nach Osten bewegen
+Nach Nordwesten bewegen
+Nach Nordosten bewegen
+Nach Südwesten bewegen
+Nach Südosten bewegen
+Ebene hoch bewegen
+Ebene runter bewegen
+Stadt bauen
+Straße bauen/verbessern
+Mine bauen/verbessern
+Farm bauen/verbessern
+Festung bauen/verbessern
+Aufforsten
+Roden/Trockenlegen
+Effekt entfernen
+Heilen
+Verschanzen
+Plündern
+Auflösen
+Verbessern
+Heimatstadt ändern
+Entladen
+Abwählen
+Stadt
+Stadtkarte
+Bauen
+Verkaufen
+Umbenennen
+Auflösen
+Verlassen
+Speichern
+~~~~
+~
+~~
+~~~
 #################################
 Spieleinstellungen
 Anzahl automatischer Spielstände
 Runden bis Autospeichern
 Sprache ändern
-Zurück
-Hauptmenü
-Spiel beenden
+~
+~~
+~~~
 #################################
+Kartengröße wählen:
+Winzig
+Klein
+Mittel
+Rechteck
+Großes Rechteck
+Groß
+Riesig
+Gigantisch
+Absurd
+Benutzerdefiniert
+Zufällige vordefinierte Größe
+Zufällige nicht vordefinierte Größe
+~~~~~
+Aktuelle Größe:
+Neue Größe:
 #################################
+Kartenart wählen:
+Inseln
+Kontinente
+Pangäa
+Benutzerdefiniert
+Zufällige vordefinierte Kartenart
+Zufällige nicht vordefinierte Kartenart
+~~~~
+~~~~~
 #################################
+Kartentemperatur wählen:
+Kalt
+Gemäßigt
+Heiß
+Eiszeit
+Wüste
+~~~~~~
+~~~~~
 #################################
+Spezies wählen:
+Menschen
+Kasrodiah
+Lasupin
+Lamustra
+Manuky
+Suroka
+Pryolon
+Moru Phisihl
+Larinos Lotaris
+Carupex
+Alary
+Natries Zermanis
+Tridatus
+Senelari
+Aspari_2
+Ekropa
+Tesorahn
+Talbidahr
+~~~~~~
+~~~~~
 #################################
+Schwierigkeitsgrad festlegen:
+Leicht
+Mittel
+Schwer
+~~~~~~
+~~~~~
 #################################
+Kartenform ändern:
+Ebene oben
+Ebene unten
+Norden
+Süden
+Westen
+Osten
+~~~~~~
+~~~~
+~~~~~
+Kein Übergang
+Übergang
+Verschobener rückwärts Übergang
+Verschobener Übergang
 #################################
+Vorhandene Ressourcenmenge wählen:
+Arm
+Wenig
+Mittel
+Viel
+Überfluss
+~~~~~~
+~~~~~
 #################################
+Diplomatie:
+Karten tauschen
+Von eigenem Gebiet werfen
+Nichtangriffspakt
+Frieden erklären
+Krieg erklären
+~
+Menü verlassen
+Aktuelle Meinung:
+Aktueller Zustand:
 #################################
+Einstellungen
+Kartenpole
+Kartengröße
+Kartenart
+Kartenform
+Kartentemperatur
+Kartenressourcen
+Speziesauswahl
+Schwierigkeitsgrad
+~~~~~
+~~
+~~~
 #################################
+Kartenpole
+Nordpol
+Südpol
+Westpol
+Ostpol
+~~~~~~
+~~~~
+~~~~~
+#################################
+Spielstandmenü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+Mehr
+Neu
+Löschen
+~
+#################################
+Editor auswählen:
+Kartenfeldeditor
+Einheiteneditor
+Gebäudeeditor
+Forschungseditor
+Verbesserungeneditor
+Alles auf Standard
+~
+~~
+~~~

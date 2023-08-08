@@ -1,13 +1,11 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with VerzeichnisKonstanten;
-with Menuetexte;
 with Kartentexte;
 with GlobaleTexte;
 with Meldungstexte;
 with Befehlstexte;
 with Spieltexte;
-with TextKonstanten;
 
 with LeseOptionen;
 
@@ -158,138 +156,90 @@ package body EinlesenTextLogik is
         WelcheDateiExtern
       is
          when 1 =>
+            Ersetzungen (DateiExtern       => DateiText,
+                         EinsprachigExtern => EinsprachigExtern);
+            
+         when 2 =>
             Menüs (DateiExtern       => DateiText,
                     EinsprachigExtern => EinsprachigExtern);
                
-         when 2 =>
-            Steuerungmenü (DateiExtern => DateiText,
-                            EinsprachigExtern => EinsprachigExtern);
-               
          when 3 =>
-            Kartengröße (DateiExtern => DateiText,
-                           EinsprachigExtern => EinsprachigExtern);
-               
-         when 4 =>
-            Kartenart (DateiExtern => DateiText,
-                       EinsprachigExtern => EinsprachigExtern);
-               
-         when 5 =>
-            Kartentemperatur (DateiExtern => DateiText,
-                              EinsprachigExtern => EinsprachigExtern);
-               
-         when 6 =>
-            Speziesauswahl (DateiExtern => DateiText,
-                            EinsprachigExtern => EinsprachigExtern);
-               
-         when 7 =>
-            Schwierigkeitsgrad (DateiExtern => DateiText,
-                                EinsprachigExtern => EinsprachigExtern);
-               
-         when 8 =>
-            Kartenform (DateiExtern => DateiText,
-                        EinsprachigExtern => EinsprachigExtern);
-               
-         when 9 =>
-            Ressourcenmenge (DateiExtern => DateiText,
-                             EinsprachigExtern => EinsprachigExtern);
-               
-         when 10 =>
             Basisgrund (DateiExtern => DateiText,
                         EinsprachigExtern => EinsprachigExtern);
                
-         when 11 =>
+         when 4 =>
             Verbesserungen (DateiExtern => DateiText,
                             EinsprachigExtern => EinsprachigExtern);
                
-         when 12 =>
+         when 5 =>
             Beschäftigungen (DateiExtern => DateiText,
                               EinsprachigExtern => EinsprachigExtern);
                
-         when 13 =>
+         when 6 =>
             Würdigung (DateiExtern => DateiText,
                         EinsprachigExtern => EinsprachigExtern);
                
-         when 14 =>
-            Diplomatiemenü (DateiExtern => DateiText,
-                             EinsprachigExtern => EinsprachigExtern);
-               
-         when 15 =>
+         when 7 =>
             DiplomatieKI (DateiExtern => DateiText,
                           EinsprachigExtern => EinsprachigExtern);
                
-         when 16 =>
+         when 8 =>
             Handelsmenü (DateiExtern => DateiText,
                           EinsprachigExtern => EinsprachigExtern);
                
-         when 17 =>
+         when 9 =>
             DiplomatieStatus (DateiExtern => DateiText,
                               EinsprachigExtern => EinsprachigExtern);
                
-         when 18 =>
+         when 10 =>
             Angebot (DateiExtern => DateiText,
                      EinsprachigExtern => EinsprachigExtern);
                
-         when 19 =>
+         when 11 =>
             Fehlermeldung (DateiExtern => DateiText,
                            EinsprachigExtern => EinsprachigExtern);
                
-         when 20 =>
+         when 12 =>
             Ladezeit (DateiExtern => DateiText,
                       EinsprachigExtern => EinsprachigExtern);
                
-         when 21 =>
+         when 13 =>
             Frage (DateiExtern => DateiText,
                    EinsprachigExtern => EinsprachigExtern);
                
-         when 22 =>
+         when 14 =>
             ZeugSachen (DateiExtern => DateiText,
                         EinsprachigExtern => EinsprachigExtern);
                
-         when 23 =>
-            Editoren (DateiExtern => DateiText,
-                      EinsprachigExtern => EinsprachigExtern);
-               
-         when 24 =>
+         when 15 =>
             Wege (DateiExtern => DateiText,
                   EinsprachigExtern => EinsprachigExtern);
                
-         when 25 =>
+         when 16 =>
             Kartenflüsse (DateiExtern => DateiText,
                            EinsprachigExtern => EinsprachigExtern);
                
-         when 26 =>
+         when 17 =>
             Kartenressourcen (DateiExtern => DateiText,
                               EinsprachigExtern => EinsprachigExtern);
-               
-         when 27 =>
-            Einstellungen (DateiExtern => DateiText,
-                           EinsprachigExtern => EinsprachigExtern);
-               
-         when 28 =>
-            Kartenpole (DateiExtern => DateiText,
-                        EinsprachigExtern => EinsprachigExtern);
             
-         when 29 =>
+         when 18 =>
             Stadtbefehle (DateiExtern => DateiText,
                           EinsprachigExtern => EinsprachigExtern);
             
-         when 30 =>
-            Spielstandmenü (DateiExtern => DateiText,
-                             EinsprachigExtern => EinsprachigExtern);
-            
-         when 31 =>
+         when 19 =>
             Intro (DateiExtern => DateiText,
                    EinsprachigExtern => EinsprachigExtern);
             
-         when 32 =>
+         when 20 =>
             Outro (DateiExtern => DateiText,
                    EinsprachigExtern => EinsprachigExtern);
             
-         when 33 =>
+         when 21 =>
             Zusatzgrund (DateiExtern => DateiText,
                          EinsprachigExtern => EinsprachigExtern);
             
-         when 34 =>
+         when 22 =>
             Feldeffekte (DateiExtern => DateiText,
                          EinsprachigExtern => EinsprachigExtern);
             
@@ -303,24 +253,24 @@ package body EinlesenTextLogik is
    
    
    
-   procedure Menüs
+   procedure Ersetzungen
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean)
    is begin
       
       EinzulesendeZeile := 1;
-      AktuellesMenü := 1;
+      AktuelleZeile := 1;
       
-      MenüSchleife:
+      ErsetzungenSchleife:
       loop
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
                                                            AktuelleZeileExtern => EinzulesendeZeile,
-                                                           DateiExtern         => "EinlesenTextLogik.Menü")
+                                                           DateiExtern         => "EinlesenTextLogik.Ersetzungen")
          is
             when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Menü: Fehlende Zeilen");
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Ersetzungen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
                return;
                
             when False =>
@@ -328,24 +278,57 @@ package body EinlesenTextLogik is
                Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
          end case;
          
-         if
-           To_Wide_Wide_String (Source => Zwischenspeicher) = "~"
-         then
-            Zwischenspeicher := Zwischenspeicher & "1";
-            
-         elsif
-           To_Wide_Wide_String (Source => Zwischenspeicher) = "~~"
-         then
-            Zwischenspeicher := Zwischenspeicher & "2";
-            
-         elsif
-           To_Wide_Wide_String (Source => Zwischenspeicher) = "~~~"
-         then
-            Zwischenspeicher := Zwischenspeicher & "3";
+         case
+           To_Wide_Wide_String (Source => Zwischenspeicher) (1)
+         is
+            when TextKonstanten.TrennzeichenTextdateien =>
+               null;
                
-         else
-            null;
-         end if;
+            when others =>
+               ErsetzungenEingelesen (AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                     EingelesenerTextExtern => Zwischenspeicher,
+                                                                     VorhandenerTextExtern  => ErsetzungenEingelesen (AktuelleZeile));
+               
+               if
+                 AktuelleZeile < ErsetzungenEingelesenArray'Last
+               then
+                  AktuelleZeile := AktuelleZeile + 1;
+                  
+               else
+                  return;
+               end if;
+         end case;
+         
+      end loop ErsetzungenSchleife;
+      
+   end Ersetzungen;
+   
+   
+   
+   procedure Menüs
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean)
+   is begin
+      
+      EinzulesendeZeile := 1;
+      AktuelleZeile := 1;
+      
+      MenüSchleife:
+      loop
+         
+         case
+           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
+                                                           AktuelleZeileExtern => EinzulesendeZeile,
+                                                           DateiExtern         => "EinlesenTextLogik.Menüs")
+         is
+            when True =>
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Menüs: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               return;
+               
+            when False =>
+               EinzulesendeZeile := EinzulesendeZeile + 1;
+               Zwischenspeicher := TextErsetzen (TextExtern => Get_Line (File => DateiExtern));
+         end case;
          
          case
            To_Wide_Wide_String (Source => Zwischenspeicher) (1)
@@ -355,55 +338,137 @@ package body EinlesenTextLogik is
                
             when others =>
                if
-                 AktuellesMenü <= Menuetexte.Hauptmenü'Last
+                 AktuelleZeile <= Hauptmenü
                then
-                  AktuelleZeile := AktuellesMenü;
                   Menuetexte.Hauptmenü (AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                                                         EingelesenerTextExtern => Zwischenspeicher,
                                                                         VorhandenerTextExtern  => Menuetexte.Hauptmenü (AktuelleZeile));
                   
                elsif
-                 AktuellesMenü in Menuetexte.Hauptmenü'Last + 1 .. Menuetexte.Hauptmenü'Last + Menuetexte.Spielmenü'Last
+                 AktuelleZeile in Hauptmenü + 1 .. Spielmenü
                then
-                  AktuelleZeile := AktuellesMenü - Menuetexte.Hauptmenü'Last;
-                  Menuetexte.Spielmenü (AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
-                                                                        EingelesenerTextExtern => Zwischenspeicher,
-                                                                        VorhandenerTextExtern  => Menuetexte.Spielmenü (AktuelleZeile));
+                  Menuetexte.Spielmenü (AktuelleZeile - Hauptmenü) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                     EingelesenerTextExtern => Zwischenspeicher,
+                                                                                     VorhandenerTextExtern  => Menuetexte.Spielmenü (AktuelleZeile - Hauptmenü));
                   
                elsif
-                 AktuellesMenü in Menuetexte.Hauptmenü'Last + Menuetexte.Spielmenü'Last + 1 .. Menuetexte.Hauptmenü'Last + Menuetexte.Spielmenü'Last + Menuetexte.Optionsmenü'Last
+                 AktuelleZeile in Spielmenü + 1 .. Optionsmenü
                then
-                  AktuelleZeile := AktuellesMenü - Menuetexte.Hauptmenü'Last - Menuetexte.Spielmenü'Last;
-                  Menuetexte.Optionsmenü (AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
-                                                                          EingelesenerTextExtern => Zwischenspeicher,
-                                                                          VorhandenerTextExtern  => Menuetexte.Optionsmenü (AktuelleZeile));
+                  Menuetexte.Optionsmenü (AktuelleZeile - Spielmenü) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                       EingelesenerTextExtern => Zwischenspeicher,
+                                                                                       VorhandenerTextExtern  => Menuetexte.Optionsmenü (AktuelleZeile - Spielmenü));
                   
                elsif
-                 AktuellesMenü in Menuetexte.Hauptmenü'Last + Menuetexte.Spielmenü'Last + Menuetexte.Optionsmenü'Last + 1
-                   .. Menuetexte.Hauptmenü'Last + Menuetexte.Spielmenü'Last + Menuetexte.Optionsmenü'Last + Menuetexte.Grafikmenü'Last
+                 AktuelleZeile in Optionsmenü + 1 .. Grafikmenü
                then
-                  AktuelleZeile := AktuellesMenü - Menuetexte.Hauptmenü'Last - Menuetexte.Spielmenü'Last - Menuetexte.Optionsmenü'Last;
-                  Menuetexte.Grafikmenü (AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
-                                                                         EingelesenerTextExtern => Zwischenspeicher,
-                                                                         VorhandenerTextExtern  => Menuetexte.Grafikmenü (AktuelleZeile));
+                  Menuetexte.Grafikmenü (AktuelleZeile - Optionsmenü) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                        EingelesenerTextExtern => Zwischenspeicher,
+                                                                                        VorhandenerTextExtern  => Menuetexte.Grafikmenü (AktuelleZeile - Optionsmenü));
                   
                elsif
-                 AktuellesMenü in Menuetexte.Hauptmenü'Last + Menuetexte.Spielmenü'Last + Menuetexte.Optionsmenü'Last + Menuetexte.Grafikmenü'Last + 1
-                   .. Menuetexte.Hauptmenü'Last + Menuetexte.Spielmenü'Last + Menuetexte.Optionsmenü'Last + Menuetexte.Grafikmenü'Last + Menuetexte.Soundmenü'Last
+                 AktuelleZeile in Grafikmenü + 1 .. Soundmenü
                then
-                  AktuelleZeile := AktuellesMenü - Menuetexte.Hauptmenü'Last - Menuetexte.Spielmenü'Last - Menuetexte.Optionsmenü'Last - Menuetexte.Grafikmenü'Last;
-                  Menuetexte.Soundmenü (AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
-                                                                        EingelesenerTextExtern => Zwischenspeicher,
-                                                                        VorhandenerTextExtern  => Menuetexte.Soundmenü (AktuelleZeile));
+                  Menuetexte.Soundmenü (AktuelleZeile - Grafikmenü) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                      EingelesenerTextExtern => Zwischenspeicher,
+                                                                                      VorhandenerTextExtern  => Menuetexte.Soundmenü (AktuelleZeile - Grafikmenü));
                   
                elsif
-                 AktuellesMenü in Menuetexte.Hauptmenü'Last + Menuetexte.Spielmenü'Last + Menuetexte.Optionsmenü'Last + Menuetexte.Grafikmenü'Last + Menuetexte.Soundmenü'Last + 1
-                   .. Menuetexte.Hauptmenü'Last + Menuetexte.Spielmenü'Last + Menuetexte.Optionsmenü'Last + Menuetexte.Grafikmenü'Last + Menuetexte.Soundmenü'Last + Menuetexte.Sonstigesmenü'Last
+                 AktuelleZeile in Soundmenü + 1 .. Steuerungsmenü
                then
-                  AktuelleZeile := AktuellesMenü - Menuetexte.Hauptmenü'Last - Menuetexte.Spielmenü'Last - Menuetexte.Optionsmenü'Last - Menuetexte.Grafikmenü'Last - Menuetexte.Soundmenü'Last;
-                  Menuetexte.Sonstigesmenü (AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
-                                                                            EingelesenerTextExtern => Zwischenspeicher,
-                                                                            VorhandenerTextExtern  => Menuetexte.Sonstigesmenü (AktuelleZeile));
+                  Menuetexte.Steuerungsmenü (AktuelleZeile - Soundmenü) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                          EingelesenerTextExtern => Zwischenspeicher,
+                                                                                          VorhandenerTextExtern  => Menuetexte.Steuerungsmenü (AktuelleZeile - Soundmenü));
+                  
+               elsif
+                 AktuelleZeile in Steuerungsmenü + 1 .. Sonstigesmenü
+               then
+                  Menuetexte.Sonstigesmenü (AktuelleZeile - Steuerungsmenü) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                              EingelesenerTextExtern => Zwischenspeicher,
+                                                                                              VorhandenerTextExtern  => Menuetexte.Sonstigesmenü (AktuelleZeile - Steuerungsmenü));
+                  
+               elsif
+                 AktuelleZeile in Sonstigesmenü + 1 .. Kartengröße
+               then
+                  Menuetexte.Kartengröße (AktuelleZeile - Sonstigesmenü) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                            EingelesenerTextExtern => Zwischenspeicher,
+                                                                                            VorhandenerTextExtern  => Menuetexte.Kartengröße (AktuelleZeile - Sonstigesmenü));
+                  
+               elsif
+                 AktuelleZeile in Kartengröße + 1 .. Kartenart
+               then
+                  Menuetexte.Kartenart (AktuelleZeile - Kartengröße) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                       EingelesenerTextExtern => Zwischenspeicher,
+                                                                                       VorhandenerTextExtern  => Menuetexte.Kartenart (AktuelleZeile - Kartengröße));
+                  
+               elsif
+                 AktuelleZeile in Kartenart + 1 .. Kartentemperatur
+               then
+                  Menuetexte.Kartentemperatur (AktuelleZeile - Kartenart) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                          EingelesenerTextExtern => Zwischenspeicher,
+                                                                                          VorhandenerTextExtern  => Menuetexte.Kartentemperatur (AktuelleZeile - Kartenart));
+                  
+               elsif
+                 AktuelleZeile in Kartentemperatur + 1 .. Speziesauswahl
+               then
+                  Menuetexte.Speziesauswahl (AktuelleZeile - Kartentemperatur) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                               EingelesenerTextExtern => Zwischenspeicher,
+                                                                                               VorhandenerTextExtern  => Menuetexte.Speziesauswahl (AktuelleZeile - Kartentemperatur));
+                  
+               elsif
+                 AktuelleZeile in Speziesauswahl + 1 .. Schwierigkeitsgrad
+               then
+                  Menuetexte.Schwierigkeitsgrad (AktuelleZeile - Speziesauswahl) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                                 EingelesenerTextExtern => Zwischenspeicher,
+                                                                                                 VorhandenerTextExtern  => Menuetexte.Schwierigkeitsgrad (AktuelleZeile - Speziesauswahl));
+                  
+               elsif
+                 AktuelleZeile in Schwierigkeitsgrad + 1 .. Kartenform
+               then
+                  Menuetexte.Kartenform (AktuelleZeile - Schwierigkeitsgrad) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                             EingelesenerTextExtern => Zwischenspeicher,
+                                                                                             VorhandenerTextExtern  => Menuetexte.Kartenform (AktuelleZeile - Schwierigkeitsgrad));
+                  
+               elsif
+                 AktuelleZeile in Kartenform + 1 .. Ressourcenmenge
+               then
+                  Menuetexte.Ressourcenmenge (AktuelleZeile - Kartenform) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                          EingelesenerTextExtern => Zwischenspeicher,
+                                                                                          VorhandenerTextExtern  => Menuetexte.Ressourcenmenge (AktuelleZeile - Kartenform));
+                  
+               elsif
+                 AktuelleZeile in Ressourcenmenge + 1 .. Diplomatiemenü
+               then
+                  Menuetexte.Diplomatiemenü (AktuelleZeile - Ressourcenmenge) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                               EingelesenerTextExtern => Zwischenspeicher,
+                                                                                               VorhandenerTextExtern  => Menuetexte.Diplomatiemenü (AktuelleZeile - Ressourcenmenge));
+                  
+               elsif
+                 AktuelleZeile in Diplomatiemenü + 1 .. Einstellungsmenü
+               then
+                  Menuetexte.Einstellungsmenü (AktuelleZeile - Diplomatiemenü) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                                 EingelesenerTextExtern => Zwischenspeicher,
+                                                                                                 VorhandenerTextExtern  => Menuetexte.Einstellungsmenü (AktuelleZeile - Diplomatiemenü));
+                  
+               elsif
+                 AktuelleZeile in Einstellungsmenü + 1 .. Kartenpole
+               then
+                  Menuetexte.Kartenpole (AktuelleZeile - Einstellungsmenü) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                            EingelesenerTextExtern => Zwischenspeicher,
+                                                                                            VorhandenerTextExtern  => Menuetexte.Kartenpole (AktuelleZeile - Einstellungsmenü));
+                  
+               elsif
+                 AktuelleZeile in Kartenpole + 1 .. Spielstandmenü
+               then
+                  Menuetexte.Spielstandmenü (AktuelleZeile - Kartenpole) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                          EingelesenerTextExtern => Zwischenspeicher,
+                                                                                          VorhandenerTextExtern  => Menuetexte.Spielstandmenü (AktuelleZeile - Kartenpole));
+                  
+               elsif
+                 AktuelleZeile in Spielstandmenü + 1 .. Editorenmenü
+               then
+                  Menuetexte.Editorenmenü (AktuelleZeile - Spielstandmenü) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                             EingelesenerTextExtern => Zwischenspeicher,
+                                                                                             VorhandenerTextExtern  => Menuetexte.Editorenmenü (AktuelleZeile - Spielstandmenü));
                   
                   -- Das else hier kann für das letzte Menü verwendet werden. äöü
                else
@@ -411,386 +476,18 @@ package body EinlesenTextLogik is
                end if;
                
                if
-                 AktuellesMenü = Menuetexte.Hauptmenü'Last + Menuetexte.Spielmenü'Last + Menuetexte.Optionsmenü'Last + Menuetexte.Grafikmenü'Last + Menuetexte.Soundmenü'Last + Menuetexte.Sonstigesmenü'Last
+                 AktuelleZeile < Editorenmenü
                then
-                  return;
+                  AktuelleZeile := AktuelleZeile + 1;
                      
                else
-                  AktuellesMenü := AktuellesMenü + 1;
+                  return;
                end if;
          end case;
          
       end loop MenüSchleife;
       
    end Menüs;
-   
-   
-   
-   procedure Steuerungmenü
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      SteuerungmenüSchleife:
-      for ZeileSchleifenwert in Menuetexte.Steuerungmenü'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Steuerungmenü")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Steuerungmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Steuerungmenü (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Steuerungmenü (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Steuerungmenü (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Steuerungmenü (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop SteuerungmenüSchleife;
-      
-   end Steuerungmenü;
-   
-   
-   
-   procedure Kartengröße
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      KartengrößeSchleife:
-      for ZeileSchleifenwert in Menuetexte.Kartengröße'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Kartengröße")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartengröße: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Kartengröße (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Kartengröße (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Kartengröße (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Kartengröße (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop KartengrößeSchleife;
-      
-   end Kartengröße;
-   
-   
-   
-   procedure Kartenart
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      KartenartSchleife:
-      for ZeileSchleifenwert in Menuetexte.Kartenart'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Kartenart")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenart: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Kartenart (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Kartenart (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Kartenart (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Kartenart (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop KartenartSchleife;
-      
-   end Kartenart;
-   
-   
-   
-   procedure Kartentemperatur
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      KartentemperaturSchleife:
-      for ZeileSchleifenwert in Menuetexte.Kartentemperatur'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Kartentemperatur")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartentemperatur: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Kartentemperatur (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Kartentemperatur (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Kartentemperatur (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Kartentemperatur (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop KartentemperaturSchleife;
-      
-   end Kartentemperatur;
-   
-   
-   
-   procedure Speziesauswahl
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      SpeziesauswahlSchleife:
-      for ZeileSchleifenwert in Menuetexte.Speziesauswahl'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Speziesauswahl")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Speziesauswahl: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Speziesauswahl (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Speziesauswahl (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Speziesauswahl (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Speziesauswahl (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop SpeziesauswahlSchleife;
-      
-   end Speziesauswahl;
-   
-   
-   
-   procedure Schwierigkeitsgrad
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      SchwierigkeitsgradSchleife:
-      for ZeileSchleifenwert in Menuetexte.Schwierigkeitsgrad'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Schwierigkeitsgrad")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Schwierigkeitsgrad: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Schwierigkeitsgrad (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Schwierigkeitsgrad (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Schwierigkeitsgrad (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Schwierigkeitsgrad (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop SchwierigkeitsgradSchleife;
-      
-   end Schwierigkeitsgrad;
-   
-   
-   
-   procedure Kartenform
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      KartenformSchleife:
-      for ZeileSchleifenwert in Menuetexte.Kartenform'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Kartenform")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenform: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Kartenform (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Kartenform (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Kartenform (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Kartenform (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop KartenformSchleife;
-      
-   end Kartenform;
-   
-   
-   
-   procedure Ressourcenmenge
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      RessourcenmengeSchleife:
-      for ZeileSchleifenwert in Menuetexte.Ressourcenmenge'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Ressourcenmenge")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Ressourcenmenge: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Ressourcenmenge (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Ressourcenmenge (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Ressourcenmenge (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Ressourcenmenge (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop RessourcenmengeSchleife;
-      
-   end Ressourcenmenge;
    
    
    
@@ -975,52 +672,6 @@ package body EinlesenTextLogik is
       end loop WürdigungSchleife;
       
    end Würdigung;
-   
-   
-   
-   procedure Diplomatiemenü
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      DiplomatiemenüSchleife:
-      for ZeileSchleifenwert in Menuetexte.Diplomatiemenü'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Diplomatiemenü")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Diplomatiemenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Diplomatiemenü (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Diplomatiemenü (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Diplomatiemenü (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Diplomatiemenü (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop DiplomatiemenüSchleife;
-      
-   end Diplomatiemenü;
    
    
    
@@ -1392,52 +1043,6 @@ package body EinlesenTextLogik is
       
    
    
-   procedure Editoren
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      EditorenSchleife:
-      for ZeileSchleifenwert in Menuetexte.Editoren'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Editoren")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Editoren: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Editoren (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Editoren (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Editoren (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Editoren (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop EditorenSchleife;
-      
-   end Editoren;
-      
-   
-   
    procedure Wege
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean)
@@ -1576,98 +1181,6 @@ package body EinlesenTextLogik is
    
    
    
-   procedure Einstellungen
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      EinstellungenSchleife:
-      for ZeileSchleifenwert in Menuetexte.Einstellungsmenü'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Einstellungen")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Einstellungen: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Einstellungsmenü (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Einstellungsmenü (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Einstellungsmenü (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Einstellungsmenü (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop EinstellungenSchleife;
-      
-   end Einstellungen;
-   
-   
-   
-   procedure Kartenpole
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      KartenpoleSchleife:
-      for ZeileSchleifenwert in Menuetexte.Kartenpole'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Kartenpole")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenpole: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Kartenpole (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Kartenpole (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Kartenpole (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Kartenpole (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop KartenpoleSchleife;
-      
-   end Kartenpole;
-   
-   
-   
    procedure Stadtbefehle
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean)
@@ -1711,52 +1224,6 @@ package body EinlesenTextLogik is
       end loop StadtbefehleSchleife;
       
    end Stadtbefehle;
-   
-   
-   
-   procedure Spielstandmenü
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      SpielstandmenüSchleife:
-      for ZeileSchleifenwert in Menuetexte.Spielstandmenü'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Spielstandmenü")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Spielstandmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Menuetexte.Spielstandmenü (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Menuetexte.Spielstandmenü (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Menuetexte.Spielstandmenü (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Menuetexte.Spielstandmenü (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop SpielstandmenüSchleife;
-      
-   end Spielstandmenü;
    
    
    
@@ -1941,6 +1408,31 @@ package body EinlesenTextLogik is
       end loop FeldeffekteSchleife;
       
    end Feldeffekte;
+   
+   
+   
+   function TextErsetzen
+     (TextExtern : in Wide_Wide_String)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      ErsetzungSchleife:
+      for ErsetzungSchleifenwert in ErsetzungenEingelesenArray'Range loop
+         
+         if
+           TextExtern = ErsetzungSchleifenwert * '~'
+         then
+            return ErsetzungenEingelesen (TextExtern'Length);
+            
+         else
+            null;
+         end if;
+         
+      end loop ErsetzungSchleife;
+        
+      return To_Unbounded_Wide_Wide_String (Source => TextExtern);
+      
+   end TextErsetzen;
    
    
    

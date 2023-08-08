@@ -206,10 +206,10 @@ package body SteuerungsmenueGrafik is
       if
         WelcheZeileExtern >= MenueKonstanten.SonstigesSteuerung
       then
-         return To_Wide_Wide_String (Source => Menuetexte.Steuerungmenü (WelcheZeileExtern));
+         return To_Wide_Wide_String (Source => Menuetexte.Steuerungsmenü (WelcheZeileExtern));
            
       else
-         Text := Menuetexte.Steuerungmenü (WelcheZeileExtern) & TextKonstanten.LangerAbstand;
+         Text := Menuetexte.Steuerungsmenü (WelcheZeileExtern) & TextKonstanten.LangerAbstand;
       end if;
                                                
       case

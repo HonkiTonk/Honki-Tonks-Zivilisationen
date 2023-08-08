@@ -81,7 +81,7 @@ package body TextaccesseTextGrafik is
       for SteuerungSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SteuerungAccess (SteuerungSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => Menuetexte.Steuerungmenü (SteuerungSchleifenwert)));
+                                            str  => To_Wide_Wide_String (Source => Menuetexte.Steuerungsmenü (SteuerungSchleifenwert)));
          
       end loop SteuerungSchleife;
       
