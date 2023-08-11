@@ -140,23 +140,22 @@ package ChangelogAugust2023 is
    
    
 
-   -- Version 0.05. => 0.05. (11.08.2023):
+   -- Version 0.05.3775 => 0.05. (11.08.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (10.08.2023):
+   -- Version 0.05.3755 => 0.05.3775 (10.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textdateien zusammengeführt.
    
    
 
-   -- Version 0.05. => 0.05. (09.08.2023):
+   -- Version 0.05.3730 => 0.05.3755 (09.08.2023):
    
-   -- 
+   -- GNAT aktualisiert.
    -- Kleinigkeiten korrigiert.
    
    

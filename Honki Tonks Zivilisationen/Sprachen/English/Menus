@@ -5,24 +5,24 @@ Load game
 Options
 Editors
 Appreciations
-Exit game
+~~~
 #################################
 Game menu
 Continue
 Save
 Load
 Options
-Main menu
-Exit game
+~~
+~~~
 #################################
 Options
 Graphics
 Sound
 Control
 Miscellaneous
-Back
-Main menu
-Exit game
+~
+~~
+~~~
 #################################
 Graphics menu
 Change resolution
@@ -31,27 +31,234 @@ Change frame rate
 Layer below visible
 Show frame rate
 Save
-Return
-Main menu
-Exit game
+~
+~~
+~~~
 #################################
 Sound menu
 Sound volume
 Musik volume
-Return
-Main menu
-Exit game
+~
+~~
+~~~
+#################################
+Control
+General
+Scroll north
+Scroll west
+Scroll south
+Scroll east
+Scroll northwest
+Scroll northeast
+Scroll southwest
+Scroll southeast
+Scroll level up
+Scroll level down
+Research menu
+Diplomacy menu
+Search city
+Next city
+Next city with message
+Next unit
+Next unit with message
+Next unit with movement points
+Next unit without movement points
+Go to
+End round
+Abort
+Units
+Move north
+Move west
+Move south
+Move East
+Move northwest
+Move northeast
+Move southwest
+Move southeast
+Move level up
+Move level down
+Build city
+Build/improve road
+Build/improve mine
+Build/improve farm
+Build/improve fortress
+Reforestation
+Clearing/draining
+Remove effect
+Heal
+Entrench
+Plunder
+Dissolve
+Enhance
+Change hometown
+Unload
+Deselect
+City
+City map
+Build
+Sell
+Rename
+Dissolve
+Exit
+Save on computer
+~~~~
+~
+~~
+~~~
 #################################
 Game settings
 Number of autosaves
 Rounds to autosave
 Change language
-Return
-Main menu
-Exit game
+~
+~~
+~~~
 #################################
+Choose map size:
+Tiny
+Small
+Middle
+Rectangle
+Large rectangle
+Large
+Huge
+Gigantic
+Absurd
+Custom
+Random predefined size
+Random not predefined size
+~~~~~
+Current size:
+New size:
 #################################
+Choose map type:
+Islands
+Continents
+Pangea
+Custom
+Random predefined map type
+Random non predefined map type
+~~~~
+~~~~~
 #################################
+Select map temperature:
+Cold
+Moderate
+Hot
+Ice age
+Desert
+~~~~~~
+~~~~~
 #################################
+Select species:
+Humans
+Kasrodiah
+Lasupin
+Lamustra
+Manuky
+Suroka
+Pryolon
+Moru Phisihl
+Larinos Lotaris
+Carupex
+Alary
+Natries Zermanis
+Tridatus
+Senelari
+Aspari_2
+Ekropa
+Tesorahn
+Talbidahr
+~~~~~~
+~~~~~
 #################################
+Set difficulty level:
+Easy
+Medium
+Hard
+~~~~~~
+~~~~~
 #################################
+Change map shape:
+Level above
+Level below
+North
+South
+West
+East
+~~~~~~
+~~~~
+~~~~~
+No Transition
+Transition
+Shifted backwards transition
+Shifted transition
+#################################
+Select available amount of resources:
+Poor
+Little
+Middle
+Much
+Abundance
+~~~~~~
+~~~~~
+#################################
+Diplomacy:
+Exchange maps
+Throw out of the country
+Nonaggression pact
+Declare Peace
+Declare War
+~
+Exit menu
+Current opinion:
+Current condition:
+#################################
+Settings
+Map pole
+Map size
+Map type
+Map shape
+Map temperature
+Map resources
+Species selection
+Difficulty
+~~~~~
+~~
+~~~
+#################################
+Map poles
+North pole
+South pole
+West pole
+East pole
+~~~~~~
+~~~~
+~~~~~
+#################################
+Save file menu
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+More
+New
+Delete
+~
+#################################
+Select editor:
+Map tile editor
+Unit editor
+Building editor
+Research editor
+Improvement editor
+All on default
+~
+~~
+~~~
