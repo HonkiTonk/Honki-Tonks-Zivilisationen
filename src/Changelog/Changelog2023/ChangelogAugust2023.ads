@@ -119,31 +119,28 @@ package ChangelogAugust2023 is
    
    
 
-   -- Version 0.05. => 0.05. (14.08.2023):
+   -- Version 0.05.3795 => 0.05. (14.08.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (13.08.2023):
+   -- Version 0.05.3795 => 0.05.3795 (13.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (12.08.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.3775 => 0.05. (11.08.2023):
+   -- Version 0.05.3775 => 0.05.3795 (12.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Windowsversion von GNAT auf Version 13.1 aktualisiert.
+   
+   
+
+   -- Version 0.05.3775 => 0.05.3775 (11.08.2023):
+   
+   -- null.
    
    
 
