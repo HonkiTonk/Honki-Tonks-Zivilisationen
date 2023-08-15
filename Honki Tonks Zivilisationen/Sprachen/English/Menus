@@ -5,24 +5,24 @@ Load game
 Options
 Editors
 Appreciations
-~~~
+~3~
 #################################
 Game menu
 Continue
 Save
 Load
 Options
-~~
-~~~
+~2~
+~3~
 #################################
 Options
 Graphics
 Sound
 Control
 Miscellaneous
-~
-~~
-~~~
+~1~
+~2~
+~3~
 #################################
 Graphics menu
 Change resolution
@@ -31,16 +31,16 @@ Change frame rate
 Layer below visible
 Show frame rate
 Save
-~
-~~
-~~~
+~1~
+~2~
+~3~
 #################################
 Sound menu
 Sound volume
 Musik volume
-~
-~~
-~~~
+~1~
+~2~
+~3~
 #################################
 Control
 General
@@ -101,18 +101,18 @@ Rename
 Dissolve
 Exit
 Save on computer
-~~~~
-~
-~~
-~~~
+~4~
+~1~
+~2~
+~3~
 #################################
 Game settings
 Number of autosaves
 Rounds to autosave
 Change language
-~
-~~
-~~~
+~1~
+~2~
+~3~
 #################################
 Choose map size:
 Tiny
@@ -127,7 +127,7 @@ Absurd
 Custom
 Random predefined size
 Random not predefined size
-~~~~~
+~5~
 Current size:
 New size:
 #################################
@@ -138,8 +138,8 @@ Pangea
 Custom
 Random predefined map type
 Random non predefined map type
-~~~~
-~~~~~
+~4~
+~5~
 #################################
 Select map temperature:
 Cold
@@ -147,8 +147,8 @@ Moderate
 Hot
 Ice age
 Desert
-~~~~~~
-~~~~~
+~6~
+~5~
 #################################
 Select species:
 Humans
@@ -169,15 +169,15 @@ Aspari_2
 Ekropa
 Tesorahn
 Talbidahr
-~~~~~~
-~~~~~
+~6~
+~5~
 #################################
 Set difficulty level:
 Easy
 Medium
 Hard
-~~~~~~
-~~~~~
+~6~
+~5~
 #################################
 Change map shape:
 Level above
@@ -186,9 +186,9 @@ North
 South
 West
 East
-~~~~~~
-~~~~
-~~~~~
+~6~
+~4~
+~5~
 No Transition
 Transition
 Shifted backwards transition
@@ -200,8 +200,8 @@ Little
 Middle
 Much
 Abundance
-~~~~~~
-~~~~~
+~6~
+~5~
 #################################
 Diplomacy:
 Exchange maps
@@ -209,7 +209,7 @@ Throw out of the country
 Nonaggression pact
 Declare Peace
 Declare War
-~
+~1~
 Exit menu
 Current opinion:
 Current condition:
@@ -223,18 +223,18 @@ Map temperature
 Map resources
 Species selection
 Difficulty
-~~~~~
-~~
-~~~
+~5~
+~2~
+~3~
 #################################
 Map poles
 North pole
 South pole
 West pole
 East pole
-~~~~~~
-~~~~
-~~~~~
+~6~
+~4~
+~5~
 #################################
 Save file menu
 äöü
@@ -250,7 +250,7 @@ Save file menu
 More
 New
 Delete
-~
+~1~
 #################################
 Select editor:
 Map tile editor
@@ -259,6 +259,17 @@ Building editor
 Research editor
 Improvement editor
 All on default
-~
-~~
-~~~
+~1~
+~2~
+~3~
+#################################
+Trade menu:
+Swap maps
+Buy maps
+Sell maps
+Exchange contacts
+Buy contacts
+Sell contacts
+Give money
+Ask for money
+Back

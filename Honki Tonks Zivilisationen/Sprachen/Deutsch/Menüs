@@ -5,24 +5,24 @@ Spiel laden
 Optionen
 Editoren
 Würdigungen
-~~~
+~3~
 #################################
 Spielmenü
 Weiter
 Speichern
 Laden
 Optionen
-~~
-~~~
+~2~
+~3~
 #################################
 Optionen
 Grafik
 Sound
 Steuerung
 Sonstiges
-~
-~~
-~~~
+~1~
+~2~
+~3~
 #################################
 Grafikmenü
 Auflösung ändern
@@ -31,16 +31,16 @@ Bildrate ändern
 Ebenen unterhalb sichtbar
 Bildrate anzeigen
 Speichern
-~
-~~
-~~~
+~1~
+~2~
+~3~
 #################################
 Soundmenü
 Soundlautstärke
 Musiklautstärke
-~
-~~
-~~~
+~1~
+~2~
+~3~
 #################################
 Steuerung
 Allgemein
@@ -101,18 +101,18 @@ Umbenennen
 Auflösen
 Verlassen
 Speichern
-~~~~
-~
-~~
-~~~
+~4~
+~1~
+~2~
+~3~
 #################################
 Spieleinstellungen
 Anzahl automatischer Spielstände
 Runden bis Autospeichern
 Sprache ändern
-~
-~~
-~~~
+~1~
+~2~
+~3~
 #################################
 Kartengröße wählen:
 Winzig
@@ -127,7 +127,7 @@ Absurd
 Benutzerdefiniert
 Zufällige vordefinierte Größe
 Zufällige nicht vordefinierte Größe
-~~~~~
+~5~
 Aktuelle Größe:
 Neue Größe:
 #################################
@@ -138,8 +138,8 @@ Pangäa
 Benutzerdefiniert
 Zufällige vordefinierte Kartenart
 Zufällige nicht vordefinierte Kartenart
-~~~~
-~~~~~
+~4~
+~5~
 #################################
 Kartentemperatur wählen:
 Kalt
@@ -147,8 +147,8 @@ Gemäßigt
 Heiß
 Eiszeit
 Wüste
-~~~~~~
-~~~~~
+~6~
+~5~
 #################################
 Spezies wählen:
 Menschen
@@ -169,15 +169,15 @@ Aspari_2
 Ekropa
 Tesorahn
 Talbidahr
-~~~~~~
-~~~~~
+~6~
+~5~
 #################################
 Schwierigkeitsgrad festlegen:
 Leicht
 Mittel
 Schwer
-~~~~~~
-~~~~~
+~6~
+~5~
 #################################
 Kartenform ändern:
 Ebene oben
@@ -186,9 +186,9 @@ Norden
 Süden
 Westen
 Osten
-~~~~~~
-~~~~
-~~~~~
+~6~
+~4~
+~5~
 Kein Übergang
 Übergang
 Verschobener rückwärts Übergang
@@ -200,8 +200,8 @@ Wenig
 Mittel
 Viel
 Überfluss
-~~~~~~
-~~~~~
+~6~
+~5~
 #################################
 Diplomatie:
 Karten tauschen
@@ -209,7 +209,7 @@ Von eigenem Gebiet werfen
 Nichtangriffspakt
 Frieden erklären
 Krieg erklären
-~
+~1~
 Menü verlassen
 Aktuelle Meinung:
 Aktueller Zustand:
@@ -223,18 +223,18 @@ Kartentemperatur
 Kartenressourcen
 Speziesauswahl
 Schwierigkeitsgrad
-~~~~~
-~~
-~~~
+~5~
+~2~
+~3~
 #################################
 Kartenpole
 Nordpol
 Südpol
 Westpol
 Ostpol
-~~~~~~
-~~~~
-~~~~~
+~6~
+~4~
+~5~
 #################################
 Spielstandmenü
 äöü
@@ -250,7 +250,7 @@ Spielstandmenü
 Mehr
 Neu
 Löschen
-~
+~1~
 #################################
 Editor auswählen:
 Kartenfeldeditor
@@ -259,6 +259,17 @@ Gebäudeeditor
 Forschungseditor
 Verbesserungeneditor
 Alles auf Standard
-~
-~~
-~~~
+~1~
+~2~
+~3~
+#################################
+Handelsmenü:
+Karten tauschen
+Karten kaufen
+Karten verkaufen
+Kontakte tauschen
+Kontakte kaufen
+Kontakte verkaufen
+Geld schenken
+Geld verlangen
+Zurück

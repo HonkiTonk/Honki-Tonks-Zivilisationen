@@ -26,6 +26,7 @@ package Menuetexte is
    Diplomatiemenü : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
    Kartenpole : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
    Soundmenü : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Sound_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
+   Handelsmenü : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Handel_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
                                
    -- Doppelte Menüs.
    Speziesauswahl : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Spezies_Menü_Enum)) := (others => TextKonstanten.FehlenderText);

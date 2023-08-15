@@ -59,8 +59,9 @@ private
                                   
                                   -- Aufgrund der Beschaffenheit dieser Menüs sind die Abzüge hier nicht dem Standard entsprechend, auch wenn die Abzüge eventuell identisch mit einem der Standards sind!
                                   MenueDatentypen.Diplomatie_Menü_Enum         => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Diplomatie_Menü_Enum) - 3,
+                                  MenueDatentypen.Handel_Menü_Enum             => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Handel_Menü_Enum) - 1,
                                   
-                                  -- Das hier sind Spezialmenüs die nicht so einfach in das aktuelle System integriert werden können oder noch unvollständig sind.
+                                  -- Das hier sind Spezialmenüs die nicht so einfach in das aktuelle System integriert werden können oder unvollständig sind.
                                   MenueDatentypen.Einstellungen_Menü_Enum      => 1,
                                   MenueDatentypen.Haupt_Menü_Enum              => 1,
                                   MenueDatentypen.Spiel_Menü_Enum              => 1

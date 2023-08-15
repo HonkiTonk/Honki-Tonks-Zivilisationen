@@ -184,62 +184,58 @@ package body EinlesenTextLogik is
                           EinsprachigExtern => EinsprachigExtern);
                
          when 8 =>
-            Handelsmenü (DateiExtern => DateiText,
-                          EinsprachigExtern => EinsprachigExtern);
-               
-         when 9 =>
             DiplomatieStatus (DateiExtern => DateiText,
                               EinsprachigExtern => EinsprachigExtern);
                
-         when 10 =>
+         when 9 =>
             Angebot (DateiExtern => DateiText,
                      EinsprachigExtern => EinsprachigExtern);
                
-         when 11 =>
+         when 10 =>
             Fehlermeldung (DateiExtern => DateiText,
                            EinsprachigExtern => EinsprachigExtern);
                
-         when 12 =>
+         when 11 =>
             Ladezeit (DateiExtern => DateiText,
                       EinsprachigExtern => EinsprachigExtern);
                
-         when 13 =>
+         when 12 =>
             Frage (DateiExtern => DateiText,
                    EinsprachigExtern => EinsprachigExtern);
                
-         when 14 =>
+         when 13 =>
             ZeugSachen (DateiExtern => DateiText,
                         EinsprachigExtern => EinsprachigExtern);
                
-         when 15 =>
+         when 14 =>
             Wege (DateiExtern => DateiText,
                   EinsprachigExtern => EinsprachigExtern);
                
-         when 16 =>
+         when 15 =>
             Kartenflüsse (DateiExtern => DateiText,
                            EinsprachigExtern => EinsprachigExtern);
                
-         when 17 =>
+         when 16 =>
             Kartenressourcen (DateiExtern => DateiText,
                               EinsprachigExtern => EinsprachigExtern);
             
-         when 18 =>
+         when 17 =>
             Stadtbefehle (DateiExtern => DateiText,
                           EinsprachigExtern => EinsprachigExtern);
             
-         when 19 =>
+         when 18 =>
             Intro (DateiExtern => DateiText,
                    EinsprachigExtern => EinsprachigExtern);
             
-         when 20 =>
+         when 19 =>
             Outro (DateiExtern => DateiText,
                    EinsprachigExtern => EinsprachigExtern);
             
-         when 21 =>
+         when 20 =>
             Zusatzgrund (DateiExtern => DateiText,
                          EinsprachigExtern => EinsprachigExtern);
             
-         when 22 =>
+         when 21 =>
             Feldeffekte (DateiExtern => DateiText,
                          EinsprachigExtern => EinsprachigExtern);
             
@@ -470,13 +466,20 @@ package body EinlesenTextLogik is
                                                                                              EingelesenerTextExtern => Zwischenspeicher,
                                                                                              VorhandenerTextExtern  => Menuetexte.Editorenmenü (AktuelleZeile - Spielstandmenü));
                   
+               elsif
+                 AktuelleZeile in Editorenmenü + 1 .. Handelsmenü
+               then
+                  Menuetexte.Handelsmenü (AktuelleZeile - Editorenmenü) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                          EingelesenerTextExtern => Zwischenspeicher,
+                                                                                          VorhandenerTextExtern  => Menuetexte.Editorenmenü (AktuelleZeile - Editorenmenü));
+                  
                   -- Das else hier kann für das letzte Menü verwendet werden. äöü
                else
                   return;
                end if;
                
                if
-                 AktuelleZeile < Editorenmenü
+                 AktuelleZeile < Handelsmenü
                then
                   AktuelleZeile := AktuelleZeile + 1;
                      
@@ -718,52 +721,6 @@ package body EinlesenTextLogik is
       end loop DiplomatieKISchleife;
       
    end DiplomatieKI;
-   
-   
-   
-   procedure Handelsmenü
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      HandelsmenüSchleife:
-      for ZeileSchleifenwert in GlobaleTexte.Handelsmenü'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Handelsmenü")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Handelsmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               GlobaleTexte.Handelsmenü (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 GlobaleTexte.Handelsmenü (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => GlobaleTexte.Handelsmenü (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  GlobaleTexte.Handelsmenü (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop HandelsmenüSchleife;
-      
-   end Handelsmenü;
    
    
    
@@ -1420,9 +1377,9 @@ package body EinlesenTextLogik is
       for ErsetzungSchleifenwert in ErsetzungenEingelesenArray'Range loop
          
          if
-           TextExtern = ErsetzungSchleifenwert * '~'
+           TextExtern = '~' & ZahlAlsString (ZahlExtern => ErsetzungSchleifenwert) & '~'
          then
-            return ErsetzungenEingelesen (TextExtern'Length);
+            return ErsetzungenEingelesen (ErsetzungSchleifenwert);
             
          else
             null;

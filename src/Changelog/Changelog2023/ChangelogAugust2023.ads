@@ -105,24 +105,24 @@ package ChangelogAugust2023 is
    
    
 
-   -- Version 0.05. => 0.05. (16.08.2023):
+   -- Version 0.05.3850 => 0.05. (16.08.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (15.08.2023):
+   -- Version 0.05.3815 => 0.05.3850 (15.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einlesesystem für den Text überarbeitet und erweitert.
+   -- Textdateien zusammengeführt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.05.3795 => 0.05. (14.08.2023):
+   -- Version 0.05.3795 => 0.05.3815 (14.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Windowsbibliotheken aktualisiert.
    
    
 

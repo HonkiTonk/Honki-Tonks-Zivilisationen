@@ -5,6 +5,8 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 private with Menuetexte;
 private with TextKonstanten;
 
+private with UmwandlungenAdaEigenes;
+
 package EinlesenTextLogik is
    pragma Elaborate_Body;
    
@@ -14,7 +16,7 @@ package EinlesenTextLogik is
 private
    
    -- Überall Menü anhängen um eine bessereAbgrenzung von ähnlichen Textdateinamen zu haben? äöü
-   AnzahlTextdateien : constant Positive := 22;
+   AnzahlTextdateien : constant Positive := 21;
    Hauptmenü : constant Positive := Menuetexte.Hauptmenü'Last;
    Spielmenü : constant Positive := Hauptmenü + Menuetexte.Spielmenü'Last;
    Optionsmenü : constant Positive := Spielmenü + Menuetexte.Optionsmenü'Last;
@@ -34,6 +36,7 @@ private
    Kartenpole : constant Positive := Einstellungsmenü + Menuetexte.Kartenpole'Last;
    Spielstandmenü : constant Positive := Kartenpole + Menuetexte.Spielstandmenü'Last;
    Editorenmenü : constant Positive := Spielstandmenü + Menuetexte.Editorenmenü'Last;
+   Handelsmenü : constant Positive := Editorenmenü + Menuetexte.Handelsmenü'Last;
    EinzulesendeZeile : Positive;
    AktuelleZeile : Positive;
       
@@ -94,10 +97,6 @@ private
       EinsprachigExtern : in Boolean);
    
    procedure DiplomatieKI
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Handelsmenü
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
@@ -168,5 +167,7 @@ private
       EingelesenerTextExtern : in Unbounded_Wide_Wide_String;
       VorhandenerTextExtern : in Unbounded_Wide_Wide_String)
       return Unbounded_Wide_Wide_String;
+   
+   function ZahlAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => Positive);
    
 end EinlesenTextLogik;

@@ -27,6 +27,7 @@ package MenueKonstanten is
                                            MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => 6,
                                            MenueDatentypen.Kartengröße_Menü_Enum        => 16,
                                            MenueDatentypen.Diplomatie_Menü_Enum         => 10,
+                                           MenueDatentypen.Handel_Menü_Enum             => 10,
                                            MenueDatentypen.Kartenpole_Menü_Enum         => 8,
 
                                            -- Doppelte Menüs.
@@ -67,10 +68,11 @@ package MenueKonstanten is
                                                  MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => EndeMenü (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum),
                                                  MenueDatentypen.Kartengröße_Menü_Enum        => EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 2,
                                                  MenueDatentypen.Diplomatie_Menü_Enum         => EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum) - 2,
+                                                 MenueDatentypen.Handel_Menü_Enum             => EndeMenü (MenueDatentypen.Handel_Menü_Enum),
                                                  MenueDatentypen.Kartenpole_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenpole_Menü_Enum),
 
                                                  -- Doppelte Menüs.
-                                                 MenueDatentypen.Spezies_Menü_Enum             => EndeMenü (MenueDatentypen.Spezies_Menü_Enum),
+                                                 MenueDatentypen.Spezies_Menü_Enum            => EndeMenü (MenueDatentypen.Spezies_Menü_Enum),
                                                  MenueDatentypen.Kartenform_Menü_Enum         => EndeMenü (MenueDatentypen.Kartenform_Menü_Enum) - 4,
 
                                                  -- Steuerungsmenü.

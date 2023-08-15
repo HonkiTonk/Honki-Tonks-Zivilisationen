@@ -20,7 +20,7 @@ package body MenuestringsSetzenGrafik is
       if
         WelcheZeileExtern <= MenueKonstanten.EndeMenü (WelchesMenüExtern)
       then
-            null;
+         null;
             
       else
          Fehlermeldungssystem.Grafik (FehlermeldungExtern => "MenuestringsSetzenGrafik.MenüstringsSetzen: Zeile zu groß: " & WelcheZeileExtern'Wide_Wide_Image & " " & WelchesMenüExtern'Wide_Wide_Image);
@@ -64,13 +64,13 @@ package body MenuestringsSetzenGrafik is
             AktuellerText := Menuetexte.Speziesauswahl (WelcheZeileExtern);
             
          when MenueDatentypen.Grafik_Menü_Enum =>
-            AktuellerText := Grafikmenü (WelcheZeileExtern => WelcheZeileExtern); -- Menuetexte.Grafikmenü (WelcheZeileExtern);
+            AktuellerText := Grafikmenü (WelcheZeileExtern => WelcheZeileExtern);
             
          when MenueDatentypen.Sound_Menü_Enum =>
-            AktuellerText := Soundmenü (WelcheZeileExtern => WelcheZeileExtern); -- Menuetexte.Soundmenü (WelcheZeileExtern);
+            AktuellerText := Soundmenü (WelcheZeileExtern => WelcheZeileExtern);
             
          when MenueDatentypen.Sonstiges_Menü_Enum =>
-            AktuellerText := SonstigesMenü (WelcheZeileExtern => WelcheZeileExtern); -- Menuetexte.Sonstigesmenü (WelcheZeileExtern);
+            AktuellerText := SonstigesMenü (WelcheZeileExtern => WelcheZeileExtern);
             
          when MenueDatentypen.Steuerung_Menü_Enum =>
             AktuellerText := Menuetexte.Steuerungsmenü (WelcheZeileExtern);
@@ -89,6 +89,9 @@ package body MenuestringsSetzenGrafik is
             
          when MenueDatentypen.Spielstand_Menü_Enum =>
             AktuellerText := Menuetexte.Spielstandmenü (WelcheZeileExtern);
+            
+         when MenueDatentypen.Handel_Menü_Enum =>
+            AktuellerText := Menuetexte.Handelsmenü (WelcheZeileExtern);
       end case;
             
       return To_Wide_Wide_String (Source => AktuellerText);

@@ -37,6 +37,9 @@ package body ZusatztextaufteilungGrafik is
             return ZusatztextDiplomatieGrafik.ZusatztextDiplomatie (ViewflächeExtern      => ViewflächeExtern,
                                                                     RealeViewbreiteExtern => RealeViewbreiteExtern);
             
+         when MenueDatentypen.Handel_Menü_Enum =>
+            null;
+            
          when MenueDatentypen.Kartenpole_Menü_Enum =>
             null;
       end case;
