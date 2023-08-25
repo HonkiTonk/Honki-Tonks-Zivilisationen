@@ -44,9 +44,9 @@ package body EinlesenMusikLogik is
       for VerzeichnisSchleifenwert in EingeleseneMusik.MusikArray'Range (1) loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiVerzeichnisse,
-                                                           AktuelleZeileExtern => AktuelleZeile,
-                                                           DateiExtern         => "EinlesenMusikLogik.EinlesenMusik")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiVerzeichnisse,
+                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                            DateinameExtern     => "EinlesenMusikLogik.EinlesenMusik")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenMusik: Fehlende Zeilen: "
@@ -54,7 +54,9 @@ package body EinlesenMusikLogik is
                exit VerzeichnisseSchleife;
                
             when False =>
-               EinlesenLieder (DateipfadExtern => Get_Line (File => DateiVerzeichnisse),
+               EinlesenLieder (DateipfadExtern => EinlesenAllgemeinesLogik.TextEinlesen (DateiExtern         => DateiVerzeichnisse,
+                                                                                         AktuelleZeileExtern => AktuelleZeile,
+                                                                                         DateinameExtern     => "EinlesenMusikLogik.EinlesenMusik"),
                                SpeziesExtern   => VerzeichnisSchleifenwert);
                AktuelleZeile := AktuelleZeile + 1;
          end case;
@@ -100,16 +102,18 @@ package body EinlesenMusikLogik is
       for MusikSchleifenwert in EingeleseneMusik.MusikArray'Range (2) loop
                
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiMusik,
-                                                           AktuelleZeileExtern => Positive (MusikSchleifenwert),
-                                                           DateiExtern         => "EinlesenMusikLogik.EinlesenLieder")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiMusik,
+                                                            AktuelleZeileExtern => Positive (MusikSchleifenwert),
+                                                            DateinameExtern     => "EinlesenMusikLogik.EinlesenLieder")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenMusikLogik.EinlesenLieder: Fehlende Zeilen: " & DateipfadExtern & ", aktuelle Zeile: " & MusikSchleifenwert'Wide_Wide_Image);
                exit MusikSchleife;
                
             when False =>
-               Lied := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiMusik));
+               Lied := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiMusik,
+                                                                        AktuelleZeileExtern => Positive (MusikSchleifenwert),
+                                                                        DateinameExtern     => "EinlesenMusikLogik.EinlesenLieder");
          end case;
          
          case

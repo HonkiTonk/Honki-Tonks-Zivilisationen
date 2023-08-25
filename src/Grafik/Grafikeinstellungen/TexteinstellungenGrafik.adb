@@ -70,15 +70,17 @@ package body TexteinstellungenGrafik is
             Form => "WCEM=8");
       
       case
-        EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSchriftart,
-                                                        AktuelleZeileExtern => 1,
-                                                        DateiExtern         => "TexteinstellungenGrafik.EigeneSchriftartVerwenden")
+        EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiSchriftart,
+                                                         AktuelleZeileExtern => 1,
+                                                         DateinameExtern     => "TexteinstellungenGrafik.EigeneSchriftartVerwenden")
       is
          when True =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "TexteinstellungenGrafik.EigeneSchriftartVerwenden: Fehlender Fontname");
                
          when False =>
-            EigeneSchriftart := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiSchriftart));
+            EigeneSchriftart := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiSchriftart,
+                                                                       AktuelleZeileExtern => 1,
+                                                                       DateinameExtern     => "TexteinstellungenGrafik.EigeneSchriftartVerwenden");
             
             if
               Exists (Name => VerzeichnisKonstanten.FontOrdner & Encode (Item => To_Wide_Wide_String (Source => EigeneSchriftart))) = False

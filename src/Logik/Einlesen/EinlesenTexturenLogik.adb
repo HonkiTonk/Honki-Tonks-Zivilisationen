@@ -48,9 +48,9 @@ package body EinlesenTexturenLogik is
       for TexturSchleifenwert in EingeleseneTexturenGrafik.SystemAccessArray'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSystem,
-                                                           AktuelleZeileExtern => AktuelleZeile,
-                                                           DateiExtern         => "EinlesenTexturenLogik.System")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiSystem,
+                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                            DateinameExtern     => "EinlesenTexturenLogik.System")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.System: Fehlende Zeilen: "
@@ -58,7 +58,9 @@ package body EinlesenTexturenLogik is
                exit TexturenSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiSystem));
+               Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiSystem,
+                                                                                   AktuelleZeileExtern => AktuelleZeile,
+                                                                                   DateinameExtern     => "EinlesenTexturenLogik.System");
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
@@ -77,9 +79,9 @@ package body EinlesenTexturenLogik is
       
       -- Warum is das hier ein zweites Mal? äöü
       case
-        EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSystem,
-                                                        AktuelleZeileExtern => AktuelleZeile,
-                                                        DateiExtern         => "EinlesenTexturenLogik.System")
+        EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiSystem,
+                                                         AktuelleZeileExtern => AktuelleZeile,
+                                                         DateinameExtern     => "EinlesenTexturenLogik.System")
       is
          when True =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.System: Fehlende Zeilen: "
@@ -88,7 +90,9 @@ package body EinlesenTexturenLogik is
             return;
                
          when False =>
-            Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiSystem));
+            Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiSystem,
+                                                                                AktuelleZeileExtern => AktuelleZeile,
+                                                                                DateinameExtern     => "EinlesenTexturenLogik.System");
       end case;
          
       case
@@ -132,9 +136,9 @@ package body EinlesenTexturenLogik is
       for TexturSchleifenwert in EingeleseneTexturenGrafik.HintergrundAccessArray'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiHintergrund,
-                                                           AktuelleZeileExtern => AktuelleZeile,
-                                                           DateiExtern         => "EinlesenTexturenLogik.Hintergrund")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiHintergrund,
+                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                            DateinameExtern     => "EinlesenTexturenLogik.Hintergrund")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Hintergrund: Fehlende Zeilen: "
@@ -142,7 +146,9 @@ package body EinlesenTexturenLogik is
                exit TexturenSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiHintergrund));
+               Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiHintergrund,
+                                                                                   AktuelleZeileExtern => AktuelleZeile,
+                                                                                   DateinameExtern     => "EinlesenTexturenLogik.Hintergrund");
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
@@ -189,9 +195,9 @@ package body EinlesenTexturenLogik is
       for BasisgrundSchleifenwert in EingeleseneTexturenGrafik.BasisgrundAccessArray'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiKartenfelder,
-                                                           AktuelleZeileExtern => AktuelleZeile,
-                                                           DateiExtern         => "EinlesenTexturenLogik.Kartenfelder")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiKartenfelder,
+                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                            DateinameExtern     => "EinlesenTexturenLogik.Kartenfelder")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Kartenfelder: Fehlende Zeilen: "
@@ -199,7 +205,9 @@ package body EinlesenTexturenLogik is
                exit BasisgrundSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiKartenfelder));
+               Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiKartenfelder,
+                                                                                   AktuelleZeileExtern => AktuelleZeile,
+                                                                                   DateinameExtern     => "EinlesenTexturenLogik.Kartenfelder");
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
@@ -239,9 +247,9 @@ package body EinlesenTexturenLogik is
       for ZusatzgrundSchleifenwert in EingeleseneTexturenGrafik.ZusatzgrundAccessArray'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiKartenfelder,
-                                                           AktuelleZeileExtern => AktuelleZeile,
-                                                           DateiExtern         => "EinlesenTexturenLogik.Kartenfelder")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiKartenfelder,
+                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                            DateinameExtern     => "EinlesenTexturenLogik.Kartenfelder")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Kartenfelder: Fehlende Zeilen: "
@@ -249,7 +257,9 @@ package body EinlesenTexturenLogik is
                exit ZusatzgrundSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiKartenfelder));
+               Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiKartenfelder,
+                                                                                   AktuelleZeileExtern => AktuelleZeile,
+                                                                                   DateinameExtern     => "EinlesenTexturenLogik.Kartenfelder");
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
@@ -291,9 +301,9 @@ package body EinlesenTexturenLogik is
       for FeldeffekteSchleifenwert in EingeleseneTexturenGrafik.FeldeffekteAccessArray'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiKartenfelder,
-                                                           AktuelleZeileExtern => AktuelleZeile,
-                                                           DateiExtern         => "EinlesenTexturenLogik.Kartenfelder")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiKartenfelder,
+                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                            DateinameExtern     => "EinlesenTexturenLogik.Kartenfelder")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Kartenfelder: Fehlende Zeilen: "
@@ -301,7 +311,9 @@ package body EinlesenTexturenLogik is
                exit FeldeffekteSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiKartenfelder));
+               Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiKartenfelder,
+                                                                                   AktuelleZeileExtern => AktuelleZeile,
+                                                                                   DateinameExtern     => "EinlesenTexturenLogik.Kartenfelder");
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
@@ -348,9 +360,9 @@ package body EinlesenTexturenLogik is
       for TexturSchleifenwert in EingeleseneTexturenGrafik.KartenflussAccessArray'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiKartenflüsse,
-                                                           AktuelleZeileExtern => AktuelleZeile,
-                                                           DateiExtern         => "EinlesenTexturenLogik.Kartenflüsse")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiKartenflüsse,
+                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                            DateinameExtern     => "EinlesenTexturenLogik.Kartenflüsse")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Kartenflüsse: Fehlende Zeilen: "
@@ -358,7 +370,9 @@ package body EinlesenTexturenLogik is
                exit TexturenSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiKartenflüsse));
+               Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiKartenflüsse,
+                                                                                   AktuelleZeileExtern => AktuelleZeile,
+                                                                                   DateinameExtern     => "EinlesenTexturenLogik.Kartenflüsse");
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
@@ -405,9 +419,9 @@ package body EinlesenTexturenLogik is
       for TexturSchleifenwert in EingeleseneTexturenGrafik.KartenressourcenAccessArray'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiKartenressourcen,
-                                                           AktuelleZeileExtern => AktuelleZeile,
-                                                           DateiExtern         => "EinlesenTexturenLogik.Kartenressourcen")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiKartenressourcen,
+                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                            DateinameExtern     => "EinlesenTexturenLogik.Kartenressourcen")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Kartenressourcen: Fehlende Zeilen: "
@@ -415,7 +429,9 @@ package body EinlesenTexturenLogik is
                exit TexturenSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiKartenressourcen));
+               Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiKartenressourcen,
+                                                                                   AktuelleZeileExtern => AktuelleZeile,
+                                                                                   DateinameExtern     => "EinlesenTexturenLogik.Kartenressourcen");
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
@@ -462,9 +478,9 @@ package body EinlesenTexturenLogik is
       for TexturSchleifenwert in EingeleseneTexturenGrafik.VerbesserungenAccessArray'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiVerbesserungen,
-                                                           AktuelleZeileExtern => AktuelleZeile,
-                                                           DateiExtern         => "EinlesenTexturenLogik.Verbesserungen")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiVerbesserungen,
+                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                            DateinameExtern     => "EinlesenTexturenLogik.Verbesserungen")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Verbesserungen: Fehlende Zeilen: "
@@ -473,7 +489,9 @@ package body EinlesenTexturenLogik is
                exit TexturenSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiVerbesserungen));
+               Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiVerbesserungen,
+                                                                                   AktuelleZeileExtern => AktuelleZeile,
+                                                                                   DateinameExtern     => "EinlesenTexturenLogik.Verbesserungen");
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
@@ -520,9 +538,9 @@ package body EinlesenTexturenLogik is
       for TexturSchleifenwert in EingeleseneTexturenGrafik.WegeAccessArray'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiWege,
-                                                           AktuelleZeileExtern => AktuelleZeile,
-                                                           DateiExtern         => "EinlesenTexturenLogik.Wege")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiWege,
+                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                            DateinameExtern     => "EinlesenTexturenLogik.Wege")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Wege: Fehlende Zeilen: "
@@ -530,7 +548,9 @@ package body EinlesenTexturenLogik is
                exit TexturenSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiWege));
+               Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiWege,
+                                                                                   AktuelleZeileExtern => AktuelleZeile,
+                                                                                   DateinameExtern     => "EinlesenTexturenLogik.Wege");
                AktuelleZeile := AktuelleZeile + 1;
          end case;
          
@@ -579,9 +599,9 @@ package body EinlesenTexturenLogik is
          for EinzelpfadeEinlesenSchleifenwert in Speziesverzeichnisse'Range loop
          
             case
-              EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSpezies,
-                                                              AktuelleZeileExtern => AktuelleZeile,
-                                                              DateiExtern         => "EinlesenTexturenLogik.Spezies")
+              EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiSpezies,
+                                                               AktuelleZeileExtern => AktuelleZeile,
+                                                               DateinameExtern     => "EinlesenTexturenLogik.Spezies")
             is
                when True =>
                   Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Spezies: Fehlende Zeilen: "
@@ -589,7 +609,9 @@ package body EinlesenTexturenLogik is
                   exit SpeziesschleifeSchleife;
                
                when False =>
-                  Speziesverzeichnisse (EinzelpfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiSpezies));
+                  Speziesverzeichnisse (EinzelpfadeEinlesenSchleifenwert) := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiSpezies,
+                                                                                                                              AktuelleZeileExtern => AktuelleZeile,
+                                                                                                                              DateinameExtern     => "EinlesenTexturenLogik.Spezies");
                   AktuelleZeile := AktuelleZeile + 1;
             end case;
          
@@ -637,16 +659,18 @@ package body EinlesenTexturenLogik is
       for TexturSchleifenwert in EingeleseneTexturenGrafik.SpezieshintergrundAccessArray'Range (2) loop
             
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSpezieshintergründe,
-                                                           AktuelleZeileExtern => ZeileSpezieshintergrund,
-                                                           DateiExtern         => "EinlesenTexturenLogik.Spezieshintergrund")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiSpezieshintergründe,
+                                                            AktuelleZeileExtern => ZeileSpezieshintergrund,
+                                                            DateinameExtern     => "EinlesenTexturenLogik.Spezieshintergrund")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Spezieshintergrund: Fehlende Zeilen: " & DateipfadExtern & ", aktuelle Zeile: " & ZeileSpezieshintergrund'Wide_Wide_Image);
                exit TexturenSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiSpezieshintergründe));
+               Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiSpezieshintergründe,
+                                                                                   AktuelleZeileExtern => ZeileSpezieshintergrund,
+                                                                                   DateinameExtern     => "EinlesenTexturenLogik.Spezieshintergrund");
                ZeileSpezieshintergrund := ZeileSpezieshintergrund + 1;
          end case;
          
@@ -695,16 +719,18 @@ package body EinlesenTexturenLogik is
       for TexturSchleifenwert in EingeleseneTexturenGrafik.EinheitenAccesArray'Range (2) loop
             
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiEinheiten,
-                                                           AktuelleZeileExtern => ZeileEinheiten,
-                                                           DateiExtern         => "EinlesenTexturenLogik.Einheiten")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiEinheiten,
+                                                            AktuelleZeileExtern => ZeileEinheiten,
+                                                            DateinameExtern     => "EinlesenTexturenLogik.Einheiten")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Einheiten: Fehlende Zeilen: " & DateipfadExtern & ", aktuelle Zeile: " & ZeileEinheiten'Wide_Wide_Image);
                exit TexturenSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiEinheiten));
+               Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiEinheiten,
+                                                                                   AktuelleZeileExtern => ZeileEinheiten,
+                                                                                   DateinameExtern     => "EinlesenTexturenLogik.Einheiten");
                ZeileEinheiten := ZeileEinheiten + 1;
          end case;
          
@@ -753,16 +779,18 @@ package body EinlesenTexturenLogik is
       for TexturSchleifenwert in EingeleseneTexturenGrafik.GebäudeAccessArray'Range (2) loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiGebäude,
-                                                           AktuelleZeileExtern => ZeileGebäude,
-                                                           DateiExtern         => "EinlesenTexturenLogik.Gebäude")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiGebäude,
+                                                            AktuelleZeileExtern => ZeileGebäude,
+                                                            DateinameExtern     => "EinlesenTexturenLogik.Gebäude")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTexturenLogik.Gebäude: Fehlende Zeilen: " & DateipfadExtern & ", aktuelle Zeile: " & ZeileGebäude'Wide_Wide_Image);
                exit TexturenSchleife;
                
             when False =>
-               Verzeichnisname := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiGebäude));
+               Verzeichnisname := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiGebäude,
+                                                                                   AktuelleZeileExtern => ZeileGebäude,
+                                                                                   DateinameExtern     => "EinlesenTexturenLogik.Gebäude");
                ZeileGebäude := ZeileGebäude + 1;
          end case;
          

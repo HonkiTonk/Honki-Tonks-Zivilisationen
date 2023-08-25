@@ -4,6 +4,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Menuetexte;
 private with TextKonstanten;
+private with Meldungstexte;
 
 private with UmwandlungenAdaEigenes;
 
@@ -15,8 +16,10 @@ package EinlesenTextLogik is
    
 private
    
-   -- Überall Menü anhängen um eine bessereAbgrenzung von ähnlichen Textdateinamen zu haben? äöü
-   AnzahlTextdateien : constant Positive := 21;
+   AnzahlTextdateien : constant Positive := 18;
+   
+   -- Menüs
+   -- Überall Menü anhängen um eine bessere Abgrenzung von ähnlichen Textdateinamen zu haben? äöü
    Hauptmenü : constant Positive := Menuetexte.Hauptmenü'Last;
    Spielmenü : constant Positive := Hauptmenü + Menuetexte.Spielmenü'Last;
    Optionsmenü : constant Positive := Spielmenü + Menuetexte.Optionsmenü'Last;
@@ -37,6 +40,16 @@ private
    Spielstandmenü : constant Positive := Kartenpole + Menuetexte.Spielstandmenü'Last;
    Editorenmenü : constant Positive := Spielstandmenü + Menuetexte.Editorenmenü'Last;
    Handelsmenü : constant Positive := Editorenmenü + Menuetexte.Handelsmenü'Last;
+   -- Menüs
+   
+   -- Meldungen
+   Fragen : constant Positive := Meldungstexte.Frage'Last;
+   Meldung : constant Positive := Fragen + Meldungstexte.Meldung'Last;
+   Würdigungen : constant Positive := Meldung + Meldungstexte.Würdigung'Last;
+   Zeug : constant Positive := Würdigungen + Meldungstexte.Zeug'Last;
+   -- Meldungen
+   
+   
    EinzulesendeZeile : Positive;
    AktuelleZeile : Positive;
       
@@ -80,6 +93,10 @@ private
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
+   procedure Meldungen
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
    procedure Basisgrund
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
@@ -89,10 +106,6 @@ private
       EinsprachigExtern : in Boolean);
    
    procedure Beschäftigungen
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Würdigung
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
@@ -108,19 +121,7 @@ private
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
-   procedure Fehlermeldung
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
    procedure Ladezeit
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Frage
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure ZeugSachen
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
@@ -157,9 +158,9 @@ private
       EinsprachigExtern : in Boolean);
    
    
-   
+      
    function TextErsetzen
-     (TextExtern : in Wide_Wide_String)
+     (TextExtern : in Unbounded_Wide_Wide_String)
       return Unbounded_Wide_Wide_String;
    
    function Einsprachig

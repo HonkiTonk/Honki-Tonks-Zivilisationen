@@ -3,7 +3,6 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with VerzeichnisKonstanten;
 with Kartentexte;
 with GlobaleTexte;
-with Meldungstexte;
 with Befehlstexte;
 with Spieltexte;
 
@@ -110,9 +109,9 @@ package body EinlesenTextLogik is
       for WelcheDateienSchleifenwert in 1 .. AnzahlTextdateien loop
 
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiVerzeichnisse,
-                                                           AktuelleZeileExtern => WelcheDateienSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Einlesen")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiVerzeichnisse,
+                                                            AktuelleZeileExtern => WelcheDateienSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Einlesen")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Einlesen: Fehlende Zeilen, aktuelle Zeile: " & WelcheDateienSchleifenwert'Wide_Wide_Image);
@@ -120,7 +119,9 @@ package body EinlesenTextLogik is
                
             when False =>
                EinlesenAufteilen (WelcheDateiExtern => WelcheDateienSchleifenwert,
-                                  VerzeichnisExtern => VerzeichnisExtern & Get_Line (File => DateiVerzeichnisse),
+                                  VerzeichnisExtern => VerzeichnisExtern & EinlesenAllgemeinesLogik.TextEinlesen (DateiExtern         => DateiVerzeichnisse,
+                                                                                                                  AktuelleZeileExtern => WelcheDateienSchleifenwert,
+                                                                                                                  DateinameExtern     => "EinlesenTextLogik.Einlesen"),
                                   EinsprachigExtern => EinsprachigExtern);
          end case;
 
@@ -162,22 +163,22 @@ package body EinlesenTextLogik is
          when 2 =>
             Menüs (DateiExtern       => DateiText,
                     EinsprachigExtern => EinsprachigExtern);
-               
+            
          when 3 =>
-            Basisgrund (DateiExtern => DateiText,
-                        EinsprachigExtern => EinsprachigExtern);
+            Meldungen (DateiExtern       => DateiText,
+                       EinsprachigExtern => EinsprachigExtern);
                
          when 4 =>
+            Basisgrund (DateiExtern => DateiText,
+                        EinsprachigExtern => EinsprachigExtern);
+            
+         when 5 =>
             Verbesserungen (DateiExtern => DateiText,
                             EinsprachigExtern => EinsprachigExtern);
                
-         when 5 =>
+         when 6 =>
             Beschäftigungen (DateiExtern => DateiText,
                               EinsprachigExtern => EinsprachigExtern);
-               
-         when 6 =>
-            Würdigung (DateiExtern => DateiText,
-                        EinsprachigExtern => EinsprachigExtern);
                
          when 7 =>
             DiplomatieKI (DateiExtern => DateiText,
@@ -192,50 +193,38 @@ package body EinlesenTextLogik is
                      EinsprachigExtern => EinsprachigExtern);
                
          when 10 =>
-            Fehlermeldung (DateiExtern => DateiText,
-                           EinsprachigExtern => EinsprachigExtern);
-               
-         when 11 =>
             Ladezeit (DateiExtern => DateiText,
                       EinsprachigExtern => EinsprachigExtern);
                
-         when 12 =>
-            Frage (DateiExtern => DateiText,
-                   EinsprachigExtern => EinsprachigExtern);
-               
-         when 13 =>
-            ZeugSachen (DateiExtern => DateiText,
-                        EinsprachigExtern => EinsprachigExtern);
-               
-         when 14 =>
+         when 11 =>
             Wege (DateiExtern => DateiText,
                   EinsprachigExtern => EinsprachigExtern);
                
-         when 15 =>
+         when 12 =>
             Kartenflüsse (DateiExtern => DateiText,
                            EinsprachigExtern => EinsprachigExtern);
                
-         when 16 =>
+         when 13 =>
             Kartenressourcen (DateiExtern => DateiText,
                               EinsprachigExtern => EinsprachigExtern);
             
-         when 17 =>
+         when 14 =>
             Stadtbefehle (DateiExtern => DateiText,
                           EinsprachigExtern => EinsprachigExtern);
             
-         when 18 =>
+         when 15 =>
             Intro (DateiExtern => DateiText,
                    EinsprachigExtern => EinsprachigExtern);
             
-         when 19 =>
+         when 16 =>
             Outro (DateiExtern => DateiText,
                    EinsprachigExtern => EinsprachigExtern);
             
-         when 20 =>
+         when 17 =>
             Zusatzgrund (DateiExtern => DateiText,
                          EinsprachigExtern => EinsprachigExtern);
             
-         when 21 =>
+         when 18 =>
             Feldeffekte (DateiExtern => DateiText,
                          EinsprachigExtern => EinsprachigExtern);
             
@@ -261,17 +250,19 @@ package body EinlesenTextLogik is
       loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => EinzulesendeZeile,
-                                                           DateiExtern         => "EinlesenTextLogik.Ersetzungen")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => EinzulesendeZeile,
+                                                            DateinameExtern     => "EinlesenTextLogik.Ersetzungen")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Ersetzungen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
                return;
                
             when False =>
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => EinzulesendeZeile,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Ersetzungen");
                EinzulesendeZeile := EinzulesendeZeile + 1;
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
          end case;
          
          case
@@ -313,17 +304,19 @@ package body EinlesenTextLogik is
       loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => EinzulesendeZeile,
-                                                           DateiExtern         => "EinlesenTextLogik.Menüs")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => EinzulesendeZeile,
+                                                            DateinameExtern     => "EinlesenTextLogik.Menüs")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Menüs: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
                return;
                
             when False =>
+               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                                                AktuelleZeileExtern => EinzulesendeZeile,
+                                                                                                                DateinameExtern     => "EinlesenTextLogik.Menüs"));
                EinzulesendeZeile := EinzulesendeZeile + 1;
-               Zwischenspeicher := TextErsetzen (TextExtern => Get_Line (File => DateiExtern));
          end case;
          
          case
@@ -494,6 +487,89 @@ package body EinlesenTextLogik is
    
    
    
+   procedure Meldungen
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean)
+   is begin
+      
+      EinzulesendeZeile := 1;
+      AktuelleZeile := 1;
+      
+      MenüSchleife:
+      loop
+         
+         case
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => EinzulesendeZeile,
+                                                            DateinameExtern     => "EinlesenTextLogik.Meldungen")
+         is
+            when True =>
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Meldungen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               return;
+               
+            when False =>
+               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                                                AktuelleZeileExtern => EinzulesendeZeile,
+                                                                                                                DateinameExtern     => "EinlesenTextLogik.Meldungen"));
+               EinzulesendeZeile := EinzulesendeZeile + 1;
+         end case;
+         
+         case
+           To_Wide_Wide_String (Source => Zwischenspeicher) (1)
+         is
+            when TextKonstanten.TrennzeichenTextdateien =>
+               null;
+               
+            when others =>
+               if
+                 AktuelleZeile <= Fragen
+               then
+                  Meldungstexte.Frage (AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                      EingelesenerTextExtern => Zwischenspeicher,
+                                                                      VorhandenerTextExtern  => Meldungstexte.Frage (AktuelleZeile));
+                  
+               elsif
+                 AktuelleZeile in Fragen + 1 .. Meldung
+               then
+                  Meldungstexte.Meldung (AktuelleZeile - Fragen) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                 EingelesenerTextExtern => Zwischenspeicher,
+                                                                                 VorhandenerTextExtern  => Meldungstexte.Meldung (AktuelleZeile - Fragen));
+                  
+               elsif
+                 AktuelleZeile in Meldung + 1 .. Würdigungen
+               then
+                  Meldungstexte.Würdigung (AktuelleZeile - Meldung) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                     EingelesenerTextExtern => Zwischenspeicher,
+                                                                                     VorhandenerTextExtern  => Meldungstexte.Würdigung (AktuelleZeile - Meldung));
+                  
+               elsif
+                 AktuelleZeile in Würdigungen + 1 .. Zeug
+               then
+                  Meldungstexte.Zeug (AktuelleZeile - Würdigungen) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                    EingelesenerTextExtern => Zwischenspeicher,
+                                                                                    VorhandenerTextExtern  => Meldungstexte.Zeug (AktuelleZeile - Würdigungen));
+                  
+                  -- Das else hier kann für das letzte Menü verwendet werden. äöü
+               else
+                  return;
+               end if;
+               
+               if
+                 AktuelleZeile < Zeug
+               then
+                  AktuelleZeile := AktuelleZeile + 1;
+                     
+               else
+                  return;
+               end if;
+         end case;
+         
+      end loop MenüSchleife;
+      
+   end Meldungen;
+   
+   
+   
    procedure Basisgrund
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean)
@@ -503,16 +579,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in Kartentexte.Basisgrund'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Basisgrund")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Basisgrund")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Basisgrund: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Basisgrund");
          end case;
          
          case
@@ -549,16 +627,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in Kartentexte.Verbesserungen'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Verbesserungen")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Verbesserungen")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Verbesserungen: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Verbesserungen");
          end case;
          
          case
@@ -595,16 +675,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in GlobaleTexte.Beschäftigungen'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Beschäftigungen")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Beschäftigungen")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Beschäftigungen: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Beschäftigungen");
          end case;
          
          case
@@ -632,52 +714,6 @@ package body EinlesenTextLogik is
    
    
    
-   procedure Würdigung
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      WürdigungSchleife:
-      for ZeileSchleifenwert in GlobaleTexte.Würdigung'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Würdigung")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Würdigung: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               GlobaleTexte.Würdigung (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 GlobaleTexte.Würdigung (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => GlobaleTexte.Würdigung (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  GlobaleTexte.Würdigung (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop WürdigungSchleife;
-      
-   end Würdigung;
-   
-   
-   
    procedure DiplomatieKI
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean)
@@ -687,16 +723,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in GlobaleTexte.DiplomatieKI'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.DiplomatieKI")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.DiplomatieKI")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.DiplomatieKI: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.DiplomatieKI");
          end case;
          
          case
@@ -733,16 +771,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in GlobaleTexte.DiplomatieStatus'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.DiplomatieStatus")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.DiplomatieStatus")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.DiplomatieStatus: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.DiplomatieStatus");
          end case;
          
          case
@@ -779,16 +819,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in GlobaleTexte.Angebot'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Spielmenü")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Spielmenü")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Spielmenü: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Spielmenü");
          end case;
          
          case
@@ -816,52 +858,6 @@ package body EinlesenTextLogik is
    
    
    
-   procedure Fehlermeldung
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      FehlermeldungSchleife:
-      for ZeileSchleifenwert in Meldungstexte.Meldung'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Fehlermeldung")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Fehlermeldung: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Meldungstexte.Meldung (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Meldungstexte.Meldung (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Meldungstexte.Meldung (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Meldungstexte.Meldung (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop FehlermeldungSchleife;
-      
-   end Fehlermeldung;
-   
-   
-   
    procedure Ladezeit
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean)
@@ -871,16 +867,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in GlobaleTexte.Ladezeit'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Ladezeit")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Ladezeit")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Ladezeit: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Ladezeit");
          end case;
          
          case
@@ -905,98 +903,6 @@ package body EinlesenTextLogik is
       end loop LadezeitSchleife;
       
    end Ladezeit;
-   
-   
-   
-   procedure Frage
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      FrageSchleife:
-      for ZeileSchleifenwert in Meldungstexte.Frage'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Frage")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Frage: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Meldungstexte.Frage (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Meldungstexte.Frage (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Meldungstexte.Frage (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Meldungstexte.Frage (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop FrageSchleife;
-      
-   end Frage;
-   
-   
-   
-   procedure ZeugSachen
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      ZeugSachenSchleife:
-      for ZeileSchleifenwert in Meldungstexte.Zeug'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.ZeugSachen")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.ZeugSachen: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Meldungstexte.Zeug (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Meldungstexte.Zeug (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Meldungstexte.Zeug (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Meldungstexte.Zeug (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop ZeugSachenSchleife;
-      
-   end ZeugSachen;
       
    
    
@@ -1009,16 +915,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in Kartentexte.Wege'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Wege")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Wege")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Wege: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Wege");
          end case;
          
          case
@@ -1055,16 +963,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in Kartentexte.Kartenflüsse'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Kartenflüsse")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Kartenflüsse")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenflüsse: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Kartenflüsse");
          end case;
          
          case
@@ -1101,16 +1011,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in Kartentexte.Kartenressourcen'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Kartenressourcen")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Kartenressourcen")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Kartenressourcen: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Kartenressourcen");
          end case;
          
          case
@@ -1147,16 +1059,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in Befehlstexte.Stadtbefehle'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Stadtbefehle")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Stadtbefehle")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Stadtbefehle: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Stadtbefehle");
          end case;
          
          case
@@ -1193,16 +1107,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in Spieltexte.Intro'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Intro")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Intro")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Intro: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Intro");
          end case;
          
          case
@@ -1239,16 +1155,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in Spieltexte.Outro'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Outro")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Outro")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Outro: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Outro");
          end case;
          
          case
@@ -1285,16 +1203,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in Kartentexte.Zusatzgrund'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Zusatzgrund")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Zusatzgrund")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Zusatzgrund: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Zusatzgrund");
          end case;
          
          case
@@ -1331,16 +1251,18 @@ package body EinlesenTextLogik is
       for ZeileSchleifenwert in Kartentexte.Feldeffekte'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiExtern,
-                                                           AktuelleZeileExtern => ZeileSchleifenwert,
-                                                           DateiExtern         => "EinlesenTextLogik.Feldeffekte")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => ZeileSchleifenwert,
+                                                            DateinameExtern     => "EinlesenTextLogik.Feldeffekte")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Feldeffekte: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
                return;
                
             when False =>
-               Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiExtern));
+               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
+                                                                                    DateinameExtern     => "EinlesenTextLogik.Feldeffekte");
          end case;
          
          case
@@ -1369,7 +1291,7 @@ package body EinlesenTextLogik is
    
    
    function TextErsetzen
-     (TextExtern : in Wide_Wide_String)
+     (TextExtern : in Unbounded_Wide_Wide_String)
       return Unbounded_Wide_Wide_String
    is begin
       
@@ -1387,7 +1309,7 @@ package body EinlesenTextLogik is
          
       end loop ErsetzungSchleife;
         
-      return To_Unbounded_Wide_Wide_String (Source => TextExtern);
+      return TextExtern;
       
    end TextErsetzen;
    

@@ -1,5 +1,6 @@
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Directories; use Ada.Directories;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics;
 
@@ -12,14 +13,34 @@ with VerzeichnisKonstanten;
 package EinlesenAllgemeinesLogik is
    pragma Elaborate_Body;
 
-   function VorzeitigesZeilenende
+   function VorzeitigesDateienende
      (AktuelleDateiExtern : in File_Type;
       AktuelleZeileExtern : in Positive;
-      DateiExtern : in Wide_Wide_String)
+      DateinameExtern : in Wide_Wide_String)
       return Boolean
      with
        Pre => (
-                 DateiExtern'Length > 0
+                 DateinameExtern'Length > 0
+              );
+
+   function TextEinlesen
+     (DateiExtern : in File_Type;
+      AktuelleZeileExtern : in Positive;
+      DateinameExtern : in Wide_Wide_String)
+      return Wide_Wide_String
+     with
+       Pre => (
+                 DateinameExtern'Length > 0
+              );
+
+   function TextEinlesenUngebunden
+     (DateiExtern : in File_Type;
+      AktuelleZeileExtern : in Positive;
+      DateinameExtern : in Wide_Wide_String)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 DateinameExtern'Length > 0
               );
 
    function NamensprüfungWindows

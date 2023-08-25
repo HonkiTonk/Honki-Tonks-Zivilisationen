@@ -37,9 +37,9 @@ package body EinlesenSpeziestexteLogik is
       for WelcheDateienSchleifenwert in 1 .. 5 * SpeziesDatentypen.SpeziesnummernVorhanden'Last loop
 
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiEins,
-                                                           AktuelleZeileExtern => WelcheDateienSchleifenwert,
-                                                           DateiExtern         => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiEins,
+                                                            AktuelleZeileExtern => WelcheDateienSchleifenwert,
+                                                            DateinameExtern     => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen: Fehlende Zeilen, aktuelle Zeile: " & WelcheDateienSchleifenwert'Wide_Wide_Image);
@@ -52,29 +52,39 @@ package body EinlesenSpeziestexteLogik is
                  Teilerrest = 1
                then
                   NameBeschreibung (SpeziesExtern   => AktuelleSpezies,
-                                    DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & Get_Line (File => DateiEins));
+                                    DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & EinlesenAllgemeinesLogik.TextEinlesen (DateiExtern         => DateiEins,
+                                                                                                                                            AktuelleZeileExtern => WelcheDateienSchleifenwert,
+                                                                                                                                            DateinameExtern     => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen"));
                   
                elsif
                  Teilerrest = 2
                then
                   Städtenamen (SpeziesExtern   => AktuelleSpezies,
-                                DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & Get_Line (File => DateiEins));
+                                DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & EinlesenAllgemeinesLogik.TextEinlesen (DateiExtern         => DateiEins,
+                                                                                                                                        AktuelleZeileExtern => WelcheDateienSchleifenwert,
+                                                                                                                                        DateinameExtern     => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen"));
                   
                elsif
                  Teilerrest = 3
                then
                   Forschungen (SpeziesExtern   => AktuelleSpezies,
-                               DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & Get_Line (File => DateiEins));
+                               DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & EinlesenAllgemeinesLogik.TextEinlesen (DateiExtern         => DateiEins,
+                                                                                                                                       AktuelleZeileExtern => WelcheDateienSchleifenwert,
+                                                                                                                                       DateinameExtern     => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen"));
                   
                elsif
                  Teilerrest = 4
                then
                   Einheiten (SpeziesExtern   => AktuelleSpezies,
-                             DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & Get_Line (File => DateiEins));
+                             DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & EinlesenAllgemeinesLogik.TextEinlesen (DateiExtern         => DateiEins,
+                                                                                                                                     AktuelleZeileExtern => WelcheDateienSchleifenwert,
+                                                                                                                                     DateinameExtern     => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen"));
                
                else
                   Gebäude (SpeziesExtern   => AktuelleSpezies,
-                            DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & Get_Line (File => DateiEins));
+                            DateinameExtern => To_Wide_Wide_String (Source => Dateienpfad) & EinlesenAllgemeinesLogik.TextEinlesen (DateiExtern         => DateiEins,
+                                                                                                                                    AktuelleZeileExtern => WelcheDateienSchleifenwert,
+                                                                                                                                    DateinameExtern     => "EinlesenSpeziestexteLogik.SpeziestexteEinlesen"));
                   
                   case
                     AktuelleSpezies
@@ -119,16 +129,18 @@ package body EinlesenSpeziestexteLogik is
       for NameBeschreibungSchleifenwert in Speziestexte.NameBeschreibungArray'Range (2) loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiNameBeschreibung,
-                                                           AktuelleZeileExtern => NameBeschreibungSchleifenwert,
-                                                           DateiExtern         => "EinlesenSpeziestexteLogik.NameBeschreibung")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiNameBeschreibung,
+                                                            AktuelleZeileExtern => NameBeschreibungSchleifenwert,
+                                                            DateinameExtern     => "EinlesenSpeziestexteLogik.NameBeschreibung")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.NameBeschreibung: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & NameBeschreibungSchleifenwert'Wide_Wide_Image);
                exit NameBeschreibungSchleife;
                
             when False =>
-               Speziestexte.NameBeschreibung (SpeziesExtern, NameBeschreibungSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNameBeschreibung));
+               Speziestexte.NameBeschreibung (SpeziesExtern, NameBeschreibungSchleifenwert) := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiNameBeschreibung,
+                                                                                                                                                AktuelleZeileExtern => NameBeschreibungSchleifenwert,
+                                                                                                                                                DateinameExtern     => "EinlesenSpeziestexteLogik.NameBeschreibung");
          end case;
          
       end loop NameBeschreibungSchleife;
@@ -162,16 +174,18 @@ package body EinlesenSpeziestexteLogik is
       for StädtenamenSchleifenwert in Speziestexte.StädtenamenArray'Range (2) loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiStädtenamen,
-                                                           AktuelleZeileExtern => Positive (StädtenamenSchleifenwert),
-                                                           DateiExtern         => "EinlesenSpeziestexteLogik.Städtenamen")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiStädtenamen,
+                                                            AktuelleZeileExtern => Positive (StädtenamenSchleifenwert),
+                                                            DateinameExtern     => "EinlesenSpeziestexteLogik.Städtenamen")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Städtenamen: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & StädtenamenSchleifenwert'Wide_Wide_Image);
                exit StädtenamenSchleife;
                
             when False =>
-               Speziestexte.Städtenamen (SpeziesExtern, StädtenamenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiStädtenamen));
+               Speziestexte.Städtenamen (SpeziesExtern, StädtenamenSchleifenwert) := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiStädtenamen,
+                                                                                                                                        AktuelleZeileExtern => Positive (StädtenamenSchleifenwert),
+                                                                                                                                        DateinameExtern     => "EinlesenSpeziestexteLogik.Städtenamen");
          end case;
          
       end loop StädtenamenSchleife;
@@ -209,16 +223,18 @@ package body EinlesenSpeziestexteLogik is
          for TextSchleifenwert in Speziestexte.ForschungenArray'Range (3) loop
          
             case
-              EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiForschungen,
-                                                              AktuelleZeileExtern => AktuelleZeile,
-                                                              DateiExtern         => "EinlesenSpeziestexteLogik.Forschungen")
+              EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiForschungen,
+                                                               AktuelleZeileExtern => AktuelleZeile,
+                                                               DateinameExtern     => "EinlesenSpeziestexteLogik.Forschungen")
             is
                when True =>
                   Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Forschungen: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                   exit ForschungenSchleife;
                
                when False =>
-                  Speziestexte.Forschungen (SpeziesExtern, ForschungenSchleifenwert, TextSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiForschungen));
+                  Speziestexte.Forschungen (SpeziesExtern, ForschungenSchleifenwert, TextSchleifenwert) := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiForschungen,
+                                                                                                                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                                                                                                                            DateinameExtern     => "EinlesenSpeziestexteLogik.Forschungen");
             end case;
          
             AktuelleZeile := AktuelleZeile + 1;
@@ -259,18 +275,20 @@ package body EinlesenSpeziestexteLogik is
          for TextSchleifenwert in Speziestexte.EinheitenArray'Range (3) loop
          
             case
-              EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiEinheiten,
-                                                              AktuelleZeileExtern => AktuelleZeile,
-                                                              DateiExtern         => "EinlesenSpeziestexteLogik.Einheiten")
+              EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiEinheiten,
+                                                               AktuelleZeileExtern => AktuelleZeile,
+                                                               DateinameExtern     => "EinlesenSpeziestexteLogik.Einheiten")
             is
                when True =>
                   Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Einheiten: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                   exit EinheitenSchleife;
                
                when False =>
-                  Speziestexte.Einheiten (SpeziesExtern, EinheitSchleifenwert, TextSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiEinheiten));
+                  Speziestexte.Einheiten (SpeziesExtern, EinheitSchleifenwert, TextSchleifenwert) := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiEinheiten,
+                                                                                                                                                      AktuelleZeileExtern => AktuelleZeile,
+                                                                                                                                                      DateinameExtern     => "EinlesenSpeziestexteLogik.Einheiten");
             end case;
-         
+            
             AktuelleZeile := AktuelleZeile + 1;
          
          end loop TextSchleife;
@@ -309,16 +327,18 @@ package body EinlesenSpeziestexteLogik is
          for TextSchleifenwert in Speziestexte.GebäudeArray'Range (3) loop
          
             case
-              EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiGebäude,
-                                                              AktuelleZeileExtern => AktuelleZeile,
-                                                              DateiExtern         => "EinlesenSpeziestexteLogik.Gebäude")
+              EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiGebäude,
+                                                               AktuelleZeileExtern => AktuelleZeile,
+                                                               DateinameExtern     => "EinlesenSpeziestexteLogik.Gebäude")
             is
                when True =>
                   Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSpeziestexteLogik.Gebäude: Fehlende Zeilen: " & DateinameExtern & ", aktuelle Zeile: " & AktuelleZeile'Wide_Wide_Image);
                   exit GebäudeSchleife;
                
                when False =>
-                  Speziestexte.Gebäude (SpeziesExtern, GebäudeSchleifenwert, TextSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiGebäude));
+                  Speziestexte.Gebäude (SpeziesExtern, GebäudeSchleifenwert, TextSchleifenwert) := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiGebäude,
+                                                                                                                                                      AktuelleZeileExtern => AktuelleZeile,
+                                                                                                                                                      DateinameExtern     => "EinlesenSpeziestexteLogik.Gebäude");
             end case;
          
             AktuelleZeile := AktuelleZeile + 1;

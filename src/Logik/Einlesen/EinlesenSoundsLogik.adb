@@ -35,9 +35,9 @@ package body EinlesenSoundsLogik is
       for SoundSchleifenwert in EingeleseneSounds.SoundArray'Range loop
          
          case
-           EinlesenAllgemeinesLogik.VorzeitigesZeilenende (AktuelleDateiExtern => DateiSounds,
-                                                           AktuelleZeileExtern => AktuelleZeile,
-                                                           DateiExtern         => "EinlesenSoundsLogik.EinlesenSounds")
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiSounds,
+                                                            AktuelleZeileExtern => AktuelleZeile,
+                                                            DateinameExtern     => "EinlesenSoundsLogik.EinlesenSounds")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenSoundsLogik.EinlesenSounds: Fehlende Zeilen: "
@@ -45,7 +45,9 @@ package body EinlesenSoundsLogik is
                exit SoundsSchleife;
                
             when False =>
-               Sound := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiSounds));
+               Sound := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiSounds,
+                                                                         AktuelleZeileExtern => AktuelleZeile,
+                                                                         DateinameExtern     => "EinlesenSoundsLogik.EinlesenSounds");
          end case;
          
          case

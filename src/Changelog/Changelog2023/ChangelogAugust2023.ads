@@ -35,80 +35,73 @@ package ChangelogAugust2023 is
    
    
 
-   -- Version 0.05. => 0.05. (26.08.2023):
+   -- Version 0.05.3900 => 0.05. (26.08.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (25.08.2023):
+   -- Version 0.05.3850 => 0.05.3900 (25.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (24.08.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einlesesystem für den Text überarbeitet und erweitert.
+   -- Textdateien zusammengeführt.
+   -- Das Einlesen von Texten erzeugt jetzt keine Probleme mehr, wenn Leerzeilen in den Textdateien enthalten sind.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
-   -- Version 0.05. => 0.05. (23.08.2023):
+   -- Version 0.05.3850 => 0.05.3850 (24.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (22.08.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (21.08.2023):
+   -- Version 0.05.3850 => 0.05.3850 (23.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (20.08.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (19.08.2023):
+   -- Version 0.05.3850 => 0.05.3850 (22.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (18.08.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (17.08.2023):
+   -- Version 0.05.3850 => 0.05.3850 (21.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.3850 => 0.05. (16.08.2023):
+   -- Version 0.05.3850 => 0.05.3850 (20.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.3850 => 0.05.3850 (19.08.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.3850 => 0.05.3850 (18.08.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.3850 => 0.05.3850 (17.08.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.3850 => 0.05.3850 (16.08.2023):
+   
+   -- null.
    
    
 
