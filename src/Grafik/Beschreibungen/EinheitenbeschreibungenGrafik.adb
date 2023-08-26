@@ -1,6 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleTexte;
+with Spieltexte;
 with Speziestexte;
 with TextKonstanten;
 with EinheitenKonstanten;
@@ -45,7 +45,7 @@ package body EinheitenbeschreibungenGrafik is
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => GlobaleTexte.Beschäftigungen (2 * AufgabenDatentypen.Einheiten_Aufgaben_Enum'Pos (ArbeitExtern) + 1));
+      return To_Wide_Wide_String (Source => Spieltexte.Beschäftigungen (2 * AufgabenDatentypen.Einheiten_Aufgaben_Enum'Pos (ArbeitExtern) + 1));
       
    end KurzbeschreibungBeschäftigung;
    
@@ -56,7 +56,7 @@ package body EinheitenbeschreibungenGrafik is
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => GlobaleTexte.Beschäftigungen (2 * AufgabenDatentypen.Einheiten_Aufgaben_Enum'Pos (ArbeitExtern)));
+      return To_Wide_Wide_String (Source => Spieltexte.Beschäftigungen (2 * AufgabenDatentypen.Einheiten_Aufgaben_Enum'Pos (ArbeitExtern)));
       
    end LangbeschreibungBeschäftigung;
 

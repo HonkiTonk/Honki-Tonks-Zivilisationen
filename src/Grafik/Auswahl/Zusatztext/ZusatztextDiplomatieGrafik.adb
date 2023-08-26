@@ -3,7 +3,7 @@ with Sf.Graphics.Text;
 with TextaccessVariablen;
 with MenueKonstanten;
 with MenueDatentypen;
-with Meldungstexte;
+with Spieltexte;
 with TextnummernKonstanten;
 with DiplomatieDatentypen;
 with Menuetexte;
@@ -81,7 +81,7 @@ package body ZusatztextDiplomatieGrafik is
                return "";
          end case;
          
-         Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & Meldungstexte.Zeug (Zustandnummer);
+         Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & Spieltexte.Zeug (Zustandnummer);
          
       else
          Text := Menuetexte.Diplomatiemenü (TextnummerExtern) & " " & LeseDiplomatie.AktuelleSympathie (SpeziesEinsExtern => LeseGrafiktask.AktiveSpezies,

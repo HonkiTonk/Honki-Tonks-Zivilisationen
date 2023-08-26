@@ -3,7 +3,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Views;
 with TextaccessVariablen;
 with GrafikDatentypen;
-with Spieltexte;
+with Sequenzentexte;
 with GrafikKonstanten;
 
 with ViewsEinstellenGrafik;
@@ -38,7 +38,7 @@ package body IntroGrafik is
          -- Ergibt die Kombination aus ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung und TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln überhaupt Sinn? äöü
          TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
                                                                  TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
-                                                                   (TextExtern           => To_Wide_Wide_String (Source => Spieltexte.Intro (IntroSchleifenwert)),
+                                                                   (TextExtern           => To_Wide_Wide_String (Source => Sequenzentexte.Intro (IntroSchleifenwert)),
                                                                     TextfeldbreiteExtern => Viewfläche.x,
                                                                     BreitenabzugExtern   => Textposition.x),
                                                                  PositionExtern   => Textposition);

@@ -4,7 +4,8 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Menuetexte;
 private with TextKonstanten;
-private with Meldungstexte;
+private with Spieltexte;
+private with Sequenzentexte;
 
 private with UmwandlungenAdaEigenes;
 
@@ -16,10 +17,11 @@ package EinlesenTextLogik is
    
 private
    
-   AnzahlTextdateien : constant Positive := 18;
+   AnzahlTextdateien : constant Positive := 15;
    
    -- Menüs
    -- Überall Menü anhängen um eine bessere Abgrenzung von ähnlichen Textdateinamen zu haben? äöü
+   -- Das auch bei den andere Konstanten tun? äöü
    Hauptmenü : constant Positive := Menuetexte.Hauptmenü'Last;
    Spielmenü : constant Positive := Hauptmenü + Menuetexte.Spielmenü'Last;
    Optionsmenü : constant Positive := Spielmenü + Menuetexte.Optionsmenü'Last;
@@ -42,12 +44,19 @@ private
    Handelsmenü : constant Positive := Editorenmenü + Menuetexte.Handelsmenü'Last;
    -- Menüs
    
-   -- Meldungen
-   Fragen : constant Positive := Meldungstexte.Frage'Last;
-   Meldung : constant Positive := Fragen + Meldungstexte.Meldung'Last;
-   Würdigungen : constant Positive := Meldung + Meldungstexte.Würdigung'Last;
-   Zeug : constant Positive := Würdigungen + Meldungstexte.Zeug'Last;
-   -- Meldungen
+   -- Spieltexte
+   Fragen : constant Positive := Spieltexte.Fragen'Last;
+   Meldungen : constant Positive := Fragen + Spieltexte.Meldungen'Last;
+   Würdigungen : constant Positive := Meldungen + Spieltexte.Würdigung'Last;
+   Zeug : constant Positive := Würdigungen + Spieltexte.Zeug'Last;
+   Stadtbefehle : constant Positive := Zeug + Spieltexte.Stadtbefehle'Last;
+   Ladezeiten : constant Positive := Stadtbefehle + Spieltexte.Ladezeit'Last;
+   -- Spieltexte
+   
+   -- Sequenzen
+   Intro : constant Positive := Sequenzentexte.Intro'Last;
+   Outro : constant Positive := Intro + Sequenzentexte.Outro'Last;
+   -- Sequenzen
    
    
    EinzulesendeZeile : Positive;
@@ -93,7 +102,11 @@ private
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
-   procedure Meldungen
+   procedure AllgemeineTexte
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Sequenzen
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
@@ -121,10 +134,6 @@ private
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
-   procedure Ladezeit
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
    procedure Wege
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
@@ -134,18 +143,6 @@ private
       EinsprachigExtern : in Boolean);
    
    procedure Kartenressourcen
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Stadtbefehle
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Intro
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Outro
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    

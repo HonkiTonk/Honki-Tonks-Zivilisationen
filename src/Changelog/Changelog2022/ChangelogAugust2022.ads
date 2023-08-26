@@ -33,7 +33,7 @@ package ChangelogAugust2022 is
    -- Optimierungen vorgenommen.
    -- Angefangen die Standardbibliothek nicht mehr mit use zu nutzen.
    -- Interne Struktur überarbeitet.
-   -- Änderungen an den Spieltexten vorgenommen.
+   -- Änderungen an den Sequenzentexten vorgenommen.
    -- Textdateien neu aufgeteilt
    -- Das Texteinlesesystem an die neue Textdateienaufteilung anzupassen.
    -- Jede Spezies hat jetzt ihre eigenen Textdateien für NameBeschreibung, Städtenamen, Forschungen, Einheiten und Gebäude.

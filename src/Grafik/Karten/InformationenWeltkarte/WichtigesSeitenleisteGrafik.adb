@@ -1,4 +1,4 @@
-with Meldungstexte;
+with Spieltexte;
 with TextnummernKonstanten;
 with Views;
 with GrafikDatentypen;
@@ -41,7 +41,7 @@ package body WichtigesSeitenleisteGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & "," & KoordinatenExtern.YAchse'Wide_Wide_Image
+      FestzulegenderText (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & "," & KoordinatenExtern.YAchse'Wide_Wide_Image
         & "," & KoordinatenExtern.XAchse'Wide_Wide_Image;
       
       FestzulegenderText (2) := Rundenanzahl (SpeziesExtern => SpeziesExtern);
@@ -84,7 +84,7 @@ package body WichtigesSeitenleisteGrafik is
             Rundengrenze := LeseAllgemeines.Rundengrenze;
             
          when others =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
               & ZahlAlsStringPositive (ZahlExtern => LeseGrenzen.Speziesrundengrenze (SpeziesExtern => SpeziesExtern));
       end case;
       
@@ -92,10 +92,10 @@ package body WichtigesSeitenleisteGrafik is
         Rundengrenze
       is
          when ZahlenDatentypen.EigenesNatural'First =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image;
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image;
             
          when others =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleRunde) & AktuelleRundenanzahl'Wide_Wide_Image & TextKonstanten.Trennzeichen
               & ZahlAlsStringPositive (ZahlExtern => Rundengrenze);
       end case;
       
@@ -123,16 +123,16 @@ package body WichtigesSeitenleisteGrafik is
       if
         Geldzuwachs = ProduktionKonstanten.LeerProduktion
       then
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image;
+         return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image;
            
       elsif
         Geldzuwachs > ProduktionKonstanten.LeerProduktion
       then
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand & "+"
+         return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand & "+"
            & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => SpeziesExtern));
          
       else
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
+         return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleGeldmenge) & LeseWichtiges.Geldmenge (SpeziesExtern => SpeziesExtern)'Wide_Wide_Image & TextKonstanten.StandardAbstand
            & ZahlAlsStringKostenLager (ZahlExtern => LeseWichtiges.GeldZugewinnProRunde (SpeziesExtern => SpeziesExtern));
       end if;
       
@@ -161,12 +161,12 @@ package body WichtigesSeitenleisteGrafik is
         Forschungszeit
       is
          when ProduktionDatentypen.Lagermenge'Last =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Forschungsprojekt,
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Forschungsprojekt,
                                                                                                                                                                                 SpeziesExtern => SpeziesExtern)
               & TextKonstanten.UnendlichGeklammert;
             
          when others =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Forschungsprojekt,
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Forschungsprojekt,
                                                                                                                                                                                 SpeziesExtern => SpeziesExtern)
               & " (" & ZahlAlsStringKostenLager (ZahlExtern => Forschungszeit) & ")";
       end case;

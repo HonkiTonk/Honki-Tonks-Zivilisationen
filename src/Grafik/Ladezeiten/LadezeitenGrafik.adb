@@ -1,6 +1,6 @@
 with Sf.Graphics.Text;
 
-with GlobaleTexte;
+with Spieltexte;
 with TextKonstanten;
 with Views;
 with LadezeitenDatentypen;
@@ -28,16 +28,16 @@ package body LadezeitenGrafik is
         WelcheLadeanzeigeExtern
       is
          when GrafikDatentypen.Generierungszeit_Enum =>
-            Text := GlobaleTexte.Ladezeit (TextnummernKonstanten.LadezeitSpielwelt);
+            Text := Spieltexte.Ladezeit (TextnummernKonstanten.LadezeitSpielwelt);
             
          when GrafikDatentypen.KI_Rechenzeit_Enum =>
-            Text := SpeziesbeschreibungenGrafik.Kurzbeschreibung (SpeziesExtern => SpeziesExtern) & " " & GlobaleTexte.Ladezeit (TextnummernKonstanten.LadezeitRechnet);
+            Text := SpeziesbeschreibungenGrafik.Kurzbeschreibung (SpeziesExtern => SpeziesExtern) & " " & Spieltexte.Ladezeit (TextnummernKonstanten.LadezeitRechnet);
             
          when GrafikDatentypen.Rundenende_Enum =>
-            Text := GlobaleTexte.Ladezeit (TextnummernKonstanten.LadezeitRundenwechsel);
+            Text := Spieltexte.Ladezeit (TextnummernKonstanten.LadezeitRundenwechsel);
             
          when GrafikDatentypen.Speichern_Laden_Enum =>
-            Text := GlobaleTexte.Ladezeit (TextnummernKonstanten.LadezeitSpielstand);
+            Text := Spieltexte.Ladezeit (TextnummernKonstanten.LadezeitSpielstand);
       end case;
       
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Text),
@@ -90,7 +90,7 @@ package body LadezeitenGrafik is
       SpielweltErstellenSchleife:
       for SpielweltErstellenSchleifenwert in LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range loop
                 
-         Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))
+         Text := Spieltexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))
            & TextKonstanten.Trennzeichen & MaximalerLadefortschritt;
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
@@ -130,7 +130,7 @@ package body LadezeitenGrafik is
       KIRechnetSchleife:
       for KIRechnetSchleifenwert in LadezeitenDatentypen.KI_Rechnet_Enum'Range loop
                   
-         Text := GlobaleTexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittKI (KIRechnetSchleifenwert))
+         Text := Spieltexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittKI (KIRechnetSchleifenwert))
            & TextKonstanten.Trennzeichen & MaximalerLadefortschritt;
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),

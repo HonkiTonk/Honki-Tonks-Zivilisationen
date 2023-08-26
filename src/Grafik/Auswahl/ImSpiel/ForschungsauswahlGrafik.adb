@@ -2,7 +2,7 @@ with Sf.Graphics.Text;
 
 with ForschungKonstanten;
 with GrafikDatentypen;
-with Meldungstexte;
+with Spieltexte;
 with TextnummernKonstanten;
 with EinheitenDatentypen;
 with StadtDatentypen;
@@ -37,7 +37,7 @@ package body ForschungsauswahlGrafik is
       AktuelleAuswahlExtern : in Natural)
    is begin
       
-      AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageForschungsprojekt)),
+      AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Spieltexte.Fragen (TextnummernKonstanten.FrageForschungsprojekt)),
                                           HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                           SpielenamenExtern => False);
       
@@ -142,7 +142,7 @@ package body ForschungsauswahlGrafik is
             AktuelleTextbreite := GrafikKonstanten.Nullwert;
             
             TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
-                                                                    TextExtern       => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugWirdBenötigt)),
+                                                                    TextExtern       => To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugWirdBenötigt)),
                                                                     PositionExtern   => Textposition);
       
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
@@ -319,7 +319,7 @@ package body ForschungsauswahlGrafik is
             return;
             
          when others =>
-            Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => AktuellesForschungsprojekt,
+            Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & " " & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => AktuellesForschungsprojekt,
                                                                                                                                                        SpeziesExtern => SpeziesExtern);
             
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AktuellesForschungsprojekt,
@@ -338,7 +338,7 @@ package body ForschungsauswahlGrafik is
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
             Forschungszeit := LeseWichtiges.VerbleibendeForschungszeit (SpeziesExtern => SpeziesExtern);
-            Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit);
+            Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeForschungszeit);
       end case;
       
       case

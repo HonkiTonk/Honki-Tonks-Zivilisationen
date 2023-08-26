@@ -3,13 +3,12 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics.Text;
 
 with TextaccessVariablen;
-with Meldungstexte;
+with Spieltexte;
 with TextnummernKonstanten;
 with SonstigesKonstanten;
 with Menuetexte;
 with BefehleDatentypen;
-with Befehlstexte;
-with Spieltexte;
+with Sequenzentexte;
 
 with SpeziesbeschreibungenGrafik;
 with ForschungsbeschreibungenGrafik;
@@ -56,7 +55,7 @@ package body TextaccesseTextGrafik is
       for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => Spieltexte.Intro (IntroSchleifenwert)));
+                                            str  => To_Wide_Wide_String (Source => Sequenzentexte.Intro (IntroSchleifenwert)));
          
       end loop IntroSchleife;
       
@@ -66,7 +65,7 @@ package body TextaccesseTextGrafik is
       for OutroSchleifenwert in TextaccessVariablen.OutroAccess'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.OutroAccess (OutroSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => Spieltexte.Outro (OutroSchleifenwert)));
+                                            str  => To_Wide_Wide_String (Source => Sequenzentexte.Outro (OutroSchleifenwert)));
          
       end loop OutroSchleife;
       
@@ -121,7 +120,7 @@ package body TextaccesseTextGrafik is
             is
                when TextaccessVariablen.GebäudetextAccessArray'First (2) =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
-                                                     str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugGebäude)));
+                                                     str  => To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugGebäude)));
                
                when others =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudetextAccess (SpeziesSchleifenwert, GebäudetextSchleifenwert),
@@ -145,7 +144,7 @@ package body TextaccesseTextGrafik is
             is
                when TextaccessVariablen.EinheitentextAccessArray'First (2) =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
-                                                     str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinheiten)));
+                                                     str  => To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugEinheiten)));
                
                when others =>
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitentextAccess (SpeziesSchleifenwert, EinheitentextSchleifenwert),
@@ -268,7 +267,7 @@ package body TextaccesseTextGrafik is
       for AnzeigeEingabeSchleifenwert in TextaccessVariablen.JaNeinAccessArray'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.JaNeinAccess (AnzeigeEingabeSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugJa + AnzeigeEingabeSchleifenwert - TextaccessVariablen.JaNeinAccessArray'First)));
+                                            str  => To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugJa + AnzeigeEingabeSchleifenwert - TextaccessVariablen.JaNeinAccessArray'First)));
          
       end loop AnzeigeEingabeSchleife;
          
@@ -292,7 +291,7 @@ package body TextaccesseTextGrafik is
       for StadtbefehleSchleifenwert in TextaccessVariablen.StadtbefehleAccessArray'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.StadtbefehleAccess (StadtbefehleSchleifenwert),
-                                            str  => To_Wide_Wide_String (Source => Befehlstexte.Stadtbefehle (BefehleDatentypen.Stadtbefehle_Auswählen_Enum'Pos (StadtbefehleSchleifenwert) - 1)));
+                                            str  => To_Wide_Wide_String (Source => Spieltexte.Stadtbefehle (BefehleDatentypen.Stadtbefehle_Auswählen_Enum'Pos (StadtbefehleSchleifenwert) - 1)));
          
       end loop StadtbefehleSchleife;
       

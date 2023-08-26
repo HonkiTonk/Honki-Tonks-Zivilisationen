@@ -3,8 +3,6 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with VerzeichnisKonstanten;
 with Kartentexte;
 with GlobaleTexte;
-with Befehlstexte;
-with Spieltexte;
 
 with LeseOptionen;
 
@@ -165,36 +163,36 @@ package body EinlesenTextLogik is
                     EinsprachigExtern => EinsprachigExtern);
             
          when 3 =>
-            Meldungen (DateiExtern       => DateiText,
+            AllgemeineTexte (DateiExtern       => DateiText,
+                             EinsprachigExtern => EinsprachigExtern);
+            
+         when 4 =>
+            Sequenzen (DateiExtern       => DateiText,
                        EinsprachigExtern => EinsprachigExtern);
                
-         when 4 =>
+         when 5 =>
             Basisgrund (DateiExtern => DateiText,
                         EinsprachigExtern => EinsprachigExtern);
             
-         when 5 =>
+         when 6 =>
             Verbesserungen (DateiExtern => DateiText,
                             EinsprachigExtern => EinsprachigExtern);
                
-         when 6 =>
+         when 7 =>
             Beschäftigungen (DateiExtern => DateiText,
                               EinsprachigExtern => EinsprachigExtern);
                
-         when 7 =>
+         when 8 =>
             DiplomatieKI (DateiExtern => DateiText,
                           EinsprachigExtern => EinsprachigExtern);
                
-         when 8 =>
+         when 9 =>
             DiplomatieStatus (DateiExtern => DateiText,
                               EinsprachigExtern => EinsprachigExtern);
                
-         when 9 =>
+         when 10 =>
             Angebot (DateiExtern => DateiText,
                      EinsprachigExtern => EinsprachigExtern);
-               
-         when 10 =>
-            Ladezeit (DateiExtern => DateiText,
-                      EinsprachigExtern => EinsprachigExtern);
                
          when 11 =>
             Wege (DateiExtern => DateiText,
@@ -209,22 +207,10 @@ package body EinlesenTextLogik is
                               EinsprachigExtern => EinsprachigExtern);
             
          when 14 =>
-            Stadtbefehle (DateiExtern => DateiText,
-                          EinsprachigExtern => EinsprachigExtern);
-            
-         when 15 =>
-            Intro (DateiExtern => DateiText,
-                   EinsprachigExtern => EinsprachigExtern);
-            
-         when 16 =>
-            Outro (DateiExtern => DateiText,
-                   EinsprachigExtern => EinsprachigExtern);
-            
-         when 17 =>
             Zusatzgrund (DateiExtern => DateiText,
                          EinsprachigExtern => EinsprachigExtern);
             
-         when 18 =>
+         when 15 =>
             Feldeffekte (DateiExtern => DateiText,
                          EinsprachigExtern => EinsprachigExtern);
             
@@ -487,7 +473,7 @@ package body EinlesenTextLogik is
    
    
    
-   procedure Meldungen
+   procedure AllgemeineTexte
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean)
    is begin
@@ -495,13 +481,13 @@ package body EinlesenTextLogik is
       EinzulesendeZeile := 1;
       AktuelleZeile := 1;
       
-      MenüSchleife:
+      MeldungSchleife:
       loop
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
                                                             AktuelleZeileExtern => EinzulesendeZeile,
-                                                            DateinameExtern     => "EinlesenTextLogik.Meldungen")
+                                                            DateinameExtern     => "EinlesenTextLogik.AllgemeineTexte")
          is
             when True =>
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Meldungen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
@@ -510,7 +496,7 @@ package body EinlesenTextLogik is
             when False =>
                Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
                                                                                                                 AktuelleZeileExtern => EinzulesendeZeile,
-                                                                                                                DateinameExtern     => "EinlesenTextLogik.Meldungen"));
+                                                                                                                DateinameExtern     => "EinlesenTextLogik.AllgemeineTexte"));
                EinzulesendeZeile := EinzulesendeZeile + 1;
          end case;
          
@@ -524,30 +510,44 @@ package body EinlesenTextLogik is
                if
                  AktuelleZeile <= Fragen
                then
-                  Meldungstexte.Frage (AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
-                                                                      EingelesenerTextExtern => Zwischenspeicher,
-                                                                      VorhandenerTextExtern  => Meldungstexte.Frage (AktuelleZeile));
+                  Spieltexte.Fragen (AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                    EingelesenerTextExtern => Zwischenspeicher,
+                                                                    VorhandenerTextExtern  => Spieltexte.Fragen (AktuelleZeile));
                   
                elsif
-                 AktuelleZeile in Fragen + 1 .. Meldung
+                 AktuelleZeile in Fragen + 1 .. Meldungen
                then
-                  Meldungstexte.Meldung (AktuelleZeile - Fragen) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
-                                                                                 EingelesenerTextExtern => Zwischenspeicher,
-                                                                                 VorhandenerTextExtern  => Meldungstexte.Meldung (AktuelleZeile - Fragen));
+                  Spieltexte.Meldungen (AktuelleZeile - Fragen) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                EingelesenerTextExtern => Zwischenspeicher,
+                                                                                VorhandenerTextExtern  => Spieltexte.Meldungen (AktuelleZeile - Fragen));
                   
                elsif
-                 AktuelleZeile in Meldung + 1 .. Würdigungen
+                 AktuelleZeile in Meldungen + 1 .. Würdigungen
                then
-                  Meldungstexte.Würdigung (AktuelleZeile - Meldung) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
-                                                                                     EingelesenerTextExtern => Zwischenspeicher,
-                                                                                     VorhandenerTextExtern  => Meldungstexte.Würdigung (AktuelleZeile - Meldung));
+                  Spieltexte.Würdigung (AktuelleZeile - Meldungen) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                    EingelesenerTextExtern => Zwischenspeicher,
+                                                                                    VorhandenerTextExtern  => Spieltexte.Würdigung (AktuelleZeile - Meldungen));
                   
                elsif
                  AktuelleZeile in Würdigungen + 1 .. Zeug
                then
-                  Meldungstexte.Zeug (AktuelleZeile - Würdigungen) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
-                                                                                    EingelesenerTextExtern => Zwischenspeicher,
-                                                                                    VorhandenerTextExtern  => Meldungstexte.Zeug (AktuelleZeile - Würdigungen));
+                  Spieltexte.Zeug (AktuelleZeile - Würdigungen) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                 EingelesenerTextExtern => Zwischenspeicher,
+                                                                                 VorhandenerTextExtern  => Spieltexte.Zeug (AktuelleZeile - Würdigungen));
+                  
+               elsif
+                 AktuelleZeile in Zeug + 1 .. Stadtbefehle
+               then
+                  Spieltexte.Stadtbefehle (AktuelleZeile - Zeug) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                         EingelesenerTextExtern => Zwischenspeicher,
+                                                                         VorhandenerTextExtern  => Spieltexte.Zeug (AktuelleZeile - Zeug));
+                  
+               elsif
+                 AktuelleZeile in Stadtbefehle + 1 .. Ladezeiten
+               then
+                  Spieltexte.Ladezeit (AktuelleZeile - Stadtbefehle) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                     EingelesenerTextExtern => Zwischenspeicher,
+                                                                                     VorhandenerTextExtern  => Spieltexte.Zeug (AktuelleZeile - Stadtbefehle));
                   
                   -- Das else hier kann für das letzte Menü verwendet werden. äöü
                else
@@ -555,7 +555,7 @@ package body EinlesenTextLogik is
                end if;
                
                if
-                 AktuelleZeile < Zeug
+                 AktuelleZeile < Ladezeiten
                then
                   AktuelleZeile := AktuelleZeile + 1;
                      
@@ -564,9 +564,78 @@ package body EinlesenTextLogik is
                end if;
          end case;
          
-      end loop MenüSchleife;
+      end loop MeldungSchleife;
       
-   end Meldungen;
+   end AllgemeineTexte;
+   
+   
+   
+   procedure Sequenzen
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean)
+   is begin
+      
+      EinzulesendeZeile := 1;
+      AktuelleZeile := 1;
+      
+      SequenzenSchleife:
+      loop
+         
+         case
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => EinzulesendeZeile,
+                                                            DateinameExtern     => "EinlesenTextLogik.Sequenzen")
+         is
+            when True =>
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Sequenzen: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               return;
+               
+            when False =>
+               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                                                AktuelleZeileExtern => EinzulesendeZeile,
+                                                                                                                DateinameExtern     => "EinlesenTextLogik.Sequenzen"));
+               EinzulesendeZeile := EinzulesendeZeile + 1;
+         end case;
+         
+         case
+           To_Wide_Wide_String (Source => Zwischenspeicher) (1)
+         is
+            when TextKonstanten.TrennzeichenTextdateien =>
+               null;
+               
+            when others =>
+               if
+                 AktuelleZeile <= Intro
+               then
+                  Sequenzentexte.Intro (AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                       EingelesenerTextExtern => Zwischenspeicher,
+                                                                       VorhandenerTextExtern  => Sequenzentexte.Intro (AktuelleZeile));
+                  
+               elsif
+                 AktuelleZeile in Intro + 1 .. Outro
+               then
+                  Sequenzentexte.Outro (AktuelleZeile - Intro) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                               EingelesenerTextExtern => Zwischenspeicher,
+                                                                               VorhandenerTextExtern  => Sequenzentexte.Outro (AktuelleZeile - Intro));
+                  
+                  -- Das else hier kann für das letzte Menü verwendet werden. äöü
+               else
+                  return;
+               end if;
+               
+               if
+                 AktuelleZeile < Outro
+               then
+                  AktuelleZeile := AktuelleZeile + 1;
+                     
+               else
+                  return;
+               end if;
+         end case;
+         
+      end loop SequenzenSchleife;
+      
+   end Sequenzen;
    
    
    
@@ -672,7 +741,7 @@ package body EinlesenTextLogik is
    is begin
       
       BeschäftigungenSchleife:
-      for ZeileSchleifenwert in GlobaleTexte.Beschäftigungen'Range loop
+      for ZeileSchleifenwert in Spieltexte.Beschäftigungen'Range loop
          
          case
            EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
@@ -693,15 +762,15 @@ package body EinlesenTextLogik is
            EinsprachigExtern
          is
             when True =>
-               GlobaleTexte.Beschäftigungen (ZeileSchleifenwert) := Zwischenspeicher;
+               Spieltexte.Beschäftigungen (ZeileSchleifenwert) := Zwischenspeicher;
                
             when False =>
                if
-                 GlobaleTexte.Beschäftigungen (ZeileSchleifenwert) = TextKonstanten.FehlenderText
+                 Spieltexte.Beschäftigungen (ZeileSchleifenwert) = TextKonstanten.FehlenderText
                  or
-                   To_Wide_Wide_String (Source => GlobaleTexte.Beschäftigungen (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
+                   To_Wide_Wide_String (Source => Spieltexte.Beschäftigungen (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
                then
-                  GlobaleTexte.Beschäftigungen (ZeileSchleifenwert) := Zwischenspeicher;
+                  Spieltexte.Beschäftigungen (ZeileSchleifenwert) := Zwischenspeicher;
                   
                else
                   null;
@@ -855,54 +924,6 @@ package body EinlesenTextLogik is
       end loop AngebotSchleife;
       
    end Angebot;
-   
-   
-   
-   procedure Ladezeit
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      LadezeitSchleife:
-      for ZeileSchleifenwert in GlobaleTexte.Ladezeit'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
-                                                            AktuelleZeileExtern => ZeileSchleifenwert,
-                                                            DateinameExtern     => "EinlesenTextLogik.Ladezeit")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Ladezeit: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
-                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
-                                                                                    DateinameExtern     => "EinlesenTextLogik.Ladezeit");
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               GlobaleTexte.Ladezeit (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 GlobaleTexte.Ladezeit (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => GlobaleTexte.Ladezeit (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  GlobaleTexte.Ladezeit (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop LadezeitSchleife;
-      
-   end Ladezeit;
       
    
    
@@ -1047,150 +1068,6 @@ package body EinlesenTextLogik is
       end loop WegeSchleife;
       
    end Kartenressourcen;
-   
-   
-   
-   procedure Stadtbefehle
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      StadtbefehleSchleife:
-      for ZeileSchleifenwert in Befehlstexte.Stadtbefehle'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
-                                                            AktuelleZeileExtern => ZeileSchleifenwert,
-                                                            DateinameExtern     => "EinlesenTextLogik.Stadtbefehle")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Stadtbefehle: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
-                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
-                                                                                    DateinameExtern     => "EinlesenTextLogik.Stadtbefehle");
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Befehlstexte.Stadtbefehle (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Befehlstexte.Stadtbefehle (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Befehlstexte.Stadtbefehle (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Befehlstexte.Stadtbefehle (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop StadtbefehleSchleife;
-      
-   end Stadtbefehle;
-   
-   
-   
-   procedure Intro
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      IntroSchleife:
-      for ZeileSchleifenwert in Spieltexte.Intro'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
-                                                            AktuelleZeileExtern => ZeileSchleifenwert,
-                                                            DateinameExtern     => "EinlesenTextLogik.Intro")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Intro: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
-                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
-                                                                                    DateinameExtern     => "EinlesenTextLogik.Intro");
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Spieltexte.Intro (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Spieltexte.Intro (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Spieltexte.Intro (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Spieltexte.Intro (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop IntroSchleife;
-      
-   end Intro;
-   
-   
-   
-   procedure Outro
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
-   is begin
-      
-      OutroSchleife:
-      for ZeileSchleifenwert in Spieltexte.Outro'Range loop
-         
-         case
-           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
-                                                            AktuelleZeileExtern => ZeileSchleifenwert,
-                                                            DateinameExtern     => "EinlesenTextLogik.Outro")
-         is
-            when True =>
-               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Outro: Fehlende Zeilen, aktuelle Zeile: " & ZeileSchleifenwert'Wide_Wide_Image);
-               return;
-               
-            when False =>
-               Zwischenspeicher := EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
-                                                                                    AktuelleZeileExtern => ZeileSchleifenwert,
-                                                                                    DateinameExtern     => "EinlesenTextLogik.Outro");
-         end case;
-         
-         case
-           EinsprachigExtern
-         is
-            when True =>
-               Spieltexte.Outro (ZeileSchleifenwert) := Zwischenspeicher;
-               
-            when False =>
-               if
-                 Spieltexte.Outro (ZeileSchleifenwert) = TextKonstanten.FehlenderText
-                 or
-                   To_Wide_Wide_String (Source => Spieltexte.Outro (ZeileSchleifenwert))'Length < To_Wide_Wide_String (Source => Zwischenspeicher)'Length
-               then
-                  Spieltexte.Outro (ZeileSchleifenwert) := Zwischenspeicher;
-                  
-               else
-                  null;
-               end if;
-         end case;
-         
-      end loop OutroSchleife;
-      
-   end Outro;
    
    
    

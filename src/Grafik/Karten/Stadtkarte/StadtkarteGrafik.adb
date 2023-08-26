@@ -7,7 +7,7 @@ with ZeitKonstanten;
 with GrafikDatentypen;
 with TextaccessVariablen;
 with KartenDatentypen;
-with Meldungstexte;
+with Spieltexte;
 with TextnummernKonstanten;
 with KampfDatentypen;
 with ProduktionDatentypen;
@@ -177,35 +177,35 @@ package body StadtkarteGrafik is
                                                                                                                                  SpeziesExtern => SpeziesExtern),
                                                               PositionExtern   => Textposition);
       
-      Gebäudetexte (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => SpeziesExtern,
+      Gebäudetexte (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => SpeziesExtern,
                                                                                                                                IDExtern      => GebäudeIDExtern)'Wide_Wide_Image;
-      Gebäudetexte (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteNahrungskosten) & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
+      Gebäudetexte (2) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenteNahrungskosten) & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
                                                                                                                                              IDExtern           => GebäudeIDExtern,
                                                                                                                                              WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
-      Gebäudetexte (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteGeldkosten) & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
+      Gebäudetexte (3) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenteGeldkosten) & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
                                                                                                                                          IDExtern           => GebäudeIDExtern,
                                                                                                                                          WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
-      Gebäudetexte (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteProduktionskosten)
+      Gebäudetexte (4) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenteProduktionskosten)
         & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
                                                   IDExtern           => GebäudeIDExtern,
                                                   WelcheKostenExtern => ProduktionDatentypen.Material_Enum)'Wide_Wide_Image;
-      Gebäudetexte (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterNahrungsbonus) & LeseGebaeudeDatenbank.Produktionsbonus (SpeziesExtern          => SpeziesExtern,
+      Gebäudetexte (5) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenterNahrungsbonus) & LeseGebaeudeDatenbank.Produktionsbonus (SpeziesExtern          => SpeziesExtern,
                                                                                                                                             IDExtern               => GebäudeIDExtern,
                                                                                                                                             ProduktionsbonusExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
-      Gebäudetexte (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterProduktionsbonus)
+      Gebäudetexte (6) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenterProduktionsbonus)
         & LeseGebaeudeDatenbank.Produktionsbonus (SpeziesExtern          => SpeziesExtern,
                                                   IDExtern               => GebäudeIDExtern,
                                                   ProduktionsbonusExtern => ProduktionDatentypen.Material_Enum)'Wide_Wide_Image;
-      Gebäudetexte (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterGeldbonus) & LeseGebaeudeDatenbank.Produktionsbonus (SpeziesExtern          => SpeziesExtern,
+      Gebäudetexte (7) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenterGeldbonus) & LeseGebaeudeDatenbank.Produktionsbonus (SpeziesExtern          => SpeziesExtern,
                                                                                                                                         IDExtern               => GebäudeIDExtern,
                                                                                                                                         ProduktionsbonusExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
-      Gebäudetexte (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterWissenbonus) & LeseGebaeudeDatenbank.Produktionsbonus (SpeziesExtern          => SpeziesExtern,
+      Gebäudetexte (8) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenterWissenbonus) & LeseGebaeudeDatenbank.Produktionsbonus (SpeziesExtern          => SpeziesExtern,
                                                                                                                                           IDExtern               => GebäudeIDExtern,
                                                                                                                                           ProduktionsbonusExtern => ProduktionDatentypen.Forschung_Enum)'Wide_Wide_Image;
-      Gebäudetexte (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterVerteidigungsbonus) & LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
+      Gebäudetexte (9) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenterVerteidigungsbonus) & LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
                                                                                                                                             IDExtern         => GebäudeIDExtern,
                                                                                                                                             KampfBonusExtern => KampfDatentypen.Verteidigung_Enum)'Wide_Wide_Image;
-      Gebäudetexte (10) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenterAngriffsbonus) & LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
+      Gebäudetexte (10) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenterAngriffsbonus) & LeseGebaeudeDatenbank.KampfBonus (SpeziesExtern    => SpeziesExtern,
                                                                                                                                         IDExtern         => GebäudeIDExtern,
                                                                                                                                         KampfBonusExtern => KampfDatentypen.Angriff_Enum)'Wide_Wide_Image;
       

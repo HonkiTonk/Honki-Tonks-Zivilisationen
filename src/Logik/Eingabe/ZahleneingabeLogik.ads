@@ -2,7 +2,7 @@ private with Sf.Window.Keyboard;
 
 with ZahlenDatentypen;
 with SystemRecords;
-with Meldungstexte;
+with Spieltexte;
 
 package ZahleneingabeLogik is
    pragma Elaborate_Body;
@@ -16,7 +16,7 @@ package ZahleneingabeLogik is
        Pre => (
                  ZahlenMinimumExtern <= ZahlenMaximumExtern
                and
-                 WelcheFrageExtern <= Meldungstexte.Frage'Last
+                 WelcheFrageExtern <= Spieltexte.Fragen'Last
               );
 
 private

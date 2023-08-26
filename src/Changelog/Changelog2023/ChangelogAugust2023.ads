@@ -28,17 +28,18 @@ package ChangelogAugust2023 is
    
    
 
-   -- Version 0.05. => 0.05. (27.08.2023):
+   -- Version 0.05.3935 => 0.05. (27.08.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.3900 => 0.05. (26.08.2023):
+   -- Version 0.05.3900 => 0.05.3935 (26.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einlesesystem für den Text überarbeitet und erweitert.
+   -- Textdateien zusammengeführt.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

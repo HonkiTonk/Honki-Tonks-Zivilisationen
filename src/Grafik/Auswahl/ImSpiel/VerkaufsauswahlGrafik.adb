@@ -2,7 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.Text;
 
-with Meldungstexte;
+with Spieltexte;
 with TextnummernKonstanten;
 with GrafikDatentypen;
 with Views;
@@ -27,7 +27,7 @@ package body VerkaufsauswahlGrafik is
       AktuelleAuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert)
    is begin
       
-      AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageGebäudeverkauf)),
+      AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Spieltexte.Fragen (TextnummernKonstanten.FrageGebäudeverkauf)),
                                           HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                           SpielenamenExtern => False);
       

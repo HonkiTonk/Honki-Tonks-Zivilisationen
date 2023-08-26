@@ -3,7 +3,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Views;
 with GrafikDatentypen;
 with TextnummernKonstanten;
-with Meldungstexte;
+with Spieltexte;
 with TextaccessVariablen;
 with ProduktionDatentypen;
 with EinheitenKonstanten;
@@ -43,24 +43,24 @@ package body BauauswahlEinheitenGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeInformationen);
       
-      Einheitentexte (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseEinheitenDatenbank.Produktionskosten (SpeziesExtern => SpeziesExtern,
+      Einheitentexte (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseEinheitenDatenbank.Produktionskosten (SpeziesExtern => SpeziesExtern,
                                                                                                                                  IDExtern      => AuswahlExtern)'Wide_Wide_Image;
-      Einheitentexte (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteNahrungskosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
+      Einheitentexte (2) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenteNahrungskosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
                                                                                                                                                IDExtern           => AuswahlExtern,
                                                                                                                                                WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
-      Einheitentexte (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteGeldkosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
+      Einheitentexte (3) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenteGeldkosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
                                                                                                                                            IDExtern           => AuswahlExtern,
                                                                                                                                            WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
-      Einheitentexte (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugPermanenteProduktionskosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
+      Einheitentexte (4) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenteProduktionskosten) & LeseEinheitenDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
                                                                                                                                                   IDExtern           => AuswahlExtern,
                                                                                                                                                   WelcheKostenExtern => ProduktionDatentypen.Material_Enum)'Wide_Wide_Image;
-      Einheitentexte (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => SpeziesExtern,
+      Einheitentexte (5) := Spieltexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => SpeziesExtern,
                                                                                                                                        IDExtern      => AuswahlExtern)'Wide_Wide_Image;
-      Einheitentexte (6) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => SpeziesExtern,
+      Einheitentexte (6) := Spieltexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => SpeziesExtern,
                                                                                                                                              IDExtern      => AuswahlExtern)'Wide_Wide_Image;
-      Einheitentexte (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAngriff) & LeseEinheitenDatenbank.Angriff (SpeziesExtern => SpeziesExtern,
+      Einheitentexte (7) := Spieltexte.Zeug (TextnummernKonstanten.ZeugAngriff) & LeseEinheitenDatenbank.Angriff (SpeziesExtern => SpeziesExtern,
                                                                                                                      IDExtern      => AuswahlExtern)'Wide_Wide_Image;
-      Einheitentexte (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerteidigung) & LeseEinheitenDatenbank.Verteidigung (SpeziesExtern => SpeziesExtern,
+      Einheitentexte (8) := Spieltexte.Zeug (TextnummernKonstanten.ZeugVerteidigung) & LeseEinheitenDatenbank.Verteidigung (SpeziesExtern => SpeziesExtern,
                                                                                                                                IDExtern      => AuswahlExtern)'Wide_Wide_Image;
       
       Transportgröße := LeseEinheitenDatenbank.KannTransportieren (SpeziesExtern => SpeziesExtern,
@@ -78,9 +78,9 @@ package body BauauswahlEinheitenGrafik is
          Einheitentexte (10) := TextKonstanten.LeerUnboundedString;
             
       else
-         Einheitentexte (9) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugTransportergröße) & " "
-           & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKlein - 1 + EinheitenDatentypen.Transport_Vorhanden_Enum'Pos (Transportgröße));
-         Einheitentexte (10) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugTransportkapazität) & Transportkapazität'Wide_Wide_Image;
+         Einheitentexte (9) := Spieltexte.Zeug (TextnummernKonstanten.ZeugTransportergröße) & " "
+           & Spieltexte.Zeug (TextnummernKonstanten.ZeugKlein - 1 + EinheitenDatentypen.Transport_Vorhanden_Enum'Pos (Transportgröße));
+         Einheitentexte (10) := Spieltexte.Zeug (TextnummernKonstanten.ZeugTransportkapazität) & Transportkapazität'Wide_Wide_Image;
       end if;
       
       Transportgröße := LeseEinheitenDatenbank.KannTransportiertWerden (SpeziesExtern => SpeziesExtern,
@@ -93,8 +93,8 @@ package body BauauswahlEinheitenGrafik is
             Einheitentexte (11) := TextKonstanten.LeerUnboundedString;
             
          when others =>
-            Einheitentexte (11) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinheitengröße) & " "
-              & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKlein - 1 + EinheitenDatentypen.Transport_Vorhanden_Enum'Pos (Transportgröße));
+            Einheitentexte (11) := Spieltexte.Zeug (TextnummernKonstanten.ZeugEinheitengröße) & " "
+              & Spieltexte.Zeug (TextnummernKonstanten.ZeugKlein - 1 + EinheitenDatentypen.Transport_Vorhanden_Enum'Pos (Transportgröße));
       end case;
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;

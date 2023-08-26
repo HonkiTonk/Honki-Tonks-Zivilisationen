@@ -1,7 +1,7 @@
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
-with Meldungstexte;
+with Spieltexte;
 with TextnummernKonstanten;
 with KartengrundDatentypen;
 with ViewKonstanten;
@@ -46,7 +46,7 @@ package body AllgemeinesSeitenleisteGrafik is
          when others =>
             Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
                                                str  => KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => Gesamtgrund.Basisgrund) & " "
-                                               &  To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugMit)) & " "
+                                               &  To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugMit)) & " "
                                                & KartenbeschreibungenGrafik.KurzbeschreibungZusatzgrund (KartenGrundExtern => Gesamtgrund.Zusatzgrund));
       end case;
       

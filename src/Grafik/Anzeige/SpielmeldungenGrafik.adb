@@ -2,7 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.Text;
 
-with Meldungstexte;
+with Spieltexte;
 with Views;
 with GrafikDatentypen;
 with TextaccessVariablen;
@@ -34,7 +34,7 @@ package body SpielmeldungenGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.Spielmeldung,
-                                         str  => To_Wide_Wide_String (Source => Meldungstexte.Meldung (MeldungExtern)));
+                                         str  => To_Wide_Wide_String (Source => Spieltexte.Meldungen (MeldungExtern)));
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.Spielmeldung,
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);

@@ -3,7 +3,7 @@ with Views;
 with KartengrundDatentypen;
 with ViewKonstanten;
 with TextaccessVariablen;
-with Meldungstexte;
+with Spieltexte;
 with SpeziesKonstanten;
 with GrafikKonstanten;
 with TextnummernKonstanten;
@@ -165,22 +165,22 @@ package body StadtumgebungGrafik is
            ProduktionSchleifenwert
          is
             when ProduktionDatentypen.Nahrung_Enum =>
-               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+               Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
                                                                                                                            SpeziesExtern        => SpeziesExtern,
                                                                                                                            ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
                
             when ProduktionDatentypen.Material_Enum =>
-               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+               Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
                                                                                                                                  SpeziesExtern        => SpeziesExtern,
                                                                                                                                  ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
                
             when ProduktionDatentypen.Geld_Enum =>
-               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+               Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
                                                                                                                            SpeziesExtern        => SpeziesExtern,
                                                                                                                            ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
                
             when ProduktionDatentypen.Forschung_Enum =>
-               Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
+               Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & FeldproduktionLogik.Feldproduktion (KoordinatenExtern    => KoordinatenExtern,
                                                                                                                               SpeziesExtern        => SpeziesExtern,
                                                                                                                               ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
          end case;

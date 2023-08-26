@@ -7,7 +7,7 @@ with StadtDatentypen;
 with ForschungenDatentypen;
 with MenueKonstanten;
 with MenueDatentypen;
-with Spieltexte;
+with Sequenzentexte;
 
 with InteraktionAuswahl;
 
@@ -45,8 +45,8 @@ package TextaccessVariablen is
    -- Für die Arrays hier (und eventuell auch bei anderen Dingen) auch noch Konstante anlegen, damit ich die dann einfacher verwenden kann, wo beispielsweise keine Schleife möglich ist? äöü
    type TextaccessArray is array (Positive range <>) of Sf.Graphics.sfText_Ptr;
    
-   IntroAccess : constant TextaccessArray (Positive'First .. Spieltexte.IntroEnde) := (others => Sf.Graphics.Text.create);
-   OutroAccess : constant TextaccessArray (Positive'First .. Spieltexte.OutroEnde) := (others => Sf.Graphics.Text.create);
+   IntroAccess : constant TextaccessArray (Positive'First .. Sequenzentexte.IntroEnde) := (others => Sf.Graphics.Text.create);
+   OutroAccess : constant TextaccessArray (Positive'First .. Sequenzentexte.OutroEnde) := (others => Sf.Graphics.Text.create);
    -- Allgemeines
 
    -- Menüs

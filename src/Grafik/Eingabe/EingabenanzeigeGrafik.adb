@@ -1,7 +1,7 @@
 with Sf.Graphics.Text;
 
 with EinheitenDatentypen;
-with Meldungstexte;
+with Spieltexte;
 with Views;
 with TextaccessVariablen;
 with ViewKonstanten;
@@ -32,7 +32,7 @@ package body EingabenanzeigeGrafik is
    is begin
       
       Frage (HintergrundExtern => GrafikDatentypen.Auswahl_Hintergrund_Enum,
-             FrageExtern       => To_Wide_Wide_String (Source => Meldungstexte.Frage (FrageExtern)));
+             FrageExtern       => To_Wide_Wide_String (Source => Spieltexte.Fragen (FrageExtern)));
       
       case
         EingabeExtern
@@ -304,11 +304,11 @@ package body EingabenanzeigeGrafik is
                  AuswahlSchleifenwert = WelcheAuswahlExtern.MöglicheAuswahlen'First
                then
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                     str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugStadt)));
+                                                     str  => To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugStadt)));
                   
                else
                   Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
-                                                     str  => To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinheit)));
+                                                     str  => To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugEinheit)));
                end if;
                
             else

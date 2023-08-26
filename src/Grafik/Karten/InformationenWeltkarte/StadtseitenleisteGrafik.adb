@@ -1,6 +1,6 @@
 with EinheitenDatentypen;
 with StadtDatentypen;
-with Meldungstexte;
+with Spieltexte;
 with TextnummernKonstanten;
 with TextKonstanten;
 with Views;
@@ -78,7 +78,7 @@ package body StadtseitenleisteGrafik is
       
       Textbreite := GrafikKonstanten.Nullwert;
       
-      FestzulegenderText (1) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & StadtauswahlExtern.EinwohnerArbeiter (1)'Wide_Wide_Image;
+      FestzulegenderText (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & StadtauswahlExtern.EinwohnerArbeiter (1)'Wide_Wide_Image;
       
       -- Volle Stadtinformationen, nur sichtbar wenn eigene Stadt oder durch Debug.
       if
@@ -88,12 +88,12 @@ package body StadtseitenleisteGrafik is
       then
          FestzulegenderText (2) := Nahrung (ProduktionExtern => StadtauswahlExtern.Nahrungsproduktion,
                                             VorhandenExtern  => StadtauswahlExtern.Nahrungsmittel);
-         FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " " & ZahlAlsString (ZahlExtern => StadtauswahlExtern.Produktionrate);
-         FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " & ZahlAlsString (ZahlExtern => StadtauswahlExtern.Geldgewinnung);
-         FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & StadtauswahlExtern.Forschungsrate'Wide_Wide_Image;
+         FestzulegenderText (3) := Spieltexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " " & ZahlAlsString (ZahlExtern => StadtauswahlExtern.Produktionrate);
+         FestzulegenderText (4) := Spieltexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " & ZahlAlsString (ZahlExtern => StadtauswahlExtern.Geldgewinnung);
+         FestzulegenderText (5) := Spieltexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & StadtauswahlExtern.Forschungsrate'Wide_Wide_Image;
          FestzulegenderText (6) := Kampfwerte (StadtauswahlExtern => StadtauswahlExtern);
-         FestzulegenderText (7) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugKorruption) & StadtauswahlExtern.Korruption'Wide_Wide_Image;
-         FestzulegenderText (8) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & AllgemeineBerechnungen.FreieEinwohner (EinwohnerExtern => StadtauswahlExtern.EinwohnerArbeiter (1),
+         FestzulegenderText (7) := Spieltexte.Zeug (TextnummernKonstanten.ZeugKorruption) & StadtauswahlExtern.Korruption'Wide_Wide_Image;
+         FestzulegenderText (8) := Spieltexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & AllgemeineBerechnungen.FreieEinwohner (EinwohnerExtern => StadtauswahlExtern.EinwohnerArbeiter (1),
                                                                                                                                                ArbeiterExtern  => StadtauswahlExtern.EinwohnerArbeiter (2))'Wide_Wide_Image;
          FestzulegenderText (9) := AktuellesBauprojekt (SpeziesExtern    => StadtauswahlExtern.SpeziesNummer.Spezies,
                                                         BauprojektExtern => StadtauswahlExtern.Bauprojekt,
@@ -147,15 +147,15 @@ package body StadtseitenleisteGrafik is
       if
         ProduktionExtern = ProduktionKonstanten.LeerProduktion
       then
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image;
+         return Spieltexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image;
          
       elsif
         ProduktionExtern > ProduktionKonstanten.LeerProduktion
       then
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image & TextKonstanten.StandardAbstand & "+" & ZahlAlsString (ZahlExtern => ProduktionExtern);
+         return Spieltexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image & TextKonstanten.StandardAbstand & "+" & ZahlAlsString (ZahlExtern => ProduktionExtern);
          
       else
-         return Meldungstexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => ProduktionExtern);
+         return Spieltexte.Zeug (TextnummernKonstanten.ZeugNahrungsmittel) & VorhandenExtern'Wide_Wide_Image & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => ProduktionExtern);
       end if;
       
    end Nahrung;
@@ -167,7 +167,7 @@ package body StadtseitenleisteGrafik is
       return Unbounded_Wide_Wide_String
    is begin
                
-      return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (IDExtern          => StadtauswahlExtern.ID,
+      return Spieltexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (IDExtern          => StadtauswahlExtern.ID,
                                                                                                                               KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                                               SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,
                                                                                                                               GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden,
@@ -214,10 +214,10 @@ package body StadtseitenleisteGrafik is
         BauzeitExtern
       is
          when ProduktionDatentypen.Produktion'Last =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & TextKonstanten.UnendlichGeklammert;
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & TextKonstanten.UnendlichGeklammert;
             
          when others =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & " (" & ZahlAlsString (ZahlExtern => BauzeitExtern) & ")";
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Text & " (" & ZahlAlsString (ZahlExtern => BauzeitExtern) & ")";
       end case;
             
    end AktuellesBauprojekt;

@@ -1,6 +1,6 @@
 with Sf.Graphics.Text;
 
-with Meldungstexte;
+with Spieltexte;
 with GrafikDatentypen;
 with TextnummernKonstanten;
 with Views;
@@ -32,7 +32,7 @@ package body DiplomatieauswahlGrafik is
      (AuswahlExtern : in Natural)
    is begin
       
-      AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageSpeziesDiplomatie)),
+      AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Spieltexte.Fragen (TextnummernKonstanten.FrageSpeziesDiplomatie)),
                                           HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                           SpielenamenExtern => False);
       
@@ -78,13 +78,13 @@ package body DiplomatieauswahlGrafik is
                                                SpeziesZweiExtern => SpeziesDatentypen.Spezies_Enum'Val (PositionSchleifenwert))
             is
                when DiplomatieDatentypen.Neutral_Enum =>
-                  Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugFrieden);
+                  Text := Text & Spieltexte.Zeug (TextnummernKonstanten.ZeugFrieden);
                      
                when DiplomatieDatentypen.Nichtangriffspakt_Enum =>
-                  Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugNichtangriffspakt);
+                  Text := Text & Spieltexte.Zeug (TextnummernKonstanten.ZeugNichtangriffspakt);
                
                when DiplomatieDatentypen.Krieg_Enum =>
-                  Text := Text & Meldungstexte.Zeug (TextnummernKonstanten.ZeugKrieg);
+                  Text := Text & Spieltexte.Zeug (TextnummernKonstanten.ZeugKrieg);
                
                when DiplomatieDatentypen.Unbekannt_Enum =>
                   Fehlermeldungssystem.Grafik (FehlermeldungExtern => "DiplomatieauswahlGrafik.Textdarstellung: Unbekannter Kontakt");

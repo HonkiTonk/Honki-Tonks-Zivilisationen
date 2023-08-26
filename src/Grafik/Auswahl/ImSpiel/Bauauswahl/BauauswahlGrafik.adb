@@ -1,7 +1,7 @@
 with Sf.Graphics.Text;
 
 with GrafikDatentypen;
-with Meldungstexte;
+with Spieltexte;
 with TextnummernKonstanten;
 with TextaccessVariablen;
 with Views;
@@ -32,7 +32,7 @@ package body BauauswahlGrafik is
       AktuelleAuswahlExtern : in StadtRecords.BauprojektRecord)
    is begin
       
-      AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Meldungstexte.Frage (TextnummernKonstanten.FrageBauprojekt)),
+      AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Spieltexte.Fragen (TextnummernKonstanten.FrageBauprojekt)),
                                           HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                           SpielenamenExtern => False);
       
@@ -195,13 +195,13 @@ package body BauauswahlGrafik is
       if
         BauauswahlExtern.Bauprojekt.Gebäude /= AuswahlKonstanten.LeerGebäudeauswahl
       then
-         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauauswahlExtern.Bauprojekt.Gebäude,
+         Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauauswahlExtern.Bauprojekt.Gebäude,
                                                                                                                                   SpeziesExtern => BauauswahlExtern.Spezies);
          
       elsif
         BauauswahlExtern.Bauprojekt.Einheit /= AuswahlKonstanten.LeerEinheitenauswahl
       then
-         Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauauswahlExtern.Bauprojekt.Einheit,
+         Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauauswahlExtern.Bauprojekt.Einheit,
                                                                                                                                    SpeziesExtern => BauauswahlExtern.Spezies);
                      
       else
@@ -227,7 +227,7 @@ package body BauauswahlGrafik is
                                                                       TextAccessExtern => TextaccessVariablen.AktuellesBauprojekt,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-      Text := Meldungstexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & BauauswahlExtern.Bauzeit'Wide_Wide_Image;
+      Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & BauauswahlExtern.Bauzeit'Wide_Wide_Image;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.AktuellesBauprojekt,
                                          str  => To_Wide_Wide_String (Source => Text));

@@ -2,7 +2,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Speziestexte;
 with ForschungKonstanten;
-with Meldungstexte;
+with Spieltexte;
 with TextnummernKonstanten;
 
 package body ForschungsbeschreibungenGrafik is
@@ -17,7 +17,7 @@ package body ForschungsbeschreibungenGrafik is
         IDExtern
       is
          when ForschungKonstanten.LeerAnforderung =>
-            return To_Wide_Wide_String (Source => Meldungstexte.Zeug (TextnummernKonstanten.ZeugKeines));
+            return To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugKeines));
             
          when others =>
             return To_Wide_Wide_String (Source => Speziestexte.Forschungen (SpeziesExtern, IDExtern, TextnummernKonstanten.KurzeBeschreibung));

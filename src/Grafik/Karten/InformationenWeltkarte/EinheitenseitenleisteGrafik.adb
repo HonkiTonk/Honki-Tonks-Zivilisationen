@@ -1,4 +1,4 @@
-with Meldungstexte;
+with Spieltexte;
 with StadtKonstanten;
 with TextnummernKonstanten;
 with TextKonstanten;
@@ -70,7 +70,7 @@ package body EinheitenseitenleisteGrafik is
          when others =>
             FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => IDEinheit,
                                                                                                                                SpeziesExtern => EinheitSpeziesNummer.Spezies));
-            FestzulegenderText (2) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image
+            FestzulegenderText (2) := Spieltexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image
               & TextKonstanten.Trennzeichen & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => EinheitSpeziesNummer.Spezies,
                                                                                                                                     IDExtern      => IDEinheit));
       end case;
@@ -80,13 +80,13 @@ package body EinheitenseitenleisteGrafik is
         or
           Projekteinstellungen.Debug.VolleInformation
       then
-         FestzulegenderText (3) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image
+         FestzulegenderText (3) := Spieltexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image
            & TextKonstanten.Trennzeichen & ZahlAlsStringBewegungspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummer.Spezies,
                                                                                                                                        IDExtern      => IDEinheit));
-         FestzulegenderText (4) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugErfahrungspunkte) & LeseEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image
+         FestzulegenderText (4) := Spieltexte.Zeug (TextnummernKonstanten.ZeugErfahrungspunkte) & LeseEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image
            & TextKonstanten.Trennzeichen & ZahlAlsStringErfahrungspunkte (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => EinheitSpeziesNummer.Spezies,
                                                                                                                                     IDExtern      => IDEinheit));
-         FestzulegenderText (5) := Meldungstexte.Zeug (TextnummernKonstanten.ZeugRang) & LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image & TextKonstanten.Trennzeichen
+         FestzulegenderText (5) := Spieltexte.Zeug (TextnummernKonstanten.ZeugRang) & LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image & TextKonstanten.Trennzeichen
            & ZahlAlsStringRang (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (SpeziesExtern => EinheitSpeziesNummer.Spezies,
                                                                                     IDExtern      => IDEinheit));
          FestzulegenderText (6) := Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
@@ -162,7 +162,7 @@ package body EinheitenseitenleisteGrafik is
             return TextKonstanten.LeerUnboundedString;
             
          when others =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugBeschäftigung) & TextKonstanten.UmbruchAbstand & EinheitenbeschreibungenGrafik.KurzbeschreibungBeschäftigung (Beschäftigung) & " (" &
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugBeschäftigung) & TextKonstanten.UmbruchAbstand & EinheitenbeschreibungenGrafik.KurzbeschreibungBeschäftigung (Beschäftigung) & " (" &
               ZahlAlsStringArbeitszeit (ZahlExtern => LeseEinheitenGebaut.Beschäftigungszeit (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)) & ")";
       end case;
       
@@ -175,7 +175,7 @@ package body EinheitenseitenleisteGrafik is
       return Unbounded_Wide_Wide_String
    is begin
       
-      return Meldungstexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & " "
+      return Spieltexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & " "
         & ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmittelnLogik.Gesamtangriff (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                                                                 TaskExtern                 => SystemDatentypen.Grafik_Task_Enum))
         & " " & TextKonstanten.TrennzeichenUnterschiedlich & " "
@@ -201,7 +201,7 @@ package body EinheitenseitenleisteGrafik is
             return TextKonstanten.LeerUnboundedString;
                
          when others =>
-            return Meldungstexte.Zeug (TextnummernKonstanten.ZeugHeimatstadt) & " " & LeseStadtGebaut.Name (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Stadtnummer));
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugHeimatstadt) & " " & LeseStadtGebaut.Name (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, Stadtnummer));
       end case;
       
    end Heimatstadt;
@@ -225,7 +225,7 @@ package body EinheitenseitenleisteGrafik is
             
          when others =>
             Beladen := False;
-            Ladungstext := Meldungstexte.Zeug (TextnummernKonstanten.ZeugAktuelleLadung);
+            Ladungstext := Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuelleLadung);
       end case;
                         
       LadungSchleife:
