@@ -1,37 +1,33 @@
 package ChangelogAugust2023 is
    
-   -- Version 0.05. => 0.05. (31.08.2023):
+   -- Version 0.05.3935 => 0.05.3960 (31.08.2023):
    
-   -- 
+   -- Technische Probleme gelöst.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (30.08.2023):
+   -- Version 0.05.3935 => 0.05.3935 (30.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (29.08.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (28.08.2023):
+   -- Version 0.05.3935 => 0.05.3935 (29.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.3935 => 0.05. (27.08.2023):
+   -- Version 0.05.3935 => 0.05.3935 (28.08.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.3935 => 0.05.3935 (27.08.2023):
+   
+   -- null.
    
    
 
