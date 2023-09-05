@@ -1,4 +1,3 @@
-with GlobaleTexte;
 with TextKonstanten;
 with GrafikDatentypen;
 with TastenbelegungDatentypen;
@@ -34,7 +33,7 @@ package body SprachauswahlLogik is
    is begin
             
       if
-        ZehnerReihe * 10 < GlobaleTexte.SprachenEinlesen'Last
+        ZehnerReihe * 10 < TextArrays.SprachenEinlesen'Last
       then
          ZehnerReihe := ZehnerReihe + 1;
          
@@ -43,7 +42,7 @@ package body SprachauswahlLogik is
       end if;
          
       if
-        GlobaleTexte.SprachenEinlesen (ZehnerReihe * 10 - 9) = TextKonstanten.LeerUnboundedString
+        TextArrays.SprachenEinlesen (ZehnerReihe * 10 - 9) = TextKonstanten.LeerUnboundedString
       then
          ZehnerReihe := 1;
          
@@ -57,24 +56,24 @@ package body SprachauswahlLogik is
       for EndeSchleifenwert in ZehnerReihe * 10 - 9 .. ZehnerReihe * 10 loop
          
          if
-           EndeSchleifenwert > GlobaleTexte.SprachenEinlesen'Last
+           EndeSchleifenwert > TextArrays.SprachenEinlesen'Last
          then
             exit EndeBestimmenSchleife;
             
          elsif
-           EndeSchleifenwert = GlobaleTexte.SprachenEinlesen'First
+           EndeSchleifenwert = TextArrays.SprachenEinlesen'First
            and
-             GlobaleTexte.SprachenEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
+             TextArrays.SprachenEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "SprachauswahlLogik.SprachenListeFestlegen: Keine Sprachen vorhanden");
             
          elsif
-           EndeSchleifenwert > GlobaleTexte.SprachenEinlesen'Last
+           EndeSchleifenwert > TextArrays.SprachenEinlesen'Last
          then
             exit EndeBestimmenSchleife;
            
          elsif
-           GlobaleTexte.SprachenEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
+           TextArrays.SprachenEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             exit EndeBestimmenSchleife;
             
@@ -82,17 +81,17 @@ package body SprachauswahlLogik is
             Ende := EndeSchleifenwert - ((ZehnerReihe - 1) * 10);
          end if;
          
-         AktuelleSprachen (EndeSchleifenwert - ((ZehnerReihe - 1) * 10)) := GlobaleTexte.SprachenEinlesen (EndeSchleifenwert);
+         AktuelleSprachen (EndeSchleifenwert - ((ZehnerReihe - 1) * 10)) := TextArrays.SprachenEinlesen (EndeSchleifenwert);
          
       end loop EndeBestimmenSchleife;
       
       MehrSprachenVorhandenSchleife:
-      for SprachenSchleifenwert in GlobaleTexte.SprachenEinlesen'Range loop
+      for SprachenSchleifenwert in TextArrays.SprachenEinlesen'Range loop
          
          if
            SprachenSchleifenwert <= TextArrays.SprachenArray'Last
            and
-             GlobaleTexte.SprachenEinlesen (SprachenSchleifenwert) = TextKonstanten.LeerUnboundedString
+             TextArrays.SprachenEinlesen (SprachenSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             SchreibeGrafiktask.Endauswahl (AuswahlExtern => Ende);
             SchreibeGrafiktask.Seitenauswahl (JaNeinExtern => MehrereSeiten);

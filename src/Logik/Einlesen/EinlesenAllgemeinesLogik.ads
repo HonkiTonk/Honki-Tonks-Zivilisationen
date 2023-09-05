@@ -67,6 +67,14 @@ package EinlesenAllgemeinesLogik is
                  TexturenpfadExtern'Length > 0
               );
 
+   function VerboteneVerzeichnissnamen
+     (NameExtern : in String)
+      return Boolean
+     with
+       Pre => (
+                 NameExtern'Length > 0
+              );
+
 private
 
    Prüfungssuche : Search_Type;

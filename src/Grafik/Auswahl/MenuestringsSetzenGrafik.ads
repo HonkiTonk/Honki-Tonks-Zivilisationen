@@ -21,6 +21,18 @@ package MenuestringsSetzenGrafik is
    
 private
    
+   ZeileAuflösungÄndern : constant Positive := 2;
+   ZeileVollbildUmschalten : constant Positive := 3;
+   ZeileBildrateÄndern : constant Positive := 4;
+   ZeileEbeneUnterhalbAnzeigen : constant Positive := 5;
+   ZeileBildrateAnzeigen : constant Positive := 6;
+   
+   ZeileSoundlautstärke : constant Positive := 2;
+   ZeileMusiklautstärke : constant Positive := 3;
+   
+   ZeileAutomatischeSpielstände : constant Positive := 2;
+   ZeileRundenBisAutospeichern : constant Positive := 3;
+   
    AktuellerText : Unbounded_Wide_Wide_String;
    
    Zwischenspeicher : Unbounded_Wide_Wide_String;
@@ -45,12 +57,12 @@ private
                  WelcheZeileExtern <= MenueKonstanten.EndeMenü (MenueDatentypen.Sound_Menü_Enum)
               );
    
-   function SonstigesMenü
+   function Spieleinstellungen
      (WelcheZeileExtern : in Positive)
       return Unbounded_Wide_Wide_String
      with
        Pre => (
-                 WelcheZeileExtern <= MenueKonstanten.EndeMenü (MenueDatentypen.Sonstiges_Menü_Enum)
+                 WelcheZeileExtern <= MenueKonstanten.EndeMenü (MenueDatentypen.Spieleinstellungen_Menü_Enum)
               );
    
    function ZahlAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => Natural);

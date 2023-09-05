@@ -25,6 +25,8 @@ private
    
    Bildrate : Sf.sfUint32;
    
+   VSync : Sf.sfBool;
+   
    Überschriftgröße : Sf.sfUint32;
    
    Standardschriftgröße : Sf.sfUint32;

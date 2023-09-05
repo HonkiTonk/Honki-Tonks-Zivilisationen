@@ -36,7 +36,7 @@ Neue Soundlautstärke:
 Neue Musiklautstärke:
 Bauprojekt wirklich wechseln?
 Forschungsprojekt wirklich wechseln?
-#################################
+################################# Meldungen
 Verbesserung hier nicht baubar.
 Einheit kann Befehl nicht ausführen.
 Verbesserung existiert bereits.
@@ -53,11 +53,11 @@ Einheit befindet sich nicht auf eigenem Gebiet.
 Verbesserte Einheit wäre zu groß für den Transporter.
 Verbesserte Einheit hätte nicht genug Laderaum.
 Speichern fehlgeschlagen.
-#################################
+################################# Würdigungen
 Hier eine Liste aller Personen die mir geholfen haben dieses Spiel zu entwickeln:
 
 
-#################################
+################################# Zeug
 Einwohner:
 Nahrung:
 Produktion:
@@ -113,14 +113,14 @@ Riesige Transporter
 Gigantische Transporter
 Stadt
 Einheit
-#################################
+################################# Stadtbefehle
 Stadtkarte
 Bauen
 Verkaufen
 Umbenennen
 Auflösen
 Verlassen
-#################################
+################################# Ladezeiten
 Spielwelt wird generiert
 Generiere Allgemeines:
 Generiere Küstenwasser:
@@ -136,4 +136,28 @@ Berechne Forschung:
 Berechne Diplomatie:
 Berechnungen zwischen den Runden
 Speichern/Laden
-#################################
+################################# Beschäftigungen
+Unbeschäftigt
+a
+Straße bauen
+a
+Schiene bauen
+a
+Tunnel bauen
+a
+Mine bauen
+a
+Farm bauen
+a
+Festung bauen
+a
+Wald pflanzen
+a
+Roden/Trockenlegen
+a
+Effekt entfernen
+a
+Heilt sich
+a
+Befestigt
+a

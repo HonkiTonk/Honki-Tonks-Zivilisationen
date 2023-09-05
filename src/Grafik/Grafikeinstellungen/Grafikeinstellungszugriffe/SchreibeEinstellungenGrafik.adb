@@ -42,6 +42,16 @@ package body SchreibeEinstellungenGrafik is
    
    
    
+   procedure VSync
+     (VSyncExtern : in Sf.sfBool)
+   is begin
+      
+      EinstellungenGrafik.Grafikeinstellungen.VSync := VSyncExtern;
+      
+   end VSync;
+   
+   
+   
    procedure EbenenUnterhalbSichtbar
    is begin
       

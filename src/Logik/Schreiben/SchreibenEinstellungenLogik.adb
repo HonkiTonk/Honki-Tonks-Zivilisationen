@@ -143,6 +143,9 @@ package body SchreibenEinstellungenLogik is
       
       Boolean'Write (Stream (File => DateiGrafikeinstellungen),
                      LeseEinstellungenGrafik.BildrateAnzeigen);
+      
+      Sf.sfBool'Write (Stream (File => DateiGrafikeinstellungen),
+                       LeseEinstellungenGrafik.VSync);
       -- GrafikRecords.GrafikeinstellungenRecord
       
       Close (File => DateiGrafikeinstellungen);

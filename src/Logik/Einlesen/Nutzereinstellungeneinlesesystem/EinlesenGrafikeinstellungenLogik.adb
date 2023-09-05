@@ -272,6 +272,17 @@ package body EinlesenGrafikeinstellungenLogik is
                Boolean'Read (Stream (File => DateiLadenExtern),
                              BildrateAnzeigen);
          end case;
+      
+         case
+           End_Of_File (File => DateiLadenExtern)
+         is
+            when True =>
+               VSync := EinstellungenGrafik.GrafikeinstellungenStandard.VSync;
+            
+            when False =>
+               Sf.sfBool'Read (Stream (File => DateiLadenExtern),
+                               VSync);
+         end case;
          
          -- Diese Prüfung muss am Ende aller Einlesefunktionen stehen, um sicher zu sein dass die Datei vollständig eingelesen wurde!
          -- Sollte Probleme mit geänderten Datentypen teilweise vorbeugen.
@@ -284,6 +295,7 @@ package body EinlesenGrafikeinstellungenLogik is
                                                                                          Auflösung              => Auflösung,
                                                                                          Farbtiefe              => Farbtiefe,
                                                                                          Bildrate               => Bildrate,
+                                                                                         VSync                  => VSync,
                                                                                       
                                                                                          Schriftgrößen          => Schriftgrößen,
                                                                                          Schriftfarben          => Schriftfarben,

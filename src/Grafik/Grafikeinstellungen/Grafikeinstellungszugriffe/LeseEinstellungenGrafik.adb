@@ -42,6 +42,16 @@ package body LeseEinstellungenGrafik is
    
    
    
+   function VSync
+     return Sf.sfBool
+   is begin
+      
+      return EinstellungenGrafik.Grafikeinstellungen.VSync;
+      
+   end VSync;
+   
+   
+   
    function SpeziesfarbeLesen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Sf.Graphics.Color.sfColor

@@ -1,6 +1,6 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
-with GlobaleTexte;
+with TextArrays;
 with TextKonstanten;
 with VerzeichnisKonstanten;
 
@@ -12,7 +12,7 @@ package body EinlesenSpracheLogik is
      return Boolean
    is begin
       
-      GlobaleTexte.SprachenEinlesen := (others => TextKonstanten.LeerUnboundedString);
+      TextArrays.SprachenEinlesen := (others => TextKonstanten.LeerUnboundedString);
             
       Start_Search (Search    => Suche,
                     Directory => VerzeichnisKonstanten.Sprachen,
@@ -28,11 +28,7 @@ package body EinlesenSpracheLogik is
                          Directory_Entry => Verzeichnis);
          
          if
-           Simple_Name (Directory_Entry => Verzeichnis) = "."
-           or
-             Simple_Name (Directory_Entry => Verzeichnis) = ".."
-           or
-             Simple_Name (Directory_Entry => Verzeichnis) = "Fonts"
+           EinlesenAllgemeinesLogik.VerboteneVerzeichnissnamen (NameExtern => Simple_Name (Directory_Entry => Verzeichnis)) = True
          then
             null;
             
@@ -57,14 +53,14 @@ package body EinlesenSpracheLogik is
             Test := To_Unbounded_Wide_Wide_String (Source => Decode (Item => Simple_Name (Directory_Entry => Verzeichnis)));
             
             VerzeichnisInnenSchleife:
-            for SpracheSchleifenwert in GlobaleTexte.SprachenEinlesen'Range loop
+            for SpracheSchleifenwert in TextArrays.SprachenEinlesen'Range loop
                if
-                 GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) /= TextKonstanten.LeerUnboundedString
+                 TextArrays.SprachenEinlesen (SpracheSchleifenwert) /= TextKonstanten.LeerUnboundedString
                then
                   null;
             
                else
-                  GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) := Test;
+                  TextArrays.SprachenEinlesen (SpracheSchleifenwert) := Test;
                   exit VerzeichnisInnenSchleife;
                end if;
          
@@ -74,7 +70,7 @@ package body EinlesenSpracheLogik is
       end loop VerzeichnisAußenSchleife;
       
       if
-        GlobaleTexte.SprachenEinlesen (1) = TextKonstanten.LeerUnboundedString
+        TextArrays.SprachenEinlesen (1) = TextKonstanten.LeerUnboundedString
       then
          return False;
          
@@ -91,10 +87,10 @@ package body EinlesenSpracheLogik is
    is begin
             
       SortierSchleife:
-      for PositionSchleifenwert in GlobaleTexte.SprachenEinlesen'First + 1 .. GlobaleTexte.SprachenEinlesen'Last loop
+      for PositionSchleifenwert in TextArrays.SprachenEinlesen'First + 1 .. TextArrays.SprachenEinlesen'Last loop
          
          if
-           GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) = TextKonstanten.LeerUnboundedString
+           TextArrays.SprachenEinlesen (PositionSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             exit SortierSchleife;
             
@@ -104,9 +100,9 @@ package body EinlesenSpracheLogik is
             loop
                
                if
-                 PositionSchleifenwert - SchleifenAbzug > GlobaleTexte.SprachenEinlesen'First
+                 PositionSchleifenwert - SchleifenAbzug > TextArrays.SprachenEinlesen'First
                  and then
-                   GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) < GlobaleTexte.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)
+                   TextArrays.SprachenEinlesen (PositionSchleifenwert) < TextArrays.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)
                then
                   SchleifenAbzug := SchleifenAbzug + 1;
                   
@@ -123,9 +119,9 @@ package body EinlesenSpracheLogik is
                   VerschiebungSchleife:
                   while SchleifenAbzug > 0 loop
                      
-                     ZwischenSpeicher := GlobaleTexte.SprachenEinlesen (PositionSchleifenwert);
-                     GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) := GlobaleTexte.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug);
-                     GlobaleTexte.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug) := ZwischenSpeicher;
+                     ZwischenSpeicher := TextArrays.SprachenEinlesen (PositionSchleifenwert);
+                     TextArrays.SprachenEinlesen (PositionSchleifenwert) := TextArrays.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug);
+                     TextArrays.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug) := ZwischenSpeicher;
                      SchleifenAbzug := SchleifenAbzug - 1;
                      
                   end loop VerschiebungSchleife;

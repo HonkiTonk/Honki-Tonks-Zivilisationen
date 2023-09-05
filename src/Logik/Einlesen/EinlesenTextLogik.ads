@@ -6,6 +6,7 @@ private with Menuetexte;
 private with TextKonstanten;
 private with Spieltexte;
 private with Sequenzentexte;
+private with Kartentexte;
 
 private with UmwandlungenAdaEigenes;
 
@@ -17,7 +18,7 @@ package EinlesenTextLogik is
    
 private
    
-   AnzahlTextdateien : constant Positive := 15;
+   AnzahlTextdateien : constant Positive := 5;
    
    -- Menüs
    -- Überall Menü anhängen um eine bessere Abgrenzung von ähnlichen Textdateinamen zu haben? äöü
@@ -28,7 +29,7 @@ private
    Grafikmenü : constant Positive := Optionsmenü + Menuetexte.Grafikmenü'Last;
    Soundmenü : constant Positive := Grafikmenü + Menuetexte.Soundmenü'Last;
    Steuerungsmenü : constant Positive := Soundmenü + Menuetexte.Steuerungsmenü'Last;
-   Sonstigesmenü : constant Positive := Steuerungsmenü + Menuetexte.Sonstigesmenü'Last;
+   Sonstigesmenü : constant Positive := Steuerungsmenü + Menuetexte.Spieleinstellungsmenü'Last;
    Kartengröße : constant Positive := Sonstigesmenü + Menuetexte.Kartengröße'Last;
    Kartenart : constant Positive := Kartengröße + Menuetexte.Kartenart'Last;
    Kartentemperatur : constant Positive := Kartenart + Menuetexte.Kartentemperatur'Last;
@@ -51,12 +52,23 @@ private
    Zeug : constant Positive := Würdigungen + Spieltexte.Zeug'Last;
    Stadtbefehle : constant Positive := Zeug + Spieltexte.Stadtbefehle'Last;
    Ladezeiten : constant Positive := Stadtbefehle + Spieltexte.Ladezeit'Last;
+   Beschäftigungen : constant Positive := Ladezeiten + Spieltexte.Beschäftigungen'Last;
    -- Spieltexte
    
    -- Sequenzen
    Intro : constant Positive := Sequenzentexte.Intro'Last;
    Outro : constant Positive := Intro + Sequenzentexte.Outro'Last;
    -- Sequenzen
+   
+   -- Karte
+   Basisgrund : constant Positive := Kartentexte.Basisgrund'Last;
+   Zusatzgrund : constant Positive := Basisgrund + Kartentexte.Zusatzgrund'Last;
+   Flüsse : constant Positive := Zusatzgrund + Kartentexte.Flüsse'Last;
+   Ressourcen : constant Positive := Flüsse + Kartentexte.Ressourcen'Last;
+   Feldeffekte : constant Positive := Ressourcen + Kartentexte.Feldeffekte'Last;
+   Verbesserungen : constant Positive := Feldeffekte + Kartentexte.Verbesserungen'Last;
+   Wege : constant Positive := Verbesserungen + Kartentexte.Wege'Last;
+   -- karte
    
    
    EinzulesendeZeile : Positive;
@@ -73,6 +85,8 @@ private
    
    type ErsetzungenEingelesenArray is array (1 .. 6) of Unbounded_Wide_Wide_String;
    ErsetzungenEingelesen : ErsetzungenEingelesenArray := (others => TextKonstanten.FehlenderText);
+   
+   procedure Debugmenü;
    
    procedure Einlesen
      (VerzeichnisExtern : in Wide_Wide_String;
@@ -110,47 +124,7 @@ private
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    
-   procedure Basisgrund
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Verbesserungen
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Beschäftigungen
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure DiplomatieKI
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure DiplomatieStatus
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Angebot
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Wege
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Kartenflüsse
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Kartenressourcen
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Zusatzgrund
-     (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
-   
-   procedure Feldeffekte
+   procedure Karte
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    

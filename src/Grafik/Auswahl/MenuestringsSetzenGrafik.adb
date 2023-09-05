@@ -69,8 +69,8 @@ package body MenuestringsSetzenGrafik is
          when MenueDatentypen.Sound_Menü_Enum =>
             AktuellerText := Soundmenü (WelcheZeileExtern => WelcheZeileExtern);
             
-         when MenueDatentypen.Sonstiges_Menü_Enum =>
-            AktuellerText := SonstigesMenü (WelcheZeileExtern => WelcheZeileExtern);
+         when MenueDatentypen.Spieleinstellungen_Menü_Enum =>
+            AktuellerText := Spieleinstellungen (WelcheZeileExtern => WelcheZeileExtern);
             
          when MenueDatentypen.Steuerung_Menü_Enum =>
             AktuellerText := Menuetexte.Steuerungsmenü (WelcheZeileExtern);
@@ -108,13 +108,13 @@ package body MenuestringsSetzenGrafik is
       Zwischenspeicher := Menuetexte.Grafikmenü (WelcheZeileExtern);
       
       if
-        WelcheZeileExtern = 2
+        WelcheZeileExtern = ZeileAuflösungÄndern
       then
          AktuelleAuflösung := LeseEinstellungenGrafik.Auflösung;
          Zwischenspeicher := Zwischenspeicher & " (" & ZahlAlsString (ZahlExtern => Positive (AktuelleAuflösung.x)) & "x" & ZahlAlsString (ZahlExtern => Positive (AktuelleAuflösung.y)) & ")";
             
       elsif
-        WelcheZeileExtern = 3
+        WelcheZeileExtern = ZeileVollbildUmschalten
       then
          case
            LeseEinstellungenGrafik.Fenstermodus
@@ -127,20 +127,20 @@ package body MenuestringsSetzenGrafik is
          end case;
             
       elsif
-        WelcheZeileExtern = 4
+        WelcheZeileExtern = ZeileBildrateÄndern
       then
          case
            LeseEinstellungenGrafik.Bildrate
          is
             when 0 =>
-               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Kreuz;
+               Zwischenspeicher := Zwischenspeicher & TextKonstanten.UnendlichGeklammert;
                
             when others =>
                Zwischenspeicher := Zwischenspeicher & " (" & ZahlAlsString (ZahlExtern => Positive (LeseEinstellungenGrafik.Bildrate)) & ")";
          end case;
             
       elsif
-        WelcheZeileExtern = 5
+        WelcheZeileExtern = ZeileEbeneUnterhalbAnzeigen
       then
          case
            LeseEinstellungenGrafik.EbenenUnterhalbSichtbar
@@ -153,7 +153,7 @@ package body MenuestringsSetzenGrafik is
          end case;
             
       elsif
-        WelcheZeileExtern = 6
+        WelcheZeileExtern = ZeileBildrateAnzeigen
       then
          case
            LeseEinstellungenGrafik.BildrateAnzeigen
@@ -183,12 +183,12 @@ package body MenuestringsSetzenGrafik is
       Zwischenspeicher := Menuetexte.Soundmenü (WelcheZeileExtern);
       
       if
-        WelcheZeileExtern = 2
+        WelcheZeileExtern = ZeileSoundlautstärke
       then
          Zwischenspeicher := Zwischenspeicher & " (" & ZahlAlsString (ZahlExtern => Natural (LeseEinstellungenTon.Soundlautstärke)) & ")";
          
       elsif
-        WelcheZeileExtern = 3
+        WelcheZeileExtern = ZeileMusiklautstärke
       then
          Zwischenspeicher := Zwischenspeicher & " (" & ZahlAlsString (ZahlExtern => Natural (LeseEinstellungenTon.Musiklautstärke)) & ")";
          
@@ -202,15 +202,15 @@ package body MenuestringsSetzenGrafik is
    
    
    
-   function SonstigesMenü
+   function Spieleinstellungen
      (WelcheZeileExtern : in Positive)
       return Unbounded_Wide_Wide_String
    is begin
 
-      Zwischenspeicher := Menuetexte.Sonstigesmenü (WelcheZeileExtern);
+      Zwischenspeicher := Menuetexte.Spieleinstellungsmenü (WelcheZeileExtern);
       
       if
-        WelcheZeileExtern = 2
+        WelcheZeileExtern = ZeileAutomatischeSpielstände
       then
          case
            LeseOptionen.AnzahlAutospeichern
@@ -223,7 +223,7 @@ package body MenuestringsSetzenGrafik is
          end case;
          
       elsif
-        WelcheZeileExtern = 3
+        WelcheZeileExtern = ZeileRundenBisAutospeichern
       then
          case
            LeseOptionen.AnzahlAutospeichern
@@ -241,6 +241,6 @@ package body MenuestringsSetzenGrafik is
          
       return Zwischenspeicher;
       
-   end SonstigesMenü;
+   end Spieleinstellungen;
 
 end MenuestringsSetzenGrafik;

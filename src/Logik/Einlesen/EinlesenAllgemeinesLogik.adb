@@ -127,14 +127,12 @@ package body EinlesenAllgemeinesLogik is
          
          -- Mit BetriebssystemKonstanten verschmelzen? äöü
          if
-           Simple_Name (Directory_Entry => Verzeichnisprüfung) = "."
-           or
-             Simple_Name (Directory_Entry => Verzeichnisprüfung) = ".."
+           VerboteneVerzeichnissnamen (NameExtern => Simple_Name (Directory_Entry => Verzeichnisprüfung)) = True
          then
             null;
             
          elsif
-           Exists (Name => VerzeichnisExtern & "/0")
+           Exists (Name => VerzeichnisExtern & "/0") = True
          then
             return False;
             
@@ -172,5 +170,27 @@ package body EinlesenAllgemeinesLogik is
       end if;
       
    end Texturenlimit;
+   
+   
+   
+   function VerboteneVerzeichnissnamen
+     (NameExtern : in String)
+      return Boolean
+   is begin
+      
+      if
+        NameExtern = "."
+        or
+          NameExtern = ".."
+          or
+            NameExtern = "Fonts"
+      then
+         return True;
+         
+      else
+         return False;
+      end if;
+   
+   end VerboteneVerzeichnissnamen;
    
 end EinlesenAllgemeinesLogik;

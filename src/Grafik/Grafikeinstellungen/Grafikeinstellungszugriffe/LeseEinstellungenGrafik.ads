@@ -45,6 +45,10 @@ package LeseEinstellungenGrafik is
                );
    pragma Inline (Bildrate);
    
+   function VSync
+     return Sf.sfBool;
+   pragma Inline (VSync);
+   
    function SpeziesfarbeLesen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Sf.Graphics.Color.sfColor;

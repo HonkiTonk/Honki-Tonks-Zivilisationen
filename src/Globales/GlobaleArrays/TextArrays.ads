@@ -9,4 +9,7 @@ package TextArrays is
 
    type SprachenArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
 
+   -- Solche Sachen die in mehreren Datei gebraucht werden mal in einer Datei zusammenfassen? äöü
+   SprachenEinlesen : AllgemeinesTextArray (1 .. 100);
+
 end TextArrays;

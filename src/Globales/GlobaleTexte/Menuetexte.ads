@@ -15,7 +15,7 @@ package Menuetexte is
    Optionsmenü : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Optionen_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
    Einstellungsmenü : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Einstellungen_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
    Editorenmenü : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Editoren_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
-   Sonstigesmenü : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Sonstiges_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
+   Spieleinstellungsmenü : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Spieleinstellungen_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
    Debugmenü : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Debug_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
    Grafikmenü : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Grafik_Menü_Enum)) := (others => TextKonstanten.FehlenderText);
    Kartengröße : TextArrays.AllgemeinesTextArray (1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum)) := (others => TextKonstanten.FehlenderText);

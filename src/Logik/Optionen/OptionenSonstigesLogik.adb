@@ -24,7 +24,7 @@ package body OptionenSonstigesLogik is
       SonstigesSchleife:
       loop
 
-         AuswahlWert := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Sonstiges_Menü_Enum);
+         AuswahlWert := AuswahlaufteilungLogik.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Spieleinstellungen_Menü_Enum);
 
          case
            AuswahlWert

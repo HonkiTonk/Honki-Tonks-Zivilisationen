@@ -55,7 +55,7 @@ package body KartenbeschreibungenGrafik is
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Kartenflüsse (2 * KartenextraDatentypen.Fluss_Vorhanden_Enum'Pos (KartenFlussExtern) - 1));
+      return To_Wide_Wide_String (Source => Kartentexte.Flüsse (2 * KartenextraDatentypen.Fluss_Vorhanden_Enum'Pos (KartenFlussExtern) - 1));
       
    end KurzbeschreibungFluss;
    
@@ -66,7 +66,7 @@ package body KartenbeschreibungenGrafik is
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Kartenflüsse (2 * KartenextraDatentypen.Fluss_Vorhanden_Enum'Pos (KartenFlussExtern)));
+      return To_Wide_Wide_String (Source => Kartentexte.Flüsse (2 * KartenextraDatentypen.Fluss_Vorhanden_Enum'Pos (KartenFlussExtern)));
       
    end LangbeschreibungFluss;
    
@@ -77,7 +77,7 @@ package body KartenbeschreibungenGrafik is
       return Wide_Wide_String
    is begin
    
-      return To_Wide_Wide_String (Source => Kartentexte.Kartenressourcen (2 * KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern) - 1));
+      return To_Wide_Wide_String (Source => Kartentexte.Ressourcen (2 * KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern) - 1));
       
    end KurzbeschreibungRessource;
    
@@ -88,7 +88,7 @@ package body KartenbeschreibungenGrafik is
       return Wide_Wide_String
    is begin
    
-      return To_Wide_Wide_String (Source => Kartentexte.Kartenressourcen (2 * KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern)));
+      return To_Wide_Wide_String (Source => Kartentexte.Ressourcen (2 * KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern)));
       
    end LangbeschreibungRessource;
    

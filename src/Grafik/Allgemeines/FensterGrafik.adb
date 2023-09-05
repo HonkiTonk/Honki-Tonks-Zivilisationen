@@ -136,8 +136,23 @@ package body FensterGrafik is
    procedure BildrateÄndern
    is begin
       
-      Sf.Graphics.RenderWindow.setFramerateLimit (renderWindow => FensterAccess,
-                                                  limit        => LeseEinstellungenGrafik.Bildrate);
+      case
+        LeseEinstellungenGrafik.VSync
+      is
+         when Sf.sfFalse =>
+            Sf.Graphics.RenderWindow.setVerticalSyncEnabled (renderWindow => FensterAccess,
+                                                             enabled      => Sf.sfFalse);
+      
+            Sf.Graphics.RenderWindow.setFramerateLimit (renderWindow => FensterAccess,
+                                                        limit        => LeseEinstellungenGrafik.Bildrate);
+            
+         when Sf.sfTrue =>
+            Sf.Graphics.RenderWindow.setFramerateLimit (renderWindow => FensterAccess,
+                                                        limit        => 0);
+      
+            Sf.Graphics.RenderWindow.setVerticalSyncEnabled (renderWindow => FensterAccess,
+                                                             enabled      => Sf.sfTrue);
+      end case;
       
    end BildrateÄndern;
    

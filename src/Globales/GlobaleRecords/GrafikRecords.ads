@@ -26,6 +26,7 @@ package GrafikRecords is
       Auflösung : Sf.System.Vector2.sfVector2u;
       Farbtiefe : Sf.sfUint32;
       Bildrate : Sf.sfUint32;
+      VSync : Sf.sfBool;
    
       Schriftgrößen : SchriftgrößenArray;
       Schriftfarben : SchriftfarbenArray;

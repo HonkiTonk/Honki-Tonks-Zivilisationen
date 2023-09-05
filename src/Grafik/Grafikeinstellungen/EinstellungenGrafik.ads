@@ -20,6 +20,7 @@ package EinstellungenGrafik is
                                                                                       Auflösung              => (GrafikKonstanten.MinimaleAuflösungsbreite, GrafikKonstanten.MinimaleAuflösunghöhe),
                                                                                       Farbtiefe              => 32,
                                                                                       Bildrate               => 30,
+                                                                                      VSync                  => Sf.sfFalse,
                                                                                       
                                                                                       Schriftgrößen          => (
                                                                                                                    TextDatentypen.Überschrift_Enum => 48,

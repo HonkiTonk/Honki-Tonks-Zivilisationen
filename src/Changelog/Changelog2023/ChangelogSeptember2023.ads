@@ -168,44 +168,44 @@ package ChangelogSeptember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (06.09.2023):
+   -- Version 0.05.4045 => 0.05. (06.09.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (05.09.2023):
+   -- Version 0.05.3980 => 0.05.4045 (05.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (04.09.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neues Texteinlesesystem fertiggestellt.
+   -- Textdateien zusammengefasst.
+   -- Internet Struktur und Benennung überarbeitet.
+   -- Zahlen in Konstante umgewandelt.
+   -- Angefangen VSync einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.05. => 0.05. (03.09.2023):
+   -- Version 0.05.3960 => 0.05.3980 (04.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (02.09.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- GNAT aktualisiert.
    
    
 
-   -- Version 0.05.3960 => 0.05. (01.09.2023):
+   -- Version 0.05.3960 => 0.05.3960 (03.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.3960 => 0.05.3960 (02.09.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.3960 => 0.05.3960 (01.09.2023):
+   
+   -- null.
 
 end ChangelogSeptember2023;

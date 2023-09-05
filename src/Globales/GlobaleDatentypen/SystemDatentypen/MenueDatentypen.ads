@@ -9,7 +9,7 @@ package MenueDatentypen is
                                Haupt_Menü_Enum, Spiel_Menü_Enum,
                                
                                -- Mit Überschrift.
-                               Optionen_Menü_Enum, Grafik_Menü_Enum, Sound_Menü_Enum, Einstellungen_Menü_Enum, Editoren_Menü_Enum, Sonstiges_Menü_Enum, Debug_Menü_Enum,
+                               Optionen_Menü_Enum, Grafik_Menü_Enum, Sound_Menü_Enum, Einstellungen_Menü_Enum, Editoren_Menü_Enum, Spieleinstellungen_Menü_Enum, Debug_Menü_Enum,
                                Kartenart_Menü_Enum, Kartenressourcen_Menü_Enum, Schwierigkeitsgrad_Menü_Enum, Kartentemperatur_Menü_Enum, Kartengröße_Menü_Enum, Diplomatie_Menü_Enum, Handel_Menü_Enum,
                                Kartenpole_Menü_Enum,
                                
