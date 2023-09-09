@@ -7,6 +7,7 @@ with LeseOptionen;
 with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 
+-- Bei allen Einlesungen noch eine Begrenzung auf 256 Zeichen einbauen! äöü
 package body EinlesenTextLogik is
 
    procedure EinlesenDateien
@@ -175,6 +176,9 @@ package body EinlesenTextLogik is
          when 5 =>
             Karte (DateiExtern       => DateiText,
                    EinsprachigExtern => EinsprachigExtern);
+            
+         when 6 .. 23 =>
+            null;
             
          when others =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenAufteilen: Mehr eingelesen als möglich, Dateinummer: " & WelcheDateiExtern'Wide_Wide_Image);
@@ -709,6 +713,25 @@ package body EinlesenTextLogik is
       end loop KarteSchleife;
       
    end Karte;
+   
+   
+   
+   procedure Spezies
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean)
+   is begin
+      
+      EinzulesendeZeile := 1;
+      AktuelleZeile := 1;
+      
+      SpeziesSchleife:
+      loop
+         
+         null;
+         
+      end loop SpeziesSchleife;
+      
+   end Spezies;
    
    
    

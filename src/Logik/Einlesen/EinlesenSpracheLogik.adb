@@ -22,7 +22,6 @@ package body EinlesenSpracheLogik is
       
       VerzeichnisAußenSchleife:
       while More_Entries (Search => Suche) = True loop
-
       
          Get_Next_Entry (Search          => Suche,
                          Directory_Entry => Verzeichnis);

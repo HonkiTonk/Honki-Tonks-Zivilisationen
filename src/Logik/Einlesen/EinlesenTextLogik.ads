@@ -18,7 +18,7 @@ package EinlesenTextLogik is
    
 private
    
-   AnzahlTextdateien : constant Positive := 5;
+   AnzahlTextdateien : constant Positive := 23;
    
    -- Menüs
    -- Überall Menü anhängen um eine bessere Abgrenzung von ähnlichen Textdateinamen zu haben? äöü
@@ -125,6 +125,10 @@ private
       EinsprachigExtern : in Boolean);
    
    procedure Karte
+     (DateiExtern : in File_Type;
+      EinsprachigExtern : in Boolean);
+   
+   procedure Spezies
      (DateiExtern : in File_Type;
       EinsprachigExtern : in Boolean);
    

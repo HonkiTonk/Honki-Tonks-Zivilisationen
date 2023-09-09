@@ -22,16 +22,17 @@ package MenuestringsSetzenGrafik is
 private
    
    ZeileAuflösungÄndern : constant Positive := 2;
-   ZeileVollbildUmschalten : constant Positive := 3;
-   ZeileBildrateÄndern : constant Positive := 4;
-   ZeileEbeneUnterhalbAnzeigen : constant Positive := 5;
-   ZeileBildrateAnzeigen : constant Positive := 6;
+   ZeileVollbildUmschalten : constant Positive := ZeileAuflösungÄndern + 1;
+   ZeileVSync : constant Positive := ZeileVollbildUmschalten + 1;
+   ZeileBildrateÄndern : constant Positive := ZeileVSync + 1;
+   ZeileEbeneUnterhalbAnzeigen : constant Positive := ZeileBildrateÄndern + 1;
+   ZeileBildrateAnzeigen : constant Positive := ZeileEbeneUnterhalbAnzeigen + 1;
    
    ZeileSoundlautstärke : constant Positive := 2;
-   ZeileMusiklautstärke : constant Positive := 3;
+   ZeileMusiklautstärke : constant Positive := ZeileSoundlautstärke + 1;
    
    ZeileAutomatischeSpielstände : constant Positive := 2;
-   ZeileRundenBisAutospeichern : constant Positive := 3;
+   ZeileRundenBisAutospeichern : constant Positive := ZeileAutomatischeSpielstände + 1;
    
    AktuellerText : Unbounded_Wide_Wide_String;
    

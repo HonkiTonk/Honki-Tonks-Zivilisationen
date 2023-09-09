@@ -140,38 +140,37 @@ package ChangelogSeptember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (10.09.2023):
+   -- Version 0.05.4090 => 0.05. (10.09.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (09.09.2023):
+   -- Version 0.05.4045 => 0.05.4090 (09.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (08.09.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- VSync eingebaut.
+   -- Angefangen die Speziestexte in das neue Texteinlesesystem zu basteln.
+   -- Angefangen die Mehrsprachig-Testfunktion in die Speziestexte zu basteln.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (07.09.2023):
+   -- Version 0.05.4045 => 0.05.4045 (08.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.4045 => 0.05. (06.09.2023):
+   -- Version 0.05.4045 => 0.05.4045 (07.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.4045 => 0.05.4045 (06.09.2023):
+   
+   -- null.
    
    
 

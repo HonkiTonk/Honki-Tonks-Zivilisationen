@@ -46,7 +46,7 @@ private
                                   MenueDatentypen.Grafik_Menü_Enum             => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Grafik_Menü_Enum) - AbzugZusatzauswahl,
                                   MenueDatentypen.Sound_Menü_Enum              => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Sound_Menü_Enum) - AbzugZusatzauswahl,
                                   MenueDatentypen.Editoren_Menü_Enum           => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Editoren_Menü_Enum) - AbzugZusatzauswahl,
-                                  MenueDatentypen.Spieleinstellungen_Menü_Enum          => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spieleinstellungen_Menü_Enum) - AbzugZusatzauswahl,
+                                  MenueDatentypen.Spieleinstellungen_Menü_Enum => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Spieleinstellungen_Menü_Enum) - AbzugZusatzauswahl,
                                   MenueDatentypen.Debug_Menü_Enum              => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Debug_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Kartenart_Menü_Enum          => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenart_Menü_Enum) - AbzugFertig,
                                   MenueDatentypen.Kartenressourcen_Menü_Enum   => MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Kartenressourcen_Menü_Enum) - AbzugFertig,

@@ -1,4 +1,5 @@
 with Sf.Window.Window;
+with Sf;
 
 with Menuetexte;
 with TextKonstanten;
@@ -103,7 +104,9 @@ package body MenuestringsSetzenGrafik is
    function Grafikmenü
      (WelcheZeileExtern : in Positive)
       return Unbounded_Wide_Wide_String
-   is begin
+   is
+      use type Sf.sfBool;
+   begin
       
       Zwischenspeicher := Menuetexte.Grafikmenü (WelcheZeileExtern);
       
@@ -125,20 +128,40 @@ package body MenuestringsSetzenGrafik is
             when others =>
                Zwischenspeicher := Zwischenspeicher & TextKonstanten.Kreuz;
          end case;
+         
+      elsif
+        WelcheZeileExtern = ZeileVSync
+      then
+         case
+           LeseEinstellungenGrafik.VSync
+         is
+            when Sf.sfTrue =>
+               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Haken;
+               
+            when others =>
+               Zwischenspeicher := Zwischenspeicher & TextKonstanten.Kreuz;
+         end case;
             
       elsif
         WelcheZeileExtern = ZeileBildrateÄndern
       then
-         case
-           LeseEinstellungenGrafik.Bildrate
-         is
-            when 0 =>
-               Zwischenspeicher := Zwischenspeicher & TextKonstanten.UnendlichGeklammert;
-               
-            when others =>
-               Zwischenspeicher := Zwischenspeicher & " (" & ZahlAlsString (ZahlExtern => Positive (LeseEinstellungenGrafik.Bildrate)) & ")";
-         end case;
+         if
+           LeseEinstellungenGrafik.VSync = Sf.sfTrue
+         then
+            null;
             
+         else
+            case
+              LeseEinstellungenGrafik.Bildrate
+            is
+               when 0 =>
+                  Zwischenspeicher := Zwischenspeicher & TextKonstanten.UnendlichGeklammert;
+               
+               when others =>
+                  Zwischenspeicher := Zwischenspeicher & " (" & ZahlAlsString (ZahlExtern => Positive (LeseEinstellungenGrafik.Bildrate)) & ")";
+            end case;
+         end if;
+         
       elsif
         WelcheZeileExtern = ZeileEbeneUnterhalbAnzeigen
       then

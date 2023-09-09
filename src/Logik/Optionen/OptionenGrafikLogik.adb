@@ -38,15 +38,19 @@ package body OptionenGrafikLogik is
                VollbildFenster;
                
             when RueckgabeDatentypen.Auswahl_Drei_Enum =>
-               BildrateÄndern;
+               SchreibeEinstellungenGrafik.VSync;
+               SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Bildrate_Ändern_Enum);
                
             when RueckgabeDatentypen.Auswahl_Vier_Enum =>
-               SchreibeEinstellungenGrafik.EbenenUnterhalbSichtbar;
+               BildrateÄndern;
                
             when RueckgabeDatentypen.Auswahl_Fünf_Enum =>
-               SchreibeEinstellungenGrafik.BildrateAnzeigen;
+               SchreibeEinstellungenGrafik.EbenenUnterhalbSichtbar;
                
             when RueckgabeDatentypen.Auswahl_Sechs_Enum =>
+               SchreibeEinstellungenGrafik.BildrateAnzeigen;
+               
+            when RueckgabeDatentypen.Auswahl_Sieben_Enum =>
                SchreibenEinstellungenLogik.Grafikeinstellungen;
                
             when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
@@ -126,6 +130,7 @@ package body OptionenGrafikLogik is
             
          when True =>
             SchreibeEinstellungenGrafik.Bildrate (BildrateExtern => Sf.sfUint32 (EingabeBildrate.EingegebeneZahl));
+            SchreibeEinstellungenGrafik.VSync;
             SchreibeGrafiktask.FensterAnpassen (AnpassungExtern => GrafikDatentypen.Bildrate_Ändern_Enum);
       end case;
       
