@@ -11,6 +11,7 @@ package KartenDatenbank is
    type ZusatzgrundlisteArray is array (KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenzusatzgrundlisteRecord;
    Zusatzgrundliste : ZusatzgrundlisteArray;
    
+   -- Hier mal überall Karten entfernen? äöü
    type KartenflusslisteArray is array (KartenextraDatentypen.Fluss_Vorhanden_Enum'Range) of KartendatenbankRecord.KartenextraslisteRecord;
    Kartenflussliste : KartenflusslisteArray;
    

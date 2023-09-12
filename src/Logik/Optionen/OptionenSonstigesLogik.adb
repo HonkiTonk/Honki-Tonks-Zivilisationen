@@ -6,7 +6,6 @@ with SystemKonstanten;
 with SchreibenEinstellungenLogik;
 with EinlesenSpracheLogik;
 with EinlesenTextLogik;
-with EinlesenSpeziestexteLogik;
 with SchreibeOptionen;
 with SchreibeGrafiktask;
 
@@ -119,7 +118,6 @@ package body OptionenSonstigesLogik is
                SchreibeOptionen.Sprache (SpracheExtern => GewählteSprache);
                SchreibeGrafiktask.SchriftartSetzen (JaNeinExtern => True);
                EinlesenTextLogik.EinlesenDateien (EinsprachigExtern => True);
-               EinlesenSpeziestexteLogik.SpeziestexteEinlesen;
                SchreibeGrafiktask.TextSetzen (JaNeinExtern => True);
             end if;
             

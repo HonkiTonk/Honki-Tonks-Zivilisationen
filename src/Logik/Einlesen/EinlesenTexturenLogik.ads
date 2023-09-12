@@ -3,6 +3,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with SpeziesDatentypen;
 private with TextArrays;
+private with EingeleseneTexturenGrafik;
 
 package EinlesenTexturenLogik is
    pragma Elaborate_Body;
@@ -11,16 +12,26 @@ package EinlesenTexturenLogik is
 
 private
 
-   -- Das hier mal in Bereiche aufteilen um die Zeilenanzahl in der adb ein wenig zu verringern? äöü
-   -- Wenn dann in die gleichen Bereiche wie in EingeleseneTexturenGrafik. äöü
+   Basisgrund : constant Positive := EingeleseneTexturenGrafik.BasisgrundAccessArray'Length;
+   Zusatzgrund : constant Positive := Basisgrund + EingeleseneTexturenGrafik.ZusatzgrundAccessArray'Length;
+   Flüsse : constant Positive := Zusatzgrund + EingeleseneTexturenGrafik.KartenflussAccessArray'Length;
+   Ressourcen : constant Positive := Flüsse + EingeleseneTexturenGrafik.KartenressourcenAccessArray'Length;
+   Feldeffekte : constant Positive := Ressourcen + EingeleseneTexturenGrafik.FeldeffekteAccessArray'Length;
+   Verbesserungen : constant Positive := Feldeffekte + EingeleseneTexturenGrafik.VerbesserungenAccessArray'Length;
+   Wege : constant Positive := Verbesserungen + EingeleseneTexturenGrafik.WegeAccessArray'Length;
+   System : constant Positive := Wege + EingeleseneTexturenGrafik.SystemAccessArray'Length;
+   Hintergrund : constant Positive := System + EingeleseneTexturenGrafik.HintergrundAccessArray'Length;
 
    AktuelleZeile : Positive;
+   EinzulesendeZeile : Positive;
    ZeileSpezieshintergrund : Positive;
    ZeileEinheiten : Positive;
    ZeileGebäude : Positive;
 
    Verzeichnisname : Unbounded_Wide_Wide_String;
+   Zwischenspeicher : Unbounded_Wide_Wide_String;
 
+   DateiKarte : File_Type;
    DateiSystem : File_Type;
    DateiHintergrund : File_Type;
    DateiKartenfelder : File_Type;
@@ -35,14 +46,8 @@ private
 
    Speziesverzeichnisse : TextArrays.AllgemeinesTextArray (1 .. 3);
 
-   procedure System;
-   procedure Hintergrund;
-   procedure Kartenfelder;
-   procedure Kartenflüsse;
-   procedure Kartenressourcen;
-   procedure Verbesserungen;
-   procedure Wege;
    procedure Spezies;
+   procedure Karte;
 
    procedure Spezieshintergrund
      (DateipfadExtern : in Wide_Wide_String;

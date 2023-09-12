@@ -7,6 +7,8 @@ private with TextKonstanten;
 private with Spieltexte;
 private with Sequenzentexte;
 private with Kartentexte;
+private with Speziestexte;
+private with SpeziesDatentypen;
 
 private with UmwandlungenAdaEigenes;
 
@@ -68,11 +70,26 @@ private
    Feldeffekte : constant Positive := Ressourcen + Kartentexte.Feldeffekte'Last;
    Verbesserungen : constant Positive := Feldeffekte + Kartentexte.Verbesserungen'Last;
    Wege : constant Positive := Verbesserungen + Kartentexte.Wege'Last;
-   -- karte
+   -- Karte
+   
+   -- Spezies
+   NameBeschreibung : constant Positive := Speziestexte.NameBeschreibungArray'Last (2);
+   Städtenamen : constant Positive := NameBeschreibung + Speziestexte.StädtenamenArray'Length (2);
+   Forschungen : constant Positive := Städtenamen + Speziestexte.ForschungenArray'Length (2) * Speziestexte.ForschungenArray'Last (3);
+   Einheiten : constant Positive := Forschungen + Speziestexte.EinheitenArray'Length (2) * Speziestexte.EinheitenArray'Last (3);
+   Gebäude : constant Positive := Einheiten + Speziestexte.GebäudeArray'Length (2) * Speziestexte.GebäudeArray'Last (3);
+   -- Spezies
    
    
    EinzulesendeZeile : Positive;
    AktuelleZeile : Positive;
+   ZeilenumwandlungForschungen : Positive;
+   ZeilenumwandlungEinheiten : Positive;
+   ZeilenumwandlungGebäude : Positive;
+   
+   ZeilenumwandlungsabzugForschungen : Natural;
+   ZeilenumwandlungsabzugEinheiten : Natural;
+   ZeilenumwandlungsabzugGebäude : Natural;
       
    DateiVerzeichnisse : File_Type;
    DateiText : File_Type;
@@ -130,7 +147,8 @@ private
    
    procedure Spezies
      (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean);
+      EinsprachigExtern : in Boolean;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum);
    
    
       

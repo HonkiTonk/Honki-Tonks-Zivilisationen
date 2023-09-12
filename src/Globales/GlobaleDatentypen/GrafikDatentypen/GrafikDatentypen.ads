@@ -43,7 +43,7 @@ package GrafikDatentypen is
    
    
    type Hintergrund_Enum is (
-                             Intro_Hintergrund_Enum,
+                             Intro_Hintergrund_Enum, Kartenformen_Enum,
                              
                              Seitenleiste_Hintergrund_Enum, Bauen_Hintergrund_Enum, Forschung_Hintergrund_Enum, Menü_Hintergrund_Enum, PZB_Ende_Hintergrund_Enum,
                              

@@ -1,13 +1,17 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with VerzeichnisKonstanten;
+with SpeziesKonstanten;
+with StadtDatentypen;
+with ForschungenDatentypen;
+with EinheitenDatentypen;
 
 with LeseOptionen;
 
 with Fehlermeldungssystem;
 with EinlesenAllgemeinesLogik;
 
--- Bei allen Einlesungen noch eine Begrenzung auf 256 Zeichen einbauen! äöü
+-- Bei allen Einlesungen noch eine Pfadbegrenzung auf 256 Zeichen einbauen! äöü
 package body EinlesenTextLogik is
 
    procedure EinlesenDateien
@@ -177,8 +181,10 @@ package body EinlesenTextLogik is
             Karte (DateiExtern       => DateiText,
                    EinsprachigExtern => EinsprachigExtern);
             
-         when 6 .. 23 =>
-            null;
+         when 5 + SpeziesKonstanten.Speziesanfang .. 5 + SpeziesKonstanten.Speziesende =>
+            Spezies (DateiExtern       => DateiText,
+                     EinsprachigExtern => EinsprachigExtern,
+                     SpeziesExtern     => SpeziesDatentypen.Spezies_Verwendet_Enum'Val (WelcheDateiExtern - 5));
             
          when others =>
             Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.EinlesenAufteilen: Mehr eingelesen als möglich, Dateinummer: " & WelcheDateiExtern'Wide_Wide_Image);
@@ -324,8 +330,8 @@ package body EinlesenTextLogik is
                  AktuelleZeile in Steuerungsmenü + 1 .. Sonstigesmenü
                then
                   Menuetexte.Spieleinstellungsmenü (AktuelleZeile - Steuerungsmenü) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
-                                                                                              EingelesenerTextExtern => Zwischenspeicher,
-                                                                                              VorhandenerTextExtern  => Menuetexte.Spieleinstellungsmenü (AktuelleZeile - Steuerungsmenü));
+                                                                                                      EingelesenerTextExtern => Zwischenspeicher,
+                                                                                                      VorhandenerTextExtern  => Menuetexte.Spieleinstellungsmenü (AktuelleZeile - Steuerungsmenü));
                   
                elsif
                  AktuelleZeile in Sonstigesmenü + 1 .. Kartengröße
@@ -718,16 +724,143 @@ package body EinlesenTextLogik is
    
    procedure Spezies
      (DateiExtern : in File_Type;
-      EinsprachigExtern : in Boolean)
+      EinsprachigExtern : in Boolean;
+      SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
       EinzulesendeZeile := 1;
       AktuelleZeile := 1;
+      ZeilenumwandlungsabzugForschungen := 0;
+      ZeilenumwandlungsabzugEinheiten := 0;
+      ZeilenumwandlungsabzugGebäude := 0;
       
       SpeziesSchleife:
       loop
          
-         null;
+         case
+           EinlesenAllgemeinesLogik.VorzeitigesDateienende (AktuelleDateiExtern => DateiExtern,
+                                                            AktuelleZeileExtern => EinzulesendeZeile,
+                                                            DateinameExtern     => "EinlesenTextLogik.Spezies")
+         is
+            when True =>
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Spezies: Einzulesende Zeile:" & EinzulesendeZeile'Wide_Wide_Image & ", aktuelle Zeile:" & AktuelleZeile'Wide_Wide_Image);
+               return;
+               
+            when False =>
+               Zwischenspeicher := TextErsetzen (TextExtern => EinlesenAllgemeinesLogik.TextEinlesenUngebunden (DateiExtern         => DateiExtern,
+                                                                                                                AktuelleZeileExtern => EinzulesendeZeile,
+                                                                                                                DateinameExtern     => "EinlesenTextLogik.Spezies"));
+               EinzulesendeZeile := EinzulesendeZeile + 1;
+         end case;
+         
+         case
+           To_Wide_Wide_String (Source => Zwischenspeicher) (1)
+         is
+            when TextKonstanten.TrennzeichenTextdateien =>
+               null;
+               
+            when others =>
+               if
+                 AktuelleZeile <= NameBeschreibung
+               then
+                  Speziestexte.NameBeschreibung (SpeziesExtern, AktuelleZeile) := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                                                                               EingelesenerTextExtern => Zwischenspeicher,
+                                                                                               VorhandenerTextExtern  => Speziestexte.NameBeschreibung (SpeziesExtern, AktuelleZeile));
+                  
+               elsif
+                 AktuelleZeile in NameBeschreibung + 1 .. Städtenamen
+               then
+                  Speziestexte.Städtenamen (SpeziesExtern, StadtDatentypen.MaximaleStädte (AktuelleZeile - NameBeschreibung))
+                    := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                    EingelesenerTextExtern => Zwischenspeicher,
+                                    VorhandenerTextExtern  => Speziestexte.Städtenamen (SpeziesExtern, StadtDatentypen.MaximaleStädte (AktuelleZeile - NameBeschreibung)));
+                  
+               elsif
+                 AktuelleZeile in Städtenamen + 1 .. Forschungen
+               then
+                  case
+                    AktuelleZeile mod 2
+                  is
+                     when 0 =>
+                        ZeilenumwandlungsabzugForschungen := ZeilenumwandlungsabzugForschungen + 1;
+                        ZeilenumwandlungForschungen := AktuelleZeile - Städtenamen - ZeilenumwandlungsabzugForschungen;
+                        
+                        Speziestexte.Forschungen (SpeziesExtern, ForschungenDatentypen.ForschungID (ZeilenumwandlungForschungen), 2)
+                          := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                          EingelesenerTextExtern => Zwischenspeicher,
+                                          VorhandenerTextExtern  => Speziestexte.Forschungen (SpeziesExtern, ForschungenDatentypen.ForschungID (ZeilenumwandlungForschungen), 2));
+                        
+                     when others =>
+                        ZeilenumwandlungForschungen := AktuelleZeile - Städtenamen - ZeilenumwandlungsabzugForschungen;
+                        
+                        Speziestexte.Forschungen (SpeziesExtern, ForschungenDatentypen.ForschungID (ZeilenumwandlungForschungen), 1)
+                          := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                          EingelesenerTextExtern => Zwischenspeicher,
+                                          VorhandenerTextExtern  => Speziestexte.Forschungen (SpeziesExtern, ForschungenDatentypen.ForschungID (ZeilenumwandlungForschungen), 1));
+                  end case;
+                  
+               elsif
+                 AktuelleZeile in Forschungen + 1 .. Einheiten
+               then
+                  case
+                    AktuelleZeile mod 2
+                  is
+                     when 0 =>
+                        ZeilenumwandlungsabzugEinheiten := ZeilenumwandlungsabzugEinheiten + 1;
+                        ZeilenumwandlungEinheiten := AktuelleZeile - Forschungen - ZeilenumwandlungsabzugEinheiten;
+                        
+                        Speziestexte.Einheiten (SpeziesExtern, EinheitenDatentypen.EinheitenID (ZeilenumwandlungEinheiten), 2)
+                          := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                          EingelesenerTextExtern => Zwischenspeicher,
+                                          VorhandenerTextExtern  => Speziestexte.Einheiten (SpeziesExtern, EinheitenDatentypen.EinheitenID (ZeilenumwandlungEinheiten), 2));
+                        
+                     when others =>
+                        ZeilenumwandlungEinheiten := AktuelleZeile - Forschungen - ZeilenumwandlungsabzugEinheiten;
+                        
+                        Speziestexte.Einheiten (SpeziesExtern, EinheitenDatentypen.EinheitenID (ZeilenumwandlungEinheiten), 1)
+                          := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                          EingelesenerTextExtern => Zwischenspeicher,
+                                          VorhandenerTextExtern  => Speziestexte.Einheiten (SpeziesExtern, EinheitenDatentypen.EinheitenID (ZeilenumwandlungEinheiten), 1));
+                  end case;
+                  
+               elsif
+                 AktuelleZeile in Einheiten + 1 .. Gebäude
+               then
+                  case
+                    AktuelleZeile mod 2
+                  is
+                     when 0 =>
+                        ZeilenumwandlungsabzugGebäude := ZeilenumwandlungsabzugGebäude + 1;
+                        ZeilenumwandlungGebäude := AktuelleZeile - Einheiten - ZeilenumwandlungsabzugGebäude;
+                        
+                        Speziestexte.Gebäude (SpeziesExtern, StadtDatentypen.GebäudeID (ZeilenumwandlungGebäude), 2)
+                          := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                          EingelesenerTextExtern => Zwischenspeicher,
+                                          VorhandenerTextExtern  => Speziestexte.Gebäude (SpeziesExtern, StadtDatentypen.GebäudeID (ZeilenumwandlungGebäude), 2));
+                        
+                     when others =>
+                        ZeilenumwandlungGebäude := AktuelleZeile - Einheiten - ZeilenumwandlungsabzugGebäude;
+                        
+                        Speziestexte.Gebäude (SpeziesExtern, StadtDatentypen.GebäudeID (ZeilenumwandlungGebäude), 1)
+                          := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
+                                          EingelesenerTextExtern => Zwischenspeicher,
+                                          VorhandenerTextExtern  => Speziestexte.Gebäude (SpeziesExtern, StadtDatentypen.GebäudeID (ZeilenumwandlungGebäude), 1));
+                  end case;
+                                                                                                                                                
+               else
+                  Fehlermeldungssystem.Logik (FehlermeldungExtern => "EinlesenTextLogik.Spezies: Außerhalb des Einlesebereichs");
+                  return;
+               end if;
+                                                                                                                                                
+               if
+                 AktuelleZeile < Gebäude
+               then
+                  AktuelleZeile := AktuelleZeile + 1;
+                     
+               else
+                  return;
+               end if;
+         end case;
          
       end loop SpeziesSchleife;
       
@@ -761,6 +894,7 @@ package body EinlesenTextLogik is
    
    
    -- Das nach EinlesenAllgemeinesLogik verschieben? äöü
+   -- Wird vermutlich nur hier jemals gebraucht werden, also hier lassen? äöü
    function Einsprachig
      (EinsprachigExtern : in Boolean;
       EingelesenerTextExtern : in Unbounded_Wide_Wide_String;
