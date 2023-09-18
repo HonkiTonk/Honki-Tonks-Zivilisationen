@@ -1,0 +1,163 @@
+Number of automatic saves?
+Cancel current occupation?
+Replace land improvement?
+Really disband unit?
+Really demolish buildings?
+Really declare war?
+Really loot land improvement?
+What should be built?
+What should be researched?
+There is already a save with this name. Overwrite it?
+Enter a Y-axis size between 20x20 and 1,000x1,000:
+Enter the name of the save:
+Number of rounds until automatic save?
+Enter X-axis size between 20x20 and 1,000x1,000:
+New key?
+Really demolish City?
+With which species do you want to conduct diplomacy?
+You have won, do you still want to continue playing?
+Which level?
+Which Y-position?
+Which X-position?
+New resolution width:
+New resolution height:
+New frame rate:
+What should the city be called?
+Diameter of ice layer:
+Minimum height of land masses:
+Maximum height of land masses:
+Minimum width of land masses:
+Maximum width of land masses:
+Replace player with AI?
+Which building to demolish?
+Really delete that save?
+Enter city names:
+New sound volume:
+New music volume:
+Really change building project?
+Really change research project?
+################################# Messages
+Improvement not buildable here.
+Unit cannot execute command.
+Improvement already exists.
+Maximum number of cities reached, no more cities can be built.
+Unit has no more movement points.
+The technology for the improvement is missing.
+Is the current status.
+Cannot be proposed in war.
+Declaration of war with non-aggression pact impossible.
+Already occupied by a city.
+Save is damaged or not compatible with this version of the game.
+Unit cannot be upgraded.
+Unit is not on own territory.
+Improved unit would be too big for the transporter.
+Improved unit would not have enough cargo space.
+Save failed.
+################################# Acknowledgements
+Here is a list of all the people who helped me develop this game:
+
+
+################################# Stuff
+Inhabitants:
+Food:
+Production:
+Money:
+Knowledge:
+Corruption:
+Construction project:
+Construction time:
+Life:
+Movement points:
+Experience:
+Employment:
+Attack:
+Defence:
+Rank:
+None
+Round:
+Money:
+Research Time:
+Research Project:
+Workers available:
+Needed for:
+Construction cost:
+Cargo:
+Home:
+Permanent food cost:
+Permanent money cost:
+Permanent production cost:
+Coordinates:
+Permanent food bonus:
+Permanent production bonus:
+Permanent Money Bonus:
+Permanent knowledge bonus:
+Permanent defence bonus:
+Permanent attack bonus:
+Buildings:
+Units:
+Empty
+Yes
+No
+With
+Peace
+Nonaggression pact
+War
+Combat values:
+Transporter Capacity:
+Transporter Size:
+Can be loaded on:
+Small transporters
+Medium transporters
+Large transporters
+Giant transporters
+Gigantic Transporters
+City
+Unit
+################################# City commands
+City map
+Build
+Sell
+Rename
+Dissolve
+Exit
+################################# Loading times
+Game world is generated
+Generate General:
+Generate coastal water:
+Generate Landscape:
+Generate sub-surface:
+Generate Rivers:
+Generate Resources:
+Place species:
+calculates
+Calculate units:
+Calculate cities:
+Calculate research:
+Calculate diplomacy:
+Calculate between rounds
+Save/Load
+################################# Occupations
+Unemployed
+a
+Build road
+a
+Build rail
+a
+Build tunnel
+a
+Build mine
+a
+Build farm
+a
+Build fortress
+a
+Plant forest
+a
+clearing/drying
+a
+Remove effect
+a
+Heals
+a
+Fixes
+a

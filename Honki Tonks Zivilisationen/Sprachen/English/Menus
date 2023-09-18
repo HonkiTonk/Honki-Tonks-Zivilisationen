@@ -19,16 +19,17 @@ Options
 Graphics
 Sound
 Control
-Miscellaneous
+Other
 ~1~
 ~2~
 ~3~
 #################################
 Graphics menu
 Change resolution
-Fullscreen
+Full screen
+VSync
 Change frame rate
-Layer below visible
+Layers visible below
 Show frame rate
 Save
 ~1~
@@ -37,7 +38,7 @@ Save
 #################################
 Sound menu
 Sound volume
-Musik volume
+Music volume
 ~1~
 ~2~
 ~3~
@@ -52,8 +53,8 @@ Scroll northwest
 Scroll northeast
 Scroll southwest
 Scroll southeast
-Scroll level up
-Scroll level down
+Scroll up level
+Scroll down level
 Research menu
 Diplomacy menu
 Search city
@@ -65,32 +66,32 @@ Next unit with movement points
 Next unit without movement points
 Go to
 End round
-Abort
+Cancel
 Units
 Move north
 Move west
-Move south
+Move South
 Move East
 Move northwest
 Move northeast
 Move southwest
 Move southeast
 Move level up
-Move level down
+Move down level
 Build city
 Build/improve road
 Build/improve mine
 Build/improve farm
 Build/improve fortress
-Reforestation
-Clearing/draining
+Reforest
+Clear/Dry
 Remove effect
 Heal
 Entrench
-Plunder
+Loot
 Dissolve
-Enhance
-Change hometown
+Improve
+Change HomeCity
 Unload
 Deselect
 City
@@ -100,24 +101,24 @@ Sell
 Rename
 Dissolve
 Exit
-Save on computer
+Save
 ~4~
 ~1~
 ~2~
 ~3~
 #################################
 Game settings
-Number of autosaves
+Number of automatic scores
 Rounds to autosave
 Change language
 ~1~
 ~2~
 ~3~
 #################################
-Choose map size:
+Select card size:
 Tiny
 Small
-Middle
+Medium
 Rectangle
 Large rectangle
 Large
@@ -126,31 +127,31 @@ Gigantic
 Absurd
 Custom
 Random predefined size
-Random not predefined size
+Random non predefined size
 ~5~
 Current size:
 New size:
 #################################
-Choose map type:
+Select map type:
 Islands
 Continents
-Pangea
+Pangaea
 Custom
 Random predefined map type
 Random non predefined map type
 ~4~
 ~5~
 #################################
-Select map temperature:
+Select card temperature:
 Cold
 Moderate
 Hot
-Ice age
+Ice Age
 Desert
 ~6~
 ~5~
 #################################
-Select species:
+Choose species:
 Humans
 Kasrodiah
 Lasupin
@@ -175,13 +176,13 @@ Talbidahr
 Set difficulty level:
 Easy
 Medium
-Hard
+Difficult
 ~6~
 ~5~
 #################################
 Change map shape:
-Level above
-Level below
+Layer top
+Layer below
 North
 South
 West
@@ -189,54 +190,54 @@ East
 ~6~
 ~4~
 ~5~
-No Transition
+No transition
 Transition
 Shifted backwards transition
 Shifted transition
 #################################
-Select available amount of resources:
-Poor
+Select existing resource set:
+Arm
 Little
-Middle
+Medium
 Much
 Abundance
 ~6~
 ~5~
 #################################
 Diplomacy:
-Exchange maps
-Throw out of the country
-Nonaggression pact
-Declare Peace
-Declare War
+Swap cards
+Cast from own territory
+Non-aggression pact
+Declare peace
+Declare war
 ~1~
 Exit menu
-Current opinion:
-Current condition:
+Current Opinion:
+Current state:
 #################################
 Settings
-Map pole
+Map poles
 Map size
 Map type
 Map shape
 Map temperature
 Map resources
 Species selection
-Difficulty
+Difficulty level
 ~5~
 ~2~
 ~3~
 #################################
 Map poles
-North pole
-South pole
-West pole
-East pole
+North Pole
+South Pole
+West Pole
+East Pole
 ~6~
 ~4~
 ~5~
 #################################
-Save file menu
+Scoreboard menu
 äöü
 äöü
 äöü
@@ -253,23 +254,23 @@ Delete
 ~1~
 #################################
 Select editor:
-Map tile editor
+Map Field Editor
 Unit editor
 Building editor
 Research editor
 Improvement editor
-All on default
+Everything on standard
 ~1~
 ~2~
 ~3~
 #################################
 Trade menu:
-Swap maps
-Buy maps
-Sell maps
+Trade cards
+Buy cards
+Sell cards
 Exchange contacts
 Buy contacts
-Sell contacts
-Give money
+Selling contacts
+Giving money
 Ask for money
 Back

@@ -84,45 +84,41 @@ package ChangelogSeptember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (18.09.2023):
+   -- Version 0.05.4215 => 0.05. (18.09.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (17.09.2023):
+   -- Version 0.05.4195 => 0.05.4215 (17.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (16.09.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen neue Übersetzungen zu erstellen.
    
    
 
-   -- Version 0.05. => 0.05. (15.09.2023):
+   -- Version 0.05.4195 => 0.05.4195 (16.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (14.09.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.05.4145 => 0.05. (13.09.2023):
+   -- Version 0.05.4175 => 0.05.4195 (15.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die verschiedenen Sprachen an das neue Einlesesystem angepasst.
+   
+   
+
+   -- Version 0.05.4175 => 0.05.4175 (14.09.2023):
+   
+   -- null
+   
+   
+
+   -- Version 0.05.4145 => 0.05.4175 (13.09.2023):
+   
+   -- GNAT aktualisiert.
+   -- VMs aktualisiert.
    
    
 
