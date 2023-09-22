@@ -1,226 +1,224 @@
 Tesorahn
-Die Tesorahnier sind Fische aus der Karpfenfamilie von PLANETENNAME. Sie entwickelten im Laufe der Zeit eine komplexe Staatsstruktur aufbauend auf ihrem Handelssystem. Was Personen, welche nicht die Händlertätigkeit ausübern, großflächig von den Wahlen und Gesetzgebungen ausschloss. Dies führte immer wieder zu Konflikten innerhalb ihrer Gesellschaften. Weiterhin mussten sie, aufgrund ihres Unterwasserlebensraumes, für die Entwicklung zahlreicher Technologien meistens auf gebaute Überwasserplattformen zurückgreifen. Ihr bevorzugter Lebensraum sind Salzgewässer in flüssigem Zustand bei einer Gravitation von etwa 10,1 m/s².
-################################# Städtenamen
-Tesorahn Hauptstadt
-Tesorahn Stadt 2
-Tesorahn Stadt 3
-Tesorahn Stadt 4
-Tesorahn Stadt 5
-Tesorahn Stadt 6
-Tesorahn Stadt 7
-Tesorahn Stadt 8
-Tesorahn Stadt 9
-Tesorahn Stadt 10
-Tesorahn Stadt 11
-Tesorahn Stadt 12
-Tesorahn Stadt 13
-Tesorahn Stadt 14
-Tesorahn Stadt 15
-Tesorahn Stadt 16
-Tesorahn Stadt 17
-Tesorahn Stadt 18
-Tesorahn Stadt 19
-Tesorahn Stadt 20
-Tesorahn Stadt 21
-Tesorahn Stadt 22
-Tesorahn Stadt 23
-Tesorahn Stadt 24
-Tesorahn Stadt 25
-Tesorahn Stadt 26
-Tesorahn Stadt 27
-Tesorahn Stadt 28
-Tesorahn Stadt 29
-Tesorahn Stadt 30
-Tesorahn Stadt 31
-Tesorahn Stadt 32
-Tesorahn Stadt 33
-Tesorahn Stadt 34
-Tesorahn Stadt 35
-Tesorahn Stadt 36
-Tesorahn Stadt 37
-Tesorahn Stadt 38
-Tesorahn Stadt 39
-Tesorahn Stadt 40
-Tesorahn Stadt 41
-Tesorahn Stadt 42
-Tesorahn Stadt 43
-Tesorahn Stadt 44
-Tesorahn Stadt 45
-Tesorahn Stadt 46
-Tesorahn Stadt 47
-Tesorahn Stadt 48
-Tesorahn Stadt 49
-Tesorahn Stadt 50
-Tesorahn Stadt 51
-Tesorahn Stadt 52
-Tesorahn Stadt 53
-Tesorahn Stadt 54
-Tesorahn Stadt 55
-Tesorahn Stadt 56
-Tesorahn Stadt 57
-Tesorahn Stadt 58
-Tesorahn Stadt 59
-Tesorahn Stadt 60
-Tesorahn Stadt 61
-Tesorahn Stadt 62
-Tesorahn Stadt 63
-Tesorahn Stadt 64
-Tesorahn Stadt 65
-Tesorahn Stadt 66
-Tesorahn Stadt 67
-Tesorahn Stadt 68
-Tesorahn Stadt 69
-Tesorahn Stadt 70
-Tesorahn Stadt 71
-Tesorahn Stadt 72
-Tesorahn Stadt 73
-Tesorahn Stadt 74
-Tesorahn Stadt 75
-Tesorahn Stadt 76
-Tesorahn Stadt 77
-Tesorahn Stadt 78
-Tesorahn Stadt 79
-Tesorahn Stadt 80
-Tesorahn Stadt 81
-Tesorahn Stadt 82
-Tesorahn Stadt 83
-Tesorahn Stadt 84
-Tesorahn Stadt 85
-Tesorahn Stadt 86
-Tesorahn Stadt 87
-Tesorahn Stadt 88
-Tesorahn Stadt 89
-Tesorahn Stadt 90
-Tesorahn Stadt 91
-Tesorahn Stadt 92
-Tesorahn Stadt 93
-Tesorahn Stadt 94
-Tesorahn Stadt 95
-Tesorahn Stadt 96
-Tesorahn Stadt 97
-Tesorahn Stadt 98
-Tesorahn Stadt 99
-Tesorahn Stadt 100
-################################# Forschungen
-Steinwerkzeuge
+Les Tesorahniens sont des poissons de la famille des carpes de PLANETE NOM. Au fil du temps, ils ont développé une structure étatique complexe basée sur leur système de commerce. Les personnes qui n'étaient pas des commerçants étaient exclues des élections et des lois sur une grande échelle. Cela a conduit à des conflits récurrents au sein de leurs sociétés. De plus, en raison de leur habitat sous-marin, ils ont dû recourir à des plateformes construites en surface pour le développement de nombreuses technologies. Leur habitat préféré est l'eau salée à l'état liquide avec une gravité d'environ 10,1 m/s².
+################################# Noms de villes
+Tesorahn Capitale
+Tesorahn Ville 2
+Tesorahn Ville 3
+Tesorahn Ville 4
+Tesorahn Ville 5
+Tesorahn Ville 6
+Tesorahn Ville 7
+Tesorahn Ville 8
+Tesorahn Ville 9
+Tesorahn Ville 10
+Tesorahn Ville 11
+Tesorahn Ville 12
+Tesorahn Ville 13
+Tesorahn Ville 14
+Tesorahn Ville 15
+Tesorahn Ville 16
+Tesorahn Ville 17
+Tesorahn Ville 18
+Tesorahn Ville 19
+Tesorahn Ville 20
+Tesorahn Ville 21
+Tesorahn Ville 22
+Tesorahn Ville 23
+Tesorahn Ville 24
+Tesorahn Ville 25
+Tesorahn Ville 26
+Tesorahn Ville 27
+Tesorahn Ville 28
+Tesorahn Ville 29
+Tesorahn Ville 30
+Tesorahn Ville 31
+Tesorahn Ville 32
+Tesorahn Ville 33
+Tesorahn Ville 34
+Tesorahn Ville 35
+Tesorahn Ville 36
+Tesorahn Ville 37
+Tesorahn Ville 38
+Tesorahn Ville 39
+Tesorahn Ville 40
+Tesorahn Ville 41
+Tesorahn Ville 42
+Tesorahn Ville 43
+Tesorahn Ville 44
+Tesorahn Ville 45
+Tesorahn Ville 46
+Tesorahn Ville 47
+Tesorahn Ville 48
+Tesorahn Ville 49
+Tesorahn Ville 50
+Tesorahn Ville 51
+Tesorahn Ville 52
+Tesorahn Ville 53
+Tesorahn Ville 54
+Tesorahn Ville 55
+Tesorahn Ville 56
+Tesorahn Ville 57
+Tesorahn Ville 58
+Tesorahn Ville 59
+Tesorahn Ville 60
+Tesorahn Ville 61
+Tesorahn Ville 62
+Tesorahn Ville 63
+Tesorahn Ville 64
+Tesorahn Ville 65
+Tesorahn Ville 66
+Tesorahn Ville 67
+Tesorahn Ville 68
+Tesorahn Ville 69
+Tesorahn Ville 70
+Tesorahn Ville 71
+Tesorahn Ville 72
+Tesorahn Ville 73
+Tesorahn Ville 74
+Tesorahn Ville 75
+Tesorahn Ville 76
+Tesorahn Ville 77
+Tesorahn Ville 78
+Tesorahn Ville 79
+Tesorahn Ville 80
+Tesorahn Ville 81
+Tesorahn Ville 82
+Tesorahn Ville 83
+Tesorahn Ville 84
+Tesorahn Ville 85
+Tesorahn Ville 86
+Tesorahn Ville 87
+Tesorahn Ville 88
+Tesorahn Ville 89
+Tesorahn Ville 90
+Tesorahn Ville 91
+Tesorahn Ville 92
+Tesorahn Ville 93
+Tesorahn Ville 94
+Tesorahn Ville 95
+Tesorahn Ville 96
+Tesorahn Ville 97
+Tesorahn Ville 98
+Tesorahn Ville 99
+Tesorahn Ville 100
+################################# Recherches
+Outils en pierre
 Test 1
-Korallenzucht
+Culture du corail
 Test 2
-Muschelkunst
+Art des coquillages
 Test 3
-Knochenverarbeitung
+Travail des os
 Test 4
-Mineralienabbau
+Extraction de minéraux
 Test 5
-Fischverwertung
+Utilisation du poisson
 Test 6
-Schrift
+Écriture
 a
-Muschelgeld
+Monnaie de moules
 a
-Atemblase
+Vessie respiratoire
 a
-Schiffsbau
+Construction navale
 a
-Feuer
+Feu
 a
-Wasserplattform
+Plate-forme aquatique
 a
 Biologie
 a
-Handel
+Commerce
 a
-Buchhaltung
+Comptabilité
 a
-Kunsthandel
+Commerce d'art
 a
-Mathematik
+Mathématiques
 a
-Handelsschiffe
+Navires de commerce
 a
-Heilkunde
+Médecine
 a
-Oberflächenkunde
+Sciences de la surface
 a
-Eisenverarbeitung
+Travail du fer
 a
-Physik
+Physique
 a
-Landkonstruktionen
+Constructions terrestres
 a
-Dampfmaschine
+Machine à vapeur
 a
-Oberflächentierzucht
+Élevage d'animaux de surface
 a
 Navigation
 a
-Handelsvereinigung
+Association commerciale
 a
-Handelskunst
+Art du commerce
 a
-Dampfschiffe
+Bateaux à vapeur
 a
-Handels- und Schiffahrtsunion
+Union du commerce et de la navigation
 a
-Verbrennungsmotor
+Moteur à combustion interne
 a
-Bergbau
+Industrie minière
 a
-Metallurgie
+Métallurgie
 a
-Feuerwaffen
+Armes à feu
 a
-Medizin
+Médecine
 a
-Motorenschiffe
+Navires à moteur
 a
-Schlachtschiffe
+cuirassés
 a
-Landschiffe
+Bateaux terrestres
 a
-Elektrizität
+Électricité
 a
-Funk
+Radio
 a
-Computer
+Ordinateur
 a
-Kabellose Übertragung
+Transmission sans fil
 a
-Gezeiten/Wasserkraft
+Marées/force hydraulique
 a
-Genetik
+Génétique
 a
-Hochleistungsmaterialien
+Matériaux de haute performance
 a
-Atomtheorie
+Théorie atomique
 a
 Nanotechnologie
 a
-Kernstädte
+Villes-centres
 a
-Quantencomputer
+Ordinateurs quantiques
 a
-NAMR-Reaktor
+Réacteur NAMR
 a
-NAMR-Theorie
+Théorie NAMR
 a
-Unvollständige Raumebenentheorie
+Théorie incomplète des plans d'espace
 a
-Gaußwaffen
+Armes gaussiennes
 a
-Magnetschilde
+Boucliers magnétiques
 a
-Magnetische Kampfsysteme
+Systèmes de combat magnétiques
 a
-Raketentechnologie
+Technologie des missiles
 a
-Himmel/Orbitalstädte
+Ciel/villes orbitales
 a
-Asteroidenbergbau
+Exploitation minière d'astéroïdes
 a
-Interstellarer Antrieb
-a
-a
+Propulsion interstellaire
 a
 a
 a
@@ -252,40 +250,42 @@ a
 a
 a
 a
-################################# Einheiten
-Siedler
 a
-Steinzeitkämpfer
 a
-Knochenkämpfer
+################################# Unités
+Settlers
 a
-Erstes Schiff
+Combattant de l'âge de pierre
 a
-Überwassereinheit
+Combattant osseux
 a
-Überwassersiedler
+Premier navire
 a
-Eisenkämpfer
+Unité de surface
 a
-Handelsschiff
+Colonisateur de surface
 a
-Landsiedler
+Combattant de fer
 a
-Dampfschiff
+Navire marchand
 a
-Motorschiff
+Colonisateur terrestre
 a
-Schlachtschiff
+Bateau à vapeur
 a
-Auto
+Bateau à moteur
 a
-Genkämpfer
+Bateau de combat
 a
-Atombombe
+Voiture
 a
-Kernsiedler
+Combattant génétique
 a
-Kerngräber
+Bombe atomique
+a
+Colonisateur nucléaire
+a
+Tombes nucléaires
 a
 PZB200
 a
@@ -293,27 +293,27 @@ PZB400
 a
 PZB1000
 a
-Gaußkämpfer
+Combattant gaussien
 a
-Himmel/Orbitalsiedler
+Ciel/collecteur orbital
 a
-Magnetkämpfer
+Combattant magnétique
 a
-Schwebepanzer
+Char à lévitation
 a
-Atmosphärenjäger
+Chasseur atmosphérique
 a
-Atmosphärenbomber
+Bombardier atmosphérique
 a
-Stellare Artillerie
+Artillerie stellaire
 a
-Biowaffe
+Arme biologique
 a
-Chemische Waffe
+Arme chimique
 a
-Verschmutzende Waffe
+Arme polluante
 a
-Alle Feldeffekte
+Tous les effets de champ
 a
 a
 a
@@ -351,42 +351,42 @@ a
 a
 a
 a
-Alleskönner
+Un outil polyvalent
 a
-################################# Gebäude
-Häuser
+################################# Bâtiment
+Maisons
 a
-Nahrungslager
+Dépôt de nourriture
 a
-Bibliothek
+Bibliothèque
 a
-Kaserne
+Caserne
 a
-Seehafen
+Port maritime
 a
-Universität
+Université
 a
-Kohlekraftwerk
+Centrale à charbon
 a
-Apotheke
+Pharmacie
 a
-Krankenhaus
+Hôpital
 a
-Genetikhaus
+Maison de la génétique
 a
-Atomkraftwerk
+Centrale nucléaire
 a
-Gezeitenkraftwerk
+Centrale marémotrice
 a
-Handelshaus
+Maison de commerce
 a
-Marktplatz
+Place du marché
 a
-Kunstplatz
+Place des Arts
 a
-Unionshaus
+Maison de l'Union
 a
-NAMR Kraftwerk
+Centrale électrique NAMR
 a
 a
 a

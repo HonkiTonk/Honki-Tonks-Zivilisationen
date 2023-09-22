@@ -1,0 +1,163 @@
+¿Número de puntuaciones automáticas?
+¿Cancelar la ocupación actual?
+¿Sustituir la mejora del terreno?
+¿Disolver unidad de verdad?
+¿Demoler edificios?
+¿Declarar la guerra de verdad?
+¿Saquear realmente la mejora del terreno?
+¿Qué debería construirse?
+¿Qué debería investigarse?
+Ya existe una partitura con este nombre. ¿Sobrescribirlo?
+Introduzca un tamaño del eje Y entre 20x20 y 1.000x1.000:
+Introduzca el nombre de la puntuación:
+¿Número de rondas hasta el guardado automático?
+Introduzca un tamaño del eje X entre 20x20 y 1.000x1.000:
+¿Nueva llave?
+¿Demoler realmente la ciudad?
+¿Con qué especies quieren entablar diplomacia?
+Han ganado, ¿quieren seguir jugando?
+¿En qué nivel?
+¿Qué posición Y?
+¿Qué posición X?
+Nueva anchura de resolución:
+Nueva altura de resolución:
+Nueva velocidad de fotogramas:
+¿Cómo debe llamarse la ciudad?
+Diámetro de la capa de hielo:
+Altura mínima de las masas de tierra:
+Altura máxima de las masas de tierra:
+Anchura mínima de las masas de tierra:
+Anchura máxima de las masas de tierra:
+¿Sustituir jugador por IA?
+¿Qué edificio demoler?
+¿Borrar realmente el marcador?
+Introducir nombres de ciudades:
+Nuevo volumen de sonido:
+Nuevo volumen de música:
+¿Cambiar realmente proyecto de edificio?
+Cambiar proyecto de investigación ¿Realmente?
+################################# Mensajes
+Mejora no construible aquí.
+La unidad no puede ejecutar el comando.
+La mejora ya existe.
+Número máximo de ciudades alcanzado, no se pueden construir más ciudades.
+La unidad no tiene más puntos de movimiento.
+Falta la tecnología para la mejora.
+Es el estado actual.
+No se puede proponer en guerra.
+Declaración de guerra con pacto de no agresión imposible.
+Ya está ocupada por una ciudad.
+El estado del juego está corrupto o no es compatible con esta versión del juego.
+La unidad no puede ser mejorada.
+La unidad no está en territorio propio.
+La unidad mejorada sería demasiado grande para el transportador.
+La unidad mejorada no tendría suficiente espacio de carga.
+Salvar falló.
+################################# Agradecimientos
+Aquí hay una lista de todas las personas que me ayudaron a desarrollar este juego:
+
+
+################################# cosas
+Habitantes:
+Alimentación:
+Producción:
+Dinero:
+Conocimiento:
+Corrupción:
+Proyecto de construcción:
+Tiempo de construcción:
+Vida:
+Puntos de movimiento:
+Experiencia:
+Empleo:
+Ataque:
+Defensa:
+Rango:
+Ninguno
+Ronda:
+Dinero:
+Tiempo de investigación:
+Proyecto de investigación:
+Trabajadores disponibles:
+Necesario para:
+Coste de construcción:
+Carga:
+Hogar:
+Coste comida permanente:
+Coste monetario permanente:
+Coste de producción permanente:
+Coordenadas:
+Bonificación permanente de comida:
+Bonificación permanente de producción:
+Bonificación permanente de dinero:
+Bonificación permanente de conocimientos:
+Bonificación permanente de defensa:
+Bonificación permanente de ataque:
+Edificios:
+Unidades:
+Vacío
+Sí
+No
+Con
+Paz
+Pacto de no agresión
+Guerra
+Valores de combate:
+Capacidad de transporte:
+Tamaño del transportador:
+Se puede cargar en:
+Transportadores pequeños
+Transportadores medianos
+Transportadores grandes
+Transportadores gigantes
+Transportadores gigantes
+Ciudad
+Unidad
+################################# Órdenes de la ciudad
+Mapa de la ciudad
+Construir
+Vender
+Cambiar nombre
+Disolver
+Salir
+################################# Tiempos de carga
+Se genera el mundo del juego
+Generar General:
+Generar agua costera:
+Generar paisaje:
+Generar subsuelo:
+Generar ríos:
+Generar recursos:
+Colocar especies:
+Calcular
+Calcular unidades:
+Calcular ciudades:
+Calcular investigación:
+Calcular diplomacia:
+Calcular entre rondas
+Guardar/Cargar
+################################# Ocupado
+Desempleado
+a
+Construir carretera
+a
+Construir ferrocarril
+a
+Construir túnel
+a
+Construir mina
+a
+Construir granja
+a
+Construir fortaleza
+a
+Plantar bosque
+a
+desbrozar/secar
+a
+Eliminar efecto
+a
+Cura
+a
+Adjunta
+a

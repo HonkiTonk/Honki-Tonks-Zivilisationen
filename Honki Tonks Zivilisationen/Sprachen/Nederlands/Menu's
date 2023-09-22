@@ -1,0 +1,276 @@
+Hoofdmenu
+Nieuw spel
+Snel starten
+Spel laden
+Opties
+Uitgevers
+Waarderingen
+~3~
+#################################
+Spelmenu
+Volgende
+Opslaan
+Laden
+Opties
+~2~
+~3~
+#################################
+Opties
+Afbeeldingen
+Geluid
+Besturing
+Andere
+~1~
+~2~
+~3~
+#################################
+Grafisch menu
+Resolutie wijzigen
+Volledig scherm
+VSync
+Framesnelheid wijzigen
+Lagen eronder zichtbaar
+Framerate tonen
+Opslaan
+~1~
+~2~
+~3~
+#################################
+Geluidsmenu
+Geluidsvolume
+Muziekvolume
+~1~
+~2~
+~3~
+#################################
+Controle
+Algemeen
+Scroll naar het noorden
+Scroll naar het westen
+Scroll naar het zuiden
+Scroll naar het oosten
+Scroll noordwest
+Scroll noordoost
+Scroll zuidwest
+Scroll zuidoost
+Scroll omhoog
+Scroll omlaag
+Menu onderzoek
+Menu diplomatie
+Stad zoeken
+Volgende stad
+Volgende stad met bericht
+Volgende eenheid
+Volgende eenheid met bericht
+Volgende eenheid met bewegingspunten
+Volgende eenheid zonder bewegingspunten
+Ga naar
+Ronde beëindigen
+Annuleren
+Eenheden
+Naar het noorden
+Naar het westen
+Naar het zuiden
+Verplaats oost
+Verplaats noordwest
+Verplaats noordoost
+Naar zuidwesten
+Verplaats zuidoost
+Niveau omhoog
+Level omlaag bewegen
+Stad bouwen
+Bouw/verbeter weg
+Mijn bouwen/verbeteren
+Boerderij bouwen/verbeteren
+Fort bouwen/verbeteren
+Herbebossing
+Ontruimen/Drogen
+Effect verwijderen
+genezen
+verschansen
+Plunderen
+oplossen
+verbeteren
+Woonplaats veranderen
+Uitladen
+Deselecteren
+Stad
+Kaart
+Bouw
+Verkopen
+Hernoemen
+oplossen
+verlaten
+Opslaan
+~4~
+~1~
+~2~
+~3~
+#################################
+Spelinstellingen
+Aantal automatische scores
+Rondes om automatisch op te slaan
+Taal wijzigen
+~1~
+~2~
+~3~
+#################################
+Selecteer kaartgrootte:
+Tiny
+Klein
+Middelgroot
+Rechthoek
+Grote rechthoek
+Groot
+Enorm
+Gigantisch
+Absurd
+Aangepast
+Willekeurige voorgedefinieerde grootte
+Willekeurige niet vooraf gedefinieerde grootte
+~5~
+Huidige grootte:
+Nieuwe maat:
+#################################
+Selecteer type kaart:
+Eilanden
+Continenten
+Pangaea
+Aangepast
+Willekeurig voorgedefinieerd kaarttype
+Willekeurig niet vooraf gedefinieerd kaarttype
+~4~
+~5~
+#################################
+Selecteer kaarttemperatuur:
+Koud
+Gematigd
+Heet
+IJstijd
+Woestijn
+~6~
+~5~
+#################################
+Kies soort:
+Mensen
+Kasrodiah
+Lasupin
+Lamustra
+Manuky
+Suroka
+Pryolon
+Moru Phisihl
+Larinos Lotaris
+Carupex
+Alary
+Natries Zermanis
+Tridatus
+Senelari
+Aspari_2
+Ekropa
+Tesorahn
+Talbidahr
+~6~
+~5~
+#################################
+Moeilijkheidsgraad instellen:
+Gemakkelijk
+Gemiddeld
+Moeilijk
+~6~
+~5~
+#################################
+Verander de vorm van de kaart:
+Laag boven
+Laag onder
+Noord
+Zuid
+West
+Oost
+~6~
+~4~
+~5~
+Geen overgang
+Overgang
+Verschoven achterwaartse overgang
+Verschoven overgang
+#################################
+Selecteer bestaande bronset:
+Arm
+Weinig
+Middel
+Veel
+Overvloedig
+~6~
+~5~
+#################################
+Diplomatie:
+Kaarten ruilen
+Cast van eigen grondgebied
+Niet-agressie pact
+Vrede verklaren
+Oorlog verklaren
+~1~
+Menu verlaten
+Huidige mening:
+Huidige staat:
+#################################
+Instellingen
+Kaart stokken
+Kaartformaat
+Type kaart
+Kaart vorm
+Temperatuur kaart
+Kaart bronnen
+Soorten selectie
+Moeilijkheidsgraad
+~5~
+~2~
+~3~
+#################################
+Kaart polen
+Noordpool
+Zuidpool
+Westpool
+Oostpool
+~6~
+~4~
+~5~
+#################################
+Menu Geheugenstatus
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+Meer
+Nieuw
+Verwijderen
+~1~
+#################################
+Selecteer editor:
+Kaartveld editor
+Eenheid editor
+Gebouw editor
+Onderzoek editor
+Verbeterings editor
+Alles op standaard
+~1~
+~2~
+~3~
+#################################
+Handelsmenu:
+Kaarten ruilen
+Kaarten kopen
+Kaarten verkopen
+Contacten ruilen
+Contacten kopen
+Contacten verkopen
+Geld geven
+Geld vragen
+Terug

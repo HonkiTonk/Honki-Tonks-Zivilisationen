@@ -1,0 +1,163 @@
+Aantal automatische scores?
+Huidige bezetting annuleren?
+Grondverbetering vervangen?
+Eenheid echt ontbinden?
+Gebouwen echt slopen?
+Echt oorlog verklaren?
+Landverbetering echt plunderen?
+Wat moet er gebouwd worden?
+Wat moet er onderzocht worden?
+Er is al een score met deze naam. Overschrijven?
+Voer een Y-as in tussen 20x20 en 1.000x1.000:
+Voer de naam van de score in:
+Aantal rondes tot automatisch opslaan?
+Voer een X-as in tussen 20x20 en 1.000x1.000:
+Nieuwe sleutel?
+De stad echt slopen?
+Met welke soort willen ze diplomatieke betrekkingen aangaan?
+Je hebt gewonnen, wil je nog verder spelen?
+Welk level?
+Welke Y-positie?
+Welke X-positie?
+Nieuwe resolutie breedte:
+Nieuwe resolutie hoogte:
+Nieuwe framerate:
+Hoe moet de stad heten?
+Diameter van ijslaag:
+Minimale hoogte van landmassa's:
+Maximale hoogte van landmassa's:
+Minimale breedte van landmassa's:
+Maximale breedte van landmassa's:
+Vervang speler door AI?
+Welk gebouw afbreken?
+Echt de score wissen?
+Stadnamen invoeren:
+Nieuw geluidsvolume:
+Nieuw muziekvolume:
+Bouwproject echt veranderen?
+Onderzoeksproject echt veranderen?
+################################# Berichten
+Verbetering hier niet bouwbaar.
+Eenheid kan commando niet uitvoeren.
+Verbetering bestaat al.
+Maximum aantal steden bereikt, er kunnen geen steden meer gebouwd worden.
+Eenheid heeft geen bewegingspunten meer.
+De technologie voor de verbetering ontbreekt.
+Is de huidige status.
+Kan niet worden voorgesteld in oorlog.
+Oorlogsverklaring met niet-aanvalsverdrag onmogelijk.
+Reeds bezet door een stad.
+Spelstatus is corrupt of niet compatibel met deze versie van het spel.
+Eenheid kan niet worden geüpgraded.
+Eenheid bevindt zich niet op eigen grondgebied.
+Verbeterde eenheid zou te groot zijn voor de transporter.
+Verbeterde eenheid heeft niet genoeg laadruimte.
+Opslaan mislukt.
+################################# Erkenningen
+Hier is een lijst met alle mensen die me hebben geholpen bij het ontwikkelen van dit spel:
+
+
+################################# dingen
+Inwoners:
+Voedsel:
+Productie:
+Geld:
+Kennis:
+Corruptie:
+Bouwproject:
+Bouwtijd:
+Leven:
+Bewegingspunten:
+Ervaring:
+Werkgelegenheid:
+Aanval:
+Verdediging:
+Rang:
+Geen
+Ronde:
+Geld:
+Onderzoek Tijd:
+Onderzoeksproject:
+Werknemers beschikbaar:
+Nodig voor:
+Bouwkosten:
+Vracht:
+Thuis:
+Permanente voedsel kosten:
+Permanente geldkosten:
+Permanente productiekosten:
+Coördinaten:
+Permanente voedselbonus:
+Permanente productiebonus:
+Permanente geldbonus:
+Permanente kennisbonus:
+Permanente verdedigingsbonus:
+Permanente aanvalsbonus:
+Gebouwen:
+Eenheden:
+Leeg
+Ja
+Nee
+Met
+Vrede
+Niet-agressie pact
+Oorlog
+Gevechtswaarden:
+Transporter Capaciteit:
+Transporter Grootte:
+Kan geladen worden op:
+Kleine transporters
+Middelgrote transporters
+Grote transporters
+Reuzentransporters
+Reuzentransporters
+Stad
+Eenheid
+################################# Stadscommando's
+Stadsplattegrond
+Bouwen
+Verkopen
+Hernoemen
+Oplossen
+Verlaten
+################################# Laadtijden
+Spelwereld wordt gegenereerd
+Genereren Algemeen:
+Genereer kustwater:
+Landschap genereren:
+Ondergrond genereren:
+Genereer rivieren:
+Genereer Hulpbronnen:
+Plaats soorten:
+Bereken
+Bereken eenheden:
+Steden berekenen:
+Onderzoek berekenen:
+Bereken diplomatie:
+Bereken tussen rondes
+Opslaan/Laden
+################################# Beroepen
+Werkloos
+a
+Weg aanleggen
+a
+Spoorweg aanleggen
+a
+Tunnel bouwen
+a
+Mijn bouwen
+a
+Boerderij bouwen
+a
+Fort bouwen
+a
+Bos planten
+a
+ontginnen/drogen
+a
+Effect verwijderen
+a
+Geneest
+a
+Hecht
+a

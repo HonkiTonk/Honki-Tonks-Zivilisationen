@@ -1,0 +1,163 @@
+Antal automatiske scoringer?
+Annullere nuværende beskæftigelse?
+Udskift jordforbedring?
+Virkelig opløse en enhed?
+Virkelig nedrive bygninger?
+Virkelig erklære krig?
+Virkelig plyndre landforbedring?
+Hvad skal der bygges?
+Hvad skal der forskes i?
+Der findes allerede en score med dette navn. Skal vi overskrive det?
+Indtast en Y-aksestørrelse mellem 20x20 og 1.000x1.000:
+Indtast navnet på scoren:
+Antal runder indtil automatisk gem?
+Indtast X-aksens størrelse mellem 20x20 og 1.000x1.000:
+Ny nøgle?
+Vil du virkelig smadre byen?
+Hvilke arter vil de indgå diplomati med?
+Du har vundet, vil du stadig spille videre?
+Hvilket niveau?
+Hvilken Y-position?
+Hvilken X-position?
+Ny opløsningsbredde:
+Ny opløsningshøjde:
+Ny frame rate:
+Hvad skal byen hedde?
+Diameter af islag:
+Minimumshøjde af landmasser:
+Maksimal højde af landmasser:
+Minimumsbredde af landmasser:
+Maksimal bredde af landmasser:
+Erstat spiller med AI?
+Hvilken bygning skal rives ned?
+Vil du virkelig slette scoren?
+Indtast bynavne:
+Ny lydstyrke:
+Ny musikvolumen:
+Virkelig ændre byggeprojekt?
+Virkelig ændre forskningsprojekt?
+################################# Beskeder
+Forbedring kan ikke bygges her.
+Enheden kan ikke udføre kommandoen.
+Forbedring findes allerede.
+Det maksimale antal byer er nået, der kan ikke bygges flere byer.
+Enheden har ikke flere bevægelsespoint.
+Teknologien til forbedringen mangler.
+Er den aktuelle status.
+Kan ikke foreslås i krig.
+Krigserklæring med ikke-angrebspagt umulig.
+Allerede besat af en by.
+Spilstatus er beskadiget eller ikke kompatibel med denne version af spillet.
+Enheden kan ikke opgraderes.
+Enheden er ikke på eget territorium.
+Forbedret enhed ville være for stor til transportøren.
+Forbedret enhed ville ikke have nok lastrum.
+Gem mislykkedes.
+################################# Taknemmelighed
+Her er en liste over alle de mennesker, der hjalp mig med at udvikle dette spil:
+
+
+################################# Ting og sager
+Indbyggere:
+Fødevarer:
+Produktion:
+Penge:
+Viden:
+Korruption:
+Byggeprojekt:
+Byggetid:
+Liv:
+Bevægelsespoint:
+Erfaring:
+Beskæftigelse:
+Angreb:
+Forsvar:
+Rang:
+Ingen
+Runde:
+Penge:
+Forskningstid:
+Forskningsprojekt:
+Arbejdere til rådighed:
+Nødvendigt for:
+Byggeomkostninger:
+Last:
+Hjem:
+Permanente madomkostninger:
+Permanente pengeomkostninger:
+Permanente produktionsomkostninger:
+Koordinater:
+Permanent madbonus:
+Permanent produktionsbonus:
+Permanent pengebonus:
+Permanent vidensbonus:
+Permanent forsvarsbonus:
+Permanent angrebsbonus:
+Bygninger:
+Enheder:
+Tom
+Ja
+Nej, ikke med
+Med
+Fred
+Ikke-angrebspagt
+Krig
+Kampværdier:
+Transporterkapacitet:
+Transporterens størrelse:
+Kan lastes på:
+Små transportere
+Mellemtransportører
+Store transportere
+Kæmpe transportører
+Kæmpe transportere
+By
+Enhed
+################################# Byens ordrer
+Bykort
+Byg
+Sælg
+Omdøb
+Opløs
+Afslut
+################################# Indlæsningstider
+Spilverdenen er genereret
+Generér generelt:
+Generer kystvand:
+Generer landskab:
+Generer undergrunden:
+Generer floder:
+Generere ressourcer:
+Placer arter:
+Beregn
+Beregn enheder:
+Beregn byer:
+Beregn forskning:
+Beregn diplomati:
+Beregn mellem runderne
+Gem/Lad
+################################# Beskæftigelser
+Arbejdsløs
+a
+Byg vej
+a
+Byg jernbane
+a
+Byg tunnel
+a
+Byg mine
+a
+Byg gård
+a
+Byg fæstning
+a
+Plant skov
+a
+Rydning/tørring
+a
+Fjern effekt
+a
+Healer
+a
+Fastgør
+a

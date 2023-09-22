@@ -1,0 +1,163 @@
+Liczba automatycznych wyników?
+Anulować bieżące zajęcie?
+Zastąpić ulepszenie terenu?
+Naprawdę rozwiązać jednostkę?
+Naprawdę zburzyć budynki?
+Naprawdę wypowiedzieć wojnę?
+Naprawdę splądrować ulepszenie terenu?
+Co powinno zostać zbudowane?
+Co powinno zostać zbadane?
+Istnieje już wynik o tej nazwie. Zastąpić go?
+Wprowadź rozmiar osi Y pomiędzy 20x20 a 1,000x1,000:
+Wprowadź nazwę wyniku:
+Liczba rund do automatycznego zapisu?
+Wprowadź rozmiar osi X pomiędzy 20x20 a 1,000x1,000:
+Nowy klucz?
+Naprawdę zdemolować miasto?
+Z którym gatunkiem chcą nawiązać stosunki dyplomatyczne?
+Wygrałeś, czy nadal chcesz kontynuować grę?
+Który poziom?
+Która pozycja Y?
+Która pozycja X?
+Nowa szerokość rozdzielczości:
+Nowa wysokość rozdzielczości:
+Nowa liczba klatek na sekundę:
+Jak powinno nazywać się miasto?
+Średnica warstwy lodu:
+Minimalna wysokość mas lądowych:
+Maksymalna wysokość mas lądowych:
+Minimalna szerokość mas lądowych:
+Maksymalna szerokość mas lądowych:
+Zastąpić gracza SI?
+Który budynek zburzyć?
+Naprawdę usunąć wynik?
+Wprowadź nazwy miast:
+Nowa głośność dźwięku:
+Nowa głośność muzyki:
+Naprawdę zmienić projekt budynku?
+Naprawdę zmienić projekt badawczy?
+################################# Wiadomości
+Ulepszenie nie może zostać tutaj zbudowane.
+Jednostka nie może wykonać polecenia.
+Ulepszenie już istnieje.
+Osiągnięto maksymalną liczbę miast, nie można zbudować więcej miast.
+Jednostka nie ma już punktów ruchu.
+Brakuje technologii dla danego ulepszenia.
+To aktualny status.
+Nie można zaproponować w wojnie.
+Wypowiedzenie wojny z paktem o nieagresji jest niemożliwe.
+Miasto jest już okupowane.
+Stan gry jest uszkodzony lub niezgodny z tą wersją gry.
+Nie można ulepszyć jednostki.
+Jednostka nie znajduje się na własnym terytorium.
+Ulepszona jednostka byłaby zbyt duża dla transportera.
+Ulepszona jednostka nie ma wystarczającej przestrzeni ładunkowej.
+Zapis nie powiódł się.
+################################# Podziękowania
+Oto lista wszystkich osób, które pomogły mi stworzyć tę grę:
+
+
+################################# Rzeczy
+Mieszkańcy:
+Żywność:
+Produkcja:
+Pieniądze:
+Wiedza:
+Korupcja:
+Projekt budowlany:
+Czas budowy:
+Życie:
+Punkty ruchu:
+Doświadczenie:
+Zatrudnienie:
+Atak:
+Obrona:
+Ranga:
+Brak
+Runda:
+Pieniądze:
+Czas badań:
+Projekt badawczy:
+Dostępni pracownicy:
+Potrzebni do:
+Koszt budowy:
+Ładunek:
+Dom:
+Stały koszt żywności:
+Stały koszt pieniężny:
+Stały koszt produkcji:
+Współrzędne:
+Stała premia do żywności:
+Stała premia do produkcji:
+Stała premia pieniężna:
+Stała premia do wiedzy:
+Stała premia do obrony:
+Stała premia do ataku:
+Budynki:
+Jednostki:
+Puste
+Tak
+Nie
+Z
+Pokój
+Pakt o nieagresji
+Wojna
+Wartości bojowe:
+Pojemność transportera:
+Rozmiar transportera:
+Można załadować na:
+Małe transportery
+Średnie transportery
+Duże transportery
+Gigantyczne transportery
+Gigantyczne transportery
+Miasto
+Jednostka
+################################# Rozkazy miejskie
+Mapa miasta
+Budować
+Sprzedaż
+Zmień nazwę
+Rozwiąż
+Wyjście
+################################# Czasy ładowania
+Świat gry jest generowany
+Generuj ogólne:
+Generuj wodę przybrzeżną:
+Generuj krajobraz:
+Generowanie podpowierzchni:
+Generuj rzeki:
+Generuj zasoby:
+Umieść gatunki:
+Oblicz
+Oblicz jednostki:
+Oblicz miasta:
+Oblicz badania:
+Oblicz dyplomację:
+Obliczanie między rundami
+Save/Load
+################################# Zajęty
+Bezrobotny
+a
+Zbuduj drogę
+a
+Budowa linii kolejowej
+a
+Budowa tunelu
+a
+Budowa kopalni
+a
+Budowa farmy
+a
+Zbuduj fortecę
+a
+Zasadź las
+a
+karczowanie/suszenie
+a
+Usunąć efekt
+a
+Leczy
+a
+Dołącza
+a

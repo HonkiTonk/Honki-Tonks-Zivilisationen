@@ -1,0 +1,163 @@
+Numero di punteggi automatici?
+Annullare l'occupazione attuale?
+Sostituire il miglioramento del terreno?
+Sciogliere davvero l'unità?
+Demolire davvero gli edifici?
+Dichiarare davvero guerra?
+Saccheggiare davvero i miglioramenti del terreno?
+Cosa si dovrebbe costruire?
+Cosa dovrebbe essere ricercato?
+C'è già un punteggio con questo nome. Sovrascriverlo?
+Inserire una dimensione dell'asse Y compresa tra 20x20 e 1.000x1.000:
+Inserire il nome del punteggio:
+Numero di round fino al salvataggio automatico?
+Inserire una dimensione dell'asse X compresa tra 20x20 e 1.000x1.000:
+Nuova chiave?
+Demolire davvero la città?
+Con quali specie si vuole intraprendere la diplomazia?
+Avete vinto, volete ancora continuare a giocare?
+Quale livello?
+Quale posizione Y?
+Quale posizione X?
+Nuova larghezza di risoluzione:
+Nuova risoluzione in altezza:
+Nuova frequenza dei fotogrammi:
+Come dovrebbe chiamarsi la città?
+Diametro dello strato di ghiaccio:
+Altezza minima delle masse terrestri:
+Altezza massima delle masse terrestri:
+Larghezza minima delle masse terrestri:
+Larghezza massima delle masse terrestri:
+Sostituire il giocatore con l'IA?
+Quale edificio demolire?
+Cancellare davvero il punteggio?
+Inserire i nomi delle città:
+Nuovo volume del suono:
+Nuovo volume della musica:
+Cambiare davvero il progetto dell'edificio?
+Cambia davvero il progetto di ricerca?
+################################# Messaggi
+Miglioramento non costruibile qui.
+L'unità non può eseguire il comando.
+Miglioramento già esistente.
+Numero massimo di città raggiunto, non è possibile costruire altre città.
+L'unità non ha più punti movimento.
+Manca la tecnologia per il miglioramento.
+È lo stato attuale.
+Non può essere proposto in guerra.
+Dichiarazione di guerra con patto di non aggressione impossibile.
+Già occupata da una città.
+Lo stato del gioco è corrotto o non compatibile con questa versione del gioco.
+L'unità non può essere aggiornata.
+L'unità non si trova nel proprio territorio.
+L'unità migliorata sarebbe troppo grande per il trasportatore.
+L'unità migliorata non avrebbe abbastanza spazio di carico.
+Salvataggio fallito.
+################################# Ringraziamenti
+Ecco una lista di tutte le persone che mi hanno aiutato a sviluppare questo gioco:
+
+
+################################# Cose
+Abitanti:
+Alimentazione:
+Produzione:
+Denaro:
+Conoscenza:
+Corruzione:
+Progetto di costruzione:
+Tempo di costruzione:
+Vita:
+Punti movimento:
+Esperienza:
+Occupazione:
+Attacco:
+Difesa:
+Rango:
+Nessuno
+Round:
+Denaro:
+Tempo di ricerca:
+Progetto di ricerca:
+Lavoratori disponibili:
+Necessario per:
+Costo di costruzione:
+Cargo:
+Casa:
+Costo permanente del cibo:
+Costo permanente del denaro:
+Costo di produzione permanente:
+Coordinate:
+Bonus alimentare permanente:
+Bonus di produzione permanente:
+Bonus di denaro permanente:
+Bonus permanente di conoscenza:
+Bonus permanente di difesa:
+Bonus di attacco permanente:
+Edifici:
+Unità:
+Vuoto
+Si
+No
+Con
+Pace
+Patto di non aggressione
+Guerra
+Valori di combattimento:
+Capacità del trasportatore:
+Dimensione del trasportatore:
+Può essere caricato su:
+Trasportatori piccoli
+Trasportatori medi
+Trasportatori grandi
+Trasportatori giganti
+Trasportatori giganti
+Città
+Unità
+################################# Ordini della città
+Mappa della città
+Costruire
+Vendere
+Rinominare
+Sciogliere
+Uscire
+################################# Tempi di caricamento
+Il mondo di gioco è generato
+Genera generale:
+Genera acqua costiera:
+Genera paesaggio:
+Genera sottosuolo:
+Genera fiumi:
+Generare risorse:
+Posizionare le specie:
+Calcolare
+Calcolare le unità:
+Calcolare le città:
+Calcolare la ricerca:
+Calcolare la diplomazia:
+Calcolo tra i turni
+Salva/Carica
+################################# Occupato
+Disoccupato
+a
+Costruire la strada
+a
+Costruire la ferrovia
+a
+Costruire tunnel
+a
+Costruire una miniera
+a
+Costruire una fattoria
+a
+Costruire una fortezza
+a
+Piantare una foresta
+a
+disboscare/essiccare
+a
+Rimuovere l'effetto
+a
+Guarisce
+a
+Attacca
+a

@@ -1,0 +1,276 @@
+Hovedmeny
+Nytt spill
+Hurtigstart
+Last inn spill
+Alternativer
+Redaktører
+Verdsettelser
+~3~
+#################################
+Spillmeny
+Neste
+Lagre
+Last inn
+Alternativer
+~2~
+~3~
+#################################
+Alternativer
+Grafikk
+Lyd
+Styring
+Annet
+~1~
+~2~
+~3~
+#################################
+Grafikkmeny
+Endre oppløsning
+Full skjerm
+VSync
+Endre bildefrekvens
+Synlige lag under
+Vis bildefrekvens
+Lagre
+~1~
+~2~
+~3~
+#################################
+Lydmeny
+Lydvolum
+Musikkvolum
+~1~
+~2~
+~3~
+#################################
+Kontroll
+Generelt
+Rulle nordover
+Bla vestover
+Bla mot sør
+Rulle øst
+Rulle nordvest
+Rulle nordøst
+Rulle sørvest
+Rulle sørøst
+Rulle opp nivå
+Rulle nedover i nivå
+Forskning-meny
+Diplomati-menyen
+Søk i by
+Neste by
+Neste by med melding
+Neste enhet
+Neste enhet med melding
+Neste enhet med bevegelsespoeng
+Neste enhet uten bevegelsespoeng
+Gå til
+Avslutt runde
+Avbryt
+Enheter
+Beveger seg nordover
+Gå vestover
+Flytt sørover
+Flytt øst
+Flytt nordvest
+Flytt nordøst
+Flytt sørvest
+Flytt sørøst
+Flytt nivå opp
+Flytt nedover i nivå
+Bygge by
+Bygge/forbedre vei
+Bygge/forbedre gruve
+Bygge/forbedre gård
+Bygge/forbedre festning
+Reforest
+Rydde/tørke
+Fjerne effekt
+Helbrede
+Forankre
+Plyndre
+Oppløs
+Forbedre
+Endre hjemby
+Laste av
+Fjern valg
+By
+Bykart
+Bygge
+Selg
+Gi nytt navn
+Oppløs
+Avslutt
+Lagre
+~4~
+~1~
+~2~
+~3~
+#################################
+Spillinnstillinger
+Antall automatiske poengsummer
+Runder som skal lagres automatisk
+Endre språk
+~1~
+~2~
+~3~
+#################################
+Velg kartstørrelse:
+Liten
+Liten
+Middels
+Rektangel
+Stort rektangel
+Stort
+Enorm
+Gigantisk
+Absurd
+Tilpasset
+Tilfeldig forhåndsdefinert størrelse
+Tilfeldig, ikke forhåndsdefinert størrelse
+~5~
+Nåværende størrelse:
+Ny størrelse:
+#################################
+Velg karttype:
+Øyer
+Kontinenter
+Pangaea
+Egendefinert
+Tilfeldig forhåndsdefinert karttype
+Tilfeldig, ikke forhåndsdefinert karttype
+~4~
+~5~
+#################################
+Velg karttemperatur:
+Kald
+Moderat
+Varm
+Istid
+Ørken
+~6~
+~5~
+#################################
+Velg art:
+Mennesker
+Kasrodiah
+Lasupin
+Lamustra
+Manuky
+Suroka
+Pryolon
+Moru Phisihl
+Larinos Lotaris
+Carupex
+Alary
+Natries Zermanis
+Tridatus
+Senelari
+Aspari_2
+Ekropa
+Tesorahn
+Talbidahr
+~6~
+~5~
+#################################
+Angi vanskelighetsgrad:
+Lett
+Middels
+Vanskelig
+~6~
+~5~
+#################################
+Endre kartets form:
+Lag over
+Lag under
+Nord
+Sør
+Vest
+Øst
+~6~
+~4~
+~5~
+Ingen overgang
+Overgang
+Skiftet overgang bakover
+Skiftet overgang
+#################################
+Velg eksisterende ressurssett:
+Arm
+Liten
+Middels
+Mye
+Rikelig
+~6~
+~5~
+#################################
+Diplomati:
+Bytt kort
+Kast fra eget territorium
+Ikke-angrepspakt
+Erklære fred
+Erklære krig
+~1~
+Avslutt meny
+Nåværende mening:
+Nåværende tilstand:
+#################################
+Innstillinger
+Kartstolper
+Kartstørrelse
+Karttype
+Kartets form
+Kartets temperatur
+Kartets ressurser
+Valg av arter
+Vanskelighetsgrad
+~5~
+~2~
+~3~
+#################################
+Kartets poler
+Nordpolen
+Sydpolen
+Vestpolen
+Østpolen
+~6~
+~4~
+~5~
+#################################
+Menyen på resultattavlen
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+Mer om dette
+Ny
+Slett
+~1~
+#################################
+Velg redigeringsprogram:
+Redaktør for kartfelt
+Enhetsredigering
+Redaktør for bygninger
+Redaktør for forskning
+Forbedringsredigering
+Alt på standard
+~1~
+~2~
+~3~
+#################################
+Handelsmeny:
+Bytte kort
+Kjøp kort
+Selge kort
+Utveksle kontakter
+Kjøpe kontakter
+Selge kontakter
+Gi penger
+Be om penger
+Tilbake

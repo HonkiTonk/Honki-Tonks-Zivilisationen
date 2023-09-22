@@ -1,0 +1,163 @@
+Antall automatiske poeng?
+Avbryte nåværende yrke?
+Erstatte landforbedring?
+Virkelig oppløse enheten?
+Virkelig rive bygninger?
+Virkelig erklære krig?
+Virkelig plyndre landforbedring?
+Hva bør bygges?
+Hva bør det forskes på?
+Det finnes allerede et resultat med dette navnet. Vil du overskrive det?
+Angi en Y-aksestørrelse mellom 20x20 og 1 000x1 000:
+Skriv inn navnet på poengsummen:
+Antall runder til automatisk lagring?
+Angi en størrelse på X-aksen mellom 20x20 og 1 000x1 000:
+Ny nøkkel?
+Vil du virkelig ødelegge byen?
+Hvilke arter ønsker de å inngå diplomati med?
+Du har vunnet, vil du fortsatt spille?
+Hvilket nivå?
+Hvilken Y-posisjon?
+Hvilken X-posisjon?
+Ny oppløsningsbredde:
+Ny oppløsningshøyde:
+Ny bildefrekvens:
+Hva skal byen hete?
+Diameter på islag:
+Minste høyde på landmassene:
+Maksimal høyde på landmassene:
+Minste bredde på landmassene:
+Maksimal bredde på landmassene:
+Erstatte spiller med AI?
+Hvilken bygning skal rives?
+Vil du virkelig slette poengsummen?
+Skriv inn bynavn:
+Nytt lydvolum:
+Nytt musikkvolum:
+Endre byggeprosjekt på ordentlig?
+Endre forskningsprosjekt virkelig?
+################################# Meldinger
+Forbedring kan ikke bygges her.
+Enheten kan ikke utføre kommandoen.
+Forbedring finnes allerede.
+Maksimalt antall byer er nådd, ingen flere byer kan bygges.
+Enheten har ikke flere bevegelsespoeng.
+Teknologien for forbedringen mangler.
+Er gjeldende status.
+Kan ikke foreslås i krig.
+Krigserklæring med ikke-angrepspakt umulig.
+Allerede okkupert av en by.
+Spillstatus er ødelagt eller ikke kompatibel med denne versjonen av spillet.
+Enheten kan ikke oppgraderes.
+Enheten befinner seg ikke på eget territorium.
+Forbedret enhet vil være for stor for transportøren.
+Forbedret enhet ville ikke ha nok lasteplass.
+Lagring mislyktes.
+################################# Takksigelser
+Her er en liste over alle som har hjulpet meg med å utvikle dette spillet:
+
+
+################################# ting
+Innbyggere:
+Mat:
+Produksjon:
+Penger:
+Kunnskap:
+Korrupsjon:
+Byggeprosjekt:
+Byggetid:
+Liv:
+Bevegelsespoeng:
+Erfaring:
+Sysselsetting:
+Angrep:
+Forsvar:
+Rang:
+Ingen
+Runde:
+Penger:
+Forskningstid:
+Forskningsprosjekt:
+Arbeidere tilgjengelig:
+Nødvendig for:
+Byggekostnader:
+Last:
+Hjem:
+Permanent matkostnad:
+Permanent pengekostnad:
+Permanente produksjonskostnader:
+Koordinater:
+Permanent matbonus:
+Permanent produksjonsbonus:
+Permanent pengebonus:
+Permanent kunnskapsbonus:
+Permanent forsvarsbonus:
+Permanent angrepsbonus:
+Bygninger:
+Enheter:
+Tom
+Ja
+Ingen
+Med
+Fred
+Ikke-angrepspakt
+Krig
+Kampverdier:
+Transportkapasitet:
+Transportørstørrelse:
+Kan lastes på:
+Små transportører
+Mellomstore transportører
+Store transportører
+Gigantiske transportører
+Gigantiske transportører
+By
+Enhet
+################################# Byordrer
+Bykart
+Bygge
+Selg
+Gi nytt navn
+Oppløs
+Avslutt
+################################# Lastetider
+Spillverdenen er generert
+Generere generelt:
+Genererer kystvann:
+Generere landskap:
+Generere undergrunnen:
+Generere elver:
+Generere ressurser:
+Plasser arter:
+Beregne
+Beregne enheter:
+Beregne byer:
+Beregn forskning:
+Beregn diplomati:
+Beregn mellom runder
+Lagre/Last inn
+################################# Opptatt
+Arbeidsledig
+a
+Bygge vei
+a
+Bygge jernbane
+a
+Bygge tunnel
+a
+Bygge gruve
+a
+Bygge gård
+a
+Bygge festning
+a
+Plante skog
+a
+rydde/tørke
+a
+Fjerne effekt
+a
+Helbreder
+a
+Fester
+a

@@ -1,0 +1,163 @@
+Número de pontuações automáticas?
+Cancelar a ocupação atual?
+Substituir o melhoramento do terreno?
+Desmantelar realmente uma unidade?
+Demolir edifícios a sério?
+Declarar guerra a sério?
+Saquear realmente o melhoramento do terreno?
+O que deve ser construído?
+O que é que deve ser pesquisado?
+Já existe uma partitura com este nome. Substituí-la?
+Introduza um tamanho do eixo Y entre 20x20 e 1.000x1.000:
+Introduzir o nome da pontuação:
+Número de rondas até à gravação automática?
+Introduza o tamanho do eixo X entre 20x20 e 1.000x1.000:
+Nova chave?
+Demolir realmente a cidade?
+Com que espécies é que querem entrar em diplomacia?
+Ganhou, ainda quer continuar a jogar?
+Em que nível?
+Em que posição Y?
+Que posição X?
+Nova largura de resolução:
+Nova resolução de altura:
+Nova taxa de fotogramas:
+Como é que a cidade se deve chamar?
+Diâmetro da camada de gelo:
+Altura mínima das massas de terra:
+Altura máxima das massas de terra:
+Largura mínima das massas de terra:
+Largura máxima das massas de terra:
+Substituir o jogador pela IA?
+Qual o edifício a demolir?
+Apagar realmente a pontuação?
+Introduzir nomes de cidades:
+Novo volume de som:
+Novo volume de música:
+Mudar mesmo o projeto de construção?
+Mudar mesmo o projeto de investigação?
+################################# Mensagens
+A melhoria não pode ser construída aqui.
+A unidade não pode executar o comando.
+O melhoramento já existe.
+Número máximo de cidades atingido, não é possível construir mais cidades.
+A unidade não tem mais pontos de movimento.
+A tecnologia para o melhoramento está em falta.
+É o estado atual.
+Não pode ser proposto em guerra.
+Declaração de guerra com pacto de não agressão impossível.
+Já ocupado por uma cidade.
+O estado do jogo está corrompido ou não é compatível com esta versão do jogo.
+A unidade não pode ser actualizada.
+A unidade não se encontra no seu próprio território.
+A unidade melhorada seria demasiado grande para o transportador.
+A unidade melhorada não tem espaço de carga suficiente.
+A gravação falhou.
+################################# Agradecimentos
+Aqui está uma lista de todas as pessoas que me ajudaram a desenvolver este jogo:
+
+
+################################# Coisas
+Habitantes:
+Alimentação:
+Produção:
+Dinheiro:
+Conhecimento:
+Corrupção:
+Projeto de construção:
+Tempo de construção:
+Vida:
+Pontos de movimento:
+Experiência:
+Emprego:
+Ataque:
+Defesa:
+Posição:
+Nenhum
+Ronda:
+Dinheiro:
+Tempo de pesquisa:
+Projeto de investigação:
+Trabalhadores disponíveis:
+Necessário para:
+Custo de construção:
+Carga:
+Casa:
+Custo de alimentação permanente:
+Custo de dinheiro permanente:
+Custo de produção permanente:
+Coordenadas:
+Bónus alimentar permanente:
+Bónus de produção permanente:
+Bónus de dinheiro permanente:
+Bónus permanente de conhecimento:
+Bónus de defesa permanente:
+Bónus de ataque permanente:
+Edifícios:
+Unidades:
+Vazio
+Sim
+Não
+Com
+Paz
+Pacto de não agressão
+Guerra
+Valores de combate:
+Capacidade de transporte:
+Tamanho do transportador:
+Pode ser carregado em:
+Transportadores pequenos
+Transportadores médios
+Transportadores grandes
+Transportadores gigantes
+Transportadores gigantes
+Cidade
+Unidade
+################################# Ordens da cidade
+Mapa da cidade
+Construir
+Vender
+Renomear
+Dissolver
+Sair
+################################# Tempos de carregamento
+O mundo do jogo é gerado
+Gerar geral:
+Gerar águas costeiras:
+Gerar paisagem:
+Gerar sub-superfície:
+Gerar rios:
+Gerar Recursos:
+Colocar espécies:
+Calcular
+Calcular unidades:
+Calcular cidades:
+Calcular pesquisa:
+Calcular diplomacia:
+Calcular entre rondas
+Guardar/Carregar
+################################# Ocupado
+Desempregado
+a
+Construir estrada
+a
+Construir comboio
+a
+Construir túnel
+a
+Construir mina
+a
+Construir fazenda
+a
+Construir fortaleza
+a
+Plantar floresta
+a
+limpar/secar
+a
+Remover efeito
+a
+Cura
+a
+Anexa
+a

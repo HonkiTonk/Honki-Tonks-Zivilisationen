@@ -1,0 +1,276 @@
+Menu główne
+Nowa gra
+Szybki start
+Wczytaj grę
+Opcje
+Redakcja
+Docenianie
+~3~
+#################################
+Menu gry
+Następny
+Zapisz
+Wczytaj
+Opcje
+~2~
+~3~
+#################################
+Opcje
+Grafika
+Dźwięk
+Sterowanie
+Inne
+~1~
+~2~
+~3~
+#################################
+Menu grafiki
+Zmiana rozdzielczości
+Pełny ekran
+VSync
+Zmiana liczby klatek na sekundę
+Warstwy widoczne poniżej
+Pokaż liczbę klatek na sekundę
+Zapisz
+~1~
+~2~
+~3~
+#################################
+Menu dźwięku
+Głośność dźwięku
+Głośność muzyki
+~1~
+~2~
+~3~
+#################################
+Kontrola
+Ogólne
+Przewiń na północ
+Przewiń na zachód
+Przewiń na południe
+Przewiń na wschód
+Przewiń na północny zachód
+Przewiń na północny wschód
+Przewiń na południowy zachód
+Przewiń na południowy wschód
+Przewiń poziom w górę
+Przewiń poziom w dół
+Menu badań
+Menu dyplomacji
+Wyszukaj miasto
+Następne miasto
+Następne miasto z wiadomością
+Następna jednostka
+Następna jednostka z wiadomością
+Następna jednostka z punktami ruchu
+Następna jednostka bez punktów ruchu
+Idź do
+Koniec rundy
+Anuluj
+Jednostki
+Ruch na północ
+Ruch na zachód
+Przesuń na południe
+Przesuń na wschód
+Przesuń na północny zachód
+Północny wschód
+Południowy zachód
+Południowy wschód
+Przesunięcie o poziom w górę
+Przesuń o poziom w dół
+Budowa miasta
+Zbuduj/ulepsz drogę
+Zbuduj/ulepsz kopalnię
+Zbuduj/ulepsz farmę
+Zbuduj/ulepsz fortecę
+Ponowne zalesianie
+Wyczyść/osusz
+Usuń efekt
+Uzdrowienie
+Okopywanie
+Łup
+Rozpuszczanie
+Ulepszenie
+Zmiana miasta rodzinnego
+Rozładuj
+Odznacz
+Miasto
+Mapa miasta
+Budować
+Sprzedaż
+Zmień nazwę
+Rozwiązanie
+Wyjście
+Zapisz
+~4~
+~1~
+~2~
+~3~
+#################################
+Ustawienia gry
+Liczba automatycznych wyników
+Rundy do automatycznego zapisania
+Zmiana języka
+~1~
+~2~
+~3~
+#################################
+Wybierz rozmiar mapy:
+Mały
+Mała
+Średni
+Prostokąt
+Duży prostokąt
+Duży
+Ogromny
+Gigantyczny
+Absurdalny
+Niestandardowy
+Losowy rozmiar predefiniowany
+Losowy, nieokreślony wcześniej rozmiar
+~5~
+Bieżący rozmiar:
+Nowy rozmiar:
+#################################
+Wybierz typ mapy:
+Wyspy
+Kontynenty
+Pangaea
+Niestandardowa
+Losowy predefiniowany typ mapy
+Losowy, nie predefiniowany typ mapy
+~4~
+~5~
+#################################
+Wybór temperatury mapy:
+Zimna
+Umiarkowana
+Gorąca
+Epoka lodowcowa
+Pustynia
+~6~
+~5~
+#################################
+Wybierz gatunek:
+Ludzie
+Kasrodiah
+Lasupin
+Lamustra
+Manuky
+Suroka
+Pryolon
+Moru Phisihl
+Larinos Lotaris
+Carupex
+Alary
+Natries Zermanis
+Tridatus
+Senelari
+Aspari_2
+Ekropa
+Tesorahn
+Talbidahr
+~6~
+~5~
+#################################
+Ustaw poziom trudności:
+Łatwy
+Średni
+Trudny
+~6~
+~5~
+#################################
+Zmiana kształtu mapy:
+Warstwa powyżej
+Warstwa poniżej
+Północ
+Południe
+Zachód
+Wschód
+~6~
+~4~
+~5~
+Brak przejścia
+Przejście
+Przejście z przesunięciem do tyłu
+Przejście z przesunięciem
+#################################
+Wybierz istniejący zestaw zasobów:
+Ramię
+Małe
+Średni
+Dużo
+Dużo
+~6~
+~5~
+#################################
+Dyplomacja:
+Wymiana kart
+Rzut z własnego terytorium
+Pakt o nieagresji
+Deklaracja pokoju
+Wypowiedzenie wojny
+~1~
+Wyjście z menu
+Aktualna opinia:
+Obecny stan:
+#################################
+Ustawienia
+Słupy mapy
+Rozmiar mapy
+Typ mapy
+Kształt mapy
+Temperatura mapy
+Zasoby mapy
+Wybór gatunków
+Poziom trudności
+~5~
+~2~
+~3~
+#################################
+Bieguny mapy
+Biegun północny
+Biegun południowy
+Biegun zachodni
+Biegun wschodni
+~6~
+~4~
+~5~
+#################################
+Menu tablicy wyników
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+Więcej
+Nowość
+Usuń
+~1~
+#################################
+Wybierz edytor:
+Edytor pól mapy
+Edytor jednostek
+Edytor budynków
+Edytor badań
+Edytor ulepszeń
+Wszystko w standardzie
+~1~
+~2~
+~3~
+#################################
+Menu handlowe:
+Karty handlowe
+Kup karty
+Sprzedaż kart
+Wymiana kontaktów
+Kupowanie kontaktów
+Sprzedaż kontaktów
+Dawanie pieniędzy
+Prośba o pieniądze
+Powrót

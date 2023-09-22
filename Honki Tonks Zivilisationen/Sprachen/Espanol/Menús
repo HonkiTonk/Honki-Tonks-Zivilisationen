@@ -1,0 +1,276 @@
+Menú principal
+Nuevo juego
+Inicio rápido
+Cargar juego
+Opciones
+Editores
+Agradecimientos
+~3~
+#################################
+Menú del juego
+Continuar
+Guardar
+Cargar
+Opciones
+~2~
+~3~
+#################################
+Opciones
+Gráficos
+Sonido
+Control
+Otros
+~1~
+~2~
+~3~
+#################################
+Menú Gráficos
+Cambiar resolución
+Pantalla completa
+VSync
+Cambiar la frecuencia de imagen
+Capas visibles abajo
+Mostrar velocidad de fotogramas
+Guardar
+~1~
+~2~
+~3~
+#################################
+Menú de sonido
+Volumen del sonido
+Volumen de la música
+~1~
+~2~
+~3~
+#################################
+Control
+General
+Desplazarse al norte
+Desplazarse al oeste
+Desplazarse al sur
+Desplazamiento este
+Scroll noroeste
+Desplazamiento noreste
+Desplazamiento suroeste
+Desplazamiento sudeste
+Subir nivel
+Bajar nivel
+Menú Investigación
+Menú Diplomacia
+Buscar ciudad
+Siguiente ciudad
+Siguiente ciudad con mensaje
+Siguiente unidad
+Siguiente unidad con mensaje
+Siguiente unidad con puntos de movimiento
+Siguiente unidad sin puntos de movimiento
+Ir a
+Finalizar ronda
+Cancelar
+Unidades
+Mover al norte
+Mover al oeste
+Mover al sur
+Mover al este
+Mover al noroeste
+Mover al noreste
+Mover al suroeste
+Mover al sureste
+Subir de nivel
+Bajar de nivel
+Construir ciudad
+Construir/mejorar carretera
+Construir/mejorar mina
+Construir/mejorar granja
+Construir/mejorar fortaleza
+Reforestar
+Limpiar/Secar
+Eliminar efecto
+Curar
+Atrincherarse
+Botín
+Disolver
+Mejorar
+Cambiar de ciudad natal
+Descargar
+Deseleccionar
+Ciudad
+Mapa de la ciudad
+Construir
+Vender
+Cambiar nombre
+Disolver
+Salir de
+Guardar
+~4~
+~1~
+~2~
+~3~
+#################################
+Ajustes del juego
+Número de puntuaciones automáticas
+Rondas a autoguardar
+Cambiar idioma
+~1~
+~2~
+~3~
+#################################
+Seleccione el tamaño de la tarjeta:
+Pequeña
+Pequeña
+Mediana
+Rectángulo
+Rectángulo grande
+Grande
+Enorme
+Gigantesco
+Absurdo
+Personalizado
+Tamaño predefinido aleatorio
+Tamaño aleatorio no predefinido
+~5~
+Talla actual:
+Nuevo tamaño:
+#################################
+Seleccione el tipo de mapa:
+Islas
+Continentes
+Pangea
+Personalizado
+Tipo de mapa predefinido aleatorio
+Tipo de mapa aleatorio no predefinido
+~4~
+~5~
+#################################
+Seleccione la temperatura de la tarjeta:
+Fría
+Moderada
+Caliente
+Glacial
+Desierto
+~6~
+~5~
+#################################
+Elige especie:
+Humanos
+Kasrodiah
+Lasupin
+Lamustra
+Manuky
+Suroka
+Pryolon
+Moru Phisihl
+Larinos Lotaris
+Carupex
+Alary
+Natries Zermanis
+Tridatus
+Senelari
+Aspari_2
+Ekropa
+Tesorahn
+Talbidahr
+~6~
+~5~
+#################################
+Establece el nivel de dificultad:
+Fácil
+Medio
+Difícil
+~6~
+~5~
+#################################
+Cambiar la forma del mapa:
+Capa superior
+Capa inferior
+Norte
+Sur
+Oeste
+Este
+~6~
+~4~
+~5~
+Sin transición
+Transición
+Transición hacia atrás desplazada
+Transición desplazada
+#################################
+Seleccione la cantidad de recursos disponibles:
+Pobre
+Poco
+Medio
+Mucho
+Abundancia
+~6~
+~5~
+#################################
+Diplomacia:
+Intercambiar cartas
+Echar desde el propio territorio
+Pacto de no agresión
+Declarar la paz
+Declarar la guerra
+~1~
+Menú de salida
+Opinión actual:
+Estado actual:
+#################################
+Ajustes
+Postes del mapa
+Tamaño del mapa
+Tipo de mapa
+Forma del mapa
+Temperatura del mapa
+Recursos del mapa
+Selección de especies
+Nivel de dificultad
+~5~
+~2~
+~3~
+#################################
+Mapa polos
+Polo Norte
+Polo Sur
+Polo Oeste
+Polo Este
+~6~
+~4~
+~5~
+#################################
+Menú Marcador
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+Más
+Nuevo
+Borrar
+~1~
+#################################
+Seleccione el editor:
+Editor de campos de mapa
+Editor de unidades
+Editor de edificios
+Editor de investigación
+Editor de mejoras
+Todo de serie
+~1~
+~2~
+~3~
+#################################
+Menú Comercio:
+Intercambiar cartas
+Comprar cartas
+Vender tarjetas
+Intercambiar contactos
+Comprar contactos
+Vender contactos
+Dar dinero
+Pedir dinero
+Volver

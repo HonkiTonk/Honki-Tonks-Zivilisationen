@@ -56,38 +56,34 @@ package ChangelogSeptember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (22.09.2023):
+   -- Version 0.05.4295 => 0.05. (22.09.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (21.09.2023):
+   -- Version 0.05.4275 => 0.05.4295 (21.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (20.09.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Übersetzungen erstellt.
    
    
 
-   -- Version 0.05. => 0.05. (19.09.2023):
+   -- Version 0.05.4255 => 0.05.4275 (20.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Übersetzungen erstellt.
    
    
 
-   -- Version 0.05.4215 => 0.05. (18.09.2023):
+   -- Version 0.05.4235 => 0.05.4255 (19.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Übersetzungen erstellt.
+   
+   
+
+   -- Version 0.05.4215 => 0.05.4235 (18.09.2023):
+   
+   -- Neue Übersetzungen erstellt.
    
    
 

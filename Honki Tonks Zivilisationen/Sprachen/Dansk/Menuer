@@ -1,0 +1,276 @@
+Hovedmenu
+Nyt spil
+Hurtig start
+Indlæs spil
+Indstillinger
+Redaktører
+Værdsættelser
+~3~
+#################################
+Spil-menu
+Fortsæt
+Gem
+Indlæs
+Indstillinger
+~2~
+~3~
+#################################
+Muligheder
+Grafik
+Lyd
+Kontrol
+Andet
+~1~
+~2~
+~3~
+#################################
+Grafik-menu
+Skift opløsning
+Fuld skærm
+VSync
+Skift billedhastighed
+Lag synlige nedenfor
+Vis billedhastighed
+Gem
+~1~
+~2~
+~3~
+#################################
+Lydmenu
+Lydstyrke for lyd
+Lydstyrke for musik
+~1~
+~2~
+~3~
+#################################
+Kontrol
+Generelt
+Rul mod nord
+Rul mod vest
+Rul mod syd
+Rul mod øst
+Rulle nordvest
+Rulle nordøst
+Rulle sydvest
+Rul mod sydøst
+Rul op i niveau
+Rul ned ad niveau
+Forskning-menu
+Diplomacy-menu
+Søg by
+Næste by
+Næste by med besked
+Næste enhed
+Næste enhed med besked
+Næste enhed med bevægelsespoint
+Næste enhed uden bevægelsespoint
+Gå til
+Afslut runde
+Annuller
+Enheder
+Flyt mod nord
+Flyt mod vest
+Flyt mod syd
+Flyt mod øst
+Flyt nordvest
+Flyt mod nordøst
+Flyt mod sydvest
+Flyt mod sydøst
+Flyt niveau op
+Flyt niveau ned
+Byg en by
+Byg/forbedr vej
+Byg/forbedr mine
+Byg/forbedr gård
+Byg/forbedre fæstning
+Genplant skov
+Rydde/tørre
+Fjern effekt
+Heal
+Skanse
+Plyndring
+Opløs
+Forbedre
+Skift hjemby
+Aflæs
+Fravælg
+By
+Bykort
+Byg
+Sælg
+Omdøb
+Opløs
+Afslut
+Gem
+~4~
+~1~
+~2~
+~3~
+#################################
+Indstillinger for spillet
+Antal automatiske scoringer
+Runder til automatisk lagring
+Skift sprog
+~1~
+~2~
+~3~
+#################################
+Vælg kortstørrelse:
+Lille
+Lille
+Mellem
+Rektangel
+Stort rektangel
+Stort
+Kæmpe
+Gigantisk
+Absurd
+Brugerdefineret
+Tilfældig foruddefineret størrelse
+Tilfældig ikke-foruddefineret størrelse
+~5~
+Nuværende størrelse:
+Ny størrelse:
+#################################
+Vælg korttype:
+Øer
+Kontinenter
+Pangæa
+Brugerdefineret
+Tilfældig foruddefineret korttype
+Tilfældig ikke-foruddefineret korttype
+~4~
+~5~
+#################################
+Vælg kortets temperatur:
+Kold
+Moderat
+Varm
+Istid
+Ørken
+~6~
+~5~
+#################################
+Vælg art:
+Mennesker
+Kasrodiah
+Lasupin
+Lamustra
+Manuky
+Suroka
+Pryolon
+Moru Phisihl
+Larinos Lotaris
+Carupex
+Alary
+Natries Zermanis
+Tridatus
+Senelari
+Aspari_2
+Ekropa
+Tesorahn
+Talbidahr
+~6~
+~5~
+#################################
+Indstil sværhedsgrad:
+Let
+Mellem
+Svær
+~6~
+~5~
+#################################
+Skift kortets form:
+Lag øverst
+Lag under
+Nord
+Syd
+Vest
+Øst
+~6~
+~4~
+~5~
+Ingen overgang
+Overgang
+Forskudt baglæns overgang
+Forskudt overgang
+#################################
+Vælg den tilgængelige mængde ressourcer:
+Dårlig
+Lille
+Mellem
+Meget
+Overflod
+~6~
+~5~
+#################################
+Diplomati:
+Byt kort
+Kast fra eget territorium
+Ikke-angrebspagt
+Erklære fred
+Erklære krig
+~1~
+Exit-menu
+Nuværende udtalelse:
+Nuværende tilstand:
+#################################
+Indstillinger
+Kortpæle
+Kortstørrelse
+Korttype
+Kortets form
+Kortets temperatur
+Kortets ressourcer
+Valg af arter
+Sværhedsgrad
+~5~
+~2~
+~3~
+#################################
+Kortets poler
+Nordpolen
+Sydpolen
+Vestpolen
+Østpolen
+~6~
+~4~
+~5~
+#################################
+Menuen Resultattavle
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+äöü
+Mere
+Ny
+Slet
+~1~
+#################################
+Vælg editor:
+Kortfelt-editor
+Enheds-editor
+Bygningseditor
+Forskningseditor
+Forbedrings-editor
+Alt på standard
+~1~
+~2~
+~3~
+#################################
+Handelsmenu:
+Handel med kort
+Køb kort
+Sælg kort
+Udveksle kontakter
+Køb kontakter
+Sælge kontakter
+Give penge
+Bed om penge
+Tilbage

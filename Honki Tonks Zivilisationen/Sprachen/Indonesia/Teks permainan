@@ -1,0 +1,163 @@
+Jumlah skor otomatis?
+Membatalkan pekerjaan saat ini?
+Ganti perbaikan tanah?
+Benar-benar membubarkan unit?
+Benar-benar menghancurkan bangunan?
+Benar-benar mendeklarasikan perang?
+Benar-benar menjarah perbaikan tanah?
+Apa yang harus dibangun?
+Apa yang harus diteliti?
+Sudah ada skor dengan nama ini. Timpa saja?
+Masukkan ukuran sumbu Y antara 20x20 dan 1.000x1.000:
+Masukkan nama skor:
+Jumlah putaran hingga penyimpanan otomatis?
+Masukkan ukuran sumbu X antara 20x20 dan 1.000x1.000:
+Kunci baru?
+Benar-benar menghancurkan kota?
+Dengan spesies mana mereka ingin berdiplomasi?
+Anda sudah menang, apakah Anda masih ingin terus bermain?
+Level yang mana?
+Posisi Y yang mana?
+Posisi X yang mana?
+Lebar resolusi baru:
+Tinggi resolusi baru:
+Kecepatan bingkai baru:
+Apa nama kota itu seharusnya?
+Diameter lapisan es:
+Ketinggian minimum daratan:
+Ketinggian maksimum daratan:
+Lebar minimum daratan:
+Lebar maksimum daratan:
+Mengganti pemain dengan AI?
+Bangunan mana yang harus dihancurkan?
+Benar-benar menghapus skor?
+Masukkan nama kota:
+Volume suara baru:
+Volume musik baru:
+Benarkah mengubah proyek pembangunan?
+Benar-benar mengubah proyek penelitian?
+################################# Pesan
+Perbaikan tidak dapat dilakukan di sini.
+Unit tidak dapat menjalankan perintah.
+Perbaikan sudah ada.
+Jumlah kota maksimum tercapai, tidak ada lagi kota yang bisa dibangun.
+Unit tidak memiliki titik pergerakan lagi.
+Teknologi untuk peningkatan tidak ada.
+Adalah status saat ini.
+Tidak dapat diusulkan dalam perang.
+Deklarasi perang dengan pakta non-agresi tidak mungkin.
+Sudah ditempati oleh sebuah kota.
+Status permainan rusak atau tidak kompatibel dengan versi permainan ini.
+Unit tidak dapat ditingkatkan.
+Unit tidak berada di wilayah sendiri.
+Unit yang ditingkatkan akan terlalu besar untuk transporter.
+Unit yang ditingkatkan tidak memiliki ruang kargo yang cukup.
+Penyimpanan gagal.
+################################# Ucapan Terima Kasih
+Berikut adalah daftar semua orang yang telah membantu saya mengembangkan game ini:
+
+
+################################# stuff
+Penduduk:
+Makanan:
+Produksi:
+Uang:
+Pengetahuan:
+Korupsi:
+Proyek konstruksi:
+Waktu konstruksi:
+Kehidupan:
+Poin pergerakan:
+Pengalaman:
+Pekerjaan:
+Serangan:
+Pertahanan:
+Pangkat:
+Tidak ada
+Putaran:
+Uang
+Waktu Penelitian:
+Proyek Penelitian:
+Pekerja yang tersedia:
+Dibutuhkan untuk:
+Biaya konstruksi:
+Kargo:
+Rumah
+Biaya makanan permanen:
+Biaya uang permanen:
+Biaya produksi permanen:
+Koordinat:
+Bonus makanan permanen:
+Bonus produksi permanen:
+Bonus uang permanen:
+Bonus pengetahuan permanen:
+Bonus pertahanan permanen:
+Bonus serangan permanen:
+Bangunan:
+Unit:
+Kosong
+Ya
+Tidak
+Dengan
+Perdamaian
+Pakta non-agresi
+Perang
+Nilai-nilai tempur:
+Kapasitas Pengangkut:
+Ukuran Pengangkut:
+Dapat dimuat:
+Pengangkut kecil
+Pengangkut sedang
+Pengangkut besar
+Pengangkut raksasa
+Pengangkut Raksasa
+Kota
+Unit
+################################# Pesanan Kota
+Peta kota
+Membangun
+Jual
+Ganti nama
+Membubarkan
+Keluar
+################################# Waktu pemuatan
+Dunia permainan dibuat
+Hasilkan Umum:
+Menghasilkan air pantai:
+Hasilkan Lanskap:
+Hasilkan sub-permukaan:
+Menghasilkan Sungai:
+Hasilkan Sumber Daya:
+Tempatkan spesies:
+Menghitung
+Menghitung unit:
+Menghitung kota:
+Menghitung penelitian:
+Menghitung diplomasi:
+Menghitung di antara putaran
+Simpan/Muat
+################################# Pekerjaan
+Pengangguran
+a
+Membangun jalan
+a
+Membangun rel kereta api
+a
+Membangun terowongan
+a
+Membangun tambang
+a
+Membangun pertanian
+a
+Membangun benteng
+a
+Menanam hutan
+a
+membersihkan / mengeringkan
+a
+Menghilangkan efek
+a
+Menyembuhkan
+a
+Melekat
+a
