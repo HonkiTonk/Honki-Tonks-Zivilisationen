@@ -66,7 +66,7 @@ package EinheitenRecords is
       
       ID : EinheitenDatentypen.EinheitenID;
       KoordinatenAktuell : KartenRecords.AchsenKartenfeldNaturalRecord;
-      Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
+      Heimatstadt : StadtDatentypen.Städtebereich;
       
       Lebenspunkte : KampfDatentypen.Lebenspunkte;
       Bewegungspunkte : EinheitenDatentypen.BewegungspunkteVorhanden;

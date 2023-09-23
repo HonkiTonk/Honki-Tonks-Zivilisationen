@@ -82,7 +82,7 @@ package body LeseWichtiges is
    
    function AnzahlStädte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
    is begin
       
       return SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte;

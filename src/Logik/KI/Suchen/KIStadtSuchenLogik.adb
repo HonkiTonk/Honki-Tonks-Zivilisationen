@@ -37,13 +37,13 @@ package body KIStadtSuchenLogik is
    function StadtSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
    is
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
       use type KartenDatentypen.Ebene;
    begin
       
-      AktuelleStadt := StadtDatentypen.MaximaleStädteMitNullWert'First;
+      AktuelleStadt := StadtDatentypen.Städtebereich'First;
       
       StadtSchleife:
       for StadtSchleifenwert in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
@@ -54,7 +54,7 @@ package body KIStadtSuchenLogik is
             exit StadtSchleife;
             
          elsif
-           AktuelleStadt = StadtDatentypen.MaximaleStädteMitNullWert'First
+           AktuelleStadt = StadtDatentypen.Städtebereich'First
          then
             AktuelleStadt := StadtSchleifenwert;
             Stadtkoordinaten := LeseStadtGebaut.Koordinaten (StadtSpeziesNummerExtern => (SpeziesExtern, AktuelleStadt));

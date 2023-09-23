@@ -85,7 +85,6 @@ package body EingabenanzeigeGrafik is
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
 
       FrageViewfläche := (Textbreite, Textposition.y);
@@ -131,7 +130,6 @@ package body EingabenanzeigeGrafik is
                                                           PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
       Viewfläche := (Textbreite, Textposition.y);
@@ -169,7 +167,6 @@ package body EingabenanzeigeGrafik is
                                                           PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
       Viewfläche := (Textbreite, Textposition.y);
@@ -211,7 +208,6 @@ package body EingabenanzeigeGrafik is
                                                                              TextbreiteExtern => Textbreite);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
          
@@ -343,7 +339,6 @@ package body EingabenanzeigeGrafik is
             InteraktionAuswahl.PositionenEinheitStadt (AuswahlSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert));
             
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          end if;
          

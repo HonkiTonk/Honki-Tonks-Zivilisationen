@@ -44,7 +44,6 @@ package body ZusatztextDiplomatieGrafik is
                                                              PositionExtern   => Textposition);
       
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
       end loop TextSchleife;

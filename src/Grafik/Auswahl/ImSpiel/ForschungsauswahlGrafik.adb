@@ -94,7 +94,6 @@ package body ForschungsauswahlGrafik is
                                                                                            TextbreiteExtern => AktuelleTextbreite);
                
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               TextAccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert),
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
                InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert));
@@ -146,7 +145,6 @@ package body ForschungsauswahlGrafik is
                                                                     PositionExtern   => Textposition);
       
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
             AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
@@ -171,7 +169,6 @@ package body ForschungsauswahlGrafik is
                                                                        PositionExtern   => Textposition);
          
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                                            TextbreiteExtern => AktuelleTextbreite);
@@ -198,7 +195,6 @@ package body ForschungsauswahlGrafik is
                                                                     PositionExtern   => Textposition);
             
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                                         TextbreiteExtern => AktuelleTextbreite);
@@ -224,7 +220,6 @@ package body ForschungsauswahlGrafik is
                                                                     PositionExtern   => Textposition);
          
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                                         TextbreiteExtern => AktuelleTextbreite);
@@ -279,7 +274,6 @@ package body ForschungsauswahlGrafik is
                                                                     PositionExtern   => Textposition);
       
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, ZusatztextExtern),
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             
             Textposition.y := Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
@@ -334,7 +328,6 @@ package body ForschungsauswahlGrafik is
             AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AktuellesForschungsprojekt,
                                                                                         TextbreiteExtern => AktuelleTextbreite);
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.AktuellesForschungsprojekt,
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
             Forschungszeit := LeseWichtiges.VerbleibendeForschungszeit (SpeziesExtern => SpeziesExtern);
@@ -363,7 +356,6 @@ package body ForschungsauswahlGrafik is
       AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AktuellesForschungsprojekt,
                                                                                   TextbreiteExtern => AktuelleTextbreite);
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.AktuellesForschungsprojekt,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             
       Viewfläche (ViewKonstanten.ForschungsmenüAktuell) := (AktuelleTextbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);

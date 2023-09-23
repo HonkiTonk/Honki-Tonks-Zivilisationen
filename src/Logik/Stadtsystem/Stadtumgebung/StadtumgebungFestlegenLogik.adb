@@ -151,7 +151,7 @@ package body StadtumgebungFestlegenLogik is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
    begin
       
       GrundBelegbar := False;
@@ -208,7 +208,7 @@ package body StadtumgebungFestlegenLogik is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       GrößeAltExtern : in KartenDatentypen.UmgebungsbereichDrei)
    is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
    begin
       
       YAchseSchleife:

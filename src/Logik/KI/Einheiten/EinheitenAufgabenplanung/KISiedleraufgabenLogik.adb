@@ -71,7 +71,7 @@ package body KISiedleraufgabenLogik is
    procedure Kriegsaufgaben
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
    begin
       
       -- Hier später noch weitere Prüfungen einbauen, beispielsweise den Stadtplatz mit maximalster Entfernung zum Feind. äöü

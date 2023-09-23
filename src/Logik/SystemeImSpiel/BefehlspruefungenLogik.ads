@@ -59,7 +59,7 @@ private
 
    EinheitNummer : EinheitenDatentypen.Einheitenbereich;
    TransporterNummer : EinheitenDatentypen.Einheitenbereich;
-   StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
+   StadtNummer : StadtDatentypen.Städtebereich;
    
    -- Ist Integer um mit dem aktuellen Auswahlsystem zu funktionieren.
    AusgewählteEinheit : Integer;
@@ -67,7 +67,7 @@ private
       
    procedure EinheitOderStadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
+      StadtNummerExtern : in StadtDatentypen.Städtebereich;
       EinheitNummerExtern : in EinheitenDatentypen.Einheitenbereich)
      with
        Pre => (

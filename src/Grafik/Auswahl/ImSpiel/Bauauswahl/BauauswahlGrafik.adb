@@ -102,7 +102,6 @@ package body BauauswahlGrafik is
                                                                                                                                    AuswahlExtern    => Natural (AuswahlExtern)));
                                                                         
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
                Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
@@ -157,7 +156,6 @@ package body BauauswahlGrafik is
                                                                                                                                    AuswahlExtern    => Natural (AuswahlExtern)));
                
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               TextAccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
                Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
@@ -224,7 +222,6 @@ package body BauauswahlGrafik is
                                                                           TextbreiteExtern => Textbreite);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.AktuellesBauprojekt,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
       Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugVerbleibendeBauzeit) & BauauswahlExtern.Bauzeit'Wide_Wide_Image;
@@ -241,7 +238,6 @@ package body BauauswahlGrafik is
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AktuellesBauprojekt,
                                                                           TextbreiteExtern => Textbreite);
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.AktuellesBauprojekt,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
             
       ViewflächeAktuell := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);

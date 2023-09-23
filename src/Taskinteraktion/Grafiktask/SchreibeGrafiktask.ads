@@ -60,7 +60,7 @@ package SchreibeGrafiktask is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum);
    
    procedure Stadtnummer
-     (StadtnummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert);
+     (StadtnummerExtern : in StadtDatentypen.Städtebereich);
    
    procedure Einheitnummer
      (EinheitnummerExtern : in EinheitenDatentypen.Einheitenbereich);

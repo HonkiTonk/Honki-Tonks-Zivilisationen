@@ -26,7 +26,7 @@ private
 
    EinheitID : EinheitenDatentypen.EinheitenIDVorhanden;
 
-   Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
+   Heimatstadt : StadtDatentypen.Städtebereich;
 
    VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
 

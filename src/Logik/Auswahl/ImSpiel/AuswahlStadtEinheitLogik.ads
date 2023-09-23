@@ -9,13 +9,13 @@ with LeseSpeziesbelegung;
 
 package AuswahlStadtEinheitLogik is
    pragma Elaborate_Body;
-   use type StadtDatentypen.MaximaleStädteMitNullWert;
+   use type StadtDatentypen.Städtebereich;
    use type SpeziesDatentypen.Spieler_Enum;
    use type EinheitenDatentypen.Einheitenbereich;
    
    function AuswahlStadtEinheit
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      StadtnummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
+      StadtnummerExtern : in StadtDatentypen.Städtebereich;
       EinheitNummerExtern : in EinheitenDatentypen.EinheitenbereichVorhanden)
       return Integer
      with

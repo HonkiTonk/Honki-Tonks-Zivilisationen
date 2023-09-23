@@ -19,7 +19,7 @@ package LeseWeltkarte is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
    use type SpeziesDatentypen.Spezies_Enum;
-   use type StadtDatentypen.MaximaleStädteMitNullWert;
+   use type StadtDatentypen.Städtebereich;
    
    function Basisgrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

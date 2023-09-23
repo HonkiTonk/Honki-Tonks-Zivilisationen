@@ -175,7 +175,7 @@ package body EinheitenbewegungsbereichLogik is
    is
       use type SpeziesDatentypen.Spezies_Enum;
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
    begin
       
       if

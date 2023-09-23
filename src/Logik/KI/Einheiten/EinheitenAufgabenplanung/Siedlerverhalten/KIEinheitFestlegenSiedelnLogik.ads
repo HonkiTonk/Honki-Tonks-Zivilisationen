@@ -24,7 +24,7 @@ package KIEinheitFestlegenSiedelnLogik is
 
 private
 
-   AnzahlStädte : StadtDatentypen.MaximaleStädteMitNullWert;
+   AnzahlStädte : StadtDatentypen.Städtebereich;
 
    NeueStadtKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 

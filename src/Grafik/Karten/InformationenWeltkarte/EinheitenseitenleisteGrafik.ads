@@ -1,5 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with Sf.System.Vector3;
+
 private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
@@ -11,7 +13,6 @@ private with ProduktionDatentypen;
 private with KampfDatentypen;
 private with TextaccessVariablen;
 private with StadtDatentypen;
-private with GrafikRecordKonstanten;
 private with AufgabenDatentypen;
 private with KartenRecords;
 private with TextArrays;
@@ -25,30 +26,46 @@ package EinheitenseitenleisteGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    
-   procedure Einheiten
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+   function Einheiten
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      StadtVorhandenExtern : in Boolean)
+      TextpositionsinformationenExtern : in Sf.System.Vector3.sfVector3f)
+      return Sf.System.Vector3.sfVector3f
      with
        Pre => (
-                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+                 TextpositionsinformationenExtern.x > 0.00
                and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+                 TextpositionsinformationenExtern.y > 0.00
                and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
+                 TextpositionsinformationenExtern.z >= 0.00
+              ),
+   --            EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+   --         and
+   --           LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+   --         and
+   --           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+   --        ),
+         
+     Post => (
+                Einheiten'Result.x > 0.00
+              and
+                Einheiten'Result.y > 0.00
+              and
+                Einheiten'Result.z >= 0.00
+             );
    
-   
+                   
 private
    
    VolleInformation : Boolean;
    Beladen : Boolean;
+   NichtsZeichnen : Boolean;
    
    Beschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    
    IDEinheit : EinheitenDatentypen.EinheitenID;
    
-   Stadtnummer : StadtDatentypen.MaximaleStädteMitNullWert;
+   Stadtnummer : StadtDatentypen.Städtebereich;
    
    Ladungsnummer : EinheitenDatentypen.Einheitenbereich;
    
@@ -65,7 +82,6 @@ private
       
    EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Leerwert : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
    TextpositionDebug : Sf.System.Vector2.sfVector2f;
@@ -74,6 +90,8 @@ private
    Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
    FestzulegenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.EinheitenInformationenAccess'Range);
+   
+   procedure TextZeichnen;
    
    
    

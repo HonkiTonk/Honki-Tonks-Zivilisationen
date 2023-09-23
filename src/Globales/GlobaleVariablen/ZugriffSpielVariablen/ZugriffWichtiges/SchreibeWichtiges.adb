@@ -254,7 +254,7 @@ package body SchreibeWichtiges is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
    is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
    begin
       
       case
@@ -272,7 +272,7 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte = StadtDatentypen.MaximaleStädteMitNullWert'First
+              SpielVariablen.Wichtiges (SpeziesExtern).AnzahlStädte = StadtDatentypen.Städtebereich'First
             then
                Fehlermeldungssystem.Logik (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte: Minimum unterschritten");
                

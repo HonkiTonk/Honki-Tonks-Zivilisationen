@@ -41,7 +41,7 @@ private
    Startgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
    Zielgrund : KartengrundDatentypen.Basisgrund_Vorhanden_Enum;
    
-   Stadtgrenze : StadtDatentypen.MaximaleStädteMitNullWert;
+   Stadtgrenze : StadtDatentypen.Städtebereich;
    
    BewertungPosition : Positive;
    

@@ -36,7 +36,7 @@ package SpielRecords is
       -- Wenn ich ein Record für diese Variable hier anlege, dann könnten man die bereits investierte Forschung behalten. XXX
       Erforscht : ForschungenDatentypen.ErforschtArray;
       
-      AnzahlStädte : StadtDatentypen.MaximaleStädteMitNullWert;
+      AnzahlStädte : StadtDatentypen.Städtebereich;
       AnzahlArbeiter : EinheitenDatentypen.Einheitenbereich;
       AnzahlKämpfer : EinheitenDatentypen.Einheitenbereich;
       AnzahlSonstiges : EinheitenDatentypen.Einheitenbereich;
@@ -61,7 +61,7 @@ package SpielRecords is
    
    type GrenzenRecord is record
       
-      Städtegrenze : StadtDatentypen.MaximaleStädteMitNullWert;
+      Städtegrenze : StadtDatentypen.Städtebereich;
       Einheitengrenze : EinheitenDatentypen.EinheitenbereichVorhanden;
       Geldgrenze : ZahlenDatentypen.EigenesNatural;
       Forschungsgrenze : ProduktionDatentypen.Lagermenge;

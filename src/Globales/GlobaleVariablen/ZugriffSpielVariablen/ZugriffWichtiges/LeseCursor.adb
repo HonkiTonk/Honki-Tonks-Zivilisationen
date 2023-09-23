@@ -15,7 +15,7 @@ package body LeseCursor is
    
    function EAchseAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return KartenDatentypen.EbeneVorhanden
+      return KartenDatentypen.Ebene
    is begin
       
       return SpielVariablen.CursorImSpiel (SpeziesExtern).KoordinatenAktuell.EAchse;

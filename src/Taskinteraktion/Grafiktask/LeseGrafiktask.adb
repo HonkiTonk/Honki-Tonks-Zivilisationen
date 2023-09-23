@@ -153,7 +153,7 @@ package body LeseGrafiktask is
    
    
    function Stadtnummer
-     return StadtDatentypen.MaximaleStädteMitNullWert
+     return StadtDatentypen.Städtebereich
    is begin
       
       return Grafiktask.Aktuell.Stadtnummer;

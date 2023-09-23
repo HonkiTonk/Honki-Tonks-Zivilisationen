@@ -48,7 +48,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Heimatstadt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      HeimatstadtExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
+      HeimatstadtExtern : in StadtDatentypen.Städtebereich)
    is begin
       
       GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Heimatstadt := HeimatstadtExtern;
@@ -436,7 +436,7 @@ package body SchreibeEinheitenGebaut is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
+      StadtNummerExtern : in StadtDatentypen.Städtebereich)
    is begin
       
       Nullsetzung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);

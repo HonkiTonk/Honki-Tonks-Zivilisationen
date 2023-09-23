@@ -219,7 +219,7 @@ package body BewegungsplanLogik is
       StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
    begin
       
       if

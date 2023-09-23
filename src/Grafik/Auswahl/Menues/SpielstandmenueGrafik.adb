@@ -124,8 +124,8 @@ package body SpielstandmenueGrafik is
               := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SpielstandAccess (TextSchleifenwert));
          end if;
          
-         Textposition.y := TextberechnungenHoeheGrafik.KonstanteTextposition (PositionExtern   => Textposition.y,
-                                                                              ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
       end loop TextSchleife;
       

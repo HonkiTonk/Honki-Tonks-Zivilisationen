@@ -11,7 +11,7 @@ with LeseSpeziesbelegung;
 package LeseWichtiges is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type StadtDatentypen.MaximaleStädteMitNullWert;
+   use type StadtDatentypen.Städtebereich;
    use type EinheitenDatentypen.Einheitenbereich;
 
    function Geldmenge
@@ -80,7 +80,7 @@ package LeseWichtiges is
    
    function AnzahlStädte
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

@@ -30,7 +30,6 @@ package body ZusatztextSpeziesmenueGrafik is
                                                               PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesAnzeigen),
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
       return Textposition;

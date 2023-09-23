@@ -44,7 +44,6 @@ package body IntroGrafik is
                                                                  PositionExtern   => Textposition);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.IntroAccess (IntroSchleifenwert),

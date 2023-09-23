@@ -100,7 +100,6 @@ package body BauauswahlGebaeudeGrafik is
                                                                       FarbeExtern      => TextfarbeGrafik.Standardfarbe);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.GebäudebauinformationenAccess,
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudebauinformationenAccess,
@@ -154,7 +153,6 @@ package body BauauswahlGebaeudeGrafik is
                                                                     PositionExtern   => Textposition);
             
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
             ViewflächeBeschreibung := (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);

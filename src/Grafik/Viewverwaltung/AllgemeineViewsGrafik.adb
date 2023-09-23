@@ -52,7 +52,6 @@ package body AllgemeineViewsGrafik is
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
 
       Viewfläche (Überschrift_Enum) := (Textbreite, Textposition.y);
@@ -109,7 +108,6 @@ package body AllgemeineViewsGrafik is
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
 
       Viewfläche (Versionsnummer_Enum) := (Textbreite, Textposition.y);

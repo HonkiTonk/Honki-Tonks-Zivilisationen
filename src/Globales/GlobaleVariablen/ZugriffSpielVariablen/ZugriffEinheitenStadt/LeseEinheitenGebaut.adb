@@ -44,7 +44,7 @@ package body LeseEinheitenGebaut is
    
    function Heimatstadt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
    is begin
       
       return GebautVariablen.EinheitenGebaut (EinheitSpeziesNummerExtern.Spezies, EinheitSpeziesNummerExtern.Nummer).Heimatstadt;

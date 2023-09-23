@@ -212,7 +212,7 @@ package body LeseStadtGebaut is
       return Unbounded_Wide_Wide_String
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
    begin
       
       if

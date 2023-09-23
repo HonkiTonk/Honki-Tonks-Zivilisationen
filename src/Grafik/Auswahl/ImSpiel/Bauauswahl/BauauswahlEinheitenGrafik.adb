@@ -110,7 +110,6 @@ package body BauauswahlEinheitenGrafik is
                                                                       FarbeExtern      => TextfarbeGrafik.Standardfarbe);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.EinheitenbauinformationenAccess,
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenbauinformationenAccess,
@@ -157,7 +156,6 @@ package body BauauswahlEinheitenGrafik is
                                                               PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
       ViewflächeBeschreibung := (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);

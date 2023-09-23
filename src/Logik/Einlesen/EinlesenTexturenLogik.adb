@@ -121,13 +121,13 @@ package body EinlesenTexturenLogik is
                elsif
                  AktuelleZeile in Wege + 1 .. System
                then
-                  EingeleseneTexturenGrafik.SystemAccess (BefehleDatentypen.Befehlsknöpfe_Enum'Val (AktuelleZeile - Wege))
+                  EingeleseneTexturenGrafik.SystemAccess (BefehleDatentypen.Befehlsknöpfe_Enum'Val (AktuelleZeile - Wege - 1))
                     := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => VerzeichnisKonstanten.Grafik & "/" & Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
                   
                elsif
                  AktuelleZeile in System + 1 .. Hintergrund
                then
-                  EingeleseneTexturenGrafik.HintergrundAccess (GrafikDatentypen.Hintergrund_Enum'Val (AktuelleZeile - System))
+                  EingeleseneTexturenGrafik.HintergrundAccess (GrafikDatentypen.Hintergrund_Enum'Val (AktuelleZeile - System - 1))
                     := EinlesenAllgemeinesLogik.Texturenlimit (TexturenpfadExtern => VerzeichnisKonstanten.Grafik & "/" & Encode (Item => To_Wide_Wide_String (Source => Zwischenspeicher)));
                   
                else

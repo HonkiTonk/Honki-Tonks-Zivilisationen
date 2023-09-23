@@ -19,13 +19,13 @@ with KIDatentypen;
 package StadtKonstanten is
    pragma Elaborate_Body;
    
-   LeerNummer : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
+   LeerNummer : constant StadtDatentypen.Städtebereich := StadtDatentypen.Städtebereich'First;
    
    -- Wieso ist diese Recordkonstante hier und nicht bei den Recordkonstanten? äöü
    -- Weil es in RecordKonstanten auch ein LeerStadt gibt, welches aber den Stadtrecord darstellt. äöü
    LeerStadt : constant StadtRecords.SpeziesStadtnummerRecord := (SpeziesKonstanten.LeerSpezies, LeerNummer);
    
-   AnfangNummer : constant StadtDatentypen.MaximaleStädte := StadtDatentypen.MaximaleStädte'First;
+   AnfangNummer : constant StadtDatentypen.StädtebereichVorhanden := StadtDatentypen.StädtebereichVorhanden'First;
    
    LeerID : constant KartenverbesserungDatentypen.Verbesserung_Stadt_ID_Enum := KartenverbesserungDatentypen.Leer_Verbesserung_Enum;
    LeerEinwohner : constant StadtDatentypen.Einwohner := 0;

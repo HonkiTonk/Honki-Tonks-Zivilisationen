@@ -153,7 +153,7 @@ package body SchreibeGrafiktask is
    
    
    procedure Stadtnummer
-     (StadtnummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
+     (StadtnummerExtern : in StadtDatentypen.Städtebereich)
    is begin
       
       Grafiktask.Aktuell.Stadtnummer := StadtnummerExtern;

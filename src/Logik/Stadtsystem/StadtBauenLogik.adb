@@ -42,7 +42,7 @@ package body StadtBauenLogik is
       case
         StadtNummer
       is
-         when StadtDatentypen.MaximaleStädteMitNullWert'First =>
+         when StadtDatentypen.Städtebereich'First =>
             return False;
             
          when others =>
@@ -136,7 +136,7 @@ package body StadtBauenLogik is
    
    function StadtnummerErmitteln
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
    is begin
       
       StadtSchleife:
@@ -164,7 +164,7 @@ package body StadtBauenLogik is
             null;
       end case;
       
-      return StadtDatentypen.MaximaleStädteMitNullWert'First;
+      return StadtDatentypen.Städtebereich'First;
       
    end StadtnummerErmitteln;
    

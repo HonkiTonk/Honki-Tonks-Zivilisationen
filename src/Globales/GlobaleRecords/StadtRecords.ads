@@ -17,7 +17,7 @@ package StadtRecords is
    type SpeziesStadtnummerRecord is record
       
       Spezies : SpeziesDatentypen.Spezies_Enum;
-      Nummer : StadtDatentypen.MaximaleStädteMitNullWert;
+      Nummer : StadtDatentypen.Städtebereich;
       
    end record;
    
@@ -26,7 +26,7 @@ package StadtRecords is
    type SpeziesStadtnummerVorhandenRecord is record
       
       Spezies : SpeziesDatentypen.Spezies_Verwendet_Enum;
-      Nummer : StadtDatentypen.MaximaleStädte;
+      Nummer : StadtDatentypen.StädtebereichVorhanden;
       
    end record;
    
@@ -61,7 +61,7 @@ package StadtRecords is
    type StadtMeldungenArray is array (StadtDatentypen.Stadt_Meldung_Art_Enum'Range) of StadtDatentypen.Stadt_Meldung_Enum;
    type UmgebungBewirtschaftungArray is array (KartenDatentypen.UmgebungsbereichDrei'Range, KartenDatentypen.UmgebungsbereichDrei'Range) of Boolean;
    type PermanenteKostenArray is array (ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of ProduktionDatentypen.Stadtproduktion;
-   type WegeverbindungArray is array (StadtDatentypen.MaximaleStädte'Range) of Boolean;
+   type WegeverbindungArray is array (StadtDatentypen.StädtebereichVorhanden'Range) of Boolean;
 
    -- Es gibt noch keine Werte für Verschmutzung, weil das noch relativ neu ist. äöü
    -- Sollte man in Städte nur Verschmutzung haben oder sie wie bei den Waffen/Feldeffekten aufteilen? äöü

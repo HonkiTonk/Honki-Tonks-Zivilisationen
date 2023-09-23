@@ -9,7 +9,7 @@ package body KIStadtLaufendeBauprojekteLogik is
    function StadtLaufendeBauprojekte
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       BauprojektExtern : in StadtRecords.BauprojektRecord)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
    is
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
@@ -104,7 +104,7 @@ package body KIStadtLaufendeBauprojekteLogik is
       EinheitenImBau := EinheitenKonstanten.LeerNummer;
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtDatentypen.MaximaleStädte'First .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
+      for StadtSchleifenwert in StadtDatentypen.StädtebereichVorhanden'First .. LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern) loop
          
          if
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (SpeziesExtern, StadtSchleifenwert)) = StadtKonstanten.LeerID

@@ -42,6 +42,7 @@ package GrafikDatentypen is
       
    
    
+   -- Bei Änderungen hier muss auch immer die Reihenfolge der 0-Dateien in den Hintergründen angepasst werden!
    type Hintergrund_Enum is (
                              Intro_Hintergrund_Enum, Kartenformen_Enum,
                              

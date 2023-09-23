@@ -15,7 +15,7 @@ package Speziestexte is
    
    
    
-   type StädtenamenArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, StadtDatentypen.MaximaleStädte'Range) of Unbounded_Wide_Wide_String;
+   type StädtenamenArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range, StadtDatentypen.StädtebereichVorhanden'Range) of Unbounded_Wide_Wide_String;
    Städtenamen : StädtenamenArray := (others => (others => TextKonstanten.FehlenderText));
    
    

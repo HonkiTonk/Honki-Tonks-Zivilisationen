@@ -46,7 +46,6 @@ package body SpielmeldungenGrafik is
                                                           PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.Spielmeldung,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
       Viewfläche := (Textbreite, Textposition.y);

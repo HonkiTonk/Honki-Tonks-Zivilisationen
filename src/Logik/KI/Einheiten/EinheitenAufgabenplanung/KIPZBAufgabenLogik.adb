@@ -42,7 +42,7 @@ package body KIPZBAufgabenLogik is
    procedure Kriegsaufgaben
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
       use type EinheitenDatentypen.Einheitenbereich;
    begin
       

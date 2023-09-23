@@ -255,7 +255,7 @@ package body SpeichernLogik is
 
       end loop AnzahlStädteSchleife;
       
-      StadtDatentypen.MaximaleStädteMitNullWert'Write (Stream (File => DateiSpeichernExtern),
+      StadtDatentypen.Städtebereich'Write (Stream (File => DateiSpeichernExtern),
                                                         VorhandeneStädte);
       
       StadtSchleife:

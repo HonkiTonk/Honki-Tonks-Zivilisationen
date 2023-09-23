@@ -71,10 +71,10 @@ package body KILogik is
    procedure StädteDurchgehen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
    begin
       
-      Städtezeitwert := StadtDatentypen.MaximaleStädte (BasiszeitwertStädte (ZusatzwertExtern => Positive (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)),
+      Städtezeitwert := StadtDatentypen.StädtebereichVorhanden (BasiszeitwertStädte (ZusatzwertExtern => Positive (LeseGrenzen.Städtegrenzen (SpeziesExtern => SpeziesExtern)),
                                                                                 TeilerExtern     => 100));
       
       StadtSchleife:

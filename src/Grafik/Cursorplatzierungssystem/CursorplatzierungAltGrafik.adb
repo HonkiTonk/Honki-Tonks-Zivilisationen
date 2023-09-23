@@ -76,6 +76,16 @@ package body CursorplatzierungAltGrafik is
       EinheitenkoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
    is begin
       
+      case
+        LeseCursor.EAchseAktuell (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return;
+            
+         when others =>
+            null;
+      end case;
+      
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                  view         => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte));

@@ -50,7 +50,6 @@ package body StadtbefehleGrafik is
          InteraktionAuswahl.PositionenStadtbefehle (PositionSchleifenwert) := Textbox;
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
       end loop PositionenSchleife;

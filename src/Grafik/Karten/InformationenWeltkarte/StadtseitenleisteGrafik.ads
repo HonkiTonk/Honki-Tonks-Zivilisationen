@@ -1,15 +1,13 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Graphics;
-with Sf.Graphics.Rect;
 with Sf.System.Vector2;
+with Sf.System.Vector3;
 
 with SpeziesDatentypen;
 with StadtRecords;
 with StadtKonstanten;
 with StadtGrafikRecords;
 
-private with GrafikRecordKonstanten;
 private with ProduktionDatentypen;
 private with TextaccessVariablen;
 private with TextArrays;
@@ -22,7 +20,6 @@ private with UmwandlungenAdaEigenes;
 package StadtseitenleisteGrafik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type Sf.Graphics.sfView_Ptr;
    
    procedure Stadtinformationen
      (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
@@ -33,41 +30,34 @@ package StadtseitenleisteGrafik is
                  StadtauswahlExtern.SpeziesNummer.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies)
               );
    
-   function Leer
-     (AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
-      ViewExtern : in Sf.Graphics.sfView_Ptr;
-      ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+   
+   
+   function Stadt
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
+      StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
+      TextpositionsinformationenExtern : in Sf.System.Vector3.sfVector3f)
+      return Sf.System.Vector3.sfVector3f
      with
        Pre => (
-                 ViewExtern /= null
+               --       LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               --     and
+               --        LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+               --      and
+               --       StadtauswahlExtern.SpeziesNummer.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies)
+                 TextpositionsinformationenExtern.x > 0.00
                and
-                 ViewflächeExtern.x >= 0.00
+                 TextpositionsinformationenExtern.y > 0.00
                and
-                 ViewflächeExtern.y >= 0.00
+                 TextpositionsinformationenExtern.z >= 0.00
               ),
          
        Post => (
-                  Leer'Result.x >= 0.00
+                  Stadt'Result.x > 0.00
                 and
-                  Leer'Result.y >= 0.00
+                  Stadt'Result.y > 0.00
+                and
+                  Stadt'Result.z >= 0.00
                );
-     
-   procedure Stadt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
-      AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
-      ViewExtern : in Sf.Graphics.sfView_Ptr)
-     with
-       Pre => (
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
-               and
-                 StadtauswahlExtern.SpeziesNummer.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies)
-               and
-                 ViewExtern /= null
-              );
    
 private
    
@@ -81,12 +71,13 @@ private
          
    Text : Unbounded_Wide_Wide_String;
    
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Zwischenfläche : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
    Mausposition : Sf.System.Vector2.sfVector2f;
       
    FestzulegenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.StadtInformationenAccess'Range);
+   
+   procedure TextZeichnen;
    
    
    

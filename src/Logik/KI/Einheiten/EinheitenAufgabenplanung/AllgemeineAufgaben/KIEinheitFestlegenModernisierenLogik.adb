@@ -53,7 +53,7 @@ package body KIEinheitFestlegenModernisierenLogik is
       end case;
       
       StadtSchleife:
-      for StadtSchleifenwert in StadtDatentypen.MaximaleStädte'Range loop
+      for StadtSchleifenwert in StadtDatentypen.StädtebereichVorhanden'Range loop
          
          case
            LeseStadtGebaut.ID (StadtSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, StadtSchleifenwert))

@@ -57,7 +57,7 @@ package LeseEinheitenGebaut is
    
    function Heimatstadt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)

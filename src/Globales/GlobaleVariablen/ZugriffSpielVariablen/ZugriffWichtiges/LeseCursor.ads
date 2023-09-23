@@ -27,7 +27,7 @@ package LeseCursor is
    
    function EAchseAktuell
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return KartenDatentypen.EbeneVorhanden
+      return KartenDatentypen.Ebene
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

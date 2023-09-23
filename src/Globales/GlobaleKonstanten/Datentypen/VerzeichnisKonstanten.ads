@@ -27,7 +27,6 @@ package VerzeichnisKonstanten is
    
    
    NullDatei : constant String (1 .. 2) := "/0";
-   EinsDatei : constant String (1 .. 2) := "/1";
    ZweiDatei : constant String (1 .. 2) := "/2";
    
    

@@ -1,12 +1,10 @@
 with Spieltexte;
 with TextnummernKonstanten;
-with Views;
-with GrafikDatentypen;
 with TextKonstanten;
 with ForschungKonstanten;
-with ViewKonstanten;
 with GrafikKonstanten;
 with ProduktionKonstanten;
+with KartenKonstanten;
 
 with LeseWichtiges;
 with LeseGrenzen;
@@ -16,33 +14,29 @@ with ForschungsbeschreibungenGrafik;
 with TextaccessverwaltungssystemGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
-with HintergrundGrafik;
-with ViewsEinstellenGrafik;
 
 package body WichtigesSeitenleisteGrafik is
 
-   procedure WichtigesInformationen
+   function WichtigesInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Sf.System.Vector3.sfVector3f
    is begin
-            
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltWichtiges).width,
-                                                                                              GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltWichtiges).height));
-      
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccesse (ViewKonstanten.WeltWichtiges),
-                                            GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltWichtiges));
-      
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                     AbmessungenExtern => Viewfläche);
       
       Textbreite := GrafikKonstanten.Nullwert;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      FestzulegenderText (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & "," & KoordinatenExtern.YAchse'Wide_Wide_Image
-        & "," & KoordinatenExtern.XAchse'Wide_Wide_Image;
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            FestzulegenderText (1) := TextKonstanten.LeerUnboundedString;
+            
+         when others =>
+            FestzulegenderText (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & ","
+              & KoordinatenExtern.YAchse'Wide_Wide_Image & "," & KoordinatenExtern.XAchse'Wide_Wide_Image;
+      end case;
       
       FestzulegenderText (2) := Rundenanzahl (SpeziesExtern => SpeziesExtern);
       
@@ -58,13 +52,16 @@ package body WichtigesSeitenleisteGrafik is
                   
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);
+         
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
       end loop TextSchleife;
+         
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-      Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+      return (Textposition.x, Textposition.y, Textbreite);
             
    end WichtigesInformationen;
    
@@ -151,7 +148,7 @@ package body WichtigesSeitenleisteGrafik is
         Forschungsprojekt
       is
          when ForschungKonstanten.LeerForschung =>
-            return TextKonstanten.LeerUnboundedString;
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & Spieltexte.Zeug (TextnummernKonstanten.ZeugKeines);
             
          when others =>
             Forschungszeit := LeseWichtiges.VerbleibendeForschungszeit (SpeziesExtern => SpeziesExtern);
@@ -162,15 +159,15 @@ package body WichtigesSeitenleisteGrafik is
       is
          when ProduktionDatentypen.Lagermenge'Last =>
             return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Forschungsprojekt,
-                                                                                                                                                                                SpeziesExtern => SpeziesExtern)
+                                                                                                                                                                             SpeziesExtern => SpeziesExtern)
               & TextKonstanten.UnendlichGeklammert;
             
          when others =>
             return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Forschungsprojekt,
-                                                                                                                                                                                SpeziesExtern => SpeziesExtern)
+                                                                                                                                                                             SpeziesExtern => SpeziesExtern)
               & " (" & ZahlAlsStringKostenLager (ZahlExtern => Forschungszeit) & ")";
       end case;
-            
+      
    end Forschung;
 
 end WichtigesSeitenleisteGrafik;

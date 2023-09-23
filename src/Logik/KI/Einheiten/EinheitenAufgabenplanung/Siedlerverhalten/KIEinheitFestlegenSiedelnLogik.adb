@@ -18,7 +18,7 @@ package body KIEinheitFestlegenSiedelnLogik is
       return Boolean
    is
       use type KartenRecords.AchsenKartenfeldNaturalRecord;
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
    begin
       
       AnzahlStädte := LeseWichtiges.AnzahlStädte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies);

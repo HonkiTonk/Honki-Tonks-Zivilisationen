@@ -14,7 +14,7 @@ package body StadtSuchenLogik is
    function KoordinatenStadtMitSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin

@@ -92,7 +92,7 @@ package body EinheitenmodifizierungLogik is
       case
         Heimatstadt
       is
-         when StadtDatentypen.MaximaleStädteMitNullWert'First =>
+         when StadtDatentypen.Städtebereich'First =>
             return;
             
          when others =>
@@ -129,7 +129,7 @@ package body EinheitenmodifizierungLogik is
    procedure HeimatstadtÄndern
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
    is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       

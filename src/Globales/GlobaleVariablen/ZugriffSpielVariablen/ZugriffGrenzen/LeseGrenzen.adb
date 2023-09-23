@@ -4,7 +4,7 @@ package body LeseGrenzen is
 
    function Städtegrenzen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
    is begin
       
       return SpielVariablen.Grenzen (SpeziesExtern).Städtegrenze;

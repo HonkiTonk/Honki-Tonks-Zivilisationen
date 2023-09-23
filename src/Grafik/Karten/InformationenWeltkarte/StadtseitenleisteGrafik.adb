@@ -3,18 +3,13 @@ with StadtDatentypen;
 with Spieltexte;
 with TextnummernKonstanten;
 with TextKonstanten;
-with Views;
-with GrafikDatentypen;
-with ViewKonstanten;
-with GrafikKonstanten;
 with ProduktionKonstanten;
 with Projekteinstellungen;
 with SystemDatentypen;
+with SpeziesKonstanten;
 
 with KampfwerteStadtErmittelnLogik;
 with TextberechnungenHoeheGrafik;
-with HintergrundGrafik;
-with ViewsEinstellenGrafik;
 with GebaeudebeschreibungenGrafik;
 with EinheitenbeschreibungenGrafik;
 with TextberechnungenBreiteGrafik;
@@ -27,58 +22,42 @@ package body StadtseitenleisteGrafik is
      (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
    is begin
       
-      Stadt (SpeziesExtern        => StadtauswahlExtern.SpeziesNummer.Spezies,
-             StadtauswahlExtern   => StadtauswahlExtern,
-             AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen),
-             ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtInformationen));
+      null;
+      
+      -- Stadt (SpeziesExtern        => StadtauswahlExtern.SpeziesNummer.Spezies,
+      --        StadtauswahlExtern   => StadtauswahlExtern,
+      --       AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen),
+      --       ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtInformationen));
       
    end Stadtinformationen;
    
    
-   
-   -- Das Leeren kann nicht mit den anderen SeitenleistenLeeren zusammengelegt werden, da es einmal für die Weltkarte und einmal für die Stadtkarte verwendet wird.
-   function Leer
-     (AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
-      ViewExtern : in Sf.Graphics.sfView_Ptr;
-      ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
-   is begin
-      
-      Zwischenfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeExtern,
-                                                                            VerhältnisExtern => (AnzeigebereichExtern.width, AnzeigebereichExtern.height));
-      
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => ViewExtern,
-                                            GrößeExtern          => Zwischenfläche,
-                                            AnzeigebereichExtern => AnzeigebereichExtern);
-      
-      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                     AbmessungenExtern => Zwischenfläche);
-      
-      return Zwischenfläche;
-      
-   end Leer;
-   
-   
 
-   procedure Stadt
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+   function Stadt
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
-      AnzeigebereichExtern : in Sf.Graphics.Rect.sfFloatRect;
-      ViewExtern : in Sf.Graphics.sfView_Ptr)
+      TextpositionsinformationenExtern : in Sf.System.Vector3.sfVector3f)
+      return Sf.System.Vector3.sfVector3f
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
-                        
-      Viewfläche := Leer (AnzeigebereichExtern => AnzeigebereichExtern,
-                           ViewExtern           => ViewExtern,
-                           ViewflächeExtern     => Viewfläche);
       
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.x := TextpositionsinformationenExtern.x;
+      Textposition.y := TextpositionsinformationenExtern.y;
+      Textbreite := TextpositionsinformationenExtern.z;
       
-      Textbreite := GrafikKonstanten.Nullwert;
-      
-      FestzulegenderText (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & StadtauswahlExtern.EinwohnerArbeiter (1)'Wide_Wide_Image;
+      if
+        SpeziesExtern = SpeziesKonstanten.LeerSpezies
+        or
+          StadtauswahlExtern.SpeziesNummer.Spezies = SpeziesKonstanten.LeerSpezies
+      then
+         TextZeichnen;
+         
+         return (Textposition.x, Textposition.y, Textbreite);
+         
+      else
+         FestzulegenderText (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & StadtauswahlExtern.EinwohnerArbeiter (1)'Wide_Wide_Image;
+      end if;
       
       -- Volle Stadtinformationen, nur sichtbar wenn eigene Stadt oder durch Debug.
       if
@@ -94,7 +73,7 @@ package body StadtseitenleisteGrafik is
          FestzulegenderText (6) := Kampfwerte (StadtauswahlExtern => StadtauswahlExtern);
          FestzulegenderText (7) := Spieltexte.Zeug (TextnummernKonstanten.ZeugKorruption) & StadtauswahlExtern.Korruption'Wide_Wide_Image;
          FestzulegenderText (8) := Spieltexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & AllgemeineBerechnungen.FreieEinwohner (EinwohnerExtern => StadtauswahlExtern.EinwohnerArbeiter (1),
-                                                                                                                                               ArbeiterExtern  => StadtauswahlExtern.EinwohnerArbeiter (2))'Wide_Wide_Image;
+                                                                                                                                            ArbeiterExtern  => StadtauswahlExtern.EinwohnerArbeiter (2))'Wide_Wide_Image;
          FestzulegenderText (9) := AktuellesBauprojekt (SpeziesExtern    => StadtauswahlExtern.SpeziesNummer.Spezies,
                                                         BauprojektExtern => StadtauswahlExtern.Bauprojekt,
                                                         BauzeitExtern    => StadtauswahlExtern.Bauzeit);
@@ -104,6 +83,17 @@ package body StadtseitenleisteGrafik is
       else
          VolleInformation := False;
       end if;
+      
+      TextZeichnen;
+      
+      return (Textposition.x, Textposition.y, Textbreite);
+      
+   end Stadt;
+   
+   
+   
+   procedure TextZeichnen
+   is begin
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.StadtInformationenAccess'Range loop
@@ -119,20 +109,17 @@ package body StadtseitenleisteGrafik is
             TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
                                                                     TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
                                                                     PositionExtern   => Textposition);
-      
-            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
-                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                      
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert),
                                                                                 TextbreiteExtern => Textbreite);
          end if;
+      
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
       end loop TextSchleife;
       
-      Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-      
-   end Stadt;
+   end TextZeichnen;
    
    
    
@@ -168,11 +155,11 @@ package body StadtseitenleisteGrafik is
    is begin
                
       return Spieltexte.Zeug (TextnummernKonstanten.ZeugKampfwerte) & KampfwerteStadtErmittelnLogik.AktuellerAngriffStadt (IDExtern          => StadtauswahlExtern.ID,
-                                                                                                                              KoordinatenExtern => StadtauswahlExtern.Koordinaten,
-                                                                                                                              SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,
-                                                                                                                              GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden,
-                                                                                                                              EinwohnerExtern   => StadtauswahlExtern.EinwohnerArbeiter (1),
-                                                                                                                              TaskExtern        => SystemDatentypen.Grafik_Task_Enum)'Wide_Wide_Image
+                                                                                                                           KoordinatenExtern => StadtauswahlExtern.Koordinaten,
+                                                                                                                           SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,
+                                                                                                                           GebäudeExtern     => StadtauswahlExtern.GebäudeVorhanden,
+                                                                                                                           EinwohnerExtern   => StadtauswahlExtern.EinwohnerArbeiter (1),
+                                                                                                                           TaskExtern        => SystemDatentypen.Grafik_Task_Enum)'Wide_Wide_Image
         & " " & TextKonstanten.TrennzeichenUnterschiedlich & KampfwerteStadtErmittelnLogik.AktuelleVerteidigungStadt (IDExtern          => StadtauswahlExtern.ID,
                                                                                                                       KoordinatenExtern => StadtauswahlExtern.Koordinaten,
                                                                                                                       SpeziesExtern     => StadtauswahlExtern.SpeziesNummer.Spezies,

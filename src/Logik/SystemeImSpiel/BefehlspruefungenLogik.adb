@@ -28,7 +28,7 @@ package body BefehlspruefungenLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type EinheitenDatentypen.Einheitenbereich;
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
    begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
@@ -40,7 +40,7 @@ package body BefehlspruefungenLogik is
       if
         EinheitNummer /= EinheitenDatentypen.Einheitenbereich'First
         and
-          StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
+          StadtNummer /= StadtDatentypen.Städtebereich'First
       then
          -- Transporter sollten in der Stadt nicht beladen sein, deswegen es hier keine Prüfung auf Transporter braucht.
          case
@@ -60,7 +60,7 @@ package body BefehlspruefungenLogik is
          end case;
          
       elsif
-        StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
+        StadtNummer /= StadtDatentypen.Städtebereich'First
       then
          LeerRückgabewert := StadtEntfernenLogik.StadtAbreißen (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummer));
          
@@ -82,7 +82,7 @@ package body BefehlspruefungenLogik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
       use type EinheitenDatentypen.Einheitenbereich;
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
    begin
       
       EinheitNummer := EinheitSuchenLogik.KoordinatenEinheitMitSpeziesSuchen (SpeziesExtern     => SpeziesExtern,
@@ -95,7 +95,7 @@ package body BefehlspruefungenLogik is
       if
         EinheitNummer /= EinheitenDatentypen.Einheitenbereich'First
         and
-          StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
+          StadtNummer /= StadtDatentypen.Städtebereich'First
       then
          -- Transporter sollten in der Stadt nicht beladen sein, deswegen es hier keine Prüfung auf Transporter braucht.
          EinheitOderStadt (SpeziesExtern       => SpeziesExtern,
@@ -103,7 +103,7 @@ package body BefehlspruefungenLogik is
                            EinheitNummerExtern => EinheitNummer);
          
       elsif
-        StadtNummer /= StadtDatentypen.MaximaleStädteMitNullWert'First
+        StadtNummer /= StadtDatentypen.Städtebereich'First
       then
          StadtAktion (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummer));
          
@@ -141,13 +141,13 @@ package body BefehlspruefungenLogik is
       then
          TransporterNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
          AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                              StadtnummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
+                                                                              StadtnummerExtern   => StadtDatentypen.Städtebereich'First,
                                                                               EinheitNummerExtern => TransporterNummer);
 
       else
          TransporterNummer := EinheitSpeziesNummerExtern.Nummer;
          AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                              StadtnummerExtern   => StadtDatentypen.MaximaleStädteMitNullWert'First,
+                                                                              StadtnummerExtern   => StadtDatentypen.Städtebereich'First,
                                                                               EinheitNummerExtern => TransporterNummer);
       end if;
       
@@ -171,7 +171,7 @@ package body BefehlspruefungenLogik is
 
    procedure EinheitOderStadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert;
+      StadtNummerExtern : in StadtDatentypen.Städtebereich;
       EinheitNummerExtern : in EinheitenDatentypen.Einheitenbereich)
    is begin
       

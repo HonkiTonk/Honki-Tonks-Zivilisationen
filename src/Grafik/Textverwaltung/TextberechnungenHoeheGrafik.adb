@@ -28,25 +28,12 @@ package body TextberechnungenHoeheGrafik is
    
    function NeueTextposition
      (PositionExtern : in Float;
-      TextAccessExtern : in Sf.Graphics.sfText_Ptr;
-      ZusatzwertExtern : in Float)
-      return Float
-   is begin
-      
-      return PositionExtern + ZusatzwertExtern + Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).height;
-      
-   end NeueTextposition;
-   
-   
-   
-   function KonstanteTextposition
-     (PositionExtern : in Float;
       ZusatzwertExtern : in Float)
       return Float
    is begin
       
       return PositionExtern + ZusatzwertExtern + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.TexthöheAccess).height;
       
-   end KonstanteTextposition;
+   end NeueTextposition;
    
 end TextberechnungenHoeheGrafik;

@@ -58,7 +58,7 @@ private
    
    KIBeschäftigung : KIDatentypen.Einheit_Aufgabe_Enum;
    
-   Heimatstadt : StadtDatentypen.MaximaleStädteMitNullWert;
+   Heimatstadt : StadtDatentypen.Städtebereich;
    
    Heilungsrate : constant KampfDatentypen.LebenspunkteVorhanden := 10;
          

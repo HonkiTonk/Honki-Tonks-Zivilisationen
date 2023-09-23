@@ -210,7 +210,6 @@ package body StadtkarteGrafik is
                                                                                                                                         KampfBonusExtern => KampfDatentypen.Angriff_Enum)'Wide_Wide_Image;
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.StadtkarteAccess,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.StadtkarteAccess,
                                                                           TextbreiteExtern => Textbreite);
@@ -223,7 +222,6 @@ package body StadtkarteGrafik is
                                                                  PositionExtern   => Textposition);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.StadtkarteAccess,
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.StadtkarteAccess,

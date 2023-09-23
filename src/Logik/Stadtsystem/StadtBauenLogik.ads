@@ -37,14 +37,14 @@ private
 
    WelcherWeg : AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
 
-   StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
+   StadtNummer : StadtDatentypen.Städtebereich;
 
    StadtName : SystemRecords.TextEingabeRecord;
 
    Einheitenkoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 
-   type StandardStadtnameArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of StadtDatentypen.MaximaleStädte;
-   StandardStadtname : StandardStadtnameArray := (others => StadtDatentypen.MaximaleStädte'First);
+   type StandardStadtnameArray is array (SpeziesDatentypen.Spezies_Verwendet_Enum'Range) of StadtDatentypen.StädtebereichVorhanden;
+   StandardStadtname : StandardStadtnameArray := (others => StadtDatentypen.StädtebereichVorhanden'First);
 
    procedure StadtEintragen
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
@@ -86,7 +86,7 @@ private
 
    function StadtnummerErmitteln
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

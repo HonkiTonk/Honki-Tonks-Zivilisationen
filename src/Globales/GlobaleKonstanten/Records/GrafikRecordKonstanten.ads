@@ -49,18 +49,13 @@ package GrafikRecordKonstanten is
                                                                                    );
    
    Kartenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.80, 1.00);
-   Leistendicke : constant Sf.System.Vector2.sfVector2f := (Kartenbereich.width, 1.00 - Kartenbereich.width);
-   -- Mal die Textanzeige für die Seitenleiste mal überarbeiten. äöü
    Weltkartenbereich : constant BereicheArray (Views.WeltkarteAccesse'Range) := (
                                                                                  ViewKonstanten.WeltKarte                  => Kartenbereich,
                                                                                  ViewKonstanten.WeltBefehleRechts          => (0.59, 0.79, 0.20, 0.20),
                                                                                  ViewKonstanten.WeltBefehleLinks           => (0.01, 0.79, 0.20, 0.20),
                                                                                  ViewKonstanten.WeltEinheitenbefehleRechts => (0.59, 0.59, 0.20, 0.20),
                                                                                  ViewKonstanten.WeltEinheitenbefehleLinks  => (0.01, 0.59, 0.20, 0.20),
-                                                                                 ViewKonstanten.WeltWichtiges              => (Leistendicke.x, 0.00, Leistendicke.y, 0.17),
-                                                                                 ViewKonstanten.WeltAllgemeines            => (Leistendicke.x, 0.17, Leistendicke.y, 0.17),
-                                                                                 ViewKonstanten.WeltStadt                  => (Leistendicke.x, 0.34, Leistendicke.y, 0.33),
-                                                                                 ViewKonstanten.WeltEinheit                => (Leistendicke.x, 0.67, Leistendicke.y, 0.33)
+                                                                                 ViewKonstanten.WeltSeitenleiste           => (Kartenbereich.width, 0.00, 1.00 - Kartenbereich.width, 1.00)
                                                                                 );
    
    Forschungsbereich : constant BereicheArray (Views.ForschungsviewAccesse'Range) := (

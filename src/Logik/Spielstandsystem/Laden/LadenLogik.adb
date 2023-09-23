@@ -284,7 +284,7 @@ package body LadenLogik is
       
       
       
-      StadtDatentypen.MaximaleStädteMitNullWert'Read (Stream (File => DateiLadenExtern),
+      StadtDatentypen.Städtebereich'Read (Stream (File => DateiLadenExtern),
                                                        VorhandeneStädte);
       
       StadtSchleife:

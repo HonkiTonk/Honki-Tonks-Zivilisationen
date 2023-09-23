@@ -22,7 +22,7 @@ package EinheitenKonstanten is
    AnfangNummer : constant EinheitenDatentypen.EinheitenbereichVorhanden := EinheitenDatentypen.EinheitenbereichVorhanden'First;
 
    LeerID : constant EinheitenDatentypen.EinheitenID := EinheitenDatentypen.EinheitenID'First;
-   LeerHeimatstadt : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
+   LeerHeimatstadt : constant StadtDatentypen.Städtebereich := StadtDatentypen.Städtebereich'First;
    LeerLebenspunkte : constant KampfDatentypen.Lebenspunkte := 0;
    LeerBewegungspunkte : constant EinheitenDatentypen.BewegungspunkteVorhanden := EinheitenDatentypen.BewegungspunkteVorhanden'First;
    LeerErfahrungspunkte : constant KampfDatentypen.Erfahrungspunkte := KampfDatentypen.Erfahrungspunkte'First;

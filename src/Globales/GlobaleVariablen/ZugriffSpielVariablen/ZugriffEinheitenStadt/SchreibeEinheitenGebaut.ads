@@ -56,7 +56,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Heimatstadt
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      HeimatstadtExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
+      HeimatstadtExtern : in StadtDatentypen.Städtebereich)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
@@ -317,7 +317,7 @@ package SchreibeEinheitenGebaut is
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
-      StadtNummerExtern : in StadtDatentypen.MaximaleStädteMitNullWert)
+      StadtNummerExtern : in StadtDatentypen.Städtebereich)
      with
        Pre => (
                  EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)

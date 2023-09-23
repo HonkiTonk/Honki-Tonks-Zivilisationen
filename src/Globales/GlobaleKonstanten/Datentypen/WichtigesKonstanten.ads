@@ -15,14 +15,14 @@ package WichtigesKonstanten is
    LeerVerbleibendeForschungszeit : constant ProduktionDatentypen.Produktion := ProduktionDatentypen.Produktion'Last;
    LeerForschungsprojekt : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
    LeerErforscht : constant Boolean := False;
-   LeerAnzahlStädte : constant StadtDatentypen.MaximaleStädteMitNullWert := StadtDatentypen.MaximaleStädteMitNullWert'First;
+   LeerAnzahlStädte : constant StadtDatentypen.Städtebereich := StadtDatentypen.Städtebereich'First;
    LeerAnzahlArbeiter : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;
    LeerAnzahlKämpfer : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;
    LeerAnzahlSonstiges : constant EinheitenDatentypen.Einheitenbereich := EinheitenDatentypen.Einheitenbereich'First;
    
    
    
-   LeerStädtegrenze : constant StadtDatentypen.MaximaleStädte := StadtDatentypen.MaximaleStädte'Last;
+   LeerStädtegrenze : constant StadtDatentypen.StädtebereichVorhanden := StadtDatentypen.StädtebereichVorhanden'Last;
    LeerEinheitengrenze : constant EinheitenDatentypen.EinheitenbereichVorhanden := EinheitenDatentypen.EinheitenbereichVorhanden'Last;
    LeerGeldgrenze : constant ZahlenDatentypen.EigenerInteger := ZahlenDatentypen.EigenerInteger'Last;
    LeerForschungsgrenze : constant ProduktionDatentypen.Produktion:= ProduktionDatentypen.Produktion'Last;

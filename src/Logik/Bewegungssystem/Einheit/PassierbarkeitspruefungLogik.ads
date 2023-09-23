@@ -68,8 +68,8 @@ private
       
    IDEinheit : EinheitenDatentypen.EinheitenID;
    
-   StadtNummer : StadtDatentypen.MaximaleStädteMitNullWert;
-   StadtVorhanden : StadtDatentypen.MaximaleStädteMitNullWert;
+   StadtNummer : StadtDatentypen.Städtebereich;
+   StadtVorhanden : StadtDatentypen.Städtebereich;
    
    Stadtumgebung : KartenDatentypen.UmgebungsbereichDrei;
    

@@ -20,7 +20,7 @@ package KILogik is
 
 private
 
-   Städtezeitwert : StadtDatentypen.MaximaleStädte;
+   Städtezeitwert : StadtDatentypen.StädtebereichVorhanden;
 
    Einheitenzeitwert : EinheitenDatentypen.EinheitenbereichVorhanden;
 

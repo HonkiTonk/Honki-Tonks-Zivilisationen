@@ -57,8 +57,6 @@ package body EinlesenTextLogik is
                  -- Das ausgeklammerte funktioniert unter Windwos nicht, wenn man Sonderzeichen verwendet.
                  -- EinlesenAllgemeinesLogik.LeeresVerzeichnis (VerzeichnisExtern => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis)) = True
                  Exists (Name => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis) & VerzeichnisKonstanten.NullDatei) = False
-                 or
-                   Exists (Name => VerzeichnisKonstanten.SprachenStrich & Simple_Name (Directory_Entry => Verzeichnis) & VerzeichnisKonstanten.EinsDatei) = False
                then
                   null;
             
@@ -770,10 +768,10 @@ package body EinlesenTextLogik is
                elsif
                  AktuelleZeile in NameBeschreibung + 1 .. Städtenamen
                then
-                  Speziestexte.Städtenamen (SpeziesExtern, StadtDatentypen.MaximaleStädte (AktuelleZeile - NameBeschreibung))
+                  Speziestexte.Städtenamen (SpeziesExtern, StadtDatentypen.StädtebereichVorhanden (AktuelleZeile - NameBeschreibung))
                     := Einsprachig (EinsprachigExtern      => EinsprachigExtern,
                                     EingelesenerTextExtern => Zwischenspeicher,
-                                    VorhandenerTextExtern  => Speziestexte.Städtenamen (SpeziesExtern, StadtDatentypen.MaximaleStädte (AktuelleZeile - NameBeschreibung)));
+                                    VorhandenerTextExtern  => Speziestexte.Städtenamen (SpeziesExtern, StadtDatentypen.StädtebereichVorhanden (AktuelleZeile - NameBeschreibung)));
                   
                elsif
                  AktuelleZeile in Städtenamen + 1 .. Forschungen

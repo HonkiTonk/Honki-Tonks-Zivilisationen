@@ -43,7 +43,7 @@ package KartenRecordKonstanten is
    -- Das nach StadtRecordKonstanten verschieben? äöü
    LeerDurchStadtBelegterGrund : constant StadtRecords.SpeziesStadtnummerRecord := (
                                                                                     Spezies => SpeziesKonstanten.LeerSpezies,
-                                                                                    Nummer  => StadtDatentypen.MaximaleStädteMitNullWert'First
+                                                                                    Nummer  => StadtDatentypen.Städtebereich'First
                                                                                    );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (

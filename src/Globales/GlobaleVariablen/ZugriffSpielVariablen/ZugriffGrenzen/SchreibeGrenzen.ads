@@ -10,7 +10,7 @@ package SchreibeGrenzen is
 
    procedure Städtegrenzen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      StädtegrenzeExtern : in StadtDatentypen.MaximaleStädteMitNullWert);
+      StädtegrenzeExtern : in StadtDatentypen.Städtebereich);
    pragma Inline (Städtegrenzen);
    
    procedure Einheitengrenze

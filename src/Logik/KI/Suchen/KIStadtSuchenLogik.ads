@@ -48,10 +48,10 @@ package KIStadtSuchenLogik is
                );
 
 private
-   use type StadtDatentypen.MaximaleStädteMitNullWert;
+   use type StadtDatentypen.Städtebereich;
 
-   AktuelleStadt : StadtDatentypen.MaximaleStädteMitNullWert;
-   GefundeneStadt : StadtDatentypen.MaximaleStädteMitNullWert;
+   AktuelleStadt : StadtDatentypen.Städtebereich;
+   GefundeneStadt : StadtDatentypen.Städtebereich;
 
    Entfernung : Natural;
    EntfernungNeu : Natural;
@@ -63,7 +63,7 @@ private
    function StadtSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum

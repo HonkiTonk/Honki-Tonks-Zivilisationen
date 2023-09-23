@@ -20,8 +20,8 @@ package StadtDatentypen is
 
 
    -- Für Stadt
-   type MaximaleStädteMitNullWert is range 0 .. 100;
-   subtype MaximaleStädte is MaximaleStädteMitNullWert range 1 .. MaximaleStädteMitNullWert'Last;
+   type Städtebereich is range 0 .. 100;
+   subtype StädtebereichVorhanden is Städtebereich range 1 .. Städtebereich'Last;
    
    
 

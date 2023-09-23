@@ -58,7 +58,6 @@ package body AbspannGrafik is
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
                                                                              TextbreiteExtern => Textbreite);
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
          TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),

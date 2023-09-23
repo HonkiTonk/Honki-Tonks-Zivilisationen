@@ -112,7 +112,6 @@ package body DiplomatieauswahlGrafik is
          end if;
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.DiplomatieAccess,
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
          
       end loop PositionenSchleife;

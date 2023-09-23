@@ -41,7 +41,7 @@ private
 
    Speziesbelegung : SpielRecords.SpeziesbelegungArray;
 
-   VorhandeneStädte : StadtDatentypen.MaximaleStädteMitNullWert;
+   VorhandeneStädte : StadtDatentypen.Städtebereich;
 
    VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
 

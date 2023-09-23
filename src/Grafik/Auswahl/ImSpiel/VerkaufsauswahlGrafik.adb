@@ -77,7 +77,6 @@ package body VerkaufsauswahlGrafik is
                                                                                                                                    AuswahlExtern    => Natural (AuswahlExtern)));
                                                                       
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
                
                AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),

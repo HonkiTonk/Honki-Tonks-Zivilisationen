@@ -10,7 +10,7 @@ package body NaechsteStadtLogik is
    procedure NächsteStadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
    begin
 
       StadtSchleifenbegrenzung := 0;
@@ -57,7 +57,7 @@ package body NaechsteStadtLogik is
    procedure NächsteStadtMeldung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
       use type StadtDatentypen.Stadt_Meldung_Enum;
    begin
       

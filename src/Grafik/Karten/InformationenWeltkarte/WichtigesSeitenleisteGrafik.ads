@@ -1,5 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with Sf.System.Vector3;
+
 private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
@@ -8,7 +10,6 @@ with KartenRecords;
 
 private with TextaccessVariablen;
 private with ProduktionDatentypen;
-private with GrafikRecordKonstanten;
 private with ForschungenDatentypen;
 private with ZahlenDatentypen;
 private with TextArrays;
@@ -23,9 +24,10 @@ package WichtigesSeitenleisteGrafik is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
 
-   procedure WichtigesInformationen
+   function WichtigesInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Sf.System.Vector3.sfVector3f
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -33,7 +35,15 @@ package WichtigesSeitenleisteGrafik is
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
-              );
+              ),
+         
+       Post => (
+                  WichtigesInformationen'Result.x > 0.00
+                and
+                  WichtigesInformationen'Result.y > 0.00
+                and
+                  WichtigesInformationen'Result.z > 0.00
+               );
    
 private
    
@@ -48,7 +58,6 @@ private
    
    Textbreite : Float;
       
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
    
    FestzulegenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.KarteWichtigesAccess'Range);

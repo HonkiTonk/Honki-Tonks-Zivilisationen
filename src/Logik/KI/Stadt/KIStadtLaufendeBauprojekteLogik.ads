@@ -10,7 +10,7 @@ with LeseSpeziesbelegung;
 package KIStadtLaufendeBauprojekteLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
-   use type StadtDatentypen.MaximaleStädteMitNullWert;
+   use type StadtDatentypen.Städtebereich;
    use type StadtDatentypen.GebäudeIDMitNullwert;
    use type EinheitenDatentypen.Einheitenbereich;
    use type EinheitenDatentypen.EinheitenID;
@@ -18,7 +18,7 @@ package KIStadtLaufendeBauprojekteLogik is
    function StadtLaufendeBauprojekte
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord;
       BauprojektExtern : in StadtRecords.BauprojektRecord)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
      with
        Pre => (
                  StadtSpeziesNummerExtern.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtSpeziesNummerExtern.Spezies)
@@ -65,7 +65,7 @@ package KIStadtLaufendeBauprojekteLogik is
    
 private
    
-   GleichesGebäudeBauprojekt : StadtDatentypen.MaximaleStädteMitNullWert;
+   GleichesGebäudeBauprojekt : StadtDatentypen.Städtebereich;
    
    GleichesEinheitenBauprojekt : EinheitenDatentypen.Einheitenbereich;
    EinheitenImBau : EinheitenDatentypen.Einheitenbereich;

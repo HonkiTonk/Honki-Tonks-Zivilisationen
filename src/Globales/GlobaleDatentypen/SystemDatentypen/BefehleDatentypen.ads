@@ -24,6 +24,7 @@ package BefehleDatentypen is
                                    Ebene_Hoch_Enum, Ebene_Runter_Enum,
                                 
                                    -- Einheitenbefehle Verbesserungen
+                                   -- Verbesserungen in einen Knopf zusammenfassen und dann eine weiter Auswahl anzeigen? äöü
                                    Bauen_Enum,
                                 
                                    Straße_Bauen_Enum,
@@ -57,6 +58,18 @@ package BefehleDatentypen is
    subtype Siedler_Feldeffekte_Enum is Siedler_Aufgaben_Enum range Feldeffekte_Entfernen_Enum .. Feldeffekte_Entfernen_Enum;
    
    subtype Kampf_Aufgaben_Enum is Belegung_Auswählen_Enum range Plündern_Enum .. Plündern_Enum;
+   
+   
+   
+   type Arbeit_Enum is (
+                        Bauen_Enum,
+                                
+                        Straße_Bauen_Enum,
+                        Mine_Bauen_Enum, Farm_Bauen_Enum, Festung_Bauen_Enum,
+                        Wald_Aufforsten_Enum, Roden_Trockenlegen_Enum,
+                                   
+                        Feldeffekte_Entfernen_Enum
+                       );
    
    
    

@@ -4,9 +4,8 @@ with Sf.Graphics.Text;
 with Spieltexte;
 with TextnummernKonstanten;
 with KartengrundDatentypen;
-with ViewKonstanten;
 with TextKonstanten;
-with GrafikKonstanten;
+with SpeziesKonstanten;
 
 with LeseWeltkarte;
 with LeseCursor;
@@ -16,25 +15,34 @@ with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with AufgabenbeschreibungenGrafik;
 with KartenbeschreibungenGrafik;
-with SeitenleisteLeerenGrafik;
 
 package body AllgemeinesSeitenleisteGrafik is
 
-   procedure AllgemeineInformationen
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+   function AllgemeineInformationen
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
+      TextpositionsinformationenExtern : in Sf.System.Vector3.sfVector3f)
+      return Sf.System.Vector3.sfVector3f
    is begin
         
-      Viewfläche := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltAllgemeines,
-                                                    ViewflächeExtern     => Viewfläche);
+      Textposition.x := TextpositionsinformationenExtern.x;
+      Textposition.y := TextpositionsinformationenExtern.y;
+      Textbreite := TextpositionsinformationenExtern.z;
       
-      Textbreite := GrafikKonstanten.Nullwert;
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      case
+        SpeziesExtern
+      is
+         when SpeziesKonstanten.LeerSpezies =>
+            TextAnzeigen := (others => False);
+            TextZeichnen;
       
-      AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
-      Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten);
+            return (Textposition.x, Textposition.y, Textbreite);
+            
+         when others =>
+            AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
+            Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten);
       
-      TextAnzeigen (1) := True;
+            TextAnzeigen (1) := True;
+      end case;
       
       case
         Gesamtgrund.Zusatzgrund
@@ -159,7 +167,18 @@ package body AllgemeinesSeitenleisteGrafik is
          when False =>
             null;
       end case;
-               
+      
+      TextZeichnen;
+      
+      return (Textposition.x, Textposition.y, Textbreite);
+
+   end AllgemeineInformationen;
+   
+   
+   
+   procedure TextZeichnen
+   is begin
+      
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
          
@@ -172,20 +191,16 @@ package body AllgemeinesSeitenleisteGrafik is
                
                Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
                                                                                    TextbreiteExtern => Textbreite);
-               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
                
             when False =>
-               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               TextAccessExtern => TextaccessVariablen.TexthöheAccess,
-                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+               null;
          end case;
          
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+         
       end loop TextSchleife;
-            
-      Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-
-   end AllgemeineInformationen;
+      
+   end TextZeichnen;
 
 end AllgemeinesSeitenleisteGrafik;

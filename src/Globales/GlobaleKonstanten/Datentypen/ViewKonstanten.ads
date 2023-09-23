@@ -9,10 +9,7 @@ package ViewKonstanten is
    WeltBefehleLinks : constant Positive := 3;
    WeltEinheitenbefehleRechts : constant Positive := 4;
    WeltEinheitenbefehleLinks : constant Positive := 5;
-   WeltWichtiges : constant Positive := 6;
-   WeltAllgemeines : constant Positive := 7;
-   WeltStadt : constant Positive := 8;
-   WeltEinheit : constant Positive := 9;
+   WeltSeitenleiste : constant Positive := 6;
 
    StadtUmgebung : constant Positive := 1;
    StadtInformationen : constant Positive := 2;

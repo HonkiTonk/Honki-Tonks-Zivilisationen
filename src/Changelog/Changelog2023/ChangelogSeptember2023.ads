@@ -42,24 +42,29 @@ package ChangelogSeptember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (24.09.2023):
+   -- Version 0.05.4385 => 0.05. (24.09.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (23.09.2023):
+   -- Version 0.05.4295 => 0.05.4385 (23.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Alle Texturen werden jetzt wieder korrekt eingelesen.
+   -- Alle Textabstände sollten jetzt unabhängig von der tatsächlichen Texthöhen berechnet werden und so gleichmäßiger sein.
+   -- Interne Benennung überarbeitet.
+   -- Der Text in der Seitenleiste ist jetzt gleichmäßiger und besser lesbar, unabhängig von der Auflösung.
+   -- Unnötigen Code gelöscht.
+   -- Fehler korrigiert, welcher das Einlesen einer Sprache verhindern konnte.
+   -- Kartenfelderinformationen werden jetzt nur noch in der Seitenleiste angezeigt, wenn der Mauszeicher über einem Kartenfeld ist.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
-   -- Version 0.05.4295 => 0.05. (22.09.2023):
+   -- Version 0.05.4295 => 0.05.4295 (22.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

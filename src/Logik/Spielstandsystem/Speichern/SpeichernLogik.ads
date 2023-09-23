@@ -19,7 +19,7 @@ package SpeichernLogik is
 private
    use type SpeziesDatentypen.Spieler_Enum;
 
-   VorhandeneStädte : StadtDatentypen.MaximaleStädteMitNullWert;
+   VorhandeneStädte : StadtDatentypen.Städtebereich;
 
    VorhandeneEinheiten : EinheitenDatentypen.Einheitenbereich;
 

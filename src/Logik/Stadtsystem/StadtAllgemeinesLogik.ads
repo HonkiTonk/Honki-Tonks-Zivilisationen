@@ -37,9 +37,9 @@ private
    
    StadtUmgebung : KartenDatentypen.UmgebungsbereichDrei;
    
-   AlterPlatz : StadtDatentypen.MaximaleStädte;
+   AlterPlatz : StadtDatentypen.StädtebereichVorhanden;
    
-   Stadtgrenze : StadtDatentypen.MaximaleStädteMitNullWert;
+   Stadtgrenze : StadtDatentypen.Städtebereich;
    
    NeuerName : SystemRecords.TextEingabeRecord;
    

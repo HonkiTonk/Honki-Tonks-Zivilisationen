@@ -60,7 +60,7 @@ package LeseGrafiktask is
      return SpeziesDatentypen.Spezies_Enum;
    
    function Stadtnummer
-     return StadtDatentypen.MaximaleStädteMitNullWert;
+     return StadtDatentypen.Städtebereich;
    
    function Einheitnummer
      return EinheitenDatentypen.Einheitenbereich;

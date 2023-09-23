@@ -82,7 +82,7 @@ package TaskRecords is
       AktiveSpezies : SpeziesDatentypen.Spezies_Enum;
       KontaktierteSpezies : SpeziesDatentypen.Spezies_Enum;
       
-      Stadtnummer : StadtDatentypen.MaximaleStädteMitNullWert;
+      Stadtnummer : StadtDatentypen.Städtebereich;
    
       Einheitnummer : EinheitenDatentypen.Einheitenbereich;
    

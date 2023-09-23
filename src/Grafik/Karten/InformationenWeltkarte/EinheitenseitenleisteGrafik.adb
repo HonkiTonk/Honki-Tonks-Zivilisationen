@@ -2,10 +2,11 @@ with Spieltexte;
 with StadtKonstanten;
 with TextnummernKonstanten;
 with TextKonstanten;
-with ViewKonstanten;
 with GrafikKonstanten;
 with Projekteinstellungen;
 with SystemDatentypen;
+with GrafikRecordKonstanten;
+with SpeziesKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -14,41 +15,41 @@ with LeseStadtGebaut;
 with EinheitenbeschreibungenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
-with SeitenleisteLeerenGrafik;
 with KampfwerteEinheitErmittelnLogik;
 with TextaccessverwaltungssystemGrafik;
 with TextskalierungGrafik;
 
 package body EinheitenseitenleisteGrafik is
 
-   procedure Einheiten
-     (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
+   function Einheiten
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      StadtVorhandenExtern : in Boolean)
+      TextpositionsinformationenExtern : in Sf.System.Vector3.sfVector3f)
+      return Sf.System.Vector3.sfVector3f
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      Viewfläche := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltEinheit,
-                                                    ViewflächeExtern     => Viewfläche);
+      Textposition.x := TextpositionsinformationenExtern.x;
+      Textposition.y := TextpositionsinformationenExtern.y;
+      Textbreite := TextpositionsinformationenExtern.z;
       
-      case
-        StadtVorhandenExtern
-      is
-         when True =>
-            null;
+      if
+        SpeziesExtern = SpeziesKonstanten.LeerSpezies
+        or
+          EinheitSpeziesNummerExtern.Spezies = SpeziesKonstanten.LeerSpezies
+      then
+         NichtsZeichnen := True;
+         TextZeichnen;
             
-         when False =>
-            Viewfläche := SeitenleisteLeerenGrafik.Leer (AnzeigebereichExtern => ViewKonstanten.WeltStadt,
-                                                          ViewflächeExtern     => Viewfläche);
-      end case;
-      
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := GrafikKonstanten.Nullwert;
-      -- Diese Zuweisung ist wichtig weil die gefundene Einheit eventuell auf einem Transporter ist.
-      EinheitSpeziesNummer.Nummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-      
+         return (Textposition.x, Textposition.y, Textbreite);
+         
+      else
+         NichtsZeichnen := False;
+         -- Diese Zuweisung ist wichtig weil die gefundene Einheit eventuell auf einem Transporter ist.
+         EinheitSpeziesNummer.Nummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+      end if;
+            
       case
         EinheitSpeziesNummer.Nummer
       is
@@ -65,7 +66,10 @@ package body EinheitenseitenleisteGrafik is
         IDEinheit
       is
          when EinheitenKonstanten.LeerID =>
-            return;
+            NichtsZeichnen := True;
+            TextZeichnen;
+            
+            return (Textposition.x, Textposition.y, Textbreite);
             
          when others =>
             FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => IDEinheit,
@@ -101,48 +105,21 @@ package body EinheitenseitenleisteGrafik is
          VolleInformation := False;
       end if;
       
-      TextSchleife:
-      for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
-         
-         if
-           VolleInformation = False
-           and
-             TextSchleifenwert >= Informationsgrenze
-         then
-            null;
-            
-         else
-            TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                            TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
-                                                            PositionExtern   => Textposition);
-         
-            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                                TextbreiteExtern => Textbreite);
-            
-            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
-                                                                    ErlaubteBreiteExtern => Viewfläche.x);
-            Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
-                        
-            TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                 SkalierungExtern => Skalierung);
-         end if;
-         
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-         
-      end loop TextSchleife;
+      TextZeichnen;
       
       case
         Projekteinstellungen.Debug.VolleInformation
       is
          when True =>
-            Viewfläche := PlanZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                TextwerteExtern            => (Textbreite, Textposition.y));
+            Textposition := PlanZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                 TextwerteExtern            => (Textbreite, Textposition.y));
             
          when False =>
-            Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+            null;
+            -- Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       end case;
+      
+      return (Textposition.x, Textposition.y, Textbreite);
       
    end Einheiten;
    
@@ -307,7 +284,6 @@ package body EinheitenseitenleisteGrafik is
             when others =>
                TextpositionDebug.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
                TextpositionDebug.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => TextpositionDebug.y,
-                                                                                    TextAccessExtern => TextaccessVariablen.EinheitenseitenleisteAccess,
                                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          end case;
          
@@ -327,5 +303,45 @@ package body EinheitenseitenleisteGrafik is
       return (TextbreiteDebug, TextpositionDebug.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
       
    end PlanZielKoordinaten;
+   
+   
+   
+   procedure TextZeichnen
+   is begin
+      
+      TextSchleife:
+      for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
+         
+         if
+           (VolleInformation = False
+            and
+              TextSchleifenwert >= Informationsgrenze)
+           or
+             NichtsZeichnen
+         then
+            null;
+            
+         else
+            TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                            TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
+                                                            PositionExtern   => Textposition);
+         
+            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                                                TextbreiteExtern => Textbreite);
+            
+            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
+                                                                    ErlaubteBreiteExtern => Textbreite); -- Viewfläche.x);
+            Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
+                        
+            TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                                 SkalierungExtern => Skalierung);
+         end if;
+         
+         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+         
+      end loop TextSchleife;
+      
+   end TextZeichnen;
    
 end EinheitenseitenleisteGrafik;

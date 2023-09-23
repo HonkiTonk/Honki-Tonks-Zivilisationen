@@ -34,6 +34,7 @@ package body UebergabeRecordErmittelnGrafik is
    
    -- Hier noch weitere Prüfungen einbauen, für den Fall das beim Lesen der Stadt die Stadt entfernt wird? äöü
    -- Eventuell dann einen leeren Wert zurückgeben, bei Grafik prüfen und gegebenenfalls gar nicht erst die Stadt anzeigen? äöü
+   -- Für den Scheiß auch mal eine LeerKonstante anlegen. äöü
    function Stadt
      (StadtSpeziesNummerExtern : in StadtRecords.SpeziesStadtnummerRecord)
       return StadtGrafikRecords.StadtGrafikRecord

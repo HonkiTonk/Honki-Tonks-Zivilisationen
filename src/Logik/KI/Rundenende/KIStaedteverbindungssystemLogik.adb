@@ -30,7 +30,7 @@ package body KIStaedteverbindungssystemLogik is
    procedure Stadtverbindung
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
    begin
       

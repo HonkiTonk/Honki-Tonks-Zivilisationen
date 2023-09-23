@@ -1,10 +1,12 @@
 private with Sf.System.Vector2;
+private with Sf.System.Vector3;
 
 with SpeziesDatentypen;
 
 private with EinheitenRecords;
 private with StadtRecords;
 private with KartenRecords;
+private with GrafikRecordKonstanten;
 
 package SeitenleisteGrafik is
    pragma Elaborate_Body;
@@ -14,13 +16,13 @@ package SeitenleisteGrafik is
 
 private
 
-   StadtVorhanden : Boolean;
-
    StadtSpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
 
    EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
 
-   Leerwert : Sf.System.Vector2.sfVector2f;
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+
+   Textpositionsinformationen : Sf.System.Vector3.sfVector3f;
 
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
 

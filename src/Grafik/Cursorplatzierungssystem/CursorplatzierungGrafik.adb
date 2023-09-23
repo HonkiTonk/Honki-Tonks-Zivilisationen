@@ -8,6 +8,7 @@ with KartenDatentypen;
 with GrafikKonstanten;
 with SystemDatentypen;
 with InteraktionAuswahl;
+with KartenRecordKonstanten;
 
 with LeseCursor;
 with SchreibeCursor;
@@ -46,6 +47,8 @@ package body CursorplatzierungGrafik is
                                                VektorExtern       => Sf.Graphics.View.getSize (view => Views.WeltkarteAccesse (ViewKonstanten.WeltKarte)))
       is
          when False =>
+            SchreibeCursor.KoordinatenAktuell (SpeziesExtern     => SpeziesExtern,
+                                               KoordinatenExtern => KartenRecordKonstanten.LeerKoordinate);
             return;
             
          when True =>

@@ -41,7 +41,7 @@ package body StadtAllgemeinesLogik is
    procedure StädteSortieren
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is
-      use type StadtDatentypen.MaximaleStädteMitNullWert;
+      use type StadtDatentypen.Städtebereich;
       use type KartenverbesserungDatentypen.Verbesserung_Enum;
       use type KartenDatentypen.Kartenfeld;
       use type EinheitenDatentypen.EinheitenID;

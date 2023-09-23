@@ -121,7 +121,6 @@ package body SteuerungsmenueGrafik is
       end loop AufteilungSchleife;
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      TextAccessExtern => TextaccessVariablen.SteuerungAccess (MenueKonstanten.Stadtsteuerung),
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
       return (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
@@ -175,7 +174,6 @@ package body SteuerungsmenueGrafik is
                                                                                 TextbreiteExtern => Textbreite);
             
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            TextAccessExtern => TextaccessVariablen.SteuerungAccess (TextSchleifenwert),
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
             
             InteraktionAuswahl.PositionenSteuerung (TextSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (TextSchleifenwert));

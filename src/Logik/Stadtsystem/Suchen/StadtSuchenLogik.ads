@@ -14,12 +14,12 @@ package StadtSuchenLogik is
    pragma Elaborate_Body;
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
-   use type StadtDatentypen.MaximaleStädteMitNullWert;
+   use type StadtDatentypen.Städtebereich;
    
    function KoordinatenStadtMitSpeziesSuchen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return StadtDatentypen.MaximaleStädteMitNullWert
+      return StadtDatentypen.Städtebereich
      with
        Pre => (
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
