@@ -16,6 +16,7 @@ package body TextskalierungGrafik is
          return ErlaubteBreiteExtern / PruefungenGrafik.NullprüfungKommazahl (KommazahlExtern => AktuelleBreiteExtern);
          
       else
+         -- return PruefungenGrafik.NullprüfungKommazahl (KommazahlExtern => AktuelleBreiteExtern) / ErlaubteBreiteExtern;
          return GrafikRecordKonstanten.Standardskalierung.x;
       end if;
       

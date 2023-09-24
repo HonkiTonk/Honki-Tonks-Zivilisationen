@@ -5,6 +5,7 @@ with ForschungKonstanten;
 with GrafikKonstanten;
 with ProduktionKonstanten;
 with KartenKonstanten;
+with GrafikRecordKonstanten;
 
 with LeseWichtiges;
 with LeseGrenzen;
@@ -14,59 +15,85 @@ with ForschungsbeschreibungenGrafik;
 with TextaccessverwaltungssystemGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
+with TextskalierungGrafik;
 
 package body WichtigesSeitenleisteGrafik is
 
    function WichtigesInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Sf.System.Vector3.sfVector3f
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      MaximaleTextbreiteExtern : in Float)
+      return GrafikRecords.TextpositionLeerzeilenRecord
    is begin
       
       Textbreite := GrafikKonstanten.Nullwert;
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.WinzigerSpaltenabstand;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Leerzeilen := 0;
       
-      case
-        KoordinatenExtern.EAchse
-      is
-         when KartenKonstanten.LeerEAchse =>
-            FestzulegenderText (1) := TextKonstanten.LeerUnboundedString;
-            
-         when others =>
-            FestzulegenderText (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & ","
-              & KoordinatenExtern.YAchse'Wide_Wide_Image & "," & KoordinatenExtern.XAchse'Wide_Wide_Image;
-      end case;
-      
-      FestzulegenderText (2) := Rundenanzahl (SpeziesExtern => SpeziesExtern);
-      
-      FestzulegenderText (3) := Geld (SpeziesExtern => SpeziesExtern); 
-      FestzulegenderText (4) := Forschung (SpeziesExtern => SpeziesExtern);
+      AnzuzeigenderText (1) := Koordinaten (KoordinatenExtern => KoordinatenExtern);
+      AnzuzeigenderText (2) := Rundenanzahl (SpeziesExtern => SpeziesExtern);
+      AnzuzeigenderText (3) := Geld (SpeziesExtern => SpeziesExtern); 
+      AnzuzeigenderText (4) := Forschung (SpeziesExtern => SpeziesExtern);
             
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.KarteWichtigesAccess'Range loop
          
-         TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
-                                                                 TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
-                                                                 PositionExtern   => Textposition);
-                  
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
-                                                                             TextbreiteExtern => Textbreite);
+         if
+           AnzuzeigenderText (TextSchleifenwert) = TextKonstanten.LeerUnboundedString
+         then
+            Leerzeilen := Leerzeilen + 1;
+            
+         else
+            TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
+                                                            TextExtern       => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
+                                                            PositionExtern   => Textposition);
          
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+            Textbreite := TextberechnungenBreiteGrafik.TextbreiteAnfangsabstand (TextAccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
+                                                                                 AbstandExtern    => 2.00 * Textposition.x);
+            
+            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
+                                                                    ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
+            Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
+                        
+            TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
+                                                                 SkalierungExtern => Skalierung);
+         
+            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+         end if;
          
       end loop TextSchleife;
          
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                       ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-      return (Textposition.x, Textposition.y, Textbreite);
+      return ((Textposition.x, Textposition.y, Textbreite), Leerzeilen);
             
    end WichtigesInformationen;
    
    
    
+   function Koordinaten
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      case
+        KoordinatenExtern.EAchse
+      is
+         when KartenKonstanten.LeerEAchse =>
+            return TextKonstanten.LeerUnboundedString;
+            
+         when others =>
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellePosition) & " " & ZahlAlsStringEbeneVorhanden (ZahlExtern => KoordinatenExtern.EAchse) & ","
+              & KoordinatenExtern.YAchse'Wide_Wide_Image & "," & KoordinatenExtern.XAchse'Wide_Wide_Image;
+      end case;
+      
+   end Koordinaten;
+   
+   
+      
    function Rundenanzahl
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
       return Unbounded_Wide_Wide_String

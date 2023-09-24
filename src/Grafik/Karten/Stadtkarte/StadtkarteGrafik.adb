@@ -168,7 +168,7 @@ package body StadtkarteGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
            
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textbreite := GrafikKonstanten.Nullwert;
       

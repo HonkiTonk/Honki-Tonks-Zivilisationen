@@ -49,7 +49,7 @@ package body AbspannGrafik is
    is begin
       
       Textbreite := GrafikKonstanten.Nullwert;
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       AllgemeinSchleife:

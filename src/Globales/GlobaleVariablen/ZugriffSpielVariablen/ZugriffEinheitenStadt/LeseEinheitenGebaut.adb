@@ -13,7 +13,6 @@ package body LeseEinheitenGebaut is
       return EinheitenDatentypen.EinheitenID
    is
       use type SpeziesDatentypen.Spezies_Enum;
-      use type EinheitenDatentypen.Einheitenbereich;
    begin
       
       if

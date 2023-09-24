@@ -1,12 +1,12 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.System.Vector2;
-with Sf.System.Vector3;
 
 with SpeziesDatentypen;
 with StadtRecords;
 with StadtKonstanten;
 with StadtGrafikRecords;
+with GrafikRecords;
 
 private with ProduktionDatentypen;
 private with TextaccessVariablen;
@@ -35,8 +35,9 @@ package StadtseitenleisteGrafik is
    function Stadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
-      TextpositionsinformationenExtern : in Sf.System.Vector3.sfVector3f)
-      return Sf.System.Vector3.sfVector3f
+      TextpositionsinformationenExtern : in GrafikRecords.TextpositionLeerzeilenRecord;
+      MaximaleTextbreiteExtern : in Float)
+      return GrafikRecords.TextpositionLeerzeilenRecord
      with
        Pre => (
                --       LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -44,40 +45,33 @@ package StadtseitenleisteGrafik is
                --        LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                --      and
                --       StadtauswahlExtern.SpeziesNummer.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies)
-                 TextpositionsinformationenExtern.x > 0.00
+                 TextpositionsinformationenExtern.Textpositionsinformationen.x > 0.00
                and
-                 TextpositionsinformationenExtern.y > 0.00
+                 TextpositionsinformationenExtern.Textpositionsinformationen.y > 0.00
                and
-                 TextpositionsinformationenExtern.z >= 0.00
+                 TextpositionsinformationenExtern.Textpositionsinformationen.z > 0.00
               ),
          
        Post => (
-                  Stadt'Result.x > 0.00
+                  Stadt'Result.Textpositionsinformationen.x > 0.00
                 and
-                  Stadt'Result.y > 0.00
+                  Stadt'Result.Textpositionsinformationen.y > 0.00
                 and
-                  Stadt'Result.z >= 0.00
+                  Stadt'Result.Textpositionsinformationen.z > 0.00
                );
    
 private
-   
-   VolleInformation : Boolean;
-   MausInformationen : Boolean;
-   
-   Informationsgrenze : constant Positive := 2;
+      
+   Leerzeilen : Natural;
    
    Textbreite : Float;
-   Textskalierung : Float;
          
-   Text : Unbounded_Wide_Wide_String;
+   Zwischenspeicher : Unbounded_Wide_Wide_String;
    
-   Zwischenfläche : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
-   Mausposition : Sf.System.Vector2.sfVector2f;
+   Skalierung : Sf.System.Vector2.sfVector2f;
       
-   FestzulegenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.StadtInformationenAccess'Range);
-   
-   procedure TextZeichnen;
+   AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.StadtInformationenAccess'Range);
    
    
    

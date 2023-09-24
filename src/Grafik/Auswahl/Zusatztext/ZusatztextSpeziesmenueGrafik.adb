@@ -17,7 +17,7 @@ package body ZusatztextSpeziesmenueGrafik is
    is begin
             
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       
       SpeziesAnzeigen := SpeziesDatentypen.Spezies_Verwendet_Enum'Val (AktuelleAuswahlExtern);
       

@@ -1,11 +1,7 @@
-with Sf.Graphics;
-with Sf.Graphics.Text;
-
 with Spieltexte;
 with TextnummernKonstanten;
-with KartengrundDatentypen;
 with TextKonstanten;
-with SpeziesKonstanten;
+with GrafikRecordKonstanten;
 
 with LeseWeltkarte;
 with LeseCursor;
@@ -15,192 +11,202 @@ with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with AufgabenbeschreibungenGrafik;
 with KartenbeschreibungenGrafik;
+with TextskalierungGrafik;
 
 package body AllgemeinesSeitenleisteGrafik is
 
    function AllgemeineInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
-      TextpositionsinformationenExtern : in Sf.System.Vector3.sfVector3f)
-      return Sf.System.Vector3.sfVector3f
+      TextpositionsinformationenExtern : in GrafikRecords.TextpositionLeerzeilenRecord;
+      MaximaleTextbreiteExtern : in Float)
+      return GrafikRecords.TextpositionLeerzeilenRecord
    is begin
         
-      Textposition.x := TextpositionsinformationenExtern.x;
-      Textposition.y := TextpositionsinformationenExtern.y;
-      Textbreite := TextpositionsinformationenExtern.z;
+      Textposition.x := TextpositionsinformationenExtern.Textpositionsinformationen.x;
+      Textposition.y := TextpositionsinformationenExtern.Textpositionsinformationen.y;
+      Textbreite := TextpositionsinformationenExtern.Textpositionsinformationen.z;
+      Leerzeilen := TextpositionsinformationenExtern.Leerzeilen;
       
       case
         SpeziesExtern
       is
          when SpeziesKonstanten.LeerSpezies =>
-            TextAnzeigen := (others => False);
-            TextZeichnen;
-      
-            return (Textposition.x, Textposition.y, Textbreite);
+            AnzuzeigenderText := (others => TextKonstanten.LeerUnboundedString);
             
          when others =>
             AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
-            Gesamtgrund := LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten);
-      
-            TextAnzeigen (1) := True;
+            
+            AnzuzeigenderText (1) := Gesamtgrund (GesamtgrundExtern => LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten));
+            AnzuzeigenderText (2) := Ressource (RessourceExtern => LeseWeltkarte.Ressource (KoordinatenExtern => AktuelleKoordinaten));
+            AnzuzeigenderText (3) := Verbesserung (VerbesserungExtern => LeseWeltkarte.Verbesserung (KoordinatenExtern => AktuelleKoordinaten));
+            AnzuzeigenderText (4) := Weg (WegExtern => LeseWeltkarte.Weg (KoordinatenExtern => AktuelleKoordinaten));
+            AnzuzeigenderText (5) := Fluss (FlussExtern => LeseWeltkarte.Fluss (KoordinatenExtern => AktuelleKoordinaten));
+            AnzuzeigenderText (6) := Feldeffekte (KoordinatenExtern => AktuelleKoordinaten);
       end case;
       
-      case
-        Gesamtgrund.Zusatzgrund
-      is
-         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                               str  => KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => Gesamtgrund.Basisgrund));
+      TextSchleife:
+      for TextSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
          
-         when others =>
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (1),
-                                               str  => KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => Gesamtgrund.Basisgrund) & " "
-                                               &  To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugMit)) & " "
-                                               & KartenbeschreibungenGrafik.KurzbeschreibungZusatzgrund (KartenGrundExtern => Gesamtgrund.Zusatzgrund));
-      end case;
-      
-      -- Eventuell auch mehr Wörter zusammenfassen? äöü
-      -- Z.B. Ressourcen und Flüsse, Verbesserungen und Straßen. äöü
-      KartenRessource := LeseWeltkarte.Ressource (KoordinatenExtern => AktuelleKoordinaten);
-      
-      case
-        KartenRessource
-      is
-         when KartenextraDatentypen.Leer_Ressource_Enum =>
-            TextAnzeigen (2) := False;
+         if
+           AnzuzeigenderText (TextSchleifenwert) = TextKonstanten.LeerUnboundedString
+         then
+            Leerzeilen := Leerzeilen + 1;
             
-         when others =>
-            TextAnzeigen (2) := True;
+         else
+            TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
+                                                            TextExtern       => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
+                                                            PositionExtern   => Textposition);
             
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (2),
-                                               str  => KartenbeschreibungenGrafik.KurzbeschreibungRessource (KartenRessourceExtern => KartenRessource));
-      end case;
-      
-      
-      
-      KartenVerbesserung := LeseWeltkarte.Verbesserung (KoordinatenExtern => AktuelleKoordinaten);
-      
-      case
-        KartenVerbesserung
-      is
-         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
-            TextAnzeigen (3) := False;
+            Textbreite := TextberechnungenBreiteGrafik.TextbreiteAnfangsabstand (TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
+                                                                                 AbstandExtern    => 2.00 * Textposition.x);
             
-         when others =>
-            TextAnzeigen (3) := True;
-            
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (3),
-                                               str  => AufgabenbeschreibungenGrafik.KurzbeschreibungVerbesserung (KartenVerbesserungExtern => KartenVerbesserung));
-      end case;
-      
-      
-      
-      KartenWeg := LeseWeltkarte.Weg (KoordinatenExtern => AktuelleKoordinaten);
-      
-      case
-        KartenWeg
-      is
-         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
-            TextAnzeigen (4) := False;
-            
-         when others =>
-            TextAnzeigen (4) := True;
-            
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (4),
-                                               str  => AufgabenbeschreibungenGrafik.KurzbeschreibungWeg (KartenWegExtern => KartenWeg));
-      end case;
-      
-      
-      
-      KartenFluss := LeseWeltkarte.Fluss (KoordinatenExtern => AktuelleKoordinaten);
-      
-      case
-        KartenFluss
-      is
-         when KartenextraDatentypen.Leer_Fluss_Enum =>
-            TextAnzeigen (5) := False;
-            
-         when others =>
-            TextAnzeigen (5) := True;
-            
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (5),
-                                               str  => KartenbeschreibungenGrafik.KurzbeschreibungFluss (KartenFlussExtern => KartenFluss));
-      end case;
-      
-      
-      
-      TextAnzeigen (6) := False;
-      
-      Text := TextKonstanten.LeerUnboundedString;
-      
-      FeldeffekteSchleife:
-      for FeldeffektSchleifenwert in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
-      
-         case
-           LeseWeltkarte.Effekt (KoordinatenExtern   => AktuelleKoordinaten,
-                                 WelcherEffektExtern => FeldeffektSchleifenwert)
-         is
-            when True =>
-               TextAnzeigen (6) := True;
-               
-               if
-                 Text = TextKonstanten.LeerUnboundedString
-               then
-                  Text := To_Unbounded_Wide_Wide_String (Source => KartenbeschreibungenGrafik.KurzbeschreibungFeldeffekte (FeldeffekteExtern => FeldeffektSchleifenwert));
-                  
-               else
-                  Text := Text & TextKonstanten.Trennzeichen & KartenbeschreibungenGrafik.KurzbeschreibungFeldeffekte (FeldeffekteExtern => FeldeffektSchleifenwert);
-               end if;
-               
-            when False =>
-               null;
-         end case;
+            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
+                                                                    ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
+            Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
+                        
+            TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
+                                                                 SkalierungExtern => Skalierung);
          
-      end loop FeldeffekteSchleife;
+            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+         end if;
+         
+      end loop TextSchleife;
+         
+      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-      case
-        TextAnzeigen (6)
-      is
-         when True =>
-            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAllgemeinesAccess (6),
-                                               str  => To_Wide_Wide_String (Source => Text));
-            
-         when False =>
-            null;
-      end case;
-      
-      TextZeichnen;
-      
-      return (Textposition.x, Textposition.y, Textbreite);
+      return ((Textposition.x, Textposition.y, Textbreite), Leerzeilen);
 
    end AllgemeineInformationen;
    
    
    
-   procedure TextZeichnen
+   function Gesamtgrund
+     (GesamtgrundExtern : in KartenRecords.KartengrundRecord)
+      return Unbounded_Wide_Wide_String
    is begin
       
-      TextSchleife:
-      for TextSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
+      case
+        GesamtgrundExtern.Zusatzgrund
+      is
+         when KartengrundDatentypen.Leer_Zusatzgrund_Enum =>
+            return KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => GesamtgrundExtern.Basisgrund);
          
-         case
-           TextAnzeigen (TextSchleifenwert)
-         is
-            when True =>
-               TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                                   PositionExtern   => Textposition);
-               
-               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                                                   TextbreiteExtern => Textbreite);
-               
-            when False =>
-               null;
-         end case;
-         
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-         
-      end loop TextSchleife;
+         when others =>
+            return KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => GesamtgrundExtern.Basisgrund) & " " &  To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugMit)) & " "
+              & KartenbeschreibungenGrafik.KurzbeschreibungZusatzgrund (KartenGrundExtern => GesamtgrundExtern.Zusatzgrund);
+      end case;
       
-   end TextZeichnen;
+   end Gesamtgrund;
+   
+   
+   
+   function Ressource
+     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      case
+        RessourceExtern
+      is
+         when KartenextraDatentypen.Leer_Ressource_Enum =>
+            return TextKonstanten.LeerUnboundedString;
+            
+         when others =>
+            return KartenbeschreibungenGrafik.KurzbeschreibungRessource (KartenRessourceExtern => RessourceExtern);
+      end case;
+      
+   end Ressource;
+   
+   
+   
+   function Verbesserung
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      case
+        VerbesserungExtern
+      is
+         when KartenverbesserungDatentypen.Leer_Verbesserung_Enum =>
+            return TextKonstanten.LeerUnboundedString;
+            
+         when others =>
+            return AufgabenbeschreibungenGrafik.KurzbeschreibungVerbesserung (KartenVerbesserungExtern => VerbesserungExtern);
+      end case;
+      
+   end Verbesserung;
+   
+   
+   
+   function Weg
+     (WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      case
+        WegExtern
+      is
+         when KartenverbesserungDatentypen.Leer_Weg_Enum =>
+            return TextKonstanten.LeerUnboundedString;
+            
+         when others =>
+            return AufgabenbeschreibungenGrafik.KurzbeschreibungWeg (KartenWegExtern => WegExtern);
+      end case;
+      
+   end Weg;
+   
+   
+   
+   function Fluss
+     (FlussExtern : in KartenextraDatentypen.Fluss_Enum)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      case
+        FlussExtern
+      is
+         when KartenextraDatentypen.Leer_Fluss_Enum =>
+            return TextKonstanten.LeerUnboundedString;
+            
+         when others =>
+            return KartenbeschreibungenGrafik.KurzbeschreibungFluss (KartenFlussExtern => FlussExtern);
+      end case;
+      
+   end Fluss;
+   
+   
+   
+   function Feldeffekte
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      Zwischenspeicher := TextKonstanten.LeerUnboundedString;
+      
+      FeldeffekteSchleife:
+      for FeldeffektSchleifenwert in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Range loop
+      
+         if
+           False = LeseWeltkarte.Effekt (KoordinatenExtern   => KoordinatenExtern,
+                                         WelcherEffektExtern => FeldeffektSchleifenwert)
+         then
+            null;
+            
+         elsif
+           Zwischenspeicher = TextKonstanten.LeerUnboundedString
+         then
+            Zwischenspeicher := KartenbeschreibungenGrafik.KurzbeschreibungFeldeffekte (FeldeffekteExtern => FeldeffektSchleifenwert);
+                  
+         else
+            Zwischenspeicher := Zwischenspeicher & TextKonstanten.Trennzeichen & KartenbeschreibungenGrafik.KurzbeschreibungFeldeffekte (FeldeffekteExtern => FeldeffektSchleifenwert);
+         end if;
+         
+      end loop FeldeffekteSchleife;
+      
+      return Zwischenspeicher;
+      
+   end Feldeffekte;
 
 end AllgemeinesSeitenleisteGrafik;

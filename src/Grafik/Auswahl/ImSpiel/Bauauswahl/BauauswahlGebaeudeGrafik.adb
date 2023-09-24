@@ -86,7 +86,7 @@ package body BauauswahlGebaeudeGrafik is
                                                                                           IDExtern         => AuswahlExtern,
                                                                                           KampfBonusExtern => KampfDatentypen.Angriff_Enum)));
             
-            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             Textbreite := GrafikKonstanten.Nullwert;
       end case;
@@ -141,7 +141,7 @@ package body BauauswahlGebaeudeGrafik is
             null;
          
          when others =>
-            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             
             TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),

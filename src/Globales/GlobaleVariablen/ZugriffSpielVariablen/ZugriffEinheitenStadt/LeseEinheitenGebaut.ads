@@ -21,16 +21,17 @@ package LeseEinheitenGebaut is
    use type SpeziesDatentypen.Spieler_Enum;
    use type KartenDatentypen.Kartenfeld;
    use type KartenDatentypen.Ebene;
+   use type EinheitenDatentypen.Einheitenbereich;
 
    function ID
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-      return EinheitenDatentypen.EinheitenID
-     with
-       Pre => (
-                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+      return EinheitenDatentypen.EinheitenID;
+   --  with
+    --   Pre => (
+    --            EinheitSpeziesNummerExtern.Nummer in LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
                  --  and
                --    LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
+     --         );
 
    function Koordinaten
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

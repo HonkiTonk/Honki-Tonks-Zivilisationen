@@ -63,7 +63,7 @@ package body SprachauswahlGrafik is
                 ZeileSchleifenwert < Ende)
          then
             if
-              Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))) & VerzeichnisKonstanten.ZweiDatei) = False
+              Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))) & VerzeichnisKonstanten.FontDatei) = False
             then
                NeuerPfad := To_Unbounded_String (Source => TexteinstellungenGrafik.StandardSchriftartVerwenden);
             
@@ -118,7 +118,7 @@ package body SprachauswahlGrafik is
             
             InteraktionAuswahl.PositionenSprachauswahl (Ende) := Sf.Graphics.ConvexShape.getGlobalBounds (shape => PfeilAccess);
             
-            NeueTextbreite := TextberechnungenBreiteGrafik.SpaltenabstandVariabel + Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
+            NeueTextbreite := TextberechnungenBreiteGrafik.Spaltenabstand + Sf.Graphics.ConvexShape.getLocalBounds (shape => PfeilAccess).width;
             
          else
             NeueTextbreite := GrafikKonstanten.Nullwert;

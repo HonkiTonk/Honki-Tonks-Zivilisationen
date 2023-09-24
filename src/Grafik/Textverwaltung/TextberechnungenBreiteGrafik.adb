@@ -6,23 +6,33 @@ with FensterGrafik;
 
 package body TextberechnungenBreiteGrafik is
    
-   function KleinerSpaltenabstandVariabel
+   function WinzigerSpaltenabstand
+     return Float
+   is begin
+      
+      return FensterGrafik.AktuelleAuflösung.x / 100.00;
+      
+   end WinzigerSpaltenabstand;
+   
+   
+   
+   function KleinerSpaltenabstand
      return Float
    is begin
       
       return 1.50 * FensterGrafik.AktuelleAuflösung.x / 100.00;
       
-   end KleinerSpaltenabstandVariabel;
+   end KleinerSpaltenabstand;
    
    
    
-   function SpaltenabstandVariabel
+   function Spaltenabstand
      return Float
    is begin
       
       return 3.50 * FensterGrafik.AktuelleAuflösung.x / 100.00;
       
-   end SpaltenabstandVariabel;
+   end Spaltenabstand;
       
    
 
@@ -63,13 +73,25 @@ package body TextberechnungenBreiteGrafik is
    
    
    
+   function TextbreiteAnfangsabstand
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      AbstandExtern : in Float)
+      return Float
+   is begin
+      
+      return AbstandExtern + Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width;
+      
+   end TextbreiteAnfangsabstand;
+   
+   
+   
    function NeueTextbreiteErmitteln
      (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
       TextbreiteExtern : in Float)
       return Float
    is begin
       
-      NeueTextbreite := SpaltenabstandVariabel + Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width;
+      NeueTextbreite := Spaltenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width;
       
       if
         NeueTextbreite > TextbreiteExtern

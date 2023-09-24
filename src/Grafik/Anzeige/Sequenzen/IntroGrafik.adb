@@ -29,7 +29,7 @@ package body IntroGrafik is
                                      AbmessungenExtern => Viewfläche);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       Textbreite := GrafikKonstanten.Nullwert;
       
       IntroSchleife:

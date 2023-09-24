@@ -1,15 +1,13 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with Kartentexte;
 
 package body AufgabenbeschreibungenGrafik is
 
    function KurzbeschreibungVerbesserung
      (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Verbesserungen (2 * KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Pos (KartenVerbesserungExtern) - 1));
+      return Kartentexte.Verbesserungen (2 * KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Pos (KartenVerbesserungExtern) - 1);
       
    end KurzbeschreibungVerbesserung;
    
@@ -17,10 +15,10 @@ package body AufgabenbeschreibungenGrafik is
    
    function LangbeschreibungVerbesserung
      (KartenVerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Verbesserungen (2 * KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Pos (KartenVerbesserungExtern)));
+      return Kartentexte.Verbesserungen (2 * KartenverbesserungDatentypen.Verbesserung_Vorhanden_Enum'Pos (KartenVerbesserungExtern));
       
    end LangbeschreibungVerbesserung;
    
@@ -28,10 +26,10 @@ package body AufgabenbeschreibungenGrafik is
 
    function KurzbeschreibungWeg
      (KartenWegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Wege (2 * KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (KartenWegExtern) - 1));
+      return Kartentexte.Wege (2 * KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (KartenWegExtern) - 1);
       
    end KurzbeschreibungWeg;
    
@@ -39,10 +37,10 @@ package body AufgabenbeschreibungenGrafik is
 
    function LangbeschreibungWeg
      (KartenWegExtern : in KartenverbesserungDatentypen.Weg_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Wege (2 * KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (KartenWegExtern)));
+      return Kartentexte.Wege (2 * KartenverbesserungDatentypen.Weg_Vorhanden_Enum'Pos (KartenWegExtern));
       
    end LangbeschreibungWeg;
 

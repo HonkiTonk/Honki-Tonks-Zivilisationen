@@ -24,29 +24,26 @@ package body EinheitenseitenleisteGrafik is
    function Einheiten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      TextpositionsinformationenExtern : in Sf.System.Vector3.sfVector3f)
-      return Sf.System.Vector3.sfVector3f
+      TextpositionsinformationenExtern : in GrafikRecords.TextpositionLeerzeilenRecord;
+      MaximaleTextbreiteExtern : in Float)
+      return GrafikRecords.TextpositionLeerzeilenRecord
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      Textposition.x := TextpositionsinformationenExtern.x;
-      Textposition.y := TextpositionsinformationenExtern.y;
-      Textbreite := TextpositionsinformationenExtern.z;
+      Textposition.x := TextpositionsinformationenExtern.Textpositionsinformationen.x;
+      Textposition.y := TextpositionsinformationenExtern.Textpositionsinformationen.y;
+      Textbreite := TextpositionsinformationenExtern.Textpositionsinformationen.z;
+      Leerzeilen := TextpositionsinformationenExtern.Leerzeilen;
       
       if
         SpeziesExtern = SpeziesKonstanten.LeerSpezies
         or
           EinheitSpeziesNummerExtern.Spezies = SpeziesKonstanten.LeerSpezies
       then
-         NichtsZeichnen := True;
-         TextZeichnen;
-            
-         return (Textposition.x, Textposition.y, Textbreite);
+         EinheitSpeziesNummer.Nummer := EinheitenKonstanten.LeerWirdTransportiert;
          
       else
-         NichtsZeichnen := False;
-         -- Diese Zuweisung ist wichtig weil die gefundene Einheit eventuell auf einem Transporter ist.
          EinheitSpeziesNummer.Nummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end if;
             
@@ -66,62 +63,135 @@ package body EinheitenseitenleisteGrafik is
         IDEinheit
       is
          when EinheitenKonstanten.LeerID =>
-            NichtsZeichnen := True;
-            TextZeichnen;
-            
-            return (Textposition.x, Textposition.y, Textbreite);
+            AnzuzeigenderText := (others => TextKonstanten.LeerUnboundedString);
             
          when others =>
-            FestzulegenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => IDEinheit,
-                                                                                                                               SpeziesExtern => EinheitSpeziesNummer.Spezies));
-            FestzulegenderText (2) := Spieltexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image
-              & TextKonstanten.Trennzeichen & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => EinheitSpeziesNummer.Spezies,
-                                                                                                                                    IDExtern      => IDEinheit));
+            AnzuzeigenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => IDEinheit,
+                                                                                                                              SpeziesExtern => EinheitSpeziesNummer.Spezies));
+            AnzuzeigenderText (2) := Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
+                                                   IDExtern                   => IDEinheit);
+            
+            if
+              SpeziesExtern = EinheitSpeziesNummer.Spezies
+              or
+                Projekteinstellungen.Debug.VolleInformation
+            then
+               AnzuzeigenderText (3) := Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
+                                                         IDExtern                   => IDEinheit);
+               AnzuzeigenderText (4) := Erfahrungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
+                                                          IDExtern                   => IDEinheit);
+               AnzuzeigenderText (5) := Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
+                                              IDExtern                   => IDEinheit);
+               AnzuzeigenderText (6) := Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
+               AnzuzeigenderText (7) := Kampfwerte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
+               AnzuzeigenderText (8) := Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
+               AnzuzeigenderText (9) := Ladung (EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
+                                                IDExtern                   => IDEinheit);
+         
+            else
+               AnzuzeigenderText (3 .. 9) := (others => TextKonstanten.LeerUnboundedString);
+            end if;
       end case;
       
-      if
-        SpeziesExtern = EinheitSpeziesNummer.Spezies
-        or
-          Projekteinstellungen.Debug.VolleInformation
-      then
-         FestzulegenderText (3) := Spieltexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image
-           & TextKonstanten.Trennzeichen & ZahlAlsStringBewegungspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummer.Spezies,
-                                                                                                                                       IDExtern      => IDEinheit));
-         FestzulegenderText (4) := Spieltexte.Zeug (TextnummernKonstanten.ZeugErfahrungspunkte) & LeseEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image
-           & TextKonstanten.Trennzeichen & ZahlAlsStringErfahrungspunkte (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => EinheitSpeziesNummer.Spezies,
-                                                                                                                                    IDExtern      => IDEinheit));
-         FestzulegenderText (5) := Spieltexte.Zeug (TextnummernKonstanten.ZeugRang) & LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummer)'Wide_Wide_Image & TextKonstanten.Trennzeichen
-           & ZahlAlsStringRang (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (SpeziesExtern => EinheitSpeziesNummer.Spezies,
-                                                                                    IDExtern      => IDEinheit));
-         FestzulegenderText (6) := Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
-         FestzulegenderText (7) := Kampfwerte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
-         FestzulegenderText (8) := Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
-         FestzulegenderText (9) := Ladung (EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
-                                           IDExtern                   => IDEinheit);
+      TextSchleife:
+      for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
          
-         VolleInformation := True;
+         if
+           AnzuzeigenderText (TextSchleifenwert) = TextKonstanten.LeerUnboundedString
+         then
+            Leerzeilen := Leerzeilen + 1;
+            
+         else
+            TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                            TextExtern       => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
+                                                            PositionExtern   => Textposition);
          
-      else
-         VolleInformation := False;
-      end if;
-      
-      TextZeichnen;
+            Textbreite := TextberechnungenBreiteGrafik.TextbreiteAnfangsabstand (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                                                 AbstandExtern    => 2.00 * Textposition.x);
+            
+            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
+                                                                    ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
+            Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
+                        
+            TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
+                                                                 SkalierungExtern => Skalierung);
+         
+            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+         end if;
+         
+      end loop TextSchleife;
       
       case
         Projekteinstellungen.Debug.VolleInformation
       is
          when True =>
-            Textposition := PlanZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
-                                                 TextwerteExtern            => (Textbreite, Textposition.y));
+            null;
+            -- PlanZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
          when False =>
             null;
-            -- Viewfläche := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       end case;
       
-      return (Textposition.x, Textposition.y, Textbreite);
+      return ((Textposition.x, Textposition.y, Textbreite), Leerzeilen);
       
    end Einheiten;
+   
+   
+   
+   function Lebenspunkte
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      return Spieltexte.Zeug (TextnummernKonstanten.ZeugLebenspunkte) & " " & LeseEinheitenGebaut.Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image
+        & TextKonstanten.Trennzeichen & ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                                                              IDExtern      => IDExtern));
+        
+   end Lebenspunkte;
+   
+   
+   
+   function Bewegungspunkte
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      return Spieltexte.Zeug (TextnummernKonstanten.ZeugBewegungspunkte) & LeseEinheitenGebaut.Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image
+        & TextKonstanten.Trennzeichen & ZahlAlsStringBewegungspunkte (ZahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                                                                    IDExtern      => IDExtern));
+      
+   end Bewegungspunkte;
+   
+   
+   
+   function Erfahrungspunkte
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      return Spieltexte.Zeug (TextnummernKonstanten.ZeugErfahrungspunkte) & LeseEinheitenGebaut.Erfahrungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image
+        & TextKonstanten.Trennzeichen & ZahlAlsStringErfahrungspunkte (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                                                                 IDExtern      => IDExtern));
+      
+   end Erfahrungspunkte;
+   
+   
+   
+   function Rang
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
+      return Unbounded_Wide_Wide_String
+   is begin
+      
+      return Spieltexte.Zeug (TextnummernKonstanten.ZeugRang) & LeseEinheitenGebaut.Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image & TextKonstanten.Trennzeichen
+        & ZahlAlsStringRang (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies,
+                                                                                 IDExtern      => IDExtern));
+      
+   end Rang;
    
    
    
@@ -241,10 +311,9 @@ package body EinheitenseitenleisteGrafik is
    
    
    -- Das hier mal überarbeiten! äöü
-   function PlanZielKoordinaten
+   procedure PlanZielKoordinaten
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TextwerteExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
    is
       use type EinheitenDatentypen.BewegungsplanVorhanden;
    begin
@@ -253,10 +322,10 @@ package body EinheitenseitenleisteGrafik is
         LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
       is
          when SpeziesDatentypen.Mensch_Spieler_Enum =>
-            return TextwerteExtern;
+            return;
             
          when others =>
-            TextpositionDebug.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+            TextpositionDebug.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
             TextpositionDebug.y := TextwerteExtern.y;
             TextbreiteDebug := TextwerteExtern.x;
       
@@ -282,7 +351,7 @@ package body EinheitenseitenleisteGrafik is
                TextpositionDebug.x := TextbreiteDebug / GrafikKonstanten.Halbierung;
                
             when others =>
-               TextpositionDebug.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+               TextpositionDebug.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
                TextpositionDebug.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => TextpositionDebug.y,
                                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          end case;
@@ -300,48 +369,6 @@ package body EinheitenseitenleisteGrafik is
          
       end loop PlanSchleife;
       
-      return (TextbreiteDebug, TextpositionDebug.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
-      
    end PlanZielKoordinaten;
-   
-   
-   
-   procedure TextZeichnen
-   is begin
-      
-      TextSchleife:
-      for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
-         
-         if
-           (VolleInformation = False
-            and
-              TextSchleifenwert >= Informationsgrenze)
-           or
-             NichtsZeichnen
-         then
-            null;
-            
-         else
-            TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                            TextExtern       => To_Wide_Wide_String (Source => FestzulegenderText (TextSchleifenwert)),
-                                                            PositionExtern   => Textposition);
-         
-            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                                TextbreiteExtern => Textbreite);
-            
-            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
-                                                                    ErlaubteBreiteExtern => Textbreite); -- Viewfläche.x);
-            Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
-                        
-            TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                 SkalierungExtern => Skalierung);
-         end if;
-         
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-         
-      end loop TextSchleife;
-      
-   end TextZeichnen;
    
 end EinheitenseitenleisteGrafik;

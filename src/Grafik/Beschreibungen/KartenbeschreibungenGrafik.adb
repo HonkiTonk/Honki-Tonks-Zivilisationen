@@ -1,5 +1,3 @@
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with Kartentexte;
 
 -- Später die Beschreibungen noch um SpeziesExtern erweitern damit jede Spezies ihren eigenen Text haben kann? äöü
@@ -8,10 +6,10 @@ package body KartenbeschreibungenGrafik is
 
    function KurzbeschreibungBasisgrund
      (KartenGrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
    
-      return To_Wide_Wide_String (Source => Kartentexte.Basisgrund (2 * KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1));
+      return Kartentexte.Basisgrund (2 * KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1);
       
    end KurzbeschreibungBasisgrund;
    
@@ -19,10 +17,10 @@ package body KartenbeschreibungenGrafik is
    
    function LangbeschreibungBasisgrund
      (KartenGrundExtern : in KartengrundDatentypen.Basisgrund_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
    
-      return To_Wide_Wide_String (Source => Kartentexte.Basisgrund (2 * KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (KartenGrundExtern)));
+      return Kartentexte.Basisgrund (2 * KartengrundDatentypen.Basisgrund_Vorhanden_Enum'Pos (KartenGrundExtern));
       
    end LangbeschreibungBasisgrund;
    
@@ -30,10 +28,10 @@ package body KartenbeschreibungenGrafik is
 
    function KurzbeschreibungZusatzgrund
      (KartenGrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
    
-      return To_Wide_Wide_String (Source => Kartentexte.Zusatzgrund (2 * KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1));
+      return Kartentexte.Zusatzgrund (2 * KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (KartenGrundExtern) - 1);
       
    end KurzbeschreibungZusatzgrund;
    
@@ -41,10 +39,10 @@ package body KartenbeschreibungenGrafik is
 
    function LangbeschreibungZusatzgrund
      (KartenGrundExtern : in KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
    
-      return To_Wide_Wide_String (Source => Kartentexte.Zusatzgrund (2 * KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (KartenGrundExtern)));
+      return Kartentexte.Zusatzgrund (2 * KartengrundDatentypen.Zusatzgrund_Vorhanden_Enum'Pos (KartenGrundExtern));
       
    end LangbeschreibungZusatzgrund;
    
@@ -52,10 +50,10 @@ package body KartenbeschreibungenGrafik is
    
    function KurzbeschreibungFluss
      (KartenFlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Flüsse (2 * KartenextraDatentypen.Fluss_Vorhanden_Enum'Pos (KartenFlussExtern) - 1));
+      return Kartentexte.Flüsse (2 * KartenextraDatentypen.Fluss_Vorhanden_Enum'Pos (KartenFlussExtern) - 1);
       
    end KurzbeschreibungFluss;
    
@@ -63,10 +61,10 @@ package body KartenbeschreibungenGrafik is
    
    function LangbeschreibungFluss
      (KartenFlussExtern : in KartenextraDatentypen.Fluss_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Flüsse (2 * KartenextraDatentypen.Fluss_Vorhanden_Enum'Pos (KartenFlussExtern)));
+      return Kartentexte.Flüsse (2 * KartenextraDatentypen.Fluss_Vorhanden_Enum'Pos (KartenFlussExtern));
       
    end LangbeschreibungFluss;
    
@@ -74,10 +72,10 @@ package body KartenbeschreibungenGrafik is
    
    function KurzbeschreibungRessource
      (KartenRessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
    
-      return To_Wide_Wide_String (Source => Kartentexte.Ressourcen (2 * KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern) - 1));
+      return Kartentexte.Ressourcen (2 * KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern) - 1);
       
    end KurzbeschreibungRessource;
    
@@ -85,10 +83,10 @@ package body KartenbeschreibungenGrafik is
    
    function LangbeschreibungRessource
      (KartenRessourceExtern : in KartenextraDatentypen.Ressourcen_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
    
-      return To_Wide_Wide_String (Source => Kartentexte.Ressourcen (2 * KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern)));
+      return Kartentexte.Ressourcen (2 * KartenextraDatentypen.Ressourcen_Vorhanden_Enum'Pos (KartenRessourceExtern));
       
    end LangbeschreibungRessource;
    
@@ -96,10 +94,10 @@ package body KartenbeschreibungenGrafik is
    
    function KurzbeschreibungFeldeffekte
      (FeldeffekteExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Feldeffekte (2 * KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Pos (FeldeffekteExtern) - 1));
+      return Kartentexte.Feldeffekte (2 * KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Pos (FeldeffekteExtern) - 1);
       
    end KurzbeschreibungFeldeffekte;
    
@@ -107,10 +105,10 @@ package body KartenbeschreibungenGrafik is
    
    function LangbeschreibungFeldeffekte
      (FeldeffekteExtern : in KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum)
-      return Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => Kartentexte.Feldeffekte (2 * KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Pos (FeldeffekteExtern)));
+      return Kartentexte.Feldeffekte (2 * KartenextraDatentypen.Effekt_Kartenfeld_Vorhanden_Enum'Pos (FeldeffekteExtern));
       
    end LangbeschreibungFeldeffekte;
 

@@ -1,6 +1,7 @@
 with Sf;
 with Sf.Window.Window;
 with Sf.System.Vector2;
+with Sf.System.Vector3;
 with Sf.Graphics.Color;
 with Sf.Graphics.Text;
 
@@ -36,6 +37,17 @@ package GrafikRecords is
       
       EbeneUnterhalbSichtbar : Boolean;
       BildrateAnzeigen : Boolean;
+      
+   end record;
+   
+   
+   
+   type TextpositionLeerzeilenRecord is record
+      
+      -- Textpositionsinformationen.x = XPosition, Textpositionsinformationen.y = YPosition, Textpositionsinformationen.z = Textbreite
+      Textpositionsinformationen : Sf.System.Vector3.sfVector3f;
+      
+      Leerzeilen : Natural;
       
    end record;
 

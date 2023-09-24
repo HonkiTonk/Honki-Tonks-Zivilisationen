@@ -26,7 +26,7 @@ package body TexteinstellungenGrafik is
          SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => StandardSchriftartVerwenden);
          
       elsif
-        Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => AktuelleSprache)) & VerzeichnisKonstanten.ZweiDatei) = False
+        Exists (Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => To_Wide_Wide_String (Source => AktuelleSprache)) & VerzeichnisKonstanten.FontDatei) = False
       then
          SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => StandardSchriftartVerwenden);
          
@@ -66,7 +66,7 @@ package body TexteinstellungenGrafik is
             
       Open (File => DateiSchriftart,
             Mode => In_File,
-            Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => SpracheExtern) & VerzeichnisKonstanten.ZweiDatei,
+            Name => VerzeichnisKonstanten.SprachenStrich & Encode (Item => SpracheExtern) & VerzeichnisKonstanten.FontDatei,
             Form => "WCEM=8");
       
       case

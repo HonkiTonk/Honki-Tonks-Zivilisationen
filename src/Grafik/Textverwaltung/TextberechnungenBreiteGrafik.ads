@@ -4,18 +4,25 @@ package TextberechnungenBreiteGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfText_Ptr;
    
-   function KleinerSpaltenabstandVariabel
+   function WinzigerSpaltenabstand
      return Float
      with
        Post => (
-                  KleinerSpaltenabstandVariabel'Result >= 0.00
+                  WinzigerSpaltenabstand'Result >= 0.00
                );
    
-   function SpaltenabstandVariabel
+   function KleinerSpaltenabstand
      return Float
      with
        Post => (
-                  SpaltenabstandVariabel'Result >= 0.00
+                  KleinerSpaltenabstand'Result >= 0.00
+               );
+   
+   function Spaltenabstand
+     return Float
+     with
+       Post => (
+                  Spaltenabstand'Result >= 0.00
                );
 
    function MittelpositionBerechnen
@@ -50,6 +57,21 @@ package TextberechnungenBreiteGrafik is
          
        Post => (
                   HalbeBreiteBerechnenGlobaleGrenzen'Result >= 0.00
+               );
+   
+   function TextbreiteAnfangsabstand
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      AbstandExtern : in Float)
+      return Float
+     with
+       Pre => (
+                 TextAccessExtern /= null
+               and
+                 AbstandExtern >= 0.00
+              ),
+         
+       Post => (
+                  TextbreiteAnfangsabstand'Result >= 0.00
                );
    
    function NeueTextbreiteErmitteln

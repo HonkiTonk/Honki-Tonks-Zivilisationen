@@ -73,7 +73,7 @@ package body SteuerungsmenueGrafik is
    begin
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textposition.x := TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.Spaltenabstand;
       Textbreite := GrafikKonstanten.Nullwert;
       
       AufteilungSchleife:
@@ -116,7 +116,7 @@ package body SteuerungsmenueGrafik is
          InteraktionAuswahl.PositionenSteuerungsaufteilung (AufteilungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert)));
       
          Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert))).width
-           + GrafikKonstanten.Verdoppelung * TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
+           + GrafikKonstanten.Verdoppelung * TextberechnungenBreiteGrafik.Spaltenabstand;
          
       end loop AufteilungSchleife;
       
@@ -151,7 +151,7 @@ package body SteuerungsmenueGrafik is
             ArrayEnde := MenueKonstanten.SonstigesSteuerung - 1;
       end case;
       
-      Textposition.x := TextberechnungenBreiteGrafik.SpaltenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.Spaltenabstand;
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       Textbreite := GrafikKonstanten.Nullwert;
       

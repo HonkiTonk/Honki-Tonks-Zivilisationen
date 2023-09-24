@@ -74,7 +74,7 @@ package body ForschungsauswahlGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Forschung_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche (ViewKonstanten.ForschungsmenüForschungsliste));
       
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       AktuelleTextbreite := GrafikKonstanten.Nullwert;
             
@@ -136,7 +136,7 @@ package body ForschungsauswahlGrafik is
             return;
             
          when others =>
-            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             AktuelleTextbreite := GrafikKonstanten.Nullwert;
             
@@ -262,7 +262,7 @@ package body ForschungsauswahlGrafik is
             null;
             
          when others =>
-            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstandVariabel;
+            Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             
             TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, ZusatztextExtern),

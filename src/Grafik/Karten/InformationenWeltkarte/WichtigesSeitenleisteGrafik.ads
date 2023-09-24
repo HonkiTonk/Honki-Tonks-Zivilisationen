@@ -1,12 +1,11 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.System.Vector3;
-
 private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
 with KartenDatentypen;
 with KartenRecords;
+with GrafikRecords;
 
 private with TextaccessVariablen;
 private with ProduktionDatentypen;
@@ -26,8 +25,9 @@ package WichtigesSeitenleisteGrafik is
 
    function WichtigesInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
-      return Sf.System.Vector3.sfVector3f
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      MaximaleTextbreiteExtern : in Float)
+      return GrafikRecords.TextpositionLeerzeilenRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -38,31 +38,45 @@ package WichtigesSeitenleisteGrafik is
               ),
          
        Post => (
-                  WichtigesInformationen'Result.x > 0.00
+                  WichtigesInformationen'Result.Textpositionsinformationen.x > 0.00
                 and
-                  WichtigesInformationen'Result.y > 0.00
+                  WichtigesInformationen'Result.Textpositionsinformationen.y > 0.00
                 and
-                  WichtigesInformationen'Result.z > 0.00
+                  WichtigesInformationen'Result.Textpositionsinformationen.z > 0.00
                );
    
 private
    
-   Geldzuwachs : ProduktionDatentypen.Produktion;
+   Forschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
+   
    Forschungszeit : ProduktionDatentypen.Lagermenge;
    
-   Forschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
+   Geldzuwachs : ProduktionDatentypen.Produktion;
    
    AktuelleRundenanzahl : ZahlenDatentypen.EigenesPositive;
    
    Rundengrenze : ZahlenDatentypen.EigenesNatural;
    
+   Leerzeilen : Natural;
+   
    Textbreite : Float;
       
    Textposition : Sf.System.Vector2.sfVector2f;
+   Skalierung : Sf.System.Vector2.sfVector2f;
    
-   FestzulegenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.KarteWichtigesAccess'Range);
+   AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.KarteWichtigesAccess'Range);
 
    
+   
+   function Koordinaten
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
+               and
+                 KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+              );
    
    function Rundenanzahl
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)

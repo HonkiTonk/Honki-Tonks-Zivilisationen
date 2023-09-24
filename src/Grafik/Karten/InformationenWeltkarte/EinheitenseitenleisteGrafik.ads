@@ -1,12 +1,11 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.System.Vector3;
-
 private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
+with GrafikRecords;
 
 private with EinheitenDatentypen;
 private with ProduktionDatentypen;
@@ -29,15 +28,16 @@ package EinheitenseitenleisteGrafik is
    function Einheiten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      TextpositionsinformationenExtern : in Sf.System.Vector3.sfVector3f)
-      return Sf.System.Vector3.sfVector3f
+      TextpositionsinformationenExtern : in GrafikRecords.TextpositionLeerzeilenRecord;
+      MaximaleTextbreiteExtern : in Float)
+      return GrafikRecords.TextpositionLeerzeilenRecord
      with
        Pre => (
-                 TextpositionsinformationenExtern.x > 0.00
+                 TextpositionsinformationenExtern.Textpositionsinformationen.x > 0.00
                and
-                 TextpositionsinformationenExtern.y > 0.00
+                 TextpositionsinformationenExtern.Textpositionsinformationen.y > 0.00
                and
-                 TextpositionsinformationenExtern.z >= 0.00
+                 TextpositionsinformationenExtern.Textpositionsinformationen.z > 0.00
               ),
    --            EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
    --         and
@@ -47,19 +47,17 @@ package EinheitenseitenleisteGrafik is
    --        ),
          
      Post => (
-                Einheiten'Result.x > 0.00
+                Einheiten'Result.Textpositionsinformationen.x > 0.00
               and
-                Einheiten'Result.y > 0.00
+                Einheiten'Result.Textpositionsinformationen.y > 0.00
               and
-                Einheiten'Result.z >= 0.00
+                Einheiten'Result.Textpositionsinformationen.z > 0.00
              );
    
                    
 private
    
-   VolleInformation : Boolean;
    Beladen : Boolean;
-   NichtsZeichnen : Boolean;
    
    Beschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    
@@ -72,8 +70,8 @@ private
    Angriffsbonus : KampfDatentypen.Kampfwerte;
    Verteidigungsbonus : KampfDatentypen.Kampfwerte;
    
-   Informationsgrenze : constant Positive := 3;
-   
+   Leerzeilen : Natural;
+      
    Textbreite : Float;
    TextbreiteDebug : Float;
       
@@ -82,18 +80,85 @@ private
       
    EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
    
-   Leerwert : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
    TextpositionDebug : Sf.System.Vector2.sfVector2f;
    Skalierung : Sf.System.Vector2.sfVector2f;
    
    Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   FestzulegenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.EinheitenInformationenAccess'Range);
+   AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.EinheitenInformationenAccess'Range);
    
-   procedure TextZeichnen;
+   procedure PlanZielKoordinaten
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      TextwerteExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              );
    
    
+   
+   function Lebenspunkte
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              ),
+         
+       Post => (
+                  To_Wide_Wide_String (Source => Lebenspunkte'Result)'Length > 0 
+               );
+   
+   function Bewegungspunkte
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              ),
+         
+       Post => (
+                  To_Wide_Wide_String (Source => Bewegungspunkte'Result)'Length > 0 
+               );
+     
+   function Erfahrungspunkte
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              ),
+         
+       Post => (
+                  To_Wide_Wide_String (Source => Erfahrungspunkte'Result)'Length > 0 
+               );
+     
+   function Rang
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+              ),
+         
+       Post => (
+                  To_Wide_Wide_String (Source => Rang'Result)'Length > 0 
+               );
    
    function Aufgabe
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
@@ -139,23 +204,6 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
-   
-   function PlanZielKoordinaten
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      TextwerteExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
-     with
-       Pre => (
-                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              ),
-         
-       Post => (
-                  PlanZielKoordinaten'Result.x >= 0.00
-                and
-                  PlanZielKoordinaten'Result.y >= 0.00
-               );
       
    function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Einheitenbereich);
    

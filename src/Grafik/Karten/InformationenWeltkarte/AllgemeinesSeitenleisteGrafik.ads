@@ -1,69 +1,98 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.System.Vector3;
-
 private with Sf.System.Vector2;
 
 with SpeziesDatentypen;
+with SpeziesKonstanten;
+with GrafikRecords;
 
 private with KartenRecords;
 private with KartenverbesserungDatentypen;
 private with TextaccessVariablen;
-private with GrafikRecordKonstanten;
 private with KartenextraDatentypen;
+private with TextArrays;
+private with KartengrundDatentypen;
 
--- with LeseSpeziesbelegung;
+with LeseSpeziesbelegung;
 
 package AllgemeinesSeitenleisteGrafik is
    pragma Elaborate_Body;
-   -- use type SpeziesDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spieler_Enum;
+   use type SpeziesDatentypen.Spezies_Enum;
 
    function AllgemeineInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
-      TextpositionsinformationenExtern : in Sf.System.Vector3.sfVector3f)
-      return Sf.System.Vector3.sfVector3f
+      TextpositionsinformationenExtern : in GrafikRecords.TextpositionLeerzeilenRecord;
+      MaximaleTextbreiteExtern : in Float)
+      return GrafikRecords.TextpositionLeerzeilenRecord
      with
        Pre => (
-                 TextpositionsinformationenExtern.x > 0.00
+                 TextpositionsinformationenExtern.Textpositionsinformationen.x > 0.00
                and
-                 TextpositionsinformationenExtern.y > 0.00
+                 TextpositionsinformationenExtern.Textpositionsinformationen.y > 0.00
                and
-                 TextpositionsinformationenExtern.z >= 0.00
-                 --           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
+                 TextpositionsinformationenExtern.Textpositionsinformationen.z > 0.00
+               and
+                 (if SpeziesExtern /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum)
               ),
          
        Post => (
-                  AllgemeineInformationen'Result.x > 0.00
+                  AllgemeineInformationen'Result.Textpositionsinformationen.x > 0.00
                 and
-                  AllgemeineInformationen'Result.y > 0.00
+                  AllgemeineInformationen'Result.Textpositionsinformationen.y > 0.00
                 and
-                  AllgemeineInformationen'Result.z >= 0.00
+                  AllgemeineInformationen'Result.Textpositionsinformationen.z > 0.00
                );
    
 private
+   use type KartengrundDatentypen.Basisgrund_Enum;
    
-   KartenFluss : KartenextraDatentypen.Fluss_Enum;
-   
-   KartenRessource : KartenextraDatentypen.Ressourcen_Enum;
-
-   KartenVerbesserung : KartenverbesserungDatentypen.Verbesserung_Enum;
-   KartenWeg : KartenverbesserungDatentypen.Weg_Enum;
-   
+   Leerzeilen : Natural;
+      
    Textbreite : Float;
    
-   Text : Unbounded_Wide_Wide_String;
-   
-   Gesamtgrund : KartenRecords.KartengrundRecord;
+   Zwischenspeicher : Unbounded_Wide_Wide_String;
 
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    
-   LetzteAuflösung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.Nullposition;
-   AktuelleAuflösung : Sf.System.Vector2.sfVector2f;
    Textposition : Sf.System.Vector2.sfVector2f;
+   Skalierung : Sf.System.Vector2.sfVector2f;
    
-   type TextAnzeigenArray is array (TextaccessVariablen.KarteAllgemeinesAccess'Range) of Boolean;
-   TextAnzeigen : TextAnzeigenArray;
+   AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.KarteAllgemeinesAccess'Range);
    
-   procedure TextZeichnen;
+   
+   
+   function Gesamtgrund
+     (GesamtgrundExtern : in KartenRecords.KartengrundRecord)
+      return Unbounded_Wide_Wide_String
+     with
+       Pre => (
+                 GesamtgrundExtern.Basisgrund /= KartengrundDatentypen.Leer_Basisgrund_Enum
+              ),
+         
+       Post => (
+                  To_Wide_Wide_String (Source => Gesamtgrund'Result)'Length > 0
+               );
+   
+   -- Die Contracts hier noch hinzufügen. äöü
+   function Ressource
+     (RessourceExtern : in KartenextraDatentypen.Ressourcen_Enum)
+      return Unbounded_Wide_Wide_String;
+   
+   function Verbesserung
+     (VerbesserungExtern : in KartenverbesserungDatentypen.Verbesserung_Enum)
+      return Unbounded_Wide_Wide_String;
+   
+   function Weg
+     (WegExtern : in KartenverbesserungDatentypen.Weg_Enum)
+      return Unbounded_Wide_Wide_String;
+   
+   function Fluss
+     (FlussExtern : in KartenextraDatentypen.Fluss_Enum)
+      return Unbounded_Wide_Wide_String;
+   
+   function Feldeffekte
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
+      return Unbounded_Wide_Wide_String;
    
 end AllgemeinesSeitenleisteGrafik;
