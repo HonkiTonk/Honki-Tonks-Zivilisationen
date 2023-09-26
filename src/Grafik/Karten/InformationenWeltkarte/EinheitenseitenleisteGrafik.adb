@@ -102,14 +102,17 @@ package body EinheitenseitenleisteGrafik is
             Leerzeilen := Leerzeilen + 1;
             
          else
+            -- Text festlegen?
+            -- Dann eine Funktion/Prozedur für die Berechnungen/Abstand einbauen?
+            -- Dann den Rest durchführen?
             TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
                                                             TextExtern       => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
                                                             PositionExtern   => Textposition);
          
             Textbreite := TextberechnungenBreiteGrafik.TextbreiteAnfangsabstand (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                                 AbstandExtern    => 2.00 * Textposition.x);
+                                                                                 AbstandExtern    => 2.00 * TextberechnungenBreiteGrafik.KleinerSpaltenabstand);
             
-            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
+            Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textbreite,
                                                                     ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
             Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
                         

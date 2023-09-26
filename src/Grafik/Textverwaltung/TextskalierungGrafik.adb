@@ -4,7 +4,7 @@ with PruefungenGrafik;
 
 package body TextskalierungGrafik is
 
-   function Breitenskalierung
+   function Verkleinerung
      (AktuelleBreiteExtern : in Float;
       ErlaubteBreiteExtern : in Float)
       return Float
@@ -16,7 +16,30 @@ package body TextskalierungGrafik is
          return ErlaubteBreiteExtern / PruefungenGrafik.NullprüfungKommazahl (KommazahlExtern => AktuelleBreiteExtern);
          
       else
-         -- return PruefungenGrafik.NullprüfungKommazahl (KommazahlExtern => AktuelleBreiteExtern) / ErlaubteBreiteExtern;
+         return GrafikRecordKonstanten.Standardskalierung.x;
+      end if;
+      
+   end Verkleinerung;
+   
+   
+   
+   function Breitenskalierung
+     (AktuelleBreiteExtern : in Float;
+      ErlaubteBreiteExtern : in Float)
+      return Float
+   is begin
+     
+      if
+        AktuelleBreiteExtern > ErlaubteBreiteExtern
+      then
+         return ErlaubteBreiteExtern / PruefungenGrafik.NullprüfungKommazahl (KommazahlExtern => AktuelleBreiteExtern);
+         
+      elsif
+        AktuelleBreiteExtern < ErlaubteBreiteExtern
+      then
+         return AktuelleBreiteExtern / PruefungenGrafik.NullprüfungKommazahl (KommazahlExtern => ErlaubteBreiteExtern);
+         
+      else
          return GrafikRecordKonstanten.Standardskalierung.x;
       end if;
       

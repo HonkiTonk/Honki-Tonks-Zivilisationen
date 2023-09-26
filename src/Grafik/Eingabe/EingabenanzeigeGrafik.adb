@@ -317,7 +317,7 @@ package body EingabenanzeigeGrafik is
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                                                 TextbreiteExtern => Textbreite);
       
-            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
+            Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textbreite,
                                                                     ErlaubteBreiteExtern => MaximaleTextbreite);
             Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
             

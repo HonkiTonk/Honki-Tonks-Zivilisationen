@@ -10,7 +10,7 @@ package body TextberechnungenBreiteGrafik is
      return Float
    is begin
       
-      return FensterGrafik.AktuelleAuflösung.x / 100.00;
+      return FensterGrafik.AktuelleAuflösung.x / 200.00;
       
    end WinzigerSpaltenabstand;
    

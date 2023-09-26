@@ -216,7 +216,7 @@ package body WeltkarteZusatzZeichnenGrafik is
                                             str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtSpeziesNummerExtern => StadtSpeziesNummer)));
       
          Textgröße := (Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).width, Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteAccess).height);
-         Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textgröße.x,
+         Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textgröße.x,
                                                                  -- Die erlaubte Breite unabhängig/unabhängiger von der Kartfenfeldgröße gestalten. äöü
                                                                  ErlaubteBreiteExtern => 5.00 * SichtweitenGrafik.Kartenfeldfläche.x);
          Skalierung.y := 0.70;

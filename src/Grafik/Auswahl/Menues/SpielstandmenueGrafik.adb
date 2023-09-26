@@ -109,7 +109,7 @@ package body SpielstandmenueGrafik is
          
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
                                                                                 TextbreiteExtern => GrafikKonstanten.Nullwert);
-            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
+            Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textbreite,
                                                                     ErlaubteBreiteExtern => ViewflächeExtern.x);
             Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
             

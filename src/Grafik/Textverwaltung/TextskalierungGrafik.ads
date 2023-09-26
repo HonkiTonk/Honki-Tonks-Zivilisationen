@@ -2,6 +2,21 @@ with Sf.System.Vector2;
 
 package TextskalierungGrafik is
    pragma Elaborate_Body;
+   
+   function Verkleinerung
+     (AktuelleBreiteExtern : in Float;
+      ErlaubteBreiteExtern : in Float)
+      return Float
+     with
+       Pre => (
+                 AktuelleBreiteExtern >= 0.00
+               and
+                 ErlaubteBreiteExtern >= 0.00
+              ),
+         
+       Post => (
+                  Verkleinerung'Result >= 0.00
+               );
 
    function Breitenskalierung
      (AktuelleBreiteExtern : in Float;

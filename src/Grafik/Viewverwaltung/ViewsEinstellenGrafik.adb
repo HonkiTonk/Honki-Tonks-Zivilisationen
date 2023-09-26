@@ -67,6 +67,7 @@ package body ViewsEinstellenGrafik is
    
    
    
+   -- Das hier überall in das untere überführen und entsprechend den Text skalieren? äöü
    function ViewflächeVariabelAnpassen
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
       VerhältnisExtern : in Sf.System.Vector2.sfVector2f)
@@ -94,5 +95,28 @@ package body ViewsEinstellenGrafik is
       return ViewflächeVariabel;
       
    end ViewflächeVariabelAnpassen;
+   
+   
+   
+   function ViewflächeXFestYVariabel
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
+      VerhältnisExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      ViewflächeVariabel.x := FensterGrafik.AktuelleAuflösung.x * VerhältnisExtern.x;
+      
+      if
+        ViewflächeExtern.y < FensterGrafik.AktuelleAuflösung.y * VerhältnisExtern.y
+      then
+         ViewflächeVariabel.y := FensterGrafik.AktuelleAuflösung.y * VerhältnisExtern.y;
+         
+      else
+         ViewflächeVariabel.y := ViewflächeExtern.y;
+      end if;
+      
+      return ViewflächeVariabel;
+      
+   end ViewflächeXFestYVariabel;
 
 end ViewsEinstellenGrafik;

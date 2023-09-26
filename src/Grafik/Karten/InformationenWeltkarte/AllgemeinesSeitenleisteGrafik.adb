@@ -58,15 +58,15 @@ package body AllgemeinesSeitenleisteGrafik is
                                                             PositionExtern   => Textposition);
             
             Textbreite := TextberechnungenBreiteGrafik.TextbreiteAnfangsabstand (TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                                                 AbstandExtern    => 2.00 * Textposition.x);
+                                                                                 AbstandExtern    => 2.00 * TextberechnungenBreiteGrafik.KleinerSpaltenabstand);
             
-            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
-                                                                    ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
+            Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textbreite,
+                                                                ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
             Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
                         
             TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
                                                                  SkalierungExtern => Skalierung);
-         
+            
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
          end if;

@@ -1,6 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
+private with Sf.Graphics;
 
 with SpeziesDatentypen;
 with KartenDatentypen;
@@ -65,8 +66,15 @@ private
    Skalierung : Sf.System.Vector2.sfVector2f;
    
    AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.KarteWichtigesAccess'Range);
-
    
+   
+   
+   function Test
+     (TextExtern : in Wide_Wide_String;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      MaximaleTextbreiteExtern : in Float;
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr)
+      return Float;
    
    function Koordinaten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)

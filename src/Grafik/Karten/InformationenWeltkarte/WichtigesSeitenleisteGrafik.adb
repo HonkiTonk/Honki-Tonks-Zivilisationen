@@ -45,22 +45,10 @@ package body WichtigesSeitenleisteGrafik is
             Leerzeilen := Leerzeilen + 1;
             
          else
-            TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
-                                                            TextExtern       => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
-                                                            PositionExtern   => Textposition);
-         
-            Textbreite := TextberechnungenBreiteGrafik.TextbreiteAnfangsabstand (TextAccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
-                                                                                 AbstandExtern    => 2.00 * Textposition.x);
-            
-            Skalierung.x := TextskalierungGrafik.Breitenskalierung (AktuelleBreiteExtern => Textbreite,
-                                                                    ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
-            Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
-                        
-            TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert),
-                                                                 SkalierungExtern => Skalierung);
-         
-            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+            Textposition.y := Test (TextExtern               => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
+                                    TextpositionExtern       => Textposition,
+                                    MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                    TextAccessExtern         => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert));
          end if;
          
       end loop TextSchleife;
@@ -71,6 +59,35 @@ package body WichtigesSeitenleisteGrafik is
       return ((Textposition.x, Textposition.y, Textbreite), Leerzeilen);
             
    end WichtigesInformationen;
+   
+   
+   
+   function Test
+     (TextExtern : in Wide_Wide_String;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      MaximaleTextbreiteExtern : in Float;
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr)
+      return Float
+   is begin
+      
+      TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextAccessExtern,
+                                                      TextExtern       => TextExtern,
+                                                      PositionExtern   => TextpositionExtern);
+         
+      Textbreite := TextberechnungenBreiteGrafik.TextbreiteAnfangsabstand (TextAccessExtern => TextAccessExtern,
+                                                                           AbstandExtern    => 2.00 * TextberechnungenBreiteGrafik.KleinerSpaltenabstand);
+            
+      Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textbreite,
+                                                          ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
+      Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
+                        
+      TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextAccessExtern,
+                                                           SkalierungExtern => Skalierung);
+      
+      return TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => TextpositionExtern.y,
+                                                           ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      
+   end Test;
    
    
    

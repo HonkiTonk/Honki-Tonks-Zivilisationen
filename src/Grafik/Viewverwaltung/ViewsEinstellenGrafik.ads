@@ -73,6 +73,11 @@ package ViewsEinstellenGrafik is
                   ViewflächeVariabelAnpassen'Result.y >= 0.00
                );
    
+   function ViewflächeXFestYVariabel
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
+      VerhältnisExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f;
+   
 private
    
    Viewfläche : Sf.System.Vector2.sfVector2f;

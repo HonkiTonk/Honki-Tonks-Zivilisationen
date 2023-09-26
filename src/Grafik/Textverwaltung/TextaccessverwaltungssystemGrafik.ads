@@ -202,5 +202,13 @@ package TextaccessverwaltungssystemGrafik is
        Pre => (
                  TextaccessExtern /= null
               );
+   
+   procedure Text
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      TextExtern : in Wide_Wide_String)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+              );
 
 end TextaccessverwaltungssystemGrafik;

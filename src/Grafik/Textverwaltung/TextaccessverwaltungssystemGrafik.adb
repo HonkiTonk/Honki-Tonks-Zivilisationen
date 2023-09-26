@@ -243,5 +243,17 @@ package body TextaccessverwaltungssystemGrafik is
                                          text         => TextaccessExtern);
       
    end Zeichnen;
+   
+   
+   
+   procedure Text
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      TextExtern : in Wide_Wide_String)
+   is begin
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessExtern,
+                                         str  => TextExtern);
+      
+   end Text;
 
 end TextaccessverwaltungssystemGrafik;
