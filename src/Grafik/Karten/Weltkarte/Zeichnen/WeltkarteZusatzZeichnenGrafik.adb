@@ -16,7 +16,7 @@ with LeseEinstellungenGrafik;
 
 with TextberechnungenBreiteGrafik;
 with KartenkoordinatenberechnungssystemLogik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 with StadtSuchenLogik;
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
@@ -221,7 +221,7 @@ package body WeltkarteZusatzZeichnenGrafik is
                                                                  ErlaubteBreiteExtern => 5.00 * SichtweitenGrafik.Kartenfeldfläche.x);
          Skalierung.y := 0.70;
       
-         TextaccessverwaltungssystemGrafik.Skalieren (TextaccessExtern => TextaccessVariablen.KarteAccess,
+         TextaccessverwaltungssystemEinfachGrafik.Skalieren (TextaccessExtern => TextaccessVariablen.KarteAccess,
                                                       SkalierungExtern => Skalierung);
       
          Textposition.x := PositionExtern.x
@@ -257,7 +257,7 @@ package body WeltkarteZusatzZeichnenGrafik is
                                                    PositionExtern         => Textposition,
                                                    DurchsichtigkeitExtern => GrafikKonstanten.Bewegungsfeldtransparents);
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteAccess,
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KarteAccess,
                                                           PositionExtern   => Textposition);
       
    end StadtnameAnzeigen;

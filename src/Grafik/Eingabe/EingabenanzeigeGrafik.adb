@@ -20,7 +20,7 @@ with TextberechnungenBreiteGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextfarbeGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 with TextskalierungGrafik;
 
 -- Die Viewflächen hier alle in ein Array umwandeln? äöü
@@ -78,7 +78,7 @@ package body EingabenanzeigeGrafik is
                                                                               ViewbreiteExtern => FrageViewfläche.x);
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ÜberschriftAccess,
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                           PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
@@ -126,7 +126,7 @@ package body EingabenanzeigeGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                                               ViewbreiteExtern => Viewfläche.x);
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                           PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
@@ -162,8 +162,8 @@ package body EingabenanzeigeGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                                               ViewbreiteExtern => Viewfläche.x);
       
-      TextaccessverwaltungssystemGrafik.Standardskalierung (TextaccessExtern => TextaccessVariablen.EingabenanzeigeAccess);
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
+      TextaccessverwaltungssystemEinfachGrafik.Standardskalierung (TextaccessExtern => TextaccessVariablen.EingabenanzeigeAccess);
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.EingabenanzeigeAccess,
                                                           PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
@@ -199,7 +199,7 @@ package body EingabenanzeigeGrafik is
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
                                                                                  ViewbreiteExtern => Viewfläche.x);
          
-         TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
+         TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.JaNeinAccess (TextSchleifenwert),
                                                                   PositionExtern   => Textposition,
                                                                   FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert,
                                                                                                                              AuswahlExtern    => AktuelleAuswahl));
@@ -284,7 +284,7 @@ package body EingabenanzeigeGrafik is
             null;
             
          else
-            TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+            TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                          TextExtern       => To_Wide_Wide_String (Source => Text),
                                                          FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Natural (AuswahlSchleifenwert),
                                                                                                                     AuswahlExtern    => AktuelleAuswahlExtern));
@@ -332,7 +332,7 @@ package body EingabenanzeigeGrafik is
                null;
             end if;
             
-            TextaccessverwaltungssystemGrafik.PositionSkalierenZeichnen (TextaccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
+            TextaccessverwaltungssystemEinfachGrafik.PositionSkalierenZeichnen (TextaccessExtern => TextaccessVariablen.AnzeigeEinheitStadtAccess (AuswahlSchleifenwert),
                                                                          PositionExtern   => Textposition,
                                                                          SkalierungExtern => Skalierung);
             

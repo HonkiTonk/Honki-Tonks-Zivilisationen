@@ -18,7 +18,7 @@ with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with TextfarbeGrafik;
 with BauauswahlGebaeudeGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 
 package body VerkaufsauswahlGrafik is
 
@@ -71,7 +71,7 @@ package body VerkaufsauswahlGrafik is
                Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                                                                        ViewbreiteExtern => Viewfläche.x);
                
-               TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
+               TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                                                         PositionExtern   => Textposition,
                                                                         FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (GebäudeSchleifenwert),
                                                                                                                                    AuswahlExtern    => Natural (AuswahlExtern)));

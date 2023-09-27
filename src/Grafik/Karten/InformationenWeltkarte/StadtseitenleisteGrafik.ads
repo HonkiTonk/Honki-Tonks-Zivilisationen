@@ -35,9 +35,10 @@ package StadtseitenleisteGrafik is
    function Stadt
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
-      TextpositionsinformationenExtern : in GrafikRecords.TextpositionLeerzeilenRecord;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.TextpositionLeerzeilenRecord
+      return GrafikRecords.YTextpositionLeerzeilenRecord
      with
        Pre => (
                --       LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -45,31 +46,22 @@ package StadtseitenleisteGrafik is
                --        LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
                --      and
                --       StadtauswahlExtern.SpeziesNummer.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies)
-                 TextpositionsinformationenExtern.Textpositionsinformationen.x > 0.00
+                 TextpositionExtern.x > 0.00
                and
-                 TextpositionsinformationenExtern.Textpositionsinformationen.y > 0.00
-               and
-                 TextpositionsinformationenExtern.Textpositionsinformationen.z > 0.00
+                 TextpositionExtern.y > 0.00
               ),
          
        Post => (
-                  Stadt'Result.Textpositionsinformationen.x > 0.00
-                and
-                  Stadt'Result.Textpositionsinformationen.y > 0.00
-                and
-                  Stadt'Result.Textpositionsinformationen.z > 0.00
+                  Stadt'Result.YPosition > 0.00
                );
    
 private
       
    Leerzeilen : Natural;
-   
-   Textbreite : Float;
          
    Zwischenspeicher : Unbounded_Wide_Wide_String;
-   
-   Textposition : Sf.System.Vector2.sfVector2f;
-   Skalierung : Sf.System.Vector2.sfVector2f;
+      
+   YTextposition : Float;
       
    AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.StadtInformationenAccess'Range);
    

@@ -8,7 +8,7 @@ with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 
 package body AbspannGrafik is
 
@@ -60,7 +60,7 @@ package body AbspannGrafik is
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-         TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
+         TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
                                                              PositionExtern   => Textposition);
          
       end loop AllgemeinSchleife;
@@ -87,7 +87,7 @@ package body AbspannGrafik is
       Textposition.y := NeueViewfläche.y;
       Textbreite := NeueViewfläche.x;
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (1),
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (1),
                                                           PositionExtern   => Textposition);
       
       return (Textbreite, Textposition.y);
@@ -111,7 +111,7 @@ package body AbspannGrafik is
       Textposition.y := NeueViewfläche.y;
       Textbreite := NeueViewfläche.x;
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (1),
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (1),
                                                           PositionExtern   => Textposition);
       
       return (Textbreite, Textposition.y);

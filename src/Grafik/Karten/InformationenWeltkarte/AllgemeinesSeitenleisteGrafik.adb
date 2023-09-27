@@ -1,31 +1,27 @@
 with Spieltexte;
 with TextnummernKonstanten;
 with TextKonstanten;
-with GrafikRecordKonstanten;
 
 with LeseWeltkarte;
 with LeseCursor;
 
-with TextaccessverwaltungssystemGrafik;
 with TextberechnungenHoeheGrafik;
-with TextberechnungenBreiteGrafik;
 with AufgabenbeschreibungenGrafik;
 with KartenbeschreibungenGrafik;
-with TextskalierungGrafik;
+with TextaccessverwaltungssystemErweitertGrafik;
 
 package body AllgemeinesSeitenleisteGrafik is
 
    function AllgemeineInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
-      TextpositionsinformationenExtern : in GrafikRecords.TextpositionLeerzeilenRecord;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.TextpositionLeerzeilenRecord
+      return GrafikRecords.YTextpositionLeerzeilenRecord
    is begin
         
-      Textposition.x := TextpositionsinformationenExtern.Textpositionsinformationen.x;
-      Textposition.y := TextpositionsinformationenExtern.Textpositionsinformationen.y;
-      Textbreite := TextpositionsinformationenExtern.Textpositionsinformationen.z;
-      Leerzeilen := TextpositionsinformationenExtern.Leerzeilen;
+      YTextposition := TextpositionExtern.y;
+      Leerzeilen := LeerzeilenExtern;
       
       case
         SpeziesExtern
@@ -53,30 +49,18 @@ package body AllgemeinesSeitenleisteGrafik is
             Leerzeilen := Leerzeilen + 1;
             
          else
-            TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                            TextExtern       => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
-                                                            PositionExtern   => Textposition);
-            
-            Textbreite := TextberechnungenBreiteGrafik.TextbreiteAnfangsabstand (TextAccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                                                 AbstandExtern    => 2.00 * TextberechnungenBreiteGrafik.KleinerSpaltenabstand);
-            
-            Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textbreite,
-                                                                ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
-            Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
-                        
-            TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert),
-                                                                 SkalierungExtern => Skalierung);
-            
-            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+            YTextposition := TextaccessverwaltungssystemErweitertGrafik.TextskalierungZeichnung (TextExtern               => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
+                                                                                                 TextpositionExtern       => (TextpositionExtern.x, YTextposition),
+                                                                                                 MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                 TextAccessExtern         => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert));
          end if;
          
       end loop TextSchleife;
          
-      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
+                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-      return ((Textposition.x, Textposition.y, Textbreite), Leerzeilen);
+      return (YTextposition, Leerzeilen);
 
    end AllgemeineInformationen;
    

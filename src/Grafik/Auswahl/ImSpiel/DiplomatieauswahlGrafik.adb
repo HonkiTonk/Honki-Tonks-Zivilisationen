@@ -24,7 +24,7 @@ with TextberechnungenHoeheGrafik;
 with MenuestringsSetzenGrafik;
 with TextfarbeGrafik;
 with Fehlermeldungssystem;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 
 package body DiplomatieauswahlGrafik is
 
@@ -91,7 +91,7 @@ package body DiplomatieauswahlGrafik is
                   Text := TextKonstanten.LeerUnboundedString;
             end case;
                
-            TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.DiplomatieAccess,
+            TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.DiplomatieAccess,
                                                          TextExtern       => To_Wide_Wide_String (Source => Text),
                                                          FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => PositionSchleifenwert,
                                                                                                                     AuswahlExtern    => AuswahlExtern));
@@ -99,7 +99,7 @@ package body DiplomatieauswahlGrafik is
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.DiplomatieAccess,
                                                                                     ViewbreiteExtern => ViewflächeExtern.x);
                
-            TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.DiplomatieAccess,
+            TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.DiplomatieAccess,
                                                                 PositionExtern   => Textposition);
                
             Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.DiplomatieAccess,

@@ -20,7 +20,7 @@ with ViewsEinstellenGrafik;
 with TextfarbeGrafik;
 with ZeilenumbruchberechnungGrafik;
 with EinheitenbeschreibungenGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 
 package body BauauswahlEinheitenGrafik is
 
@@ -104,7 +104,7 @@ package body BauauswahlEinheitenGrafik is
       InformationenSchleife:
       for InformationSchleifenwert in Einheitentexte'Range loop
          
-         TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenbauinformationenAccess,
+         TextaccessverwaltungssystemEinfachGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenbauinformationenAccess,
                                                                       TextExtern       => To_Wide_Wide_String (Source => Einheitentexte (InformationSchleifenwert)),
                                                                       PositionExtern   => Textposition,
                                                                       FarbeExtern      => TextfarbeGrafik.Standardfarbe);
@@ -146,7 +146,7 @@ package body BauauswahlEinheitenGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       -- Sollche Konstrukte mal auseinanderziehen, damit es übersichtlicher ist. äöü
-      TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),
+      TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),
                                                               TextExtern       => 
                                                                 ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                   (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern      => AuswahlExtern,

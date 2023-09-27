@@ -10,7 +10,7 @@ with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with MenuestringsSetzenGrafik;
 with TextberechnungenHoeheGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 
 package body AllgemeineViewsGrafik is
       
@@ -45,7 +45,7 @@ package body AllgemeineViewsGrafik is
                                                                               ViewbreiteExtern => Viewfläche (Überschrift_Enum).x);
       Textposition.y := GrafikKonstanten.Verdoppelung * TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ÜberschriftAccess,
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                           PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
@@ -101,7 +101,7 @@ package body AllgemeineViewsGrafik is
                                                                               ViewbreiteExtern => Viewfläche (Versionsnummer_Enum).x);
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.VersionsnummerAccess,
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.VersionsnummerAccess,
                                                           PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,

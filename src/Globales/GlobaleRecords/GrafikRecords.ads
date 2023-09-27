@@ -1,7 +1,6 @@
 with Sf;
 with Sf.Window.Window;
 with Sf.System.Vector2;
-with Sf.System.Vector3;
 with Sf.Graphics.Color;
 with Sf.Graphics.Text;
 
@@ -44,8 +43,17 @@ package GrafikRecords is
    
    type TextpositionLeerzeilenRecord is record
       
-      -- Textpositionsinformationen.x = XPosition, Textpositionsinformationen.y = YPosition, Textpositionsinformationen.z = Textbreite
-      Textpositionsinformationen : Sf.System.Vector3.sfVector3f;
+      Textposition : Sf.System.Vector2.sfVector2f;
+      
+      Leerzeilen : Natural;
+      
+   end record;
+   
+   
+   
+   type YTextpositionLeerzeilenRecord is record
+      
+      YPosition : Float;
       
       Leerzeilen : Natural;
       

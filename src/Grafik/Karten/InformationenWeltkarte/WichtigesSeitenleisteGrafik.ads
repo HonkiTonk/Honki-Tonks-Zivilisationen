@@ -1,7 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with Sf.System.Vector2;
-private with Sf.Graphics;
+with Sf.System.Vector2;
 
 with SpeziesDatentypen;
 with KartenDatentypen;
@@ -27,8 +26,10 @@ package WichtigesSeitenleisteGrafik is
    function WichtigesInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.TextpositionLeerzeilenRecord
+      return GrafikRecords.YTextpositionLeerzeilenRecord
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -36,14 +37,14 @@ package WichtigesSeitenleisteGrafik is
                  KoordinatenExtern.YAchse <= LeseWeltkarteneinstellungen.YAchse
                and
                  KoordinatenExtern.XAchse <= LeseWeltkarteneinstellungen.XAchse
+               and
+                 TextpositionExtern.x > 0.00
+               and
+                 TextpositionExtern.y > 0.00
               ),
          
        Post => (
-                  WichtigesInformationen'Result.Textpositionsinformationen.x > 0.00
-                and
-                  WichtigesInformationen'Result.Textpositionsinformationen.y > 0.00
-                and
-                  WichtigesInformationen'Result.Textpositionsinformationen.z > 0.00
+                  WichtigesInformationen'Result.YPosition > 0.00
                );
    
 private
@@ -59,23 +60,13 @@ private
    Rundengrenze : ZahlenDatentypen.EigenesNatural;
    
    Leerzeilen : Natural;
-   
-   Textbreite : Float;
       
-   Textposition : Sf.System.Vector2.sfVector2f;
-   Skalierung : Sf.System.Vector2.sfVector2f;
+   YTextposition : Float;
    
    AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.KarteWichtigesAccess'Range);
    
    
-   
-   function Test
-     (TextExtern : in Wide_Wide_String;
-      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
-      MaximaleTextbreiteExtern : in Float;
-      TextAccessExtern : in Sf.Graphics.sfText_Ptr)
-      return Float;
-   
+         
    function Koordinaten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord)
       return Unbounded_Wide_Wide_String

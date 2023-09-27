@@ -18,7 +18,7 @@ with ViewsEinstellenGrafik;
 with TextfarbeGrafik;
 with ZeilenumbruchberechnungGrafik;
 with GebaeudebeschreibungenGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 
 package body BauauswahlGebaeudeGrafik is
 
@@ -94,7 +94,7 @@ package body BauauswahlGebaeudeGrafik is
       InformationenSchleife:
       for InformationSchleifenwert in Gebäudetexte'Range loop
          
-         TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.GebäudebauinformationenAccess,
+         TextaccessverwaltungssystemEinfachGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.GebäudebauinformationenAccess,
                                                                       TextExtern       => To_Wide_Wide_String (Source => Gebäudetexte (InformationSchleifenwert)),
                                                                       PositionExtern   => Textposition,
                                                                       FarbeExtern      => TextfarbeGrafik.Standardfarbe);
@@ -144,7 +144,7 @@ package body BauauswahlGebaeudeGrafik is
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             
-            TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
+            TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
                                                                     TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                       (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
                                                                                                                                               SpeziesExtern => SpeziesExtern),

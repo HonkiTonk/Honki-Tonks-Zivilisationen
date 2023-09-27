@@ -17,7 +17,7 @@ with ViewsEinstellenGrafik;
 with ObjekteZeichnenGrafik;
 with KartenspritesZeichnenGrafik;
 with EingeleseneTexturenGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 with FeldproduktionLogik;
 
 with Sf.Graphics.Text;
@@ -185,7 +185,7 @@ package body StadtumgebungGrafik is
                                                                                                                               ProduktionsartExtern => ProduktionSchleifenwert)'Wide_Wide_Image;
          end case;
          
-         TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.StadtumgebungAccess,
+         TextaccessverwaltungssystemEinfachGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.StadtumgebungAccess,
                                                          TextExtern       => To_Wide_Wide_String (Source => Text),
                                                          PositionExtern   => (PositionExtern.x, (FeldgrößeExtern.y / Schriftabstandanpassung)
                                                                               * Float (ProduktionDatentypen.Produktion_Enum'Pos (ProduktionSchleifenwert)) + PositionExtern.y));
@@ -208,7 +208,7 @@ package body StadtumgebungGrafik is
             Skalierung.y := GrafikKonstanten.Einswert;
          end if;
          
-         TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.StadtumgebungAccess,
+         TextaccessverwaltungssystemEinfachGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.StadtumgebungAccess,
                                                               SkalierungExtern => Skalierung);
                   
       end loop ProduktionSchleife;

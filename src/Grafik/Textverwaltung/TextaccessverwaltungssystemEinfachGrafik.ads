@@ -3,7 +3,7 @@ with Sf.System.Vector2;
 with Sf.Graphics.Color;
 
 -- Noch eine Prozedure einbauen die alles auf Standard zurücksetzt? äöü
-package TextaccessverwaltungssystemGrafik is
+package TextaccessverwaltungssystemEinfachGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfText_Ptr;
    
@@ -211,4 +211,4 @@ package TextaccessverwaltungssystemGrafik is
                  TextaccessExtern /= null
               );
 
-end TextaccessverwaltungssystemGrafik;
+end TextaccessverwaltungssystemEinfachGrafik;

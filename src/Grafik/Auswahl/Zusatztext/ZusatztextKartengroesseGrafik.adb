@@ -7,7 +7,7 @@ with TextKonstanten;
 with TextaccessVariablen;
 with AuswahlKonstanten;
 
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 with MenuestringsSetzenGrafik;
 with KartengeneratorVariablenLogik;
 with TextberechnungenBreiteGrafik;
@@ -27,7 +27,7 @@ package body ZusatztextKartengroesseGrafik is
       Rückgabewert := PositionFestlegen (ViewflächeExtern      => ViewflächeExtern,
                                           RealeViewbreiteExtern => RealeViewbreiteExtern);
       
-      TextaccessverwaltungssystemGrafik.Zeichnen (TextaccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1));
+      TextaccessverwaltungssystemEinfachGrafik.Zeichnen (TextaccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1));
       
       case
         AktuelleAuswahlExtern
@@ -36,7 +36,7 @@ package body ZusatztextKartengroesseGrafik is
             null;
             
          when others =>
-            TextaccessverwaltungssystemGrafik.Zeichnen (TextaccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2));
+            TextaccessverwaltungssystemEinfachGrafik.Zeichnen (TextaccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2));
       end case;
       
       return Rückgabewert;

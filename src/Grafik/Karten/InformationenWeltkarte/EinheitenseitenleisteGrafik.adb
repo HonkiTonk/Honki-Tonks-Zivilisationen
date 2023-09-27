@@ -5,7 +5,6 @@ with TextKonstanten;
 with GrafikKonstanten;
 with Projekteinstellungen;
 with SystemDatentypen;
-with GrafikRecordKonstanten;
 with SpeziesKonstanten;
 
 with LeseEinheitenGebaut;
@@ -16,25 +15,24 @@ with EinheitenbeschreibungenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with KampfwerteEinheitErmittelnLogik;
-with TextaccessverwaltungssystemGrafik;
-with TextskalierungGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
+with TextaccessverwaltungssystemErweitertGrafik;
 
 package body EinheitenseitenleisteGrafik is
 
    function Einheiten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      TextpositionsinformationenExtern : in GrafikRecords.TextpositionLeerzeilenRecord;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.TextpositionLeerzeilenRecord
+      return GrafikRecords.YTextpositionLeerzeilenRecord
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
       
-      Textposition.x := TextpositionsinformationenExtern.Textpositionsinformationen.x;
-      Textposition.y := TextpositionsinformationenExtern.Textpositionsinformationen.y;
-      Textbreite := TextpositionsinformationenExtern.Textpositionsinformationen.z;
-      Leerzeilen := TextpositionsinformationenExtern.Leerzeilen;
+      YTextposition := TextpositionExtern.y;
+      Leerzeilen := LeerzeilenExtern;
       
       if
         SpeziesExtern = SpeziesKonstanten.LeerSpezies
@@ -102,25 +100,10 @@ package body EinheitenseitenleisteGrafik is
             Leerzeilen := Leerzeilen + 1;
             
          else
-            -- Text festlegen?
-            -- Dann eine Funktion/Prozedur für die Berechnungen/Abstand einbauen?
-            -- Dann den Rest durchführen?
-            TextaccessverwaltungssystemGrafik.TextPosition (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                            TextExtern       => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
-                                                            PositionExtern   => Textposition);
-         
-            Textbreite := TextberechnungenBreiteGrafik.TextbreiteAnfangsabstand (TextAccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                                 AbstandExtern    => 2.00 * TextberechnungenBreiteGrafik.KleinerSpaltenabstand);
-            
-            Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textbreite,
-                                                                    ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
-            Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
-                        
-            TextaccessverwaltungssystemGrafik.SkalierenZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert),
-                                                                 SkalierungExtern => Skalierung);
-         
-            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+            YTextposition := TextaccessverwaltungssystemErweitertGrafik.TextskalierungZeichnung (TextExtern               => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
+                                                                                                  TextpositionExtern       => (TextpositionExtern.x, YTextposition),
+                                                                                                  MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                  TextAccessExtern         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
          end if;
          
       end loop TextSchleife;
@@ -136,7 +119,7 @@ package body EinheitenseitenleisteGrafik is
             null;
       end case;
       
-      return ((Textposition.x, Textposition.y, Textbreite), Leerzeilen);
+      return (YTextposition, Leerzeilen);
       
    end Einheiten;
    
@@ -334,7 +317,7 @@ package body EinheitenseitenleisteGrafik is
       
             Koordinaten := LeseEinheitenGebaut.KIZielKoordinaten (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
             
-            TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenseitenleisteAccess,
+            TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenseitenleisteAccess,
                                                                     TextExtern       => ("Nr:" & EinheitSpeziesNummerExtern.Nummer'Wide_Wide_Image & " Z:" & Koordinaten.EAchse'Wide_Wide_Image & ","
                                                                                          & Koordinaten.YAchse'Wide_Wide_Image & "," & Koordinaten.XAchse'Wide_Wide_Image & " Au:"
                                                                                          & LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image),
@@ -362,7 +345,7 @@ package body EinheitenseitenleisteGrafik is
          Koordinaten := LeseEinheitenGebaut.KIBewegungPlan (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
                                                             PlanschrittExtern          => PlanSchleifenwert);
          
-         TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenseitenleisteAccess,
+         TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenseitenleisteAccess,
                                                                  TextExtern       => PlanSchleifenwert'Wide_Wide_Image & ":" & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & ","
                                                                  & Koordinaten.XAchse'Wide_Wide_Image,
                                                                  PositionExtern   => TextpositionDebug);

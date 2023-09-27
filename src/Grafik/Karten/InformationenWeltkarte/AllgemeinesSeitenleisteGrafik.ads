@@ -1,6 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with Sf.System.Vector2;
+with Sf.System.Vector2;
 
 with SpeziesDatentypen;
 with SpeziesKonstanten;
@@ -22,26 +22,21 @@ package AllgemeinesSeitenleisteGrafik is
 
    function AllgemeineInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
-      TextpositionsinformationenExtern : in GrafikRecords.TextpositionLeerzeilenRecord;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.TextpositionLeerzeilenRecord
+      return GrafikRecords.YTextpositionLeerzeilenRecord
      with
        Pre => (
-                 TextpositionsinformationenExtern.Textpositionsinformationen.x > 0.00
+               (if SpeziesExtern /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum)
                and
-                 TextpositionsinformationenExtern.Textpositionsinformationen.y > 0.00
+                 TextpositionExtern.x > 0.00
                and
-                 TextpositionsinformationenExtern.Textpositionsinformationen.z > 0.00
-               and
-                 (if SpeziesExtern /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum)
+                 TextpositionExtern.y > 0.00
               ),
          
        Post => (
-                  AllgemeineInformationen'Result.Textpositionsinformationen.x > 0.00
-                and
-                  AllgemeineInformationen'Result.Textpositionsinformationen.y > 0.00
-                and
-                  AllgemeineInformationen'Result.Textpositionsinformationen.z > 0.00
+                  AllgemeineInformationen'Result.YPosition > 0.00
                );
    
 private
@@ -49,14 +44,11 @@ private
    
    Leerzeilen : Natural;
       
-   Textbreite : Float;
+   YTextposition : Float;
    
    Zwischenspeicher : Unbounded_Wide_Wide_String;
 
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   
-   Textposition : Sf.System.Vector2.sfVector2f;
-   Skalierung : Sf.System.Vector2.sfVector2f;
    
    AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.KarteAllgemeinesAccess'Range);
    

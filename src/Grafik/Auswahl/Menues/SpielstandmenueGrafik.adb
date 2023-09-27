@@ -23,7 +23,7 @@ with ViewsEinstellenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with TextfarbeGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 with TextskalierungGrafik;
 with SpielstandVariablen;
 
@@ -115,7 +115,7 @@ package body SpielstandmenueGrafik is
             
             NeueTextbreite := Textbreite;
             
-            TextaccessverwaltungssystemGrafik.PositionSkalierenFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
+            TextaccessverwaltungssystemEinfachGrafik.PositionSkalierenFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SpielstandAccess (TextSchleifenwert),
                                                                               PositionExtern   => Textposition,
                                                                               SkalierungExtern => Skalierung,
                                                                               FarbeExtern      => Farbe);

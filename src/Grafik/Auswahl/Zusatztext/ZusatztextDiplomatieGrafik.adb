@@ -15,7 +15,7 @@ with LeseGrafiktask;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with Fehlermeldungssystem;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 
 package body ZusatztextDiplomatieGrafik is
 
@@ -40,7 +40,7 @@ package body ZusatztextDiplomatieGrafik is
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                                                              TextbreiteExtern => RealeViewbreiteExtern);
       
-         TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
+         TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.MenüsAccess (MenueDatentypen.Diplomatie_Menü_Enum, TextSchleifenwert),
                                                              PositionExtern   => Textposition);
       
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,

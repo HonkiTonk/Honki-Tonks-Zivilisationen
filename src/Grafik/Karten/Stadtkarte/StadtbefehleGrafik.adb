@@ -11,7 +11,7 @@ with HintergrundGrafik;
 with ViewsEinstellenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 
 package body StadtbefehleGrafik is
 
@@ -38,7 +38,7 @@ package body StadtbefehleGrafik is
          Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert),
                                                                                  ViewbreiteExtern => Viewfläche.x);
          
-         TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert),
+         TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert),
                                                              PositionExtern   => Textposition);
 
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.StadtbefehleAccess (PositionSchleifenwert),

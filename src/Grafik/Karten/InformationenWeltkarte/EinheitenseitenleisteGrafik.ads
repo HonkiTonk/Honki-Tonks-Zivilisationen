@@ -1,6 +1,6 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-private with Sf.System.Vector2;
+with Sf.System.Vector2;
 
 with SpeziesDatentypen;
 with EinheitenRecords;
@@ -28,30 +28,24 @@ package EinheitenseitenleisteGrafik is
    function Einheiten
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      TextpositionsinformationenExtern : in GrafikRecords.TextpositionLeerzeilenRecord;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.TextpositionLeerzeilenRecord
+      return GrafikRecords.YTextpositionLeerzeilenRecord
      with
        Pre => (
-                 TextpositionsinformationenExtern.Textpositionsinformationen.x > 0.00
+                 TextpositionExtern.x > 0.00
                and
-                 TextpositionsinformationenExtern.Textpositionsinformationen.y > 0.00
-               and
-                 TextpositionsinformationenExtern.Textpositionsinformationen.z > 0.00
-              ),
+                 TextpositionExtern.y > 0.00
    --            EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
    --         and
    --           LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
    --         and
    --           LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
-   --        ),
+           ),
          
      Post => (
-                Einheiten'Result.Textpositionsinformationen.x > 0.00
-              and
-                Einheiten'Result.Textpositionsinformationen.y > 0.00
-              and
-                Einheiten'Result.Textpositionsinformationen.z > 0.00
+                Einheiten'Result.YPosition > 0.00
              );
    
                    
@@ -71,18 +65,16 @@ private
    Verteidigungsbonus : KampfDatentypen.Kampfwerte;
    
    Leerzeilen : Natural;
-      
-   Textbreite : Float;
+   
    TextbreiteDebug : Float;
+   YTextposition : Float;
       
    Ladungstext : Unbounded_Wide_Wide_String;
    Kampftext : Unbounded_Wide_Wide_String;
       
    EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
    
-   Textposition : Sf.System.Vector2.sfVector2f;
    TextpositionDebug : Sf.System.Vector2.sfVector2f;
-   Skalierung : Sf.System.Vector2.sfVector2f;
    
    Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
    

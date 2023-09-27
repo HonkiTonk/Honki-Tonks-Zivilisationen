@@ -21,7 +21,7 @@ with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
 with TextfarbeGrafik;
 with TexteinstellungenGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 with SteuerungsauswahlLogik;
 
 package body SteuerungsmenueGrafik is
@@ -109,7 +109,7 @@ package body SteuerungsmenueGrafik is
             Farbe := TexteinstellungenGrafik.SchriftfarbeLesen (WelcheFarbeExtern => TextDatentypen.Standard_Enum);
          end if;
          
-         TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert)),
+         TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert)),
                                                                   PositionExtern   => Textposition,
                                                                   FarbeExtern      => Farbe);
       
@@ -163,7 +163,7 @@ package body SteuerungsmenueGrafik is
            or
              TextSchleifenwert >= MenueKonstanten.SonstigesSteuerung
          then
-            TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SteuerungAccess (TextSchleifenwert),
+            TextaccessverwaltungssystemEinfachGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SteuerungAccess (TextSchleifenwert),
                                                                          TextExtern       => TextFestlegen (WelcheSteuerungExtern => WelcheSteuerungExtern,
                                                                                                             WelcheZeileExtern     => TextSchleifenwert),
                                                                          PositionExtern   => Textposition,

@@ -5,7 +5,7 @@ with ZeilenumbruchberechnungGrafik;
 with SpeziesbeschreibungenGrafik;
 with TextberechnungenHoeheGrafik;
 with TextberechnungenBreiteGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 
 package body ZusatztextSpeziesmenueGrafik is
 
@@ -21,7 +21,7 @@ package body ZusatztextSpeziesmenueGrafik is
       
       SpeziesAnzeigen := SpeziesDatentypen.Spezies_Verwendet_Enum'Val (AktuelleAuswahlExtern);
       
-      TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesAnzeigen),
+      TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeziesbeschreibungAccess (SpeziesAnzeigen),
                                                               TextExtern       =>
                                                                 ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                   (TextExtern           => SpeziesbeschreibungenGrafik.Langbeschreibung (SpeziesExtern => SpeziesAnzeigen),

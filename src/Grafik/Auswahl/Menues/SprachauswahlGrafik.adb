@@ -20,7 +20,7 @@ with TextberechnungenHoeheGrafik;
 with TexteinstellungenGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 with KonvexverwaltungssystemGrafik;
 with TextfarbeGrafik;
 with SprachauswahlLogik;
@@ -83,14 +83,14 @@ package body SprachauswahlGrafik is
                null;
             end if;
             
-            TextaccessverwaltungssystemGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
+            TextaccessverwaltungssystemEinfachGrafik.TextFarbe (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                          TextExtern       => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)),
                                                          FarbeExtern      => AktuelleTextFarbe);
             
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                                                     ViewbreiteExtern => Viewfläche.x);
             
-            TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
+            TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SprachauswahlAccess,
                                                                 PositionExtern   => Textposition);
             
             NeueTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SprachauswahlAccess,

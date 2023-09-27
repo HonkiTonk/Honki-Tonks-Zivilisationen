@@ -28,7 +28,7 @@ with GebaeudebeschreibungenGrafik;
 with AllgemeineViewsGrafik;
 with ZeilenumbruchberechnungGrafik;
 with TextfarbeGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 
 package body ForschungsauswahlGrafik is
 
@@ -85,7 +85,7 @@ package body ForschungsauswahlGrafik is
            InteraktionAuswahl.MöglicheForschungen (ForschungSchleifenwert)
          is
             when True =>
-               TextaccessverwaltungssystemGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert),
+               TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, ForschungSchleifenwert),
                                                                         PositionExtern   => Textposition,
                                                                         FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (ForschungSchleifenwert),
                                                                                                                                    AuswahlExtern    => AuswahlExtern));
@@ -140,7 +140,7 @@ package body ForschungsauswahlGrafik is
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             AktuelleTextbreite := GrafikKonstanten.Nullwert;
             
-            TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+            TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                     TextExtern       => To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugWirdBenötigt)),
                                                                     PositionExtern   => Textposition);
       
@@ -163,7 +163,7 @@ package body ForschungsauswahlGrafik is
             if
               Forschungswert = ZusatztextExtern
             then
-               TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+               TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                        TextExtern       => ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => TechnologieSchleifenwert,
                                                                                                                                             SpeziesExtern => SpeziesExtern),
                                                                        PositionExtern   => Textposition);
@@ -189,7 +189,7 @@ package body ForschungsauswahlGrafik is
            ZusatztextExtern = LeseEinheitenDatenbank.Anforderungen (SpeziesExtern => SpeziesExtern,
                                                                     IDExtern      => EinheitenSchleifenwert)
          then
-            TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+            TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                     TextExtern       => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => EinheitenSchleifenwert,
                                                                                                                                         SpeziesExtern => SpeziesExtern),
                                                                     PositionExtern   => Textposition);
@@ -214,7 +214,7 @@ package body ForschungsauswahlGrafik is
            ZusatztextExtern = LeseGebaeudeDatenbank.Anforderungen (SpeziesExtern => SpeziesExtern,
                                                                    IDExtern      => GebäudeSchleifenwert)
          then
-            TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
+            TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüErmöglichtAccess,
                                                                     TextExtern       => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => GebäudeSchleifenwert,
                                                                                                                                        SpeziesExtern => SpeziesExtern),
                                                                     PositionExtern   => Textposition);
@@ -265,7 +265,7 @@ package body ForschungsauswahlGrafik is
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             
-            TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, ZusatztextExtern),
+            TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, ZusatztextExtern),
                                                                     TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                       (TextExtern           => ForschungsbeschreibungenGrafik.Langbeschreibung (IDExtern      => ZusatztextExtern,
                                                                                                                                                 SpeziesExtern => SpeziesExtern),
@@ -322,7 +322,7 @@ package body ForschungsauswahlGrafik is
             Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.AktuellesForschungsprojekt,
                                                                                     ViewbreiteExtern => Viewfläche (ViewKonstanten.ForschungsmenüAktuell).x);
       
-            TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.AktuellesForschungsprojekt,
+            TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.AktuellesForschungsprojekt,
                                                                 PositionExtern   => Textposition);
       
             AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AktuellesForschungsprojekt,
@@ -350,7 +350,7 @@ package body ForschungsauswahlGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.AktuellesForschungsprojekt,
                                                                               ViewbreiteExtern => Viewfläche (ViewKonstanten.ForschungsmenüAktuell).x);
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.AktuellesForschungsprojekt,
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.AktuellesForschungsprojekt,
                                                           PositionExtern   => Textposition);
       
       AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AktuellesForschungsprojekt,

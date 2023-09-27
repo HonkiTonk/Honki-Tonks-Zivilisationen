@@ -28,7 +28,7 @@ with ViewbereicheBerechnenGrafik;
 with HintergrundGrafik;
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 with GebaeudebeschreibungenGrafik;
 with SichtweitenGrafik;
 
@@ -172,7 +172,7 @@ package body StadtkarteGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textbreite := GrafikKonstanten.Nullwert;
       
-      TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtkarteAccess,
+      TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtkarteAccess,
                                                               TextExtern       => GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => GebäudeIDExtern,
                                                                                                                                  SpeziesExtern => SpeziesExtern),
                                                               PositionExtern   => Textposition);
@@ -217,7 +217,7 @@ package body StadtkarteGrafik is
       InformationenSchleife:
       for InformationSchleifenwert in Gebäudetexte'Range loop
          
-         TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtkarteAccess,
+         TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.StadtkarteAccess,
                                                                  TextExtern       => To_Wide_Wide_String (Source => Gebäudetexte (InformationSchleifenwert)),
                                                                  PositionExtern   => Textposition);
          

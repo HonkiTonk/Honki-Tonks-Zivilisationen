@@ -5,7 +5,7 @@ with Views;
 
 with LeseEinstellungenGrafik;
 
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 with ViewsEinstellenGrafik;
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
@@ -56,7 +56,7 @@ package body BildrateAnzeigenGrafik is
                                             GrößeExtern          => Viewfläche,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Bildratenbereich);
       
-      TextaccessverwaltungssystemGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.BildrateAccess,
+      TextaccessverwaltungssystemEinfachGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.BildrateAccess,
                                                                    TextExtern       => KommazahlAlsString (KommazahlExtern => AktuelleBildrate),
                                                                    PositionExtern   => GrafikRecordKonstanten.StartView,
                                                                    FarbeExtern      => Farbe);

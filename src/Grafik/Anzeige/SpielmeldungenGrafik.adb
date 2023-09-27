@@ -12,7 +12,7 @@ with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 
 package body SpielmeldungenGrafik is
 
@@ -42,7 +42,7 @@ package body SpielmeldungenGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.Spielmeldung,
                                                                               ViewbreiteExtern => Viewfläche.x);
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.Spielmeldung,
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.Spielmeldung,
                                                           PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,

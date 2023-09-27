@@ -16,14 +16,16 @@ package SeitenleisteGrafik is
 
 private
 
+   XPositionText : Float;
+
    StadtSpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
 
    EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
 
+   Textinformationen : GrafikRecords.YTextpositionLeerzeilenRecord;
+
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
 
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-
-   Textinformationen : GrafikRecords.TextpositionLeerzeilenRecord;
 
 end SeitenleisteGrafik;

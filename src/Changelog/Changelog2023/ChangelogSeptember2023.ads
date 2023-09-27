@@ -14,17 +14,18 @@ package ChangelogSeptember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (28.09.2023):
+   -- Version 0.05.4500 => 0.05. (28.09.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.4465 => 0.05. (27.09.2023):
+   -- Version 0.05.4465 => 0.05.4500 (27.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textanzeige weiter überarbeitet.
+   -- Seitenleiste weiter überarbeitet.
+   -- Contracts und Kleinigkeiten korrigiert/angepasst.
    
    
 

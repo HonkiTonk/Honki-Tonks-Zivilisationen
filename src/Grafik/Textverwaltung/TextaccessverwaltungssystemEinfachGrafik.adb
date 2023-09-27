@@ -4,7 +4,7 @@ with Sf.Graphics.RenderWindow;
 with FensterGrafik;
 with GrafikRecordKonstanten;
 
-package body TextaccessverwaltungssystemGrafik is
+package body TextaccessverwaltungssystemEinfachGrafik is
    
    procedure Standardskalierung
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr)
@@ -256,4 +256,4 @@ package body TextaccessverwaltungssystemGrafik is
       
    end Text;
 
-end TextaccessverwaltungssystemGrafik;
+end TextaccessverwaltungssystemEinfachGrafik;

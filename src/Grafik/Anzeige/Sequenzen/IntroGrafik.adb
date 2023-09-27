@@ -8,7 +8,7 @@ with GrafikKonstanten;
 
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 with ZeilenumbruchberechnungGrafik;
@@ -36,7 +36,7 @@ package body IntroGrafik is
       for IntroSchleifenwert in TextaccessVariablen.IntroAccess'Range loop
          
          -- Ergibt die Kombination aus ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung und TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln überhaupt Sinn? äöü
-         TextaccessverwaltungssystemGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
+         TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.IntroAccess (IntroSchleifenwert),
                                                                  TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                    (TextExtern           => To_Wide_Wide_String (Source => Sequenzentexte.Intro (IntroSchleifenwert)),
                                                                     TextfeldbreiteExtern => Viewfläche.x,

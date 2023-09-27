@@ -15,7 +15,7 @@ with SpeziesbeschreibungenGrafik;
 with TextberechnungenBreiteGrafik;
 with ViewsEinstellenGrafik;
 with AllgemeineViewsGrafik;
-with TextaccessverwaltungssystemGrafik;
+with TextaccessverwaltungssystemEinfachGrafik;
 
 package body LadezeitenGrafik is
    
@@ -101,7 +101,7 @@ package body LadezeitenGrafik is
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                                                              TextbreiteExtern => Textbreite);
          
-         TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
+         TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                                              PositionExtern   => Textposition);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
@@ -143,7 +143,7 @@ package body LadezeitenGrafik is
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
             
-         TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
+         TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
                                                              PositionExtern   => Textposition);
          
          WelcheZeit := WelcheZeit + 1;
@@ -171,7 +171,7 @@ package body LadezeitenGrafik is
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);
             
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.RundenendeAccess (1),
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.RundenendeAccess (1),
                                                           PositionExtern   => Textposition);
                
       return (Textbreite, Textposition.y);
@@ -195,7 +195,7 @@ package body LadezeitenGrafik is
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);
       
-      TextaccessverwaltungssystemGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
+      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
                                                           PositionExtern   => Textposition);
       
       return (Textbreite, Textposition.y);
