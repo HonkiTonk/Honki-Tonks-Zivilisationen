@@ -3,7 +3,7 @@ with SpeziesKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseWeltkarte;
-with LeseEinheitenDatenbank;
+-- with LeseEinheitenDatenbank;
 
 package body EinheitSuchenLogik is
 
@@ -135,7 +135,7 @@ package body EinheitSuchenLogik is
    
    
    
-   -- Prüft ob die hineingegebe Einheit geladen ist.
+   -- Prüft ob die hineingegebe Einheit geladen ist und über dem Transporter blinken soll.
    -- Benötigt keine Taskaufteilung da sie nur vom Grafiktask aufgerufen wird.
    function TransporterladungSuchen
      (TransporterExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
@@ -143,8 +143,9 @@ package body EinheitSuchenLogik is
       return Boolean
    is
       use type SpeziesDatentypen.Spezies_Enum;
+      use type KartenRecords.AchsenKartenfeldNaturalRecord;
    begin
-      
+            
       if
         TransporterExtern.Spezies = SpeziesKonstanten.LeerSpezies
         or
@@ -154,27 +155,14 @@ package body EinheitSuchenLogik is
       then
          return False;
          
+      elsif
+        LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => TransporterExtern) = LeseEinheitenGebaut.Koordinaten (EinheitSpeziesNummerExtern => (TransporterExtern.Spezies, LadungsnummerExtern))
+      then
+         return True;
+         
       else
-         Transporterkapazität := LeseEinheitenDatenbank.Transportkapazität (SpeziesExtern => TransporterExtern.Spezies,
-                                                                              IDExtern      => LeseEinheitenGebaut.ID (EinheitSpeziesNummerExtern => TransporterExtern));
+         return False;
       end if;
-            
-      TransporterSchleife:
-      for TransporterSchleifenwert in EinheitenRecords.TransporterArray'First .. Transporterkapazität loop
-         
-         if
-           LadungsnummerExtern = LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => TransporterExtern,
-                                                                    PlatzExtern                => TransporterSchleifenwert)
-         then
-            return True;
-               
-         else
-            null;
-         end if;
-         
-      end loop TransporterSchleife;
-      
-      return False;
       
    end TransporterladungSuchen;
 

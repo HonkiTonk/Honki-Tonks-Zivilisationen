@@ -2,6 +2,7 @@ with AufgabenDatentypen;
 with TextnummernKonstanten;
 with AuswahlKonstanten;
 with SystemDatentypen;
+with SystemKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseCursor;
@@ -20,6 +21,7 @@ with AuswahlStadtEinheitLogik;
 with JaNeinLogik;
 with EinheitenSpielmeldungenLogik;
 with StadtAllgemeinesLogik;
+with Fehlermeldungssystem;
 
 -- Hier auch mal überarbeiten, vor allem die Prozeduren weiter unten. äöü
 package body BefehlspruefungenLogik is
@@ -42,7 +44,6 @@ package body BefehlspruefungenLogik is
         and
           StadtNummer /= StadtDatentypen.Städtebereich'First
       then
-         -- Transporter sollten in der Stadt nicht beladen sein, deswegen es hier keine Prüfung auf Transporter braucht.
          case
            AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => SpeziesExtern,
                                                          StadtnummerExtern   => StadtNummer,
@@ -55,8 +56,11 @@ package body BefehlspruefungenLogik is
                EinheitBefehle (SpeziesExtern => SpeziesExtern,
                                BefehlExtern  => BefehleDatentypen.Auflösen_Enum);
                
-            when others =>
+            when SystemKonstanten.AbwählenNegativ =>
                null;
+            
+            when others =>
+               Fehlermeldungssystem.Logik (FehlermeldungExtern => "BefehlspruefungenLogik.WasWirdEntfernt: Fehlerhafte Auswahl");
          end case;
          
       elsif
@@ -97,7 +101,6 @@ package body BefehlspruefungenLogik is
         and
           StadtNummer /= StadtDatentypen.Städtebereich'First
       then
-         -- Transporter sollten in der Stadt nicht beladen sein, deswegen es hier keine Prüfung auf Transporter braucht.
          EinheitOderStadt (SpeziesExtern       => SpeziesExtern,
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);
@@ -117,55 +120,6 @@ package body BefehlspruefungenLogik is
       end if;
       
    end AuswahlEinheitStadt;
-   
-   
-   
-   procedure AuswahlEinheitTransporter
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
-   is
-      use type EinheitenDatentypen.Einheitenbereich;
-   begin
-      
-      Transportiert := TransporterSuchenLogik.HatTransporterLadung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-      
-      if
-        LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) = EinheitenKonstanten.LeerWirdTransportiert
-        and
-          Transportiert = False
-      then
-         TransporterNummer := EinheitSpeziesNummerExtern.Nummer;
-         AusgewählteEinheit := AuswahlKonstanten.LeerAuswahl;
-
-      elsif
-        LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern) /= EinheitenKonstanten.LeerWirdTransportiert
-      then
-         TransporterNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
-         AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                              StadtnummerExtern   => StadtDatentypen.Städtebereich'First,
-                                                                              EinheitNummerExtern => TransporterNummer);
-
-      else
-         TransporterNummer := EinheitSpeziesNummerExtern.Nummer;
-         AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
-                                                                              StadtnummerExtern   => StadtDatentypen.Städtebereich'First,
-                                                                              EinheitNummerExtern => TransporterNummer);
-      end if;
-      
-      case
-        AusgewählteEinheit
-      is
-         when AuswahlKonstanten.LeerAuswahl =>
-            EinheitSteuern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, TransporterNummer));
-            
-         when Positive (EinheitenRecords.TransporterArray'First) .. Positive (EinheitenRecords.TransporterArray'Last) =>
-            EinheitSteuern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, TransporterNummer),
-                                                                                                                                  PlatzExtern                => EinheitenDatentypen.Transportplätze (AusgewählteEinheit))));
-            
-         when others =>
-            null;
-      end case;
-      
-   end AuswahlEinheitTransporter;
 
 
 
@@ -184,13 +138,57 @@ package body BefehlspruefungenLogik is
             StadtAktion (StadtSpeziesNummerExtern => (SpeziesExtern, StadtNummerExtern));
             
          when 1 =>
-            EinheitSteuern (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerExtern));
+            AuswahlEinheitTransporter (EinheitSpeziesNummerExtern => (SpeziesExtern, EinheitNummerExtern));
                
-         when others =>
+         when SystemKonstanten.AbwählenNegativ =>
             null;
+            
+         when others =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "BefehlspruefungenLogik.EinheitOderStadt: Fehlerhafte Auswahl");
       end case;
       
    end EinheitOderStadt;
+   
+   
+   
+   -- Eventuell noch eine Einstellung einbauen, welche das Deaktivieren des verschachtelten Einheitenzugriffs ermöglicht? äöü
+   procedure AuswahlEinheitTransporter
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+   is begin
+      
+      case
+        TransporterSuchenLogik.HatTransporterLadung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)
+      is
+         when True =>
+            TransporterNummer := EinheitSpeziesNummerExtern.Nummer;
+            AusgewählteEinheit := AuswahlStadtEinheitLogik.AuswahlStadtEinheit (SpeziesExtern       => EinheitSpeziesNummerExtern.Spezies,
+                                                                                 StadtnummerExtern   => StadtDatentypen.Städtebereich'First,
+                                                                                 EinheitNummerExtern => TransporterNummer);
+            
+         when False =>
+            TransporterNummer := EinheitSpeziesNummerExtern.Nummer;
+            AusgewählteEinheit := AuswahlKonstanten.LeerAuswahl;
+      end case;
+      
+      case
+        AusgewählteEinheit
+      is
+         when AuswahlKonstanten.LeerAuswahl =>
+            EinheitSteuern (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, TransporterNummer));
+            
+         when Positive (EinheitenRecords.TransporterArray'First) .. Positive (EinheitenRecords.TransporterArray'Last) =>
+            AuswahlEinheitTransporter (EinheitSpeziesNummerExtern =>
+                                         (EinheitSpeziesNummerExtern.Spezies, LeseEinheitenGebaut.Transportiert (EinheitSpeziesNummerExtern => (EinheitSpeziesNummerExtern.Spezies, TransporterNummer),
+                                                                                                                 PlatzExtern                => EinheitenDatentypen.Transportplätze (AusgewählteEinheit))));
+            
+         when SystemKonstanten.AbwählenNegativ =>
+            null;
+            
+         when others =>
+            Fehlermeldungssystem.Logik (FehlermeldungExtern => "BefehlspruefungenLogik.AuswahlEinheitTransporter: Fehlerhafte Auswahl:" & AusgewählteEinheit'Wide_Wide_Image);
+      end case;
+      
+   end AuswahlEinheitTransporter;
    
    
    

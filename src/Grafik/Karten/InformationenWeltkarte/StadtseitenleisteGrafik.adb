@@ -7,6 +7,9 @@ with ProduktionKonstanten;
 with Projekteinstellungen;
 with SystemDatentypen;
 with SpeziesKonstanten;
+with ViewKonstanten;
+with Views;
+with GrafikDatentypen;
 
 with KampfwerteStadtErmittelnLogik;
 with TextberechnungenHoeheGrafik;
@@ -14,6 +17,9 @@ with GebaeudebeschreibungenGrafik;
 with EinheitenbeschreibungenGrafik;
 with AllgemeineBerechnungen;
 with TextaccessverwaltungssystemErweitertGrafik;
+with ViewsEinstellenGrafik;
+with HintergrundGrafik;
+with TextberechnungenBreiteGrafik;
 
 package body StadtseitenleisteGrafik is
    
@@ -21,13 +27,23 @@ package body StadtseitenleisteGrafik is
      (StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord)
    is begin
       
-      null;
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => Viewfläche,
+                                                                      VerhältnisExtern => (GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen).width,
+                                                                                            GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen).height));
       
-      -- Stadt (SpeziesExtern        => StadtauswahlExtern.SpeziesNummer.Spezies,
-      --        StadtauswahlExtern   => StadtauswahlExtern,
-      --       AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen),
-      --       ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtInformationen));
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.StadtviewAccesse (ViewKonstanten.StadtInformationen),
+                                            GrößeExtern          => Viewfläche,
+                                            AnzeigebereichExtern => GrafikRecordKonstanten.Stadtbereich (ViewKonstanten.StadtInformationen));
       
+      HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
+                                     AbmessungenExtern => Viewfläche);
+      
+      Viewfläche.y := Stadt (SpeziesExtern            => StadtauswahlExtern.SpeziesNummer.Spezies,
+                              StadtauswahlExtern       => StadtauswahlExtern,
+                              TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel),
+                              LeerzeilenExtern         => 0,
+                              MaximaleTextbreiteExtern => Viewfläche.x).YPosition;
+        
    end Stadtinformationen;
    
    
@@ -93,6 +109,17 @@ package body StadtseitenleisteGrafik is
                                                                                                  MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
                                                                                                  TextAccessExtern         => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert));
          end if;
+         
+         case
+           TextSchleifenwert
+         is
+            when 9 =>
+               YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
+                                                                              ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+               
+            when others =>
+               null;
+         end case;
          
       end loop TextSchleife;
       
@@ -176,7 +203,7 @@ package body StadtseitenleisteGrafik is
                                                                                                                       SpeziesExtern => SpeziesExtern));
       
       else
-         return TextKonstanten.LeerUnboundedString;
+         return Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Spieltexte.Zeug (TextnummernKonstanten.ZeugKeines);
       end if;
       
       case

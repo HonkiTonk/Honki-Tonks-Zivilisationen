@@ -2,6 +2,7 @@ with TastenbelegungDatentypen;
 with GrafikDatentypen;
 with GrafikRecordKonstanten;
 with InteraktionAuswahl;
+with SystemKonstanten;
 
 with LeseEinheitenGebaut;
 with SchreibeGrafiktask;
@@ -76,7 +77,7 @@ package body AuswahlStadtEinheitLogik is
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
-               AktuelleAuswahl := -1;
+               AktuelleAuswahl := SystemKonstanten.AbwählenNegativ;
                exit AuswahlSchleife;
                
             when others =>

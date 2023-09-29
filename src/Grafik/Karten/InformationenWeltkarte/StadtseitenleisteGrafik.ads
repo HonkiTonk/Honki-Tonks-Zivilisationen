@@ -11,6 +11,7 @@ with GrafikRecords;
 private with ProduktionDatentypen;
 private with TextaccessVariablen;
 private with TextArrays;
+private with GrafikRecordKonstanten;
 
 with LeseGrenzen;
 with LeseSpeziesbelegung;
@@ -63,6 +64,8 @@ private
       
    YTextposition : Float;
       
+   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   
    AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.StadtInformationenAccess'Range);
    
    

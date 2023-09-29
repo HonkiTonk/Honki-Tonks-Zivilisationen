@@ -13,7 +13,6 @@ private with KampfDatentypen;
 private with TextaccessVariablen;
 private with StadtDatentypen;
 private with AufgabenDatentypen;
-private with KartenRecords;
 private with TextArrays;
 
 with LeseGrenzen;
@@ -51,7 +50,11 @@ package EinheitenseitenleisteGrafik is
                    
 private
    
-   Beladen : Boolean;
+   MaximaleLadung : EinheitenDatentypen.Transportplätze;
+   VorhandeneLadung : EinheitenDatentypen.Transportplätze;
+   
+   Arbeit : constant Positive := 6;
+   Herkunft : constant Positive := 8;
    
    Beschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    
@@ -59,36 +62,18 @@ private
    
    Stadtnummer : StadtDatentypen.Städtebereich;
    
-   Ladungsnummer : EinheitenDatentypen.Einheitenbereich;
-   
    Angriffsbonus : KampfDatentypen.Kampfwerte;
    Verteidigungsbonus : KampfDatentypen.Kampfwerte;
    
    Leerzeilen : Natural;
    
-   TextbreiteDebug : Float;
    YTextposition : Float;
       
-   Ladungstext : Unbounded_Wide_Wide_String;
    Kampftext : Unbounded_Wide_Wide_String;
       
    EinheitSpeziesNummer : EinheitenRecords.SpeziesEinheitnummerRecord;
    
-   TextpositionDebug : Sf.System.Vector2.sfVector2f;
-   
-   Koordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
-   
    AnzuzeigenderText : TextArrays.AllgemeinesTextArray (TextaccessVariablen.EinheitenInformationenAccess'Range);
-   
-   procedure PlanZielKoordinaten
-     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
-      TextwerteExtern : in Sf.System.Vector2.sfVector2f)
-     with
-       Pre => (
-                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
-               and
-                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
-              );
    
    
    
@@ -196,6 +181,8 @@ private
                and
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
+   
+   
       
    function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Einheitenbereich);
    
@@ -214,5 +201,7 @@ private
    function ZahlAlsStringErfahrungspunkte is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Erfahrungspunkte);
    
    function ZahlAlsStringRang is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => KampfDatentypen.Rang);
+   
+   function ZahlAlsStringTransportplätze is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Transportplätze);
 
 end EinheitenseitenleisteGrafik;

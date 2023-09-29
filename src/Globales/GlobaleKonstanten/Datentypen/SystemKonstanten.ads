@@ -23,5 +23,9 @@ package SystemKonstanten is
    MaximaleEingabe : constant ZahlenDatentypen.EigenesPositive := 999_999_999;
    
    MinimaleEingabe : constant ZahlenDatentypen.EigenerInteger := -999_999_999;
+   
+   Abwählen : constant Natural := 0;
+   
+   AbwählenNegativ : constant Integer := -1;
 
 end SystemKonstanten;

@@ -1,23 +1,27 @@
 package ChangelogSeptember2023 is
 
-   -- Version 0.05. => 0.05. (30.09.2023):
+   -- Version 0.05.4600 => 0.05. (30.09.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (29.09.2023):
+   -- Version 0.05.4520 => 0.05.4600 (29.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Seitenleiste in der Stadt funktioniert jetzt wieder korrekt.
+   -- Seitenleiste weiter überarbeitet.
+   -- Debugsystem erweitert.
+   -- Wenn man einen beladenen Transporter in einer Stadt auswählt, kann man jetzt auch die geladenen Einheiten anstelle des Transporters auswählen.
+   -- Auswahl von Einheiten in verschachtelten Transportern verbessert.
+   -- Fehler korrigiert, welcher dafür sorgen konnte dass eine ausgewählte, transportierte Einheit nicht korrekt über dem Transporter angezeigt wurde.
+   -- Contracts, Kommenatre und Kleinigkeiten korrigiert/angepast/erweitert.
    
    
 
-   -- Version 0.05.4500 => 0.05. (28.09.2023):
+   -- Version 0.05.4500 => 0.05.4520 (28.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- ASFML aktualisiert (2.5.3 => 2.5.4).
    
    
 

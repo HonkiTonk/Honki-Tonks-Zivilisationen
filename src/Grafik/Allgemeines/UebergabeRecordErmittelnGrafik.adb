@@ -6,6 +6,19 @@ with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
 package body UebergabeRecordErmittelnGrafik is
+   
+   function VolleEinheit
+     (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)
+      return Boolean
+   is begin
+      
+      ZwischenspeicherEinheit.SpeziesNummer := EinheitSpeziesNummerExtern;
+      
+      return True;
+      
+   end VolleEinheit;
+   
+   
 
    function Einheit
      (EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord)

@@ -54,7 +54,6 @@ package BefehlspruefungenLogik is
    
 private
 
-   Transportiert : Boolean;
    LeerRückgabewert : Boolean;
 
    EinheitNummer : EinheitenDatentypen.Einheitenbereich;
