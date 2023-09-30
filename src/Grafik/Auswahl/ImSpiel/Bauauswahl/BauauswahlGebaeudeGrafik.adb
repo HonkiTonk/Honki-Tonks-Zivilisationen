@@ -50,13 +50,13 @@ package body BauauswahlGebaeudeGrafik is
          
          when others =>
             Gebäudetexte (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugBaukosten) & LeseGebaeudeDatenbank.Produktionskosten (SpeziesExtern => SpeziesExtern,
-                                                                                                                                     IDExtern      => AuswahlExtern)'Wide_Wide_Image;
+                                                                                                                                  IDExtern      => AuswahlExtern)'Wide_Wide_Image;
             Gebäudetexte (2) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenteNahrungskosten) & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
-                                                                                                                                                   IDExtern           => AuswahlExtern,
-                                                                                                                                                   WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
+                                                                                                                                                IDExtern           => AuswahlExtern,
+                                                                                                                                                WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)'Wide_Wide_Image;
             Gebäudetexte (3) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenteGeldkosten) & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
-                                                                                                                                               IDExtern           => AuswahlExtern,
-                                                                                                                                               WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
+                                                                                                                                            IDExtern           => AuswahlExtern,
+                                                                                                                                            WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
             Gebäudetexte (4) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenteProduktionskosten)
               & LeseGebaeudeDatenbank.PermanenteKosten (SpeziesExtern      => SpeziesExtern,
                                                         IDExtern           => AuswahlExtern,
@@ -70,8 +70,8 @@ package body BauauswahlGebaeudeGrafik is
                                                         IDExtern               => AuswahlExtern,
                                                         ProduktionsbonusExtern => ProduktionDatentypen.Material_Enum)'Wide_Wide_Image;
             Gebäudetexte (7) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenterGeldbonus) & LeseGebaeudeDatenbank.Produktionsbonus (SpeziesExtern          => SpeziesExtern,
-                                                                                                                                               IDExtern               => AuswahlExtern,
-                                                                                                                                               ProduktionsbonusExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
+                                                                                                                                            IDExtern               => AuswahlExtern,
+                                                                                                                                            ProduktionsbonusExtern => ProduktionDatentypen.Geld_Enum)'Wide_Wide_Image;
             Gebäudetexte (8) := Spieltexte.Zeug (TextnummernKonstanten.ZeugPermanenterWissenbonus)
               & LeseGebaeudeDatenbank.Produktionsbonus (SpeziesExtern          => SpeziesExtern,
                                                         IDExtern               => AuswahlExtern,
@@ -95,9 +95,9 @@ package body BauauswahlGebaeudeGrafik is
       for InformationSchleifenwert in Gebäudetexte'Range loop
          
          TextaccessverwaltungssystemEinfachGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.GebäudebauinformationenAccess,
-                                                                      TextExtern       => To_Wide_Wide_String (Source => Gebäudetexte (InformationSchleifenwert)),
-                                                                      PositionExtern   => Textposition,
-                                                                      FarbeExtern      => TextfarbeGrafik.Standardfarbe);
+                                                                             TextExtern       => To_Wide_Wide_String (Source => Gebäudetexte (InformationSchleifenwert)),
+                                                                             PositionExtern   => Textposition,
+                                                                             FarbeExtern      => TextfarbeGrafik.Standardfarbe);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
@@ -145,12 +145,12 @@ package body BauauswahlGebaeudeGrafik is
             Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
             
             TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                                                    TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
-                                                                      (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
-                                                                                                                                              SpeziesExtern => SpeziesExtern),
-                                                                       TextfeldbreiteExtern => ViewflächeBeschreibung.x,
-                                                                       BreitenabzugExtern   => Textposition.x),
-                                                                    PositionExtern   => Textposition);
+                                                                           TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
+                                                                             (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
+                                                                                                                                                     SpeziesExtern => SpeziesExtern),
+                                                                              TextfeldbreiteExtern => ViewflächeBeschreibung.x,
+                                                                              BreitenabzugExtern   => Textposition.x),
+                                                                           PositionExtern   => Textposition);
             
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);

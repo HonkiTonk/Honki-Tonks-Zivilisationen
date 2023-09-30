@@ -36,21 +36,21 @@ package body DebuginformationenGrafik is
             
             Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => "Spezies: ") & EinheitSpeziesNummerExtern.Spezies'Wide_Wide_Image & "Nr.:" & EinheitSpeziesNummerExtern.Nummer'Wide_Wide_Image;
             
-            YTextpositionDebug := TextaccessverwaltungssystemErweitertGrafik.TextskalierungZeichnung (TextExtern               => To_Wide_Wide_String (Source => Zwischenspeicher),
+            YTextpositionDebug := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnung (TextExtern               => To_Wide_Wide_String (Source => Zwischenspeicher),
                                                                                                       TextpositionExtern       => (TextpositionExtern.x, YTextpositionDebug),
                                                                                                       MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
                                                                                                       TextAccessExtern         => TextaccessVariablen.EinheitenseitenleisteAccess);
             
             Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => "Ziel: ") & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & "," & Koordinaten.XAchse'Wide_Wide_Image;
             
-            YTextpositionDebug := TextaccessverwaltungssystemErweitertGrafik.TextskalierungZeichnung (TextExtern               => To_Wide_Wide_String (Source => Zwischenspeicher),
+            YTextpositionDebug := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnung (TextExtern               => To_Wide_Wide_String (Source => Zwischenspeicher),
                                                                                                       TextpositionExtern       => (TextpositionExtern.x, YTextpositionDebug),
                                                                                                       MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
                                                                                                       TextAccessExtern         => TextaccessVariablen.EinheitenseitenleisteAccess);
             
             Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => "Aufgabe: ") & LeseEinheitenGebaut.KIBeschäftigt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern)'Wide_Wide_Image;
             
-            YTextpositionDebug := TextaccessverwaltungssystemErweitertGrafik.TextskalierungZeichnung (TextExtern               => To_Wide_Wide_String (Source => Zwischenspeicher),
+            YTextpositionDebug := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnung (TextExtern               => To_Wide_Wide_String (Source => Zwischenspeicher),
                                                                                                       TextpositionExtern       => (TextpositionExtern.x, YTextpositionDebug),
                                                                                                       MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
                                                                                                       TextAccessExtern         => TextaccessVariablen.EinheitenseitenleisteAccess);
@@ -68,7 +68,7 @@ package body DebuginformationenGrafik is
          Zwischenspeicher := To_Unbounded_Wide_Wide_String (Source => "Wegpunkt: ") & PlanSchleifenwert'Wide_Wide_Image & ":" & Koordinaten.EAchse'Wide_Wide_Image & "," & Koordinaten.YAchse'Wide_Wide_Image & ","
            & Koordinaten.XAchse'Wide_Wide_Image;
             
-         YTextpositionDebug := TextaccessverwaltungssystemErweitertGrafik.TextskalierungZeichnung (TextExtern               => To_Wide_Wide_String (Source => Zwischenspeicher),
+         YTextpositionDebug := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnung (TextExtern               => To_Wide_Wide_String (Source => Zwischenspeicher),
                                                                                                    TextpositionExtern       => (TextpositionExtern.x, YTextpositionDebug),
                                                                                                    MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
                                                                                                    TextAccessExtern         => TextaccessVariablen.EinheitenseitenleisteAccess);

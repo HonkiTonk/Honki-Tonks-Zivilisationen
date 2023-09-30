@@ -168,6 +168,7 @@ package TextaccessVariablen is
    
    -- Ladezeiten
    -- Immer an die Textdatei Ladezeiten anpassen. Wieso mache ich das nicht öfters/überhaupt? Sollte eine Menge Arbeit ersparen. äöü
+   -- Kann das mit dem neuen Textsystem und den restlichen Änderungen nicht auf 1 .. X gesetzt werden? äöü
    LadezeitenAccess : constant TextaccessArray (2 .. 9) := (others => Sf.Graphics.Text.create);
    
    KIZeitenAccess : constant TextaccessArray (LadezeitenAccess'Last + 1 .. 13) := (others => Sf.Graphics.Text.create);

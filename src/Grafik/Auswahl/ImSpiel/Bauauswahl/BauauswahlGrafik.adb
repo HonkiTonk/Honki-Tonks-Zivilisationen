@@ -31,7 +31,6 @@ package body BauauswahlGrafik is
      (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord;
       AktuelleAuswahlExtern : in StadtRecords.BauprojektRecord)
    is begin
-      
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Spieltexte.Fragen (TextnummernKonstanten.FrageBauprojekt)),
                                           HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                           SpielenamenExtern => False);
@@ -151,9 +150,9 @@ package body BauauswahlGrafik is
                                                                                        ViewbreiteExtern => ViewflächeEinheiten.x);
                
                TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
-                                                                        PositionExtern   => Textposition,
-                                                                        FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (EinheitenSchleifenwert),
-                                                                                                                                   AuswahlExtern    => Natural (AuswahlExtern)));
+                                                                               PositionExtern   => Textposition,
+                                                                               FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (EinheitenSchleifenwert),
+                                                                                                                                          AuswahlExtern    => Natural (AuswahlExtern)));
                
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                                ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);

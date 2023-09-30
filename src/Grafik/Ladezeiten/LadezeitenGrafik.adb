@@ -16,6 +16,7 @@ with TextberechnungenBreiteGrafik;
 with ViewsEinstellenGrafik;
 with AllgemeineViewsGrafik;
 with TextaccessverwaltungssystemEinfachGrafik;
+-- with TextaccessverwaltungssystemErweitertGrafik;
 
 package body LadezeitenGrafik is
    
@@ -46,6 +47,9 @@ package body LadezeitenGrafik is
       
       Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
                                                                         VerhältnisExtern => (GrafikRecordKonstanten.Ladebereich.width, GrafikRecordKonstanten.Ladebereich.height));
+     
+      -- Viewfläche := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => Viewfläche,
+      --                                                                 VerhältnisExtern => (GrafikRecordKonstanten.Ladebereich.width, GrafikRecordKonstanten.Ladebereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.LadeviewAccess,
                                             GrößeExtern          => Viewfläche,
@@ -93,6 +97,11 @@ package body LadezeitenGrafik is
          Text := Spieltexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))
            & TextKonstanten.Trennzeichen & MaximalerLadefortschritt;
          
+        -- Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
+        --                                                                                            TextpositionExtern       => Textposition,
+        --                                                                                            MaximaleTextbreiteExtern => ViewflächeExtern.x,
+        --                                                                                            TextAccessExtern         => TextaccessVariablen.LadezeitenAccess (WelcheZeit));
+         
          Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
                                             str  => To_Wide_Wide_String (Text));
                                                  
@@ -102,7 +111,7 @@ package body LadezeitenGrafik is
                                                                              TextbreiteExtern => Textbreite);
          
          TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                             PositionExtern   => Textposition);
+                                                                    PositionExtern   => Textposition);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
@@ -111,7 +120,7 @@ package body LadezeitenGrafik is
          
       end loop SpielweltErstellenSchleife;
       
-      return (Textbreite, Textposition.y);
+      return (ViewflächeExtern.x, Textposition.y);
                         
    end SpielweltErstellen;
    

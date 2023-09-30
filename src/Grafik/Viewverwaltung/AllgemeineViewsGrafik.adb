@@ -46,7 +46,7 @@ package body AllgemeineViewsGrafik is
       Textposition.y := GrafikKonstanten.Verdoppelung * TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ÜberschriftAccess,
-                                                          PositionExtern   => Textposition);
+                                                                 PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);
@@ -74,7 +74,7 @@ package body AllgemeineViewsGrafik is
             
          when others =>
             Überschrift (ÜberschriftExtern => MenuestringsSetzenGrafik.MenüstringsSetzen (WelcheZeileExtern => 1,
-                                                                                          WelchesMenüExtern => WelchesMenüExtern),
+                                                                                             WelchesMenüExtern => WelchesMenüExtern),
                           HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                           SpielenamenExtern => False);
       end case;
@@ -102,7 +102,7 @@ package body AllgemeineViewsGrafik is
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.VersionsnummerAccess,
-                                                          PositionExtern   => Textposition);
+                                                                 PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);

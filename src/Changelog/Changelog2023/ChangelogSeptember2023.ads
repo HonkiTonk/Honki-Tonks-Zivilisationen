@@ -1,9 +1,10 @@
 package ChangelogSeptember2023 is
 
-   -- Version 0.05.4600 => 0.05. (30.09.2023):
+   -- Version 0.05.4600 => 0.05.4635 (30.09.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler korrigiert, welcher verhinderte das bestimmte Informationen angezeigt wurden.
+   -- Textanzeige weiter überarbeitet.
+   -- Kommenatre und Kleinigkeiten korrigiert/angepasst.
    
    
 

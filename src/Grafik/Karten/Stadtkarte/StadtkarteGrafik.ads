@@ -36,17 +36,16 @@ private
 
    YMultiplikator : Float;
    XMultiplikator : Float;
-   Textbreite : Float;
+   YTextposition : Float;
 
    Gesamtgrund : KartenRecords.KartengrundRecord;
 
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Grafikgröße : Sf.System.Vector2.sfVector2f;
-   Textposition : Sf.System.Vector2.sfVector2f;
 
    Rechteck : Sf.Graphics.Rect.sfFloatRect;
 
-   Gebäudetexte : TextArrays.AllgemeinesTextArray (1 .. 10);
+   Gebäudetexte : TextArrays.AllgemeinesTextArray (1 .. 11);
 
    procedure GrafischeDarstellung
      (GrundExtern : in KartenRecords.KartengrundRecord);
