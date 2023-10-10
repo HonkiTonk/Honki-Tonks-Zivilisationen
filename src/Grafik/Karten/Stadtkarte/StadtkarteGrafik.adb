@@ -210,7 +210,7 @@ package body StadtkarteGrafik is
       InformationenSchleife:
       for InformationSchleifenwert in Gebäudetexte'Range loop
          
-         YTextposition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnung (TextExtern               => To_Wide_Wide_String (Source => Gebäudetexte (InformationSchleifenwert)),
+         YTextposition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => Gebäudetexte (InformationSchleifenwert)),
                                                                                              TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, YTextposition),
                                                                                              MaximaleTextbreiteExtern => Viewfläche.x,
                                                                                              TextAccessExtern         => TextaccessVariablen.StadtkarteAccess);

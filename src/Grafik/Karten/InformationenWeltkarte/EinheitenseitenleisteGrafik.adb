@@ -98,7 +98,7 @@ package body EinheitenseitenleisteGrafik is
             Leerzeilen := Leerzeilen + 1;
             
          else
-            YTextposition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnung (TextExtern               => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
+            YTextposition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
                                                                                                TextpositionExtern       => (TextpositionExtern.x, YTextposition),
                                                                                                MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
                                                                                                TextAccessExtern         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));

@@ -1,5 +1,6 @@
 with Sf.Graphics.Rect;
 with Sf.System.Vector2;
+with Sf.Graphics.Color;
 
 with Views;
 with ViewKonstanten;
@@ -17,9 +18,12 @@ package GrafikRecordKonstanten is
    Leerbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.00, 0.00);
    Gesamtbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 1.00);
    
+   Fehlerfarbe : constant Sf.Graphics.Color.sfColor := Sf.Graphics.Color.sfCyan;
+   
    
    
    -- Hier mal Dinge in Arrays zusammenfassen. äöü
+   -- Und eventuell in einen eigenen Bereich verschieben? äöü
    Bildratenbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 0.05, 0.05);
      
    Sprachenbereich : constant Sf.Graphics.Rect.sfFloatRect := Gesamtbereich;

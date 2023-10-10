@@ -26,6 +26,9 @@ package Diagnoseinformationen is
    procedure Kommazahl
      (ZahlExtern : in Float);
    
+   procedure Zeichen
+     (ZeichenExtern : in Wide_Wide_Character);
+   
    procedure Text
      (TextExtern : in Wide_Wide_String)
      with

@@ -37,8 +37,8 @@ package body SpritesverwaltungssystemGrafik is
 
       Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccessExtern,
                                       position => PositionExtern);
-      Sf.Graphics.Sprite.scale (sprite  => SpriteAccessExtern,
-                                factors => SkalierungExtern);
+      Sf.Graphics.Sprite.setScale (sprite => SpriteAccessExtern,
+                                   scale  => SkalierungExtern);
       
       Sf.Graphics.RenderWindow.drawSprite (renderWindow => FensterGrafik.FensterLesen,
                                            object       => SpriteAccessExtern);
@@ -55,8 +55,8 @@ package body SpritesverwaltungssystemGrafik is
       
       Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccessExtern,
                                       position => PositionExtern);
-      Sf.Graphics.Sprite.scale (sprite  => SpriteAccessExtern,
-                                factors => SkalierungExtern);
+      Sf.Graphics.Sprite.setScale (sprite => SpriteAccessExtern,
+                                   scale  => SkalierungExtern);
       
    end PositionSkalieren;
    

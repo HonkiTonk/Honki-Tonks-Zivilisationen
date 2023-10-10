@@ -6,8 +6,29 @@ with TextberechnungenBreiteGrafik;
 with TextskalierungGrafik;
 
 package body TextaccessverwaltungssystemErweitertGrafik is
+   
+   function TextSkalierenFarbeZeichnen
+     (TextExtern : in Wide_Wide_String;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      MaximaleTextbreiteExtern : in Float;
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+      return Float
+   is begin
+      
+      TextaccessverwaltungssystemEinfachGrafik.Farbe (TextaccessExtern => TextAccessExtern,
+                                                      FarbeExtern      => FarbeExtern);
+      
+      return TextSkalierenZeichnen (TextExtern               => TextExtern,
+                                    TextpositionExtern       => TextpositionExtern,
+                                    MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                    TextAccessExtern         => TextAccessExtern);
+      
+   end TextSkalierenFarbeZeichnen;
+   
+   
 
-   function TextSkalierenZeichnung
+   function TextSkalierenZeichnen
      (TextExtern : in Wide_Wide_String;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;
       MaximaleTextbreiteExtern : in Float;
@@ -32,7 +53,7 @@ package body TextaccessverwaltungssystemErweitertGrafik is
       return TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => TextpositionExtern.y,
                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-   end TextSkalierenZeichnung;
+   end TextSkalierenZeichnen;
    
    
    
@@ -47,28 +68,43 @@ package body TextaccessverwaltungssystemErweitertGrafik is
       TextaccessverwaltungssystemEinfachGrafik.Text (TextaccessExtern => TextAccessExtern,
                                                      TextExtern       => TextExtern);
       
-      XTextposition := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextAccessExtern,
-                                                                             ViewbreiteExtern => MaximaleTextbreiteExtern);
+      return SkalierenMittelnZeichnen (TextpositionExtern       => TextpositionExtern,
+                                       MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                       TextAccessExtern         => TextAccessExtern);
       
-      if
-        XTextposition > MaximaleTextbreiteExtern / 2.00
-      then
-         TextaccessverwaltungssystemEinfachGrafik.TextPosition (TextaccessExtern => TextAccessExtern,
-                                                                TextExtern       => TextExtern,
-                                                                PositionExtern   => TextpositionExtern);
-         
-      else
-         TextaccessverwaltungssystemEinfachGrafik.TextPosition (TextaccessExtern => TextAccessExtern,
-                                                                TextExtern       => TextExtern,
-                                                                PositionExtern   => (XTextposition, TextpositionExtern.y));
-      end if;
+   end TextSkalierenMittelnZeichnen;
+   
+   
+   
+   function SkalierenMittelnZeichnen
+     (TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      MaximaleTextbreiteExtern : in Float;
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr)
+      return Float
+   is begin
       
       Textbreite := TextberechnungenBreiteGrafik.TextbreiteAnfangsabstand (TextAccessExtern => TextAccessExtern,
                                                                            AbstandExtern    => 2.00 * TextberechnungenBreiteGrafik.KleinerSpaltenabstand);
+      
+      if
+        Textbreite >= MaximaleTextbreiteExtern
+      then
+         Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textbreite,
+                                                             ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
+         Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
+         
+         TextaccessverwaltungssystemEinfachGrafik.Position (TextaccessExtern => TextAccessExtern,
+                                                            PositionExtern   => TextpositionExtern);
+         
+      else
+         Skalierung := GrafikRecordKonstanten.Standardskalierung;
+         XTextposition := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextAccessExtern,
+                                                                                ViewbreiteExtern => MaximaleTextbreiteExtern);
+         
+         TextaccessverwaltungssystemEinfachGrafik.Position (TextaccessExtern => TextAccessExtern,
+                                                            PositionExtern   => (XTextposition, TextpositionExtern.y));
+      end if;
             
-      Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textbreite,
-                                                          ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
-      Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
                         
       TextaccessverwaltungssystemEinfachGrafik.SkalierenZeichnen (TextaccessExtern => TextAccessExtern,
                                                                   SkalierungExtern => Skalierung);
@@ -76,6 +112,6 @@ package body TextaccessverwaltungssystemErweitertGrafik is
       return TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => TextpositionExtern.y,
                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
-   end TextSkalierenMittelnZeichnen;
+   end SkalierenMittelnZeichnen;
 
 end TextaccessverwaltungssystemErweitertGrafik;

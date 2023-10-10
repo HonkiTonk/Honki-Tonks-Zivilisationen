@@ -29,9 +29,6 @@ package LadezeitenGrafik is
 private
    
    WelcheZeit : Positive;
-   Überschrift : Positive;
-   
-   Textbreite : Float;
    
    MaximalerLadefortschritt : constant Wide_Wide_String (1 .. 3) := "100";
    
@@ -43,67 +40,51 @@ private
    
    
    function SpielweltErstellen
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
      with
        Pre => (
-                 ViewflächeExtern.x >= 0.00
-               and
-                 ViewflächeExtern.y >= 0.00
+                 MaximaleTextbreiteExtern >= 0.00
               ),
-         
+           
        Post => (
-                  SpielweltErstellen'Result.x >= 0.00
-                and
-                  SpielweltErstellen'Result.y >= 0.00
+                  SpielweltErstellen'Result >= 0.00
                );
    
    function Rundenende
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
      with
        Pre => (
-                 ViewflächeExtern.x >= 0.00
-               and
-                 ViewflächeExtern.y >= 0.00
+                 MaximaleTextbreiteExtern >= 0.00
               ),
            
        Post => (
-                  Rundenende'Result.x >= 0.00
-                and
-                  Rundenende'Result.y >= 0.00
+                  Rundenende'Result >= 0.00
                );
    
    function SpeichernLaden
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
      with
        Pre => (
-                 ViewflächeExtern.x >= 0.00
-               and
-                 ViewflächeExtern.y >= 0.00
+                 MaximaleTextbreiteExtern >= 0.00
               ),
            
        Post => (
-                  SpeichernLaden'Result.x >= 0.00
-                and
-                  SpeichernLaden'Result.y >= 0.00
+                  SpeichernLaden'Result >= 0.00
                );
    
    function KIRechnet
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
      with
        Pre => (
-                 ViewflächeExtern.x >= 0.00
-               and
-                 ViewflächeExtern.y >= 0.00
+                 MaximaleTextbreiteExtern >= 0.00
               ),
            
        Post => (
-                  KIRechnet'Result.x >= 0.00
-                and
-                  KIRechnet'Result.y >= 0.00
+                  KIRechnet'Result >= 0.00
                );
    
    function ZahlAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => SystemDatentypen.NullBisHundert);

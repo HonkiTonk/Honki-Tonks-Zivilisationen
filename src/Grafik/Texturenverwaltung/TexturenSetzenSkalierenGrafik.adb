@@ -18,7 +18,7 @@ package body TexturenSetzenSkalierenGrafik is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      Rechteck := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      Rechteck := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
       Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
       KartenfelderAbmessung := SichtweitenGrafik.Kartenfeldfläche;
       
@@ -42,7 +42,7 @@ package body TexturenSetzenSkalierenGrafik is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      Rechteck := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      Rechteck := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
       Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
       
       SkalierungKartenfeld.x := GrößeExtern.x / Rechteck.x;
@@ -64,7 +64,7 @@ package body TexturenSetzenSkalierenGrafik is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      Rechteck := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      Rechteck := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
       Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
       Kartenabmessung := FensterGrafik.AktuelleAuflösung;
       
@@ -88,7 +88,7 @@ package body TexturenSetzenSkalierenGrafik is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      Rechteck := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      Rechteck := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
       Rechteck := PruefungenGrafik.NullprüfungFloatvektor (GrößeExtern => Rechteck);
       
       SkalierungBild.x := GrößeExtern.x / Rechteck.x;

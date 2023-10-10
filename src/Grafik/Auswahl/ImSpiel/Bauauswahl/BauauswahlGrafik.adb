@@ -23,6 +23,7 @@ with TextfarbeGrafik;
 with BauauswahlEinheitenGrafik;
 with BauauswahlGebaeudeGrafik;
 with TextaccessverwaltungssystemEinfachGrafik;
+with TextaccessverwaltungssystemErweitertGrafik;
 
 -- Kann man das so anpassen dass eine teilweise Verschmelzung mit VerkaufsauswahlGrafik möglich wäre? äöü
 package body BauauswahlGrafik is
@@ -71,11 +72,11 @@ package body BauauswahlGrafik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      ViewflächeGebäude := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeGebäude,
-                                                                                VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
-                                                                                                      GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height));
+      ViewflächeGebäude := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeGebäude,
+                                                                               VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
+                                                                                                     GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeliste),
+      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenliste),
                                             GrößeExtern          => ViewflächeGebäude,
                                             AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste));
       
@@ -83,7 +84,7 @@ package body BauauswahlGrafik is
                                      AbmessungenExtern => ViewflächeGebäude);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := GrafikKonstanten.Nullwert;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
@@ -92,29 +93,25 @@ package body BauauswahlGrafik is
            InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
          is
             when True =>
-               Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
-                                                                                       ViewbreiteExtern => ViewflächeGebäude.x);
-
-               TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
-                                                                        PositionExtern   => Textposition,
-                                                                        FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (GebäudeSchleifenwert),
-                                                                                                                                   AuswahlExtern    => Natural (AuswahlExtern)));
-                                                                        
-               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+               TextaccessverwaltungssystemEinfachGrafik.Farbe (TextaccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
+                                                               FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (GebäudeSchleifenwert),
+                                                                                                                          AuswahlExtern    => Natural (AuswahlExtern)));
                
-               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
-                                                                                   TextbreiteExtern => Textbreite);
+               Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenMittelnZeichnen (TextpositionExtern       => Textposition,
+                                                                                                      MaximaleTextbreiteExtern => ViewflächeGebäude.x,
+                                                                                                      TextAccessExtern         => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
                
-               InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
+               
+               InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert));
 
             when False =>
                null;
+               -- InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert) := GrafikRecordKonstanten.Leerbereich;
          end case;
                                                                                
       end loop GebäudeSchleife;
       
-      ViewflächeGebäude := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      ViewflächeGebäude.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
    end Gebäude;
    
@@ -125,9 +122,9 @@ package body BauauswahlGrafik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      ViewflächeEinheiten := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeEinheiten,
-                                                                                 VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).width,
-                                                                                                       GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).height));
+      ViewflächeEinheiten := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeEinheiten,
+                                                                               VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).width,
+                                                                                                     GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenliste),
                                             GrößeExtern          => ViewflächeEinheiten,
@@ -137,7 +134,7 @@ package body BauauswahlGrafik is
                                      AbmessungenExtern => ViewflächeEinheiten);
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := GrafikKonstanten.Nullwert;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
           
       EinheitenSchleife:
       for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
@@ -146,29 +143,24 @@ package body BauauswahlGrafik is
            InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)
          is
             when True =>
-               Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
-                                                                                       ViewbreiteExtern => ViewflächeEinheiten.x);
+               TextaccessverwaltungssystemEinfachGrafik.Farbe (TextaccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
+                                                               FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (EinheitenSchleifenwert),
+                                                                                                                          AuswahlExtern    => Natural (AuswahlExtern)));
                
-               TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
-                                                                               PositionExtern   => Textposition,
-                                                                               FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (EinheitenSchleifenwert),
-                                                                                                                                          AuswahlExtern    => Natural (AuswahlExtern)));
-               
-               Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-               
-               Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
-                                                                                   TextbreiteExtern => Textbreite);
+               Textposition.y := TextaccessverwaltungssystemErweitertGrafik.SkalierenMittelnZeichnen (TextpositionExtern       => Textposition,
+                                                                                                      MaximaleTextbreiteExtern => ViewflächeEinheiten.x,
+                                                                                                      TextAccessExtern         => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert));
                
                InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert));
 
             when False =>
                null;
+               -- InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert) := GrafikRecordKonstanten.Leerbereich;
          end case;
          
       end loop EinheitenSchleife;
       
-      ViewflächeEinheiten := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      ViewflächeEinheiten.y := Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       
    end Einheiten;
    
@@ -193,13 +185,13 @@ package body BauauswahlGrafik is
         BauauswahlExtern.Bauprojekt.Gebäude /= AuswahlKonstanten.LeerGebäudeauswahl
       then
          Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & GebaeudebeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauauswahlExtern.Bauprojekt.Gebäude,
-                                                                                                                                  SpeziesExtern => BauauswahlExtern.Spezies);
+                                                                                                                               SpeziesExtern => BauauswahlExtern.Spezies);
          
       elsif
         BauauswahlExtern.Bauprojekt.Einheit /= AuswahlKonstanten.LeerEinheitenauswahl
       then
          Text := Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & " " & EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => BauauswahlExtern.Bauprojekt.Einheit,
-                                                                                                                                   SpeziesExtern => BauauswahlExtern.Spezies);
+                                                                                                                                SpeziesExtern => BauauswahlExtern.Spezies);
                      
       else
          return;
@@ -215,7 +207,7 @@ package body BauauswahlGrafik is
                                                                               ViewbreiteExtern => ViewflächeAktuell.x);
                      
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.AktuellesBauprojekt,
-                                                          PositionExtern   => Textposition);
+                                                                 PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AktuellesBauprojekt,
                                                                           TextbreiteExtern => Textbreite);
@@ -232,7 +224,7 @@ package body BauauswahlGrafik is
                                                                               ViewbreiteExtern => ViewflächeAktuell.x);
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.AktuellesBauprojekt,
-                                                          PositionExtern   => Textposition);
+                                                                 PositionExtern   => Textposition);
       
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.AktuellesBauprojekt,
                                                                           TextbreiteExtern => Textbreite);

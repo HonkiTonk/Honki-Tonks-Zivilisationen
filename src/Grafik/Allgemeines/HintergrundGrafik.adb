@@ -40,14 +40,14 @@ package body HintergrundGrafik is
          -- Cyan Zeichnen lassen, um zu signalisieren dass hier etwas nicht stimmt.
          ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
                                                  PositionExtern  => PositionExtern,
-                                                 FarbeExtern     => Sf.Graphics.Color.sfCyan);
+                                                 FarbeExtern     => GrafikRecordKonstanten.Fehlerfarbe);
          
       else
          Skalierung := TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => HintergrundSpritePositionierbarAccess,
                                                                                TextureAccessExtern => EingeleseneTexturenGrafik.HintergrundAccess (HintergrundExtern),
                                                                                GrößeExtern         => AbmessungenExtern);
-         Sf.Graphics.Sprite.scale (sprite  => HintergrundSpritePositionierbarAccess,
-                                   factors => Skalierung);
+         Sf.Graphics.Sprite.setScale (sprite => HintergrundSpritePositionierbarAccess,
+                                      scale  => Skalierung);
          
          Farbe := Sf.Graphics.Sprite.getColor (sprite => HintergrundSpritePositionierbarAccess);
          
@@ -86,14 +86,14 @@ package body HintergrundGrafik is
          -- Cyan Zeichnen lassen, um zu signalisieren dass hier etwas nicht stimmt.
          ObjekteZeichnenGrafik.RechteckZeichnen (AbmessungExtern => AbmessungenExtern,
                                                  PositionExtern  => GrafikRecordKonstanten.Nullposition,
-                                                 FarbeExtern     => Sf.Graphics.Color.sfCyan);
+                                                 FarbeExtern     => GrafikRecordKonstanten.Fehlerfarbe);
          
       else
          Skalierung := TexturenSetzenSkalierenGrafik.TexturskalierungVariabel (SpriteAccessExtern  => SpezieshintergrundSpriteAccess,
                                                                                TextureAccessExtern => EingeleseneTexturenGrafik.SpezieshintergrundAccess (SpeziesExtern, HintergrundExtern),
                                                                                GrößeExtern         => AbmessungenExtern);
-         Sf.Graphics.Sprite.scale (sprite  => SpezieshintergrundSpriteAccess,
-                                   factors => Skalierung);
+         Sf.Graphics.Sprite.setScale (sprite => SpezieshintergrundSpriteAccess,
+                                      scale  => Skalierung);
          
          Farbe := Sf.Graphics.Sprite.getColor (sprite => SpezieshintergrundSpriteAccess);
          

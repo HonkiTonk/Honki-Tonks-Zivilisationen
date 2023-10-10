@@ -67,7 +67,7 @@ package body ViewsEinstellenGrafik is
    
    
    
-   -- Das hier überall in das untere überführen und entsprechend den Text skalieren? äöü
+   -- Das hier verwenden wenn mehrere Texte in der Breite angezeigt werden sollen, beispielsweise wie in SteuerungsmenueGrafik.
    function ViewflächeVariabelAnpassen
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
       VerhältnisExtern : in Sf.System.Vector2.sfVector2f)
@@ -98,6 +98,7 @@ package body ViewsEinstellenGrafik is
    
    
    
+   -- Das hier zum allgemeinen Fall machen. äöü
    function ViewflächeXFestYVariabel
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
       VerhältnisExtern : in Sf.System.Vector2.sfVector2f)

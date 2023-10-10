@@ -23,8 +23,6 @@ private
       
    AktuelleBelegung : Sf.Window.Keyboard.sfKeyCode;
    
-   Textbreite : Float;
-   
    Text : Unbounded_Wide_Wide_String;
       
    ViewflächeAufteilung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
@@ -55,13 +53,16 @@ private
    
    function Steuerung
      (AuswahlExtern : in Integer;
-      WelcheSteuerungExtern : in TastenbelegungDatentypen.Tastenbelegungskategorie_Enum)
-      return Sf.System.Vector2.sfVector2f
+      WelcheSteuerungExtern : in TastenbelegungDatentypen.Tastenbelegungskategorie_Enum;
+      MaximaleTextbreiteExtern : in Float)
+      return Float
      with
+       Pre => (
+                 MaximaleTextbreiteExtern >= 0.00
+              ),
+         
        Post => (
-                  Steuerung'Result.x >= 0.00
-                and
-                  Steuerung'Result.y >= 0.00
+                  Steuerung'Result >= 0.00
                );
    
    function TextFestlegen

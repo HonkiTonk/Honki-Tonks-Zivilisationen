@@ -140,79 +140,74 @@ package ChangelogOktober2023 is
    
    
 
-   -- Version 0.05. => 0.05. (11.10.2023):
+   -- Version 0.05.4765 => 0.05. (11.10.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (10.10.2023):
+   -- Version 0.05.4695 => 0.05.4765 (10.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (09.10.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textskalierungssystem weiter verbessert.
+   -- Angefangen alles auf lokalen Grenzen und feste Skalierungen umzuschreiben.
+   -- Hoffentlich einen selten auftretenden Fehler korrigiert, welcher zu fehlerhaften Anzeige führte.
+   -- Fehler korrigiert der im Baumenü zu Abstürzen führte.
+   -- Textanzeige weiter überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/erweitert.
    
    
 
-   -- Version 0.05. => 0.05. (08.10.2023):
+   -- Version 0.05.4695 => 0.05.4695 (09.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (07.10.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (06.10.2023):
+   -- Version 0.05.4695 => 0.05.4695 (08.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (05.10.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (04.10.2023):
+   -- Version 0.05.4695 => 0.05.4695 (07.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (03.10.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (02.10.2023):
+   -- Version 0.05.4675 => 0.05.4695 (06.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- GNAT aktualisiert.
    
    
 
-   -- Version 0.05.4635 => 0.05. (01.10.2023):
+   -- Version 0.05.4655 => 0.05.4675 (05.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Bibliotheken aktualisiert.
+   
+   
+
+   -- Version 0.05.4635 => 0.05.4655 (04.10.2023):
+   
+   -- VMs aktualisiert.
+   
+   
+
+   -- Version 0.05.4635 => 0.05.4635 (03.10.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.4635 => 0.05.4635 (02.10.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.4635 => 0.05.4635 (01.10.2023):
+   
+   -- null.
 
 end ChangelogOktober2023;

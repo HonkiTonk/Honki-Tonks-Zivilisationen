@@ -255,5 +255,17 @@ package body TextaccessverwaltungssystemEinfachGrafik is
                                          str  => TextExtern);
       
    end Text;
+   
+   
+   
+   procedure Position
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      Sf.Graphics.Text.setPosition (text     => TextaccessExtern,
+                                    position => PositionExtern);
+      
+   end Position;
 
 end TextaccessverwaltungssystemEinfachGrafik;

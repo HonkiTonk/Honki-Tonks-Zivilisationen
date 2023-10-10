@@ -1,4 +1,5 @@
 with GrafikRecordKonstanten;
+with GrafikKonstanten;
 
 with TexturenSetzenSkalierenGrafik;
 with Fehlermeldungssystem;
@@ -54,7 +55,7 @@ package body KartenspritesZeichnenGrafik is
          DurchsichtigesSpriteZeichnen (SpriteAccessExtern     => SpriteAccess,
                                        PositionExtern         => PositionExtern,
                                        SkalierungExtern       => Skalierung,
-                                       DurchsichtigkeitExtern => Sf.sfUint8'Last);
+                                       DurchsichtigkeitExtern => GrafikKonstanten.Undurchsichtig);
       end if;
       
    end StadtbewirtschaftungZeichnen;

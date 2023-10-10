@@ -38,3 +38,6 @@ Ekropa => bevorzugen bewaldete Flächen in gemäßigtem oder warmen Klima
 
 Tesorahn => bevorzugter Lebensraum sind Salzgewässer in flüssigem Zustand
 Talbidahr => Unterirdisch in gemäßigten Klimazonen
+
+
+Immer lokale Grenzen verwenden und beim Skalieren immer setScale, Ausnahme ist die Zuweißung von Positionen für den Mausabruf.

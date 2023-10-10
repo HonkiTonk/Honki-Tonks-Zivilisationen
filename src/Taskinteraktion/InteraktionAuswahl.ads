@@ -47,11 +47,11 @@ package InteraktionAuswahl is
 
 
 
-   type PositionenMöglicheGebäudeArray is array (StadtDatentypen.GebäudeID'Range) of Sf.Graphics.Rect.sfFloatRect;
-   PositionenMöglicheGebäude : PositionenMöglicheGebäudeArray := (others => GrafikRecordKonstanten.Leerbereich);
+   type PositionenGebäudeBauenArray is array (StadtDatentypen.GebäudeID'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenGebäudeBauen : PositionenGebäudeBauenArray := (others => GrafikRecordKonstanten.Leerbereich);
 
    -- Das sind keine Positionen, sondern nur die vorhandenen Möglichkeiten!
-   type MöglicheGebäudeArray is array (PositionenMöglicheGebäudeArray'Range) of Boolean;
+   type MöglicheGebäudeArray is array (PositionenGebäudeBauenArray'Range) of Boolean;
    MöglicheGebäude : MöglicheGebäudeArray := (others => False);
 
    type PositionenEinheitenBauenArray is array (EinheitenDatentypen.EinheitenIDVorhanden'Range) of Sf.Graphics.Rect.sfFloatRect;

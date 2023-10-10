@@ -16,8 +16,6 @@ with SichtweitenGrafik;
 with FensterGrafik;
 with MausauswahlAllgemeinLogik;
 
--- with Diagnoseinformationen;
-
 -- Thematisch aufteilen? äöü
 -- Mal schauen ob die Vorabprüfung ob der Mauszeiger überhaupt im richtigen Bereich ist noch fehlerfrei überall eingebaut werden kann. äöü
 package body MausauswahlLogik is
@@ -116,7 +114,7 @@ package body MausauswahlLogik is
       Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
                                                                  point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
                                                                  view         => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeliste));
-      
+          
       case
         MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
                                                     BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
@@ -137,7 +135,7 @@ package body MausauswahlLogik is
                   when True =>
                      if
                        True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                          RechteckExtern     => InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert))
+                                                          RechteckExtern     => InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert))
                      then
                         return (GebäudeSchleifenwert, EinheitenKonstanten.LeerID);
          
@@ -156,11 +154,11 @@ package body MausauswahlLogik is
       
       case
         MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
-                                                    BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
-                                                                           GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height))
+                                                    BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).width,
+                                                                           GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).height))
       is
          when False =>
-            return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID);
+            null;
             
          when True =>
             EinheitenSchleife:
@@ -468,7 +466,7 @@ package body MausauswahlLogik is
             when True =>
                if
                  True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    RechteckExtern     => InteraktionAuswahl.PositionenMöglicheGebäude (GebäudeSchleifenwert))
+                                                    RechteckExtern     => InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert))
                then
                   return GebäudeSchleifenwert;
          

@@ -23,6 +23,7 @@ with TextfarbeGrafik;
 with TexteinstellungenGrafik;
 with TextaccessverwaltungssystemEinfachGrafik;
 with SteuerungsauswahlLogik;
+with TextaccessverwaltungssystemErweitertGrafik;
 
 package body SteuerungsmenueGrafik is
 
@@ -45,10 +46,10 @@ package body SteuerungsmenueGrafik is
                                                      WelcheSteuerungExtern => SteuerungsauswahlLogik.WelcheSteuerung);
       
       
-            
-      ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeBelegung,
-                                                                                VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).width,
-                                                                                                      GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).height));
+      
+      ViewflächeBelegung := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeBelegung,
+                                                                              VerhältnisExtern => (GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).width,
+                                                                                                    GrafikRecordKonstanten.Steuerungbereich (ViewKonstanten.SteuerungAuswahl).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.SteuerungviewAccesse (ViewKonstanten.SteuerungAuswahl),
                                             GrößeExtern          => ViewflächeBelegung,
@@ -57,8 +58,9 @@ package body SteuerungsmenueGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeBelegung);
       
-      ViewflächeBelegung := Steuerung (AuswahlExtern         => AuswahlExtern,
-                                        WelcheSteuerungExtern => SteuerungsauswahlLogik.WelcheSteuerung);
+      ViewflächeBelegung.y := Steuerung (AuswahlExtern            => AuswahlExtern,
+                                          WelcheSteuerungExtern    => SteuerungsauswahlLogik.WelcheSteuerung,
+                                          MaximaleTextbreiteExtern => ViewflächeBelegung.x);
       
    end Steuerungsmenü;
    
@@ -74,7 +76,6 @@ package body SteuerungsmenueGrafik is
       
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
       Textposition.x := TextberechnungenBreiteGrafik.Spaltenabstand;
-      Textbreite := GrafikKonstanten.Nullwert;
       
       AufteilungSchleife:
       for AufteilungSchleifenwert in AufteilungArray'Range loop
@@ -110,9 +111,9 @@ package body SteuerungsmenueGrafik is
          end if;
          
          TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert)),
-                                                                  PositionExtern   => Textposition,
-                                                                  FarbeExtern      => Farbe);
-      
+                                                                         PositionExtern   => Textposition,
+                                                                         FarbeExtern      => Farbe);
+         
          InteraktionAuswahl.PositionenSteuerungsaufteilung (AufteilungSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert)));
       
          Textposition.x := Textposition.x + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.SteuerungAccess (Aufteilung (AufteilungSchleifenwert))).width
@@ -131,8 +132,9 @@ package body SteuerungsmenueGrafik is
    
    function Steuerung
      (AuswahlExtern : in Integer;
-      WelcheSteuerungExtern : in TastenbelegungDatentypen.Tastenbelegungskategorie_Enum)
-      return Sf.System.Vector2.sfVector2f
+      WelcheSteuerungExtern : in TastenbelegungDatentypen.Tastenbelegungskategorie_Enum;
+      MaximaleTextbreiteExtern : in Float)
+      return Float
    is begin
             
       case
@@ -151,9 +153,8 @@ package body SteuerungsmenueGrafik is
             ArrayEnde := MenueKonstanten.SonstigesSteuerung - 1;
       end case;
       
-      Textposition.x := TextberechnungenBreiteGrafik.Spaltenabstand;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
-      Textbreite := GrafikKonstanten.Nullwert;
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
@@ -163,18 +164,13 @@ package body SteuerungsmenueGrafik is
            or
              TextSchleifenwert >= MenueKonstanten.SonstigesSteuerung
          then
-            TextaccessverwaltungssystemEinfachGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.SteuerungAccess (TextSchleifenwert),
-                                                                         TextExtern       => TextFestlegen (WelcheSteuerungExtern => WelcheSteuerungExtern,
-                                                                                                            WelcheZeileExtern     => TextSchleifenwert),
-                                                                         PositionExtern   => Textposition,
-                                                                         FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert,
-                                                                                                                                    AuswahlExtern    => AuswahlExtern));
-            
-            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SteuerungAccess (TextSchleifenwert),
-                                                                                TextbreiteExtern => Textbreite);
-            
-            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+            Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenFarbeZeichnen (TextExtern               => TextFestlegen (WelcheSteuerungExtern => WelcheSteuerungExtern,
+                                                                                                                                                WelcheZeileExtern     => TextSchleifenwert),
+                                                                                                     TextpositionExtern       => Textposition,
+                                                                                                     MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                     TextAccessExtern         => TextaccessVariablen.SteuerungAccess (TextSchleifenwert),
+                                                                                                     FarbeExtern              => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => TextSchleifenwert,
+                                                                                                                                                                        AuswahlExtern    => AuswahlExtern));
             
             InteraktionAuswahl.PositionenSteuerung (TextSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.SteuerungAccess (TextSchleifenwert));
             
@@ -189,7 +185,7 @@ package body SteuerungsmenueGrafik is
          
       end loop TextSchleife;
       
-      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+      return Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
       
    end Steuerung;
    

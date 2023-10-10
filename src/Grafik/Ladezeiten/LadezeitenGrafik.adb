@@ -1,11 +1,8 @@
-with Sf.Graphics.Text;
-
 with Spieltexte;
 with TextKonstanten;
 with Views;
 with LadezeitenDatentypen;
 with TextnummernKonstanten;
-with GrafikKonstanten;
 
 with HintergrundGrafik;
 with TextberechnungenHoeheGrafik;
@@ -15,8 +12,7 @@ with SpeziesbeschreibungenGrafik;
 with TextberechnungenBreiteGrafik;
 with ViewsEinstellenGrafik;
 with AllgemeineViewsGrafik;
-with TextaccessverwaltungssystemEinfachGrafik;
--- with TextaccessverwaltungssystemErweitertGrafik;
+with TextaccessverwaltungssystemErweitertGrafik;
 
 package body LadezeitenGrafik is
    
@@ -44,12 +40,9 @@ package body LadezeitenGrafik is
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Text),
                                           HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                           SpielenamenExtern => False);
-      
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => Viewfläche,
-                                                                        VerhältnisExtern => (GrafikRecordKonstanten.Ladebereich.width, GrafikRecordKonstanten.Ladebereich.height));
      
-      -- Viewfläche := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => Viewfläche,
-      --                                                                 VerhältnisExtern => (GrafikRecordKonstanten.Ladebereich.width, GrafikRecordKonstanten.Ladebereich.height));
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => Viewfläche,
+                                                                      VerhältnisExtern => (GrafikRecordKonstanten.Ladebereich.width, GrafikRecordKonstanten.Ladebereich.height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.LadeviewAccess,
                                             GrößeExtern          => Viewfläche,
@@ -57,21 +50,21 @@ package body LadezeitenGrafik is
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Menü_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
-            
+      
       case
         WelcheLadeanzeigeExtern
       is
          when GrafikDatentypen.Generierungszeit_Enum =>
-            Viewfläche := SpielweltErstellen (ViewflächeExtern => Viewfläche);
+            Viewfläche.y := SpielweltErstellen (MaximaleTextbreiteExtern => Viewfläche.x);
             
          when GrafikDatentypen.KI_Rechenzeit_Enum =>
-            Viewfläche := KIRechnet (ViewflächeExtern => Viewfläche);
+            Viewfläche.y := KIRechnet (MaximaleTextbreiteExtern => Viewfläche.x);
             
          when GrafikDatentypen.Rundenende_Enum =>
-            Viewfläche := Rundenende (ViewflächeExtern => Viewfläche);
+            Viewfläche.y := Rundenende (MaximaleTextbreiteExtern => Viewfläche.x);
             
          when GrafikDatentypen.Speichern_Laden_Enum =>
-            Viewfläche := SpeichernLaden (ViewflächeExtern => Viewfläche);
+            Viewfläche.y := SpeichernLaden (MaximaleTextbreiteExtern => Viewfläche.x);
       end case;
       
       Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
@@ -80,16 +73,14 @@ package body LadezeitenGrafik is
    
    
 
-   -- Die ViewflächeExtern.y wird nicht benötigt, nur den x-Wert hineingeben als Float? äöü
-   -- Gilt auch bei den anderen Funktionen. äöü
    function SpielweltErstellen
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
    is begin
       
-      Textbreite := GrafikKonstanten.Nullwert;
       WelcheZeit := TextaccessVariablen.LadezeitenAccess'First;
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
                      
       SpielweltErstellenSchleife:
       for SpielweltErstellenSchleifenwert in LadezeitenDatentypen.Spielwelt_Erstellen_Enum'Range loop
@@ -97,42 +88,28 @@ package body LadezeitenGrafik is
          Text := Spieltexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpielwelt (SpielweltErstellenSchleifenwert))
            & TextKonstanten.Trennzeichen & MaximalerLadefortschritt;
          
-        -- Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
-        --                                                                                            TextpositionExtern       => Textposition,
-        --                                                                                            MaximaleTextbreiteExtern => ViewflächeExtern.x,
-        --                                                                                            TextAccessExtern         => TextaccessVariablen.LadezeitenAccess (WelcheZeit));
-         
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                            str  => To_Wide_Wide_String (Text));
-                                                 
-         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                                                 ViewbreiteExtern => ViewflächeExtern.x);
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                                             TextbreiteExtern => Textbreite);
-         
-         TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.LadezeitenAccess (WelcheZeit),
-                                                                    PositionExtern   => Textposition);
-         
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+         Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
+                                                                                                    TextpositionExtern       => Textposition,
+                                                                                                    MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                    TextAccessExtern         => TextaccessVariablen.LadezeitenAccess (WelcheZeit));
          
          WelcheZeit := WelcheZeit + 1;
          
       end loop SpielweltErstellenSchleife;
       
-      return (ViewflächeExtern.x, Textposition.y);
+      return Textposition.y;
                         
    end SpielweltErstellen;
    
    
    
    function KIRechnet
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
    is begin
       
-      Textbreite := GrafikKonstanten.Nullwert;
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       WelcheZeit := TextaccessVariablen.KIZeitenAccess'First;
       
       KIRechnetSchleife:
@@ -141,73 +118,57 @@ package body LadezeitenGrafik is
          Text := Spieltexte.Ladezeit (WelcheZeit) & TextKonstanten.StandardAbstand & ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittKI (KIRechnetSchleifenwert))
            & TextKonstanten.Trennzeichen & MaximalerLadefortschritt;
          
-         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                            str  => To_Wide_Wide_String (Source => Text));
-         
-         Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                                                 ViewbreiteExtern => ViewflächeExtern.x);
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                                             TextbreiteExtern => Textbreite);
-         
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
-            
-         TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.KIZeitenAccess (WelcheZeit),
-                                                             PositionExtern   => Textposition);
+         Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => To_Wide_Wide_String (Source => Text),
+                                                                                                    TextpositionExtern       => Textposition,
+                                                                                                    MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                    TextAccessExtern         => TextaccessVariablen.KIZeitenAccess (WelcheZeit));
          
          WelcheZeit := WelcheZeit + 1;
          
       end loop KIRechnetSchleife;
       
-      return (Textbreite, Textposition.y);
+      return Textposition.y;
       
    end KIRechnet;
    
    
    
+   -- Die beiden Funktionen mal um eine Anzeige erweitern, was genau gerade berechnet wird. äöü
    function Rundenende
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
    is begin
       
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
+         
+      Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittRundenende)
+                                                                                                 & TextKonstanten.Trennzeichen & MaximalerLadefortschritt,
+                                                                                                 TextpositionExtern       => Textposition,
+                                                                                                 MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                 TextAccessExtern         => TextaccessVariablen.RundenendeAccess (1));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.RundenendeAccess (1),
-                                         str  => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittRundenende) & TextKonstanten.Trennzeichen & MaximalerLadefortschritt);
-                                                 
-      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
-                                                                              ViewbreiteExtern => ViewflächeExtern.x);
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.RundenendeAccess (1),
-                                                                          TextbreiteExtern => GrafikKonstanten.Nullwert);
-            
-      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.RundenendeAccess (1),
-                                                          PositionExtern   => Textposition);
-               
-      return (Textbreite, Textposition.y);
+      return Textposition.y;
       
    end Rundenende;
    
    
    
    function SpeichernLaden
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
    is begin
       
       Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
+         
+      Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden)
+                                                                                                 & TextKonstanten.Trennzeichen & MaximalerLadefortschritt,
+                                                                                                 TextpositionExtern       => Textposition,
+                                                                                                 MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                 TextAccessExtern         => TextaccessVariablen.SpeichernLadenAccess (1));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.SpeichernLadenAccess (1),
-                                         str  => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden) & TextKonstanten.Trennzeichen & MaximalerLadefortschritt);
-                                                 
-      Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
-                                                                              ViewbreiteExtern => ViewflächeExtern.x);
-      Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
-                                                                          TextbreiteExtern => GrafikKonstanten.Nullwert);
-      
-      TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.SpeichernLadenAccess (1),
-                                                          PositionExtern   => Textposition);
-      
-      return (Textbreite, Textposition.y);
+      return Textposition.y;
       
    end SpeichernLaden;
 

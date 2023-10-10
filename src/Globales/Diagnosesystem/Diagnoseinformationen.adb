@@ -67,6 +67,16 @@ package body Diagnoseinformationen is
    
    
    
+   procedure Zeichen
+     (ZeichenExtern : in Wide_Wide_Character)
+   is begin
+      
+      Put_Line (Item => ZeichenExtern'Wide_Wide_Image);
+      
+   end Zeichen;
+   
+   
+   
    procedure Text
      (TextExtern : in Wide_Wide_String)
    is begin

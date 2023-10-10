@@ -58,6 +58,18 @@ package TextaccessverwaltungssystemEinfachGrafik is
                  PositionExtern.y >= 0.00
               );
    
+   procedure Position
+     (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+     with
+       Pre => (
+                 TextaccessExtern /= null
+               and
+                 PositionExtern.x >= 0.00
+               and
+                 PositionExtern.y >= 0.00
+              );
+   
    procedure TextFarbe
      (TextaccessExtern : in Sf.Graphics.sfText_Ptr;
       TextExtern : in Wide_Wide_String;
