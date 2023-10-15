@@ -105,45 +105,40 @@ package ChangelogOktober2023 is
    
    
 
-   -- Version 0.05. => 0.05. (16.10.2023):
+   -- Version 0.05.4780 => 0.05. (16.10.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (15.10.2023):
+   -- Version 0.05.4765 => 0.05.4780 (15.10.2023):
    
-   -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (14.10.2023):
+   -- Version 0.05.4765 => 0.05.4765 (14.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (13.10.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (12.10.2023):
+   -- Version 0.05.4765 => 0.05.4765 (13.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.4765 => 0.05. (11.10.2023):
+   -- Version 0.05.4765 => 0.05.4765 (12.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.4765 => 0.05.4765 (11.10.2023):
+   
+   -- null.
    
    
 
