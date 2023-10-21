@@ -67,6 +67,28 @@ package body ViewsEinstellenGrafik is
    
    
    
+   function ViewflächeAnpassen
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      ViewflächeVariabel.x := FensterGrafik.AktuelleAuflösung.x;
+      
+      if
+        ViewflächeExtern.y < FensterGrafik.AktuelleAuflösung.y
+      then
+         Viewfläche.y := FensterGrafik.AktuelleAuflösung.y;
+         
+      else
+         Viewfläche.y := ViewflächeExtern.y;
+      end if;
+      
+      return Viewfläche;
+      
+   end ViewflächeAnpassen;
+   
+   
+   
    -- Das hier verwenden wenn mehrere Texte in der Breite angezeigt werden sollen, beispielsweise wie in SteuerungsmenueGrafik.
    function ViewflächeVariabelAnpassen
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;

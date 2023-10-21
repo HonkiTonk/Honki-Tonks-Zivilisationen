@@ -63,52 +63,47 @@ package ChangelogOktober2023 is
    
    
 
-   -- Version 0.05. => 0.05. (22.10.2023):
+   -- Version 0.05.4805 => 0.05. (22.10.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (21.10.2023):
+   -- Version 0.05.4780 => 0.05.4805 (21.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (20.10.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter das neue Viewskalierungssystem eingebaut.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (19.10.2023):
+   -- Version 0.05.4780 => 0.05.4780 (20.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (18.10.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.05. => 0.05. (17.10.2023):
+   -- Version 0.05.4780 => 0.05.4780 (19.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 
-   -- Version 0.05.4780 => 0.05. (16.10.2023):
+   -- Version 0.05.4780 => 0.05.4780 (18.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
+   
+   
+
+   -- Version 0.05.4780 => 0.05.4780 (17.10.2023):
+   
+   -- null
+   
+   
+
+   -- Version 0.05.4780 => 0.05.4780 (16.10.2023):
+   
+   -- null
    
    
 

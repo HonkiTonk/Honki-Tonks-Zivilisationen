@@ -30,44 +30,39 @@ private
 
 
    function AllgemeinerText
-     return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
      with
+       Pre => (
+                 MaximaleTextbreiteExtern >= 0.00
+              ),
+
        Post => (
-                  AllgemeinerText'Result.x >= 0.00
-                and
-                  AllgemeinerText'Result.y >= 0.00
+                  AllgemeinerText'Result >= 0.00
                );
 
    function PlanetVernichtet
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
      with
        Pre => (
-                 ViewflächeExtern.x >= 0.00
-               and
-                 ViewflächeExtern.y >= 0.00
+                 MaximaleTextbreiteExtern >= 0.00
               ),
 
        Post => (
-                  PlanetVernichtet'Result.x >= 0.00
-                and
-                  PlanetVernichtet'Result.y >= 0.00
+                  PlanetVernichtet'Result >= 0.00
                );
 
    function Gewonnen
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
      with
        Pre => (
-                 ViewflächeExtern.x >= 0.00
-               and
-                 ViewflächeExtern.y >= 0.00
+                 MaximaleTextbreiteExtern >= 0.00
               ),
 
        Post => (
-                  Gewonnen'Result.x >= 0.00
-                and
-                  Gewonnen'Result.y >= 0.00
+                  Gewonnen'Result >= 0.00
                );
 
 end AbspannGrafik;

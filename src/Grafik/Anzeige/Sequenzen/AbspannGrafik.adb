@@ -17,7 +17,7 @@ package body AbspannGrafik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeAuflösungAnpassen (ViewflächeExtern => Viewfläche);
+      Viewfläche := ViewsEinstellenGrafik.ViewflächeAnpassen (ViewflächeExtern => Viewfläche);
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.AbspannviewAccess,
                                             GrößeExtern          => Viewfläche,
@@ -30,14 +30,14 @@ package body AbspannGrafik is
             HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.PZB_Ende_Hintergrund_Enum,
                                            AbmessungenExtern => Viewfläche);
             
-            Viewfläche := PlanetVernichtet (ViewflächeExtern => Viewfläche);
+            Viewfläche.y := PlanetVernichtet (MaximaleTextbreiteExtern => Viewfläche.x);
             
          when GrafikDatentypen.Gewonnen_Enum | GrafikDatentypen.Verloren_Enum =>
             HintergrundGrafik.Spezieshintergrund (SpeziesExtern     => SpeziesExtern,
                                                   HintergrundExtern => AbspannExtern,
                                                   AbmessungenExtern => Viewfläche);
             
-            Viewfläche := Gewonnen (ViewflächeExtern => Viewfläche);
+            Viewfläche.y := Gewonnen (MaximaleTextbreiteExtern => Viewfläche.x);
       end case;
       
    end Abspann;
@@ -45,9 +45,11 @@ package body AbspannGrafik is
    
    
    function AllgemeinerText
-     return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
    is begin
       
+      Textbreite := MaximaleTextbreiteExtern;
       Textbreite := GrafikKonstanten.Nullwert;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
@@ -61,60 +63,59 @@ package body AbspannGrafik is
                                                                          ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
       
          TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (AllgemeinSchleifenwert),
-                                                             PositionExtern   => Textposition);
+                                                                    PositionExtern   => Textposition);
          
       end loop AllgemeinSchleife;
       
-      return (Textbreite, Textposition.y);
+      return Textposition.y;
       
    end AllgemeinerText;
      
    
    
-   
    function PlanetVernichtet
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
    is begin
       
-      NeueViewfläche := AllgemeinerText;
+      NeueViewfläche.y := AllgemeinerText (MaximaleTextbreiteExtern => MaximaleTextbreiteExtern);
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.OutroAccess (1),
                                          str  => "oO");
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.OutroAccess (1),
-                                                                              ViewbreiteExtern => ViewflächeExtern.x);
+                                                                              ViewbreiteExtern => MaximaleTextbreiteExtern);
       Textposition.y := NeueViewfläche.y;
       Textbreite := NeueViewfläche.x;
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (1),
-                                                          PositionExtern   => Textposition);
+                                                                 PositionExtern   => Textposition);
       
-      return (Textbreite, Textposition.y);
+      return Textposition.y;
       
    end PlanetVernichtet;
    
    
    
    function Gewonnen
-     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
-      return Sf.System.Vector2.sfVector2f
+     (MaximaleTextbreiteExtern : in Float)
+      return Float
    is begin
       
-      NeueViewfläche := AllgemeinerText;
+      NeueViewfläche.y := AllgemeinerText (MaximaleTextbreiteExtern => MaximaleTextbreiteExtern);
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.OutroAccess (1),
                                          str  => "\o/");
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.OutroAccess (1),
-                                                                              ViewbreiteExtern => ViewflächeExtern.x);
+                                                                              ViewbreiteExtern => MaximaleTextbreiteExtern);
       Textposition.y := NeueViewfläche.y;
       Textbreite := NeueViewfläche.x;
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.OutroAccess (1),
-                                                          PositionExtern   => Textposition);
+                                                                 PositionExtern   => Textposition);
       
-      return (Textbreite, Textposition.y);
+      return Textposition.y;
       
    end Gewonnen;
 

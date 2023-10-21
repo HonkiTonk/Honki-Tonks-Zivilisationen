@@ -32,6 +32,7 @@ package body BauauswahlGrafik is
      (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord;
       AktuelleAuswahlExtern : in StadtRecords.BauprojektRecord)
    is begin
+      
       AllgemeineViewsGrafik.Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => Spieltexte.Fragen (TextnummernKonstanten.FrageBauprojekt)),
                                           HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                           SpielenamenExtern => False);

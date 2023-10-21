@@ -51,6 +51,22 @@ package ViewsEinstellenGrafik is
                 and
                   ViewflächeAuflösungAnpassen'Result.y >= 0.00
                );
+   
+   function ViewflächeAnpassen
+     (ViewflächeExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Pre => (
+                 ViewflächeExtern.x >= 0.00
+               and
+                 ViewflächeExtern.y >= 0.00
+              ),
+         
+       Post => (
+                  ViewflächeAnpassen'Result.x >= 0.00
+                and
+                  ViewflächeAnpassen'Result.y >= 0.00
+               );
       
    function ViewflächeVariabelAnpassen
      (ViewflächeExtern : in Sf.System.Vector2.sfVector2f;
