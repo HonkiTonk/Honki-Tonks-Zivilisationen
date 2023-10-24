@@ -40,7 +40,7 @@ package body StadtseitenleisteGrafik is
       
       Viewfläche.y := Stadt (SpeziesExtern            => StadtauswahlExtern.SpeziesNummer.Spezies,
                               StadtauswahlExtern       => StadtauswahlExtern,
-                              TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel),
+                              TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, TextberechnungenHoeheGrafik.KleinerZeilenabstand),
                               LeerzeilenExtern         => 0,
                               MaximaleTextbreiteExtern => Viewfläche.x).YPosition;
         
@@ -115,7 +115,7 @@ package body StadtseitenleisteGrafik is
          is
             when 9 =>
                YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
-                                                                              ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                              ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
                
             when others =>
                null;
@@ -124,7 +124,7 @@ package body StadtseitenleisteGrafik is
       end loop TextSchleife;
       
       YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
-                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
       return (YTextposition, Leerzeilen);
       

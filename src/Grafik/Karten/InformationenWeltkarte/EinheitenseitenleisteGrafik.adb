@@ -109,7 +109,7 @@ package body EinheitenseitenleisteGrafik is
          is
             when Arbeit | Herkunft =>
                YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
-                                                                              ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                              ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
                
             when others =>
                null;

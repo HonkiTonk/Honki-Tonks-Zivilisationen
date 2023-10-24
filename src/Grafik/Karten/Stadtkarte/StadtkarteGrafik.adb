@@ -205,7 +205,7 @@ package body StadtkarteGrafik is
                                                                                                                                      IDExtern         => GebäudeIDExtern,
                                                                                                                                      KampfBonusExtern => KampfDatentypen.Angriff_Enum)'Wide_Wide_Image;
       
-      YTextposition := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      YTextposition := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       InformationenSchleife:
       for InformationSchleifenwert in Gebäudetexte'Range loop

@@ -79,7 +79,7 @@ package body ZusatztextKartengroesseGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := ViewflächeExtern.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.y := ViewflächeExtern.y + TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (1),
                                                                               ViewbreiteExtern => RealeViewbreiteExtern);
       
@@ -92,7 +92,7 @@ package body ZusatztextKartengroesseGrafik is
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                                                               ViewbreiteExtern => RealeViewbreiteExtern);
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
       
       Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                     position => Textposition);
@@ -100,9 +100,9 @@ package body ZusatztextKartengroesseGrafik is
       Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.ZusatztextKartengrößeAccess (2),
                                                                           TextbreiteExtern => Textbreite);
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
       
-      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand);
       
    end PositionFestlegen;
 

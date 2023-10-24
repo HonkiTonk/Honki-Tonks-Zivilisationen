@@ -50,7 +50,7 @@ package body DoppelmenueGrafik is
                                                                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end case;
 
-      Viewfläche (Auswahlbereich).y := Viewfläche (Auswahlbereich).y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Viewfläche (Auswahlbereich).y := Viewfläche (Auswahlbereich).y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
 
 
       
@@ -69,7 +69,7 @@ package body DoppelmenueGrafik is
                                                                                        AktuelleAuswahlExtern => AktuelleAuswahlExtern,
                                                                                        ViewflächeExtern      => Viewfläche (Zusatzbereich));
       
-      Viewfläche (Zusatzbereich).y := Viewfläche (Zusatzbereich).y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Viewfläche (Zusatzbereich).y := Viewfläche (Zusatzbereich).y + TextberechnungenHoeheGrafik.Zeilenabstand;
       
    end Doppelmenü;
    
@@ -82,7 +82,7 @@ package body DoppelmenueGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textbreite := GrafikKonstanten.Nullwert;
 
       PositionenSchleife:
@@ -107,11 +107,11 @@ package body DoppelmenueGrafik is
            := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert));
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
                   
       end loop PositionenSchleife;
 
-      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand);
 
    end TextpositionFestlegen;
 

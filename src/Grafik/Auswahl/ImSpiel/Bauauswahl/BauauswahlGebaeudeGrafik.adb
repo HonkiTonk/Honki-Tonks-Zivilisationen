@@ -87,7 +87,7 @@ package body BauauswahlGebaeudeGrafik is
                                                                                           KampfBonusExtern => KampfDatentypen.Angriff_Enum)));
             
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
-            Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+            Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
             Textbreite := GrafikKonstanten.Nullwert;
       end case;
             
@@ -100,14 +100,14 @@ package body BauauswahlGebaeudeGrafik is
                                                                              FarbeExtern      => TextfarbeGrafik.Standardfarbe);
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
          
          Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudebauinformationenAccess,
                                                                              TextbreiteExtern => Textbreite);
          
       end loop InformationenSchleife;
       
-      ViewflächeInformationen := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      ViewflächeInformationen := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
       Gebäudebeschreibung (AuswahlExtern     => AuswahlExtern,
                             SpeziesExtern     => SpeziesExtern,
@@ -142,7 +142,7 @@ package body BauauswahlGebaeudeGrafik is
          
          when others =>
             Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
-            Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+            Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
             
             TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.GebäudezusatztextAccess (SpeziesExtern, AuswahlExtern),
                                                                            TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
@@ -153,9 +153,9 @@ package body BauauswahlGebaeudeGrafik is
                                                                            PositionExtern   => Textposition);
             
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
       
-            ViewflächeBeschreibung := (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+            ViewflächeBeschreibung := (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       end case;
       
    end Gebäudebeschreibung;

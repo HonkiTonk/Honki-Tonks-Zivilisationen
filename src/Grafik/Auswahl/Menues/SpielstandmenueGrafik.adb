@@ -56,7 +56,7 @@ package body SpielstandmenueGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       NeueTextbreite := GrafikKonstanten.Nullwert;
       
       MehrereSeiten := LeseGrafiktask.Seitenauswahl;
@@ -125,7 +125,7 @@ package body SpielstandmenueGrafik is
          end if;
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
          
       end loop TextSchleife;
       

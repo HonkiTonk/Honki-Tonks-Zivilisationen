@@ -60,7 +60,7 @@ package body DiplomatieauswahlGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textbreite := GrafikKonstanten.Nullwert;
 
       PositionenSchleife:
@@ -112,11 +112,11 @@ package body DiplomatieauswahlGrafik is
          end if;
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
          
       end loop PositionenSchleife;
 
-      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand);
 
    end Textdarstellung;
 

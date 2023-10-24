@@ -58,7 +58,7 @@ package body VerkaufsauswahlGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
       
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       AktuelleTextbreite := GrafikKonstanten.Nullwert;
       
       GebäudeSchleife:
@@ -77,7 +77,7 @@ package body VerkaufsauswahlGrafik is
                                                                                                                                    AuswahlExtern    => Natural (AuswahlExtern)));
                                                                       
                Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                               ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
                
                AktuelleTextbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.GebäudetextAccess (SpeziesExtern, GebäudeSchleifenwert),
                                                                                            TextbreiteExtern => AktuelleTextbreite);

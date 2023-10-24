@@ -74,7 +74,7 @@ package body SteuerungsmenueGrafik is
       use type TastenbelegungDatentypen.Tastenbelegungskategorie_Enum;
    begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.Spaltenabstand;
       
       AufteilungSchleife:
@@ -122,9 +122,9 @@ package body SteuerungsmenueGrafik is
       end loop AufteilungSchleife;
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
-      return (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      return (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
    end Steuerungsaufteilung;
    
@@ -154,7 +154,7 @@ package body SteuerungsmenueGrafik is
       end case;
       
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       
       TextSchleife:
       for TextSchleifenwert in TextaccessVariablen.SteuerungAccess'Range loop
@@ -185,7 +185,7 @@ package body SteuerungsmenueGrafik is
          
       end loop TextSchleife;
       
-      return Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      return Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand;
       
    end Steuerung;
    

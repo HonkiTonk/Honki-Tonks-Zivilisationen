@@ -49,24 +49,25 @@ package ChangelogOktober2023 is
    
    
 
-   -- Version 0.05. => 0.05. (24.10.2023):
+   -- Version 0.05.4850 => 0.05. (24.10.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (23.10.2023):
+   -- Version 0.05.4805 => 0.05.4850 (23.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter das neue Textskalierungssystem eingebaut.
+   -- Weiter das neue Viewskalierungssystem eingebaut.
+   -- Versucht das kaputte Baumenü zu reparieren.
+   -- Contracts und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.4805 => 0.05. (22.10.2023):
+   -- Version 0.05.4805 => 0.05.4805 (22.10.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null
    
    
 

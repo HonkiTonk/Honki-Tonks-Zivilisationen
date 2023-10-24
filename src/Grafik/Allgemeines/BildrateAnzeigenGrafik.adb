@@ -65,7 +65,7 @@ package body BildrateAnzeigenGrafik is
                                                                              TextbreiteExtern => 5.00);
       
       Viewfläche.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => 5.00,
-                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
       
    end Bildrate;
 

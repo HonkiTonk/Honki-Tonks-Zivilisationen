@@ -6,23 +6,33 @@ with FensterGrafik;
 
 package body TextberechnungenHoeheGrafik is
    
-   function KleinerZeilenabstandVariabel
+   function WinzigerZeilenabstand
+     return Float
+   is begin
+      
+      return FensterGrafik.AktuelleAuflösung.y / 200.00;
+      
+   end WinzigerZeilenabstand;
+   
+   
+   
+   function KleinerZeilenabstand
      return Float
    is begin
       
       return 1.50 * FensterGrafik.AktuelleAuflösung.y / 100.00;
       
-   end KleinerZeilenabstandVariabel;
+   end KleinerZeilenabstand;
    
    
    
-   function ZeilenabstandVariabel
+   function Zeilenabstand
      return Float
    is begin
       
       return 3.50 * FensterGrafik.AktuelleAuflösung.y / 100.00;
       
-   end ZeilenabstandVariabel;
+   end Zeilenabstand;
    
    
    

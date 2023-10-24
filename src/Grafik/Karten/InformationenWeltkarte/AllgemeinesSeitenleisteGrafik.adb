@@ -58,7 +58,7 @@ package body AllgemeinesSeitenleisteGrafik is
       end loop TextSchleife;
          
       YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
-                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
       return (YTextposition, Leerzeilen);
 

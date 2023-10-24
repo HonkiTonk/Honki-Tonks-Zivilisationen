@@ -31,7 +31,7 @@ package body SpielmeldungenGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Meldung_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
       
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.Spielmeldung,
                                          str  => To_Wide_Wide_String (Source => Spieltexte.Meldungen (MeldungExtern)));
@@ -46,7 +46,7 @@ package body SpielmeldungenGrafik is
                                                           PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
       Viewfläche := (Textbreite, Textposition.y);
       

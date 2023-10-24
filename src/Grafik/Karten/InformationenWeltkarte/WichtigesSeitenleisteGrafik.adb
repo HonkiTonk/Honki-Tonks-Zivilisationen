@@ -25,7 +25,7 @@ package body WichtigesSeitenleisteGrafik is
    is begin
       
       Leerzeilen := LeerzeilenExtern;
-      YTextposition := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      YTextposition := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       AnzuzeigenderText (1) := Koordinaten (KoordinatenExtern => KoordinatenExtern);
       AnzuzeigenderText (2) := Rundenanzahl (SpeziesExtern => SpeziesExtern);
@@ -50,7 +50,7 @@ package body WichtigesSeitenleisteGrafik is
       end loop TextSchleife;
          
       YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
-                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
       return (YTextposition, Leerzeilen);
             

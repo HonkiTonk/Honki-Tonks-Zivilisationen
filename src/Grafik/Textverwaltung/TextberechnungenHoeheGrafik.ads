@@ -1,18 +1,25 @@
 package TextberechnungenHoeheGrafik is
    pragma Elaborate_Body;
    
-   function ZeilenabstandVariabel
+   function WinzigerZeilenabstand
      return Float
      with
        Post => (
-                  ZeilenabstandVariabel'Result > 0.00
+                  WinzigerZeilenabstand'Result >= 0.00
                );
    
-   function KleinerZeilenabstandVariabel
+   function Zeilenabstand
      return Float
      with
        Post => (
-                  KleinerZeilenabstandVariabel'Result > 0.00
+                  Zeilenabstand'Result >= 0.00
+               );
+   
+   function KleinerZeilenabstand
+     return Float
+     with
+       Post => (
+                  KleinerZeilenabstand'Result >= 0.00
                );
    
    function NeueTextposition

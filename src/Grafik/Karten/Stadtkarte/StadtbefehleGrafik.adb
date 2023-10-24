@@ -29,7 +29,7 @@ package body StadtbefehleGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
       
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textbreite := GrafikKonstanten.Nullwert;
 
       PositionenSchleife:
@@ -50,7 +50,7 @@ package body StadtbefehleGrafik is
          InteraktionAuswahl.PositionenStadtbefehle (PositionSchleifenwert) := Textbox;
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
          
       end loop PositionenSchleife;
 

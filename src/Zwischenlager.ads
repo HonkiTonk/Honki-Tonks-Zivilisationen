@@ -1,133 +1,81 @@
-procedure Einheiten
-  (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
-   SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
+function Baumenü
+  return StadtRecords.BauprojektRecord
 is begin
 
-   ViewflächeEinheiten := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeEinheiten,
-                                                                              VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).width,
-                                                                                                    GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).height));
+   Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
+                                                              point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
+                                                              view         => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeliste));
 
-   ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenliste),
-                                         GrößeExtern          => ViewflächeEinheiten,
-                                         AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste));
+   case
+     MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
+                                                 BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
+                                                                        GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height))
+   is
+      when False =>
+         Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
+                                                                    point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
+                                                                    view         => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenliste));
 
-   HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                  AbmessungenExtern => ViewflächeEinheiten);
+      when True =>
+         GebäudeSchleife:
+         for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
 
-   Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-   Textbreite := GrafikKonstanten.Nullwert;
-   Diagnoseinformationen.Zeichen (ZeichenExtern => 'a');
+            case
+              InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
+            is
+               when True =>
+                  if
+                    True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                                       RechteckExtern     => InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert))
+                  then
+                     return (GebäudeSchleifenwert, EinheitenKonstanten.LeerID);
 
-   -- XPosition ist kaputt ab 29. äöü
-   EinheitenSchleife:
-   for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
+                  else
+                     null;
+                  end if;
 
-      Diagnoseinformationen.Zahl (ZahlExtern => Integer (EinheitenSchleifenwert));
-
-      case
-        InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)
-      is
-         when True =>
-            Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
-                                                                                    ViewbreiteExtern => ViewflächeEinheiten.x);
-
-            TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
-                                                                            PositionExtern   => Textposition,
-                                                                            FarbeExtern      => TextfarbeGrafik.AuswahlfarbeFestlegen (TextnummerExtern => Positive (EinheitenSchleifenwert),
-                                                                                                                                       AuswahlExtern    => Natural (AuswahlExtern)));
-
-            Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                            ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-
-            Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert),
-                                                                                TextbreiteExtern => Textbreite);
-
-            InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.EinheitentextAccess (SpeziesExtern, EinheitenSchleifenwert));
-
-         when False =>
-            null;
-      end case;
-
-   end loop EinheitenSchleife;
-
-   ViewflächeEinheiten := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-
-end Einheiten;
-
-
-
-Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                           point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
-                                                           view         => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeliste));
-
-case
-  MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
-                                              BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
-                                                                     GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height))
-is
-   when False =>
-      Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
-                                                                 point        => InteraktionAuswahl.LeseGesamteMauspositionInteger,
-                                                                 view         => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenliste));
-
-   when True =>
-      GebäudeSchleife:
-      for GebäudeSchleifenwert in StadtDatentypen.GebäudeID'Range loop
-
-         case
-           InteraktionAuswahl.MöglicheGebäude (GebäudeSchleifenwert)
-         is
-            when True =>
-               if
-                 True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    RechteckExtern     => InteraktionAuswahl.PositionenGebäudeBauen (GebäudeSchleifenwert))
-               then
-                  return (GebäudeSchleifenwert, EinheitenKonstanten.LeerID);
-
-               else
+               when False =>
                   null;
-               end if;
+            end case;
 
-            when False =>
-               null;
-         end case;
+         end loop GebäudeSchleife;
 
-      end loop GebäudeSchleife;
+         return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID);
+   end case;
 
-      return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID);
-end case;
+   case
+     MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
+                                                 BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).width,
+                                                                        GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).height))
+   is
+      when False =>
+         null;
 
-case
-  MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
-                                              BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).width,
-                                                                     GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).height))
-is
-   when False =>
-      return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID);
+      when True =>
+         EinheitenSchleife:
+         for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
 
-   when True =>
-      EinheitenSchleife:
-      for EinheitenSchleifenwert in EinheitenDatentypen.EinheitenIDVorhanden'Range loop
+            case
+              InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)
+            is
+               when True =>
+                  if
+                    True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
+                                                       RechteckExtern     => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
+                  then
+                     return (StadtKonstanten.LeerGebäudeID, EinheitenSchleifenwert);
 
-         case
-           InteraktionAuswahl.MöglicheEinheiten (EinheitenSchleifenwert)
-         is
-            when True =>
-               if
-                 True = Vergleiche.Auswahlposition (MauspositionExtern => Mausposition,
-                                                    RechteckExtern     => InteraktionAuswahl.PositionenEinheitenBauen (EinheitenSchleifenwert))
-               then
-                  return (StadtKonstanten.LeerGebäudeID, EinheitenSchleifenwert);
+                  else
+                     null;
+                  end if;
 
-               else
+               when False =>
                   null;
-               end if;
+            end case;
 
-            when False =>
-               null;
-         end case;
+         end loop EinheitenSchleife;
+   end case;
 
-      end loop EinheitenSchleife;
-end case;
+   return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID);
 
-return (StadtKonstanten.LeerGebäudeID, EinheitenKonstanten.LeerID);
+end Baumenü;

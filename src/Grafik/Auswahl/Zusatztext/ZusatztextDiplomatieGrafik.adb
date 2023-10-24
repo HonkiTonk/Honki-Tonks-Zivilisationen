@@ -26,7 +26,7 @@ package body ZusatztextDiplomatieGrafik is
    is begin
       
       Textbreite := GrafikKonstanten.Nullwert;
-      Textposition.y := ViewflächeExtern.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.y := ViewflächeExtern.y + TextberechnungenHoeheGrafik.Zeilenabstand;
       
       TextSchleife:
       for TextSchleifenwert in MenueKonstanten.EndeAbzugGrafik (MenueDatentypen.Diplomatie_Menü_Enum) + 1 .. MenueKonstanten.EndeMenü (MenueDatentypen.Diplomatie_Menü_Enum) loop
@@ -44,7 +44,7 @@ package body ZusatztextDiplomatieGrafik is
                                                              PositionExtern   => Textposition);
       
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
          
       end loop TextSchleife;
       

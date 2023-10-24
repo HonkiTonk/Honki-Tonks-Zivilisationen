@@ -60,7 +60,7 @@ package body ForschungserfolgGrafik is
             Fehlermeldungssystem.Grafik (FehlermeldungExtern => "ForschungserfolgGrafik.Forschungserfolg: Auswahlbereich: " & AuswahlExtern'Wide_Wide_Image);
       end case;
       
-      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
    end Forschungserfolg;
    
@@ -74,7 +74,7 @@ package body ForschungserfolgGrafik is
    is begin
       
       Textbreite := GrafikKonstanten.Nullwert;
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       TextaccessverwaltungssystemEinfachGrafik.PositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüAccess (SpeziesExtern, TechnologieExtern),
                                                                PositionExtern   => Textposition,
@@ -100,7 +100,7 @@ package body ForschungserfolgGrafik is
    is begin
       
       Textbreite := GrafikKonstanten.Nullwert;
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ForschungsmenüZusatztextAccess (SpeziesExtern, TechnologieExtern),
                                                           PositionExtern   => Textposition);

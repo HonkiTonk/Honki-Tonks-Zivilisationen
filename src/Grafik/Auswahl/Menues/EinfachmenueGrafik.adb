@@ -53,7 +53,7 @@ package body EinfachmenueGrafik is
             null;
       end case;
       
-      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.Zeilenabstand;
                               
    end Einfachmenü;
    
@@ -66,7 +66,7 @@ package body EinfachmenueGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textbreite := GrafikKonstanten.Nullwert;
 
       PositionenSchleife:
@@ -92,11 +92,11 @@ package body EinfachmenueGrafik is
            := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsAccess (WelchesMenüExtern, PositionSchleifenwert));
          
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
          
       end loop PositionenSchleife;
 
-      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+      return (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.Zeilenabstand);
 
    end Textdarstellung;
 

@@ -46,7 +46,7 @@ package body SprachauswahlGrafik is
       Ende := LeseGrafiktask.Endauswahl;
       AktuelleSprachen := SprachauswahlLogik.AktuelleSprachen;
       
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       AktuelleTextbreite := GrafikKonstanten.Nullwert;
       
       AnzeigeSchleife:
@@ -103,7 +103,7 @@ package body SprachauswahlGrafik is
            and
              ZeileSchleifenwert = AktuelleSprachen'Last
          then
-            Textposition.y := Textposition.y + 3.00 * TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+            Textposition.y := Textposition.y + 3.00 * TextberechnungenHoeheGrafik.Zeilenabstand;
             
             KonvexverwaltungssystemGrafik.PfeilErstellen (PfeilaccessExtern => PfeilAccess);
             
@@ -134,7 +134,7 @@ package body SprachauswahlGrafik is
          end if;
                  
          Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
          
       end loop AnzeigeSchleife;
             

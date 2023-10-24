@@ -47,7 +47,7 @@ package body SeitenleisteGrafik is
       
       AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
       XPositionText := TextberechnungenBreiteGrafik.WinzigerSpaltenabstand;
-      Textinformationen.YPosition := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textinformationen.YPosition := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textinformationen.Leerzeilen := 0;
       
       Textinformationen := WichtigesSeitenleisteGrafik.WichtigesInformationen (SpeziesExtern            => SpeziesExtern,
@@ -126,7 +126,7 @@ package body SeitenleisteGrafik is
       while Textinformationen.Leerzeilen > 0 loop
          
          Textinformationen.YPosition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textinformationen.YPosition,
-                                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
          
          Textinformationen.Leerzeilen := Textinformationen.Leerzeilen - 1;
          

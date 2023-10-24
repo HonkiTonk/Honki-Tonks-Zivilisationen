@@ -67,7 +67,7 @@ package body LadezeitenGrafik is
             Viewfläche.y := SpeichernLaden (MaximaleTextbreiteExtern => Viewfläche.x);
       end case;
       
-      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Viewfläche.y := Viewfläche.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
    end Ladezeiten;
    
@@ -79,7 +79,7 @@ package body LadezeitenGrafik is
    is begin
       
       WelcheZeit := TextaccessVariablen.LadezeitenAccess'First;
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
                      
       SpielweltErstellenSchleife:
@@ -108,7 +108,7 @@ package body LadezeitenGrafik is
       return Float
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       WelcheZeit := TextaccessVariablen.KIZeitenAccess'First;
       
@@ -139,7 +139,7 @@ package body LadezeitenGrafik is
       return Float
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
          
       Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittRundenende)
@@ -159,7 +159,7 @@ package body LadezeitenGrafik is
       return Float
    is begin
       
-      Textposition.y := TextberechnungenHoeheGrafik.ZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.Zeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
          
       Textposition.y := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenMittelnZeichnen (TextExtern               => ZahlAlsString (ZahlExtern => LadezeitenLogik.FortschrittSpeichernLaden)

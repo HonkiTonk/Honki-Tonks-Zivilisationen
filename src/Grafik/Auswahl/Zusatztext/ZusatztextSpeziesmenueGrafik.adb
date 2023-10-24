@@ -16,7 +16,7 @@ package body ZusatztextSpeziesmenueGrafik is
       return Sf.System.Vector2.sfVector2f
    is begin
             
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
       
       SpeziesAnzeigen := SpeziesDatentypen.Spezies_Verwendet_Enum'Val (AktuelleAuswahlExtern);
@@ -30,7 +30,7 @@ package body ZusatztextSpeziesmenueGrafik is
                                                               PositionExtern   => Textposition);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
       
       return Textposition;
       

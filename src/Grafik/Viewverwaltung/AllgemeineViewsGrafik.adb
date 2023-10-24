@@ -43,7 +43,7 @@ package body AllgemeineViewsGrafik is
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                                               ViewbreiteExtern => Viewfläche (Überschrift_Enum).x);
-      Textposition.y := GrafikKonstanten.Verdoppelung * TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := GrafikKonstanten.Verdoppelung * TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.ÜberschriftAccess,
                                                                  PositionExtern   => Textposition);
@@ -52,7 +52,7 @@ package body AllgemeineViewsGrafik is
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel + TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand + TextberechnungenHoeheGrafik.Zeilenabstand);
 
       Viewfläche (Überschrift_Enum) := (Textbreite, Textposition.y);
          
@@ -99,7 +99,7 @@ package body AllgemeineViewsGrafik is
       
       Textposition.x := TextberechnungenBreiteGrafik.MittelpositionBerechnen (TextAccessExtern => TextaccessVariablen.VersionsnummerAccess,
                                                                               ViewbreiteExtern => Viewfläche (Versionsnummer_Enum).x);
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       TextaccessverwaltungssystemEinfachGrafik.PositionZeichnen (TextaccessExtern => TextaccessVariablen.VersionsnummerAccess,
                                                                  PositionExtern   => Textposition);
@@ -108,7 +108,7 @@ package body AllgemeineViewsGrafik is
                                                                           TextbreiteExtern => GrafikKonstanten.Nullwert);
       
       Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
+                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
 
       Viewfläche (Versionsnummer_Enum) := (Textbreite, Textposition.y);
       

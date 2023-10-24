@@ -9,7 +9,6 @@ with ProduktionDatentypen;
 with EinheitenKonstanten;
 with TextKonstanten;
 with ViewKonstanten;
-with GrafikKonstanten;
 
 with LeseEinheitenDatenbank;
 
@@ -17,10 +16,9 @@ with HintergrundGrafik;
 with TextberechnungenBreiteGrafik;
 with TextberechnungenHoeheGrafik;
 with ViewsEinstellenGrafik;
-with TextfarbeGrafik;
 with ZeilenumbruchberechnungGrafik;
 with EinheitenbeschreibungenGrafik;
-with TextaccessverwaltungssystemEinfachGrafik;
+with TextaccessverwaltungssystemErweitertGrafik;
 
 package body BauauswahlEinheitenGrafik is
 
@@ -32,9 +30,9 @@ package body BauauswahlEinheitenGrafik is
       use type EinheitenDatentypen.Transportplätze;
    begin
       
-      ViewflächeInformationen := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeInformationen,
-                                                                                     VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheiteninformationen).width,
-                                                                                                           GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheiteninformationen).height));
+      ViewflächeInformationen := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeInformationen,
+                                                                                   VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheiteninformationen).width,
+                                                                                                         GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheiteninformationen).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheiteninformationen),
                                             GrößeExtern          => ViewflächeInformationen,
@@ -97,27 +95,19 @@ package body BauauswahlEinheitenGrafik is
               & Spieltexte.Zeug (TextnummernKonstanten.ZeugKlein - 1 + EinheitenDatentypen.Transport_Vorhanden_Enum'Pos (Transportgröße));
       end case;
       
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
-      Textbreite := GrafikKonstanten.Nullwert;
+      YPosition := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       InformationenSchleife:
       for InformationSchleifenwert in Einheitentexte'Range loop
          
-         TextaccessverwaltungssystemEinfachGrafik.TextPositionFarbeZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenbauinformationenAccess,
-                                                                             TextExtern       => To_Wide_Wide_String (Source => Einheitentexte (InformationSchleifenwert)),
-                                                                             PositionExtern   => Textposition,
-                                                                             FarbeExtern      => TextfarbeGrafik.Standardfarbe);
-         
-         Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                         ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
-         
-         Textbreite := TextberechnungenBreiteGrafik.NeueTextbreiteErmitteln (TextAccessExtern => TextaccessVariablen.EinheitenbauinformationenAccess,
-                                                                             TextbreiteExtern => Textbreite);
+         YPosition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => Einheitentexte (InformationSchleifenwert)),
+                                                                                        TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, YPosition),
+                                                                                        MaximaleTextbreiteExtern => ViewflächeInformationen.x,
+                                                                                        TextAccessExtern         => TextaccessVariablen.EinheitenbauinformationenAccess);
          
       end loop InformationenSchleife;
       
-      ViewflächeInformationen := (Textbreite, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      ViewflächeInformationen.y := YPosition + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       Einheitenbeschreibung (AuswahlExtern => AuswahlExtern,
                              SpeziesExtern => SpeziesExtern);
@@ -131,9 +121,9 @@ package body BauauswahlEinheitenGrafik is
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)
    is begin
       
-      ViewflächeBeschreibung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeBeschreibung,
-                                                                                    VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenbeschreibung).width,
-                                                                                                          GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenbeschreibung).height));
+      ViewflächeBeschreibung := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => ViewflächeBeschreibung,
+                                                                                  VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenbeschreibung).width,
+                                                                                                        GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenbeschreibung).height));
       
       ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewKonstanten.BaumenüEinheitenbeschreibung),
                                             GrößeExtern          => ViewflächeBeschreibung,
@@ -141,24 +131,21 @@ package body BauauswahlEinheitenGrafik is
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
                                      AbmessungenExtern => ViewflächeBeschreibung);
-            
-      Textposition.x := TextberechnungenBreiteGrafik.KleinerSpaltenabstand;
-      Textposition.y := TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel;
+      
+      YPosition := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       -- Sollche Konstrukte mal auseinanderziehen, damit es übersichtlicher ist. äöü
-      TextaccessverwaltungssystemEinfachGrafik.TextPositionZeichnen (TextaccessExtern => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern),
-                                                                     TextExtern       => 
-                                                                       ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
-                                                                         (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern      => AuswahlExtern,
-                                                                                                                                                  SpeziesExtern => SpeziesExtern),
-                                                                          TextfeldbreiteExtern => ViewflächeBeschreibung.x,
-                                                                          BreitenabzugExtern   => Textposition.x),
-                                                                     PositionExtern   => Textposition);
+      YPosition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               =>
+                                                                                       ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
+                                                                                         (TextExtern           => EinheitenbeschreibungenGrafik.Langbeschreibung (IDExtern      => AuswahlExtern,
+                                                                                                                                                                  SpeziesExtern => SpeziesExtern),
+                                                                                          TextfeldbreiteExtern => ViewflächeBeschreibung.x,
+                                                                                          BreitenabzugExtern   => TextberechnungenBreiteGrafik.WinzigerSpaltenabstand),
+                                                                                     TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, YPosition),
+                                                                                     MaximaleTextbreiteExtern => ViewflächeBeschreibung.x,
+                                                                                     TextAccessExtern         => TextaccessVariablen.EinheitenzusatztextAccess (SpeziesExtern, AuswahlExtern));
       
-      Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
-                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.ZeilenabstandVariabel);
-      
-      ViewflächeBeschreibung := (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+      ViewflächeBeschreibung.y := YPosition + TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
    end Einheitenbeschreibung;
 

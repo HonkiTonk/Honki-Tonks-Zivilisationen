@@ -28,12 +28,11 @@ private
    
    Einheitentexte : TextArrays.AllgemeinesTextArray (1 .. 11);
 
-   Textbreite : Float;
+   YPosition : Float;
    
    ViewflächeInformationen : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    ViewflächeBeschreibung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
-   Textposition : Sf.System.Vector2.sfVector2f;
-
+   
    procedure Einheitenbeschreibung
      (AuswahlExtern : in EinheitenDatentypen.EinheitenID;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum)

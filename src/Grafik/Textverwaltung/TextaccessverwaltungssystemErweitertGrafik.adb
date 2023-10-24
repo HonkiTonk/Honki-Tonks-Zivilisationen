@@ -51,7 +51,7 @@ package body TextaccessverwaltungssystemErweitertGrafik is
                                                                   SkalierungExtern => Skalierung);
       
       return TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => TextpositionExtern.y,
-                                                           ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                           ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
    end TextSkalierenZeichnen;
    
@@ -110,7 +110,7 @@ package body TextaccessverwaltungssystemErweitertGrafik is
                                                                   SkalierungExtern => Skalierung);
       
       return TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => TextpositionExtern.y,
-                                                           ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstandVariabel);
+                                                           ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
    end SkalierenMittelnZeichnen;
 
