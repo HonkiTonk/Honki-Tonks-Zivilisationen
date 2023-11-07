@@ -4,6 +4,7 @@ with Sf.Graphics.Color;
 
 with Views;
 with ViewKonstanten;
+with GrafikRecords;
 
 package GrafikRecordKonstanten is
    pragma Elaborate_Body;
@@ -19,6 +20,11 @@ package GrafikRecordKonstanten is
    Gesamtbereich : constant Sf.Graphics.Rect.sfFloatRect := (0.00, 0.00, 1.00, 1.00);
    
    Fehlerfarbe : constant Sf.Graphics.Color.sfColor := Sf.Graphics.Color.sfCyan;
+   
+   Anfangsviewbereich : constant GrafikRecords.ViewbereichRecord := (
+                                                                     Viewbereich    => StartView,
+                                                                     ViewbereichAlt => Nullposition
+                                                                    );
    
    
    

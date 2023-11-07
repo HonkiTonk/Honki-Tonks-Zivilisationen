@@ -121,18 +121,29 @@ package body BauauswahlGebaeudeGrafik is
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;
       SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       ViewbereichExtern : in Positive)
-   is begin
+   is
+      use type Sf.System.Vector2.sfVector2f;
+   begin
       
-      ViewflächeBeschreibung := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewflächeBeschreibung,
-                                                                                    VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewbereichExtern).width,
-                                                                                                          GrafikRecordKonstanten.Baumenübereich (ViewbereichExtern).height));
+      ViewbereichBeschreibung.Viewbereich := ViewsEinstellenGrafik.ViewflächeVariabelAnpassen (ViewflächeExtern => ViewbereichBeschreibung.Viewbereich,
+                                                                                                VerhältnisExtern => (GrafikRecordKonstanten.Baumenübereich (ViewbereichExtern).width,
+                                                                                                                      GrafikRecordKonstanten.Baumenübereich (ViewbereichExtern).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewbereichExtern),
-                                            GrößeExtern          => ViewflächeBeschreibung,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewbereichExtern));
+      if
+        ViewbereichBeschreibung.Viewbereich /= ViewbereichBeschreibung.ViewbereichAlt
+      then
+         ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.BauviewAccesse (ViewbereichExtern),
+                                               GrößeExtern          => ViewbereichBeschreibung.Viewbereich,
+                                               AnzeigebereichExtern => GrafikRecordKonstanten.Baumenübereich (ViewbereichExtern));
+         
+         ViewbereichBeschreibung.ViewbereichAlt := ViewbereichBeschreibung.Viewbereich;
+         
+      else
+         ViewsEinstellenGrafik.ViewSetzen (ViewExtern => Views.BauviewAccesse (ViewbereichExtern));
+      end if;
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Bauen_Hintergrund_Enum,
-                                     AbmessungenExtern => ViewflächeBeschreibung);
+                                     AbmessungenExtern => ViewbereichBeschreibung.Viewbereich);
       
       case
         AuswahlExtern
@@ -148,14 +159,14 @@ package body BauauswahlGebaeudeGrafik is
                                                                            TextExtern       => ZeilenumbruchberechnungGrafik.Zeilenumbruchberechnung
                                                                              (TextExtern           => GebaeudebeschreibungenGrafik.Langbeschreibung (IDExtern    => AuswahlExtern,
                                                                                                                                                      SpeziesExtern => SpeziesExtern),
-                                                                              TextfeldbreiteExtern => ViewflächeBeschreibung.x,
+                                                                              TextfeldbreiteExtern => ViewbereichBeschreibung.Viewbereich.x,
                                                                               BreitenabzugExtern   => Textposition.x),
                                                                            PositionExtern   => Textposition);
             
             Textposition.y := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => Textposition.y,
                                                                             ZusatzwertExtern => TextberechnungenHoeheGrafik.Zeilenabstand);
       
-            ViewflächeBeschreibung := (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand);
+            ViewbereichBeschreibung.Viewbereich := (Textposition.x, Textposition.y + TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       end case;
       
    end Gebäudebeschreibung;

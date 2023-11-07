@@ -58,5 +58,15 @@ package GrafikRecords is
       Leerzeilen : Natural;
       
    end record;
+   
+   
+   
+   type ViewbereichRecord is record
+      
+      Viewbereich : Sf.System.Vector2.sfVector2f;
+      
+      ViewbereichAlt : Sf.System.Vector2.sfVector2f;
+      
+   end record;
 
 end GrafikRecords;

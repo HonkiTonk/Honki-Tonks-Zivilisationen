@@ -1,5 +1,3 @@
-private with Sf.System.Vector2;
-
 with SpeziesDatentypen;
 
 private with EinheitenRecords;
@@ -16,6 +14,8 @@ package SeitenleisteGrafik is
 
 private
 
+   ViewbereicheIdentisch : Boolean;
+
    XPositionText : Float;
 
    StadtSpeziesNummer : StadtRecords.SpeziesStadtnummerRecord;
@@ -24,8 +24,14 @@ private
 
    Textinformationen : GrafikRecords.YTextpositionLeerzeilenRecord;
 
-   Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   Viewbereich : GrafikRecords.ViewbereichRecord := GrafikRecordKonstanten.Anfangsviewbereich;
 
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldNaturalRecord;
+
+
+
+   function ViewbereicheVergleichen
+     (ViewbereicheExtern : in GrafikRecords.ViewbereichRecord)
+      return Boolean;
 
 end SeitenleisteGrafik;

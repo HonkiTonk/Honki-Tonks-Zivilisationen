@@ -6,6 +6,7 @@ with StadtDatentypen;
 private with GrafikRecordKonstanten;
 private with TextArrays;
 private with KampfDatentypen;
+private with GrafikRecords;
 
 with LeseSpeziesbelegung;
 
@@ -31,7 +32,7 @@ private
    Textbreite : Float;
    
    ViewflächeInformationen : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
-   ViewflächeBeschreibung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   ViewbereichBeschreibung : GrafikRecords.ViewbereichRecord := GrafikRecordKonstanten.Anfangsviewbereich;
    Textposition : Sf.System.Vector2.sfVector2f;
 
    procedure Gebäudebeschreibung

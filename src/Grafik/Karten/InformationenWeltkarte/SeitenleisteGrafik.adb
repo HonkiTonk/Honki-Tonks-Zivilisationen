@@ -34,16 +34,28 @@ package body SeitenleisteGrafik is
       use type EinheitenDatentypen.Einheitenbereich;
    begin
       
-      Viewfläche := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => Viewfläche,
-                                                                      VerhältnisExtern => (GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltSeitenleiste).width,
-                                                                                            GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltSeitenleiste).height));
+      Viewbereich.Viewbereich := ViewsEinstellenGrafik.ViewflächeXFestYVariabel (ViewflächeExtern => Viewbereich.Viewbereich,
+                                                                                  VerhältnisExtern => (GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltSeitenleiste).width,
+                                                                                                        GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltSeitenleiste).height));
       
-      ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccesse (ViewKonstanten.WeltSeitenleiste),
-                                            GrößeExtern          => Viewfläche,
-                                            AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltSeitenleiste));
+      ViewbereicheIdentisch := ViewbereicheVergleichen (ViewbereicheExtern => Viewbereich);
+      
+      case
+        ViewbereicheIdentisch
+      is
+         when False =>
+            ViewsEinstellenGrafik.ViewEinstellen (ViewExtern           => Views.WeltkarteAccesse (ViewKonstanten.WeltSeitenleiste),
+                                                  GrößeExtern          => Viewbereich.Viewbereich,
+                                                  AnzeigebereichExtern => GrafikRecordKonstanten.Weltkartenbereich (ViewKonstanten.WeltSeitenleiste));
+         
+            Viewbereich.ViewbereichAlt := Viewbereich.Viewbereich;
+         
+         when True =>
+            ViewsEinstellenGrafik.ViewSetzen (ViewExtern => Views.WeltkarteAccesse (ViewKonstanten.WeltSeitenleiste));
+      end case;
       
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
-                                     AbmessungenExtern => Viewfläche);
+                                     AbmessungenExtern => Viewbereich.Viewbereich);
       
       AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
       XPositionText := TextberechnungenBreiteGrafik.WinzigerSpaltenabstand;
@@ -54,7 +66,7 @@ package body SeitenleisteGrafik is
                                                                                KoordinatenExtern        => AktuelleKoordinaten,
                                                                                TextpositionExtern       => (XPositionText, Textinformationen.YPosition),
                                                                                LeerzeilenExtern         => Textinformationen.Leerzeilen,
-                                                                               MaximaleTextbreiteExtern => Viewfläche.x);
+                                                                               MaximaleTextbreiteExtern => Viewbereich.Viewbereich.x);
       
       if
         AktuelleKoordinaten = KartenRecordKonstanten.LeerKoordinate
@@ -65,26 +77,26 @@ package body SeitenleisteGrafik is
          Textinformationen := AllgemeinesSeitenleisteGrafik.AllgemeineInformationen (SpeziesExtern            => SpeziesKonstanten.LeerSpezies,
                                                                                      TextpositionExtern       => (XPositionText, Textinformationen.YPosition),
                                                                                      LeerzeilenExtern         => Textinformationen.Leerzeilen,
-                                                                                     MaximaleTextbreiteExtern => Viewfläche.x);
+                                                                                     MaximaleTextbreiteExtern => Viewbereich.Viewbereich.x);
             
          Textinformationen := StadtseitenleisteGrafik.Stadt (SpeziesExtern            => SpeziesKonstanten.LeerSpezies,
                                                              StadtauswahlExtern       => UebergabeRecordErmittelnGrafik.Stadt (StadtSpeziesNummerExtern => StadtKonstanten.LeerStadt),
                                                              TextpositionExtern       => (XPositionText, Textinformationen.YPosition),
                                                              LeerzeilenExtern         => Textinformationen.Leerzeilen,
-                                                             MaximaleTextbreiteExtern => Viewfläche.x);
+                                                             MaximaleTextbreiteExtern => Viewbereich.Viewbereich.x);
          
          -- Wie bei der Stadt einfach die ganze Einheit übergeben? äöü
          Textinformationen := EinheitenseitenleisteGrafik.Einheiten (SpeziesExtern              => SpeziesKonstanten.LeerSpezies,
                                                                      EinheitSpeziesNummerExtern => EinheitenKonstanten.LeerEinheit,
                                                                      TextpositionExtern         => (XPositionText, Textinformationen.YPosition),
                                                                      LeerzeilenExtern           => Textinformationen.Leerzeilen,
-                                                                     MaximaleTextbreiteExtern   => Viewfläche.x);
+                                                                     MaximaleTextbreiteExtern   => Viewbereich.Viewbereich.x);
             
       else
          Textinformationen := AllgemeinesSeitenleisteGrafik.AllgemeineInformationen (SpeziesExtern            => SpeziesExtern,
                                                                                      TextpositionExtern       => (XPositionText, Textinformationen.YPosition),
                                                                                      LeerzeilenExtern         => Textinformationen.Leerzeilen,
-                                                                                     MaximaleTextbreiteExtern => Viewfläche.x);
+                                                                                     MaximaleTextbreiteExtern => Viewbereich.Viewbereich.x);
             
          StadtSpeziesNummer := StadtSuchenLogik.KoordinatenStadtOhneSpeziesSuchen (KoordinatenExtern => AktuelleKoordinaten);
          EinheitSpeziesNummer := EinheitSuchenLogik.KoordinatenEinheitOhneSpeziesSuchen (KoordinatenExtern => AktuelleKoordinaten,
@@ -99,26 +111,26 @@ package body SeitenleisteGrafik is
                                                                         EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
                                                                         TextpositionExtern         => (XPositionText, Textinformationen.YPosition),
                                                                         LeerzeilenExtern           => Textinformationen.Leerzeilen,
-                                                                        MaximaleTextbreiteExtern   => Viewfläche.x);
+                                                                        MaximaleTextbreiteExtern   => Viewbereich.Viewbereich.x);
                
             Textinformationen := StadtseitenleisteGrafik.Stadt (SpeziesExtern            => SpeziesExtern,
                                                                 StadtauswahlExtern       => UebergabeRecordErmittelnGrafik.Stadt (StadtSpeziesNummerExtern => StadtSpeziesNummer),
                                                                 TextpositionExtern       => (XPositionText, Textinformationen.YPosition),
                                                                 LeerzeilenExtern         => Textinformationen.Leerzeilen,
-                                                                MaximaleTextbreiteExtern => Viewfläche.x);
+                                                                MaximaleTextbreiteExtern => Viewbereich.Viewbereich.x);
                
          else
             Textinformationen := StadtseitenleisteGrafik.Stadt (SpeziesExtern            => SpeziesExtern,
                                                                 StadtauswahlExtern       => UebergabeRecordErmittelnGrafik.Stadt (StadtSpeziesNummerExtern => StadtSpeziesNummer),
                                                                 TextpositionExtern       => (XPositionText, Textinformationen.YPosition),
                                                                 LeerzeilenExtern         => Textinformationen.Leerzeilen,
-                                                                MaximaleTextbreiteExtern => Viewfläche.x);
+                                                                MaximaleTextbreiteExtern => Viewbereich.Viewbereich.x);
                
             Textinformationen := EinheitenseitenleisteGrafik.Einheiten (SpeziesExtern              => SpeziesExtern,
                                                                         EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
                                                                         TextpositionExtern         => (XPositionText, Textinformationen.YPosition),
                                                                         LeerzeilenExtern           => Textinformationen.Leerzeilen,
-                                                                        MaximaleTextbreiteExtern   => Viewfläche.x);
+                                                                        MaximaleTextbreiteExtern   => Viewbereich.Viewbereich.x);
          end if;
       end if;
       
@@ -132,8 +144,28 @@ package body SeitenleisteGrafik is
          
       end loop LeerzeilenSchleife;
       
-      Viewfläche.y := Textinformationen.YPosition;
+      Viewbereich.Viewbereich.y := Textinformationen.YPosition;
       
    end SeitenleisteGrafik;
+   
+   
+   
+   function ViewbereicheVergleichen
+     (ViewbereicheExtern : in GrafikRecords.ViewbereichRecord)
+      return Boolean
+   is begin
+      
+      if
+        ViewbereicheExtern.Viewbereich.x /= ViewbereicheExtern.ViewbereichAlt.x
+        or
+          ViewbereicheExtern.Viewbereich.y /= ViewbereicheExtern.ViewbereichAlt.y
+      then
+         return False;
+         
+      else
+         return True;
+      end if;
+      
+   end ViewbereicheVergleichen;
 
 end SeitenleisteGrafik;
