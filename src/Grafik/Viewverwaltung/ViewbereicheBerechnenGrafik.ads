@@ -1,5 +1,7 @@
 with Sf.Graphics.Rect;
 
+with GrafikRecords;
+
 package ViewbereicheBerechnenGrafik is
    pragma Elaborate_Body;
 
@@ -26,6 +28,20 @@ package ViewbereicheBerechnenGrafik is
                 and
                   ViewbereichBreiteHöheBerechnen'Result.height >= 0.00
                );
+   
+   function ViewbereicheVergleichen
+     (ViewbereicheExtern : in GrafikRecords.ViewbereichRecord)
+      return Boolean
+     with
+       Pre => (
+                 ViewbereicheExtern.Viewbereich.x >= 0.00
+               and
+                 ViewbereicheExtern.Viewbereich.y >= 0.00
+               and
+                 ViewbereicheExtern.ViewbereichAlt.x >= 0.00
+               and
+                 ViewbereicheExtern.ViewbereichAlt.y >= 0.00
+              );
    
 private
    

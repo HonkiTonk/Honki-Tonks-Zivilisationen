@@ -41,26 +41,6 @@ package GrafikRecords is
    
    
    
-   type TextpositionLeerzeilenRecord is record
-      
-      Textposition : Sf.System.Vector2.sfVector2f;
-      
-      Leerzeilen : Natural;
-      
-   end record;
-   
-   
-   
-   type YTextpositionLeerzeilenRecord is record
-      
-      YPosition : Float;
-      
-      Leerzeilen : Natural;
-      
-   end record;
-   
-   
-   
    type ViewbereichRecord is record
       
       Viewbereich : Sf.System.Vector2.sfVector2f;

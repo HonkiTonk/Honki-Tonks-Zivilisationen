@@ -6,7 +6,6 @@ with SpeziesDatentypen;
 with StadtRecords;
 with StadtKonstanten;
 with StadtGrafikRecords;
-with GrafikRecords;
 
 private with ProduktionDatentypen;
 private with TextaccessVariablen;
@@ -37,9 +36,8 @@ package StadtseitenleisteGrafik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;
-      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.YTextpositionLeerzeilenRecord
+      return Float
      with
        Pre => (
                --       LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
@@ -53,7 +51,7 @@ package StadtseitenleisteGrafik is
               ),
          
        Post => (
-                  Stadt'Result.YPosition > 0.00
+                  Stadt'Result > 0.00
                );
    
 private
@@ -63,6 +61,7 @@ private
    Zwischenspeicher : Unbounded_Wide_Wide_String;
       
    YTextposition : Float;
+   YTextpositionZwei : Float;
       
    Viewfläche : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    
@@ -102,7 +101,32 @@ private
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
-      
+   
+   function Stadtanzeige
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
+      StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      MaximaleTextbreiteExtern : in Float)
+      return Float
+     with
+       Pre => (
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 StadtauswahlExtern.SpeziesNummer.Nummer in StadtKonstanten.AnfangNummer .. LeseGrenzen.Städtegrenzen (SpeziesExtern => StadtauswahlExtern.SpeziesNummer.Spezies)
+               and
+                 TextpositionExtern.x > 0.00
+               and
+                 TextpositionExtern.y > 0.00
+              ),
+         
+       Post => (
+                  Stadtanzeige'Result > 0.00
+               );
+   
+   
+   
    function ZahlAlsString is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Produktion);
 
 end StadtseitenleisteGrafik;

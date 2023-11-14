@@ -116,9 +116,8 @@ package body MausauswahlLogik is
                                                                  view         => Views.BauviewAccesse (ViewKonstanten.BaumenüGebäudeliste));
           
       case
-        MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
-                                                    BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).width,
-                                                                           GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste).height))
+        MausauswahlAllgemeinLogik.MauszeigerImViewVerbessert (MauspositionExtern => Mausposition,
+                                                              RechteckExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüGebäudeliste)))
       is
          when False =>
             Mausposition := Sf.Graphics.RenderWindow.mapPixelToCoords (renderWindow => FensterGrafik.FensterLesen,
@@ -153,9 +152,8 @@ package body MausauswahlLogik is
       end case;
       
       case
-        MausauswahlAllgemeinLogik.MauszeigerImView (MauspositionExtern => Mausposition,
-                                                    BereichExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).width,
-                                                                           GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste).height))
+        MausauswahlAllgemeinLogik.MauszeigerImViewVerbessert (MauspositionExtern => Mausposition,
+                                                              RechteckExtern      => (GrafikRecordKonstanten.Baumenübereich (ViewKonstanten.BaumenüEinheitenliste)))
       is
          when False =>
             null;

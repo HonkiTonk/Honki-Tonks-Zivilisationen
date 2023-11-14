@@ -19,17 +19,16 @@ package body WichtigesSeitenleisteGrafik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;
-      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.YTextpositionLeerzeilenRecord
+      return Float
    is begin
       
-      Leerzeilen := LeerzeilenExtern;
+      Leerzeilen := 0;
       YTextposition := TextberechnungenHoeheGrafik.KleinerZeilenabstand;
       
       AnzuzeigenderText (1) := Koordinaten (KoordinatenExtern => KoordinatenExtern);
       AnzuzeigenderText (2) := Rundenanzahl (SpeziesExtern => SpeziesExtern);
-      AnzuzeigenderText (3) := Geld (SpeziesExtern => SpeziesExtern); 
+      AnzuzeigenderText (3) := Geld (SpeziesExtern => SpeziesExtern);
       AnzuzeigenderText (4) := Forschung (SpeziesExtern => SpeziesExtern);
             
       TextSchleife:
@@ -42,17 +41,20 @@ package body WichtigesSeitenleisteGrafik is
             
          else
             YTextposition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
-                                                                                                 TextpositionExtern       => (TextpositionExtern.x, YTextposition),
-                                                                                                 MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
-                                                                                                 TextAccessExtern         => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert));
+                                                                                               TextpositionExtern       => (TextpositionExtern.x, YTextposition),
+                                                                                               MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                               TextAccessExtern         => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert));
          end if;
          
       end loop TextSchleife;
+      
+      YTextposition := TextberechnungenHoeheGrafik.Leerzeilen (LeerzeilenExtern => Leerzeilen,
+                                                               PositionExtern   => YTextposition);
          
       YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
-      return (YTextposition, Leerzeilen);
+      return YTextposition;
             
    end WichtigesInformationen;
    
@@ -169,12 +171,12 @@ package body WichtigesSeitenleisteGrafik is
         Forschungszeit
       is
          when ProduktionDatentypen.Lagermenge'Last =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Forschungsprojekt,
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => Forschungsprojekt,
                                                                                                                                                                              SpeziesExtern => SpeziesExtern)
               & TextKonstanten.UnendlichGeklammert;
             
          when others =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern    => Forschungsprojekt,
+            return Spieltexte.Zeug (TextnummernKonstanten.ZeugAktuellesForschungsprojekt) & TextKonstanten.UmbruchAbstand & ForschungsbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => Forschungsprojekt,
                                                                                                                                                                              SpeziesExtern => SpeziesExtern)
               & " (" & ZahlAlsStringKostenLager (ZahlExtern => Forschungszeit) & ")";
       end case;

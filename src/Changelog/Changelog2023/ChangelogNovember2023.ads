@@ -112,52 +112,49 @@ package ChangelogNovember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (14.11.2023):
+   -- Version 0.05.4965 => 0.05. (14.11.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (13.11.2023):
+   -- Version 0.05.4915 => 0.05.4965 (13.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (12.11.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Anzeige der Seitenleiste überarbeitet.
+   -- Weiter versucht den Auswahlfehler im Baumenü zu korrigieren.
+   -- Angefangen Teile der Grafikanzeige zu optimieren.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
-   -- Version 0.05. => 0.05. (11.11.2023):
+   -- Version 0.05.4895 => 0.05.4915 (12.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (10.11.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Mit Fonts herumexperimentiert.
    
    
 
-   -- Version 0.05. => 0.05. (09.11.2023):
+   -- Version 0.05.4895 => 0.05.4895 (11.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. 4895=> 0.05. (08.11.2023):
+   -- Version 0.05.4895 => 0.05.4895 (10.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.4895 => 0.05.4895 (09.11.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.4895 => 0.05.4895 (08.11.2023):
+   
+   -- null.
    
    
 

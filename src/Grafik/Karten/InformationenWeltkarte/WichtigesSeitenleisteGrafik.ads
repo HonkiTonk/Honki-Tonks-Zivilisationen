@@ -5,7 +5,6 @@ with Sf.System.Vector2;
 with SpeziesDatentypen;
 with KartenDatentypen;
 with KartenRecords;
-with GrafikRecords;
 
 private with TextaccessVariablen;
 private with ProduktionDatentypen;
@@ -27,9 +26,8 @@ package WichtigesSeitenleisteGrafik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldNaturalRecord;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;
-      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.YTextpositionLeerzeilenRecord
+      return Float
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum
@@ -44,7 +42,7 @@ package WichtigesSeitenleisteGrafik is
               ),
          
        Post => (
-                  WichtigesInformationen'Result.YPosition > 0.00
+                  WichtigesInformationen'Result > 0.00
                );
    
 private

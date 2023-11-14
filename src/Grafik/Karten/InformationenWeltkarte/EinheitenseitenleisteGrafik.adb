@@ -22,15 +22,11 @@ package body EinheitenseitenleisteGrafik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;
-      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.YTextpositionLeerzeilenRecord
+      return Float
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
-      
-      YTextposition := TextpositionExtern.y;
-      Leerzeilen := LeerzeilenExtern;
       
       if
         SpeziesExtern = SpeziesKonstanten.LeerSpezies
@@ -42,7 +38,7 @@ package body EinheitenseitenleisteGrafik is
       else
          EinheitSpeziesNummer.Nummer := LeseEinheitenGebaut.WirdTransportiert (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
       end if;
-            
+      
       case
         EinheitSpeziesNummer.Nummer
       is
@@ -59,63 +55,17 @@ package body EinheitenseitenleisteGrafik is
         IDEinheit
       is
          when EinheitenKonstanten.LeerID =>
-            AnzuzeigenderText := (others => TextKonstanten.LeerUnboundedString);
+            -- Das +2 kommt vom Zeilenumbruch für Arbeit und Herkunft.
+            YTextposition := TextberechnungenHoeheGrafik.Leerzeilen (LeerzeilenExtern => AnzuzeigenderText'Last + 2,
+                                                                     PositionExtern   => TextpositionExtern.y);
             
          when others =>
-            AnzuzeigenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => IDEinheit,
-                                                                                                                              SpeziesExtern => EinheitSpeziesNummer.Spezies));
-            AnzuzeigenderText (2) := Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
-                                                   IDExtern                   => IDEinheit);
-            
-            if
-              SpeziesExtern = EinheitSpeziesNummer.Spezies
-              or
-                Projekteinstellungen.Debug.VolleInformation
-            then
-               AnzuzeigenderText (3) := Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
-                                                         IDExtern                   => IDEinheit);
-               AnzuzeigenderText (4) := Erfahrungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
-                                                          IDExtern                   => IDEinheit);
-               AnzuzeigenderText (5) := Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
-                                              IDExtern                   => IDEinheit);
-               AnzuzeigenderText (Arbeit) := Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
-               AnzuzeigenderText (7) := Kampfwerte (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
-               AnzuzeigenderText (Herkunft) := Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummer);
-               AnzuzeigenderText (9) := Ladung (EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
-                                                IDExtern                   => IDEinheit);
-         
-            else
-               AnzuzeigenderText (3 .. 9) := (others => TextKonstanten.LeerUnboundedString);
-            end if;
+            YTextposition := Einheitenanzeige (SpeziesExtern              => SpeziesExtern,
+                                               IDExtern                   => IDEinheit,
+                                               EinheitSpeziesNummerExtern => EinheitSpeziesNummer,
+                                               TextpositionExtern         => TextpositionExtern,
+                                               MaximaleTextbreiteExtern   => MaximaleTextbreiteExtern);
       end case;
-      
-      TextSchleife:
-      for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
-         
-         if
-           AnzuzeigenderText (TextSchleifenwert) = TextKonstanten.LeerUnboundedString
-         then
-            Leerzeilen := Leerzeilen + 1;
-            
-         else
-            YTextposition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
-                                                                                               TextpositionExtern       => (TextpositionExtern.x, YTextposition),
-                                                                                               MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
-                                                                                               TextAccessExtern         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
-         end if;
-            
-         case
-           TextSchleifenwert
-         is
-            when Arbeit | Herkunft =>
-               YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
-                                                                              ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
-               
-            when others =>
-               null;
-         end case;
-         
-      end loop TextSchleife;
       
       case
         Projekteinstellungen.Debug.VolleInformation
@@ -129,9 +79,85 @@ package body EinheitenseitenleisteGrafik is
             null;
       end case;
       
-      return (YTextposition, Leerzeilen);
+      return YTextposition;
       
    end Einheiten;
+   
+   
+   
+   function Einheitenanzeige
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      MaximaleTextbreiteExtern : in Float)
+      return Float
+   is
+      use type SpeziesDatentypen.Spezies_Enum;
+   begin
+      
+      Leerzeilen := 0;
+      YTextpositionZwei := TextpositionExtern.y;
+            
+      AnzuzeigenderText (1) := To_Unbounded_Wide_Wide_String (Source => EinheitenbeschreibungenGrafik.Kurzbeschreibung (IDExtern      => IDExtern,
+                                                                                                                        SpeziesExtern => EinheitSpeziesNummerExtern.Spezies));
+      AnzuzeigenderText (2) := Lebenspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                             IDExtern                   => IDExtern);
+            
+      if
+        SpeziesExtern = EinheitSpeziesNummerExtern.Spezies
+        or
+          Projekteinstellungen.Debug.VolleInformation
+      then
+         AnzuzeigenderText (3) := Bewegungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                   IDExtern                   => IDExtern);
+         AnzuzeigenderText (4) := Erfahrungspunkte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                                    IDExtern                   => IDExtern);
+         AnzuzeigenderText (5) := Rang (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                        IDExtern                   => IDExtern);
+         AnzuzeigenderText (Arbeit) := Aufgabe (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+         AnzuzeigenderText (7) := Kampfwerte (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+         AnzuzeigenderText (Herkunft) := Heimatstadt (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern);
+         AnzuzeigenderText (9) := Ladung (EinheitSpeziesNummerExtern => EinheitSpeziesNummerExtern,
+                                          IDExtern                   => IDExtern);
+         
+      else
+         AnzuzeigenderText (3 .. 9) := (others => TextKonstanten.LeerUnboundedString);
+      end if;
+      
+      TextSchleife:
+      for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccess'Range loop
+         
+         if
+           AnzuzeigenderText (TextSchleifenwert) = TextKonstanten.LeerUnboundedString
+         then
+            Leerzeilen := Leerzeilen + 1;
+            
+         else
+            YTextpositionZwei := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
+                                                                                                   TextpositionExtern       => (TextpositionExtern.x, YTextpositionZwei),
+                                                                                                   MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                   TextAccessExtern         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
+         end if;
+            
+         case
+           TextSchleifenwert
+         is
+            when Arbeit | Herkunft =>
+               -- Kann nicht wie bei der Stadt durch Leerzeilen + 1 ersetzt werden, da im Gegensatz zum Bauprojekt diese beiden Informationen nicht am Ende stehen.
+               YTextpositionZwei := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextpositionZwei,
+                                                                                  ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
+               
+            when others =>
+               null;
+         end case;
+         
+      end loop TextSchleife;
+      
+      return TextberechnungenHoeheGrafik.Leerzeilen (LeerzeilenExtern => Leerzeilen,
+                                                     PositionExtern   => YTextpositionZwei);
+      
+   end Einheitenanzeige;
    
    
    

@@ -51,5 +51,25 @@ package body ViewbereicheBerechnenGrafik is
       return NeuerBereich;
       
    end ViewbereichBreiteHöheBerechnen;
+   
+   
+   
+   function ViewbereicheVergleichen
+     (ViewbereicheExtern : in GrafikRecords.ViewbereichRecord)
+      return Boolean
+   is begin
+      
+      if
+        ViewbereicheExtern.Viewbereich.x /= ViewbereicheExtern.ViewbereichAlt.x
+        or
+          ViewbereicheExtern.Viewbereich.y /= ViewbereicheExtern.ViewbereichAlt.y
+      then
+         return False;
+         
+      else
+         return True;
+      end if;
+      
+   end ViewbereicheVergleichen;
 
 end ViewbereicheBerechnenGrafik;

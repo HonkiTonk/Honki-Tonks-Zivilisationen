@@ -1,5 +1,3 @@
-with Spieltexte;
-with TextnummernKonstanten;
 with TextKonstanten;
 
 with LeseWeltkarte;
@@ -15,21 +13,20 @@ package body AllgemeinesSeitenleisteGrafik is
    function AllgemeineInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;
-      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.YTextpositionLeerzeilenRecord
+      return Float
    is begin
         
       YTextposition := TextpositionExtern.y;
-      Leerzeilen := LeerzeilenExtern;
       
       case
         SpeziesExtern
       is
          when SpeziesKonstanten.LeerSpezies =>
-            AnzuzeigenderText := (others => TextKonstanten.LeerUnboundedString);
+            Leerzeilen := AnzuzeigenderText'Last;
             
          when others =>
+            Leerzeilen := 0;
             AktuelleKoordinaten := LeseCursor.KoordinatenAktuell (SpeziesExtern => SpeziesExtern);
             
             AnzuzeigenderText (1) := Gesamtgrund (GesamtgrundExtern => LeseWeltkarte.Gesamtgrund (KoordinatenExtern => AktuelleKoordinaten));
@@ -38,29 +35,32 @@ package body AllgemeinesSeitenleisteGrafik is
             AnzuzeigenderText (4) := Weg (WegExtern => LeseWeltkarte.Weg (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (5) := Fluss (FlussExtern => LeseWeltkarte.Fluss (KoordinatenExtern => AktuelleKoordinaten));
             AnzuzeigenderText (6) := Feldeffekte (KoordinatenExtern => AktuelleKoordinaten);
+      
+            TextSchleife:
+            for TextSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
+         
+               if
+                 AnzuzeigenderText (TextSchleifenwert) = TextKonstanten.LeerUnboundedString
+               then
+                  Leerzeilen := Leerzeilen + 1;
+            
+               else
+                  YTextposition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
+                                                                                                     TextpositionExtern       => (TextpositionExtern.x, YTextposition),
+                                                                                                     MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                     TextAccessExtern         => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert));
+               end if;
+         
+            end loop TextSchleife;
       end case;
       
-      TextSchleife:
-      for TextSchleifenwert in TextaccessVariablen.KarteAllgemeinesAccess'Range loop
-         
-         if
-           AnzuzeigenderText (TextSchleifenwert) = TextKonstanten.LeerUnboundedString
-         then
-            Leerzeilen := Leerzeilen + 1;
-            
-         else
-            YTextposition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
-                                                                                                TextpositionExtern       => (TextpositionExtern.x, YTextposition),
-                                                                                                MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
-                                                                                                TextAccessExtern         => TextaccessVariablen.KarteAllgemeinesAccess (TextSchleifenwert));
-         end if;
-         
-      end loop TextSchleife;
+      YTextposition := TextberechnungenHoeheGrafik.Leerzeilen (LeerzeilenExtern => Leerzeilen,
+                                                               PositionExtern   => YTextposition);
          
       YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
                                                                      ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
       
-      return (YTextposition, Leerzeilen);
+      return YTextposition;
 
    end AllgemeineInformationen;
    
@@ -78,7 +78,7 @@ package body AllgemeinesSeitenleisteGrafik is
             return KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => GesamtgrundExtern.Basisgrund);
          
          when others =>
-            return KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => GesamtgrundExtern.Basisgrund) & " " &  To_Wide_Wide_String (Source => Spieltexte.Zeug (TextnummernKonstanten.ZeugMit)) & " "
+            return KartenbeschreibungenGrafik.KurzbeschreibungBasisgrund (KartenGrundExtern => GesamtgrundExtern.Basisgrund) & TextKonstanten.Trennzeichen
               & KartenbeschreibungenGrafik.KurzbeschreibungZusatzgrund (KartenGrundExtern => GesamtgrundExtern.Zusatzgrund);
       end case;
       

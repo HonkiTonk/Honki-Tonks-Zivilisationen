@@ -5,7 +5,6 @@ with Sf.System.Vector2;
 with SpeziesDatentypen;
 with EinheitenRecords;
 with EinheitenKonstanten;
-with GrafikRecords;
 
 private with EinheitenDatentypen;
 private with ProduktionDatentypen;
@@ -28,9 +27,8 @@ package EinheitenseitenleisteGrafik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;
-      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.YTextpositionLeerzeilenRecord
+      return Float
      with
        Pre => (
                  TextpositionExtern.x > 0.00
@@ -44,7 +42,7 @@ package EinheitenseitenleisteGrafik is
            ),
          
      Post => (
-                Einheiten'Result.YPosition > 0.00
+                Einheiten'Result > 0.00
              );
    
                    
@@ -68,6 +66,7 @@ private
    Leerzeilen : Natural;
    
    YTextposition : Float;
+   YTextpositionZwei : Float;
       
    Kampftext : Unbounded_Wide_Wide_String;
       
@@ -182,8 +181,32 @@ private
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
               );
    
+   function Einheitenanzeige
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
+      IDExtern : in EinheitenDatentypen.EinheitenIDVorhanden;
+      EinheitSpeziesNummerExtern : in EinheitenRecords.SpeziesEinheitnummerRecord;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      MaximaleTextbreiteExtern : in Float)
+      return Float
+     with
+       Pre => (
+                 TextpositionExtern.x > 0.00
+               and
+                 TextpositionExtern.y > 0.00
+               and
+                 EinheitSpeziesNummerExtern.Nummer in EinheitenKonstanten.AnfangNummer .. LeseGrenzen.Einheitengrenze (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies)
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => EinheitSpeziesNummerExtern.Spezies) /= SpeziesDatentypen.Leer_Spieler_Enum
+               and
+                 LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) /= SpeziesDatentypen.Leer_Spieler_Enum
+              ),
+         
+       Post => (
+                  Einheitenanzeige'Result > 0.00
+               );
    
-      
+   
+   
    function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => EinheitenDatentypen.Einheitenbereich);
    
    function ZahlAlsStringProduktionFeld is new UmwandlungenAdaEigenes.ZahlAlsString (GanzeZahl => ProduktionDatentypen.Feldproduktion);

@@ -4,7 +4,6 @@ with Sf.System.Vector2;
 
 with SpeziesDatentypen;
 with SpeziesKonstanten;
-with GrafikRecords;
 
 private with KartenRecords;
 private with KartenverbesserungDatentypen;
@@ -23,9 +22,8 @@ package AllgemeinesSeitenleisteGrafik is
    function AllgemeineInformationen
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;
-      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.YTextpositionLeerzeilenRecord
+      return Float
      with
        Pre => (
                (if SpeziesExtern /= SpeziesKonstanten.LeerSpezies then LeseSpeziesbelegung.Belegung (SpeziesExtern => SpeziesExtern) = SpeziesDatentypen.Mensch_Spieler_Enum)
@@ -36,7 +34,7 @@ package AllgemeinesSeitenleisteGrafik is
               ),
          
        Post => (
-                  AllgemeineInformationen'Result.YPosition > 0.00
+                  AllgemeineInformationen'Result > 0.00
                );
    
 private

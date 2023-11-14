@@ -38,12 +38,11 @@ package body StadtseitenleisteGrafik is
       HintergrundGrafik.Hintergrund (HintergrundExtern => GrafikDatentypen.Seitenleiste_Hintergrund_Enum,
                                      AbmessungenExtern => Viewfläche);
       
-      Viewfläche.y := Stadt (SpeziesExtern            => StadtauswahlExtern.SpeziesNummer.Spezies,
-                              StadtauswahlExtern       => StadtauswahlExtern,
-                              TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, TextberechnungenHoeheGrafik.KleinerZeilenabstand),
-                              LeerzeilenExtern         => 0,
-                              MaximaleTextbreiteExtern => Viewfläche.x).YPosition;
-        
+      Viewfläche.y := Stadtanzeige (SpeziesExtern            => StadtauswahlExtern.SpeziesNummer.Spezies,
+                                     StadtauswahlExtern       => StadtauswahlExtern,
+                                     TextpositionExtern       => (TextberechnungenBreiteGrafik.WinzigerSpaltenabstand, TextberechnungenHoeheGrafik.KleinerZeilenabstand),
+                                     MaximaleTextbreiteExtern => Viewfläche.x);
+      
    end Stadtinformationen;
    
    
@@ -52,47 +51,71 @@ package body StadtseitenleisteGrafik is
      (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
       StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;
-      LeerzeilenExtern : in Natural;
       MaximaleTextbreiteExtern : in Float)
-      return GrafikRecords.YTextpositionLeerzeilenRecord
+      return Float
    is
       use type SpeziesDatentypen.Spezies_Enum;
    begin
-      
-      YTextposition := TextpositionExtern.y;
-      Leerzeilen := LeerzeilenExtern;
       
       if
         SpeziesExtern = SpeziesKonstanten.LeerSpezies
         or
           StadtauswahlExtern.SpeziesNummer.Spezies = SpeziesKonstanten.LeerSpezies
       then
-         AnzuzeigenderText := (others => TextKonstanten.LeerUnboundedString);
+         -- Das +1 bei den Leerzeilen kommt vom Bauprojektumbruch.
+         YTextposition := TextberechnungenHoeheGrafik.Leerzeilen (LeerzeilenExtern => AnzuzeigenderText'Last + 1,
+                                                                  PositionExtern   => TextpositionExtern.y);
          
       else
-         AnzuzeigenderText (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & StadtauswahlExtern.EinwohnerArbeiter (1)'Wide_Wide_Image;
+         YTextposition := Stadtanzeige (SpeziesExtern            => SpeziesExtern,
+                                        StadtauswahlExtern       => StadtauswahlExtern,
+                                        TextpositionExtern       => TextpositionExtern,
+                                        MaximaleTextbreiteExtern => MaximaleTextbreiteExtern);
+      end if;
+            
+      YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
+                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
+      
+      return YTextposition;
+      
+   end Stadt;
+   
+   
+   
+   function Stadtanzeige
+     (SpeziesExtern : in SpeziesDatentypen.Spezies_Enum;
+      StadtauswahlExtern : in StadtGrafikRecords.StadtGrafikRecord;
+      TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      MaximaleTextbreiteExtern : in Float)
+      return Float
+   is
+      use type SpeziesDatentypen.Spezies_Enum;
+   begin
+      
+      YTextpositionZwei := TextpositionExtern.y;
+      Leerzeilen := 0;
+      AnzuzeigenderText (1) := Spieltexte.Zeug (TextnummernKonstanten.ZeugEinwohner) & StadtauswahlExtern.EinwohnerArbeiter (1)'Wide_Wide_Image;
          
-         if
-           StadtauswahlExtern.SpeziesNummer.Spezies = SpeziesExtern
-           or
-             Projekteinstellungen.Debug.VolleInformation
-         then
-            AnzuzeigenderText (2) := Nahrung (ProduktionExtern => StadtauswahlExtern.Nahrungsproduktion,
-                                              VorhandenExtern  => StadtauswahlExtern.Nahrungsmittel);
-            AnzuzeigenderText (3) := Spieltexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " " & ZahlAlsString (ZahlExtern => StadtauswahlExtern.Produktionrate);
-            AnzuzeigenderText (4) := Spieltexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " & ZahlAlsString (ZahlExtern => StadtauswahlExtern.Geldgewinnung);
-            AnzuzeigenderText (5) := Spieltexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & StadtauswahlExtern.Forschungsrate'Wide_Wide_Image;
-            AnzuzeigenderText (6) := Kampfwerte (StadtauswahlExtern => StadtauswahlExtern);
-            AnzuzeigenderText (7) := Spieltexte.Zeug (TextnummernKonstanten.ZeugKorruption) & StadtauswahlExtern.Korruption'Wide_Wide_Image;
-            AnzuzeigenderText (8) := Spieltexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & AllgemeineBerechnungen.FreieEinwohner (EinwohnerExtern => StadtauswahlExtern.EinwohnerArbeiter (1),
-                                                                                                                                              ArbeiterExtern  => StadtauswahlExtern.EinwohnerArbeiter (2))'Wide_Wide_Image;
-            AnzuzeigenderText (9) := AktuellesBauprojekt (SpeziesExtern    => StadtauswahlExtern.SpeziesNummer.Spezies,
-                                                          BauprojektExtern => StadtauswahlExtern.Bauprojekt,
-                                                          BauzeitExtern    => StadtauswahlExtern.Bauzeit);
+      if
+        StadtauswahlExtern.SpeziesNummer.Spezies = SpeziesExtern
+        or
+          Projekteinstellungen.Debug.VolleInformation
+      then
+         AnzuzeigenderText (2) := Nahrung (ProduktionExtern => StadtauswahlExtern.Nahrungsproduktion,
+                                           VorhandenExtern  => StadtauswahlExtern.Nahrungsmittel);
+         AnzuzeigenderText (3) := Spieltexte.Zeug (TextnummernKonstanten.ZeugRessourcenproduktion) & " " & ZahlAlsString (ZahlExtern => StadtauswahlExtern.Produktionrate);
+         AnzuzeigenderText (4) := Spieltexte.Zeug (TextnummernKonstanten.ZeugGeldproduktion) & " " & ZahlAlsString (ZahlExtern => StadtauswahlExtern.Geldgewinnung);
+         AnzuzeigenderText (5) := Spieltexte.Zeug (TextnummernKonstanten.ZeugWissensproduktion) & StadtauswahlExtern.Forschungsrate'Wide_Wide_Image;
+         AnzuzeigenderText (6) := Kampfwerte (StadtauswahlExtern => StadtauswahlExtern);
+         AnzuzeigenderText (7) := Spieltexte.Zeug (TextnummernKonstanten.ZeugKorruption) & StadtauswahlExtern.Korruption'Wide_Wide_Image;
+         AnzuzeigenderText (8) := Spieltexte.Zeug (TextnummernKonstanten.ZeugVerfügbareArbeiter) & AllgemeineBerechnungen.FreieEinwohner (EinwohnerExtern => StadtauswahlExtern.EinwohnerArbeiter (1),
+                                                                                                                                           ArbeiterExtern  => StadtauswahlExtern.EinwohnerArbeiter (2))'Wide_Wide_Image;
+         AnzuzeigenderText (9) := AktuellesBauprojekt (SpeziesExtern    => StadtauswahlExtern.SpeziesNummer.Spezies,
+                                                       BauprojektExtern => StadtauswahlExtern.Bauprojekt,
+                                                       BauzeitExtern    => StadtauswahlExtern.Bauzeit);
 
-         else
-            AnzuzeigenderText (2 .. 9) := (others => TextKonstanten.LeerUnboundedString);
-         end if;
+      else
+         AnzuzeigenderText (2 .. 9) := (others => TextKonstanten.LeerUnboundedString);
       end if;
       
       TextSchleife:
@@ -104,18 +127,18 @@ package body StadtseitenleisteGrafik is
             Leerzeilen := Leerzeilen + 1;
             
          else
-            YTextposition := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
-                                                                                                 TextpositionExtern       => (TextpositionExtern.x, YTextposition),
-                                                                                                 MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
-                                                                                                 TextAccessExtern         => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert));
+            YTextpositionZwei := TextaccessverwaltungssystemErweitertGrafik.TextSkalierenZeichnen (TextExtern               => To_Wide_Wide_String (Source => AnzuzeigenderText (TextSchleifenwert)),
+                                                                                                   TextpositionExtern       => (TextpositionExtern.x, YTextpositionZwei),
+                                                                                                   MaximaleTextbreiteExtern => MaximaleTextbreiteExtern,
+                                                                                                   TextAccessExtern         => TextaccessVariablen.StadtInformationenAccess (TextSchleifenwert));
          end if;
          
+         -- Das kommt vom Bauprojektumbruch.
          case
            TextSchleifenwert
          is
-            when 9 =>
-               YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
-                                                                              ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
+            when AnzuzeigenderText'Last =>
+               Leerzeilen := Leerzeilen + 1;
                
             when others =>
                null;
@@ -123,12 +146,10 @@ package body StadtseitenleisteGrafik is
          
       end loop TextSchleife;
       
-      YTextposition := TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => YTextposition,
-                                                                     ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
+      return TextberechnungenHoeheGrafik.Leerzeilen (LeerzeilenExtern => Leerzeilen,
+                                                     PositionExtern   => YTextpositionZwei);
       
-      return (YTextposition, Leerzeilen);
-      
-   end Stadt;
+   end Stadtanzeige;
    
    
    

@@ -46,4 +46,29 @@ package body TextberechnungenHoeheGrafik is
       
    end NeueTextposition;
    
+   
+   
+   function Leerzeilen
+     (LeerzeilenExtern : in Natural;
+      PositionExtern : in Float)
+      return Float
+   is begin
+      
+      NeuePosition := 0.00;
+      LeereZeilen := LeerzeilenExtern;
+      
+      LeerzeilenSchleife:
+      while LeereZeilen > 0 loop
+         
+         NeuePosition := NeueTextposition (PositionExtern   => NeuePosition,
+                                           ZusatzwertExtern => KleinerZeilenabstand);
+         
+         LeereZeilen := LeereZeilen - 1;
+         
+      end loop LeerzeilenSchleife;
+      
+      return PositionExtern + NeuePosition;
+      
+   end Leerzeilen;
+   
 end TextberechnungenHoeheGrafik;
