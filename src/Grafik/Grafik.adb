@@ -5,6 +5,7 @@ with LeseEinstellungenGrafik;
 with SchreibeLogiktask;
 with LeseGrafiktask;
 with SchreibeGrafiktask;
+with Grafiktask;
 
 with IntroGrafik;
 with MenueaufteilungGrafik;
@@ -257,8 +258,9 @@ package body Grafik is
                                                      AuswahlExtern => LeseGrafiktask.Erstauswahl);
             
          when GrafikDatentypen.Bauen_Enum =>
-            BauauswahlGrafik.Bauauswahl (BauauswahlExtern      => UebergabeRecordErmittelnGrafik.Bauauswahl (StadtSpeziesNummerExtern => (LeseGrafiktask.AktiveSpezies, LeseGrafiktask.Stadtnummer)),
-                                         AktuelleAuswahlExtern => (LeseGrafiktask.Gebäudeauswahl, LeseGrafiktask.Einheitenauswahl));
+            BauauswahlGrafik.Bauauswahl (BauauswahlExtern         => UebergabeRecordErmittelnGrafik.Bauauswahl (StadtSpeziesNummerExtern => (LeseGrafiktask.AktiveSpezies, LeseGrafiktask.Stadtnummer)),
+                                         AktuelleAuswahlExtern    => (LeseGrafiktask.Gebäudeauswahl, LeseGrafiktask.Einheitenauswahl, Grafiktask.Auswahl.Bauauswahl.BaumenüanzeigeÄndern),
+                                         AktuelleAufteilungExtern => Grafiktask.Test);
             
          when GrafikDatentypen.Verkaufen_Enum =>
             VerkaufsauswahlGrafik.Verkaufsauswahl (SpeziesExtern         => LeseGrafiktask.AktiveSpezies,

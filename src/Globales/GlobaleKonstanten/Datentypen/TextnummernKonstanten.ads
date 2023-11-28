@@ -2,7 +2,7 @@ package TextnummernKonstanten is
    pragma Pure;
    
    ZeugEinwohner : constant Positive := 1;
-   ZeugNahrungsmittel : constant Positive := 2;
+   ZeugNahrungsmittel : constant Positive := ZeugEinwohner + 1;
    ZeugRessourcenproduktion : constant Positive := 3;
    ZeugGeldproduktion : constant Positive := 4;
    ZeugWissensproduktion : constant Positive := 5;

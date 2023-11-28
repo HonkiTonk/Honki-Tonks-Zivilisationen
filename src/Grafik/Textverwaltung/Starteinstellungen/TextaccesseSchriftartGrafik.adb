@@ -134,8 +134,18 @@ package body TextaccesseSchriftartGrafik is
          
       end loop SpielstandSchleife;
       
-   end Menüs;
       
+      
+      BauaufteilungSchleife:
+      for BauaufteilungSchleifenwert in TextaccessVariablen.GebäudeaufteilungAccess'Range loop
+         
+         Sf.Graphics.Text.setFont (text => TextaccessVariablen.GebäudeaufteilungAccess (BauaufteilungSchleifenwert),
+                                   font => SchriftaccessExtern);
+         
+      end loop BauaufteilungSchleife;
+      
+   end Menüs;
+   
       
    
    procedure Spezies

@@ -20,6 +20,7 @@ with TextaccessverwaltungssystemErweitertGrafik;
 with ViewsEinstellenGrafik;
 with HintergrundGrafik;
 with TextberechnungenBreiteGrafik;
+with StandardtexteGrafik;
 
 package body StadtseitenleisteGrafik is
    
@@ -227,15 +228,7 @@ package body StadtseitenleisteGrafik is
          return Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Spieltexte.Zeug (TextnummernKonstanten.ZeugKeines);
       end if;
       
-      case
-        BauzeitExtern
-      is
-         when ProduktionDatentypen.Produktion'Last =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Zwischenspeicher & TextKonstanten.UnendlichGeklammert;
-            
-         when others =>
-            return Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Zwischenspeicher & " (" & ZahlAlsString (ZahlExtern => BauzeitExtern) & ")";
-      end case;
+      return Spieltexte.Zeug (TextnummernKonstanten.ZeugBauprojekt) & TextKonstanten.UmbruchAbstand & Zwischenspeicher & StandardtexteGrafik.Bauzeit (BauzeitExtern => BauzeitExtern);
             
    end AktuellesBauprojekt;
    

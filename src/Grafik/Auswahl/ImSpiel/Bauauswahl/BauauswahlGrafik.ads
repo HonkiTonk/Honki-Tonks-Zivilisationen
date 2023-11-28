@@ -1,6 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 private with Sf.System.Vector2;
+private with Sf.Graphics.Color;
 
 with SpeziesDatentypen;
 with StadtDatentypen;
@@ -20,14 +21,15 @@ package BauauswahlGrafik is
 
    procedure Bauauswahl
      (BauauswahlExtern : in StadtGrafikRecords.BaumenüGrafikRecord;
-      AktuelleAuswahlExtern : in StadtRecords.BauprojektRecord)
+      AktuelleAuswahlExtern : in StadtRecords.ErweiterterBauprojektRecord;
+      AktuelleAufteilungExtern : in Positive)
      with
        Pre => (
                  LeseSpeziesbelegung.Belegung (SpeziesExtern => BauauswahlExtern.Spezies) = SpeziesDatentypen.Mensch_Spieler_Enum
-               and
-                 (if AktuelleAuswahlExtern.Gebäude /= 0 then AktuelleAuswahlExtern.Einheit = 0)
-               and
-                 (if AktuelleAuswahlExtern.Einheit /= 0 then AktuelleAuswahlExtern.Gebäude = 0)
+              -- and
+             --    (if AktuelleAuswahlExtern.Gebäude /= 0 then AktuelleAuswahlExtern.Einheit = 0)
+              -- and
+             --    (if AktuelleAuswahlExtern.Einheit /= 0 then AktuelleAuswahlExtern.Gebäude = 0)
               );
 
 private
@@ -39,7 +41,14 @@ private
    ViewflächeGebäude : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    ViewflächeEinheiten : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    ViewflächeAktuell : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
+   ViewflächeAufteilung : Sf.System.Vector2.sfVector2f := GrafikRecordKonstanten.StartView;
    Textposition : Sf.System.Vector2.sfVector2f;
+
+   Farbe : Sf.Graphics.Color.sfColor;
+
+   procedure Bauaufteilung
+     (AusgewählteAufteilungExtern : in Natural;
+      AktuelleAufteilungExtern : in Positive);
 
    procedure Gebäude
      (AuswahlExtern : in StadtDatentypen.GebäudeIDMitNullwert;

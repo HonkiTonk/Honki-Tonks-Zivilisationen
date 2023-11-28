@@ -94,6 +94,16 @@ package body TextaccesseTextGrafik is
          
       end loop SpielstandSchleife;
       
+      
+      
+      BauaufteilungSchleife:
+      for BauaufteilungSchleifenwert in TextaccessVariablen.GebäudeaufteilungAccess'Range loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.GebäudeaufteilungAccess (BauaufteilungSchleifenwert),
+                                            str  => "Test");
+         
+      end loop BauaufteilungSchleife;
+      
    end Menüs;
       
       

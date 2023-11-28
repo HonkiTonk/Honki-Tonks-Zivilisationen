@@ -130,6 +130,16 @@ package body TextaccesseSchriftstilGrafik is
          
       end loop SpielstandSchleife;
       
+      
+      
+      BauaufteilungSchleife:
+      for BauaufteilungSchleifenwert in TextaccessVariablen.GebäudeaufteilungAccess'Range loop
+         
+         Sf.Graphics.Text.setStyle (text  => TextaccessVariablen.GebäudeaufteilungAccess (BauaufteilungSchleifenwert),
+                                    style => StilExtern);
+         
+      end loop BauaufteilungSchleife;
+      
    end Menüs;
       
       

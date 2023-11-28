@@ -27,7 +27,7 @@ private
 
    BauenMöglich : Boolean;
 
-   AktuelleAuswahl : StadtRecords.BauprojektRecord := (0, 0);
+   AktuelleAuswahl : StadtRecords.ErweiterterBauprojektRecord := (0, 0, 0);
    NeuesBauprojekt : StadtRecords.BauprojektRecord;
 
 

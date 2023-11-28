@@ -86,6 +86,7 @@ package LeseGrafiktask is
    function StadtEinheitAuswahl
      return EinheitenRecords.AuswahlRecord;
    
+   -- Für den BauprojektRecord und seiner Erweiterung mal enie Funktion schreiben. äöü
    function Gebäudeauswahl
      return StadtDatentypen.GebäudeIDMitNullwert;
    

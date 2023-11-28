@@ -6,6 +6,23 @@ package TextaccessverwaltungssystemErweitertGrafik is
    pragma Elaborate_Body;
    use type Sf.Graphics.sfText_Ptr;
    
+   function SkalierenFarbeZeichnen
+     (TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      MaximaleTextbreiteExtern : in Float;
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+      return Float
+     with
+       Pre => (
+                 TextAccessExtern /= null
+               and
+                 MaximaleTextbreiteExtern >= 0.00
+              ),
+         
+       Post => (
+                  SkalierenFarbeZeichnen'Result > 0.00
+               );
+   
    function TextSkalierenFarbeZeichnen
      (TextExtern : in Wide_Wide_String;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;

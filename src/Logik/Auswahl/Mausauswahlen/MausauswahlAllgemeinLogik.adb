@@ -4,7 +4,7 @@ with Vergleiche;
 
 package body MausauswahlAllgemeinLogik is
 
-   -- Verursacht Probleme wenn der Bereich nicht bei (0.00, 0.00) anfängt.
+   -- Verursacht möglicherweise Probleme wenn der Bereich nicht bei (0.00, 0.00) anfängt.
    function MauszeigerImView
      (MauspositionExtern : in Sf.System.Vector2.sfVector2f;
       BereichExtern : in Sf.System.Vector2.sfVector2f)

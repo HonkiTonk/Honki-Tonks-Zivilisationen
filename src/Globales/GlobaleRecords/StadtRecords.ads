@@ -41,6 +41,17 @@ package StadtRecords is
    
    
    
+   type ErweiterterBauprojektRecord is record
+      
+      Gebäude : StadtDatentypen.GebäudeIDMitNullwert;
+      Einheit : EinheitenDatentypen.EinheitenID;
+      
+      BaumenüanzeigeÄndern : Natural;
+      
+   end record;
+   
+   
+   
    -- XXX äöü
    type GebäudeRecord is record
       

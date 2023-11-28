@@ -154,6 +154,16 @@ package body TextaccesseSchriftgroesseGrafik is
          
       end loop SpielstandSchleife;
       
+      
+      
+      BauaufteilungSchleife:
+      for BauaufteilungSchleifenwert in TextaccessVariablen.GebäudeaufteilungAccess'Range loop
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudeaufteilungAccess (BauaufteilungSchleifenwert),
+                                            size => StandardExtern);
+         
+      end loop BauaufteilungSchleife;
+      
    end Menüs;
       
       

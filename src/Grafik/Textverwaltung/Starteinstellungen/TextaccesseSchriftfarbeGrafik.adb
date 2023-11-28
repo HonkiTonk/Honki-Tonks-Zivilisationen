@@ -151,6 +151,16 @@ package body TextaccesseSchriftfarbeGrafik is
          
       end loop SpielstandSchleife;
       
+      
+      
+      BauaufteilungSchleife:
+      for BauaufteilungSchleifenwert in TextaccessVariablen.GebäudeaufteilungAccess'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.GebäudeaufteilungAccess (BauaufteilungSchleifenwert),
+                                    color => StandardExtern);
+         
+      end loop BauaufteilungSchleife;
+      
    end Menüs;
    
    

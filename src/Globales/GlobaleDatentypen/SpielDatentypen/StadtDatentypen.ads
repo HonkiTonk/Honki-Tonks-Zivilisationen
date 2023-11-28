@@ -2,6 +2,7 @@ package StadtDatentypen is
    pragma Pure;
 
    -- Für Gebäude
+   -- Hier mal auf GebäudeID und GebäudeIDVorhanden umschreiben. äöü
    type GebäudeIDMitNullwert is range 0 .. 27;
    subtype GebäudeID is GebäudeIDMitNullwert range 1 .. GebäudeIDMitNullwert'Last;
    

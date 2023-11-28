@@ -7,6 +7,37 @@ with TextskalierungGrafik;
 
 package body TextaccessverwaltungssystemErweitertGrafik is
    
+   function SkalierenFarbeZeichnen
+     (TextpositionExtern : in Sf.System.Vector2.sfVector2f;
+      MaximaleTextbreiteExtern : in Float;
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      FarbeExtern : in Sf.Graphics.Color.sfColor)
+      return Float
+   is begin
+      
+      TextaccessverwaltungssystemEinfachGrafik.Position (TextaccessExtern => TextAccessExtern,
+                                                         PositionExtern   => TextpositionExtern);
+      
+      TextaccessverwaltungssystemEinfachGrafik.Farbe (TextaccessExtern => TextAccessExtern,
+                                                      FarbeExtern      => FarbeExtern);
+      
+      Textbreite := TextberechnungenBreiteGrafik.TextbreiteAnfangsabstand (TextAccessExtern => TextAccessExtern,
+                                                                           AbstandExtern    => 2.00 * TextberechnungenBreiteGrafik.KleinerSpaltenabstand);
+            
+      Skalierung.x := TextskalierungGrafik.Verkleinerung (AktuelleBreiteExtern => Textbreite,
+                                                          ErlaubteBreiteExtern => MaximaleTextbreiteExtern);
+      Skalierung.y := GrafikRecordKonstanten.Standardskalierung.y;
+                        
+      TextaccessverwaltungssystemEinfachGrafik.SkalierenZeichnen (TextaccessExtern => TextAccessExtern,
+                                                                  SkalierungExtern => Skalierung);
+      
+      return TextberechnungenHoeheGrafik.NeueTextposition (PositionExtern   => TextpositionExtern.y,
+                                                           ZusatzwertExtern => TextberechnungenHoeheGrafik.KleinerZeilenabstand);
+      
+   end SkalierenFarbeZeichnen;
+   
+   
+   
    function TextSkalierenFarbeZeichnen
      (TextExtern : in Wide_Wide_String;
       TextpositionExtern : in Sf.System.Vector2.sfVector2f;

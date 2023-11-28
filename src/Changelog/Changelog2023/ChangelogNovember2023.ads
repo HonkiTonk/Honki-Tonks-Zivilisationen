@@ -7,17 +7,19 @@ package ChangelogNovember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (29.11.2023):
+   -- Version 0.05.5035 => 0.05. (29.11.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.4985 => 0.05. (28.11.2023):
+   -- Version 0.05.4985 => 0.05.5035 (28.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neues Baumenü gebaut, bauen funktioniert damit endlich wieder.
+   -- Konstante angefangen zu überarbeiten.
+   -- Angefangen häufig benutzte, variable Texte auszulagern.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/erweitert.
    
    
 

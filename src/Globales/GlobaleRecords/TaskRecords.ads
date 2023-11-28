@@ -103,7 +103,7 @@ package TaskRecords is
       
       StadtEinheitAuswahl : EinheitenRecords.AuswahlRecord;
       
-      Bauauswahl : StadtRecords.BauprojektRecord;
+      Bauauswahl : StadtRecords.ErweiterterBauprojektRecord;
       
    end record;
    

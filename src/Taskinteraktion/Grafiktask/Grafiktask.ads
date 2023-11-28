@@ -42,7 +42,7 @@ package Grafiktask is
                                                  Endauswahl          => AuswahlKonstanten.LeerAuswahl,
                                                  Gesamtauswahl       => (AuswahlKonstanten.LeerAuswahl, AuswahlKonstanten.LeerAuswahl),
                                                  StadtEinheitAuswahl => (False, (others => AuswahlKonstanten.LeerStadtEinheitAuswahl)),
-                                                 Bauauswahl          => (AuswahlKonstanten.LeerGebäudeauswahl, AuswahlKonstanten.LeerEinheitenauswahl)
+                                                 Bauauswahl          => (AuswahlKonstanten.LeerGebäudeauswahl, AuswahlKonstanten.LeerEinheitenauswahl, 0)
                                                 );
          
    Eingabe : TaskRecords.EingabeGrafikRecord := (
@@ -58,6 +58,8 @@ package Grafiktask is
                                                  Spielmeldungszeit => Clock,
                                                  Fragenanzeige     => ZahlenDatentypen.EigenesNatural'First
                                                 );
+   
+   Test : Positive := 1;
    
    Einheitenbewegung : TaskRecords.EinheitenbewegungGrafikRecord := (others => False);
    

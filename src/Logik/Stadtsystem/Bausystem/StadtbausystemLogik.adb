@@ -2,6 +2,7 @@ with GrafikDatentypen;
 with TastenbelegungDatentypen;
 with AuswahlKonstanten;
 with TextnummernKonstanten;
+with Grafiktask;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -152,12 +153,18 @@ package body StadtbausystemLogik is
          AktuelleAuswahl := MausauswahlLogik.Baumenü;
          SchreibeGrafiktask.Gebäudeauswahl (GebäudeExtern => AktuelleAuswahl.Gebäude);
          SchreibeGrafiktask.Einheitenauswahl (EinheitExtern => AktuelleAuswahl.Einheit);
+         Grafiktask.Auswahl.Bauauswahl.BaumenüanzeigeÄndern := AktuelleAuswahl.BaumenüanzeigeÄndern;
          
          case
            TasteneingabeLogik.VereinfachteEingabe
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
+                 AktuelleAuswahl.BaumenüanzeigeÄndern /= 0
+               then
+                  Grafiktask.Test := AktuelleAuswahl.BaumenüanzeigeÄndern;
+                  
+               elsif
                  AktuelleAuswahl.Gebäude = AuswahlKonstanten.LeerGebäudeauswahl
                  and
                    AktuelleAuswahl.Einheit = AuswahlKonstanten.LeerEinheitenauswahl
@@ -170,7 +177,7 @@ package body StadtbausystemLogik is
                    AktuelleBauprojektExtern.Einheit = AuswahlKonstanten.LeerEinheitenauswahl
                then
                   OftVerwendetSound.Klick;
-                  return AktuelleAuswahl;
+                  return (AktuelleAuswahl.Gebäude, AktuelleAuswahl.Einheit);
                   
                elsif
                  ((AktuelleAuswahl.Gebäude /= AuswahlKonstanten.LeerGebäudeauswahl
@@ -187,7 +194,7 @@ package body StadtbausystemLogik is
                   
                else
                   OftVerwendetSound.Klick;
-                  return AktuelleAuswahl;
+                  return (AktuelleAuswahl.Gebäude, AktuelleAuswahl.Einheit);
                end if;
                
             when TastenbelegungDatentypen.Abwählen_Enum =>
