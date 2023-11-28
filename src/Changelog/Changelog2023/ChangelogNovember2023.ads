@@ -14,108 +14,94 @@ package ChangelogNovember2023 is
    
    
 
-   -- Version 0.05. => 0.05. (28.11.2023):
+   -- Version 0.05.4985 => 0.05. (28.11.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05. => 0.05. (27.11.2023):
+   -- Version 0.05.4965 => 0.05.4985 (27.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (26.11.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- GNAT aktualisiert.
    
    
 
-   -- Version 0.05. => 0.05. (25.11.2023):
+   -- Version 0.05.4965 => 0.05.4965 (26.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (24.11.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (23.11.2023):
+   -- Version 0.05.4965 => 0.05.4965 (25.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (22.11.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (21.11.2023):
+   -- Version 0.05.4965 => 0.05.4965 (24.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (20.11.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (19.11.2023):
+   -- Version 0.05.4965 => 0.05.4965 (23.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (18.11.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (17.11.2023):
+   -- Version 0.05.4965 => 0.05.4965 (22.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.05. => 0.05. (16.11.2023):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05. => 0.05. (15.11.2023):
+   -- Version 0.05.4965 => 0.05.4965 (21.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.05.4965 => 0.05. (14.11.2023):
+   -- Version 0.05.4965 => 0.05.4965 (20.11.2023):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.05.4965 => 0.05.4965 (19.11.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.4965 => 0.05.4965 (18.11.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.4965 => 0.05.4965 (17.11.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.4965 => 0.05.4965 (16.11.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.4965 => 0.05.4965 (15.11.2023):
+   
+   -- null.
+   
+   
+
+   -- Version 0.05.4965 => 0.05.4965 (14.11.2023):
+   
+   -- null.
    
    
 
