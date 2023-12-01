@@ -1,15 +1,15 @@
 package ChangelogNovember2023 is
 
-   -- Version 0.05. => 0.05. (30.11.2023):
+   -- Version 0.05.5060 => 0.05. (30.11.2023):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.05.5035 => 0.05. (29.11.2023):
+   -- Version 0.05.5035 => 0.05.5060 (29.11.2023):
    
-   -- 
+   -- Textdateien überarbeitet und erweitert.
    -- Kleinigkeiten korrigiert.
    
    
